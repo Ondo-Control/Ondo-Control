@@ -71,7 +71,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:22px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · Dein persönliches Kommandozentrum · v4<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · Dein persönliches Kommandozentrum · v5<span id="saveNote" class="save-note"></span></div>
 
   <div class="tabs">
     <button class="tab on" data-tab="dashboard">Dashboard</button>
@@ -270,6 +270,23 @@ function delBet(id){ state.bets=state.bets.filter(function(b){return b.id!==id;}
 
 /* ================= RENDER ================= */
 var tab="dashboard", wtab="vorschlaege";
+var entsperrt=false;
+
+function viewLock(){
+  return '<div class="card" style="text-align:center;padding:30px 20px;margin-top:30px">'+
+    '<div style="font-size:40px;margin-bottom:10px">🔒</div>'+
+    '<div class="disp" style="font-size:22px;margin-bottom:14px">Ondo Control ist gesperrt</div>'+
+    '<input id="pinEingabe" type="password" inputmode="numeric" placeholder="PIN" style="max-width:200px;margin:0 auto;text-align:center;font-size:22px;letter-spacing:6px"/>'+
+    '<div id="pinFehler" class="muted" style="color:var(--loss);margin-top:8px"></div>'+
+    '<button class="btn" style="max-width:200px;margin:14px auto 0" onclick="pinPruefen()">Entsperren</button>'+
+  '</div>';
+}
+function pinPruefen(){
+  var v=document.getElementById('pinEingabe').value;
+  if(v===state.pin){ entsperrt=true; render(); }
+  else{ var f=document.getElementById('pinFehler'); if(f) f.textContent='Falscher PIN'; }
+}
+
 function go(t,w){ tab=t; if(w) wtab=w;
   document.querySelectorAll(".tab").forEach(function(el){ el.classList.toggle("on", el.dataset.tab===t); });
   render();
@@ -277,6 +294,14 @@ function go(t,w){ tab=t; if(w) wtab=w;
 
 function render(){
   var c=calc(), v=document.getElementById("view");
+  if(state.pin && !entsperrt){
+    document.getElementById("topSaldo").textContent="🔒";
+    document.getElementById("topSaldo").style.color="var(--dim)";
+    v.innerHTML=viewLock();
+    var pe=document.getElementById('pinEingabe');
+    if(pe) pe.addEventListener('keyup',function(e){ if(e.key==='Enter') pinPruefen(); });
+    return;
+  }
   document.getElementById("topSaldo").textContent=fmt(c.gesamt);
   document.getElementById("topSaldo").style.color = c.gesamt>0?"var(--win)":c.gesamt<0?"var(--loss)":"var(--text)";
 
@@ -382,7 +407,13 @@ function viewWetten(c){
 }
 
 function viewRegeln(){
-  return '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">🧠 KI-Gehirn (API-Schlüssel)</div>'+
+  return '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">🔒 PIN-Sperre</div>'+
+    '<div class="muted" style="margin-bottom:12px">Schützt die App vor fremden Blicken auf DIESEM Gerät. Hinweis: Das ist Sichtschutz, keine Banken-Verschlüsselung.</div>'+
+    '<label>PIN (4-8 Ziffern, leer = keine Sperre)</label>'+
+    '<input type="password" inputmode="numeric" style="max-width:160px" value="'+(state.pin||'')+'" oninput="state.pin=this.value.trim();save()"/>'+
+    '<div class="muted" style="margin-top:8px">Status: '+(state.pin?'✅ Sperre aktiv (gilt ab dem nächsten Öffnen)':'Keine Sperre')+'</div>'+
+  '</div>'+
+  '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">🧠 KI-Gehirn (API-Schlüssel)</div>'+
     '<div class="muted" style="margin-bottom:12px">Dein Schlüssel von console.anthropic.com (beginnt mit sk-ant-...). Er bleibt NUR auf diesem Gerät gespeichert — nicht auf GitHub, nicht öffentlich.</div>'+
     '<label>API-Schlüssel</label>'+
     '<input type="password" placeholder="sk-ant-..." value="'+(state.apiKey||'')+'" oninput="state.apiKey=this.value.trim();save()"/>'+
