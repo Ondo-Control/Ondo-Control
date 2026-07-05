@@ -140,45 +140,40 @@ function calc(){
   };
 }
 
-/* ================= SPIELE LADEN (freie Quelle) ================= */
+/* ================= SPIELE LADEN (geprüfte freie Quelle: TheStatsAPI, CORS ok, kein Schlüssel) ================= */
 function spieleLaden(btn){
   btn.disabled=true; btn.textContent="Lade Spiele …";
-  var quellen = [
-    "https://worldcupjson.net/matches/today_and_tomorrow",
-    "https://worldcupjson.net/matches"
-  ];
-  var i=0;
-  function versuch(){
-    if(i>=quellen.length){ fertig("Konnte keine Spiele laden. Du kannst Wetten unten weiterhin von Hand eintragen."); return; }
-    fetch(quellen[i]).then(function(r){
-      if(!r.ok) throw new Error("HTTP "+r.status);
-      return r.json();
-    }).then(function(data){
-      var matches = Array.isArray(data)? data : (data.matches||[]);
-      var offen = matches.filter(function(m){
-        return m.status!=="completed";
-      }).slice(0,5);
-      if(!offen.length){ i++; versuch(); return; }
-      state.vorschlaege = offen.map(function(m,idx){
+  var f=document.getElementById("ladeFehler"); if(f) f.textContent="";
+  fetch("https://www.thestatsapi.com/world-cup/data/fixtures.json")
+    .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
+    .then(function(data){
+      var heute0 = new Date(); heute0.setHours(0,0,0,0);
+      var kommende = (data.fixtures||[])
+        .filter(function(m){ return new Date(m.kickoffUtc) >= heute0; })
+        .sort(function(a,b){ return new Date(a.kickoffUtc)-new Date(b.kickoffUtc); })
+        .slice(0,5);
+      if(!kommende.length) throw new Error("Keine kommenden Spiele gefunden");
+      state.vorschlaege = kommende.map(function(m,idx){
+        var platzhalter = /winner|loser|runners|third|group/i.test(m.homeTeam+m.awayTeam);
         return {
           id:"f"+Date.now()+idx,
-          match:(m.home_team && m.home_team.name? m.home_team.name:"?")+" – "+(m.away_team && m.away_team.name? m.away_team.name:"?"),
-          wettbewerb:"WM 2026",
-          anpfiff:(m.datetime? new Date(m.datetime).toLocaleString("de-DE",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}):""),
+          match:m.homeTeam+" – "+m.awayTeam,
+          wettbewerb:"WM 2026 · "+(m.stage||"").replace(/-/g," "),
+          anpfiff:new Date(m.kickoffUtc).toLocaleString("de-DE",{weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})+" Uhr",
           tipp:"", quote:"", einsatz:"",
-          info:"Spiel automatisch geladen. Quote & Tipp trägst du selbst ein (oder fragst Claude im Chat)."
+          info: platzhalter
+            ? "Teams stehen noch nicht fest (K.o.-Phase). Frag Claude im Chat, wer wirklich spielt + Analyse."
+            : "Spielplan geladen. Quote & Tipp trägst du ein — oder du fragst Claude im Chat nach der Analyse."
         };
       });
-      state.vorschlaegeInfo = "Automatisch geladen: "+heuteStr();
-      save(); fertig(null);
-    }).catch(function(){ i++; versuch(); });
-  }
-  function fertig(fehler){
-    btn.disabled=false; btn.textContent="🔄 Spiele laden";
-    if(fehler){ var e=document.getElementById("ladeFehler"); if(e) e.textContent=fehler; }
-    else render();
-  }
-  versuch();
+      state.vorschlaegeInfo = "Spielplan geladen: "+heuteStr()+" · Quelle: TheStatsAPI";
+      save(); btn.disabled=false; btn.textContent="🔄 Spiele laden"; render();
+    })
+    .catch(function(e){
+      btn.disabled=false; btn.textContent="🔄 Spiele laden";
+      var el=document.getElementById("ladeFehler");
+      if(el) el.textContent="Konnte keine Spiele laden ("+(e&&e.message?e.message:"?")+"). Wetten unter „Neu" von Hand eintragen geht immer.";
+    });
 }
 
 /* ================= AKTIONEN ================= */
