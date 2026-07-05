@@ -7,6 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="theme-color" content="#0B1220" />
 <title>Ondo Control</title>
+<link rel="apple-touch-icon" href="apple-touch-icon.png"/>
 <style>
   :root{
     --bg:#0B1220; --card:#111C30; --edge:#1D2B45; --inner:#0D1729;
@@ -91,7 +92,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:21px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · v12<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · v13<span id="saveNote" class="save-note"></span></div>
   <div id="view"></div>
 </div>
 
@@ -104,7 +105,7 @@
 
 <script>
 /* ================= VERSION & UPDATE-CHECK ================= */
-var APP_VERSION = 12;
+var APP_VERSION = 13;
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
     .then(function(r){ return r.json(); })
