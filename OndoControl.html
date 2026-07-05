@@ -71,7 +71,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:22px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · Dein persönliches Kommandozentrum · v3<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · Dein persönliches Kommandozentrum · v4<span id="saveNote" class="save-note"></span></div>
 
   <div class="tabs">
     <button class="tab on" data-tab="dashboard">Dashboard</button>
@@ -176,6 +176,84 @@ function spieleLaden(btn){
     });
 }
 
+/* ================= KI-ANALYSE (Gehirn: Anthropic API + Websuche, Schlüssel bleibt lokal) ================= */
+function kiAnalyse(btn){
+  if(!state.apiKey || state.apiKey.indexOf('sk-ant-')!==0){
+    var f0=document.getElementById('ladeFehler');
+    if(f0) f0.textContent='Kein gültiger API-Schlüssel. Trage ihn unter REGELN ein (beginnt mit sk-ant-...).';
+    return;
+  }
+  btn.disabled=true; btn.textContent='🧠 Denkt … (30-60 Sek.)';
+  var f=document.getElementById('ladeFehler'); if(f) f.textContent='';
+
+  var prompt='Heute ist '+heuteStr()+'. Du bist der Wett-Analyst von Ondo Control und folgst dieser Verfassung: Fakten von Annahmen trennen, mehrere Quellen prüfen, Widersprüche nennen, Risiken ehrlich benennen, keine Scheinsicherheit, keine Gewinnversprechen.\n\nSuche im Web, welche Fussballspiele HEUTE und MORGEN wirklich stattfinden (echte Teamnamen! WM 2026 K.o.-Runde und andere relevante Wettbewerbe) und die aktuellen Wettquoten dazu.\n\nWaehle die 3 Spiele mit dem besten Value. Pro Spiel: konkreter Tipp (auch Ueber/Unter, Beide treffen, Doppelchance), realistische Quote als Zahl, empfohlener Einsatz zwischen 5 und '+state.regeln.maxEinsatz+' Euro je nach Value und Risiko, sehr kurze Begruendung (max 20 Woerter, inkl. Risiko).\n\nDeine letzte Nachricht: AUSSCHLIESSLICH kompaktes JSON, kein Markdown, kein Text davor/danach:\n{"spiele":[{"match":"Team A - Team B","wettbewerb":"WM Achtelfinale","anpfiff":"heute 22:00","tipp":"...","quote":1.85,"einsatz":10,"begruendung":"..."}]}';
+
+  function anfrage(messages){
+    return fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{
+        'x-api-key':state.apiKey,
+        'anthropic-version':'2023-06-01',
+        'content-type':'application/json',
+        'anthropic-dangerous-direct-browser-access':'true'
+      },
+      body:JSON.stringify({
+        model:'claude-sonnet-4-6',
+        max_tokens:1500,
+        messages:messages,
+        tools:[{type:'web_search_20250305',name:'web_search'}]
+      })
+    }).then(function(r){
+      return r.json().then(function(j){ j._status=r.status; return j; });
+    });
+  }
+
+  var messages=[{role:'user',content:prompt}];
+  var runden=0;
+
+  function weiter(res){
+    if(res._status===401) throw new Error('Schluessel ungueltig (401). Unter REGELN pruefen.');
+    if(res._status===400 && res.error && /credit/i.test(res.error.message||'')) throw new Error('Guthaben leer. Auf console.anthropic.com aufladen.');
+    if(res.error) throw new Error(res.error.message||('HTTP '+res._status));
+    if(res.stop_reason==='pause_turn' && runden<4){
+      runden++;
+      messages.push({role:'assistant',content:res.content});
+      return anfrage(messages).then(weiter);
+    }
+    var texte=(res.content||[]).filter(function(b){return b.type==='text';}).map(function(b){return b.text;});
+    var parsed=null;
+    for(var i=texte.length-1;i>=0 && !parsed;i--){
+      var c=texte[i].replace(/```json|```/g,'').trim();
+      var s=c.indexOf('{'), e=c.lastIndexOf('}');
+      if(s===-1||e===-1) continue;
+      try{ parsed=JSON.parse(c.slice(s,e+1)); }catch(x){}
+    }
+    if(!parsed || !parsed.spiele || !parsed.spiele.length) throw new Error('Antwort ohne lesbares JSON.');
+    state.vorschlaege=parsed.spiele.map(function(sp,idx){
+      return {
+        id:'ki'+Date.now()+idx,
+        match:String(sp.match||''),
+        wettbewerb:String(sp.wettbewerb||''),
+        anpfiff:String(sp.anpfiff||''),
+        tipp:String(sp.tipp||''),
+        quote:String(sp.quote||''),
+        einsatz:String(Math.min(Number(sp.einsatz)||10,state.regeln.maxEinsatz)),
+        info:String(sp.begruendung||'')+' — KI-Analyse, kein Gewinnversprechen.'
+      };
+    });
+    state.vorschlaegeInfo='🧠 KI-Analyse: '+heuteStr();
+    save();
+    btn.disabled=false; btn.textContent='🧠 KI-Analyse (heute)';
+    render();
+  }
+
+  anfrage(messages).then(weiter).catch(function(e){
+    btn.disabled=false; btn.textContent='🧠 KI-Analyse (heute)';
+    var el=document.getElementById('ladeFehler');
+    if(el) el.textContent='KI-Analyse fehlgeschlagen: '+(e&&e.message?e.message:'unbekannt');
+  });
+}
+
 /* ================= AKTIONEN ================= */
 function addBet(v, einsatzVal){
   var einsatz = Math.min(parseFloat(String(einsatzVal).replace(",","."))||0, state.regeln.maxEinsatz);
@@ -255,7 +333,9 @@ function viewWetten(c){
       '</div>';
     }).join("");
     return sub+
-      '<button class="btn" onclick="spieleLaden(this)">🔄 Spiele laden</button>'+
+      '<button class="btn" onclick="kiAnalyse(this)">🧠 KI-Analyse (heute)</button>'+
+      '<div style="height:8px"></div>'+
+      '<button class="btn" style="background:transparent;border:1px solid var(--edge);color:var(--dim)" onclick="spieleLaden(this)">🔄 Nur Spielplan laden (ohne KI)</button>'+
       '<div id="ladeFehler" class="muted" style="color:var(--loss);margin:10px 0"></div>'+
       (state.vorschlaegeInfo?'<div class="muted" style="margin:8px 0">'+state.vorschlaegeInfo+'</div>':'')+
       (list||'<div class="card empty">Noch keine Spiele. Tippe „Spiele laden" oder trage unter „Neu" von Hand ein.<br><br>Tipp: Frag Claude im Chat nach Analysen — trag Tipp & Quote dann hier ein.</div>');
@@ -302,7 +382,13 @@ function viewWetten(c){
 }
 
 function viewRegeln(){
-  return '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">Administrator-Regeln</div>'+
+  return '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">🧠 KI-Gehirn (API-Schlüssel)</div>'+
+    '<div class="muted" style="margin-bottom:12px">Dein Schlüssel von console.anthropic.com (beginnt mit sk-ant-...). Er bleibt NUR auf diesem Gerät gespeichert — nicht auf GitHub, nicht öffentlich.</div>'+
+    '<label>API-Schlüssel</label>'+
+    '<input type="password" placeholder="sk-ant-..." value="'+(state.apiKey||'')+'" oninput="state.apiKey=this.value.trim();save()"/>'+
+    '<div class="muted" style="margin-top:8px">Status: '+(state.apiKey&&state.apiKey.indexOf('sk-ant-')===0?'✅ Schlüssel gespeichert':'❌ Kein Schlüssel')+'</div>'+
+  '</div>'+
+  '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">Administrator-Regeln</div>'+
     '<div class="muted" style="margin-bottom:12px">Wird wirklich durchgesetzt: Einsätze über dem Limit werden beim Speichern begrenzt.</div>'+
     '<label>Maximaler Einsatz pro Wette (€)</label>'+
     '<input style="max-width:160px" inputmode="decimal" value="'+state.regeln.maxEinsatz+'" oninput="state.regeln.maxEinsatz=parseFloat(String(this.value).replace(\',\',\'.\'))||0;save()"/>'+
