@@ -15,23 +15,16 @@
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
   body{margin:0;background:var(--bg);color:var(--text);
-    font-family:'Inter',-apple-system,'Segoe UI',sans-serif;
-    padding-bottom:env(safe-area-inset-bottom);}
-  .wrap{max-width:700px;margin:0 auto;padding:18px 14px 60px;}
+    font-family:'Inter',-apple-system,'Segoe UI',sans-serif;}
+  .wrap{max-width:700px;margin:0 auto;padding:18px 14px 110px;}
   h1{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;
-    font-size:38px;margin:0;letter-spacing:1px;text-transform:uppercase;}
+    font-size:34px;margin:0;letter-spacing:1px;text-transform:uppercase;}
   h1 .a{color:var(--accent);}
   .disp{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;}
-  .sub{color:var(--dim);font-size:13px;margin:2px 0 16px;}
-  .tabs{display:flex;gap:5px;background:var(--card);border:1px solid var(--edge);
-    border-radius:10px;padding:5px;margin-bottom:18px;}
-  .tab{flex:1;padding:10px 2px;background:transparent;color:var(--dim);border:none;
-    border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;
-    letter-spacing:.8px;cursor:pointer;text-transform:uppercase;white-space:nowrap;}
-  .tab.on{background:var(--accent);color:#0B1220;}
-  .card{background:var(--card);border:1px solid var(--edge);border-radius:10px;padding:14px;margin-bottom:12px;}
+  .sub{color:var(--dim);font-size:12px;margin:2px 0 16px;}
+  .card{background:var(--card);border:1px solid var(--edge);border-radius:12px;padding:15px;margin-bottom:12px;}
   .stat-label{color:var(--dim);font-size:12px;margin-bottom:4px;}
-  .stat-val{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;line-height:1;}
+  .stat-val{font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:700;line-height:1;}
   .stat-sub{color:var(--dim);font-size:11px;margin-top:4px;}
   .row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;}
   .row>.card{flex:1;min-width:135px;margin-bottom:0;}
@@ -39,10 +32,12 @@
   input,select{width:100%;background:var(--inner);border:1px solid var(--edge);
     border-radius:8px;color:var(--text);padding:11px 12px;font-size:15px;outline:none;
     font-family:inherit;}
-  .btn{background:var(--accent);color:#0B1220;border:none;border-radius:8px;padding:12px 16px;
+  select{appearance:none;-webkit-appearance:none;}
+  .btn{background:var(--accent);color:#0B1220;border:none;border-radius:9px;padding:12px 16px;
     font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;letter-spacing:1px;
     cursor:pointer;text-transform:uppercase;width:100%;}
   .btn:disabled{background:#2A3550;color:var(--dim);}
+  .btn-ghost{background:transparent;border:1px solid var(--edge);color:var(--dim);}
   .btn-sm{background:transparent;border:1px solid var(--dim);color:var(--dim);border-radius:6px;
     padding:6px 12px;font-size:12px;cursor:pointer;font-family:inherit;width:auto;}
   .btn-win{border-color:var(--win);color:var(--win);}
@@ -58,39 +53,189 @@
   .empty{padding:26px;text-align:center;color:var(--dim);font-size:14px;}
   .flex{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
   .save-note{color:var(--accent);font-size:12px;margin-left:8px;}
-  .vorschlag{border-color:rgba(245,217,10,.27);}
   .quote{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:700;color:var(--accent);}
   .tipbox{background:var(--inner);border-radius:8px;padding:10px 12px;margin-top:10px;}
   pre{white-space:pre-wrap;font-family:inherit;font-size:13px;line-height:1.65;margin:0;}
-  a{color:var(--accent);}
+  .subtabs{display:flex;gap:5px;background:var(--card);border:1px solid var(--edge);
+    border-radius:10px;padding:5px;margin-bottom:16px;}
+  .subtab{flex:1;padding:9px 2px;background:transparent;color:var(--dim);border:none;
+    border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;
+    letter-spacing:.8px;cursor:pointer;text-transform:uppercase;white-space:nowrap;}
+  .subtab.on{background:var(--accent);color:#0B1220;}
+  .module{display:flex;justify-content:space-between;align-items:center;cursor:pointer;}
+  .module .mi{font-size:26px;margin-right:12px;}
+  .module .mt{font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:700;}
+  .module .md{color:var(--dim);font-size:12px;}
+  .mstatus{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:1.2px;font-weight:700;}
+  /* Bottom-Navigation */
+  .nav{position:fixed;bottom:0;left:0;right:0;background:rgba(13,23,41,.97);
+    border-top:1px solid var(--edge);display:flex;z-index:50;
+    padding:8px 6px calc(8px + env(safe-area-inset-bottom));backdrop-filter:blur(10px);}
+  .nav button{flex:1;background:none;border:none;color:var(--dim);cursor:pointer;
+    font-family:inherit;font-size:10.5px;display:flex;flex-direction:column;align-items:center;gap:3px;}
+  .nav button .ic{font-size:22px;line-height:1;}
+  .nav button.on{color:var(--accent);}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="flex" style="align-items:baseline;">
     <h1>Ondo<span class="a"> Control</span></h1>
-    <div id="topSaldo" class="disp" style="font-size:22px;">+0,00 €</div>
+    <div id="topSaldo" class="disp" style="font-size:21px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · Dein persönliches Kommandozentrum · v5<span id="saveNote" class="save-note"></span></div>
-
-  <div class="tabs">
-    <button class="tab on" data-tab="dashboard">Dashboard</button>
-    <button class="tab" data-tab="wetten">Wetten</button>
-    <button class="tab" data-tab="regeln">Regeln</button>
-    <button class="tab" data-tab="projekt">Projekt</button>
-  </div>
-
+  <div class="sub"><span id="heute"></span> · v11<span id="saveNote" class="save-note"></span></div>
   <div id="view"></div>
 </div>
 
+<div class="nav" id="nav">
+  <button data-tab="home"><span class="ic">🏠</span><span id="nvHome">Start</span></button>
+  <button data-tab="wetten"><span class="ic">🎯</span><span id="nvBets">Wetten</span></button>
+  <button data-tab="finanzen"><span class="ic">💰</span><span id="nvFin">Finanzen</span></button>
+  <button data-tab="mehr"><span class="ic">⚙️</span><span id="nvMore">Mehr</span></button>
+</div>
+
 <script>
+/* ================= SPRACHEN ================= */
+var I18N = {
+ de:{ nvHome:'Start', nvBets:'Wetten', nvFin:'Finanzen', nvMore:'Mehr',
+  locked:'Ondo Control ist gesperrt', unlock:'Entsperren', wrongPin:'Falscher PIN', pinPh:'PIN',
+  saved:'Gespeichert ✓', saveFail:'Speichern fehlgeschlagen',
+  totalBal:'Gesamt-Bilanz', tipicoBal:'Tipico-Kontostand (ca.)', tipicoSub:'Eingezahlt + Bilanz − offene Einsätze − Auszahlungen',
+  betBal:'Wett-Saldo', hitYou:'Deine Trefferquote', hitAI:'KI-Trefferquote', notRated:'Noch nicht bewertet',
+  closed:'abgeschlossen', open_:'offen', noBetYet:'Noch keine Wette', of:'von',
+  modules:'Module', active:'AKTIV', planned:'GEPLANT',
+  modBets:'Wett-Analyse', modBetsD:'KI-Tipps, Historie, Statistik',
+  modFin:'Finanzen', modFinD:'Ein-/Auszahlungen, Bilanz',
+  modLotto:'Lotterien', modLottoD:'Wahrscheinlichkeiten (realistisch)',
+  modContent:'Content', modContentD:'YouTube/TikTok-Ideen',
+  modOrga:'Organisation', modOrgaD:'Aufgaben, Planung',
+  sugg:'Vorschläge', new_:'Neu', hist:'Historie',
+  kiBtn:'🧠 KI-Analyse (heute)', kiThink:'🧠 Denkt … (30-60 Sek.)', planBtn:'🔄 Nur Spielplan (ohne KI)',
+  noSugg:'Noch keine Vorschläge. Tippe auf KI-Analyse.', tip:'Tipp', odds:'Quote', stake:'Einsatz (€)',
+  take:'✓ Übernehmen', fillOddsStake:'Bitte Quote und Einsatz eintragen',
+  possWin:'Möglicher Gewinn', match:'Spiel', saveBet:'Wette speichern', fillAll:'Bitte Spiel, Quote und Einsatz ausfüllen',
+  noBets:'Noch keine Wetten erfasst.', won:'GEWONNEN', lost:'VERLOREN', openB:'OFFEN',
+  bWon:'✓ Gewonnen', bLost:'✗ Verloren', reset:'Zurücksetzen', del:'Löschen',
+  aiRight:'KI richtig', aiWrong:'KI falsch', ai:'KI',
+  photoT:'📷 Schein fotografieren', photoD:'Foto/Screenshot deines Wettscheins — die KI liest ihn und trägt alles ein. Kostet wenige Cent.',
+  photoBtn:'📷 Foto wählen / aufnehmen', photoRead:'📷 Lese Schein … (20-40 Sek.)', photoOk:'Wette(n) übernommen.',
+  photoFail:'Foto-Lesen fehlgeschlagen: ', noKey:'Kein API-Schlüssel. Unter MEHR eintragen.',
+  finT:'Geldbewegungen', depNew:'Neue Einzahlung erfassen (€)', add:'+ Hinzufügen',
+  depTotal:'Eingezahlt gesamt', autoAdd:'wird automatisch addiert',
+  wdNew:'Auszahlung erfassen (€) — Geld aufs Konto geholt', wdTotal:'Ausgezahlt gesamt', realized:'(realisierter Gewinn)',
+  startBal:'Startbilanz vor Ondo Control (€)', startBalD:'Nur anpassen, falls der Tipico-Stand nicht exakt stimmt.',
+  lang:'Sprache', pinT:'🔒 PIN-Sperre', pinD:'Sichtschutz auf diesem Gerät — keine Banken-Verschlüsselung.',
+  pinLabel:'PIN (4-8 Ziffern, leer = keine Sperre)', pinOn:'✅ Sperre aktiv (ab nächstem Öffnen)', pinOff:'Keine Sperre',
+  keyT:'🧠 KI-Gehirn (API-Schlüssel)', keyD:'Schlüssel von console.anthropic.com — bleibt NUR auf diesem Gerät.',
+  keyOn:'✅ Schlüssel gespeichert', keyOff:'❌ Kein Schlüssel',
+  rulesT:'Administrator-Regeln', rulesD:'Wird wirklich durchgesetzt: höhere Einsätze werden begrenzt.',
+  maxStake:'Maximaler Einsatz pro Wette (€)',
+  secT:'Sicherheits-Fundament', sec1:'• Keine automatische Wettplatzierung — nur Analyse',
+  sec2:'• Kein Geld-Einsatz ohne deine Bestätigung', sec3:'• Keine Gewinnversprechen',
+  sec4:'• Jede Empfehlung mit Begründung und Risiko', sec5:'• Deine Daten bleiben auf deinem Gerät',
+  projT:'Projekt & Vision',
+  loadFail:'Konnte keine Spiele laden', loadHand:'Wetten unter NEU von Hand eintragen geht immer.',
+  planLoaded:'Spielplan geladen', kiOf:'🧠 KI-Analyse', noJson:'Antwort ohne lesbares JSON.',
+  keyBad:'Schlüssel ungültig (401). Unter MEHR prüfen.', credEmpty:'Guthaben leer. Auf console.anthropic.com aufladen.',
+  kiNote:'KI-Analyse, kein Gewinnversprechen.', teamsTbd:'Teams stehen noch nicht fest. Nutze die KI-Analyse für echte Namen.'
+ },
+ fr:{ nvHome:'Accueil', nvBets:'Paris', nvFin:'Finances', nvMore:'Plus',
+  locked:'Ondo Control est verrouillé', unlock:'Déverrouiller', wrongPin:'PIN incorrect', pinPh:'PIN',
+  saved:'Enregistré ✓', saveFail:'Échec de sauvegarde',
+  totalBal:'Bilan global', tipicoBal:'Solde Tipico (env.)', tipicoSub:'Déposé + bilan − mises ouvertes − retraits',
+  betBal:'Solde paris', hitYou:'Ton taux de réussite', hitAI:'Taux de réussite IA', notRated:'Pas encore évalué',
+  closed:'terminés', open_:'en jeu', noBetYet:'Aucun pari encore', of:'sur',
+  modules:'Modules', active:'ACTIF', planned:'PRÉVU',
+  modBets:'Analyse de paris', modBetsD:'Tips IA, historique, stats',
+  modFin:'Finances', modFinD:'Dépôts/retraits, bilan',
+  modLotto:'Loteries', modLottoD:'Probabilités (réalistes)',
+  modContent:'Contenu', modContentD:'Idées YouTube/TikTok',
+  modOrga:'Organisation', modOrgaD:'Tâches, planification',
+  sugg:'Suggestions', new_:'Nouveau', hist:'Historique',
+  kiBtn:'🧠 Analyse IA (auj.)', kiThink:'🧠 Réfléchit … (30-60 s)', planBtn:'🔄 Calendrier seul (sans IA)',
+  noSugg:'Aucune suggestion. Tape sur Analyse IA.', tip:'Tip', odds:'Cote', stake:'Mise (€)',
+  take:'✓ Reprendre', fillOddsStake:'Indique la cote et la mise',
+  possWin:'Gain possible', match:'Match', saveBet:'Enregistrer le pari', fillAll:'Remplis match, cote et mise',
+  noBets:'Aucun pari enregistré.', won:'GAGNÉ', lost:'PERDU', openB:'OUVERT',
+  bWon:'✓ Gagné', bLost:'✗ Perdu', reset:'Réinitialiser', del:'Supprimer',
+  aiRight:'IA correcte', aiWrong:'IA fausse', ai:'IA',
+  photoT:'📷 Photographier un ticket', photoD:'Photo/capture de ton ticket — l’IA le lit et enregistre tout. Quelques centimes.',
+  photoBtn:'📷 Choisir / prendre une photo', photoRead:'📷 Lecture du ticket … (20-40 s)', photoOk:'pari(s) enregistré(s).',
+  photoFail:'Échec de lecture : ', noKey:'Pas de clé API. À saisir dans PLUS.',
+  finT:'Mouvements d’argent', depNew:'Nouveau dépôt (€)', add:'+ Ajouter',
+  depTotal:'Total déposé', autoAdd:'addition automatique',
+  wdNew:'Retrait (€) — argent viré sur ton compte', wdTotal:'Total retiré', realized:'(gain réalisé)',
+  startBal:'Bilan de départ avant Ondo Control (€)', startBalD:'À ajuster seulement si le solde Tipico ne colle pas.',
+  lang:'Langue', pinT:'🔒 Verrou PIN', pinD:'Protection visuelle sur cet appareil — pas un coffre bancaire.',
+  pinLabel:'PIN (4-8 chiffres, vide = pas de verrou)', pinOn:'✅ Verrou actif (à la prochaine ouverture)', pinOff:'Pas de verrou',
+  keyT:'🧠 Cerveau IA (clé API)', keyD:'Clé de console.anthropic.com — reste UNIQUEMENT sur cet appareil.',
+  keyOn:'✅ Clé enregistrée', keyOff:'❌ Pas de clé',
+  rulesT:'Règles administrateur', rulesD:'Vraiment appliquées : les mises trop hautes sont plafonnées.',
+  maxStake:'Mise maximale par pari (€)',
+  secT:'Fondement de sécurité', sec1:'• Aucun pari placé automatiquement — analyse seulement',
+  sec2:'• Pas d’argent engagé sans ta confirmation', sec3:'• Pas de promesses de gains',
+  sec4:'• Chaque conseil avec justification et risque', sec5:'• Tes données restent sur ton appareil',
+  projT:'Projet & vision',
+  loadFail:'Chargement impossible', loadHand:'Tu peux toujours saisir à la main sous NOUVEAU.',
+  planLoaded:'Calendrier chargé', kiOf:'🧠 Analyse IA', noJson:'Réponse sans JSON lisible.',
+  keyBad:'Clé invalide (401). Vérifie dans PLUS.', credEmpty:'Crédit épuisé. Recharge sur console.anthropic.com.',
+  kiNote:'Analyse IA, aucune promesse de gain.', teamsTbd:'Équipes pas encore connues. Utilise l’Analyse IA pour les vrais noms.'
+ },
+ en:{ nvHome:'Home', nvBets:'Bets', nvFin:'Finance', nvMore:'More',
+  locked:'Ondo Control is locked', unlock:'Unlock', wrongPin:'Wrong PIN', pinPh:'PIN',
+  saved:'Saved ✓', saveFail:'Save failed',
+  totalBal:'Total balance', tipicoBal:'Tipico balance (approx.)', tipicoSub:'Deposited + balance − open stakes − withdrawals',
+  betBal:'Betting balance', hitYou:'Your hit rate', hitAI:'AI hit rate', notRated:'Not rated yet',
+  closed:'settled', open_:'in play', noBetYet:'No bets yet', of:'of',
+  modules:'Modules', active:'ACTIVE', planned:'PLANNED',
+  modBets:'Bet analysis', modBetsD:'AI tips, history, stats',
+  modFin:'Finance', modFinD:'Deposits/withdrawals, balance',
+  modLotto:'Lotteries', modLottoD:'Probabilities (realistic)',
+  modContent:'Content', modContentD:'YouTube/TikTok ideas',
+  modOrga:'Organisation', modOrgaD:'Tasks, planning',
+  sugg:'Suggestions', new_:'New', hist:'History',
+  kiBtn:'🧠 AI analysis (today)', kiThink:'🧠 Thinking … (30-60 s)', planBtn:'🔄 Schedule only (no AI)',
+  noSugg:'No suggestions yet. Tap AI analysis.', tip:'Tip', odds:'Odds', stake:'Stake (€)',
+  take:'✓ Take over', fillOddsStake:'Please enter odds and stake',
+  possWin:'Possible win', match:'Match', saveBet:'Save bet', fillAll:'Please fill match, odds and stake',
+  noBets:'No bets recorded yet.', won:'WON', lost:'LOST', openB:'OPEN',
+  bWon:'✓ Won', bLost:'✗ Lost', reset:'Reset', del:'Delete',
+  aiRight:'AI right', aiWrong:'AI wrong', ai:'AI',
+  photoT:'📷 Scan a bet slip', photoD:'Photo/screenshot of your slip — the AI reads it and records everything. Costs a few cents.',
+  photoBtn:'📷 Choose / take photo', photoRead:'📷 Reading slip … (20-40 s)', photoOk:'bet(s) recorded.',
+  photoFail:'Slip reading failed: ', noKey:'No API key. Enter it under MORE.',
+  finT:'Money movements', depNew:'Record new deposit (€)', add:'+ Add',
+  depTotal:'Total deposited', autoAdd:'added automatically',
+  wdNew:'Record withdrawal (€) — money moved to your bank', wdTotal:'Total withdrawn', realized:'(realised profit)',
+  startBal:'Starting balance before Ondo Control (€)', startBalD:'Adjust only if the Tipico balance does not match.',
+  lang:'Language', pinT:'🔒 PIN lock', pinD:'Privacy screen on this device — not bank-grade encryption.',
+  pinLabel:'PIN (4-8 digits, empty = no lock)', pinOn:'✅ Lock active (from next open)', pinOff:'No lock',
+  keyT:'🧠 AI brain (API key)', keyD:'Key from console.anthropic.com — stays ONLY on this device.',
+  keyOn:'✅ Key saved', keyOff:'❌ No key',
+  rulesT:'Administrator rules', rulesD:'Actually enforced: higher stakes are capped.',
+  maxStake:'Maximum stake per bet (€)',
+  secT:'Safety foundation', sec1:'• No automatic bet placement — analysis only',
+  sec2:'• No money committed without your confirmation', sec3:'• No profit promises',
+  sec4:'• Every recommendation with reasoning and risk', sec5:'• Your data stays on your device',
+  projT:'Project & vision',
+  loadFail:'Could not load games', loadHand:'You can always enter bets manually under NEW.',
+  planLoaded:'Schedule loaded', kiOf:'🧠 AI analysis', noJson:'Reply without readable JSON.',
+  keyBad:'Invalid key (401). Check under MORE.', credEmpty:'Credit empty. Top up at console.anthropic.com.',
+  kiNote:'AI analysis, no profit promise.', teamsTbd:'Teams not decided yet. Use AI analysis for real names.'
+ }
+};
+function t(k){ var l=state.lang||'de'; return (I18N[l]&&I18N[l][k])||I18N.de[k]||k; }
+var LANGNAME={de:'Deutsch',fr:'Français',en:'English'};
+
 /* ================= DATEN ================= */
 var KEY = "ondo-control-v1";
 var state = {
   bets: [],
   regeln: { maxEinsatz: 20 },
-  startSaldo: -10.24,           // Tipico vor Ondo Control (30 € ein, Stand 19,76 €)
+  startSaldo: -10.24,
   eingezahlt: 30,
+  ausgezahlt: 0,
+  lang: 'de',
   vorschlaege: [],
   vorschlaegeInfo: ""
 };
@@ -101,15 +246,43 @@ function load(){
     if(raw){ var d = JSON.parse(raw); for(var k in d) state[k]=d[k];
       if(!state.regeln) state.regeln={maxEinsatz:20}; }
   }catch(e){}
+  if(!state.seedV || state.seedV < 2){
+    var seedBets = [
+      {id:900001, datum:"4.7.2026", match:"Kanada – Marokko", tipp:"Beide Teams treffen (Ja)", quote:2.05, einsatz:7, status:"verloren", claudeRichtig:false},
+      {id:900002, datum:"4.7.2026", match:"Paraguay – Frankreich", tipp:"Frankreich über 2,5 Tore", quote:1.75, einsatz:7, status:"verloren", claudeRichtig:false},
+      {id:900003, datum:"5.7.2026", match:"6er Kombi (Bra, Eng, Spa, USA, Arg, Kol)", tipp:"Alle 6 Siege", quote:62.0, einsatz:3.95, status:"offen", claudeRichtig:null},
+      {id:900004, datum:"5.7.2026", match:"7er Kombi (Weiterkommen: Bra, Eng, Spa, USA, Arg, Kol, Fra)", tipp:"Alle 7 kommen weiter", quote:14.3, einsatz:2, status:"offen", claudeRichtig:null},
+      {id:900005, datum:"5.7.2026", match:"7er Kombi (Weiterkommen + 2× Über 1,5)", tipp:"Alle 7 richtig", quote:13.08, einsatz:1, status:"offen", claudeRichtig:null}
+    ];
+    for(var i=0;i<seedBets.length;i++){
+      var exists=false;
+      for(var j=0;j<state.bets.length;j++){ if(state.bets[j].id===seedBets[i].id){ exists=true; break; } }
+      if(!exists) state.bets.push(seedBets[i]);
+    }
+    state.bets.sort(function(a,b){ return b.id-a.id; });
+    state.seedV = 2;
+    try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+  }
+  if(state.seedV < 3){
+    for(var m=0;m<state.bets.length;m++){
+      if(state.bets[m].id===900001){ state.bets[m].quote=1.90; }
+      if(state.bets[m].id===900002){
+        state.bets[m].einsatz=5.81;
+        state.bets[m].tipp="Frankreich über 2,5 Tore (Cashout: 1,19 € zurückgeholt)";
+      }
+    }
+    state.seedV = 3;
+    try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+  }
 }
 function save(){
   try{
     localStorage.setItem(KEY, JSON.stringify(state));
-    note("Gespeichert ✓");
-  }catch(e){ note("Speichern ging nicht"); }
+    note(t('saved'));
+  }catch(e){ note(t('saveFail')); }
 }
-function note(t){
-  var n=document.getElementById("saveNote"); n.textContent=t;
+function note(x){
+  var n=document.getElementById("saveNote"); n.textContent=x;
   setTimeout(function(){ n.textContent=""; }, 1500);
 }
 
@@ -122,10 +295,11 @@ function profit(b){
   return 0;
 }
 function heuteStr(){
-  return new Date().toLocaleDateString("de-DE",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+  var loc = state.lang==='fr'?'fr-FR':(state.lang==='en'?'en-GB':'de-DE');
+  return new Date().toLocaleDateString(loc,{weekday:"long",day:"numeric",month:"long",year:"numeric"});
 }
 
-/* ================= BERECHNUNGEN ================= */
+/* ================= BERECHNUNG ================= */
 function calc(){
   var done = state.bets.filter(function(b){return b.status!=="offen";});
   var wins = done.filter(function(b){return b.status==="gewonnen";}).length;
@@ -135,100 +309,68 @@ function calc(){
   var gesamt = wettSaldo + state.startSaldo;
   return {
     done:done.length, wins:wins, wettSaldo:wettSaldo, offen:offen,
-    gesamt:gesamt, tipico: state.eingezahlt + gesamt,
+    gesamt:gesamt, tipico: state.eingezahlt + gesamt - offen - (state.ausgezahlt||0),
     quoteIch: done.length? Math.round(wins/done.length*100):null
   };
 }
-
-/* ================= SPIELE LADEN (geprüfte freie Quelle: TheStatsAPI, CORS ok, kein Schlüssel) ================= */
-function spieleLaden(btn){
-  btn.disabled=true; btn.textContent="Lade Spiele …";
-  var f=document.getElementById("ladeFehler"); if(f) f.textContent="";
-  fetch("https://www.thestatsapi.com/world-cup/data/fixtures.json")
-    .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
-    .then(function(data){
-      var heute0 = new Date(); heute0.setHours(0,0,0,0);
-      var kommende = (data.fixtures||[])
-        .filter(function(m){ return new Date(m.kickoffUtc) >= heute0; })
-        .sort(function(a,b){ return new Date(a.kickoffUtc)-new Date(b.kickoffUtc); })
-        .slice(0,5);
-      if(!kommende.length) throw new Error("Keine kommenden Spiele gefunden");
-      state.vorschlaege = kommende.map(function(m,idx){
-        var platzhalter = /winner|loser|runners|third|group/i.test(m.homeTeam+m.awayTeam);
-        return {
-          id:"f"+Date.now()+idx,
-          match:m.homeTeam+" – "+m.awayTeam,
-          wettbewerb:"WM 2026 · "+(m.stage||"").replace(/-/g," "),
-          anpfiff:new Date(m.kickoffUtc).toLocaleString("de-DE",{weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})+" Uhr",
-          tipp:"", quote:"", einsatz:"",
-          info: platzhalter
-            ? "Teams stehen noch nicht fest (K.o.-Phase). Frag Claude im Chat, wer wirklich spielt + Analyse."
-            : "Spielplan geladen. Quote & Tipp trägst du ein — oder du fragst Claude im Chat nach der Analyse."
-        };
-      });
-      state.vorschlaegeInfo = "Spielplan geladen: "+heuteStr()+" · Quelle: TheStatsAPI";
-      save(); btn.disabled=false; btn.textContent="🔄 Spiele laden"; render();
-    })
-    .catch(function(e){
-      btn.disabled=false; btn.textContent="🔄 Spiele laden";
-      var el=document.getElementById("ladeFehler");
-      if(el) el.textContent="Konnte keine Spiele laden ("+(e&&e.message?e.message:"?")+"). Wetten unter NEU von Hand eintragen geht immer.";
-    });
+function calcAI(){
+  var bew = state.bets.filter(function(b){return b.claudeRichtig!==null;});
+  var tr = bew.filter(function(b){return b.claudeRichtig;}).length;
+  return { n:bew.length, tr:tr, q: bew.length? Math.round(tr/bew.length*100):null };
 }
 
-/* ================= KI-ANALYSE (Gehirn: Anthropic API + Websuche, Schlüssel bleibt lokal) ================= */
+/* ================= API-HELFER ================= */
+function apiCall(body){
+  return fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{
+      'x-api-key':state.apiKey,
+      'anthropic-version':'2023-06-01',
+      'content-type':'application/json',
+      'anthropic-dangerous-direct-browser-access':'true'
+    },
+    body:JSON.stringify(body)
+  }).then(function(r){ return r.json().then(function(j){ j._status=r.status; return j; }); });
+}
+function parseJsonBlock(res){
+  var texte=(res.content||[]).filter(function(b){return b.type==='text';}).map(function(b){return b.text;});
+  var parsed=null;
+  for(var i=texte.length-1;i>=0 && !parsed;i--){
+    var c=texte[i].replace(/```json|```/g,'').trim();
+    var s=c.indexOf('{'), e=c.lastIndexOf('}');
+    if(s===-1||e===-1) continue;
+    try{ parsed=JSON.parse(c.slice(s,e+1)); }catch(x){}
+  }
+  return parsed;
+}
+var LANGWORD={de:'Deutsch',fr:'Franzoesisch',en:'Englisch'};
+
+/* ================= KI-ANALYSE ================= */
 function kiAnalyse(btn){
   if(!state.apiKey || state.apiKey.indexOf('sk-ant-')!==0){
     var f0=document.getElementById('ladeFehler');
-    if(f0) f0.textContent='Kein gültiger API-Schlüssel. Trage ihn unter REGELN ein (beginnt mit sk-ant-...).';
+    if(f0) f0.textContent=t('noKey');
     return;
   }
-  btn.disabled=true; btn.textContent='🧠 Denkt … (30-60 Sek.)';
+  btn.disabled=true; btn.textContent=t('kiThink');
   var f=document.getElementById('ladeFehler'); if(f) f.textContent='';
 
-  var prompt='Heute ist '+heuteStr()+'. Du bist der Wett-Analyst von Ondo Control und folgst dieser Verfassung: Fakten von Annahmen trennen, mehrere Quellen prüfen, Widersprüche nennen, Risiken ehrlich benennen, keine Scheinsicherheit, keine Gewinnversprechen.\n\nSuche im Web, welche Fussballspiele HEUTE und MORGEN wirklich stattfinden (echte Teamnamen! WM 2026 K.o.-Runde und andere relevante Wettbewerbe) und die aktuellen Wettquoten dazu.\n\nWaehle die 3 Spiele mit dem besten Value. Pro Spiel: konkreter Tipp (auch Ueber/Unter, Beide treffen, Doppelchance), realistische Quote als Zahl, empfohlener Einsatz zwischen 5 und '+state.regeln.maxEinsatz+' Euro je nach Value und Risiko, sehr kurze Begruendung (max 20 Woerter, inkl. Risiko).\n\nDeine letzte Nachricht: AUSSCHLIESSLICH kompaktes JSON, kein Markdown, kein Text davor/danach:\n{"spiele":[{"match":"Team A - Team B","wettbewerb":"WM Achtelfinale","anpfiff":"heute 22:00","tipp":"...","quote":1.85,"einsatz":10,"begruendung":"..."}]}';
-
-  function anfrage(messages){
-    return fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{
-        'x-api-key':state.apiKey,
-        'anthropic-version':'2023-06-01',
-        'content-type':'application/json',
-        'anthropic-dangerous-direct-browser-access':'true'
-      },
-      body:JSON.stringify({
-        model:'claude-sonnet-4-6',
-        max_tokens:1500,
-        messages:messages,
-        tools:[{type:'web_search_20250305',name:'web_search'}]
-      })
-    }).then(function(r){
-      return r.json().then(function(j){ j._status=r.status; return j; });
-    });
-  }
+  var prompt='Heute ist '+heuteStr()+'. Du bist der Wett-Analyst von Ondo Control: Fakten von Annahmen trennen, mehrere Quellen pruefen, Risiken ehrlich nennen, keine Scheinsicherheit, keine Gewinnversprechen.\n\nSuche im Web, welche Fussballspiele HEUTE und MORGEN wirklich stattfinden (echte Teamnamen!) und die aktuellen Wettquoten.\n\nWaehle die 3 Spiele mit dem besten Value. Pro Spiel: konkreter Tipp, realistische Quote als Zahl, empfohlener Einsatz zwischen 5 und '+state.regeln.maxEinsatz+' Euro, sehr kurze Begruendung (max 20 Woerter, inkl. Risiko) auf '+(LANGWORD[state.lang]||'Deutsch')+'.\n\nLetzte Nachricht: NUR kompaktes JSON:\n{"spiele":[{"match":"Team A - Team B","wettbewerb":"...","anpfiff":"...","tipp":"...","quote":1.85,"einsatz":10,"begruendung":"..."}]}';
 
   var messages=[{role:'user',content:prompt}];
   var runden=0;
-
   function weiter(res){
-    if(res._status===401) throw new Error('Schluessel ungueltig (401). Unter REGELN pruefen.');
-    if(res._status===400 && res.error && /credit/i.test(res.error.message||'')) throw new Error('Guthaben leer. Auf console.anthropic.com aufladen.');
+    if(res._status===401) throw new Error(t('keyBad'));
+    if(res._status===400 && res.error && /credit/i.test(res.error.message||'')) throw new Error(t('credEmpty'));
     if(res.error) throw new Error(res.error.message||('HTTP '+res._status));
     if(res.stop_reason==='pause_turn' && runden<4){
       runden++;
       messages.push({role:'assistant',content:res.content});
-      return anfrage(messages).then(weiter);
+      return apiCall({model:'claude-sonnet-4-6',max_tokens:1500,messages:messages,
+        tools:[{type:'web_search_20250305',name:'web_search'}]}).then(weiter);
     }
-    var texte=(res.content||[]).filter(function(b){return b.type==='text';}).map(function(b){return b.text;});
-    var parsed=null;
-    for(var i=texte.length-1;i>=0 && !parsed;i--){
-      var c=texte[i].replace(/```json|```/g,'').trim();
-      var s=c.indexOf('{'), e=c.lastIndexOf('}');
-      if(s===-1||e===-1) continue;
-      try{ parsed=JSON.parse(c.slice(s,e+1)); }catch(x){}
-    }
-    if(!parsed || !parsed.spiele || !parsed.spiele.length) throw new Error('Antwort ohne lesbares JSON.');
+    var parsed=parseJsonBlock(res);
+    if(!parsed || !parsed.spiele || !parsed.spiele.length) throw new Error(t('noJson'));
     state.vorschlaege=parsed.spiele.map(function(sp,idx){
       return {
         id:'ki'+Date.now()+idx,
@@ -238,20 +380,109 @@ function kiAnalyse(btn){
         tipp:String(sp.tipp||''),
         quote:String(sp.quote||''),
         einsatz:String(Math.min(Number(sp.einsatz)||10,state.regeln.maxEinsatz)),
-        info:String(sp.begruendung||'')+' — KI-Analyse, kein Gewinnversprechen.'
+        info:String(sp.begruendung||'')+' — '+t('kiNote')
       };
     });
-    state.vorschlaegeInfo='🧠 KI-Analyse: '+heuteStr();
+    state.vorschlaegeInfo=t('kiOf')+': '+heuteStr();
     save();
-    btn.disabled=false; btn.textContent='🧠 KI-Analyse (heute)';
+    btn.disabled=false; btn.textContent=t('kiBtn');
     render();
   }
-
-  anfrage(messages).then(weiter).catch(function(e){
-    btn.disabled=false; btn.textContent='🧠 KI-Analyse (heute)';
+  apiCall({model:'claude-sonnet-4-6',max_tokens:1500,messages:messages,
+    tools:[{type:'web_search_20250305',name:'web_search'}]}).then(weiter)
+  .catch(function(e){
+    btn.disabled=false; btn.textContent=t('kiBtn');
     var el=document.getElementById('ladeFehler');
-    if(el) el.textContent='KI-Analyse fehlgeschlagen: '+(e&&e.message?e.message:'unbekannt');
+    if(el) el.textContent=(e&&e.message?e.message:'?');
   });
+}
+
+/* ================= SPIELPLAN (freie Quelle) ================= */
+function spieleLaden(btn){
+  btn.disabled=true;
+  var f=document.getElementById("ladeFehler"); if(f) f.textContent="";
+  fetch("https://www.thestatsapi.com/world-cup/data/fixtures.json")
+    .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
+    .then(function(data){
+      var heute0 = new Date(); heute0.setHours(0,0,0,0);
+      var kommende = (data.fixtures||[])
+        .filter(function(m){ return new Date(m.kickoffUtc) >= heute0; })
+        .sort(function(a,b){ return new Date(a.kickoffUtc)-new Date(b.kickoffUtc); })
+        .slice(0,5);
+      if(!kommende.length) throw new Error("0 games");
+      state.vorschlaege = kommende.map(function(m,idx){
+        return {
+          id:"f"+Date.now()+idx,
+          match:m.homeTeam+" – "+m.awayTeam,
+          wettbewerb:"WM 2026 · "+(m.stage||"").replace(/-/g," "),
+          anpfiff:new Date(m.kickoffUtc).toLocaleString("de-DE",{weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}),
+          tipp:"", quote:"", einsatz:"",
+          info:t('teamsTbd')
+        };
+      });
+      state.vorschlaegeInfo = t('planLoaded')+": "+heuteStr();
+      save(); btn.disabled=false; render();
+    })
+    .catch(function(e){
+      btn.disabled=false;
+      var el=document.getElementById("ladeFehler");
+      if(el) el.textContent=t('loadFail')+" ("+(e&&e.message?e.message:"?")+"). "+t('loadHand');
+    });
+}
+
+/* ================= SCHEIN-FOTO ================= */
+function fotoLesen(input){
+  if(!input.files || !input.files[0]) return;
+  if(!state.apiKey || state.apiKey.indexOf('sk-ant-')!==0){
+    var f0=document.getElementById('fotoStatus');
+    if(f0) f0.textContent=t('noKey');
+    return;
+  }
+  var st=document.getElementById('fotoStatus');
+  if(st) st.textContent=t('photoRead');
+  var reader=new FileReader();
+  reader.onload=function(){
+    var img=new Image();
+    img.onload=function(){
+      var max=1200, w=img.width, h=img.height;
+      if(w>max){ h=Math.round(h*max/w); w=max; }
+      var cv=document.createElement('canvas'); cv.width=w; cv.height=h;
+      cv.getContext('2d').drawImage(img,0,0,w,h);
+      var b64=cv.toDataURL('image/jpeg',0.8).split(',')[1];
+      apiCall({model:'claude-sonnet-4-6',max_tokens:800,
+        messages:[{role:'user',content:[
+          {type:'image',source:{type:'base64',media_type:'image/jpeg',data:b64}},
+          {type:'text',text:'Das ist ein Foto eines Wettscheins (z.B. Tipico). Lies ihn exakt. Bei einer Kombi: EIN Eintrag, Gesamtquote = Moeglicher Gewinn geteilt durch Einsatz (2 Dezimalen). Bei Einzelwetten: ein Eintrag pro Wette. Status: VERLOREN -> verloren, GEWONNEN -> gewonnen, sonst offen. NUR kompaktes JSON: {"wetten":[{"match":"...","tipp":"...","quote":2.05,"einsatz":7,"status":"offen"}]}'}
+        ]}]
+      }).then(function(res){
+        if(res.error) throw new Error(res.error.message||('HTTP '+res._status));
+        var parsed=parseJsonBlock(res);
+        if(!parsed || !parsed.wetten || !parsed.wetten.length) throw new Error(t('noJson'));
+        var n=0;
+        parsed.wetten.forEach(function(w,idx){
+          state.bets.unshift({
+            id:Date.now()+idx,
+            datum:new Date().toLocaleDateString('de-DE'),
+            match:String(w.match||'?'),
+            tipp:String(w.tipp||''),
+            quote:Number(w.quote)||0,
+            einsatz:Number(w.einsatz)||0,
+            status:(w.status==='gewonnen'||w.status==='verloren')?w.status:'offen',
+            claudeRichtig:null
+          });
+          n++;
+        });
+        save();
+        if(st) st.textContent='✅ '+n+' '+t('photoOk');
+        setTimeout(function(){ go('wetten','historie'); },800);
+      })
+      .catch(function(e){
+        if(st) st.textContent=t('photoFail')+(e&&e.message?e.message:'?');
+      });
+    };
+    img.src=reader.result;
+  };
+  reader.readAsDataURL(input.files[0]);
 }
 
 /* ================= AKTIONEN ================= */
@@ -267,33 +498,50 @@ function addBet(v, einsatzVal){
 function setStatus(id,s){ state.bets.forEach(function(b){ if(b.id===id) b.status=s; }); save(); render(); }
 function setClaude(id,r){ state.bets.forEach(function(b){ if(b.id===id) b.claudeRichtig=r; }); save(); render(); }
 function delBet(id){ state.bets=state.bets.filter(function(b){return b.id!==id;}); save(); render(); }
+function depAdd(){
+  var v=parseFloat(String(document.getElementById('einzahlungNeu').value).replace(',','.'));
+  if(!isNaN(v)&&v>0){ state.eingezahlt=Math.round((state.eingezahlt+v)*100)/100; save(); render(); }
+}
+function wdAdd(){
+  var v=parseFloat(String(document.getElementById('auszahlungNeu').value).replace(',','.'));
+  if(!isNaN(v)&&v>0){ state.ausgezahlt=Math.round(((state.ausgezahlt||0)+v)*100)/100; save(); render(); }
+}
 
-/* ================= RENDER ================= */
-var tab="dashboard", wtab="vorschlaege";
+/* ================= NAVIGATION & RENDER ================= */
+var tab="home", wtab="vorschlaege";
 var entsperrt=false;
 
 function viewLock(){
   return '<div class="card" style="text-align:center;padding:30px 20px;margin-top:30px">'+
     '<div style="font-size:40px;margin-bottom:10px">🔒</div>'+
-    '<div class="disp" style="font-size:22px;margin-bottom:14px">Ondo Control ist gesperrt</div>'+
-    '<input id="pinEingabe" type="password" inputmode="numeric" placeholder="PIN" style="max-width:200px;margin:0 auto;text-align:center;font-size:22px;letter-spacing:6px"/>'+
+    '<div class="disp" style="font-size:22px;margin-bottom:14px">'+t('locked')+'</div>'+
+    '<input id="pinEingabe" type="password" inputmode="numeric" placeholder="'+t('pinPh')+'" style="max-width:200px;margin:0 auto;text-align:center;font-size:22px;letter-spacing:6px"/>'+
     '<div id="pinFehler" class="muted" style="color:var(--loss);margin-top:8px"></div>'+
-    '<button class="btn" style="max-width:200px;margin:14px auto 0" onclick="pinPruefen()">Entsperren</button>'+
+    '<button class="btn" style="max-width:200px;margin:14px auto 0" onclick="pinPruefen()">'+t('unlock')+'</button>'+
   '</div>';
 }
 function pinPruefen(){
   var v=document.getElementById('pinEingabe').value;
   if(v===state.pin){ entsperrt=true; render(); }
-  else{ var f=document.getElementById('pinFehler'); if(f) f.textContent='Falscher PIN'; }
+  else{ var f=document.getElementById('pinFehler'); if(f) f.textContent=t('wrongPin'); }
 }
 
-function go(t,w){ tab=t; if(w) wtab=w;
-  document.querySelectorAll(".tab").forEach(function(el){ el.classList.toggle("on", el.dataset.tab===t); });
-  render();
+function go(x,w){ tab=x; if(w) wtab=w; render(); }
+
+function navUpdate(){
+  document.getElementById('nvHome').textContent=t('nvHome');
+  document.getElementById('nvBets').textContent=t('nvBets');
+  document.getElementById('nvFin').textContent=t('nvFin');
+  document.getElementById('nvMore').textContent=t('nvMore');
+  document.querySelectorAll('.nav button').forEach(function(el){
+    el.classList.toggle('on', el.dataset.tab===tab);
+  });
 }
 
 function render(){
   var c=calc(), v=document.getElementById("view");
+  document.getElementById("heute").textContent=heuteStr();
+  navUpdate();
   if(state.pin && !entsperrt){
     document.getElementById("topSaldo").textContent="🔒";
     document.getElementById("topSaldo").style.color="var(--dim)";
@@ -304,154 +552,202 @@ function render(){
   }
   document.getElementById("topSaldo").textContent=fmt(c.gesamt);
   document.getElementById("topSaldo").style.color = c.gesamt>0?"var(--win)":c.gesamt<0?"var(--loss)":"var(--text)";
-
-  if(tab==="dashboard") v.innerHTML=viewDashboard(c);
-  else if(tab==="wetten") v.innerHTML=viewWetten(c);
-  else if(tab==="regeln") v.innerHTML=viewRegeln();
-  else if(tab==="projekt") v.innerHTML=viewProjekt();
-  bind();
+  if(tab==="home") v.innerHTML=viewHome(c);
+  else if(tab==="wetten") v.innerHTML=viewBets(c);
+  else if(tab==="finanzen") v.innerHTML=viewFinance(c);
+  else v.innerHTML=viewMore();
 }
 
-function viewDashboard(c){
+/* ================= HOME ================= */
+function viewHome(c){
+  var ai=calcAI();
+  var mods=[
+    {ic:'🎯', name:t('modBets'), d:t('modBetsD'), on:true, go:'wetten'},
+    {ic:'💰', name:t('modFin'), d:t('modFinD'), on:true, go:'finanzen'},
+    {ic:'🎲', name:t('modLotto'), d:t('modLottoD'), on:false},
+    {ic:'📺', name:t('modContent'), d:t('modContentD'), on:false},
+    {ic:'📅', name:t('modOrga'), d:t('modOrgaD'), on:false}
+  ];
+  var modHtml=mods.map(function(m){
+    return '<div class="card module" '+(m.on?('onclick="go(\''+m.go+'\')"'):'style="opacity:.55;cursor:default"')+'>'+
+      '<div style="display:flex;align-items:center"><span class="mi">'+m.ic+'</span>'+
+      '<div><div class="mt">'+m.name+'</div><div class="md">'+m.d+'</div></div></div>'+
+      '<span class="mstatus" style="color:'+(m.on?'var(--win)':'var(--dim)')+'">'+(m.on?t('active'):t('planned'))+'</span>'+
+    '</div>';
+  }).join('');
   return ''+
   '<div class="row">'+
-    '<div class="card"><div class="stat-label">Gesamt-Bilanz</div>'+
-      '<div class="stat-val" style="color:'+(c.gesamt>0?"var(--win)":c.gesamt<0?"var(--loss)":"var(--text)")+'">'+fmt(c.gesamt)+'</div>'+
-      '<div class="stat-sub">Enthält Tipico-Start '+fmt(state.startSaldo)+'</div></div>'+
-    '<div class="card"><div class="stat-label">Tipico-Kontostand (ca.)</div>'+
+    '<div class="card"><div class="stat-label">'+t('totalBal')+'</div>'+
+      '<div class="stat-val" style="color:'+(c.gesamt>0?"var(--win)":c.gesamt<0?"var(--loss)":"var(--text)")+'">'+fmt(c.gesamt)+'</div></div>'+
+    '<div class="card"><div class="stat-label">'+t('tipicoBal')+'</div>'+
       '<div class="stat-val">'+eur(c.tipico)+'</div>'+
-      '<div class="stat-sub">Eingezahlt '+eur(state.eingezahlt)+' + Bilanz</div></div>'+
+      '<div class="stat-sub">'+eur(c.offen)+' '+t('open_')+'</div></div>'+
   '</div>'+
-  '<div class="row">'+
-    '<div class="card"><div class="stat-label">Wett-Saldo</div>'+
-      '<div class="stat-val" style="color:'+(c.wettSaldo>0?"var(--win)":c.wettSaldo<0?"var(--loss)":"var(--text)")+'">'+fmt(c.wettSaldo)+'</div>'+
-      '<div class="stat-sub">'+c.done+' abgeschlossen · '+eur(c.offen)+' offen</div></div>'+
-    '<div class="card"><div class="stat-label">Deine Trefferquote</div>'+
-      '<div class="stat-val">'+(c.quoteIch===null?"–":c.quoteIch+" %")+'</div>'+
-      '<div class="stat-sub">'+(c.done?c.wins+" von "+c.done:"Noch keine Wette")+'</div></div>'+
-  '</div>'+
-  '<div class="muted" style="margin-top:6px">Module: Wetten (aktiv) · Finanzen, Content, Organisation folgen.</div>';
+  '<div class="muted" style="margin:14px 0 8px;letter-spacing:1px;text-transform:uppercase">'+t('modules')+'</div>'+
+  modHtml;
 }
 
-function viewWetten(c){
-  var sub='<div class="tabs">'+
-    '<button class="tab '+(wtab==="vorschlaege"?"on":"")+'" onclick="wtab=\'vorschlaege\';render()">Vorschläge</button>'+
-    '<button class="tab '+(wtab==="neu"?"on":"")+'" onclick="wtab=\'neu\';render()">Neu</button>'+
-    '<button class="tab '+(wtab==="historie"?"on":"")+'" onclick="wtab=\'historie\';render()">Historie</button>'+
+/* ================= WETTEN ================= */
+function viewBets(c){
+  var sub='<div class="subtabs">'+
+    '<button class="subtab '+(wtab==="vorschlaege"?"on":"")+'" onclick="wtab=\'vorschlaege\';render()">'+t('sugg')+'</button>'+
+    '<button class="subtab '+(wtab==="neu"?"on":"")+'" onclick="wtab=\'neu\';render()">'+t('new_')+'</button>'+
+    '<button class="subtab '+(wtab==="historie"?"on":"")+'" onclick="wtab=\'historie\';render()">'+t('hist')+'</button>'+
   '</div>';
 
   if(wtab==="vorschlaege"){
-    var list = state.vorschlaege.map(function(v){
-      return '<div class="card vorschlag">'+
-        '<div class="flex"><div><div class="disp" style="font-size:21px">'+v.match+'</div>'+
-        '<div class="muted">'+(v.wettbewerb||"")+' · '+(v.anpfiff||"")+'</div></div>'+
-        (v.quote?'<div class="quote">'+v.quote+'</div>':'')+'</div>'+
+    var list = state.vorschlaege.map(function(vs){
+      return '<div class="card" style="border-color:rgba(245,217,10,.27)">'+
+        '<div class="flex"><div><div class="disp" style="font-size:21px">'+vs.match+'</div>'+
+        '<div class="muted">'+(vs.wettbewerb||"")+' · '+(vs.anpfiff||"")+'</div></div>'+
+        (vs.quote?'<div class="quote">'+vs.quote+'</div>':'')+'</div>'+
         '<div class="tipbox">'+
-          '<label>Tipp</label><input value="'+(v.tipp||"")+'" oninput="state.vorschlaege.find(function(x){return x.id===\''+v.id+'\'}).tipp=this.value"/>'+
+          '<label>'+t('tip')+'</label><input value="'+(vs.tipp||"")+'" oninput="state.vorschlaege.find(function(x){return x.id===\''+vs.id+'\'}).tipp=this.value"/>'+
           '<div style="display:flex;gap:10px;margin-top:8px">'+
-            '<div style="flex:1"><label>Quote</label><input inputmode="decimal" value="'+(v.quote||"")+'" oninput="state.vorschlaege.find(function(x){return x.id===\''+v.id+'\'}).quote=this.value"/></div>'+
-            '<div style="flex:1"><label>Einsatz (€)</label><input inputmode="decimal" value="'+(v.einsatz||"")+'" oninput="state.vorschlaege.find(function(x){return x.id===\''+v.id+'\'}).einsatz=this.value"/></div>'+
+            '<div style="flex:1"><label>'+t('odds')+'</label><input inputmode="decimal" value="'+(vs.quote||"")+'" oninput="state.vorschlaege.find(function(x){return x.id===\''+vs.id+'\'}).quote=this.value"/></div>'+
+            '<div style="flex:1"><label>'+t('stake')+'</label><input inputmode="decimal" value="'+(vs.einsatz||"")+'" oninput="state.vorschlaege.find(function(x){return x.id===\''+vs.id+'\'}).einsatz=this.value"/></div>'+
           '</div>'+
         '</div>'+
-        '<div class="muted" style="margin-top:8px">'+(v.info||"")+'</div>'+
-        '<button class="btn" style="margin-top:10px" onclick="var x=state.vorschlaege.find(function(y){return y.id===\''+v.id+'\'}); if(x.match&&x.quote&&x.einsatz){addBet(x,x.einsatz);}else{alert(\'Bitte Quote und Einsatz eintragen\');}">✓ Übernehmen</button>'+
+        '<div class="muted" style="margin-top:8px">'+(vs.info||"")+'</div>'+
+        '<button class="btn" style="margin-top:10px" onclick="var x=state.vorschlaege.find(function(y){return y.id===\''+vs.id+'\'}); if(x.match&&x.quote&&x.einsatz){addBet(x,x.einsatz);}else{alert(\''+t('fillOddsStake')+'\');}">'+t('take')+'</button>'+
       '</div>';
     }).join("");
     return sub+
-      '<button class="btn" onclick="kiAnalyse(this)">🧠 KI-Analyse (heute)</button>'+
+      '<button class="btn" onclick="kiAnalyse(this)">'+t('kiBtn')+'</button>'+
       '<div style="height:8px"></div>'+
-      '<button class="btn" style="background:transparent;border:1px solid var(--edge);color:var(--dim)" onclick="spieleLaden(this)">🔄 Nur Spielplan laden (ohne KI)</button>'+
+      '<button class="btn btn-ghost" onclick="spieleLaden(this)">'+t('planBtn')+'</button>'+
       '<div id="ladeFehler" class="muted" style="color:var(--loss);margin:10px 0"></div>'+
       (state.vorschlaegeInfo?'<div class="muted" style="margin:8px 0">'+state.vorschlaegeInfo+'</div>':'')+
-      (list||'<div class="card empty">Noch keine Spiele. Tippe „Spiele laden" oder trage unter „Neu" von Hand ein.<br><br>Tipp: Frag Claude im Chat nach Analysen — trag Tipp & Quote dann hier ein.</div>');
+      (list||'<div class="card empty">'+t('noSugg')+'</div>');
   }
 
   if(wtab==="neu"){
-    return sub+'<div class="card"><div class="grid">'+
-      '<div><label>Spiel</label><input id="f_match" placeholder="z. B. Bayern – Dortmund"/></div>'+
-      '<div><label>Tipp</label><input id="f_tipp" placeholder="z. B. Sieg Bayern"/></div>'+
-      '<div style="display:flex;gap:10px">'+
-        '<div style="flex:1"><label>Quote</label><input id="f_quote" inputmode="decimal" placeholder="1,85"/></div>'+
-        '<div style="flex:1"><label>Einsatz (€)</label><input id="f_einsatz" inputmode="decimal" placeholder="10"/></div>'+
+    return sub+
+      '<div class="card">'+
+        '<div class="disp" style="font-size:20px;margin-bottom:6px">'+t('photoT')+'</div>'+
+        '<div class="muted" style="margin-bottom:10px">'+t('photoD')+'</div>'+
+        '<input type="file" accept="image/*" id="fotoInput" style="display:none" onchange="fotoLesen(this)"/>'+
+        '<button class="btn" onclick="document.getElementById(\'fotoInput\').click()">'+t('photoBtn')+'</button>'+
+        '<div id="fotoStatus" class="muted" style="margin-top:10px"></div>'+
       '</div>'+
-      '<button class="btn" onclick="var m=f_match.value,q=f_quote.value,e=f_einsatz.value; if(m&&q&&e){addBet({match:m,tipp:f_tipp.value,quote:q},e);}else{alert(\'Bitte Spiel, Quote und Einsatz ausfüllen\');}">Wette speichern</button>'+
+      '<div class="card"><div class="grid">'+
+      '<div><label>'+t('match')+'</label><input id="f_match" placeholder="Bayern – Dortmund"/></div>'+
+      '<div><label>'+t('tip')+'</label><input id="f_tipp"/></div>'+
+      '<div style="display:flex;gap:10px">'+
+        '<div style="flex:1"><label>'+t('odds')+'</label><input id="f_quote" inputmode="decimal" placeholder="1,85"/></div>'+
+        '<div style="flex:1"><label>'+t('stake')+'</label><input id="f_einsatz" inputmode="decimal" placeholder="10"/></div>'+
+      '</div>'+
+      '<button class="btn" onclick="var m=f_match.value,q=f_quote.value,e=f_einsatz.value; if(m&&q&&e){addBet({match:m,tipp:f_tipp.value,quote:q},e);}else{alert(\''+t('fillAll')+'\');}">'+t('saveBet')+'</button>'+
     '</div></div>';
   }
 
-  // historie
-  if(!state.bets.length) return sub+'<div class="card empty">Noch keine Wetten erfasst.</div>';
+  if(!state.bets.length) return sub+'<div class="card empty">'+t('noBets')+'</div>';
   var h=state.bets.map(function(b){
-    var badge = b.status==="offen"?'<span class="badge b-open">OFFEN</span>':
-                b.status==="gewonnen"?'<span class="badge b-win">GEWONNEN</span>':
-                '<span class="badge b-loss">VERLOREN</span>';
+    var badge = b.status==="offen"?'<span class="badge b-open">'+t('openB')+'</span>':
+                b.status==="gewonnen"?'<span class="badge b-win">'+t('won')+'</span>':
+                '<span class="badge b-loss">'+t('lost')+'</span>';
     var akt = b.status==="offen"
-      ? '<button class="btn-sm btn-win" onclick="setStatus('+b.id+',\'gewonnen\')">✓ Gewonnen</button> '+
-        '<button class="btn-sm btn-loss" onclick="setStatus('+b.id+',\'verloren\')">✗ Verloren</button>'
-      : '<button class="btn-sm" onclick="setStatus('+b.id+',\'offen\')">Zurücksetzen</button>';
+      ? '<button class="btn-sm btn-win" onclick="setStatus('+b.id+',\'gewonnen\')">'+t('bWon')+'</button> '+
+        '<button class="btn-sm btn-loss" onclick="setStatus('+b.id+',\'verloren\')">'+t('bLost')+'</button>'
+      : '<button class="btn-sm" onclick="setStatus('+b.id+',\'offen\')">'+t('reset')+'</button>';
     var claude = (b.tipp && b.status!=="offen" && b.claudeRichtig===null)
-      ? ' <button class="btn-sm btn-open" onclick="setClaude('+b.id+',true)">Claude richtig</button>'+
-        ' <button class="btn-sm btn-open" onclick="setClaude('+b.id+',false)">Claude falsch</button>'
-      : (b.claudeRichtig!==null?' <span class="muted">Claude: '+(b.claudeRichtig?"richtig ✓":"falsch ✗")+'</span>':'');
+      ? ' <button class="btn-sm btn-open" onclick="setClaude('+b.id+',true)">'+t('aiRight')+'</button>'+
+        ' <button class="btn-sm btn-open" onclick="setClaude('+b.id+',false)">'+t('aiWrong')+'</button>'
+      : (b.claudeRichtig!==null?' <span class="muted">'+t('ai')+': '+(b.claudeRichtig?'✓':'✗')+'</span>':'');
     var pnl = b.status!=="offen"
       ? '<div style="color:'+(profit(b)>=0?"var(--win)":"var(--loss)")+';font-weight:600;margin-top:2px">'+fmt(profit(b))+'</div>'
-      : '<div class="muted">Möglicher Gewinn: <span style="color:var(--win)">'+fmt(b.einsatz*(b.quote-1))+'</span></div>';
+      : '<div class="muted">'+t('possWin')+': <span style="color:var(--win)">'+fmt(b.einsatz*(b.quote-1))+'</span></div>';
     return '<div class="card">'+
       '<div class="flex"><div><div class="disp" style="font-size:19px">'+b.match+'</div>'+
-      '<div class="muted">'+b.datum+' · Quote '+b.quote.toLocaleString("de-DE")+' · Einsatz '+eur(b.einsatz)+'</div></div>'+badge+'</div>'+
-      (b.tipp?'<div style="font-size:13px;margin-top:8px">Tipp: '+b.tipp+'</div>':'')+pnl+
+      '<div class="muted">'+b.datum+' · '+t('odds')+' '+b.quote.toLocaleString("de-DE")+' · '+t('stake').replace(' (€)','')+' '+eur(b.einsatz)+'</div></div>'+badge+'</div>'+
+      (b.tipp?'<div style="font-size:13px;margin-top:8px">'+t('tip')+': '+b.tipp+'</div>':'')+pnl+
       '<div style="margin-top:12px">'+akt+claude+
-      ' <button class="btn-sm" style="float:right" onclick="delBet('+b.id+')">Löschen</button></div>'+
+      ' <button class="btn-sm" style="float:right" onclick="delBet('+b.id+')">'+t('del')+'</button></div>'+
     '</div>';
   }).join("");
   return sub+h;
 }
 
-function viewRegeln(){
-  return '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">🔒 PIN-Sperre</div>'+
-    '<div class="muted" style="margin-bottom:12px">Schützt die App vor fremden Blicken auf DIESEM Gerät. Hinweis: Das ist Sichtschutz, keine Banken-Verschlüsselung.</div>'+
-    '<label>PIN (4-8 Ziffern, leer = keine Sperre)</label>'+
+/* ================= FINANZEN ================= */
+function viewFinance(c){
+  var ai=calcAI();
+  return ''+
+  '<div class="row">'+
+    '<div class="card"><div class="stat-label">'+t('totalBal')+'</div>'+
+      '<div class="stat-val" style="color:'+(c.gesamt>0?"var(--win)":c.gesamt<0?"var(--loss)":"var(--text)")+'">'+fmt(c.gesamt)+'</div></div>'+
+    '<div class="card"><div class="stat-label">'+t('tipicoBal')+'</div>'+
+      '<div class="stat-val">'+eur(c.tipico)+'</div>'+
+      '<div class="stat-sub">'+t('tipicoSub')+'</div></div>'+
+  '</div>'+
+  '<div class="row">'+
+    '<div class="card"><div class="stat-label">'+t('betBal')+'</div>'+
+      '<div class="stat-val" style="color:'+(c.wettSaldo>0?"var(--win)":c.wettSaldo<0?"var(--loss)":"var(--text)")+'">'+fmt(c.wettSaldo)+'</div>'+
+      '<div class="stat-sub">'+c.done+' '+t('closed')+' · '+eur(c.offen)+' '+t('open_')+'</div></div>'+
+    '<div class="card"><div class="stat-label">'+t('hitYou')+'</div>'+
+      '<div class="stat-val">'+(c.quoteIch===null?"–":c.quoteIch+" %")+'</div>'+
+      '<div class="stat-sub">'+(c.done?c.wins+" "+t('of')+" "+c.done:t('noBetYet'))+'</div></div>'+
+    '<div class="card"><div class="stat-label">'+t('hitAI')+'</div>'+
+      '<div class="stat-val">'+(ai.q===null?"–":ai.q+" %")+'</div>'+
+      '<div class="stat-sub">'+(ai.n?ai.tr+" "+t('of')+" "+ai.n:t('notRated'))+'</div></div>'+
+  '</div>'+
+  '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:10px">'+t('finT')+'</div>'+
+    '<label>'+t('depNew')+'</label>'+
+    '<div style="display:flex;gap:8px;align-items:center">'+
+      '<input id="einzahlungNeu" style="max-width:120px" inputmode="decimal" placeholder="10"/>'+
+      '<button class="btn" style="width:auto;padding:11px 16px;font-size:15px" onclick="depAdd()">'+t('add')+'</button>'+
+    '</div>'+
+    '<div class="muted" style="margin-top:8px">'+t('depTotal')+': <b>'+eur(state.eingezahlt)+'</b> — '+t('autoAdd')+'.</div>'+
+    '<div style="height:12px"></div>'+
+    '<label>'+t('wdNew')+'</label>'+
+    '<div style="display:flex;gap:8px;align-items:center">'+
+      '<input id="auszahlungNeu" style="max-width:120px" inputmode="decimal" placeholder="20"/>'+
+      '<button class="btn" style="width:auto;padding:11px 16px;font-size:15px" onclick="wdAdd()">'+t('add')+'</button>'+
+    '</div>'+
+    '<div class="muted" style="margin-top:8px">'+t('wdTotal')+': <b>'+eur(state.ausgezahlt||0)+'</b> 💰 '+t('realized')+'</div>'+
+  '</div>'+
+  '<div class="card"><label>'+t('startBal')+'</label>'+
+    '<input style="max-width:160px" inputmode="text" value="'+state.startSaldo+'" oninput="var v=parseFloat(String(this.value).replace(\',\',\'.\'));if(!isNaN(v)){state.startSaldo=v;save();}"/>'+
+    '<div class="muted" style="margin-top:8px">'+t('startBalD')+'</div>'+
+  '</div>';
+}
+
+/* ================= MEHR / EINSTELLUNGEN ================= */
+function viewMore(){
+  var opts=['de','fr','en'].map(function(l){
+    return '<option value="'+l+'"'+(state.lang===l?' selected':'')+'>'+LANGNAME[l]+'</option>';
+  }).join('');
+  return ''+
+  '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">🌐 '+t('lang')+'</div>'+
+    '<select style="max-width:200px" onchange="state.lang=this.value;save();render()">'+opts+'</select>'+
+  '</div>'+
+  '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">'+t('pinT')+'</div>'+
+    '<div class="muted" style="margin-bottom:12px">'+t('pinD')+'</div>'+
+    '<label>'+t('pinLabel')+'</label>'+
     '<input type="password" inputmode="numeric" style="max-width:160px" value="'+(state.pin||'')+'" oninput="state.pin=this.value.trim();save()"/>'+
-    '<div class="muted" style="margin-top:8px">Status: '+(state.pin?'✅ Sperre aktiv (gilt ab dem nächsten Öffnen)':'Keine Sperre')+'</div>'+
+    '<div class="muted" style="margin-top:8px">'+(state.pin?t('pinOn'):t('pinOff'))+'</div>'+
   '</div>'+
-  '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">🧠 KI-Gehirn (API-Schlüssel)</div>'+
-    '<div class="muted" style="margin-bottom:12px">Dein Schlüssel von console.anthropic.com (beginnt mit sk-ant-...). Er bleibt NUR auf diesem Gerät gespeichert — nicht auf GitHub, nicht öffentlich.</div>'+
-    '<label>API-Schlüssel</label>'+
+  '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">'+t('keyT')+'</div>'+
+    '<div class="muted" style="margin-bottom:12px">'+t('keyD')+'</div>'+
     '<input type="password" placeholder="sk-ant-..." value="'+(state.apiKey||'')+'" oninput="state.apiKey=this.value.trim();save()"/>'+
-    '<div class="muted" style="margin-top:8px">Status: '+(state.apiKey&&state.apiKey.indexOf('sk-ant-')===0?'✅ Schlüssel gespeichert':'❌ Kein Schlüssel')+'</div>'+
+    '<div class="muted" style="margin-top:8px">'+(state.apiKey&&state.apiKey.indexOf('sk-ant-')===0?t('keyOn'):t('keyOff'))+'</div>'+
   '</div>'+
-  '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">Administrator-Regeln</div>'+
-    '<div class="muted" style="margin-bottom:12px">Wird wirklich durchgesetzt: Einsätze über dem Limit werden beim Speichern begrenzt.</div>'+
-    '<label>Maximaler Einsatz pro Wette (€)</label>'+
+  '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">'+t('rulesT')+'</div>'+
+    '<div class="muted" style="margin-bottom:12px">'+t('rulesD')+'</div>'+
+    '<label>'+t('maxStake')+'</label>'+
     '<input style="max-width:160px" inputmode="decimal" value="'+state.regeln.maxEinsatz+'" oninput="state.regeln.maxEinsatz=parseFloat(String(this.value).replace(\',\',\'.\'))||0;save()"/>'+
   '</div>'+
-  '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">Sicherheits-Fundament</div>'+
-    '<div style="font-size:13px;line-height:1.8">'+
-    '• Keine automatische Wettplatzierung — nur Analyse & Doku<br>'+
-    '• Keine Aktion mit Geld ohne deine Bestätigung<br>'+
-    '• Keine unrealistischen Gewinnversprechen<br>'+
-    '• Jede Empfehlung mit Begründung & Risiko<br>'+
-    '• Deine Daten bleiben auf deinem Gerät</div></div>';
-}
-
-function viewProjekt(){
-  return '<div class="card"><pre>'+
-'ONDO CONTROL — Persönliches KI-Betriebssystem\n\n'+
-'VISION:\nEin persönlicher, modularer KI-Assistent, der dir hilft,\nbessere Entscheidungen zu treffen, Zeit zu sparen und\nlangfristig deine Lebensqualität zu verbessern. Startet bei\nden Finanzen, wächst modular weiter.\n\n'+
-'GRUNDPRINZIPIEN:\n• Wahrheit & Transparenz — keine Scheinsicherheit\n• Ehrliche Kritik statt Nach-dem-Mund-Reden\n• Sicherheit vor Geschwindigkeit\n• Du entscheidest — nichts Kritisches ohne deine Freigabe\n• Modular & beliebig erweiterbar\n\n'+
-'MODULE:\n✅ Wetten (aktiv)\n🔜 Finanzen · Lotterien · Content · Organisation\n\n'+
-'DIESE APP:\nLäuft eigenständig im Browser. Speichert dauerhaft auf\ndeinem Gerät. Kann Spiele aus dem Internet laden.\nDetails & ganze Verfassung: siehe Blueprint-Dokument.'+
-  '</pre></div>';
-}
-
-/* ================= BINDINGS ================= */
-function bind(){
-  document.querySelectorAll(".tab[data-tab]").forEach(function(el){
-    el.onclick=function(){ go(el.dataset.tab); };
-  });
+  '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">'+t('secT')+'</div>'+
+    '<div style="font-size:13px;line-height:1.8">'+t('sec1')+'<br>'+t('sec2')+'<br>'+t('sec3')+'<br>'+t('sec4')+'<br>'+t('sec5')+'</div>'+
+  '</div>'+
+  '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">📋 '+t('projT')+'</div>'+
+    '<pre>ONDO CONTROL\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen, Wissen zu organisieren und Aufgaben zu automatisieren — modular, transparent, kontrollierbar, an der Verfassung ausgerichtet.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.\n\nDetails: Blueprint-Dokument (bei Claude im Chat).</pre>'+
+  '</div>';
 }
 
 /* ================= START ================= */
-document.getElementById("heute").textContent=heuteStr();
+document.querySelectorAll('.nav button').forEach(function(el){
+  el.onclick=function(){ go(el.dataset.tab); };
+});
 load();
 render();
 </script>
