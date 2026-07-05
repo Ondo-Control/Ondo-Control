@@ -71,7 +71,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:22px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · Dein persönliches Kommandozentrum<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · Dein persönliches Kommandozentrum · v3<span id="saveNote" class="save-note"></span></div>
 
   <div class="tabs">
     <button class="tab on" data-tab="dashboard">Dashboard</button>
@@ -172,7 +172,7 @@ function spieleLaden(btn){
     .catch(function(e){
       btn.disabled=false; btn.textContent="🔄 Spiele laden";
       var el=document.getElementById("ladeFehler");
-      if(el) el.textContent="Konnte keine Spiele laden ("+(e&&e.message?e.message:"?")+"). Wetten unter „Neu" von Hand eintragen geht immer.";
+      if(el) el.textContent="Konnte keine Spiele laden ("+(e&&e.message?e.message:"?")+"). Wetten unter NEU von Hand eintragen geht immer.";
     });
 }
 
