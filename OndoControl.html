@@ -78,12 +78,20 @@
 </style>
 </head>
 <body>
+<div id="updateBar" style="display:none;position:fixed;top:0;left:0;right:0;z-index:100;
+  background:var(--accent);color:#0B1220;padding:10px 14px;align-items:center;justify-content:space-between;gap:10px;
+  font-size:14px;font-weight:600;">
+  <span>🔄 Update verfügbar / Mise à jour dispo / Update available</span>
+  <button style="background:#0B1220;color:var(--accent);border:none;border-radius:8px;padding:8px 14px;
+    font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:1px;cursor:pointer;
+    text-transform:uppercase;">Aktualisieren</button>
+</div>
 <div class="wrap">
   <div class="flex" style="align-items:baseline;">
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:21px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · v11<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · v12<span id="saveNote" class="save-note"></span></div>
   <div id="view"></div>
 </div>
 
@@ -95,6 +103,25 @@
 </div>
 
 <script>
+/* ================= VERSION & UPDATE-CHECK ================= */
+var APP_VERSION = 12;
+function checkUpdate(){
+  fetch('version.json?ts='+Date.now(),{cache:'no-store'})
+    .then(function(r){ return r.json(); })
+    .then(function(j){
+      if(j && Number(j.v) > APP_VERSION){
+        var bar=document.getElementById('updateBar');
+        if(bar){
+          bar.style.display='flex';
+          bar.querySelector('button').onclick=function(){
+            location.href='OndoControl.html?u='+Number(j.v)+'x'+Date.now();
+          };
+        }
+      }
+    })
+    .catch(function(e){ /* offline oder Datei fehlt: still bleiben */ });
+}
+
 /* ================= SPRACHEN ================= */
 var I18N = {
  de:{ nvHome:'Start', nvBets:'Wetten', nvFin:'Finanzen', nvMore:'Mehr',
@@ -750,6 +777,7 @@ document.querySelectorAll('.nav button').forEach(function(el){
 });
 load();
 render();
+checkUpdate();
 </script>
 </body>
 </html>
