@@ -94,7 +94,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:21px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · v16<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · v17<span id="saveNote" class="save-note"></span></div>
   <div id="view"></div>
 </div>
 
@@ -107,7 +107,7 @@
 
 <script>
 /* ================= VERSION & UPDATE-CHECK ================= */
-var APP_VERSION = 16;
+var APP_VERSION = 17;
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
     .then(function(r){ return r.json(); })
@@ -174,6 +174,7 @@ var I18N = {
   kombiWarn:'Kombi: ALLE Tipps müssen stimmen — Verlustrisiko multipliziert sich.', kombiNeed:'Mindestens 2 Vorschläge mit Quote anhaken.',
   rejT:'Geprüft, kein Value:', logEmpty:'Noch keine KI-Empfehlungen protokolliert. Jede KI-Analyse landet ab jetzt automatisch hier.',
   logD:'Jede KI-Empfehlung wird hier bewertet — auch wenn du sie nicht spielst. Das ist die echte KI-Trefferquote.',
+  noValueToday:'Heute kein echter Value gefunden — die ehrlichste Antwort. Kein Tipp ist besser als ein schlechter Tipp.',
   stRight:'RICHTIG', stWrong:'FALSCH', stTaken:'GESPIELT', unknown:'unklar'
  },
  fr:{ nvHome:'Accueil', nvBets:'Paris', nvFin:'Finances', nvMore:'Plus',
@@ -223,6 +224,7 @@ var I18N = {
   kombiWarn:'Combiné : TOUS les tips doivent passer — le risque de perte se multiplie.', kombiNeed:'Coche au moins 2 suggestions avec cote.',
   rejT:'Vérifié, pas de value :', logEmpty:'Aucune recommandation IA enregistrée. Chaque analyse IA arrive ici automatiquement.',
   logD:'Chaque recommandation IA est évaluée ici — même si tu ne la joues pas. C’est le vrai taux de réussite IA.',
+  noValueToday:'Aucune vraie value trouvée aujourd’hui — la réponse la plus honnête. Pas de tip vaut mieux qu’un mauvais tip.',
   stRight:'CORRECT', stWrong:'FAUX', stTaken:'JOUÉ', unknown:'incertain'
  },
  en:{ nvHome:'Home', nvBets:'Bets', nvFin:'Finance', nvMore:'More',
@@ -272,6 +274,7 @@ var I18N = {
   kombiWarn:'Combo: ALL tips must win — loss risk multiplies.', kombiNeed:'Tick at least 2 suggestions with odds.',
   rejT:'Checked, no value:', logEmpty:'No AI recommendations logged yet. Every AI analysis lands here automatically.',
   logD:'Every AI recommendation is rated here — even if you do not bet it. This is the true AI hit rate.',
+  noValueToday:'No real value found today — the most honest answer. No tip beats a bad tip.',
   stRight:'RIGHT', stWrong:'WRONG', stTaken:'PLAYED', unknown:'unclear'
  }
 };
@@ -411,7 +414,10 @@ function kiAnalyse(btn, versuch){
   btn.disabled=true; btn.textContent=t('kiThink');
   var f=document.getElementById('ladeFehler'); if(f) f.textContent='';
 
-  var prompt='Heute ist '+heuteStr()+'. Du bist der Wett-Analyst von Ondo Control: Fakten von Annahmen trennen, mehrere Quellen pruefen, Risiken ehrlich nennen, keine Scheinsicherheit, keine Gewinnversprechen.\n\nSuche im Web, welche Fussballspiele HEUTE und MORGEN wirklich stattfinden (echte Teamnamen!) und die aktuellen Wettquoten.\n\nWaehle die 3 Spiele mit dem besten Value. Pro Spiel: konkreter Tipp, realistische Quote als Zahl, empfohlener Einsatz zwischen 5 und '+state.regeln.maxEinsatz+' Euro, sehr kurze Begruendung (max 20 Woerter, inkl. Risiko) auf '+(LANGWORD[state.lang]||'Deutsch')+'.\n\nNenne zusaetzlich kurz die geprueften Spiele OHNE Value (max 5, Grund in max 6 Woertern).\n\nLetzte Nachricht: NUR kompaktes JSON:\n{"spiele":[{"match":"Team A - Team B","wettbewerb":"...","anpfiff":"...","tipp":"...","quote":1.85,"einsatz":10,"begruendung":"..."}],"verworfen":[{"spiel":"...","grund":"..."}]}';
+  var fruehere = (state.kiProtokoll||[]).slice(0,6).map(function(e){
+    return e.datum+': '+e.match+' -> '+(e.tipp||'?')+' (Quote '+(e.quote||'?')+', '+e.status+')';
+  }).join('; ');
+  var prompt='Heute ist '+heuteStr()+'. Du bist der Wett-Analyst von Ondo Control: Fakten von Annahmen trennen, mehrere Quellen pruefen, Risiken ehrlich nennen, keine Scheinsicherheit, keine Gewinnversprechen.\n\nSuche im Web, welche Fussballspiele HEUTE und MORGEN wirklich stattfinden (echte Teamnamen!) und die aktuellen Wettquoten.\n\nWaehle 0 bis 3 Spiele mit ECHTEM Value (deine geschaetzte Wahrscheinlichkeit mal Quote klar ueber 1). WICHTIG: Lieber weniger oder GAR KEINE Tipps als schwache — es gibt KEINE Pflicht, 3 zu liefern. Quoten unter 1.30 sind fast nie Value. Pro Spiel: konkreter Tipp, realistische Quote als Zahl, empfohlener Einsatz zwischen 5 und '+state.regeln.maxEinsatz+' Euro, sehr kurze Begruendung (max 20 Woerter, inkl. Risiko) auf '+(LANGWORD[state.lang]||'Deutsch')+'.\n\n'+(fruehere?('KONSISTENZ — deine bisherigen Empfehlungen: '+fruehere+'. Wenn du heute bei einem dieser Spiele anders tippst als zuvor, MUSST du das in der Begruendung ausdruecklich benennen ("Aenderung: ..." + Grund). Grundlos die Seite wechseln ist verboten.\n\n'):'')+'Nenne zusaetzlich kurz die geprueften Spiele OHNE Value (max 5, Grund in max 6 Woertern).\n\nLetzte Nachricht: NUR kompaktes JSON (spiele darf leer sein):\n{"spiele":[{"match":"Team A - Team B","wettbewerb":"...","anpfiff":"...","tipp":"...","quote":1.85,"einsatz":10,"begruendung":"..."}],"verworfen":[{"spiel":"...","grund":"..."}]}';
 
   var messages=[{role:'user',content:prompt}];
   var runden=0;
@@ -426,7 +432,16 @@ function kiAnalyse(btn, versuch){
         tools:[{type:'web_search_20250305',name:'web_search'}]}).then(weiter);
     }
     var parsed=parseJsonBlock(res);
-    if(!parsed || !parsed.spiele || !parsed.spiele.length) throw new Error(t('noJson'));
+    if(!parsed || !parsed.spiele) throw new Error(t('noJson'));
+    if(!parsed.spiele.length){
+      state.vorschlaege=[];
+      state.verworfen=(parsed.verworfen||[]).map(function(x){return {spiel:String(x.spiel||''),grund:String(x.grund||'')};});
+      state.vorschlaegeInfo=t('kiOf')+': '+heuteStr()+' — '+t('noValueToday');
+      save();
+      btn.disabled=false; btn.textContent=t('kiBtn');
+      render();
+      return;
+    }
     state.vorschlaege=parsed.spiele.map(function(sp,idx){
       return {
         id:'ki'+Date.now()+idx,
