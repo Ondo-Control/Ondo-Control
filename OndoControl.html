@@ -92,7 +92,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:21px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · v14<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · v15<span id="saveNote" class="save-note"></span></div>
   <div id="view"></div>
 </div>
 
@@ -105,7 +105,7 @@
 
 <script>
 /* ================= VERSION & UPDATE-CHECK ================= */
-var APP_VERSION = 14;
+var APP_VERSION = 15;
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
     .then(function(r){ return r.json(); })
@@ -400,7 +400,7 @@ function parseJsonBlock(res){
 var LANGWORD={de:'Deutsch',fr:'Franzoesisch',en:'Englisch'};
 
 /* ================= KI-ANALYSE ================= */
-function kiAnalyse(btn){
+function kiAnalyse(btn, versuch){
   if(!state.apiKey || state.apiKey.indexOf('sk-ant-')!==0){
     var f0=document.getElementById('ladeFehler');
     if(f0) f0.textContent=t('noKey');
@@ -420,7 +420,7 @@ function kiAnalyse(btn){
     if(res.stop_reason==='pause_turn' && runden<4){
       runden++;
       messages.push({role:'assistant',content:res.content});
-      return apiCall({model:'claude-sonnet-4-6',max_tokens:1500,messages:messages,
+      return apiCall({model:'claude-sonnet-4-6',max_tokens:2500,messages:messages,
         tools:[{type:'web_search_20250305',name:'web_search'}]}).then(weiter);
     }
     var parsed=parseJsonBlock(res);
@@ -449,9 +449,14 @@ function kiAnalyse(btn){
     btn.disabled=false; btn.textContent=t('kiBtn');
     render();
   }
-  apiCall({model:'claude-sonnet-4-6',max_tokens:1500,messages:messages,
+  apiCall({model:'claude-sonnet-4-6',max_tokens:2500,messages:messages,
     tools:[{type:'web_search_20250305',name:'web_search'}]}).then(weiter)
   .catch(function(e){
+    if(!versuch){
+      // Automatischer zweiter Versuch (z.B. bei abgeschnittenem JSON)
+      setTimeout(function(){ kiAnalyse(btn, 2); }, 1200);
+      return;
+    }
     btn.disabled=false; btn.textContent=t('kiBtn');
     var el=document.getElementById('ladeFehler');
     if(el) el.textContent=(e&&e.message?e.message:'?');
