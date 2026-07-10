@@ -94,7 +94,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:21px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · v18 BETA<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · v18.1 BETA<span id="saveNote" class="save-note"></span></div>
   <div id="view"></div>
 </div>
 
@@ -382,26 +382,40 @@ function calcAI(){
 }
 
 /* ================= BRAIN-ADAPTER (Ondo Core Architektur Punkt 0) ================= */
-var GEMINI_MODEL = 'gemini-2.5-flash';
-function geminiCall(opts){
+// Modell-Kaskade: probiert aktuelle Modellnamen durch und merkt sich das funktionierende
+var GEMINI_MODELS = ['gemini-flash-latest','gemini-3.5-flash','gemini-3-flash','gemini-2.5-flash'];
+function geminiCall(opts, modellIndex){
   // opts: { prompt, useSearch, imageB64 }
+  var modell = state.geminiModel || GEMINI_MODELS[modellIndex||0];
   var parts = [];
   if(opts.imageB64) parts.push({ inlineData:{ mimeType:'image/jpeg', data:opts.imageB64 } });
   parts.push({ text: opts.prompt });
   var body = { contents:[{ parts: parts }] };
   if(opts.useSearch) body.tools = [{ google_search: {} }];
-  return fetch('https://generativelanguage.googleapis.com/v1beta/models/'+GEMINI_MODEL+':generateContent?key='+encodeURIComponent(state.geminiKey),{
+  return fetch('https://generativelanguage.googleapis.com/v1beta/models/'+modell+':generateContent?key='+encodeURIComponent(state.geminiKey),{
     method:'POST',
     headers:{ 'content-type':'application/json' },
     body: JSON.stringify(body)
   }).then(function(r){ return r.json().then(function(j){ j._status=r.status; return j; }); })
   .then(function(res){
-    if(res.error) return { error:{ message:'Gemini: '+(res.error.message||res._status) }, _status:res._status };
+    if(res.error){
+      var msg = res.error.message || String(res._status);
+      var modellProblem = res._status===404 || /no longer available|not found|not supported/i.test(msg);
+      var idx = (modellIndex||0);
+      if(modellProblem){
+        state.geminiModel = null; // gemerktes Modell verwerfen
+        if(idx < GEMINI_MODELS.length-1){
+          return geminiCall(opts, idx+1); // naechstes Modell probieren
+        }
+      }
+      return { error:{ message:'Gemini ('+modell+'): '+msg }, _status:res._status };
+    }
     try{
       var txt = (res.candidates[0].content.parts||[]).map(function(p){return p.text||'';}).join('\n');
+      if(!state.geminiModel){ state.geminiModel = modell; save(); } // funktionierendes Modell merken
       return { content:[{ type:'text', text:txt }], stop_reason:'end_turn', _status:res._status };
     }catch(e){
-      return { error:{ message:'Gemini: Antwort nicht lesbar' }, _status:500 };
+      return { error:{ message:'Gemini ('+modell+'): Antwort nicht lesbar' }, _status:500 };
     }
   });
 }
