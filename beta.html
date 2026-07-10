@@ -94,7 +94,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:21px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · v18.4 BETA<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · v18.5 BETA<span id="saveNote" class="save-note"></span></div>
   <div id="view"></div>
 </div>
 
@@ -389,15 +389,34 @@ function calcAI(){
 }
 
 /* ================= BRAIN-ADAPTER (Ondo Core Architektur Punkt 0) ================= */
-// Modell-Kaskade: probiert aktuelle Modellnamen durch und merkt sich das funktionierende
-var GEMINI_MODELS = ['gemini-flash-latest','gemini-3.5-flash','gemini-3-flash','gemini-2.5-flash'];
+// Modell-Kaskade: fragt Googles offizielle Modell-Liste fuer DIESEN Schluessel ab (kein Raten mehr)
+var GEMINI_MODELS = ['gemini-flash-latest'];
+function gLadeModelle(){
+  return fetch('https://generativelanguage.googleapis.com/v1beta/models?key='+encodeURIComponent(state.geminiKey))
+    .then(function(r){ return r.json(); })
+    .then(function(j){
+      var liste=(j.models||[]).filter(function(m){
+        return (m.supportedGenerationMethods||[]).indexOf('generateContent')>=0 &&
+               /flash/i.test(m.name) &&
+               !/image|tts|live|audio|embedding|8b/i.test(m.name);
+      }).map(function(m){ return m.name.replace('models/',''); });
+      var stabil = liste.filter(function(n){ return !/latest|preview|exp/i.test(n); });
+      var rest   = liste.filter(function(n){ return  /latest|preview|exp/i.test(n); });
+      var sortiert = stabil.concat(rest);
+      if(sortiert.length){ state.geminiModelListe = sortiert; save(); }
+      return sortiert;
+    })
+    .catch(function(){ return []; });
+}
 function geminiCall(opts, modellIndex){
   // opts: { prompt, useSearch, imageB64 }
-  // Gemerktes Modell nur beim ERSTEN Versuch nutzen; Ausweichversuche gehen strikt die Liste durch
-  var modell = (modellIndex===undefined && state.geminiModel) ? state.geminiModel : GEMINI_MODELS[modellIndex||0];
-  if(modellIndex!==undefined && modell===state.geminiModel && modellIndex < GEMINI_MODELS.length-1){
-    modell = GEMINI_MODELS[modellIndex]; // kein Doppelversuch mit demselben Modell
+  var liste = (state.geminiModelListe && state.geminiModelListe.length) ? state.geminiModelListe : GEMINI_MODELS;
+  // Erster Aufruf ohne bekannte Liste: erst Googles Modell-Liste fuer diesen Schluessel holen
+  if(modellIndex===undefined && !(state.geminiModelListe && state.geminiModelListe.length)){
+    return gLadeModelle().then(function(){ return geminiCall(opts, 0); });
   }
+  // Gemerktes Modell nur beim ERSTEN Versuch nutzen; Ausweichversuche gehen strikt die Liste durch
+  var modell = (modellIndex===undefined && state.geminiModel) ? state.geminiModel : liste[Math.min(modellIndex||0, liste.length-1)];
   var parts = [];
   if(opts.imageB64) parts.push({ inlineData:{ mimeType:'image/jpeg', data:opts.imageB64 } });
   parts.push({ text: opts.prompt });
@@ -416,9 +435,17 @@ function geminiCall(opts, modellIndex){
       var idx = (modellIndex||0);
       if(modellProblem || ueberlastet){
         if(modellProblem) state.geminiModel = null; // nicht existierendes Modell verwerfen
-        if(idx < GEMINI_MODELS.length-1){
-          // bei Ueberlastung: gemerktes Modell behalten, aber Ausweichmodell probieren
-          return geminiCall(opts, idx+1);
+        if(idx < liste.length-1){
+          return geminiCall(opts, idx+1); // naechstes Modell aus der offiziellen Liste
+        }
+        // Liste erschoepft: einmal frisch von Google laden und von vorn probieren
+        if(!opts._frisch){
+          opts._frisch = true;
+          state.geminiModelListe = null;
+          return gLadeModelle().then(function(neu){
+            if(neu.length) return geminiCall(opts, 0);
+            return { error:{ message:'Gemini: kein nutzbares Modell fuer diesen Schluessel gefunden' }, _status:404 };
+          });
         }
       }
       return { error:{ message:'Gemini ('+modell+'): '+msg }, _status:res._status };
