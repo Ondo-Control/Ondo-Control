@@ -94,7 +94,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:21px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · v18.1 BETA<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · v18.2 BETA<span id="saveNote" class="save-note"></span></div>
   <div id="view"></div>
 </div>
 
@@ -374,11 +374,18 @@ function calc(){
 }
 function calcAI(){
   var bew = state.bets.filter(function(b){return b.claudeRichtig!==null;});
-  var tr = bew.filter(function(b){return b.claudeRichtig;}).length;
   var p = (state.kiProtokoll||[]).filter(function(e){return e.status==='richtig'||e.status==='falsch';});
-  var ptr = p.filter(function(e){return e.status==='richtig';}).length;
-  var n = bew.length + p.length, treffer = tr + ptr;
-  return { n:n, tr:treffer, q: n? Math.round(treffer/n*100):null };
+  function zaehl(quelle){
+    var b2 = bew.filter(function(b){ return (b.herkunft||'sonnet')===quelle; });
+    var p2 = p.filter(function(e){ return (e.herkunft||'sonnet')===quelle; });
+    var n = b2.length + p2.length;
+    var tr = b2.filter(function(b){return b.claudeRichtig;}).length +
+             p2.filter(function(e){return e.status==='richtig';}).length;
+    return { n:n, tr:tr, q: n? Math.round(tr/n*100):null };
+  }
+  var s = zaehl('sonnet'), f = zaehl('flash');
+  var n = s.n + f.n, treffer = s.tr + f.tr;
+  return { n:n, tr:treffer, q: n? Math.round(treffer/n*100):null, sonnet:s, flash:f };
 }
 
 /* ================= BRAIN-ADAPTER (Ondo Core Architektur Punkt 0) ================= */
@@ -458,7 +465,10 @@ function kiAnalyse(btn, versuch){
   btn.disabled=true; btn.textContent=t('kiThink');
   var f=document.getElementById('ladeFehler'); if(f) f.textContent='';
 
-  var fruehere = (state.kiProtokoll||[]).slice(0,6).map(function(e){
+  var gehirn = (state.analyseProvider==='google' && hatGemini()) ? 'flash' : 'sonnet';
+  var fruehere = (state.kiProtokoll||[]).filter(function(e){
+    return !e.herkunft || e.herkunft===gehirn;
+  }).slice(0,6).map(function(e){
     return e.datum+': '+e.match+' -> '+(e.tipp||'?')+' (Quote '+(e.quote||'?')+', '+e.status+')';
   }).join('; ');
   var prompt='Heute ist '+heuteStr()+'. Du bist der Wett-Analyst von Ondo Control: Fakten von Annahmen trennen, mehrere Quellen pruefen, Risiken ehrlich nennen, keine Scheinsicherheit, keine Gewinnversprechen.\n\nSuche im Web, welche Fussballspiele HEUTE und MORGEN wirklich stattfinden (echte Teamnamen!) und die aktuellen Wettquoten.\n\nWaehle 0 bis 3 Spiele mit ECHTEM Value (deine geschaetzte Wahrscheinlichkeit mal Quote klar ueber 1). WICHTIG: Lieber weniger oder GAR KEINE Tipps als schwache — es gibt KEINE Pflicht, 3 zu liefern. Quoten unter 1.30 sind fast nie Value. Pro Spiel: konkreter Tipp, realistische Quote als Zahl, empfohlener Einsatz zwischen 5 und '+state.regeln.maxEinsatz+' Euro, sehr kurze Begruendung (max 20 Woerter, inkl. Risiko) auf '+(LANGWORD[state.lang]||'Deutsch')+'.\n\n'+(fruehere?('KONSISTENZ — deine bisherigen Empfehlungen: '+fruehere+'. Wenn du heute bei einem dieser Spiele anders tippst als zuvor, MUSST du das in der Begruendung ausdruecklich benennen ("Aenderung: ..." + Grund). Grundlos die Seite wechseln ist verboten.\n\n'):'')+'Nenne zusaetzlich kurz die geprueften Spiele OHNE Value (max 5, Grund in max 6 Woertern).\n\nLetzte Nachricht: NUR kompaktes JSON (spiele darf leer sein):\n{"spiele":[{"match":"Team A - Team B","wettbewerb":"...","anpfiff":"...","tipp":"...","quote":1.85,"einsatz":10,"begruendung":"..."}],"verworfen":[{"spiel":"...","grund":"..."}]}';
@@ -502,8 +512,9 @@ function kiAnalyse(btn, versuch){
     // KI-Tipp-Protokoll: jede Empfehlung automatisch festhalten
     if(!state.kiProtokoll) state.kiProtokoll=[];
     state.vorschlaege.forEach(function(v){
+      v.herkunft = gehirn;
       state.kiProtokoll.unshift({ id:'p'+v.id, datum:new Date().toLocaleDateString('de-DE'),
-        match:v.match, tipp:v.tipp, quote:v.quote, status:'offen' });
+        match:v.match, tipp:v.tipp, quote:v.quote, status:'offen', herkunft:gehirn });
     });
     state.vorschlaegeInfo=t('kiOf')+': '+heuteStr();
     save();
@@ -713,7 +724,7 @@ function addBet(v, einsatzVal){
   state.bets.unshift({
     id:Date.now(), datum:new Date().toLocaleDateString("de-DE"),
     match:v.match, tipp:v.tipp||"", quote:parseFloat(String(v.quote).replace(",","."))||0,
-    einsatz:einsatz, status:"offen", claudeRichtig:null, fromKI:fromKI
+    einsatz:einsatz, status:"offen", claudeRichtig:null, fromKI:fromKI, herkunft:v.herkunft||null
   });
   if(fromKI && state.kiProtokoll){
     state.kiProtokoll.forEach(function(e){ if(e.id==='p'+v.id) e.status='uebernommen'; });
@@ -904,9 +915,10 @@ function viewBets(c){
         : e.status==='falsch' ? '<span class="badge b-loss">'+t('stWrong')+'</span>'
         : e.status==='uebernommen' ? '<span class="badge b-open">'+t('stTaken')+'</span>'
         : '<span class="badge b-open">'+t('openB')+'</span>';
+      var quelle = (e.herkunft==='flash') ? ' · 🌱 Flash' : ' · 🧠 Sonnet';
       return '<div class="card"><div class="flex"><div>'+
         '<div class="disp" style="font-size:17px">'+e.match+'</div>'+
-        '<div class="muted">'+e.datum+' · '+t('tip')+': '+(e.tipp||'?')+' · '+t('odds')+' '+(e.quote||'?')+'</div>'+
+        '<div class="muted">'+e.datum+' · '+t('tip')+': '+(e.tipp||'?')+' · '+t('odds')+' '+(e.quote||'?')+quelle+'</div>'+
         '</div>'+chip+'</div></div>';
     }).join('') : '<div class="card empty">'+t('logEmpty')+'</div>';
     return sub+'<div class="muted" style="margin-bottom:10px">'+t('logD')+'</div>'+pruefBlock()+eintraege;
@@ -959,7 +971,9 @@ function viewFinance(c){
       '<div class="stat-sub">'+(c.done?c.wins+" "+t('of')+" "+c.done:t('noBetYet'))+'</div></div>'+
     '<div class="card"><div class="stat-label">'+t('hitAI')+'</div>'+
       '<div class="stat-val">'+(ai.q===null?"–":ai.q+" %")+'</div>'+
-      '<div class="stat-sub">'+(ai.n?ai.tr+" "+t('of')+" "+ai.n:t('notRated'))+'</div></div>'+
+      '<div class="stat-sub">'+(ai.n?ai.tr+" "+t('of')+" "+ai.n:t('notRated'))+
+      (ai.n?'<br>Sonnet: '+(ai.sonnet.q===null?'–':ai.sonnet.q+' % ('+ai.sonnet.tr+'/'+ai.sonnet.n+')')+' · Flash: '+(ai.flash.q===null?'–':ai.flash.q+' % ('+ai.flash.tr+'/'+ai.flash.n+')'):'')+
+      '</div></div>'+
   '</div>'+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:10px">'+t('finT')+'</div>'+
     '<label>'+t('depNew')+'</label>'+
