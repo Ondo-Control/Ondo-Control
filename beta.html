@@ -94,7 +94,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:21px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · v18.3 BETA<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · v18.4 BETA<span id="saveNote" class="save-note"></span></div>
   <div id="view"></div>
 </div>
 
@@ -393,7 +393,11 @@ function calcAI(){
 var GEMINI_MODELS = ['gemini-flash-latest','gemini-3.5-flash','gemini-3-flash','gemini-2.5-flash'];
 function geminiCall(opts, modellIndex){
   // opts: { prompt, useSearch, imageB64 }
-  var modell = state.geminiModel || GEMINI_MODELS[modellIndex||0];
+  // Gemerktes Modell nur beim ERSTEN Versuch nutzen; Ausweichversuche gehen strikt die Liste durch
+  var modell = (modellIndex===undefined && state.geminiModel) ? state.geminiModel : GEMINI_MODELS[modellIndex||0];
+  if(modellIndex!==undefined && modell===state.geminiModel && modellIndex < GEMINI_MODELS.length-1){
+    modell = GEMINI_MODELS[modellIndex]; // kein Doppelversuch mit demselben Modell
+  }
   var parts = [];
   if(opts.imageB64) parts.push({ inlineData:{ mimeType:'image/jpeg', data:opts.imageB64 } });
   parts.push({ text: opts.prompt });
