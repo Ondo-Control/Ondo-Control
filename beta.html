@@ -94,7 +94,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:21px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · v18.2 BETA<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · v18.3 BETA<span id="saveNote" class="save-note"></span></div>
   <div id="view"></div>
 </div>
 
@@ -408,11 +408,13 @@ function geminiCall(opts, modellIndex){
     if(res.error){
       var msg = res.error.message || String(res._status);
       var modellProblem = res._status===404 || /no longer available|not found|not supported/i.test(msg);
+      var ueberlastet = res._status===503 || res._status===429 || /high demand|overloaded|try again/i.test(msg);
       var idx = (modellIndex||0);
-      if(modellProblem){
-        state.geminiModel = null; // gemerktes Modell verwerfen
+      if(modellProblem || ueberlastet){
+        if(modellProblem) state.geminiModel = null; // nicht existierendes Modell verwerfen
         if(idx < GEMINI_MODELS.length-1){
-          return geminiCall(opts, idx+1); // naechstes Modell probieren
+          // bei Ueberlastung: gemerktes Modell behalten, aber Ausweichmodell probieren
+          return geminiCall(opts, idx+1);
         }
       }
       return { error:{ message:'Gemini ('+modell+'): '+msg }, _status:res._status };
