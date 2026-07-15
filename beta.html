@@ -94,7 +94,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:21px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · v18.5 BETA<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · v18.6 BETA<span id="saveNote" class="save-note"></span></div>
   <div id="view"></div>
 </div>
 
@@ -504,7 +504,7 @@ function kiAnalyse(btn, versuch){
   }).slice(0,6).map(function(e){
     return e.datum+': '+e.match+' -> '+(e.tipp||'?')+' (Quote '+(e.quote||'?')+', '+e.status+')';
   }).join('; ');
-  var prompt='Heute ist '+heuteStr()+'. Du bist der Wett-Analyst von Ondo Control: Fakten von Annahmen trennen, mehrere Quellen pruefen, Risiken ehrlich nennen, keine Scheinsicherheit, keine Gewinnversprechen.\n\nSuche im Web, welche Fussballspiele HEUTE und MORGEN wirklich stattfinden (echte Teamnamen!) und die aktuellen Wettquoten.\n\nWaehle 0 bis 3 Spiele mit ECHTEM Value (deine geschaetzte Wahrscheinlichkeit mal Quote klar ueber 1). WICHTIG: Lieber weniger oder GAR KEINE Tipps als schwache — es gibt KEINE Pflicht, 3 zu liefern. Quoten unter 1.30 sind fast nie Value. Pro Spiel: konkreter Tipp, realistische Quote als Zahl, empfohlener Einsatz zwischen 5 und '+state.regeln.maxEinsatz+' Euro, sehr kurze Begruendung (max 20 Woerter, inkl. Risiko) auf '+(LANGWORD[state.lang]||'Deutsch')+'.\n\n'+(fruehere?('KONSISTENZ — deine bisherigen Empfehlungen: '+fruehere+'. Wenn du heute bei einem dieser Spiele anders tippst als zuvor, MUSST du das in der Begruendung ausdruecklich benennen ("Aenderung: ..." + Grund). Grundlos die Seite wechseln ist verboten.\n\n'):'')+'Nenne zusaetzlich kurz die geprueften Spiele OHNE Value (max 5, Grund in max 6 Woertern).\n\nLetzte Nachricht: NUR kompaktes JSON (spiele darf leer sein):\n{"spiele":[{"match":"Team A - Team B","wettbewerb":"...","anpfiff":"...","tipp":"...","quote":1.85,"einsatz":10,"begruendung":"..."}],"verworfen":[{"spiel":"...","grund":"..."}]}';
+  var prompt='Heute ist '+heuteStr()+'. Du bist der Wett-Analyst von Ondo Control: Fakten von Annahmen trennen, mehrere Quellen pruefen, Risiken ehrlich nennen, keine Scheinsicherheit, keine Gewinnversprechen.\n\nSuche im Web, welche Fussballspiele HEUTE und MORGEN wirklich stattfinden (echte Teamnamen!) und die aktuellen Wettquoten.\n\nWaehle 0 bis 3 Spiele mit ECHTEM Value (deine geschaetzte Wahrscheinlichkeit mal Quote klar ueber 1). WICHTIG: Lieber weniger oder GAR KEINE Tipps als schwache — es gibt KEINE Pflicht, 3 zu liefern. Quoten unter 1.30 sind fast nie Value. Pro Spiel: konkreter Tipp MIT Abrechnungsbasis (z.B. Sieg X (90 Min.) oder X kommt weiter (inkl. Verl.)), realistische Quote als Zahl, empfohlener Einsatz zwischen 5 und '+state.regeln.maxEinsatz+' Euro, sehr kurze Begruendung (max 20 Woerter, inkl. Risiko) auf '+(LANGWORD[state.lang]||'Deutsch')+'.\n\n'+(fruehere?('KONSISTENZ — deine bisherigen Empfehlungen: '+fruehere+'. Wenn du heute bei einem dieser Spiele anders tippst als zuvor, MUSST du das in der Begruendung ausdruecklich benennen ("Aenderung: ..." + Grund). Grundlos die Seite wechseln ist verboten.\n\n'):'')+'Nenne zusaetzlich kurz die geprueften Spiele OHNE Value (max 5, Grund in max 6 Woertern).\n\nLetzte Nachricht: NUR kompaktes JSON (spiele darf leer sein):\n{"spiele":[{"match":"Team A - Team B","wettbewerb":"...","anpfiff":"...","tipp":"...","quote":1.85,"einsatz":10,"begruendung":"..."}],"verworfen":[{"spiel":"...","grund":"..."}]}';
 
   var messages=[{role:'user',content:prompt}];
   var runden=0;
@@ -678,7 +678,7 @@ function ergebnissePruefen(btn){
   if(!alle.length){ if(st) st.textContent=t('noOpen'); return; }
   btn.disabled=true; btn.textContent=t('checking');
   if(st) st.textContent='';
-  var prompt='Heute ist '+heuteStr()+'. Pruefe per Websuche die folgenden Wett-Tipps: Ist jeder Tipp AUFGEGANGEN (gewonnen), NICHT aufgegangen (verloren) oder noch nicht entschieden/unklar (unbekannt)? Bei Kombis: NUR gewonnen wenn ALLE Teile stimmen.\n\n'+
+  var prompt='Heute ist '+heuteStr()+'. Pruefe per Websuche die folgenden Wett-Tipps: Ist jeder Tipp AUFGEGANGEN (gewonnen), NICHT aufgegangen (verloren) oder noch nicht entschieden/unklar (unbekannt)?\n\nABRECHNUNGSREGEL (wie beim Buchmacher): Standard-Maerkte (Sieg/1X2, Beide Teams treffen, Ueber/Unter Tore) zaehlen NUR die ERSTEN 90 MINUTEN inkl. Nachspielzeit — OHNE Verlaengerung, OHNE Elfmeterschiessen. Ausnahme nur, wenn der Tipp ausdruecklich Weiterkommen/inkl. Verlaengerung nennt. Ermittle deshalb bei K.o.-Spielen IMMER zuerst das 90-Minuten-Ergebnis und nenne es in info (z.B. 90min: 1:1). Bei Kombis: NUR gewonnen wenn ALLE Teile stimmen.\n\n'+
     alle.map(function(a){return a.id+': '+a.beschreibung;}).join('\n')+
     '\n\nLetzte Nachricht: NUR kompaktes JSON:\n{"ergebnisse":[{"id":"B123","ausgang":"gewonnen|verloren|unbekannt","info":"max 8 Woerter"}]}';
   var messages=[{role:'user',content:prompt}];
@@ -726,6 +726,10 @@ function pruefAnwenden(pid){
   }
   pruefListe = pruefListe.filter(function(x){return x.id!==pid;});
   render();
+}
+function logSet(eid, status){
+  (state.kiProtokoll||[]).forEach(function(e){ if(e.id===eid) e.status=status; });
+  save(); render();
 }
 function pruefIgnorieren(pid){
   pruefListe = pruefListe.filter(function(x){return x.id!==pid;});
@@ -949,10 +953,17 @@ function viewBets(c){
         : e.status==='uebernommen' ? '<span class="badge b-open">'+t('stTaken')+'</span>'
         : '<span class="badge b-open">'+t('openB')+'</span>';
       var quelle = (e.herkunft==='flash') ? ' · 🌱 Flash' : ' · 🧠 Sonnet';
+      var korrektur = (e.status!=='uebernommen')
+        ? '<div style="margin-top:10px">'+
+          (e.status!=='richtig'?'<button class="btn-sm btn-win" onclick="logSet(\''+e.id+'\',\'richtig\')">'+t('stRight')+'</button> ':'')+
+          (e.status!=='falsch'?'<button class="btn-sm btn-loss" onclick="logSet(\''+e.id+'\',\'falsch\')">'+t('stWrong')+'</button> ':'')+
+          (e.status!=='offen'?'<button class="btn-sm" onclick="logSet(\''+e.id+'\',\'offen\')">'+t('reset')+'</button>':'')+
+          '</div>'
+        : '';
       return '<div class="card"><div class="flex"><div>'+
         '<div class="disp" style="font-size:17px">'+e.match+'</div>'+
         '<div class="muted">'+e.datum+' · '+t('tip')+': '+(e.tipp||'?')+' · '+t('odds')+' '+(e.quote||'?')+quelle+'</div>'+
-        '</div>'+chip+'</div></div>';
+        '</div>'+chip+'</div>'+korrektur+'</div>';
     }).join('') : '<div class="card empty">'+t('logEmpty')+'</div>';
     return sub+'<div class="muted" style="margin-bottom:10px">'+t('logD')+'</div>'+pruefBlock()+eintraege;
   }
