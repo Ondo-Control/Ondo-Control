@@ -103,7 +103,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:21px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · v19.0 BETA<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · v19.1 BETA<span id="saveNote" class="save-note"></span></div>
   <div id="view"></div>
 </div>
 
@@ -193,6 +193,11 @@ var I18N = {
   logD:'Jede KI-Vorhersage wird hier bewertet. Aus einem Ergebnis-Tipp leitet die App drei Aussagen ab.',
   gKeyT:'🌱 Zweites Gehirn (Google Gemini)', gKeyD:'Schlüssel von aistudio.google.com — bleibt NUR auf diesem Gerät. Übernimmt Ergebnis-Prüfen & Foto-Lesen fast gratis.', gOn:'✅ Gemini-Schlüssel gespeichert', gOff:'❌ Kein Gemini-Schlüssel',
   duellT:'Duell-Modus', duellD:'Beide Gehirne bekommen dieselbe Spielliste und sagen dieselben Spiele vorher. Ohne Gemini-Schlüssel läuft nur Sonnet.',
+  backupT:'💾 Datensicherung', backupD:'Alle Messdaten liegen sonst NUR im Speicher dieses Browsers. Wird er geleert, sind sie unwiederbringlich weg. Regelmäßig sichern.',
+  backupBtn:'💾 Daten sichern', restoreBtn:'📂 Sicherung laden',
+  backupInfo:'Im Speicher: {a} Vorhersagen · {b} Wetten', backupLast:'Zuletzt gesichert', backupNever:'Noch nie gesichert',
+  impConfirm:'Sicherung mit {a} Vorhersagen und {b} Wetten laden?\n\nAchtung: Die Daten auf diesem Gerät werden dabei ERSETZT.',
+  impOk:'Sicherung geladen ✓', impFail:'Datei nicht lesbar oder keine gültige Ondo-Control-Sicherung.',
   stRight:'RICHTIG', stWrong:'FALSCH', unknown:'unklar', bothBrains:'Beide Gehirne'
  },
  fr:{ nvHome:'Accueil', nvBets:'Paris', nvFin:'Finances', nvMore:'Plus',
@@ -252,6 +257,11 @@ var I18N = {
   logD:'Chaque prédiction IA est évaluée ici. À partir d’un score prédit, l’app déduit trois affirmations.',
   gKeyT:'🌱 Second cerveau (Google Gemini)', gKeyD:'Clé de aistudio.google.com — reste UNIQUEMENT sur cet appareil. Prend en charge vérification & lecture photo presque gratuitement.', gOn:'✅ Clé Gemini enregistrée', gOff:'❌ Pas de clé Gemini',
   duellT:'Mode duel', duellD:'Les deux cerveaux reçoivent la même liste de matchs. Sans clé Gemini, seul Sonnet fonctionne.',
+  backupT:'💾 Sauvegarde des données', backupD:'Sinon toutes les données de mesure vivent UNIQUEMENT dans la mémoire de ce navigateur. S’il est vidé, elles sont perdues. Sauvegarde régulièrement.',
+  backupBtn:'💾 Sauvegarder', restoreBtn:'📂 Charger une sauvegarde',
+  backupInfo:'En mémoire : {a} prédictions · {b} paris', backupLast:'Dernière sauvegarde', backupNever:'Jamais sauvegardé',
+  impConfirm:'Charger la sauvegarde avec {a} prédictions et {b} paris ?\n\nAttention : les données de cet appareil seront REMPLACÉES.',
+  impOk:'Sauvegarde chargée ✓', impFail:'Fichier illisible ou sauvegarde Ondo Control invalide.',
   stRight:'CORRECT', stWrong:'FAUX', unknown:'incertain', bothBrains:'Les deux cerveaux'
  },
  en:{ nvHome:'Home', nvBets:'Bets', nvFin:'Finance', nvMore:'More',
@@ -311,6 +321,11 @@ var I18N = {
   logD:'Every AI prediction is rated here. From one predicted score the app derives three statements.',
   gKeyT:'🌱 Second brain (Google Gemini)', gKeyD:'Key from aistudio.google.com — stays ONLY on this device. Handles result checking & photo reading almost free.', gOn:'✅ Gemini key saved', gOff:'❌ No Gemini key',
   duellT:'Duel mode', duellD:'Both brains receive the same fixture list. Without a Gemini key only Sonnet runs.',
+  backupT:'💾 Data backup', backupD:'Otherwise all measurement data lives ONLY in this browser’s storage. If it is cleared, the data is gone for good. Back up regularly.',
+  backupBtn:'💾 Back up data', restoreBtn:'📂 Load backup',
+  backupInfo:'In storage: {a} predictions · {b} bets', backupLast:'Last backup', backupNever:'Never backed up',
+  impConfirm:'Load backup with {a} predictions and {b} bets?\n\nWarning: the data on this device will be REPLACED.',
+  impOk:'Backup loaded ✓', impFail:'File unreadable or not a valid Ondo Control backup.',
   stRight:'RIGHT', stWrong:'WRONG', unknown:'unclear', bothBrains:'Both brains'
  }
 };
@@ -416,19 +431,22 @@ function maerkteBauen(match, heim, gast, p1x2, pTore, pBtts){
     label: heim>gast ? ('Sieg '+tm.heim) : (heim<gast ? ('Sieg '+tm.gast) : t('draw')),
     p: p1x2, status:'offen'
   });
-  m.push({
-    typ:'tore',
-    code: ges>2.5 ? 'ueber' : 'unter',
-    label: ges>2.5 ? t('over25') : t('under25'),
-    p: pTore, status:'offen'
-  });
+  /* Ja/Nein-Maerkte: unter 50 Prozent waere widerspruechlich ("Ja zu 42 %" heisst in
+     Wahrheit "Nein zu 58 %"). Deshalb dreht die App die Aussage um. Rechnerisch identisch,
+     aber die angezeigte Behauptung ist die, an die das Gehirn wirklich glaubt. */
+  function jaNein(typ, codeA, labelA, codeB, labelB, p){
+    if(p < 50) return { typ:typ, code:codeB, label:labelB, p:(100-p), gedreht:true, status:'offen' };
+    return { typ:typ, code:codeA, label:labelA, p:p, status:'offen' };
+  }
+  m.push(jaNein('tore',
+    (ges>2.5 ? 'ueber' : 'unter'), (ges>2.5 ? t('over25') : t('under25')),
+    (ges>2.5 ? 'unter' : 'ueber'), (ges>2.5 ? t('under25') : t('over25')),
+    pTore));
   var btts = (heim>0 && gast>0);
-  m.push({
-    typ:'btts',
-    code: btts ? 'btts_ja' : 'btts_nein',
-    label: btts ? t('bttsYes') : t('bttsNo'),
-    p: pBtts, status:'offen'
-  });
+  m.push(jaNein('btts',
+    (btts ? 'btts_ja' : 'btts_nein'), (btts ? t('bttsYes') : t('bttsNo')),
+    (btts ? 'btts_nein' : 'btts_ja'), (btts ? t('bttsNo') : t('bttsYes')),
+    pBtts));
   return m;
 }
 /* Urteil per fester Regel — deterministisch, keine KI-Logik mehr (v19 Punkt 3) */
@@ -966,6 +984,57 @@ function setStatus(id,s){
   save(); render();
 }
 function delBet(id){ state.bets=state.bets.filter(function(b){return b.id!==id;}); save(); render(); }
+/* ================= DATENSICHERUNG (v19.1) =================
+   Alle Messdaten liegen sonst nur im Browser-Speicher dieses Geraetes. */
+function dateiHerunterladen(blob, name){
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = name; a.rel = 'noopener';
+  document.body.appendChild(a); a.click();
+  setTimeout(function(){
+    try{ document.body.removeChild(a); }catch(e){}
+    URL.revokeObjectURL(url);
+  }, 1200);
+}
+function datenSichern(){
+  var daten = JSON.stringify(state);
+  var d = new Date();
+  var name = 'ondo-control-sicherung-'+d.getFullYear()+'-'+
+    ('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)+'.json';
+  var blob = new Blob([daten], {type:'application/json'});
+  state.letzteSicherung = d.toLocaleDateString('de-DE')+' '+
+    ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);
+  try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+  var datei = null;
+  try{ datei = new File([blob], name, {type:'application/json'}); }catch(e){}
+  if(datei && navigator.share && navigator.canShare && navigator.canShare({files:[datei]})){
+    navigator.share({ files:[datei], title:name })
+      .then(function(){ render(); })
+      .catch(function(){ dateiHerunterladen(blob, name); render(); });
+    return;
+  }
+  dateiHerunterladen(blob, name);
+  render();
+}
+function datenLaden(input){
+  if(!input.files || !input.files[0]) return;
+  var leser = new FileReader();
+  leser.onload = function(){
+    var d = null;
+    try{ d = JSON.parse(leser.result); }catch(e){}
+    if(!d || typeof d !== 'object' || (!('kiProtokoll' in d) && !('bets' in d))){
+      alert(t('impFail')); input.value=''; return;
+    }
+    var a = (d.kiProtokoll||[]).length, b = (d.bets||[]).length;
+    if(!confirm(t('impConfirm').replace('{a}', a).replace('{b}', b))){ input.value=''; return; }
+    for(var k in d) state[k] = d[k];
+    save(); render();
+    alert(t('impOk'));
+    input.value='';
+  };
+  leser.readAsText(input.files[0]);
+}
+
 function depAdd(){
   var v=parseFloat(String(document.getElementById('einzahlungNeu').value).replace(',','.'));
   if(!isNaN(v)&&v>0){ state.eingezahlt=Math.round((state.eingezahlt+v)*100)/100; save(); render(); }
@@ -1278,6 +1347,19 @@ function viewMore(){
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">⚔️ '+t('duellT')+'</div>'+
     '<div class="muted">'+t('duellD')+'</div>'+
   '</div>'+
+  '<div class="card" style="border-color:rgba(245,217,10,.35)">'+
+    '<div class="disp" style="font-size:20px;margin-bottom:6px">'+t('backupT')+'</div>'+
+    '<div class="muted" style="margin-bottom:12px">'+t('backupD')+'</div>'+
+    '<div class="muted" style="margin-bottom:10px">'+
+      t('backupInfo').replace('{a}',(state.kiProtokoll||[]).length).replace('{b}',(state.bets||[]).length)+
+      '<br>'+t('backupLast')+': <b style="color:'+(state.letzteSicherung?'var(--text)':'var(--loss)')+'">'+
+      (state.letzteSicherung||t('backupNever'))+'</b>'+
+    '</div>'+
+    '<button class="btn" onclick="datenSichern()">'+t('backupBtn')+'</button>'+
+    '<div style="height:8px"></div>'+
+    '<input type="file" accept=".json,application/json" id="sicherungInput" style="display:none" onchange="datenLaden(this)"/>'+
+    '<button class="btn btn-ghost" onclick="document.getElementById(\'sicherungInput\').click()">'+t('restoreBtn')+'</button>'+
+  '</div>'+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">'+t('rulesT')+'</div>'+
     '<div class="muted" style="margin-bottom:12px">'+t('rulesD')+'</div>'+
     '<label>'+t('maxStake')+'</label>'+
@@ -1287,7 +1369,7 @@ function viewMore(){
     '<div style="font-size:13px;line-height:1.8">'+t('sec1')+'<br>'+t('sec2')+'<br>'+t('sec3')+'<br>'+t('sec4')+'<br>'+t('sec5')+'</div>'+
   '</div>'+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">📋 '+t('projT')+'</div>'+
-    '<pre>ONDO CONTROL v19 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
+    '<pre>ONDO CONTROL v19.1 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
   '</div>';
 }
 
