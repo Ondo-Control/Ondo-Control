@@ -68,6 +68,15 @@
   .module .mt{font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:700;}
   .module .md{color:var(--dim);font-size:12px;}
   .mstatus{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:1.2px;font-weight:700;}
+  /* Vorhersage-Elemente v19 */
+  .mkt{display:flex;justify-content:space-between;align-items:center;gap:8px;
+    padding:7px 0;border-top:1px solid var(--edge);font-size:13px;}
+  .mkt .p{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;color:var(--accent);}
+  .score{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;color:var(--accent);line-height:1;}
+  .ktab{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px;}
+  .ktab th,.ktab td{padding:5px 4px;text-align:right;border-top:1px solid var(--edge);}
+  .ktab th:first-child,.ktab td:first-child{text-align:left;}
+  .ktab th{color:var(--dim);font-weight:500;font-size:11px;border-top:none;}
   /* Bottom-Navigation */
   .nav{position:fixed;bottom:0;left:0;right:0;background:rgba(13,23,41,.97);
     border-top:1px solid var(--edge);display:flex;z-index:50;
@@ -94,7 +103,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:21px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · v18.6 BETA<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · v19.0 BETA<span id="saveNote" class="save-note"></span></div>
   <div id="view"></div>
 </div>
 
@@ -134,15 +143,25 @@ var I18N = {
   betBal:'Wett-Saldo', hitYou:'Deine Trefferquote', hitAI:'KI-Trefferquote', notRated:'Noch nicht bewertet',
   closed:'abgeschlossen', open_:'offen', noBetYet:'Noch keine Wette', of:'von',
   modules:'Module', active:'AKTIV', planned:'GEPLANT',
-  modBets:'Wett-Analyse', modBetsD:'KI-Tipps, Historie, Statistik',
+  modBets:'Wett-Analyse', modBetsD:'KI-Vorhersagen, Historie, Statistik',
   modFin:'Finanzen', modFinD:'Ein-/Auszahlungen, Bilanz',
   modLotto:'Lotterien', modLottoD:'Wahrscheinlichkeiten (realistisch)',
   modContent:'Content', modContentD:'YouTube/TikTok-Ideen',
   modOrga:'Organisation', modOrgaD:'Aufgaben, Planung',
-  sugg:'Vorschläge', new_:'Neu', hist:'Historie',
-  kiBtn:'🧠 KI-Analyse (heute)', kiThink:'🧠 Denkt … (30-60 Sek.)', planBtn:'🔄 Nur Spielplan (ohne KI)',
-  noSugg:'Noch keine Vorschläge. Tippe auf KI-Analyse.', tip:'Tipp', odds:'Quote', stake:'Einsatz (€)',
-  take:'✓ Übernehmen', fillOddsStake:'Bitte Quote und Einsatz eintragen',
+  sugg:'Vorhersagen', new_:'Neu', hist:'Historie',
+  predBtn:'🔮 Vorhersagen (heute)', predThink:'🔮 Beide Gehirne denken … (1-2 Min.)',
+  predListing:'📋 Hole Spielplan …', predBrain:'🧠 Frage Gehirne …',
+  noPred:'Noch keine Vorhersagen. Tippe auf Vorhersagen.',
+  predHead:'Vorhersagen', resultTip:'Ergebnis-Tipp', conf:'Sicherheit',
+  mkt1x2:'Sieger', mktTore:'Tore', mktBtts:'Beide treffen',
+  draw:'Unentschieden', over25:'Über 2,5 Tore', under25:'Unter 2,5 Tore',
+  bttsYes:'Beide treffen: Ja', bttsNo:'Beide treffen: Nein',
+  finalScore:'Endstand (90 Min.)',
+  calib:'Kalibrierung', calibD:'Stimmen die Prozentangaben mit der Wirklichkeit überein? Kleine Abweichung = ehrliche Schätzung.',
+  calibDev:'Abweichung', calibPts:'Bewertete Aussagen', calibNone:'Noch zu wenig Daten',
+  calibBand:'Angabe', calibClaim:'behauptet', calibReal:'wirklich', calibN:'Anzahl',
+  archive:'Archiv v18', archiveD:'Alte Einträge aus der Value-Phase. Zählen nicht mehr in die Statistik, bleiben als Verhaltens-Archiv erhalten.',
+  tip:'Tipp', odds:'Quote', stake:'Einsatz (€)',
   possWin:'Möglicher Gewinn', match:'Spiel', saveBet:'Wette speichern', fillAll:'Bitte Spiel, Quote und Einsatz ausfüllen',
   noBets:'Noch keine Wetten erfasst.', won:'GEWONNEN', lost:'VERLOREN', openB:'OFFEN',
   bWon:'✓ Gewonnen', bLost:'✗ Verloren', reset:'Zurücksetzen', del:'Löschen',
@@ -165,18 +184,16 @@ var I18N = {
   sec4:'• Jede Empfehlung mit Begründung und Risiko', sec5:'• Deine Daten bleiben auf deinem Gerät',
   projT:'Projekt & Vision',
   loadFail:'Konnte keine Spiele laden', loadHand:'Wetten unter NEU von Hand eintragen geht immer.',
-  planLoaded:'Spielplan geladen', kiOf:'🧠 KI-Analyse', noJson:'Antwort ohne lesbares JSON.',
+  kiOf:'🔮 Vorhersagen', noJson:'Antwort ohne lesbares JSON.',
   keyBad:'Schlüssel ungültig (401). Unter MEHR prüfen.', credEmpty:'Guthaben leer. Auf console.anthropic.com aufladen.',
-  kiNote:'KI-Analyse, kein Gewinnversprechen.', teamsTbd:'Teams stehen noch nicht fest. Nutze die KI-Analyse für echte Namen.',
+  kiNote:'KI-Vorhersage, kein Gewinnversprechen.',
   kiLog:'KI-Log', checkBtn:'🔎 Ergebnisse prüfen', checking:'🔎 Prüfe Ergebnisse … (30-60 Sek.)',
-  noOpen:'Nichts Offenes zu prüfen.', proposals:'Prüf-Ergebnisse — bitte bestätigen:', apply:'Übernehmen', ignore:'Ignorieren',
-  kombiSel:'Für Kombi auswählen', kombiBtn:'➕ Auswahl als Kombi übernehmen', kombiStakeQ:'Einsatz für die Kombi (€)?',
-  kombiWarn:'Kombi: ALLE Tipps müssen stimmen — Verlustrisiko multipliziert sich.', kombiNeed:'Mindestens 2 Vorschläge mit Quote anhaken.',
-  rejT:'Geprüft, kein Value:', logEmpty:'Noch keine KI-Empfehlungen protokolliert. Jede KI-Analyse landet ab jetzt automatisch hier.',
-  logD:'Jede KI-Empfehlung wird hier bewertet — auch wenn du sie nicht spielst. Das ist die echte KI-Trefferquote.',
-  noValueToday:'Heute kein echter Value gefunden — die ehrlichste Antwort. Kein Tipp ist besser als ein schlechter Tipp.',
-  gKeyT:'🌱 Zweites Gehirn (Google Gemini)', gKeyD:'Schlüssel von aistudio.google.com — bleibt NUR auf diesem Gerät. Übernimmt Ergebnis-Prüfen & Foto-Lesen fast gratis.', gOn:'✅ Gemini-Schlüssel gespeichert', gOff:'❌ Kein Gemini-Schlüssel', brainT:'Analyse-Gehirn', brainA:'Anthropic Sonnet (stärker, kostet Guthaben)', brainG:'Google Gemini Flash (günstiger, braucht Gemini-Schlüssel)',
-  stRight:'RICHTIG', stWrong:'FALSCH', stTaken:'GESPIELT', unknown:'unklar'
+  noOpen:'Nichts Offenes zu prüfen.', proposals:'Gefundene Endstände — bitte bestätigen:', apply:'Übernehmen', ignore:'Ignorieren',
+  logEmpty:'Noch keine KI-Vorhersagen protokolliert.',
+  logD:'Jede KI-Vorhersage wird hier bewertet. Aus einem Ergebnis-Tipp leitet die App drei Aussagen ab.',
+  gKeyT:'🌱 Zweites Gehirn (Google Gemini)', gKeyD:'Schlüssel von aistudio.google.com — bleibt NUR auf diesem Gerät. Übernimmt Ergebnis-Prüfen & Foto-Lesen fast gratis.', gOn:'✅ Gemini-Schlüssel gespeichert', gOff:'❌ Kein Gemini-Schlüssel',
+  duellT:'Duell-Modus', duellD:'Beide Gehirne bekommen dieselbe Spielliste und sagen dieselben Spiele vorher. Ohne Gemini-Schlüssel läuft nur Sonnet.',
+  stRight:'RICHTIG', stWrong:'FALSCH', unknown:'unklar', bothBrains:'Beide Gehirne'
  },
  fr:{ nvHome:'Accueil', nvBets:'Paris', nvFin:'Finances', nvMore:'Plus',
   locked:'Ondo Control est verrouillé', unlock:'Déverrouiller', wrongPin:'PIN incorrect', pinPh:'PIN',
@@ -185,15 +202,25 @@ var I18N = {
   betBal:'Solde paris', hitYou:'Ton taux de réussite', hitAI:'Taux de réussite IA', notRated:'Pas encore évalué',
   closed:'terminés', open_:'en jeu', noBetYet:'Aucun pari encore', of:'sur',
   modules:'Modules', active:'ACTIF', planned:'PRÉVU',
-  modBets:'Analyse de paris', modBetsD:'Tips IA, historique, stats',
+  modBets:'Analyse de paris', modBetsD:'Prédictions IA, historique, stats',
   modFin:'Finances', modFinD:'Dépôts/retraits, bilan',
   modLotto:'Loteries', modLottoD:'Probabilités (réalistes)',
   modContent:'Contenu', modContentD:'Idées YouTube/TikTok',
   modOrga:'Organisation', modOrgaD:'Tâches, planification',
-  sugg:'Suggestions', new_:'Nouveau', hist:'Historique',
-  kiBtn:'🧠 Analyse IA (auj.)', kiThink:'🧠 Réfléchit … (30-60 s)', planBtn:'🔄 Calendrier seul (sans IA)',
-  noSugg:'Aucune suggestion. Tape sur Analyse IA.', tip:'Tip', odds:'Cote', stake:'Mise (€)',
-  take:'✓ Reprendre', fillOddsStake:'Indique la cote et la mise',
+  sugg:'Prédictions', new_:'Nouveau', hist:'Historique',
+  predBtn:'🔮 Prédictions (auj.)', predThink:'🔮 Les deux cerveaux réfléchissent … (1-2 min)',
+  predListing:'📋 Chargement du calendrier …', predBrain:'🧠 Interrogation des cerveaux …',
+  noPred:'Aucune prédiction. Tape sur Prédictions.',
+  predHead:'Prédictions', resultTip:'Score prédit', conf:'Confiance',
+  mkt1x2:'Vainqueur', mktTore:'Buts', mktBtts:'Les deux marquent',
+  draw:'Match nul', over25:'Plus de 2,5 buts', under25:'Moins de 2,5 buts',
+  bttsYes:'Les deux marquent : Oui', bttsNo:'Les deux marquent : Non',
+  finalScore:'Score final (90 min)',
+  calib:'Calibrage', calibD:'Les pourcentages correspondent-ils à la réalité ? Petit écart = estimation honnête.',
+  calibDev:'Écart', calibPts:'Affirmations évaluées', calibNone:'Pas encore assez de données',
+  calibBand:'Indiqué', calibClaim:'annoncé', calibReal:'réel', calibN:'Nombre',
+  archive:'Archive v18', archiveD:'Anciennes entrées de la phase value. Ne comptent plus dans les stats, conservées comme archive.',
+  tip:'Tip', odds:'Cote', stake:'Mise (€)',
   possWin:'Gain possible', match:'Match', saveBet:'Enregistrer le pari', fillAll:'Remplis match, cote et mise',
   noBets:'Aucun pari enregistré.', won:'GAGNÉ', lost:'PERDU', openB:'OUVERT',
   bWon:'✓ Gagné', bLost:'✗ Perdu', reset:'Réinitialiser', del:'Supprimer',
@@ -216,18 +243,16 @@ var I18N = {
   sec4:'• Chaque conseil avec justification et risque', sec5:'• Tes données restent sur ton appareil',
   projT:'Projet & vision',
   loadFail:'Chargement impossible', loadHand:'Tu peux toujours saisir à la main sous NOUVEAU.',
-  planLoaded:'Calendrier chargé', kiOf:'🧠 Analyse IA', noJson:'Réponse sans JSON lisible.',
+  kiOf:'🔮 Prédictions', noJson:'Réponse sans JSON lisible.',
   keyBad:'Clé invalide (401). Vérifie dans PLUS.', credEmpty:'Crédit épuisé. Recharge sur console.anthropic.com.',
-  kiNote:'Analyse IA, aucune promesse de gain.', teamsTbd:'Équipes pas encore connues. Utilise l’Analyse IA pour les vrais noms.',
+  kiNote:'Prédiction IA, aucune promesse de gain.',
   kiLog:'Log IA', checkBtn:'🔎 Vérifier les résultats', checking:'🔎 Vérification … (30-60 s)',
-  noOpen:'Rien d’ouvert à vérifier.', proposals:'Résultats trouvés — à confirmer :', apply:'Appliquer', ignore:'Ignorer',
-  kombiSel:'Sélectionner pour combiné', kombiBtn:'➕ Reprendre la sélection en combiné', kombiStakeQ:'Mise pour le combiné (€) ?',
-  kombiWarn:'Combiné : TOUS les tips doivent passer — le risque de perte se multiplie.', kombiNeed:'Coche au moins 2 suggestions avec cote.',
-  rejT:'Vérifié, pas de value :', logEmpty:'Aucune recommandation IA enregistrée. Chaque analyse IA arrive ici automatiquement.',
-  logD:'Chaque recommandation IA est évaluée ici — même si tu ne la joues pas. C’est le vrai taux de réussite IA.',
-  noValueToday:'Aucune vraie value trouvée aujourd’hui — la réponse la plus honnête. Pas de tip vaut mieux qu’un mauvais tip.',
-  gKeyT:'🌱 Second cerveau (Google Gemini)', gKeyD:'Clé de aistudio.google.com — reste UNIQUEMENT sur cet appareil. Prend en charge vérification & lecture photo presque gratuitement.', gOn:'✅ Clé Gemini enregistrée', gOff:'❌ Pas de clé Gemini', brainT:'Cerveau d’analyse', brainA:'Anthropic Sonnet (plus fort, consomme le crédit)', brainG:'Google Gemini Flash (moins cher, clé Gemini requise)',
-  stRight:'CORRECT', stWrong:'FAUX', stTaken:'JOUÉ', unknown:'incertain'
+  noOpen:'Rien d’ouvert à vérifier.', proposals:'Scores trouvés — à confirmer :', apply:'Appliquer', ignore:'Ignorer',
+  logEmpty:'Aucune prédiction IA enregistrée.',
+  logD:'Chaque prédiction IA est évaluée ici. À partir d’un score prédit, l’app déduit trois affirmations.',
+  gKeyT:'🌱 Second cerveau (Google Gemini)', gKeyD:'Clé de aistudio.google.com — reste UNIQUEMENT sur cet appareil. Prend en charge vérification & lecture photo presque gratuitement.', gOn:'✅ Clé Gemini enregistrée', gOff:'❌ Pas de clé Gemini',
+  duellT:'Mode duel', duellD:'Les deux cerveaux reçoivent la même liste de matchs. Sans clé Gemini, seul Sonnet fonctionne.',
+  stRight:'CORRECT', stWrong:'FAUX', unknown:'incertain', bothBrains:'Les deux cerveaux'
  },
  en:{ nvHome:'Home', nvBets:'Bets', nvFin:'Finance', nvMore:'More',
   locked:'Ondo Control is locked', unlock:'Unlock', wrongPin:'Wrong PIN', pinPh:'PIN',
@@ -236,15 +261,25 @@ var I18N = {
   betBal:'Betting balance', hitYou:'Your hit rate', hitAI:'AI hit rate', notRated:'Not rated yet',
   closed:'settled', open_:'in play', noBetYet:'No bets yet', of:'of',
   modules:'Modules', active:'ACTIVE', planned:'PLANNED',
-  modBets:'Bet analysis', modBetsD:'AI tips, history, stats',
+  modBets:'Bet analysis', modBetsD:'AI predictions, history, stats',
   modFin:'Finance', modFinD:'Deposits/withdrawals, balance',
   modLotto:'Lotteries', modLottoD:'Probabilities (realistic)',
   modContent:'Content', modContentD:'YouTube/TikTok ideas',
   modOrga:'Organisation', modOrgaD:'Tasks, planning',
-  sugg:'Suggestions', new_:'New', hist:'History',
-  kiBtn:'🧠 AI analysis (today)', kiThink:'🧠 Thinking … (30-60 s)', planBtn:'🔄 Schedule only (no AI)',
-  noSugg:'No suggestions yet. Tap AI analysis.', tip:'Tip', odds:'Odds', stake:'Stake (€)',
-  take:'✓ Take over', fillOddsStake:'Please enter odds and stake',
+  sugg:'Predictions', new_:'New', hist:'History',
+  predBtn:'🔮 Predictions (today)', predThink:'🔮 Both brains thinking … (1-2 min)',
+  predListing:'📋 Loading fixtures …', predBrain:'🧠 Asking brains …',
+  noPred:'No predictions yet. Tap Predictions.',
+  predHead:'Predictions', resultTip:'Predicted score', conf:'Confidence',
+  mkt1x2:'Winner', mktTore:'Goals', mktBtts:'Both to score',
+  draw:'Draw', over25:'Over 2.5 goals', under25:'Under 2.5 goals',
+  bttsYes:'Both to score: Yes', bttsNo:'Both to score: No',
+  finalScore:'Final score (90 min)',
+  calib:'Calibration', calibD:'Do the percentages match reality? Small deviation = honest estimate.',
+  calibDev:'Deviation', calibPts:'Rated statements', calibNone:'Not enough data yet',
+  calibBand:'Stated', calibClaim:'claimed', calibReal:'actual', calibN:'Count',
+  archive:'Archive v18', archiveD:'Old entries from the value phase. No longer counted in statistics, kept as a behaviour archive.',
+  tip:'Tip', odds:'Odds', stake:'Stake (€)',
   possWin:'Possible win', match:'Match', saveBet:'Save bet', fillAll:'Please fill match, odds and stake',
   noBets:'No bets recorded yet.', won:'WON', lost:'LOST', openB:'OPEN',
   bWon:'✓ Won', bLost:'✗ Lost', reset:'Reset', del:'Delete',
@@ -267,18 +302,16 @@ var I18N = {
   sec4:'• Every recommendation with reasoning and risk', sec5:'• Your data stays on your device',
   projT:'Project & vision',
   loadFail:'Could not load games', loadHand:'You can always enter bets manually under NEW.',
-  planLoaded:'Schedule loaded', kiOf:'🧠 AI analysis', noJson:'Reply without readable JSON.',
+  kiOf:'🔮 Predictions', noJson:'Reply without readable JSON.',
   keyBad:'Invalid key (401). Check under MORE.', credEmpty:'Credit empty. Top up at console.anthropic.com.',
-  kiNote:'AI analysis, no profit promise.', teamsTbd:'Teams not decided yet. Use AI analysis for real names.',
+  kiNote:'AI prediction, no profit promise.',
   kiLog:'AI log', checkBtn:'🔎 Check results', checking:'🔎 Checking … (30-60 s)',
-  noOpen:'Nothing open to check.', proposals:'Results found — please confirm:', apply:'Apply', ignore:'Ignore',
-  kombiSel:'Select for combo', kombiBtn:'➕ Take selection as combo', kombiStakeQ:'Stake for the combo (€)?',
-  kombiWarn:'Combo: ALL tips must win — loss risk multiplies.', kombiNeed:'Tick at least 2 suggestions with odds.',
-  rejT:'Checked, no value:', logEmpty:'No AI recommendations logged yet. Every AI analysis lands here automatically.',
-  logD:'Every AI recommendation is rated here — even if you do not bet it. This is the true AI hit rate.',
-  noValueToday:'No real value found today — the most honest answer. No tip beats a bad tip.',
-  gKeyT:'🌱 Second brain (Google Gemini)', gKeyD:'Key from aistudio.google.com — stays ONLY on this device. Handles result checking & photo reading almost free.', gOn:'✅ Gemini key saved', gOff:'❌ No Gemini key', brainT:'Analysis brain', brainA:'Anthropic Sonnet (stronger, uses credits)', brainG:'Google Gemini Flash (cheaper, needs Gemini key)',
-  stRight:'RIGHT', stWrong:'WRONG', stTaken:'PLAYED', unknown:'unclear'
+  noOpen:'Nothing open to check.', proposals:'Scores found — please confirm:', apply:'Apply', ignore:'Ignore',
+  logEmpty:'No AI predictions logged yet.',
+  logD:'Every AI prediction is rated here. From one predicted score the app derives three statements.',
+  gKeyT:'🌱 Second brain (Google Gemini)', gKeyD:'Key from aistudio.google.com — stays ONLY on this device. Handles result checking & photo reading almost free.', gOn:'✅ Gemini key saved', gOff:'❌ No Gemini key',
+  duellT:'Duel mode', duellD:'Both brains receive the same fixture list. Without a Gemini key only Sonnet runs.',
+  stRight:'RIGHT', stWrong:'WRONG', unknown:'unclear', bothBrains:'Both brains'
  }
 };
 function t(k){ var l=state.lang||'de'; return (I18N[l]&&I18N[l][k])||I18N.de[k]||k; }
@@ -333,6 +366,13 @@ function load(){
     state.seedV = 3;
     try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
   }
+  /* v19: alte Log-Eintraege als Archiv markieren — sie zaehlen nicht mehr in die neue Statistik,
+     gehen aber auch nicht verloren (Verhaltens-Archiv der Value-Phase). */
+  if(state.seedV < 4){
+    (state.kiProtokoll||[]).forEach(function(e){ if(!e.aera) e.aera='v18'; });
+    state.seedV = 4;
+    try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+  }
 }
 function save(){
   try{
@@ -357,6 +397,54 @@ function heuteStr(){
   var loc = state.lang==='fr'?'fr-FR':(state.lang==='en'?'en-GB':'de-DE');
   return new Date().toLocaleDateString(loc,{weekday:"long",day:"numeric",month:"long",year:"numeric"});
 }
+function teamsAus(match){
+  var p = String(match||'').split(/\s+[-–]\s+/);
+  return { heim:(p[0]||'Heim').trim(), gast:(p[1]||'Gast').trim() };
+}
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+/* ================= MAERKTE AUS ERGEBNIS ABLEITEN (fester Code, keine KI) =================
+   Gemini-Hinweis v19: Die KI nennt NUR das Ergebnis. Welche Maerkte daraus folgen,
+   rechnet die App — so kann sich die KI nicht selbst widersprechen. */
+function maerkteBauen(match, heim, gast, p1x2, pTore, pBtts){
+  var tm = teamsAus(match);
+  var ges = heim + gast;
+  var m = [];
+  m.push({
+    typ:'1x2',
+    code: heim>gast ? 'sieg_heim' : (heim<gast ? 'sieg_gast' : 'remis'),
+    label: heim>gast ? ('Sieg '+tm.heim) : (heim<gast ? ('Sieg '+tm.gast) : t('draw')),
+    p: p1x2, status:'offen'
+  });
+  m.push({
+    typ:'tore',
+    code: ges>2.5 ? 'ueber' : 'unter',
+    label: ges>2.5 ? t('over25') : t('under25'),
+    p: pTore, status:'offen'
+  });
+  var btts = (heim>0 && gast>0);
+  m.push({
+    typ:'btts',
+    code: btts ? 'btts_ja' : 'btts_nein',
+    label: btts ? t('bttsYes') : t('bttsNo'),
+    p: pBtts, status:'offen'
+  });
+  return m;
+}
+/* Urteil per fester Regel — deterministisch, keine KI-Logik mehr (v19 Punkt 3) */
+function marktUrteil(code, h, g){
+  var ges = h + g;
+  switch(code){
+    case 'sieg_heim': return h > g;
+    case 'sieg_gast': return g > h;
+    case 'remis':     return h === g;
+    case 'ueber':     return ges > 2.5;
+    case 'unter':     return ges < 2.5;
+    case 'btts_ja':   return (h > 0 && g > 0);
+    case 'btts_nein': return !(h > 0 && g > 0);
+  }
+  return null;
+}
 
 /* ================= BERECHNUNG ================= */
 function calc(){
@@ -372,24 +460,54 @@ function calc(){
     quoteIch: done.length? Math.round(wins/done.length*100):null
   };
 }
+/* Trefferquote: ab v19 Nebenkennzahl (Ergaenzung von ChatGPT), zaehlt nur v19-Aussagen */
 function calcAI(){
-  var bew = state.bets.filter(function(b){return b.claudeRichtig!==null;});
-  var p = (state.kiProtokoll||[]).filter(function(e){return e.status==='richtig'||e.status==='falsch';});
   function zaehl(quelle){
-    var b2 = bew.filter(function(b){ return (b.herkunft||'sonnet')===quelle; });
-    var p2 = p.filter(function(e){ return (e.herkunft||'sonnet')===quelle; });
-    var n = b2.length + p2.length;
-    var tr = b2.filter(function(b){return b.claudeRichtig;}).length +
-             p2.filter(function(e){return e.status==='richtig';}).length;
+    var n=0, tr=0;
+    (state.kiProtokoll||[]).forEach(function(e){
+      if(e.aera!=='v19') return;
+      if((e.herkunft||'sonnet')!==quelle) return;
+      (e.maerkte||[]).forEach(function(m){
+        if(m.status==='richtig'){ n++; tr++; }
+        else if(m.status==='falsch'){ n++; }
+      });
+    });
     return { n:n, tr:tr, q: n? Math.round(tr/n*100):null };
   }
   var s = zaehl('sonnet'), f = zaehl('flash');
   var n = s.n + f.n, treffer = s.tr + f.tr;
   return { n:n, tr:treffer, q: n? Math.round(treffer/n*100):null, sonnet:s, flash:f };
 }
+/* Kalibrierung: Hauptkennzahl ab v19. Nicht "wie oft richtig", sondern
+   "stimmen die Prozentangaben mit der Wirklichkeit ueberein". */
+function calcKalibrierung(quelle){
+  var punkte=[];
+  (state.kiProtokoll||[]).forEach(function(e){
+    if(e.aera!=='v19') return;
+    if(quelle && (e.herkunft||'sonnet')!==quelle) return;
+    (e.maerkte||[]).forEach(function(m){
+      if(m.status==='richtig'||m.status==='falsch'){
+        var p=Number(m.p); if(isNaN(p)) p=50;
+        punkte.push({ p:Math.max(1,Math.min(99,p)), ok:(m.status==='richtig') });
+      }
+    });
+  });
+  if(!punkte.length) return null;
+  var baender=[[1,49],[50,59],[60,69],[70,79],[80,89],[90,99]];
+  var zeilen=[], summe=0, n=0;
+  baender.forEach(function(b){
+    var g=punkte.filter(function(x){ return x.p>=b[0] && x.p<=b[1]; });
+    if(!g.length) return;
+    var behauptet=g.reduce(function(s,x){return s+x.p;},0)/g.length;
+    var echt=g.filter(function(x){return x.ok;}).length/g.length*100;
+    zeilen.push({ von:b[0], bis:b[1], n:g.length,
+      behauptet:Math.round(behauptet), echt:Math.round(echt) });
+    summe += Math.abs(behauptet-echt)*g.length; n+=g.length;
+  });
+  return { zeilen:zeilen, gesamt:punkte.length, abw: n? Math.round(summe/n):null };
+}
 
 /* ================= BRAIN-ADAPTER (Ondo Core Architektur Punkt 0) ================= */
-// Modell-Kaskade: fragt Googles offizielle Modell-Liste fuer DIESEN Schluessel ab (kein Raten mehr)
 var GEMINI_MODELS = ['gemini-flash-latest'];
 function gLadeModelle(){
   return fetch('https://generativelanguage.googleapis.com/v1beta/models?key='+encodeURIComponent(state.geminiKey))
@@ -409,13 +527,10 @@ function gLadeModelle(){
     .catch(function(){ return []; });
 }
 function geminiCall(opts, modellIndex){
-  // opts: { prompt, useSearch, imageB64 }
   var liste = (state.geminiModelListe && state.geminiModelListe.length) ? state.geminiModelListe : GEMINI_MODELS;
-  // Erster Aufruf ohne bekannte Liste: erst Googles Modell-Liste fuer diesen Schluessel holen
   if(modellIndex===undefined && !(state.geminiModelListe && state.geminiModelListe.length)){
     return gLadeModelle().then(function(){ return geminiCall(opts, 0); });
   }
-  // Gemerktes Modell nur beim ERSTEN Versuch nutzen; Ausweichversuche gehen strikt die Liste durch
   var modell = (modellIndex===undefined && state.geminiModel) ? state.geminiModel : liste[Math.min(modellIndex||0, liste.length-1)];
   var parts = [];
   if(opts.imageB64) parts.push({ inlineData:{ mimeType:'image/jpeg', data:opts.imageB64 } });
@@ -434,11 +549,10 @@ function geminiCall(opts, modellIndex){
       var ueberlastet = res._status===503 || res._status===429 || /high demand|overloaded|try again/i.test(msg);
       var idx = (modellIndex||0);
       if(modellProblem || ueberlastet){
-        if(modellProblem) state.geminiModel = null; // nicht existierendes Modell verwerfen
+        if(modellProblem) state.geminiModel = null;
         if(idx < liste.length-1){
-          return geminiCall(opts, idx+1); // naechstes Modell aus der offiziellen Liste
+          return geminiCall(opts, idx+1);
         }
-        // Liste erschoepft: einmal frisch von Google laden und von vorn probieren
         if(!opts._frisch){
           opts._frisch = true;
           state.geminiModelListe = null;
@@ -452,7 +566,7 @@ function geminiCall(opts, modellIndex){
     }
     try{
       var txt = (res.candidates[0].content.parts||[]).map(function(p){return p.text||'';}).join('\n');
-      if(!state.geminiModel){ state.geminiModel = modell; save(); } // funktionierendes Modell merken
+      if(!state.geminiModel){ state.geminiModel = modell; save(); }
       return { content:[{ type:'text', text:txt }], stop_reason:'end_turn', _status:res._status };
     }catch(e){
       return { error:{ message:'Gemini ('+modell+'): Antwort nicht lesbar' }, _status:500 };
@@ -460,6 +574,7 @@ function geminiCall(opts, modellIndex){
   });
 }
 function hatGemini(){ return !!(state.geminiKey && state.geminiKey.length > 20); }
+function hatSonnet(){ return !!(state.apiKey && state.apiKey.indexOf('sk-ant-')===0); }
 
 /* ================= API-HELFER (Anthropic) ================= */
 function apiCall(body){
@@ -487,127 +602,150 @@ function parseJsonBlock(res){
 }
 var LANGWORD={de:'Deutsch',fr:'Franzoesisch',en:'Englisch'};
 
-/* ================= KI-ANALYSE ================= */
-function kiAnalyse(btn, versuch){
-  var nutzeGoogle = (state.analyseProvider==='google' && hatGemini());
-  if(!nutzeGoogle && (!state.apiKey || state.apiKey.indexOf('sk-ant-')!==0)){
-    var f0=document.getElementById('ladeFehler');
-    if(f0) f0.textContent=t('noKey');
-    return;
-  }
-  btn.disabled=true; btn.textContent=t('kiThink');
-  var f=document.getElementById('ladeFehler'); if(f) f.textContent='';
-
-  var gehirn = (state.analyseProvider==='google' && hatGemini()) ? 'flash' : 'sonnet';
-  var fruehere = (state.kiProtokoll||[]).filter(function(e){
-    return !e.herkunft || e.herkunft===gehirn;
-  }).slice(0,6).map(function(e){
-    return e.datum+': '+e.match+' -> '+(e.tipp||'?')+' (Quote '+(e.quote||'?')+', '+e.status+')';
-  }).join('; ');
-  var prompt='Heute ist '+heuteStr()+'. Du bist der Wett-Analyst von Ondo Control: Fakten von Annahmen trennen, mehrere Quellen pruefen, Risiken ehrlich nennen, keine Scheinsicherheit, keine Gewinnversprechen.\n\nSuche im Web, welche Fussballspiele HEUTE und MORGEN wirklich stattfinden (echte Teamnamen!) und die aktuellen Wettquoten.\n\nWaehle 0 bis 3 Spiele mit ECHTEM Value (deine geschaetzte Wahrscheinlichkeit mal Quote klar ueber 1). WICHTIG: Lieber weniger oder GAR KEINE Tipps als schwache — es gibt KEINE Pflicht, 3 zu liefern. Quoten unter 1.30 sind fast nie Value. Pro Spiel: konkreter Tipp MIT Abrechnungsbasis (z.B. Sieg X (90 Min.) oder X kommt weiter (inkl. Verl.)), realistische Quote als Zahl, empfohlener Einsatz zwischen 5 und '+state.regeln.maxEinsatz+' Euro, sehr kurze Begruendung (max 20 Woerter, inkl. Risiko) auf '+(LANGWORD[state.lang]||'Deutsch')+'.\n\n'+(fruehere?('KONSISTENZ — deine bisherigen Empfehlungen: '+fruehere+'. Wenn du heute bei einem dieser Spiele anders tippst als zuvor, MUSST du das in der Begruendung ausdruecklich benennen ("Aenderung: ..." + Grund). Grundlos die Seite wechseln ist verboten.\n\n'):'')+'Nenne zusaetzlich kurz die geprueften Spiele OHNE Value (max 5, Grund in max 6 Woertern).\n\nLetzte Nachricht: NUR kompaktes JSON (spiele darf leer sein):\n{"spiele":[{"match":"Team A - Team B","wettbewerb":"...","anpfiff":"...","tipp":"...","quote":1.85,"einsatz":10,"begruendung":"..."}],"verworfen":[{"spiel":"...","grund":"..."}]}';
-
+/* Anthropic mit Websuche + Nachfass-Runden */
+function sonnetSuche(prompt, maxUses, maxTokens){
   var messages=[{role:'user',content:prompt}];
   var runden=0;
-  function weiter(res){
+  function schritt(res){
     if(res._status===401) throw new Error(t('keyBad'));
     if(res._status===400 && res.error && /credit/i.test(res.error.message||'')) throw new Error(t('credEmpty'));
     if(res.error) throw new Error(res.error.message||('HTTP '+res._status));
     if(res.stop_reason==='pause_turn' && runden<3){
       runden++;
       messages.push({role:'assistant',content:res.content});
-      return apiCall({model:'claude-sonnet-4-6',max_tokens:2500,messages:messages,
-        tools:[{type:'web_search_20250305',name:'web_search',max_uses:5}]}).then(weiter);
+      return apiCall({model:'claude-sonnet-4-6',max_tokens:maxTokens,messages:messages,
+        tools:[{type:'web_search_20250305',name:'web_search',max_uses:maxUses}]}).then(schritt);
     }
+    return res;
+  }
+  return apiCall({model:'claude-sonnet-4-6',max_tokens:maxTokens,messages:messages,
+    tools:[{type:'web_search_20250305',name:'web_search',max_uses:maxUses}]}).then(schritt);
+}
+
+/* ================= SCHRITT 1: SPIELLISTE (gleiche Liste fuer beide Gehirne) ================= */
+function spielListeHolen(){
+  var prompt='Heute ist '+heuteStr()+'. Suche im Web, welche Fussballspiele HEUTE wirklich stattfinden. '+
+    'Nimm nur Spiele aus gut dokumentierten Wettbewerben, deren Endstand spaeter zuverlaessig im Netz auffindbar ist '+
+    '(UEFA-Wettbewerbe inkl. Qualifikation, europaeische Ligen, MLS, Brasilien Serie A/B, Skandinavien, Japan, nationale Pokale, Laenderspiele). '+
+    'Keine Spiele hinter verschlossenen Tueren, keine reinen Jugend- oder Amateurpartien. Echte Teamnamen. Maximal 10 Spiele, die heute noch angepfiffen werden.\n\n'+
+    'Letzte Nachricht: NUR kompaktes JSON:\n{"spiele":[{"match":"Team A - Team B","wettbewerb":"...","anpfiff":"20:30"}]}';
+  var call = hatGemini()
+    ? geminiCall({ prompt: prompt, useSearch: true })
+    : sonnetSuche(prompt, 5, 1500);
+  return call.then(function(res){
+    if(res.error) throw new Error(res.error.message||('HTTP '+res._status));
     var parsed=parseJsonBlock(res);
     if(!parsed || !parsed.spiele) throw new Error(t('noJson'));
-    if(!parsed.spiele.length){
-      state.vorschlaege=[];
-      state.verworfen=(parsed.verworfen||[]).map(function(x){return {spiel:String(x.spiel||''),grund:String(x.grund||'')};});
-      state.vorschlaegeInfo=t('kiOf')+': '+heuteStr()+' — '+t('noValueToday');
-      save();
-      btn.disabled=false; btn.textContent=t('kiBtn');
-      render();
-      return;
-    }
-    state.vorschlaege=parsed.spiele.map(function(sp,idx){
-      return {
-        id:'ki'+Date.now()+idx,
-        match:String(sp.match||''),
-        wettbewerb:String(sp.wettbewerb||''),
-        anpfiff:String(sp.anpfiff||''),
-        tipp:String(sp.tipp||''),
-        quote:String(sp.quote||''),
-        einsatz:String(Math.min(Number(sp.einsatz)||10,state.regeln.maxEinsatz)),
-        info:String(sp.begruendung||'')+' — '+t('kiNote')
-      };
+    return parsed.spiele.filter(function(s){ return s && s.match; }).slice(0,10).map(function(s){
+      return { match:String(s.match), wettbewerb:String(s.wettbewerb||''), anpfiff:String(s.anpfiff||'') };
     });
-    state.verworfen=(parsed.verworfen||[]).map(function(x){return {spiel:String(x.spiel||''),grund:String(x.grund||'')};});
-    // KI-Tipp-Protokoll: jede Empfehlung automatisch festhalten
-    if(!state.kiProtokoll) state.kiProtokoll=[];
-    state.vorschlaege.forEach(function(v){
-      v.herkunft = gehirn;
-      state.kiProtokoll.unshift({ id:'p'+v.id, datum:new Date().toLocaleDateString('de-DE'),
-        match:v.match, tipp:v.tipp, quote:v.quote, status:'offen', herkunft:gehirn });
-    });
-    state.vorschlaegeInfo=t('kiOf')+': '+heuteStr();
-    save();
-    btn.disabled=false; btn.textContent=t('kiBtn');
-    render();
+  });
+}
+
+/* ================= SCHRITT 2: VORHERSAGE JE GEHIRN ================= */
+function vorhersageGehirn(gehirn, liste){
+  var fruehere = (state.kiProtokoll||[])
+    .filter(function(e){ return e.aera==='v19' && (e.herkunft||'sonnet')===gehirn; })
+    .slice(0,6)
+    .map(function(e){
+      return e.datum+': '+e.match+' -> '+e.heim+':'+e.gast+' ('+(e.begruendung||'-')+')';
+    }).join(' | ');
+
+  var spieleTxt = liste.map(function(s,i){
+    return (i+1)+'. '+s.match+(s.wettbewerb?(' ['+s.wettbewerb+']'):'')+(s.anpfiff?(' '+s.anpfiff):'');
+  }).join('\n');
+
+  var prompt='Heute ist '+heuteStr()+'. Du bist Fussball-Prognostiker fuer Ondo Control. '+
+    'Deine Aufgabe ist NICHT, Wetten zu empfehlen, sondern ehrlich einzuschaetzen.\n\n'+
+    'Fuer JEDES der folgenden Spiele nenne:\n'+
+    '- heim und gast: dein wahrscheinlichstes Ergebnis nach 90 Minuten (ganze Zahlen, ohne Verlaengerung)\n'+
+    '- p1x2: wie sicher bist du in Prozent, dass der Ausgang (Heimsieg / Auswaertssieg / Unentschieden) so kommt wie in deinem Ergebnis? (1-99)\n'+
+    '- pTore: wie sicher in Prozent, dass die Torrichtung stimmt (ueber bzw. unter 2,5 Tore gesamt)? (1-99)\n'+
+    '- pBtts: wie sicher in Prozent, dass "beide Teams treffen" so ausgeht wie in deinem Ergebnis? (1-99)\n'+
+    '- begruendung: max 15 Woerter auf '+(LANGWORD[state.lang]||'Deutsch')+'\n\n'+
+    'WICHTIG ZUR EHRLICHKEIT: Deine Prozentangaben werden gemessen. Sagst du oft 80 Prozent, muessen etwa 8 von 10 dieser Aussagen eintreffen. '+
+    'Wenn du ein Team oder eine Liga kaum kennst, nenne Werte nahe 50 — das ist kein Makel, sondern korrekt. '+
+    'Uebertriebene Sicherheit faellt in der Auswertung auf. Gib fuer JEDES Spiel eine Vorhersage ab, auch bei duenner Datenlage.\n\n'+
+    (fruehere?('Deine letzten eigenen Vorhersagen: '+fruehere+'\n\n'):'')+
+    'SPIELE:\n'+spieleTxt+'\n\n'+
+    'Letzte Nachricht: NUR kompaktes JSON:\n'+
+    '{"vorhersagen":[{"match":"Team A - Team B","heim":2,"gast":1,"p1x2":58,"pTore":62,"pBtts":55,"begruendung":"..."}]}';
+
+  var call = (gehirn==='flash')
+    ? geminiCall({ prompt: prompt })
+    : apiCall({ model:'claude-sonnet-4-6', max_tokens:2500, messages:[{role:'user',content:prompt}] });
+
+  return call.then(function(res){
+    if(res._status===401) throw new Error(t('keyBad'));
+    if(res.error) throw new Error(res.error.message||('HTTP '+res._status));
+    var parsed=parseJsonBlock(res);
+    if(!parsed || !parsed.vorhersagen) throw new Error(t('noJson'));
+    return parsed.vorhersagen;
+  }).catch(function(e){
+    return { _fehler: (e && e.message) ? e.message : '?' };
+  });
+}
+
+/* ================= VORHERSAGE-LAUF (v19 Hauptknopf) ================= */
+function vorhersagen(btn){
+  if(!hatSonnet() && !hatGemini()){
+    var f0=document.getElementById('ladeFehler'); if(f0) f0.textContent=t('noKey'); return;
   }
-  var startCall = (state.analyseProvider==='google' && hatGemini())
-    ? geminiCall({ prompt: prompt, useSearch: true })
-    : apiCall({model:'claude-sonnet-4-6',max_tokens:2500,messages:messages,
-        tools:[{type:'web_search_20250305',name:'web_search',max_uses:5}]});
-  startCall.then(weiter)
-  .catch(function(e){
-    if(!versuch){
-      // Automatischer zweiter Versuch (z.B. bei abgeschnittenem JSON)
-      setTimeout(function(){ kiAnalyse(btn, 2); }, 1200);
-      return;
-    }
-    btn.disabled=false; btn.textContent=t('kiBtn');
+  var f=document.getElementById('ladeFehler'); if(f) f.textContent='';
+  btn.disabled=true; btn.textContent=t('predListing');
+
+  spielListeHolen().then(function(liste){
+    if(!liste.length) throw new Error(t('loadFail'));
+    btn.textContent=t('predBrain');
+    var jobs=[], namen=[];
+    if(hatSonnet()){ jobs.push(vorhersageGehirn('sonnet', liste)); namen.push('sonnet'); }
+    if(hatGemini()){ jobs.push(vorhersageGehirn('flash', liste));  namen.push('flash'); }
+    return Promise.all(jobs).then(function(res){ return { liste:liste, res:res, namen:namen }; });
+  }).then(function(paket){
+    if(!state.kiProtokoll) state.kiProtokoll=[];
+    var heuteD=new Date().toLocaleDateString('de-DE');
+    var neu=[], fehler=[];
+    paket.res.forEach(function(vorher, i){
+      var gehirn=paket.namen[i];
+      if(!vorher || vorher._fehler){ fehler.push(gehirn+': '+((vorher&&vorher._fehler)||'?')); return; }
+      vorher.forEach(function(v, idx){
+        var h=Math.max(0,Math.round(Number(v.heim))), g=Math.max(0,Math.round(Number(v.gast)));
+        if(isNaN(h)||isNaN(g)) return;
+        function pz(x){ var n=Math.round(Number(x)); if(isNaN(n)) n=50; return Math.max(1,Math.min(99,n)); }
+        var match=String(v.match||'');
+        var eintrag={
+          id:'v'+Date.now()+'_'+gehirn+'_'+idx,
+          aera:'v19',
+          datum:heuteD,
+          match:match,
+          wettbewerb:(paket.liste[idx]&&paket.liste[idx].wettbewerb)||'',
+          herkunft:gehirn,
+          heim:h, gast:g,
+          begruendung:String(v.begruendung||''),
+          maerkte:maerkteBauen(match,h,g,pz(v.p1x2),pz(v.pTore),pz(v.pBtts)),
+          ergebnisHeim:null, ergebnisGast:null,
+          status:'offen'
+        };
+        state.kiProtokoll.unshift(eintrag);
+        neu.push(eintrag);
+      });
+    });
+    state.vorhersagen = { datum:heuteStr(), ids:neu.map(function(e){return e.id;}) };
+    state.vorschlaegeInfo = t('kiOf')+': '+heuteStr()+(fehler.length?(' · ⚠ '+fehler.join(' · ')):'');
+    save();
+    btn.disabled=false; btn.textContent=t('predBtn');
+    render();
+  }).catch(function(e){
+    btn.disabled=false; btn.textContent=t('predBtn');
     var el=document.getElementById('ladeFehler');
     if(el) el.textContent=(e&&e.message?e.message:'?');
   });
 }
 
-/* ================= SPIELPLAN (freie Quelle) ================= */
-function spieleLaden(btn){
-  btn.disabled=true;
-  var f=document.getElementById("ladeFehler"); if(f) f.textContent="";
-  fetch("https://www.thestatsapi.com/world-cup/data/fixtures.json")
-    .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
-    .then(function(data){
-      var heute0 = new Date(); heute0.setHours(0,0,0,0);
-      var kommende = (data.fixtures||[])
-        .filter(function(m){ return new Date(m.kickoffUtc) >= heute0; })
-        .sort(function(a,b){ return new Date(a.kickoffUtc)-new Date(b.kickoffUtc); })
-        .slice(0,5);
-      if(!kommende.length) throw new Error("0 games");
-      state.vorschlaege = kommende.map(function(m,idx){
-        return {
-          id:"f"+Date.now()+idx,
-          match:m.homeTeam+" – "+m.awayTeam,
-          wettbewerb:"WM 2026 · "+(m.stage||"").replace(/-/g," "),
-          anpfiff:new Date(m.kickoffUtc).toLocaleString("de-DE",{weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}),
-          tipp:"", quote:"", einsatz:"",
-          info:t('teamsTbd')
-        };
-      });
-      state.vorschlaegeInfo = t('planLoaded')+": "+heuteStr();
-      save(); btn.disabled=false; render();
-    })
-    .catch(function(e){
-      btn.disabled=false;
-      var el=document.getElementById("ladeFehler");
-      if(el) el.textContent=t('loadFail')+" ("+(e&&e.message?e.message:"?")+"). "+t('loadHand');
-    });
-}
-
 /* ================= SCHEIN-FOTO ================= */
 function fotoLesen(input){
   if(!input.files || !input.files[0]) return;
-  if(!hatGemini() && (!state.apiKey || state.apiKey.indexOf('sk-ant-')!==0)){
+  if(!hatGemini() && !hatSonnet()){
     var f0=document.getElementById('fotoStatus');
     if(f0) f0.textContent=t('noKey');
     return;
@@ -663,48 +801,80 @@ function fotoLesen(input){
   reader.readAsDataURL(input.files[0]);
 }
 
-/* ================= ERGEBNISSE PRUEFEN ================= */
+/* ================= ERGEBNISSE PRUEFEN (v19: KI liefert nur Tore) ================= */
 var pruefListe = [];
 function ergebnissePruefen(btn){
-  if(!hatGemini() && (!state.apiKey || state.apiKey.indexOf('sk-ant-')!==0)){
+  if(!hatGemini() && !hatSonnet()){
     var f0=document.getElementById('pruefStatus'); if(f0) f0.textContent=t('noKey'); return;
   }
-  var offeneBets = state.bets.filter(function(b){return b.status==='offen';})
-    .map(function(b){return {id:'B'+b.id, beschreibung:b.match+' | Tipp: '+(b.tipp||'?')};});
-  var offeneP = (state.kiProtokoll||[]).filter(function(e){return e.status==='offen';})
-    .map(function(e){return {id:'P'+e.id, beschreibung:e.match+' | Tipp: '+(e.tipp||'?')+' | vom '+e.datum};});
-  var alle = offeneBets.concat(offeneP);
+  var offeneP = (state.kiProtokoll||[]).filter(function(e){
+    return e.aera==='v19' && e.status==='offen';
+  });
+  /* Doppelte Spiele nur einmal abfragen: beide Gehirne teilen sich denselben Endstand */
+  var spiele={}, auftrag=[];
+  offeneP.forEach(function(e){
+    var k=e.match+'|'+e.datum;
+    if(!spiele[k]){ spiele[k]={ key:'S'+auftrag.length, match:e.match, datum:e.datum, eintraege:[] }; auftrag.push(spiele[k]); }
+    spiele[k].eintraege.push(e.id);
+  });
+  var offeneBets = state.bets.filter(function(b){return b.status==='offen';});
+
   var st=document.getElementById('pruefStatus');
-  if(!alle.length){ if(st) st.textContent=t('noOpen'); return; }
+  if(!auftrag.length && !offeneBets.length){ if(st) st.textContent=t('noOpen'); return; }
   btn.disabled=true; btn.textContent=t('checking');
   if(st) st.textContent='';
-  var prompt='Heute ist '+heuteStr()+'. Pruefe per Websuche die folgenden Wett-Tipps: Ist jeder Tipp AUFGEGANGEN (gewonnen), NICHT aufgegangen (verloren) oder noch nicht entschieden/unklar (unbekannt)?\n\nABRECHNUNGSREGEL (wie beim Buchmacher): Standard-Maerkte (Sieg/1X2, Beide Teams treffen, Ueber/Unter Tore) zaehlen NUR die ERSTEN 90 MINUTEN inkl. Nachspielzeit — OHNE Verlaengerung, OHNE Elfmeterschiessen. Ausnahme nur, wenn der Tipp ausdruecklich Weiterkommen/inkl. Verlaengerung nennt. Ermittle deshalb bei K.o.-Spielen IMMER zuerst das 90-Minuten-Ergebnis und nenne es in info (z.B. 90min: 1:1). Bei Kombis: NUR gewonnen wenn ALLE Teile stimmen.\n\n'+
-    alle.map(function(a){return a.id+': '+a.beschreibung;}).join('\n')+
-    '\n\nLetzte Nachricht: NUR kompaktes JSON:\n{"ergebnisse":[{"id":"B123","ausgang":"gewonnen|verloren|unbekannt","info":"max 8 Woerter"}]}';
-  var messages=[{role:'user',content:prompt}];
-  var runden=0;
-  function weiter(res){
-    if(res._status===401) throw new Error(t('keyBad'));
+
+  var zeilen = auftrag.map(function(a){ return a.key+': '+a.match+' (vom '+a.datum+')'; })
+    .concat(offeneBets.map(function(b){ return 'B'+b.id+': '+b.match+' (vom '+b.datum+')'; }));
+
+  var prompt='Heute ist '+heuteStr()+'. Ermittle per Websuche fuer jedes Spiel den ENDSTAND NACH 90 MINUTEN '+
+    'inkl. Nachspielzeit — OHNE Verlaengerung, OHNE Elfmeterschiessen.\n\n'+
+    'Du sollst NICHT beurteilen, ob eine Wette gewonnen hat. Nenne ausschliesslich die Tore. '+
+    'heim = erstgenanntes Team, gast = zweitgenanntes Team. '+
+    'Setze fertig:false, wenn das Spiel noch laeuft, noch nicht angepfiffen wurde oder du den Endstand nicht sicher findest. Rate nicht.\n\n'+
+    zeilen.join('\n')+
+    '\n\nLetzte Nachricht: NUR kompaktes JSON:\n{"ergebnisse":[{"id":"S0","heim":2,"gast":1,"fertig":true}]}';
+
+  var call = hatGemini()
+    ? geminiCall({ prompt: prompt, useSearch: true })
+    : sonnetSuche(prompt, 5, 1500);
+
+  call.then(function(res){
     if(res.error) throw new Error(res.error.message||('HTTP '+res._status));
-    if(res.stop_reason==='pause_turn' && runden<3){
-      runden++;
-      messages.push({role:'assistant',content:res.content});
-      return apiCall({model:'claude-sonnet-4-6',max_tokens:1200,messages:messages,
-        tools:[{type:'web_search_20250305',name:'web_search',max_uses:3}]}).then(weiter);
-    }
     var parsed=parseJsonBlock(res);
     if(!parsed || !parsed.ergebnisse) throw new Error(t('noJson'));
-    pruefListe = parsed.ergebnisse.filter(function(e){return e.ausgang==='gewonnen'||e.ausgang==='verloren';})
-      .map(function(e){return {id:String(e.id), ausgang:e.ausgang, info:String(e.info||'')};});
+    pruefListe=[];
+    parsed.ergebnisse.forEach(function(r){
+      if(r.fertig===false) return;
+      var h=Math.round(Number(r.heim)), g=Math.round(Number(r.gast));
+      if(isNaN(h)||isNaN(g)) return;
+      var id=String(r.id||'');
+      if(id.charAt(0)==='S'){
+        var a=auftrag.filter(function(x){return x.key===id;})[0];
+        if(!a) return;
+        /* Urteile per festem Code — nicht von der KI */
+        var urteile=[];
+        (state.kiProtokoll||[]).forEach(function(e){
+          if(a.eintraege.indexOf(e.id)<0) return;
+          (e.maerkte||[]).forEach(function(m){
+            var ok=marktUrteil(m.code,h,g);
+            if(ok===null) return;
+            urteile.push({ gehirn:e.herkunft, label:m.label, ok:ok });
+          });
+        });
+        pruefListe.push({ art:'log', id:id, match:a.match, heim:h, gast:g,
+          eintraege:a.eintraege, urteile:urteile });
+      } else if(id.charAt(0)==='B'){
+        var bid=Number(id.slice(1));
+        var b=state.bets.filter(function(x){return x.id===bid;})[0];
+        if(!b) return;
+        pruefListe.push({ art:'bet', id:id, betId:bid, match:b.match, tipp:b.tipp||'', heim:h, gast:g });
+      }
+    });
     btn.disabled=false; btn.textContent=t('checkBtn');
     if(!pruefListe.length && st){ st.textContent=t('unknown'); }
     render();
-  }
-  var startPr = hatGemini()
-    ? geminiCall({ prompt: prompt, useSearch: true })
-    : apiCall({model:'claude-sonnet-4-6',max_tokens:1200,messages:messages,
-        tools:[{type:'web_search_20250305',name:'web_search',max_uses:3}]});
-  startPr.then(weiter)
+  })
   .catch(function(e){
     btn.disabled=false; btn.textContent=t('checkBtn');
     var el=document.getElementById('pruefStatus');
@@ -712,28 +882,40 @@ function ergebnissePruefen(btn){
   });
 }
 function pruefAnwenden(pid){
-  var p = pruefListe.find(function(x){return x.id===pid;});
+  var p = pruefListe.filter(function(x){return x.id===pid;})[0];
   if(!p) return;
-  if(pid.charAt(0)==='B'){
-    var bid=Number(pid.slice(1));
-    setStatus(bid, p.ausgang);
-  } else {
-    var eid=pid.slice(1);
+  if(p.art==='log'){
     (state.kiProtokoll||[]).forEach(function(e){
-      if(e.id===eid) e.status = (p.ausgang==='gewonnen') ? 'richtig' : 'falsch';
+      if(p.eintraege.indexOf(e.id)<0) return;
+      e.ergebnisHeim=p.heim; e.ergebnisGast=p.gast;
+      (e.maerkte||[]).forEach(function(m){
+        var ok=marktUrteil(m.code,p.heim,p.gast);
+        if(ok===null) return;
+        m.status = ok ? 'richtig' : 'falsch';
+      });
+      e.status='bewertet';
     });
     save();
   }
   pruefListe = pruefListe.filter(function(x){return x.id!==pid;});
   render();
 }
-function logSet(eid, status){
-  (state.kiProtokoll||[]).forEach(function(e){ if(e.id===eid) e.status=status; });
-  save(); render();
-}
 function pruefIgnorieren(pid){
   pruefListe = pruefListe.filter(function(x){return x.id!==pid;});
   render();
+}
+function logMarktSet(eid, idx, status){
+  (state.kiProtokoll||[]).forEach(function(e){
+    if(e.id!==eid) return;
+    if(e.maerkte && e.maerkte[idx]) e.maerkte[idx].status=status;
+    var offenNoch=(e.maerkte||[]).some(function(m){return m.status==='offen';});
+    e.status = offenNoch ? 'offen' : 'bewertet';
+  });
+  save(); render();
+}
+function logLoeschen(eid){
+  state.kiProtokoll=(state.kiProtokoll||[]).filter(function(e){return e.id!==eid;});
+  save(); render();
 }
 function pruefBlock(){
   var html='';
@@ -742,12 +924,27 @@ function pruefBlock(){
   if(pruefListe.length){
     html += '<div class="card" style="border-color:rgba(91,141,239,.4)"><div class="muted" style="margin-bottom:8px">'+t('proposals')+'</div>';
     pruefListe.forEach(function(p){
-      var farbe = p.ausgang==='gewonnen' ? 'var(--win)' : 'var(--loss)';
-      html += '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0;border-top:1px solid var(--edge)">'+
-        '<div style="font-size:13px"><b style="color:'+farbe+'">'+p.ausgang.toUpperCase()+'</b> · '+p.id+'<div class="muted">'+p.info+'</div></div>'+
-        '<div style="white-space:nowrap"><button class="btn-sm btn-open" onclick="pruefAnwenden(\''+p.id+'\')">'+t('apply')+'</button> '+
-        '<button class="btn-sm" onclick="pruefIgnorieren(\''+p.id+'\')">'+t('ignore')+'</button></div>'+
-      '</div>';
+      html += '<div style="padding:10px 0;border-top:1px solid var(--edge)">'+
+        '<div class="flex"><div><b>'+esc(p.match)+'</b>'+
+        '<div class="muted">'+t('finalScore')+': <b style="color:var(--accent)">'+p.heim+':'+p.gast+'</b></div></div>'+
+        '<div class="score">'+p.heim+':'+p.gast+'</div></div>';
+      if(p.art==='log'){
+        html += '<div style="margin:6px 0 8px">'+p.urteile.map(function(u){
+          var farbe=u.ok?'var(--win)':'var(--loss)';
+          var q=(u.gehirn==='flash')?'🌱':'🧠';
+          return '<div style="font-size:12.5px;color:var(--dim)">'+q+' '+esc(u.label)+
+            ' <span style="color:'+farbe+';font-weight:600">'+(u.ok?'✓':'✗')+'</span></div>';
+        }).join('')+'</div>'+
+        '<div class="muted" style="font-size:11px;margin-bottom:6px">↳ von der App gerechnet, nicht von der KI</div>'+
+        '<div><button class="btn-sm btn-open" onclick="pruefAnwenden(\''+p.id+'\')">'+t('apply')+'</button> '+
+        '<button class="btn-sm" onclick="pruefIgnorieren(\''+p.id+'\')">'+t('ignore')+'</button></div>';
+      } else {
+        html += '<div class="muted" style="margin:6px 0">'+t('tip')+': '+esc(p.tipp)+'</div>'+
+        '<div><button class="btn-sm btn-win" onclick="setStatus('+p.betId+',\'gewonnen\');pruefIgnorieren(\''+p.id+'\')">'+t('bWon')+'</button> '+
+        '<button class="btn-sm btn-loss" onclick="setStatus('+p.betId+',\'verloren\');pruefIgnorieren(\''+p.id+'\')">'+t('bLost')+'</button> '+
+        '<button class="btn-sm" onclick="pruefIgnorieren(\''+p.id+'\')">'+t('ignore')+'</button></div>';
+      }
+      html += '</div>';
     });
     html += '</div>';
   }
@@ -757,43 +954,18 @@ function pruefBlock(){
 /* ================= AKTIONEN ================= */
 function addBet(v, einsatzVal){
   var einsatz = Math.min(parseFloat(String(einsatzVal).replace(",","."))||0, state.regeln.maxEinsatz);
-  var fromKI = !!(v.id && String(v.id).indexOf('ki')===0);
   state.bets.unshift({
     id:Date.now(), datum:new Date().toLocaleDateString("de-DE"),
     match:v.match, tipp:v.tipp||"", quote:parseFloat(String(v.quote).replace(",","."))||0,
-    einsatz:einsatz, status:"offen", claudeRichtig:null, fromKI:fromKI, herkunft:v.herkunft||null
+    einsatz:einsatz, status:"offen", claudeRichtig:null, fromKI:false, herkunft:null
   });
-  if(fromKI && state.kiProtokoll){
-    state.kiProtokoll.forEach(function(e){ if(e.id==='p'+v.id) e.status='uebernommen'; });
-  }
   save(); go("wetten","historie");
 }
 function setStatus(id,s){
-  state.bets.forEach(function(b){
-    if(b.id===id){
-      b.status=s;
-      if(b.fromKI){ b.claudeRichtig = (s==='gewonnen') ? true : (s==='verloren' ? false : null); }
-    }
-  });
+  state.bets.forEach(function(b){ if(b.id===id){ b.status=s; } });
   save(); render();
 }
-function setClaude(id,r){ state.bets.forEach(function(b){ if(b.id===id) b.claudeRichtig=r; }); save(); render(); }
 function delBet(id){ state.bets=state.bets.filter(function(b){return b.id!==id;}); save(); render(); }
-function kombiUebernehmen(){
-  var sel = state.vorschlaege.filter(function(v){return v.sel && v.quote;});
-  if(sel.length<2){ alert(t('kombiNeed')); return; }
-  var produkt=1;
-  sel.forEach(function(v){ produkt *= (parseFloat(String(v.quote).replace(',','.'))||1); });
-  produkt = Math.round(produkt*100)/100;
-  var eingabe = prompt(t('kombiStakeQ'));
-  if(eingabe===null) return;
-  var einsatz = parseFloat(String(eingabe).replace(',','.'))||0;
-  if(einsatz<=0) return;
-  var namen = sel.map(function(v){return v.match.split(' - ')[0].split(' – ')[0];}).join(', ');
-  addBet({ match:sel.length+'er Kombi ('+namen+')',
-    tipp:sel.map(function(v){return v.tipp;}).join(' + '),
-    quote:String(produkt), id:'ki-kombi' }, einsatz);
-}
 function depAdd(){
   var v=parseFloat(String(document.getElementById('einzahlungNeu').value).replace(',','.'));
   if(!isNaN(v)&&v>0){ state.eingezahlt=Math.round((state.eingezahlt+v)*100)/100; save(); render(); }
@@ -856,7 +1028,6 @@ function render(){
 
 /* ================= HOME ================= */
 function viewHome(c){
-  var ai=calcAI();
   var mods=[
     {ic:'🎯', name:t('modBets'), d:t('modBetsD'), on:true, go:'wetten'},
     {ic:'💰', name:t('modFin'), d:t('modFinD'), on:true, go:'finanzen'},
@@ -883,6 +1054,41 @@ function viewHome(c){
   modHtml;
 }
 
+/* ================= VORHERSAGE-KARTE ================= */
+function vorhersageKarte(e, mitKnoepfen){
+  var quelle = (e.herkunft==='flash') ? '🌱 Flash' : '🧠 Sonnet';
+  var maerkte = (e.maerkte||[]).map(function(m,idx){
+    var chip = m.status==='richtig' ? '<span class="badge b-win">'+t('stRight')+'</span>'
+             : m.status==='falsch'  ? '<span class="badge b-loss">'+t('stWrong')+'</span>'
+             : '<span class="p">'+m.p+' %</span>';
+    var knoepfe = (mitKnoepfen && m.status!=='offen')
+      ? ' <button class="btn-sm" onclick="logMarktSet(\''+e.id+'\','+idx+',\'offen\')">'+t('reset')+'</button>'
+      : (mitKnoepfen
+        ? ' <button class="btn-sm btn-win" onclick="logMarktSet(\''+e.id+'\','+idx+',\'richtig\')">✓</button>'+
+          ' <button class="btn-sm btn-loss" onclick="logMarktSet(\''+e.id+'\','+idx+',\'falsch\')">✗</button>'
+        : '');
+    return '<div class="mkt"><div>'+esc(m.label)+
+      (m.status!=='offen'?(' <span class="muted">('+m.p+' %)</span>'):'')+'</div>'+
+      '<div style="white-space:nowrap">'+chip+knoepfe+'</div></div>';
+  }).join('');
+  var endstand = (e.ergebnisHeim!==null && e.ergebnisHeim!==undefined)
+    ? '<div class="muted" style="margin-top:8px">'+t('finalScore')+': <b style="color:var(--text)">'+e.ergebnisHeim+':'+e.ergebnisGast+'</b></div>'
+    : '';
+  return '<div class="card">'+
+    '<div class="flex"><div>'+
+      '<div class="disp" style="font-size:18px">'+esc(e.match)+'</div>'+
+      '<div class="muted">'+e.datum+' · '+quelle+(e.wettbewerb?(' · '+esc(e.wettbewerb)):'')+'</div>'+
+    '</div><div style="text-align:right">'+
+      '<div class="score">'+e.heim+':'+e.gast+'</div>'+
+      '<div class="muted" style="font-size:10px">'+t('resultTip')+'</div>'+
+    '</div></div>'+
+    maerkte+
+    (e.begruendung?'<div class="muted" style="margin-top:8px;border-top:1px solid var(--edge);padding-top:8px">'+esc(e.begruendung)+'</div>':'')+
+    endstand+
+    (mitKnoepfen?'<div style="margin-top:10px"><button class="btn-sm" style="float:right" onclick="logLoeschen(\''+e.id+'\')">'+t('del')+'</button><div style="clear:both"></div></div>':'')+
+  '</div>';
+}
+
 /* ================= WETTEN ================= */
 function viewBets(c){
   var sub='<div class="subtabs">'+
@@ -893,36 +1099,23 @@ function viewBets(c){
   '</div>';
 
   if(wtab==="vorschlaege"){
-    var list = state.vorschlaege.map(function(vs){
-      return '<div class="card" style="border-color:rgba(245,217,10,.27)">'+
-        '<div class="flex"><div><div class="disp" style="font-size:21px">'+vs.match+'</div>'+
-        '<div class="muted">'+(vs.wettbewerb||"")+' · '+(vs.anpfiff||"")+'</div></div>'+
-        (vs.quote?'<div class="quote">'+vs.quote+'</div>':'')+'</div>'+
-        '<div class="tipbox">'+
-          '<label>'+t('tip')+'</label><input value="'+(vs.tipp||"")+'" oninput="state.vorschlaege.find(function(x){return x.id===\''+vs.id+'\'}).tipp=this.value"/>'+
-          '<div style="display:flex;gap:10px;margin-top:8px">'+
-            '<div style="flex:1"><label>'+t('odds')+'</label><input inputmode="decimal" value="'+(vs.quote||"")+'" oninput="state.vorschlaege.find(function(x){return x.id===\''+vs.id+'\'}).quote=this.value"/></div>'+
-            '<div style="flex:1"><label>'+t('stake')+'</label><input inputmode="decimal" value="'+(vs.einsatz||"")+'" oninput="state.vorschlaege.find(function(x){return x.id===\''+vs.id+'\'}).einsatz=this.value"/></div>'+
-          '</div>'+
-        '</div>'+
-        '<div class="muted" style="margin-top:8px">'+(vs.info||"")+'</div>'+
-        '<button class="btn" style="margin-top:10px" onclick="var x=state.vorschlaege.find(function(y){return y.id===\''+vs.id+'\'}); if(x.match&&x.quote&&x.einsatz){addBet(x,x.einsatz);}else{alert(\''+t('fillOddsStake')+'\');}">'+t('take')+'</button>'+
-        '<label style="display:flex;align-items:center;gap:8px;margin-top:10px;font-size:13px;color:var(--dim);cursor:pointer">'+
-          '<input type="checkbox" style="width:auto" '+(vs.sel?'checked':'')+' onchange="state.vorschlaege.find(function(x){return x.id===\''+vs.id+'\'}).sel=this.checked"/>'+t('kombiSel')+
-        '</label>'+
-      '</div>';
-    }).join("");
+    var ids=(state.vorhersagen&&state.vorhersagen.ids)||[];
+    var heutige=(state.kiProtokoll||[]).filter(function(e){ return ids.indexOf(e.id)>=0; });
+    /* nach Spiel gruppieren, damit beide Gehirne nebeneinander stehen */
+    var reihenfolge=[], gruppen={};
+    heutige.forEach(function(e){
+      if(!gruppen[e.match]){ gruppen[e.match]=[]; reihenfolge.push(e.match); }
+      gruppen[e.match].push(e);
+    });
+    var liste = reihenfolge.map(function(mn){
+      return gruppen[mn].map(function(e){ return vorhersageKarte(e,false); }).join('');
+    }).join('<div style="height:4px"></div>');
     return sub+
-      '<button class="btn" onclick="kiAnalyse(this)">'+t('kiBtn')+'</button>'+
-      '<div style="height:8px"></div>'+
-      '<button class="btn btn-ghost" onclick="spieleLaden(this)">'+t('planBtn')+'</button>'+
+      '<button class="btn" onclick="vorhersagen(this)">'+t('predBtn')+'</button>'+
       '<div id="ladeFehler" class="muted" style="color:var(--loss);margin:10px 0"></div>'+
-      (state.vorschlaegeInfo?'<div class="muted" style="margin:8px 0">'+state.vorschlaegeInfo+'</div>':'')+
-      (list||'<div class="card empty">'+t('noSugg')+'</div>')+
-      (list?('<button class="btn btn-ghost" style="margin-top:4px" onclick="kombiUebernehmen()">'+t('kombiBtn')+'</button>'+
-        '<div class="muted" style="margin:6px 0">'+t('kombiWarn')+'</div>'):'')+
-      ((state.verworfen&&state.verworfen.length)?('<div class="card" style="margin-top:10px"><div class="muted" style="margin-bottom:6px">'+t('rejT')+'</div>'+
-        state.verworfen.map(function(x){return '<div style="font-size:13px;padding:3px 0">• '+x.spiel+' <span class="muted">— '+x.grund+'</span></div>';}).join('')+'</div>'):'');
+      '<div class="muted" style="margin:8px 0">'+t('duellD')+'</div>'+
+      (state.vorschlaegeInfo?'<div class="muted" style="margin:8px 0">'+esc(state.vorschlaegeInfo)+'</div>':'')+
+      (liste||'<div class="card empty">'+t('noPred')+'</div>');
   }
 
   if(wtab==="neu"){
@@ -947,25 +1140,25 @@ function viewBets(c){
 
   if(wtab==="kilog"){
     var pl=(state.kiProtokoll||[]);
-    var eintraege = pl.length ? pl.map(function(e){
-      var chip = e.status==='richtig' ? '<span class="badge b-win">'+t('stRight')+'</span>'
-        : e.status==='falsch' ? '<span class="badge b-loss">'+t('stWrong')+'</span>'
-        : e.status==='uebernommen' ? '<span class="badge b-open">'+t('stTaken')+'</span>'
-        : '<span class="badge b-open">'+t('openB')+'</span>';
-      var quelle = (e.herkunft==='flash') ? ' · 🌱 Flash' : ' · 🧠 Sonnet';
-      var korrektur = (e.status!=='uebernommen')
-        ? '<div style="margin-top:10px">'+
-          (e.status!=='richtig'?'<button class="btn-sm btn-win" onclick="logSet(\''+e.id+'\',\'richtig\')">'+t('stRight')+'</button> ':'')+
-          (e.status!=='falsch'?'<button class="btn-sm btn-loss" onclick="logSet(\''+e.id+'\',\'falsch\')">'+t('stWrong')+'</button> ':'')+
-          (e.status!=='offen'?'<button class="btn-sm" onclick="logSet(\''+e.id+'\',\'offen\')">'+t('reset')+'</button>':'')+
-          '</div>'
-        : '';
-      return '<div class="card"><div class="flex"><div>'+
-        '<div class="disp" style="font-size:17px">'+e.match+'</div>'+
-        '<div class="muted">'+e.datum+' · '+t('tip')+': '+(e.tipp||'?')+' · '+t('odds')+' '+(e.quote||'?')+quelle+'</div>'+
-        '</div>'+chip+'</div>'+korrektur+'</div>';
-    }).join('') : '<div class="card empty">'+t('logEmpty')+'</div>';
-    return sub+'<div class="muted" style="margin-bottom:10px">'+t('logD')+'</div>'+pruefBlock()+eintraege;
+    var neu=pl.filter(function(e){ return e.aera==='v19'; });
+    var alt=pl.filter(function(e){ return e.aera!=='v19'; });
+    var eintraege = neu.length ? neu.map(function(e){ return vorhersageKarte(e,true); }).join('')
+      : '<div class="card empty">'+t('logEmpty')+'</div>';
+    var archiv = alt.length
+      ? '<div class="muted" style="margin:18px 0 8px;letter-spacing:1px;text-transform:uppercase">'+t('archive')+'</div>'+
+        '<div class="muted" style="margin-bottom:10px">'+t('archiveD')+'</div>'+
+        alt.map(function(e){
+          var chip = e.status==='richtig' ? '<span class="badge b-win">'+t('stRight')+'</span>'
+            : e.status==='falsch' ? '<span class="badge b-loss">'+t('stWrong')+'</span>'
+            : '<span class="badge b-open">'+t('openB')+'</span>';
+          var quelle = (e.herkunft==='flash') ? ' · 🌱 Flash' : ' · 🧠 Sonnet';
+          return '<div class="card" style="opacity:.65"><div class="flex"><div>'+
+            '<div class="disp" style="font-size:16px">'+esc(e.match)+'</div>'+
+            '<div class="muted">'+e.datum+' · '+t('tip')+': '+esc(e.tipp||'?')+' · '+t('odds')+' '+esc(e.quote||'?')+quelle+'</div>'+
+            '</div>'+chip+'</div></div>';
+        }).join('')
+      : '';
+    return sub+'<div class="muted" style="margin-bottom:10px">'+t('logD')+'</div>'+pruefBlock()+eintraege+archiv;
   }
 
   if(wtab==="historie" && !state.bets.length) return sub+pruefBlock()+'<div class="card empty">'+t('noBets')+'</div>';
@@ -977,22 +1170,38 @@ function viewBets(c){
       ? '<button class="btn-sm btn-win" onclick="setStatus('+b.id+',\'gewonnen\')">'+t('bWon')+'</button> '+
         '<button class="btn-sm btn-loss" onclick="setStatus('+b.id+',\'verloren\')">'+t('bLost')+'</button>'
       : '<button class="btn-sm" onclick="setStatus('+b.id+',\'offen\')">'+t('reset')+'</button>';
-    var claude = (b.tipp && b.status!=="offen" && b.claudeRichtig===null)
-      ? ' <button class="btn-sm btn-open" onclick="setClaude('+b.id+',true)">'+t('aiRight')+'</button>'+
-        ' <button class="btn-sm btn-open" onclick="setClaude('+b.id+',false)">'+t('aiWrong')+'</button>'
-      : (b.claudeRichtig!==null?' <span class="muted">'+t('ai')+': '+(b.claudeRichtig?'✓':'✗')+'</span>':'');
     var pnl = b.status!=="offen"
       ? '<div style="color:'+(profit(b)>=0?"var(--win)":"var(--loss)")+';font-weight:600;margin-top:2px">'+fmt(profit(b))+'</div>'
       : '<div class="muted">'+t('possWin')+': <span style="color:var(--win)">'+fmt(b.einsatz*(b.quote-1))+'</span></div>';
     return '<div class="card">'+
-      '<div class="flex"><div><div class="disp" style="font-size:19px">'+b.match+'</div>'+
+      '<div class="flex"><div><div class="disp" style="font-size:19px">'+esc(b.match)+'</div>'+
       '<div class="muted">'+b.datum+' · '+t('odds')+' '+b.quote.toLocaleString("de-DE")+' · '+t('stake').replace(' (€)','')+' '+eur(b.einsatz)+'</div></div>'+badge+'</div>'+
-      (b.tipp?'<div style="font-size:13px;margin-top:8px">'+t('tip')+': '+b.tipp+'</div>':'')+pnl+
-      '<div style="margin-top:12px">'+akt+claude+
+      (b.tipp?'<div style="font-size:13px;margin-top:8px">'+t('tip')+': '+esc(b.tipp)+'</div>':'')+pnl+
+      '<div style="margin-top:12px">'+akt+
       ' <button class="btn-sm" style="float:right" onclick="delBet('+b.id+')">'+t('del')+'</button></div>'+
     '</div>';
   }).join("");
   return sub+pruefBlock()+h;
+}
+
+/* ================= KALIBRIERUNGS-ANZEIGE ================= */
+function kalibBlock(){
+  function tabelle(k, titel){
+    if(!k) return '<div class="muted">'+titel+': '+t('calibNone')+'</div>';
+    var kopf='<div style="margin-top:10px"><b>'+titel+'</b> · '+t('calibDev')+': '+
+      '<span style="color:'+(k.abw<=10?'var(--win)':(k.abw<=20?'var(--accent)':'var(--loss)'))+';font-weight:700">'+k.abw+' %</span>'+
+      ' <span class="muted">('+k.gesamt+' '+t('calibPts')+')</span></div>';
+    var rows=k.zeilen.map(function(z){
+      return '<tr><td>'+z.von+'–'+z.bis+' %</td><td>'+z.behauptet+' %</td><td>'+z.echt+' %</td><td>'+z.n+'</td></tr>';
+    }).join('');
+    return kopf+'<table class="ktab"><tr><th>'+t('calibBand')+'</th><th>'+t('calibClaim')+'</th><th>'+t('calibReal')+'</th><th>'+t('calibN')+'</th></tr>'+rows+'</table>';
+  }
+  return '<div class="card">'+
+    '<div class="disp" style="font-size:20px;margin-bottom:6px">🎯 '+t('calib')+'</div>'+
+    '<div class="muted">'+t('calibD')+'</div>'+
+    tabelle(calcKalibrierung('sonnet'),'🧠 Sonnet')+
+    tabelle(calcKalibrierung('flash'),'🌱 Flash')+
+  '</div>';
 }
 
 /* ================= FINANZEN ================= */
@@ -1006,6 +1215,7 @@ function viewFinance(c){
       '<div class="stat-val">'+eur(c.tipico)+'</div>'+
       '<div class="stat-sub">'+t('tipicoSub')+'</div></div>'+
   '</div>'+
+  kalibBlock()+
   '<div class="row">'+
     '<div class="card"><div class="stat-label">'+t('betBal')+'</div>'+
       '<div class="stat-val" style="color:'+(c.wettSaldo>0?"var(--win)":c.wettSaldo<0?"var(--loss)":"var(--text)")+'">'+fmt(c.wettSaldo)+'</div>'+
@@ -1058,18 +1268,15 @@ function viewMore(){
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">'+t('keyT')+'</div>'+
     '<div class="muted" style="margin-bottom:12px">'+t('keyD')+'</div>'+
     '<input type="password" placeholder="sk-ant-..." value="'+(state.apiKey||'')+'" oninput="state.apiKey=this.value.trim();save()"/>'+
-    '<div class="muted" style="margin-top:8px">'+(state.apiKey&&state.apiKey.indexOf('sk-ant-')===0?t('keyOn'):t('keyOff'))+'</div>'+
+    '<div class="muted" style="margin-top:8px">'+(hatSonnet()?t('keyOn'):t('keyOff'))+'</div>'+
   '</div>'+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">'+t('gKeyT')+'</div>'+
     '<div class="muted" style="margin-bottom:12px">'+t('gKeyD')+'</div>'+
     '<input type="password" placeholder="AIza..." value="'+(state.geminiKey||'')+'" oninput="state.geminiKey=this.value.trim();save()"/>'+
     '<div class="muted" style="margin-top:8px">'+(hatGemini()?t('gOn'):t('gOff'))+'</div>'+
-    '<div style="height:12px"></div>'+
-    '<label>'+t('brainT')+'</label>'+
-    '<select style="max-width:100%" onchange="state.analyseProvider=this.value;save()">'+
-      '<option value="anthropic"'+(state.analyseProvider!=='google'?' selected':'')+'>'+t('brainA')+'</option>'+
-      '<option value="google"'+(state.analyseProvider==='google'?' selected':'')+'>'+t('brainG')+'</option>'+
-    '</select>'+
+  '</div>'+
+  '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">⚔️ '+t('duellT')+'</div>'+
+    '<div class="muted">'+t('duellD')+'</div>'+
   '</div>'+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">'+t('rulesT')+'</div>'+
     '<div class="muted" style="margin-bottom:12px">'+t('rulesD')+'</div>'+
@@ -1080,7 +1287,7 @@ function viewMore(){
     '<div style="font-size:13px;line-height:1.8">'+t('sec1')+'<br>'+t('sec2')+'<br>'+t('sec3')+'<br>'+t('sec4')+'<br>'+t('sec5')+'</div>'+
   '</div>'+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">📋 '+t('projT')+'</div>'+
-    '<pre>ONDO CONTROL\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen, Wissen zu organisieren und Aufgaben zu automatisieren — modular, transparent, kontrollierbar, an der Verfassung ausgerichtet.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.\n\nDetails: Blueprint-Dokument (bei Claude im Chat).</pre>'+
+    '<pre>ONDO CONTROL v19 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
   '</div>';
 }
 
