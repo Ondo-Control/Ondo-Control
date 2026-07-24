@@ -103,7 +103,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:21px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · v19.1 BETA<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · v19.2 BETA<span id="saveNote" class="save-note"></span></div>
   <div id="view"></div>
 </div>
 
@@ -189,6 +189,7 @@ var I18N = {
   kiNote:'KI-Vorhersage, kein Gewinnversprechen.',
   kiLog:'KI-Log', checkBtn:'🔎 Ergebnisse prüfen', checking:'🔎 Prüfe Ergebnisse … (30-60 Sek.)',
   noOpen:'Nichts Offenes zu prüfen.', proposals:'Gefundene Endstände — bitte bestätigen:', apply:'Übernehmen', ignore:'Ignorieren',
+  foundAs:'Gefunden als', dateWarn:'⚠ Datum weicht ab — womöglich falsches Spiel! Vor Übernehmen prüfen.',
   logEmpty:'Noch keine KI-Vorhersagen protokolliert.',
   logD:'Jede KI-Vorhersage wird hier bewertet. Aus einem Ergebnis-Tipp leitet die App drei Aussagen ab.',
   gKeyT:'🌱 Zweites Gehirn (Google Gemini)', gKeyD:'Schlüssel von aistudio.google.com — bleibt NUR auf diesem Gerät. Übernimmt Ergebnis-Prüfen & Foto-Lesen fast gratis.', gOn:'✅ Gemini-Schlüssel gespeichert', gOff:'❌ Kein Gemini-Schlüssel',
@@ -253,6 +254,7 @@ var I18N = {
   kiNote:'Prédiction IA, aucune promesse de gain.',
   kiLog:'Log IA', checkBtn:'🔎 Vérifier les résultats', checking:'🔎 Vérification … (30-60 s)',
   noOpen:'Rien d’ouvert à vérifier.', proposals:'Scores trouvés — à confirmer :', apply:'Appliquer', ignore:'Ignorer',
+  foundAs:'Trouvé comme', dateWarn:'⚠ La date diffère — peut-être le mauvais match ! Vérifie avant d’appliquer.',
   logEmpty:'Aucune prédiction IA enregistrée.',
   logD:'Chaque prédiction IA est évaluée ici. À partir d’un score prédit, l’app déduit trois affirmations.',
   gKeyT:'🌱 Second cerveau (Google Gemini)', gKeyD:'Clé de aistudio.google.com — reste UNIQUEMENT sur cet appareil. Prend en charge vérification & lecture photo presque gratuitement.', gOn:'✅ Clé Gemini enregistrée', gOff:'❌ Pas de clé Gemini',
@@ -317,6 +319,7 @@ var I18N = {
   kiNote:'AI prediction, no profit promise.',
   kiLog:'AI log', checkBtn:'🔎 Check results', checking:'🔎 Checking … (30-60 s)',
   noOpen:'Nothing open to check.', proposals:'Scores found — please confirm:', apply:'Apply', ignore:'Ignore',
+  foundAs:'Found as', dateWarn:'⚠ Date differs — possibly the wrong match! Check before applying.',
   logEmpty:'No AI predictions logged yet.',
   logD:'Every AI prediction is rated here. From one predicted score the app derives three statements.',
   gKeyT:'🌱 Second brain (Google Gemini)', gKeyD:'Key from aistudio.google.com — stays ONLY on this device. Handles result checking & photo reading almost free.', gOn:'✅ Gemini key saved', gOff:'❌ No Gemini key',
@@ -848,10 +851,15 @@ function ergebnissePruefen(btn){
   var prompt='Heute ist '+heuteStr()+'. Ermittle per Websuche fuer jedes Spiel den ENDSTAND NACH 90 MINUTEN '+
     'inkl. Nachspielzeit — OHNE Verlaengerung, OHNE Elfmeterschiessen.\n\n'+
     'Du sollst NICHT beurteilen, ob eine Wette gewonnen hat. Nenne ausschliesslich die Tore. '+
-    'heim = erstgenanntes Team, gast = zweitgenanntes Team. '+
-    'Setze fertig:false, wenn das Spiel noch laeuft, noch nicht angepfiffen wurde oder du den Endstand nicht sicher findest. Rate nicht.\n\n'+
+    'heim = erstgenanntes Team, gast = zweitgenanntes Team.\n\n'+
+    'DREI HAEUFIGE FEHLER, DIE DU VERMEIDEN MUSST:\n'+
+    '1. FALSCHES DUELL: Zwei Teams spielen mehrmals pro Jahr gegeneinander. Pruefe, dass dein Ergebnis wirklich vom angegebenen Datum stammt — NICHT von einer frueheren Begegnung derselben Teams.\n'+
+    '2. ZEITZONEN: Spiele in Suedamerika (Argentinien, Brasilien) und Nordamerika werden abends Ortszeit angepfiffen und enden in Europa erst NACH MITTERNACHT, also am Folgetag. Ein Spiel vom '+
+    'angegebenen Datum kann in europaeischen Quellen unter dem Folgetag stehen. Suche nach dem Spieltag der Liga, nicht nur nach dem Kalenderdatum.\n'+
+    '3. RATEN: Setze fertig:false, wenn das Spiel noch laeuft, noch nicht angepfiffen wurde oder du den Endstand nicht aus einer verlaesslichen Quelle bestaetigen kannst.\n\n'+
+    'Nenne zu jedem Ergebnis ZUSAETZLICH das Datum, an dem das gefundene Spiel laut deiner Quelle stattfand (Format TT.MM.JJJJ), und den Wettbewerb — damit kontrolliert werden kann, ob du das richtige Spiel erwischt hast.\n\n'+
     zeilen.join('\n')+
-    '\n\nLetzte Nachricht: NUR kompaktes JSON:\n{"ergebnisse":[{"id":"S0","heim":2,"gast":1,"fertig":true}]}';
+    '\n\nLetzte Nachricht: NUR kompaktes JSON:\n{"ergebnisse":[{"id":"S0","heim":2,"gast":1,"fertig":true,"datum":"23.07.2026","wettbewerb":"Liga Profesional"}]}';
 
   var call = hatGemini()
     ? geminiCall({ prompt: prompt, useSearch: true })
@@ -862,14 +870,24 @@ function ergebnissePruefen(btn){
     var parsed=parseJsonBlock(res);
     if(!parsed || !parsed.ergebnisse) throw new Error(t('noJson'));
     pruefListe=[];
+    function tageAbstand(a,b){
+      function z(s){ var m=String(s||'').match(/(\d{1,2})\.(\d{1,2})\.(\d{4})/); if(!m) return null;
+        return Date.UTC(Number(m[3]),Number(m[2])-1,Number(m[1])); }
+      var x=z(a), y=z(b);
+      if(x===null||y===null) return null;
+      return Math.abs(x-y)/86400000;
+    }
     parsed.ergebnisse.forEach(function(r){
       if(r.fertig===false) return;
       var h=Math.round(Number(r.heim)), g=Math.round(Number(r.gast));
       if(isNaN(h)||isNaN(g)) return;
       var id=String(r.id||'');
+      var gefDatum=String(r.datum||''), gefWb=String(r.wettbewerb||'');
       if(id.charAt(0)==='S'){
         var a=auftrag.filter(function(x){return x.key===id;})[0];
         if(!a) return;
+        var abstand=tageAbstand(a.datum, gefDatum);
+        var warn=(abstand!==null && abstand>1);
         /* Urteile per festem Code — nicht von der KI */
         var urteile=[];
         (state.kiProtokoll||[]).forEach(function(e){
@@ -881,6 +899,7 @@ function ergebnissePruefen(btn){
           });
         });
         pruefListe.push({ art:'log', id:id, match:a.match, heim:h, gast:g,
+          gefDatum:gefDatum, gefWb:gefWb, warn:warn,
           eintraege:a.eintraege, urteile:urteile });
       } else if(id.charAt(0)==='B'){
         var bid=Number(id.slice(1));
@@ -947,7 +966,15 @@ function pruefBlock(){
         '<div class="muted">'+t('finalScore')+': <b style="color:var(--accent)">'+p.heim+':'+p.gast+'</b></div></div>'+
         '<div class="score">'+p.heim+':'+p.gast+'</div></div>';
       if(p.art==='log'){
-        html += '<div style="margin:6px 0 8px">'+p.urteile.map(function(u){
+        var quelle = (p.gefDatum||p.gefWb)
+          ? '<div class="muted" style="font-size:11.5px;margin:4px 0">'+t('foundAs')+': '+
+            esc([p.gefDatum,p.gefWb].filter(Boolean).join(' · '))+'</div>'
+          : '';
+        var warnung = p.warn
+          ? '<div style="font-size:12.5px;color:var(--loss);font-weight:600;margin:4px 0">'+t('dateWarn')+'</div>'
+          : '';
+        html += quelle + warnung +
+        '<div style="margin:6px 0 8px">'+p.urteile.map(function(u){
           var farbe=u.ok?'var(--win)':'var(--loss)';
           var q=(u.gehirn==='flash')?'🌱':'🧠';
           return '<div style="font-size:12.5px;color:var(--dim)">'+q+' '+esc(u.label)+
@@ -1369,7 +1396,7 @@ function viewMore(){
     '<div style="font-size:13px;line-height:1.8">'+t('sec1')+'<br>'+t('sec2')+'<br>'+t('sec3')+'<br>'+t('sec4')+'<br>'+t('sec5')+'</div>'+
   '</div>'+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">📋 '+t('projT')+'</div>'+
-    '<pre>ONDO CONTROL v19.1 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
+    '<pre>ONDO CONTROL v19.2 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
   '</div>';
 }
 
