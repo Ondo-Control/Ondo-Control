@@ -103,7 +103,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:21px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · v19.2 BETA<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · v19.3 BETA<span id="saveNote" class="save-note"></span></div>
   <div id="view"></div>
 </div>
 
@@ -645,10 +645,13 @@ function sonnetSuche(prompt, maxUses, maxTokens){
 
 /* ================= SCHRITT 1: SPIELLISTE (gleiche Liste fuer beide Gehirne) ================= */
 function spielListeHolen(){
-  var prompt='Heute ist '+heuteStr()+'. Suche im Web, welche Fussballspiele HEUTE wirklich stattfinden. '+
-    'Nimm nur Spiele aus gut dokumentierten Wettbewerben, deren Endstand spaeter zuverlaessig im Netz auffindbar ist '+
-    '(UEFA-Wettbewerbe inkl. Qualifikation, europaeische Ligen, MLS, Brasilien Serie A/B, Skandinavien, Japan, nationale Pokale, Laenderspiele). '+
-    'Keine Spiele hinter verschlossenen Tueren, keine reinen Jugend- oder Amateurpartien. Echte Teamnamen. Maximal 10 Spiele, die heute noch angepfiffen werden.\n\n'+
+  var prompt='Heute ist '+heuteStr()+'. Suche im Web, welche Fussballspiele HEUTE wirklich stattfinden und noch nicht angepfiffen sind. Maximal 10 Spiele, echte Teamnamen.\n\n'+
+    'WAEHLE STRENG NACH DIESER RANGFOLGE — nimm erst Stufe 2, wenn Stufe 1 nicht genug hergibt, und Stufe 3 nur, wenn sonst weniger als 5 Spiele zusammenkommen:\n'+
+    'STUFE 1: UEFA-Wettbewerbe inkl. Qualifikation · Laenderspiele · 1. und 2. Ligen aus England, Deutschland, Spanien, Italien, Frankreich, Niederlande, Portugal, Belgien, Schottland, Oesterreich, Schweiz, Tuerkei · nationale Pokale dieser Laender\n'+
+    'STUFE 2: MLS · Brasilien Serie A und B · Argentinien Primera · Norwegen, Schweden, Daenemark, Finnland (oberste Liga) · Japan J1\n'+
+    'STUFE 3: Testspiele zwischen Profiklubs der Stufe-1-Laender\n\n'+
+    'NIEMALS aufnehmen: Reserve- und Zweitmannschaften (z.B. "II", "B", "U21", "U23") · Regionalligen, Oberligen und sonstige Amateur-Spielklassen · Jugendspiele · Spiele hinter verschlossenen Tueren.\n'+
+    'Grund: Der Endstand jedes Spiels muss morgen zuverlaessig per Websuche auffindbar sein, und ueber die Teams muss genug bekannt sein, um sie einschaetzen zu koennen.\n\n'+
     'Letzte Nachricht: NUR kompaktes JSON:\n{"spiele":[{"match":"Team A - Team B","wettbewerb":"...","anpfiff":"20:30"}]}';
   var call = hatGemini()
     ? geminiCall({ prompt: prompt, useSearch: true })
@@ -1396,7 +1399,7 @@ function viewMore(){
     '<div style="font-size:13px;line-height:1.8">'+t('sec1')+'<br>'+t('sec2')+'<br>'+t('sec3')+'<br>'+t('sec4')+'<br>'+t('sec5')+'</div>'+
   '</div>'+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">📋 '+t('projT')+'</div>'+
-    '<pre>ONDO CONTROL v19.2 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
+    '<pre>ONDO CONTROL v19.3 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
   '</div>';
 }
 
