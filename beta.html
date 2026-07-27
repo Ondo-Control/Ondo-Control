@@ -103,7 +103,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:21px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · v19.4 BETA<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · v19.5 BETA<span id="saveNote" class="save-note"></span></div>
   <div id="view"></div>
 </div>
 
@@ -753,6 +753,7 @@ function vorhersagen(btn){
           datum:heuteD,
           match:match,
           wettbewerb:(paket.liste[idx]&&paket.liste[idx].wettbewerb)||'',
+          anpfiff:(paket.liste[idx]&&paket.liste[idx].anpfiff)||'',
           herkunft:gehirn,
           heim:h, gast:g,
           begruendung:String(v.begruendung||''),
@@ -855,7 +856,7 @@ function ergebnissePruefen(btn){
     var k=e.match+'|'+e.datum;
     if(!spiele[k]){
       spiele[k]={ id:'S'+posten.length, art:'log', match:e.match, datum:e.datum,
-        eintraege:[], zustand:'offen', gefragt:false };
+        anpfiff:e.anpfiff||'', eintraege:[], zustand:'offen', gefragt:false };
       posten.push(spiele[k]);
     }
     spiele[k].eintraege.push(e.id);
@@ -880,6 +881,16 @@ function ergebnissePruefen(btn){
     return Math.abs(x-y)/86400000;
   }
   function urlOk(s){ return /^https?:\/\/[^\s"'<>]+\.[a-z]{2,}/i.test(String(s||'').trim()); }
+  /* Wie lange ist der Anpfiff her? Gibt Stunden zurueck, oder null wenn unbekannt.
+     Grundlage fuer die Plausibilitaetspruefung von "laeuft noch". */
+  function stundenSeitAnpfiff(datum, anpfiff){
+    var d=String(datum||'').match(/(\d{1,2})\.(\d{1,2})\.(\d{4})/);
+    var u=String(anpfiff||'').match(/(\d{1,2})[:.](\d{2})/);
+    if(!d||!u) return null;
+    var start=new Date(Number(d[3]), Number(d[2])-1, Number(d[1]), Number(u[1]), Number(u[2]));
+    var diff=(Date.now()-start.getTime())/3600000;
+    return (diff<0 || diff>240) ? null : diff;
+  }
   function quellHost(s){
     var m=String(s||'').match(/^https?:\/\/([^\/\s"'<>]+)/i);
     return m ? m[1].replace(/^www\./,'') : '';
@@ -891,7 +902,16 @@ function ergebnissePruefen(btn){
     for(var i=0;i<ziel.length;i++){ if(ziel[i].id===id){ p=ziel[i]; break; } }
     if(!p) return 0;
     var status=String(r.status||'').toLowerCase();
-    if(status==='laeuft'){ p.zustand='laeuft'; return 0; }
+    if(status==='laeuft'){
+      /* Ein regulaeres Spiel ist rund 2 Stunden nach Anpfiff vorbei. Laeuft Verlaengerung
+         oder Elfmeterschiessen, steht der Stand nach 90 Minuten laengst fest — auch dann
+         ist "laeuft" keine gueltige Antwort. Nach 2,5 Stunden glauben wir sie deshalb
+         nicht mehr und suchen weiter. Bei echten Unterbrechungen (Unwetter) kostet das
+         nur eine zusaetzliche Nachfrage; ein uebersehenes Ergebnis waere schlimmer. */
+      var vergangen=stundenSeitAnpfiff(p.datum, p.anpfiff);
+      p.zustand = (vergangen!==null && vergangen>2.5) ? 'fehlt' : 'laeuft';
+      return 0;
+    }
     var h=Math.round(Number(r.heim)), g=Math.round(Number(r.gast));
     if(status!=='fertig' || isNaN(h) || isNaN(g)){ p.zustand='fehlt'; return 0; }
     var gefDatum=String(r.datum||''), gefWb=String(r.wettbewerb||''), quelle=String(r.quelle||'');
@@ -928,7 +948,7 @@ function ergebnissePruefen(btn){
     ziel.forEach(function(p){ p.gefragt=true; });
 
     var zeilen = ziel.map(function(p){
-      return p.id+': '+p.match+' (angesetzt am '+p.datum+')'+((p.art==='bet')?' — Wettschein':'');
+      return p.id+': '+p.match+' (angesetzt am '+p.datum+(p.anpfiff?(', Anpfiff '+p.anpfiff+' Uhr'):'')+')'+((p.art==='bet')?' — Wettschein':'');
     });
     var quellPflicht = (runde>=3)
       ? 'WICHTIG IN DIESEM DURCHGANG: Zu jedem gefundenen Ergebnis MUSST du im Feld "quelle" die vollstaendige URL der Seite nennen, auf der du den Endstand gelesen hast. Ein Ergebnis ohne echte Quellen-URL wird verworfen.\n\n'
@@ -939,7 +959,9 @@ function ergebnissePruefen(btn){
       'heim = erstgenanntes Team, gast = zweitgenanntes Team.\n\n'+
       'Gib jedem Spiel GENAU EINEN Status:\n'+
       '- "fertig": Endstand aus verlaesslicher Quelle bestaetigt (dann heim, gast, datum, wettbewerb, quelle angeben)\n'+
-      '- "laeuft": Spiel laeuft gerade noch oder wurde noch nicht angepfiffen\n'+
+      '- "laeuft": Spiel laeuft gerade noch oder wurde noch nicht angepfiffen. '+
+      'ACHTUNG: Wenn seit dem angegebenen Anpfiff mehr als zwei Stunden vergangen sind, ist das Spiel mit an Sicherheit grenzender Wahrscheinlichkeit vorbei — nimm dann NICHT "laeuft". '+
+      'Laeuft gerade Verlaengerung oder Elfmeterschiessen, steht der Stand nach 90 Minuten bereits fest: melde ihn als "fertig".\n'+
       '- "nicht_gefunden": Spiel ist vorbei oder Status unklar, aber kein verlaesslicher Endstand auffindbar. NIEMALS raten.\n\n'+
       'DREI HAEUFIGE FEHLER, DIE DU VERMEIDEN MUSST:\n'+
       '1. FALSCHES DUELL: Zwei Teams spielen mehrmals pro Jahr gegeneinander. Pruefe, dass dein Ergebnis wirklich vom angesetzten Datum stammt — NICHT von einer frueheren Begegnung derselben Teams.\n'+
@@ -1255,7 +1277,7 @@ function vorhersageKarte(e, mitKnoepfen){
   return '<div class="card">'+
     '<div class="flex"><div>'+
       '<div class="disp" style="font-size:18px">'+esc(e.match)+'</div>'+
-      '<div class="muted">'+e.datum+' · '+quelle+(e.wettbewerb?(' · '+esc(e.wettbewerb)):'')+'</div>'+
+      '<div class="muted">'+e.datum+(e.anpfiff?(' '+esc(e.anpfiff)):'')+' · '+quelle+(e.wettbewerb?(' · '+esc(e.wettbewerb)):'')+'</div>'+
     '</div><div style="text-align:right">'+
       '<div class="score">'+e.heim+':'+e.gast+'</div>'+
       '<div class="muted" style="font-size:10px">'+t('resultTip')+'</div>'+
@@ -1478,7 +1500,7 @@ function viewMore(){
     '<div style="font-size:13px;line-height:1.8">'+t('sec1')+'<br>'+t('sec2')+'<br>'+t('sec3')+'<br>'+t('sec4')+'<br>'+t('sec5')+'</div>'+
   '</div>'+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">📋 '+t('projT')+'</div>'+
-    '<pre>ONDO CONTROL v19.4 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
+    '<pre>ONDO CONTROL v19.5 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
   '</div>';
 }
 
