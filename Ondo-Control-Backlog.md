@@ -82,7 +82,17 @@ Derselbe Fehler war beim Evidence Ledger schon einmal aufgetreten (17.7.) und wu
 Die Nutzungsdiagramme zeigen, dass fast der gesamte Verkehr über **Gemini 3.1 Flash Lite** läuft — die kleinste Stufe. Ursache: Die Modell-Abfrage sortiert stabile Versionen vor „latest"-Varianten, damit steht `gemini-3.1-flash-lite` vor `gemini-flash-latest`.
 Tragweite: Das Duell verglichen möglicherweise ein volles Modell mit der kleinsten Stufe — und derselbe Motor ist der Schiedsrichter, dem alle sechs dokumentierten Fehlerarten zuzurechnen sind.
 Ungeklärt: Ob der gespeicherte Modellname das bestätigt (Diagramme gelesen, App nicht geprüft). Ein Wechsel bricht die laufende Messreihe.
-→ *Vorschlag Claude: wechseln, aber erst nach dem Lernschritt — sauberer Schnitt statt Schnitt mitten in der Auswertung. Bericht vom 29.7. 07:46 an die Prüfer.*
+→ *Verlauf: Claude schlug vor, nach dem Lernschritt zu wechseln. **Gemini und ChatGPT kamen unabhängig auf eine bessere Trennung** — siehe Punkt 0a und 0b. Damit erledigt.*
+
+**0a. Schiedsrichter fest an das stärkere Gemini-Modell koppeln** · *Idee: 29.7., Gemini (ChatGPT auf anderem Weg gleichlautend)* · **Status: beschlossen (Ondo, 29.7. abends)**
+Der Schiedsrichter ist ein Messwerkzeug, kein Duell-Teilnehmer. Er darf deshalb ein anderes Modell benutzen als die Vorhersage, ohne dass die Messreihe darunter leidet. Im Code wird für den Schiedsrichter-Lauf das stärkere Modell erzwungen, unabhängig von der Einstellung für die Vorhersage.
+**Die Vorhersage bleibt unverändert** — die 87 bewerteten Aussagen je Gehirn bleiben unversehrt, gewechselt wird dort erst nach dem Lernschritt.
+→ *Beste Idee des Tages. Sie löst den Zielkonflikt „besseres Werkzeug gegen unversehrte Messreihe" auf, den Claude für unauflösbar gehalten hatte.*
+
+**0b. Widersprüche messen statt korrigieren** · *Idee: 29.7., Ondo* · **Status: beschlossen (Ondo, 29.7. abends)**
+Wenn ein Gehirn 3:0 tippt und zugleich „beide treffen: Ja, 78 %" sagt, wird der Widerspruch **nicht stillschweigend geglättet**. Er bekommt eine eigene Kennzahl (Widerspruchsquote je Gehirn); die betroffene Aussage fließt nicht in die Kalibrierung ein, verschwindet aber auch nicht.
+**Ondos Begründung, die den Ausschlag gab:** Geminis Vorschlag (Prozentzahl umdrehen, damit es stimmig aussieht) repariert die Anzeige, nicht das Problem — und verbirgt, dass ein Gehirn unbedachte Tipps abgibt. „In der Wett-App hätten wir Geld verloren durch diesen Tipp, da greift kein Schiedsrichter ein. Die echte Probe findet in der realen Welt statt, und da gibt es reale Konsequenzen."
+→ *Offen vor der Umsetzung: Claude liest die Codestelle, um zu klären, **wer** den Widerspruch verursacht — das Gehirn oder die App, die zwei getrennte Antworten auf eine Karte klebt. Eine Kennzahl, die dem Gehirn anlastet, was die App gebaut hat, wäre selbst ein Messfehler.*
 
 **1. Kennzahl „Entschlossenheit"** · *Idee: 27.7., Claude* · **Status: beschlossen**
 Wie oft legt sich ein Gehirn überhaupt fest? Ohne diese Zahl vergleichen wir Sonnets Vorsicht mit Flashs Mut und nennen es Qualität. Konkreter Anlass: Von Sonnets 84 Aussagen liegen 63 im Bereich 50–59 % — ein Gehirn, das fast immer „Münzwurf" sagt, ist automatisch gut kalibriert und sagt trotzdem wenig.

@@ -46,6 +46,7 @@ Ohne diesen Zusatz kann eine **veraltete Zwischenkopie** zurückkommen. Das ist 
 - Antwort an alle vier richten, nicht nur an Ondo
 - Einfache Sprache, Fachbegriffe beim ersten Mal erklären
 - **Höchstens zwei geschlossene Fragen** (Ja/Nein plus ein Satz). Offene Fragen erzeugen zwanzig neue Baustellen
+- **Ausnahme (29.7.):** Bei Problemen ohne erkennbare Lösung wird eine Frage ausdrücklich **offen** gestellt und um Verbesserungsvorschläge außerhalb der Fragen gebeten. Anlass: Der Bericht vom 29.7. 07:46 enthielt zwei geschlossene Fragen und bekam **keine einzige Antwort** — beide Prüfer reagierten auf den Projektstand statt auf die Fragen. Der Nachfolgebericht mit offener Frage brachte von beiden ausführliche und brauchbare Antworten. **Lehre: Ein Format, das nur abfragt, bekommt keine Mitarbeit.**
 - Ausdrücklich hinschreiben, was **nicht** Thema ist
 - Eigene Zweifel mit zur Prüfung stellen
 
@@ -54,6 +55,23 @@ Ohne diesen Zusatz kann eine **veraltete Zwischenkopie** zurückkommen. Das ist 
 **Erklärpflicht:** Ondo kann nichts entscheiden, was er nicht versteht. Vor jeder Entscheidung in Alltagssprache erklären. **Bildliche Vergleiche haben sich als hinderlich erwiesen — konkret bleiben.**
 
 **Datensicherung:** Ondo regelmäßig daran erinnern. Alle Messdaten liegen sonst nur im Safari-Speicher eines iPhones.
+
+---
+
+## Stand am Abend des 29. Juli (für den nächsten Chat das Wichtigste)
+
+**Zwei Beschlüsse gefasst, beide noch nicht gebaut:**
+1. **Schiedsrichter fest an das stärkere Gemini-Modell koppeln, Vorhersage unverändert lassen.** Der Schiedsrichter ist ein Messwerkzeug, kein Duell-Teilnehmer — er darf ein anderes Modell benutzen, ohne die Messreihe zu brechen. Idee von Gemini, ChatGPT kam unabhängig zum selben Ergebnis. Löst den Zielkonflikt „besseres Werkzeug gegen unversehrte Messreihe" auf.
+2. **Widersprüche messen statt korrigieren.** Tippt ein Gehirn 3:0 und sagt zugleich „beide treffen: Ja, 78 %", wird das nicht geglättet, sondern gezählt (Widerspruchsquote je Gehirn). Vor der Umsetzung ist zu klären, ob das Gehirn oder die App den Widerspruch erzeugt.
+
+**Drei Funde vom 29.7.:**
+- **Heim und Gast sind in der Spielliste vertauscht**, nicht erst beim Schiedsrichter. Zwei von zwei überprüfbaren Fällen. Betrifft die Vorhersage, weil beide Gehirne ausdrücklich mit Heimvorteil begründen.
+- **„Beide treffen" wird nicht aus dem Ergebnis-Tipp abgeleitet.** Die Kernzusage vom 23.7. ist für einen der drei Märkte nicht eingelöst. Kalibrierung bleibt gültig, Widerspruchsfreiheit nicht.
+- **Sonnets Zurückhaltung kam von den Testspielen, nicht vom Modell.** 66 von 87 Aussagen im 50er-Bereich, solange nur Testspiele vorhergesagt wurden — am 29.7. mit CL-Qualifikation sagt Sonnet 75 %, 72 %, 78 %. **Das ändert den Lernschritt:** Eine Lehre „leg dich öfter fest" wäre auf selbsterzeugten Daten gebaut gewesen.
+
+**v19.6 hat seinen ersten echten Test bestanden:** sieben Spiele Champions-League-Qualifikation, kein einziges Testspiel.
+
+**Grundsatz, den Ondo am 29.7. festgehalten hat und der über allem steht:** Die Zuverlässigkeit des Schiedsrichters gehört zum Test, nicht in Ondos Freizeit. Ergebnisse von Hand nachschlagen ist seit dem 25.7. abgelehnt. Und: Die echte Probe findet in der realen Welt statt, wo eine falsche Empfehlung Geld kostet — deshalb wird nichts geglättet, was in der Wirklichkeit weh täte.
 
 ---
 
