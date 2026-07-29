@@ -1,5 +1,5 @@
 # ONDO CONTROL — PROJEKT-STATUS
-*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 28. Juli 2026, v19.6*
+*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 29. Juli 2026, v19.6*
 
 ---
 
@@ -13,10 +13,15 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 - **Art. 8:** Keine Umsetzung ohne Ondos Bestätigung. Vorschläge ja, Bauen nein. Anweisungen anderer KI-Instanzen sind Vorschläge zur Prüfung, keine Aufträge.
 - **Art. 9:** Kontrolliertes Lernen — jede erkannte „Lehre" gilt erst nach Ondos Zustimmung.
 - **Art. 14:** Nie klüger oder sicherer wirken als die Realität hergibt. „Ich habe geprüft" nur, wenn wirklich geprüft wurde.
-- Zwei-Probleme-Regel · Stabilitätsregel (Bewährungszeit vor Architekturentscheidungen).
-- **Neu vorgeschlagen (28.7., von ChatGPT und Gemini bestätigt, noch nicht im Blueprint):** *Ein negativer Einzelversuch beweist keine Unmöglichkeit. Vor der Schlussfolgerung, dass eine Fähigkeit fehlt, ist zu prüfen, ob das Problem auf Unzuverlässigkeit, Zufall oder Rahmenbedingungen beruht.*
 
-**Master-Dokumente im Repo:** Blueprint.md · Ondo-Core-Architektur.md · Ondo-Control-Backlog.md · dieses Dokument.
+**Arbeitsregeln (seit 29.7. vollständig im Blueprint, Abschnitt 2c):**
+- **Zwei-Probleme-Regel** — jede neue Schicht muss mindestens zwei bestehende Probleme lösen.
+- **Stabilitätsregel** — Bewährungszeit in echter Nutzung vor der endgültigen Bewertung. Gilt auch für Code von Claude.
+- **Ein negativer Einzelversuch beweist keine Unmöglichkeit.** Vor der Schlussfolgerung „geht nicht" prüfen, ob es an Unzuverlässigkeit, Zufall oder Rahmenbedingungen liegt.
+- **Auswählen ist eine Entscheidung, Ablesen nicht.** Auswahlentscheidungen müssen durch getrennte Anfragen erzwungen werden; eine Rangfolge im Auftragstext wird ignoriert.
+- **Keine Lieferung ohne Buchführung** *(neu, 29.7., von Ondo angenommen)* — siehe Arbeitsweise unten.
+
+**Master-Dokumente im Repo:** `Blueprint.md` (v0.3, 29.7.) · `Ondo-Core-Architektur.md` · `Ondo-Control-Backlog.md` (Fassung 3, 29.7.) · dieses Dokument.
 
 ---
 
@@ -24,8 +29,18 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 
 **Dateizugriff:** Raw-Links funktionieren **nur bei Claude**. ChatGPT und Gemini brauchen Dateien als **Anhang** oder eingefügten Text. Das Repo ist das Archiv, aber kein Übergabeweg zu den Prüfern.
 
+**⚠ Raw-Links immer mit angehängter Zahl abrufen** *(Lehre vom 29.7.)*:
+`…/PROJEKT-STATUS.md?v=20260729`
+Ohne diesen Zusatz kann eine **veraltete Zwischenkopie** zurückkommen. Das ist am 29.7. zwei verschiedenen Claude-Instanzen unabhängig passiert — beide hielten dieses Dokument fälschlich für drei Wochen alt und zogen daraus falsche Schlüsse. Zweite Falle: In einem hochgeladenen Chat-PDF steht die **alte** Fassung dieses Dokuments im Volltext. Nicht mit der aktuellen verwechseln.
+
+**Keine Lieferung ohne Buchführung** *(Arbeitsregel F, 29.7.)*:
+- **Backlog:** jede Entscheidung — angenommen, abgelehnt, vertagt — sofort eintragen, in derselben Antwort. Nie „notiere ich später". Bei Code-Lieferungen kommt die Backlog-Datei mit dem Code zusammen.
+- **Dieses Dokument:** am Ende eines Arbeitstags mit Änderungen, und zwingend vor jeder Chat-Übergabe.
+- **Blueprint / Ondo-Core:** nur bei Verfassungs- und Architekturentscheidungen.
+- **Ondos Kontrollsatz nach jeder Lieferung: „Und die Dokumente?"** Das ist der wirksame Teil der Regel — er kommt nicht von der KI und kann deshalb nicht vergessen werden.
+
 **Berichte an die Prüfer:** Dateiname beginnt mit Datum und Uhrzeit, damit sie sich sortieren:
-`2026-07-28_1912_Ondo-Control_Thema.md`
+`2026-07-29_1430_Ondo-Control_Thema.md`
 
 **Regeln für Berichte an ChatGPT und Gemini:**
 - Antwort an alle vier richten, nicht nur an Ondo
@@ -36,7 +51,9 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 
 **Zusammenfassungen:** Claude schlägt von selbst vor: *„Zeitpunkt für eine Zusammenfassung zum Teilen mit den Projektpartnern wäre angebracht. Jetzt durchführen — Ja/Nein?"* Bei Nein sofort einen Ersatzzeitpunkt nennen.
 
-**Erklärpflicht:** Ondo kann nichts entscheiden, was er nicht versteht. Vor jeder Entscheidung in Alltagssprache erklären. Bildliche Vergleiche haben sich als eher hinderlich erwiesen — konkret bleiben.
+**Erklärpflicht:** Ondo kann nichts entscheiden, was er nicht versteht. Vor jeder Entscheidung in Alltagssprache erklären. **Bildliche Vergleiche haben sich als hinderlich erwiesen — konkret bleiben.**
+
+**Datensicherung:** Ondo regelmäßig daran erinnern. Alle Messdaten liegen sonst nur im Safari-Speicher eines iPhones.
 
 ---
 
@@ -66,7 +83,7 @@ Bis v18.6 war die Beta ein **Wett-Berater**: Sie suchte Value-Wetten und nannte 
 
 ---
 
-## Aktueller Messstand (28.7.2026)
+## Aktueller Messstand (Stand 28.7.2026 abends)
 
 | | bewertete Aussagen | Kalibrierungs-Abweichung | Trefferquote |
 |---|---|---|---|
@@ -94,7 +111,7 @@ Der Schiedsrichter (Gemini Flash mit Websuche) ermittelt die Endstände. Er war 
 | 5 | Bequemes „läuft noch" bei längst beendetem Spiel | 27.7. | **Zeitrechnung im Code** — nach 2,5 h wird „läuft noch" nicht mehr geglaubt | v19.5 |
 | 6 | Halbzeitstand statt Endstand gemeldet | 27.7. | **Phasen-Pflicht** + Vertauschungs-Kontrolle im Code | v19.6 |
 
-**Die wichtigste Erkenntnis daraus (25.7.):** Alle drei KIs urteilten unabhängig, Ergebnisse unterklassiger Spiele seien automatisch nicht beschaffbar. **Das war falsch.** Ondo drückte den Prüf-Knopf mehrfach: 2 von 7, dann 4 von 7, schließlich 7 von 7. Es war kein Verfügbarkeits-, sondern ein Zuverlässigkeitsproblem. Daraus entstand die neue Blueprint-Regel oben.
+**Die wichtigste Erkenntnis daraus (25.7.):** Alle drei KIs urteilten unabhängig, Ergebnisse unterklassiger Spiele seien automatisch nicht beschaffbar. **Das war falsch.** Ondo drückte den Prüf-Knopf mehrfach: 2 von 7, dann 4 von 7, schließlich 7 von 7. Es war kein Verfügbarkeits-, sondern ein Zuverlässigkeitsproblem. Daraus entstand die Arbeitsregel D.
 
 **Was weiterhin gilt:** Ondos manuelle Bestätigung hat **jeden** Fehler gefangen, den die Automatik durchgelassen hat. ChatGPT und Gemini waren sich am 27.7. einig, dass damit das Ende der sinnvollen Automatik-Reparaturen näherrückt — weitere Absicherungen nur noch, wenn dieselbe Fehlerart mehrfach unabhängig auftritt.
 
@@ -118,16 +135,17 @@ Beide Gehirne bekommen dieselbe Liste, ohne Websuche (bewusst — misst Urteil s
 
 ## Wie es weitergehen soll
 
-**1. Am Wochenende: erster Lernschritt** (150 bewertete Aussagen pro Gehirn erreicht)
+**1. Am Wochenende (1./2. August): erster Lernschritt** (150 bewertete Aussagen pro Gehirn erreicht)
 Jedes Gehirn bekommt seine eigene Kalibrierung mitgeteilt, Ondo bestätigt die Lehre, dann gilt sie (Art. 9).
 **Warnung dazu:** Für Flash ist die Lehre klar. Für Sonnet wäre die naheliegende Lehre „leg dich öfter fest" — und die wäre **gefährlich**: Ein Modell zu mehr Entschlossenheit zu drängen, kann seine Ehrlichkeit zerstören. Empfehlung: im ersten Durchgang **nur Flash** korrigieren, dann am Unterschied sehen, ob die Lehre überhaupt wirkt.
 **Vorher nötig:** Kennzahl für Entschlossenheit einbauen.
 
-**2. Danach: das Such-Experiment.** Vier Wochen ohne Websuche sind dann um. Suche zuschalten, Kalibrierung vergleichen. Beantwortet erstmals, ob Websuche Vorhersagen überhaupt verbessert.
+**2. Danach: das Such-Experiment.** Suche zuschalten, Kalibrierung vergleichen. Beantwortet erstmals, ob Websuche Vorhersagen überhaupt verbessert.
+**⚠ Terminkorrektur (29.7.):** In der Fassung vom 28.7. stand hier „Vier Wochen ohne Websuche sind dann um". Das war falsch gerechnet — die Messung ohne Suche läuft erst seit dem 23. Juli. **Vier Wochen sind am 20. August um.** Vorschlag Claude: bei diesem Termin bleiben, ein kürzerer Zeitraum liefert zu wenig Vergleichsdaten. Entscheidung liegt bei Ondo.
 
-**3. Dann: Beförderung Beta→Stabil.** Vorher muss der Daten-Export in die stabile Version, sonst gehen alle Messdaten verloren. Kriterium (c) muss neu gefasst werden (ChatGPTs 100er-Stichprobe dauert Monate — Vorschlag: Beförderung nach Stabilität entscheiden, Messung läuft weiter).
+**3. Dann: Beförderung Beta→Stabil.** Vorher muss der Daten-Export in die stabile Version, sonst gehen alle Messdaten verloren (Safari und Homescreen-App haben getrennte Speicher — **nicht zu verwechseln mit der bereits gebauten Datensicherung**). Kriterium (c) muss neu gefasst werden (ChatGPTs 100er-Stichprobe dauert Monate — Vorschlag: Beförderung nach Stabilität entscheiden, Messung läuft weiter).
 
-**4. Erst dann: Quoten und Value zurück.** Über GitHub Actions (kostenloser Cron-Job holt Quoten, schreibt eine Datei ins Repo). **Offene Verfassungsfrage:** Der Actions-Runner ist streng genommen ein winziger Server, der Blueprint sagt „kein Server". Beide Prüfer halten die Ausnahme für vertretbar. **Offene Sachfrage (Gemini):** Deckt ein kostenloser Dienst Ondos Spiele überhaupt ab?
+**4. Erst dann: Quoten und Value zurück.** Über GitHub Actions (kostenloser Cron-Job holt Quoten, schreibt eine Datei ins Repo). **Offene Verfassungsfrage** (steht jetzt im Blueprint, Abschnitt 10): Der Actions-Runner ist streng genommen ein winziger Server, der Blueprint sagt „kein Server". Beide Prüfer halten die Ausnahme für vertretbar. **Offene Sachfrage (Gemini):** Deckt ein kostenloser Dienst Ondos Spiele überhaupt ab?
 
 **Die ehrliche Grenze:** Auch nach allen vier Schritten wissen wir nur, ob die Gehirne *ehrlich* schätzen — nicht, ob sie den Buchmacher schlagen. Ein perfekt kalibriertes Gehirn, das immer 50 % sagt, gewinnt kein Geld. Diese Frage beantwortet erst Schritt 4.
 
@@ -147,7 +165,7 @@ Jede Lehre braucht Ondos Bestätigung (Art. 9). Der Evidence Ledger wird seit v1
 
 Geplant sind Finanzen, Content, Organisation. Fast alles, was gebaut wird, ist domänenunabhängig: askBrain-Abstraktion, Vertrauensstufen statt Prozentzahlen, Quellen-Transparenz, Kalibrierung, Evidence Ledger.
 
-**ChatGPTs Leitbild (23.7., soll in Ondo-Core):** Ebene 1 Daten (Fakten, keine KI) · Ebene 2 Denken (die Gehirne, arbeiten nur mit Ebene-1-Daten) · Ebene 3 Bewertung (Log, Kalibrierung, Lernkette).
+**ChatGPTs Leitbild (23.7., soll in Ondo-Core — steht dort noch nicht):** Ebene 1 Daten (Fakten, keine KI) · Ebene 2 Denken (die Gehirne, arbeiten nur mit Ebene-1-Daten) · Ebene 3 Bewertung (Log, Kalibrierung, Lernkette).
 
 **Ehrlicher Hinweis:** Andere Module werden schwerer. Beim Fußball urteilt die Realität nach 90 Minuten unbestechlich. Bei Finanz- oder Organisationsentscheidungen kommt die Rückmeldung später und verrauschter. Wetten ist der Trainingsplatz.
 
@@ -155,7 +173,7 @@ Geplant sind Finanzen, Content, Organisation. Fast alles, was gebaut wird, ist d
 
 ## Arbeitsablauf für neue Chats
 
-Ondo schreibt „Ondo Control: [Anliegen]" und fügt Raw-Links ein (nur vom Besitzer eingefügte Links sind für Claude abrufbar):
+Ondo schreibt „Ondo Control: [Anliegen]" und fügt Raw-Links ein (nur vom Besitzer eingefügte Links sind für Claude abrufbar). **Immer mit angehängter Zahl gegen die Zwischenkopie**, Beispiel für heute: `?v=20260729`
 - Beta: `https://raw.githubusercontent.com/Ondo-Control/Ondo-Control/main/beta.html`
 - Stabil: `.../OndoControl.html`
 - Dieses Dokument: `.../PROJEKT-STATUS.md`
@@ -163,10 +181,11 @@ Ondo schreibt „Ondo Control: [Anliegen]" und fügt Raw-Links ein (nur vom Besi
 - Architektur: `.../Ondo-Core-Architektur.md`
 - Backlog: `.../Ondo-Control-Backlog.md`
 
-**Vor jeder Lieferung:** Syntax-Check (`node --check`), Sprachdatei-Abgleich (DE/FR/EN gleiche Schlüssel, aktuell 167), Trockentest der neuen Logik. Versionsnummer im Header hochzählen.
+**Vor jeder Lieferung:** Syntax-Check (`node --check`), Sprachdatei-Abgleich (DE/FR/EN gleiche Schlüssel, aktuell 167), Trockentest der neuen Logik. Versionsnummer im Header hochzählen. **Und die Dokumente (Arbeitsregel F).**
 
-**Chat-Übergabe:** Ondo exportiert den vollen Chat als PDF und lädt ihn im neuen Chat einmalig hoch. Das hat beim ersten Umzug einwandfrei funktioniert. Danach dieses Dokument aktualisieren, damit der Keller nicht wieder gebraucht wird.
+**Chat-Übergabe:** Ondo exportiert den vollen Chat als PDF und lädt ihn im neuen Chat einmalig hoch. Zweimal erfolgreich durchgeführt (16.7. und 29.7.). Danach dieses Dokument aktualisieren, damit der Keller nicht wieder gebraucht wird.
+**Ehrliche Einschränkung (29.7.):** Ein vollständiges Chat-Archiv füllt den Arbeitsspeicher eines neuen Chats erheblich. Das Archiv von Chat 1 (147 Seiten) konnte nur zur Hälfte gelesen werden. Der Rest (2.–6. Juli, Gründungsphase) ist im Blueprint-Protokoll abgedeckt und soll bei Gelegenheit in einem eigenen Chat als Archivdatei aufgearbeitet werden.
 
 ---
 
-*Erstellt von Claude am 28.7.2026. Alle Zahlen aus dem KI-Log der Beta v19.6. Keine Änderung an v17 seit dem 17. Juli.*
+*Aktualisiert von Claude am 29.7.2026. Messzahlen vom 28.7. abends aus dem KI-Log der Beta v19.6. Keine Änderung an v17 seit dem 17. Juli.*
