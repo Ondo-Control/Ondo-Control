@@ -78,6 +78,12 @@ Derselbe Fehler war beim Evidence Ledger schon einmal aufgetreten (17.7.) und wu
 
 ## 🔴 Prio 1 — als Nächstes dran
 
+**0. Modellwahl des zweiten Gehirns klären** · *Fund: 29.7., Claude aus den Google-Nutzungsdaten* · **Status: Idee, zur Prüfung bei ChatGPT und Gemini**
+Die Nutzungsdiagramme zeigen, dass fast der gesamte Verkehr über **Gemini 3.1 Flash Lite** läuft — die kleinste Stufe. Ursache: Die Modell-Abfrage sortiert stabile Versionen vor „latest"-Varianten, damit steht `gemini-3.1-flash-lite` vor `gemini-flash-latest`.
+Tragweite: Das Duell verglichen möglicherweise ein volles Modell mit der kleinsten Stufe — und derselbe Motor ist der Schiedsrichter, dem alle sechs dokumentierten Fehlerarten zuzurechnen sind.
+Ungeklärt: Ob der gespeicherte Modellname das bestätigt (Diagramme gelesen, App nicht geprüft). Ein Wechsel bricht die laufende Messreihe.
+→ *Vorschlag Claude: wechseln, aber erst nach dem Lernschritt — sauberer Schnitt statt Schnitt mitten in der Auswertung. Bericht vom 29.7. 07:46 an die Prüfer.*
+
 **1. Kennzahl „Entschlossenheit"** · *Idee: 27.7., Claude* · **Status: beschlossen**
 Wie oft legt sich ein Gehirn überhaupt fest? Ohne diese Zahl vergleichen wir Sonnets Vorsicht mit Flashs Mut und nennen es Qualität. Konkreter Anlass: Von Sonnets 84 Aussagen liegen 63 im Bereich 50–59 % — ein Gehirn, das fast immer „Münzwurf" sagt, ist automatisch gut kalibriert und sagt trotzdem wenig.
 → *Vorschlag: **vor** dem ersten Lernschritt bauen, sonst misst der Lernschritt das Falsche.*
@@ -132,6 +138,8 @@ Zwei Ergänzungen von Claude offen: Architekt und unabhängiger Prüfer sollten 
 
 | Beobachtung | Gefunden | Von wem | Stand |
 |---|---|---|---|
+| **Heim und Gast vertauscht** — Hull City–Rizespor als 1:2 gemeldet, real 2:1 für Hull. Datum, Wettbewerb, Quelle und Halbzeit-Pflicht meldeten alle „in Ordnung". Folgenlos, weil beide Gehirne Unentschieden getippt hatten | 29.7. | Claude (Abgleich mit Ondos Google-Screenshot) | siebte Fehlerart. Nach der Regel vom 27.7. **nichts bauen**, bis sie ein zweites Mal auftritt — Widerspruch der Prüfer erbeten |
+| **Zweistufige Spielliste (v19.6)** — erster echter Test steht aus. Die Vorhersagen vom 28.7. entstanden noch unter v19.5, die reine Testspiel-Liste ist daher **kein** Beleg gegen v19.6 | 29.7. | Claude | Lauf vom 29.7. abwarten |
 | **Einseitige Vorhersagen** — am 25.7. sagten beide Gehirne in allen zwölf Spielen „beide treffen" und „über 2,5". Dann sind diese Märkte keine Vorhersage mehr, sondern eine Konstante | 25.7. | Claude | am 26.7. wieder Vielfalt — Tagesausreißer, weiter beobachten |
 | **Sonnets Häufung im 50er-Bereich** — 63 von 84 Aussagen zwischen 50 und 59 % | 27.7. | Claude | führt zu Prio-1-Punkt 1 |
 | **Verwechslungsfalle: derselbe Verein zweimal am selben Tag** — Crystal Palace spielte am 28.7. gegen Famalicão und gegen Lens. Die Datumsprüfung hilft hier nicht | 28.7. | Claude | eines der beiden Spiele wurde nicht gefunden — beobachten |
