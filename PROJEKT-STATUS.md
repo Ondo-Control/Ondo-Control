@@ -75,6 +75,34 @@ Ohne diesen Zusatz kann eine **veraltete Zwischenkopie** zurückkommen. Das ist 
 
 ---
 
+## Stand 30. Juli, morgens — der entscheidende Befund
+
+**Der Schiedsrichter irrt auch bei bestens dokumentierten Spielen. Die Datenlage ist nicht die Ursache.**
+
+Am 30.7. fand der Schiedsrichter erstmals **13 von 13** Ergebnissen. Der Abgleich mit der amtlichen UEFA-Ergebnisseite ergab jedoch:
+
+| Spiel | UEFA | App |
+|---|---|---|
+| Crvena Zvezda – Larne | 5:0 | 5:0 ✅ |
+| Slovan Bratislava – Iberia Tbilisi | 1:1 | 1:1 ✅ |
+| Górnik Zabrze – Fenerbahçe | 1:1 | 1:1 ✅ |
+| Hapoel Beer-Sheva – Víkingur | 2:0 | 2:0 ✅ |
+| Craiova – Levski Sofia | 2:2 | 2:2 ✅ |
+| **Lech Poznań – Aarhus** | **1:4** | 3:4 ❌ |
+| **Kauno Žalgiris – Klaksvík** | **1:0** | 0:0 ❌ |
+
+**Zwei von sieben falsch, in der Champions-League-Qualifikation.** Damit ist die bisherige Annahme widerlegt, die Schiedsrichter-Fehler stammten aus Testspielen und schwach dokumentierten Wettbewerben. Sie stammen vom Werkzeug.
+
+Weitere Beobachtungen desselben Laufs:
+- Die beiden falschen Ergebnisse kamen von `terrikon.com` und `flashfussball.de`; die fünf richtigen von Sky Sports, Betexplorer und sportdaten.de. **Keine Antwort benutzte uefa.com** — die für UEFA-Wettbewerbe amtliche Quelle.
+- **Everton – Stoke City** lieferte in drei Läufen drei Mal wechselnd 1:0 / 0:1 / 1:0. Amtlich: Stoke gewann 1:0 zu Hause.
+- **Crystal Palace – Famalicão**: heute 0:1, gestern zweimal 0:0. Ungeklärt.
+- **Nichts wurde übernommen.** Der Lauf ist als PDF gesichert und dient als Vergleichsgrundlage „altes Modell" für den Test mit dem stärkeren Modell.
+
+**Zur Widerspruchsquote:** Von Sonnets sieben Vorhersagen am 29.7. widersprechen sich **fünf** (Ergebnis-Tipp gegen „beide treffen"), von Flashs sieben **keine einzige**. Bei Crvena Zvezda 5:0 kostete der Widerspruch Sonnet einen Punkt, bei Slovan 1:1 brachte er ihm einen ein. **Der Fehler verzerrt die Messung in beide Richtungen.**
+
+---
+
 ## Versionen
 
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — Ondos Homescreen-App, **seit dem 17. Juli unverändert**
@@ -201,7 +229,15 @@ Ondo schreibt „Ondo Control: [Anliegen]" und fügt Raw-Links ein (nur vom Besi
 
 **Vor jeder Lieferung:** Syntax-Check (`node --check`), Sprachdatei-Abgleich (DE/FR/EN gleiche Schlüssel, aktuell 167), Trockentest der neuen Logik. Versionsnummer im Header hochzählen. **Und die Dokumente (Arbeitsregel F).**
 
-**Chat-Übergabe:** Ondo exportiert den vollen Chat als PDF und lädt ihn im neuen Chat einmalig hoch. Zweimal erfolgreich durchgeführt (16.7. und 29.7.). Danach dieses Dokument aktualisieren, damit der Keller nicht wieder gebraucht wird.
+**Chat-Übergabe ist Claudes Pflicht, nicht Ondos** *(Regel G, 30.7.2026, von Ondo angeordnet)*
+Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp wird — ohne dass Ondo danach fragt. Sie besteht immer aus drei Teilen: aktualisierter PROJEKT-STATUS, aktualisierter Backlog, und einer **Übergabemappe** mit vier Abschnitten: (A) Nachricht zum Einfügen, (B) Kontrollfragen für den Nachfolger, (C) Antwortschlüssel nur für Ondo, (D) was zu tun ist, wenn Antworten falsch sind.
+**Begründung:** Eine Übergabenachricht allein beweist nichts. Sie beweist erst etwas, wenn der Nachfolger Fragen beantworten muss, die nur aus den Dokumenten zu beantworten sind. Eine Übergabe ohne Prüfschritt ist bei ChatGPT gescheitert, ohne dass es jemand bemerkte. Die Kontrollfragen werden bei jeder Übergabe **neu geschrieben** — alte Fragen prüfen alten Stand. Mindestens eine Frage muss eine Fangfrage sein, deren richtige Antwort „das weiß ich nicht" lautet (Art. 11 und 14).
+**Auslöser (Claude prüft das selbst, Ondo muss nicht daran denken):** eine vollständige Ausgabe von `beta.html` (74 KB) passt nicht mehr sicher in eine Antwort · ein Chat-Archiv oder mehrere große Dokumente wurden zusätzlich eingelesen · Antworten werden erkennbar kürzer oder ungenauer, als die Aufgabe verlangt.
+**Ablauf:** Teil A in den neuen Chat → dessen Bestätigung abwarten → Teil B (Kontrollfragen) einfügen → die Antworten in den **alten** Chat zurückkopieren → Abnahme. Vorher wird im neuen Chat nichts gebaut.
+**Die Übergabemappe gehört NICHT ins Repo** *(Ondo, 30.7.)*. Sie enthält den Antwortschlüssel; läge sie im öffentlichen Verzeichnis, könnte der neue Chat die Antworten ablesen statt sie herzuleiten, und die Prüfung wäre wertlos. Die Mappe bleibt auf Ondos Gerät, wird nach der Abnahme **gelöscht** und nicht archiviert. Ins Repo gehen nur dieses Dokument und der Backlog.
+**Abnahme (Ondo, 30.7.):** Die Antworten des neuen Chats werden in den **abgebenden** Chat zurückkopiert. Erst wenn dieser sie geprüft und die Abnahme ausgesprochen hat, gilt die Übergabe als vollzogen — vorher wird im neuen Chat nichts gebaut. Grund: Der abgebende Chat hat den Antwortschlüssel geschrieben und erkennt Antworten, die zwar richtig sind, aber selbstsicherer klingen, als die Lage hergibt.
+
+**Bisheriges Verfahren (nur noch Rückfallebene):** Ondo exportiert den vollen Chat als PDF und lädt ihn im neuen Chat einmalig hoch. Zweimal erfolgreich durchgeführt (16.7. und 29.7.). Danach dieses Dokument aktualisieren, damit der Keller nicht wieder gebraucht wird.
 **Ehrliche Einschränkung (29.7.):** Ein vollständiges Chat-Archiv füllt den Arbeitsspeicher eines neuen Chats erheblich. Das Archiv von Chat 1 (147 Seiten) konnte nur zur Hälfte gelesen werden. Der Rest (2.–6. Juli, Gründungsphase) ist im Blueprint-Protokoll abgedeckt und soll bei Gelegenheit in einem eigenen Chat als Archivdatei aufgearbeitet werden.
 
 ---

@@ -94,6 +94,11 @@ Wenn ein Gehirn 3:0 tippt und zugleich „beide treffen: Ja, 78 %" sagt, wird de
 **Ondos Begründung, die den Ausschlag gab:** Geminis Vorschlag (Prozentzahl umdrehen, damit es stimmig aussieht) repariert die Anzeige, nicht das Problem — und verbirgt, dass ein Gehirn unbedachte Tipps abgibt. „In der Wett-App hätten wir Geld verloren durch diesen Tipp, da greift kein Schiedsrichter ein. Die echte Probe findet in der realen Welt statt, und da gibt es reale Konsequenzen."
 → *Offen vor der Umsetzung: Claude liest die Codestelle, um zu klären, **wer** den Widerspruch verursacht — das Gehirn oder die App, die zwei getrennte Antworten auf eine Karte klebt. Eine Kennzahl, die dem Gehirn anlastet, was die App gebaut hat, wäre selbst ein Messfehler.*
 
+**0c. Amtliche Quellen bevorzugen** · *Idee: 30.7., Claude* · **Status: Idee**
+Beim UEFA-Abgleich am 30.7. benutzte keine einzige Schiedsrichter-Antwort `uefa.com`, obwohl das für UEFA-Wettbewerbe die amtliche Quelle ist. Die beiden falschen Ergebnisse stammten von `terrikon.com` und `flashfussball.de`, die richtigen von Sky Sports, Betexplorer und sportdaten.de.
+→ *Vorschlag: pro Wettbewerbsfamilie eine bevorzugte Quelle vorgeben (UEFA-Wettbewerbe → uefa.com). Die bestehende Quellenpflicht verlangt bisher nur, **dass** eine Quelle genannt wird, nicht **welche**.*
+→ *Vor dem Bauen prüfen: Erhöht eine Quellenvorgabe die Trefferquote, oder senkt sie nur die Fundrate? Frage an die Prüfer.*
+
 **1. Kennzahl „Entschlossenheit"** · *Idee: 27.7., Claude* · **Status: beschlossen**
 Wie oft legt sich ein Gehirn überhaupt fest? Ohne diese Zahl vergleichen wir Sonnets Vorsicht mit Flashs Mut und nennen es Qualität. Konkreter Anlass: Von Sonnets 84 Aussagen liegen 63 im Bereich 50–59 % — ein Gehirn, das fast immer „Münzwurf" sagt, ist automatisch gut kalibriert und sagt trotzdem wenig.
 → *Vorschlag: **vor** dem ersten Lernschritt bauen, sonst misst der Lernschritt das Falsche.*
