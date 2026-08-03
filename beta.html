@@ -103,7 +103,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:21px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · v19.6 BETA<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · v19.7 BETA<span id="saveNote" class="save-note"></span></div>
   <div id="view"></div>
 </div>
 
@@ -202,7 +202,11 @@ var I18N = {
   backupInfo:'Im Speicher: {a} Vorhersagen · {b} Wetten', backupLast:'Zuletzt gesichert', backupNever:'Noch nie gesichert',
   impConfirm:'Sicherung mit {a} Vorhersagen und {b} Wetten laden?\n\nAchtung: Die Daten auf diesem Gerät werden dabei ERSETZT.',
   impOk:'Sicherung geladen ✓', impFail:'Datei nicht lesbar oder keine gültige Ondo-Control-Sicherung.',
-  stRight:'RICHTIG', stWrong:'FALSCH', unknown:'unklar', bothBrains:'Beide Gehirne'
+  stRight:'RICHTIG', stWrong:'FALSCH', unknown:'unklar', bothBrains:'Beide Gehirne',
+  bttsWord:'Gehirn sagt', bttsMismatch:'≠ Anzeige oben',
+  decis:'Entschlossenheit', decisD:'Wie oft legt sich ein Gehirn ueberhaupt fest? Nur zusammen mit der Kalibrierung aussagekraeftig.',
+  decisAvg:'Ø Abstand von 50', decisOver:'Anteil ab 60 %',
+  refModel:'Schiedsrichter-Modell', refCalls:'Anfragen', refFallback:'⚠ Kein staerkeres Modell gefunden — auf Flash zurueckgefallen'
  },
  fr:{ nvHome:'Accueil', nvBets:'Paris', nvFin:'Finances', nvMore:'Plus',
   locked:'Ondo Control est verrouillé', unlock:'Déverrouiller', wrongPin:'PIN incorrect', pinPh:'PIN',
@@ -270,7 +274,11 @@ var I18N = {
   backupInfo:'En mémoire : {a} prédictions · {b} paris', backupLast:'Dernière sauvegarde', backupNever:'Jamais sauvegardé',
   impConfirm:'Charger la sauvegarde avec {a} prédictions et {b} paris ?\n\nAttention : les données de cet appareil seront REMPLACÉES.',
   impOk:'Sauvegarde chargée ✓', impFail:'Fichier illisible ou sauvegarde Ondo Control invalide.',
-  stRight:'CORRECT', stWrong:'FAUX', unknown:'incertain', bothBrains:'Les deux cerveaux'
+  stRight:'CORRECT', stWrong:'FAUX', unknown:'incertain', bothBrains:'Les deux cerveaux',
+  bttsWord:'Le cerveau dit', bttsMismatch:'≠ affichage ci-dessus',
+  decis:'Determination', decisD:'A quelle frequence un cerveau se prononce-t-il vraiment ? Significatif seulement avec le calibrage.',
+  decisAvg:'Ecart moyen a 50', decisOver:'Part a partir de 60 %',
+  refModel:'Modele de verification', refCalls:'Requetes', refFallback:'⚠ Aucun modele plus puissant trouve — retour a Flash'
  },
  en:{ nvHome:'Home', nvBets:'Bets', nvFin:'Finance', nvMore:'More',
   locked:'Ondo Control is locked', unlock:'Unlock', wrongPin:'Wrong PIN', pinPh:'PIN',
@@ -338,7 +346,11 @@ var I18N = {
   backupInfo:'In storage: {a} predictions · {b} bets', backupLast:'Last backup', backupNever:'Never backed up',
   impConfirm:'Load backup with {a} predictions and {b} bets?\n\nWarning: the data on this device will be REPLACED.',
   impOk:'Backup loaded ✓', impFail:'File unreadable or not a valid Ondo Control backup.',
-  stRight:'RIGHT', stWrong:'WRONG', unknown:'unclear', bothBrains:'Both brains'
+  stRight:'RIGHT', stWrong:'WRONG', unknown:'unclear', bothBrains:'Both brains',
+  bttsWord:'Brain says', bttsMismatch:'≠ display above',
+  decis:'Decisiveness', decisD:'How often does a brain actually commit? Meaningful only together with calibration.',
+  decisAvg:'Avg. distance from 50', decisOver:'Share from 60 %',
+  refModel:'Referee model', refCalls:'Requests', refFallback:'⚠ No stronger model found — fell back to Flash'
  }
 };
 function t(k){ var l=state.lang||'de'; return (I18N[l]&&I18N[l][k])||I18N.de[k]||k; }
@@ -541,31 +553,68 @@ function calcKalibrierung(quelle){
   return { zeilen:zeilen, gesamt:punkte.length, abw: n? Math.round(summe/n):null };
 }
 
+/* Entschlossenheit (v19.7 Punkt 1): Wie oft legt sich ein Gehirn ueberhaupt fest?
+   Ohne diese Zahl wird Vorsicht mit Koennen verwechselt. Wird aus vorhandenen Daten
+   gerechnet, kostet keinen Aufruf und wird den Gehirnen NICHT mitgeteilt. */
+function calcEntschlossenheit(quelle){
+  var ps=[];
+  (state.kiProtokoll||[]).forEach(function(e){
+    if(e.aera!=='v19') return;
+    if((e.herkunft||'sonnet')!==quelle) return;
+    (e.maerkte||[]).forEach(function(m){
+      if(m.status==='richtig'||m.status==='falsch'){
+        var p=Number(m.p); if(isNaN(p)) p=50;
+        ps.push(Math.max(1,Math.min(99,p)));
+      }
+    });
+  });
+  if(!ps.length) return null;
+  var abstand = ps.reduce(function(s,p){ return s+Math.abs(p-50); },0)/ps.length;
+  var ueber = ps.filter(function(p){ return p>=60; }).length;
+  return { n:ps.length, abstand:Math.round(abstand*10)/10, ueber:Math.round(ueber/ps.length*100), ueberN:ueber };
+}
+
 /* ================= BRAIN-ADAPTER (Ondo Core Architektur Punkt 0) ================= */
 var GEMINI_MODELS = ['gemini-flash-latest'];
-function gLadeModelle(){
+/* v19.7 Punkt 0a: Der Schiedsrichter ist ein Messwerkzeug, kein Duell-Teilnehmer.
+   Er darf ein staerkeres Modell benutzen als die Vorhersage. Zweite, getrennte Liste —
+   Modellnamen werden weiterhin beim Konto erfragt, nie fest eingetragen (Lehre 10.7.). */
+var GEMINI_PRO_MODELS = ['gemini-pro-latest'];
+var pruefStark = { anfragen:0, modell:'', fallback:false };
+function gLadeModelle(stark){
   return fetch('https://generativelanguage.googleapis.com/v1beta/models?key='+encodeURIComponent(state.geminiKey))
     .then(function(r){ return r.json(); })
     .then(function(j){
       var liste=(j.models||[]).filter(function(m){
-        return (m.supportedGenerationMethods||[]).indexOf('generateContent')>=0 &&
-               /flash/i.test(m.name) &&
-               !/image|tts|live|audio|embedding|8b/i.test(m.name);
+        if((m.supportedGenerationMethods||[]).indexOf('generateContent')<0) return false;
+        if(/image|tts|live|audio|embedding|8b/i.test(m.name)) return false;
+        return stark ? (/pro/i.test(m.name) && !/flash/i.test(m.name)) : /flash/i.test(m.name);
       }).map(function(m){ return m.name.replace('models/',''); });
       var stabil = liste.filter(function(n){ return !/latest|preview|exp/i.test(n); });
       var rest   = liste.filter(function(n){ return  /latest|preview|exp/i.test(n); });
       var sortiert = stabil.concat(rest);
-      if(sortiert.length){ state.geminiModelListe = sortiert; save(); }
+      if(sortiert.length){
+        if(stark) state.geminiProListe = sortiert; else state.geminiModelListe = sortiert;
+        save();
+      }
       return sortiert;
     })
     .catch(function(){ return []; });
 }
 function geminiCall(opts, modellIndex){
-  var liste = (state.geminiModelListe && state.geminiModelListe.length) ? state.geminiModelListe : GEMINI_MODELS;
-  if(modellIndex===undefined && !(state.geminiModelListe && state.geminiModelListe.length)){
-    return gLadeModelle().then(function(){ return geminiCall(opts, 0); });
+  var stark = !!opts.stark;
+  var eigene = stark ? state.geminiProListe : state.geminiModelListe;
+  var liste = (eigene && eigene.length) ? eigene : (stark ? GEMINI_PRO_MODELS : GEMINI_MODELS);
+  if(modellIndex===undefined && !(eigene && eigene.length)){
+    return gLadeModelle(stark).then(function(neu){
+      /* Kein staerkeres Modell fuer diesen Schluessel: lieber mit Flash pruefen als gar nicht */
+      if(stark && !neu.length){ opts.stark=false; pruefStark.fallback=true; return geminiCall(opts); }
+      return geminiCall(opts, 0);
+    });
   }
-  var modell = (modellIndex===undefined && state.geminiModel) ? state.geminiModel : liste[Math.min(modellIndex||0, liste.length-1)];
+  var gemerkt = stark ? state.geminiProModel : state.geminiModel;
+  var modell = (modellIndex===undefined && gemerkt) ? gemerkt : liste[Math.min(modellIndex||0, liste.length-1)];
+  if(stark){ pruefStark.anfragen++; pruefStark.modell = modell; }
   var parts = [];
   if(opts.imageB64) parts.push({ inlineData:{ mimeType:'image/jpeg', data:opts.imageB64 } });
   parts.push({ text: opts.prompt });
@@ -583,15 +632,16 @@ function geminiCall(opts, modellIndex){
       var ueberlastet = res._status===503 || res._status===429 || /high demand|overloaded|try again/i.test(msg);
       var idx = (modellIndex||0);
       if(modellProblem || ueberlastet){
-        if(modellProblem) state.geminiModel = null;
+        if(modellProblem){ if(stark) state.geminiProModel = null; else state.geminiModel = null; }
         if(idx < liste.length-1){
           return geminiCall(opts, idx+1);
         }
         if(!opts._frisch){
           opts._frisch = true;
-          state.geminiModelListe = null;
-          return gLadeModelle().then(function(neu){
+          if(stark) state.geminiProListe = null; else state.geminiModelListe = null;
+          return gLadeModelle(stark).then(function(neu){
             if(neu.length) return geminiCall(opts, 0);
+            if(stark){ opts.stark=false; opts._frisch=false; pruefStark.fallback=true; return geminiCall(opts); }
             return { error:{ message:'Gemini: kein nutzbares Modell fuer diesen Schluessel gefunden' }, _status:404 };
           });
         }
@@ -600,7 +650,8 @@ function geminiCall(opts, modellIndex){
     }
     try{
       var txt = (res.candidates[0].content.parts||[]).map(function(p){return p.text||'';}).join('\n');
-      if(!state.geminiModel){ state.geminiModel = modell; save(); }
+      if(stark){ if(!state.geminiProModel){ state.geminiProModel = modell; save(); } }
+      else if(!state.geminiModel){ state.geminiModel = modell; save(); }
       return { content:[{ type:'text', text:txt }], stop_reason:'end_turn', _status:res._status };
     }catch(e){
       return { error:{ message:'Gemini ('+modell+'): Antwort nicht lesbar' }, _status:500 };
@@ -725,7 +776,14 @@ function vorhersageGehirn(gehirn, liste){
     .filter(function(e){ return e.aera==='v19' && (e.herkunft||'sonnet')===gehirn; })
     .slice(0,6)
     .map(function(e){
-      return e.datum+': '+e.match+' -> '+e.heim+':'+e.gast+' ('+(e.begruendung||'-')+')';
+      /* v19.7 Punkt D: Frueher stand hier nur der getippte Endstand. Das Gehirn hat den
+         eigenen Tipp als geschehenes Ereignis behandelt. Jetzt steht in jeder Zeile
+         getrennt, was getippt wurde und was wirklich passiert ist. */
+      var hatErgebnis = (e.ergebnisHeim!==null && e.ergebnisHeim!==undefined &&
+                         e.ergebnisGast!==null && e.ergebnisGast!==undefined);
+      var wirklich = hatErgebnis ? ('wirklich '+e.ergebnisHeim+':'+e.ergebnisGast) : 'Ergebnis noch offen';
+      return e.datum+': '+e.match+' \u00b7 getippt '+e.heim+':'+e.gast+' \u00b7 '+wirklich+
+             (e.begruendung?(' ('+e.begruendung+')'):'');
     }).join(' | ');
 
   var spieleTxt = liste.map(function(s,i){
@@ -739,6 +797,7 @@ function vorhersageGehirn(gehirn, liste){
     '- p1x2: wie sicher bist du in Prozent, dass der Ausgang (Heimsieg / Auswaertssieg / Unentschieden) so kommt wie in deinem Ergebnis? (1-99)\n'+
     '- pTore: wie sicher in Prozent, dass die Torrichtung stimmt (ueber bzw. unter 2,5 Tore gesamt)? (1-99)\n'+
     '- pBtts: wie sicher in Prozent, dass "beide Teams treffen" so ausgeht wie in deinem Ergebnis? (1-99)\n'+
+    '- bttsWort: antworte hier NUR mit dem Wort "ja" oder "nein" auf die einfache Frage: Treffen in diesem Spiel beide Mannschaften mindestens ein Tor?\n'+
     '- begruendung: max 15 Woerter auf '+(LANGWORD[state.lang]||'Deutsch')+'\n\n'+
     'WICHTIG ZUR EHRLICHKEIT: Deine Prozentangaben werden gemessen. Sagst du oft 80 Prozent, muessen etwa 8 von 10 dieser Aussagen eintreffen. '+
     'Wenn du ein Team oder eine Liga kaum kennst, nenne Werte nahe 50 — das ist kein Makel, sondern korrekt. '+
@@ -746,7 +805,7 @@ function vorhersageGehirn(gehirn, liste){
     (fruehere?('Deine letzten eigenen Vorhersagen: '+fruehere+'\n\n'):'')+
     'SPIELE:\n'+spieleTxt+'\n\n'+
     'Letzte Nachricht: NUR kompaktes JSON:\n'+
-    '{"vorhersagen":[{"match":"Team A - Team B","heim":2,"gast":1,"p1x2":58,"pTore":62,"pBtts":55,"begruendung":"..."}]}';
+    '{"vorhersagen":[{"match":"Team A - Team B","heim":2,"gast":1,"p1x2":58,"pTore":62,"pBtts":55,"bttsWort":"ja","begruendung":"..."}]}';
 
   var call = (gehirn==='flash')
     ? geminiCall({ prompt: prompt })
@@ -789,6 +848,14 @@ function vorhersagen(btn){
         var h=Math.max(0,Math.round(Number(v.heim))), g=Math.max(0,Math.round(Number(v.gast)));
         if(isNaN(h)||isNaN(g)) return;
         function pz(x){ var n=Math.round(Number(x)); if(isNaN(n)) n=50; return Math.max(1,Math.min(99,n)); }
+        /* v19.7 Punkt A: Das Wort wird nur mitgeschrieben. Es aendert nichts am Rechnen,
+           Umdrehen oder Bewerten — es zeigt nur, welche Frage das Gehirn beantwortet hat. */
+        function jaNeinWort(x){
+          var w=String(x||'').trim().toLowerCase();
+          if(/^(ja|yes|oui|j|y)\b/.test(w)) return 'ja';
+          if(/^(nein|no|non|n)\b/.test(w)) return 'nein';
+          return '';
+        }
         var match=String(v.match||'');
         var eintrag={
           id:'v'+Date.now()+'_'+gehirn+'_'+idx,
@@ -799,6 +866,7 @@ function vorhersagen(btn){
           anpfiff:(paket.liste[idx]&&paket.liste[idx].anpfiff)||'',
           herkunft:gehirn,
           heim:h, gast:g,
+          bttsWort:jaNeinWort(v.bttsWort),
           begruendung:String(v.begruendung||''),
           maerkte:maerkteBauen(match,h,g,pz(v.p1x2),pz(v.pTore),pz(v.pBtts)),
           ergebnisHeim:null, ergebnisGast:null,
@@ -914,6 +982,7 @@ function ergebnissePruefen(btn){
   btn.disabled=true;
   if(st) st.textContent='';
   pruefListe=[]; pruefBilanz=null;
+  pruefStark = { anfragen:0, modell:'', fallback:false };
   var runde=0, MAXR=6;
 
   function tageAbstand(a,b){
@@ -1027,7 +1096,7 @@ function ergebnissePruefen(btn){
       '\n\nLetzte Nachricht: NUR kompaktes JSON:\n{"ergebnisse":[{"id":"S0","status":"fertig","halbzeit":"1:0","heim":2,"gast":1,"verlaengerung":"","datum":"24.07.2026","wettbewerb":"MLS","quelle":"https://..."}]}';
 
     var call = hatGemini()
-      ? geminiCall({ prompt: prompt, useSearch: true })
+      ? geminiCall({ prompt: prompt, useSearch: true, stark: true })
       : sonnetSuche(prompt, 5, 1500);
 
     call.then(function(res){
@@ -1058,6 +1127,9 @@ function ergebnissePruefen(btn){
       laeuft: posten.filter(function(p){ return p.zustand==='laeuft'; }).map(function(p){ return p.match; }),
       fehlt: posten.filter(function(p){ return p.zustand!=='fertig' && p.zustand!=='laeuft'; }).map(function(p){ return p.match; }),
       runden: Math.min(runde, MAXR),
+      starkAnfragen: pruefStark.anfragen,
+      starkModell: pruefStark.modell,
+      starkFallback: pruefStark.fallback,
       fehler: fehler||null
     };
     btn.disabled=false; btn.textContent=t('checkBtn');
@@ -1112,6 +1184,9 @@ function pruefBlock(){
       '<b>'+t('balance').replace('{a}',b.gef).replace('{b}',b.gesamt)+'</b>'+
       (b.laeuft.length?('<div class="muted" style="margin-top:4px">'+t('balLaeuft')+': '+b.laeuft.map(esc).join(' · ')+'</div>'):'')+
       (b.fehlt.length?('<div class="muted" style="margin-top:4px;color:var(--loss)">'+t('balFehlt')+': '+b.fehlt.map(esc).join(' · ')+'</div>'):'')+
+      (b.starkAnfragen?('<div class="muted" style="margin-top:4px">'+t('refModel')+': '+esc(b.starkModell)+
+        ' · '+t('refCalls')+': '+b.starkAnfragen+'</div>'):'')+
+      (b.starkFallback?('<div class="muted" style="margin-top:4px;color:var(--loss)">'+t('refFallback')+'</div>'):'')+
       (b.fehler?('<div class="muted" style="margin-top:4px;color:var(--loss)">'+esc(b.fehler)+'</div>'):'')+
     '</div>';
   }
@@ -1332,6 +1407,17 @@ function vorhersageKarte(e, mitKnoepfen){
       (m.status!=='offen'?(' <span class="muted">('+m.p+' %)</span>'):'')+'</div>'+
       '<div style="white-space:nowrap">'+chip+knoepfe+'</div></div>';
   }).join('');
+  /* v19.7 Punkt A: reine Anzeige. Der Hinweis "≠ Anzeige oben" vergleicht das Wort mit der
+     angezeigten Btts-Aussage; er wird nirgends gespeichert und geht in keine Kennzahl ein. */
+  var wortZeile = '';
+  if(e.bttsWort==='ja' || e.bttsWort==='nein'){
+    var btts = (e.maerkte||[]).filter(function(m){ return m.typ==='btts'; })[0];
+    var angezeigtJa = btts ? (btts.code==='btts_ja') : null;
+    var abweich = (angezeigtJa!==null) && (angezeigtJa !== (e.bttsWort==='ja'));
+    wortZeile = '<div class="mkt"><div class="muted">'+t('bttsWord')+': <b style="color:var(--text)">'+
+      e.bttsWort+'</b></div><div style="white-space:nowrap">'+
+      (abweich?('<span class="muted" style="color:var(--loss)">'+t('bttsMismatch')+'</span>'):'')+'</div></div>';
+  }
   var endstand = (e.ergebnisHeim!==null && e.ergebnisHeim!==undefined)
     ? '<div class="muted" style="margin-top:8px">'+t('finalScore')+': <b style="color:var(--text)">'+e.ergebnisHeim+':'+e.ergebnisGast+'</b></div>'
     : '';
@@ -1344,6 +1430,7 @@ function vorhersageKarte(e, mitKnoepfen){
       '<div class="muted" style="font-size:10px">'+t('resultTip')+'</div>'+
     '</div></div>'+
     maerkte+
+    wortZeile+
     (e.begruendung?'<div class="muted" style="margin-top:8px;border-top:1px solid var(--edge);padding-top:8px">'+esc(e.begruendung)+'</div>':'')+
     endstand+
     (mitKnoepfen?'<div style="margin-top:10px"><button class="btn-sm" style="float:right" onclick="logLoeschen(\''+e.id+'\')">'+t('del')+'</button><div style="clear:both"></div></div>':'')+
@@ -1457,11 +1544,24 @@ function kalibBlock(){
     }).join('');
     return kopf+'<table class="ktab"><tr><th>'+t('calibBand')+'</th><th>'+t('calibClaim')+'</th><th>'+t('calibReal')+'</th><th>'+t('calibN')+'</th></tr>'+rows+'</table>';
   }
+  function entschlossen(quelle, titel){
+    var d=calcEntschlossenheit(quelle);
+    if(!d) return '<div class="muted">'+titel+': '+t('calibNone')+'</div>';
+    return '<div style="margin-top:8px"><b>'+titel+'</b></div>'+
+      '<table class="ktab"><tr><td>'+t('decisAvg')+'</td><td>'+String(d.abstand).replace('.',',')+'</td></tr>'+
+      '<tr><td>'+t('decisOver')+'</td><td>'+d.ueber+' % ('+d.ueberN+'/'+d.n+')</td></tr></table>';
+  }
   return '<div class="card">'+
     '<div class="disp" style="font-size:20px;margin-bottom:6px">🎯 '+t('calib')+'</div>'+
     '<div class="muted">'+t('calibD')+'</div>'+
     tabelle(calcKalibrierung('sonnet'),'🧠 Sonnet')+
     tabelle(calcKalibrierung('flash'),'🌱 Flash')+
+  '</div>'+
+  '<div class="card">'+
+    '<div class="disp" style="font-size:20px;margin-bottom:6px">🎚 '+t('decis')+'</div>'+
+    '<div class="muted">'+t('decisD')+'</div>'+
+    entschlossen('sonnet','🧠 Sonnet')+
+    entschlossen('flash','🌱 Flash')+
   '</div>';
 }
 
@@ -1561,7 +1661,7 @@ function viewMore(){
     '<div style="font-size:13px;line-height:1.8">'+t('sec1')+'<br>'+t('sec2')+'<br>'+t('sec3')+'<br>'+t('sec4')+'<br>'+t('sec5')+'</div>'+
   '</div>'+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">📋 '+t('projT')+'</div>'+
-    '<pre>ONDO CONTROL v19.6 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
+    '<pre>ONDO CONTROL v19.7 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
   '</div>';
 }
 
