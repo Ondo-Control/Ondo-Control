@@ -103,7 +103,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:21px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · v19.7 BETA<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · v19.7.1 BETA<span id="saveNote" class="save-note"></span></div>
   <div id="view"></div>
 </div>
 
@@ -206,7 +206,7 @@ var I18N = {
   bttsWord:'Gehirn sagt', bttsMismatch:'≠ Anzeige oben',
   decis:'Entschlossenheit', decisD:'Wie oft legt sich ein Gehirn ueberhaupt fest? Nur zusammen mit der Kalibrierung aussagekraeftig.',
   decisAvg:'Ø Abstand von 50', decisOver:'Anteil ab 60 %',
-  refModel:'Schiedsrichter-Modell', refCalls:'Anfragen', refFallback:'⚠ Kein staerkeres Modell gefunden — auf Flash zurueckgefallen'
+  refModel:'Schiedsrichter-Modell', refCalls:'Anfragen', refFallback:'⚠ Kein staerkeres Modell nutzbar — auf Flash zurueckgefallen'
  },
  fr:{ nvHome:'Accueil', nvBets:'Paris', nvFin:'Finances', nvMore:'Plus',
   locked:'Ondo Control est verrouillé', unlock:'Déverrouiller', wrongPin:'PIN incorrect', pinPh:'PIN',
@@ -278,7 +278,7 @@ var I18N = {
   bttsWord:'Le cerveau dit', bttsMismatch:'≠ affichage ci-dessus',
   decis:'Determination', decisD:'A quelle frequence un cerveau se prononce-t-il vraiment ? Significatif seulement avec le calibrage.',
   decisAvg:'Ecart moyen a 50', decisOver:'Part a partir de 60 %',
-  refModel:'Modele de verification', refCalls:'Requetes', refFallback:'⚠ Aucun modele plus puissant trouve — retour a Flash'
+  refModel:'Modele de verification', refCalls:'Requetes', refFallback:'⚠ Aucun modele plus puissant utilisable — retour a Flash'
  },
  en:{ nvHome:'Home', nvBets:'Bets', nvFin:'Finance', nvMore:'More',
   locked:'Ondo Control is locked', unlock:'Unlock', wrongPin:'Wrong PIN', pinPh:'PIN',
@@ -350,7 +350,7 @@ var I18N = {
   bttsWord:'Brain says', bttsMismatch:'≠ display above',
   decis:'Decisiveness', decisD:'How often does a brain actually commit? Meaningful only together with calibration.',
   decisAvg:'Avg. distance from 50', decisOver:'Share from 60 %',
-  refModel:'Referee model', refCalls:'Requests', refFallback:'⚠ No stronger model found — fell back to Flash'
+  refModel:'Referee model', refCalls:'Requests', refFallback:'⚠ No stronger model usable — fell back to Flash'
  }
 };
 function t(k){ var l=state.lang||'de'; return (I18N[l]&&I18N[l][k])||I18N.de[k]||k; }
@@ -580,14 +580,16 @@ var GEMINI_MODELS = ['gemini-flash-latest'];
    Er darf ein staerkeres Modell benutzen als die Vorhersage. Zweite, getrennte Liste —
    Modellnamen werden weiterhin beim Konto erfragt, nie fest eingetragen (Lehre 10.7.). */
 var GEMINI_PRO_MODELS = ['gemini-pro-latest'];
-var pruefStark = { anfragen:0, modell:'', fallback:false };
+var pruefStark = { anfragen:0, modell:'', fallback:false, grund:'' };
 function gLadeModelle(stark){
   return fetch('https://generativelanguage.googleapis.com/v1beta/models?key='+encodeURIComponent(state.geminiKey))
     .then(function(r){ return r.json(); })
     .then(function(j){
       var liste=(j.models||[]).filter(function(m){
         if((m.supportedGenerationMethods||[]).indexOf('generateContent')<0) return false;
-        if(/image|tts|live|audio|embedding|8b/i.test(m.name)) return false;
+        /* v19.7.1: deep-research/interactions laufen ueber eine andere Schnittstelle
+           und koennen auf generateContent nicht antworten — sie kosten nur Anfragen. */
+        if(/image|tts|live|audio|embedding|8b|deep-research|interaction|computer-use|robotics/i.test(m.name)) return false;
         return stark ? (/pro/i.test(m.name) && !/flash/i.test(m.name)) : /flash/i.test(m.name);
       }).map(function(m){ return m.name.replace('models/',''); });
       var stabil = liste.filter(function(n){ return !/latest|preview|exp/i.test(n); });
@@ -631,17 +633,30 @@ function geminiCall(opts, modellIndex){
       var modellProblem = res._status===404 || /no longer available|not found|not supported/i.test(msg);
       var ueberlastet = res._status===503 || res._status===429 || /high demand|overloaded|try again/i.test(msg);
       var idx = (modellIndex||0);
+      /* v19.7.1: Beim starken Modell zaehlt JEDER Fehler als Modellproblem. Vorher wurden nur
+         vorhergesehene Meldungen erkannt ("not found", "not supported"); eine unbekannte wie
+         "This model only supports Interactions API" liess den ganzen Prueflauf abbrechen,
+         statt zum naechsten Modell oder auf Flash zu gehen. Eine Absicherung, die nur gegen
+         bekannte Stoerungen hilft, ist keine. */
+      if(stark) modellProblem = true;
       if(modellProblem || ueberlastet){
         if(modellProblem){ if(stark) state.geminiProModel = null; else state.geminiModel = null; }
         if(idx < liste.length-1){
           return geminiCall(opts, idx+1);
         }
+        if(stark){
+          /* Starke Liste ist durch — gleichgueltig, woran es lag: mit Flash pruefen ist besser
+             als gar nicht pruefen. */
+          opts.stark = false; opts._frisch = false;
+          pruefStark.fallback = true;
+          pruefStark.grund = msg;
+          return geminiCall(opts);
+        }
         if(!opts._frisch){
           opts._frisch = true;
-          if(stark) state.geminiProListe = null; else state.geminiModelListe = null;
-          return gLadeModelle(stark).then(function(neu){
+          state.geminiModelListe = null;
+          return gLadeModelle(false).then(function(neu){
             if(neu.length) return geminiCall(opts, 0);
-            if(stark){ opts.stark=false; opts._frisch=false; pruefStark.fallback=true; return geminiCall(opts); }
             return { error:{ message:'Gemini: kein nutzbares Modell fuer diesen Schluessel gefunden' }, _status:404 };
           });
         }
@@ -982,7 +997,7 @@ function ergebnissePruefen(btn){
   btn.disabled=true;
   if(st) st.textContent='';
   pruefListe=[]; pruefBilanz=null;
-  pruefStark = { anfragen:0, modell:'', fallback:false };
+  pruefStark = { anfragen:0, modell:'', fallback:false, grund:'' };
   var runde=0, MAXR=6;
 
   function tageAbstand(a,b){
@@ -1130,6 +1145,7 @@ function ergebnissePruefen(btn){
       starkAnfragen: pruefStark.anfragen,
       starkModell: pruefStark.modell,
       starkFallback: pruefStark.fallback,
+      starkGrund: pruefStark.grund,
       fehler: fehler||null
     };
     btn.disabled=false; btn.textContent=t('checkBtn');
@@ -1186,7 +1202,7 @@ function pruefBlock(){
       (b.fehlt.length?('<div class="muted" style="margin-top:4px;color:var(--loss)">'+t('balFehlt')+': '+b.fehlt.map(esc).join(' · ')+'</div>'):'')+
       (b.starkAnfragen?('<div class="muted" style="margin-top:4px">'+t('refModel')+': '+esc(b.starkModell)+
         ' · '+t('refCalls')+': '+b.starkAnfragen+'</div>'):'')+
-      (b.starkFallback?('<div class="muted" style="margin-top:4px;color:var(--loss)">'+t('refFallback')+'</div>'):'')+
+      (b.starkFallback?('<div class="muted" style="margin-top:4px;color:var(--loss)">'+t('refFallback')+(b.starkGrund?(' — '+esc(b.starkGrund)):'')+'</div>'):'')+
       (b.fehler?('<div class="muted" style="margin-top:4px;color:var(--loss)">'+esc(b.fehler)+'</div>'):'')+
     '</div>';
   }
@@ -1661,7 +1677,7 @@ function viewMore(){
     '<div style="font-size:13px;line-height:1.8">'+t('sec1')+'<br>'+t('sec2')+'<br>'+t('sec3')+'<br>'+t('sec4')+'<br>'+t('sec5')+'</div>'+
   '</div>'+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">📋 '+t('projT')+'</div>'+
-    '<pre>ONDO CONTROL v19.7 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
+    '<pre>ONDO CONTROL v19.7.1 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
   '</div>';
 }
 
