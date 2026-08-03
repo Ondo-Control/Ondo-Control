@@ -103,7 +103,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:21px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · v19.7.1 BETA<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · v19.7.2 BETA<span id="saveNote" class="save-note"></span></div>
   <div id="view"></div>
 </div>
 
@@ -580,6 +580,23 @@ var GEMINI_MODELS = ['gemini-flash-latest'];
    Er darf ein staerkeres Modell benutzen als die Vorhersage. Zweite, getrennte Liste —
    Modellnamen werden weiterhin beim Konto erfragt, nie fest eingetragen (Lehre 10.7.). */
 var GEMINI_PRO_MODELS = ['gemini-pro-latest'];
+/* v19.7.2: Der Filter stand nur im Ladevorgang. Die einmal gespeicherte Liste wurde nie wieder
+   geprueft — deshalb stand nach v19.7.1 immer noch deep-research in der starken Liste und
+   verbrauchte acht Anfragen. Der Filter gilt jetzt auch beim Benutzen, nicht nur beim Laden. */
+var MODELL_STAND = 'v19.7.2';
+function modellTaugt(name, stark){
+  if(/image|tts|live|audio|embedding|8b|deep-research|interaction|computer-use|robotics|omni/i.test(name)) return false;
+  return stark ? (/pro/i.test(name) && !/flash/i.test(name)) : /flash/i.test(name);
+}
+function gListe(stark){
+  var roh = (stark ? state.geminiProListe : state.geminiModelListe) || [];
+  var sauber = roh.filter(function(n){ return modellTaugt(n, stark); });
+  if(sauber.length !== roh.length){
+    if(stark) state.geminiProListe = sauber; else state.geminiModelListe = sauber;
+    save();
+  }
+  return sauber;
+}
 var pruefStark = { anfragen:0, modell:'', fallback:false, grund:'' };
 function gLadeModelle(stark){
   return fetch('https://generativelanguage.googleapis.com/v1beta/models?key='+encodeURIComponent(state.geminiKey))
@@ -587,16 +604,14 @@ function gLadeModelle(stark){
     .then(function(j){
       var liste=(j.models||[]).filter(function(m){
         if((m.supportedGenerationMethods||[]).indexOf('generateContent')<0) return false;
-        /* v19.7.1: deep-research/interactions laufen ueber eine andere Schnittstelle
-           und koennen auf generateContent nicht antworten — sie kosten nur Anfragen. */
-        if(/image|tts|live|audio|embedding|8b|deep-research|interaction|computer-use|robotics/i.test(m.name)) return false;
-        return stark ? (/pro/i.test(m.name) && !/flash/i.test(m.name)) : /flash/i.test(m.name);
+        return modellTaugt(m.name, stark);
       }).map(function(m){ return m.name.replace('models/',''); });
       var stabil = liste.filter(function(n){ return !/latest|preview|exp/i.test(n); });
       var rest   = liste.filter(function(n){ return  /latest|preview|exp/i.test(n); });
       var sortiert = stabil.concat(rest);
       if(sortiert.length){
         if(stark) state.geminiProListe = sortiert; else state.geminiModelListe = sortiert;
+        state.geminiListeStand = MODELL_STAND;
         save();
       }
       return sortiert;
@@ -605,9 +620,16 @@ function gLadeModelle(stark){
 }
 function geminiCall(opts, modellIndex){
   var stark = !!opts.stark;
-  var eigene = stark ? state.geminiProListe : state.geminiModelListe;
-  var liste = (eigene && eigene.length) ? eigene : (stark ? GEMINI_PRO_MODELS : GEMINI_MODELS);
-  if(modellIndex===undefined && !(eigene && eigene.length)){
+  /* Listen, die eine aeltere Fassung angelegt hat, sind nicht vertrauenswuerdig — neu holen. */
+  if(state.geminiListeStand !== MODELL_STAND){
+    state.geminiProListe = null; state.geminiModelListe = null;
+    state.geminiProModel = null; state.geminiModel = null;
+    state.geminiListeStand = MODELL_STAND;
+    save();
+  }
+  var eigene = gListe(stark);
+  var liste = eigene.length ? eigene : (stark ? GEMINI_PRO_MODELS : GEMINI_MODELS);
+  if(modellIndex===undefined && !eigene.length){
     return gLadeModelle(stark).then(function(neu){
       /* Kein staerkeres Modell fuer diesen Schluessel: lieber mit Flash pruefen als gar nicht */
       if(stark && !neu.length){ opts.stark=false; pruefStark.fallback=true; return geminiCall(opts); }
@@ -630,9 +652,14 @@ function geminiCall(opts, modellIndex){
   .then(function(res){
     if(res.error){
       var msg = res.error.message || String(res._status);
-      var modellProblem = res._status===404 || /no longer available|not found|not supported/i.test(msg);
-      var ueberlastet = res._status===503 || res._status===429 || /high demand|overloaded|try again/i.test(msg);
       var idx = (modellIndex||0);
+      /* v19.7.2: Frueher wurden nur bekannte Fehlermeldungen als Modellproblem erkannt. Eine
+         unbekannte — etwa "You exceeded your current quota, limit: 0" — beendete den ganzen
+         Lauf, obwohl weitere Modelle in der Liste standen. Jetzt gilt fuer BEIDE Listen:
+         jeder Fehler heisst "dieses Modell taugt hier nicht, nimm das naechste".
+         Eine Absicherung, die nur gegen vorhergesehene Stoerungen hilft, ist keine. */
+      var modellProblem = true;
+      var ueberlastet = res._status===503 || res._status===429 || /high demand|overloaded|try again/i.test(msg);
       /* v19.7.1: Beim starken Modell zaehlt JEDER Fehler als Modellproblem. Vorher wurden nur
          vorhergesehene Meldungen erkannt ("not found", "not supported"); eine unbekannte wie
          "This model only supports Interactions API" liess den ganzen Prueflauf abbrechen,
@@ -640,7 +667,8 @@ function geminiCall(opts, modellIndex){
          bekannte Stoerungen hilft, ist keine. */
       if(stark) modellProblem = true;
       if(modellProblem || ueberlastet){
-        if(modellProblem){ if(stark) state.geminiProModel = null; else state.geminiModel = null; }
+        if(stark) state.geminiProModel = null; else state.geminiModel = null;
+        save();
         if(idx < liste.length-1){
           return geminiCall(opts, idx+1);
         }
@@ -654,12 +682,13 @@ function geminiCall(opts, modellIndex){
         }
         if(!opts._frisch){
           opts._frisch = true;
-          state.geminiModelListe = null;
+          state.geminiModelListe = null; save();
           return gLadeModelle(false).then(function(neu){
             if(neu.length) return geminiCall(opts, 0);
-            return { error:{ message:'Gemini: kein nutzbares Modell fuer diesen Schluessel gefunden' }, _status:404 };
+            return { error:{ message:'Gemini: kein nutzbares Modell fuer diesen Schluessel gefunden — alle '+liste.length+' probiert, zuletzt: '+msg }, _status:404 };
           });
         }
+        return { error:{ message:'Gemini: alle '+liste.length+' Modelle erfolglos, zuletzt '+modell+': '+msg }, _status:res._status };
       }
       return { error:{ message:'Gemini ('+modell+'): '+msg }, _status:res._status };
     }
@@ -1677,7 +1706,7 @@ function viewMore(){
     '<div style="font-size:13px;line-height:1.8">'+t('sec1')+'<br>'+t('sec2')+'<br>'+t('sec3')+'<br>'+t('sec4')+'<br>'+t('sec5')+'</div>'+
   '</div>'+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">📋 '+t('projT')+'</div>'+
-    '<pre>ONDO CONTROL v19.7.1 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
+    '<pre>ONDO CONTROL v19.7.2 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
   '</div>';
 }
 
