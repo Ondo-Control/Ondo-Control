@@ -103,7 +103,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:21px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · v19.7.3 BETA<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · v19.7.4 BETA<span id="saveNote" class="save-note"></span></div>
   <div id="view"></div>
 </div>
 
@@ -204,6 +204,10 @@ var I18N = {
   impOk:'Sicherung geladen ✓', impFail:'Datei nicht lesbar oder keine gültige Ondo-Control-Sicherung.',
   stRight:'RICHTIG', stWrong:'FALSCH', unknown:'unklar', bothBrains:'Beide Gehirne',
   bttsWord:'Gehirn sagt', bttsMismatch:'≠ Anzeige oben',
+  mdlT:'Modellwahl (Google Gemini)', mdlD:'Getrennt einstellbar. Das Gehirn sollte waehrend der Messphase NICHT gewechselt werden — ein Korrekturfaktor gilt nur fuer das Modell, an dem er gemessen wurde. Der Schiedsrichter darf jederzeit gewechselt werden.',
+  mdlBrain:'Zweites Gehirn (Vorhersage)', mdlRef:'Schiedsrichter (Ergebnis-Pruefung)',
+  mdlAuto:'Automatisch (erstes nutzbares)', mdlReload:'🔄 Modelle vom Konto laden', mdlNone:'Noch keine Liste geladen — Knopf druecken',
+  mdlWarn:'⚠ Wechsel bricht die Messreihe', mdlCount:'Modelle verfuegbar',
   decis:'Entschlossenheit', decisD:'Wie oft legt sich ein Gehirn ueberhaupt fest? Nur zusammen mit der Kalibrierung aussagekraeftig.',
   decisAvg:'Ø Abstand von 50', decisOver:'Anteil ab 60 %',
   refModel:'Schiedsrichter-Modell', refCalls:'Anfragen', refFallback:'⚠ Kein staerkeres Modell nutzbar — auf Flash zurueckgefallen'
@@ -276,6 +280,10 @@ var I18N = {
   impOk:'Sauvegarde chargée ✓', impFail:'Fichier illisible ou sauvegarde Ondo Control invalide.',
   stRight:'CORRECT', stWrong:'FAUX', unknown:'incertain', bothBrains:'Les deux cerveaux',
   bttsWord:'Le cerveau dit', bttsMismatch:'≠ affichage ci-dessus',
+  mdlT:'Choix du modele (Google Gemini)', mdlD:'Reglable separement. Le cerveau ne doit PAS etre change pendant la phase de mesure — un facteur de correction ne vaut que pour le modele mesure. Le verificateur peut etre change a tout moment.',
+  mdlBrain:'Deuxieme cerveau (prevision)', mdlRef:'Verificateur (controle des resultats)',
+  mdlAuto:'Automatique (premier utilisable)', mdlReload:'🔄 Charger les modeles du compte', mdlNone:'Aucune liste chargee — appuyez sur le bouton',
+  mdlWarn:'⚠ Un changement rompt la serie de mesures', mdlCount:'modeles disponibles',
   decis:'Determination', decisD:'A quelle frequence un cerveau se prononce-t-il vraiment ? Significatif seulement avec le calibrage.',
   decisAvg:'Ecart moyen a 50', decisOver:'Part a partir de 60 %',
   refModel:'Modele de verification', refCalls:'Requetes', refFallback:'⚠ Aucun modele plus puissant utilisable — retour a Flash'
@@ -348,6 +356,10 @@ var I18N = {
   impOk:'Backup loaded ✓', impFail:'File unreadable or not a valid Ondo Control backup.',
   stRight:'RIGHT', stWrong:'WRONG', unknown:'unclear', bothBrains:'Both brains',
   bttsWord:'Brain says', bttsMismatch:'≠ display above',
+  mdlT:'Model choice (Google Gemini)', mdlD:'Set separately. The brain should NOT be changed during the measurement phase — a correction factor only holds for the model it was measured on. The referee may be changed at any time.',
+  mdlBrain:'Second brain (prediction)', mdlRef:'Referee (result check)',
+  mdlAuto:'Automatic (first usable)', mdlReload:'🔄 Load models from account', mdlNone:'No list loaded yet — press the button',
+  mdlWarn:'⚠ Changing breaks the measurement series', mdlCount:'models available',
   decis:'Decisiveness', decisD:'How often does a brain actually commit? Meaningful only together with calibration.',
   decisAvg:'Avg. distance from 50', decisOver:'Share from 60 %',
   refModel:'Referee model', refCalls:'Requests', refFallback:'⚠ No stronger model usable — fell back to Flash'
@@ -583,13 +595,21 @@ var GEMINI_PRO_MODELS = ['gemini-pro-latest'];
 /* v19.7.2: Der Filter stand nur im Ladevorgang. Die einmal gespeicherte Liste wurde nie wieder
    geprueft — deshalb stand nach v19.7.1 immer noch deep-research in der starken Liste und
    verbrauchte acht Anfragen. Der Filter gilt jetzt auch beim Benutzen, nicht nur beim Laden. */
-var MODELL_STAND = 'v19.7.3';
+var MODELL_STAND = 'v19.7.4';
 function modellTaugt(name, stark){
   var kurz = String(name).replace('models/','');
   /* Nur echte Gemini-Textmodelle. lyria ist ein Musikmodell und kam ueber das Wort "pro" herein. */
   if(!/^gemini-/i.test(kurz)) return false;
   if(/image|tts|live|audio|embedding|8b|deep-research|interaction|computer-use|robotics|omni|lyria|veo|imagen/i.test(kurz)) return false;
   return stark ? (/pro/i.test(kurz) && !/flash/i.test(kurz)) : /flash/i.test(kurz);
+}
+/* v19.7.4: Ondos Vorschlag — Gehirn und Schiedsrichter getrennt einstellbar, statt still das
+   erste funktionierende Modell zu nehmen und es nirgends anzuzeigen. Neue Modelle erscheinen
+   dadurch von selbst in der Auswahl; kein fester Name im Code (Lehre 10.7. bleibt gewahrt). */
+function gWahl(rolle){
+  var w = (rolle==='ref') ? state.gModellRef : state.gModellGehirn;
+  if(!w) return '';
+  return modellTaugt(w,false) ? w : '';
 }
 function gListe(stark){
   var roh = (stark ? state.geminiProListe : state.geminiModelListe) || [];
@@ -609,9 +629,18 @@ function gLadeModelle(stark){
         if((m.supportedGenerationMethods||[]).indexOf('generateContent')<0) return false;
         return modellTaugt(m.name, stark);
       }).map(function(m){ return m.name.replace('models/',''); });
-      var stabil = liste.filter(function(n){ return !/latest|preview|exp/i.test(n); });
-      var rest   = liste.filter(function(n){ return  /latest|preview|exp/i.test(n); });
-      var sortiert = stabil.concat(rest);
+      /* v19.7.4: Frueher standen "stabile" Namen vor "latest". Stabil hiess in Wirklichkeit ALT —
+         so landete die App auf gemini-2.0-flash-lite-001, das Google abgeschaltet hat, und im Juli
+         dauerhaft auf einem Lite-Modell. Jetzt: neuere Versionsnummer zuerst, latest ganz vorn. */
+      function rang(n){
+        if(/latest/i.test(n)) return 999;
+        var m = n.match(/gemini-(\d+(?:\.\d+)?)/i);
+        var v = m ? parseFloat(m[1]) : 0;
+        if(/lite/i.test(n)) v -= 0.05;
+        if(/preview|exp/i.test(n)) v -= 0.01;
+        return v;
+      }
+      var sortiert = liste.slice().sort(function(a,b){ return rang(b)-rang(a); });
       if(sortiert.length){
         if(stark) state.geminiProListe = sortiert; else state.geminiModelListe = sortiert;
         state.geminiListeStand = MODELL_STAND;
@@ -639,7 +668,8 @@ function geminiCall(opts, modellIndex){
       return geminiCall(opts, 0);
     });
   }
-  var gemerkt = stark ? state.geminiProModel : state.geminiModel;
+  var gewaehlt = gWahl(opts.rolle);
+  var gemerkt = gewaehlt || (stark ? state.geminiProModel : state.geminiModel);
   var modell = (modellIndex===undefined && gemerkt) ? gemerkt : liste[Math.min(modellIndex||0, liste.length-1)];
   if(stark){ pruefStark.anfragen++; pruefStark.modell = modell; }
   var parts = [];
@@ -790,7 +820,7 @@ function stufeHolen(stufe){
     'Findest du in diesem Bereich heute gar nichts, antworte mit einer leeren Liste.\n\n'+
     'Letzte Nachricht: NUR kompaktes JSON:\n{"spiele":[{"match":"Team A - Team B","wettbewerb":"...","anpfiff":"20:30"}]}';
   var call = hatGemini()
-    ? geminiCall({ prompt: prompt, useSearch: true })
+    ? geminiCall({ prompt: prompt, useSearch: true, rolle:'gehirn' })
     : sonnetSuche(prompt, 5, 1500);
   return call.then(function(res){
     if(res.error) throw new Error(res.error.message||('HTTP '+res._status));
@@ -864,7 +894,7 @@ function vorhersageGehirn(gehirn, liste){
     '{"vorhersagen":[{"match":"Team A - Team B","heim":2,"gast":1,"p1x2":58,"pTore":62,"pBtts":55,"bttsWort":"ja","begruendung":"..."}]}';
 
   var call = (gehirn==='flash')
-    ? geminiCall({ prompt: prompt })
+    ? geminiCall({ prompt: prompt, rolle:'gehirn' })
     : apiCall({ model:'claude-sonnet-4-6', max_tokens:2500, messages:[{role:'user',content:prompt}] });
 
   return call.then(function(res){
@@ -923,6 +953,7 @@ function vorhersagen(btn){
           herkunft:gehirn,
           heim:h, gast:g,
           bttsWort:jaNeinWort(v.bttsWort),
+          modell:(gehirn==='flash' ? (state.geminiModel||'') : 'claude-sonnet-4-6'),
           begruendung:String(v.begruendung||''),
           maerkte:maerkteBauen(match,h,g,pz(v.p1x2),pz(v.pTore),pz(v.pBtts)),
           ergebnisHeim:null, ergebnisGast:null,
@@ -1152,7 +1183,7 @@ function ergebnissePruefen(btn){
       '\n\nLetzte Nachricht: NUR kompaktes JSON:\n{"ergebnisse":[{"id":"S0","status":"fertig","halbzeit":"1:0","heim":2,"gast":1,"verlaengerung":"","datum":"24.07.2026","wettbewerb":"MLS","quelle":"https://..."}]}';
 
     var call = hatGemini()
-      ? geminiCall({ prompt: prompt, useSearch: true })   /* 0a zurueckgenommen 3.8., siehe Backlog */
+      ? geminiCall({ prompt: prompt, useSearch: true, rolle:'ref' })   /* 0a zurueckgenommen 3.8., siehe Backlog */
       : sonnetSuche(prompt, 5, 1500);
 
     call.then(function(res){
@@ -1669,6 +1700,26 @@ function viewFinance(c){
 }
 
 /* ================= MEHR / EINSTELLUNGEN ================= */
+function modellFeld(rolle){
+  var liste = (state.geminiModelListe||[]).filter(function(n){ return modellTaugt(n,false); });
+  var wert  = (rolle==='ref') ? (state.gModellRef||'') : (state.gModellGehirn||'');
+  var opts  = '<option value="">'+t('mdlAuto')+'</option>';
+  liste.forEach(function(n){
+    opts += '<option value="'+esc(n)+'"'+(n===wert?' selected':'')+'>'+esc(n)+'</option>';
+  });
+  /* Ein gewaehltes Modell, das nicht mehr in der Liste steht, bleibt sichtbar statt still zu verschwinden */
+  if(wert && liste.indexOf(wert)<0) opts += '<option value="'+esc(wert)+'" selected>'+esc(wert)+' (?)</option>';
+  return '<label style="margin-top:10px;display:block">'+t(rolle==='ref'?'mdlRef':'mdlBrain')+'</label>'+
+    '<select onchange="modellWahl(\''+rolle+'\',this.value)">'+opts+'</select>'+
+    (rolle==='gehirn' ? '<div class="muted" style="color:var(--loss);margin-top:4px">'+t('mdlWarn')+'</div>' : '');
+}
+function modellWahl(rolle, wert){
+  if(rolle==='ref') state.gModellRef = wert || null; else state.gModellGehirn = wert || null;
+  save(); render();
+}
+function modelleLaden(){
+  gLadeModelle(false).then(function(){ render(); });
+}
 function viewMore(){
   var opts=['de','fr','en'].map(function(l){
     return '<option value="'+l+'"'+(state.lang===l?' selected':'')+'>'+LANGNAME[l]+'</option>';
@@ -1696,6 +1747,17 @@ function viewMore(){
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">⚔️ '+t('duellT')+'</div>'+
     '<div class="muted">'+t('duellD')+'</div>'+
   '</div>'+
+  '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">🎛 '+t('mdlT')+'</div>'+
+    '<div class="muted" style="margin-bottom:12px">'+t('mdlD')+'</div>'+
+    modellFeld('gehirn')+
+    modellFeld('ref')+
+    '<button class="ghost" style="margin-top:10px" onclick="modelleLaden()">'+t('mdlReload')+'</button>'+
+    '<div class="muted" style="margin-top:8px">'+
+      ((state.geminiModelListe&&state.geminiModelListe.length)
+        ? (state.geminiModelListe.length+' '+t('mdlCount'))
+        : t('mdlNone'))+
+    '</div>'+
+  '</div>'+
   '<div class="card" style="border-color:rgba(245,217,10,.35)">'+
     '<div class="disp" style="font-size:20px;margin-bottom:6px">'+t('backupT')+'</div>'+
     '<div class="muted" style="margin-bottom:12px">'+t('backupD')+'</div>'+
@@ -1718,7 +1780,7 @@ function viewMore(){
     '<div style="font-size:13px;line-height:1.8">'+t('sec1')+'<br>'+t('sec2')+'<br>'+t('sec3')+'<br>'+t('sec4')+'<br>'+t('sec5')+'</div>'+
   '</div>'+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">📋 '+t('projT')+'</div>'+
-    '<pre>ONDO CONTROL v19.7.3 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
+    '<pre>ONDO CONTROL v19.7.4 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
   '</div>';
 }
 
