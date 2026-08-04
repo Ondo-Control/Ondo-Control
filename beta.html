@@ -103,7 +103,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:21px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · v19.7.2 BETA<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · v19.7.3 BETA<span id="saveNote" class="save-note"></span></div>
   <div id="view"></div>
 </div>
 
@@ -583,10 +583,13 @@ var GEMINI_PRO_MODELS = ['gemini-pro-latest'];
 /* v19.7.2: Der Filter stand nur im Ladevorgang. Die einmal gespeicherte Liste wurde nie wieder
    geprueft — deshalb stand nach v19.7.1 immer noch deep-research in der starken Liste und
    verbrauchte acht Anfragen. Der Filter gilt jetzt auch beim Benutzen, nicht nur beim Laden. */
-var MODELL_STAND = 'v19.7.2';
+var MODELL_STAND = 'v19.7.3';
 function modellTaugt(name, stark){
-  if(/image|tts|live|audio|embedding|8b|deep-research|interaction|computer-use|robotics|omni/i.test(name)) return false;
-  return stark ? (/pro/i.test(name) && !/flash/i.test(name)) : /flash/i.test(name);
+  var kurz = String(name).replace('models/','');
+  /* Nur echte Gemini-Textmodelle. lyria ist ein Musikmodell und kam ueber das Wort "pro" herein. */
+  if(!/^gemini-/i.test(kurz)) return false;
+  if(/image|tts|live|audio|embedding|8b|deep-research|interaction|computer-use|robotics|omni|lyria|veo|imagen/i.test(kurz)) return false;
+  return stark ? (/pro/i.test(kurz) && !/flash/i.test(kurz)) : /flash/i.test(kurz);
 }
 function gListe(stark){
   var roh = (stark ? state.geminiProListe : state.geminiModelListe) || [];
@@ -658,8 +661,17 @@ function geminiCall(opts, modellIndex){
          Lauf, obwohl weitere Modelle in der Liste standen. Jetzt gilt fuer BEIDE Listen:
          jeder Fehler heisst "dieses Modell taugt hier nicht, nimm das naechste".
          Eine Absicherung, die nur gegen vorhergesehene Stoerungen hilft, ist keine. */
+      /* v19.7.3: Ein erschoepftes Kontingent ist KEIN Modellproblem. In v19.7.2 hat genau ein
+         Kontingentfehler die App durch alle 14 Modelle gejagt und dabei 14 weitere Anfragen
+         verbraucht — die Reparatur hat den Schaden vergroessert. Jetzt: sofort anhalten. */
+      var kontingent = /exceeded your current quota|quota exceeded|resource_exhausted|limit: 0/i.test(msg);
+      if(kontingent){
+        return { error:{ message:'Gemini-Kontingent erschoepft ('+modell+'). Es wurde nichts geprueft. Spaeter erneut versuchen — die Messdaten sind unberuehrt.' }, _status:429, _kontingent:true };
+      }
       var modellProblem = true;
-      var ueberlastet = res._status===503 || res._status===429 || /high demand|overloaded|try again/i.test(msg);
+      var ueberlastet = res._status===503 || /high demand|overloaded|try again/i.test(msg);
+      /* Hoechstens vier Modelle je Lauf durchprobieren, damit ein Fehler nie eine ganze Liste kostet. */
+      if(idx >= 3) return { error:{ message:'Gemini: vier Modelle erfolglos, zuletzt '+modell+': '+msg }, _status:res._status };
       /* v19.7.1: Beim starken Modell zaehlt JEDER Fehler als Modellproblem. Vorher wurden nur
          vorhergesehene Meldungen erkannt ("not found", "not supported"); eine unbekannte wie
          "This model only supports Interactions API" liess den ganzen Prueflauf abbrechen,
@@ -1140,7 +1152,7 @@ function ergebnissePruefen(btn){
       '\n\nLetzte Nachricht: NUR kompaktes JSON:\n{"ergebnisse":[{"id":"S0","status":"fertig","halbzeit":"1:0","heim":2,"gast":1,"verlaengerung":"","datum":"24.07.2026","wettbewerb":"MLS","quelle":"https://..."}]}';
 
     var call = hatGemini()
-      ? geminiCall({ prompt: prompt, useSearch: true, stark: true })
+      ? geminiCall({ prompt: prompt, useSearch: true })   /* 0a zurueckgenommen 3.8., siehe Backlog */
       : sonnetSuche(prompt, 5, 1500);
 
     call.then(function(res){
@@ -1706,7 +1718,7 @@ function viewMore(){
     '<div style="font-size:13px;line-height:1.8">'+t('sec1')+'<br>'+t('sec2')+'<br>'+t('sec3')+'<br>'+t('sec4')+'<br>'+t('sec5')+'</div>'+
   '</div>'+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">📋 '+t('projT')+'</div>'+
-    '<pre>ONDO CONTROL v19.7.2 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
+    '<pre>ONDO CONTROL v19.7.3 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
   '</div>';
 }
 
