@@ -103,7 +103,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:21px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · v19.7.4 BETA<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · v19.7.5 BETA<span id="saveNote" class="save-note"></span></div>
   <div id="view"></div>
 </div>
 
@@ -197,7 +197,7 @@ var I18N = {
   logD:'Jede KI-Vorhersage wird hier bewertet. Aus einem Ergebnis-Tipp leitet die App drei Aussagen ab.',
   gKeyT:'🌱 Zweites Gehirn (Google Gemini)', gKeyD:'Schlüssel von aistudio.google.com — bleibt NUR auf diesem Gerät. Übernimmt Ergebnis-Prüfen & Foto-Lesen fast gratis.', gOn:'✅ Gemini-Schlüssel gespeichert', gOff:'❌ Kein Gemini-Schlüssel',
   duellT:'Duell-Modus', duellD:'Beide Gehirne bekommen dieselbe Spielliste und sagen dieselben Spiele vorher. Ohne Gemini-Schlüssel läuft nur Sonnet.',
-  backupT:'💾 Datensicherung', backupD:'Alle Messdaten liegen sonst NUR im Speicher dieses Browsers. Wird er geleert, sind sie unwiederbringlich weg. Regelmäßig sichern.',
+  backupT:'💾 Datensicherung', backupD:'Alle Messdaten liegen sonst NUR im Speicher dieses Browsers. ACHTUNG: Auch das Löschen des Browserverlaufs löscht sie mit — Safari entfernt dabei den Websitespeicher. Regelmäßig sichern.',
   backupBtn:'💾 Daten sichern', restoreBtn:'📂 Sicherung laden',
   backupInfo:'Im Speicher: {a} Vorhersagen · {b} Wetten', backupLast:'Zuletzt gesichert', backupNever:'Noch nie gesichert',
   impConfirm:'Sicherung mit {a} Vorhersagen und {b} Wetten laden?\n\nAchtung: Die Daten auf diesem Gerät werden dabei ERSETZT.',
@@ -210,7 +210,10 @@ var I18N = {
   mdlWarn:'⚠ Wechsel bricht die Messreihe', mdlCount:'Modelle verfuegbar',
   decis:'Entschlossenheit', decisD:'Wie oft legt sich ein Gehirn ueberhaupt fest? Nur zusammen mit der Kalibrierung aussagekraeftig.',
   decisAvg:'Ø Abstand von 50', decisOver:'Anteil ab 60 %',
-  refModel:'Schiedsrichter-Modell', refCalls:'Anfragen', refFallback:'⚠ Kein staerkeres Modell nutzbar — auf Flash zurueckgefallen'
+  refModel:'Schiedsrichter-Modell', refCalls:'Anfragen', refFallback:'⚠ Kein staerkeres Modell nutzbar — auf Flash zurueckgefallen',
+  logExpT:'📄 Log als Text', logExpD:'Gibt die Vorhersagen eines Zeitraums als reinen Text aus — zum Kopieren in einen Chat. Ersetzt Bildschirmfotos: kostet einen Bruchteil und ist maschinell auswertbar.',
+  logExpFrom:'von', logExpTo:'bis', logExpBtn:'📄 Text erzeugen', logExpCopy:'📋 Kopieren',
+  logExpHint:'Markieren und kopieren, oder den Kopieren-Knopf benutzen.', logExpEmpty:'Keine Vorhersagen in diesem Zeitraum.'
  },
  fr:{ nvHome:'Accueil', nvBets:'Paris', nvFin:'Finances', nvMore:'Plus',
   locked:'Ondo Control est verrouillé', unlock:'Déverrouiller', wrongPin:'PIN incorrect', pinPh:'PIN',
@@ -273,7 +276,7 @@ var I18N = {
   logD:'Chaque prédiction IA est évaluée ici. À partir d’un score prédit, l’app déduit trois affirmations.',
   gKeyT:'🌱 Second cerveau (Google Gemini)', gKeyD:'Clé de aistudio.google.com — reste UNIQUEMENT sur cet appareil. Prend en charge vérification & lecture photo presque gratuitement.', gOn:'✅ Clé Gemini enregistrée', gOff:'❌ Pas de clé Gemini',
   duellT:'Mode duel', duellD:'Les deux cerveaux reçoivent la même liste de matchs. Sans clé Gemini, seul Sonnet fonctionne.',
-  backupT:'💾 Sauvegarde des données', backupD:'Sinon toutes les données de mesure vivent UNIQUEMENT dans la mémoire de ce navigateur. S’il est vidé, elles sont perdues. Sauvegarde régulièrement.',
+  backupT:'💾 Sauvegarde des données', backupD:'Sinon toutes les données de mesure vivent UNIQUEMENT dans la mémoire de ce navigateur. ATTENTION : effacer l’historique les supprime aussi — Safari vide alors le stockage du site. Sauvegarde régulièrement.',
   backupBtn:'💾 Sauvegarder', restoreBtn:'📂 Charger une sauvegarde',
   backupInfo:'En mémoire : {a} prédictions · {b} paris', backupLast:'Dernière sauvegarde', backupNever:'Jamais sauvegardé',
   impConfirm:'Charger la sauvegarde avec {a} prédictions et {b} paris ?\n\nAttention : les données de cet appareil seront REMPLACÉES.',
@@ -286,7 +289,10 @@ var I18N = {
   mdlWarn:'⚠ Un changement rompt la serie de mesures', mdlCount:'modeles disponibles',
   decis:'Determination', decisD:'A quelle frequence un cerveau se prononce-t-il vraiment ? Significatif seulement avec le calibrage.',
   decisAvg:'Ecart moyen a 50', decisOver:'Part a partir de 60 %',
-  refModel:'Modele de verification', refCalls:'Requetes', refFallback:'⚠ Aucun modele plus puissant utilisable — retour a Flash'
+  refModel:'Modele de verification', refCalls:'Requetes', refFallback:'⚠ Aucun modele plus puissant utilisable — retour a Flash',
+  logExpT:'📄 Log en texte', logExpD:'Sort les prédictions d’une période en texte brut — à copier dans un chat. Remplace les captures d’écran : coûte une fraction et reste exploitable par machine.',
+  logExpFrom:'du', logExpTo:'au', logExpBtn:'📄 Générer le texte', logExpCopy:'📋 Copier',
+  logExpHint:'Sélectionne et copie, ou utilise le bouton Copier.', logExpEmpty:'Aucune prédiction sur cette période.'
  },
  en:{ nvHome:'Home', nvBets:'Bets', nvFin:'Finance', nvMore:'More',
   locked:'Ondo Control is locked', unlock:'Unlock', wrongPin:'Wrong PIN', pinPh:'PIN',
@@ -349,7 +355,7 @@ var I18N = {
   logD:'Every AI prediction is rated here. From one predicted score the app derives three statements.',
   gKeyT:'🌱 Second brain (Google Gemini)', gKeyD:'Key from aistudio.google.com — stays ONLY on this device. Handles result checking & photo reading almost free.', gOn:'✅ Gemini key saved', gOff:'❌ No Gemini key',
   duellT:'Duel mode', duellD:'Both brains receive the same fixture list. Without a Gemini key only Sonnet runs.',
-  backupT:'💾 Data backup', backupD:'Otherwise all measurement data lives ONLY in this browser’s storage. If it is cleared, the data is gone for good. Back up regularly.',
+  backupT:'💾 Data backup', backupD:'Otherwise all measurement data lives ONLY in this browser’s storage. WARNING: clearing your browsing history deletes it too — Safari wipes the site storage along with it. Back up regularly.',
   backupBtn:'💾 Back up data', restoreBtn:'📂 Load backup',
   backupInfo:'In storage: {a} predictions · {b} bets', backupLast:'Last backup', backupNever:'Never backed up',
   impConfirm:'Load backup with {a} predictions and {b} bets?\n\nWarning: the data on this device will be REPLACED.',
@@ -362,7 +368,10 @@ var I18N = {
   mdlWarn:'⚠ Changing breaks the measurement series', mdlCount:'models available',
   decis:'Decisiveness', decisD:'How often does a brain actually commit? Meaningful only together with calibration.',
   decisAvg:'Avg. distance from 50', decisOver:'Share from 60 %',
-  refModel:'Referee model', refCalls:'Requests', refFallback:'⚠ No stronger model usable — fell back to Flash'
+  refModel:'Referee model', refCalls:'Requests', refFallback:'⚠ No stronger model usable — fell back to Flash',
+  logExpT:'📄 Log as text', logExpD:'Outputs the predictions of a date range as plain text — to paste into a chat. Replaces screenshots: costs a fraction and stays machine-readable.',
+  logExpFrom:'from', logExpTo:'to', logExpBtn:'📄 Create text', logExpCopy:'📋 Copy',
+  logExpHint:'Select and copy, or use the Copy button.', logExpEmpty:'No predictions in this range.'
  }
 };
 function t(k){ var l=state.lang||'de'; return (I18N[l]&&I18N[l][k])||I18N.de[k]||k; }
@@ -457,6 +466,98 @@ function teamsAus(match){
   return { heim:(p[0]||'Heim').trim(), gast:(p[1]||'Gast').trim() };
 }
 function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+/* ================= LOG ALS TEXT (v19.7.5, Backlog-Punkt 22) =================
+   Ondos Vorschlag vom 4.8. Zweck: Bildschirmfotos in Chats ersetzen. Zwoelf Ergebnisse
+   als Text liegen unter 3 KB, ein Bildschirmfoto kostet rund 15 KB und ein PDF-Ausdruck
+   ein Vielfaches. Reine Ausgabe — es wird nichts gespeichert, nichts gerechnet und
+   nichts an ein Gehirn geschickt. */
+function datumZahl(s){
+  var d=String(s||'').match(/(\d{1,2})\.(\d{1,2})\.(\d{4})/);
+  if(d) return Number(d[3])*10000+Number(d[2])*100+Number(d[1]);
+  var i=String(s||'').match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
+  if(i) return Number(i[1])*10000+Number(i[2])*100+Number(i[3]);
+  return null;
+}
+function heuteIso(){
+  var d=new Date();
+  return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
+}
+function logTextBauen(){
+  var vEl=document.getElementById('logVon'), bEl=document.getElementById('logBis');
+  var von=datumZahl(vEl&&vEl.value), bis=datumZahl(bEl&&bEl.value);
+  var treffer=[];
+  (state.kiProtokoll||[]).forEach(function(e){
+    if(e.aera!=='v19') return;
+    var d=datumZahl(e.datum);
+    if(d===null) return;
+    if(von!==null && d<von) return;
+    if(bis!==null && d>bis) return;
+    treffer.push(e);
+  });
+  treffer.sort(function(a,b){
+    var x=datumZahl(a.datum)-datumZahl(b.datum);
+    if(x!==0) return x;
+    return String(a.match).localeCompare(String(b.match));
+  });
+  var feld=document.getElementById('logText');
+  if(!feld) return;
+  if(!treffer.length){ feld.value=t('logExpEmpty'); return; }
+  var kopf='ONDO CONTROL — KI-Log '+((vEl&&vEl.value)||'?')+' bis '+((bEl&&bEl.value)||'?')+
+    ' · '+treffer.length+' Eintraege · erzeugt '+new Date().toLocaleDateString('de-DE')+' '+jetztUhr();
+  var zeilen=treffer.map(function(e){
+    var gehirn=(e.herkunft==='flash')?'Flash':'Sonnet';
+    var echt=(e.ergebnisHeim!==null && e.ergebnisHeim!==undefined &&
+              e.ergebnisGast!==null && e.ergebnisGast!==undefined)
+      ? (e.ergebnisHeim+':'+e.ergebnisGast) : 'offen';
+    var m=(e.maerkte||[]).map(function(x){
+      var st=(x.status==='richtig'||x.status==='falsch')?x.status:'offen';
+      return x.label+' '+x.p+'% '+st+(x.gedreht?' [gedreht]':'');
+    }).join(' · ');
+    return e.datum+(e.anpfiff?(' '+e.anpfiff):'')+' · '+e.match+
+      (e.wettbewerb?(' ['+e.wettbewerb+']'):'')+' · '+gehirn+(e.modell?(' '+e.modell):'')+
+      ' · getippt '+e.heim+':'+e.gast+' · wirklich '+echt+
+      (m?(' · '+m):'')+
+      (e.bttsWort?(' · Wort '+e.bttsWort):'')+
+      (e.begruendung?(' · "'+e.begruendung+'"'):'');
+  });
+  feld.value=kopf+'\n\n'+zeilen.join('\n');
+}
+function logTextKopieren(){
+  var feld=document.getElementById('logText');
+  if(!feld || !feld.value) return;
+  feld.removeAttribute('readonly');
+  feld.select(); feld.setSelectionRange(0, feld.value.length);
+  var fertig=function(){ feld.setAttribute('readonly','readonly'); note(t('saved')); };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(feld.value).then(fertig).catch(function(){
+      try{ document.execCommand('copy'); }catch(e){}
+      fertig();
+    });
+    return;
+  }
+  try{ document.execCommand('copy'); }catch(e){}
+  fertig();
+}
+function logExportBlock(){
+  var heute=heuteIso();
+  return '<div class="card" style="border-color:rgba(245,217,10,.35)">'+
+    '<div class="disp" style="font-size:20px;margin-bottom:6px">'+t('logExpT')+'</div>'+
+    '<div class="muted" style="margin-bottom:10px">'+t('logExpD')+'</div>'+
+    '<div style="display:flex;gap:10px">'+
+      '<div style="flex:1"><label>'+t('logExpFrom')+'</label>'+
+        '<input type="date" id="logVon" value="'+heute+'"/></div>'+
+      '<div style="flex:1"><label>'+t('logExpTo')+'</label>'+
+        '<input type="date" id="logBis" value="'+heute+'"/></div>'+
+    '</div>'+
+    '<button class="btn" style="margin-top:10px" onclick="logTextBauen()">'+t('logExpBtn')+'</button>'+
+    '<textarea id="logText" readonly rows="8" style="width:100%;margin-top:10px;background:var(--inner);'+
+      'border:1px solid var(--edge);border-radius:8px;color:var(--text);padding:10px;'+
+      'font-size:12px;font-family:ui-monospace,Menlo,monospace;line-height:1.5"></textarea>'+
+    '<button class="btn btn-ghost" style="margin-top:8px" onclick="logTextKopieren()">'+t('logExpCopy')+'</button>'+
+    '<div class="muted" style="margin-top:8px">'+t('logExpHint')+'</div>'+
+  '</div>';
+}
 
 /* ================= MAERKTE AUS ERGEBNIS ABLEITEN (fester Code, keine KI) =================
    Gemini-Hinweis v19: Die KI nennt NUR das Ergebnis. Welche Maerkte daraus folgen,
@@ -1352,13 +1453,16 @@ function dateiHerunterladen(blob, name){
   }, 1200);
 }
 function datenSichern(){
-  var daten = JSON.stringify(state);
   var d = new Date();
   var name = 'ondo-control-sicherung-'+d.getFullYear()+'-'+
     ('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)+'.json';
-  var blob = new Blob([daten], {type:'application/json'});
+  /* v19.7.5: Der Zeitstempel wird jetzt VOR dem Ausschreiben gesetzt. Vorher enthielt die
+     Datei den Stand der VORIGEN Sicherung — nach einem Import zeigte "zuletzt gesichert"
+     deshalb ein zu altes Datum und liess die Daten ungesicherter aussehen, als sie waren. */
   state.letzteSicherung = d.toLocaleDateString('de-DE')+' '+
     ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);
+  var daten = JSON.stringify(state);
+  var blob = new Blob([daten], {type:'application/json'});
   try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
   var datei = null;
   try{ datei = new File([blob], name, {type:'application/json'}); }catch(e){}
@@ -1594,7 +1698,7 @@ function viewBets(c){
             '</div>'+chip+'</div></div>';
         }).join('')
       : '';
-    return sub+'<div class="muted" style="margin-bottom:10px">'+t('logD')+'</div>'+pruefBlock()+eintraege+archiv;
+    return sub+'<div class="muted" style="margin-bottom:10px">'+t('logD')+'</div>'+pruefBlock()+logExportBlock()+eintraege+archiv;
   }
 
   if(wtab==="historie" && !state.bets.length) return sub+pruefBlock()+'<div class="card empty">'+t('noBets')+'</div>';
@@ -1751,7 +1855,7 @@ function viewMore(){
     '<div class="muted" style="margin-bottom:12px">'+t('mdlD')+'</div>'+
     modellFeld('gehirn')+
     modellFeld('ref')+
-    '<button class="ghost" style="margin-top:10px" onclick="modelleLaden()">'+t('mdlReload')+'</button>'+
+    '<button class="btn btn-ghost" style="margin-top:10px" onclick="modelleLaden()">'+t('mdlReload')+'</button>'+
     '<div class="muted" style="margin-top:8px">'+
       ((state.geminiModelListe&&state.geminiModelListe.length)
         ? (state.geminiModelListe.length+' '+t('mdlCount'))
@@ -1780,7 +1884,7 @@ function viewMore(){
     '<div style="font-size:13px;line-height:1.8">'+t('sec1')+'<br>'+t('sec2')+'<br>'+t('sec3')+'<br>'+t('sec4')+'<br>'+t('sec5')+'</div>'+
   '</div>'+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">📋 '+t('projT')+'</div>'+
-    '<pre>ONDO CONTROL v19.7.4 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
+    '<pre>ONDO CONTROL v19.7.5 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
   '</div>';
 }
 

@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Gepflegt von Claude · Stand 4.8.2026, Fassung 7 · jede Idee mit Datum, Urheber und Status**
+**Gepflegt von Claude · Stand 4.8.2026, Fassung 8 · jede Idee mit Datum, Urheber und Status**
 
 ## Regeln für dieses Dokument
 
@@ -13,6 +13,17 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 8 ändert (4.8., abends)
+
+- **v19.7.5 geliefert:** Backlog-Punkt 22 (KI-Log als Textausgabe) **gebaut**, dazu die drei kleinen Mängel behoben
+- **Antworten der Prüfer auf den Bericht von 21:50 Uhr** eingetragen
+- **Neuer Codefund: Der Temperatur-Wert ist nirgends gesetzt** — siehe eigenen Abschnitt. Der wichtigste Fund des Abends
+- **Backlog-Punkt 12 beantwortet, negativ:** Gemini kann Links grundsätzlich nicht abrufen
+- **Neuer Punkt 23** (Schattenlauf zur Antwortstabilität), Geminis Vorschlag
+- **Sprachschlüssel: 193.** Dabei ist aufgefallen, dass die bisher dokumentierten 184 falsch waren — nachgezählt sind es vor dieser Lieferung **185**
 
 ---
 
@@ -159,7 +170,28 @@ Gehirn und Schiedsrichter sind getrennt einstellbar, statt still das erste funkt
 
 **Sortierung berichtigt (v19.7.4).** Bis dahin standen „stabile" Namen vor „latest". Stabil hieß in Wirklichkeit **alt** — so landete die App auf abgeschalteten Modellen und im Juli dauerhaft auf einer Lite-Stufe. Jetzt: neuere Versionsnummer zuerst, `latest` ganz vorn.
 
-**Version im Kopf: v19.7.4. `APP_VERSION` weiterhin 18. Sprachschlüssel 184 in DE/FR/EN, identisch. Syntax-Check bestanden.**
+**Version im Kopf: v19.7.4. `APP_VERSION` weiterhin 18.**
+
+**v19.7.5 (4.8., abends)** — Backlog-Punkt 22 gebaut, dazu drei kleine Mängel behoben: `class="ghost"` → `class="btn btn-ghost"` · der Warntext der Datensicherung nennt jetzt auch das Löschen des Browserverlaufs · der Zeitstempel „zuletzt gesichert" wird **vor** dem Ausschreiben gesetzt, damit die Sicherungsdatei ihren eigenen Stand trägt statt den der vorigen.
+
+**Sprachschlüssel: 193 in DE/FR/EN, identisch. Syntax-Check bestanden. Trockentest bestanden.**
+*⚠ Zahlenberichtigung: Die zuvor dokumentierten 184 Schlüssel waren falsch. Nachgezählt waren es vor dieser Lieferung **185**, danach 193. Wer die 184 in älteren Fassungen liest, soll wissen, dass sie nie geprüft war.*
+
+---
+
+## 🌡 Der Temperatur-Fund (4.8., abends) — auf Geminis Rückfrage hin
+
+Gemini hat gefragt, wie hoch der Temperatur-Wert in den API-Aufrufen eingestellt ist, weil dieser Wert massgeblich über Nichtdeterminismus entscheidet.
+
+**Antwort, im Code nachgesehen: Er ist nirgends gesetzt.** In `apiCall` lautet der Rumpf `{model, max_tokens, messages}`, bei Bedarf plus `tools`. In `geminiCall` steht `var body = { contents:[{ parts: parts }] }`, plus `tools` bei Websuche. Kein `temperature`, kein `generationConfig`.
+
+**Folge:** Beide Gehirne **und** der Schiedsrichter laufen auf dem Standardwert des Anbieters. Bei Anthropic ist das 1.0 — der Wert mit der grössten Streuung. Für Gemini ist der Standardwert hier nicht sicher bekannt (Art. 11).
+
+**Warum das zählt:** Über Nichtdeterminismus wird seit dem 22. Juli geredet — Fehlerart 1 beim Schiedsrichter, seit dem 4.8. auch bei Flash. **Der Regler dafür ist nie angefasst worden.**
+
+→ **Für den Schiedsrichter** wäre eine niedrige Temperatur naheliegend und billig: Er soll ablesen, nicht erfinden. Er ist Messwerkzeug, nicht Messgegenstand — eine Änderung dort bricht die Messreihe **nicht**.
+→ **Für die Gehirne** ist es heikel: Eine Änderung greift mitten in die laufende Messreihe ein und wäre nach Arbeitsregel J ein Schnitt.
+→ **Nichts gebaut. Entscheidung Ondos steht aus.**
 
 ---
 
@@ -368,8 +400,10 @@ Offene Vorfrage (Gemini): Deckt ein kostenloser Dienst überhaupt Ondos Spiele a
 **11. Rollenmodell in den Blueprint** · *Idee 23.7., ChatGPT* · **Status: Idee**
 Zwei Ergänzungen von Claude offen: Architekt und unabhängiger Prüfer sollten nicht dieselbe Rolle sein; Geminis Doppelrolle (Duell-Teilnehmer und Schiedsrichter) muss benannt werden.
 
-**12. Gegenprobe mit Gemini zum GitHub-Pages-Zugriff** · *Fund 30.7.* · **Status: offen**
-Für ChatGPT bestätigt. Ob Gemini die `.html`-Adressform ebenfalls lesen kann, ist ungeprüft.
+**12. Gegenprobe mit Gemini zum GitHub-Pages-Zugriff** · *Fund 30.7.* · **Status: BEANTWORTET am 4.8. — negativ**
+**Gemini kann Links grundsätzlich nicht abrufen.** Eigene Auskunft vom 4.8.: Es verarbeitet ausschliesslich Text, der im Verlauf übergeben wird — hineinkopiert oder als hochgeladene Datei. Es besitzt keinen Browser-Zugriff auf externe Server.
+→ **Folge: Gemini bekommt Dateien, ChatGPT bekommt Links.** Die Annahme „Prüfer bekommen Links statt Anhänge" gilt nur zur Hälfte.
+→ **Zweite offene Frage aus derselben Runde:** ChatGPT meldete am 4.8., die Pages-Seiten trügen noch den Stand vom 30. Juli. **Nicht nachgeprüft** — Claudes Abrufwerkzeug kam nicht an die Adresse heran, und der erneute Raw-Abruf lieferte die eigene zwischengespeicherte Kopie zurück. Zwei Erklärungen bleiben offen: die Pages-Seiten sind wirklich alt, **oder** ChatGPT hat nicht abgerufen, sondern aus dem Gedächtnis geantwortet. *Trennschärfer Test: nach dem Wortlaut von Arbeitsregel J und nach dem Namen `lyria-3-pro-preview` fragen — beides steht nur in der Fassung vom 4. August.*
 
 **18. Die Dokumente selbst auf Diät setzen** · *Idee 31.7., Ondo* · **Status: Idee — NEU**
 `PROJEKT-STATUS.md` ist kein Onboarding-Dokument mehr, sondern eine Chronik. Jeder Vorfall erzeugt einen neuen Abschnitt, nichts schrumpft. Folge: Das Einlesen kostet einen neuen Chat etwa die Hälfte seines Arbeitsspeichers, bevor die erste Aufgabe beginnt — was übrig bleibt, reicht für eine Lieferung, dann ist Übergabe. Der nächste Chat liest dieselben, inzwischen größeren Dokumente.
@@ -395,11 +429,21 @@ Wenn ein Korrekturfaktor nur für das Modell gilt, an dem er gemessen wurde (neu
 → **Hürde für jeden Ansatz:** Man müsste den Wissensstand des Modells kennen, und den nennt kein Anbieter verlässlich.
 → **Für den Schiedsrichter trägt derselbe Gedanke sehr wohl** — dort ist der Ausgang bekannt und das ist kein Nachteil, sondern der Zweck. Die 13 gesperrten Ergebnisse vom 29./30.7. sind genau diese Prüfbibliothek (Punkt B).
 
-**22. KI-Log als Textausgabe mit Datumsbereich** · *Idee 4.8., Ondo* · **Status: Idee**
+**22. KI-Log als Textausgabe mit Datumsbereich** · *Idee 4.8., Ondo* · **Status: GEBAUT (v19.7.5, 4.8.) · noch nicht bewährt**
 Ein Knopf, der die Log-Einträge eines wählbaren Zeitraums als reinen Text ausgibt, zum Kopieren.
 → **Zweck:** Er ersetzt Bildschirmfotos in Chats. Zwölf Ergebnisse als Text sind unter 3 KB, ein Bildschirmfoto kostet rund 15 KB je Stück und ein PDF-Ausdruck ein Vielfaches. Der Text ist zudem maschinell auswertbar, ein Bild nur lesbar.
 → **Kosten: keine.** Kein API-Aufruf, kein Geld, Aufwand gering.
 → *Empfehlung Claude: als nächste Lieferung, vor allem anderen — die Ersparnis wirkt ab dann in jedem folgenden Chat. Zwei-Probleme-Regel erfüllt: spart Speicher **und** macht die Daten auswertbar.*
+→ **Gebaut am 4.8. als v19.7.5.** Unter „KI-Log": zwei Datumsfelder (vorbelegt mit heute), Knopf „Text erzeugen", Textfeld, Kopieren-Knopf. Eine Zeile je Vorhersage mit Datum, Anpfiff, Spiel, Wettbewerb, Gehirn, Modellname, getipptem und echtem Endstand, allen drei Märkten mit Prozentzahl und Urteil, dem Vermerk `[gedreht]`, dem Wort ja/nein und der Begründung. Das v18-Archiv bleibt aussen vor.
+→ **Nichts gespeichert, nichts gerechnet, nichts an ein Gehirn geschickt** — reine Ausgabe. Kalibrierung, Auftragstext und Messreihe sind unberührt.
+→ *Trockentest bestanden: Datumsgrenzen greifen, Sortierung aufsteigend, Archiv ausgeschlossen, leerer Zeitraum meldet sich.*
+
+**23. Schattenlauf zur Antwortstabilität** · *Idee 4.8., Gemini* · **Status: Idee**
+Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige bereits abgeschlossene Spiele und stellt beiden Gehirnen mehrfach hintereinander denselben Auftragstext. Die Antworten landen in einem reinen Textprotokoll, fern der Kalibrierungsdaten. So bleibt die Hauptmessreihe unberührt.
+→ **Anlass:** Am 4.8. antwortete Flash auf dieselbe Paarung zweimal verschieden, Sonnet zweimal gleich.
+→ **Geminis weiterreichende Aussage:** Kalibrierung setzt eine stabile Wahrscheinlichkeitsverteilung voraus. Schwankt ein Gehirn bei identischem Auftrag, ist die Prozentzahl teilweise willkürlich. **Vor jedem Korrekturfaktor braucht es deshalb eine vorgeschaltete Kennzahl für Antwortstabilität.** Das stellt die Hauptkennzahl des Projekts erstmals grundsätzlich infrage.
+→ **Kosten: nicht null.** Mehrere Läufe je Spiel verbrauchen echte Anfragen. Vor dem Bauen zu beziffern.
+→ *Hängt eng mit dem Temperatur-Fund zusammen: Ein Schattenlauf bei unbekannter Temperatur misst womöglich nur die Standardeinstellung des Anbieters.*
 
 ---
 
@@ -454,9 +498,9 @@ Ein Knopf, der die Log-Einträge eines wählbaren Zeitraums als reinen Text ausg
 
 | Punkt | Auswirkung heute | Dringlichkeit |
 |---|---|---|
-| **Warntext der Datensicherung ist unvollständig** *(NEU 4.8.)* — er nennt das Leeren des Browserspeichers, nicht aber das **Löschen des Browserverlaufs**. Safari löscht dabei den Websitespeicher mit | Am 4.8. waren alle Daten weg. Durch die Sicherung vollständig wiederhergestellt, nichts verloren | mittel — nächste Lieferung |
-| **„Zuletzt gesichert" zeigt nach dem Laden den falschen Zeitstempel** *(NEU 4.8.)* — nach einem Import steht dort die Zeit der **vorherigen** Sicherung, weil `datenLaden` den ganzen Zustand überschreibt | Die Anzeige täuscht eine ältere Sicherung vor, als tatsächlich vorliegt | mittel — nächste Lieferung |
-| **`class="ghost"` statt `class="btn btn-ghost"`** *(NEU 4.8.)* — beim Knopf „Modelle vom Konto laden" in `viewMore`. Die Klasse `ghost` steht nicht im Stylesheet | Rein optisch: der Knopf erscheint unformatiert. Keine Funktionsfolge | niedrig — nächste Lieferung |
+| ~~Warntext der Datensicherung unvollständig~~ | **BEHOBEN in v19.7.5 (4.8.)** — der Text nennt jetzt in allen drei Sprachen das Löschen des Browserverlaufs | erledigt |
+| ~~„Zuletzt gesichert" nach dem Laden falsch~~ | **BEHOBEN in v19.7.5 (4.8.)** — Ursache lag nicht im Laden, sondern im Sichern: `datenSichern` schrieb die Datei aus, **bevor** es den neuen Zeitstempel setzte. Die Datei trug deshalb den Stand der vorigen Sicherung. Reihenfolge umgedreht. *Ältere Sicherungsdateien tragen weiterhin den alten Stand* | erledigt |
+| ~~`class="ghost"` statt `class="btn btn-ghost"`~~ | **BEHOBEN in v19.7.5 (4.8.)** | erledigt |
 | **Doppelter Code** — `beta.html` und `OndoControl.html` sind zwei vollständige Kopien | Jede Korrektur muss zweimal gemacht werden | hoch, sobald v19 befördert wird |
 | **Bekannte Lücke im Schiedsrichter** — ein einmal als *fertig* gemeldetes Ergebnis wird nie wieder hinterfragt | Ein falsch abgelesener Endstand bleibt dauerhaft falsch, sobald übernommen wurde | **hoch** — durch die erfundenen 0:0 vom 31.7. weiter verschärft |
 | **Der Schiedsrichter sucht, statt zu prüfen** | Ein Modell, das suchen soll, liefert irgendetwas statt „nicht gefunden" | **hoch** → Punkt E |
@@ -464,7 +508,7 @@ Ein Knopf, der die Log-Einträge eines wählbaren Zeitraums als reinen Text ausg
 | **Rückblick auf eigene Tipps enthält Vermutungen, keine Tatsachen** | Ein falscher Tipp kann Grundlage des nächsten werden | **wird mit v19.7 behoben** → Punkt D |
 | **Nur lokale Speicherung** (localStorage) | Sicherung seit v19.1 gebaut; offen bleibt die Übertragung in die stabile Version | → Prio 2, Punkt 4 |
 | **Eine lange JS-Datei** (keine Module) | Änderungen werden mit der Zeit riskanter | mittel |
-| **Sprachdateien von Hand** (184 Schlüssel × 3 Sprachen, Stand 4.8.) | Dreifache Pflege bei jeder neuen Beschriftung. Rückgriff bleibt Punkt 19 | niedrig |
+| **Sprachdateien von Hand** (193 Schlüssel × 3 Sprachen, Stand 4.8. abends — nachgezählt, nicht geschätzt) | Dreifache Pflege bei jeder neuen Beschriftung. Rückgriff bleibt Punkt 19 | niedrig |
 | **Seed-Daten fest im Code** (WM-Wetten vom Juli) | Ballast bei jedem Start | niedrig |
 | **Kein automatischer Test** | Jede Änderung wird nur von Hand geprüft | mittel → Punkt B wäre der erste Schritt |
 | **Gemini-Kaskade komplex** | Funktioniert, aber schwer zu durchschauen bei Fehlern | niedrig |
@@ -516,6 +560,6 @@ Ein Knopf, der die Log-Einträge eines wählbaren Zeitraums als reinen Text ausg
 
 ---
 
-*Fassung 7, geschrieben am 4.8.2026 von Chat 7, nach der Übergabe Chat 6 → Chat 7 (neun von neun). Eingetragen sind alle Punkte aus Teil E der Übergabemappe vom 4.8. — hier und in `PROJEKT-STATUS.md` und `Blueprint.md`. **Die Übergabemappe vom 4.8. darf erst gelöscht werden, wenn Ondo die drei Dateien hochgeladen hat.***
+*Fassung 8, geschrieben am 4.8.2026 abends von Chat 7, zusammen mit der Lieferung von v19.7.5. **Die Übergabemappe vom 4.8. darf erst gelöscht werden, wenn Ondo die Dateien hochgeladen hat.***
 
 *Nächste Aktualisierung: bei der nächsten Entscheidung oder Lieferung — nach Arbeitsregel F sofort, nicht später.*
