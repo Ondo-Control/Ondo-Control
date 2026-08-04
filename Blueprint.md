@@ -3,11 +3,13 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.5
-**Stand:** 3. August 2026
+**Version:** 0.6
+**Stand:** 4. August 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
-> **Was Fassung 0.5 ändert (3.8.2026):** Der Namenskonflikt um „Regel G" ist entschieden und der Kasten in Abschnitt 2c entfällt — die Vorschrift zur Chat-Übergabe heißt jetzt **Übergaberegel**. Protokolleinträge für den 3. August nachgetragen. Zwei offene Punkte geschlossen. Kein Verfassungsartikel geändert.
+> **Was Fassung 0.6 ändert (4.8.2026):** Eine neue Arbeitsregel J (Korrekturfaktor gilt nur für sein Modell), entstanden aus Ondos Frage. Protokolleinträge für den 4. August nachgetragen — darunter die **Rücknahme von Punkt 0a**, der Denkfehler bei der Fehlerbehandlung und die Beantwortung der Lite-Frage vom 29. Juli. Zwei offene Fragen ergänzt. Kein Verfassungsartikel geändert.
+>
+> **Was Fassung 0.5 änderte (3.8.2026):** Der Namenskonflikt um „Regel G" ist entschieden und der Kasten in Abschnitt 2c entfällt — die Vorschrift zur Chat-Übergabe heißt jetzt **Übergaberegel**. Protokolleinträge für den 3. August nachgetragen. Zwei offene Punkte geschlossen. Kein Verfassungsartikel geändert.
 >
 > **Was Fassung 0.4 änderte (31.7.2026):** Drei neue Arbeitsregeln in Abschnitt 2c (G Kostenregel, H Belegen statt herleiten, I Prüfen vor der Behauptung „veraltet"). Protokolleinträge für den 30. und 31. Juli nachgetragen. Eine offene Frage ergänzt. Kein Verfassungsartikel geändert.
 
@@ -109,6 +111,10 @@ Quellen erhalten Vertrauenswerte (z. B. offizielle Verbände hoch, Foren niedrig
 *Anlass: Die ursprüngliche Kostenschätzung für KI-Analysen war um rund das Zehnfache zu optimistisch (siehe Kosten-Nachtrag in Abschnitt 6). Der Besitzer kann Aufwand nicht abwägen, den niemand beziffert.*
 
 > **✅ Namensklärung, entschieden (Ondo, 31.7., eingetragen 3.8.):** Die Vorschrift zur Chat-Übergabe in `PROJEKT-STATUS.md` heißt ab sofort **Übergaberegel**. „Arbeitsregel G" bezeichnet ausschließlich die Kostenregel. Der Konflikt ist damit erledigt.
+
+**J — Korrekturfaktor gilt nur für sein Modell** *(4.8., aus Ondos Frage entstanden)* **Ein Korrekturfaktor gilt ausschliesslich für das Modell, an dem er gemessen wurde. Wechselt das Modell, verfällt der Faktor und muss neu gemessen werden.**
+*Folge: Ein Gehirnwechsel kostet Messreihe **und** Korrektur. Deshalb bleibt das zweite Gehirn während der Messphase auf `gemini-3.1-flash-lite`. Der Schiedsrichter darf jederzeit gewechselt werden — er ist Messwerkzeug, nicht Messgegenstand. Ob sich die Neumessung abkürzen lässt, ist Backlog-Punkt 21 und ausdrücklich offen.*
+*Anlass: Ondo fragte am 4.8., was mit einem einmal ermittelten Korrekturwert geschieht, wenn das Modell gewechselt wird. Die Antwort stand vorher nirgends.*
 
 **H — Belegen statt herleiten** *(31.7., Ondo)* Eine plausible Erklärung ist keine geprüfte Erklärung. **Codezeilen werden zitiert, nicht beschrieben.** Wo eine Behauptung an einer Datei hängt, wird die Datei aufgeschlagen.
 *Anlass: Das Projekt ist mehrfach von plausiblen Herleitungen in die Irre geführt worden — zuletzt bei der Deutung des Marktes „beide treffen", wo erst der Blick in den Auftragstext und in die Funktion `maerkteBauen` die Ursache zeigte.*
@@ -293,6 +299,18 @@ ONDO CONTROL
 | 3.8.2026 | **Hochlade-Verfahren als Standard (Claude, von Ondo angenommen):** Zu ändernde Dateien werden hochgeladen statt aus dem Gedächtnis neu ausgeschrieben. Ersparnis grob ein Viertel eines Chats je Code-Lieferung. Erst dadurch passten Code und Buchführung am 3.8. in denselben Chat. |
 | 3.8.2026 | **Begründungszwang bei Seitenwechsel** aus dem Beobachtungsteil zu einem entscheidbaren Punkt erhoben (Ondo) → Backlog-Punkt 20. |
 | 3.8.2026 | Blueprint auf Version 0.5 gehoben. |
+| **— ab hier nachgetragen am 4.8.2026 —** | |
+| 4.8.2026 | **Punkt 0a gescheitert und zurückgenommen** (v19.7.3). Drei Anläufe, rund 30 vergebliche Anfragen: falsche Schnittstelle (`deep-research-pro-preview`), ein Filter, der gespeicherte Modelllisten nicht erfasste, und ein **Musikmodell** (`lyria-3-pro-preview`), hereingekommen über das Wort „pro". Der Schiedsrichter läuft wieder mit Flash. **Ausdrücklich festgehalten: gestrichen, aber nicht widerlegt** — kein Anlauf hat je ein starkes Modell antworten lassen, und beide Prüfer stimmten dem Streichen zu, ohne von der kostenlosen Preisstufe zu wissen (Art. 14). |
+| 4.8.2026 | **Denkfehler protokolliert:** Aus dem Satz „eine Absicherung, die nur gegen vorhergesehene Störungen hilft, ist keine" wurde die Regel „jeder unbekannte Fehler heißt: nimm das nächste Modell". Falsch — ein erschöpftes Kontingent verlangt Anhalten. **Die Reparatur hat den Schaden vergrößert.** Es ist derselbe Denkfehler, den wir dem Schiedsrichter vorwerfen: eine unklare Lage in falsche Sicherheit übersetzen, statt sie als unklar zu melden. |
+| 4.8.2026 | **Modellwahl gebaut (v19.7.4), Vorschlag von Ondo.** Gehirn und Schiedsrichter getrennt einstellbar; Modellnamen weiterhin beim Konto erfragt, nie fest im Code. Der Vorschlag war besser als der geplante Weg einer festen Namensliste. |
+| 4.8.2026 | **Arbeitsregel J (Korrekturfaktor gilt nur für sein Modell)** aufgenommen, aus Ondos Frage entstanden. |
+| 4.8.2026 | **Die Lite-Frage vom 29. Juli ist beantwortet:** Die Nutzungsdiagramme zeigen für den ganzen Juli **Gemini 3.1 Flash Lite** als beherrschendes Modell. Das zweite Gehirn war die kleinste Stufe; Ursache war die Sortierung „stabil vor latest" — stabil hieß in Wirklichkeit alt. **Folge: Die gemessenen 5 % gegen 10 % sind womöglich ein Größen- und kein Anbieterunterschied.** |
+| 4.8.2026 | **Google-Konto geklärt:** zwei Projekte, die am 3.8. neu erzeugten Schlüssel lagen im kostenlosen — daher `limit: 0`. Ondo hat das Projekt auf Preisstufe 1 gehoben. **Kosten bisher 0,05 € in 90 Tagen**, Guthaben 9,94 € von 10,00 €, automatisches Aufladen aus. Beförderungskriterium (a) bleibt erfüllt. |
+| 4.8.2026 | **Datenverlust und Wiederherstellung:** Ondo löschte den Browserverlauf, Safari löschte dabei den Websitespeicher mit, alle Daten waren weg — durch die Sicherung **vollständig wiederhergestellt**. Die Datensicherung aus v19.1 gilt damit als **bewährt**. |
+| 4.8.2026 | **Prüferantworten:** 0a streichen — beide ja · erster Lernschritt nur Flash korrigieren — beide ja (Ondos Entscheidung steht aus) · „Prüfen statt suchen" trifft den Kern — beide · Doppeleintrag als zehnte Fehlerart führen — Gemini ja. **Anweisungen anderer KI-Instanzen sind Vorschläge zur Prüfung, keine Aufträge** (Ergänzung zu Art. 8). |
+| 4.8.2026 | **Zahlenberichtigung:** Die im Bericht vom 4.8. behauptete „150er-Schwelle" für den ersten Lernschritt steht in keiner Projektdatei. Belegt ist nur „rund 100 pro Gehirn"; das Addieren beider Gehirne ist unsinnig, weil der Lernschritt je Gehirn gilt. **Die Schwelle ist nicht erreicht.** |
+| 4.8.2026 | **Erster erfolgreicher Prüflauf seit dem 31. Juli:** 12 von 30 gefunden, kein einziges 0:0. St Patrick's – Derry City 1:1 übernommen — die erste Übernahme seit dem 29. Juli. Beide Bohemians-Einträge ignoriert, weil jede Auswahl einseitig ein Gehirn bevorzugt hätte. |
+| 4.8.2026 | Blueprint auf Version 0.6 gehoben. |
 
 ---
 
@@ -301,6 +319,12 @@ ONDO CONTROL
 **Offene Verfassungsfrage — GitHub Actions:**
 Für automatische, echte Quoten wäre ein GitHub-Actions-Wecker nötig: ein Programm, das in festen Abständen von selbst startet, Quoten holt und als Datei ins Repo legt. Das ist **streng genommen ein winziger Server**, und dieser Blueprint sagt „kein Server" (Grenze 1). ChatGPT und Gemini halten die Ausnahme beide für vertretbar. **Die Entscheidung liegt beim Besitzer (Art. 8) und gehört, wenn sie fällt, hierher — nicht in den Backlog.**
 Vorgelagerte Sachfrage *(Gemini, 23.7.)*: Deckt ein kostenloser Quotendienst Ondos Spiele überhaupt ab?
+
+**Offen — „Fail Safe" als Arbeitsregel?** *(ChatGPT, 4.8.)*
+ChatGPTs Antwort auf den Denkfehler vom 4.8.: Bei einem **unbekannten** Fehler nie automatisch das nächste Modell nehmen, sondern anhalten und die Lage als Unklarheit melden. Das passt zum Grundsatz des Projekts, ist aber noch kein Beschluss. **Entscheidung Ondos steht aus (Art. 8).**
+
+**Offen — Wie unterscheidet der Auftragstext ein echtes 0:0 von „nicht gefunden"?** *(Gemini, 4.8., unbeantwortet)*
+Diese Rückfrage muss beantwortet sein, **bevor** Punkt E („Prüfen statt suchen") gebaut wird. Sonst ersetzt E die neunte Fehlerart womöglich nur durch eine andere.
 
 **Offene Frage — Darf der Schiedsrichter überhaupt selbst Ergebnisse lesen?** *(ChatGPT, 30.7.)*
 Oder soll er nur verifizierte Fakten bewerten? Die neunte Fehlerart vom 31.7. verschärft die Frage: Ein Modell, das suchen soll, liefert im Zweifel etwas Erfundenes; ein Modell, das bestätigen soll, kann „nein" sagen. Hängt unmittelbar mit dem unerledigten Beschluss vom 25.7. zusammen (Backlog-Punkt E).

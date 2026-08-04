@@ -1,7 +1,7 @@
 # ONDO CONTROL — PROJEKT-STATUS
-*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 3. August 2026, v19.7*
+*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 4. August 2026, v19.7.4*
 
-> **Zur Datierung:** Die Messzahlen sind am 3.8. aus Ondos Sicherungsdatei nachgerechnet und decken sich mit den Werten vom 29.7. — es wurde seitdem nichts übernommen. Die Befunde und Beschlüsse stammen vom 30. und 31. Juli sowie vom 3. August. **v19.7 wurde am 3. August gebaut und ausgeliefert.**
+> **Zur Datierung:** Die Kalibrierungszahlen weiter unten sind am 3.8. aus Ondos Sicherungsdatei nachgerechnet. **Am 4.8. wurde erstmals seit dem 29. Juli wieder ein Ergebnis übernommen** (St Patrick's – Derry City 1:1); die Zahlen sind seitdem **nicht neu gerechnet** worden. Wo das Folgen hat, steht es an Ort und Stelle. Die Befunde und Beschlüsse stammen vom 30. und 31. Juli sowie vom 3. und 4. August. **Stand der Beta: v19.7.4, geliefert am 4. August.**
 
 ---
 
@@ -31,6 +31,86 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 - **Belegen statt herleiten** *(31.7.)*. Eine plausible Erklärung ist keine geprüfte Erklärung. Codezeilen werden zitiert, nicht beschrieben.
 
 **Master-Dokumente im Repo:** `Blueprint.md` · `Ondo-Core-Architektur.md` · `Ondo-Control-Backlog.md` (Fassung 5, 31.7.) · dieses Dokument.
+
+---
+
+## ⚠ DER 4. AUGUST — der ereignisreichste und am schlechtesten dokumentierte Tag
+
+*Alles in diesem Abschnitt stand bis zum Abend des 4.8. in keiner Repo-Datei, sondern nur in einer Übergabemappe auf Ondos Gerät. Eingetragen von Chat 7 nach der Übergabe.*
+
+### 1. Punkt 0a ist gescheitert und zurückgenommen
+
+**Das ist die wichtigste Berichtigung an diesem Dokument.** Frühere Fassungen führten 0a als gebaut und beschrieben einen Schiedsrichter, der ein stärkeres Modell benutzt und Modellname samt Anfragenzahl anzeigt. **Beides trifft nicht zu.** In `beta.html`, Funktion `ergebnissePruefen`, fehlt `stark:true`:
+
+```
+? geminiCall({ prompt: prompt, useSearch: true, rolle:'ref' })
+  /* 0a zurueckgenommen 3.8., siehe Backlog */
+```
+
+Drei Anläufe, rund 30 vergebliche Anfragen: falsche Schnittstelle (`deep-research-pro-preview-12-2025`), ein Filter, der gespeicherte Listen nicht erfasste, und schliesslich ein **Musikmodell** (`lyria-3-pro-preview`), das über das Wort „pro" hereinkam. Einzelheiten im Backlog.
+
+**⚠ Gestrichen, aber nicht widerlegt.** Beide Prüfer stimmten dem Streichen zu — **ohne von der kostenlosen Preisstufe zu wissen**. Kein Anlauf hat je ein starkes Modell tatsächlich antworten lassen. 0a ist unter gestörten Bedingungen gescheitert, nicht an der Sache. Wer das später liest, darf daraus keine Gewissheit machen, die wir nicht haben (Art. 14).
+
+### 2. Der Denkfehler, der den Schaden vergrößert hat
+
+Nach dem ersten Fehlschlag wurde formuliert: *„Eine Absicherung, die nur gegen vorhergesehene Störungen hilft, ist keine Absicherung."* Daraus wurde gebaut: **jeder unbekannte Fehler heißt „nimm das nächste Modell".** Falsch — ein erschöpftes Kontingent verlangt Anhalten, nicht Weitergehen. Die Regel jagte die App durch alle 14 Flash-Modelle.
+
+**Es ist derselbe Denkfehler, den wir dem Schiedsrichter vorwerfen:** eine unklare Lage in falsche Sicherheit übersetzen, statt sie als unklar zu melden. Der Fehler war nicht, unbekannte Fehler zu behandeln — sondern sie **pauschal** zu behandeln.
+
+### 3. Was stattdessen gebaut wurde: die Modellwahl (v19.7.4)
+
+Ondos Vorschlag, und er war besser als der geplante Weg einer festen Namensliste im Code: Gehirn und Schiedsrichter sind unter „Mehr" **getrennt einstellbar**. Neue Modelle erscheinen von selbst in der Auswahl; kein Name steht fest im Code (Lehre 10.7.). Dazu: Sortierung neu-vor-alt statt „stabil"-vor-„latest", und der Modellname wird je Vorhersage mitgespeichert.
+
+Einstellung am 4.8.: Gehirn `gemini-3.1-flash-lite`, Schiedsrichter `gemini-flash-latest`, 14 Modelle verfügbar.
+
+### 4. Die Lite-Frage vom 29. Juli ist beantwortet
+
+Die Nutzungsdiagramme des Google-Kontos zeigen für den ganzen Juli **Gemini 3.1 Flash Lite** als beherrschendes Modell. **Das zweite Gehirn war die kleinste Stufe.** Ursache war die Sortierung „stabil vor latest" — stabil hieß in Wirklichkeit alt.
+
+**Folge für die Hauptkennzahl, ehrlich (Art. 14):** Die 5 % gegen 10 % sind womöglich ein **Größenunterschied und kein Anbieterunterschied**. Was gemessen wurde, ist Sonnet gegen die kleinste Gemini-Stufe, nicht Anthropic gegen Google.
+
+### 5. Neue Regel: Korrekturfaktoren sind an ihr Modell gebunden
+
+> **Ein Korrekturfaktor gilt nur für das Modell, an dem er gemessen wurde. Wechselt das Modell, verfällt der Faktor und muss neu gemessen werden.**
+
+Entstanden aus Ondos Frage. Folge: Ein Gehirnwechsel kostet Messreihe **und** Korrektur. Deshalb bleibt das Gehirn während der Messphase auf `gemini-3.1-flash-lite`. Steht als Arbeitsregel J im Blueprint; die Frage, ob es abzukürzen geht, ist Backlog-Punkt 21.
+
+### 6. Google-Konto — drei Befunde
+
+- **Zwei Projekte:** „Ondo Control" und „Default Gemini Project". Die am 3.8. neu erzeugten Schlüssel lagen im **kostenlosen** Projekt — daher `limit: 0` und der Totalausfall am Abend des 3.8.
+- **Ondo hat am 4.8. das Ondo-Control-Projekt auf Preisstufe 1 hochgestuft.** Schlüssel unverändert, in der App war nichts zu tun.
+- **Kosten: 0,05 € in 90 Tagen.** Guthaben 9,94 € von 10,00 €. Automatisches Aufladen deaktiviert. Die rund 30 vergeblichen Anfragen haben praktisch nichts gekostet. **Beförderungskriterium (a) bleibt erfüllt.**
+
+### 7. Antworten der Prüfer vom 4. August
+
+- **0a streichen: beide ja.** Fehleranfälligkeit der Namensfilterung, Kaskadengefahr, unbewiesener Nutzen.
+- **Lernschritt: beide ja** — im ersten Durchgang nur Flash korrigieren, Sonnet unangetastet lassen. **Ondos Entscheidung steht aus.**
+- **Gemini zur Modellauskunft:** In `ListModels` gibt es **kein** Feld für Werkzeug-Unterstützung, Kostenfreiheit oder Textmodell-Zugehörigkeit — nur `supportedGenerationMethods`. Am Namen zu raten bleibt der einzige Weg.
+- **ChatGPT zur Fehlerbehandlung: „Fail Safe".** Bei unbekannten Fehlern nie automatisch wechseln, sondern anhalten und als Unklarheit melden.
+- **Beide zu Punkt E:** „Prüfen statt suchen" trifft den Kern — die Aufgabe zu schärfen ist mächtiger, als ein größeres Modell auf einen unscharfen Auftrag zu werfen.
+- **Fehlerart 10:** Gemini ausdrücklich dafür, den Doppeleintrag als eigene Fehlerart zu führen.
+- **Unbeantwortete Rückfrage von Gemini:** Wie soll der neue Auftragstext ein **echtes** 0:0 von einem „nicht gefunden" wasserdicht unterscheiden? **Muss vor dem Bauen von Punkt E beantwortet sein.**
+
+### 8. Prüflauf vom 4. August — der erste erfolgreiche seit dem 31. Juli
+
+**12 von 30 gefunden, kein einziges 0:0, alle Halbzeitstände widerspruchsfrei.**
+
+| Spiel | Schiedsrichter | Geprüft | Ondos Entscheidung |
+|---|---|---|---|
+| St Patrick's – Derry City | 1:1 (HZ 1:0) | bestätigt | **übernommen** |
+| Bohemians – Galway (beide Einträge) | 1:1 | bestätigt | **beide ignoriert** |
+| Valur Reykjavik – Stjarnan | 2:3, datiert 03.08. | **auffällig** — ein Spielplan führt die Paarung unter dem **04.08.** Falls das Spiel erst dann stattfand, wäre 2:3 erfunden | offen |
+| übrige acht | — | **ungeprüft** | offen |
+
+**Warum beide Bohemians-Einträge ignoriert wurden:** Bei einem Eintrag hatte Flash 3 von 3 richtig, beim anderen 1 von 3; Sonnet in beiden Fällen 1 von 3. Jede Auswahl hätte einseitig Flashs Ergebnis verschoben. Ondo hat das Spiel ganz herausgenommen.
+
+**⚠ Nicht verwechseln:** Gesperrt sind ausschliesslich die 13 Ergebnisse vom **29./30. Juli** und die Läufe vom **31. Juli** — sie sind die Prüfbibliothek. **Der Prüflauf vom 4. August ist nicht gesperrt.**
+
+**Kein zweiter Prüflauf, bevor entschieden ist.** Nicht übernommene Spiele gelten als offen und werden neu geprüft — mit womöglich anderem Ergebnis (Fehlerart 1). Der Schiedsrichter erinnert sich nicht an frühere Läufe.
+
+### 9. Eine falsche Zahl im Bericht vom 4.8., 06:15 Uhr
+
+Der Bericht behauptet, eine „150er-Schwelle" für den ersten Lernschritt sei mit 174 Aussagen überschritten. **Beides falsch.** Eine 150er-Schwelle steht in keiner Projektdatei; belegt ist nur **„rund 100 pro Gehirn"**. Und 87 + 87 zu addieren ist unsinnig, weil der Lernschritt je Gehirn gilt. **Nach dem belegten Maßstab ist die Schwelle nicht erreicht.** Gefunden von Chat 5. Eine berichtigte Fassung ist den Prüfern nachzureichen.
 
 ---
 
@@ -100,7 +180,8 @@ Dateiname beginnt mit Datum und Uhrzeit: `2026-07-31_1430_Ondo-Control_Thema.md`
 **Nie empfehlen, Ergebnisse von Hand nachzuschlagen.** Seit dem 25.7. abgelehnt. Die Zuverlässigkeit des Schiedsrichters gehört zum Test, nicht in Ondos Freizeit. Zwei Claude-Instanzen sind trotzdem darauf zurückgefallen.
 
 **Datensicherung:** Ondo regelmäßig daran erinnern.
-**Letzte bestätigte Sicherung: 3.8.2026 — 138 Vorhersagen, 6 Wetten.** Davor: 2.8.2026, 13:00 Uhr · 31.7.2026, 07:49 Uhr.
+**Letzte bestätigte Sicherung: 4.8.2026, 17:58 Uhr — 138 Vorhersagen, 6 Wetten.** Davor: 3.8.2026 · 2.8.2026, 13:00 Uhr · 31.7.2026, 07:49 Uhr.
+*Am 4.8. hat sich die Sicherung bewährt: Ondo hat den Browserverlauf gelöscht, Safari löschte dabei den Websitespeicher mit, alle Daten waren weg — und wurden vollständig wiederhergestellt. **Nichts verloren.** Zwei bekannte Verlustwege: Browserdaten löschen · getrennter Speicher Safari gegen Startbildschirm.*
 *Hinweis (3.8.): Die Sicherungsdatei enthält `apiKey`, `geminiKey` und `pin` im Klartext. Sie darf nie an ChatGPT oder Gemini gehen, nie an einen Bericht angehängt und nie ins Repo. Ondo hat am 3.8. beide Schlüssel neu erzeugt und die alten deaktiviert. **Folge: Eine Sicherung von vor dem 3.8. überschreibt beim Zurückladen die neuen Schlüssel mit den toten alten** — dann Schlüssel neu eintragen, die Messdaten bleiben unberührt.*
 
 ---
@@ -239,6 +320,7 @@ Belege vom 31.7.:
 | 7 | **Heim und Gast vertauscht** | 29.7. | *keine* — zweimal unabhängig aufgetreten | — |
 | 8 | **Falscher Endstand trotz aller Prüfungen** | 30.7. | *keine* — alle Absicherungen prüfen die Form, nicht die Wahrheit | — |
 | 9 | **Erfundene 0:0** | 31.7. | *keine* — löst nicht einmal eine Warnung aus | — |
+| (10) | **Dasselbe Spiel doppelt in der Spielliste** | 3.8. | *keine* — **noch keine Fehlerart.** Gemini empfiehlt am 4.8. ausdrücklich, sie als zehnte zu führen (Datenhygiene, nicht Schiedsrichterurteil). **Entscheidung Ondos steht aus** | — |
 
 **Die wichtigste Erkenntnis (25.7.):** Alle drei KIs urteilten unabhängig, Ergebnisse unterklassiger Spiele seien nicht beschaffbar. **Das war falsch.** Ondo drückte den Prüf-Knopf mehrfach: 2 von 7, dann 4 von 7, schließlich 7 von 7. Es war kein Verfügbarkeits-, sondern ein Zuverlässigkeitsproblem.
 
@@ -287,7 +369,8 @@ Zwei Schreibweisen desselben Spiels ergeben zwei verschiedene Schlüssel. Folgen
 ## Versionen
 
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.7** (`beta.html`, geliefert 3.8.2026) — getrennter Speicher, aktive Messphase. Im Code steht weiterhin `APP_VERSION = 18` (technische Schuld, bewusst nicht nebenbei geändert, vor der Beförderung zu klären)
+- **Beta: v19.7.4** (`beta.html`, geliefert 4.8.2026) — getrennter Speicher, aktive Messphase. Vier Nachbesserungen am 3. und 4. August, alle ausgelöst durch Punkt 0a; Einzelheiten im Backlog. Im Code steht weiterhin `APP_VERSION = 18` (technische Schuld, bewusst nicht nebenbei geändert, vor der Beförderung zu klären)
+- **Sprachschlüssel: 184** in DE, FR und EN, identisch (Stand 4.8., zuvor 175)
 
 ---
 
@@ -314,6 +397,8 @@ Bis v18.6 war die Beta ein **Wett-Berater**. Am 23. Juli wurde sie zum **Messger
 ## Aktueller Messstand (nachgerechnet am 3.8.2026 aus Ondos Sicherung — unverändert seit 29.7., weil nichts übernommen wurde)
 
 **Bestand insgesamt:** 138 Vorhersagen, davon 118 aus der Messphase (je 59 Sonnet und Flash) und 20 im v18-Archiv. **Je 87 bewertete Aussagen, je 90 noch offene** — das sind 30 Spiele pro Gehirn, die auf Ergebnisse warten. Vorhergesagt wurde zuletzt am 2. und 3. August.
+
+**⚠ Diese Zahlen sind seit dem 4.8. überholt.** An diesem Tag wurde St Patrick's – Derry City 1:1 übernommen. Rechnerisch sind es damit **je 90 bewertete und je 87 offene Aussagen** — *hergeleitet aus drei Märkten je Gehirn, nicht nachgerechnet* (Arbeitsregel H). **Kalibrierung und Entschlossenheit sind seit dem 3.8. nicht neu gerechnet worden.** Wer sie braucht, rechnet sie aus Ondos Sicherung vom 4.8. nach. *Hinweis: Die Sicherungsdatei enthält die Zugangsschlüssel im Klartext — sie geht nie an einen Prüfer, nie in einen Bericht, nie ins Repo.*
 
 | | bewertete Aussagen | Kalibrierungs-Abweichung | Trefferquote |
 |---|---|---|---|
@@ -355,30 +440,34 @@ Bis v18.6 war die Beta ein **Wett-Berater**. Am 23. Juli wurde sie zum **Messger
 
 **Neu in v19.7 (3.8.2026):**
 - **A** — jedes Gehirn gibt zusätzlich das Wort `bttsWort` („ja"/„nein") aus. Es wird gespeichert und auf jeder Vorhersagekarte angezeigt. Weicht es von der angezeigten Btts-Aussage ab, erscheint der Hinweis „≠ Anzeige oben" — **reine Anzeige, nicht gespeichert, in keiner Kennzahl.** Am Rechnen, Umdrehen und Bewerten wurde nichts geändert.
-- **0a** — der Prüflauf holt eine **eigene zweite Modellliste** beim Konto (stärkere Modelle) und benutzt sie ausschließlich dort. Vorhersage, Spielliste und Foto-Lesen bleiben bei Flash. Kein stärkeres Modell auffindbar → Rückfall auf Flash mit sichtbarem Hinweis. Unter der Bilanz stehen Modellname und **Anzahl der Anfragen** je Lauf.
+- **0a** — **⚠ ÜBERHOLT. Am 4.8. in v19.7.3 zurückgenommen.** Der Schiedsrichter läuft wieder mit einem Flash-Modell. Der Anfragen-Zähler bleibt bei null, Modellname und Anzahl erscheinen deshalb **nie** unter der Bilanz. Was 0a sein sollte und warum es scheiterte, steht oben im Abschnitt zum 4. August. *(Der Absatz bleibt hier stehen, damit sichtbar ist, was einmal beschlossen war — nicht als Beschreibung des heutigen Zustands.)*
 - **1** — Kennzahl Entschlossenheit.
 - **D** — Rückblick-Block in neuer Zeilenform: `2.8.2026: Bohemians – Galway · getippt 2:1 · Ergebnis noch offen`.
 
-**Beim Bauen von 0a gefunden:** Die App fragte das Google-Konto nie nach stärkeren Modellen — der Filter in `gLadeModelle` ließ ausschließlich Namen mit „flash" durch. Der Schiedsrichter benutzte dasselbe Modell wie das zweite Gehirn, nicht aus Absicht, sondern mangels Alternative.
+**Beim Bauen von 0a gefunden:** Die App fragte das Google-Konto nie nach stärkeren Modellen — der Filter in `gLadeModelle` ließ ausschließlich Namen mit „flash" durch. Der Schiedsrichter benutzte dasselbe Modell wie das zweite Gehirn, nicht aus Absicht, sondern mangels Alternative. *(Der Befund bleibt gültig; die daraus gebaute zweite Modellliste ist am 4.8. zurückgenommen worden.)*
 
-**Was die Kosten angeht (Art. 14):** Was der Prüflauf mit dem stärkeren Modell wirklich kostet, ist **nicht bekannt**. Deshalb der Zähler — nach zwei, drei Läufen lässt es sich an der Guthaben-Anzeige ablesen statt schätzen. Die Schätzung vom 9.7. lag um das Zehnfache daneben.
+**Was die Kosten angeht — am 4.8. beantwortet:** Die Frage war, was ein Prüflauf wirklich kostet. Antwort aus dem Google-Konto: **0,05 € in 90 Tagen**, Guthaben 9,94 € von 10,00 €. Selbst die rund 30 vergeblichen Anfragen der drei 0a-Anläufe haben praktisch nichts gekostet. Die Schätzung vom 9.7. lag um das Zehnfache daneben — hier lag die Sorge in die andere Richtung daneben.
 
 ---
 
 ## Wie es weitergehen soll
 
-**1. v19.7 — ERLEDIGT am 3.8.** Alle vier Punkte in einer Lieferung. Jetzt läuft die Bewährungszeit (Arbeitsregel B). Auszuwerten:
+**Reihenfolge, festgelegt am 4.8.:** (1) Buchführung — erledigt mit dieser Fassung · (2) die acht ungeprüften Ergebnisse vom 4.8. prüfen und Valur – Stjarnan klären · (3) berichtigter Bericht an ChatGPT und Gemini, mit Antwort auf Geminis offene Rückfrage · (4) **Backlog-Punkt 22** bauen (KI-Log als Textausgabe) · (5) danach **Punkt E**.
+
+**1. v19.7 bis v19.7.4 — ERLEDIGT am 3. und 4.8.** Jetzt läuft die Bewährungszeit (Arbeitsregel B). Auszuwerten:
 - **Test A:** Nach einem Tag Vorhersagen ablesen, ob Wort und Prozentzahl bei Sonnet auseinanderfallen und bei Flash nicht. **Vorbehalt:** Es ist möglich, dass die zusätzliche Frage das Antwortverhalten selbst verändert; ein Warnzeichen wäre, wenn Sonnets scharfes Muster bricht (umgedreht nur bei einer Null im Tipp). Die beiden Fälle lassen sich nicht sicher trennen.
-- **Punkt 0a:** Nach dem ersten Prüflauf Modellname und Anfragen-Zähler ablesen, danach die Kosten am Guthaben prüfen.
+- **Punkt 0a:** ~~Modellname und Anfragen-Zähler ablesen.~~ **Entfällt — 0a ist am 4.8. zurückgenommen.** Die Kostenfrage ist am Guthaben beantwortet: 0,05 € in 90 Tagen.
 - **Punkt D:** In den ersten Tagen steht bei fast jeder Zeile „Ergebnis noch offen", weil Übernehmen gesperrt ist. Das ist erwartet.
 
-**2. Punkt E: „Prüfen statt suchen"** — am 25.7. beschlossen, bis heute nicht gebaut. Nach der neunten Fehlerart der aussichtsreichste Ansatz gegen erfundene Ergebnisse.
+**2. Die acht ungeprüften Ergebnisse vom 4.8. prüfen und Valur – Stjarnan klären.** Claude prüft selbst per Websuche; Ondo schlägt nichts von Hand nach (Beschluss 25.7.). Vorher kein zweiter Prüflauf.
 
-**3. Dieselben 13 Ergebnisse erneut prüfen lassen**, jetzt mit dem stärkeren Modell. Ondos PDF vom 30.7. ist die Messlatte „altes Modell", die amtlichen UEFA-Ergebnisse sind die Wahrheit. **Der sauberste Vergleich, den das Projekt je hatte — verspielt, sobald vorher etwas übernommen wird.**
+**3. Punkt E: „Prüfen statt suchen"** — am 25.7. beschlossen, bis heute nicht gebaut. Nach der Rücknahme von 0a der **einzige verbliebene** Ansatz gegen erfundene Ergebnisse, und von beiden Prüfern am 4.8. als der stärkere Weg bestätigt. **Vorbedingung: Geminis Rückfrage beantworten** — wie unterscheidet der neue Auftragstext ein echtes 0:0 von einem „nicht gefunden"?
+
+**3b. Dieselben 13 Ergebnisse erneut prüfen lassen.** ~~mit dem stärkeren Modell~~ — das entfällt mit 0a. Der Vergleich bleibt trotzdem sinnvoll, sobald Punkt E gebaut ist: Ondos PDF vom 30.7. ist die Messlatte „alter Auftragstext", die amtlichen UEFA-Ergebnisse sind die Wahrheit. **Der sauberste Vergleich, den das Projekt je hatte — verspielt, sobald diese 13 übernommen werden.**
 
 **4. Erster Lernschritt — NICHT selbstverständlich.**
 Für **Flash** ist die Lehre klar benennbar. Für **Sonnet** wäre die naheliegende Lehre „leg dich öfter fest" — und die wäre **gefährlich**: Ein Modell zu mehr Entschlossenheit zu drängen, kann seine Ehrlichkeit zerstören. Zweiter Grund zum Verschieben: Ein Lernschritt ist nach Art. 9 eine bestätigte Lehre; eine Lehre auf ungeklärter Datengrundlage zurückzunehmen ist teurer, als sie später zu geben.
-**Beschlossen (Ondo, 31.7.): als ausdrücklich offene Frage an ChatGPT und Gemini geben.**
+**Beschlossen (Ondo, 31.7.): als ausdrücklich offene Frage an ChatGPT und Gemini geben.** Geschehen am 4.8. **Beide antworteten: ja, nur Flash korrigieren.** Ondos Entscheidung steht aus. **Und: Die Schwelle ist nach dem belegten Maßstab — rund 100 Aussagen pro Gehirn — noch nicht erreicht.**
 
 **5. Danach: das Such-Experiment.** Die Messung ohne Suche läuft seit dem 23. Juli; **vier Wochen sind am 20. August um.**
 
@@ -422,7 +511,7 @@ Geplant sind Finanzen, Content, Organisation. Fast alles, was gebaut wird, ist d
 
 Ondo schreibt „Ondo Control: [Anliegen]" und fügt Raw-Links ein, **immer mit angehängter Zahl**, z. B. `?v=20260731`. **Alle sechs Dateien plus `version.json` werden gelesen, bevor irgendetwas beurteilt wird** — Blueprint und Ondo-Core eingeschlossen. Das Weglassen hat am 30./31.7. zweimal zu falschen Empfehlungen geführt.
 
-**Vor jeder Lieferung:** Syntax-Check (`node --check`), Sprachdatei-Abgleich (DE/FR/EN gleiche Schlüssel, **aktuell 175**), Trockentest der neuen Logik — am besten gegen Ondos jüngste Sicherungsdatei, das prüft die Rechnung an echten Daten. Versionsnummer im Header hochzählen. **Und die Dokumente (Arbeitsregel F).**
+**Vor jeder Lieferung:** Syntax-Check (`node --check`), Sprachdatei-Abgleich (DE/FR/EN gleiche Schlüssel, **aktuell 184**), Trockentest der neuen Logik — am besten gegen Ondos jüngste Sicherungsdatei, das prüft die Rechnung an echten Daten. Versionsnummer im Header hochzählen. **Und die Dokumente (Arbeitsregel F).**
 
 ### Chat-Übergabe ist Claudes Pflicht, nicht Ondos (**Übergaberegel**, 30.7.)
 
@@ -464,7 +553,8 @@ Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp 
 | 30./31.7.2026 | Chat 3 → Chat 4 | Raw-Links + Mappe | 9 von 9 | zwei Antworten genauer als der Schlüssel; deckte einen Art.-8-Verstoß auf |
 | 31.7.2026 | Chat 4 → Chat 5 | Raw-Links + Mappe | **9 von 9** | erstmals alle sechs Dateien vorgeschrieben; zwei Antworten über dem Schlüssel (Fragen 5 und 8), drei neue Codefunde durch den Nachfolger |
 | 3.8.2026 | Chat 5 → Chat 6 | Raw-Links + Mappe | **9 von 9** | eine Antwort über dem Schlüssel (Frage 3 war falsch gestellt: sechs Tage, nicht drei); zwei Dokumentenfehler durch den Nachfolger gefunden. **Erste Übergabe, nach der noch am selben Tag Code geliefert wurde** |
+| 4.8.2026 | Chat 6 → Chat 7 | Raw-Links + Mappe + Abnahme | **9 von 9** | zwei Antworten über dem Schlüssel (Fragen 3 und 4). Der Nachfolger fand vor der Prüfung **drei Abweichungen zwischen Code und Dokumenten** (v19.7.4 statt v19.7 · 0a zurückgenommen · Modellwahl undokumentiert) plus einen Stilfehler. Der abgebende Chat gab offen an, dass sein Speicher erschöpft war |
 
 ---
 
-*Aktualisiert von Claude (Chat 6) am 3.8.2026, zusammen mit der Lieferung von v19.7 und der Backlog-Fassung 6. Alle sechs Dateien plus `version.json` wurden vollständig gelesen. Alle Punkte aus Teil E der Übergabemappe Chat 5 → Chat 6 stehen jetzt in Repo-Dateien. **Die Übergabemappe darf gelöscht werden.***
+*Aktualisiert von Claude (Chat 7) am 4.8.2026, zusammen mit der Backlog-Fassung 7 und Blueprint 0.6. Alle sechs Dateien plus `version.json` wurden vollständig gelesen, dazu der Bericht vom 4.8., 06:15 Uhr. Alle Punkte aus Teil E der Übergabemappe Chat 6 → Chat 7 stehen jetzt in Repo-Dateien. **Die Übergabemappe darf gelöscht werden, sobald Ondo die drei Dateien hochgeladen hat — nicht früher.***
