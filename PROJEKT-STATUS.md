@@ -1,7 +1,7 @@
 # ONDO CONTROL — PROJEKT-STATUS
-*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 31. Juli 2026 abends, v19.6*
+*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 3. August 2026, v19.7*
 
-> **Zur Datierung:** Die Messzahlen stammen vom Abend des 29. Juli, die App-Bildschirmfotos vom Abend des 30. Juli, die Befunde und Beschlüsse vom 30. und 31. Juli. Die Schiedsrichter-Läufe vom 31. Juli sind ausgewertet, aber **nichts davon wurde übernommen** — die Messzahlen haben sich deshalb seit dem 29.7. nicht verändert.
+> **Zur Datierung:** Die Messzahlen sind am 3.8. aus Ondos Sicherungsdatei nachgerechnet und decken sich mit den Werten vom 29.7. — es wurde seitdem nichts übernommen. Die Befunde und Beschlüsse stammen vom 30. und 31. Juli sowie vom 3. August. **v19.7 wurde am 3. August gebaut und ausgeliefert.**
 
 ---
 
@@ -26,7 +26,7 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 - **Ein negativer Einzelversuch beweist keine Unmöglichkeit.**
 - **Auswählen ist eine Entscheidung, Ablesen nicht.** Auswahlentscheidungen müssen durch getrennte Anfragen erzwungen werden.
 - **Keine Lieferung ohne Buchführung** (Arbeitsregel F, 29.7.).
-- **Kostenregel** *(neu, 31.7., von Ondo angenommen)*: Jeder Vorschlag nennt seine Kosten — Geld, Zeit, Nutzungslimit — oder sagt ausdrücklich, dass er keine hat. Ein Satz genügt. *Noch in den Blueprint einzutragen.*
+- **Kostenregel** *(neu, 31.7., von Ondo angenommen)*: Jeder Vorschlag nennt seine Kosten — Geld, Zeit, Nutzungslimit — oder sagt ausdrücklich, dass er keine hat. Ein Satz genügt. *Steht im Blueprint, Abschnitt 2c, als Arbeitsregel G.*
 - **Prüfen, bevor behauptet wird, ein Dokument sei veraltet** *(31.7.)*. Zwei Claude-Instanzen haben das am 29.7. unabhängig falsch geschlossen.
 - **Belegen statt herleiten** *(31.7.)*. Eine plausible Erklärung ist keine geprüfte Erklärung. Codezeilen werden zitiert, nicht beschrieben.
 
@@ -34,9 +34,13 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 
 ---
 
-## ⚠ Der Befund vom 31. Juli abends: drei Tage ohne Codelieferung
+## ⚠ Der Befund vom 31. Juli — GESCHLOSSEN am 3. August
 
-**Zuletzt gebaut wurde v19.6 am 28. Juli.** In den drei Tagen danach entstanden: zwei vollständige Chat-Übergaben, vier Dokumentenfassungen, ein Prüferbericht — und null Codezeilen.
+**Die Lücke ist zu: v19.7 wurde am 3.8. gebaut und ausgeliefert.** Sie hat am Ende sechs Tage gedauert, vom 28.7. bis zum 3.8., nicht drei.
+
+**Was den Ausschlag gab, ist festzuhalten, weil es wiederholbar ist:** Statt `beta.html` aus dem Gedächtnis neu auszuschreiben, hat Ondo die Datei hochgeladen; geändert wurden nur die betroffenen Stellen. Das kostete einen Bruchteil des Speichers und machte Code **und** Buchführung in einem Chat möglich. **Das ist ab sofort das Standardverfahren für jede Lieferung.**
+
+**Der ursprüngliche Befund, zur Erinnerung:** In den drei Tagen nach v19.6 entstanden zwei vollständige Chat-Übergaben, vier Dokumentenfassungen, ein Prüferbericht — und null Codezeilen.
 
 Festgestellt von **Ondo** am Abend des 31.7. mit der Frage, woran es hakt. Die Antwort, soweit sie belegbar ist:
 
@@ -46,7 +50,7 @@ Festgestellt von **Ondo** am Abend des 31.7. mit der Frage, woran es hakt. Die A
 
 → **Backlog Punkt 18** (Status: Idee). Vorschlag: dieses Dokument auf das kürzen, was ein neuer Chat wirklich braucht, und die Chronik in eine Archivdatei auslagern, die beim Start **nicht** gelesen wird. **Entscheidung Ondos steht aus.**
 
-*Ehrlich dazu (Art. 14): Die vorliegende Fassung ist wieder länger geworden, nicht kürzer. Punkt 18 zu beschließen ist die einzige Maßnahme, die das ändert.*
+*Ehrlich dazu (Art. 14): Auch diese Fassung ist wieder länger geworden, nicht kürzer. Punkt 18 zu beschließen ist weiterhin die einzige Maßnahme, die das ändert. Das Hochlade-Verfahren mildert das Problem, es löst es nicht — gelesen werden die Dokumente beim Start trotzdem.*
 
 ---
 
@@ -96,7 +100,8 @@ Dateiname beginnt mit Datum und Uhrzeit: `2026-07-31_1430_Ondo-Control_Thema.md`
 **Nie empfehlen, Ergebnisse von Hand nachzuschlagen.** Seit dem 25.7. abgelehnt. Die Zuverlässigkeit des Schiedsrichters gehört zum Test, nicht in Ondos Freizeit. Zwei Claude-Instanzen sind trotzdem darauf zurückgefallen.
 
 **Datensicherung:** Ondo regelmäßig daran erinnern.
-**Letzte bestätigte Sicherung: 31.7.2026, 07:49 Uhr — 120 Vorhersagen, 6 Wetten.**
+**Letzte bestätigte Sicherung: 3.8.2026 — 138 Vorhersagen, 6 Wetten.** Davor: 2.8.2026, 13:00 Uhr · 31.7.2026, 07:49 Uhr.
+*Hinweis (3.8.): Die Sicherungsdatei enthält `apiKey`, `geminiKey` und `pin` im Klartext. Sie darf nie an ChatGPT oder Gemini gehen, nie an einen Bericht angehängt und nie ins Repo. Ondo hat am 3.8. beide Schlüssel neu erzeugt und die alten deaktiviert. **Folge: Eine Sicherung von vor dem 3.8. überschreibt beim Zurückladen die neuen Schlüssel mit den toten alten** — dann Schlüssel neu eintragen, die Messdaten bleiben unberührt.*
 
 ---
 
@@ -243,6 +248,22 @@ Belege vom 31.7.:
 
 ---
 
+## Fund vom 3. August — dasselbe Spiel doppelt in der Spielliste
+
+Am 2.8. standen in derselben Liste **„Bohemians – Galway United FC" (Anpfiff 20:00)** und **„Bohemians Dublin – Galway United" (Anpfiff 19:00)** — ein Spiel, zwei Einträge. Sonnet hat es selbst gemerkt und in die Begründung geschrieben: „Gleiche Paarung wie heute früher."
+
+Die Doppelten-Sperre in `spielListeHolen` bildet den Schlüssel so:
+
+```
+function schluessel(s){ return String(s.match).toLowerCase().replace(/[^a-z0-9]/g,''); }
+```
+
+Zwei Schreibweisen desselben Spiels ergeben zwei verschiedene Schlüssel. Folgen: **sechs bewertete Aussagen je Gehirn aus einem einzigen Spiel** statt drei, und eine der beiden Anpfiffzeiten ist falsch — die geht in die 2,5-Stunden-Regel des Schiedsrichters ein.
+
+**Ob das eine zehnte Fehlerart ist oder ein Beobachtungspunkt bleibt, entscheidet Ondo.** Nichts gebaut; gehörte nicht zu den vier v19.7-Punkten.
+
+---
+
 ## Drei Codebefunde vom 31.7. (Beobachtung, keine bewiesenen Fehler)
 
 1. **Zuordnung über die Listenposition.** In `vorhersagen()` werden Wettbewerb und Anpfiffzeit über die Position in der Liste zugeordnet, der Spielname dagegen aus der Antwort des Gehirns. Antwortet ein Gehirn in anderer Reihenfolge, hängt an einem Spiel die falsche Anpfiffzeit — und die 2,5-Stunden-Regel rechnet mit genau dieser Zeit. Am 29. und 30.7. kam die Liste in beiden Fällen in derselben Reihenfolge zurück.
@@ -266,7 +287,7 @@ Belege vom 31.7.:
 ## Versionen
 
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.6** (`beta.html`) — getrennter Speicher, aktive Messphase. Im Code steht weiterhin `APP_VERSION = 18` (technische Schuld, vor der Beförderung zu klären)
+- **Beta: v19.7** (`beta.html`, geliefert 3.8.2026) — getrennter Speicher, aktive Messphase. Im Code steht weiterhin `APP_VERSION = 18` (technische Schuld, bewusst nicht nebenbei geändert, vor der Beförderung zu klären)
 
 ---
 
@@ -290,7 +311,9 @@ Bis v18.6 war die Beta ein **Wett-Berater**. Am 23. Juli wurde sie zum **Messger
 
 ---
 
-## Aktueller Messstand (Stand 29.7.2026 abends — seitdem unverändert, weil nichts übernommen wurde)
+## Aktueller Messstand (nachgerechnet am 3.8.2026 aus Ondos Sicherung — unverändert seit 29.7., weil nichts übernommen wurde)
+
+**Bestand insgesamt:** 138 Vorhersagen, davon 118 aus der Messphase (je 59 Sonnet und Flash) und 20 im v18-Archiv. **Je 87 bewertete Aussagen, je 90 noch offene** — das sind 30 Spiele pro Gehirn, die auf Ergebnisse warten. Vorhergesagt wurde zuletzt am 2. und 3. August.
 
 | | bewertete Aussagen | Kalibrierungs-Abweichung | Trefferquote |
 |---|---|---|---|
@@ -309,9 +332,18 @@ Bis v18.6 war die Beta ein **Wett-Berater**. Am 23. Juli wurde sie zum **Messger
 - **Die sieben CL-Vorhersagen vom 29.7. stecken NICHT in diesen 87.** Genau die Daten, die Sonnets Verhalten bei klaren Favoriten zeigen würden, fehlen.
 - Ondos eigene Bilanz: **−29,75 €**, eigene Trefferquote 17 % (1/6). Papier-Modus bleibt die stehende Empfehlung.
 
+**Entschlossenheit (neu ab v19.7, aus denselben 87 Aussagen gerechnet):**
+
+| | Ø Abstand von 50 | Anteil ab 60 % |
+|---|---|---|
+| Sonnet | 4,8 | 6 % (5/87) |
+| Flash | 8,6 | 38 % (33/87) |
+
+*Lesart: Flash legt sich fast siebenmal so oft fest wie Sonnet, bei doppelter Kalibrierungs-Abweichung. Die Zahl allein sagt nichts über Qualität — sie ist erst zusammen mit der Kalibrierung aussagekräftig. **Den Gehirnen wird sie nicht mitgeteilt.***
+
 ---
 
-## Was v19.6 kann
+## Was v19.7 kann
 
 **Vorhersage:** Ein Knopf. Die Spielliste wird **zweistufig** geholt: erst UEFA und große europäische Ligen, nur bei weniger als fünf Spielen zusätzlich MLS/Südamerika/Skandinavien, danach erst Testspiele. Jede Stufe ist eine eigene Anfrage. Beide Gehirne bekommen dieselbe Liste, ohne Websuche.
 
@@ -319,17 +351,26 @@ Bis v18.6 war die Beta ein **Wett-Berater**. Am 23. Juli wurde sie zum **Messger
 
 **Datensicherung** (unter „Mehr"): Export als Datei, Import zurück.
 
-**Kalibrierungs-Tabelle** unter Finanzen, je Gehirn.
+**Kalibrierungs-Tabelle** unter Finanzen, je Gehirn. Darunter neu die Karte **Entschlossenheit**.
+
+**Neu in v19.7 (3.8.2026):**
+- **A** — jedes Gehirn gibt zusätzlich das Wort `bttsWort` („ja"/„nein") aus. Es wird gespeichert und auf jeder Vorhersagekarte angezeigt. Weicht es von der angezeigten Btts-Aussage ab, erscheint der Hinweis „≠ Anzeige oben" — **reine Anzeige, nicht gespeichert, in keiner Kennzahl.** Am Rechnen, Umdrehen und Bewerten wurde nichts geändert.
+- **0a** — der Prüflauf holt eine **eigene zweite Modellliste** beim Konto (stärkere Modelle) und benutzt sie ausschließlich dort. Vorhersage, Spielliste und Foto-Lesen bleiben bei Flash. Kein stärkeres Modell auffindbar → Rückfall auf Flash mit sichtbarem Hinweis. Unter der Bilanz stehen Modellname und **Anzahl der Anfragen** je Lauf.
+- **1** — Kennzahl Entschlossenheit.
+- **D** — Rückblick-Block in neuer Zeilenform: `2.8.2026: Bohemians – Galway · getippt 2:1 · Ergebnis noch offen`.
+
+**Beim Bauen von 0a gefunden:** Die App fragte das Google-Konto nie nach stärkeren Modellen — der Filter in `gLadeModelle` ließ ausschließlich Namen mit „flash" durch. Der Schiedsrichter benutzte dasselbe Modell wie das zweite Gehirn, nicht aus Absicht, sondern mangels Alternative.
+
+**Was die Kosten angeht (Art. 14):** Was der Prüflauf mit dem stärkeren Modell wirklich kostet, ist **nicht bekannt**. Deshalb der Zähler — nach zwei, drei Läufen lässt es sich an der Guthaben-Anzeige ablesen statt schätzen. Die Schätzung vom 9.7. lag um das Zehnfache daneben.
 
 ---
 
 ## Wie es weitergehen soll
 
-**1. v19.7 bauen** — vier Punkte in einer Lieferung, damit es **ein** Bruch in der Messreihe wird statt vier:
-- **Test A** (ja/nein-Wort zusätzlich ausgeben)
-- **Punkt 0a** (Schiedsrichter fest an das stärkere Gemini-Modell; Vorhersage unverändert)
-- **Punkt 1** (Kennzahl Entschlossenheit)
-- **Punkt D** (echte Endstände im Rückblick-Block, neue Zeilenform)
+**1. v19.7 — ERLEDIGT am 3.8.** Alle vier Punkte in einer Lieferung. Jetzt läuft die Bewährungszeit (Arbeitsregel B). Auszuwerten:
+- **Test A:** Nach einem Tag Vorhersagen ablesen, ob Wort und Prozentzahl bei Sonnet auseinanderfallen und bei Flash nicht. **Vorbehalt:** Es ist möglich, dass die zusätzliche Frage das Antwortverhalten selbst verändert; ein Warnzeichen wäre, wenn Sonnets scharfes Muster bricht (umgedreht nur bei einer Null im Tipp). Die beiden Fälle lassen sich nicht sicher trennen.
+- **Punkt 0a:** Nach dem ersten Prüflauf Modellname und Anfragen-Zähler ablesen, danach die Kosten am Guthaben prüfen.
+- **Punkt D:** In den ersten Tagen steht bei fast jeder Zeile „Ergebnis noch offen", weil Übernehmen gesperrt ist. Das ist erwartet.
 
 **2. Punkt E: „Prüfen statt suchen"** — am 25.7. beschlossen, bis heute nicht gebaut. Nach der neunten Fehlerart der aussichtsreichste Ansatz gegen erfundene Ergebnisse.
 
@@ -381,9 +422,11 @@ Geplant sind Finanzen, Content, Organisation. Fast alles, was gebaut wird, ist d
 
 Ondo schreibt „Ondo Control: [Anliegen]" und fügt Raw-Links ein, **immer mit angehängter Zahl**, z. B. `?v=20260731`. **Alle sechs Dateien plus `version.json` werden gelesen, bevor irgendetwas beurteilt wird** — Blueprint und Ondo-Core eingeschlossen. Das Weglassen hat am 30./31.7. zweimal zu falschen Empfehlungen geführt.
 
-**Vor jeder Lieferung:** Syntax-Check (`node --check`), Sprachdatei-Abgleich (DE/FR/EN gleiche Schlüssel, **aktuell 167**), Trockentest der neuen Logik. Versionsnummer im Header hochzählen. **Und die Dokumente (Arbeitsregel F).**
+**Vor jeder Lieferung:** Syntax-Check (`node --check`), Sprachdatei-Abgleich (DE/FR/EN gleiche Schlüssel, **aktuell 175**), Trockentest der neuen Logik — am besten gegen Ondos jüngste Sicherungsdatei, das prüft die Rechnung an echten Daten. Versionsnummer im Header hochzählen. **Und die Dokumente (Arbeitsregel F).**
 
-### Chat-Übergabe ist Claudes Pflicht, nicht Ondos (Regel G, 30.7.)
+### Chat-Übergabe ist Claudes Pflicht, nicht Ondos (**Übergaberegel**, 30.7.)
+
+*Namensklärung erledigt (Ondo, 31.7., eingetragen 3.8.): Diese Vorschrift hieß bis dahin ebenfalls „Regel G" und ließ sich mit der Arbeitsregel G (Kostenregel) im Blueprint verwechseln. Sie heißt jetzt **Übergaberegel**.*
 
 Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp wird. Sie besteht aus drei Teilen: aktualisierter PROJEKT-STATUS, aktualisierter Backlog, und einer **Übergabemappe** mit den Abschnitten: (A) Nachricht zum Einfügen, (B) Kontrollfragen, (C) Antwortschlüssel nur für Ondo, (D) was zu tun ist, wenn Antworten falsch sind, (E) erste Arbeit nach der Abnahme.
 
@@ -394,11 +437,16 @@ Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp 
 **Auslöser (Claude prüft das selbst):** eine vollständige Ausgabe von `beta.html` (74 KB) passt nicht mehr sicher in eine Antwort · zusätzliche große Dokumente wurden eingelesen · Antworten werden erkennbar kürzer oder ungenauer, als die Aufgabe verlangt.
 
 **Was den Speicher wirklich füllt** *(gemessen am 31.7.)*: Vier PDF-Ausdrucke der KI-Log-Seite kosteten zusammen mehr als `beta.html`, `Blueprint.md` und `Ondo-Core-Architektur.md` zusammen — jeder enthält das gesamte Log im Volltext, und das Log wächst mit jeder Vorhersage.
-**Sparsamer:** beim Prüflauf nur den **oberen Teil** mit Bilanz und gefundenen Endständen schicken, denselben Ausdruck nur einmal, und lieber ein Bild als einen PDF-Ausdruck desselben Bildschirms.
+
+**Grobe Zahlen zum Rechnen** *(Claude, 31.7. — Schätzungen, ausdrücklich keine Messungen)*: Gesamter Arbeitsspeicher etwa **400 KB Text**. Einlesen aller sieben Dateien ≈ **240 KB (60 %)**. Drei Dokumente ausschreiben ≈ **90 KB**. `beta.html` ≈ 74 KB · `OndoControl.html` ≈ 66 KB · die vier Markdown-Dateien zusammen ≈ 100 KB.
+
+**Bildschirmfotos:** **Zwei bis drei normale Bildschirmfotos vom oberen Teil (≈ 15 KB je Stück) sind das Günstigste.** Ein Bild der ganzen langen Seite kostet 40–60 KB und ist kaum lesbar. Ein PDF-Ausdruck ist am teuersten, weil er das gesamte Log als Text enthält, auch die nicht sichtbaren Einträge.
+
+**⚑ Das Hochlade-Verfahren (3.8., bewährt bei v19.7) — ab sofort Standard:** Zu ändernde Dateien werden von Ondo **hochgeladen** statt von Claude aus dem Gedächtnis neu ausgeschrieben. Claude ändert nur die betroffenen Stellen und gibt die fertige Datei zurück; der Rest läuft nie durch den Speicher. Ersparnis bei `beta.html` grob ein Viertel eines ganzen Chats. Dadurch passten am 3.8. Code **und** vollständige Buchführung in denselben Chat.
 
 **Ablauf:** Teil A in den neuen Chat → dessen Bestätigung abwarten → Teil B einfügen → die Antworten in den **alten** Chat zurückkopieren → Abnahme durch den abgebenden Chat. Vorher wird im neuen Chat nichts gebaut. Erste Arbeit ist Teil E.
 
-**Eigene Fassung für ChatGPT:** ChatGPT kann keinen neuen Chat öffnen. Regel G braucht dafür eine angepasste Fassung — **noch zu schreiben.**
+**Eigene Fassung für ChatGPT:** ChatGPT kann keinen neuen Chat öffnen. Die Übergaberegel braucht dafür eine angepasste Fassung — **noch zu schreiben.**
 
 **Die Übergabemappe gehört NICHT ins Repo.** Sie enthält den Antwortschlüssel. Sie bleibt auf Ondos Gerät und wird gelöscht, **sobald Teil E vollständig in Repo-Dateien steht** — nicht früher.
 
@@ -415,7 +463,8 @@ Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp 
 | 30.7.2026 | Chat 3 → ChatGPT | GitHub-Pages-Links | 7 von 8 | Mappe war an sechs Stellen veraltet |
 | 30./31.7.2026 | Chat 3 → Chat 4 | Raw-Links + Mappe | 9 von 9 | zwei Antworten genauer als der Schlüssel; deckte einen Art.-8-Verstoß auf |
 | 31.7.2026 | Chat 4 → Chat 5 | Raw-Links + Mappe | **9 von 9** | erstmals alle sechs Dateien vorgeschrieben; zwei Antworten über dem Schlüssel (Fragen 5 und 8), drei neue Codefunde durch den Nachfolger |
+| 3.8.2026 | Chat 5 → Chat 6 | Raw-Links + Mappe | **9 von 9** | eine Antwort über dem Schlüssel (Frage 3 war falsch gestellt: sechs Tage, nicht drei); zwei Dokumentenfehler durch den Nachfolger gefunden. **Erste Übergabe, nach der noch am selben Tag Code geliefert wurde** |
 
 ---
 
-*Aktualisiert von Claude (Chat 5) am 31.7.2026 abends. Alle sechs Dateien plus `version.json` wurden vollständig gelesen. Vier der sieben Punkte aus Teil E der Übergabemappe stehen jetzt hier; die Kostenregel als Arbeitsregel G fehlt noch im `Blueprint.md`. **Die Mappe darf erst danach gelöscht werden.***
+*Aktualisiert von Claude (Chat 6) am 3.8.2026, zusammen mit der Lieferung von v19.7 und der Backlog-Fassung 6. Alle sechs Dateien plus `version.json` wurden vollständig gelesen. Alle Punkte aus Teil E der Übergabemappe Chat 5 → Chat 6 stehen jetzt in Repo-Dateien. **Die Übergabemappe darf gelöscht werden.***

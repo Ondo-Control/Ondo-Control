@@ -3,11 +3,13 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.4
-**Stand:** 31. Juli 2026
+**Version:** 0.5
+**Stand:** 3. August 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
-> **Was Fassung 0.4 ändert (31.7.2026):** Drei neue Arbeitsregeln in Abschnitt 2c (G Kostenregel, H Belegen statt herleiten, I Prüfen vor der Behauptung „veraltet"). Protokolleinträge für den 30. und 31. Juli nachgetragen. Eine offene Frage ergänzt. Kein Verfassungsartikel geändert.
+> **Was Fassung 0.5 ändert (3.8.2026):** Der Namenskonflikt um „Regel G" ist entschieden und der Kasten in Abschnitt 2c entfällt — die Vorschrift zur Chat-Übergabe heißt jetzt **Übergaberegel**. Protokolleinträge für den 3. August nachgetragen. Zwei offene Punkte geschlossen. Kein Verfassungsartikel geändert.
+>
+> **Was Fassung 0.4 änderte (31.7.2026):** Drei neue Arbeitsregeln in Abschnitt 2c (G Kostenregel, H Belegen statt herleiten, I Prüfen vor der Behauptung „veraltet"). Protokolleinträge für den 30. und 31. Juli nachgetragen. Eine offene Frage ergänzt. Kein Verfassungsartikel geändert.
 
 ---
 
@@ -106,7 +108,7 @@ Quellen erhalten Vertrauenswerte (z. B. offizielle Verbände hoch, Foren niedrig
 **G — Kostenregel** *(31.7., Ondo, angenommen)* **Jeder Vorschlag nennt seine Kosten — Geld, Zeit, Nutzungslimit — oder sagt ausdrücklich, dass er keine hat.** Ein Satz genügt, kein Formular.
 *Anlass: Die ursprüngliche Kostenschätzung für KI-Analysen war um rund das Zehnfache zu optimistisch (siehe Kosten-Nachtrag in Abschnitt 6). Der Besitzer kann Aufwand nicht abwägen, den niemand beziffert.*
 
-> **⚠ Namensklärung, noch zu entscheiden:** In `PROJEKT-STATUS.md` heißt die Vorschrift zur Chat-Übergabe seit dem 30.7. ebenfalls „Regel G". Das ist ein anderes Nummernsystem und war nie Teil dieses Abschnitts. Um Verwechslungen zu vermeiden, sollte die Übergabevorschrift dort einen sprechenden Namen bekommen (Vorschlag: **Übergaberegel**). **Entscheidung des Besitzers steht aus.**
+> **✅ Namensklärung, entschieden (Ondo, 31.7., eingetragen 3.8.):** Die Vorschrift zur Chat-Übergabe in `PROJEKT-STATUS.md` heißt ab sofort **Übergaberegel**. „Arbeitsregel G" bezeichnet ausschließlich die Kostenregel. Der Konflikt ist damit erledigt.
 
 **H — Belegen statt herleiten** *(31.7., Ondo)* Eine plausible Erklärung ist keine geprüfte Erklärung. **Codezeilen werden zitiert, nicht beschrieben.** Wo eine Behauptung an einer Datei hängt, wird die Datei aufgeschlagen.
 *Anlass: Das Projekt ist mehrfach von plausiblen Herleitungen in die Irre geführt worden — zuletzt bei der Deutung des Marktes „beide treffen", wo erst der Blick in den Auftragstext und in die Funktion `maerkteBauen` die Ursache zeigte.*
@@ -282,6 +284,15 @@ ONDO CONTROL
 | 31.7.2026 | **Übergabe-Protokoll eingeführt** (Ondo): Tabelle in `PROJEKT-STATUS.md` — wer an wen, welches Verfahren, wie viele Kontrollfragen richtig. Zweck: Wenn später etwas fehlt, sieht man, in welcher Übergabe es verloren ging. |
 | 31.7.2026 | **Befund des Besitzers: drei Tage ohne Codelieferung.** Zuletzt gebaut wurde v19.6 am 28.7.; seitdem nur Dokumente. Daraus die Erweiterung von Arbeitsregel C und Backlog-Punkt 18 (die Dokumente selbst auf Diät setzen). |
 | 31.7.2026 | Blueprint auf Version 0.4 gehoben. |
+| **— ab hier nachgetragen am 3.8.2026 —** | |
+| 3.8.2026 | **Namenskonflikt entschieden (Ondo):** Die Vorschrift zur Chat-Übergabe heißt **Übergaberegel**. „Arbeitsregel G" meint ausschließlich die Kostenregel. |
+| 3.8.2026 | **Sprachkürzung der Beta abgelehnt — vorerst (Ondo):** *„solange es geht dreisprachig bauen; wenn es zu viel wird, können wir auf diese Idee zurückgreifen."* Ausdrücklich keine endgültige Ablehnung → Backlog-Punkt 19, Status Idee. |
+| 3.8.2026 | **v19.7 gebaut und ausgeliefert** — A, 0a, 1 und D in einer Lieferung. Erste Codelieferung seit dem 28. Juli. Syntax-Check bestanden, 175 Sprachschlüssel in DE/FR/EN identisch, Trockentest gegen Ondos Sicherung. |
+| 3.8.2026 | **Beim Bauen von 0a gefunden:** Die App fragte das Google-Konto nie nach stärkeren Modellen — der Filter ließ nur Namen mit „flash" durch. Der Schiedsrichter benutzte dasselbe Modell wie das zweite Gehirn, mangels Alternative. |
+| 3.8.2026 | **Zugangsschlüssel im Klartext in der Sicherungsdatei festgestellt.** Ondo hat beide Schlüssel neu erzeugt und die alten deaktiviert. Die Sicherung darf nie an Prüfer, an Berichte oder ins Repo. |
+| 3.8.2026 | **Hochlade-Verfahren als Standard (Claude, von Ondo angenommen):** Zu ändernde Dateien werden hochgeladen statt aus dem Gedächtnis neu ausgeschrieben. Ersparnis grob ein Viertel eines Chats je Code-Lieferung. Erst dadurch passten Code und Buchführung am 3.8. in denselben Chat. |
+| 3.8.2026 | **Begründungszwang bei Seitenwechsel** aus dem Beobachtungsteil zu einem entscheidbaren Punkt erhoben (Ondo) → Backlog-Punkt 20. |
+| 3.8.2026 | Blueprint auf Version 0.5 gehoben. |
 
 ---
 
@@ -297,8 +308,6 @@ Oder soll er nur verifizierte Fakten bewerten? Die neunte Fehlerart vom 31.7. ve
 **Offen — Rollenmodell** *(ChatGPT, 23.7.; Einwände Claude)*: Ein Rollenabschnitt soll in den Blueprint, aber als änderbarer Abschnitt, nicht als Hierarchie, und mit zwei Konfliktregeln: (1) Wer die Architektur entwirft, kann sie nicht unabhängig prüfen. (2) Geminis Doppelrolle als Duell-Teilnehmer und Schiedsrichter muss benannt werden.
 
 **Offen — Beförderungskriterium (c) neu fassen:** 15 bewertete Tipps sind statistisch zu wenig, ChatGPTs 100er-Stichprobe dauert Monate. Vorschlag Claude: Beförderung nach Stabilität und Fehlerfreiheit entscheiden, die Messung läuft danach weiter.
-
-**Offen — Namensklärung „Regel G"** *(31.7.)*: siehe Kasten in Abschnitt 2c.
 
 **Offen — Backlog-Punkt 18 (die Dokumente auf Diät setzen)** *(Ondo, 31.7.)*: Soll `PROJEKT-STATUS.md` auf das gekürzt werden, was ein neuer Chat wirklich braucht, und die Chronik in eine Archivdatei wandern, die beim Start nicht gelesen wird?
 

@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Gepflegt von Claude · Stand 31.7.2026, Fassung 5 · jede Idee mit Datum, Urheber und Status**
+**Gepflegt von Claude · Stand 3.8.2026, Fassung 6 · jede Idee mit Datum, Urheber und Status**
 
 ## Regeln für dieses Dokument
 
@@ -13,6 +13,20 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 6 ändert (3.8.)
+
+Erste Codelieferung seit dem 28. Juli: **v19.7 gebaut und ausgeliefert.** Geändert:
+
+- **A, 0a, 1 und D** von „beschlossen" auf **gebaut** — in einer Lieferung, wie beschlossen
+- **Punkt 19 (Sprachkürzung der Beta)** neu angelegt · **Status: Idee.** Ondo hat am 3.8. entschieden: *„solange es geht dreisprachig bauen; wenn es zu viel wird, können wir auf diese Idee zurückgreifen."* Ausdrücklich keine Ablehnung
+- **Punkt 20 (Begründungszwang bei Seitenwechsel)** neu angelegt · Status: Idee. Auf Ondos Anweisung vom 3.8. aus dem Beobachtungsteil herausgehoben, damit er entscheidbar wird
+- **Zwei neue Beobachtungspunkte:** dasselbe Spiel doppelt in der Spielliste · Zugangsschlüssel im Klartext in der Sicherungsdatei
+- **Chat-Aufteilung** als abgelehnter Punkt eingetragen, mit der Rechnung
+- **Vier Park-Einträge** auf „eingetragen" gesetzt — sie stehen inzwischen an ihrem Zielort
+- **Namenskonflikt „Regel G" erledigt** (Punkt 7): Die Übergabevorschrift heißt jetzt **Übergaberegel**
 
 ---
 
@@ -87,15 +101,32 @@ Zwischen dem 23. und 28. Juli wurde mindestens sechsmal gesagt „notiere ich im
 | v19.6 | **Phasen-Pflicht** (Halbzeit · nach 90 Min. · ggf. Verlängerung) | 27./28.7. | **Ondo** | gebaut |
 | v19.6 | Vertauschungs-Kontrolle im Code | 28.7. | Claude | gebaut |
 
-**Seit dem 28.7. wurde nichts mehr gebaut.** Drei Tage ohne Codelieferung, festgestellt von Ondo am 31.7.
+*Nachtrag 3.8.: Die Lücke ist geschlossen — v19.7 wurde am 3.8. geliefert. Sie hat sechs Tage gedauert, vom 28.7. bis zum 3.8.*
+
+---
+
+## ✅ Gebaut in v19.7 (3.8.2026)
+
+| Punkt | Idee vom | Von wem | Status |
+|---|---|---|---|
+| **A** — Gehirne geben zusätzlich das Wort ja/nein aus (`bttsWort`), nur speichern und anzeigen | 30./31.7. | Claude, Beschluss Ondo | gebaut · **noch nicht bewährt** |
+| **0a** — zweite Modellliste für den Schiedsrichter (stärkere Modelle), Rückfall auf Flash, Anfragen-Zähler | 29.7. | Gemini/ChatGPT, Beschluss Ondo | gebaut · **noch nicht bewährt** |
+| **1** — Kennzahl „Entschlossenheit" (Ø Abstand von 50, Anteil ab 60 %), rein zur Anzeige | 27.7. | Claude, Beschluss Ondo 31.7. | gebaut · **noch nicht bewährt** |
+| **D** — Rückblick-Block mit getipptem und echtem Endstand, „Ergebnis noch offen" wo keiner vorliegt | 31.7. | Claude, Beschluss Ondo | gebaut · **noch nicht bewährt** |
+
+**Beim Bauen gefunden (0a): Die App fragt das Google-Konto gar nicht nach stärkeren Modellen.** Der Filter in `gLadeModelle` ließ ausschließlich Modelle mit „flash" im Namen zu. Der Schiedsrichter benutzte dasselbe Modell wie das zweite Gehirn — nicht aus Absicht, sondern weil kein anderes je in die Liste kam. 0a war deshalb kein Schalter, sondern eine zweite Liste.
+
+**Trockentest an Ondos Sicherung vom 3.8.** (138 Vorhersagen): Kalibrierung unverändert Sonnet 5 % / Flash 10 % bei je 87 bewerteten Aussagen — die alte Rechnung ist nachweislich nicht angefasst worden. Entschlossenheit: Sonnet Ø 4,8 und 6 % ab 60 % (5/87) · Flash Ø 8,6 und 38 % (33/87).
+
+**Syntax-Check bestanden. Sprachschlüssel jetzt 175 in DE, FR und EN, identisch** (167 plus acht neue).
 
 ---
 
 ## 🔴 Prio 1 — als Nächstes dran
 
-### Zusammen als v19.7 zu bauen: A · 0a · 1 · D
+### Als v19.7 gebaut am 3.8.: A · 0a · 1 · D — Bewährungszeit läuft
 
-**A. Test A: Eindeutigkeit der Frage „beide treffen"** · *Fund 30./31.7., Claude · Beschluss Ondo 31.7.* · **Status: beschlossen, noch nicht gebaut**
+**A. Test A: Eindeutigkeit der Frage „beide treffen"** · *Fund 30./31.7., Claude · Beschluss Ondo 31.7.* · **Status: GEBAUT (v19.7, 3.8.) — Auswertung offen**
 
 Der Auftragstext fragt: „wie sicher in Prozent, dass *beide Teams treffen* **so ausgeht wie in deinem Ergebnis**?" Das ist eine Frage über die eigene Vorhersage. **Flash beantwortet sie so. Sonnet beantwortet die schlichte Frage „wie wahrscheinlich treffen beide?".** Weil die App beide Zahlen gleich liest, dreht sie Sonnets Angabe ins Gegenteil.
 
@@ -105,11 +136,12 @@ Beleg: Bei Sonnet wird ausschließlich dann umgedreht, wenn das getippte Ergebni
 
 **Warum erst messen statt gleich ändern (Ondos Entscheidung):** Das Projekt ist mehrfach von plausiblen Herleitungen in die Irre geführt worden. Weg A (erst prüfen) wurde gegenüber Weg B (sofort ändern) gewählt.
 
+→ **Vorbehalt bei der Auswertung (Ondo/Claude, 3.8.):** Es ist möglich, dass die zusätzliche Frage das Gehirn zum Nachdenken bringt und es daraufhin auch seine Prozentzahl anders wählt. Dann misst der Test nicht mehr das alte Verhalten. Ein Warnzeichen wäre, wenn Sonnets bisher scharfes Muster bricht (umgedreht ausschließlich bei einer Null im Tipp, sieben von sieben). **Ehrlich: Die beiden Fälle lassen sich nicht sicher trennen.** Das Ergebnis ist deshalb nicht ungeprüft für bare Münze zu nehmen.
 → *Entlastender Befund: Die bisherigen Daten sind nicht verloren. `gedreht:true` und der Endstand werden mitgespeichert; Rohwerte und Bewertungen lassen sich nachträglich neu rechnen, sobald die Deutung feststeht. Nicht umkehrbar ist nur ein falsch übernommener Endstand.*
 
 ---
 
-**0a. Schiedsrichter fest an das stärkere Gemini-Modell koppeln** · *Idee 29.7., Gemini (ChatGPT gleichlautend)* · **Status: beschlossen (Ondo, 29.7.), noch nicht gebaut**
+**0a. Schiedsrichter fest an das stärkere Gemini-Modell koppeln** · *Idee 29.7., Gemini (ChatGPT gleichlautend)* · **Status: GEBAUT (v19.7, 3.8.)**
 
 Der Schiedsrichter ist ein Messwerkzeug, kein Duell-Teilnehmer. Er darf ein anderes Modell benutzen als die Vorhersage, ohne dass die Messreihe leidet. Im Code wird für den Schiedsrichter-Lauf das stärkere Modell erzwungen, unabhängig von der Einstellung für die Vorhersage. **Die Vorhersage bleibt unverändert.**
 
@@ -117,7 +149,7 @@ Der Schiedsrichter ist ein Messwerkzeug, kein Duell-Teilnehmer. Er darf ein ande
 
 ---
 
-**1. Kennzahl „Entschlossenheit"** · *Idee 27.7., Claude* · **Status: beschlossen (Ondo, 31.7.)**
+**1. Kennzahl „Entschlossenheit"** · *Idee 27.7., Claude* · **Status: GEBAUT (v19.7, 3.8.)**
 
 Wie oft legt sich ein Gehirn überhaupt fest? Ohne diese Zahl vergleichen wir Sonnets Vorsicht mit Flashs Mut und nennen es Qualität. Anlass: Von Sonnets 87 Aussagen liegen 66 im Bereich 50–59 %, und nur fünf oberhalb von 60 %.
 
@@ -126,7 +158,7 @@ Wie oft legt sich ein Gehirn überhaupt fest? Ohne diese Zahl vergleichen wir So
 
 ---
 
-**D. Rückblick-Block auf eigene alte Tipps** · *Fund 31.7., Claude* · **Status: beschlossen (Ondo, 31.7.) — GEÄNDERT gegenüber Fassung 4**
+**D. Rückblick-Block auf eigene alte Tipps** · *Fund 31.7., Claude* · **Status: GEBAUT (v19.7, 3.8.)**
 
 **Der Vorschlag „Block entfernen" ist zurückgezogen.** Grund: Der Block ist keine Schwachstelle, sondern eine Reparatur. Er ist das **Konsistenz-Gedächtnis vom 7.7.2026**, gebaut, nachdem **Ondo** willkürliche Empfehlungen nachgewiesen hatte — Seitenwechsel bei Schweiz–Kolumbien ohne ein Wort dazu, und Argentinien zu Quote 1.15, das tags zuvor selbst verworfen worden war. Quelle: `Blueprint.md`, Protokolleintrag 7.7.2026.
 
@@ -143,7 +175,9 @@ Wie oft legt sich ein Gehirn überhaupt fest? Ohne diese Zahl vergleichen wir So
 
 → **Ehrliche Einschränkung (Art. 14):** Der echte Endstand steht erst drin, wenn übernommen wurde. Übernehmen ist zurzeit gesperrt, und die sechs jüngsten Vorhersagen sind naturgemäß die, bei denen am seltensten schon ein Ergebnis vorliegt. In den ersten Tagen wird bei vielen Zeilen „Ergebnis noch offen" stehen. Der Kreislauf hört trotzdem sofort auf: Eine Vermutung wird nicht mehr als Tatsache ausgegeben.
 → **Zweite Einschränkung:** Ob die Liste ohne den früher vorhandenen Begründungszwang überhaupt noch gegen Seitenwechsel wirkt, ist nicht gemessen. Siehe Beobachtungspunkt „Konsistenz-Absicherung halbiert".
-→ *Für v19.7 vorgesehen, zusammen mit A, 0a und 1 — eine Änderung am Auftragstext statt zweier, also ein Bruch in der Messreihe statt zweier.*
+→ *Gebaut am 3.8. zusammen mit A, 0a und 1 — eine Änderung am Auftragstext statt zweier, also ein Bruch in der Messreihe statt zweier.*
+→ **Ehrlich zum Nutzen in den ersten Tagen (3.8.):** Übernehmen ist gesperrt, also steht bei nahezu jeder Zeile „Ergebnis noch offen". Der Kreislauf hört trotzdem sofort auf — eine Vermutung wird nicht mehr als Tatsache ausgegeben.
+→ **Nicht mitgebaut:** der frühere Begründungszwang bei Seitenwechsel. Er wäre eine fünfte Änderung gewesen und verändert das Antwortverhalten stärker als alle vier v19.7-Punkte zusammen. → Punkt 20.
 
 ---
 
@@ -236,9 +270,9 @@ Vier Wochen ohne Websuche messen, dann Suche zuschalten, Kalibrierung vergleiche
 **6. Drei-Ebenen-Trennung in die Architektur schreiben** · *Idee 23.7., ChatGPT* · **Status: beschlossen, noch nicht ausgeführt**
 Ebene 1 Daten · Ebene 2 Denken · Ebene 3 Bewertung. Gehört nach `Ondo-Core-Architektur.md`. *Steht seit 23.7. aus.*
 
-**7. Regel G in einer Fassung für ChatGPT** · *Fund 30.7.* · **Status: beschlossen, noch nicht geschrieben**
-ChatGPT kann keinen neuen Chat öffnen; er erzeugt die Übergabemappe nur als Nachricht. Regel G braucht dafür eine angepasste Fassung. **Inhalt gehört in den Blueprint.**
-*(Nicht zu verwechseln mit der neuen Arbeitsregel G „Kostenregel" — die Buchstaben überschneiden sich, weil „Regel G" bisher die Chat-Übergabe meinte. Bei der nächsten Blueprint-Fassung zu entwirren.)*
+**7. Übergaberegel in einer Fassung für ChatGPT** · *Fund 30.7.* · **Status: beschlossen, noch nicht geschrieben**
+ChatGPT kann keinen neuen Chat öffnen; er erzeugt die Übergabemappe nur als Nachricht. Die Übergaberegel braucht dafür eine angepasste Fassung. **Inhalt gehört in den Blueprint.**
+*Namenskonflikt erledigt (Ondo, 31.7., eingetragen 3.8.): Die Vorschrift zur Chat-Übergabe heißt jetzt **Übergaberegel**; „Arbeitsregel G" meint ausschließlich die Kostenregel. (Frühere Fassung: nicht zu verwechseln mit der Arbeitsregel G „Kostenregel" — die Buchstaben überschneiden sich, weil „Regel G" bisher die Chat-Übergabe meinte. Bei der nächsten Blueprint-Fassung zu entwirren.)*
 
 **8. Claude Code auf dem Windows-Tablet über das Pro-Abo** · *Idee 9./10.7., Claude* · **Status: Idee**
 Statt API-Guthaben zu verbrauchen, könnte das bezahlte Pro-Abo die Arbeit leisten. Haken: läuft nur, wenn Ondo es am Tablet anstößt; Einrichtung etwa 45 Minuten; zehrt am Wochen-Limit.
@@ -262,6 +296,19 @@ Für ChatGPT bestätigt. Ob Gemini die `.html`-Adressform ebenfalls lesen kann, 
 
 ---
 
+**19. Beta auf Deutsch beschränken** · *Idee 31.7., Ondo · vorgelegt 3.8.* · **Status: Idee — NEU**
+In `beta.html` steht jede Beschriftung dreimal (DE/FR/EN), rund 13 % der Datei. Jede neue Beschriftung kostet dreifache Arbeit, und vor jeder Lieferung müssen 175 Schlüssel × 3 abgeglichen werden. Die stabile v17 behielte alle drei Sprachen.
+→ **Entscheidung Ondos am 3.8.: NEIN, vorerst nicht.** Wörtlich: *„solange es geht dreisprachig bauen; wenn es zu viel wird, können wir auf diese Idee zurückgreifen."*
+→ **Ausdrücklich keine Ablehnung.** Der Punkt bleibt als Rückgriff verfügbar.
+→ *Bedingung, falls er je gezogen wird: Die französischen und englischen v19-Wörter gibt es nur in `beta.html`. Vor dem Löschen bekommt Ondo eine Datei mit beiden Blöcken zum Aufheben.*
+
+**20. Begründungszwang bei Seitenwechsel wiederherstellen** · *Fund 31.7., Claude · herausgehoben 3.8. auf Ondos Anweisung* · **Status: Idee — NEU**
+In `OndoControl.html` (v17) steht im Auftragstext ein Satz, der einen Seitenwechsel mit „Änderung: …" begründen lässt. Im v19-Auftrag fehlt er — beim Umbau zum Messgerät am 23.7. stillschweigend weggefallen. Übrig ist nur die Liste der letzten sechs eigenen Tipps.
+→ **Warum er nicht mit v19.7 kam:** Er wäre eine fünfte Änderung am Auftragstext gewesen, und er zwingt die Gehirne zu Erklärungen — das verändert das Antwortverhalten stärker als alle vier v19.7-Punkte zusammen. Gehört getrennt entschieden.
+→ **Ungemessen bleibt:** ob die Liste ohne ihn überhaupt noch gegen Seitenwechsel wirkt. Stand bisher nur als Beobachtungspunkt und war dort nicht entscheidbar.
+
+---
+
 ## 📋 Für Blueprint und Ondo-Core vorgemerkt
 
 *Diese Punkte gehören in die Architektur- und Verfassungsdokumente und sind hier nur geparkt, bis sie dort stehen.*
@@ -269,12 +316,12 @@ Für ChatGPT bestätigt. Ob Gemini die `.html`-Adressform ebenfalls lesen kann, 
 | Punkt | Herkunft | Ziel | Stand |
 |---|---|---|---|
 | **Darf der Schiedsrichter überhaupt selbst Ergebnisse lesen, oder nur verifizierte Fakten bewerten?** (offene Frage) | ChatGPT, 30.7. | Blueprint | offen |
-| Arbeitsregel **G — Kostenregel**: *Jeder Vorschlag nennt seine Kosten — Geld, Zeit, Nutzungslimit — oder sagt ausdrücklich, dass er keine hat.* Ein Satz, kein Formular | **Ondo, 31.7., angenommen** | Blueprint 2c | **beschlossen, einzutragen** |
-| Arbeitsregel: **Belegen statt herleiten** — Codezeilen zitieren, nicht beschreiben | Ondo, 31.7. | Blueprint 2c | beschlossen, einzutragen |
-| Arbeitsregel: **Prüfen, bevor behauptet wird, ein Dokument sei veraltet** | 31.7. | Blueprint 2c | beschlossen, einzutragen |
-| **Übergabe-Protokoll** als Tabelle (wer an wen, welches Verfahren, wie viele Kontrollfragen richtig) | **Ondo, 31.7.** | PROJEKT-STATUS | **beschlossen, einzutragen** |
+| Arbeitsregel **G — Kostenregel**: *Jeder Vorschlag nennt seine Kosten — Geld, Zeit, Nutzungslimit — oder sagt ausdrücklich, dass er keine hat.* Ein Satz, kein Formular | **Ondo, 31.7., angenommen** | Blueprint 2c | **eingetragen** (Blueprint 0.4, Abschnitt 2c) |
+| Arbeitsregel: **Belegen statt herleiten** — Codezeilen zitieren, nicht beschreiben | Ondo, 31.7. | Blueprint 2c | **eingetragen** (Arbeitsregel H) |
+| Arbeitsregel: **Prüfen, bevor behauptet wird, ein Dokument sei veraltet** | 31.7. | Blueprint 2c | **eingetragen** (Arbeitsregel I) |
+| **Übergabe-Protokoll** als Tabelle (wer an wen, welches Verfahren, wie viele Kontrollfragen richtig) | **Ondo, 31.7.** | PROJEKT-STATUS | **eingetragen** (Abschnitt Übergabe-Protokoll) |
 | Drei-Ebenen-Trennung | ChatGPT, 23.7. | Ondo-Core | beschlossen |
-| Regel G (Chat-Übergabe) in einer Fassung für ChatGPT | 30.7. | Blueprint | beschlossen |
+| Übergaberegel (Chat-Übergabe) in einer Fassung für ChatGPT | 30.7. | Blueprint | beschlossen |
 | Beförderungskriterium (c) | ChatGPT, 23.7. | Blueprint | offen |
 | Verfassungsfrage GitHub Actions („kein Server") | 23.7. | Blueprint | offen |
 | Rollenmodell | ChatGPT, 23.7. | Blueprint | offen |
@@ -287,6 +334,8 @@ Für ChatGPT bestätigt. Ob Gemini die `.html`-Adressform ebenfalls lesen kann, 
 
 | Beobachtung | Gefunden | Von wem | Stand |
 |---|---|---|---|
+| **Dasselbe Spiel doppelt in der Spielliste** — am 2.8. standen „Bohemians – Galway United FC" (Anpfiff 20:00) und „Bohemians Dublin – Galway United" (Anpfiff 19:00) als zwei Spiele in derselben Liste. Sonnet hat es selbst bemerkt: „Gleiche Paarung wie heute früher" | 3.8. | Claude, aus Ondos Sicherung | **NEU.** Die Doppelten-Sperre in `spielListeHolen` vergleicht Namen buchstabenweise; zwei Schreibweisen sind für sie zwei Spiele. Folge: **sechs Aussagen je Gehirn aus einem einzigen Spiel**, und eine der beiden Anpfiffzeiten ist falsch — die geht in die 2,5-Stunden-Regel des Schiedsrichters ein. Ob das eine zehnte Fehlerart ist oder ein Beobachtungspunkt bleibt, **entscheidet Ondo**. Nichts gebaut |
+| **Zugangsschlüssel im Klartext in der Sicherungsdatei** — die Sicherung enthält den gesamten Zustand, also auch `apiKey`, `geminiKey` und `pin` | 3.8. | Claude | **NEU.** Kein Fehler, aber nirgends aufgeschrieben. Folgen: Die Datei darf nie an ChatGPT oder Gemini gehen, nie an einen Bericht angehängt und nie ins Repo. **Ondo hat am 3.8. beide Schlüssel neu erzeugt und die alten deaktiviert.** Zweite Folge: Wird eine Sicherung von vor dem 3.8. zurückgeladen, überschreibt sie die neuen Schlüssel mit den toten alten — dann Schlüssel neu eintragen, die Messdaten bleiben unberührt |
 | **Zuordnung über die Listenposition** — in `vorhersagen()` werden Wettbewerb und Anpfiffzeit über die Position in der Liste zugeordnet, der Spielname dagegen aus der Antwort des Gehirns. Antwortet ein Gehirn in anderer Reihenfolge oder lässt ein Spiel aus, hängt an einem Spiel die falsche Anpfiffzeit | 31.7. | Claude | **NEU.** Wichtig: Die Anpfiffzeit fließt in die 2,5-Stunden-Regel des Schiedsrichters ein. In den Läufen vom 29. und 30.7. gaben beide Gehirne die Liste in derselben Reihenfolge zurück; dort ist nichts passiert. **Beobachtung, kein bewiesener Fehler.** An älteren Läufen prüfbar |
 | **Der Wettbewerb wird dem Schiedsrichter nicht übergeben** — nur Spielname, Datum, Anpfiffzeit. Die Wettbewerbspflicht aus v19.2 wirkt erst hinterher als Warnung | 31.7. | Claude | **NEU.** Führt zu Punkt E |
 | **Konsistenz-Absicherung ist zur Hälfte verschwunden** — der Satz, der einen Seitenwechsel mit „Änderung:" begründen ließ, steht in `OndoControl.html` (v17), aber nicht mehr im v19-Auftrag. Übrig ist nur die Liste der letzten sechs eigenen Tipps | 31.7. | Claude | **NEU.** Beim Umbau zum Messgerät stillschweigend weggefallen. Ändert die Kostenrechnung bei Punkt D und ist für sich genommen ein Verlust. Ob die Liste allein noch wirkt, ist **nicht gemessen** |
@@ -340,6 +389,7 @@ Für ChatGPT bestätigt. Ob Gemini die `.html`-Adressform ebenfalls lesen kann, 
 
 | Punkt | Datum | Grund |
 |---|---|---|
+| **Getrennte Chats (Werkstatt / Bibliothek / Hauptquartier)** | **31.7.** | **Verworfen nach Durchrechnung.** Der Gewinn war kleiner als gedacht: Eine Werkstatt müsste `beta.html` einmal lesen und bei jeder Lieferung einmal ausschreiben — das reicht für zwei Lieferungen statt einer. Dagegen: doppelter Kopieraufwand für Ondo und Verlust an Codeaufsicht. Die drei nützlichsten Funde des 31.7. kamen daher, dass **derselbe** Chat Code und Dokumente kannte. *Nicht löschen — kann wiederkommen.* *(Nachtrag 3.8.: Am selben Tag hat sich ein billigerer Weg gezeigt — Dateien hochladen und bearbeiten statt ausschreiben. Siehe PROJEKT-STATUS, Speicher-Zahlen.)* |
 | **Rückblick-Block entfernen** | **31.7.** | **Zurückgezogen.** Der Block ist eine belegte Reparatur vom 7.7., keine Schwachstelle. Stattdessen beschlossen: echte Endstände einsetzen → Punkt D |
 | **Zweite unabhängige Quelle für den Schiedsrichter** | 30.7. | **Zurückgestellt**, nicht abgelehnt (ChatGPT): bricht die Zwei-Probleme-Regel; Quellenpriorität (0c) ist billiger |
 | Council-Skill (fünf Berater-Rollen) | 21.7. | Alle fünf wären dasselbe Modell — simulierte statt echter Perspektivenvielfalt |
@@ -365,6 +415,6 @@ Für ChatGPT bestätigt. Ob Gemini die `.html`-Adressform ebenfalls lesen kann, 
 
 ---
 
-*Fassung 5, geschrieben am 31.7.2026 abends von Chat 5, nach Abnahme der Übergabe (neun von neun). Alle sieben Funde aus Teil E der Übergabemappe sind eingetragen. **Die Mappe darf trotzdem noch nicht gelöscht werden** — vier Punkte gehören in `PROJEKT-STATUS.md` und `Blueprint.md` und stehen dort noch nicht.*
+*Fassung 6, geschrieben am 3.8.2026 von Chat 6, zusammen mit der Lieferung von v19.7. Alle Punkte aus Teil E der Übergabemappe Chat 5 → Chat 6 sind eingetragen — hier und in `PROJEKT-STATUS.md` und `Blueprint.md`. **Die Übergabemappe darf jetzt gelöscht werden.***
 
-*Nächste Aktualisierung: mit der Lieferung von v19.7.*
+*Nächste Aktualisierung: bei der nächsten Entscheidung oder Lieferung — nach Arbeitsregel F sofort, nicht später.*
