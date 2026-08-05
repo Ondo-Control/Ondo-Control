@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Gepflegt von Claude · Stand 4.8.2026, Fassung 8 · jede Idee mit Datum, Urheber und Status**
+**Gepflegt von Claude · Stand 5.8.2026, Fassung 9 · jede Idee mit Datum, Urheber und Status**
 
 ## Regeln für dieses Dokument
 
@@ -13,6 +13,129 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 9 ändert (5.8.)
+
+- **v19.7.6 und v19.7.7 geliefert** — neuer Punkt 24 (Parken von Vorhersagen) gebaut, dazu drei Reparaturen
+- **Test A ist ausgewertet und beantwortet** — der Befund vom 30./31. Juli ist damit bestätigt, nicht mehr Vermutung
+- **Erster fehlerfreier Prüflauf des Projekts:** 14 von 14 Ergebnisse gefunden, alle 14 von Claude per Websuche nachgeprüft, alle 14 richtig
+- **Zwei neue Beobachtungen:** Spiel kürzer als 90 Minuten (Como Cup) · Anpfiffzeiten systematisch neun Stunden zu früh
+- **Beide Codefunde aus der Übergabe geklärt** — `state.geminiModel` gegen `gWahl` bestätigt und behoben, das 0a-Datum berichtigt
+- **Sprachschlüssel: 199** in DE/FR/EN, maschinell abgeglichen
+
+---
+
+## ✅ Gebaut in v19.7.6 und v19.7.7 (5.8.2026)
+
+*Anlass war Ondos Feststellung, dass die App seit Tagen nicht mehr benutzbar war. Die Ursache war keine Fehlfunktion, sondern eine fehlende Funktion — siehe Punkt 24.*
+
+| Fassung | Was geändert wurde | Belegstelle |
+|---|---|---|
+| **v19.7.6** | **Punkt 24 gebaut** (Parken) · Datumsgrenzen beim Log-Text werden getauscht, wenn sie verkehrt herum stehen · Modellname je Vorhersage aus dem tatsächlich benutzten Modell · 0a-Kommentar berichtigt | `logParken`, `logParkenTag`, `zuletztModell`, `logTextBauen` |
+| **v19.7.7** | Datumsfelder im Log-Text-Block bekommen `min-width:0`, damit das rechte Feld nicht über den Kartenrand ragt (iOS gibt dem Datumsfeld eine eigene Mindestbreite) | `logExportBlock` |
+
+**Syntax-Check bestanden · Sprachschlüssel 199 in DE/FR/EN, maschinell abgeglichen und identisch · Trockentest an nachgebauten Daten bestanden** (Parken senkte die offenen Vorhersagen von 4 auf 1, die bewerteten Aussagen blieben unverändert, alle Einträge und der eine Endstand unberührt, Entparken stellte alles wieder her).
+
+**Kosten: keine.** Kein API-Aufruf, kein Geld, kein Eingriff in Auftragstext oder Kalibrierung. Die Messreihe bricht nicht.
+
+---
+
+**24. Vorhersagen parken statt löschen** · *Idee 5.8., Claude · Beschluss Ondo 5.8.* · **Status: GEBAUT (v19.7.6) · noch nicht bewährt**
+
+**Das Problem, das es löst:** Die gesperrten Ergebnisse vom 29./30. und 31. Juli dürfen nie übernommen werden und blieben deshalb dauerhaft offen. Jeder Prüflauf fragte sie erneut ab. Am 5.8. standen deshalb 58 offene Vorhersagen an, davon 30 aus den gesperrten Tagen. Richtiges Verhalten erzeugte dauerhafte Reibung, und es gab keine Möglichkeit, eine Vorhersage aus dem Prüflauf herauszunehmen, ohne ein Ergebnis einzutragen.
+
+**Was gebaut wurde:** Unter „KI-Log" ein Block mit einer Zeile je Tag, an dem offene Vorhersagen liegen; ein Griff parkt den ganzen Tag. An jeder Karte zusätzlich ein einzelner Knopf. Geparkte Einträge werden in `ergebnissePruefen` übersprungen (`e.status==='offen' && !e.geparkt`), bleiben sichtbar, sind gekennzeichnet und jederzeit umkehrbar.
+
+→ **Es wird kein Endstand gesetzt und kein Markt bewertet.** Die Prüfbibliothek bleibt unversehrt, die Kalibrierung ändert sich um keinen Punkt.
+→ **Zwei-Probleme-Regel erfüllt:** beseitigt die Reibung **und** schützt die gesperrten Ergebnisse vor versehentlichem Übernehmen.
+→ Am 5.8. geparkt: 29.7., 30.7., 31.7. sowie die beiden Bohemians-Einträge und die beiden Crystal-Palace-Spiele.
+
+---
+
+## ✅ Test A ist beantwortet (5.8.2026) — Punkt A abgeschlossen
+
+**Der Befund vom 30./31. Juli ist bestätigt. Er ist keine Vermutung mehr.**
+
+Am 5.8. lieferten beide Gehirne zehn Vorhersagen. Belege aus der Textausgabe:
+
+| Gehirn | Tipp mit Null | angezeigte Btts-Aussage | Wort des Gehirns |
+|---|---|---|---|
+| **Sonnet** | Ferencváros 2:0 | Ja 65 % **[gedreht]** | **nein** |
+| **Sonnet** | Panathinaikos 2:0 | Ja 65 % **[gedreht]** | **nein** |
+| Flash | AGF 2:0 | Nein 60 % | nein |
+| Flash | Ferencváros 2:0 | Nein 55 % | nein |
+| Flash | Panathinaikos 3:0 | Nein 65 % | nein |
+
+**Sonnet: zwei von zwei umgedreht, beide Male steht das Gegenteil des eigenen Wortes auf dem Bildschirm. Flash: drei von drei stimmig.** Der Rohwert war bei Sonnet jeweils 35 — die Antwort auf die schlichte Frage „wie wahrscheinlich treffen beide?", stimmig mit Tipp und Wort.
+
+**Damit gilt:** Sonnet ist widerspruchsfrei, Flash ist widerspruchsfrei, **die Frage im Auftragstext ist zweideutig.**
+
+→ **Der Vorbehalt vom 3.8. ist ebenfalls erledigt.** Die Sorge war, die zusätzliche Frage könnte Sonnets Antwortverhalten verändern. Das Muster ist unverändert scharf: umgedreht wird ausschließlich bei einer Null im Tipp — jetzt zwei von zwei, vorher sieben von sieben.
+→ **Der Preis, benannt:** Bei diesen Spielen wird Sonnets Btts-Aussage gegen eine Behauptung gemessen, die Sonnet nie aufgestellt hat. Betroffen ist einer von drei Märkten.
+→ **Nichts geändert.** Eine Umformulierung des Auftragstextes ist ein Eingriff in die laufende Messreihe und braucht Ondos Entscheidung (Art. 8). **Offen.**
+→ *Entlastend: Rohwerte, der Vermerk `gedreht` und seit dem 3.8. auch das Wort sind gespeichert. Rückrechnen bleibt möglich.*
+→ **Folge für Punkt 0b:** Die Voraussetzung für eine Wiederaufnahme ist erfüllt — Test A ist abgeschlossen. Entscheidung Ondos steht aus.
+
+---
+
+## 🔎 Prüflauf vom 5. August — der erste fehlerfreie des Projekts
+
+**14 von 14 gefunden. Alle 14 von Claude per Websuche nachgeprüft. Alle 14 richtig.** Kein erfundenes 0:0, kein falscher Endstand.
+
+Valur – Stjarnan 2:3 · Bohemians – Galway 1:1 (beide Einträge) · Silkeborg – FC København 1:3 · Waterford – Shelbourne 1:0 · ÍA Akranes – Víkingur 2:2 · AC Oulu – Ilves 1:0 · Brøndby – Viborg 1:0 · Ipswich – Osasuna 1:2 · Hull – Rizespor 2:1 · Everton – Stoke 0:1 · Crystal Palace – Famalicão 0:0 · Crystal Palace – Lens 0:3 · Aston Villa – Real Sociedad 2:4.
+
+**Übernommen: 10 Spiele. Geparkt: 4 Einträge** (beide Bohemians wegen des Doppeleintrags, beide Crystal-Palace-Spiele wegen der 45-Minuten-Frage).
+
+**Nebenbefund:** Der Zweifel an Valur – Stjarnan vom 4.8. ist ausgeräumt. Das Spiel fand am 3.8. statt, 2:3 ist echt. Der Verdacht auf ein erfundenes Ergebnis war unbegründet — ein Beleg für Arbeitsregel D.
+
+**Drei Abweichungen, die den Endstand nicht betreffen:** Bei AC Oulu – Ilves fiel das Tor in der 55. Minute, der Halbzeitstand war also 0:0, gemeldet wurde 1:0 · Ipswich – Osasuna fand am 29.7. statt, gemeldet als 28.7. (die Datumswarnung greift erst ab mehr als einem Tag) · bei Everton – Stoke und Hull – Rizespor stimmen die Zahlen, aber die Heimmannschaft steht in der Spielliste falsch herum — **siebte Fehlerart, für genau diese beiden Spiele bereits dokumentiert.**
+
+---
+
+## 🆕 Neue Beobachtung (5.8.): Das Spiel war kürzer als die Messgrundlage
+
+Crystal Palace gegen Lens und gegen Famalicão am 28.7. waren laut Sky Sports und ESPN ausdrücklich **45-Minuten-Spiele** im Gruppenmodus des Como Cup, Famalicão danach im Elfmeterschießen. Die App misst den **Endstand nach 90 Minuten**, und die Gehirne haben ein 90-Minuten-Ergebnis getippt.
+
+**Warum das zählt:** „Unter 2,5 Tore" über 45 Minuten ist nicht dieselbe Aussage wie über 90. Der Endstand ist richtig abgelesen — die Messgrundlage stimmt trotzdem nicht. **Keine Fehlerart des Schiedsrichters**, sondern eine Lücke in der Spielliste: Sie kennt keine Spiellänge.
+
+→ **Beide Spiele wurden geparkt, nicht übernommen** (Ondo, 5.8.).
+→ *Ob daraus eine eigene Fehlerart wird oder eine Bedingung für die Spielliste („keine Turnierformate mit verkürzter Spielzeit"), ist offen. **Entscheidung Ondos steht aus.** Nichts gebaut.*
+
+---
+
+## 🆕 Neue Beobachtung (5.8.): Anpfiffzeiten systematisch neun Stunden zu früh
+
+Die Spielliste vom 5.8. nennt fünf UEFA-Qualifikationsspiele mit Anpfiff 09:30, 10:00, 11:00, 11:15 und 11:30 Uhr. Der Abgleich mit OneFootball (Bildschirmfotos vom 5.8., 07:41) ergibt:
+
+| Spiel | App | wirklich | Abweichung |
+|---|---|---|---|
+| AGF Aarhus – Sabah | 09:30 | 18:30 | −9 h |
+| SK Brann – Apollon Limassol | 10:00 | 19:00 | −9 h |
+| Fenerbahçe – Sturm Graz | 11:00 | 20:00 | −9 h |
+| Ferencváros – Górnik Zabrze | 11:15 | 20:15 | −9 h |
+| Panathinaikos – CSKA 1948 | 11:30 | 20:30 | −9 h |
+
+**Fünf von fünf, jedes Mal genau neun Stunden. Das ist kein Zufall, sondern ein systematischer Versatz.** Die Ursache ist **nicht bekannt** (Art. 11) — dass es wie eine Zeitzonenumrechnung aussieht, ist eine Vermutung, kein Befund.
+
+**Warum das gefährlich ist:** Die Anpfiffzeit geht in die 2,5-Stunden-Regel des Schiedsrichters ein. Bei Anpfiff 09:30 gilt ein Spiel ab 12:00 Uhr als sicher beendet — gesucht würde dann der Endstand eines Spiels, das noch gar nicht angepfiffen ist. **Genau in dieser Lage sind am 31. Juli die erfundenen 0:0 entstanden.**
+
+→ **Sofortmaßnahme ohne Code (5.8.): an solchen Tagen erst spätabends prüfen.**
+→ Die Liste wird von `stufeHolen` erzeugt, also vom zweiten Gehirn (`gemini-3.1-flash-lite`). Ein einzelner Tag beweist nach Arbeitsregel D nichts über die Dauerhaftigkeit — **weiter beobachten, nichts gebaut.**
+→ Hängt zusammen mit dem Beobachtungspunkt „Zuordnung über die Listenposition": Beide Wege führen dazu, dass an einem Spiel eine falsche Anpfiffzeit hängt.
+
+---
+
+## ✅ Die beiden Codefunde aus der Übergabe vom 4./5.8. sind geklärt
+
+**Fund 1 — `state.geminiModel` gegen `gWahl`: BESTÄTIGT und behoben in v19.7.6.**
+Der Aufruf benutzte das gewählte Modell, die Aufzeichnung nicht. In `geminiCall` wurde der Name nur beim allerersten Erfolg festgeschrieben — `else if(!state.geminiModel){ state.geminiModel = modell; save(); }` — und in `vorhersagen()` genau dieser Wert gespeichert. Zwei Folgen: Ein Gehirnwechsel änderte den gespeicherten Namen nicht, und seit der Rücknahme von 0a konnte ihn sogar der Schiedsrichter setzen, weil beide durch dieselbe Funktion laufen.
+→ **Behoben:** Ein Merker `zuletztModell` hält je Rolle fest, welches Modell tatsächlich geantwortet hat. Trockentest: neu `gemini-3.1-flash-lite`, alt wäre `gemini-flash-latest` gewesen.
+→ **⚠ Nicht rückwirkend.** Alle Vorhersagen vor v19.7.6 tragen weiterhin den womöglich falschen Namen; rückwirkend ist er nicht mehr feststellbar (Art. 11). Für die Kalibrierung folgenlos, für **Arbeitsregel J nicht.**
+
+**Fund 2 — das Datum der 0a-Rücknahme: berichtigt.**
+Der Codekommentar sagte 3.8., alle drei Dokumente sagen übereinstimmend 4.8. (v19.7.3). **Welches Datum stimmt, ließ sich nicht bestimmen** — ein Kommentar ist keine Quelle. Eindeutig ist nur die Versionsnummer. Der Kommentar lautet jetzt `0a zurueckgenommen in v19.7.3, siehe Backlog`; das unbelegte Datum ist entfernt statt geraten.
 
 ---
 
@@ -221,7 +344,7 @@ Der Fehler war nicht, unbekannte Fehler zu behandeln. Der Fehler war, sie **paus
 
 ### Als v19.7 gebaut am 3.8.: A · 0a · 1 · D — Bewährungszeit läuft
 
-**A. Test A: Eindeutigkeit der Frage „beide treffen"** · *Fund 30./31.7., Claude · Beschluss Ondo 31.7.* · **Status: GEBAUT (v19.7, 3.8.) — Auswertung offen**
+**A. Test A: Eindeutigkeit der Frage „beide treffen"** · *Fund 30./31.7., Claude · Beschluss Ondo 31.7.* · **Status: GEBAUT (v19.7, 3.8.) — AUSGEWERTET am 5.8., Befund bestätigt.** Einzelheiten im Abschnitt „Test A ist beantwortet". Offen bleibt allein, ob und wie der Auftragstext umformuliert wird — Entscheidung Ondos
 
 Der Auftragstext fragt: „wie sicher in Prozent, dass *beide Teams treffen* **so ausgeht wie in deinem Ergebnis**?" Das ist eine Frage über die eigene Vorhersage. **Flash beantwortet sie so. Sonnet beantwortet die schlichte Frage „wie wahrscheinlich treffen beide?".** Weil die App beide Zahlen gleich liest, dreht sie Sonnets Angabe ins Gegenteil.
 
@@ -318,7 +441,7 @@ Ursprünglich: Widersprüche zwischen Ergebnis-Tipp und Marktaussage bekommen ei
 1. Die Quote ist **rückwirkend** aus den vorhandenen Daten auslesbar (`gedreht`-Vermerk), ohne neue Messung.
 2. Der Vorsatz „die betroffene Aussage fließt nicht in die Kalibrierung ein" ist **falsch herum**. Die umgedrehte Aussage ist die, an die das Gehirn glaubt. Sie herauszunehmen entfernt ehrliche Daten.
 
-→ *Wiederaufnahme nach Test A.*
+→ *Wiederaufnahme nach Test A.* **Test A ist am 5.8. abgeschlossen; die Voraussetzung ist damit erfüllt. Entscheidung Ondos steht aus.**
 
 ---
 
@@ -508,7 +631,7 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 | **Rückblick auf eigene Tipps enthält Vermutungen, keine Tatsachen** | Ein falscher Tipp kann Grundlage des nächsten werden | **wird mit v19.7 behoben** → Punkt D |
 | **Nur lokale Speicherung** (localStorage) | Sicherung seit v19.1 gebaut; offen bleibt die Übertragung in die stabile Version | → Prio 2, Punkt 4 |
 | **Eine lange JS-Datei** (keine Module) | Änderungen werden mit der Zeit riskanter | mittel |
-| **Sprachdateien von Hand** (193 Schlüssel × 3 Sprachen, Stand 4.8. abends — nachgezählt, nicht geschätzt) | Dreifache Pflege bei jeder neuen Beschriftung. Rückgriff bleibt Punkt 19 | niedrig |
+| **Sprachdateien von Hand** (199 Schlüssel × 3 Sprachen, Stand 5.8. — maschinell abgeglichen) | Dreifache Pflege bei jeder neuen Beschriftung. Rückgriff bleibt Punkt 19 | niedrig |
 | **Seed-Daten fest im Code** (WM-Wetten vom Juli) | Ballast bei jedem Start | niedrig |
 | **Kein automatischer Test** | Jede Änderung wird nur von Hand geprüft | mittel → Punkt B wäre der erste Schritt |
 | **Gemini-Kaskade komplex** | Funktioniert, aber schwer zu durchschauen bei Fehlern | niedrig |
@@ -560,6 +683,6 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 
 ---
 
-*Fassung 8, geschrieben am 4.8.2026 abends von Chat 7, zusammen mit der Lieferung von v19.7.5. **Die Übergabemappe vom 4.8. darf erst gelöscht werden, wenn Ondo die Dateien hochgeladen hat.***
+*Fassung 9, geschrieben am 5.8.2026 von Chat 8, zusammen mit den Lieferungen v19.7.6 und v19.7.7. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen. **Die Übergabemappe vom 4.8. darf erst gelöscht werden, wenn Ondo die Dateien hochgeladen hat.***
 
 *Nächste Aktualisierung: bei der nächsten Entscheidung oder Lieferung — nach Arbeitsregel F sofort, nicht später.*

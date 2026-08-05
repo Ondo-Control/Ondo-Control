@@ -1,7 +1,7 @@
 # ONDO CONTROL — PROJEKT-STATUS
-*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 4. August 2026, v19.7.4*
+*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 5. August 2026, v19.7.7*
 
-> **Zur Datierung:** Die Kalibrierungszahlen weiter unten sind am 3.8. aus Ondos Sicherungsdatei nachgerechnet. **Am 4.8. wurde erstmals seit dem 29. Juli wieder ein Ergebnis übernommen** (St Patrick's – Derry City 1:1); die Zahlen sind seitdem **nicht neu gerechnet** worden. Wo das Folgen hat, steht es an Ort und Stelle. Die Befunde und Beschlüsse stammen vom 30. und 31. Juli sowie vom 3. und 4. August. **Stand der Beta: v19.7.4, geliefert am 4. August.**
+> **Zur Datierung:** Die Kalibrierungszahlen weiter unten sind am 3.8. aus Ondos Sicherungsdatei nachgerechnet und seitdem **nicht neu gerechnet** worden. Am 4.8. kam ein übernommenes Ergebnis dazu, am 5.8. zehn weitere. **Die Tabelle unten ist damit deutlich überholt** — sie bleibt stehen, weil sie der letzte nachgerechnete Stand ist, nicht weil sie gilt. Wer aktuelle Zahlen braucht, rechnet sie aus Ondos Sicherung vom 5.8. nach. Dieser Rückstand ist gewollt und hier ausgewiesen; er ist nicht mit einer Lücke zu verwechseln. **Stand der Beta: v19.7.7, geliefert am 5. August.**
 
 ---
 
@@ -31,6 +31,64 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 - **Belegen statt herleiten** *(31.7.)*. Eine plausible Erklärung ist keine geprüfte Erklärung. Codezeilen werden zitiert, nicht beschrieben.
 
 **Master-Dokumente im Repo:** `Blueprint.md` · `Ondo-Core-Architektur.md` · `Ondo-Control-Backlog.md` (Fassung 5, 31.7.) · dieses Dokument.
+
+---
+
+## DER 5. AUGUST — Test A beantwortet, erster fehlerfreier Prüflauf, App wieder benutzbar
+
+*Eingetragen von Chat 8 am 5.8., zusammen mit Backlog-Fassung 9 und Blueprint 0.7. Einzelheiten und Belegstellen stehen im Backlog.*
+
+### 1. Der Anlass: Die App war seit Tagen nicht benutzbar
+
+Ondo stellte am 5.8. fest, dass er die App nicht mehr sinnvoll bedienen konnte. **Die Ursache war keine Fehlfunktion, sondern eine fehlende Funktion.** Von 58 offenen Vorhersagen stammten 30 aus den gesperrten Tagen 29.7., 30.7. und 31.7. Sie dürfen nie übernommen werden und blieben deshalb dauerhaft offen — jeder Prüflauf fragte sie erneut ab, und jedes Ergebnis musste einzeln weggeklickt werden. **Richtiges Verhalten erzeugte dauerhafte Reibung.**
+
+Daraus wurde Backlog-Punkt 24 (Parken), gebaut in v19.7.6. Geparkte Vorhersagen werden beim Prüfen übersprungen; es wird **kein Endstand gesetzt und kein Markt bewertet**, die Daten bleiben vollständig, der Schritt ist umkehrbar.
+
+**Lehre, festzuhalten:** Eine Sperre ohne die Möglichkeit, das Gesperrte beiseitezulegen, macht das Werkzeug unbenutzbar. Die Sperre war richtig; was fehlte, war ihr Gegenstück.
+
+### 2. Test A ist beantwortet — der Befund vom 30./31. Juli ist bestätigt
+
+Am 5.8. drehte die App bei **Sonnet zwei von zwei** Tipps mit einer Null um (Ferencváros 2:0 und Panathinaikos 2:0, angezeigt „Beide treffen: Ja 65 %", Wort des Gehirns jeweils **nein**). Bei **Flash drei von drei stimmig**.
+
+**Sonnet ist widerspruchsfrei. Flash ist widerspruchsfrei. Die Frage im Auftragstext ist zweideutig.** Das ist keine Vermutung mehr.
+
+Der Vorbehalt vom 3.8. ist ebenfalls erledigt: Sonnets Muster ist unverändert scharf — umgedreht wird ausschließlich bei einer Null im Tipp, jetzt zwei von zwei nach vorher sieben von sieben. Die zusätzliche Frage hat das Antwortverhalten also nicht verbogen.
+
+**Preis, ehrlich benannt (Art. 14):** Bei diesen Spielen wird Sonnets Btts-Aussage gegen eine Behauptung gemessen, die Sonnet nie aufgestellt hat. Betroffen ist einer von drei Märkten. **Nichts geändert** — eine Umformulierung des Auftragstextes greift in die laufende Messreihe ein und ist Ondos Entscheidung (Art. 8).
+
+### 3. Erster fehlerfreier Prüflauf des Projekts
+
+**14 von 14 gefunden. Alle 14 von Claude per Websuche nachgeprüft. Alle 14 richtig.** Kein erfundenes 0:0, kein falscher Endstand. Das hat es seit Beginn der Messphase nicht gegeben.
+
+**Übernommen: 10 Spiele.** Geparkt: beide Bohemians-Einträge (ein Spiel, zwei Einträge — dieselbe Entscheidung wie am 4.8.) und beide Crystal-Palace-Spiele (siehe Punkt 4).
+
+**Nebenbefund:** Der Zweifel an Valur – Stjarnan vom 4.8. ist ausgeräumt. Das Spiel fand am 3.8. statt, 2:3 ist echt. Der Verdacht auf ein erfundenes Ergebnis war unbegründet — ein weiterer Beleg für Arbeitsregel D.
+
+### 4. Neu: Das Spiel war kürzer als die Messgrundlage
+
+Crystal Palace gegen Lens und gegen Famalicão am 28.7. waren **45-Minuten-Spiele** im Gruppenmodus des Como Cup. Die App misst den Endstand nach 90 Minuten, die Gehirne haben ein 90-Minuten-Ergebnis getippt. „Unter 2,5 Tore" über 45 Minuten ist nicht dieselbe Aussage.
+
+**Keine Fehlerart des Schiedsrichters** — der Endstand war richtig abgelesen. Es ist eine Lücke in der Spielliste: Sie kennt keine Spiellänge. **Beide Spiele geparkt. Entscheidung Ondos steht aus.**
+
+### 5. Neu und gefährlich: Anpfiffzeiten systematisch neun Stunden zu früh
+
+Die Spielliste vom 5.8. nennt fünf UEFA-Qualifikationsspiele mit Anpfiff zwischen 09:30 und 11:30 Uhr. Der Abgleich mit OneFootball zeigt: **alle fünf beginnen genau neun Stunden später** (18:30 bis 20:30). Fünf von fünf, immer derselbe Versatz — kein Zufall.
+
+**Die Ursache ist nicht bekannt (Art. 11.)** Dass es wie eine Zeitzonenumrechnung aussieht, ist eine Vermutung.
+
+**Warum es gefährlich ist:** Die Anpfiffzeit geht in die 2,5-Stunden-Regel des Schiedsrichters ein. Bei Anpfiff 09:30 gilt ein Spiel ab 12:00 Uhr als sicher beendet — gesucht würde der Endstand eines Spiels, das noch gar nicht angepfiffen ist. **Genau in dieser Lage sind am 31. Juli die erfundenen 0:0 entstanden.**
+
+**Sofortmaßnahme ohne Code: an solchen Tagen erst spätabends prüfen.** Nichts gebaut, weiter beobachten.
+
+### 6. Beide Codefunde aus der Übergabe sind geklärt
+
+**`state.geminiModel` gegen `gWahl`: bestätigt und in v19.7.6 behoben.** Der Aufruf benutzte das gewählte Modell, die Aufzeichnung nicht. **⚠ Nicht rückwirkend:** Alle Vorhersagen vor v19.7.6 tragen weiterhin einen womöglich falschen Modellnamen, und rückwirkend ist er nicht mehr feststellbar. Für die Kalibrierung folgenlos, für **Arbeitsregel J nicht.**
+
+**Das Datum der 0a-Rücknahme:** Der Codekommentar sagte 3.8., alle Dokumente 4.8. **Welches Datum stimmt, ließ sich nicht bestimmen.** Der Kommentar nennt jetzt nur noch die Version v19.7.3 — das unbelegte Datum ist entfernt statt geraten.
+
+### 7. Die Textausgabe hat sich bewährt
+
+Der KI-Log-Text aus v19.7.5 ersetzt seit dem 5.8. die Bildschirmfotos. Der Lauf mit zehn Vorhersagen kostete einen Bruchteil eines Bildes — und **Test A wäre auf einem Bildschirmfoto nicht auswertbar gewesen**, weil der Vermerk `[gedreht]` und das Wort dort nicht nebeneinander stehen. Zwei Reparaturen kamen aus der Benutzung: getauschte Datumsgrenzen (v19.7.6) und das über den Rand ragende Datumsfeld (v19.7.7).
 
 ---
 
@@ -180,7 +238,7 @@ Dateiname beginnt mit Datum und Uhrzeit: `2026-07-31_1430_Ondo-Control_Thema.md`
 **Nie empfehlen, Ergebnisse von Hand nachzuschlagen.** Seit dem 25.7. abgelehnt. Die Zuverlässigkeit des Schiedsrichters gehört zum Test, nicht in Ondos Freizeit. Zwei Claude-Instanzen sind trotzdem darauf zurückgefallen.
 
 **Datensicherung:** Ondo regelmäßig daran erinnern.
-**Letzte bestätigte Sicherung: 4.8.2026, 17:58 Uhr — 138 Vorhersagen, 6 Wetten.** Davor: 3.8.2026 · 2.8.2026, 13:00 Uhr · 31.7.2026, 07:49 Uhr.
+**Letzte bestätigte Sicherung: 5.8.2026, 07:31 Uhr — nach dem Vorhersagelauf.** Davor am selben Tag: 06:37 Uhr. Davor: 4.8.2026, 17:58 Uhr (138 Vorhersagen, 6 Wetten) · 3.8.2026 · 2.8.2026, 13:00 Uhr · 31.7.2026, 07:49 Uhr.
 *Am 4.8. hat sich die Sicherung bewährt: Ondo hat den Browserverlauf gelöscht, Safari löschte dabei den Websitespeicher mit, alle Daten waren weg — und wurden vollständig wiederhergestellt. **Nichts verloren.** Zwei bekannte Verlustwege: Browserdaten löschen · getrennter Speicher Safari gegen Startbildschirm.*
 *Hinweis (3.8.): Die Sicherungsdatei enthält `apiKey`, `geminiKey` und `pin` im Klartext. Sie darf nie an ChatGPT oder Gemini gehen, nie an einen Bericht angehängt und nie ins Repo. Ondo hat am 3.8. beide Schlüssel neu erzeugt und die alten deaktiviert. **Folge: Eine Sicherung von vor dem 3.8. überschreibt beim Zurückladen die neuen Schlüssel mit den toten alten** — dann Schlüssel neu eintragen, die Messdaten bleiben unberührt.*
 
@@ -369,8 +427,8 @@ Zwei Schreibweisen desselben Spiels ergeben zwei verschiedene Schlüssel. Folgen
 ## Versionen
 
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.7.4** (`beta.html`, geliefert 4.8.2026) — getrennter Speicher, aktive Messphase. Vier Nachbesserungen am 3. und 4. August, alle ausgelöst durch Punkt 0a; Einzelheiten im Backlog. Im Code steht weiterhin `APP_VERSION = 18` (technische Schuld, bewusst nicht nebenbei geändert, vor der Beförderung zu klären)
-- **Sprachschlüssel: 184** in DE, FR und EN, identisch (Stand 4.8., zuvor 175)
+- **Beta: v19.7.7** (`beta.html`, geliefert 5.8.2026) — getrennter Speicher, aktive Messphase. Vier Nachbesserungen am 3. und 4. August, alle ausgelöst durch Punkt 0a; Einzelheiten im Backlog. Im Code steht weiterhin `APP_VERSION = 18` (technische Schuld, bewusst nicht nebenbei geändert, vor der Beförderung zu klären)
+- **Sprachschlüssel: 199** in DE, FR und EN, maschinell abgeglichen und identisch (Stand 5.8.). *Die früher dokumentierten 184 waren nie geprüft; nachgezählt waren es 185, dann 193, jetzt 199.*
 
 ---
 
@@ -398,7 +456,9 @@ Bis v18.6 war die Beta ein **Wett-Berater**. Am 23. Juli wurde sie zum **Messger
 
 **Bestand insgesamt:** 138 Vorhersagen, davon 118 aus der Messphase (je 59 Sonnet und Flash) und 20 im v18-Archiv. **Je 87 bewertete Aussagen, je 90 noch offene** — das sind 30 Spiele pro Gehirn, die auf Ergebnisse warten. Vorhergesagt wurde zuletzt am 2. und 3. August.
 
-**⚠ Diese Zahlen sind seit dem 4.8. überholt.** An diesem Tag wurde St Patrick's – Derry City 1:1 übernommen. Rechnerisch sind es damit **je 90 bewertete und je 87 offene Aussagen** — *hergeleitet aus drei Märkten je Gehirn, nicht nachgerechnet* (Arbeitsregel H). **Kalibrierung und Entschlossenheit sind seit dem 3.8. nicht neu gerechnet worden.** Wer sie braucht, rechnet sie aus Ondos Sicherung vom 4.8. nach. *Hinweis: Die Sicherungsdatei enthält die Zugangsschlüssel im Klartext — sie geht nie an einen Prüfer, nie in einen Bericht, nie ins Repo.*
+**⚠ Diese Zahlen sind seit dem 4.8. überholt — seit dem 5.8. deutlich.** An diesem Tag kamen **zehn übernommene Spiele** dazu. Wie viele bewertete Aussagen daraus wurden, ist **nicht nachgerechnet** und wird hier ausdrücklich nicht geschätzt (Arbeitsregel H). Wer die Zahl braucht, rechnet sie aus Ondos Sicherung vom 5.8. nach.
+
+*Der ursprüngliche Hinweis vom 4.8.:* An diesem Tag wurde St Patrick's – Derry City 1:1 übernommen. Rechnerisch sind es damit **je 90 bewertete und je 87 offene Aussagen** — *hergeleitet aus drei Märkten je Gehirn, nicht nachgerechnet* (Arbeitsregel H). **Kalibrierung und Entschlossenheit sind seit dem 3.8. nicht neu gerechnet worden.** Wer sie braucht, rechnet sie aus Ondos Sicherung vom 4.8. nach. *Hinweis: Die Sicherungsdatei enthält die Zugangsschlüssel im Klartext — sie geht nie an einen Prüfer, nie in einen Bericht, nie ins Repo.*
 
 | | bewertete Aussagen | Kalibrierungs-Abweichung | Trefferquote |
 |---|---|---|---|
@@ -529,6 +589,8 @@ Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp 
 
 **Grobe Zahlen zum Rechnen** *(Claude, 31.7. — Schätzungen, ausdrücklich keine Messungen)*: Gesamter Arbeitsspeicher etwa **400 KB Text**. Einlesen aller sieben Dateien ≈ **240 KB (60 %)**. Drei Dokumente ausschreiben ≈ **90 KB**. `beta.html` ≈ 74 KB · `OndoControl.html` ≈ 66 KB · die vier Markdown-Dateien zusammen ≈ 100 KB.
 
+**⛑ Seit dem 5.8.: Für den KI-Log gibt es keine Bildschirmfotos mehr, sondern den Textknopf** (Backlog-Punkt 22, unter „KI-Log"). Zehn Vorhersagen als Text kosten einen Bruchteil eines Bildes und sind maschinell auswertbar — Test A war auf diesem Weg auswertbar und wäre es auf einem Bild nicht gewesen. Für alles andere gilt weiter:
+
 **Bildschirmfotos:** **Zwei bis drei normale Bildschirmfotos vom oberen Teil (≈ 15 KB je Stück) sind das Günstigste.** Ein Bild der ganzen langen Seite kostet 40–60 KB und ist kaum lesbar. Ein PDF-Ausdruck ist am teuersten, weil er das gesamte Log als Text enthält, auch die nicht sichtbaren Einträge.
 
 **⚑ Das Hochlade-Verfahren (3.8., bewährt bei v19.7) — ab sofort Standard:** Zu ändernde Dateien werden von Ondo **hochgeladen** statt von Claude aus dem Gedächtnis neu ausgeschrieben. Claude ändert nur die betroffenen Stellen und gibt die fertige Datei zurück; der Rest läuft nie durch den Speicher. Ersparnis bei `beta.html` grob ein Viertel eines ganzen Chats. Dadurch passten am 3.8. Code **und** vollständige Buchführung in denselben Chat.
@@ -553,8 +615,11 @@ Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp 
 | 30./31.7.2026 | Chat 3 → Chat 4 | Raw-Links + Mappe | 9 von 9 | zwei Antworten genauer als der Schlüssel; deckte einen Art.-8-Verstoß auf |
 | 31.7.2026 | Chat 4 → Chat 5 | Raw-Links + Mappe | **9 von 9** | erstmals alle sechs Dateien vorgeschrieben; zwei Antworten über dem Schlüssel (Fragen 5 und 8), drei neue Codefunde durch den Nachfolger |
 | 3.8.2026 | Chat 5 → Chat 6 | Raw-Links + Mappe | **9 von 9** | eine Antwort über dem Schlüssel (Frage 3 war falsch gestellt: sechs Tage, nicht drei); zwei Dokumentenfehler durch den Nachfolger gefunden. **Erste Übergabe, nach der noch am selben Tag Code geliefert wurde** |
+| 4./5.8.2026 | Chat 7 → Chat 8 | Raw-Links + Mappe | **9 von 9** | beide Fangfragen bestanden; zwei Antworten über dem Schlüssel (Mechanismus hinter `APP_VERSION`, Widerspruch zur Begründung der neunten Fehlerart). Der Nachfolger fand vor der Prüfung die unbeabsichtigte Lücke in `PROJEKT-STATUS.md` sowie zwei Codebeobachtungen, die sich beide bestätigten. Chat 7 hatte die Mappe zunächst nach Gedächtnis gebaut und nach Ondos Einwand neu geschrieben |
 | 4.8.2026 | Chat 6 → Chat 7 | Raw-Links + Mappe + Abnahme | **9 von 9** | zwei Antworten über dem Schlüssel (Fragen 3 und 4). Der Nachfolger fand vor der Prüfung **drei Abweichungen zwischen Code und Dokumenten** (v19.7.4 statt v19.7 · 0a zurückgenommen · Modellwahl undokumentiert) plus einen Stilfehler. Der abgebende Chat gab offen an, dass sein Speicher erschöpft war |
 
 ---
 
-*Aktualisiert von Claude (Chat 7) am 4.8.2026, zusammen mit der Backlog-Fassung 7 und Blueprint 0.6. Alle sechs Dateien plus `version.json` wurden vollständig gelesen, dazu der Bericht vom 4.8., 06:15 Uhr. Alle Punkte aus Teil E der Übergabemappe Chat 6 → Chat 7 stehen jetzt in Repo-Dateien. **Die Übergabemappe darf gelöscht werden, sobald Ondo die drei Dateien hochgeladen hat — nicht früher.***
+*Aktualisiert von Claude (Chat 8) am 5.8.2026, zusammen mit der Backlog-Fassung 9 und Blueprint 0.7. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen; die drei Dokumente wurden hochgeladen und nur an den betroffenen Stellen geändert.*
+
+*Vorige Fassung: aktualisiert von Claude (Chat 7) am 4.8.2026, zusammen mit der Backlog-Fassung 7 und Blueprint 0.6. Alle sechs Dateien plus `version.json` wurden vollständig gelesen, dazu der Bericht vom 4.8., 06:15 Uhr. Alle Punkte aus Teil E der Übergabemappe Chat 6 → Chat 7 stehen jetzt in Repo-Dateien. **Die Übergabemappe darf gelöscht werden, sobald Ondo die drei Dateien hochgeladen hat — nicht früher.***

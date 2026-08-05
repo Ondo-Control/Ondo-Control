@@ -3,11 +3,13 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.6
-**Stand:** 4. August 2026
+**Version:** 0.7
+**Stand:** 5. August 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
-> **Was Fassung 0.6 ändert (4.8.2026):** Eine neue Arbeitsregel J (Korrekturfaktor gilt nur für sein Modell), entstanden aus Ondos Frage. Protokolleinträge für den 4. August nachgetragen — darunter die **Rücknahme von Punkt 0a**, der Denkfehler bei der Fehlerbehandlung und die Beantwortung der Lite-Frage vom 29. Juli. Zwei offene Fragen ergänzt. Kein Verfassungsartikel geändert.
+> **Was Fassung 0.7 ändert (5.8.2026):** Protokolleinträge für den 5. August nachgetragen — darunter die **Beantwortung von Test A**, der erste fehlerfreie Prüflauf des Projekts und zwei neue Beobachtungen (verkürzte Spielzeit, systematisch falsche Anpfiffzeiten). Grenze 6 um einen Beleg ergänzt. Kein Verfassungsartikel geändert.
+>
+> **Was Fassung 0.6 änderte (4.8.2026):** Eine neue Arbeitsregel J (Korrekturfaktor gilt nur für sein Modell), entstanden aus Ondos Frage. Protokolleinträge für den 4. August nachgetragen — darunter die **Rücknahme von Punkt 0a**, der Denkfehler bei der Fehlerbehandlung und die Beantwortung der Lite-Frage vom 29. Juli. Zwei offene Fragen ergänzt. Kein Verfassungsartikel geändert.
 >
 > **Was Fassung 0.5 änderte (3.8.2026):** Der Namenskonflikt um „Regel G" ist entschieden und der Kasten in Abschnitt 2c entfällt — die Vorschrift zur Chat-Übergabe heißt jetzt **Übergaberegel**. Protokolleinträge für den 3. August nachgetragen. Zwei offene Punkte geschlossen. Kein Verfassungsartikel geändert.
 >
@@ -148,7 +150,7 @@ Ehrlich · präzise · geduldig · lernbereit · bescheiden (keine Scheinsicherh
 
 **Grenze 5 — Buchmacherquoten sind per Websuche nicht beschaffbar.** *(Nachgetragen 29.7., festgestellt 18.–23.7.)* Ein Abgleich mit echten Tipico-Quoten ergab vier von vier Werten zu hoch (KI 1.95, real 1.40). Ursache technisch nachgewiesen: Buchmacher laden ihre Quoten erst im Browser per JavaScript nach; ein Abruf sieht nur Werbe- und Erklärtext. **Folge: Jede Value-Rechnung auf Basis KI-gesuchter Quoten ist wertlos.**
 
-**Grenze 6 — Ergebnisse unterklassiger Wettbewerbe sind unzuverlässig, aber nicht unbeschaffbar.** *(Nachgetragen 29.7., festgestellt 24.–25.7.)* Reserveteams, Regional- und Oberligen sowie Testspiele sind für den Schiedsrichter schwer auffindbar. **Wichtig: „schwer" heißt nicht „unmöglich" — siehe Arbeitsregel D.** Die Konsequenz ist Beschränkung auf gut dokumentierte Wettbewerbe plus automatisches Wiederholen.
+**Grenze 6 — Ergebnisse unterklassiger Wettbewerbe sind unzuverlässig, aber nicht unbeschaffbar.** *(Ergänzung 5.8.: Am 5. August fand der Schiedsrichter 14 von 14 Ergebnissen, darunter isländische, finnische und irische Spiele sowie Vorbereitungsspiele — alle nachgeprüft richtig. Das ist der bisher stärkste Beleg dafür, dass hier ein Zuverlässigkeits- und kein Verfügbarkeitsproblem vorliegt.)* *(Nachgetragen 29.7., festgestellt 24.–25.7.)* Reserveteams, Regional- und Oberligen sowie Testspiele sind für den Schiedsrichter schwer auffindbar. **Wichtig: „schwer" heißt nicht „unmöglich" — siehe Arbeitsregel D.** Die Konsequenz ist Beschränkung auf gut dokumentierte Wettbewerbe plus automatisches Wiederholen.
 
 **Grenze 7 — Auch gut dokumentierte Ergebnisse sind nicht sicher.** *(Neu 31.7., festgestellt 30. und 31.7.)* Am 30.7. waren zwei von sieben Endständen aus der Champions-League-Qualifikation falsch. Am 31.7. lieferte der Schiedsrichter vier 0:0 in Folge aus derselben Quelle und dasselbe Spiel im selben Datensatz mit zwei verschiedenen Ergebnissen. **Die Fehler stammen nicht vom Wettbewerb, sondern vom Werkzeug.** Alle bestehenden Absicherungen prüfen die *Bauform* der Antwort, nicht ihre Wahrheit.
 
@@ -311,6 +313,15 @@ ONDO CONTROL
 | 4.8.2026 | **Zahlenberichtigung:** Die im Bericht vom 4.8. behauptete „150er-Schwelle" für den ersten Lernschritt steht in keiner Projektdatei. Belegt ist nur „rund 100 pro Gehirn"; das Addieren beider Gehirne ist unsinnig, weil der Lernschritt je Gehirn gilt. **Die Schwelle ist nicht erreicht.** |
 | 4.8.2026 | **Erster erfolgreicher Prüflauf seit dem 31. Juli:** 12 von 30 gefunden, kein einziges 0:0. St Patrick's – Derry City 1:1 übernommen — die erste Übernahme seit dem 29. Juli. Beide Bohemians-Einträge ignoriert, weil jede Auswahl einseitig ein Gehirn bevorzugt hätte. |
 | 4.8.2026 | Blueprint auf Version 0.6 gehoben. |
+| **— ab hier nachgetragen am 5.8.2026 —** | |
+| 5.8.2026 | **Die App war seit Tagen nicht benutzbar — Ursache benannt (Ondo).** Von 58 offenen Vorhersagen stammten 30 aus den gesperrten Tagen; sie dürfen nie übernommen werden und blieben deshalb dauerhaft offen. **Lehre: Eine Sperre ohne die Möglichkeit, das Gesperrte beiseitezulegen, macht das Werkzeug unbenutzbar.** Daraus Backlog-Punkt 24, gebaut als v19.7.6. |
+| 5.8.2026 | **Test A ist beantwortet.** Sonnet drehte zwei von zwei Tipps mit einer Null um, Flash drei von drei stimmig. **Sonnet ist widerspruchsfrei, Flash ist widerspruchsfrei, die Frage im Auftragstext ist zweideutig.** Der Befund vom 30./31. Juli ist damit bestätigt und keine Vermutung mehr. Der Vorbehalt vom 3.8. ist erledigt: Sonnets Muster ist unverändert scharf. **Ob und wie der Auftragstext umformuliert wird, entscheidet Ondo (Art. 8) — offen.** |
+| 5.8.2026 | **Erster fehlerfreier Prüflauf des Projekts:** 14 von 14 gefunden, alle 14 von Claude per Websuche nachgeprüft, alle 14 richtig. Zehn übernommen, vier geparkt. Der Zweifel an Valur – Stjarnan vom 4.8. ist ausgeräumt — ein weiterer Beleg für Arbeitsregel D. |
+| 5.8.2026 | **Neue Beobachtung: Das Spiel war kürzer als die Messgrundlage.** Zwei Como-Cup-Partien am 28.7. dauerten 45 Minuten; die App misst 90. **Keine Fehlerart des Schiedsrichters, sondern eine Lücke in der Spielliste — sie kennt keine Spiellänge.** Beide Spiele geparkt. Entscheidung Ondos steht aus. |
+| 5.8.2026 | **Neue Beobachtung: Anpfiffzeiten systematisch neun Stunden zu früh.** Fünf von fünf UEFA-Spielen, jedes Mal derselbe Versatz. **Ursache nicht bekannt (Art. 11.)** Gefahr: Die Anpfiffzeit geht in die 2,5-Stunden-Regel ein — genau die Lage, in der am 31.7. die erfundenen 0:0 entstanden. Sofortmaßnahme ohne Code: an solchen Tagen erst spätabends prüfen. |
+| 5.8.2026 | **Modellname je Vorhersage berichtigt (v19.7.6).** Der Aufruf benutzte das gewählte Modell, die Aufzeichnung nicht. **Nicht rückwirkend** — ältere Einträge tragen weiterhin einen womöglich falschen Namen. **Arbeitsregel J hängt daran.** |
+| 5.8.2026 | **Das Datum der 0a-Rücknahme ließ sich nicht bestimmen.** Codekommentar 3.8., Dokumente 4.8. Statt zu raten wurde das Datum aus dem Kommentar entfernt; die Version v19.7.3 bleibt stehen (Art. 11). |
+| 5.8.2026 | Blueprint auf Version 0.7 gehoben. |
 
 ---
 
