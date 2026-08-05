@@ -103,7 +103,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:21px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · v19.7.6 BETA<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · v19.7.7 BETA<span id="saveNote" class="save-note"></span></div>
   <div id="view"></div>
 </div>
 
@@ -565,10 +565,12 @@ function logExportBlock(){
     '<div class="disp" style="font-size:20px;margin-bottom:6px">'+t('logExpT')+'</div>'+
     '<div class="muted" style="margin-bottom:10px">'+t('logExpD')+'</div>'+
     '<div style="display:flex;gap:10px">'+
-      '<div style="flex:1"><label>'+t('logExpFrom')+'</label>'+
-        '<input type="date" id="logVon" value="'+heute+'"/></div>'+
-      '<div style="flex:1"><label>'+t('logExpTo')+'</label>'+
-        '<input type="date" id="logBis" value="'+heute+'"/></div>'+
+      /* v19.7.7: iOS gibt dem Datumsfeld eine eigene Mindestbreite. Ohne min-width:0 kann der
+         Flex-Kasten sie nicht unterschreiten und das rechte Feld ragt ueber den Kartenrand. */
+      '<div style="flex:1;min-width:0"><label>'+t('logExpFrom')+'</label>'+
+        '<input type="date" id="logVon" style="min-width:0;text-align:center" value="'+heute+'"/></div>'+
+      '<div style="flex:1;min-width:0"><label>'+t('logExpTo')+'</label>'+
+        '<input type="date" id="logBis" style="min-width:0;text-align:center" value="'+heute+'"/></div>'+
     '</div>'+
     '<button class="btn" style="margin-top:10px" onclick="logTextBauen()">'+t('logExpBtn')+'</button>'+
     '<div id="logHinweis" class="muted" style="color:var(--loss);margin-top:8px"></div>'+
@@ -1969,7 +1971,7 @@ function viewMore(){
     '<div style="font-size:13px;line-height:1.8">'+t('sec1')+'<br>'+t('sec2')+'<br>'+t('sec3')+'<br>'+t('sec4')+'<br>'+t('sec5')+'</div>'+
   '</div>'+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">📋 '+t('projT')+'</div>'+
-    '<pre>ONDO CONTROL v19.7.6 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
+    '<pre>ONDO CONTROL v19.7.7 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
   '</div>';
 }
 
