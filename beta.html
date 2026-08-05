@@ -103,7 +103,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:21px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · v19.7.5 BETA<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · v19.7.6 BETA<span id="saveNote" class="save-note"></span></div>
   <div id="view"></div>
 </div>
 
@@ -213,7 +213,10 @@ var I18N = {
   refModel:'Schiedsrichter-Modell', refCalls:'Anfragen', refFallback:'⚠ Kein staerkeres Modell nutzbar — auf Flash zurueckgefallen',
   logExpT:'📄 Log als Text', logExpD:'Gibt die Vorhersagen eines Zeitraums als reinen Text aus — zum Kopieren in einen Chat. Ersetzt Bildschirmfotos: kostet einen Bruchteil und ist maschinell auswertbar.',
   logExpFrom:'von', logExpTo:'bis', logExpBtn:'📄 Text erzeugen', logExpCopy:'📋 Kopieren',
-  logExpHint:'Markieren und kopieren, oder den Kopieren-Knopf benutzen.', logExpEmpty:'Keine Vorhersagen in diesem Zeitraum.'
+  logExpHint:'Markieren und kopieren, oder den Kopieren-Knopf benutzen.', logExpEmpty:'Keine Vorhersagen in diesem Zeitraum.',
+  parkBtn:'Nicht prüfen', unparkBtn:'Wieder prüfen', parked:'GEPARKT',
+  parkedD:'Geparkte Vorhersagen werden beim Ergebnis-Prüfen übersprungen. Die Daten bleiben vollständig erhalten, jederzeit umkehrbar.',
+  parkedCount:'{a} geparkt', dateSwap:'⚠ Zeitraum war verkehrt herum — Datumsfelder getauscht.'
  },
  fr:{ nvHome:'Accueil', nvBets:'Paris', nvFin:'Finances', nvMore:'Plus',
   locked:'Ondo Control est verrouillé', unlock:'Déverrouiller', wrongPin:'PIN incorrect', pinPh:'PIN',
@@ -292,7 +295,10 @@ var I18N = {
   refModel:'Modele de verification', refCalls:'Requetes', refFallback:'⚠ Aucun modele plus puissant utilisable — retour a Flash',
   logExpT:'📄 Log en texte', logExpD:'Sort les prédictions d’une période en texte brut — à copier dans un chat. Remplace les captures d’écran : coûte une fraction et reste exploitable par machine.',
   logExpFrom:'du', logExpTo:'au', logExpBtn:'📄 Générer le texte', logExpCopy:'📋 Copier',
-  logExpHint:'Sélectionne et copie, ou utilise le bouton Copier.', logExpEmpty:'Aucune prédiction sur cette période.'
+  logExpHint:'Sélectionne et copie, ou utilise le bouton Copier.', logExpEmpty:'Aucune prédiction sur cette période.',
+  parkBtn:'Ne pas vérifier', unparkBtn:'Vérifier à nouveau', parked:'EN PAUSE',
+  parkedD:'Les prédictions en pause sont ignorées lors de la vérification. Les données restent intactes, réversible à tout moment.',
+  parkedCount:'{a} en pause', dateSwap:'⚠ Période inversée — les dates ont été échangées.'
  },
  en:{ nvHome:'Home', nvBets:'Bets', nvFin:'Finance', nvMore:'More',
   locked:'Ondo Control is locked', unlock:'Unlock', wrongPin:'Wrong PIN', pinPh:'PIN',
@@ -371,7 +377,10 @@ var I18N = {
   refModel:'Referee model', refCalls:'Requests', refFallback:'⚠ No stronger model usable — fell back to Flash',
   logExpT:'📄 Log as text', logExpD:'Outputs the predictions of a date range as plain text — to paste into a chat. Replaces screenshots: costs a fraction and stays machine-readable.',
   logExpFrom:'from', logExpTo:'to', logExpBtn:'📄 Create text', logExpCopy:'📋 Copy',
-  logExpHint:'Select and copy, or use the Copy button.', logExpEmpty:'No predictions in this range.'
+  logExpHint:'Select and copy, or use the Copy button.', logExpEmpty:'No predictions in this range.',
+  parkBtn:'Do not check', unparkBtn:'Check again', parked:'PARKED',
+  parkedD:'Parked predictions are skipped when checking results. The data stays fully intact and this is reversible at any time.',
+  parkedCount:'{a} parked', dateSwap:'⚠ Date range was reversed — the two dates have been swapped.'
  }
 };
 function t(k){ var l=state.lang||'de'; return (I18N[l]&&I18N[l][k])||I18N.de[k]||k; }
@@ -485,7 +494,17 @@ function heuteIso(){
 }
 function logTextBauen(){
   var vEl=document.getElementById('logVon'), bEl=document.getElementById('logBis');
+  /* v19.7.6: Standen die beiden Felder verkehrt herum (von 4.8., bis 28.7.), war das Ergebnis
+     immer leer, ohne dass der Grund erkennbar war. Jetzt werden sie getauscht und der Tausch
+     wird angezeigt — stillschweigend zu reparieren waere schlechter als es zu sagen. */
   var von=datumZahl(vEl&&vEl.value), bis=datumZahl(bEl&&bEl.value);
+  var hinw=document.getElementById('logHinweis');
+  if(hinw) hinw.textContent='';
+  if(von!==null && bis!==null && von>bis){
+    var tausch=vEl.value; vEl.value=bEl.value; bEl.value=tausch;
+    var z=von; von=bis; bis=z;
+    if(hinw) hinw.textContent=t('dateSwap');
+  }
   var treffer=[];
   (state.kiProtokoll||[]).forEach(function(e){
     if(e.aera!=='v19') return;
@@ -519,6 +538,7 @@ function logTextBauen(){
       ' · getippt '+e.heim+':'+e.gast+' · wirklich '+echt+
       (m?(' · '+m):'')+
       (e.bttsWort?(' · Wort '+e.bttsWort):'')+
+      (e.geparkt?' [geparkt]':'')+
       (e.begruendung?(' · "'+e.begruendung+'"'):'');
   });
   feld.value=kopf+'\n\n'+zeilen.join('\n');
@@ -551,6 +571,7 @@ function logExportBlock(){
         '<input type="date" id="logBis" value="'+heute+'"/></div>'+
     '</div>'+
     '<button class="btn" style="margin-top:10px" onclick="logTextBauen()">'+t('logExpBtn')+'</button>'+
+    '<div id="logHinweis" class="muted" style="color:var(--loss);margin-top:8px"></div>'+
     '<textarea id="logText" readonly rows="8" style="width:100%;margin-top:10px;background:var(--inner);'+
       'border:1px solid var(--edge);border-radius:8px;color:var(--text);padding:10px;'+
       'font-size:12px;font-family:ui-monospace,Menlo,monospace;line-height:1.5"></textarea>'+
@@ -722,6 +743,13 @@ function gListe(stark){
   return sauber;
 }
 var pruefStark = { anfragen:0, modell:'', fallback:false, grund:'' };
+/* v19.7.6: Welches Modell hat tatsaechlich geantwortet? Bisher wurde je Vorhersage
+   state.geminiModel gespeichert — das wird aber nur beim allerersten Erfolg gesetzt
+   ("if(!state.geminiModel)") und danach nie wieder geaendert. Nach einem Modellwechsel
+   unter "Mehr" stand deshalb ein falscher Name im Log, und seit der Ruecknahme von 0a
+   konnte ihn sogar der Schiedsrichter setzen. Arbeitsregel J haengt an dieser Angabe:
+   Ein Korrekturfaktor ist nur so verlaesslich wie das Modell, dem er zugeordnet ist. */
+var zuletztModell = { gehirn:'', ref:'' };
 function gLadeModelle(stark){
   return fetch('https://generativelanguage.googleapis.com/v1beta/models?key='+encodeURIComponent(state.geminiKey))
     .then(function(r){ return r.json(); })
@@ -837,6 +865,7 @@ function geminiCall(opts, modellIndex){
     }
     try{
       var txt = (res.candidates[0].content.parts||[]).map(function(p){return p.text||'';}).join('\n');
+      if(opts.rolle==='ref' || opts.rolle==='gehirn') zuletztModell[opts.rolle] = modell;
       if(stark){ if(!state.geminiProModel){ state.geminiProModel = modell; save(); } }
       else if(!state.geminiModel){ state.geminiModel = modell; save(); }
       return { content:[{ type:'text', text:txt }], stop_reason:'end_turn', _status:res._status };
@@ -1054,7 +1083,8 @@ function vorhersagen(btn){
           herkunft:gehirn,
           heim:h, gast:g,
           bttsWort:jaNeinWort(v.bttsWort),
-          modell:(gehirn==='flash' ? (state.geminiModel||'') : 'claude-sonnet-4-6'),
+          /* v19.7.6: das Modell, das wirklich geantwortet hat — nicht mehr state.geminiModel */
+          modell:(gehirn==='flash' ? (zuletztModell.gehirn||state.gModellGehirn||state.geminiModel||'') : 'claude-sonnet-4-6'),
           begruendung:String(v.begruendung||''),
           maerkte:maerkteBauen(match,h,g,pz(v.p1x2),pz(v.pTore),pz(v.pBtts)),
           ergebnisHeim:null, ergebnisGast:null,
@@ -1146,8 +1176,13 @@ function ergebnissePruefen(btn){
   if(!hatGemini() && !hatSonnet()){
     var f0=document.getElementById('pruefStatus'); if(f0) f0.textContent=t('noKey'); return;
   }
+  /* v19.7.6: Geparkte Vorhersagen werden uebersprungen. Anlass: Die gesperrten Ergebnisse
+     vom 29./30. und 31. Juli duerfen nie uebernommen werden und blieben deshalb dauerhaft
+     offen — jeder Prueflauf fragte sie erneut ab und verbrauchte Runden dafuer. Parken
+     traegt KEIN Ergebnis ein: Die Pruefbibliothek bleibt unberuehrt, nichts wird bewertet,
+     nichts fliesst in die Kalibrierung, und der Schritt ist jederzeit umkehrbar. */
   var offeneP = (state.kiProtokoll||[]).filter(function(e){
-    return e.aera==='v19' && e.status==='offen';
+    return e.aera==='v19' && e.status==='offen' && !e.geparkt;
   });
   /* Doppelte Spiele nur einmal abfragen: beide Gehirne teilen sich denselben Endstand */
   var spiele={}, posten=[];
@@ -1284,7 +1319,7 @@ function ergebnissePruefen(btn){
       '\n\nLetzte Nachricht: NUR kompaktes JSON:\n{"ergebnisse":[{"id":"S0","status":"fertig","halbzeit":"1:0","heim":2,"gast":1,"verlaengerung":"","datum":"24.07.2026","wettbewerb":"MLS","quelle":"https://..."}]}';
 
     var call = hatGemini()
-      ? geminiCall({ prompt: prompt, useSearch: true, rolle:'ref' })   /* 0a zurueckgenommen 3.8., siehe Backlog */
+      ? geminiCall({ prompt: prompt, useSearch: true, rolle:'ref' })   /* 0a zurueckgenommen in v19.7.3, siehe Backlog */
       : sonnetSuche(prompt, 5, 1500);
 
     call.then(function(res){
@@ -1358,6 +1393,24 @@ function logMarktSet(eid, idx, status){
     e.status = offenNoch ? 'offen' : 'bewertet';
   });
   save(); render();
+}
+/* v19.7.6: Parken statt loeschen. Ein Eintrag verschwindet aus dem Prueflauf, bleibt aber
+   vollstaendig in den Daten. Es wird kein Endstand gesetzt und kein Markt bewertet. */
+function logParken(eid, wert){
+  (state.kiProtokoll||[]).forEach(function(e){
+    if(e.id===eid) e.geparkt = !!wert;
+  });
+  save(); render();
+}
+/* Alle noch offenen Vorhersagen eines Spieltags auf einmal parken — die gesperrten
+   Ergebnisse liegen tageweise beieinander, einzeln waeren es dutzende Klicks. */
+function logParkenTag(datum, wert){
+  var n=0;
+  (state.kiProtokoll||[]).forEach(function(e){
+    if(e.aera!=='v19' || e.datum!==datum || e.status!=='offen') return;
+    e.geparkt = !!wert; n++;
+  });
+  if(n){ save(); render(); }
 }
 function logLoeschen(eid){
   state.kiProtokoll=(state.kiProtokoll||[]).filter(function(e){return e.id!==eid;});
@@ -1613,9 +1666,10 @@ function vorhersageKarte(e, mitKnoepfen){
   var endstand = (e.ergebnisHeim!==null && e.ergebnisHeim!==undefined)
     ? '<div class="muted" style="margin-top:8px">'+t('finalScore')+': <b style="color:var(--text)">'+e.ergebnisHeim+':'+e.ergebnisGast+'</b></div>'
     : '';
-  return '<div class="card">'+
+  return '<div class="card"'+(e.geparkt?' style="opacity:.6"':'')+'>'+
     '<div class="flex"><div>'+
-      '<div class="disp" style="font-size:18px">'+esc(e.match)+'</div>'+
+      '<div class="disp" style="font-size:18px">'+esc(e.match)+
+        (e.geparkt?(' <span class="badge b-open" style="font-size:11px">'+t('parked')+'</span>'):'')+'</div>'+
       '<div class="muted">'+e.datum+(e.anpfiff?(' '+esc(e.anpfiff)):'')+' · '+quelle+(e.wettbewerb?(' · '+esc(e.wettbewerb)):'')+'</div>'+
     '</div><div style="text-align:right">'+
       '<div class="score">'+e.heim+':'+e.gast+'</div>'+
@@ -1625,7 +1679,14 @@ function vorhersageKarte(e, mitKnoepfen){
     wortZeile+
     (e.begruendung?'<div class="muted" style="margin-top:8px;border-top:1px solid var(--edge);padding-top:8px">'+esc(e.begruendung)+'</div>':'')+
     endstand+
-    (mitKnoepfen?'<div style="margin-top:10px"><button class="btn-sm" style="float:right" onclick="logLoeschen(\''+e.id+'\')">'+t('del')+'</button><div style="clear:both"></div></div>':'')+
+    (mitKnoepfen?('<div style="margin-top:10px">'+
+      (e.status==='offen'
+        ? (e.geparkt
+            ? '<button class="btn-sm btn-open" onclick="logParken(\''+e.id+'\',false)">'+t('unparkBtn')+'</button>'
+            : '<button class="btn-sm" onclick="logParken(\''+e.id+'\',true)">'+t('parkBtn')+'</button>')
+        : '')+
+      '<button class="btn-sm" style="float:right" onclick="logLoeschen(\''+e.id+'\')">'+t('del')+'</button>'+
+      '<div style="clear:both"></div></div>'):'')+
   '</div>';
 }
 
@@ -1684,6 +1745,30 @@ function viewBets(c){
     var alt=pl.filter(function(e){ return e.aera!=='v19'; });
     var eintraege = neu.length ? neu.map(function(e){ return vorhersageKarte(e,true); }).join('')
       : '<div class="card empty">'+t('logEmpty')+'</div>';
+    /* v19.7.6: Tageweise parken. Die offenen Vorhersagen liegen nach Tagen beieinander;
+       einzeln zu klicken waeren bei den gesperrten Ergebnissen dutzende Griffe. */
+    var tage=[], nachTag={};
+    neu.forEach(function(e){
+      if(e.status!=='offen') return;
+      if(!nachTag[e.datum]){ nachTag[e.datum]={offen:0, geparkt:0}; tage.push(e.datum); }
+      nachTag[e.datum].offen++;
+      if(e.geparkt) nachTag[e.datum].geparkt++;
+    });
+    tage.sort(function(a,b){ return (datumZahl(b)||0)-(datumZahl(a)||0); });
+    var parkBlock = tage.length
+      ? '<div class="card"><div class="disp" style="font-size:18px;margin-bottom:6px">🅿 '+t('parkBtn')+'</div>'+
+        '<div class="muted" style="margin-bottom:10px">'+t('parkedD')+'</div>'+
+        tage.map(function(d){
+          var z=nachTag[d], allePark=(z.geparkt>=z.offen);
+          return '<div class="mkt"><div>'+esc(d)+' <span class="muted">('+z.offen+' '+t('open_')+
+            (z.geparkt?(' · '+t('parkedCount').replace('{a}',z.geparkt)):'')+')</span></div>'+
+            '<div style="white-space:nowrap">'+
+            (allePark
+              ? '<button class="btn-sm btn-open" onclick="logParkenTag(\''+esc(d)+'\',false)">'+t('unparkBtn')+'</button>'
+              : '<button class="btn-sm" onclick="logParkenTag(\''+esc(d)+'\',true)">'+t('parkBtn')+'</button>')+
+            '</div></div>';
+        }).join('')+'</div>'
+      : '';
     var archiv = alt.length
       ? '<div class="muted" style="margin:18px 0 8px;letter-spacing:1px;text-transform:uppercase">'+t('archive')+'</div>'+
         '<div class="muted" style="margin-bottom:10px">'+t('archiveD')+'</div>'+
@@ -1698,7 +1783,7 @@ function viewBets(c){
             '</div>'+chip+'</div></div>';
         }).join('')
       : '';
-    return sub+'<div class="muted" style="margin-bottom:10px">'+t('logD')+'</div>'+pruefBlock()+logExportBlock()+eintraege+archiv;
+    return sub+'<div class="muted" style="margin-bottom:10px">'+t('logD')+'</div>'+pruefBlock()+parkBlock+logExportBlock()+eintraege+archiv;
   }
 
   if(wtab==="historie" && !state.bets.length) return sub+pruefBlock()+'<div class="card empty">'+t('noBets')+'</div>';
@@ -1884,7 +1969,7 @@ function viewMore(){
     '<div style="font-size:13px;line-height:1.8">'+t('sec1')+'<br>'+t('sec2')+'<br>'+t('sec3')+'<br>'+t('sec4')+'<br>'+t('sec5')+'</div>'+
   '</div>'+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">📋 '+t('projT')+'</div>'+
-    '<pre>ONDO CONTROL v19.7.5 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
+    '<pre>ONDO CONTROL v19.7.6 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
   '</div>';
 }
 
