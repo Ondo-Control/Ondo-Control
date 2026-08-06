@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Gepflegt von Claude · Stand 6.8.2026, Fassung 10 · jede Idee mit Datum, Urheber und Status**
+**Gepflegt von Claude · Stand 6.8.2026, Fassung 11 · jede Idee mit Datum, Urheber und Status**
 
 ## Regeln für dieses Dokument
 
@@ -13,6 +13,76 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 11 ändert (6.8., nachmittags)
+
+- **Der Bericht vom 6.8., 09:05 Uhr ist an beide Prüfer gegangen.** Beide haben geantwortet.
+- **Beide Prüfer sagen Ja zur Spiellänge** und **Ja zur zehnten Fehlerart.** Damit sind beide Punkte entscheidungsreif. **Ondos Entscheidung steht aus.**
+- **Beide Prüfer raten übereinstimmend davon ab, jetzt eine Kennzahl für Antwortstabilität zu bauen** (Punkt 23) — und beide nennen dieselbe Ursache: die nicht gesetzte Temperatur.
+- **Neuer Punkt 26:** Temperatur des Schiedsrichters auf 0,0 setzen. Geminis Fund, und der erste Temperatur-Eingriff, der die laufende Messreihe **nicht** schneidet.
+- **Übergabe an ChatGPT vollzogen** — vier von fünf, mit einem Befund über seine Arbeitsweise.
+- **Ein Befund über Gemini** ist eingetragen: Seine erste Antwort berief sich auf Quellen, die es im Projekt nicht gibt.
+
+---
+
+## 📋 Prüferantworten vom 6. August
+
+**Beide Prüfer haben den Bericht vom 6.8., 09:05 Uhr beantwortet.** Gemini erst im zweiten Anlauf, siehe unten.
+
+### Frage 1 — Spiellänge in der Spielliste führen?
+
+**ChatGPT: Ja.** Es löse nicht nur den Como-Fall, sondern verhindere grundsätzlich, dass Spiele bewertet werden, die nicht zur Definition des Messinstruments passen. Damit sei die Zwei-Probleme-Regel erfüllt.
+
+**Gemini: Ja.** Die Erfassung verhindere die fehlerhafte Bewertung von Sonderformaten und schütze die Marktstatistik.
+
+→ **Beide Ja. Entscheidungsreif. Ondos Entscheidung steht aus.**
+
+### Frage 2 — Doppelter Spieleintrag als zehnte Fehlerart?
+
+**ChatGPT: Ja.** Mehrfach beobachtet, und er verändert Messdaten — also keine Unschönheit der Oberfläche, sondern eine eigene Fehlerquelle.
+
+**Gemini: Ja**, unter Bestätigung seiner Antwort vom 4.8. Doppelte Einträge verzerrten die Stichprobe; die Fehlerart mache spätere Bereinigungen nachvollziehbar.
+
+→ **Beide Ja, Gemini zum zweiten Mal. Entscheidungsreif. Ondos Entscheidung steht aus.**
+
+### Die offene Frage — was misst die Kalibrierung noch, wenn dieselbe Frage verschiedene Prozentzahlen liefert?
+
+**ChatGPT berichtigt die Prämisse, und die Berichtigung ist richtig.** Die Kalibrierung misst weiterhin, ob Prozentangaben langfristig zur Wirklichkeit passen — sie misst nur nicht mehr ausschließlich das Modell, sondern zusätzlich die Streuung des Verfahrens. Eine große Stichprobe mittelt die Streuung heraus, aber sie verschwindet dadurch nicht, sie wird nur statistisch kleiner. Eine Kennzahl für Antwortstabilität sei fachlich sinnvoll, nach der Zwei-Probleme-Regel aber **noch nicht ausreichend belegt.**
+
+**Gemini kommt zum selben Schluss über einen anderen Weg:** Gemessen werde eine Mischung aus Modellüberzeugung und Zufallsrauschen des Sampling-Verfahrens. Eine zusätzliche Kennzahl bekämpfe das Symptom statt der Ursache. **Zuerst die Temperatur setzen, dann weitersehen.**
+
+→ **Beide Prüfer raten übereinstimmend davon ab, Punkt 23 jetzt zu bauen.** Das ist die erste Einstimmigkeit der beiden Prüfer gegen eine Idee, die von einem von ihnen selbst stammt.
+
+### Wo die Prüfer auseinandergehen — und wo Claude widerspricht
+
+**Gemini will die Temperatur auch bei den Vorhersage-Aufrufen auf 0,0 setzen.** Für den Schiedsrichter ist das unbedenklich; **für die Gehirne ist es ein Eingriff in die laufende Messung.** Alle 270 bisher bewerteten Aussagen sind unter dem Standardwert entstanden. Wird er geändert, sind die neuen Zahlen mit den alten nicht mehr vergleichbar — dasselbe Problem wie beim Auftragstext, nur ohne den Beleg, dass es sich lohnt. **Vorschlag Claude: Schiedsrichter ja, Gehirne vorerst nicht.**
+
+**Gemini sagt außerdem, mit 0,0 erzeugten identische Fragen identische Prozentwerte.** Das ist zu stark formuliert. Eine niedrige Temperatur verringert die Streuung deutlich, beseitigt sie aber nicht zuverlässig. **Als Erwartung führen, nicht als Zusage.**
+
+---
+
+**26. Temperatur des Schiedsrichters auf 0,0 setzen** · *Idee 6.8., Gemini* · **Status: Idee — NEU, entscheidungsreif**
+
+Der Temperatur-Fund vom 4.8. steht unverändert: In `apiCall` und `geminiCall` wird kein Temperatur-Wert gesetzt, alle drei Rollen laufen auf dem Standardwert des Anbieters.
+
+→ **Der Kern des Vorschlags, und er ist neu:** Für den Schiedsrichter ist Streuung ausschließlich schädlich, weil er nur ablesen soll. Und **Arbeitsregel J steht nicht entgegen, weil der Schiedsrichter Messwerkzeug ist und nicht Messgegenstand.** Ein Eingriff dort schneidet die Messreihe der Gehirne nicht.
+→ Damit ist zum ersten Mal ein Temperatur-Eingriff denkbar, ohne die laufende Messung zu opfern.
+→ **Umfang:** ein Wert in einem Aufruf, dort wo `rolle:'ref'` gesetzt ist.
+→ **Kosten:** kein Geld, kein zusätzlicher Aufruf, kein Schnitt in der Messreihe.
+→ **Erwartung, keine Zusage:** weniger Streuung beim Ablesen. Ob es die drei bekannten Abweichungen (Halbzeitstand, Datum, Heimmannschaft falsch herum) verringert, ist offen und wäre nach Arbeitsregel B über echte Nutzung zu bewerten.
+→ *Zwei-Probleme-Regel: Es ist kein neuer Baustein, sondern ein gesetzter Wert in einem bestehenden Aufruf — die Regel greift nicht.*
+
+---
+
+**27. Anpfiffzeiten: Prüffenster erweitern, wenn die Liste unglaubwürdig ist** · *Idee 6.8., Gemini* · **Status: Idee**
+
+Fallen auffällig viele Spiele eines Tages auf exakt dieselbe runde Uhrzeit, ist die Spielliste unglaubwürdig. Für solche Tage sollte die 2,5-Stunden-Regel großzügiger rechnen, damit der Schiedsrichter nicht nach Endständen laufender Spiele sucht.
+
+→ **Es behebt die Ursache nicht** — die kennt weiterhin niemand — sondern entschärft die gefährliche Richtung.
+→ Am 6.8. trugen acht von zehn Spielen exakt 18:00 Uhr. Ein Tag ist kein Muster.
+→ **Vorschlag Claude: zurückstellen**, bis der Fall ein drittes Mal auftritt. Die Sofortmaßnahme ohne Code — spätabends prüfen — wirkt heute schon und kostet nichts.
 
 ---
 
@@ -672,7 +742,9 @@ Der Textknopf gibt heute nur gespeicherte Vorhersagen aus. Die vom Schiedsrichte
 → **Kosten: keine.** Kein API-Aufruf, kein Geld, kein Eingriff in Auftragstext, Kalibrierung oder Messreihe.
 → *Zwei-Probleme-Regel: spart Speicher in jedem Chat **und** macht die Gegenprüfung maschinell auswertbar. Erfüllt.*
 
-**23. Schattenlauf zur Antwortstabilität** · *Idee 4.8., Gemini* · **Status: Idee**
+**23. Schattenlauf zur Antwortstabilität** · *Idee 4.8., Gemini* · **Status: Idee — von beiden Prüfern am 6.8. ausdrücklich zurückgestellt**
+
+→ **⚠ 6.8.:** ChatGPT und Gemini raten übereinstimmend davon ab, diese Kennzahl jetzt zu bauen — ChatGPT unter Verweis auf die Zwei-Probleme-Regel, Gemini mit dem Argument, sie bekämpfe das Symptom statt der Ursache. **Zuerst Punkt 26 (Temperatur), dann neu bewerten.** Bemerkenswert: Gemini rät von seiner eigenen Idee ab.
 Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige bereits abgeschlossene Spiele und stellt beiden Gehirnen mehrfach hintereinander denselben Auftragstext. Die Antworten landen in einem reinen Textprotokoll, fern der Kalibrierungsdaten. So bleibt die Hauptmessreihe unberührt.
 → **Anlass:** Am 4.8. antwortete Flash auf dieselbe Paarung zweimal verschieden, Sonnet zweimal gleich.
 → **⚠ Verschärft am 6.8.:** Bei Salzburg – Pafos schwankten **beide** Gehirne — Flash bei allen drei Märkten, Sonnet bei zwei von drei; der Ergebnis-Tipp blieb bei beiden gleich. Damit betrifft Geminis Einwand nicht mehr nur Flash.
@@ -795,7 +867,9 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 
 ---
 
-*Fassung 10, geschrieben am 6.8.2026 von Chat 10. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen. Nachgetragen: die drei Entscheidungen vom Abend des 5.8., der Prüflauf vom 6.8., der nachgerechnete Messstand, drei neue Beobachtungen, Punkt F und Punkt 25. **Die Übergabemappe vom 5.8. darf gelöscht werden, sobald Ondo diese Dateien hochgeladen hat — nicht früher.***
+*Fassung 11, geschrieben am 6.8.2026 von Chat 10, nachmittags: Prüferantworten zum Bericht vom 09:05 Uhr eingetragen, Punkte 26 und 27 neu, Punkt 23 zurückgestellt.*
+
+*Vorige Fassung: Fassung 10, geschrieben am 6.8.2026 von Chat 10. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen. Nachgetragen: die drei Entscheidungen vom Abend des 5.8., der Prüflauf vom 6.8., der nachgerechnete Messstand, drei neue Beobachtungen, Punkt F und Punkt 25. **Die Übergabemappe vom 5.8. darf gelöscht werden, sobald Ondo diese Dateien hochgeladen hat — nicht früher.***
 
 *Vorige Fassung: Fassung 9, geschrieben am 5.8.2026 von Chat 8, zusammen mit den Lieferungen v19.7.6 und v19.7.7. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen. **Die Übergabemappe vom 4.8. darf erst gelöscht werden, wenn Ondo die Dateien hochgeladen hat.***
 
