@@ -117,6 +117,38 @@ Der erste Vorhersagelauf am 6.8. endete mit „Konnte keine Spiele laden". Der z
 
 ---
 
+### 8. Bericht an beide Prüfer und Übergabe an ChatGPT — beides am 6.8. vollzogen
+
+**Der Bericht `2026-08-06_0905_Ondo-Control_Bericht.md` ist an ChatGPT und Gemini gegangen.** Er holt die seit dem 4.8. aufgelaufenen zwei Tage nach und berichtigt die falsche 150er-Schwelle aus dem Bericht vom 4.8.
+
+**Beide Prüfer haben geantwortet. Beide sagen Ja zur Spiellänge und Ja zur zehnten Fehlerart.** Beide raten übereinstimmend davon ab, jetzt eine Kennzahl für Antwortstabilität zu bauen, und nennen dieselbe Ursache: die nicht gesetzte Temperatur. Einzelheiten im Backlog, Abschnitt „Prüferantworten vom 6. August". **Ondos Entscheidung steht bei beiden Fragen aus.**
+
+**Ein neuer Fund von Gemini:** Die Temperatur des **Schiedsrichters** darf gesetzt werden, ohne die Messreihe zu schneiden — weil der Schiedsrichter Messwerkzeug ist und nicht Messgegenstand, greift Arbeitsregel J dort nicht. → Backlog-Punkt 26.
+
+### 9. Übergabe an ChatGPT: vier von fünf — und ein Befund über seine Arbeitsweise
+
+ChatGPT hat beim Lesen **von sich aus und ohne Aufforderung eingeräumt**, Blueprint und Ondo-Core-Architektur nicht vollständig gelesen zu haben und von den beiden anderen Dokumenten nur Ausschnitte zu kennen. **Das ist das richtige Verhalten** und genau das, woran frühere Übergaben gescheitert sind.
+
+Weil sein Nutzungslimit bei 92 Prozent stand, wurde von acht auf **fünf Kontrollfragen gekürzt** — nur solche, die aus `PROJEKT-STATUS.md` und `Ondo-Control-Backlog.md` beantwortbar sind.
+
+**Ergebnis: vier von fünf.** Die Fangfrage zu den Anpfiffzeiten hat er bestanden: Er nennt beide Muster und sagt ausdrücklich, dass die Ursache unbekannt bleibt und der 6. August die Zeitzonen-Vermutung widerlegt. Punkt 0a, der Messstand mit beiden Gründen und die Sperre der 13 Ergebnisse ebenfalls richtig.
+
+**Falsch: 193 Sprachschlüssel statt 199.** Er hatte im Backlog die Berichtigung der alten 184 gefunden, aber nicht die jüngste Angabe.
+
+→ **Der eigentliche Befund liegt in der Fehlerart, nicht im Fehler: ChatGPT liest die Projektdateien über Suchtreffer, nicht vollständig.** Er findet zuverlässig, wonach er sucht — und übersieht, was er nicht sucht. Das erklärt, warum seine Antworten wiederholt einen Stand hinterherhinken. **Folge für die Zusammenarbeit: Bei jeder Zahl und jedem Status ist die Fundstelle mitzunennen, und bei mehreren Fundstellen ist die jüngste zu prüfen.** ChatGPT hat das zugesagt.
+
+### 10. Ein Befund über Gemini: erfundene Quellen
+
+Geminis **erste** Antwort auf den Bericht beantwortete keine der gestellten Fragen. Sie beantwortete stattdessen die drei Diskussionspunkte aus Abschnitt 10 von `Ondo-Core-Architektur.md` — von denen zwei laut Blueprint-Protokoll **am 5. Juli entschieden** wurden.
+
+**Schwerer wiegt:** Gemini berief sich auf ein „Wissensnetz" und ein „Denkmuster-Manifest". **Beide existieren im Projekt nicht** — null Treffer in allen vier Dokumenten, ebenso wenig IndexedDB oder Zod. Drei Belegstellen waren zusätzlich falsch zugeordnet: Arbeitsregel E ist „Auswählen ist eine Entscheidung", G ist die Kostenregel, Backlog-Punkt 11 ist das Rollenmodell.
+
+**Erst der zweite Anlauf beantwortete den Bericht** — und dieser zweite Anlauf enthielt den wertvollen Temperatur-Fund.
+
+→ **Lehre: Ein Prüferbeitrag ist nicht deshalb belastbar, weil er belesen klingt.** Belegstellen aus Prüferantworten werden gegen die Dateien geprüft, bevor sie in die Dokumente wandern. Das ist Arbeitsregel H, angewandt auf fremde Beiträge. Es ist der zweite Fall dieser Art nach dem fehlerhaften Prüferbericht vom 4.8. mit der erfundenen 150er-Schwelle.
+
+---
+
 ## DER 5. AUGUST — Test A beantwortet, erster fehlerfreier Prüflauf, App wieder benutzbar
 
 *Eingetragen von Chat 8 am 5.8., zusammen mit Backlog-Fassung 9 und Blueprint 0.7. Einzelheiten und Belegstellen stehen im Backlog.*
@@ -706,6 +738,8 @@ Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp 
 | 5.8.2026 | Chat 8 → Chat 9 | Raw-Links + Projektdateien + Mappe | **9 von 9** | beide Fangfragen bestanden (unbekannte Ursache des Neun-Stunden-Versatzes, Modellname nicht rückwirkend behoben); drei Antworten über dem Schlüssel — die Einschränkung „fehlerfrei nur beim Endstand“, die Eingrenzung des Modellnamen-Problems auf Flash, und der Hinweis, dass die Sicherung vor den zehn Übernahmen lag. Der Nachfolger fand beim Lesen einen übersehenen Rest „184 Sprachschlüssel“ in `PROJEKT-STATUS.md`, den Chat 8 selbst hinterlassen hatte |
 
 ---
+
+*Zweiter Nachtrag von Claude (Chat 10) am 6.8.2026, nachmittags: Bericht an beide Prüfer verschickt und beantwortet, Übergabe an ChatGPT vollzogen, zwei Befunde über die Arbeitsweise der Prüfer eingetragen.*
 
 *Aktualisiert von Claude (Chat 10) am 6.8.2026: Abschnitt „Der 6. August" neu, Messstand nachgerechnet und auf je 135 Aussagen gebracht, drei Entscheidungen vom 5.8. abends nachgetragen, Sicherungsstand auf 08:28 Uhr, Übergabe-Eintrag Chat 9 → Chat 10 ergänzt, das veraltete Zitat des 0a-Codekommentars berichtigt. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen.*
 
