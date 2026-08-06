@@ -103,7 +103,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:21px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · v19.7.7 BETA<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · v19.7.8 BETA<span id="saveNote" class="save-note"></span></div>
   <div id="view"></div>
 </div>
 
@@ -216,7 +216,8 @@ var I18N = {
   logExpHint:'Markieren und kopieren, oder den Kopieren-Knopf benutzen.', logExpEmpty:'Keine Vorhersagen in diesem Zeitraum.',
   parkBtn:'Nicht prüfen', unparkBtn:'Wieder prüfen', parked:'GEPARKT',
   parkedD:'Geparkte Vorhersagen werden beim Ergebnis-Prüfen übersprungen. Die Daten bleiben vollständig erhalten, jederzeit umkehrbar.',
-  parkedCount:'{a} geparkt', dateSwap:'⚠ Zeitraum war verkehrt herum — Datumsfelder getauscht.'
+  parkedCount:'{a} geparkt', dateSwap:'⚠ Zeitraum war verkehrt herum — Datumsfelder getauscht.',
+  pruefExpT:'📄 Vorschläge als Text', pruefExpD:'Gibt die gefundenen Endstände als Text aus — zum Kopieren in einen Chat, damit sie VOR dem Übernehmen gegengeprüft werden können. Ein falsch übernommener Endstand lässt sich nicht einfach zurücknehmen.'
  },
  fr:{ nvHome:'Accueil', nvBets:'Paris', nvFin:'Finances', nvMore:'Plus',
   locked:'Ondo Control est verrouillé', unlock:'Déverrouiller', wrongPin:'PIN incorrect', pinPh:'PIN',
@@ -298,7 +299,8 @@ var I18N = {
   logExpHint:'Sélectionne et copie, ou utilise le bouton Copier.', logExpEmpty:'Aucune prédiction sur cette période.',
   parkBtn:'Ne pas vérifier', unparkBtn:'Vérifier à nouveau', parked:'EN PAUSE',
   parkedD:'Les prédictions en pause sont ignorées lors de la vérification. Les données restent intactes, réversible à tout moment.',
-  parkedCount:'{a} en pause', dateSwap:'⚠ Période inversée — les dates ont été échangées.'
+  parkedCount:'{a} en pause', dateSwap:'⚠ Période inversée — les dates ont été échangées.',
+  pruefExpT:'📄 Propositions en texte', pruefExpD:'Sort les scores trouvés en texte brut — à copier dans un chat, afin de les vérifier AVANT de les appliquer. Un score appliqué à tort ne se retire pas facilement.'
  },
  en:{ nvHome:'Home', nvBets:'Bets', nvFin:'Finance', nvMore:'More',
   locked:'Ondo Control is locked', unlock:'Unlock', wrongPin:'Wrong PIN', pinPh:'PIN',
@@ -380,7 +382,8 @@ var I18N = {
   logExpHint:'Select and copy, or use the Copy button.', logExpEmpty:'No predictions in this range.',
   parkBtn:'Do not check', unparkBtn:'Check again', parked:'PARKED',
   parkedD:'Parked predictions are skipped when checking results. The data stays fully intact and this is reversible at any time.',
-  parkedCount:'{a} parked', dateSwap:'⚠ Date range was reversed — the two dates have been swapped.'
+  parkedCount:'{a} parked', dateSwap:'⚠ Date range was reversed — the two dates have been swapped.',
+  pruefExpT:'📄 Proposals as text', pruefExpD:'Outputs the found final scores as plain text — to paste into a chat so they can be checked BEFORE applying. A wrongly applied score cannot easily be undone.'
  }
 };
 function t(k){ var l=state.lang||'de'; return (I18N[l]&&I18N[l][k])||I18N.de[k]||k; }
@@ -543,8 +546,10 @@ function logTextBauen(){
   });
   feld.value=kopf+'\n\n'+zeilen.join('\n');
 }
-function logTextKopieren(){
-  var feld=document.getElementById('logText');
+/* v19.7.8: Feld-Kennung als Argument, damit dieselbe Funktion auch den Pruef-Text kopiert.
+   Ohne Argument verhaelt sie sich unveraendert wie bisher. */
+function logTextKopieren(feldId){
+  var feld=document.getElementById(feldId||'logText');
   if(!feld || !feld.value) return;
   feld.removeAttribute('readonly');
   feld.select(); feld.setSelectionRange(0, feld.value.length);
@@ -808,6 +813,11 @@ function geminiCall(opts, modellIndex){
   parts.push({ text: opts.prompt });
   var body = { contents:[{ parts: parts }] };
   if(opts.useSearch) body.tools = [{ google_search: {} }];
+  /* v19.7.8, Backlog-Punkt 26 (Gemini, 6.8.): NUR fuer den Schiedsrichter. Er soll ablesen,
+     nicht erfinden — Streuung ist dort ausschliesslich schaedlich. Arbeitsregel J steht nicht
+     entgegen, weil der Schiedsrichter Messwerkzeug ist und nicht Messgegenstand; die Messreihe
+     der Gehirne wird dadurch NICHT geschnitten. Fuer rolle:'gehirn' bleibt der Standardwert. */
+  if(opts.rolle==='ref') body.generationConfig = { temperature: 0 };
   return fetch('https://generativelanguage.googleapis.com/v1beta/models/'+modell+':generateContent?key='+encodeURIComponent(state.geminiKey),{
     method:'POST',
     headers:{ 'content-type':'application/json' },
@@ -946,7 +956,13 @@ function stufeHolen(stufe){
     'Nimm nur Spiele, die HEUTE stattfinden und deren Anpfiff NACH '+jetztUhr()+' Uhr liegt. '+
     'Bereits laufende oder beendete Spiele nicht aufnehmen. Hoechstens 10 Spiele, echte Teamnamen, echte Anpfiffzeit in deutscher Zeit.\n\n'+
     'NIEMALS aufnehmen: Reserve- und Zweitmannschaften (Namen mit "II", "B", "U21", "U23") · Regionalligen, Oberligen '+
-    'und sonstige Amateur-Spielklassen · Jugendspiele · Spiele hinter verschlossenen Tueren.\n'+
+    'und sonstige Amateur-Spielklassen · Jugendspiele · Spiele hinter verschlossenen Tueren · '+
+    /* v19.7.8 (Weg A, Beschluss Ondo 6.8.): Am 28.7. standen zwei 45-Minuten-Spiele des Como Cup
+       in der Liste. Die App misst den Endstand nach 90 Minuten — "unter 2,5 Tore" ueber 45 Minuten
+       ist aber nicht dieselbe Aussage. Keine Fehlerart des Schiedsrichters, sondern eine Luecke
+       in der Spielliste. Ausgeschlossen wird das FORMAT, nicht nach Minuten gefragt. */
+    'Turniere mit verkuerzter Spielzeit (Vorbereitungsturniere mit 45- oder 60-Minuten-Partien).\n'+
+    'Jedes aufgenommene Spiel muss ueber die vollen 90 Minuten gehen. Im Zweifel nicht aufnehmen.\n'+
     'Nimm auch NICHTS auf, was ausserhalb des oben abgegrenzten Bereichs liegt — auch dann nicht, wenn du sonst nur wenige Spiele findest. '+
     'Eine kurze Liste ist richtig, eine mit fremden Wettbewerben ist falsch.\n\n'+
     'Findest du in diesem Bereich heute gar nichts, antworte mit einer leeren Liste.\n\n'+
@@ -1418,6 +1434,46 @@ function logLoeschen(eid){
   state.kiProtokoll=(state.kiProtokoll||[]).filter(function(e){return e.id!==eid;});
   save(); render();
 }
+/* ========= GEFUNDENE ENDSTAENDE ALS TEXT (v19.7.8, Backlog-Punkt 25) =========
+   Ondos Vorschlag vom 6.8. Die Vorschlaege des Schiedsrichters stehen vor dem Uebernehmen nur
+   auf dem Bildschirm; fuer die Gegenpruefung war deshalb weiterhin ein Bildschirmfoto noetig.
+   Reine Ausgabe aus pruefListe — es wird nichts gespeichert, nichts gerechnet und nichts an ein
+   Gehirn geschickt. Die Reihenfolge bleibt: erst gegenpruefen, dann uebernehmen. Ein falsch
+   uebernommener Endstand ist der einzige Schritt, der sich nicht einfach zuruecknehmen laesst. */
+function pruefTextBauen(){
+  var feld=document.getElementById('pruefText');
+  if(!feld) return;
+  if(!pruefListe.length){ feld.value=''; return; }
+  var kopf='ONDO CONTROL — gefundene Endstaende, NOCH NICHT uebernommen · '+
+    pruefListe.length+' Vorschlaege · erzeugt '+new Date().toLocaleDateString('de-DE')+' '+jetztUhr();
+  var zeilen=pruefListe.map(function(p){
+    var warn=[];
+    if(p.warn)  warn.push('DATUM WEICHT AB');
+    if(p.warnQ) warn.push('KEINE QUELLE');
+    if(p.warnP) warn.push('PHASEN VERTAUSCHT?');
+    return p.match+' · '+p.heim+':'+p.gast+
+      (p.halbzeit?(' · HZ '+p.halbzeit):'')+
+      (p.verl?(' · n.Verl. '+p.verl):'')+
+      (p.gefDatum?(' · gefunden als '+p.gefDatum):'')+
+      (p.gefWb?(' ['+p.gefWb+']'):'')+
+      (p.quelle?(' · Quelle '+p.quelle):'')+
+      ((p.art==='bet'&&p.tipp)?(' · Wettschein-Tipp: '+p.tipp):'')+
+      (warn.length?(' · ⚠ '+warn.join(' / ')):'');
+  });
+  feld.value=kopf+'\n\n'+zeilen.join('\n');
+}
+function pruefTextBlock(){
+  return '<div class="card" style="border-color:rgba(245,217,10,.35)">'+
+    '<div class="disp" style="font-size:18px;margin-bottom:6px">'+t('pruefExpT')+'</div>'+
+    '<div class="muted" style="margin-bottom:10px">'+t('pruefExpD')+'</div>'+
+    '<button class="btn" onclick="pruefTextBauen()">'+t('logExpBtn')+'</button>'+
+    '<textarea id="pruefText" readonly rows="6" style="width:100%;margin-top:10px;background:var(--inner);'+
+      'border:1px solid var(--edge);border-radius:8px;color:var(--text);padding:10px;'+
+      'font-size:12px;font-family:ui-monospace,Menlo,monospace;line-height:1.5"></textarea>'+
+    '<button class="btn btn-ghost" style="margin-top:8px" onclick="logTextKopieren(\'pruefText\')">'+t('logExpCopy')+'</button>'+
+    '<div class="muted" style="margin-top:8px">'+t('logExpHint')+'</div>'+
+  '</div>';
+}
 function pruefBlock(){
   var html='';
   html += '<button class="btn btn-ghost" onclick="ergebnissePruefen(this)">'+t('checkBtn')+'</button>';
@@ -1435,6 +1491,8 @@ function pruefBlock(){
     '</div>';
   }
   if(pruefListe.length){
+    /* v19.7.8: Der Textblock steht bewusst VOR den Uebernehmen-Knoepfen — erst gegenpruefen, dann uebernehmen. */
+    html += pruefTextBlock();
     html += '<div class="card" style="border-color:rgba(91,141,239,.4)"><div class="muted" style="margin-bottom:8px">'+t('proposals')+'</div>';
     pruefListe.forEach(function(p){
       html += '<div style="padding:10px 0;border-top:1px solid var(--edge)">'+
@@ -1971,7 +2029,7 @@ function viewMore(){
     '<div style="font-size:13px;line-height:1.8">'+t('sec1')+'<br>'+t('sec2')+'<br>'+t('sec3')+'<br>'+t('sec4')+'<br>'+t('sec5')+'</div>'+
   '</div>'+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">📋 '+t('projT')+'</div>'+
-    '<pre>ONDO CONTROL v19.7.7 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
+    '<pre>ONDO CONTROL v19.7.8 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
   '</div>';
 }
 
