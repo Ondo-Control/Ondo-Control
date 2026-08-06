@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Gepflegt von Claude · Stand 5.8.2026, Fassung 9 · jede Idee mit Datum, Urheber und Status**
+**Gepflegt von Claude · Stand 6.8.2026, Fassung 10 · jede Idee mit Datum, Urheber und Status**
 
 ## Regeln für dieses Dokument
 
@@ -13,6 +13,87 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 10 ändert (6.8.)
+
+- **Drei Entscheidungen vom Abend des 5.8. nachgetragen** — sie standen bis hierher in keiner Repo-Datei: Arbeitsregel J bestätigt · Auftragstext bei „beide treffen" wird umformuliert · Rückwirkung abgelehnt, stattdessen der Schnitt
+- **Neuer Prio-1-Punkt F:** Auftragstext bei „beide treffen" eindeutig formulieren, mit Schnitt statt Rückwirkung
+- **Neuer Punkt 25:** Textausgabe zeigt auch die noch nicht übernommenen Endstände
+- **Messstand nachgerechnet:** je 135 bewertete Aussagen. **Die Schwelle für den ersten Lernschritt ist überschritten** — siehe Punkt 2
+- **Zweiter fehlerfreier Prüflauf in Folge:** 5 von 5, alle per Websuche gegengeprüft
+- **Test A steht bei 19 von 19**, und der Preis der Zweideutigkeit ist erstmals in beide Richtungen belegt
+- **Drei neue Beobachtungen:** beide Gehirne schwanken bei identischer Frage · Anpfiffzeiten am zweiten Tag falsch, aber mit anderem Muster · Spielliste zweimal ausgefallen und beim dritten Anlauf wieder in Ordnung
+- **Das veraltete Zitat des 0a-Codekommentars berichtigt** — es stand hier und in `PROJEKT-STATUS.md` noch in der Fassung vor dem 5.8.
+
+---
+
+## ✅ Nachgetragen: die drei Entscheidungen vom 5. August, abends
+
+**a) Arbeitsregel J — von Ondo bestätigt** (5.8., 20:10 Uhr). Gilt damit nach Art. 9. Der offene Punkt „Arbeitsregel J bestätigen" entfällt. Vermerkt im Blueprint, Abschnitt 2c.
+
+**b) Auftragstext bei „beide treffen" wird umformuliert** — Beschluss Ondos, siehe Punkt F.
+
+**c) Rückwirkung abgelehnt, stattdessen der Schnitt.** Ondo wünschte zunächst eine rückwirkende Anpassung und hat die Entscheidung am 5.8. um 20:15 Uhr ausdrücklich an Claude delegiert. Entschieden wurde gegen das Umschreiben. Einzelheiten und Begründung stehen in `PROJEKT-STATUS.md`, Abschnitt „Der 6. August". **Nicht erneut zur Abstimmung stellen; umkehrbar, solange nichts gebaut ist.**
+
+---
+
+## 🔎 Prüflauf vom 6. August — der zweite fehlerfreie in Folge
+
+**5 von 5 gefunden. Alle fünf von Claude per Websuche gegengeprüft. Alle fünf richtig**, einschließlich Wettbewerb und Datum.
+
+Panathinaikos – CSKA 1948 Sofia 1:1 · SK Brann – Apollon Limassol 0:1 · Ferencváros – Górnik Zabrze 1:0 · Fenerbahçe – Sturm Graz 2:0 · AGF Aarhus – Sabah 2:1. Alle fünf übernommen.
+
+**Eine Abweichung ohne Folgen für den Endstand:** Bei Fenerbahçe – Sturm Graz meldete die App Halbzeit 1:0, wirklich war es 2:0 — das zweite Tor fiel in der Nachspielzeit der ersten Halbzeit. Endstand und alle drei Marktbewertungen sind richtig.
+→ **Zweiter Fall dieser Art**, nach AC Oulu – Ilves am 5.8. Der Halbzeitstand geht nur in die Vertauschungs-Kontrolle ein, nicht in die Messung. **Keine Fehlerart, Beobachtungspunkt. Nichts gebaut.**
+
+---
+
+## 🆕 Neue Beobachtung (6.8.): Beide Gehirne schwanken bei identischer Frage
+
+Durch einen doppelten Eintrag wurde Salzburg – Pafos am 6.8. zweimal vorhergesagt, im Abstand einer Stunde, mit demselben Auftragstext:
+
+| | Lauf 2 | Lauf 3 |
+|---|---|---|
+| Flash | 72 / 58 / 65 | 80 / 65 / 70 |
+| Sonnet | 62 / 58 / 65 | 65 / 62 / 65 |
+
+Der Ergebnis-Tipp blieb bei beiden gleich (Flash 3:0, Sonnet 2:0), die Prozentzahlen nicht — Flash bei allen drei Märkten, Sonnet bei zwei von drei.
+
+→ **Erster dokumentierter Fall, in dem beide Gehirne schwanken.** Am 4.8. war es nur Flash.
+→ **Es berührt die Hauptkennzahl unmittelbar:** Schwankt ein Gehirn bei gleicher Frage, misst die Kalibrierung teilweise Zufall. Genau darauf zielt Punkt 23, und es hängt am Temperatur-Fund vom 4.8.
+→ Die Einträge aus Lauf 3 sind geparkt, die aus Lauf 2 zählen — sie tragen die richtige Anpfiffzeit. **Nichts gebaut.**
+
+---
+
+## 🆕 Neue Beobachtung (6.8.): Anpfiffzeiten am zweiten Tag falsch — anderes Muster
+
+Am 5.8. ein starrer Versatz von neun Stunden bei fünf von fünf Spielen. Am 6.8. ein **unterschiedlich großer** Versatz zwischen null und drei Stunden, und acht von zehn Spielen tragen schlicht 18:00 Uhr.
+
+| Spiel | App | wirklich (OneFootball) |
+|---|---|---|
+| Salzburg – Pafos | 19:00 | 19:00 ✓ |
+| PAOK – Anderlecht | 18:45 | 19:45 |
+| Lech Poznań – KÍ Klaksvík | 18:00 | 19:00 |
+| Lincoln – Omonia | 18:00 | 19:00 |
+| Hradec Králové – Beşiktaş | 18:00 | 19:00 |
+| Thun – Víkingur Reykjavík | 18:00 | 20:00 |
+| Benfica – Hearts | 18:00 | 21:00 |
+
+→ **Die Zeitzonen-Vermutung vom 5.8. erklärt dieses Muster nicht.** Die Ursache bleibt unbekannt (Art. 11).
+→ Gemeinsam ist beiden Tagen nur die Richtung: **die App führt die Spiele zu früh** — die gefährliche Richtung, weil die 2,5-Stunden-Regel dann zu früh „muss vorbei sein" sagt.
+→ **Sofortmaßnahme ohne Code bleibt: an solchen Tagen erst spätabends prüfen. Nichts gebaut.**
+
+---
+
+## 🆕 Neue Beobachtung (6.8.): Die Spielliste fiel zweimal aus und erholte sich
+
+Erster Vorhersagelauf: „Konnte keine Spiele laden". Zweiter Lauf: **ein einziges Spiel**, obwohl an diesem Donnerstag die dritte Qualifikationsrunde zweier UEFA-Wettbewerbe lief. Dritter Lauf: **zehn Spiele**.
+
+→ **Die Spielliste ist nicht defekt, sondern unzuverlässig** — genau die Unterscheidung aus Arbeitsregel D. Ein Fehlschlag hätte hier zum Schluss „die zweistufige Liste ist kaputt" verführt.
+→ Preis des dritten Laufs: ein Spiel doppelt in den Daten. Vier Einträge wurden geparkt, zwei davon wieder entparkt.
+→ **Nichts gebaut, weiter beobachten.**
 
 ---
 
@@ -367,7 +448,7 @@ Der Schiedsrichter ist ein Messwerkzeug, kein Duell-Teilnehmer. Er darf ein ande
 
 ```
 ? geminiCall({ prompt: prompt, useSearch: true, rolle:'ref' })
-  /* 0a zurueckgenommen 3.8., siehe Backlog */
+  /* 0a zurueckgenommen in v19.7.3, siehe Backlog */
 ```
 
 **Folgen im Betrieb:** Der Zähler `pruefStark.anfragen` bleibt bei null, Modellname und Anzahl der Anfragen erscheinen deshalb **nie** unter der Bilanz. Und die Auswahlliste für den Schiedsrichter zeigt nur Flash-Modelle, weil `gWahl` und `modellFeld` mit `modellTaugt(name,false)` filtern.
@@ -415,6 +496,23 @@ Wie oft legt sich ein Gehirn überhaupt fest? Ohne diese Zahl vergleichen wir So
 ---
 
 ### Ebenfalls Prio 1, noch nicht für v19.7 eingeplant
+
+**F. Auftragstext bei „beide treffen" eindeutig formulieren** · *Fund 30./31.7., Beleg durch Test A · Beschluss Ondo 5.8.* · **Status: beschlossen, noch nicht gebaut — NEU**
+
+Der Auftragstext fragt heute: „wie sicher in Prozent, dass *beide Teams treffen* **so ausgeht wie in deinem Ergebnis**?" Test A hat bewiesen, dass Flash diese Frage beantwortet und Sonnet die schlichte Frage „wie wahrscheinlich treffen beide?". Die App liest beide Zahlen gleich und dreht Sonnets Angabe dadurch ins Gegenteil.
+
+**Der Beleg steht bei 19 von 19** (sieben Fälle am 30.7., zwei am 5.8., neun am 6.8. — jedes Mal umgedreht, jedes Mal lautete das Wort „nein"; bei Tipps ohne Null nie umgedreht).
+
+**Der Preis ist seit dem 5.8. in beide Richtungen belegt:** Bei Ferencváros – Górnik (1:0) hatte Sonnet mit „nein" recht und wurde als **falsch** gewertet. Bei Panathinaikos – CSKA (1:1) hatte Sonnet mit „nein" unrecht und wurde als **richtig** gewertet.
+
+**Vor dem Bauen Ondo vorzulegen:** unter welcher Bedingung die App heute genau umdreht, und ob die Umdrehung bei eindeutiger Frage ersatzlos entfällt. *Im Code nachgesehen (Funktion `maerkteBauen`): Umgedreht wird, sobald die Prozentzahl unter 50 liegt; angezeigt werden dann die Gegenaussage und 100 minus der Wert.*
+
+→ **Rückwirkung: der Schnitt.** Altdaten werden nicht verändert. Alles vor dem Umbau gilt als „alte Frage", alles danach als „neue Frage". Der Schnitt wird an der Versionsnummer festgemacht. **Vor dem Umbau eine frische Sicherung.**
+→ **Zu prüfen:** ob die App die Version je Vorhersage speichert. Wenn nicht, ob sich das mit wenigen Zeilen ergänzen lässt; sonst genügt der Vermerk im Dokument.
+→ **Kosten:** kein Geld, kein zusätzlicher Aufruf — aber ein **Schnitt in der laufenden Messreihe**. Das ist der eigentliche Preis.
+→ Folge für Punkt 0b: Eine Widerspruchsquote wird nach dem Umbau erst sinnvoll messbar.
+
+---
 
 **E. „Prüfen statt suchen" — beschlossen am 25.7., bis heute nicht gebaut** · *Idee 25.7., ChatGPT · Beschluss Ondo 25.7.* · **Status: beschlossen, noch nicht gebaut — NEU eingetragen 31.7.**
 
@@ -482,6 +580,10 @@ Für **Flash** ist die Lehre klar benennbar: 29 Aussagen im Bereich 60–69 %, b
 **Zweiter Grund zum Verschieben (31.7.):** Ein Lernschritt ist nach Art. 9 eine bestätigte Lehre. Eine Lehre auf ungeklärter Datengrundlage wieder zurückzunehmen ist teurer, als sie später zu geben. Solange Test A offen ist, weiß niemand, was ein Teil dieser Zahlen bedeutet.
 
 → *Empfehlung Claude: verschieben. **Entscheidung Ondos steht aus.***
+→ **⚠ Neu am 6.8.: Die Schwelle ist überschritten.** Nachgerechnet aus dem KI-Log-Text und gegen die App geprüft: **je 135 bewertete Aussagen**. Der belegte Maßstab „rund 100 je Gehirn" ist damit erreicht, und der **erste** Grund zum Verschieben ist weggefallen.
+→ **Der zweite Grund besteht fort:** Sonnet hat über 60 % nur **10 von 135** Aussagen. Über Sonnets Verhalten bei Zuversicht wissen wir weiterhin fast nichts.
+→ **Flashs Lehre ist jetzt sehr solide belegt:** 49 Aussagen im Bereich 60–69 %, behauptet 63 %, eingetroffen 49 %. Dazu dasselbe Muster nach unten: unter 50 % behauptet 43, eingetroffen 32.
+→ Das deckt sich mit der Antwort beider Prüfer vom 4.8.: im ersten Durchgang nur Flash korrigieren. **Ondos Entscheidung steht weiterhin aus.**
 → **Beschlossen (Ondo, 31.7.): als ausdrücklich OFFENE Frage an ChatGPT und Gemini geben.** Bericht gestellt am 4.8., 06:15 Uhr.
 → **Antwort beider Prüfer (4.8.): ja, im ersten Durchgang nur Flash korrigieren, Sonnet unangetastet lassen.** Begründung: Sonnet ist mit 5 % solide; zu mehr Entschlossenheit zu drängen, erzöge ein ehrliches Modell zu falscher Sicherheit. **Entscheidung Ondos steht weiterhin aus** — eine Prüferantwort ist ein Vorschlag, kein Auftrag (Art. 8).
 → **⚠ Zahlenberichtigung (4.8., gefunden von Chat 5):** Der Bericht vom 4.8. behauptet, eine „150er-Schwelle" für den Lernschritt sei mit 174 Aussagen überschritten. **Beides ist falsch.** Eine 150er-Schwelle steht in keiner Projektdatei; belegt ist ausschliesslich „rund 100 **pro Gehirn**" (PROJEKT-STATUS, Abschnitt Richtungswechsel 23.7.). Und 87 + 87 zu addieren ist unsinnig, weil der Lernschritt je Gehirn gilt. **Nach dem belegten Maßstab ist die Schwelle nicht erreicht.** Eine berichtigte Fassung ist den Prüfern nachzureichen.
@@ -561,9 +663,19 @@ Ein Knopf, der die Log-Einträge eines wählbaren Zeitraums als reinen Text ausg
 → **Nichts gespeichert, nichts gerechnet, nichts an ein Gehirn geschickt** — reine Ausgabe. Kalibrierung, Auftragstext und Messreihe sind unberührt.
 → *Trockentest bestanden: Datumsgrenzen greifen, Sortierung aufsteigend, Archiv ausgeschlossen, leerer Zeitraum meldet sich.*
 
+**25. Textausgabe zeigt auch die noch nicht übernommenen Endstände** · *Idee 6.8., Ondo* · **Status: Idee — NEU**
+
+Der Textknopf gibt heute nur gespeicherte Vorhersagen aus. Die vom Schiedsrichter gefundenen Endstände stehen vor dem Übernehmen nur auf dem Bildschirm; für die Gegenprüfung durch Claude braucht Ondo deshalb weiterhin ein Bildschirmfoto.
+
+→ **Zweck:** die letzte Stelle beseitigen, an der ein Bildschirmfoto nötig ist. Die Vorschläge liegen ohnehin schon im Arbeitsspeicher der Seite (`pruefListe`), sie werden nur nirgends als Text ausgegeben.
+→ **Wichtig für die Reihenfolge:** Erst gegenprüfen, dann übernehmen. Ein falsch übernommener Endstand ist der einzige Schritt, der sich nicht einfach zurücknehmen lässt.
+→ **Kosten: keine.** Kein API-Aufruf, kein Geld, kein Eingriff in Auftragstext, Kalibrierung oder Messreihe.
+→ *Zwei-Probleme-Regel: spart Speicher in jedem Chat **und** macht die Gegenprüfung maschinell auswertbar. Erfüllt.*
+
 **23. Schattenlauf zur Antwortstabilität** · *Idee 4.8., Gemini* · **Status: Idee**
 Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige bereits abgeschlossene Spiele und stellt beiden Gehirnen mehrfach hintereinander denselben Auftragstext. Die Antworten landen in einem reinen Textprotokoll, fern der Kalibrierungsdaten. So bleibt die Hauptmessreihe unberührt.
 → **Anlass:** Am 4.8. antwortete Flash auf dieselbe Paarung zweimal verschieden, Sonnet zweimal gleich.
+→ **⚠ Verschärft am 6.8.:** Bei Salzburg – Pafos schwankten **beide** Gehirne — Flash bei allen drei Märkten, Sonnet bei zwei von drei; der Ergebnis-Tipp blieb bei beiden gleich. Damit betrifft Geminis Einwand nicht mehr nur Flash.
 → **Geminis weiterreichende Aussage:** Kalibrierung setzt eine stabile Wahrscheinlichkeitsverteilung voraus. Schwankt ein Gehirn bei identischem Auftrag, ist die Prozentzahl teilweise willkürlich. **Vor jedem Korrekturfaktor braucht es deshalb eine vorgeschaltete Kennzahl für Antwortstabilität.** Das stellt die Hauptkennzahl des Projekts erstmals grundsätzlich infrage.
 → **Kosten: nicht null.** Mehrere Läufe je Spiel verbrauchen echte Anfragen. Vor dem Bauen zu beziffern.
 → *Hängt eng mit dem Temperatur-Fund zusammen: Ein Schattenlauf bei unbekannter Temperatur misst womöglich nur die Standardeinstellung des Anbieters.*
@@ -683,6 +795,8 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 
 ---
 
-*Fassung 9, geschrieben am 5.8.2026 von Chat 8, zusammen mit den Lieferungen v19.7.6 und v19.7.7. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen. **Die Übergabemappe vom 4.8. darf erst gelöscht werden, wenn Ondo die Dateien hochgeladen hat.***
+*Fassung 10, geschrieben am 6.8.2026 von Chat 10. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen. Nachgetragen: die drei Entscheidungen vom Abend des 5.8., der Prüflauf vom 6.8., der nachgerechnete Messstand, drei neue Beobachtungen, Punkt F und Punkt 25. **Die Übergabemappe vom 5.8. darf gelöscht werden, sobald Ondo diese Dateien hochgeladen hat — nicht früher.***
+
+*Vorige Fassung: Fassung 9, geschrieben am 5.8.2026 von Chat 8, zusammen mit den Lieferungen v19.7.6 und v19.7.7. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen. **Die Übergabemappe vom 4.8. darf erst gelöscht werden, wenn Ondo die Dateien hochgeladen hat.***
 
 *Nächste Aktualisierung: bei der nächsten Entscheidung oder Lieferung — nach Arbeitsregel F sofort, nicht später.*

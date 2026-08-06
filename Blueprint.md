@@ -3,11 +3,13 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.7
-**Stand:** 5. August 2026
+**Version:** 0.8
+**Stand:** 6. August 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
-> **Was Fassung 0.7 ändert (5.8.2026):** Protokolleinträge für den 5. August nachgetragen — darunter die **Beantwortung von Test A**, der erste fehlerfreie Prüflauf des Projekts und zwei neue Beobachtungen (verkürzte Spielzeit, systematisch falsche Anpfiffzeiten). Grenze 6 um einen Beleg ergänzt. Kein Verfassungsartikel geändert.
+> **Was Fassung 0.8 ändert (6.8.2026):** **Arbeitsregel J ist von Ondo ausdrücklich bestätigt** und damit nach Artikel 9 in Kraft. Protokolleinträge für den Abend des 5. August und für den 6. August nachgetragen — darunter der Beschluss, den Auftragstext bei „beide treffen" umzuformulieren, und die Entscheidung gegen eine rückwirkende Anpassung (**der Schnitt**). Kein Verfassungsartikel geändert.
+>
+> **Was Fassung 0.7 änderte (5.8.2026):** Protokolleinträge für den 5. August nachgetragen — darunter die **Beantwortung von Test A**, der erste fehlerfreie Prüflauf des Projekts und zwei neue Beobachtungen (verkürzte Spielzeit, systematisch falsche Anpfiffzeiten). Grenze 6 um einen Beleg ergänzt. Kein Verfassungsartikel geändert.
 >
 > **Was Fassung 0.6 änderte (4.8.2026):** Eine neue Arbeitsregel J (Korrekturfaktor gilt nur für sein Modell), entstanden aus Ondos Frage. Protokolleinträge für den 4. August nachgetragen — darunter die **Rücknahme von Punkt 0a**, der Denkfehler bei der Fehlerbehandlung und die Beantwortung der Lite-Frage vom 29. Juli. Zwei offene Fragen ergänzt. Kein Verfassungsartikel geändert.
 >
@@ -114,7 +116,7 @@ Quellen erhalten Vertrauenswerte (z. B. offizielle Verbände hoch, Foren niedrig
 
 > **✅ Namensklärung, entschieden (Ondo, 31.7., eingetragen 3.8.):** Die Vorschrift zur Chat-Übergabe in `PROJEKT-STATUS.md` heißt ab sofort **Übergaberegel**. „Arbeitsregel G" bezeichnet ausschließlich die Kostenregel. Der Konflikt ist damit erledigt.
 
-**J — Korrekturfaktor gilt nur für sein Modell** *(4.8., aus Ondos Frage entstanden)* **Ein Korrekturfaktor gilt ausschliesslich für das Modell, an dem er gemessen wurde. Wechselt das Modell, verfällt der Faktor und muss neu gemessen werden.**
+**J — Korrekturfaktor gilt nur für sein Modell** *(4.8., aus Ondos Frage entstanden · **von Ondo ausdrücklich bestätigt am 5.8.2026, 20:10 Uhr** — damit nach Art. 9 in Kraft)* **Ein Korrekturfaktor gilt ausschliesslich für das Modell, an dem er gemessen wurde. Wechselt das Modell, verfällt der Faktor und muss neu gemessen werden.**
 *Folge: Ein Gehirnwechsel kostet Messreihe **und** Korrektur. Deshalb bleibt das zweite Gehirn während der Messphase auf `gemini-3.1-flash-lite`. Der Schiedsrichter darf jederzeit gewechselt werden — er ist Messwerkzeug, nicht Messgegenstand. Ob sich die Neumessung abkürzen lässt, ist Backlog-Punkt 21 und ausdrücklich offen.*
 *Anlass: Ondo fragte am 4.8., was mit einem einmal ermittelten Korrekturwert geschieht, wenn das Modell gewechselt wird. Die Antwort stand vorher nirgends.*
 
@@ -321,7 +323,18 @@ ONDO CONTROL
 | 5.8.2026 | **Neue Beobachtung: Anpfiffzeiten systematisch neun Stunden zu früh.** Fünf von fünf UEFA-Spielen, jedes Mal derselbe Versatz. **Ursache nicht bekannt (Art. 11.)** Gefahr: Die Anpfiffzeit geht in die 2,5-Stunden-Regel ein — genau die Lage, in der am 31.7. die erfundenen 0:0 entstanden. Sofortmaßnahme ohne Code: an solchen Tagen erst spätabends prüfen. |
 | 5.8.2026 | **Modellname je Vorhersage berichtigt (v19.7.6).** Der Aufruf benutzte das gewählte Modell, die Aufzeichnung nicht. **Nicht rückwirkend** — ältere Einträge tragen weiterhin einen womöglich falschen Namen. **Arbeitsregel J hängt daran.** |
 | 5.8.2026 | **Das Datum der 0a-Rücknahme ließ sich nicht bestimmen.** Codekommentar 3.8., Dokumente 4.8. Statt zu raten wurde das Datum aus dem Kommentar entfernt; die Version v19.7.3 bleibt stehen (Art. 11). |
+| 5.8.2026 | **Arbeitsregel J von Ondo ausdrücklich bestätigt** (20:10 Uhr). Damit nach Art. 9 in Kraft, nicht mehr nur eingetragen. Ondos Rückfrage, ob nicht 150 Ergebnisse nötig seien, beruhte auf einer falschen Zahl aus einem fehlerhaften Prüferbericht — belegt ist „rund 100 je Gehirn". |
+| 5.8.2026 | **Beschlossen (Ondo): Der Auftragstext bei „beide treffen" wird eindeutig formuliert.** Test A hat bewiesen, dass die heutige Frage zweideutig ist. Noch nicht gebaut. → Backlog-Punkt F. |
+| 5.8.2026 | **Rückwirkung abgelehnt — stattdessen der Schnitt.** Ondo wünschte zunächst, ältere Vorhersagen mit anzupassen, und hat die Entscheidung um 20:15 Uhr ausdrücklich an Claude delegiert. Entschieden wurde gegen das Umschreiben: **Altdaten bleiben unverändert**, alles vor dem Umbau gilt als „alte Frage", alles danach als „neue Frage", der Schnitt wird an der Versionsnummer festgemacht. Ausschlaggebend: Die 13 gesperrten Ergebnisse sind die Messlatte für den alten Auftragstext und wären nach einem Umschreiben wertlos. Ein Messinstrument, das seine Vergangenheit nachbessert, kann sie nicht mehr belegen. |
 | 5.8.2026 | Blueprint auf Version 0.7 gehoben. |
+| **— ab hier nachgetragen am 6.8.2026 —** | |
+| 6.8.2026 | **Zweiter fehlerfreier Prüflauf in Folge:** 5 von 5 gefunden, alle fünf von Claude per Websuche gegengeprüft, alle fünf richtig. Eine Abweichung ohne Folgen für den Endstand: Halbzeitstand bei Fenerbahçe – Sturm Graz falsch gemeldet — der zweite Fall dieser Art nach AC Oulu am 5.8. Keine Fehlerart, Beobachtungspunkt. |
+| 6.8.2026 | **Messstand nachgerechnet und aufgeholt: je 135 bewertete Aussagen.** Sonnet 5 % Abweichung, Flash 9 %; Trefferquoten 47 gegen 48 Prozent. Zwei unabhängige Rechenwege (Hand-Auswertung des KI-Log-Texts und Anzeige der App) stimmen in jeder Zeile überein. **Die Schwelle für den ersten Lernschritt — rund 100 je Gehirn — ist damit überschritten.** Der zweite Grund zum Verschieben besteht fort: Sonnet hat über 60 % nur 10 von 135 Aussagen. **Ondos Entscheidung steht aus.** |
+| 6.8.2026 | **Test A steht bei 19 von 19**, und der Preis der Zweideutigkeit ist erstmals in beide Richtungen belegt: Sonnet verlor bei Ferencváros einen Punkt, der ihm zustand, und bekam bei Panathinaikos einen, der ihm nicht zustand. |
+| 6.8.2026 | **Neue Beobachtung: Beide Gehirne schwanken bei identischer Frage.** Salzburg – Pafos wurde durch einen Doppeleintrag zweimal vorhergesagt; die Prozentzahlen wichen bei Flash in allen drei, bei Sonnet in zwei von drei Märkten ab, der Ergebnis-Tipp blieb gleich. Bisher war Nichtdeterminismus nur bei Flash dokumentiert. **Berührt die Hauptkennzahl.** → Backlog-Punkt 23. |
+| 6.8.2026 | **Neue Beobachtung: Anpfiffzeiten am zweiten Tag falsch, aber mit anderem Muster.** Statt eines starren Neun-Stunden-Versatzes ein unterschiedlich großer zwischen null und drei Stunden. **Die Zeitzonen-Vermutung vom 5.8. erklärt das nicht; die Ursache bleibt unbekannt (Art. 11).** Gemeinsam ist beiden Tagen nur die Richtung: zu früh. |
+| 6.8.2026 | **Neue Beobachtung: Die Spielliste fiel zweimal aus und erholte sich beim dritten Anlauf** (0 Spiele, dann 1, dann 10). **Nicht defekt, sondern unzuverlässig** — die Unterscheidung aus Arbeitsregel D. Nichts gebaut. |
+| 6.8.2026 | Blueprint auf Version 0.8 gehoben. |
 
 ---
 

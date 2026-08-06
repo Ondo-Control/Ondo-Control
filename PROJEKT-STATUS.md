@@ -1,7 +1,7 @@
 # ONDO CONTROL — PROJEKT-STATUS
-*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 5. August 2026, v19.7.7*
+*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 6. August 2026, v19.7.7*
 
-> **Zur Datierung:** Die Kalibrierungszahlen weiter unten sind am 3.8. aus Ondos Sicherungsdatei nachgerechnet und seitdem **nicht neu gerechnet** worden. Am 4.8. kam ein übernommenes Ergebnis dazu, am 5.8. zehn weitere. **Die Tabelle unten ist damit deutlich überholt** — sie bleibt stehen, weil sie der letzte nachgerechnete Stand ist, nicht weil sie gilt. Wer aktuelle Zahlen braucht, rechnet sie aus Ondos Sicherung vom 5.8. nach. Dieser Rückstand ist gewollt und hier ausgewiesen; er ist nicht mit einer Lücke zu verwechseln. **Stand der Beta: v19.7.7, geliefert am 5. August.**
+> **Zur Datierung:** Der Rückstand vom 3. bis 5. August ist **aufgeholt**. Die Kalibrierungszahlen weiter unten sind am 6.8. aus dem KI-Log-Text nachgerechnet und anschließend **gegen die Anzeige der App geprüft** — beide Rechnungen stimmen in jeder Zeile überein. Sie gelten. **Stand der Beta: v19.7.7, geliefert am 5. August.**
 
 ---
 
@@ -31,6 +31,89 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 - **Belegen statt herleiten** *(31.7.)*. Eine plausible Erklärung ist keine geprüfte Erklärung. Codezeilen werden zitiert, nicht beschrieben.
 
 **Master-Dokumente im Repo:** `Blueprint.md` · `Ondo-Core-Architektur.md` · `Ondo-Control-Backlog.md` (Fassung 5, 31.7.) · dieses Dokument.
+
+---
+
+## DER 6. AUGUST — Messstand aufgeholt, Schwelle überschritten, drei neue Beobachtungen
+
+*Eingetragen von Chat 10 am 6.8. Die drei Entscheidungen vom Abend des 5.8. standen bis hierher in keiner Repo-Datei, sondern nur in der Übergabemappe.*
+
+### 1. Nachzutragen: drei Entscheidungen vom 5. August, abends
+
+**a) Arbeitsregel J ist von Ondo ausdrücklich bestätigt** (5.8., 20:10 Uhr). Sie gilt damit nach Artikel 9 und ist nicht mehr nur eingetragen. Der offene Punkt „Arbeitsregel J bestätigen" entfällt.
+
+**b) Der Auftragstext bei „beide treffen" wird umformuliert.** Beschlossen von Ondo am 5.8., noch nicht gebaut. Vor dem Bauen ist Ondo vorzulegen, unter welcher Bedingung die App heute umdreht und ob die Umdrehung bei eindeutiger Frage ersatzlos entfällt.
+
+**c) Die Rückwirkung ist entschieden: der Schnitt.** Ondo wünschte zunächst, ältere Vorhersagen mit anzupassen, und hat die Entscheidung am 5.8. um 20:15 Uhr ausdrücklich an Claude delegiert. Entschieden wurde gegen das Umschreiben.
+
+Was der Schnitt bedeutet: Altdaten werden **nicht** verändert — keine Vorhersage, kein Ergebnis, kein `gedreht`-Vermerk. Alles vor dem Umbau gilt als „alte Frage", alles danach als „neue Frage"; beide werden getrennt ausgewertet. Der Schnitt wird an der Versionsnummer festgemacht. Die eingebaute Umdrehung entfällt, sobald die Frage eindeutig ist. **Vor dem Umbau eine frische Sicherung.**
+
+**Begründung, für die Nachwelt:** Angepasste Altdaten trügen Zahlen, die niemand gemessen hat. Ein Messinstrument, das seine Vergangenheit nachbessert, kann sie nicht mehr belegen. Der stärkste der drei Einwände genügt allein: **Die 13 gesperrten Ergebnisse sind die Messlatte für den alten Auftragstext und wären nach einem Umschreiben wertlos.** Nebennutzen: Alte und neue Frage lassen sich nebeneinanderlegen — erst dadurch ist überhaupt messbar, ob die Umformulierung hilft.
+
+*Die Entscheidung ist umkehrbar, solange nichts gebaut ist. Sie wird nicht erneut zur Abstimmung gestellt.*
+
+### 2. Der Messstand ist aufgeholt — und die Schwelle ist überschritten
+
+Aus dem KI-Log-Text vom 6.8., 08:18 Uhr nachgerechnet: **je 135 bewertete Aussagen** statt der zuletzt dokumentierten 87. Die Zahlen stehen unten im Abschnitt „Aktueller Messstand".
+
+**Der belegte Maßstab für den ersten Lernschritt — rund 100 Aussagen je Gehirn — ist damit erreicht.** Der erste Grund, ihn zu verschieben, ist weggefallen.
+
+**Der zweite Grund ist es nicht.** Sonnet hat über 60 % weiterhin nur **10 von 135** Aussagen. Über Sonnets Verhalten bei Zuversicht wissen wir fast nichts. Das deckt sich mit der Antwort beider Prüfer vom 4.8.: im ersten Durchgang nur Flash korrigieren. **Ondos Entscheidung steht aus.**
+
+**Flashs Schwachstelle ist jetzt sehr solide belegt:** 49 Aussagen zwischen 60 und 69 Prozent, behauptet 63, eingetroffen 49. Das sind fast viermal so viele Aussagen wie bei der ersten Messung, und die Lücke ist von 17 auf 14 Punkte kaum kleiner geworden. Dasselbe Muster nach unten: unter 50 Prozent sagt Flash 43 und trifft 32.
+
+**Der Vorbehalt vom 4.8. bleibt:** Flash lief die ganze Zeit als `gemini-3.1-flash-lite`. Die 5 gegen 9 Prozent sind womöglich ein Größen- und kein Anbieterunterschied.
+
+### 3. Zweiter fehlerfreier Prüflauf in Folge
+
+Die fünf UEFA-Spiele vom 5.8. wurden am 6.8. früh geprüft: **5 von 5 gefunden, alle fünf von Claude per Websuche gegengeprüft, alle fünf richtig.** Auch Wettbewerb und Datum stimmten bei allen fünf. Nach 14 von 14 am 5.8. ist das der zweite fehlerfreie Lauf.
+
+**Eine Abweichung ohne Folgen für den Endstand:** Bei Fenerbahçe – Sturm Graz meldete die App Halbzeit 1:0; wirklich war es 2:0, weil das zweite Tor in der Nachspielzeit der ersten Halbzeit fiel. Endstand und alle drei Marktbewertungen sind richtig. **Es ist der zweite Fall dieser Art** — der erste war AC Oulu – Ilves am 5.8. Beim zweiten Auftreten ist es kein Zufall mehr, aber es ist auch keine Fehlerart: Der Halbzeitstand geht nur in die Vertauschungs-Kontrolle ein, nicht in die Messung. **Beobachten, nichts gebaut.**
+
+### 4. Test A: das Muster steht bei 19 von 19
+
+Am 6.8. tippte Sonnet in neun von zehn Spielen ein Ergebnis mit einer Null. **Alle neun wurden umgedreht, und in allen neun lautete das Wort des Gehirns „nein".** Bei PAOK – Anderlecht (1:1, keine Null) wurde nicht umgedreht, und das Wort lautete „ja". Flash war in allen zehn Fällen stimmig.
+
+Zusammen mit den sieben Fällen vom 30.7. und den zweien vom 5.8. steht das Muster bei **19 von 19**. Die Zweideutigkeit der Frage ist damit so gut belegt, wie es ohne Umbau möglich ist.
+
+**Neu und wichtig — der Preis ist jetzt in beide Richtungen messbar.** Am 5.8. endete Ferencváros – Górnik 1:0, beide trafen also nicht; Sonnet hatte „nein" gesagt und lag richtig, gewertet wurde die umgedrehte Aussage „Ja 65 %" als **falsch**. Am selben Tag endete Panathinaikos – CSKA 1:1; Sonnet hatte „nein" gesagt und lag falsch, gewertet wurde „Ja 65 %" als **richtig**. Sonnet hat also einen Punkt verloren, der ihm zustand, und einen bekommen, der ihm nicht zustand. Das ist kein Rundungsfehler mehr.
+
+### 5. Neu: Beide Gehirne schwanken bei identischer Frage
+
+Durch einen doppelten Eintrag wurde Salzburg – Pafos am 6.8. zweimal vorhergesagt, im Abstand einer Stunde, mit demselben Auftragstext:
+
+| | Lauf 2 | Lauf 3 |
+|---|---|---|
+| Flash | 72 / 58 / 65 | 80 / 65 / 70 |
+| Sonnet | 62 / 58 / 65 | 65 / 62 / 65 |
+
+Der Ergebnis-Tipp blieb bei beiden gleich (Flash 3:0, Sonnet 2:0), die Prozentzahlen nicht — Flash bei allen drei Märkten, Sonnet bei zwei von drei.
+
+**Das ist der erste dokumentierte Fall, in dem beide Gehirne schwanken.** Am 4.8. war es nur Flash. Es berührt die Hauptkennzahl unmittelbar: Schwankt ein Gehirn bei gleicher Frage, misst die Kalibrierung teilweise Zufall. Genau darauf zielt Backlog-Punkt 23 (Schattenlauf), und es hängt am Temperatur-Fund vom 4.8. **Nichts gebaut.**
+
+*Die beiden Einträge aus Lauf 3 sind geparkt, die aus Lauf 2 zählen — sie tragen die richtige Anpfiffzeit.*
+
+### 6. Anpfiffzeiten: zweiter Tag, anderes Muster, gleiche Richtung
+
+Am 5.8. war es ein starrer Versatz von neun Stunden bei fünf von fünf Spielen. Am 6.8. ist der Versatz **unterschiedlich groß**, zwischen null und drei Stunden, und acht von zehn Spielen tragen schlicht 18:00 Uhr. Abgleich mit OneFootball:
+
+| Spiel | App | wirklich |
+|---|---|---|
+| Salzburg – Pafos | 19:00 | 19:00 ✓ |
+| PAOK – Anderlecht | 18:45 | 19:45 |
+| Lech Poznań – KÍ Klaksvík | 18:00 | 19:00 |
+| Lincoln – Omonia | 18:00 | 19:00 |
+| Hradec Králové – Beşiktaş | 18:00 | 19:00 |
+| Thun – Víkingur | 18:00 | 20:00 |
+| Benfica – Hearts | 18:00 | 21:00 |
+
+**Die Ursache ist weiterhin nicht bekannt (Art. 11.)** Die Zeitzonen-Vermutung vom 5.8. erklärt das Muster vom 6.8. nicht. Gemeinsam ist beiden Tagen nur die Richtung: **die App führt die Spiele zu früh.** Das ist die gefährliche Richtung, weil die 2,5-Stunden-Regel dann zu früh „muss vorbei sein" sagt. **Sofortmaßnahme ohne Code bleibt: erst spätabends prüfen.**
+
+### 7. Neu: Die Spielliste fiel zweimal aus und erholte sich
+
+Der erste Vorhersagelauf am 6.8. endete mit „Konnte keine Spiele laden". Der zweite lieferte **ein einziges Spiel**, obwohl an diesem Donnerstag die dritte Qualifikationsrunde zweier UEFA-Wettbewerbe lief. Der dritte Lauf lieferte **zehn Spiele**.
+
+**Die Spielliste ist also nicht defekt, sondern unzuverlässig** — genau die Unterscheidung, für die Arbeitsregel D gemacht wurde. **Nichts gebaut, weiter beobachten.** Preis des dritten Laufs: ein Spiel doppelt in den Daten, siehe Punkt 5.
 
 ---
 
@@ -102,7 +185,7 @@ Der KI-Log-Text aus v19.7.5 ersetzt seit dem 5.8. die Bildschirmfotos. Der Lauf 
 
 ```
 ? geminiCall({ prompt: prompt, useSearch: true, rolle:'ref' })
-  /* 0a zurueckgenommen 3.8., siehe Backlog */
+  /* 0a zurueckgenommen in v19.7.3, siehe Backlog */
 ```
 
 Drei Anläufe, rund 30 vergebliche Anfragen: falsche Schnittstelle (`deep-research-pro-preview-12-2025`), ein Filter, der gespeicherte Listen nicht erfasste, und schliesslich ein **Musikmodell** (`lyria-3-pro-preview`), das über das Wort „pro" hereinkam. Einzelheiten im Backlog.
@@ -238,7 +321,7 @@ Dateiname beginnt mit Datum und Uhrzeit: `2026-07-31_1430_Ondo-Control_Thema.md`
 **Nie empfehlen, Ergebnisse von Hand nachzuschlagen.** Seit dem 25.7. abgelehnt. Die Zuverlässigkeit des Schiedsrichters gehört zum Test, nicht in Ondos Freizeit. Zwei Claude-Instanzen sind trotzdem darauf zurückgefallen.
 
 **Datensicherung:** Ondo regelmäßig daran erinnern.
-**Letzte bestätigte Sicherung: 5.8.2026, 13:06 Uhr — nach den zehn übernommenen Ergebnissen.** Davor am selben Tag: 07:31 Uhr (nach dem Vorhersagelauf, aber **vor** den zehn Übernahmen) · 06:37 Uhr. Davor: 4.8.2026, 17:58 Uhr (138 Vorhersagen, 6 Wetten) · 3.8.2026 · 2.8.2026, 13:00 Uhr · 31.7.2026, 07:49 Uhr.
+**Letzte bestätigte Sicherung: 6.8.2026, 08:28 Uhr — 170 Vorhersagen, 6 Wetten.** Davor am selben Tag: 08:16 Uhr · 07:15 Uhr (150 Vorhersagen). Davor: 5.8.2026, 13:06 Uhr (nach den zehn Übernahmen) · 07:31 Uhr · 06:37 Uhr · 4.8.2026, 17:58 Uhr (138 Vorhersagen) · 3.8.2026 · 2.8.2026, 13:00 Uhr · 31.7.2026, 07:49 Uhr.
 *Am 4.8. hat sich die Sicherung bewährt: Ondo hat den Browserverlauf gelöscht, Safari löschte dabei den Websitespeicher mit, alle Daten waren weg — und wurden vollständig wiederhergestellt. **Nichts verloren.** Zwei bekannte Verlustwege: Browserdaten löschen · getrennter Speicher Safari gegen Startbildschirm.*
 *Hinweis (3.8.): Die Sicherungsdatei enthält `apiKey`, `geminiKey` und `pin` im Klartext. Sie darf nie an ChatGPT oder Gemini gehen, nie an einen Bericht angehängt und nie ins Repo. Ondo hat am 3.8. beide Schlüssel neu erzeugt und die alten deaktiviert. **Folge: Eine Sicherung von vor dem 3.8. überschreibt beim Zurückladen die neuen Schlüssel mit den toten alten** — dann Schlüssel neu eintragen, die Messdaten bleiben unberührt.*
 
@@ -452,39 +535,41 @@ Bis v18.6 war die Beta ein **Wett-Berater**. Am 23. Juli wurde sie zum **Messger
 
 ---
 
-## Aktueller Messstand (nachgerechnet am 3.8.2026 aus Ondos Sicherung — unverändert seit 29.7., weil nichts übernommen wurde)
+## Aktueller Messstand (nachgerechnet am 6.8.2026 aus dem KI-Log-Text, gegen die Anzeige der App geprüft)
 
-**Bestand insgesamt:** 138 Vorhersagen, davon 118 aus der Messphase (je 59 Sonnet und Flash) und 20 im v18-Archiv. **Je 87 bewertete Aussagen, je 90 noch offene** — das sind 30 Spiele pro Gehirn, die auf Ergebnisse warten. Vorhergesagt wurde zuletzt am 2. und 3. August.
+**Bestand insgesamt:** 170 Vorhersagen, davon 150 aus der Messphase und 20 im v18-Archiv. **Je 135 bewertete Aussagen.** Zuletzt vorhergesagt am 6. August.
 
-**⚠ Diese Zahlen sind seit dem 4.8. überholt — seit dem 5.8. deutlich.** An diesem Tag kamen **zehn übernommene Spiele** dazu. Wie viele bewertete Aussagen daraus wurden, ist **nicht nachgerechnet** und wird hier ausdrücklich nicht geschätzt (Arbeitsregel H). Wer die Zahl braucht, rechnet sie aus Ondos Sicherung vom 5.8. nach.
-
-*Der ursprüngliche Hinweis vom 4.8.:* An diesem Tag wurde St Patrick's – Derry City 1:1 übernommen. Rechnerisch sind es damit **je 90 bewertete und je 87 offene Aussagen** — *hergeleitet aus drei Märkten je Gehirn, nicht nachgerechnet* (Arbeitsregel H). **Kalibrierung und Entschlossenheit sind seit dem 3.8. nicht neu gerechnet worden.** Wer sie braucht, rechnet sie aus Ondos Sicherung vom 4.8. nach. *Hinweis: Die Sicherungsdatei enthält die Zugangsschlüssel im Klartext — sie geht nie an einen Prüfer, nie in einen Bericht, nie ins Repo.*
+*Zur Verlässlichkeit (Art. 14): Die 270 Wertepaare wurden von Hand aus dem KI-Log-Text abgeschrieben und maschinell ausgewertet. Anschließend wurde das Ergebnis gegen die Kalibrierungs-Anzeige der App gehalten — **jede Zeile stimmt überein**, einschließlich Bandbreiten, Anzahlen und Entschlossenheit. Zwei unabhängige Rechenwege, dasselbe Ergebnis.*
 
 | | bewertete Aussagen | Kalibrierungs-Abweichung | Trefferquote |
 |---|---|---|---|
-| Sonnet | 87 | **5 %** (grün) | 47 % (41/87) |
-| Flash | 87 | **10 %** (grün) | 48 % (42/87) |
-| gesamt | 174 | — | 48 % (83/174) |
+| Sonnet | 135 | **5 %** (grün) | 47 % (64/135) |
+| Flash | 135 | **9 %** (grün) | 48 % (65/135) |
+| gesamt | 270 | — | 48 % (129/270) |
 
-**Sonnets Verteilung:** 1–49 % → 16 Aussagen (behauptet 42, wirklich 44) · 50–59 % → **66** (behauptet 53, wirklich 50) · 60–69 % → 4 (behauptet 64, wirklich 25) · 70–79 % → 1 (behauptet 72, wirklich 0)
+**Sonnets Verteilung:** 1–49 % → 21 Aussagen (behauptet 42, wirklich 38) · 50–59 % → **104** (behauptet 53, wirklich 51) · 60–69 % → 9 (behauptet 63, wirklich 33) · 70–79 % → 1 (behauptet 72, wirklich 0)
 
-**Flashs Verteilung:** 1–49 % → 15 (43/33) · 50–59 % → 39 (55/56) · 60–69 % → **29 (behauptet 62, wirklich 45)** · 70–79 % → 3 (73/33) · 80–89 % → 1 (82/100)
+**Flashs Verteilung:** 1–49 % → 22 (43/32) · 50–59 % → 59 (55/54) · 60–69 % → **49 (behauptet 63, wirklich 49)** · 70–79 % → 4 (72/25) · 80–89 % → 1 (82/100)
 
 **Ehrliche Einordnung (Art. 14):**
-- **Sonnet hat insgesamt fünf bewertete Aussagen oberhalb von 60 %.** Über Sonnets Verhalten bei Zuversicht wissen wir praktisch nichts. Der gute Kalibrierungswert ist zum großen Teil Vorsicht, nicht Können.
-- **Flashs Schwachstelle ist benennbar und ausreichend belegt:** 29 Aussagen im Bereich 60–69 %, behauptet 62 %, eingetroffen 45 %. Die einzige Zeile mit genug Umfang für eine Lehre.
+- **Sonnet hat zehn bewertete Aussagen oberhalb von 60 %** — bei 135 Aussagen insgesamt. Über Sonnets Verhalten bei Zuversicht wissen wir weiterhin fast nichts. Der gute Kalibrierungswert ist zum großen Teil Vorsicht, nicht Können. **77 Prozent aller Sonnet-Aussagen liegen zwischen 50 und 59 Prozent.**
+- **Flashs Schwachstelle ist jetzt sehr solide belegt:** 49 Aussagen im Bereich 60–69 %, behauptet 63 %, eingetroffen 49 %. Fast viermal so viele Aussagen wie bei der ersten Messung, und die Lücke ist geblieben. Dasselbe Muster nach unten: unter 50 % sagt Flash 43 und trifft 32.
+- **Die Trefferquoten sind praktisch gleich** (47 gegen 48 Prozent). Der Unterschied zwischen den Gehirnen liegt nicht im Treffen, sondern in der **Entschlossenheit** — und dort ist er groß.
 - Zeilen mit ein bis vier Aussagen sind **bedeutungslos**.
-- **Die sieben CL-Vorhersagen vom 29.7. stecken NICHT in diesen 87.** Genau die Daten, die Sonnets Verhalten bei klaren Favoriten zeigen würden, fehlen.
+- **Die sieben CL-Vorhersagen vom 29.7. stecken NICHT in diesen 135.** Genau die Daten, die Sonnets Verhalten bei klaren Favoriten zeigen würden, fehlen weiterhin.
+- **Flash lief die ganze Zeit als `gemini-3.1-flash-lite`.** Die 5 gegen 9 Prozent sind womöglich ein Größen- und kein Anbieterunterschied.
 - Ondos eigene Bilanz: **−29,75 €**, eigene Trefferquote 17 % (1/6). Papier-Modus bleibt die stehende Empfehlung.
 
-**Entschlossenheit (neu ab v19.7, aus denselben 87 Aussagen gerechnet):**
+**Entschlossenheit (aus denselben 135 Aussagen je Gehirn):**
 
 | | Ø Abstand von 50 | Anteil ab 60 % |
 |---|---|---|
-| Sonnet | 4,8 | 6 % (5/87) |
-| Flash | 8,6 | 38 % (33/87) |
+| Sonnet | 4,8 | 7 % (10/135) |
+| Flash | 8,7 | 40 % (54/135) |
 
-*Lesart: Flash legt sich fast siebenmal so oft fest wie Sonnet, bei doppelter Kalibrierungs-Abweichung. Die Zahl allein sagt nichts über Qualität — sie ist erst zusammen mit der Kalibrierung aussagekräftig. **Den Gehirnen wird sie nicht mitgeteilt.***
+*Lesart: Flash legt sich fast sechsmal so oft fest wie Sonnet, bei knapp doppelter Kalibrierungs-Abweichung. Die Zahl allein sagt nichts über Qualität — sie ist erst zusammen mit der Kalibrierung aussagekräftig. **Den Gehirnen wird sie nicht mitgeteilt.***
+
+*Beide Werte sind gegenüber dem 3.8. praktisch unverändert (damals 4,8 und 8,6 bei je 87 Aussagen). Mit 48 zusätzlichen Aussagen je Gehirn hat sich das Bild bestätigt statt verschoben.*
 
 ---
 
@@ -617,11 +702,14 @@ Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp 
 | 3.8.2026 | Chat 5 → Chat 6 | Raw-Links + Mappe | **9 von 9** | eine Antwort über dem Schlüssel (Frage 3 war falsch gestellt: sechs Tage, nicht drei); zwei Dokumentenfehler durch den Nachfolger gefunden. **Erste Übergabe, nach der noch am selben Tag Code geliefert wurde** |
 | 4.8.2026 | Chat 6 → Chat 7 | Raw-Links + Mappe + Abnahme | **9 von 9** | zwei Antworten über dem Schlüssel (Fragen 3 und 4). Der Nachfolger fand vor der Prüfung **drei Abweichungen zwischen Code und Dokumenten** (v19.7.4 statt v19.7 · 0a zurückgenommen · Modellwahl undokumentiert) plus einen Stilfehler. Der abgebende Chat gab offen an, dass sein Speicher erschöpft war |
 | 4./5.8.2026 | Chat 7 → Chat 8 | Raw-Links + Mappe | **9 von 9** | beide Fangfragen bestanden; zwei Antworten über dem Schlüssel (Mechanismus hinter `APP_VERSION`, Widerspruch zur Begründung der neunten Fehlerart). Der Nachfolger fand vor der Prüfung die unbeabsichtigte Lücke in `PROJEKT-STATUS.md` sowie zwei Codebeobachtungen, die sich beide bestätigten. Chat 7 hatte die Mappe zunächst nach Gedächtnis gebaut und nach Ondos Einwand neu geschrieben |
+| 5./6.8.2026 | Chat 9 → Chat 10 | Raw-Links + Projektdateien + Mappe | **9 von 9** | beide Fangfragen bestanden (Ursache des Neun-Stunden-Versatzes als unbekannt benannt, Modellname nicht rückwirkend behoben); vier Antworten über dem Schlüssel — die genaue Bedingung der Umdrehung (`p < 50`, im Code gegengeprüft), die einzeln benannten vier geparkten Einträge, `APP_VERSION = 18` als zweiter Fall gewollten Rückstands. Der Nachfolger fand vor der Prüfung, dass Backlog und PROJEKT-STATUS den Codekommentar zu 0a in der alten Fassung zitieren, obwohl er am 5.8. berichtigt wurde |
 | 5.8.2026 | Chat 8 → Chat 9 | Raw-Links + Projektdateien + Mappe | **9 von 9** | beide Fangfragen bestanden (unbekannte Ursache des Neun-Stunden-Versatzes, Modellname nicht rückwirkend behoben); drei Antworten über dem Schlüssel — die Einschränkung „fehlerfrei nur beim Endstand“, die Eingrenzung des Modellnamen-Problems auf Flash, und der Hinweis, dass die Sicherung vor den zehn Übernahmen lag. Der Nachfolger fand beim Lesen einen übersehenen Rest „184 Sprachschlüssel“ in `PROJEKT-STATUS.md`, den Chat 8 selbst hinterlassen hatte |
 
 ---
 
-*Aktualisiert von Claude (Chat 9) am 5.8.2026, 13:15 Uhr: Übergabe-Eintrag Chat 8 → Chat 9 ergänzt, Sicherungsstand auf 13:06 Uhr nachgetragen, zwei vertauschte Zeilen der Protokolltabelle in die richtige Reihenfolge gebracht. Sonst nichts geändert. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen.*
+*Aktualisiert von Claude (Chat 10) am 6.8.2026: Abschnitt „Der 6. August" neu, Messstand nachgerechnet und auf je 135 Aussagen gebracht, drei Entscheidungen vom 5.8. abends nachgetragen, Sicherungsstand auf 08:28 Uhr, Übergabe-Eintrag Chat 9 → Chat 10 ergänzt, das veraltete Zitat des 0a-Codekommentars berichtigt. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen.*
+
+*Vorige Fassung: aktualisiert von Claude (Chat 9) am 5.8.2026, 13:15 Uhr: Übergabe-Eintrag Chat 8 → Chat 9 ergänzt, Sicherungsstand auf 13:06 Uhr nachgetragen, zwei vertauschte Zeilen der Protokolltabelle in die richtige Reihenfolge gebracht. Sonst nichts geändert. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen.*
 
 *Vorige Fassung: aktualisiert von Claude (Chat 8) am 5.8.2026, zusammen mit der Backlog-Fassung 9 und Blueprint 0.7. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen; die drei Dokumente wurden hochgeladen und nur an den betroffenen Stellen geändert.*
 
