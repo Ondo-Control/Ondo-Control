@@ -423,7 +423,7 @@ Dateiname beginnt mit Datum und Uhrzeit: `2026-07-31_1430_Ondo-Control_Thema.md`
 **Nie empfehlen, Ergebnisse von Hand nachzuschlagen.** Seit dem 25.7. abgelehnt. Die Zuverlässigkeit des Schiedsrichters gehört zum Test, nicht in Ondos Freizeit. Zwei Claude-Instanzen sind trotzdem darauf zurückgefallen.
 
 **Datensicherung:** Ondo regelmäßig daran erinnern.
-**Letzte bestätigte Sicherung: 7.8.2026, 08:00 Uhr** — nach der Übernahme der zehn Endstände vom 6.8. und dem Parken der zehn erfundenen Vorhersagen. Davor: 6.8.2026, 08:28 Uhr (170 Vorhersagen, 6 Wetten) · 08:16 Uhr · 07:15 Uhr (150 Vorhersagen) · 5.8.2026, 13:06 Uhr (nach den zehn Übernahmen) · 07:31 Uhr · 06:37 Uhr · 4.8.2026, 17:58 Uhr (138 Vorhersagen) · 3.8.2026 · 2.8.2026, 13:00 Uhr · 31.7.2026, 07:49 Uhr. ⚠ **Nach dem Prüflauf des 7.8. abends steht die nächste Sicherung an.** Davor am selben Tag: 08:16 Uhr · 07:15 Uhr (150 Vorhersagen). Davor: 5.8.2026, 13:06 Uhr (nach den zehn Übernahmen) · 07:31 Uhr · 06:37 Uhr · 4.8.2026, 17:58 Uhr (138 Vorhersagen) · 3.8.2026 · 2.8.2026, 13:00 Uhr · 31.7.2026, 07:49 Uhr.
+**Letzte bestätigte Sicherung: 7.8.2026, 08:00 Uhr** — nach der Übernahme der zehn Endstände vom 6.8. und dem Parken der zehn erfundenen Vorhersagen. Davor: 6.8.2026, 08:28 Uhr (170 Vorhersagen, 6 Wetten) · 08:16 Uhr · 07:15 Uhr (150 Vorhersagen) · 5.8.2026, 13:06 Uhr (nach den zehn Übernahmen) · 07:31 Uhr · 06:37 Uhr · 4.8.2026, 17:58 Uhr (138 Vorhersagen) · 3.8.2026 · 2.8.2026, 13:00 Uhr · 31.7.2026, 07:49 Uhr. ⚠ **Nach dem Prüflauf des 7.8. abends steht die nächste Sicherung an.**
 *Am 4.8. hat sich die Sicherung bewährt: Ondo hat den Browserverlauf gelöscht, Safari löschte dabei den Websitespeicher mit, alle Daten waren weg — und wurden vollständig wiederhergestellt. **Nichts verloren.** Zwei bekannte Verlustwege: Browserdaten löschen · getrennter Speicher Safari gegen Startbildschirm.*
 *Hinweis (3.8.): Die Sicherungsdatei enthält `apiKey`, `geminiKey` und `pin` im Klartext. Sie darf nie an ChatGPT oder Gemini gehen, nie an einen Bericht angehängt und nie ins Repo. Ondo hat am 3.8. beide Schlüssel neu erzeugt und die alten deaktiviert. **Folge: Eine Sicherung von vor dem 3.8. überschreibt beim Zurückladen die neuen Schlüssel mit den toten alten** — dann Schlüssel neu eintragen, die Messdaten bleiben unberührt.*
 
@@ -612,8 +612,8 @@ Zwei Schreibweisen desselben Spiels ergeben zwei verschiedene Schlüssel. Folgen
 ## Versionen
 
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.7.7** (`beta.html`, geliefert 5.8.2026) — getrennter Speicher, aktive Messphase. Vier Nachbesserungen am 3. und 4. August, alle ausgelöst durch Punkt 0a; Einzelheiten im Backlog. Im Code steht weiterhin `APP_VERSION = 18` (technische Schuld, bewusst nicht nebenbei geändert, vor der Beförderung zu klären)
-- **Sprachschlüssel: 199** in DE, FR und EN, maschinell abgeglichen und identisch (Stand 5.8.). *Die früher dokumentierten 184 waren nie geprüft; nachgezählt waren es 185, dann 193, jetzt 199.*
+- **Beta: v19.7.8** (`beta.html`, geliefert 7.8.2026) — getrennter Speicher, aktive Messphase. Vier Nachbesserungen am 3. und 4. August, alle ausgelöst durch Punkt 0a; Einzelheiten im Backlog. Im Code steht weiterhin `APP_VERSION = 18` (technische Schuld, bewusst nicht nebenbei geändert, vor der Beförderung zu klären)
+- **Sprachschlüssel: 201** in DE, FR und EN, maschinell abgeglichen und identisch (Stand 7.8., v19.7.8). *Die früher dokumentierten 184 waren nie geprüft; nachgezählt waren es 185, dann 193, dann 199, seit v19.7.8 sind es 201.*
 
 ---
 
@@ -758,7 +758,7 @@ Geplant sind Finanzen, Content, Organisation. Fast alles, was gebaut wird, ist d
 
 Ondo schreibt „Ondo Control: [Anliegen]" und fügt Raw-Links ein, **immer mit angehängter Zahl**, z. B. `?v=20260731`. **Alle sechs Dateien plus `version.json` werden gelesen, bevor irgendetwas beurteilt wird** — Blueprint und Ondo-Core eingeschlossen. Das Weglassen hat am 30./31.7. zweimal zu falschen Empfehlungen geführt.
 
-**Vor jeder Lieferung:** Syntax-Check (`node --check`), Sprachdatei-Abgleich (DE/FR/EN gleiche Schlüssel, **aktuell 199**), Trockentest der neuen Logik — am besten gegen Ondos jüngste Sicherungsdatei, das prüft die Rechnung an echten Daten. Versionsnummer im Header hochzählen. **Und die Dokumente (Arbeitsregel F).**
+**Vor jeder Lieferung:** Syntax-Check (`node --check`), Sprachdatei-Abgleich (DE/FR/EN gleiche Schlüssel, **aktuell 201**), Trockentest der neuen Logik — am besten gegen Ondos jüngste Sicherungsdatei, das prüft die Rechnung an echten Daten. Versionsnummer im Header hochzählen. **Und die Dokumente (Arbeitsregel F).**
 
 ### Chat-Übergabe ist Claudes Pflicht, nicht Ondos (**Übergaberegel**, 30.7.)
 
