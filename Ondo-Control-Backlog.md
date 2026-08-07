@@ -25,7 +25,8 @@
 - **🔴 Neu und schwerwiegend: Die Spielliste hat am 7.8. Spiele erfunden.** Fünf Paarungen, die es nicht gibt oder die schon vorbei sind. Siehe eigener Abschnitt.
 - **Punkt A hat geliefert:** Bei „beide treffen" widerspricht **Sonnet in drei von fünf Fällen** dem eigenen Anzeigewert, **Flash in null von fünf**. Punkt F ist damit nicht mehr Vermutung, sondern gemessen.
 - **Ein Befund über Geminis Leseverhalten** ist eingetragen — es meldete Vollständigkeit und brach bei rund drei Vierteln ab.
-- **Neuer Punkt 28:** Prüfern künftig nur die geänderten Stellen schicken, nicht die ganze Datei.
+- **Neuer Punkt 28:** Prüfern künftig nur die geänderten Stellen schicken, nicht die ganze Datei. **Am Abend des 7.8. von Ondo als Arbeitsregel K beschlossen** und um einen festen Zusammenhangsblock ergänzt.
+- **Nachträge vom Abend des 7.8.:** Der Zeitfehler ist ein **gleichmäßiger Versatz von genau einer Stunde** bei fünf von fünf Spielen — damit ist die Erklärung „britische Ortszeit" **widerlegt**, die Ursache bleibt unbekannt. Dazu die **Berichtigung zum FA Cup**: Einzelne Partien der Extra-Vorrunde liefen bereits am Freitag.
 
 ---
 
@@ -91,13 +92,23 @@ Geprüft wurden die zehn Vorhersagen vom 6.8. Alle zehn Endstände von Claude pe
 
 ---
 
-**28. Prüfern nur die geänderten Stellen schicken, nicht die ganze Datei** · *Idee 7.8., Claude · zugestimmt Ondo 7.8.* · **Status: Idee — NEU**
+**28. Prüfern nur die geänderten Stellen schicken, nicht die ganze Datei** · *Idee 7.8., Claude · zugestimmt Ondo 7.8. · **als Arbeitsregel K beschlossen Ondo 7.8., abends*** · **Status: BESCHLOSSEN — Arbeitsregel K, eingetragen im Blueprint 0.9, Abschnitt 2c**
 
 Beide Prüfer lesen ganze Dateien nachweislich unvollständig: ChatGPT über Suchtreffer, Gemini von vorn bis etwa drei Viertel. Beide melden das nicht von sich aus zuverlässig.
 
 → **Vorschlag:** Bei jeder Lieferung bekommen die Prüfer künftig nur die geänderten Stellen — mit Zeilennummer, altem und neuem Text und einer Begründung — dazu zwei bis drei geschlossene Fragen.
 → **Warum:** kürzer, prüfbar, und der Abbruch kann gar nicht mehr auftreten. Ihr Wert liegt im Urteil über eine klar gestellte Frage, nicht im vollständigen Lesen.
 → **Kosten:** keine.
+
+**⚠ Lücke, gefunden durch Ondos Rückfrage am 7.8. abends — der Punkt war in dieser Form unbrauchbar.** Ondo fragte, ob er die Berichtsdatei in einen **neuen** Prüfer-Chat hochladen kann, ohne dass dieser die Dokumente gelesen hat. Antwort: nein. Ein Zeilendiff setzt stillschweigend voraus, dass der Prüfer den Gegenstand schon kennt. In einem frischen Chat kennt er ihn nicht — nicht die Umstellung zum Messgerät, nicht die Rollen der Gehirne, nicht die Bedeutung der Kalibrierung. Er würde raten.
+
+→ **Zweite Hälfte, deshalb ergänzt:** Jeder Bericht beginnt mit einem festen **Zusammenhangsblock** von etwa einer halben Seite. Inhalt jedes Mal dasselbe Gerüst: was das Projekt ist und dass es misst statt zu beraten · die vier Beteiligten und ihre Rollen · die Hauptkennzahl · der Messstand in wenigen Zahlen · welche Version stabil und welche Beta ist · und ausdrücklich, was **nicht** Thema ist. Danach erst die geänderten Stellen, zuletzt die zwei bis drei geschlossenen Fragen.
+→ **Ein Format für beide Prüfer, nicht zwei.** Gemini kann Links grundsätzlich nicht abrufen (Punkt 12, beantwortet am 4.8.), bei ihm muss der Zusammenhang in der Datei stehen. ChatGPT könnte verweisen, findet aber nur, wonach es sucht. Zwei Formate zu pflegen kostet mehr, als es einbringt.
+→ **Zwei Bedingungen gegen den Beschluss vom 30.7.** („handgeschriebene Projektzusammenfassungen in Übergaben sind zu unterlassen"): Der Block wird bei **jedem** Bericht neu aus den Dokumenten geschrieben, nie aus dem Gedächtnis, und **jede Zahl darin steht auch im Bericht selbst**, damit ein Widerspruch sofort auffällt.
+→ **Nicht als feste Datei ins Repo.** Eine solche Datei würde altern, ohne dass es jemand merkt — genau das ist ChatGPTs eigener Mappe am 30.7. passiert, sie war an sechs Stellen veraltet.
+→ **Kosten der Ergänzung: keine.** Kein Geld, kein API-Aufruf, kein Eingriff in Auftragstext, Kalibrierung oder Messreihe. Aufwand eine halbe Seite je Bericht auf Claudes Seite; für Ondo ändert sich nichts.
+→ **Nicht entschieden und ausdrücklich getrennt zu behandeln:** ob die Prüfer künftig **neue** Chats bekommen oder die bestehenden fortgeführt werden. Ein fortgeführter Chat kennt den Zusammenhang, schleppt aber einen alten Stand mit — daran ist ChatGPT am 6.8. gescheitert. Ungemessen.
+→ **Erste Anwendung:** der Bericht nach dem Prüflauf vom Abend des 7.8.
 
 ---
 
@@ -869,6 +880,7 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 
 | Punkt | Herkunft | Ziel | Stand |
 |---|---|---|---|
+| Arbeitsregel **K — Bericht statt Datei**: *Prüfer bekommen nur die geänderten Stellen mit Zeilennummer, altem und neuem Text und Begründung — davor ein fester Zusammenhangsblock, jedes Mal neu aus den Dokumenten geschrieben.* | **Claude 7.8., beschlossen von Ondo 7.8.** | Blueprint 2c | **eingetragen** (Blueprint 0.9, Abschnitt 2c) |
 | Arbeitsregel **J — Korrekturfaktor gilt nur für sein Modell**: *Wechselt das Modell, verfällt der Faktor und muss neu gemessen werden.* | **Ondos Frage, 4.8.** | Blueprint 2c | **eingetragen** (Blueprint 0.6, Abschnitt 2c) |
 | **„Fail Safe" bei unbekannten Fehlern** — nicht automatisch wechseln, sondern anhalten und als Unklarheit melden | ChatGPT, 4.8. | Blueprint 2c | **offen — Ondos Entscheidung steht aus** |
 | **Wie unterscheidet der Auftragstext ein echtes 0:0 von „nicht gefunden"?** (Geminis Rückfrage) | Gemini, 4.8. | Blueprint / Punkt E | offen |
@@ -975,6 +987,8 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 - **Quoten-Transparenz / Quoten-Realitätsabgleich** (*18.7.*) · **überholt** — kehrt mit Punkt 9 zurück
 
 ---
+
+*Nachtrag zu Fassung 12, eingetragen am 7.8.2026, 21:45 Uhr von Chat 12: Punkt 28 ist von Ondo als **Arbeitsregel K** beschlossen und um seine fehlende zweite Hälfte ergänzt — den festen Zusammenhangsblock. Die Lücke kam durch Ondos Rückfrage ans Licht, ob ein neuer Prüfer-Chat mit dem reinen Zeilendiff etwas anfangen kann. Eingetragen in die Vormerk-Tabelle und im Blueprint 0.9, Abschnitt 2c. Sonst nichts geändert.*
 
 *Fassung 12, geschrieben am 7.8.2026 von Chat 11: v19.7.8 geliefert (Weg A, Punkt 25, Punkt 26) · Prüflauf vom 7.8. mit zehn von zehn Endständen · dritter falscher Halbzeitstand in Folge · die Spielliste hat am 7.8. Spiele erfunden, zehn Vorhersagen geparkt · Sonnet widerspricht sich bei „beide treffen" in drei von fünf Fällen · Punkt 28 neu · Befund über Geminis Leseverhalten.*
 

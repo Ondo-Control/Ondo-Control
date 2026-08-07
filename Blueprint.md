@@ -3,11 +3,13 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.8
-**Stand:** 6. August 2026
+**Version:** 0.9
+**Stand:** 7. August 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
-> **Was Fassung 0.8 ändert (6.8.2026):** **Arbeitsregel J ist von Ondo ausdrücklich bestätigt** und damit nach Artikel 9 in Kraft. Protokolleinträge für den Abend des 5. August und für den 6. August nachgetragen — darunter der Beschluss, den Auftragstext bei „beide treffen" umzuformulieren, und die Entscheidung gegen eine rückwirkende Anpassung (**der Schnitt**). Kein Verfassungsartikel geändert.
+> **Was Fassung 0.9 ändert (7.8.2026):** Eine neue **Arbeitsregel K (Bericht statt Datei)** in Abschnitt 2c, von Ondo am Abend des 7. August beschlossen. Ein Protokolleintrag dazu. **Kein Verfassungsartikel geändert.** *Hinweis zur Vollständigkeit: Der Protokollabschnitt enthält für den 7. August nur diese eine Entscheidung. Die übrigen Vorgänge des Tages — v19.7.8, die erfundene Spielliste, die widerlegte Ortszeit-Erklärung — stehen in `PROJEKT-STATUS.md` und `Ondo-Control-Backlog.md`; ob sie zusätzlich hierher gehören, ist Ondos offene Entscheidung.*
+>
+> **Was Fassung 0.8 änderte (6.8.2026):** **Arbeitsregel J ist von Ondo ausdrücklich bestätigt** und damit nach Artikel 9 in Kraft. Protokolleinträge für den Abend des 5. August und für den 6. August nachgetragen — darunter der Beschluss, den Auftragstext bei „beide treffen" umzuformulieren, und die Entscheidung gegen eine rückwirkende Anpassung (**der Schnitt**). Kein Verfassungsartikel geändert.
 >
 > **Was Fassung 0.7 änderte (5.8.2026):** Protokolleinträge für den 5. August nachgetragen — darunter die **Beantwortung von Test A**, der erste fehlerfreie Prüflauf des Projekts und zwei neue Beobachtungen (verkürzte Spielzeit, systematisch falsche Anpfiffzeiten). Grenze 6 um einen Beleg ergänzt. Kein Verfassungsartikel geändert.
 >
@@ -125,6 +127,11 @@ Quellen erhalten Vertrauenswerte (z. B. offizielle Verbände hoch, Foren niedrig
 
 **I — Prüfen, bevor behauptet wird, ein Dokument sei veraltet** *(31.7.)* Vor der Aussage „diese Datei ist nicht auf dem Stand" wird sie mit angehängter Versionszahl neu abgerufen.
 *Anlass: Am 29.7. haben zwei Claude-Instanzen unabhängig voneinander geschlossen, ein Dokument sei veraltet. Beide lagen falsch, beide wegen einer zwischengespeicherten Kopie, beide mussten es zurücknehmen.*
+
+**K — Bericht statt Datei** *(7.8., Vorschlag Claude, von Ondo beschlossen)* **Prüfer bekommen nicht die ganze Datei, sondern nur die geänderten Stellen — mit Zeilennummer, altem und neuem Text und einer Begründung — davor einen festen Zusammenhangsblock und dahinter höchstens zwei bis drei geschlossene Fragen.**
+*Der Zusammenhangsblock ist etwa eine halbe Seite und enthält jedes Mal dasselbe Gerüst: was das Projekt ist und dass es misst statt zu beraten · die vier Beteiligten und ihre Rollen · die Hauptkennzahl · den Messstand in wenigen Zahlen · welche Version stabil und welche Beta ist · und ausdrücklich, was **nicht** Thema ist.*
+*Zwei Bedingungen, die ihn vom Beschluss des 30.7. abgrenzen: Er wird bei **jedem** Bericht neu aus den Dokumenten geschrieben, nie aus dem Gedächtnis, und **jede Zahl darin steht auch im Bericht selbst**, damit ein Widerspruch sofort auffällt. Er wird **nicht** als feste Datei ins Repo gelegt — eine solche Datei würde altern, ohne dass es jemand merkt.*
+*Anlass: Beide Prüfer lesen ganze Dateien nachweislich unvollständig — ChatGPT über Suchtreffer (6.8.), Gemini von vorn bis etwa drei Vierteln bei gleichzeitiger Meldung von Vollständigkeit (7.8.). Die zweite Hälfte der Regel geht auf Ondos Rückfrage vom 7.8. abends zurück: Ein reiner Zeilendiff ist in einem neuen Prüfer-Chat wertlos, weil dort niemand den Gegenstand kennt.*
 
 ---
 
@@ -335,6 +342,9 @@ ONDO CONTROL
 | 6.8.2026 | **Neue Beobachtung: Anpfiffzeiten am zweiten Tag falsch, aber mit anderem Muster.** Statt eines starren Neun-Stunden-Versatzes ein unterschiedlich großer zwischen null und drei Stunden. **Die Zeitzonen-Vermutung vom 5.8. erklärt das nicht; die Ursache bleibt unbekannt (Art. 11).** Gemeinsam ist beiden Tagen nur die Richtung: zu früh. |
 | 6.8.2026 | **Neue Beobachtung: Die Spielliste fiel zweimal aus und erholte sich beim dritten Anlauf** (0 Spiele, dann 1, dann 10). **Nicht defekt, sondern unzuverlässig** — die Unterscheidung aus Arbeitsregel D. Nichts gebaut. |
 | 6.8.2026 | Blueprint auf Version 0.8 gehoben. |
+| **— ab hier nachgetragen am 7.8.2026 —** | |
+| 7.8.2026 | **Arbeitsregel K (Bericht statt Datei) von Ondo beschlossen.** Prüfer bekommen künftig nur die geänderten Stellen mit Zeilennummer, altem und neuem Text und Begründung, davor einen festen Zusammenhangsblock, dahinter zwei bis drei geschlossene Fragen. Anlass: das belegte Leseverhalten beider Prüfer. **Ondos Rückfrage deckte auf, dass der Punkt ohne Zusammenhangsblock in einem neuen Prüfer-Chat unbrauchbar gewesen wäre.** Ausdrücklich **nicht** entschieden: ob die Prüfer neue Chats bekommen oder die bestehenden fortgeführt werden. |
+| 7.8.2026 | Blueprint auf Version 0.9 gehoben. |
 
 ---
 
