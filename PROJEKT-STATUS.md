@@ -76,11 +76,27 @@ Vier der fünf Paarungen existieren nicht — die Teams spielten am 5. und 6.8. 
 
 ### 5. Punkt A hat geliefert: bei „beide treffen" widerspricht nur Sonnet sich selbst
 
-Dreimal stand „≠ Anzeige oben": Die App zeigte „Beide treffen: **Ja**" mit 72, 78 und 75 Prozent, das Gehirn selbst sagte **nein**. **Sonnet: drei Widersprüche in fünf. Flash: null in fünf.**
+Dreimal stand „≠ Anzeige oben": Die App zeigte „Beide treffen: **Ja**" mit 72, 78 und 75 Prozent, das Gehirn selbst sagte **nein**. **Sonnet: drei Widersprüche in fünf. Flash: null in fünf.** Im zweiten Lauf desselben Tages wiederholte es sich: zwei weitere Widersprüche, wieder ausschließlich bei Sonnet. **Über beide Läufe: Sonnet fünf von zehn, Flash null von zehn.**
 
 **Der Befund bleibt gültig, obwohl die Spiele erfunden waren** — er betrifft, wie das Gehirn antwortet, nicht ob das Spiel existiert. **Punkt F ist damit gemessen statt vermutet, und die Zweideutigkeit trifft nur ein Gehirn.** Punkt F bleibt beschlossen und ungebaut; er ist ein Schnitt und braucht eine eigene Lieferung mit frischer Sicherung davor.
 
-### 6. Befund über Gemini: meldet Vollständigkeit und bricht ab
+### 6. Der zweite Spielplan desselben Tages war echt — aber die Anpfiffzeiten stehen in britischer Zeit
+
+Nach dem Parken lief die Suche erneut. Ergebnis: fünf Spiele, **alle fünf belegt** — drei EFL-Cup-Erstrundenspiele (Middlesbrough – Wrexham, Wycombe – Stevenage, Wolverhampton – Port Vale), Club Brugge – KV Kortrijk und VfL Bochum – Hertha BSC. Quellen: Sky Sports und ESPN.
+
+**Der Unterschied zum ersten Lauf desselben Tages ist damit sehr scharf:** erst vier von fünf Paarungen erfunden, dann fünf von fünf belegt. **Was den Unterschied macht, ist unbekannt.** Nichts gebaut.
+
+**Aber ein neuer Zeitfehler:** Middlesbrough – Wrexham beginnt um 20:00 Uhr **britischer** Zeit, also 21:00 Uhr deutscher Zeit. Die App zeigt 20:00. **Die englischen Spiele stehen offenbar in Ortszeit, obwohl der Auftragstext deutsche Zeit verlangt — eine Stunde zu früh.** Wieder die gefährliche Richtung.
+
+→ Damit gibt es drei Tage in Folge falsche Anpfiffzeiten mit **drei verschiedenen Mustern**: neun Stunden starr (5.8.), null bis drei Stunden ungleich (6.8.), eine Stunde durch Ortszeit (7.8.). **Die Ursache bleibt unbekannt.** Was alle drei teilen, ist allein die Richtung: zu früh.
+
+### 7. Zur Frage nach dem FA Cup
+
+Ondo fragte, ob der neue Satz den FA Cup ausschließt. **Nein.** Der Satz nennt nur Formate mit verkürzter Spielzeit; Stufe 1 verlangt ausdrücklich „nationale Pokalwettbewerbe dieser Länder", und die drei EFL-Cup-Spiele belegen, dass Pokale durchkommen.
+
+**Der wirkliche Grund: Die Extra Preliminary Round des FA Cup wird am Samstag, 8. August 2026 gespielt — sie hatte am 7.8. noch nicht begonnen.** Und auch danach dürfte sie ausbleiben, weil sie mit reinen Amateurvereinen startet und die ältere Regel „sonstige Amateur-Spielklassen" seit v19.6 greift. **Keine Entscheidung nötig, nichts gebaut.**
+
+### 8. Befund über Gemini: meldet Vollständigkeit und bricht ab
 
 Zu `beta.html` v19.7.8 schrieb Gemini, der Quellcode sei vollständig geladen — und meldete im selben Beitrag einen Abbruch bei `<div id="pruefStatus">`. **Die Datei bricht nicht ab; die Stelle steht in Zeile 1480 von 2045. Gemini hat rund 74 Prozent gelesen.** Zwei seiner Begriffe („Local System Seed v4", „Duell-Protokoll-System") sind in keiner Projektdatei belegt und wurden **nicht** übernommen.
 
@@ -407,7 +423,7 @@ Dateiname beginnt mit Datum und Uhrzeit: `2026-07-31_1430_Ondo-Control_Thema.md`
 **Nie empfehlen, Ergebnisse von Hand nachzuschlagen.** Seit dem 25.7. abgelehnt. Die Zuverlässigkeit des Schiedsrichters gehört zum Test, nicht in Ondos Freizeit. Zwei Claude-Instanzen sind trotzdem darauf zurückgefallen.
 
 **Datensicherung:** Ondo regelmäßig daran erinnern.
-**Letzte bestätigte Sicherung: 6.8.2026, 08:28 Uhr — 170 Vorhersagen, 6 Wetten.** ⚠ **Am 7.8. wurden zehn Endstände übernommen und zehn Vorhersagen geparkt — eine neue Sicherung steht damit aus.** Davor am selben Tag: 08:16 Uhr · 07:15 Uhr (150 Vorhersagen). Davor: 5.8.2026, 13:06 Uhr (nach den zehn Übernahmen) · 07:31 Uhr · 06:37 Uhr · 4.8.2026, 17:58 Uhr (138 Vorhersagen) · 3.8.2026 · 2.8.2026, 13:00 Uhr · 31.7.2026, 07:49 Uhr.
+**Letzte bestätigte Sicherung: 7.8.2026, 08:00 Uhr** — nach der Übernahme der zehn Endstände vom 6.8. und dem Parken der zehn erfundenen Vorhersagen. Davor: 6.8.2026, 08:28 Uhr (170 Vorhersagen, 6 Wetten) · 08:16 Uhr · 07:15 Uhr (150 Vorhersagen) · 5.8.2026, 13:06 Uhr (nach den zehn Übernahmen) · 07:31 Uhr · 06:37 Uhr · 4.8.2026, 17:58 Uhr (138 Vorhersagen) · 3.8.2026 · 2.8.2026, 13:00 Uhr · 31.7.2026, 07:49 Uhr. ⚠ **Nach dem Prüflauf des 7.8. abends steht die nächste Sicherung an.** Davor am selben Tag: 08:16 Uhr · 07:15 Uhr (150 Vorhersagen). Davor: 5.8.2026, 13:06 Uhr (nach den zehn Übernahmen) · 07:31 Uhr · 06:37 Uhr · 4.8.2026, 17:58 Uhr (138 Vorhersagen) · 3.8.2026 · 2.8.2026, 13:00 Uhr · 31.7.2026, 07:49 Uhr.
 *Am 4.8. hat sich die Sicherung bewährt: Ondo hat den Browserverlauf gelöscht, Safari löschte dabei den Websitespeicher mit, alle Daten waren weg — und wurden vollständig wiederhergestellt. **Nichts verloren.** Zwei bekannte Verlustwege: Browserdaten löschen · getrennter Speicher Safari gegen Startbildschirm.*
 *Hinweis (3.8.): Die Sicherungsdatei enthält `apiKey`, `geminiKey` und `pin` im Klartext. Sie darf nie an ChatGPT oder Gemini gehen, nie an einen Bericht angehängt und nie ins Repo. Ondo hat am 3.8. beide Schlüssel neu erzeugt und die alten deaktiviert. **Folge: Eine Sicherung von vor dem 3.8. überschreibt beim Zurückladen die neuen Schlüssel mit den toten alten** — dann Schlüssel neu eintragen, die Messdaten bleiben unberührt.*
 

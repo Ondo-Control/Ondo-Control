@@ -49,6 +49,9 @@ Gegen den bestätigten Spielplan des 6.8. gehalten:
 → **Warum das gefährlich ist:** Zu solchen Spielen kann nie ein Ergebnis entstehen. Und der Schiedsrichter hätte danach gesucht — im schlechtesten Fall hätte er Endstände anderer Spiele gefunden und zugeordnet.
 → **Alle zehn Vorhersagen (fünf Spiele, zwei Gehirne) wurden geparkt** (Ondo, 7.8.). Sie gehen nicht in die Messung ein.
 → **Ursache unbekannt.** Ob die Liste das Datum verschiebt, aus dem Gedächtnis Paarungen bildet oder beides, ist offen. **Nichts gebaut. Erst beobachten, ob es sich wiederholt.**
+→ **Nachtrag vom selben Tag:** Nach dem Parken lief die Suche erneut und lieferte **fünf belegte Spiele** (drei EFL-Cup-Erstrundenpartien, Club Brugge – Kortrijk, Bochum – Hertha; Quellen Sky Sports und ESPN). **Erst vier von fünf erfunden, dann fünf von fünf echt — Ursache des Unterschieds unbekannt.**
+→ **Neuer Zeitfehler im zweiten Lauf:** Middlesbrough – Wrexham beginnt 20:00 Uhr **britischer** Zeit (21:00 deutscher), die App zeigt 20:00. Die englischen Spiele stehen in Ortszeit. **Drittes verschiedenes Muster an drei Tagen in Folge** — neun Stunden starr (5.8.), null bis drei Stunden ungleich (6.8.), eine Stunde durch Ortszeit (7.8.). Gemeinsam ist nur die Richtung: zu früh. **Ursache unbekannt, nichts gebaut.**
+→ **Zur Frage nach dem FA Cup (Ondo, 7.8.):** Der neue Satz schließt ihn **nicht** aus. Stufe 1 verlangt ausdrücklich nationale Pokalwettbewerbe, und die drei EFL-Cup-Spiele belegen, dass Pokale durchkommen. **Die Extra Preliminary Round beginnt erst am Samstag, 8.8.2026** — und startet mit reinen Amateurvereinen, die die ältere Regel seit v19.6 ausschließt. Keine Entscheidung nötig.
 → *Einordnung zu Weg A: In dieser Liste stand kein Turnier mit verkürzter Spielzeit. Das ist **kein Beleg**, dass der neue Satz wirkt — solche Formate wären an diesem Tag ohnehin unwahrscheinlich gewesen. Der Test steht aus.*
 
 ---
@@ -64,6 +67,8 @@ Punkt A schreibt seit v19.7 das ausdrückliche Wort des Gehirns mit. Im Lauf vom
 | Ajax – Shelbourne (Sonnet) | Beide treffen: Ja, 75 % | **nein** |
 
 **Sonnet: drei Widersprüche in fünf Vorhersagen. Flash: null in fünf.**
+
+Im zweiten Lauf desselben Tages (Club Brugge und Wolverhampton, beide Sonnet) wiederholte es sich. **Über beide Läufe des 7.8.: Sonnet fünf von zehn, Flash null von zehn.**
 
 → **Der Befund bleibt gültig, obwohl die Spiele erfunden waren.** Er betrifft, wie das Gehirn antwortet, nicht ob das Spiel existiert.
 → **Folge für Punkt F:** Die Zweideutigkeit des Auftragstextes ist damit gemessen, nicht mehr vermutet — und sie trifft nur ein Gehirn. Punkt F bleibt beschlossen und ungebaut; er ist ein Schnitt und braucht eine eigene Lieferung mit frischer Sicherung davor.
