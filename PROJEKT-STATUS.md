@@ -80,7 +80,9 @@ Dreimal stand „≠ Anzeige oben": Die App zeigte „Beide treffen: **Ja**" mit
 
 **Der Befund bleibt gültig, obwohl die Spiele erfunden waren** — er betrifft, wie das Gehirn antwortet, nicht ob das Spiel existiert. **Punkt F ist damit gemessen statt vermutet, und die Zweideutigkeit trifft nur ein Gehirn.** Punkt F bleibt beschlossen und ungebaut; er ist ein Schnitt und braucht eine eigene Lieferung mit frischer Sicherung davor.
 
-### 6. Der zweite Spielplan desselben Tages war echt — aber die Anpfiffzeiten stehen in britischer Zeit
+### 6. Der zweite Spielplan desselben Tages war echt — aber die Anpfiffzeiten waren wieder falsch
+
+> **⚠ Die Erklärung „britische Ortszeit" in diesem Abschnitt ist am Abend des 7.8. widerlegt worden — siehe Abschnitt 8.** Der Abschnitt bleibt unverändert stehen, weil er festhält, was am Nachmittag bekannt war. Er ist keine gültige Auskunft über die Ursache.
 
 Nach dem Parken lief die Suche erneut. Ergebnis: fünf Spiele, **alle fünf belegt** — drei EFL-Cup-Erstrundenspiele (Middlesbrough – Wrexham, Wycombe – Stevenage, Wolverhampton – Port Vale), Club Brugge – KV Kortrijk und VfL Bochum – Hertha BSC. Quellen: Sky Sports und ESPN.
 
@@ -92,12 +94,14 @@ Nach dem Parken lief die Suche erneut. Ergebnis: fünf Spiele, **alle fünf bele
 
 ### 7. Zur Frage nach dem FA Cup
 
+> **⚠ Der erste Teil dieser Auskunft ist falsch und am Abend des 7.8. berichtigt worden — siehe Abschnitt 9.** Der Abschnitt bleibt unverändert stehen, weil er festhält, was am Nachmittag geantwortet wurde.
+
 Ondo fragte, ob der neue Satz den FA Cup ausschließt. **Nein.** Der Satz nennt nur Formate mit verkürzter Spielzeit; Stufe 1 verlangt ausdrücklich „nationale Pokalwettbewerbe dieser Länder", und die drei EFL-Cup-Spiele belegen, dass Pokale durchkommen.
 
 **Der wirkliche Grund: Die Extra Preliminary Round des FA Cup wird am Samstag, 8. August 2026 gespielt — sie hatte am 7.8. noch nicht begonnen.** Und auch danach dürfte sie ausbleiben, weil sie mit reinen Amateurvereinen startet und die ältere Regel „sonstige Amateur-Spielklassen" seit v19.6 greift. **Keine Entscheidung nötig, nichts gebaut.**
 
 
-### 9. Nachtrag 7.8. abends: Der Zeitfehler ist ein gleichmäßiger Versatz von genau einer Stunde
+### 8. Nachtrag 7.8. abends: Der Zeitfehler ist ein gleichmäßiger Versatz von genau einer Stunde
 
 Ondo lieferte ein gespeichertes Abbild der Spielübersicht von OneFootball für Freitag, 7.8.2026 (deutsche Zeiten). Abgleich mit den fünf Vorhersagen des zweiten Laufs:
 
@@ -113,13 +117,13 @@ Ondo lieferte ein gespeichertes Abbild der Spielübersicht von OneFootball für 
 
 Es ist aber der erste **gleichmäßige** Versatz seit dem 5.8. (neun Stunden starr, dann null bis drei Stunden ungleich, jetzt eine Stunde gleichmäßig). Ob daraus ein Muster wird, zeigt erst der nächste Lauf. **Nichts gebaut.**
 
-### 10. Berichtigung zum FA Cup
+### 9. Berichtigung zum FA Cup
 
 Die Auskunft in Abschnitt 7 war **falsch**. Die Extra-Vorrunde des FA Cup hat ihr Hauptdatum am Samstag, 8.8. — **einzelne Partien wurden aber schon am Freitag, 7.8. gespielt** (Thornbury – Brislington und Sheffield FC – Parkgate, je 20:30, belegt im selben Abbild). Der Wettbewerb lief also bereits.
 
 **Der zweite Teil der Auskunft bleibt richtig:** Diese Vereine spielen in der englischen Non-League; die ältere Regel „sonstige Amateur-Spielklassen" schließt sie seit v19.6 aus, nicht der neue Satz aus v19.7.8. **Ondos Frage war berechtigt, die erste Antwort darauf zu knapp geprüft.**
 
-### 11. Befund über Gemini: meldet Vollständigkeit und bricht ab
+### 10. Befund über Gemini: meldet Vollständigkeit und bricht ab
 
 Zu `beta.html` v19.7.8 schrieb Gemini, der Quellcode sei vollständig geladen — und meldete im selben Beitrag einen Abbruch bei `<div id="pruefStatus">`. **Die Datei bricht nicht ab; die Stelle steht in Zeile 1480 von 2045. Gemini hat rund 74 Prozent gelesen.** Zwei seiner Begriffe („Local System Seed v4", „Duell-Protokoll-System") sind in keiner Projektdatei belegt und wurden **nicht** übernommen.
 
@@ -830,8 +834,11 @@ Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp 
 | 5.8.2026 | Chat 8 → Chat 9 | Raw-Links + Projektdateien + Mappe | **9 von 9** | beide Fangfragen bestanden (unbekannte Ursache des Neun-Stunden-Versatzes, Modellname nicht rückwirkend behoben); drei Antworten über dem Schlüssel — die Einschränkung „fehlerfrei nur beim Endstand“, die Eingrenzung des Modellnamen-Problems auf Flash, und der Hinweis, dass die Sicherung vor den zehn Übernahmen lag. Der Nachfolger fand beim Lesen einen übersehenen Rest „184 Sprachschlüssel“ in `PROJEKT-STATUS.md`, den Chat 8 selbst hinterlassen hatte |
 | 5./6.8.2026 | Chat 9 → Chat 10 | Raw-Links + Projektdateien + Mappe | **9 von 9** | beide Fangfragen bestanden (Ursache des Neun-Stunden-Versatzes als unbekannt benannt, Modellname nicht rückwirkend behoben); vier Antworten über dem Schlüssel — die genaue Bedingung der Umdrehung (`p < 50`, im Code gegengeprüft), die einzeln benannten vier geparkten Einträge, `APP_VERSION = 18` als zweiter Fall gewollten Rückstands. Der Nachfolger fand vor der Prüfung, dass Backlog und PROJEKT-STATUS den Codekommentar zu 0a in der alten Fassung zitieren, obwohl er am 5.8. berichtigt wurde |
 | 6./7.8.2026 | Chat 10 → Chat 11 | Raw-Links + Projektdateien + Mappe | **9 von 9** | beide Fangfragen bestanden (Ursache der falschen Anpfiffzeiten als unbekannt benannt und die Zeitzonen-Vermutung als am 6.8. widerlegt erkannt; aus zwei fehlerfreien Prüfläufen nichts für die neun Fehlerarten geschlossen); vier Antworten über dem Schlüssel — die siebte Fehlerart mit beiden Spielen benannt, die stabile v17 als zweiter Fall gewollten Rückstands, der sachliche Grund für Temperatur 0,0 beim Schiedsrichter. **Der Nachfolger fand vor der Prüfung, dass die Projektkopie des Backlogs auf Fassung 10 stand, während im Repo Fassung 11 lag — und baute nichts nach, sondern meldete es. Zweiter Fall einer Abweichung zwischen Kopie und Repo nach dem 5.8.** |
+| 7.8.2026 | Chat 11 → Chat 12 | Raw-Links + Projektdateien + Mappe | **9 von 9** | beide Fangfragen bestanden (drei verschiedene Muster bei den Anpfiffzeiten benannt und die Ursache als unbekannt geführt, ohne das dritte Muster als Bestätigung der widerlegten Zeitzonen-These zu lesen; aus dem guten zweiten Spiellisten-Lauf nichts für den Bau geschlossen); vier Antworten über dem Schlüssel — Weg A am Code statt am Dokument belegt, Geminis zu starke Formulierung als schon beim Eintragen zurückgewiesen erkannt, der `checkUpdate`-Mechanismus und der Blueprint-Eintrag vom 10.7. als Belege für die zwei gewollten Rückstände. **Der Nachfolger fand vor der Prüfung vier Fehler in der Buchführung des Vorgängers — drei veraltete Angaben (v19.7.7 statt v19.7.8, 199 statt 201 Sprachschlüssel) und eine doppelt eingesetzte Sicherungsliste — und unterschied dabei richtig zwischen Stands- und Verlaufsangaben.** |
 
 ---
+
+*Aktualisiert von Claude (Chat 12) am 7.8.2026, 21:30 Uhr: Übergabe-Protokoll um Chat 11 → Chat 12 ergänzt. Vier Buchführungsfehler im Abschnitt „Der 7. August" bereinigt: die fehlende Nummer 8 durch Umnummerieren geschlossen (aus 9/10/11 wurde 8/9/10), Abschnitt 6 und 7 tragen jetzt je einen Verweis auf ihre Berichtigung, und die Überschrift von Abschnitt 6 behauptet die widerlegte Erklärung „britische Ortszeit" nicht mehr. **Der Text der Abschnitte 6 und 7 ist unverändert** — er hält fest, was am Nachmittag bekannt war. Sonst nichts geändert. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen; `PROJEKT-STATUS.md` und `Ondo-Control-Backlog.md` zusätzlich in ihrer Abendfassung.*
 
 *Aktualisiert von Claude (Chat 11) am 7.8.2026: Abschnitt „Der 7. August" neu — Übergabe vollzogen, v19.7.8 geliefert, Prüflauf mit zehn von zehn Endständen, dritter falscher Halbzeitstand in Folge, erfundene Spielliste mit zehn geparkten Vorhersagen, Sonnet-Widerspruch bei „beide treffen", Befund über Geminis Leseverhalten. Übergabe-Protokoll um Chat 10 → Chat 11 ergänzt und die am 5.8. vertauschten Zeilen in die richtige Reihenfolge gebracht. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen.*
 
