@@ -1,7 +1,7 @@
 # ONDO CONTROL — PROJEKT-STATUS
-*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 6. August 2026, v19.7.7*
+*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 7. August 2026, v19.7.8*
 
-> **Zur Datierung:** Der Rückstand vom 3. bis 5. August ist **aufgeholt**. Die Kalibrierungszahlen weiter unten sind am 6.8. aus dem KI-Log-Text nachgerechnet und anschließend **gegen die Anzeige der App geprüft** — beide Rechnungen stimmen in jeder Zeile überein. Sie gelten. **Stand der Beta: v19.7.7, geliefert am 5. August.**
+> **Zur Datierung:** Der Rückstand vom 3. bis 5. August ist **aufgeholt**. Die Kalibrierungszahlen weiter unten sind am 6.8. aus dem KI-Log-Text nachgerechnet und anschließend **gegen die Anzeige der App geprüft** — beide Rechnungen stimmen in jeder Zeile überein. Sie gelten. **Stand der Beta: v19.7.8, geliefert am 7. August.**
 
 ---
 
@@ -31,6 +31,60 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 - **Belegen statt herleiten** *(31.7.)*. Eine plausible Erklärung ist keine geprüfte Erklärung. Codezeilen werden zitiert, nicht beschrieben.
 
 **Master-Dokumente im Repo:** `Blueprint.md` · `Ondo-Core-Architektur.md` · `Ondo-Control-Backlog.md` (Fassung 5, 31.7.) · dieses Dokument.
+
+---
+
+## DER 7. AUGUST — v19.7.8 geliefert, zehn von zehn im Endstand, und die Spielliste hat Spiele erfunden
+
+### 1. Übergabe Chat 10 → Chat 11 vollzogen
+
+Neun von neun, beide Fangfragen bestanden, vier Antworten über dem Schlüssel. **Vor der Prüfung fand der Nachfolger, dass die Projektkopie des Backlogs auf Fassung 10 stand, während im Repo Fassung 11 lag** — er baute nichts nach, sondern meldete es und wartete auf Ondos Entscheidung. Zweiter Fall einer Abweichung zwischen Projektkopie und Repo nach dem 5.8.
+
+**Regel daraus, übernommen:** Bevor man sich auf eine Zahl oder einen Status aus einer Projektkopie stützt, prüfen, ob ein anderes Dokument auf etwas verweist, das dort fehlt. **Ein Querverweis ins Leere ist das verlässlichste Zeichen für eine veraltete Kopie.**
+
+### 2. v19.7.8 geliefert — drei Punkte in einem Rundgang
+
+Auf Ondos ausdrücklichen Wunsch gebündelt, weil ein echter Nutzungstest zum Lieferzeitpunkt für keinen der drei möglich war.
+
+- **Weg A (Spiellänge):** ein Satz in der bestehenden Verbotsliste der Spielliste — keine Turniere mit verkürzter Spielzeit, jedes Spiel über die vollen 90 Minuten, im Zweifel nicht aufnehmen. **Gefragt wird nach dem Format, nicht nach Minuten.**
+- **Punkt 26 (Temperatur):** `if(opts.rolle==='ref') body.generationConfig = { temperature: 0 };` — **nur** für den Schiedsrichter. Arbeitsregel J greift nicht, weil er Messwerkzeug ist und nicht Messgegenstand. **Kein Schnitt in der Messreihe.**
+- **Punkt 25 (Vorschläge als Text):** Textblock über den Übernehmen-Knöpfen, damit die gefundenen Endstände **vor** der Übernahme gegengeprüft werden können. Reine Ausgabe.
+- **201 Sprachschlüssel in DE, FR und EN**, maschinell abgeglichen, identisch. Syntax-Check bestanden. `APP_VERSION` weiterhin auf 18, bewusst.
+
+**Ondos Einwand war entscheidend:** Er wies darauf hin, dass Weg A nur funktioniert, wenn die Spiellänge vorher bekannt ist. Das gilt für Weg B genauso — beide hängen an derselben ungeprüften Voraussetzung, B kostet nur mehr Code für dasselbe Risiko. Daraus wurde die geschärfte Form: das **Format** ausschließen statt nach Minuten zu fragen.
+
+### 3. Prüflauf vom Morgen — zehn von zehn Endstände richtig
+
+Alle zehn von Claude per Websuche gegengeprüft, keiner von Hand nachgeschlagen. **Dritter fehlerfreier Lauf in Folge, gemessen am Endstand.**
+
+**Aber: neun von zehn Halbzeitständen.** Falsch war Lech Poznań – KÍ Klaksvík, gemeldet 1:0, tatsächlich 0:0. Der Endstand 1:0 stimmt, die Messung ist deshalb unberührt — alle drei Märkte werden aus dem Endstand gerechnet.
+
+**Das ist der dritte Tag in Folge mit einem falschen Halbzeitstand, und der erste Lauf mit Temperatur 0.** Die Erwartung „weniger Streuung beim Ablesen" ist im ersten Test nicht eingetreten. **Ein Lauf ist kein Urteil** (Arbeitsregel B) — aber die Erwartung ist ausdrücklich als Erwartung geführt und nicht als Zusage, und dabei bleibt es.
+
+Zwei Endstände waren zunächst **nicht belegbar**. Claude meldete sie ausdrücklich als nicht bestätigt statt sie durchzuwinken (Art. 11, Art. 14); Ondo lieferte Belege nach, beide waren richtig.
+
+### 4. 🔴 Die Spielliste hat Spiele erfunden
+
+Der Vorhersagelauf vom 7.8. lieferte fünf Spiele, alle als „UEFA Conference League Qualifikation" mit Datum 7.8.2026. **Die dritte Qualifikationsrunde wurde am 6. August gespielt, das Rückspiel folgt am 13. August. Am 7. August findet dort nichts statt.**
+
+Vier der fünf Paarungen existieren nicht — die Teams spielten am 5. und 6.8. gegen andere Gegner oder sind in dieser Runde gar nicht vertreten. Die fünfte, Ajax – Shelbourne, ist echt, war aber am 6.8. um 20:00 Uhr bereits gespielt.
+
+**Das ist eine neue Fehlerart: nicht eine falsche Anpfiffzeit, nicht ein verkürztes Format, sondern Spiele, die es nicht gibt.** Zu ihnen kann nie ein Ergebnis entstehen, und der Schiedsrichter hätte danach gesucht.
+
+→ **Alle zehn Vorhersagen (fünf Spiele, zwei Gehirne) geparkt** (Ondo, 7.8.). Sie gehen nicht in die Messung ein.
+→ **Ursache unbekannt. Nichts gebaut.** Erst beobachten, ob es sich wiederholt. Einzelheiten im Backlog, Fassung 12.
+
+### 5. Punkt A hat geliefert: bei „beide treffen" widerspricht nur Sonnet sich selbst
+
+Dreimal stand „≠ Anzeige oben": Die App zeigte „Beide treffen: **Ja**" mit 72, 78 und 75 Prozent, das Gehirn selbst sagte **nein**. **Sonnet: drei Widersprüche in fünf. Flash: null in fünf.**
+
+**Der Befund bleibt gültig, obwohl die Spiele erfunden waren** — er betrifft, wie das Gehirn antwortet, nicht ob das Spiel existiert. **Punkt F ist damit gemessen statt vermutet, und die Zweideutigkeit trifft nur ein Gehirn.** Punkt F bleibt beschlossen und ungebaut; er ist ein Schnitt und braucht eine eigene Lieferung mit frischer Sicherung davor.
+
+### 6. Befund über Gemini: meldet Vollständigkeit und bricht ab
+
+Zu `beta.html` v19.7.8 schrieb Gemini, der Quellcode sei vollständig geladen — und meldete im selben Beitrag einen Abbruch bei `<div id="pruefStatus">`. **Die Datei bricht nicht ab; die Stelle steht in Zeile 1480 von 2045. Gemini hat rund 74 Prozent gelesen.** Zwei seiner Begriffe („Local System Seed v4", „Duell-Protokoll-System") sind in keiner Projektdatei belegt und wurden **nicht** übernommen.
+
+**Damit ist das Muster bei beiden Prüfern belegt:** ChatGPT liest über Suchtreffer und übersieht, wonach es nicht sucht (6.8.). Gemini liest von vorn und hört auf, meldet aber Vollständigkeit (7.8.). **Folge: Backlog-Punkt 28** — Prüfern künftig nur die geänderten Stellen schicken, mit Zeilennummer, altem und neuem Text und zwei bis drei geschlossenen Fragen.
 
 ---
 
@@ -353,7 +407,7 @@ Dateiname beginnt mit Datum und Uhrzeit: `2026-07-31_1430_Ondo-Control_Thema.md`
 **Nie empfehlen, Ergebnisse von Hand nachzuschlagen.** Seit dem 25.7. abgelehnt. Die Zuverlässigkeit des Schiedsrichters gehört zum Test, nicht in Ondos Freizeit. Zwei Claude-Instanzen sind trotzdem darauf zurückgefallen.
 
 **Datensicherung:** Ondo regelmäßig daran erinnern.
-**Letzte bestätigte Sicherung: 6.8.2026, 08:28 Uhr — 170 Vorhersagen, 6 Wetten.** Davor am selben Tag: 08:16 Uhr · 07:15 Uhr (150 Vorhersagen). Davor: 5.8.2026, 13:06 Uhr (nach den zehn Übernahmen) · 07:31 Uhr · 06:37 Uhr · 4.8.2026, 17:58 Uhr (138 Vorhersagen) · 3.8.2026 · 2.8.2026, 13:00 Uhr · 31.7.2026, 07:49 Uhr.
+**Letzte bestätigte Sicherung: 6.8.2026, 08:28 Uhr — 170 Vorhersagen, 6 Wetten.** ⚠ **Am 7.8. wurden zehn Endstände übernommen und zehn Vorhersagen geparkt — eine neue Sicherung steht damit aus.** Davor am selben Tag: 08:16 Uhr · 07:15 Uhr (150 Vorhersagen). Davor: 5.8.2026, 13:06 Uhr (nach den zehn Übernahmen) · 07:31 Uhr · 06:37 Uhr · 4.8.2026, 17:58 Uhr (138 Vorhersagen) · 3.8.2026 · 2.8.2026, 13:00 Uhr · 31.7.2026, 07:49 Uhr.
 *Am 4.8. hat sich die Sicherung bewährt: Ondo hat den Browserverlauf gelöscht, Safari löschte dabei den Websitespeicher mit, alle Daten waren weg — und wurden vollständig wiederhergestellt. **Nichts verloren.** Zwei bekannte Verlustwege: Browserdaten löschen · getrennter Speicher Safari gegen Startbildschirm.*
 *Hinweis (3.8.): Die Sicherungsdatei enthält `apiKey`, `geminiKey` und `pin` im Klartext. Sie darf nie an ChatGPT oder Gemini gehen, nie an einen Bericht angehängt und nie ins Repo. Ondo hat am 3.8. beide Schlüssel neu erzeugt und die alten deaktiviert. **Folge: Eine Sicherung von vor dem 3.8. überschreibt beim Zurückladen die neuen Schlüssel mit den toten alten** — dann Schlüssel neu eintragen, die Messdaten bleiben unberührt.*
 
@@ -734,10 +788,13 @@ Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp 
 | 3.8.2026 | Chat 5 → Chat 6 | Raw-Links + Mappe | **9 von 9** | eine Antwort über dem Schlüssel (Frage 3 war falsch gestellt: sechs Tage, nicht drei); zwei Dokumentenfehler durch den Nachfolger gefunden. **Erste Übergabe, nach der noch am selben Tag Code geliefert wurde** |
 | 4.8.2026 | Chat 6 → Chat 7 | Raw-Links + Mappe + Abnahme | **9 von 9** | zwei Antworten über dem Schlüssel (Fragen 3 und 4). Der Nachfolger fand vor der Prüfung **drei Abweichungen zwischen Code und Dokumenten** (v19.7.4 statt v19.7 · 0a zurückgenommen · Modellwahl undokumentiert) plus einen Stilfehler. Der abgebende Chat gab offen an, dass sein Speicher erschöpft war |
 | 4./5.8.2026 | Chat 7 → Chat 8 | Raw-Links + Mappe | **9 von 9** | beide Fangfragen bestanden; zwei Antworten über dem Schlüssel (Mechanismus hinter `APP_VERSION`, Widerspruch zur Begründung der neunten Fehlerart). Der Nachfolger fand vor der Prüfung die unbeabsichtigte Lücke in `PROJEKT-STATUS.md` sowie zwei Codebeobachtungen, die sich beide bestätigten. Chat 7 hatte die Mappe zunächst nach Gedächtnis gebaut und nach Ondos Einwand neu geschrieben |
-| 5./6.8.2026 | Chat 9 → Chat 10 | Raw-Links + Projektdateien + Mappe | **9 von 9** | beide Fangfragen bestanden (Ursache des Neun-Stunden-Versatzes als unbekannt benannt, Modellname nicht rückwirkend behoben); vier Antworten über dem Schlüssel — die genaue Bedingung der Umdrehung (`p < 50`, im Code gegengeprüft), die einzeln benannten vier geparkten Einträge, `APP_VERSION = 18` als zweiter Fall gewollten Rückstands. Der Nachfolger fand vor der Prüfung, dass Backlog und PROJEKT-STATUS den Codekommentar zu 0a in der alten Fassung zitieren, obwohl er am 5.8. berichtigt wurde |
 | 5.8.2026 | Chat 8 → Chat 9 | Raw-Links + Projektdateien + Mappe | **9 von 9** | beide Fangfragen bestanden (unbekannte Ursache des Neun-Stunden-Versatzes, Modellname nicht rückwirkend behoben); drei Antworten über dem Schlüssel — die Einschränkung „fehlerfrei nur beim Endstand“, die Eingrenzung des Modellnamen-Problems auf Flash, und der Hinweis, dass die Sicherung vor den zehn Übernahmen lag. Der Nachfolger fand beim Lesen einen übersehenen Rest „184 Sprachschlüssel“ in `PROJEKT-STATUS.md`, den Chat 8 selbst hinterlassen hatte |
+| 5./6.8.2026 | Chat 9 → Chat 10 | Raw-Links + Projektdateien + Mappe | **9 von 9** | beide Fangfragen bestanden (Ursache des Neun-Stunden-Versatzes als unbekannt benannt, Modellname nicht rückwirkend behoben); vier Antworten über dem Schlüssel — die genaue Bedingung der Umdrehung (`p < 50`, im Code gegengeprüft), die einzeln benannten vier geparkten Einträge, `APP_VERSION = 18` als zweiter Fall gewollten Rückstands. Der Nachfolger fand vor der Prüfung, dass Backlog und PROJEKT-STATUS den Codekommentar zu 0a in der alten Fassung zitieren, obwohl er am 5.8. berichtigt wurde |
+| 6./7.8.2026 | Chat 10 → Chat 11 | Raw-Links + Projektdateien + Mappe | **9 von 9** | beide Fangfragen bestanden (Ursache der falschen Anpfiffzeiten als unbekannt benannt und die Zeitzonen-Vermutung als am 6.8. widerlegt erkannt; aus zwei fehlerfreien Prüfläufen nichts für die neun Fehlerarten geschlossen); vier Antworten über dem Schlüssel — die siebte Fehlerart mit beiden Spielen benannt, die stabile v17 als zweiter Fall gewollten Rückstands, der sachliche Grund für Temperatur 0,0 beim Schiedsrichter. **Der Nachfolger fand vor der Prüfung, dass die Projektkopie des Backlogs auf Fassung 10 stand, während im Repo Fassung 11 lag — und baute nichts nach, sondern meldete es. Zweiter Fall einer Abweichung zwischen Kopie und Repo nach dem 5.8.** |
 
 ---
+
+*Aktualisiert von Claude (Chat 11) am 7.8.2026: Abschnitt „Der 7. August" neu — Übergabe vollzogen, v19.7.8 geliefert, Prüflauf mit zehn von zehn Endständen, dritter falscher Halbzeitstand in Folge, erfundene Spielliste mit zehn geparkten Vorhersagen, Sonnet-Widerspruch bei „beide treffen", Befund über Geminis Leseverhalten. Übergabe-Protokoll um Chat 10 → Chat 11 ergänzt und die am 5.8. vertauschten Zeilen in die richtige Reihenfolge gebracht. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen.*
 
 *Zweiter Nachtrag von Claude (Chat 10) am 6.8.2026, nachmittags: Bericht an beide Prüfer verschickt und beantwortet, Übergabe an ChatGPT vollzogen, zwei Befunde über die Arbeitsweise der Prüfer eingetragen.*
 

@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Gepflegt von Claude · Stand 6.8.2026, Fassung 11 · jede Idee mit Datum, Urheber und Status**
+**Gepflegt von Claude · Stand 7.8.2026, Fassung 12 · jede Idee mit Datum, Urheber und Status**
 
 ## Regeln für dieses Dokument
 
@@ -13,6 +13,108 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 12 ändert (7.8.)
+
+- **v19.7.8 geliefert und hochgeladen.** Drei Punkte in einem Rundgang: Weg A (Spiellänge) · Punkt 25 (Vorschläge als Text) · Punkt 26 (Temperatur des Schiedsrichters auf 0,0). Keiner davon rührt den Auftragstext der Gehirne an — **kein Schnitt in der Messreihe.**
+- **Die Spiellänge ist entschieden: Weg A.** Ein Satz in der bestehenden Verbotsliste der Spielliste, der Formate mit verkürzter Spielzeit ausschließt. Gefragt wird nach dem Format, nicht nach Minuten.
+- **Prüflauf vom 7.8. früh: zehn von zehn Endständen richtig**, alle selbst per Websuche gegengeprüft. Der dritte fehlerfreie Lauf in Folge, gemessen am Endstand.
+- **Aber: dritter Tag in Folge mit einem falschen Halbzeitstand** — und zwar im ersten Lauf **mit** Temperatur 0. Die Null hat es nicht behoben.
+- **🔴 Neu und schwerwiegend: Die Spielliste hat am 7.8. Spiele erfunden.** Fünf Paarungen, die es nicht gibt oder die schon vorbei sind. Siehe eigener Abschnitt.
+- **Punkt A hat geliefert:** Bei „beide treffen" widerspricht **Sonnet in drei von fünf Fällen** dem eigenen Anzeigewert, **Flash in null von fünf**. Punkt F ist damit nicht mehr Vermutung, sondern gemessen.
+- **Ein Befund über Geminis Leseverhalten** ist eingetragen — es meldete Vollständigkeit und brach bei rund drei Vierteln ab.
+- **Neuer Punkt 28:** Prüfern künftig nur die geänderten Stellen schicken, nicht die ganze Datei.
+
+---
+
+## 🔴 Neue Beobachtung (7.8.): Die Spielliste hat Spiele erfunden
+
+Der Vorhersagelauf vom 7.8. lieferte fünf Spiele, alle mit dem Vermerk „UEFA Conference League Qualifikation" und dem Datum 7.8.2026.
+
+**Die dritte Qualifikationsrunde wurde am 6. August gespielt, das Rückspiel folgt am 13. August. Am 7. August findet in diesem Wettbewerb nichts statt.** (Quelle: UEFA, Terminübersicht der Conference-League-Qualifikation.)
+
+Gegen den bestätigten Spielplan des 6.8. gehalten:
+
+| In der App | Tatsächlich |
+|---|---|
+| Rapid Wien – SK Brann | Rapid Wien spielte bei Paide Linnameeskond (6.8.); Brann spielte gegen Apollon Limassol (5.8.) |
+| Sparta Prag – FC Vaduz | Vaduz spielte bei Inter Turku (6.8.); Sparta Prag ist in dieser Runde nicht vertreten |
+| Panathinaikos – NK Osijek | Panathinaikos spielte gegen CSKA 1948 Sofia (5.8.) |
+| AZ Alkmaar – FK Vojvodina | beide in dieser Runde nicht vertreten |
+| Ajax Amsterdam – Shelbourne | echte Paarung, aber **am 6.8. um 20:00 Uhr bereits gespielt** |
+
+→ **Vier frei zusammengesetzte Paarungen und eine abgelaufene.** Das ist eine neue Fehlerart: nicht eine falsche Anpfiffzeit, nicht ein verkürztes Format, sondern **Spiele, die es nicht gibt.**
+→ **Warum das gefährlich ist:** Zu solchen Spielen kann nie ein Ergebnis entstehen. Und der Schiedsrichter hätte danach gesucht — im schlechtesten Fall hätte er Endstände anderer Spiele gefunden und zugeordnet.
+→ **Alle zehn Vorhersagen (fünf Spiele, zwei Gehirne) wurden geparkt** (Ondo, 7.8.). Sie gehen nicht in die Messung ein.
+→ **Ursache unbekannt.** Ob die Liste das Datum verschiebt, aus dem Gedächtnis Paarungen bildet oder beides, ist offen. **Nichts gebaut. Erst beobachten, ob es sich wiederholt.**
+→ *Einordnung zu Weg A: In dieser Liste stand kein Turnier mit verkürzter Spielzeit. Das ist **kein Beleg**, dass der neue Satz wirkt — solche Formate wären an diesem Tag ohnehin unwahrscheinlich gewesen. Der Test steht aus.*
+
+---
+
+## 🆕 Neue Beobachtung (7.8.): Bei „beide treffen" widerspricht nur Sonnet sich selbst
+
+Punkt A schreibt seit v19.7 das ausdrückliche Wort des Gehirns mit. Im Lauf vom 7.8. trat der Widerspruch dreimal auf, gekennzeichnet mit „≠ Anzeige oben".
+
+| Spiel | Anzeige | Wort des Gehirns |
+|---|---|---|
+| AZ Alkmaar – Vojvodina (Sonnet) | Beide treffen: Ja, 72 % | **nein** |
+| Sparta Prag – Vaduz (Sonnet) | Beide treffen: Ja, 78 % | **nein** |
+| Ajax – Shelbourne (Sonnet) | Beide treffen: Ja, 75 % | **nein** |
+
+**Sonnet: drei Widersprüche in fünf Vorhersagen. Flash: null in fünf.**
+
+→ **Der Befund bleibt gültig, obwohl die Spiele erfunden waren.** Er betrifft, wie das Gehirn antwortet, nicht ob das Spiel existiert.
+→ **Folge für Punkt F:** Die Zweideutigkeit des Auftragstextes ist damit gemessen, nicht mehr vermutet — und sie trifft nur ein Gehirn. Punkt F bleibt beschlossen und ungebaut; er ist ein Schnitt und braucht eine eigene Lieferung mit frischer Sicherung davor.
+
+---
+
+## 🔎 Prüflauf vom 7. August, früh — zehn von zehn im Endstand
+
+Geprüft wurden die zehn Vorhersagen vom 6.8. Alle zehn Endstände von Claude per Websuche gegengeprüft, keiner von Hand nachgeschlagen.
+
+- **Zehn von zehn Endständen richtig.** Sieben Europa-League- und drei Conference-League-Spiele, alle Wettbewerbszuordnungen korrekt.
+- **Neun von zehn Halbzeitständen richtig.** Falsch: **Lech Poznań – KÍ Klaksvík**, gemeldet 1:0, tatsächlich 0:0. Der Endstand 1:0 stimmt.
+- **Auf die Messung wirkt sich das nicht aus** — alle drei Märkte werden aus dem Endstand gerechnet. Der Halbzeitstand dient nur der Plausibilitätsprüfung.
+- **Die Prüfung konnte es nicht fangen**, weil 1:0 zur Pause und 1:0 am Ende in sich stimmig sind. Das ist ihre Grenze, keine Schwäche.
+- **Dritter Tag in Folge mit falschem Halbzeitstand** (5.8., 6.8., 7.8.) — und der 7.8. war der **erste Lauf mit Temperatur 0** beim Schiedsrichter. **Ein Lauf ist kein Urteil** (Arbeitsregel B), aber die Erwartung „weniger Streuung beim Ablesen" ist im ersten Test nicht eingetreten.
+- **Zwei Endstände waren zunächst nicht belegbar** (Braga – Dinamo Minsk, CFR Cluj – Tromsø). Claude hat sie ausdrücklich als *nicht bestätigt* gemeldet statt sie durchzuwinken; Ondo lieferte Belege nach. Beide waren richtig, einschließlich Halbzeitstand.
+- **Kleinigkeit:** Zwei von zehn Quellenangaben lauteten `sportdaten-spiegel.de` mit Bindestrich statt `sportdaten.spiegel.de`. Eine Quellenangabe, die überprüfbar sein soll, muss stimmen. Beobachten, nichts bauen.
+
+---
+
+**28. Prüfern nur die geänderten Stellen schicken, nicht die ganze Datei** · *Idee 7.8., Claude · zugestimmt Ondo 7.8.* · **Status: Idee — NEU**
+
+Beide Prüfer lesen ganze Dateien nachweislich unvollständig: ChatGPT über Suchtreffer, Gemini von vorn bis etwa drei Viertel. Beide melden das nicht von sich aus zuverlässig.
+
+→ **Vorschlag:** Bei jeder Lieferung bekommen die Prüfer künftig nur die geänderten Stellen — mit Zeilennummer, altem und neuem Text und einer Begründung — dazu zwei bis drei geschlossene Fragen.
+→ **Warum:** kürzer, prüfbar, und der Abbruch kann gar nicht mehr auftreten. Ihr Wert liegt im Urteil über eine klar gestellte Frage, nicht im vollständigen Lesen.
+→ **Kosten:** keine.
+
+---
+
+## 🔍 Befund über Gemini (7.8.): meldet Vollständigkeit und bricht ab
+
+Zu `beta.html` v19.7.8 schrieb Gemini, der Quellcode sei „vollständig geladen und analysiert" — und schloss denselben Beitrag mit der Feststellung, das Dokument breche bei `<div id="pruefStatus">` ab.
+
+**Die Datei bricht nicht ab.** Sie ist 121.379 Zeichen lang, endet ordentlich und enthält 89 Funktionen; `pruefStatus` steht in Zeile 1480 von 2045. **Gemini hat rund 74 Prozent gelesen.**
+
+→ **Zwei Begriffe seiner Beschreibung sind in keiner Projektdatei belegt:** „Local System Seed v4" (in der Datei steht `state.seedV = 2`, die Startbefüllung der Wettscheine) und „Duell-Protokoll-System". Beide **nicht** in die Dokumente übernommen — Arbeitsregel H, angewandt auf fremde Beiträge.
+→ **Und eine Auslassung:** Punkt 26, die Temperatur 0, steht in Zeile 820 — mitten im gelesenen Teil — und wird nicht erwähnt, obwohl es Geminis eigener Vorschlag war.
+→ **Muster, jetzt bei beiden Prüfern belegt:** ChatGPT liest über Suchtreffer und übersieht, wonach es nicht sucht (6.8.). Gemini liest von vorn und hört auf, meldet aber Vollständigkeit (7.8.). **Daraus folgt Punkt 28.**
+
+---
+
+## ✅ Gebaut in v19.7.8 (7.8.2026)
+
+Drei Punkte in einem Rundgang, auf Ondos ausdrücklichen Wunsch. Begründung: Ein echter Nutzungstest war zum Lieferzeitpunkt für keinen der drei möglich, einzeln so wenig wie gemeinsam.
+
+- **Weg A — Spiellänge.** Ein Satz in der bestehenden Verbotsliste im Auftragstext der Spielliste: keine Turniere mit verkürzter Spielzeit, jedes Spiel muss über die vollen 90 Minuten gehen, im Zweifel nicht aufnehmen. **Ausgeschlossen wird das Format, nicht nach Minuten gefragt** — das ist die leichtere Frage, weil der Wettbewerbsname ohnehin mitgeliefert wird. Löst Punkt „Spiellänge" aus der Beobachtung vom 5.8.
+- **Punkt 26 — Temperatur des Schiedsrichters.** Eine Zeile in `geminiCall`: `if(opts.rolle==='ref') body.generationConfig = { temperature: 0 };`. Trockentest bestanden: bei `rolle:'ref'` steht 0, bei `rolle:'gehirn'` und ohne Rolle bleibt der Standardwert. **Offene Grenze:** Läuft der Schiedsrichter ausnahmsweise über Sonnet — nur ohne Gemini-Schlüssel — greift die Null nicht. Bewusst nicht angefasst.
+- **Punkt 25 — Vorschläge als Text.** Unter „Ergebnisse prüfen" erscheint ein Textblock **über** den Übernehmen-Knöpfen: eine Zeile je Vorschlag mit Endstand, Halbzeit, gefundenem Datum, Wettbewerb, Quelle und den Warnungen der App. Reine Ausgabe — nichts gespeichert, nichts gerechnet, nichts an ein Gehirn geschickt. Ondos Vorschlag vom 6.8.
+- **Zwei neue Sprachschlüssel**, damit **201 in DE, FR und EN** — maschinell abgeglichen, identisch. Syntax-Check bestanden.
+- **`APP_VERSION` steht weiterhin auf 18.** Bewusst nicht mitgeändert, siehe Technische Schuld.
 
 ---
 
@@ -63,7 +165,7 @@
 
 ---
 
-**26. Temperatur des Schiedsrichters auf 0,0 setzen** · *Idee 6.8., Gemini* · **Status: Idee — NEU, entscheidungsreif**
+**26. Temperatur des Schiedsrichters auf 0,0 setzen** · *Idee 6.8., Gemini · Beschluss Ondo 7.8.* · **Status: GEBAUT (v19.7.8) · noch nicht bewährt**
 
 Der Temperatur-Fund vom 4.8. steht unverändert: In `apiCall` und `geminiCall` wird kein Temperatur-Wert gesetzt, alle drei Rollen laufen auf dem Standardwert des Anbieters.
 
@@ -252,7 +354,7 @@ Crystal Palace gegen Lens und gegen Famalicão am 28.7. waren laut Sky Sports un
 **Warum das zählt:** „Unter 2,5 Tore" über 45 Minuten ist nicht dieselbe Aussage wie über 90. Der Endstand ist richtig abgelesen — die Messgrundlage stimmt trotzdem nicht. **Keine Fehlerart des Schiedsrichters**, sondern eine Lücke in der Spielliste: Sie kennt keine Spiellänge.
 
 → **Beide Spiele wurden geparkt, nicht übernommen** (Ondo, 5.8.).
-→ *Ob daraus eine eigene Fehlerart wird oder eine Bedingung für die Spielliste („keine Turnierformate mit verkürzter Spielzeit"), ist offen. **Entscheidung Ondos steht aus.** Nichts gebaut.*
+→ **✅ ENTSCHIEDEN am 7.8. (Ondo): Weg A** — eine Bedingung für die Spielliste, keine eigene Fehlerart. **Gebaut in v19.7.8.** Ausgeschlossen wird das Format, nicht nach Minuten gefragt. Ob der Satz wirkt, ist offen; die Park-Funktion bleibt das Netz darunter.
 
 ---
 
@@ -733,7 +835,7 @@ Ein Knopf, der die Log-Einträge eines wählbaren Zeitraums als reinen Text ausg
 → **Nichts gespeichert, nichts gerechnet, nichts an ein Gehirn geschickt** — reine Ausgabe. Kalibrierung, Auftragstext und Messreihe sind unberührt.
 → *Trockentest bestanden: Datumsgrenzen greifen, Sortierung aufsteigend, Archiv ausgeschlossen, leerer Zeitraum meldet sich.*
 
-**25. Textausgabe zeigt auch die noch nicht übernommenen Endstände** · *Idee 6.8., Ondo* · **Status: Idee — NEU**
+**25. Textausgabe zeigt auch die noch nicht übernommenen Endstände** · *Idee 6.8., Ondo · Beschluss Ondo 7.8.* · **Status: GEBAUT (v19.7.8) · noch nicht bewährt**
 
 Der Textknopf gibt heute nur gespeicherte Vorhersagen aus. Die vom Schiedsrichter gefundenen Endstände stehen vor dem Übernehmen nur auf dem Bildschirm; für die Gegenprüfung durch Claude braucht Ondo deshalb weiterhin ein Bildschirmfoto.
 
@@ -867,7 +969,9 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 
 ---
 
-*Fassung 11, geschrieben am 6.8.2026 von Chat 10, nachmittags: Prüferantworten zum Bericht vom 09:05 Uhr eingetragen, Punkte 26 und 27 neu, Punkt 23 zurückgestellt.*
+*Fassung 12, geschrieben am 7.8.2026 von Chat 11: v19.7.8 geliefert (Weg A, Punkt 25, Punkt 26) · Prüflauf vom 7.8. mit zehn von zehn Endständen · dritter falscher Halbzeitstand in Folge · die Spielliste hat am 7.8. Spiele erfunden, zehn Vorhersagen geparkt · Sonnet widerspricht sich bei „beide treffen" in drei von fünf Fällen · Punkt 28 neu · Befund über Geminis Leseverhalten.*
+
+*Vorige Fassung: Fassung 11, geschrieben am 6.8.2026 von Chat 10, nachmittags: Prüferantworten zum Bericht vom 09:05 Uhr eingetragen, Punkte 26 und 27 neu, Punkt 23 zurückgestellt.*
 
 *Vorige Fassung: Fassung 10, geschrieben am 6.8.2026 von Chat 10. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen. Nachgetragen: die drei Entscheidungen vom Abend des 5.8., der Prüflauf vom 6.8., der nachgerechnete Messstand, drei neue Beobachtungen, Punkt F und Punkt 25. **Die Übergabemappe vom 5.8. darf gelöscht werden, sobald Ondo diese Dateien hochgeladen hat — nicht früher.***
 
