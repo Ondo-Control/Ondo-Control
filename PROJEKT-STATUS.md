@@ -96,7 +96,30 @@ Ondo fragte, ob der neue Satz den FA Cup ausschließt. **Nein.** Der Satz nennt 
 
 **Der wirkliche Grund: Die Extra Preliminary Round des FA Cup wird am Samstag, 8. August 2026 gespielt — sie hatte am 7.8. noch nicht begonnen.** Und auch danach dürfte sie ausbleiben, weil sie mit reinen Amateurvereinen startet und die ältere Regel „sonstige Amateur-Spielklassen" seit v19.6 greift. **Keine Entscheidung nötig, nichts gebaut.**
 
-### 8. Befund über Gemini: meldet Vollständigkeit und bricht ab
+
+### 9. Nachtrag 7.8. abends: Der Zeitfehler ist ein gleichmäßiger Versatz von genau einer Stunde
+
+Ondo lieferte ein gespeichertes Abbild der Spielübersicht von OneFootball für Freitag, 7.8.2026 (deutsche Zeiten). Abgleich mit den fünf Vorhersagen des zweiten Laufs:
+
+| Spiel | OneFootball | App | Abweichung |
+|---|---|---|---|
+| Middlesbrough – Wrexham (EFL Cup) | 21:00 | 20:00 | −1 h |
+| Wycombe – Stevenage (EFL Cup) | 20:45 | 19:45 | −1 h |
+| Wolverhampton – Port Vale (EFL Cup) | 20:45 | 19:45 | −1 h |
+| FC Brügge – KV Kortrijk (Pro League) | 20:45 | 19:45 | −1 h |
+| VfL Bochum – Hertha BSC (2. Bundesliga) | 20:30 | 19:30 | −1 h |
+
+**Fünf von fünf, genau eine Stunde, in eine Richtung — auch beim deutschen Spiel.** Damit ist die zunächst naheliegende Erklärung „britische Ortszeit" **widerlegt**: Bochum – Hertha ist ein deutsches Spiel und trotzdem um dieselbe Stunde verschoben. **Die Ursache bleibt unbekannt.**
+
+Es ist aber der erste **gleichmäßige** Versatz seit dem 5.8. (neun Stunden starr, dann null bis drei Stunden ungleich, jetzt eine Stunde gleichmäßig). Ob daraus ein Muster wird, zeigt erst der nächste Lauf. **Nichts gebaut.**
+
+### 10. Berichtigung zum FA Cup
+
+Die Auskunft in Abschnitt 7 war **falsch**. Die Extra-Vorrunde des FA Cup hat ihr Hauptdatum am Samstag, 8.8. — **einzelne Partien wurden aber schon am Freitag, 7.8. gespielt** (Thornbury – Brislington und Sheffield FC – Parkgate, je 20:30, belegt im selben Abbild). Der Wettbewerb lief also bereits.
+
+**Der zweite Teil der Auskunft bleibt richtig:** Diese Vereine spielen in der englischen Non-League; die ältere Regel „sonstige Amateur-Spielklassen" schließt sie seit v19.6 aus, nicht der neue Satz aus v19.7.8. **Ondos Frage war berechtigt, die erste Antwort darauf zu knapp geprüft.**
+
+### 11. Befund über Gemini: meldet Vollständigkeit und bricht ab
 
 Zu `beta.html` v19.7.8 schrieb Gemini, der Quellcode sei vollständig geladen — und meldete im selben Beitrag einen Abbruch bei `<div id="pruefStatus">`. **Die Datei bricht nicht ab; die Stelle steht in Zeile 1480 von 2045. Gemini hat rund 74 Prozent gelesen.** Zwei seiner Begriffe („Local System Seed v4", „Duell-Protokoll-System") sind in keiner Projektdatei belegt und wurden **nicht** übernommen.
 
