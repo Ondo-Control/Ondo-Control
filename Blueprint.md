@@ -3,11 +3,13 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.10
-**Stand:** 8. August 2026
+**Version:** 0.11
+**Stand:** 8. August 2026, 11:55 Uhr
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
-> **Was Fassung 0.10 ändert (8.8.2026):** **Arbeitsregel K ist um den Beschluss zu frischen Prüfer-Chats ergänzt** (Ondo, 8.8.). Ein Protokolleintrag dazu. **Kein Verfassungsartikel geändert.**
+> **Was Fassung 0.11 ändert (8.8.2026):** **Neue Arbeitsregel L — Bauen vor Aufnehmen** (Beschluss Ondo). Ein Protokolleintrag dazu. **Kein Verfassungsartikel geändert.**
+>
+> **Was Fassung 0.10 änderte (8.8.2026):** **Arbeitsregel K ist um den Beschluss zu frischen Prüfer-Chats ergänzt** (Ondo, 8.8.). Ein Protokolleintrag dazu. Kein Verfassungsartikel geändert.
 >
 > **Was Fassung 0.9 änderte (7.8.2026):** Eine neue **Arbeitsregel K (Bericht statt Datei)** in Abschnitt 2c, von Ondo am Abend des 7. August beschlossen. Ein Protokolleintrag dazu. **Kein Verfassungsartikel geändert.** *Hinweis zur Vollständigkeit: Der Protokollabschnitt enthält für den 7. August nur diese eine Entscheidung. Die übrigen Vorgänge des Tages — v19.7.8, die erfundene Spielliste, die widerlegte Ortszeit-Erklärung — stehen in `PROJEKT-STATUS.md` und `Ondo-Control-Backlog.md`; ob sie zusätzlich hierher gehören, ist Ondos offene Entscheidung.*
 >
@@ -135,6 +137,10 @@ Quellen erhalten Vertrauenswerte (z. B. offizielle Verbände hoch, Foren niedrig
 *Zwei Bedingungen, die ihn vom Beschluss des 30.7. abgrenzen: Er wird bei **jedem** Bericht neu aus den Dokumenten geschrieben, nie aus dem Gedächtnis, und **jede Zahl darin steht auch im Bericht selbst**, damit ein Widerspruch sofort auffällt. Er wird **nicht** als feste Datei ins Repo gelegt — eine solche Datei würde altern, ohne dass es jemand merkt.*
 *Anlass: Beide Prüfer lesen ganze Dateien nachweislich unvollständig — ChatGPT über Suchtreffer (6.8.), Gemini von vorn bis etwa drei Vierteln bei gleichzeitiger Meldung von Vollständigkeit (7.8.). Die zweite Hälfte der Regel geht auf Ondos Rückfrage vom 7.8. abends zurück: Ein reiner Zeilendiff ist in einem neuen Prüfer-Chat wertlos, weil dort niemand den Gegenstand kennt.*
 *Ergänzung vom 8.8. (Beschluss Ondo): **Prüfer bekommen für jede Vorlage einen frischen Chat ausserhalb des Projektordners.** Begründung: In fortgeführten Chats greifen sie auf alte Angaben und alte Ideen zurück; bei Rückfragen verteidigen sie zudem ihre eigene frühere Antwort. **Folgen:** Der Zusammenhangsblock ist damit die einzige Grundlage, die ein Prüfer hat — er muss vollständig sein. Und eine Rückfrage nennt die frühere Antwort nicht.*
+
+**L — Bauen vor Aufnehmen** *(8.8., Beschluss Ondo)* **Jeder Chat arbeitet mindestens einen bereits beschlossenen Punkt ab, bevor neue Ideen ins Verzeichnis aufgenommen werden.**
+*Anlass: Bilanz vom 8.8. — 39 Backlog-Punkte, sieben gebaut, **sieben von Ondo beschlossen und nicht gebaut**, der älteste vom 25. Juli. Ondos Kritik: Punkte werden jedes Mal eingetragen und nie durchgehend abgearbeitet, und er stehe später vor Entscheidungen, deren Zusammenhang er nicht mehr kenne. Ursache: Es gab eine Regel, jede Entscheidung sofort **einzutragen**, aber keine, sie zu **bauen**. Chat 12 hat selbst keinen einzigen Punkt gebaut — genau das Muster, das diese Regel beendet.*
+*Zweite Beobachtung aus demselben Anlass, nicht als Regel beschlossen: **Die Messphase hat kein definiertes Ende.** Nirgends steht, wie viele Aussagen genügen. Was kein Ende hat, hört nicht auf.*
 
 ---
 
@@ -349,7 +355,8 @@ ONDO CONTROL
 | 7.8.2026 | **Arbeitsregel K (Bericht statt Datei) von Ondo beschlossen.** Prüfer bekommen künftig nur die geänderten Stellen mit Zeilennummer, altem und neuem Text und Begründung, davor einen festen Zusammenhangsblock, dahinter zwei bis drei geschlossene Fragen. Anlass: das belegte Leseverhalten beider Prüfer. **Ondos Rückfrage deckte auf, dass der Punkt ohne Zusammenhangsblock in einem neuen Prüfer-Chat unbrauchbar gewesen wäre.** Ausdrücklich **nicht** entschieden: ob die Prüfer neue Chats bekommen oder die bestehenden fortgeführt werden. |
 | 7.8.2026 | Blueprint auf Version 0.9 gehoben. |
 | 8.8.2026 | **Arbeitsregel K ergänzt (Beschluss Ondo): frische Prüfer-Chats ausserhalb des Projektordners.** Damit ist die bei K ausdrücklich offen gelassene Frage geschlossen. |
-| 8.8.2026 | Blueprint auf Version 0.10 gehoben. |
+| 8.8.2026 | **Arbeitsregel L beschlossen (Ondo): Bauen vor Aufnehmen.** Jeder Chat arbeitet mindestens einen beschlossenen Punkt ab, bevor neue Ideen aufgenommen werden. Anlass: 39 Backlog-Punkte, sieben gebaut, sieben beschlossen und nicht gebaut. |
+| 8.8.2026 | Blueprint auf Version 0.11 gehoben. |
 
 ---
 

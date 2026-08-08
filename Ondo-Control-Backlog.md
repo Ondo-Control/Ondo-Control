@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Gepflegt von Claude · Stand 8.8.2026, 08:10 Uhr, Fassung 12 mit acht Nachträgen · jede Idee mit Datum, Urheber und Status**
+**Gepflegt von Claude · Stand 8.8.2026, 11:55 Uhr, Fassung 13 · jede Idee mit Datum, Urheber und Status**
 
 ## Regeln für dieses Dokument
 
@@ -13,6 +13,20 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 13 ändert (8.8.)
+
+*Geschrieben von Chat 12. **Anmerkung zur Fassungsnummer:** Die Änderungen des 8. August wurden zunächst als sechs einzelne „Nachträge zu Fassung 12" angehängt, statt eine neue Fassung zu eröffnen. Das widerspricht der Handhabung der Fassungen 5 bis 12, bei denen jeder wesentliche Schritt eine eigene Nummer bekam. **Von Ondo beanstandet und hier berichtigt.** Die einzelnen Nachträge bleiben am Fuss des Dokuments als Aufzeichnung stehen; die drei vom Abend des 7.8. gehören weiterhin zu Fassung 12.*
+
+- **🔴 Punkt F ist vollständig vermessen.** 15 betroffene bewertete Sonnet-Aussagen, netto **+9** (94/180 = 52 % statt 85/180 = 47 %), Flash unverändert. **Zwei Fehlerarten, nicht eine.** Auslöser ist die **Null im Tipp**, nicht das Kennzeichen `gedreht`. **Befund A ist widerlegt:** Sonnet ist nicht überzuversichtlich. Punkt F um den vollständigen Bauvorschlag und die Berichtigungsfrage ergänzt — **beschlossen, gemessen, auf Ondos Anweisung nicht gebaut.**
+- **Punkt E ist nicht mehr blockiert.** Gemini hat seine eigene Rückfrage vom 4.8. beantwortet und eine Formulierung geliefert; ChatGPT widerspricht. **Entscheidungsreif.**
+- **Punkt 27 auf entscheidungsreif** — viertes Auftreten falscher Anpfiffzeiten, zweiter Tag in Folge mit gleichmässig einer Stunde (App 12:00, tatsächlich 13:00, per Websuche belegt).
+- **Punkt 28 vollständig entschieden:** Prüfer bekommen frische Chats ausserhalb des Projektordners.
+- **Neue Punkte 29, 30, 31, 32, 33** — eigene Rolle für die Spielliste · Freundschaftsspiele · Core-Vertrag nicht gebaut (`askBrain` existiert nicht) · „gefunden" gegen „bestätigt" trennen · Doppel-Codebasis bei der Beförderung.
+- **Bilanz des Verzeichnisses: 39 Punkte, 7 gebaut, 7 beschlossen und nicht gebaut** (F, E, 2, 3, 4, 6, 7), ältester vom 25. Juli.
+- **Arbeitsregel L (Bauen vor Aufnehmen)** von Ondo beschlossen, eingetragen im Blueprint 0.11.
 
 ---
 
@@ -242,6 +256,40 @@ Weg A (v19.7.8) verbietet nur Formate mit **verkürzter Spielzeit**. Gewöhnlich
 → **Gegenargument, das ernst zu nehmen ist:** Gemessen wird **Kalibrierung**, nicht Trefferquote. Ein Gehirn, das bei einem Testspiel zurückhaltend antwortet und damit richtig liegt, liefert einen **guten** Messwert. Ein Ausschluss würde genau die Fälle entfernen, in denen Zurückhaltung angemessen ist — und damit möglicherweise das Bild verzerren statt es zu schärfen.
 → **Kosten eines Ausschlusses:** ein Satz im Auftragstext von `stufeHolen`, kein Schnitt in der Messreihe, kein Geld. Der Preis liegt in der Grösse der Stichprobe: An Sommertagen bliebe womöglich zu wenig übrig.
 → **Empfehlung Claude: nicht entscheiden, erst zählen.** Wie viele Spiele der Messreihe bisher Freundschaftsspiele waren, steht nirgends. Diese Zahl lässt sich aus den vorhandenen Daten rückwirkend bestimmen, ohne neue Messung und ohne Eingriff. Erst danach ist die Frage überhaupt beantwortbar.
+
+---
+
+**31. Ist-Soll-Abgleich: der Core-Vertrag ist nicht gebaut** · *Hinweis 8.8., ChatGPT · am Code belegt von Claude 8.8.* · **Status: Idee — NEU, kein Umbau, nur Abgleich**
+
+`Ondo-Core-Architektur.md` beschreibt den Vertrag Modul → Core → Gehirn → Core → Modul mit **genau einer LLM-Tür** (`askBrain(anfrage) → antwort`).
+
+**Nachgesehen in `beta.html` am 8.8.: `askBrain` kommt null Mal vor.** Stattdessen drei getrennte Türen — `apiCall`, `geminiCall`, `sonnetSuche` — an **18 Aufrufstellen**.
+
+→ **Der Core-Vertrag ist ein Zielzustand, kein Ist-Zustand.** In den Dokumenten stand das bisher nicht; die Architektur liest sich, als wäre sie umgesetzt.
+→ **ChatGPTs Formulierung:** Bevor weitere Funktionen wachsen, feststellen, welche Teile dem Vertrag entsprechen und welche nur konzeptionell so beschrieben sind. **Nicht umbauen. Nur festhalten.**
+→ **Kosten:** keine. Ein Absatz in `Ondo-Core-Architektur.md`, der Ist und Soll trennt.
+
+---
+
+**32. Datenmodell: „gefunden" von „bestätigt" trennen** · *Hinweis 8.8., ChatGPT* · **Status: Idee — NEU**
+
+Die App unterscheidet nicht zwischen einem Ergebnis, das **vorhanden**, einem, das **formal gültig**, und einem, das **als Tatsache bestätigt** ist. Genau daran hängt die neunte Fehlerart: Ein erfundenes 0:0 ist formal gültig und fällt durch keine Prüfung.
+
+→ **Dies ist derselbe Punkt wie Punkt E aus der anderen Richtung.** Geminis Formulierung vom 8.8. („Status: beendet, Ergebnis 0:0" gegen „Status: nicht gefunden") führt genau diese Unterscheidung ein. **Wer Punkt E baut, baut Punkt 32 mit.**
+→ **Kein Schnitt in der Messreihe** — betrifft nur den Schiedsrichter.
+→ **Kosten:** noch nicht beziffert, weil an Punkt E hängend.
+
+---
+
+**33. Doppelte Codebasis: bei der Beförderung bewusst entscheiden** · *Hinweis 8.8., ChatGPT* · **Status: Idee — NEU, ergänzt die bestehende technische Schuld**
+
+`beta.html` und `OndoControl.html` sind zwei vollständige Kopien; jede Korrektur muss zweimal gemacht werden. Als technische Schuld mit Priorität **hoch** bereits eingetragen.
+
+→ **Neu ist nur die Forderung:** Bei der Beförderung **ausdrücklich entscheiden**, ob die Doppelung aufgelöst wird — oder begründen, warum sie bestehen bleibt. Nicht stillschweigend weiterlaufen lassen.
+→ **Aufzunehmen in die Beförderungskriterien.**
+→ **Kosten:** keine für die Entscheidung.
+
+*ChatGPTs vierter Hinweis vom 8.8. — nicht auf Vorrat abstrahieren, erst bei einem real beobachteten Problem — **bestätigt** den bestehenden Architektur-Stopp und die Zwei-Probleme-Regel und wird nicht als eigener Punkt geführt.*
 
 ---
 
@@ -741,6 +789,18 @@ Der Auftragstext fragt heute: „wie sicher in Prozent, dass *beide Teams treffe
 → **Kosten:** kein Geld, kein zusätzlicher Aufruf — aber ein **Schnitt in der laufenden Messreihe**. Das ist der eigentliche Preis.
 → Folge für Punkt 0b: Eine Widerspruchsquote wird nach dem Umbau erst sinnvoll messbar.
 
+
+**⚠ Stand am Ende von Chat 12 (8.8.): beschlossen, gemessen, NICHT gebaut.** Chat 12 hat den Umfang vollständig vermessen (15 betroffene Aussagen, netto +9 für Sonnet, Befund A widerlegt — Einzelheiten in `PROJEKT-STATUS.md`, Abschnitt „Der 8. August", Unterpunkte 7 und 19) und **auf Ondos Anweisung nicht gebaut**. Ondo: „Bauen macht der nächste Chat."
+
+**Der von Chat 12 vorgeschlagene Bau — zwei Stellen in `beta.html`, zur Vorlage nach Artikel 8, nicht ausgeführt:**
+- **Zeile 1033, Auftragstext:** heute „wie sicher in Prozent, dass ‚beide Teams treffen' **so ausgeht wie in deinem Ergebnis**" → neu: wie wahrscheinlich, dass **beide Mannschaften mindestens ein Tor erzielen**, ausdrücklich unabhängig vom eigenen Tipp.
+- **Zeilen 614–618, `maerkteBauen`:** `var btts = (heim>0 && gast>0)` entfällt. Die Behauptung ist dann immer `btts_ja` mit der genannten Prozentzahl; die Umdrehung greift nur noch bei unter 50 — genau wie beim Tore-Markt, wo es seit Wochen fehlerfrei läuft.
+- **Damit verschwindet die Ursache, nicht nur die Wirkung.** Das mitgeschriebene `bttsWort` bleibt als Gegenprobe und müsste danach immer übereinstimmen.
+- **Keine neuen Sprachschlüssel** — der Auftragstext ist nicht übersetzt. **Kein Geld, kein zusätzlicher Aufruf.** Der Preis ist der Schnitt.
+- **Günstiger Zeitpunkt:** Die 20 Vorhersagen vom 8.8. früh sind unter dem alten Text entstanden. Ein Bau davor oder danach legt den Schnitt auf eine Tagesgrenze.
+
+**Claudes Grund gegen eine rückwirkende Berichtigung der Altdaten trägt nicht mehr** — vollständige Begründung in `PROJEKT-STATUS.md`, Abschnitt „Der 8. August", Unterpunkt 19. Kurzfassung: Von vier Gründen sind drei entkräftet; übrig bleibt, dass die Berichtigung auf einer sehr gut belegten **Schlussfolgerung** über Sonnets Frageverständnis beruht und ein Irrtum darin danach unsichtbar wäre. Das betrifft praktisch **zwei Einträge**. **Empfehlung: berichtigen; die zwei Altfälle Ondo einzeln vorlegen.** Entscheidung Ondos steht aus.
+
 ---
 
 **E. „Prüfen statt suchen" — beschlossen am 25.7., bis heute nicht gebaut** · *Idee 25.7., ChatGPT · Beschluss Ondo 25.7.* · **Status: beschlossen, noch nicht gebaut — NEU eingetragen 31.7.**
@@ -1034,6 +1094,8 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 - **Quoten-Transparenz / Quoten-Realitätsabgleich** (*18.7.*) · **überholt** — kehrt mit Punkt 9 zurück
 
 ---
+
+*Zu Fassung 13 — neunter und letzter Einzelnachtrag, eingetragen am 8.8.2026, 11:55 Uhr von Chat 12 — Abschluss-Buchführung: **Punkte 31, 32 und 33 neu** aus ChatGPTs Architekturhinweisen vom 8.8. (Core-Vertrag nicht gebaut · „gefunden" gegen „bestätigt" · Doppel-Codebasis bei der Beförderung). **Punkt 27 auf entscheidungsreif.** **Punkt F um den vollständigen Bauvorschlag und die Berichtigungsfrage ergänzt.** **Bilanz des Verzeichnisses: 39 Punkte, 7 gebaut, 7 beschlossen und nicht gebaut** (F, E, 2, 3, 4, 6, 7). Ondos Beschluss: **jeder Chat baut ab sofort mindestens einen beschlossenen Punkt** — als Arbeitsregel L im Blueprint 0.11.*
 
 *Achter Nachtrag zu Fassung 12, eingetragen am 8.8.2026, 07:58 Uhr von Chat 12: **Der KI-Log seit 1.7. ist maschinell ausgezählt, Gegenprobe gegen die App bestanden.**
 
