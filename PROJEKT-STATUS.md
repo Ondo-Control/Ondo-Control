@@ -1,7 +1,7 @@
 # ONDO CONTROL — PROJEKT-STATUS
-*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 7. August 2026, v19.7.8*
+*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 8. August 2026, 06:35 Uhr, v19.7.8*
 
-> **Zur Datierung:** Der Rückstand vom 3. bis 5. August ist **aufgeholt**. Die Kalibrierungszahlen weiter unten sind am 6.8. aus dem KI-Log-Text nachgerechnet und anschließend **gegen die Anzeige der App geprüft** — beide Rechnungen stimmen in jeder Zeile überein. Sie gelten. **Stand der Beta: v19.7.8, geliefert am 7. August.**
+> **Zur Datierung:** Die Kalibrierungszahlen im Abschnitt „Aktueller Messstand" sind am **8.8.2026, 06:11 Uhr aus der Anzeige der App abgelesen** — je 180 bewertete Aussagen, beide Gehirne 8 % Abweichung. Ältere Zahlen in den Tagesabschnitten (135 Aussagen, 5 gegen 9 Prozent) sind **Verlaufsangaben und bleiben stehen**. Massgeblich ist immer der Abschnitt „Aktueller Messstand".
 
 ---
 
@@ -31,6 +31,82 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 - **Belegen statt herleiten** *(31.7.)*. Eine plausible Erklärung ist keine geprüfte Erklärung. Codezeilen werden zitiert, nicht beschrieben.
 
 **Master-Dokumente im Repo:** `Blueprint.md` · `Ondo-Core-Architektur.md` · `Ondo-Control-Backlog.md` (Fassung 5, 31.7.) · dieses Dokument.
+
+---
+
+## DER 8. AUGUST — erster Prüflauf ohne einen einzigen Fehler, und Punkt F kostet erstmals messbar
+
+### 1. Der Prüflauf vom Abend des 7.8. war in jeder Hinsicht fehlerfrei
+
+**Fünf von fünf Endständen richtig. Fünf von fünf Halbzeitständen richtig.** Dazu alle fünf Daten korrekt auf den 7.8. datiert, alle fünf Wettbewerbe richtig zugeordnet und **alle fünf Quellenangaben richtig geschrieben** — der Schreibfehler `sportdaten-spiegel.de` vom Morgen ist nicht wieder aufgetreten.
+
+Es ist der **vierte fehlerfreie Lauf in Folge am Endstand** und der **erste seit dem 5. August ohne falschen Halbzeitstand**. Damit ist die Serie von drei Tagen mit je einem falschen Halbzeitstand gebrochen.
+
+Alle fünf wurden von Claude vor der Übernahme selbst per Websuche gegengeprüft. Drei waren sofort vollständig belegbar (Middlesbrough über Teesside Live, Brügge über Sporza mit Torzeiten, Bochum über die Sportschau mit Torzeit 39.). Bei Wolverhampton war nur der Endstand belegbar, die Halbzeit nicht; bei Wycombe fand Claude nach sechs Suchen gar nichts. **Beide wurden ausdrücklich als nicht bestätigt gemeldet statt durchgewunken.** Ondo lieferte für beide Bildschirmfotos mit Torzeiten nach — Wolverhampton 14./34./43. Minute, Wycombe Kemp 27., Henderson 39., Magennis 90+5. Beide bestätigten die App vollständig.
+
+**Es war der zweite Lauf mit Temperatur 0.** Beim ersten war ein Halbzeitstand falsch, beim zweiten keiner. **Das beweist nichts** (Arbeitsregel B). Die Bewährungszeit für Punkt 26 läuft weiter, die Erwartung bleibt Erwartung.
+
+### 2. Messstand: je 180 bewertete Aussagen — und die Kalibrierung beider Gehirne ist jetzt gleich
+
+**⚠ Berichtigung im selben Abschnitt.** Claude (Chat 12) schrieb hier zuerst **150** und hatte von den dokumentierten 135 aus fortgeschrieben, dabei aber die **zehn am Morgen des 7.8. übernommenen Ergebnisse** übersehen — dreissig Aussagen je Gehirn. 135 + 30 + 15 = 180. Ondos Bildschirmfoto der Finanzen-Seite vom 8.8. deckte es auf. **Hergeleitet statt nachgesehen — genau der Fehler, den Arbeitsregel H verbietet.** Alle Zahlen unten stammen aus der App, keine ist gerechnet.
+
+| Gehirn | bewertete Aussagen | Kalibrierungsabweichung | Trefferquote | Ø Abstand von 50 | Anteil ab 60 % |
+|---|---|---|---|---|---|
+| Sonnet | 180 | **8 %** (grün) | 47 % (85/180) | 7 | 19 % (35/180) |
+| Flash | 180 | **8 %** (grün) | 51 % (91/180) | 10,1 | 46 % (83/180) |
+
+**Die Gehirne sind bei der Hauptkennzahl gleichauf.** Zuletzt dokumentiert war Sonnet 5 %, Flash 9 %. Sonnet hat sich um drei Punkte **verschlechtert**, Flash um einen **verbessert**. Der Vorsprung, der seit Wochen in allen Dokumenten steht, ist weg.
+
+**Sonnets Kalibrierung nach Stufen (aus der App):**
+
+| Angabe | behauptet | wirklich | Anzahl |
+|---|---|---|---|
+| 1–49 % | 42 % | 33 % | 24 |
+| 50–59 % | 54 % | 50 % | 121 |
+| 60–69 % | 63 % | **52 %** | 21 |
+| 70–79 % | 74 % | **43 %** | 14 |
+
+**Flash zum Vergleich:** 1–49 % 42/28 (25) · 50–59 % 55/53 (72) · 60–69 % 63/53 (66) · 70–79 % 73/54 (13) · 80–89 % 82/**100** (3) · 90–99 % 90/**100** (1).
+
+**Der Befund, auf den seit dem 30. Juli gewartet wurde, ist da — und er ist unangenehm.** Sonnet hat jetzt 35 Aussagen ab 60 %. In der Stufe 70–79 % behauptet es 74 % und trifft 43 % — schlechter als Münzwurf. In der Stufe 60–69 % behauptet es 63 % und trifft 52 %. **Sonnets guter Kalibrierungswert war zum grossen Teil Vorsicht; sobald es sich festlegt, ist es deutlich überzuversichtlich.**
+
+**🔴 Aber diese Lesart ist durch Punkt F verunreinigt, und zwar genau dort.** Die umgedrehten „beide treffen"-Werte liegen fast alle zwischen 60 und 79 % und werden als falsch gewertet, obwohl Sonnets Wort richtig war (siehe Unterpunkt 3). Ein unbekannter Teil von Sonnets scheinbarer Überzuversicht ist Rechenfehler, kein Urteilsfehler. **Wie gross dieser Teil ist, ist ohne Punkt F nicht bestimmbar** (Art. 11).
+
+**Damit ist Punkt F von einem Anzeigefehler zu einer Verfälschung der Hauptkennzahl geworden.** Er ist jetzt der dringendste offene Punkt des Projekts.
+
+Flash hat in den Stufen 80–99 % vier Aussagen, alle richtig. Sonnet hat in diesen Stufen **keine einzige** — seine 92-%- und 85-%-Aussagen vom 7.8. abends stecken in den geparkten Einträgen zu erfundenen Spielen und werden nie bewertet.
+
+### 3. 🔴 Punkt F hat zum ersten Mal messbar Punkte gekostet — zwei an einem Abend
+
+Bei **Club Brugge** und bei **Wolverhampton** sagte Sonnets Wort „nein", und „nein" war beide Male richtig — Kortrijk und Port Vale trafen nicht. Angezeigt und gewertet wurde durch die Umdrehung jeweils „Ja: falsch".
+
+**Ohne die Umdrehung stünde Sonnet bei 8 von 15 — exakt gleichauf mit Flash.** Der gesamte Unterschied dieses Laufs geht auf die Zweideutigkeit zurück, nicht auf die Urteilskraft.
+
+Damit ist Punkt F nicht mehr nur ein Anzeigefehler, sondern **verfälscht die gemessene Trefferquote**. Er bleibt beschlossen und ungebaut; er ist ein Schnitt und braucht eine eigene Lieferung mit frischer Sicherung davor.
+
+### 4. Test A steht bei 39 von 39
+
+Zehn neue Fälle aus dem Lauf vom Abend des 7.8. (fünf Tipps mit Null, alle gedreht; fünf ohne Null, keiner gedreht) und zehn aus dem Lauf vom Morgen des 8.8. (Austria Wien 2:0 gedreht; neun ohne Null, keiner gedreht). Flash: null Umdrehungen in zwanzig weiteren Fällen.
+
+Die Regel „Sonnet dreht genau dann, wenn sein Tipp eine Null enthält" hat bisher **keine einzige Ausnahme**.
+
+### 5. 🔴 Neue Beobachtung: sechs von zehn Spielen des 8.8. sind Freundschaftsspiele
+
+Die Spielliste vom Morgen des 8.8. enthält Köln – Real Sociedad, Augsburg – Sassuolo, Schalke – Atalanta, Leeds – Leipzig, Real Betis – Bournemouth und Stuttgart – Everton. **Zwölf der zwanzig Vorhersagen hängen damit an Testspielen.**
+
+Weg A verbietet nur Formate mit **verkürzter Spielzeit**. Gewöhnliche Freundschaftsspiele über 90 Minuten fallen nicht darunter.
+
+Drei Gründe, warum das die Messung berührt — alle **unbelegt**, als Bedenken geführt: Aufstellungen wechseln in der Pause vollständig, was Over/Under und „beide treffen" anders wirken lässt · Ergebnisse von Testspielen sind schlechter dokumentiert, was das Risiko der neunten Fehlerart (erfundene 0:0) erhöht · beide Gehirne benennen die Unsicherheit selbst in ihren Begründungen und liegen fast durchweg dicht an 50 %.
+
+**Nichts gebaut, nichts entschieden.** Aufgenommen als Backlog-Punkt 30.
+
+### 6. Anpfiffzeiten: zu prüfen, bevor der nächste Prüflauf läuft
+
+Die beiden Zweitligaspiele des 8.8. stehen mit **12:00 Uhr** in der Liste. Ob das stimmt, ist **nicht geprüft**. Claude prüft es per Websuche, bevor der Prüflauf angesetzt wird, und trägt das Ergebnis hier nach. Keine Vermutung an dieser Stelle — die Erklärung „britische Ortszeit" ist am Vortag genau so entstanden.
+
+### 7. Sicherung
+
+**Letzte bestätigte Sicherung: 8.8.2026, 06:12 Uhr**, nach der Übernahme der fünf Ergebnisse und vor dem Vorhersagelauf des Morgens. Davor: 7.8., 08:00 Uhr.
 
 ---
 
@@ -682,43 +758,44 @@ Bis v18.6 war die Beta ein **Wett-Berater**. Am 23. Juli wurde sie zum **Messger
 
 ---
 
-## Aktueller Messstand (nachgerechnet am 6.8.2026 aus dem KI-Log-Text, gegen die Anzeige der App geprüft)
+## Aktueller Messstand (abgelesen aus der App am 8.8.2026, 06:11 Uhr)
 
-**Bestand insgesamt:** 170 Vorhersagen, davon 150 aus der Messphase und 20 im v18-Archiv. **Je 135 bewertete Aussagen.** Zuletzt vorhergesagt am 6. August.
+**Bestand insgesamt:** 190 Vorhersagen, davon 170 aus der Messphase und 20 im v18-Archiv. **Je 180 bewertete Aussagen.** Zuletzt vorhergesagt am 8. August früh (20 offene Vorhersagen).
 
-*Zur Verlässlichkeit (Art. 14): Die 270 Wertepaare wurden von Hand aus dem KI-Log-Text abgeschrieben und maschinell ausgewertet. Anschließend wurde das Ergebnis gegen die Kalibrierungs-Anzeige der App gehalten — **jede Zeile stimmt überein**, einschließlich Bandbreiten, Anzahlen und Entschlossenheit. Zwei unabhängige Rechenwege, dasselbe Ergebnis.*
+*Zur Herkunft (Art. 14): Alle Zahlen dieses Abschnitts sind **aus der Anzeige der App abgelesen**, keine ist gerechnet. Claude hatte am 8.8. zunächst je 150 Aussagen fortgeschrieben und dabei die zehn am Morgen des 7.8. übernommenen Ergebnisse übersehen — 135 + 30 + 15 = 180. Der Fehler kam durch Ondos Bildschirmfoto der Finanzen-Seite ans Licht.*
 
 | | bewertete Aussagen | Kalibrierungs-Abweichung | Trefferquote |
 |---|---|---|---|
-| Sonnet | 135 | **5 %** (grün) | 47 % (64/135) |
-| Flash | 135 | **9 %** (grün) | 48 % (65/135) |
-| gesamt | 270 | — | 48 % (129/270) |
+| Sonnet | 180 | **8 %** (grün) | 47 % (85/180) |
+| Flash | 180 | **8 %** (grün) | 51 % (91/180) |
+| gesamt | 360 | — | 49 % (176/360) |
 
-**Sonnets Verteilung:** 1–49 % → 21 Aussagen (behauptet 42, wirklich 38) · 50–59 % → **104** (behauptet 53, wirklich 51) · 60–69 % → 9 (behauptet 63, wirklich 33) · 70–79 % → 1 (behauptet 72, wirklich 0)
+**Sonnets Verteilung:** 1–49 % → 24 Aussagen (behauptet 42, wirklich 33) · 50–59 % → **121** (behauptet 54, wirklich 50) · 60–69 % → 21 (behauptet 63, wirklich 52) · 70–79 % → 14 (behauptet 74, wirklich 43)
 
-**Flashs Verteilung:** 1–49 % → 22 (43/32) · 50–59 % → 59 (55/54) · 60–69 % → **49 (behauptet 63, wirklich 49)** · 70–79 % → 4 (72/25) · 80–89 % → 1 (82/100)
+**Flashs Verteilung:** 1–49 % → 25 (42/28) · 50–59 % → 72 (55/53) · 60–69 % → **66 (behauptet 63, wirklich 53)** · 70–79 % → 13 (73/54) · 80–89 % → 3 (82/100) · 90–99 % → 1 (90/100)
 
 **Ehrliche Einordnung (Art. 14):**
-- **Sonnet hat zehn bewertete Aussagen oberhalb von 60 %** — bei 135 Aussagen insgesamt. Über Sonnets Verhalten bei Zuversicht wissen wir weiterhin fast nichts. Der gute Kalibrierungswert ist zum großen Teil Vorsicht, nicht Können. **77 Prozent aller Sonnet-Aussagen liegen zwischen 50 und 59 Prozent.**
-- **Flashs Schwachstelle ist jetzt sehr solide belegt:** 49 Aussagen im Bereich 60–69 %, behauptet 63 %, eingetroffen 49 %. Fast viermal so viele Aussagen wie bei der ersten Messung, und die Lücke ist geblieben. Dasselbe Muster nach unten: unter 50 % sagt Flash 43 und trifft 32.
-- **Die Trefferquoten sind praktisch gleich** (47 gegen 48 Prozent). Der Unterschied zwischen den Gehirnen liegt nicht im Treffen, sondern in der **Entschlossenheit** — und dort ist er groß.
+- **🔴 Der dokumentierte Vorsprung Sonnets besteht nicht mehr.** Zuletzt 5 gegen 9 Prozent, jetzt **beide 8**. Sonnet hat sich um drei Punkte verschlechtert, Flash um einen verbessert.
+- **Sonnet hat jetzt 35 Aussagen ab 60 %** statt zehn. In der Stufe 70–79 % behauptet es 74 und trifft 43 — schlechter als Münzwurf. In der Stufe 60–69 % behauptet es 63 und trifft 52. **Sein guter Wert war zum grossen Teil Vorsicht.** 67 Prozent aller Sonnet-Aussagen liegen weiterhin zwischen 50 und 59 Prozent.
+- **🔴 Diese Lesart ist durch Punkt F verunreinigt, und zwar genau in den Stufen 60–79 %.** Dort liegen die umgedrehten „beide treffen"-Werte, die als falsch gewertet werden, obwohl Sonnets Wort richtig war. **Wie viel von Sonnets Überzuversicht Rechenfehler und wie viel Urteilsfehler ist, ist ohne Behebung von Punkt F nicht bestimmbar** (Art. 11).
+- **Flashs Schwachstelle bleibt belegt:** 66 Aussagen im Bereich 60–69 %, behauptet 63, eingetroffen 53. Die Lücke ist gegenüber dem 6.8. kleiner geworden (damals 63/49), aber vorhanden. In den Stufen 80–99 % hat Flash vier Aussagen, alle richtig.
+- **Sonnet hat in den Stufen ab 80 % keine einzige Aussage.** Seine 92-%- und 85-%-Angaben vom 7.8. abends stecken in geparkten Einträgen zu erfundenen Spielen und werden nie bewertet.
+- **Die Trefferquoten gehen erstmals auseinander:** 47 gegen 51 Prozent. Ein Teil davon geht nachweislich auf Punkt F zurück — allein am Abend des 7.8. zwei Punkte.
 - Zeilen mit ein bis vier Aussagen sind **bedeutungslos**.
-- **Die sieben CL-Vorhersagen vom 29.7. stecken NICHT in diesen 135.** Genau die Daten, die Sonnets Verhalten bei klaren Favoriten zeigen würden, fehlen weiterhin.
-- **Flash lief die ganze Zeit als `gemini-3.1-flash-lite`.** Die 5 gegen 9 Prozent sind womöglich ein Größen- und kein Anbieterunterschied.
+- **Die sieben CL-Vorhersagen vom 29.7. stecken NICHT in diesen 180.**
+- **Flash lief die ganze Zeit als `gemini-3.1-flash-lite`.**
 - Ondos eigene Bilanz: **−29,75 €**, eigene Trefferquote 17 % (1/6). Papier-Modus bleibt die stehende Empfehlung.
 
-**Entschlossenheit (aus denselben 135 Aussagen je Gehirn):**
+**Entschlossenheit (aus denselben 180 Aussagen je Gehirn):**
 
 | | Ø Abstand von 50 | Anteil ab 60 % |
 |---|---|---|
-| Sonnet | 4,8 | 7 % (10/135) |
-| Flash | 8,7 | 40 % (54/135) |
+| Sonnet | 7 | 19 % (35/180) |
+| Flash | 10,1 | 46 % (83/180) |
 
-*Lesart: Flash legt sich fast sechsmal so oft fest wie Sonnet, bei knapp doppelter Kalibrierungs-Abweichung. Die Zahl allein sagt nichts über Qualität — sie ist erst zusammen mit der Kalibrierung aussagekräftig. **Den Gehirnen wird sie nicht mitgeteilt.***
+*Lesart: Flash legt sich weiterhin deutlich öfter fest als Sonnet, aber der Abstand schrumpft — am 6.8. war es 7 gegen 40 Prozent, jetzt 19 gegen 46. **Beide Gehirne sind entschlossener geworden, Sonnet stärker.** Die Zahl allein sagt nichts über Qualität. **Den Gehirnen wird sie nicht mitgeteilt.***
 
-*Beide Werte sind gegenüber dem 3.8. praktisch unverändert (damals 4,8 und 8,6 bei je 87 Aussagen). Mit 48 zusätzlichen Aussagen je Gehirn hat sich das Bild bestätigt statt verschoben.*
-
----
+*Vorherige Stände: 6.8. — je 135 Aussagen, Sonnet 5 % / 4,8 / 7 %, Flash 9 % / 8,7 / 40 %. 3.8. — je 87 Aussagen, 4,8 und 8,6.*
 
 ## Was v19.7 kann
 
@@ -855,6 +932,10 @@ Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp 
 | 7.8.2026 | Chat 11 → Chat 12 | Raw-Links + Projektdateien + Mappe | **9 von 9** | beide Fangfragen bestanden (drei verschiedene Muster bei den Anpfiffzeiten benannt und die Ursache als unbekannt geführt, ohne das dritte Muster als Bestätigung der widerlegten Zeitzonen-These zu lesen; aus dem guten zweiten Spiellisten-Lauf nichts für den Bau geschlossen); vier Antworten über dem Schlüssel — Weg A am Code statt am Dokument belegt, Geminis zu starke Formulierung als schon beim Eintragen zurückgewiesen erkannt, der `checkUpdate`-Mechanismus und der Blueprint-Eintrag vom 10.7. als Belege für die zwei gewollten Rückstände. **Der Nachfolger fand vor der Prüfung vier Fehler in der Buchführung des Vorgängers — drei veraltete Angaben (v19.7.7 statt v19.7.8, 199 statt 201 Sprachschlüssel) und eine doppelt eingesetzte Sicherungsliste — und unterschied dabei richtig zwischen Stands- und Verlaufsangaben.** |
 
 ---
+
+*Berichtigt von Claude (Chat 12) am 8.8.2026, 06:35 Uhr: **Der Messstand war falsch.** Claude schrieb je 150 Aussagen, richtig sind je 180 — die zehn am Morgen des 7.8. übernommenen Ergebnisse waren beim Fortschreiben übersehen worden. Ondos Bildschirmfoto deckte es auf. Alle Kennzahlen des Abschnitts stammen jetzt aus der App: beide Gehirne **8 %** Abweichung, Sonnet 47 % (85/180), Flash 51 % (91/180). Sonnets dokumentierter Kalibrierungsvorsprung besteht nicht mehr. **Zweite Berichtigung im selben Durchgang, auf Ondos Aufforderung zur Nachprüfung:** Der Abschnitt „Aktueller Messstand" stand noch auf dem Stand des 6.8. (je 135 Aussagen, 5 gegen 9 Prozent) und war beim ersten Durchgang übersehen worden. Er ist jetzt vollständig auf die abgelesenen Werte gebracht, ebenso der Datierungshinweis im Kopf. Die Zahlen in den Tagesabschnitten des 6. und 7. August sind **Verlaufsangaben und bleiben unverändert**.*
+
+*Aktualisiert von Claude (Chat 12) am 8.8.2026, 06:20 Uhr: Abschnitt „Der 8. August" neu — Prüflauf ohne Fehler, Messstand auf je 150, Punkt F erstmals mit gemessenem Punktverlust, Test A bei 39 von 39, Freundschaftsspiele als neue Beobachtung, Sicherungsstand auf 06:12 Uhr. Die Kalibrierungsabweichung ist aus dem Log-Text nicht bestimmbar und bleibt offen.*
 
 *Aktualisiert von Claude (Chat 12) am 7.8.2026, 22:40 Uhr: **Neue Tabelle „Die Spielliste — drei Fehlerarten"** (Beschluss Ondo, 7.8.). Der Doppeleintrag wandert dorthin statt als zehnte Fehlerart in die Schiedsrichter-Tabelle; diese bleibt bei neun. Dazu neu aufgenommen: falsche Anpfiffzeiten und erfundene Spiele. Die Zeile (10) in der Schiedsrichter-Tabelle verweist jetzt auf die Verschiebung.*
 

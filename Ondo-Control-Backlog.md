@@ -206,6 +206,43 @@ Fallen auffällig viele Spiele eines Tages auf exakt dieselbe runde Uhrzeit, ist
 
 ---
 
+**29. Eigene Rolle für die Spielliste (`rolle:'liste'`)** · *Fund 7.8., Claude, aus Ondos Frage „wer liefert die Spielliste?" · zugestimmt Ondo 7.8.* · **Status: Idee — NEU, ausdrücklich NICHT bauen**
+
+**Der Befund, im Code nachgesehen.** In `stufeHolen` steht:
+
+```
+var call = hatGemini()
+  ? geminiCall({ prompt: prompt, useSearch: true, rolle:'gehirn' })
+  : sonnetSuche(prompt, 5, 1500);
+```
+
+Die Spielliste läuft unter `rolle:'gehirn'`. In `gWahl` gibt es nur zwei Rollen — `var w = (rolle==='ref') ? state.gModellRef : state.gModellGehirn;`. **Die Spielliste teilt sich Modell und Einstellungen mit dem zweiten Gehirn**, also heute `gemini-3.1-flash-lite`, die kleinste Stufe.
+
+**Folge:** Modell und Temperatur der Spielliste sind heute nicht änderbar, ohne das zweite Gehirn mitzuändern — und das wäre nach Arbeitsregel J ein Schnitt in der Messreihe. Frei steuerbar ist allein der Auftragstext in `stufeHolen`; Weg A (v19.7.8) war genau das.
+
+→ **Vorschlag:** eine dritte Rolle `liste` einführen, damit Modell und Temperatur der Spielliste getrennt einstellbar sind.
+→ **Die Begründung ist dieselbe wie bei Punkt 26:** Die Spielliste ist **Messwerkzeug, nicht Messgegenstand.** Sie liefert das Material, über das die Gehirne urteilen; sie urteilt nicht selbst. Arbeitsregel J steht einer Änderung dort deshalb nicht entgegen.
+→ *Zwei-Probleme-Regel: löst zwei Blockaden auf einmal — Modellwahl und Temperatur. Erfüllt.*
+→ **Grenze der Modellwahl, ehrlich (Art. 14):** „Frei wählbar" hieße heute **nur unter den Flash-Modellen**. `modellTaugt(name,false)` lässt ausschliesslich Namen mit „flash" durch, und `gWahl` prüft dieselbe Bedingung noch einmal. Ein stärkeres Modell für die Liste würde **Punkt 0a wieder aufmachen** — gestrichen, aber nicht widerlegt, und seit dem 4.8. läuft das Konto auf Preisstufe 1, unter der `gemini-2.5-pro` verfügbar wäre. Das ist eine eigene Entscheidung und gehört nicht in diesen Punkt.
+→ **Was es NICHT tut:** Es repariert von sich aus **gar nichts**. Es nimmt nur die Sperre weg. Ob ein anderes Modell oder Temperatur 0 die drei Fehlerarten der Spielliste (S1 bis S3) verringert, ist ungemessen, und ihre Ursachen sind alle drei unbekannt.
+→ **Kosten:** wenige Zeilen Code, kein Geld, kein zusätzlicher Aufruf, kein Schnitt in der Messreihe. Der eigentliche Preis: ein Eingriff in `geminiCall`, die einzige Stelle, an der alle Modellaufrufe zusammenlaufen — und Punkt 26 sitzt dort erst seit dem 7.8. und ist noch nicht bewährt.
+→ **Empfehlung Claude: nicht bauen.** Erst Punkt 26 seine Bewährungszeit geben, und erst abwarten, ob die erfundenen Spiele wiederkehren. Gegen eine unbekannte Ursache zu bauen ist der Fehler vom 4. August.
+
+---
+
+**30. Freundschaftsspiele aus der Spielliste ausschliessen?** · *Beobachtung 8.8., Claude* · **Status: Idee — NEU, nicht entschieden**
+
+**Der Befund.** Die Spielliste vom Morgen des 8.8. enthält **sechs Freundschaftsspiele von zehn Spielen** — Köln – Real Sociedad, Augsburg – Sassuolo, Schalke – Atalanta, Leeds – Leipzig, Real Betis – Bournemouth, Stuttgart – Everton. Zwölf der zwanzig Vorhersagen hängen damit an Testspielen.
+
+Weg A (v19.7.8) verbietet nur Formate mit **verkürzter Spielzeit**. Gewöhnliche Freundschaftsspiele über 90 Minuten fallen nicht darunter, und das war bei der Formulierung auch so gemeint.
+
+→ **Drei Bedenken, alle unbelegt und ausdrücklich als Bedenken geführt:** Aufstellungen wechseln zur Pause oft vollständig, was Over/Under und „beide treffen" anders wirken lässt · Ergebnisse von Testspielen sind schlechter dokumentiert, was das Risiko der neunten Fehlerart (erfundene 0:0) erhöht · beide Gehirne benennen die Unsicherheit selbst und liegen fast durchweg dicht an 50 %.
+→ **Gegenargument, das ernst zu nehmen ist:** Gemessen wird **Kalibrierung**, nicht Trefferquote. Ein Gehirn, das bei einem Testspiel zurückhaltend antwortet und damit richtig liegt, liefert einen **guten** Messwert. Ein Ausschluss würde genau die Fälle entfernen, in denen Zurückhaltung angemessen ist — und damit möglicherweise das Bild verzerren statt es zu schärfen.
+→ **Kosten eines Ausschlusses:** ein Satz im Auftragstext von `stufeHolen`, kein Schnitt in der Messreihe, kein Geld. Der Preis liegt in der Grösse der Stichprobe: An Sommertagen bliebe womöglich zu wenig übrig.
+→ **Empfehlung Claude: nicht entscheiden, erst zählen.** Wie viele Spiele der Messreihe bisher Freundschaftsspiele waren, steht nirgends. Diese Zahl lässt sich aus den vorhandenen Daten rückwirkend bestimmen, ohne neue Messung und ohne Eingriff. Erst danach ist die Frage überhaupt beantwortbar.
+
+---
+
 ## ⚠ Was Fassung 10 ändert (6.8.)
 
 - **Drei Entscheidungen vom Abend des 5.8. nachgetragen** — sie standen bis hierher in keiner Repo-Datei: Arbeitsregel J bestätigt · Auftragstext bei „beide treffen" wird umformuliert · Rückwirkung abgelehnt, stattdessen der Schnitt
@@ -987,6 +1024,12 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 - **Quoten-Transparenz / Quoten-Realitätsabgleich** (*18.7.*) · **überholt** — kehrt mit Punkt 9 zurück
 
 ---
+
+*Fünfter Nachtrag zu Fassung 12, eingetragen am 8.8.2026, 06:35 Uhr von Chat 12: **Punkt F ist der dringendste offene Punkt des Projekts.** Aus der App abgelesen: beide Gehirne stehen bei **8 %** Kalibrierungsabweichung, je 180 bewertete Aussagen. Sonnets dokumentierter Vorsprung (5 % gegen 9 %) besteht nicht mehr. Sonnet hat jetzt 35 Aussagen ab 60 %, und in den Stufen 60–79 % trifft es 52 % beziehungsweise 43 % — **genau die Stufen, in denen die umgedrehten „beide treffen"-Werte liegen.** Punkt F verfälscht damit nicht mehr nur die Anzeige, sondern die Hauptkennzahl. Einzelheiten in `PROJEKT-STATUS.md`, Abschnitt „Der 8. August", Unterpunkte 2 und 3. Ausserdem: Der Bericht an die Prüfer wurde am 8.8. um 06:35 Uhr erstmals nach **Arbeitsregel K** erstellt. Er enthält als Frage 2 Ondos Vorschlag, die betroffenen Einträge **rückwirkend zu berichtigen**, statt nur zu schneiden — das berührt den Beschluss vom 5.8. gegen rückwirkende Anpassungen und ist deshalb Ondos Entscheidung, nicht Claudes.*
+
+*Vierter Nachtrag zu Fassung 12, eingetragen am 8.8.2026, 06:20 Uhr von Chat 12: **Punkt 30 neu angelegt** (Freundschaftsspiele), Status Idee, nicht entschieden — mit Gegenargument und der Empfehlung, erst zu zählen. Punkt F ist im Prüflauf vom 7.8. abends **erstmals messbar teuer geworden**: zwei Punkte an einem Abend, dokumentiert in `PROJEKT-STATUS.md`, Abschnitt „Der 8. August", Unterpunkt 3.*
+
+*Dritter Nachtrag zu Fassung 12, eingetragen am 7.8.2026, 22:55 Uhr von Chat 12: **Punkt 29 neu angelegt** (eigene Rolle für die Spielliste), Status Idee, ausdrücklich nicht zu bauen. Entstanden aus Ondos Frage, wer die Spielliste liefert.*
 
 *Zweiter Nachtrag zu Fassung 12, eingetragen am 7.8.2026, 22:40 Uhr von Chat 12: **Die Fehlerarten der Spielliste bekommen eine eigene Tabelle** (Beschluss Ondo, 7.8.) — S1 Doppeleintrag, S2 falsche Anpfiffzeiten, S3 erfundene Spiele, alle in `PROJEKT-STATUS.md`. Der Doppeleintrag wird damit **nicht** zur zehnten Schiedsrichter-Fehlerart; die Schiedsrichter-Tabelle bleibt bei neun. Der Beobachtungspunkt ist entsprechend geschlossen.*
 
