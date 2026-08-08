@@ -107,7 +107,7 @@ Beide Prüfer lesen ganze Dateien nachweislich unvollständig: ChatGPT über Suc
 → **Zwei Bedingungen gegen den Beschluss vom 30.7.** („handgeschriebene Projektzusammenfassungen in Übergaben sind zu unterlassen"): Der Block wird bei **jedem** Bericht neu aus den Dokumenten geschrieben, nie aus dem Gedächtnis, und **jede Zahl darin steht auch im Bericht selbst**, damit ein Widerspruch sofort auffällt.
 → **Nicht als feste Datei ins Repo.** Eine solche Datei würde altern, ohne dass es jemand merkt — genau das ist ChatGPTs eigener Mappe am 30.7. passiert, sie war an sechs Stellen veraltet.
 → **Kosten der Ergänzung: keine.** Kein Geld, kein API-Aufruf, kein Eingriff in Auftragstext, Kalibrierung oder Messreihe. Aufwand eine halbe Seite je Bericht auf Claudes Seite; für Ondo ändert sich nichts.
-→ **Nicht entschieden und ausdrücklich getrennt zu behandeln:** ob die Prüfer künftig **neue** Chats bekommen oder die bestehenden fortgeführt werden. Ein fortgeführter Chat kennt den Zusammenhang, schleppt aber einen alten Stand mit — daran ist ChatGPT am 6.8. gescheitert. Ungemessen.
+→ **✅ ENTSCHIEDEN am 8.8. (Ondo): Prüfer bekommen frische Chats ausserhalb des Projektordners.** Begründung Ondos: In fortgeführten Chats greifen sie auf alte Angaben und alte Ideen zurück. Zweiter Grund, der bei Rückfragen zählt: In einem fortgeführten Chat verteidigt ein Prüfer seine eigene frühere Antwort. **Folge:** Der Zusammenhangsblock ist damit nicht mehr optional, sondern die einzige Grundlage, die der Prüfer hat — und Rückfragen dürfen die frühere Antwort nicht nennen.
 → **Erste Anwendung:** der Bericht nach dem Prüflauf vom Abend des 7.8.
 
 ---
@@ -743,6 +743,14 @@ Der Auftragstext fragt heute: „wie sicher in Prozent, dass *beide Teams treffe
 
 **E. „Prüfen statt suchen" — beschlossen am 25.7., bis heute nicht gebaut** · *Idee 25.7., ChatGPT · Beschluss Ondo 25.7.* · **Status: beschlossen, noch nicht gebaut — NEU eingetragen 31.7.**
 
+**⚠ NICHT MEHR BLOCKIERT (8.8.).** Geminis Rückfrage vom 4.8. — wie ein Prüf-Auftragstext ein **echtes** 0:0 von einem „nicht gefunden" unterscheidet — ist im Bericht nach Arbeitsregel K vom 8.8., 06:35 Uhr gestellt und **von Gemini selbst beantwortet worden**. Sein Vorschlag: Das Modell muss den **Zustand** klassifizieren, bevor es Ziffern ausgeben darf — sinngemäss „Status: beendet, Ergebnis 0:0" gegen „Status: nicht gefunden", und Ziffern ausschliesslich bei bestätigtem torlosem Unentschieden.
+
+→ **ChatGPT widerspricht** und antwortet auf dieselbe Frage „nein, ohne externe Quelle nicht". **Die Prüfer sind hier uneins.**
+→ **Einordnung Claudes (Art. 14):** Geminis Formulierung trennt Zustand und Ergebnis und ist dadurch eine echte Verbesserung. **Sie beseitigt die neunte Fehlerart nicht.** Ein Modell, das ein Ergebnis erfindet, kann ebenso gut den Status erfinden. Sie senkt die Wahrscheinlichkeit, sie schliesst nichts aus.
+→ **Kein Schnitt in der Messreihe:** Der Punkt ändert den Auftragstext des **Schiedsrichters**, nicht den der Gehirne. Arbeitsregel J greift hier nicht — dieselbe Begründung wie bei Punkt 26.
+→ **Prüfbar wäre er:** Ein erfundenes 0:0 fällt heute nicht auf, weil Halbzeit 0:0 zu Endstand 0:0 passt. Mit Status-Kennzeichnung gäbe es zum ersten Mal ein Feld, dessen Fehlen auffällt.
+→ **Status: entscheidungsreif. Ondo entscheidet, ob gebaut wird. Beide Prüfer raten, jetzt nichts zu bauen, sondern erst die Entscheidungen festzuhalten.**
+
 ChatGPTs Umformulierung, im Blueprint unter dem 25.7. protokolliert: **Der Schiedsrichter soll nicht suchen, sondern prüfen.** Nicht „finde Spiel X", sondern „hier sind Wettbewerb, Datum, Heim, Gast — bestätige nur, wenn alle vier übereinstimmen".
 
 **Stand im Code:** Der Auftrag beginnt bis heute mit „Ermittle per Websuche … den ENDSTAND". Übergeben werden nur Spielname, Datum und Anpfiffzeit — **der Wettbewerb gar nicht.** Die Wettbewerbspflicht aus v19.2 wirkt erst hinterher, als Warnung an Ondo.
@@ -1024,6 +1032,10 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 - **Quoten-Transparenz / Quoten-Realitätsabgleich** (*18.7.*) · **überholt** — kehrt mit Punkt 9 zurück
 
 ---
+
+*Siebter Nachtrag zu Fassung 12, eingetragen am 8.8.2026, 07:10 Uhr von Chat 12: **Punkt 28 vollständig entschieden** — frische Prüfer-Chats, Beschluss Ondo. Dazu zwei Einwände Ondos zur rückwirkenden Berichtigung, die Teile der bisherigen Ablehnung entkräften: Der Schaden ist aus dem KI-Log **bestimmbar** (das Kennzeichen `[gedreht]` steht in jeder Zeile), und eine Berichtigung wäre **umkehrbar**, weil das Kennzeichen gespeichert bleibt und der Ursprungswert sich als `100 − gespeicherter Wert` ergibt. Einzelheiten in `PROJEKT-STATUS.md`, Abschnitt „Der 8. August", Unterpunkte 6 und 7.*
+
+*Sechster Nachtrag zu Fassung 12, eingetragen am 8.8.2026, 06:55 Uhr von Chat 12: **Punkt E ist nicht mehr blockiert** — Gemini hat seine eigene Rückfrage vom 4.8. beantwortet und eine Formulierung geliefert; ChatGPT widerspricht. Die Prüferantworten zu allen drei Fragen stehen in `PROJEKT-STATUS.md`, Abschnitt „Der 8. August", Unterpunkt 5. **Frage 2 war unvollständig gestellt** und sollte in einer engen Rückfrage wiederholt werden.*
 
 *Fünfter Nachtrag zu Fassung 12, eingetragen am 8.8.2026, 06:35 Uhr von Chat 12: **Punkt F ist der dringendste offene Punkt des Projekts.** Aus der App abgelesen: beide Gehirne stehen bei **8 %** Kalibrierungsabweichung, je 180 bewertete Aussagen. Sonnets dokumentierter Vorsprung (5 % gegen 9 %) besteht nicht mehr. Sonnet hat jetzt 35 Aussagen ab 60 %, und in den Stufen 60–79 % trifft es 52 % beziehungsweise 43 % — **genau die Stufen, in denen die umgedrehten „beide treffen"-Werte liegen.** Punkt F verfälscht damit nicht mehr nur die Anzeige, sondern die Hauptkennzahl. Einzelheiten in `PROJEKT-STATUS.md`, Abschnitt „Der 8. August", Unterpunkte 2 und 3. Ausserdem: Der Bericht an die Prüfer wurde am 8.8. um 06:35 Uhr erstmals nach **Arbeitsregel K** erstellt. Er enthält als Frage 2 Ondos Vorschlag, die betroffenen Einträge **rückwirkend zu berichtigen**, statt nur zu schneiden — das berührt den Beschluss vom 5.8. gegen rückwirkende Anpassungen und ist deshalb Ondos Entscheidung, nicht Claudes.*
 
