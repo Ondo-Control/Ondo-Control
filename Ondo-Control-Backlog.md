@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Gepflegt von Claude · Stand 8.8.2026, 12:05 Uhr, Fassung 13 · jede Idee mit Datum, Urheber und Status**
+**Gepflegt von Claude · Stand 8.8.2026, 17:25 Uhr, Fassung 14 · jede Idee mit Datum, Urheber und Status**
 
 ## Regeln für dieses Dokument
 
@@ -13,6 +13,17 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 14 ändert (8.8., abends)
+
+*Drei Funde aus einem frischen Claude-Chat, den Ondo geöffnet hat — **nicht von Chat 12 selbst gefunden**. Nach Arbeitsregel H nachgerechnet statt übernommen.*
+
+- **Neuer Punkt 34 — Brier-Score.** Die Kalibrierung allein lässt sich durch Ausweichen auf 50 % schönen; der Brier-Score nicht. Vorabrechnung: Sonnet 0,2593, Flash 0,2471, Vergleichswert 0,2500. **Chat 12 hat den Fund an einer Stelle berichtigt:** Die Berichtigung von Punkt F ändert die Zahl sehr wohl — Sonnet springt auf 0,2418.
+- **Neuer Punkt 35 — Streuungsangabe.** Die Hauptkennzahl ist auf mehrere Prozentpunkte genau, nicht auf einen. Der wochenlang berichtete Vorsprung „5 gegen 9" lag im Rauschen.
+- **Geparkte Einträge als systematische Verzerrung** in den Messstand aufgenommen: Sonnets einzige Aussagen ab 80 % sind geparkt und werden nie bewertet.
+- **Punkt 18 („Dokumente auf Diät") als Hinweis erhöht:** zwölf Chats in fünf Wochen; er bestimmt vermutlich die Übergabefrequenz.
 
 ---
 
@@ -290,6 +301,29 @@ Die App unterscheidet nicht zwischen einem Ergebnis, das **vorhanden**, einem, d
 → **Kosten:** keine für die Entscheidung.
 
 *ChatGPTs vierter Hinweis vom 8.8. — nicht auf Vorrat abstrahieren, erst bei einem real beobachteten Problem — **bestätigt** den bestehenden Architektur-Stopp und die Zwei-Probleme-Regel und wird nicht als eigener Punkt geführt.*
+
+---
+
+**34. Brier-Score als zweite Kennzahl neben der Kalibrierung** · *Fund 8.8., frischer Claude-Chat (nicht Chat 12) · nachgerechnet und in einem Punkt berichtigt von Chat 12* · **Status: Idee — NEU**
+
+Die Dokumente enthalten seit Wochen den Satz „Ein perfekt kalibriertes Gehirn, das immer 50 % sagt, gewinnt kein Geld." **Die Grenze war benannt, aber nie gemessen.** Der Brier-Score verrechnet Kalibrierung und Entschlossenheit zu einer Zahl und lässt sich nicht durch Ausweichen auf 50 % schönen. Der Begriff kommt in keinem Projektdokument vor.
+
+→ **Vorabrechnung von Chat 12 aus dem KI-Log, je 180 bewertete Aussagen:** Sonnet **0,2593** (schlechter als Raten), Flash **0,2471** (knapp besser). Vergleichswert **0,2500** = wer immer 50 % sagt.
+→ **🔴 Berichtigung des Funds:** Er behauptet, die Berichtigung von Punkt F ändere die Zahl nicht. **Falsch** — Sonnet springt auf **0,2418** und damit von *schlechter als Raten* auf *besser als Raten*. **Der Brier-Score ist damit ein zusätzliches Argument für die Berichtigung.**
+→ **Zwei-Probleme-Regel erfüllt:** macht die Gehirne trotz unterschiedlicher Entschlossenheit vergleichbar **und** schliesst die selbst benannte 50-%-Lücke.
+→ **Kosten: keine.** Aus vorhandenen Daten rechenbar, keine neue Messung, kein Modellaufruf, kein Schnitt.
+→ **Die Zahlen sind eine Vorabrechnung, kein Ergebnis.** Vor der Übernahme in die Dokumente gegen die App rechnen.
+
+---
+
+**35. Streuungsangabe für die Hauptkennzahl** · *Fund 8.8., frischer Claude-Chat · nachgerechnet von Chat 12* · **Status: Idee — NEU**
+
+„Sonnet 5 %, Flash 9 %" galt wochenlang als Vorsprung; jetzt stehen beide bei 8 %. **Eine einzelne Prozentzahl ohne Streuungsangabe ist die Scheinpräzision, die Artikel 14 verbietet — angewandt auf die eigenen Kennzahlen.**
+
+→ **Nachgerechnet von Chat 12** (Bootstrap, 600 Ziehungen über die 180 Aussagen): Sonnet 7,6 % mit einem 90-%-Bereich von **3,9 bis 14,7** · Flash 8,1 % mit **4,9 bis 14,5**.
+→ **Folge:** Der Unterschied „5 gegen 9" lag **vollständig im Rauschen**. Die Kennzahl ist bei dieser Datenmenge auf mehrere Prozentpunkte genau, nicht auf einen.
+→ **Offene Frage an Ondo:** Blueprint (Artikel 14 auf die eigenen Kennzahlen angewandt) oder Backlog (Aufgabe)?
+→ **Kosten:** keine für die Entscheidung; die Anzeige in der App wäre eine kleine Codeänderung ohne Schnitt.
 
 ---
 

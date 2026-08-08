@@ -4,7 +4,7 @@
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
 **Version:** 0.12
-**Stand:** 8. August 2026, 12:05 Uhr
+**Stand:** 8. August 2026, 17:25 Uhr
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
 > **Was Fassung 0.12 ändert (8.8.2026):** **Neue Arbeitsregel M — kein Dokument ohne maschinelle Vorabprüfung.** Ein Protokolleintrag dazu. **Kein Verfassungsartikel geändert.**

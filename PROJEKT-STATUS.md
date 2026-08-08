@@ -1,5 +1,5 @@
 # ONDO CONTROL — PROJEKT-STATUS
-*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 8. August 2026, 12:05 Uhr, v19.7.8*
+*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 8. August 2026, 17:25 Uhr, v19.7.8*
 
 > **Zur Datierung:** Die Kalibrierungszahlen im Abschnitt „Aktueller Messstand" sind am **8.8.2026, 06:11 Uhr aus der Anzeige der App abgelesen** — je 180 bewertete Aussagen, beide Gehirne 8 % Abweichung. Ältere Zahlen in den Tagesabschnitten (135 Aussagen, 5 gegen 9 Prozent) sind **Verlaufsangaben und bleiben stehen**. Massgeblich ist immer der Abschnitt „Aktueller Messstand".
 
@@ -31,6 +31,56 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 - **Belegen statt herleiten** *(31.7.)*. Eine plausible Erklärung ist keine geprüfte Erklärung. Codezeilen werden zitiert, nicht beschrieben.
 
 **Master-Dokumente im Repo:** `Blueprint.md` · `Ondo-Core-Architektur.md` · `Ondo-Control-Backlog.md` (Fassung 5, 31.7.) · dieses Dokument.
+
+---
+
+## 🔴 DREI FUNDE VON AUSSEN (8.8., 17:25 Uhr) — NACHGERECHNET UND BESTÄTIGT
+
+*Herkunft, ausdrücklich festgehalten: **Diese drei Punkte hat Chat 12 nicht selbst gefunden.** Sie stammen aus einem frischen Claude-Chat, den Ondo am 8.8. geöffnet hat. Chat 12 hat sie nach Arbeitsregel H **selbst nachgerechnet**, statt sie zu übernehmen — mit einem Ergebnis, das an einer Stelle vom Fund abweicht.*
+
+### Fund 1 — Die Hauptkennzahl misst nur die halbe Wahrheit: der Brier-Score fehlt
+
+In den Dokumenten steht seit Wochen der Satz: *„Ein perfekt kalibriertes Gehirn, das immer 50 % sagt, gewinnt kein Geld."* **Die Grenze war benannt, aber nie gemessen.** Kalibrierung allein lässt sich durch Ausweichen auf 50 % schönen; der **Brier-Score** verrechnet Kalibrierung und Entschlossenheit zu einer Zahl und lässt sich so nicht schönen. Der Begriff kommt in keinem Projektdokument vor.
+
+**Von Chat 12 aus dem KI-Log gerechnet, je 180 bewertete Aussagen** (nicht 120 wie im Fund — der dortige Auszug erfasste nur zwei der drei Märkte je Zeile; 180 stimmt mit der App überein):
+
+| | Brier heute | Brier nach Berichtigung von Punkt F |
+|---|---|---|
+| **Sonnet** | **0,2593** — schlechter als Raten | **0,2418** — besser als Raten |
+| **Flash** | **0,2471** — besser als Raten | 0,2471 (unverändert) |
+
+**Vergleichswert 0,2500:** der Wert, den erreicht, wer ohne jedes Wissen immer 50 % sagt.
+
+**🔴 Abweichung vom Fund, die Chat 12 selbst gefunden hat:** Der Fund behauptet, das Umdrehen der als `[gedreht]` markierten Einträge ändere die Zahl nicht. **Das ist falsch.** Es ändert sie erheblich: Sonnet springt von *schlechter als Raten* auf *besser als Raten*. **Damit ist der Brier-Score ein weiteres Argument für die Berichtigung** — heute sieht Sonnet aus, als trüge es keine Information bei, und das ist ein Artefakt des Zählfehlers.
+
+**Was der Fund trotzdem zeigt:** Beide Gehirne liegen dicht an 0,25. Zwei grüne Kalibrierungswerte können das nicht sichtbar machen, der Brier-Score schon. → **Backlog-Punkt 34.** Aus vorhandenen Daten rechenbar, keine neue Messung, keine Kosten. **Die Zahlen oben sind eine Vorabrechnung aus dem Log, kein Ergebnis** — sie sind gegen die App zu prüfen, sobald die App sie rechnet.
+
+### Fund 2 — Der Ausschluss geparkter Einträge ist eine systematische Verzerrung
+
+**Sonnets einzige Aussagen ab 80 % (92 % und 85 %) stecken in geparkten Einträgen zu erfundenen Spielen und werden nie bewertet.** Damit fällt **systematisch genau der Rand weg, an dem sich Überzuversicht zeigen würde** — und zwar **nur bei einem der beiden Gehirne**. Flash hat in den Stufen 80–99 % vier bewertete Aussagen, Sonnet keine.
+
+Insgesamt sind **50 der 190 Einträge geparkt**, davon 11 Sonnet-Einträge mit gedrehtem „beide treffen".
+
+**Das gehört neben die Kalibrierungszahl, nicht in eine Fussnote.** → Eingetragen im Abschnitt „Aktueller Messstand".
+
+### Fund 3 — Die Hauptkennzahl wird ohne Unsicherheit berichtet
+
+„Sonnet 5 %, Flash 9 %" galt wochenlang als Vorsprung. Jetzt stehen beide bei 8 %. **Eine einzelne Prozentzahl ohne Streuungsangabe ist genau die Scheinpräzision, die Artikel 14 verbietet — angewandt auf die eigenen Kennzahlen.**
+
+**Von Chat 12 nachgerechnet** (Bootstrap über die 180 Aussagen, 600 Ziehungen; Näherung an die Rechenweise der App):
+
+| | Abweichung | Bereich, in dem der Wert bei einer Wiederholung mit 90 % läge |
+|---|---|---|
+| Sonnet | 7,6 % | **3,9 bis 14,7 %** |
+| Flash | 8,1 % | **4,9 bis 14,5 %** |
+
+**Der Unterschied „5 gegen 9" lag damit vollständig im Rauschen.** Bei 180 Aussagen ist die Kennzahl auf mehrere Prozentpunkte genau, nicht auf einen. **Wochenlang wurde ein Vorsprung berichtet, den die Datenmenge nicht hergibt.** → **Backlog-Punkt 35.**
+
+*Anmerkung zur Rechenweise (Art. 14): 7,6 und 8,1 sind Claudes Nachbildung; die App zeigt 8 und 8. Die Abweichung liegt an Rundung und Stufenzuschnitt. **Für die Aussage über die Streuung ist das ohne Belang** — der Bereich ist in beiden Fällen mehrere Punkte breit.*
+
+### Nebenbei: Backlog-Punkt 18 ist kein Kosmetikpunkt mehr
+
+Zwölf Chats in fünf Wochen. **Punkt 18 („Dokumente auf Diät") bestimmt inzwischen vermutlich die Übergabefrequenz**, weil das Lesen der Dokumente einen wachsenden Teil jedes Chats verbraucht. Als Hinweis aufgenommen, nicht entschieden.
 
 ---
 
@@ -943,6 +993,10 @@ Belege vom 31.7.:
 
 **Was alle drei teilen: Die Ursache ist bei keiner bekannt (Art. 11), und gegen keine ist etwas gebaut worden.** Bei S2 und S3 ist zusätzlich unbekannt, warum derselbe Auftrag am selben Tag einmal Unbrauchbares und einmal Belegtes liefert.
 
+**🔴 Bekannte Verzerrung, die neben jeder dieser Zahlen mitzulesen ist:** **50 der 190 Einträge sind geparkt und werden nie bewertet.** Darunter Sonnets **einzige** Aussagen ab 80 % (92 % und 85 %). Damit fällt systematisch der Rand weg, an dem sich Überzuversicht zeigen würde — **und nur bei einem der beiden Gehirne**. Flash hat dort vier bewertete Aussagen, Sonnet keine.
+
+**🔴 Zur Genauigkeit:** Die Abweichung ist bei 180 Aussagen auf **mehrere Prozentpunkte** genau, nicht auf einen. Bei einer Wiederholung läge sie mit 90 % zwischen rund 4 und 15 % — **bei beiden Gehirnen**. Der wochenlang berichtete Vorsprung „5 gegen 9" lag vollständig im Rauschen.
+
 **Ehrliche Einordnung (Art. 14):** Die Spielliste erzeugt inzwischen fast so viele ungelöste Probleme wie der Schiedsrichter, über den seit dem 22. Juli geredet wird. Das stand bis zum 7. August nirgends zusammen, weil jeder Fund einzeln eingetragen wurde.
 
 **Was NICHT folgt:** dass die Spielliste defekt ist. Am 6.8. lieferte sie nacheinander null, ein und zehn Spiele; am 7.8. erst Erfundenes, dann Belegtes. Das ist Unzuverlässigkeit, nicht Ausfall — die Unterscheidung aus Arbeitsregel D.
@@ -1189,6 +1243,8 @@ Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp 
 | 7.8.2026 | Chat 11 → Chat 12 | Raw-Links + Projektdateien + Mappe | **9 von 9** | beide Fangfragen bestanden (drei verschiedene Muster bei den Anpfiffzeiten benannt und die Ursache als unbekannt geführt, ohne das dritte Muster als Bestätigung der widerlegten Zeitzonen-These zu lesen; aus dem guten zweiten Spiellisten-Lauf nichts für den Bau geschlossen); vier Antworten über dem Schlüssel — Weg A am Code statt am Dokument belegt, Geminis zu starke Formulierung als schon beim Eintragen zurückgewiesen erkannt, der `checkUpdate`-Mechanismus und der Blueprint-Eintrag vom 10.7. als Belege für die zwei gewollten Rückstände. **Der Nachfolger fand vor der Prüfung vier Fehler in der Buchführung des Vorgängers — drei veraltete Angaben (v19.7.7 statt v19.7.8, 199 statt 201 Sprachschlüssel) und eine doppelt eingesetzte Sicherungsliste — und unterschied dabei richtig zwischen Stands- und Verlaufsangaben.** |
 
 ---
+
+*Nachtrag von Claude (Chat 12) am 8.8.2026, 17:25 Uhr: **Drei Funde aus einem frischen Claude-Chat eingetragen, den Ondo geöffnet hat — ausdrücklich nicht von Chat 12 selbst gefunden.** Brier-Score (Backlog 34), fehlende Streuungsangabe (Backlog 35), geparkte Einträge als systematische Verzerrung. **Alle drei selbst nachgerechnet statt übernommen (Arbeitsregel H); einer davon war im Fund falsch** — die Berichtigung von Punkt F ändert den Brier-Score sehr wohl, Sonnet springt von 0,2593 auf 0,2418 und damit von schlechter auf besser als Raten. Backlog auf Fassung 14.*
 
 *Abschluss-Buchführung von Claude (Chat 12) am 8.8.2026, **11:55 Uhr (Uhrzeit unmittelbar vor dem Schreiben abgefragt).**
 
