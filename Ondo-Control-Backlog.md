@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Gepflegt von Claude · Stand 8.8.2026, 11:55 Uhr, Fassung 13 · jede Idee mit Datum, Urheber und Status**
+**Gepflegt von Claude · Stand 8.8.2026, 12:05 Uhr, Fassung 13 · jede Idee mit Datum, Urheber und Status**
 
 ## Regeln für dieses Dokument
 

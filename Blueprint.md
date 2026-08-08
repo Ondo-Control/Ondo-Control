@@ -3,11 +3,13 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.11
-**Stand:** 8. August 2026, 11:55 Uhr
+**Version:** 0.12
+**Stand:** 8. August 2026, 12:05 Uhr
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
-> **Was Fassung 0.11 ändert (8.8.2026):** **Neue Arbeitsregel L — Bauen vor Aufnehmen** (Beschluss Ondo). Ein Protokolleintrag dazu. **Kein Verfassungsartikel geändert.**
+> **Was Fassung 0.12 ändert (8.8.2026):** **Neue Arbeitsregel M — kein Dokument ohne maschinelle Vorabprüfung.** Ein Protokolleintrag dazu. **Kein Verfassungsartikel geändert.**
+>
+> **Was Fassung 0.11 änderte (8.8.2026):** **Neue Arbeitsregel L — Bauen vor Aufnehmen** (Beschluss Ondo). Ein Protokolleintrag dazu. Kein Verfassungsartikel geändert.
 >
 > **Was Fassung 0.10 änderte (8.8.2026):** **Arbeitsregel K ist um den Beschluss zu frischen Prüfer-Chats ergänzt** (Ondo, 8.8.). Ein Protokolleintrag dazu. Kein Verfassungsartikel geändert.
 >
@@ -141,6 +143,10 @@ Quellen erhalten Vertrauenswerte (z. B. offizielle Verbände hoch, Foren niedrig
 **L — Bauen vor Aufnehmen** *(8.8., Beschluss Ondo)* **Jeder Chat arbeitet mindestens einen bereits beschlossenen Punkt ab, bevor neue Ideen ins Verzeichnis aufgenommen werden.**
 *Anlass: Bilanz vom 8.8. — 39 Backlog-Punkte, sieben gebaut, **sieben von Ondo beschlossen und nicht gebaut**, der älteste vom 25. Juli. Ondos Kritik: Punkte werden jedes Mal eingetragen und nie durchgehend abgearbeitet, und er stehe später vor Entscheidungen, deren Zusammenhang er nicht mehr kenne. Ursache: Es gab eine Regel, jede Entscheidung sofort **einzutragen**, aber keine, sie zu **bauen**. Chat 12 hat selbst keinen einzigen Punkt gebaut — genau das Muster, das diese Regel beendet.*
 *Zweite Beobachtung aus demselben Anlass, nicht als Regel beschlossen: **Die Messphase hat kein definiertes Ende.** Nirgends steht, wie viele Aussagen genügen. Was kein Ende hat, hört nicht auf.*
+
+**M — Kein Dokument ohne maschinelle Vorabprüfung** *(8.8., Claude, nach vierzehn eigenen Fehlern an einem Vormittag)* **Vor jeder Dateiausgabe läuft `pruefe.py` mit einer frisch abgelesenen Uhrzeit als Parameter.** Geprüft werden Kopf-Zeitstempel, Lücken in Abschnittsnummern, Auflösbarkeit von Querverweisen, veraltete Messzahlen ausserhalb von Korrekturvermerken, Fassungs- und Versionsnummern über Kopf, Änderungsnotiz und Protokoll hinweg, und eine Liste von Pflichtinhalten.
+*Zwei Bedingungen, ohne die die Regel wertlos ist: **Der Sollwert darf nie vom Geprüften stammen** — Chat 12 hatte seine eigene erfundene Uhrzeit fest ins Skript geschrieben, worauf es „alles sauber" meldete. Und **die Systemzeit des Rechners ist unbrauchbar**, sie läuft in UTC und lag um zwei Stunden daneben.*
+*Die acht Fehlerarten, gegen die sich die Regel richtet, stehen vollständig in `PROJEKT-STATUS.md`, Abschnitt „Acht Fehlerarten Claudes — stehende Warnung für jeden neuen Chat".*
 
 ---
 
@@ -356,7 +362,8 @@ ONDO CONTROL
 | 7.8.2026 | Blueprint auf Version 0.9 gehoben. |
 | 8.8.2026 | **Arbeitsregel K ergänzt (Beschluss Ondo): frische Prüfer-Chats ausserhalb des Projektordners.** Damit ist die bei K ausdrücklich offen gelassene Frage geschlossen. |
 | 8.8.2026 | **Arbeitsregel L beschlossen (Ondo): Bauen vor Aufnehmen.** Jeder Chat arbeitet mindestens einen beschlossenen Punkt ab, bevor neue Ideen aufgenommen werden. Anlass: 39 Backlog-Punkte, sieben gebaut, sieben beschlossen und nicht gebaut. |
-| 8.8.2026 | Blueprint auf Version 0.11 gehoben. |
+| 8.8.2026 | **Arbeitsregel M beschlossen: kein Dokument ohne maschinelle Vorabprüfung.** Anlass: vierzehn eigene Fehler Chat 12s an einem Vormittag, alle von Ondo gefunden — darunter drei erfundene Zeitstempel und ein Prüfskript, dessen Sollwert vom Geprüften stammte. |
+| 8.8.2026 | Blueprint auf Version 0.12 gehoben. |
 
 ---
 
