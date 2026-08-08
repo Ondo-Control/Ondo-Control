@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Gepflegt von Claude · Stand 7.8.2026, Fassung 12 · jede Idee mit Datum, Urheber und Status**
+**Gepflegt von Claude · Stand 8.8.2026, 08:10 Uhr, Fassung 12 mit acht Nachträgen · jede Idee mit Datum, Urheber und Status**
 
 ## Regeln für dieses Dokument
 
@@ -196,7 +196,9 @@ Der Temperatur-Fund vom 4.8. steht unverändert: In `apiCall` und `geminiCall` w
 
 ---
 
-**27. Anpfiffzeiten: Prüffenster erweitern, wenn die Liste unglaubwürdig ist** · *Idee 6.8., Gemini* · **Status: Idee**
+**27. Anpfiffzeiten: Prüffenster erweitern, wenn die Liste unglaubwürdig ist** · *Idee 6.8., Gemini* · **Status: ENTSCHEIDUNGSREIF (8.8.)**
+
+**⚠ Auslösebedingung erfüllt und übererfüllt.** Die Empfehlung lautete, bis zum dritten Auftreten zu warten. Am 8.8. ist es das **vierte** — und das **zweite in Folge mit gleichmässig einer Stunde** (2. Bundesliga: App 12:00, tatsächlich 13:00, per Websuche belegt über DFB-Datencenter). Damit wiederholt sich zum ersten Mal ein Muster. **Die Ursache bleibt unbekannt.** Ondos Entscheidung steht aus.
 
 Fallen auffällig viele Spiele eines Tages auf exakt dieselbe runde Uhrzeit, ist die Spielliste unglaubwürdig. Für solche Tage sollte die 2,5-Stunden-Regel großzügiger rechnen, damit der Schiedsrichter nicht nach Endständen laufender Spiele sucht.
 
@@ -1032,6 +1034,22 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 - **Quoten-Transparenz / Quoten-Realitätsabgleich** (*18.7.*) · **überholt** — kehrt mit Punkt 9 zurück
 
 ---
+
+*Achter Nachtrag zu Fassung 12, eingetragen am 8.8.2026, 07:58 Uhr von Chat 12: **Der KI-Log seit 1.7. ist maschinell ausgezählt, Gegenprobe gegen die App bestanden.**
+
+**Punkt F ist damit vollständig vermessen:** Betroffen sind **15 bewertete Sonnet-Aussagen**, nicht der ganze Bestand. Der Fehler tritt genau dann auf, wenn **Sonnets Tipp eine Null enthält** — nicht wenn `[gedreht]` gesetzt ist. Netto **+9** für Sonnet: 94/180 = 52 % statt 85/180 = 47 %. Flash unverändert bei 91/180.
+
+**Es sind zwei Fehlerarten, nicht eine.** Bei 15 Einträgen ist das **Etikett** verdreht (Berichtigung: Etikett drehen, Zahl bleibt). Bei **einem** Eintrag — Motherwell, 23.7. — ist das Etikett richtig und die **Prozentzahl** der Gegenwert (42 % statt 58 %, Bewertung unverändert). **Eine pauschale Regel hätte diesen Eintrag zerstört.**
+
+**Befund A ist widerlegt.** Die 15 falschen Aussagen liegen in den Stufen 50–59 % (1), 60–69 % (8) und 70–79 % (6) — genau dort, wo Sonnet überzuversichtlich aussah. Nach Berichtigung: 60–69 % behauptet 63, trifft **71**; 70–79 % behauptet 74, trifft **71**. Sonnet ist nicht überzuversichtlich, sondern in einer Stufe zurückhaltender als nötig.
+
+**Der Einwand gegen den älteren Bestand ist weitgehend gegenstandslos:** Nur **zwei** der 15 Fälle stammen von vor dem 5. August. Die Frage „ganzer Bestand oder nur ab 5.8." betrifft zwei Einträge.
+
+**Zwei Angaben in den Dokumenten sind zu berichtigen:** „Flash dreht nie" ist falsch — Flash wurde zweimal gedreht (24.7., 28.7.), **beide Male richtig**. Und die Regel „Sonnet dreht genau dann, wenn der Tipp eine Null enthält" hat drei Ausnahmen (Motherwell, América Mineiro, Remo), von denen keine sie schwächt.
+
+**Neuer Beobachtungspunkt:** Der Schiedsrichter läuft unter dem **beweglichen Namen** `gemini-flash-latest`. Dahinter kann jederzeit ein anderes Modell stehen. Für die Bewährungszeit von Punkt 26 erheblich, weil eine Verhaltensänderung dann nicht mehr eindeutig der Temperatur zuzuordnen wäre. Nichts gebaut.
+
+Einzelheiten in `PROJEKT-STATUS.md`, Abschnitt „Der 8. August", Unterpunkte 6 und 7.*
 
 *Siebter Nachtrag zu Fassung 12, eingetragen am 8.8.2026, 07:10 Uhr von Chat 12: **Punkt 28 vollständig entschieden** — frische Prüfer-Chats, Beschluss Ondo. Dazu zwei Einwände Ondos zur rückwirkenden Berichtigung, die Teile der bisherigen Ablehnung entkräften: Der Schaden ist aus dem KI-Log **bestimmbar** (das Kennzeichen `[gedreht]` steht in jeder Zeile), und eine Berichtigung wäre **umkehrbar**, weil das Kennzeichen gespeichert bleibt und der Ursprungswert sich als `100 − gespeicherter Wert` ergibt. Einzelheiten in `PROJEKT-STATUS.md`, Abschnitt „Der 8. August", Unterpunkte 6 und 7.*
 

@@ -1,5 +1,5 @@
 # ONDO CONTROL — PROJEKT-STATUS
-*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 8. August 2026, 06:35 Uhr, v19.7.8*
+*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 8. August 2026, 08:10 Uhr, v19.7.8*
 
 > **Zur Datierung:** Die Kalibrierungszahlen im Abschnitt „Aktueller Messstand" sind am **8.8.2026, 06:11 Uhr aus der Anzeige der App abgelesen** — je 180 bewertete Aussagen, beide Gehirne 8 % Abweichung. Ältere Zahlen in den Tagesabschnitten (135 Aussagen, 5 gegen 9 Prozent) sind **Verlaufsangaben und bleiben stehen**. Massgeblich ist immer der Abschnitt „Aktueller Messstand".
 
@@ -70,7 +70,7 @@ Alle fünf wurden von Claude vor der Übernahme selbst per Websuche gegengeprüf
 
 **Der Befund, auf den seit dem 30. Juli gewartet wurde, ist da — und er ist unangenehm.** Sonnet hat jetzt 35 Aussagen ab 60 %. In der Stufe 70–79 % behauptet es 74 % und trifft 43 % — schlechter als Münzwurf. In der Stufe 60–69 % behauptet es 63 % und trifft 52 %. **Sonnets guter Kalibrierungswert war vermutlich zum grossen Teil Vorsicht; sobald es sich festlegt, sieht es deutlich überzuversichtlich aus.** *Das ist eine Deutung, keine Messung — Kennzeichnung übernommen aus Chat 11s Anmerkung vom 8.8.*
 
-**🔴 Aber diese Lesart ist durch Punkt F verunreinigt, und zwar genau dort.** Die umgedrehten „beide treffen"-Werte liegen fast alle zwischen 60 und 79 % und werden als falsch gewertet, obwohl Sonnets Wort richtig war (siehe Unterpunkt 3). Ein unbekannter Teil von Sonnets scheinbarer Überzuversicht ist Rechenfehler, kein Urteilsfehler. **Wie gross dieser Teil ist, ist ohne Punkt F nicht bestimmbar** (Art. 11).
+**🔴 Diese Lesart ist am 8.8. um 07:55 Uhr durch die Auszählung des Logs WIDERLEGT — siehe Unterpunkt 7.** Die 15 falsch bewerteten Aussagen liegen fast alle in den Stufen 60–79 %; nach Berichtigung trifft Sonnet dort 71 % statt 52 beziehungsweise 43. Der Abschnitt bleibt als Verlaufsangabe stehen. Die ursprüngliche Formulierung lautete: die Lesart sei durch Punkt F verunreinigt — Die umgedrehten „beide treffen"-Werte liegen fast alle zwischen 60 und 79 % und werden als falsch gewertet, obwohl Sonnets Wort richtig war (siehe Unterpunkt 3). Ein unbekannter Teil von Sonnets scheinbarer Überzuversicht ist Rechenfehler, kein Urteilsfehler. **Wie gross dieser Teil ist, ist ohne Punkt F nicht bestimmbar** (Art. 11).
 
 **Damit ist Punkt F von einem Anzeigefehler zu einer Verfälschung der Hauptkennzahl geworden.** Er ist jetzt der dringendste offene Punkt des Projekts.
 
@@ -84,11 +84,14 @@ Bei **Club Brugge** und bei **Wolverhampton** sagte Sonnets Wort „nein", und �
 
 Damit ist Punkt F nicht mehr nur ein Anzeigefehler, sondern **verfälscht die gemessene Trefferquote**. Er bleibt beschlossen und ungebaut; er ist ein Schnitt und braucht eine eigene Lieferung mit frischer Sicherung davor.
 
-### 4. Test A steht bei 39 von 39
+### 4. Test A: 92 von 95 — die Regel gilt, aber nicht ausnahmslos
 
-Zehn neue Fälle aus dem Lauf vom Abend des 7.8. (fünf Tipps mit Null, alle gedreht; fünf ohne Null, keiner gedreht) und zehn aus dem Lauf vom Morgen des 8.8. (Austria Wien 2:0 gedreht; neun ohne Null, keiner gedreht). Flash: null Umdrehungen in zwanzig weiteren Fällen.
+**⚠ Hier stand zuerst „39 von 39 ohne eine einzige Ausnahme".** Die Auszählung des gesamten Logs am 8.8. (Unterpunkt 7) zeigt: Über alle **95 Sonnet-Vorhersagen** seit dem 1. Juli stimmt die Regel „Sonnet dreht genau dann, wenn sein Tipp eine Null enthält" in **92 Fällen**. Es gibt **drei Ausnahmen**:
 
-Die Regel „Sonnet dreht genau dann, wenn sein Tipp eine Null enthält" hat bisher **keine einzige Ausnahme**.
+- **Motherwell – Havnar Bóltfelag (23.7.):** Tipp 2:0, aber **nicht** gedreht. Der einzige Eintrag im ganzen Bestand, der nicht zur heutigen Rechenlogik passt.
+- **América Mineiro (26.7.) und Remo (26.7.):** gedreht, obwohl der Tipp 1:1 keine Null enthält. Beide Drehungen sind **richtig**.
+
+**Die Regel bleibt tragfähig**, aber „ohne eine einzige Ausnahme" war zu stark formuliert und stand mehrere Stunden so in den Dokumenten. Flash: **zwei** Drehungen in 95 Vorhersagen (24.7., 28.7.), beide richtig — der Satz „Flash dreht nie" ist damit ebenfalls falsch und hier gestrichen.
 
 ### 5. Die Prüferantworten auf den Bericht nach Arbeitsregel K
 
@@ -115,7 +118,76 @@ Der Bericht ging am 8.8. um 06:35 Uhr an beide Prüfer. **Beide haben ihn nach e
 
 ---
 
-### 6. Zwei Einwände Ondos, die die Frage nach der Berichtigung verändert haben
+### 6. Die zweite Runde: beide Prüfer kehren ihre Antwort um
+
+*Die Rückfrage vom 8.8., 07:10 Uhr ging in je einen **frischen** Chat, ohne Nennung der früheren Antwort.*
+
+**Beide empfehlen jetzt Weg 2 — berichtigen, dann schneiden — und zwar für den gesamten Bestand.** Das ist das Gegenteil ihrer Antwort von 06:35 Uhr.
+
+**ChatGPT:** Es werde keine Vorhersage verändert und kein Modell schöngerechnet, sondern ein nachweisbarer Interpretationsfehler der Messapparatur berichtigt. Der 5. August sei **nicht der Beginn des Fehlers, sondern nur der Beginn des besseren Belegs**. Vorschlag eines siebenstufigen Ablaufs: Originalbestand sichern · Etiketten zurückdrehen · Bewertung neu rechnen · **jede Berichtigung protokollieren** (Originalwert → berichtigter Wert, Regel) · korrigierten Datensatz erzeugen · Auftragstext ändern · vorher und nachher nie als einen Messzeitraum behandeln. Dazu die Kennzeichnung **„rekonstruiert"** vor dem 5.8. und **„unabhängig bestätigt"** ab dem 5.8.
+
+**Gemini (3.1 Pro):** Der Fehler liege nicht in der Vorhersage, sondern in der Auswertung. Weg 1 hiesse, 180 Datensätze als unbrauchbar aufzubewahren. Da Sicherungen vorliegen und die Aktion umkehrbar ist, gebe es keinen Grund, auf die älteren Datensätze zu verzichten.
+
+**⚠ Es ist kein sauberer Gegentest.** Zwei Dinge wurden gleichzeitig geändert: der frische Chat **und** zwei zusätzliche Tatsachen in der Frage (Umkehrbarkeit; Wort erst ab 5.8.). Welches davon die Umkehr bewirkt hat, ist **nicht trennbar**. Es ist eine Umkehr unter veränderter Frage — kein Beweis, dass die erste Antwort ein Reflex war.
+
+**Nachtrag durch die Auszählung eine Stunde später:** Beide argumentierten über „die ~150 älteren Datensätze". **Tatsächlich sind nur zwei Einträge betroffen, die vor dem 5. August liegen.** Die Prüfer konnten das nicht wissen; die Zahl lag zum Zeitpunkt der Frage nicht vor.
+
+**ChatGPTs Vorschlag der Kennzeichnung „rekonstruiert" gegen „unabhängig bestätigt" ist der brauchbarste Einzelbeitrag beider Antworten** und sollte übernommen werden, falls berichtigt wird.
+
+### 7. 🔴 DER LOG IST AUSGEZÄHLT — Befund A ist ein Zählfehler, kein Urteilsfehler
+
+*Maschinell ausgewertet am 8.8., 07:55 Uhr, aus `KI-Log 2026-07-01 bis 2026-08-08 · 190 Einträge · erzeugt 8.8.2026 07:44`. **Gegenprobe bestanden:** Die Auswertung reproduziert die Anzeige der App Zeile für Zeile — 42/33/24, 54/50/121, 63/52/21, 74/43/14 und 85 von 180 bei Sonnet, 91 von 180 bei Flash.*
+
+**Der Bestand.** 190 Einträge, 95 je Gehirn. Davon **60 bewertete Spiele je Gehirn = 180 Aussagen je Gehirn**. 70 Zeilen offen, 50 geparkt.
+
+**Der Fehler tritt genau dann auf, wenn Sonnets Tipp eine Null enthält** — nicht, wenn das Kennzeichen `[gedreht]` gesetzt ist. Das ist der entscheidende Unterschied zur bisherigen Annahme. Enthält der Tipp keine Null, rechnet die App auch bei einer Drehung richtig.
+
+**Zwei Fehlerarten, nicht eine:**
+
+| | Fälle (bewertet) | was falsch ist | Berichtigung |
+|---|---|---|---|
+| **A — Etikett verdreht** (Tipp mit Null, `[gedreht]`) | **15** | „Ja" statt „Nein" und umgekehrt | Etikett drehen, Prozentzahl bleibt |
+| **B — Prozentzahl verdreht** (Tipp mit Null, **nicht** `[gedreht]`) | **1** | Etikett richtig, Zahl ist der Gegenwert | 42 % → 58 %, Bewertung bleibt |
+
+Fehlerart B betrifft einen einzigen Eintrag: Motherwell – Havnar Bóltfelag vom 23.7. **Eine pauschale Regel „alle Einträge mit Null im Tipp umdrehen" wäre hier falsch gewesen** und hätte einen richtigen Eintrag zerstört.
+
+**Die Wirkung auf die Bewertung:** 12 Aussagen wären richtig statt falsch, 3 falsch statt richtig. **Netto +9 für Sonnet.**
+
+| | vorher | nach Berichtigung |
+|---|---|---|
+| Sonnet | 85/180 = **47 %** | **94/180 = 52 %** |
+| Flash | 91/180 = **51 %** | 91/180 = 51 % (unverändert) |
+
+**🔴 Und jetzt der eigentliche Befund. Die 15 falschen Aussagen liegen fast alle in genau den Stufen, in denen Sonnet überzuversichtlich aussah:** eine in 50–59 %, **acht in 60–69 %**, **sechs in 70–79 %**.
+
+**Sonnets Kalibrierung nach der Berichtigung (gerechnet, nicht abgelesen):**
+
+| Stufe | behauptet | wirklich vorher | wirklich nachher | Anzahl |
+|---|---|---|---|---|
+| 1–49 % | 42 % | 33 % | 30 % | 23 |
+| 50–59 % | 54 % | 50 % | 51 % | 122 |
+| 60–69 % | 63 % | **52 %** | **71 %** | 21 |
+| 70–79 % | 74 % | **43 %** | **71 %** | 14 |
+
+**Befund A ist damit widerlegt.** Sonnet ist nicht überzuversichtlich, sobald es sich festlegt — es ist in der Stufe 60–69 % sogar **zurückhaltender als nötig** (behauptet 63, trifft 71) und in der Stufe 70–79 % nahezu genau. Die scheinbare Überzuversicht war vollständig der Zählfehler.
+
+Die Kalibrierungsabweichung läge nach derselben Rechenweise bei **rund 5 %** statt 8 % — also wieder auf dem Wert, der bis zum 6. August dokumentiert war. *Gerechnet, nicht aus der App abgelesen; die App rechnet erst nach einer Berichtigung neu.*
+
+**Die Regel hat genau drei Ausnahmen, und keine davon schwächt sie:**
+- **Motherwell (23.7.)** — Fehlerart B, siehe oben. **Der einzige Eintrag im ganzen Bestand, der nicht zur heutigen Rechenlogik passt.**
+- **América Mineiro (26.7.) und Remo (26.7.)** — Sonnet wurde gedreht, aber der Tipp war 1:1 ohne Null. In beiden Fällen ist die Drehung **richtig**.
+
+**„Flash dreht nie" stimmt nicht** und muss aus den Dokumenten verschwinden. Flash wurde zweimal gedreht: Hankofen-Hailing (24.7.) und Crystal Palace – Famalicao (28.7.). **Beide Drehungen sind richtig**, weil Flash die Frage anders liest. Der Satz gilt nur für die Läufe der letzten Tage.
+
+**🟢 Der Einwand gegen den älteren Bestand ist weitgehend gegenstandslos.** Von den 15 betroffenen Aussagen stammen **nur zwei** aus der Zeit vor dem 5. August — Bayern München II (24.7.) und Bragantino (26.7.). **Dreizehn** stammen aus der Zeit danach und sind durch das mitgeschriebene Wort unabhängig bestätigt. Die Frage „ganzer Bestand oder nur ab 5.8." betrifft also **zwei Einträge**, nicht 150.
+
+### 8. Zwei Randbefunde aus demselben Durchgang
+
+**Der Schiedsrichter läuft unter `gemini-flash-latest`.** Das ist ein **beweglicher Name**, kein festes Modell. Dahinter kann jederzeit ein anderes Modell stehen, ohne dass es jemand bemerkt. **Für die Bewährungszeit von Punkt 26 ist das erheblich:** Eine Veränderung im Verhalten des Schiedsrichters wäre nicht mehr eindeutig der Temperatur zuzuordnen. Aufgenommen als Beobachtung, nichts gebaut.
+
+**Der Prüfer Gemini ist `3.1 Pro` mit erweitertem Denken** — nicht Flash. Der Prüfer ist damit ein deutlich stärkeres Modell als das zweite Gehirn (`gemini-3.1-flash-lite`). Berührt Punkt 0a, entscheidet ihn aber nicht: Verfügbarkeit in der Gemini-App sagt nichts über Verfügbarkeit an der Schnittstelle.
+
+### 9. Zwei Einwände Ondos, die die Frage nach der Berichtigung verändert haben
 
 **Erster Einwand — „warum weiss das niemand genau?"** Claude hatte geschrieben, es sei nicht bestimmbar, wie viel von Sonnets Überzuversicht Rechenfehler und wie viel Urteilsfehler ist. **Das war zu weit gefasst.** Der KI-Log führt bei jeder Zeile das Kennzeichen `[gedreht]` **und** den Tipp mit. Damit ist für jeden Eintrag seit dem 1. Juli ablesbar, ob gedreht wurde und ob der Tipp eine Null enthielt.
 
@@ -127,7 +199,7 @@ Richtig wäre gewesen: *Claude* weiss es nicht, weil ihm der vollständige Log n
 
 **Beide Einwände kamen von Ondo, nicht von Claude und nicht von den Prüfern.** Sie standen deshalb weder im Bericht noch in der ersten Fassung der Frage.
 
-### 7. ✅ Entschieden: Prüfer bekommen künftig frische Chats ausserhalb des Projektordners
+### 10. ✅ Entschieden: Prüfer bekommen künftig frische Chats ausserhalb des Projektordners
 
 *Beschluss Ondo, 8.8.* Damit ist die Frage geschlossen, die bei Arbeitsregel K ausdrücklich offen gelassen wurde. **Begründung Ondos:** In fortgeführten Chats greifen die Prüfer auf alte Angaben und alte Ideen zurück.
 
@@ -139,7 +211,7 @@ Die Rückfrage wurde am 8.8., 07:10 Uhr erstellt: `2026-08-08_0710_Ondo-Control_
 
 ---
 
-### 8. 🔴 Neue Beobachtung: sechs von zehn Spielen des 8.8. sind Freundschaftsspiele
+### 11. 🔴 Neue Beobachtung: sechs von zehn Spielen des 8.8. sind Freundschaftsspiele
 
 Die Spielliste vom Morgen des 8.8. enthält Köln – Real Sociedad, Augsburg – Sassuolo, Schalke – Atalanta, Leeds – Leipzig, Real Betis – Bournemouth und Stuttgart – Everton. **Zwölf der zwanzig Vorhersagen hängen damit an Testspielen.**
 
@@ -149,13 +221,23 @@ Drei Gründe, warum das die Messung berührt — alle **unbelegt**, als Bedenken
 
 **Nichts gebaut, nichts entschieden.** Aufgenommen als Backlog-Punkt 30.
 
-### 9. Anpfiffzeiten: zu prüfen, bevor der nächste Prüflauf läuft
+### 12. 🔴 Anpfiffzeiten: geprüft — vierter Tag in Folge, zweiter Tag mit gleichmässig einer Stunde
 
-Die beiden Zweitligaspiele des 8.8. stehen mit **12:00 Uhr** in der Liste. Ob das stimmt, ist **nicht geprüft**. Claude prüft es per Websuche, bevor der Prüflauf angesetzt wird, und trägt das Ergebnis hier nach. Keine Vermutung an dieser Stelle — die Erklärung „britische Ortszeit" ist am Vortag genau so entstanden.
+**Geprüft am 8.8., 08:10 Uhr per Websuche, nicht vermutet.** Beide Zweitligaspiele des 8.8. sind für **13:00 Uhr** angesetzt — Heidenheim – Osnabrück und Karlsruher SC – Arminia Bielefeld. Belegt über das DFB-Datencenter und fussballdaten.de. **Die App zeigt 12:00 Uhr.**
 
-### 10. Sicherung
+**Eine Stunde zu früh, bei beiden Spielen gleich.** Damit ist es der **vierte Tag in Folge** mit falschen Anpfiffzeiten und der **zweite Tag in Folge mit einem gleichmässigen Versatz von genau einer Stunde**.
 
-**Letzte bestätigte Sicherung: 8.8.2026, 06:12 Uhr**, nach der Übernahme der fünf Ergebnisse und vor dem Vorhersagelauf des Morgens. Davor: 7.8., 08:00 Uhr.
+**Was das ist:** ein Muster, das sich zum ersten Mal wiederholt. Die bisherigen drei Tage zeigten drei verschiedene Muster (neun Stunden starr · null bis drei Stunden ungleich · eine Stunde gleichmässig). Jetzt tritt das dritte Muster zum zweiten Mal auf.
+
+**Was es NICHT ist:** eine Ursache. Warum der Versatz genau eine Stunde beträgt und warum er am 5. und 6. August anders aussah, ist weiterhin unbekannt (Art. 11). Die Erklärung „britische Ortszeit" ist widerlegt; die Zweitligaspiele sind deutsche Spiele.
+
+**Folge für heute:** Die Spiele enden gegen 14:50 Uhr. **Prüflauf frühestens 15:30 Uhr**, und zwar erst nach dem letzten Spiel des Tages — Grêmio – São Paulo steht mit 20:00 Uhr in der Liste, tatsächlich also womöglich später.
+
+**Punkt 27 (Prüffenster erweitern, wenn die Liste unglaubwürdig ist) hat damit sein drittes und viertes Auftreten.** Die Empfehlung lautete, bis zum dritten zu warten. **Er ist entscheidungsreif.**
+
+### 13. Sicherung
+
+**Letzte bestätigte Sicherung: 8.8.2026, 07:54 Uhr** (aus der App abgelesen). Im Speicher: **210 Vorhersagen**, 6 Wetten. Davor: 8.8., 06:12 Uhr · 7.8., 08:00 Uhr.
 
 ---
 
@@ -809,7 +891,7 @@ Bis v18.6 war die Beta ein **Wett-Berater**. Am 23. Juli wurde sie zum **Messger
 
 ## Aktueller Messstand (abgelesen aus der App am 8.8.2026, 06:11 Uhr)
 
-**Bestand insgesamt:** 190 Vorhersagen, davon 170 aus der Messphase und 20 im v18-Archiv. **Je 180 bewertete Aussagen.** Zuletzt vorhergesagt am 8. August früh (20 offene Vorhersagen).
+**Bestand insgesamt:** **210 Vorhersagen** (aus der App abgelesen, 8.8. 07:54), davon **190 aus der Messphase** und 20 im v18-Archiv. **Je 180 bewertete Aussagen.** Zuletzt vorhergesagt am 8. August früh (20 offene Vorhersagen).
 
 *Zur Herkunft (Art. 14): Alle Zahlen dieses Abschnitts sind **aus der Anzeige der App abgelesen**, keine ist gerechnet. Claude hatte am 8.8. zunächst je 150 Aussagen fortgeschrieben und dabei die zehn am Morgen des 7.8. übernommenen Ergebnisse übersehen — 135 + 30 + 15 = 180. Der Fehler kam durch Ondos Bildschirmfoto der Finanzen-Seite ans Licht.*
 
@@ -818,6 +900,8 @@ Bis v18.6 war die Beta ein **Wett-Berater**. Am 23. Juli wurde sie zum **Messger
 | Sonnet | 180 | **8 %** (grün) | 47 % (85/180) |
 | Flash | 180 | **8 %** (grün) | 51 % (91/180) |
 | gesamt | 360 | — | 49 % (176/360) |
+
+> **⚠ Diese Werte enthalten 15 nachweislich falsch bewertete Sonnet-Aussagen.** Nach einer Berichtigung stünde Sonnet bei **94/180 = 52 %** und rund **5 %** Abweichung, Flash unverändert. Belege in Abschnitt „Der 8. August", Unterpunkt 7. **Ondos Entscheidung über die Berichtigung steht aus.**
 
 **Sonnets Verteilung:** 1–49 % → 24 Aussagen (behauptet 42, wirklich 33) · 50–59 % → **121** (behauptet 54, wirklich 50) · 60–69 % → 21 (behauptet 63, wirklich 52) · 70–79 % → 14 (behauptet 74, wirklich 43)
 
@@ -981,6 +1065,10 @@ Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp 
 | 7.8.2026 | Chat 11 → Chat 12 | Raw-Links + Projektdateien + Mappe | **9 von 9** | beide Fangfragen bestanden (drei verschiedene Muster bei den Anpfiffzeiten benannt und die Ursache als unbekannt geführt, ohne das dritte Muster als Bestätigung der widerlegten Zeitzonen-These zu lesen; aus dem guten zweiten Spiellisten-Lauf nichts für den Bau geschlossen); vier Antworten über dem Schlüssel — Weg A am Code statt am Dokument belegt, Geminis zu starke Formulierung als schon beim Eintragen zurückgewiesen erkannt, der `checkUpdate`-Mechanismus und der Blueprint-Eintrag vom 10.7. als Belege für die zwei gewollten Rückstände. **Der Nachfolger fand vor der Prüfung vier Fehler in der Buchführung des Vorgängers — drei veraltete Angaben (v19.7.7 statt v19.7.8, 199 statt 201 Sprachschlüssel) und eine doppelt eingesetzte Sicherungsliste — und unterschied dabei richtig zwischen Stands- und Verlaufsangaben.** |
 
 ---
+
+*Aktualisiert von Claude (Chat 12) am 8.8.2026, 08:10 Uhr — **Nachprüfung auf Ondos Aufforderung, fünf eigene Versäumnisse gefunden und behoben:** (1) Der Zeitstempel im Kopf war veraltet. (2) Der Backlog-Kopf stand noch auf dem 7.8. (3) **Unterpunkt 4 behauptete „Test A: 39 von 39 ohne Ausnahme"**, während Unterpunkt 7 drei Ausnahmen belegte — Widerspruch im selben Dokument, jetzt auf **92 von 95** berichtigt. (4) **Die zweite Prüferrunde fehlte vollständig** — beide kehrten ihre Antwort auf Weg 2 um; jetzt als Unterpunkt 6 eingetragen. (5) **Der Blueprint war nicht angefasst**, obwohl Ondos Beschluss zu frischen Prüfer-Chats Arbeitsregel K ändert — jetzt Fassung 0.10. Ausserdem die zugesagte, aber nicht durchgeführte **Anpfiffzeit-Prüfung nachgeholt** (Unterpunkt 12): 12:00 statt 13:00, vierter Tag in Folge.*
+
+*Aktualisiert von Claude (Chat 12) am 8.8.2026, 07:58 Uhr: **Der KI-Log ist maschinell ausgezählt** (neuer Unterpunkt 7). Gegenprobe gegen die App bestanden, Zeile für Zeile. **Befund A ist widerlegt:** Die scheinbare Überzuversicht Sonnets ist vollständig der Zählfehler; nach Berichtigung trifft Sonnet in den Stufen 60–79 % je 71 %. Netto +9 Punkte, 94/180 = 52 %. **Nur zwei der 15 Fälle liegen vor dem 5. August.** Zwei Fehlerarten statt einer — eine pauschale Regel wäre falsch gewesen. Dazu zwei Randbefunde (Unterpunkt 8): beweglicher Schiedsrichter-Name, Prüfer-Gemini ist 3.1 Pro. Sicherungsstand 07:54, Bestand auf 210 berichtigt.*
 
 *Aktualisiert von Claude (Chat 12) am 8.8.2026, 07:10 Uhr: **Zwei Einwände Ondos eingetragen** (neuer Unterpunkt 6) — die Grösse des Schadens ist aus dem Log bestimmbar, und eine Berichtigung wäre umkehrbar und belegbar. Beides entkräftet Teile der bisherigen Ablehnung. **Entschieden: Prüfer bekommen künftig frische Chats** (neuer Unterpunkt 7). Rückfrage zur Berichtigung erstellt, ohne Nennung der früheren Antwort.*
 
