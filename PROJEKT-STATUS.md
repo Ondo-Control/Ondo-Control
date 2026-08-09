@@ -1,5 +1,5 @@
 # ONDO CONTROL — PROJEKT-STATUS
-*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 9. August 2026, 05:16 Uhr, v19.8.0*
+*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 9. August 2026, 13:55 Uhr, v19.8.1*
 
 > **Zur Datierung:** Die Kalibrierungszahlen im Abschnitt „Aktueller Messstand" sind am **9.8.2026, 05:10 Uhr aus der Anzeige der App abgelesen** — je 207 bewertete Aussagen, Sonnet 5 %, Flash 6 % Abweichung. Die Werte des 8.8. (je 180, beide 8 %) sind ab jetzt Verlaufsangaben. Ältere Zahlen in den Tagesabschnitten (135 Aussagen, 5 gegen 9 Prozent) sind **Verlaufsangaben und bleiben stehen**. Massgeblich ist immer der Abschnitt „Aktueller Messstand".
 
@@ -208,6 +208,73 @@ Der erste Lauf am 9.8. lieferte nur **zwei** Spiele. Ondo drückte ein zweites M
 **Warum der erste Lauf nur zwei Spiele fand, ist unbekannt** (Art. 11).
 
 **Der Schnitt wirkt.** Bei allen 14 neuen Aussagen stimmen Etikett und mitgeschriebenes Wort überein. Sonnets Union-Berlin-Eintrag zeigt bei Tipp 2:0 „Beide treffen: **Nein 70 %**" mit Wort „nein" — dieselbe Zahl hätte die alte Fassung als „**Ja** 70 %" angezeigt, also das Gegenteil. *14 Aussagen sind kein Urteil.*
+
+### 11. Die Ursache der falschen Anpfiffzeiten — vier Belege, eine widerlegte Vermutung
+
+Ondo hat den Vorschlag aus Punkt 27 abgelehnt: **Das Prüffenster zu erweitern behebt nichts, die Ursache muss gesucht werden.** Claude hat gesucht. Vier Dinge sind belegt.
+
+**Erstens: Das Programm verschiebt nichts.** Die Anpfiffzeit kommt als Text aus der Antwort des Modells und wird unverändert gespeichert, angezeigt und für die 2,5-Stunden-Regel benutzt — `String(s.anpfiff||'')` in `stufeHolen`, dann `paket.liste[idx].anpfiff` beim Anlegen. **Keine Umrechnung, keine Zeitzone, keine Rechnung an keiner Stelle.** Die Ursache liegt nicht im Code.
+
+**Zweitens: Es begann am 28. Juli.** Im Log vom 1.7. bis 8.8. tragen die Einträge vom 23. bis 27. Juli **keine einzige Anpfiffzeit**. Ab dem 28. Juli tragen sie alle eine. An diesem Tag kam die zweistufige Spielliste (v19.6) und mit ihr das Feld. **Die Zeiten waren also nie geprüft richtig** — sie sind seit dem ersten Tag drin, und erst am 5. August ist es aufgefallen.
+
+**Drittens: Das kleinste Modell lieferte sie.** Die Spielliste lief unter `rolle:'gehirn'` und teilte sich damit das Modell mit dem zweiten Gehirn, also `gemini-3.1-flash-lite`. Nicht der Schiedsrichter, nicht Sonnet. Der Auftragstext verlangt zweimal ausdrücklich „deutsche Zeit".
+
+**Viertens: Das Modell antwortet innerhalb eines Laufs widersprüchlich.** Am 6. August steht dasselbe Spiel zweimal im Log — `Red Bull Salzburg - Pafos FC` um **18:00** und `FC Red Bull Salzburg - Pafos FC` um **19:00**. Zwei Namen, zwei Zeiten, ein Spiel. Der Doppelschutz greift nicht, weil das vorangestellte „FC" den Vergleichsschlüssel verändert.
+
+**Ein weiterer Befund, der gegen blosse Verschiebung spricht:** Am 5. August trugen alle fünf Spiele Zeiten zwischen 09:30 und 11:30 — es waren UEFA-Qualifikationsspiele. Die finden nie vormittags statt. **Diese Zeiten sind nicht verschoben, sie sind unmöglich.**
+
+**Claudes Vermutung wurde von Ondo widerlegt.** Claude vermutete, das Modell erfinde Zeiten kurz nach dem Laufzeitpunkt, und wollte dafür den Laufzeitpunkt mitschreiben. Ondo hielt dagegen: Der Lauf am 9. August war gegen fünf Uhr früh, die Spiele beginnen zwischen 13:30 und 17:30. **Damit ist die Vermutung für diesen Tag widerlegt und der Grund für das Feld entfallen.** Es wurde nicht gebaut.
+
+**Die Ursache bleibt unbekannt** (Art. 11). Bekannt ist jetzt: nicht der Code, seit dem 28. Juli, vom kleinsten Modell, und in sich widersprüchlich.
+
+### 12. Punkt 27 in seiner alten Form hätte den 8. August nicht erkannt
+
+Der Vorschlag lautete, das Prüffenster zu erweitern, **wenn auffällig viele Spiele eines Tages auf exakt derselben runden Uhrzeit stehen**.
+
+Am 8. August gab es keine solche Häufung — die Zeiten waren 09:00, 12:00, 15:30, 17:00, 19:30, 20:00. **Und trotzdem waren sieben von zehn falsch.** Eine Erkennungsregel dieser Art hätte den Tag durchgewunken.
+
+**Ondos Entscheidung: nicht bauen, Ursache suchen.** Der Punkt ist damit in seiner bisherigen Form überholt.
+
+### 13. Punkt 29 gebaut — die Spielliste bekommt eine eigene Rolle (v19.8.1)
+
+**`beta.html` v19.8.1, geliefert am 9.8.2026 um 13:55 Uhr.** Der Punkt stand seit dem 7. August mit Ondos Zustimmung im Verzeichnis und mit Claudes Empfehlung „ausdrücklich nicht bauen".
+
+**Was den Ausschlag gab:** Der Bau ist kein Notbehelf gegen eine unbekannte Ursache, sondern **ein Test**. Läuft die Liste auf dem grösseren Modell und werden die Zeiten richtig, war das Modell die Ursache. Bleiben sie falsch, liegt sie woanders. Beides ist ein Ergebnis. Das unterscheidet ihn vom Fehler des 4. August.
+
+**Sieben Stellen geändert:**
+1. `gWahl` kennt eine dritte Rolle `liste`, voreingestellt auf `gemini-flash-latest`.
+2. `stufeHolen` ruft mit `rolle:'liste'` statt `rolle:'gehirn'`.
+3. Jeder neue Eintrag trägt `stufe` — die Nummer wurde bisher berechnet und beim Anlegen weggeworfen.
+4. `modellFeld` kennt die dritte Rolle.
+5. `modellWahl` speichert sie.
+6. Drittes Auswahlfeld in der Modellwahl.
+7. Zwei neue Sprachschlüssel, 201 auf **203** in DE, FR, EN.
+
+**Ausdrücklich unverändert:** beide Gehirne · die **Temperatur** der Spielliste — sonst wäre das Ergebnis nicht lesbar · der Rückfall auf Sonnet ohne Gemini-Schlüssel · `APP_VERSION` bei 18.
+
+**Kein Schnitt in der Messreihe.** Die Spielliste ist Messwerkzeug, nicht Messgegenstand; sie liefert das Material, über das die Gehirne urteilen, und urteilt nicht selbst.
+
+**Geprüft:** `node --check` sauber · Sprachschlüssel in allen drei Sprachen gleich, keine Dublette · Trockentest der Rollenwahl über vier Fälle.
+
+**Der Test beginnt mit dem nächsten Vorhersagelauf.** Am 9. August ist nichts mehr abzulesen — der Lauf war vor dem Bau.
+
+### 14. Ondos Entwurf für die Modellwahl — zurückgestellt, nicht verworfen
+
+Ondo schlug vor, die Auswahl für **Schiedsrichter und Spielliste** nicht auf Gemini zu begrenzen, sondern **Sonnet als eigenes Feld daneben** zu stellen, mit einem Kontrollkästchen je Zeile für „aktiv". Dazu die Regel: **ohne Gemini-Schlüssel wird Sonnet automatisch aktiv.**
+
+**Der Entwurf ist besser als Claudes erster Vorschlag.** Claude wollte Sonnet in die vom Konto geladene Auswahlliste mischen und hätte dafür den Flash-Filter aufbohren müssen. Ondos Lösung lässt Filter und Liste unberührt.
+
+**Zurückgestellt, weil er heute kein Problem löst.** Ondo selbst: für diese Phase reicht Flash. Die Zwei-Probleme-Regel greift, und der Eingriff sässe in `gWahl`, wo Punkt 26 seit dem 7. August seine Bewährungszeit noch nicht hinter sich hat.
+
+**Als Backlog-Punkt 38 aufgeschrieben**, damit die durchdachte Lösung nicht verlorengeht.
+
+### 15. Was dieser Chat NICHT gemacht hat
+
+**Der Prüflauf für den 9. August steht aus.** 14 Vorhersagen, sieben Spiele, frühester Anpfiff 13:30 Uhr, spätester 17:30 Uhr. Grund: Speicher. Er geht an den nächsten Chat.
+
+**Sechs Entscheidungen liegen weiter bei Ondo** und sind ihm in diesem Chat **nicht** vorgelegt worden: Punkt 36 · Punkt 37 · die rückwirkende Berichtigung · der erste Lernschritt · Punkt 30 · Befund A als nicht auswertbar führen. Dazu neu Punkt 38.
+
+**Vorgelegt und entschieden wurde Punkt 27** (nicht bauen, Ursache suchen) und **Punkt 29** (bauen).
 
 ---
 
@@ -1146,7 +1213,8 @@ Zwei Schreibweisen desselben Spiels ergeben zwei verschiedene Schlüssel. Folgen
 ## Versionen
 
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.8.0** (`beta.html`, geliefert 9.8.2026) — **Schnitt in der Messreihe bei „beide treffen", Punkt F gebaut.** Werte vor und ab dieser Version sind bei diesem Markt nicht vergleichbar. Jeder neue Log-Eintrag trägt das Feld `codeVersion`. `APP_VERSION` weiter 18.
+- **Beta: v19.8.1** (`beta.html`, geliefert 9.8.2026, 13:55 Uhr) — **die Spielliste hat eine eigene Rolle und läuft auf `gemini-flash-latest`.** Jeder neue Eintrag trägt zusätzlich die **Stufe**. Kein Schnitt in der Messreihe. `APP_VERSION` weiter 18.
+- **Beta zuvor: v19.8.0** (`beta.html`, geliefert 9.8.2026, 04:15 Uhr) — **Schnitt in der Messreihe bei „beide treffen", Punkt F gebaut.** Werte vor und ab dieser Version sind bei diesem Markt nicht vergleichbar. Jeder neue Log-Eintrag trägt das Feld `codeVersion`. `APP_VERSION` weiter 18.
 - **Beta zuvor: v19.7.8** (`beta.html`, geliefert 7.8.2026) — getrennter Speicher, aktive Messphase. Vier Nachbesserungen am 3. und 4. August, alle ausgelöst durch Punkt 0a; Einzelheiten im Backlog. Im Code steht weiterhin `APP_VERSION = 18` (technische Schuld, bewusst nicht nebenbei geändert, vor der Beförderung zu klären)
 - **Sprachschlüssel: 201** in DE, FR und EN, maschinell abgeglichen und identisch (Stand 7.8., v19.7.8). *Die früher dokumentierten 184 waren nie geprüft; nachgezählt waren es 185, dann 193, dann 199, seit v19.7.8 sind es 201.*
 
@@ -1365,6 +1433,8 @@ Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp 
 **Inhalt dieses Eintrags:** Neun Unterpunkte ergänzt (13 bis 21): der **nicht durchgeführte Prüflauf des 8.8.** mit 20 offenen Vorhersagen · die **Bilanz des Backlogs** (39 Punkte, 7 gebaut, 7 beschlossen und ungebaut) mit zwei Ursachen · **Ondos Beschluss, dass jeder Chat mindestens einen beschlossenen Punkt baut** (Arbeitsregel L, Blueprint 0.11) · **ChatGPTs vier Architekturhinweise** samt dem am Code belegten Befund, dass `askBrain` nicht existiert · die **Loop-Idee** und warum ein zweites Modell hier nicht hilft · **sechs eigene Fehler** dieses Vormittags und die zugesagte maschinelle Vorabprüfung · **Claudes Grund gegen die rückwirkende Berichtigung und warum er nicht mehr trägt** (auf Ondos Verlangen) · der **KI-Log als datierter Schnappschuss** im Projektordner. Backlog auf Punkt 33 erweitert und **auf Fassung 13 gehoben**, Blueprint auf 0.11. *Die Fassungsnummer war von Ondo beanstandet: Die Änderungen des 8.8. hingen als sechs Einzelnachträge an Fassung 12, statt eine neue Fassung zu eröffnen — anders als bei allen Fassungen 5 bis 12. Berichtigt; die Einzelnachträge bleiben als Aufzeichnung stehen.* **Alle drei Dokumente maschinell geprüft.***
 
 *Aktualisiert von Claude (Chat 12) am 8.8.2026, 08:10 Uhr — **Nachprüfung auf Ondos Aufforderung, fünf eigene Versäumnisse gefunden und behoben:** (1) Der Zeitstempel im Kopf war veraltet. (2) Der Backlog-Kopf stand noch auf dem 7.8. (3) **Unterpunkt 4 behauptete „Test A: 39 von 39 ohne Ausnahme"**, während Unterpunkt 7 drei Ausnahmen belegte — Widerspruch im selben Dokument, jetzt auf **92 von 95** berichtigt. (4) **Die zweite Prüferrunde fehlte vollständig** — beide kehrten ihre Antwort auf Weg 2 um; jetzt als Unterpunkt 6 eingetragen. (5) **Der Blueprint war nicht angefasst**, obwohl Ondos Beschluss zu frischen Prüfer-Chats Arbeitsregel K ändert — jetzt Fassung 0.10. Ausserdem die zugesagte, aber nicht durchgeführte **Anpfiffzeit-Prüfung nachgeholt** (Unterpunkt 12): 12:00 statt 13:00, vierter Tag in Folge.*
+
+*Aktualisiert von Claude (Chat 13) am 9.8.2026, 13:55 Uhr: **`beta.html` v19.8.1 gebaut** — Punkt 29, die Spielliste bekommt eine eigene Rolle und läuft auf `gemini-flash-latest`; jeder Eintrag trägt zusätzlich die Stufe. Kein Schnitt in der Messreihe. Abschnitt „Der 9. August" um die Unterpunkte 11 bis 15 erweitert. **Die Ursache der falschen Anpfiffzeiten ist eingegrenzt, aber nicht gefunden:** nicht der Code, seit dem 28.7. mit v19.6, geliefert vom kleinsten Gemini-Modell, und in sich widersprüchlich (Salzburg – Pafos am 6.8. mit zwei Zeiten). **Claudes Vermutung zum Laufzeitpunkt wurde von Ondo widerlegt**, das Feld wurde nicht gebaut. **Punkt 27 in alter Form überholt** — er hätte den 8.8. nicht erkannt. Ondos Entwurf zur Modellwahl als Punkt 38 aufgeschrieben. **Der Prüflauf des 9. August steht aus und geht an den nächsten Chat.** Messstand unverändert (je 207 Aussagen), da seit 05:10 Uhr nichts bewertet wurde.*
 
 *Aktualisiert von Claude (Chat 13) am 9.8.2026, 05:16 Uhr: **Prüflauf des 8. August durchgeführt** — neun von zehn Ergebnissen auf Anhieb richtig, Leeds auf Ondos Entscheidung geparkt. Abschnitt „Der 9. August" um die Unterpunkte 6 bis 10 erweitert. **Zwei bisherige Angaben berichtigt:** Die Anpfiffzeiten des 8.8. waren nicht „gleichmässig eine Stunde zu früh" — über alle zehn Spiele waren drei richtig, sieben falsch, und erstmals auch zwei zu **spät**. Und Claude selbst hatte in der Chatmeldung 18 Vorhersagen mit 18 Aussagen verwechselt; richtig sind 27 Aussagen je Gehirn. **Abschnitt „Aktueller Messstand" vollständig auf die Anzeige vom 9.8., 05:10 Uhr gebracht** (je 207 Aussagen, Sonnet 5 %, Flash 6 %) — mit dem ausdrücklichen Vorbehalt, dass die 5 % NICHT aus einer Berichtigung stammen. Backlog-Punkte 36 und 37 neu, Punkt 35 im Alltag bestätigt. Sicherungsstand 9.8., 05:08 Uhr, 224 Vorhersagen.*
 

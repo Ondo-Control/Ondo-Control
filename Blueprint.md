@@ -3,11 +3,13 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.14
-**Stand:** 9. August 2026, 05:16 Uhr
+**Version:** 0.15
+**Stand:** 9. August 2026, 13:55 Uhr
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
-> **Was Fassung 0.14 ändert (9.8.2026):** **Verlängerte Spielformate gehören nicht in die Messreihe** — festgehalten am Fall Leeds – RB Leipzig, der geparkt wurde. Dazu die Feststellung, dass die Kalibrierungszahl an einem einzigen Tag um drei Prozentpunkte springen kann. Drei Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
+> **Was Fassung 0.15 ändert (9.8.2026):** **Die Spielliste ist Messwerkzeug, nicht Messgegenstand — das ist jetzt festgehalten und angewandt.** Sie hat seit v19.8.1 eine eigene Rolle und ein eigenes Modell; Arbeitsregel J steht dem nicht entgegen. Dazu die Feststellung, dass die falschen Anpfiffzeiten nicht aus dem Programm stammen. Vier Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
+>
+> **Was Fassung 0.14 änderte (9.8.2026):** **Verlängerte Spielformate gehören nicht in die Messreihe** — festgehalten am Fall Leeds – RB Leipzig, der geparkt wurde. Dazu die Feststellung, dass die Kalibrierungszahl an einem einzigen Tag um drei Prozentpunkte springen kann. Drei Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
 >
 > **Was Fassung 0.13 änderte (9.8.2026):** **Der Schnitt in der Messreihe bei „beide treffen" ist gebaut und liegt bei `beta.html` v19.8.0.** Werte davor und danach sind bei diesem Markt nicht vergleichbar. Ab v19.8.0 trägt jeder Log-Eintrag die Codeversion, unter der er entstanden ist; Einträge ohne dieses Feld stammen aus der Zeit vor dem Schnitt. Vier Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
 >
@@ -376,6 +378,10 @@ ONDO CONTROL
 | 9.8.2026 | **Verlängerte Spielformate zählen nicht in die Messreihe (Entscheidung Ondo).** Leeds – RB Leipzig ging am 8.8. über 120 Minuten; die App misst den Stand nach 90 Minuten, der offizielle Endstand ist ein anderer. **Beide Einträge geparkt, keine Aussage bewertet.** Es ist wie beim Como Cup keine Fehlerart des Schiedsrichters, sondern eine Lücke in der Spielliste — Weg A schliesst bisher nur **verkürzte** Formate aus. Als Backlog-Punkt 36 geführt. |
 | 9.8.2026 | **Die Kalibrierungszahl ist unruhiger, als ihre Darstellung vermuten lässt.** An einem einzigen Tag mit 27 neuen Aussagen fiel Sonnet von 8 % auf 5 %, Flash stieg von 8 % auf 6 %; der wochenlang berichtete Vorsprung hat sich umgedreht. Der Sprung liegt im Bereich, den die Bootstrap-Rechnung aus Backlog-Punkt 35 vorhergesagt hatte (Sonnet 3,9 bis 14,7). **Aus einer Bewegung der Zahl ist ohne Streuungsangabe kein Befund abzuleiten.** |
 | 9.8.2026 | Blueprint auf Version 0.14 gehoben. |
+| 9.8.2026 | **Die Spielliste ist Messwerkzeug, nicht Messgegenstand.** Sie liefert das Material, über das die Gehirne urteilen, und urteilt nicht selbst. **Arbeitsregel J steht einer Änderung ihres Modells deshalb nicht entgegen** — ein Wechsel dort ist KEIN Schnitt in der Messreihe, solange beide Gehirne dieselbe Liste bekommen. Angewandt in `beta.html` v19.8.1: die Spielliste hat eine eigene Rolle `liste` und läuft auf `gemini-flash-latest` statt wie bisher auf dem Modell des zweiten Gehirns. |
+| 9.8.2026 | **Wird ein Bauteil ausgetauscht, um eine Ursache einzugrenzen, wird NUR EIN Ding auf einmal geändert.** Bei der Spielliste wurde das Modell gewechselt und die Temperatur ausdrücklich unangetastet gelassen. Würden beide zugleich geändert und das Ergebnis besser, wäre nicht ablesbar, woran es lag. |
+| 9.8.2026 | **Die falschen Anpfiffzeiten stammen nicht aus dem Programm (Entscheidung Ondo: Ursache suchen statt Symptom entschärfen).** Im Code findet keine Umrechnung statt; die Zeit ist ein unveränderter Text aus der Antwort des Modells. Belegt: sie erscheint erstmals am **28. Juli** mit der zweistufigen Spielliste (v19.6) · sie stammte bis v19.8.1 vom kleinsten Gemini-Modell · sie ist innerhalb eines Laufs widersprüchlich (dasselbe Spiel am 6.8. mit 18:00 und 19:00). **Die Ursache selbst bleibt unbekannt** (Art. 11). Der Vorschlag aus Backlog-Punkt 27, stattdessen das Prüffenster zu erweitern, ist damit überholt. |
+| 9.8.2026 | Blueprint auf Version 0.15 gehoben. |
 
 ---
 

@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Gepflegt von Claude · Stand 9.8.2026, 05:16 Uhr, Fassung 16 · jede Idee mit Datum, Urheber und Status**
+**Gepflegt von Claude · Stand 9.8.2026, 13:55 Uhr, Fassung 17 · jede Idee mit Datum, Urheber und Status**
 
 ## Regeln für dieses Dokument
 
@@ -13,6 +13,16 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 17 ändert (9.8., mittags)
+
+- **🔴 Punkt 29 ist GEBAUT.** `beta.html` **v19.8.1**, 13:55 Uhr. Die Spielliste hat eine eigene Rolle und läuft auf `gemini-flash-latest`; die Stufe wird je Eintrag mitgeschrieben. **Zweiter Punkt nach Arbeitsregel L an einem Tag.** Bilanz: **40 Punkte, 9 gebaut, 6 beschlossen und nicht gebaut** (E, 2, 3, 4, 6, 7).
+- **🔴 Punkt 27 ist in seiner bisherigen Form ÜBERHOLT.** Entscheidung Ondo: nicht das Prüffenster erweitern, sondern die Ursache suchen. Der Vorschlag hätte den 8.8. nicht erkannt — dort gab es keine Häufung auf einer runden Uhrzeit und trotzdem sieben falsche Zeiten von zehn.
+- **Punkt 37 ist belegt, nicht mehr nur befürchtet.** Am 6.8. steht `Red Bull Salzburg - Pafos FC` (18:00) und `FC Red Bull Salzburg - Pafos FC` (19:00) im Log — ein Spiel, zwei Einträge, zwei Zeiten. Der Vergleichsschlüssel scheitert am vorangestellten „FC".
+- **Neuer Punkt 38 — Sonnet als wählbares Modell für Schiedsrichter und Spielliste** (Entwurf Ondo, mit Kontrollkästchen). Zurückgestellt, weil er heute kein Problem löst.
+- **Der Laufzeitpunkt je Eintrag wurde vorgeschlagen und NICHT gebaut** — Ondo hat die zugrundeliegende Vermutung widerlegt.
 
 ---
 
@@ -240,7 +250,17 @@ Der Temperatur-Fund vom 4.8. steht unverändert: In `apiCall` und `geminiCall` w
 
 ---
 
-**27. Anpfiffzeiten: Prüffenster erweitern, wenn die Liste unglaubwürdig ist** · *Idee 6.8., Gemini* · **Status: ENTSCHEIDUNGSREIF (8.8.)**
+**27. Anpfiffzeiten: Prüffenster erweitern, wenn die Liste unglaubwürdig ist** · *Idee 6.8., Gemini* · **Status: 🔴 ÜBERHOLT — Entscheidung Ondo 9.8.: nicht bauen, Ursache suchen**
+
+**🔴 Entscheidung Ondo, 9.8.:** „Die Lösung für Punkt 27 ist nicht Prüffenster erweitern. Die Ursache für das Problem der falschen Zeiten muss gefunden werden. Erst wenn der Fehler aktiv gesucht und gefunden wird, kann man was machen, sonst nichts."
+
+**Der Vorschlag hätte den 8. August nicht erkannt.** Er wollte auf Häufungen exakt derselben runden Uhrzeit reagieren. Am 8.8. gab es keine solche Häufung — die Zeiten waren 09:00, 12:00, 15:30, 17:00, 19:30, 20:00 — und trotzdem waren **sieben von zehn falsch**, davon zwei zu **spät**. Die Erkennungsregel hätte den Tag durchgewunken.
+
+**Was die Suche ergeben hat, steht in `PROJEKT-STATUS.md`, Abschnitt „Der 9. August", Unterpunkt 11.** Kurz: nicht der Code · seit dem 28.7. mit v19.6 · vom kleinsten Gemini-Modell · in sich widersprüchlich. **Die Ursache bleibt unbekannt** (Art. 11). Der Test dazu ist Punkt 29, gebaut in v19.8.1.
+
+---
+
+*Der ursprüngliche Text des Punktes bleibt zur Nachvollziehbarkeit stehen:*
 
 **⚠ Auslösebedingung erfüllt und übererfüllt.** Die Empfehlung lautete, bis zum dritten Auftreten zu warten. Am 8.8. ist es das **vierte** — und das **zweite in Folge mit gleichmässig einer Stunde** (2. Bundesliga: App 12:00, tatsächlich 13:00, per Websuche belegt über DFB-Datencenter). Damit wiederholt sich zum ersten Mal ein Muster. **Die Ursache bleibt unbekannt.** Ondos Entscheidung steht aus.
 
@@ -252,7 +272,23 @@ Fallen auffällig viele Spiele eines Tages auf exakt dieselbe runde Uhrzeit, ist
 
 ---
 
-**29. Eigene Rolle für die Spielliste (`rolle:'liste'`)** · *Fund 7.8., Claude, aus Ondos Frage „wer liefert die Spielliste?" · zugestimmt Ondo 7.8.* · **Status: Idee — NEU, ausdrücklich NICHT bauen**
+**29. Eigene Rolle für die Spielliste (`rolle:'liste'`)** · *Fund 7.8., Claude, aus Ondos Frage „wer liefert die Spielliste?" · zugestimmt Ondo 7.8.* · **Status: 🔴 GEBAUT am 9.8.2026, 13:55 Uhr, `beta.html` v19.8.1**
+
+**🔴 GEBAUT (Chat 13).** Die frühere Empfehlung lautete „nicht bauen" — mit zwei Gründen: Punkt 26 sitzt in derselben Funktion und war unbewährt, und gegen eine unbekannte Ursache zu bauen war der Fehler vom 4. August.
+
+**Was den Ausschlag gab:** Der Bau ist **kein Notbehelf, sondern ein Test.** Die Liste lief auf dem kleinsten verfügbaren Modell. Läuft sie auf dem grösseren und werden die Zeiten richtig, war das Modell die Ursache; bleiben sie falsch, liegt sie woanders. **Beides ist ein Ergebnis.** Das unterscheidet ihn vom 4. August, wo ein Notbehelf die Ursache verdeckt hätte.
+
+**Sieben Stellen:** `gWahl` mit dritter Rolle `liste` (Voreinstellung `gemini-flash-latest`) · `stufeHolen` ruft `rolle:'liste'` · `stufe` je Eintrag mitgeschrieben · `modellFeld` und `modellWahl` erweitert · drittes Auswahlfeld in der Modellwahl · zwei neue Sprachschlüssel (201 → **203** in DE/FR/EN).
+
+**Ausdrücklich NICHT geändert:** beide Gehirne · die **Temperatur** der Spielliste (sonst wäre das Ergebnis nicht lesbar) · der Rückfall auf Sonnet ohne Gemini-Schlüssel · `APP_VERSION` bleibt 18.
+
+**Kein Schnitt in der Messreihe.** Begründung wie unten: die Spielliste ist Messwerkzeug, nicht Messgegenstand.
+
+**Ablesbar ab dem nächsten Vorhersagelauf**, frühestens 10. August. Der Lauf des 9.8. war vor dem Bau.
+
+---
+
+*Der ursprüngliche Text des Punktes bleibt zur Nachvollziehbarkeit stehen:*
 
 **Der Befund, im Code nachgesehen.** In `stufeHolen` steht:
 
@@ -842,12 +878,51 @@ Weg A (Beschluss Ondo 6.8.) schliesst aus der Spielliste **verkürzte** Formate 
 
 `vorhersagen()` legt jeden zurückgegebenen Eintrag ungeprüft an. Es gibt **keine Prüfung**, ob ein Spiel für denselben Tag bereits im Log steht.
 
+**🔴 Nachtrag 9.8., mittags — es ist bereits passiert.** Im KI-Log steht am **6. August** dasselbe Spiel zweimal:
+
+```
+6.8.2026 18:00 · Red Bull Salzburg - Pafos FC     [UEFA Europa League Qualifikation]
+6.8.2026 19:00 · FC Red Bull Salzburg - Pafos FC  [UEFA Europa League]
+```
+
+**Ein Spiel, zwei Einträge, zwei verschiedene Anpfiffzeiten.** Der Doppelschutz in `spielListeHolen` vergleicht `String(s.match).toLowerCase().replace(/[^a-z0-9]/g,'')` — das vorangestellte „FC" macht aus `redbullsalzburgpafosfc` ein `fcredbullsalzburgpafosfc`, und die Prüfung schlägt fehl. **Der Punkt ist damit belegt, nicht mehr nur befürchtet, und er betrifft zwei Vorhersagen je Gehirn im Bestand.**
+
+→ **Folge für den Bauvorschlag:** Ein Vergleich auf exakte Zeichengleichheit reicht nicht. Er muss auch Namensvarianten erfassen, oder der Vergleich läuft über Datum und Wettbewerb mit.
+
 Am 9.8. lieferte der erste Lauf nur zwei Spiele. Ondo drückte ein zweites Mal und bekam fünf **andere** — keine Doppeleinträge. **Das war Glück.** Bei gleicher Spielliste stünden dieselben Spiele zweimal im Bestand und zählten zweimal in die Kalibrierung.
 
 → **Vorschlag zur Vorlage:** Vor dem Anlegen prüfen, ob Spielname und Datum schon vorhanden sind, und den Eintrag dann überspringen. Wenige Zeilen.
 → **Zu klären, bevor gebaut wird:** Ob ein bewusst zweiter Lauf am selben Tag ein zulässiger Anwendungsfall ist — etwa wenn der erste zu wenige Spiele lieferte. Dann wäre Überspringen richtig, Blockieren falsch.
 → **Kein Schnitt.** Betrifft weder den Auftragstext der Gehirne noch den des Schiedsrichters.
 → Hängt zusammen mit Frage 2 („Doppelter Spieleintrag als zehnte Fehlerart?").
+
+---
+
+**38. Sonnet als wählbares Modell für Schiedsrichter und Spielliste** · *Entwurf Ondo 9.8.* · **Status: zurückgestellt von Ondo — nicht verworfen**
+
+**Der Entwurf, in Ondos Worten.** Sonnet muss **nicht** in die vom Gemini-Konto geladene Auswahlliste hinein. Er bekommt ein **eigenes Feld**, und neben jedem Feld steht ein **Kontrollkästchen**, das das gewünschte Modell auf „aktiv" setzt:
+
+```
+Schiedsrichter
+  Gemini-Flash-latest   [x] Aktiv
+  Sonnet                [ ]
+
+Spielliste
+  Gemini-Flash-latest   [x] Aktiv
+  Sonnet                [ ]
+```
+
+**Zusätzliche Regel von Ondo:** Gibt es **keinen Gemini-Schlüssel**, wird Sonnet automatisch aktiv. Das heutige Verhalten bleibt damit erhalten.
+
+**Der Entwurf ist besser als Claudes erster Vorschlag.** Claude wollte Sonnet in die geladene Liste mischen und hätte dafür den Filter `modellTaugt(name,false)` aufbohren müssen, der nur Namen mit „flash" durchlässt. Ondos Lösung lässt Filter und Liste unberührt.
+
+**Der Weg ist bereits gebaut, nur nicht wählbar.** In `stufeHolen` und beim Schiedsrichter steht heute schon `hatGemini() ? geminiCall(...) : sonnetSuche(prompt, 5, 1500)`. Es wird also kein neuer Aufrufweg gebaut, sondern ein vorhandener wählbar gemacht.
+
+→ **Zurückgestellt, weil er heute kein Problem löst.** Ondo: „Jetzt für diese Phase reicht Flash vollkommen aus." Die Zwei-Probleme-Regel greift.
+→ **Der Preis:** Sonnet mit Websuche ist deutlich teurer als Flash, beim Schiedsrichter mit mehreren Suchen je Prüfrunde spürbar. Eine bewusste Kostenentscheidung.
+→ **Ein Bedenken, das nirgends dokumentiert war:** Sonnet ist eines der beiden **gemessenen** Gehirne. Als Schiedsrichter holt ein Gemessener die Ergebnisse für seine eigenen Vorhersagen. Die Bewertung rechnet fester Code, das Risiko ist begrenzt — aber nicht null.
+→ **Der Eingriff sässe in `gWahl`**, der einen Stelle, an der alle Modellaufrufe zusammenlaufen. Punkt 26 sitzt dort seit dem 7.8. und ist noch nicht bewährt (Stabilitätsregel).
+→ **Zweck aus Ondos Sicht:** „für die Zukunft die Möglichkeit haben zu wählen, falls es nötig wird" — je nach Aufgabe das passendere Modell.
 
 ---
 
