@@ -1,7 +1,7 @@
 # ONDO CONTROL — PROJEKT-STATUS
-*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 9. August 2026, 04:15 Uhr, v19.8.0*
+*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 9. August 2026, 05:16 Uhr, v19.8.0*
 
-> **Zur Datierung:** Die Kalibrierungszahlen im Abschnitt „Aktueller Messstand" sind am **8.8.2026, 06:11 Uhr aus der Anzeige der App abgelesen** — je 180 bewertete Aussagen, beide Gehirne 8 % Abweichung. Ältere Zahlen in den Tagesabschnitten (135 Aussagen, 5 gegen 9 Prozent) sind **Verlaufsangaben und bleiben stehen**. Massgeblich ist immer der Abschnitt „Aktueller Messstand".
+> **Zur Datierung:** Die Kalibrierungszahlen im Abschnitt „Aktueller Messstand" sind am **9.8.2026, 05:10 Uhr aus der Anzeige der App abgelesen** — je 207 bewertete Aussagen, Sonnet 5 %, Flash 6 % Abweichung. Die Werte des 8.8. (je 180, beide 8 %) sind ab jetzt Verlaufsangaben. Ältere Zahlen in den Tagesabschnitten (135 Aussagen, 5 gegen 9 Prozent) sind **Verlaufsangaben und bleiben stehen**. Massgeblich ist immer der Abschnitt „Aktueller Messstand".
 
 ---
 
@@ -146,6 +146,68 @@ Ondo wandte ein, er hätte für die Berichtigung einfach die betroffenen Einträ
 **Die Bewertung der 20 offenen Vorhersagen vom 8. August bleibt unberührt.** Am Code belegt: Die Märkte werden beim Vorhersagen gebaut und im Eintrag gespeichert; das Urteil liest später nur den gespeicherten Code. Eine dieser 20 ist betroffen — Sonnet, FK Austria Wien – Farul Constanța, Tipp 2:0. **Nach dem Prüflauf sind es 16 falsch bewertete Aussagen statt 15. Die Zahl ist neu auszuzählen, nicht fortzuschreiben.**
 
 **Der Altbestand ist nicht angefasst.**
+
+### 6. Der Prüflauf des 8. August — neun von zehn auf Anhieb richtig
+
+**Zehn Spiele, geprüft von Claude selbst per Websuche, elf Suchen.** Neun stimmten in Endstand **und** Halbzeit genau: Stuttgart 3:1 (1:0) · Augsburg 3:2 (2:2) · Köln 2:1 (1:1) · Schalke 0:3 (0:2) · Betis 2:2 (0:1) · Grêmio 2:1 (0:1) · Austria Wien 5:0 (2:0) · Karlsruhe 2:1 (1:0) · Heidenheim 4:3 (3:2).
+
+**Zwei Fallen hat der Schiedsrichter vermieden.** Köln spielte an zwei Tagen gegen Real Sociedad — Freitag 2:0 unter Ausschluss der Öffentlichkeit, Samstag 2:1. Er nahm das richtige. Und die Wettbewerbsangabe bei Austria Wien war korrekt.
+
+**Kein falscher Halbzeitstand.** Damit ist die Serie von drei Tagen gebrochen; Backlog-Punkt 26 hat einen dritten fehlerfreien Lauf. *Drei Läufe sind kein Urteil.*
+
+**18 Aussagen je Gehirn kamen dazu**, nicht 20 — Leeds wurde geparkt. Claude hatte in der ersten Meldung an Ondo 18 Vorhersagen mit 18 Aussagen verwechselt; richtig sind **27 Aussagen je Gehirn** (9 Spiele mal 3 Märkte).
+
+### 7. Leeds – RB Leipzig geparkt — eine Lücke bei VERLÄNGERTEN Spielformaten
+
+Die App meldete 1:0, der offizielle Endstand ist **2:0**. Das Spiel ging über **120 Minuten**, angesetzt als zwei Hälften zu je 60 Minuten. Leeds selbst — genau die Quelle, die die App angab — nennt das zweite Tor in der **109. Minute**, Sky zählt dieselbe Szene als 90.+9.
+
+**Ob der Schiedsrichter falsch gelesen hat, ist nicht bestimmbar** (Art. 11). Nach 90 Minuten stand es sehr wahrscheinlich 1:0, und genau das misst die App. Kein Anbieter veröffentlicht einen Zwischenstand bei Minute 90.
+
+**Entscheidung Ondos: parken.** Beide Einträge stehen weiter auf offen, kein Endstand gesetzt, keine Aussage bewertet.
+
+**Die Lücke ist das Spiegelbild des Como-Cup-Falls.** Weg A schliesst seit dem 6.8. **verkürzte** Formate aus und verlangt volle 90 Minuten. Ein **verlängertes** Format ist nicht ausgeschlossen. Als Backlog-Punkt 36 geführt.
+
+### 8. Die Anpfiffzeiten des 8. August — die bisherige Beschreibung hält über zehn Spiele nicht
+
+Im Abschnitt „Der 8. August" steht, die Zeiten seien „gleichmässig genau eine Stunde zu früh" gewesen. **Das galt für die beiden Zweitligaspiele, nicht für den Tag.** Aus dem Prüflauf über alle zehn ergibt sich:
+
+**Richtig waren drei** — Stuttgart, Köln, Schalke. **Falsch waren sieben, und zwar in beide Richtungen:**
+
+| Spiel | App | tatsächlich | Abweichung |
+|---|---|---|---|
+| Heidenheim – Osnabrück | 12:00 | 13:00 | 1 h zu früh |
+| Karlsruhe – Bielefeld | 12:00 | 13:00 | 1 h zu früh |
+| Grêmio – São Paulo | 20:00 | 21:00 | 1 h zu früh |
+| Real Betis – Bournemouth | 19:30 | 20:30/21:00 | mind. 1 h zu früh |
+| **Austria Wien – Farul** | **09:00** | **18:00** | **9 h zu früh** |
+| Augsburg – Sassuolo | 17:00 | 15:30 | 1,5 h zu **spät** |
+| Leeds – RB Leipzig | 17:00 | 15:00 | 2 h zu **spät** |
+
+**Zwei Sätze aus der bisherigen Buchführung tragen damit nicht mehr:** dass sich am 8.8. das Muster des 7.8. wiederholt habe (es ähnelt eher dem ungleichmässigen des 6.8.), und dass allen Fällen „zu früh" gemeinsam sei. **Zum ersten Mal sind Zeiten auch zu spät.**
+
+**Die neun Stunden bei Austria Wien sind derselbe Betrag wie am 5. August.** Was das bedeutet, ist unbekannt (Art. 11).
+
+**Folge für den Prüflauf:** Die Anpfiffzeit bestimmt, ab wann geprüft werden darf. Punkt 27 ist damit dringlicher, nicht nur häufiger.
+
+### 9. Neuer Messstand — und die 5 % sind NICHT die Berichtigung
+
+Nach der Übernahme steht Sonnet bei **5 %** Abweichung. Genau diesen Wert nannte die Buchführung als das, was **nach** einer Berichtigung zu erwarten wäre.
+
+**Es ist nicht derselbe Wert.** Die 16 falsch bewerteten Sonnet-Aussagen sind unverändert im Bestand. Der Rückgang kommt allein von 27 neuen Aussagen. **Wer die 5 % für erledigte Berichtigung hält, irrt.**
+
+Sichtbar bleibt der Fehler in Sonnets Stufe 70–79 %: behauptet 74 %, wirklich 43 %, bei 14 Aussagen. Dort sitzen sechs der falsch bewerteten Einträge.
+
+**Ein Befund über die Zahl selbst:** Sonnets Abweichung fiel an **einem** Tag von 8 % auf 5 %, Flashs stieg von 8 % auf 6 %. Der wochenlang berichtete Vorsprung hat sich umgedreht. **Backlog-Punkt 35 ist damit im Alltag bestätigt** — die Bootstrap-Rechnung sagte für Sonnet einen Bereich von 3,9 bis 14,7 Prozent voraus, und der Sprung liegt darin. Die Kalibrierungszahl ist unruhiger, als ihre eine Nachkommastelle vermuten lässt.
+
+### 10. Kein Schutz gegen einen zweiten Vorhersagelauf am selben Tag
+
+Der erste Lauf am 9.8. lieferte nur **zwei** Spiele. Ondo drückte ein zweites Mal und bekam **fünf andere** — keine Überschneidung, keine Doppeleinträge.
+
+**Das war Glück, keine Absicherung.** `vorhersagen()` prüft nicht, ob ein Spiel für denselben Tag bereits im Log steht; jeder Eintrag wird ungeprüft angelegt. Hätte die Spielliste dieselben zwei Spiele geliefert, stünden sie doppelt im Bestand und zählten doppelt in die Kalibrierung. Als Backlog-Punkt 37 geführt.
+
+**Warum der erste Lauf nur zwei Spiele fand, ist unbekannt** (Art. 11).
+
+**Der Schnitt wirkt.** Bei allen 14 neuen Aussagen stimmen Etikett und mitgeschriebenes Wort überein. Sonnets Union-Berlin-Eintrag zeigt bei Tipp 2:0 „Beide treffen: **Nein 70 %**" mit Wort „nein" — dieselbe Zahl hätte die alte Fassung als „**Ja** 70 %" angezeigt, also das Gegenteil. *14 Aussagen sind kein Urteil.*
 
 ---
 
@@ -1110,23 +1172,25 @@ Bis v18.6 war die Beta ein **Wett-Berater**. Am 23. Juli wurde sie zum **Messger
 
 ---
 
-## Aktueller Messstand (abgelesen aus der App am 8.8.2026, 06:11 Uhr)
+## Aktueller Messstand (abgelesen aus der App am 9.8.2026, 05:10 Uhr)
 
-**Bestand insgesamt:** **210 Vorhersagen** (aus der App abgelesen, 8.8. 07:54), davon **190 aus der Messphase** und 20 im v18-Archiv. **Je 180 bewertete Aussagen.** Zuletzt vorhergesagt am 8. August früh (20 offene Vorhersagen).
+**Bestand insgesamt:** **224 Vorhersagen**, davon **204 aus der Messphase** und 20 im v18-Archiv. **Je 207 bewertete Aussagen.** Nicht bewertet sind 66 Vorhersagen — **52 geparkt**, 14 wirklich offen (Vorhersagelauf vom 9. August früh).
 
-*Zur Herkunft (Art. 14): Alle Zahlen dieses Abschnitts sind **aus der Anzeige der App abgelesen**, keine ist gerechnet. Claude hatte am 8.8. zunächst je 150 Aussagen fortgeschrieben und dabei die zehn am Morgen des 7.8. übernommenen Ergebnisse übersehen — 135 + 30 + 15 = 180. Der Fehler kam durch Ondos Bildschirmfoto der Finanzen-Seite ans Licht.*
+*Zur Herkunft (Art. 14): Alle Zahlen dieses Abschnitts sind **aus der Anzeige der App abgelesen**, keine ist gerechnet.*
 
 | | bewertete Aussagen | Kalibrierungs-Abweichung | Trefferquote |
 |---|---|---|---|
-| Sonnet | 180 | **8 %** (grün) | 47 % (85/180) |
-| Flash | 180 | **8 %** (grün) | 51 % (91/180) |
-| gesamt | 360 | — | 49 % (176/360) |
+| Sonnet | 207 | **5 %** (grün) | 50 % (103/207) |
+| Flash | 207 | **6 %** (grün) | 52 % (108/207) |
+| gesamt | 414 | — | 51 % (211/414) |
 
-> **⚠ Diese Werte enthalten 15 nachweislich falsch bewertete Sonnet-Aussagen.** Nach einer Berichtigung stünde Sonnet bei **94/180 = 52 %** und rund **5 %** Abweichung, Flash unverändert. Belege in Abschnitt „Der 8. August", Unterpunkt 7. **Ondos Entscheidung über die Berichtigung steht aus.**
+> **⚠ Die 5 % bei Sonnet sind NICHT das Ergebnis einer Berichtigung.** Die **16** nachweislich falsch bewerteten Sonnet-Aussagen stecken unverändert in diesen Werten. Der Rückgang von 8 % auf 5 % kommt allein von 27 neuen Aussagen am 9. August. Dass die Buchführung für die Berichtigung denselben Wert „rund 5 %" vorhergesagt hatte, ist ein Zusammentreffen und kein Vollzug. **Ondos Entscheidung über die Berichtigung steht weiterhin aus.** Die Vergleichsrechnung vom 8.8. (85/180 vorher, **94/180** nachher) steht in Abschnitt „Der 8. August", Unterpunkt 7.
 
-**Sonnets Verteilung:** 1–49 % → 24 Aussagen (behauptet 42, wirklich 33) · 50–59 % → **121** (behauptet 54, wirklich 50) · 60–69 % → 21 (behauptet 63, wirklich 52) · 70–79 % → 14 (behauptet 74, wirklich 43)
+**Entschlossenheit:** Sonnet Ø Abstand von 50 = **6,8**, Anteil ab 60 % = 18 % (38/207) · Flash Ø **9,7**, Anteil ab 60 % = 44 % (92/207).
 
-**Flashs Verteilung:** 1–49 % → 25 (42/28) · 50–59 % → 72 (55/53) · 60–69 % → **66 (behauptet 63, wirklich 53)** · 70–79 % → 13 (73/54) · 80–89 % → 3 (82/100) · 90–99 % → 1 (90/100)
+**Sonnets Verteilung:** 1–49 % → 29 Aussagen (behauptet 43, wirklich 31) · 50–59 % → **140** (54/54) · 60–69 % → 24 (63/54) · 70–79 % → 14 (**74/43** — hier sitzen sechs der falsch bewerteten Einträge)
+
+**Flashs Verteilung:** 1–49 % → 29 (42/28) · 50–59 % → 86 (55/53) · 60–69 % → **74 (63/57)** · 70–79 % → 14 (73/57) · 80–89 % → 3 (82/100) · 90–99 % → 1 (90/100)
 
 **Ehrliche Einordnung (Art. 14):**
 - **🔴 Der dokumentierte Vorsprung Sonnets besteht nicht mehr.** Zuletzt 5 gegen 9 Prozent, jetzt **beide 8**. Sonnet hat sich um drei Punkte verschlechtert, Flash um einen verbessert.
@@ -1301,6 +1365,8 @@ Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp 
 **Inhalt dieses Eintrags:** Neun Unterpunkte ergänzt (13 bis 21): der **nicht durchgeführte Prüflauf des 8.8.** mit 20 offenen Vorhersagen · die **Bilanz des Backlogs** (39 Punkte, 7 gebaut, 7 beschlossen und ungebaut) mit zwei Ursachen · **Ondos Beschluss, dass jeder Chat mindestens einen beschlossenen Punkt baut** (Arbeitsregel L, Blueprint 0.11) · **ChatGPTs vier Architekturhinweise** samt dem am Code belegten Befund, dass `askBrain` nicht existiert · die **Loop-Idee** und warum ein zweites Modell hier nicht hilft · **sechs eigene Fehler** dieses Vormittags und die zugesagte maschinelle Vorabprüfung · **Claudes Grund gegen die rückwirkende Berichtigung und warum er nicht mehr trägt** (auf Ondos Verlangen) · der **KI-Log als datierter Schnappschuss** im Projektordner. Backlog auf Punkt 33 erweitert und **auf Fassung 13 gehoben**, Blueprint auf 0.11. *Die Fassungsnummer war von Ondo beanstandet: Die Änderungen des 8.8. hingen als sechs Einzelnachträge an Fassung 12, statt eine neue Fassung zu eröffnen — anders als bei allen Fassungen 5 bis 12. Berichtigt; die Einzelnachträge bleiben als Aufzeichnung stehen.* **Alle drei Dokumente maschinell geprüft.***
 
 *Aktualisiert von Claude (Chat 12) am 8.8.2026, 08:10 Uhr — **Nachprüfung auf Ondos Aufforderung, fünf eigene Versäumnisse gefunden und behoben:** (1) Der Zeitstempel im Kopf war veraltet. (2) Der Backlog-Kopf stand noch auf dem 7.8. (3) **Unterpunkt 4 behauptete „Test A: 39 von 39 ohne Ausnahme"**, während Unterpunkt 7 drei Ausnahmen belegte — Widerspruch im selben Dokument, jetzt auf **92 von 95** berichtigt. (4) **Die zweite Prüferrunde fehlte vollständig** — beide kehrten ihre Antwort auf Weg 2 um; jetzt als Unterpunkt 6 eingetragen. (5) **Der Blueprint war nicht angefasst**, obwohl Ondos Beschluss zu frischen Prüfer-Chats Arbeitsregel K ändert — jetzt Fassung 0.10. Ausserdem die zugesagte, aber nicht durchgeführte **Anpfiffzeit-Prüfung nachgeholt** (Unterpunkt 12): 12:00 statt 13:00, vierter Tag in Folge.*
+
+*Aktualisiert von Claude (Chat 13) am 9.8.2026, 05:16 Uhr: **Prüflauf des 8. August durchgeführt** — neun von zehn Ergebnissen auf Anhieb richtig, Leeds auf Ondos Entscheidung geparkt. Abschnitt „Der 9. August" um die Unterpunkte 6 bis 10 erweitert. **Zwei bisherige Angaben berichtigt:** Die Anpfiffzeiten des 8.8. waren nicht „gleichmässig eine Stunde zu früh" — über alle zehn Spiele waren drei richtig, sieben falsch, und erstmals auch zwei zu **spät**. Und Claude selbst hatte in der Chatmeldung 18 Vorhersagen mit 18 Aussagen verwechselt; richtig sind 27 Aussagen je Gehirn. **Abschnitt „Aktueller Messstand" vollständig auf die Anzeige vom 9.8., 05:10 Uhr gebracht** (je 207 Aussagen, Sonnet 5 %, Flash 6 %) — mit dem ausdrücklichen Vorbehalt, dass die 5 % NICHT aus einer Berichtigung stammen. Backlog-Punkte 36 und 37 neu, Punkt 35 im Alltag bestätigt. Sicherungsstand 9.8., 05:08 Uhr, 224 Vorhersagen.*
 
 *Aktualisiert von Claude (Chat 12) am 8.8.2026, 07:58 Uhr: **Der KI-Log ist maschinell ausgezählt** (neuer Unterpunkt 7). Gegenprobe gegen die App bestanden, Zeile für Zeile. **Befund A ist widerlegt:** Die scheinbare Überzuversicht Sonnets ist vollständig der Zählfehler; nach Berichtigung trifft Sonnet in den Stufen 60–79 % je 71 %. Netto +9 Punkte, 94/180 = 52 %. **Nur zwei der 15 Fälle liegen vor dem 5. August.** Zwei Fehlerarten statt einer — eine pauschale Regel wäre falsch gewesen. Dazu zwei Randbefunde (Unterpunkt 8): beweglicher Schiedsrichter-Name, Prüfer-Gemini ist 3.1 Pro. Sicherungsstand 07:54, Bestand auf 210 berichtigt.*
 

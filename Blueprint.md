@@ -3,11 +3,13 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.13
-**Stand:** 9. August 2026, 04:15 Uhr
+**Version:** 0.14
+**Stand:** 9. August 2026, 05:16 Uhr
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
-> **Was Fassung 0.13 ändert (9.8.2026):** **Der Schnitt in der Messreihe bei „beide treffen" ist gebaut und liegt bei `beta.html` v19.8.0.** Werte davor und danach sind bei diesem Markt nicht vergleichbar. Ab v19.8.0 trägt jeder Log-Eintrag die Codeversion, unter der er entstanden ist; Einträge ohne dieses Feld stammen aus der Zeit vor dem Schnitt. Vier Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
+> **Was Fassung 0.14 ändert (9.8.2026):** **Verlängerte Spielformate gehören nicht in die Messreihe** — festgehalten am Fall Leeds – RB Leipzig, der geparkt wurde. Dazu die Feststellung, dass die Kalibrierungszahl an einem einzigen Tag um drei Prozentpunkte springen kann. Drei Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
+>
+> **Was Fassung 0.13 änderte (9.8.2026):** **Der Schnitt in der Messreihe bei „beide treffen" ist gebaut und liegt bei `beta.html` v19.8.0.** Werte davor und danach sind bei diesem Markt nicht vergleichbar. Ab v19.8.0 trägt jeder Log-Eintrag die Codeversion, unter der er entstanden ist; Einträge ohne dieses Feld stammen aus der Zeit vor dem Schnitt. Vier Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
 >
 > **Was Fassung 0.12 änderte (8.8.2026):** **Neue Arbeitsregel M — kein Dokument ohne maschinelle Vorabprüfung.** Ein Protokolleintrag dazu. **Kein Verfassungsartikel geändert.**
 >
@@ -371,6 +373,9 @@ ONDO CONTROL
 | 9.8.2026 | **Die Versionsnummer steht ab v19.8.0 an genau einer Stelle im Code (`CODE_VERSION`)** und wird von dort in Kopfzeile, Vision-Text und Log-Eintrag eingesetzt. Vorher stand sie an zwei Stellen als fester Text. Sie ist bei jeder Lieferung hochzuzählen. `APP_VERSION` bleibt davon unberührt und steht weiter auf 18 — der gewollte Rückstand gegenüber `version.json`. |
 | 9.8.2026 | **Reihenfolge für die drei Schritte festgelegt (Vorschlag Chat 12, Entscheidung Ondo): Schnitt → Prüflauf → Berichtigung.** Grund: Der Schnitt stoppt den Zufluss falsch bewerteter Aussagen; erst nach dem Prüflauf steht der Altbestand endgültig fest. **Nach dem Schnitt bedeutet das Kennzeichen `gedreht` etwas anderes als davor** — nur noch „die Prozentzahl lag unter 50", nicht mehr „das Etikett ist verdreht". Eine spätere Berichtigung darf deshalb ausschliesslich Einträge ohne `codeVersion` anfassen. Die Berichtigung selbst ist **nicht** entschieden. |
 | 9.8.2026 | Blueprint auf Version 0.13 gehoben. |
+| 9.8.2026 | **Verlängerte Spielformate zählen nicht in die Messreihe (Entscheidung Ondo).** Leeds – RB Leipzig ging am 8.8. über 120 Minuten; die App misst den Stand nach 90 Minuten, der offizielle Endstand ist ein anderer. **Beide Einträge geparkt, keine Aussage bewertet.** Es ist wie beim Como Cup keine Fehlerart des Schiedsrichters, sondern eine Lücke in der Spielliste — Weg A schliesst bisher nur **verkürzte** Formate aus. Als Backlog-Punkt 36 geführt. |
+| 9.8.2026 | **Die Kalibrierungszahl ist unruhiger, als ihre Darstellung vermuten lässt.** An einem einzigen Tag mit 27 neuen Aussagen fiel Sonnet von 8 % auf 5 %, Flash stieg von 8 % auf 6 %; der wochenlang berichtete Vorsprung hat sich umgedreht. Der Sprung liegt im Bereich, den die Bootstrap-Rechnung aus Backlog-Punkt 35 vorhergesagt hatte (Sonnet 3,9 bis 14,7). **Aus einer Bewegung der Zahl ist ohne Streuungsangabe kein Befund abzuleiten.** |
+| 9.8.2026 | Blueprint auf Version 0.14 gehoben. |
 
 ---
 

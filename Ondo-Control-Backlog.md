@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Gepflegt von Claude · Stand 9.8.2026, 04:15 Uhr, Fassung 15 · jede Idee mit Datum, Urheber und Status**
+**Gepflegt von Claude · Stand 9.8.2026, 05:16 Uhr, Fassung 16 · jede Idee mit Datum, Urheber und Status**
 
 ## Regeln für dieses Dokument
 
@@ -13,6 +13,16 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 16 ändert (9.8., früh)
+
+- **Neuer Punkt 36 — verlängerte Spielformate.** Weg A schliesst **verkürzte** Formate aus (45/60 Minuten). Verlängerte sind nicht ausgeschlossen. Leeds – RB Leipzig ging am 8.8. über 120 Minuten; die Aussage der App und der offizielle Endstand gehen dadurch auseinander. **Spiegelbild des Como-Cup-Falls.**
+- **Neuer Punkt 37 — kein Schutz gegen einen zweiten Vorhersagelauf.** `vorhersagen()` prüft nicht, ob ein Spiel für denselben Tag schon im Log steht. Am 9.8. ist es nur gut gegangen, weil der zweite Lauf andere Spiele lieferte.
+- **Punkt 35 (Streuungsangabe) ist im Alltag bestätigt.** Sonnets Abweichung fiel an einem Tag von 8 % auf 5 %, Flashs stieg auf 6 % — der Vorsprung hat sich umgedreht. Der Sprung liegt im vorhergesagten Bereich 3,9 bis 14,7.
+- **Punkt 26 hat einen dritten fehlerfreien Lauf.** Kein falscher Halbzeitstand am 8.8. Drei Läufe sind kein Urteil.
+- **Punkt 30 hat erstmals Zahlen:** Von sechs Freundschaftsspielen am 8.8. waren **alle sechs** auffindbar. Die Befürchtung, sie seien schlechter dokumentiert, ist an diesem Tag nicht eingetreten. Ein Tag ist kein Urteil — aber „erst zählen, dann entscheiden" hat begonnen.
 
 ---
 
@@ -812,6 +822,32 @@ Wie oft legt sich ein Gehirn überhaupt fest? Ohne diese Zahl vergleichen wir So
 → *Gebaut am 3.8. zusammen mit A, 0a und 1 — eine Änderung am Auftragstext statt zweier, also ein Bruch in der Messreihe statt zweier.*
 → **Ehrlich zum Nutzen in den ersten Tagen (3.8.):** Übernehmen ist gesperrt, also steht bei nahezu jeder Zeile „Ergebnis noch offen". Der Kreislauf hört trotzdem sofort auf — eine Vermutung wird nicht mehr als Tatsache ausgegeben.
 → **Nicht mitgebaut:** der frühere Begründungszwang bei Seitenwechsel. Er wäre eine fünfte Änderung gewesen und verändert das Antwortverhalten stärker als alle vier v19.7-Punkte zusammen. → Punkt 20.
+
+---
+
+**36. Verlängerte Spielformate schliessen — die andere Hälfte von Weg A** · *Fund 9.8., Claude beim Prüflauf* · **Status: Idee, Ondo vorzulegen**
+
+Weg A (Beschluss Ondo 6.8.) schliesst aus der Spielliste **verkürzte** Formate aus: „Turniere mit verkuerzter Spielzeit (Vorbereitungsturniere mit 45- oder 60-Minuten-Partien)" und verlangt „Jedes aufgenommene Spiel muss ueber die vollen 90 Minuten gehen."
+
+**Verlängerte Formate fallen nicht darunter.** Leeds – RB Leipzig war am 8.8. auf **120 Minuten** angesetzt, zwei Hälften zu 60 Minuten. Der offizielle Endstand ist 2:0, das zweite Tor fiel in der 109. Minute. Die App misst den Stand nach 90 Minuten und meldete 1:0.
+
+→ **Nicht bestimmbar, ob der Schiedsrichter falsch gelesen hat** (Art. 11). Kein Anbieter veröffentlicht einen Zwischenstand bei Minute 90. Es ist wie beim Como Cup **keine Fehlerart des Schiedsrichters, sondern eine Lücke in der Spielliste**.
+→ **Erledigt für diesen Fall:** Beide Leeds-Einträge sind auf Ondos Entscheidung **geparkt**.
+→ **Vorschlag zur Vorlage:** Der Satz „Jedes aufgenommene Spiel muss ueber die vollen 90 Minuten gehen" wird zu „genau 90 Minuten plus Nachspielzeit — weder verkürzt noch verlängert". Eine Zeile, keine neuen Sprachschlüssel, kein Geld.
+→ **Grenze der Wirkung:** Das schliesst nur aus, was die Spielliste als solches erkennt. Ein Modell, das das Format nicht kennt, nimmt es trotzdem auf. Senkt die Wahrscheinlichkeit, schliesst nichts aus.
+
+---
+
+**37. Kein Schutz gegen einen zweiten Vorhersagelauf am selben Tag** · *Fund 9.8., Claude* · **Status: Idee, Ondo vorzulegen**
+
+`vorhersagen()` legt jeden zurückgegebenen Eintrag ungeprüft an. Es gibt **keine Prüfung**, ob ein Spiel für denselben Tag bereits im Log steht.
+
+Am 9.8. lieferte der erste Lauf nur zwei Spiele. Ondo drückte ein zweites Mal und bekam fünf **andere** — keine Doppeleinträge. **Das war Glück.** Bei gleicher Spielliste stünden dieselben Spiele zweimal im Bestand und zählten zweimal in die Kalibrierung.
+
+→ **Vorschlag zur Vorlage:** Vor dem Anlegen prüfen, ob Spielname und Datum schon vorhanden sind, und den Eintrag dann überspringen. Wenige Zeilen.
+→ **Zu klären, bevor gebaut wird:** Ob ein bewusst zweiter Lauf am selben Tag ein zulässiger Anwendungsfall ist — etwa wenn der erste zu wenige Spiele lieferte. Dann wäre Überspringen richtig, Blockieren falsch.
+→ **Kein Schnitt.** Betrifft weder den Auftragstext der Gehirne noch den des Schiedsrichters.
+→ Hängt zusammen mit Frage 2 („Doppelter Spieleintrag als zehnte Fehlerart?").
 
 ---
 
