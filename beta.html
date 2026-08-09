@@ -122,7 +122,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.0';
+var CODE_VERSION = 'v19.8.1';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -213,6 +213,7 @@ var I18N = {
   bttsWord:'Gehirn sagt', bttsMismatch:'≠ Anzeige oben',
   mdlT:'Modellwahl (Google Gemini)', mdlD:'Getrennt einstellbar. Das Gehirn sollte waehrend der Messphase NICHT gewechselt werden — ein Korrekturfaktor gilt nur fuer das Modell, an dem er gemessen wurde. Der Schiedsrichter darf jederzeit gewechselt werden.',
   mdlBrain:'Zweites Gehirn (Vorhersage)', mdlRef:'Schiedsrichter (Ergebnis-Pruefung)',
+  mdlList:'Spielliste (welche Spiele heute)', mdlListD:'Kein Schnitt in der Messreihe — die Liste urteilt nicht, sie liefert nur das Material.',
   mdlAuto:'Automatisch (erstes nutzbares)', mdlReload:'🔄 Modelle vom Konto laden', mdlNone:'Noch keine Liste geladen — Knopf druecken',
   mdlWarn:'⚠ Wechsel bricht die Messreihe', mdlCount:'Modelle verfuegbar',
   decis:'Entschlossenheit', decisD:'Wie oft legt sich ein Gehirn ueberhaupt fest? Nur zusammen mit der Kalibrierung aussagekraeftig.',
@@ -296,6 +297,7 @@ var I18N = {
   bttsWord:'Le cerveau dit', bttsMismatch:'≠ affichage ci-dessus',
   mdlT:'Choix du modele (Google Gemini)', mdlD:'Reglable separement. Le cerveau ne doit PAS etre change pendant la phase de mesure — un facteur de correction ne vaut que pour le modele mesure. Le verificateur peut etre change a tout moment.',
   mdlBrain:'Deuxieme cerveau (prevision)', mdlRef:'Verificateur (controle des resultats)',
+  mdlList:'Liste des matchs (quels matchs aujourd hui)', mdlListD:'Pas de rupture dans la serie de mesures — la liste ne juge pas, elle fournit seulement la matiere.',
   mdlAuto:'Automatique (premier utilisable)', mdlReload:'🔄 Charger les modeles du compte', mdlNone:'Aucune liste chargee — appuyez sur le bouton',
   mdlWarn:'⚠ Un changement rompt la serie de mesures', mdlCount:'modeles disponibles',
   decis:'Determination', decisD:'A quelle frequence un cerveau se prononce-t-il vraiment ? Significatif seulement avec le calibrage.',
@@ -379,6 +381,7 @@ var I18N = {
   bttsWord:'Brain says', bttsMismatch:'≠ display above',
   mdlT:'Model choice (Google Gemini)', mdlD:'Set separately. The brain should NOT be changed during the measurement phase — a correction factor only holds for the model it was measured on. The referee may be changed at any time.',
   mdlBrain:'Second brain (prediction)', mdlRef:'Referee (result check)',
+  mdlList:'Match list (which matches today)', mdlListD:'No break in the measurement series — the list does not judge, it only supplies the material.',
   mdlAuto:'Automatic (first usable)', mdlReload:'🔄 Load models from account', mdlNone:'No list loaded yet — press the button',
   mdlWarn:'⚠ Changing breaks the measurement series', mdlCount:'models available',
   decis:'Decisiveness', decisD:'How often does a brain actually commit? Meaningful only together with calibration.',
@@ -750,7 +753,15 @@ function modellTaugt(name, stark){
    erste funktionierende Modell zu nehmen und es nirgends anzuzeigen. Neue Modelle erscheinen
    dadurch von selbst in der Auswahl; kein fester Name im Code (Lehre 10.7. bleibt gewahrt). */
 function gWahl(rolle){
-  var w = (rolle==='ref') ? state.gModellRef : state.gModellGehirn;
+  /* v19.8.1 (Backlog-Punkt 29, Beschluss Ondo 9.8.): dritte Rolle 'liste'. Die Spielliste lief
+     bis v19.8.0 unter rolle:'gehirn' und teilte sich das Modell mit dem zweiten Gehirn — also
+     gemini-3.1-flash-lite, der kleinsten Stufe. Sie ist Messwerkzeug, nicht Messgegenstand;
+     eine Aenderung hier ist deshalb KEIN Schnitt in der Messreihe (Arbeitsregel J).
+     Zweck: Test, ob die seit dem 28.7. falschen Anpfiffzeiten am Modell liegen.
+     NUR das Modell wird geaendert, NICHT die Temperatur — sonst waere das Ergebnis nicht lesbar. */
+  var w = (rolle==='ref') ? state.gModellRef
+        : (rolle==='liste') ? (state.gModellListe || 'gemini-flash-latest')
+        : state.gModellGehirn;
   if(!w) return '';
   return modellTaugt(w,false) ? w : '';
 }
@@ -982,7 +993,7 @@ function stufeHolen(stufe){
     'Findest du in diesem Bereich heute gar nichts, antworte mit einer leeren Liste.\n\n'+
     'Letzte Nachricht: NUR kompaktes JSON:\n{"spiele":[{"match":"Team A - Team B","wettbewerb":"...","anpfiff":"20:30"}]}';
   var call = hatGemini()
-    ? geminiCall({ prompt: prompt, useSearch: true, rolle:'gehirn' })
+    ? geminiCall({ prompt: prompt, useSearch: true, rolle:'liste' })
     : sonnetSuche(prompt, 5, 1500);
   return call.then(function(res){
     if(res.error) throw new Error(res.error.message||('HTTP '+res._status));
@@ -1120,6 +1131,10 @@ function vorhersagen(btn){
           match:match,
           wettbewerb:(paket.liste[idx]&&paket.liste[idx].wettbewerb)||'',
           anpfiff:(paket.liste[idx]&&paket.liste[idx].anpfiff)||'',
+          /* v19.8.1: Aus welchem der drei Suchdurchgaenge das Spiel stammt. Die Nummer wurde
+             bisher in stufeHolen berechnet und beim Anlegen weggeworfen. Sie zeigt, ob falsche
+             Anpfiffzeiten aus einer bestimmten Stufe kommen. Aendert nichts am Rechnen. */
+          stufe:(paket.liste[idx]&&paket.liste[idx].stufe)||null,
           herkunft:gehirn,
           heim:h, gast:g,
           bttsWort:jaNeinWort(v.bttsWort),
@@ -1973,19 +1988,25 @@ function viewFinance(c){
 /* ================= MEHR / EINSTELLUNGEN ================= */
 function modellFeld(rolle){
   var liste = (state.geminiModelListe||[]).filter(function(n){ return modellTaugt(n,false); });
-  var wert  = (rolle==='ref') ? (state.gModellRef||'') : (state.gModellGehirn||'');
+  var wert  = (rolle==='ref') ? (state.gModellRef||'')
+            : (rolle==='liste') ? (state.gModellListe||'')
+            : (state.gModellGehirn||'');
   var opts  = '<option value="">'+t('mdlAuto')+'</option>';
   liste.forEach(function(n){
     opts += '<option value="'+esc(n)+'"'+(n===wert?' selected':'')+'>'+esc(n)+'</option>';
   });
   /* Ein gewaehltes Modell, das nicht mehr in der Liste steht, bleibt sichtbar statt still zu verschwinden */
   if(wert && liste.indexOf(wert)<0) opts += '<option value="'+esc(wert)+'" selected>'+esc(wert)+' (?)</option>';
-  return '<label style="margin-top:10px;display:block">'+t(rolle==='ref'?'mdlRef':'mdlBrain')+'</label>'+
+  var beschriftung = (rolle==='ref') ? 'mdlRef' : (rolle==='liste') ? 'mdlList' : 'mdlBrain';
+  return '<label style="margin-top:10px;display:block">'+t(beschriftung)+'</label>'+
     '<select onchange="modellWahl(\''+rolle+'\',this.value)">'+opts+'</select>'+
-    (rolle==='gehirn' ? '<div class="muted" style="color:var(--loss);margin-top:4px">'+t('mdlWarn')+'</div>' : '');
+    (rolle==='gehirn' ? '<div class="muted" style="color:var(--loss);margin-top:4px">'+t('mdlWarn')+'</div>' : '')+
+    (rolle==='liste' ? '<div class="muted" style="margin-top:4px">'+t('mdlListD')+'</div>' : '');
 }
 function modellWahl(rolle, wert){
-  if(rolle==='ref') state.gModellRef = wert || null; else state.gModellGehirn = wert || null;
+  if(rolle==='ref') state.gModellRef = wert || null;
+  else if(rolle==='liste') state.gModellListe = wert || null;
+  else state.gModellGehirn = wert || null;
   save(); render();
 }
 function modelleLaden(){
@@ -2022,6 +2043,7 @@ function viewMore(){
     '<div class="muted" style="margin-bottom:12px">'+t('mdlD')+'</div>'+
     modellFeld('gehirn')+
     modellFeld('ref')+
+    modellFeld('liste')+
     '<button class="btn btn-ghost" style="margin-top:10px" onclick="modelleLaden()">'+t('mdlReload')+'</button>'+
     '<div class="muted" style="margin-top:8px">'+
       ((state.geminiModelListe&&state.geminiModelListe.length)
