@@ -37,7 +37,7 @@ pruef(_bf and int(_bf.group(1))==_neueste, f"Backlog-Kopf ({_bf.group(1) if _bf 
 pruef("mit neun Nachträgen" not in B and "Nachträgen ·" not in B, "Kopf nennt eine Fassungsnummer, keine Nachtragszahl")
 _bpv=_re.search(r'\*\*Version:\*\* (0\.\d+)', BP).group(1)
 pruef(f"Was Fassung {_bpv} ändert" in BP and f"{_bpv} gehoben" in BP, f"Blueprint {_bpv} in Kopf, Aenderungsnotiz und Protokoll")
-pruef("v19.7.8" in S.split('\n')[1], "STATUS-Kopf nennt die gebaute Beta-Version v19.7.8")
+pruef("v19.8.0" in S.split('\n')[1], "STATUS-Kopf nennt die gebaute Beta-Version v19.8.0")
 pruef(all("Arbeitsregel L" in x for x in (BP,S)), "Arbeitsregel L in Blueprint und STATUS")
 
 print("6) Backlog-Verweise aufloesbar")
@@ -45,9 +45,12 @@ miss=[m for m in set(re.findall(r'Backlog-Punkt (\d+)', S)) if not re.search(r'^
 pruef(not miss, f"alle Backlog-Verweise existieren {('fehlt: '+str(miss)) if miss else ''}")
 
 print("7) Pflichtinhalte dieses Chats")
-for k in ["Schnappschuss","askBrain","Loop-Idee","Bilanz des Backlogs","Sechs eigene Fehler",
-          "Grund gegen eine rückwirkende Berichtigung","Prüflauf des 8. August wurde NICHT",
-          "jeder Chat baut mindestens einen","zweite Runde","gemini-flash-latest","92 von 95"]:
+# Pflichtinhalte von Chat 13 (9.8.). Die Liste des 8.8. stand hier vorher und pruefte
+# die Vergangenheit statt der Gegenwart — Hinweis aus der Abnahme von Chat 12.
+for k in ["Punkt F gebaut","codeVersion","CODE_VERSION","Schnitt liegt bei v19.8.0",
+          "Schnitt → Prüflauf → Berichtigung","16 falsch bewertete Aussagen statt 15",
+          "APP_VERSION` bleibt bei 18","Altbestand ist nicht angefasst",
+          "Ondos Einwand hat den Bau vereinfacht"]:
     pruef(k in S, f"'{k}'")
 
 print("\nERGEBNIS:", "ALLES SAUBER" if not f else f"{len(f)} FEHLER: {f}")

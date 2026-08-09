@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Gepflegt von Claude · Stand 8.8.2026, 17:25 Uhr, Fassung 14 · jede Idee mit Datum, Urheber und Status**
+**Gepflegt von Claude · Stand 9.8.2026, 04:15 Uhr, Fassung 15 · jede Idee mit Datum, Urheber und Status**
 
 ## Regeln für dieses Dokument
 
@@ -13,6 +13,15 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 15 ändert (9.8., nachts)
+
+- **🔴 Punkt F ist GEBAUT.** `beta.html` **v19.8.0**, geliefert am 9.8.2026 um 04:15 Uhr. Beide Stellen geändert, Ursache statt Wirkung. **Damit ist der erste Punkt nach Arbeitsregel L abgearbeitet.** Bilanz: **39 Punkte, 8 gebaut, 6 beschlossen und nicht gebaut** (E, 2, 3, 4, 6, 7).
+- **Die offene Prüffrage bei Punkt F ist beantwortet:** Die App speicherte die Version **nicht** je Vorhersage. Sie tut es ab v19.8.0 im neuen Feld `codeVersion`. Das vorhandene `aera` war zu grob.
+- **Reihenfolge festgelegt: Schnitt → Prüflauf → Berichtigung**, jeweils mit eigener Sicherung. Im Blueprint 0.13 protokolliert.
+- **Ondos Einwand hat den Bau vereinfacht:** Er schlug vor, für die Berichtigung nur die betroffenen Einträge einzeln zu markieren, statt eine Regel über den ganzen Bestand laufen zu lassen. Damit entfällt die Gefahr, dass eine Berichtigung neue, richtige Einträge beschädigt — Claudes Hauptargument für das Versionsfeld war damit entkräftet. Das Feld ist trotzdem gebaut, weil es die Grenze zwischen alter und neuer Frage eindeutig macht; das Datum wäre am 8.8. mehrdeutig gewesen.
 
 ---
 
@@ -808,7 +817,7 @@ Wie oft legt sich ein Gehirn überhaupt fest? Ohne diese Zahl vergleichen wir So
 
 ### Ebenfalls Prio 1, noch nicht für v19.7 eingeplant
 
-**F. Auftragstext bei „beide treffen" eindeutig formulieren** · *Fund 30./31.7., Beleg durch Test A · Beschluss Ondo 5.8.* · **Status: beschlossen, noch nicht gebaut — NEU**
+**F. Auftragstext bei „beide treffen" eindeutig formulieren** · *Fund 30./31.7., Beleg durch Test A · Beschluss Ondo 5.8.* · **Status: 🔴 GEBAUT am 9.8.2026, `beta.html` v19.8.0**
 
 Der Auftragstext fragt heute: „wie sicher in Prozent, dass *beide Teams treffen* **so ausgeht wie in deinem Ergebnis**?" Test A hat bewiesen, dass Flash diese Frage beantwortet und Sonnet die schlichte Frage „wie wahrscheinlich treffen beide?". Die App liest beide Zahlen gleich und dreht Sonnets Angabe dadurch ins Gegenteil.
 
@@ -832,6 +841,22 @@ Der Auftragstext fragt heute: „wie sicher in Prozent, dass *beide Teams treffe
 - **Damit verschwindet die Ursache, nicht nur die Wirkung.** Das mitgeschriebene `bttsWort` bleibt als Gegenprobe und müsste danach immer übereinstimmen.
 - **Keine neuen Sprachschlüssel** — der Auftragstext ist nicht übersetzt. **Kein Geld, kein zusätzlicher Aufruf.** Der Preis ist der Schnitt.
 - **Günstiger Zeitpunkt:** Die 20 Vorhersagen vom 8.8. früh sind unter dem alten Text entstanden. Ein Bau davor oder danach legt den Schnitt auf eine Tagesgrenze.
+
+**🔴 GEBAUT am 9.8.2026, 04:15 Uhr — `beta.html` v19.8.0 (Chat 13).** Der Bauvorschlag oben ist unverändert ausgeführt worden, ergänzt um zwei Punkte, die Chat 12 nicht vorgesehen hatte.
+
+**Sechs Stellen geändert:**
+1. **`maerkteBauen`:** `var btts = (heim>0 && gast>0)` entfernt. Die Behauptung ist jetzt immer `btts_ja`; die Umdrehung greift nur noch unter 50 Prozent.
+2. **Auftragstext:** `pBtts` fragt jetzt nach der Wahrscheinlichkeit, dass **beide Mannschaften mindestens ein Tor erzielen**, ausdrücklich unabhängig vom eigenen Ergebnis. Damit fragen `pBtts` und `bttsWort` dasselbe — das Wort wird zur echten Gegenprobe.
+3. **Neues Feld `codeVersion` je Log-Eintrag** (Antwort auf die offene Prüffrage oben: die App speicherte die Version bisher **nicht**).
+4. **`CODE_VERSION` als einzige Stelle für die Versionsnummer**, von dort in Kopfzeile, Vision-Text und Log-Eintrag eingesetzt. Vorher standen zwei feste Nummern im Text.
+5. Kopfzeile auf `v19.8.0`.
+6. Vision-Text zieht die Nummer aus `CODE_VERSION` statt aus festem Text.
+
+**`APP_VERSION` bleibt bei 18** — der gewollte Rückstand ist unangetastet.
+
+**Geprüft vor der Lieferung:** `node --check` sauber · Sprachschlüssel 201 in DE/FR/EN, keiner neu, keiner fehlt · Trockentest mit sechs konstruierten Fällen (Tipp 2:0 bei 65 % ergibt jetzt „ja 65" statt „nein 65"; Tipps ohne Null verhalten sich unverändert).
+
+**Der Altbestand ist nicht angefasst.** Die Berichtigung ist eine getrennte Sache und nicht entschieden.
 
 **Claudes Grund gegen eine rückwirkende Berichtigung der Altdaten trägt nicht mehr** — vollständige Begründung in `PROJEKT-STATUS.md`, Abschnitt „Der 8. August", Unterpunkt 19. Kurzfassung: Von vier Gründen sind drei entkräftet; übrig bleibt, dass die Berichtigung auf einer sehr gut belegten **Schlussfolgerung** über Sonnets Frageverständnis beruht und ein Irrtum darin danach unsichtbar wäre. Das betrifft praktisch **zwei Einträge**. **Empfehlung: berichtigen; die zwei Altfälle Ondo einzeln vorlegen.** Entscheidung Ondos steht aus.
 

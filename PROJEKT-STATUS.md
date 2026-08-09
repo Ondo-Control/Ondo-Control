@@ -1,5 +1,5 @@
 # ONDO CONTROL — PROJEKT-STATUS
-*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 8. August 2026, 17:25 Uhr, v19.7.8*
+*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 9. August 2026, 04:15 Uhr, v19.8.0*
 
 > **Zur Datierung:** Die Kalibrierungszahlen im Abschnitt „Aktueller Messstand" sind am **8.8.2026, 06:11 Uhr aus der Anzeige der App abgelesen** — je 180 bewertete Aussagen, beide Gehirne 8 % Abweichung. Ältere Zahlen in den Tagesabschnitten (135 Aussagen, 5 gegen 9 Prozent) sind **Verlaufsangaben und bleiben stehen**. Massgeblich ist immer der Abschnitt „Aktueller Messstand".
 
@@ -104,6 +104,48 @@ Zwölf Chats in fünf Wochen. **Punkt 18 („Dokumente auf Diät") bestimmt inzw
 **Das Werkzeug dagegen:** `pruefe.py` prüft Kopf-Zeitstempel gegen eine übergebene Ablesung, Abschnittsnummern auf Lücken, Querverweise auf Auflösbarkeit, veraltete Messzahlen ausserhalb von Korrekturvermerken, Fassungs- und Versionsnummern über Kopf, Änderungsnotiz und Protokoll hinweg, sowie eine Liste von Pflichtinhalten. **Vor jeder Dateiausgabe laufen lassen, mit frisch abgelesener Uhrzeit als Parameter.**
 
 **Und der wichtigste Satz zum Schluss:** Alle vierzehn Fehler wurden von **Ondo** gefunden. Keiner von Claude. Wer diese Liste liest und daraus schliesst, er selbst mache solche Fehler nicht, hat sie nicht verstanden.
+
+---
+
+## DER 9. AUGUST — Punkt F gebaut, der Schnitt liegt bei v19.8.0
+
+### 1. Der erste Punkt nach Arbeitsregel L ist abgearbeitet
+
+**`beta.html` v19.8.0, geliefert am 9.8.2026 um 04:15 Uhr.** Punkt F war seit dem 5. August beschlossen und vier Tage lang nicht gebaut. Er ist jetzt gebaut.
+
+**Sechs Stellen geändert.** Die beiden aus dem Bauvorschlag: die Ableitung der Behauptung aus dem getippten Ergebnis ist entfernt, und der Auftragstext fragt nicht mehr nach der Sicherheit im eigenen Tipp, sondern nach der Wahrscheinlichkeit, dass beide Mannschaften mindestens ein Tor erzielen. Vier weitere kamen dazu: das neue Feld `codeVersion` je Log-Eintrag, `CODE_VERSION` als einzige Stelle für die Versionsnummer, die Kopfzeile und der Vision-Text.
+
+**`APP_VERSION` bleibt bei 18.** Der gewollte Rückstand gegenüber `version.json` ist unangetastet.
+
+**Geprüft vor der Lieferung:** `node --check` sauber, 201 Sprachschlüssel in DE, FR und EN unverändert, und ein Trockentest mit sechs konstruierten Fällen. Der Test zeigt genau die beabsichtigte Wirkung: Ein Tipp 2:0 bei 65 Prozent ergibt jetzt „ja 65" statt „nein 65"; Tipps ohne Null verhalten sich unverändert.
+
+### 2. Der Schnitt liegt bei v19.8.0 und ist am Eintrag ablesbar
+
+Die App speicherte die Version bisher **nicht** je Vorhersage — das war die offene Prüffrage bei Punkt F und ist damit beantwortet. Das vorhandene Feld `aera` war zu grob, es umfasst die ganze v19-Reihe.
+
+Ab v19.8.0 trägt jeder neue Eintrag `codeVersion`. **Einträge ohne dieses Feld stammen aus der Zeit vor dem Schnitt.**
+
+Der Grund für ein Feld statt eines Datums: Am 8. August wurde vor und nach dem Bau gearbeitet. Eine Datumsgrenze wäre an diesem Tag mehrdeutig gewesen.
+
+### 3. Reihenfolge festgelegt: Schnitt → Prüflauf → Berichtigung
+
+Der Schnitt zuerst, weil er den Zufluss falsch bewerteter Aussagen stoppt. Der Prüflauf danach, weil erst dann der Altbestand endgültig feststeht. Die Berichtigung zuletzt — und sie ist **nicht** entschieden.
+
+**Die Falle, die dabei zuschnappen könnte:** Nach dem Schnitt bedeutet das Kennzeichen `gedreht` etwas anderes als davor. Heute heißt es „das Etikett ist verdreht", danach nur noch „die Prozentzahl lag unter 50" — harmlos, wie beim Tore-Markt. Eine Berichtigung, die nach dem Schnitt läuft, darf deshalb ausschließlich Einträge ohne `codeVersion` anfassen.
+
+### 4. Ondos Einwand hat den Bau vereinfacht
+
+Claude hatte das Versionsfeld damit begründet, dass eine Berichtigung sonst die neuen, richtigen Einträge beschädigen könnte.
+
+Ondo wandte ein, er hätte für die Berichtigung einfach die betroffenen Einträge einzeln markiert — es seien nicht viele.
+
+**Das trifft zu und entkräftet Claudes Hauptgrund.** Die Gefahr besteht nur, wenn die Berichtigung als Regel über den ganzen Bestand läuft. Bei einer festen Liste von sechzehn Einträgen gibt es sie nicht. Das Feld ist trotzdem gebaut worden, aber aus dem kleineren Grund: damit die Grenze zwischen alter und neuer Frage eindeutig ablesbar bleibt.
+
+### 5. Was der Bau NICHT verändert
+
+**Die Bewertung der 20 offenen Vorhersagen vom 8. August bleibt unberührt.** Am Code belegt: Die Märkte werden beim Vorhersagen gebaut und im Eintrag gespeichert; das Urteil liest später nur den gespeicherten Code. Eine dieser 20 ist betroffen — Sonnet, FK Austria Wien – Farul Constanța, Tipp 2:0. **Nach dem Prüflauf sind es 16 falsch bewertete Aussagen statt 15. Die Zahl ist neu auszuzählen, nicht fortzuschreiben.**
+
+**Der Altbestand ist nicht angefasst.**
 
 ---
 
@@ -1042,7 +1084,8 @@ Zwei Schreibweisen desselben Spiels ergeben zwei verschiedene Schlüssel. Folgen
 ## Versionen
 
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.7.8** (`beta.html`, geliefert 7.8.2026) — getrennter Speicher, aktive Messphase. Vier Nachbesserungen am 3. und 4. August, alle ausgelöst durch Punkt 0a; Einzelheiten im Backlog. Im Code steht weiterhin `APP_VERSION = 18` (technische Schuld, bewusst nicht nebenbei geändert, vor der Beförderung zu klären)
+- **Beta: v19.8.0** (`beta.html`, geliefert 9.8.2026) — **Schnitt in der Messreihe bei „beide treffen", Punkt F gebaut.** Werte vor und ab dieser Version sind bei diesem Markt nicht vergleichbar. Jeder neue Log-Eintrag trägt das Feld `codeVersion`. `APP_VERSION` weiter 18.
+- **Beta zuvor: v19.7.8** (`beta.html`, geliefert 7.8.2026) — getrennter Speicher, aktive Messphase. Vier Nachbesserungen am 3. und 4. August, alle ausgelöst durch Punkt 0a; Einzelheiten im Backlog. Im Code steht weiterhin `APP_VERSION = 18` (technische Schuld, bewusst nicht nebenbei geändert, vor der Beförderung zu klären)
 - **Sprachschlüssel: 201** in DE, FR und EN, maschinell abgeglichen und identisch (Stand 7.8., v19.7.8). *Die früher dokumentierten 184 waren nie geprüft; nachgezählt waren es 185, dann 193, dann 199, seit v19.7.8 sind es 201.*
 
 ---
@@ -1241,6 +1284,7 @@ Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp 
 | 5./6.8.2026 | Chat 9 → Chat 10 | Raw-Links + Projektdateien + Mappe | **9 von 9** | beide Fangfragen bestanden (Ursache des Neun-Stunden-Versatzes als unbekannt benannt, Modellname nicht rückwirkend behoben); vier Antworten über dem Schlüssel — die genaue Bedingung der Umdrehung (`p < 50`, im Code gegengeprüft), die einzeln benannten vier geparkten Einträge, `APP_VERSION = 18` als zweiter Fall gewollten Rückstands. Der Nachfolger fand vor der Prüfung, dass Backlog und PROJEKT-STATUS den Codekommentar zu 0a in der alten Fassung zitieren, obwohl er am 5.8. berichtigt wurde |
 | 6./7.8.2026 | Chat 10 → Chat 11 | Raw-Links + Projektdateien + Mappe | **9 von 9** | beide Fangfragen bestanden (Ursache der falschen Anpfiffzeiten als unbekannt benannt und die Zeitzonen-Vermutung als am 6.8. widerlegt erkannt; aus zwei fehlerfreien Prüfläufen nichts für die neun Fehlerarten geschlossen); vier Antworten über dem Schlüssel — die siebte Fehlerart mit beiden Spielen benannt, die stabile v17 als zweiter Fall gewollten Rückstands, der sachliche Grund für Temperatur 0,0 beim Schiedsrichter. **Der Nachfolger fand vor der Prüfung, dass die Projektkopie des Backlogs auf Fassung 10 stand, während im Repo Fassung 11 lag — und baute nichts nach, sondern meldete es. Zweiter Fall einer Abweichung zwischen Kopie und Repo nach dem 5.8.** |
 | 7.8.2026 | Chat 11 → Chat 12 | Raw-Links + Projektdateien + Mappe | **9 von 9** | beide Fangfragen bestanden (drei verschiedene Muster bei den Anpfiffzeiten benannt und die Ursache als unbekannt geführt, ohne das dritte Muster als Bestätigung der widerlegten Zeitzonen-These zu lesen; aus dem guten zweiten Spiellisten-Lauf nichts für den Bau geschlossen); vier Antworten über dem Schlüssel — Weg A am Code statt am Dokument belegt, Geminis zu starke Formulierung als schon beim Eintragen zurückgewiesen erkannt, der `checkUpdate`-Mechanismus und der Blueprint-Eintrag vom 10.7. als Belege für die zwei gewollten Rückstände. **Der Nachfolger fand vor der Prüfung vier Fehler in der Buchführung des Vorgängers — drei veraltete Angaben (v19.7.7 statt v19.7.8, 199 statt 201 Sprachschlüssel) und eine doppelt eingesetzte Sicherungsliste — und unterschied dabei richtig zwischen Stands- und Verlaufsangaben.** |
+| 8.8.2026 | Chat 12 → Chat 13 | Raw-Links + Projektdateien + Mappe | **9 von 9** | sechs Fragen bereits in der ersten Antwort beantwortet, drei nachgereicht; **beide Fangfragen bestanden** (Motherwell unaufgefordert als zweite Fehlerart erkannt und die pauschale Regel verworfen; aus der Umkehr der Prüfer nichts über die erste Antwort geschlossen, sondern die gleichzeitige Änderung zweier Dinge benannt). **Vier Punkte über dem Schlüssel: den KI-Log selbst maschinell ausgezählt statt die Zahlen zu übernehmen — Ergebnis in jeder Zeile deckungsgleich; sechs Codestellen selbst belegt; die Folgerung aus der Prüfer-Umkehr präziser gefasst als der Schlüssel; beide Bedingungen zu Arbeitsregel M ungefragt genannt.** Kein Fehler. |
 
 ---
 

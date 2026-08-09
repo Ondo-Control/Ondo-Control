@@ -3,11 +3,13 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.12
-**Stand:** 8. August 2026, 17:25 Uhr
+**Version:** 0.13
+**Stand:** 9. August 2026, 04:15 Uhr
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
-> **Was Fassung 0.12 ändert (8.8.2026):** **Neue Arbeitsregel M — kein Dokument ohne maschinelle Vorabprüfung.** Ein Protokolleintrag dazu. **Kein Verfassungsartikel geändert.**
+> **Was Fassung 0.13 ändert (9.8.2026):** **Der Schnitt in der Messreihe bei „beide treffen" ist gebaut und liegt bei `beta.html` v19.8.0.** Werte davor und danach sind bei diesem Markt nicht vergleichbar. Ab v19.8.0 trägt jeder Log-Eintrag die Codeversion, unter der er entstanden ist; Einträge ohne dieses Feld stammen aus der Zeit vor dem Schnitt. Vier Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
+>
+> **Was Fassung 0.12 änderte (8.8.2026):** **Neue Arbeitsregel M — kein Dokument ohne maschinelle Vorabprüfung.** Ein Protokolleintrag dazu. **Kein Verfassungsartikel geändert.**
 >
 > **Was Fassung 0.11 änderte (8.8.2026):** **Neue Arbeitsregel L — Bauen vor Aufnehmen** (Beschluss Ondo). Ein Protokolleintrag dazu. Kein Verfassungsartikel geändert.
 >
@@ -364,6 +366,11 @@ ONDO CONTROL
 | 8.8.2026 | **Arbeitsregel L beschlossen (Ondo): Bauen vor Aufnehmen.** Jeder Chat arbeitet mindestens einen beschlossenen Punkt ab, bevor neue Ideen aufgenommen werden. Anlass: 39 Backlog-Punkte, sieben gebaut, sieben beschlossen und nicht gebaut. |
 | 8.8.2026 | **Arbeitsregel M beschlossen: kein Dokument ohne maschinelle Vorabprüfung.** Anlass: vierzehn eigene Fehler Chat 12s an einem Vormittag, alle von Ondo gefunden — darunter drei erfundene Zeitstempel und ein Prüfskript, dessen Sollwert vom Geprüften stammte. |
 | 8.8.2026 | Blueprint auf Version 0.12 gehoben. |
+| 9.8.2026 | **Punkt F gebaut — SCHNITT IN DER MESSREIHE bei „beide treffen".** In `beta.html` v19.8.0 leitet die App die Behauptung nicht mehr aus dem getippten Ergebnis ab, und der Auftragstext fragt nicht mehr nach der Sicherheit im eigenen Tipp, sondern nach der Wahrscheinlichkeit, dass beide Mannschaften treffen. **Der Schnitt liegt bei v19.8.0.** Werte vor und ab dieser Version sind bei diesem Markt nicht vergleichbar und werden getrennt ausgewertet. Die beiden anderen Märkte sind nicht betroffen. |
+| 9.8.2026 | **Jeder Log-Eintrag trägt ab v19.8.0 die Codeversion (`codeVersion`).** Das vorhandene Feld `aera` war dafür zu grob — es umfasst die ganze v19-Reihe. Einträge **ohne** dieses Feld stammen aus der Zeit vor dem Schnitt. Damit ist die Grenze am Eintrag ablesbar und nicht mehr aus dem Datum zu erschliessen; das Datum wäre am 8.8. mehrdeutig gewesen, weil an diesem Tag vor und nach dem Bau gearbeitet wurde. |
+| 9.8.2026 | **Die Versionsnummer steht ab v19.8.0 an genau einer Stelle im Code (`CODE_VERSION`)** und wird von dort in Kopfzeile, Vision-Text und Log-Eintrag eingesetzt. Vorher stand sie an zwei Stellen als fester Text. Sie ist bei jeder Lieferung hochzuzählen. `APP_VERSION` bleibt davon unberührt und steht weiter auf 18 — der gewollte Rückstand gegenüber `version.json`. |
+| 9.8.2026 | **Reihenfolge für die drei Schritte festgelegt (Vorschlag Chat 12, Entscheidung Ondo): Schnitt → Prüflauf → Berichtigung.** Grund: Der Schnitt stoppt den Zufluss falsch bewerteter Aussagen; erst nach dem Prüflauf steht der Altbestand endgültig fest. **Nach dem Schnitt bedeutet das Kennzeichen `gedreht` etwas anderes als davor** — nur noch „die Prozentzahl lag unter 50", nicht mehr „das Etikett ist verdreht". Eine spätere Berichtigung darf deshalb ausschliesslich Einträge ohne `codeVersion` anfassen. Die Berichtigung selbst ist **nicht** entschieden. |
+| 9.8.2026 | Blueprint auf Version 0.13 gehoben. |
 
 ---
 
