@@ -103,7 +103,7 @@
     <h1>Ondo<span class="a"> Control</span></h1>
     <div id="topSaldo" class="disp" style="font-size:21px;">+0,00 €</div>
   </div>
-  <div class="sub"><span id="heute"></span> · v19.7.8 BETA<span id="saveNote" class="save-note"></span></div>
+  <div class="sub"><span id="heute"></span> · <span id="verLbl"></span> BETA<span id="saveNote" class="save-note"></span></div>
   <div id="view"></div>
 </div>
 
@@ -117,6 +117,13 @@
 <script>
 /* ================= VERSION & UPDATE-CHECK ================= */
 var APP_VERSION = 18;
+/* v19.8.0 (Backlog-Punkt F, Beschluss Ondo 8.8.): Die Versionsnummer steht ab jetzt an
+   GENAU EINER Stelle. Sie wird in den Kopf geschrieben, in den Vision-Text eingesetzt und
+   in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
+   tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
+   der Update-Zaehler gegen version.json und steht bewusst auf 18. */
+var CODE_VERSION = 'v19.8.0';
+(function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
     .then(function(r){ return r.json(); })
@@ -611,10 +618,17 @@ function maerkteBauen(match, heim, gast, p1x2, pTore, pBtts){
     (ges>2.5 ? 'ueber' : 'unter'), (ges>2.5 ? t('over25') : t('under25')),
     (ges>2.5 ? 'unter' : 'ueber'), (ges>2.5 ? t('under25') : t('over25')),
     pTore));
-  var btts = (heim>0 && gast>0);
+  /* v19.8.0, Backlog-Punkt F (Beschluss Ondo 5.8., gebaut 8.8.): Die Behauptung wird NICHT
+     mehr aus dem getippten Ergebnis abgeleitet. Bis v19.7.8 stand hier
+     var btts = (heim>0 && gast>0), und die Behauptung kippte auf "nein", sobald der Tipp
+     eine Null enthielt. Sonnet beantwortete pBtts aber als "wie wahrscheinlich treffen
+     beide" — dadurch wurden 15 bewertete Aussagen mit verdrehtem Etikett gefuehrt.
+     Ab hier ist die Behauptung immer btts_ja; die Umdrehung greift nur noch unter 50 —
+     genau wie beim Tore-Markt darueber. SCHNITT: Werte vor und ab v19.8.0 sind nicht
+     vergleichbar. Altbestand NICHT anfassen, dazu ist nichts entschieden. */
   m.push(jaNein('btts',
-    (btts ? 'btts_ja' : 'btts_nein'), (btts ? t('bttsYes') : t('bttsNo')),
-    (btts ? 'btts_nein' : 'btts_ja'), (btts ? t('bttsNo') : t('bttsYes')),
+    'btts_ja', t('bttsYes'),
+    'btts_nein', t('bttsNo'),
     pBtts));
   return m;
 }
@@ -1030,7 +1044,9 @@ function vorhersageGehirn(gehirn, liste){
     '- heim und gast: dein wahrscheinlichstes Ergebnis nach 90 Minuten (ganze Zahlen, ohne Verlaengerung)\n'+
     '- p1x2: wie sicher bist du in Prozent, dass der Ausgang (Heimsieg / Auswaertssieg / Unentschieden) so kommt wie in deinem Ergebnis? (1-99)\n'+
     '- pTore: wie sicher in Prozent, dass die Torrichtung stimmt (ueber bzw. unter 2,5 Tore gesamt)? (1-99)\n'+
-    '- pBtts: wie sicher in Prozent, dass "beide Teams treffen" so ausgeht wie in deinem Ergebnis? (1-99)\n'+
+    '- pBtts: wie wahrscheinlich ist es in Prozent, dass BEIDE Mannschaften mindestens ein Tor erzielen? '+
+      'Diese Frage ist unabhaengig von deinem Ergebnis oben — antworte nicht, wie sicher du dir bist, '+
+      'sondern wie wahrscheinlich das Ereignis "beide treffen" ist. (1-99)\n'+
     '- bttsWort: antworte hier NUR mit dem Wort "ja" oder "nein" auf die einfache Frage: Treffen in diesem Spiel beide Mannschaften mindestens ein Tor?\n'+
     '- begruendung: max 15 Woerter auf '+(LANGWORD[state.lang]||'Deutsch')+'\n\n'+
     'WICHTIG ZUR EHRLICHKEIT: Deine Prozentangaben werden gemessen. Sagst du oft 80 Prozent, muessen etwa 8 von 10 dieser Aussagen eintreffen. '+
@@ -1094,6 +1110,12 @@ function vorhersagen(btn){
         var eintrag={
           id:'v'+Date.now()+'_'+gehirn+'_'+idx,
           aera:'v19',
+          /* v19.8.0 (Backlog-Punkt F): Ab hier traegt jeder Eintrag die Codeversion, unter der
+             er entstanden ist. aera ist dafuer zu grob — sie umfasst die ganze v19-Reihe.
+             Eintraege OHNE dieses Feld stammen aus der Zeit vor dem Schnitt, also von der
+             alten Fragestellung bei "beide treffen". Eine spaetere Berichtigung darf
+             ausschliesslich Eintraege ohne dieses Feld anfassen. */
+          codeVersion:CODE_VERSION,
           datum:heuteD,
           match:match,
           wettbewerb:(paket.liste[idx]&&paket.liste[idx].wettbewerb)||'',
@@ -2029,7 +2051,7 @@ function viewMore(){
     '<div style="font-size:13px;line-height:1.8">'+t('sec1')+'<br>'+t('sec2')+'<br>'+t('sec3')+'<br>'+t('sec4')+'<br>'+t('sec5')+'</div>'+
   '</div>'+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">📋 '+t('projT')+'</div>'+
-    '<pre>ONDO CONTROL v19.7.8 — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
+    '<pre>ONDO CONTROL '+CODE_VERSION+' — Messphase\n\nVision: Ein persönliches KI-System, das dir hilft, bessere Entscheidungen zu treffen — modular, transparent, kontrollierbar.\n\nIn dieser Phase ist die App ein MESSGERÄT, kein Wett-Berater:\n• Beide Gehirne sagen dieselben Spiele vorher\n• Gemessen wird die Kalibrierung: Stimmen die Prozentangaben?\n• Der Schiedsrichter liest nur das Ergebnis — die Bewertung rechnet fester Code\n• Keine erfundenen Quoten mehr\n\nValue-Rechnung und echte Quoten kommen zurück, sobald die Messung steht.\n\nModule: Wetten ✓ · Finanzen ✓ · Lotterien · Content · Organisation\n\nVerfassung (Auszug): Wahrheit · Transparenz · Kritik · Loyalität · Schutz · Kontrolle · keine Scheinüberlegenheit.</pre>'+
   '</div>';
 }
 
