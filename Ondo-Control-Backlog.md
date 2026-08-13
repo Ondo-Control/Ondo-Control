@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Gepflegt von Claude · Stand 9.8.2026, 13:55 Uhr, Fassung 17 · jede Idee mit Datum, Urheber und Status**
+**Gepflegt von Claude · Stand 13.8.2026, 16:32 Uhr, Fassung 18 · jede Idee mit Datum, Urheber und Status**
 
 ## Regeln für dieses Dokument
 
@@ -13,6 +13,16 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 18 ändert (13.8., nachmittags)
+
+- **Punkt 41 neu:** Zuordnung der Listenangaben über den Spielnamen statt über die laufende Nummer. **Die Ursache ist am KI-Log bewiesen**, die Abhilfe ist Ondo vorzulegen.
+- **Punkt 6 gebaut** — Drei-Ebenen-Trennung, eingetragen in `Ondo-Core-Architektur.md` 0.4. Lag 21 Tage beschlossen und ungebaut.
+- **Punkt 7 gebaut** — Übergaberegel in einer Fassung für ChatGPT, eingetragen in `Blueprint.md` 0.16, Abschnitt 2d. Lag 14 Tage beschlossen und ungebaut.
+- **Punkt 36 erweitert und auf entscheidungsreif gesetzt** — zweiter, stärkerer Fall (Union – Aris, dreimal 45 Minuten).
+- **Beschlossen und nicht gebaut: jetzt vier statt sechs** (E, 2, 3, 4). Arbeitsregel L ist für diesen Chat erfüllt.
 
 ---
 
@@ -789,6 +799,31 @@ Der Fehler war nicht, unbekannte Fehler zu behandeln. Der Fehler war, sie **paus
 
 ## 🔴 Prio 1 — als Nächstes dran
 
+**41. 🔴 Zuordnung der Listenangaben über den Spielnamen statt über die laufende Nummer** · *Spur Chat 13 (12.8.), am 13.8. von Chat 14 am Log BEWIESEN* · **Status: Idee, Ondo vorzulegen — die URSACHE ist belegt, die Abhilfe ist es nicht**
+
+**Der Befund.** In `vorhersagen()` kommt der Spielname aus der Antwort des Gehirns, aber **Anpfiffzeit, Wettbewerb und Stufe kommen aus der Spielliste an derselben Zählstelle**:
+
+```
+vorher.forEach(function(v, idx){
+  var match = String(v.match||'');                                  /* aus der Antwort */
+  wettbewerb:(paket.liste[idx]&&paket.liste[idx].wettbewerb)||'',   /* aus der LISTE  */
+  anpfiff:(paket.liste[idx]&&paket.liste[idx].anpfiff)||'',
+  stufe:(paket.liste[idx]&&paket.liste[idx].stufe)||null,
+```
+
+Liefert ein Gehirn mehr, weniger oder anders geordnete Vorhersagen als die Liste Spiele hat, hängen Zeit und Wettbewerb am falschen Spiel. **Eine Kennung, die das verhindern würde, gibt es im Auftragstext der Gehirne nicht** — nur der Schiedsrichter arbeitet mit `id`.
+
+**Der Beweis (13.8., aus dem KI-Log ausgezählt).** An vierzehn von fünfzehn Vorhersagetagen stimmen Anpfiffzeit und Wettbewerb bei beiden Gehirnen überein. Am **10. August** weichen vier von sieben Paaren ab. An diesem Tag lieferte Sonnet **neun** Vorhersagen für eine Liste mit **acht** Spielen (Pendikspor doppelt), und der letzte Eintrag hat **gar keine Anpfiffzeit und gar keinen Wettbewerb** — `paket.liste[9]` existiert nicht. Die verschobenen Werte sind eine Vertauschung innerhalb desselben Tages.
+
+**Vorschlag zur Vorlage:** Die Listenangaben nicht über `idx` holen, sondern über den Spielnamen aus der Antwort in der Liste nachschlagen. Findet sich kein passendes Spiel, bleiben Zeit und Wettbewerb leer — sichtbar leer statt falsch belegt.
+
+→ **Kosten:** kein Geld, keine neuen Sprachschlüssel, eine Änderung an einer Stelle im Code.
+→ **Kein Schnitt in der Messreihe (Art. J zu prüfen):** Der Punkt ändert weder den Auftragstext der Gehirne noch die Bewertung. Prozentangaben, Tipps und Märkte stammen aus der Antwort des Gehirns selbst und sind unberührt.
+→ **⚠ Grenze — was dieser Punkt NICHT löst:** Er erklärt den 10. August. Er erklärt **nicht** den 8. August, an dem sieben von zehn Zeiten falsch waren und **beide Gehirne übereinstimmten**. **Es sind zwei Probleme.** Die Ursache der falschen Zeiten in der Liste selbst bleibt unbekannt (Art. 11).
+→ **Aufgenommen erst, nachdem die beschlossenen Punkte 6 und 7 gebaut waren** (Arbeitsregel L).
+
+---
+
 ### Als v19.7 gebaut am 3.8.: A · 0a · 1 · D — Bewährungszeit läuft
 
 **A. Test A: Eindeutigkeit der Frage „beide treffen"** · *Fund 30./31.7., Claude · Beschluss Ondo 31.7.* · **Status: GEBAUT (v19.7, 3.8.) — AUSGEWERTET am 5.8., Befund bestätigt.** Einzelheiten im Abschnitt „Test A ist beantwortet". Offen bleibt allein, ob und wie der Auftragstext umformuliert wird — Entscheidung Ondos
@@ -871,6 +906,9 @@ Weg A (Beschluss Ondo 6.8.) schliesst aus der Spielliste **verkürzte** Formate 
 → **Erledigt für diesen Fall:** Beide Leeds-Einträge sind auf Ondos Entscheidung **geparkt**.
 → **Vorschlag zur Vorlage:** Der Satz „Jedes aufgenommene Spiel muss ueber die vollen 90 Minuten gehen" wird zu „genau 90 Minuten plus Nachspielzeit — weder verkürzt noch verlängert". Eine Zeile, keine neuen Sprachschlüssel, kein Geld.
 → **Grenze der Wirkung:** Das schliesst nur aus, was die Spielliste als solches erkennt. Ein Modell, das das Format nicht kennt, nimmt es trotzdem auf. Senkt die Wahrscheinlichkeit, schliesst nichts aus.
+→ **🔴 ZWEITER, STÄRKERER FALL (13.8.): 1. FC Union Berlin – Aris Limassol (9.8.), dreimal 45 Minuten.** Der Endstand 3:2 ist gesichert, der **Stand nach 90 Minuten nicht bestimmbar** — der Vereinsbericht legt alle fünf Tore in die ersten 90 Minuten (3:2 nach 90, Halbzeit 2:1), Flashscore nennt dieselben Torschützen mit 44./49./55./90./110. Minute (3:1 nach 90, Halbzeit 1:0). Beide Quellen widersprechen sich auch darin, wer zuerst traf. **Der Eintrag ist geparkt.**
+→ **Warum dieser Fall stärker ist als Leeds:** Bei Leeds fehlte nur die Angabe. Hier liegen **zwei gleichwertige Quellen mit unvereinbaren Angaben** vor. Das Spiel ist nicht falsch gefunden, es ist mit der Messregel **nicht messbar**.
+→ **Status jetzt: entscheidungsreif.** Es liegen zwei belegte Fälle in fünf Tagen vor.
 
 ---
 
@@ -1073,10 +1111,10 @@ Vier Wochen ohne Websuche messen, dann Suche zuschalten, Kalibrierung vergleiche
 15 Bewertungen sind statistisch zu wenig, 100 dauern Monate. Vorschlag Claude: Beförderung nach Stabilität und Fehlerfreiheit entscheiden, die Messung läuft danach weiter. **Inhalt gehört in den Blueprint.**
 → *Vermerk 31.7.: Die Beförderung ist derzeit ohnehin gesperrt — Kriterium (f) verlangt Null-Fehler-Toleranz beim Schiedsrichter. Einzelheiten in `PROJEKT-STATUS.md`.*
 
-**6. Drei-Ebenen-Trennung in die Architektur schreiben** · *Idee 23.7., ChatGPT* · **Status: beschlossen, noch nicht ausgeführt**
-Ebene 1 Daten · Ebene 2 Denken · Ebene 3 Bewertung. Gehört nach `Ondo-Core-Architektur.md`. *Steht seit 23.7. aus.*
+**6. Drei-Ebenen-Trennung in die Architektur schreiben** · *Idee 23.7., ChatGPT* · **Status: ✅ GEBAUT am 13.8.2026, 16:32 Uhr (Chat 14)**
+Ebene 1 Daten · Ebene 2 Denken · Ebene 3 Bewertung. **Eingetragen in `Ondo-Core-Architektur.md`, Fassung 0.4, als eigener Abschnitt.** Lag seit dem 23.7. beschlossen und ungebaut — 21 Tage. Abgearbeitet nach Arbeitsregel L, bevor der neue Punkt 41 aufgenommen wurde.
 
-**7. Übergaberegel in einer Fassung für ChatGPT** · *Fund 30.7.* · **Status: beschlossen, noch nicht geschrieben**
+**7. Übergaberegel in einer Fassung für ChatGPT** · *Fund 30.7.* · **Status: ✅ GEBAUT am 13.8.2026, 16:32 Uhr (Chat 14)** — eingetragen in `Blueprint.md` 0.16
 ChatGPT kann keinen neuen Chat öffnen; er erzeugt die Übergabemappe nur als Nachricht. Die Übergaberegel braucht dafür eine angepasste Fassung. **Inhalt gehört in den Blueprint.**
 *Namenskonflikt erledigt (Ondo, 31.7., eingetragen 3.8.): Die Vorschrift zur Chat-Übergabe heißt jetzt **Übergaberegel**; „Arbeitsregel G" meint ausschließlich die Kostenregel. (Frühere Fassung: nicht zu verwechseln mit der Arbeitsregel G „Kostenregel" — die Buchstaben überschneiden sich, weil „Regel G" bisher die Chat-Übergabe meinte. Bei der nächsten Blueprint-Fassung zu entwirren.)*
 
@@ -1298,6 +1336,8 @@ Einzelheiten in `PROJEKT-STATUS.md`, Abschnitt „Der 8. August", Unterpunkte 6 
 *Nachtrag zu Fassung 12, eingetragen am 7.8.2026, 21:45 Uhr von Chat 12: Punkt 28 ist von Ondo als **Arbeitsregel K** beschlossen und um seine fehlende zweite Hälfte ergänzt — den festen Zusammenhangsblock. Die Lücke kam durch Ondos Rückfrage ans Licht, ob ein neuer Prüfer-Chat mit dem reinen Zeilendiff etwas anfangen kann. Eingetragen in die Vormerk-Tabelle und im Blueprint 0.9, Abschnitt 2c. Sonst nichts geändert.*
 
 *Fassung 12, geschrieben am 7.8.2026 von Chat 11: v19.7.8 geliefert (Weg A, Punkt 25, Punkt 26) · Prüflauf vom 7.8. mit zehn von zehn Endständen · dritter falscher Halbzeitstand in Folge · die Spielliste hat am 7.8. Spiele erfunden, zehn Vorhersagen geparkt · Sonnet widerspricht sich bei „beide treffen" in drei von fünf Fällen · Punkt 28 neu · Befund über Geminis Leseverhalten.*
+
+*Fassung 18, geschrieben am 13.8.2026, 16:32 Uhr von Chat 14. **Punkt 41 neu** (Positionsverschiebung, Ursache belegt). **Punkt 6 und Punkt 7 gebaut** — beide lagen seit dem 23.7. beziehungsweise 30.7. beschlossen und ungebaut; damit ist Arbeitsregel L erfüllt und die Zahl der beschlossenen, nicht gebauten Punkte sinkt von sechs auf vier (E, 2, 3, 4). **Punkt 36 um den zweiten und stärkeren Fall erweitert** (Union – Aris, dreimal 45 Minuten, Stand nach 90 Minuten zwischen zwei Quellen strittig) und auf entscheidungsreif gesetzt. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen; geändert wurden nur die betroffenen Stellen.*
 
 *Vorige Fassung: Fassung 11, geschrieben am 6.8.2026 von Chat 10, nachmittags: Prüferantworten zum Bericht vom 09:05 Uhr eingetragen, Punkte 26 und 27 neu, Punkt 23 zurückgestellt.*
 

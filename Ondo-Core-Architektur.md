@@ -1,5 +1,6 @@
 # ONDO CORE v1 — Architektur-Entwurf
 *Antwort auf die Architektur-Anfrage von ChatGPT (5.7.2026). Autor: Claude. Status: Entwurf zur gemeinsamen Prüfung.*
+*Fassung 0.4 — 13.8.2026, 16:32 Uhr: Abschnitt 1b „Drei-Ebenen-Trennung" ergänzt (Backlog-Punkt 6, beschlossen am 23.7., 21 Tage offen).*
 *(Name: Der Besitzer hat "Ondo Control" festgelegt; ChatGPT nutzt "ORION". Technisch irrelevant — hier "Ondo Core" für den Kern.)*
 
 ---
@@ -46,6 +47,27 @@ Im heutigen Einzeldatei-Prototyp ist das realistisch umsetzbar: `kiAnalyse()` un
 ```
 
 Modul-Vertrag (ChatGPTs Forderung, übernommen): **Modul → Core → Brain → Core → Modul.** Nie Modul → Brain direkt.
+
+---
+
+## 1b. Drei-Ebenen-Trennung (ChatGPT, 23.7.2026 — eingetragen 13.8.2026)
+
+*Die Schichten in Abschnitt 1 beschreiben, **wo** Code liegt. Die Drei-Ebenen-Trennung beschreibt, **welcher Art** eine Aussage ist. Beides ist nötig: Ein Fehler lässt sich nur zuordnen, wenn klar ist, auf welcher Ebene er entstanden ist.*
+
+**Ebene 1 — Daten.** Was ist der Fall? Spielliste, Anpfiffzeit, Wettbewerb, Endstand, Halbzeitstand. Herkunft: Modellantwort oder Websuche. **Auf dieser Ebene gibt es richtig und falsch, aber keine Meinung.**
+
+**Ebene 2 — Denken.** Was hält ein Gehirn für wahrscheinlich? Tipp, Prozentangabe je Markt, Begründung. Herkunft: ausschliesslich die Antwort des jeweiligen Gehirns. **Auf dieser Ebene gibt es keine Wahrheit, nur eine Behauptung.**
+
+**Ebene 3 — Bewertung.** Traf die Behauptung zu? Vergleich der Ebene 2 gegen die Ebene 1, Kalibrierungsabweichung, Trefferquote, Brier-Score. Herkunft: **fester Code, kein Modell.** *Das ist der Kern des Richtungswechsels vom 23. Juli: Die Bewertung wurde einem Modell weggenommen und in Code gelegt.*
+
+**Die Regel, die daraus folgt:** Eine Ebene darf nie aus einer anderen abgeleitet werden.
+
+**Zwei belegte Verstösse gegen diese Regel:**
+
+1. **Punkt F (bis v19.8.0).** Der Marktanspruch „beide treffen" wurde aus dem getippten Ergebnis **abgeleitet**, statt das Gehirn direkt zu fragen. Damit erzeugte Ebene 3 sich ihre eigene Ebene 2. Folge: 16 falsch bewertete Sonnet-Aussagen und ein Schnitt in der Messreihe.
+2. **Die Positionsverschiebung (belegt am 13.8.).** Anpfiffzeit und Wettbewerb aus Ebene 1 wurden über die laufende Nummer an einen Spielnamen aus Ebene 2 geheftet. Weichen beide in Zahl oder Reihenfolge ab, hängt eine Ebene-1-Angabe am falschen Ebene-2-Eintrag.
+
+**Was die Trennung leistet und was nicht (Art. 14):** Sie ordnet Fehler zu und macht sichtbar, welche Messung ein Fehler berührt und welche nicht — bei der Positionsverschiebung blieb Ebene 2 unversehrt, deshalb ist die Kalibrierungsmessung unversehrt. **Sie verhindert keinen Fehler.** Sie ist ein Prüfraster, kein Bauteil.
 
 ---
 

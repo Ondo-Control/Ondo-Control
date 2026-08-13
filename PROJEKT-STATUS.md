@@ -1,7 +1,7 @@
 # ONDO CONTROL — PROJEKT-STATUS
-*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 9. August 2026, 13:55 Uhr, v19.8.1*
+*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 13. August 2026, 16:32 Uhr, v19.8.1*
 
-> **Zur Datierung:** Die Kalibrierungszahlen im Abschnitt „Aktueller Messstand" sind am **9.8.2026, 05:10 Uhr aus der Anzeige der App abgelesen** — je 207 bewertete Aussagen, Sonnet 5 %, Flash 6 % Abweichung. Die Werte des 8.8. (je 180, beide 8 %) sind ab jetzt Verlaufsangaben. Ältere Zahlen in den Tagesabschnitten (135 Aussagen, 5 gegen 9 Prozent) sind **Verlaufsangaben und bleiben stehen**. Massgeblich ist immer der Abschnitt „Aktueller Messstand".
+> **Zur Datierung:** Die Kalibrierungszahlen im Abschnitt „Aktueller Messstand" sind am **13.8.2026, 16:32 Uhr aus der Anzeige der App abgelesen** — Sonnet 300 bewertete Aussagen bei 4 % Abweichung, Flash 297 bei 8 %. Die Werte des 9.8. (je 207, 5 % und 6 %) sind ab jetzt Verlaufsangaben, ebenso die des 8.8. (je 180, beide 8 %) und ältere Zahlen in den Tagesabschnitten. Massgeblich ist immer der Abschnitt „Aktueller Messstand".
 
 ---
 
@@ -104,6 +104,54 @@ Zwölf Chats in fünf Wochen. **Punkt 18 („Dokumente auf Diät") bestimmt inzw
 **Das Werkzeug dagegen:** `pruefe.py` prüft Kopf-Zeitstempel gegen eine übergebene Ablesung, Abschnittsnummern auf Lücken, Querverweise auf Auflösbarkeit, veraltete Messzahlen ausserhalb von Korrekturvermerken, Fassungs- und Versionsnummern über Kopf, Änderungsnotiz und Protokoll hinweg, sowie eine Liste von Pflichtinhalten. **Vor jeder Dateiausgabe laufen lassen, mit frisch abgelesener Uhrzeit als Parameter.**
 
 **Und der wichtigste Satz zum Schluss:** Alle vierzehn Fehler wurden von **Ondo** gefunden. Keiner von Claude. Wer diese Liste liest und daraus schliesst, er selbst mache solche Fehler nicht, hat sie nicht verstanden.
+
+---
+
+## DER 13. AUGUST — Prüflauf über vier Tage, die Positionsverschiebung ist BEWIESEN, die 16 neu ausgezählt
+
+**1. Der Prüflauf.** 31 offene Vorhersagen aus vier Tagen (9., 10., 11., 12.8.). Der Schiedsrichter fand 30, nicht gefunden wurde 1. FC Union Berlin – Aris Limassol. Textausgabe 07:02 Uhr.
+
+**2. Gegenprüfung durch drei fremde Chats — erstmals wurden die Prüfer selbst gemessen.** Ondo gab dieselbe Liste an drei frische Chats ausserhalb der Projektordner.
+- **Claude:** 28 von 30 bestätigt, **einen Fehler gefunden**, einen nicht verifizierbar.
+- **ChatGPT:** 16 bestätigt, 14 als „nicht sicher gefunden" gemeldet — darunter drei Zweitligaspiele, die der Claude-Prüfer über den kicker belegte. **Den einen echten Fehler übersah er.**
+- **DeepSeek:** 29 bestätigt und **den falschen Wert ausdrücklich als richtig bestätigt**. Dazu zwei falsche Pauschalaussagen: kein Spiel sei über die reguläre Spielzeit hinausgegangen, und keine Paarung sei am selben Wochenende doppelt vorgekommen (Västerås – Djurgården hatte am 3.8. schon gespielt). Als einziger Prüfer bestätigte er Fram – KR.
+- **Einordnung (Art. 14):** Für diese Aufgabe ist der Claude-Prüfer der stärkste. **Ein Tag ist kein Urteil**, aber es ist der erste Datenpunkt statt einer Annahme. Kein Prüfer war vollständig.
+
+**3. 🔴 Zehnte Fehlerart des Schiedsrichters: Stand aus der Verlängerung statt nach 90 Minuten.** Apollon Limassol – SK Brann (11.8.) wurde als 2:2 gemeldet. Richtig nach 90 Minuten: **1:2**. Weissbeck traf erst in der 92. Minute zum 2:2. Belegt durch Sky Sports, Cyprus Mail und OneFootball.
+- **Warum keine Absicherung anschlug:** Halbzeitstand 0:1 passt widerspruchsfrei zu 2:2, Datum und Wettbewerb stimmten, die Verlängerung war als `n.Verl. 2:4` sogar korrekt vermerkt. Der Fehler liegt allein in der Grenzziehung bei Minute 90.
+
+**4. Der Schiedsrichter berichtigte sich im zweiten Lauf selbst.** Um 08:58 Uhr lieferte er für dasselbe Spiel bei gleicher Quellenangabe **1:2, HZ 0:1**. Er ist also nicht systematisch falsch, sondern **schwankend** — dasselbe Muster wie bei den Anpfiffzeiten. Ob dieselbe Ursache dahintersteckt, ist **unbekannt** (Art. 11).
+
+**5. Fram Reykjavík – KR Reykjavík — Claude lag falsch, Arbeitsregel D bestätigt.** Nach drei erfolglosen Suchen (ChatGPT, Claude-Prüfer, Claude selbst) hatte Claude empfohlen, den Eintrag zu parken. **Ondo fand das Spiel selbst:** 2:5, Halbzeit 1:3, Anpfiff 21:15. Ein einzelner Fehlschlag beweist keine Unauffindbarkeit. Der zweite Prüflauf lieferte denselben Wert.
+
+**6. 1. FC Union Berlin – Aris Limassol — erster belegter Fall zu Backlog-Punkt 36.** Gespielt wurde **dreimal 45 Minuten**. Der Endstand 3:2 ist sicher, der **Stand nach 90 Minuten nicht bestimmbar** (Art. 11):
+- Der Vereinsbericht legt alle fünf Tore in die ersten 90 Minuten (15., 31., 38., 63., 80.) → nach 90 Minuten 3:2, Halbzeit 2:1.
+- Flashscore nennt dieselben fünf Torschützen mit 44., 49., 55., 90. und 110. → nach 90 Minuten 3:1, Halbzeit 1:0.
+- Beide Quellen widersprechen sich auch darin, wer zuerst traf. **Eintrag geparkt, nicht übernommen.**
+
+**7. Übernommen wurden 30 Vorschläge:** 28 aus dem ersten Lauf plus Apollon (1:2) und Fram (2:5) aus dem zweiten. Nicht übernommen: Union – Aris.
+
+**8. Die 16 falsch bewerteten Sonnet-Aussagen sind NEU AUSGEZÄHLT und bestätigt.** Grundlage: KI-Log vom 13.8., 09:13 Uhr, 273 Einträge. Maschinell ausgezählt, nicht fortgeschrieben.
+- Vor dem Schnitt liegen **190 Einträge, je 95 pro Gehirn** — deckungsgleich mit der Zählung vom 8.8.
+- Sonnet trägt **27-mal** das Muster „Tipp enthält eine Null **und** Kennzeichen `[gedreht]`" (Typ A). Davon sind **16 bewertet** und **11 geparkt**. Die 16 sind die falsch bewerteten Aussagen; die 11 würden es, sobald sie bewertet würden. Die 11 decken sich mit der Angabe vom 8.8., dass 11 geparkte Sonnet-Einträge ein gedrehtes „beide treffen" tragen.
+- **Motherwell – Havnar Bóltfelag (23.7.)** bleibt der Einzelfall vom Typ B: Etikett richtig, Prozentzahl der Gegenwert. Er zählt nicht zu den 16.
+- Nach dem Schnitt tritt dasselbe Muster noch **elfmal** auf — dort **harmlos**, weil `gedreht` seit v19.8.0 nur noch „die Prozentzahl lag unter 50" bedeutet.
+- **⚠ Falle für die nächste Auszählung:** Das Feld `Wort` im Log-Text ist **kein** Schnittmerkmal. Es erscheint ab dem **5. August**, der Schnitt liegt aber am **9. August**. Wer nach `Wort` trennt, zählt 59 statt 95 Sonnet-Einträge und kommt auf 9 statt 27. Die Schnittgrenze im Log-Text ist **das Datum**.
+
+**9. 🔴 DIE POSITIONSVERSCHIEBUNG IST BEWIESEN.** Die Spur, die Chat 13 in der Abnahme als ausdrücklichen Verdacht hinterlassen hatte, ist bestätigt — und der Satz „Das Programm verschiebt nichts" aus Unterpunkt 11 des 9. August ist damit berichtigt.
+- **Vergleich aller 15 Vorhersagetage**, Spiel für Spiel, zwischen beiden Gehirnen: An **vierzehn** Tagen stimmen Anpfiffzeit und Wettbewerb überein. Am **10. August** weichen **vier von sieben** Paaren ab.
+- **Der 10. August zeigt den Mechanismus vollständig:** Sonnet lieferte **neun** Vorhersagen für eine Liste mit **acht** Spielen — Pendikspor – Batman Petrolspor steht zweimal darin. Und ein Eintrag, Fram – KR, hat **gar keine Anpfiffzeit und gar keinen Wettbewerb**.
+- **Das kann nur eine Ursache haben:** `vorher.forEach(function(v, idx){ … paket.liste[idx].anpfiff … })` greift über das Listenende hinaus. Der Spielname kommt aus der Antwort des Gehirns, Anpfiffzeit, Wettbewerb und Stufe aus der Liste **an derselben Zählstelle**. Ein zusätzlicher oder ausgelassener Eintrag verschiebt alles Folgende. Eine Kennung, die das verhindern würde, gibt es im Auftragstext der Gehirne **nicht** — nur der Schiedsrichter arbeitet mit `id`.
+- **Die verschobenen Werte sind eine Vertauschung innerhalb desselben Tages:** Santa Clara bekam Västerås' Zeit, Plymouth die von Santa Clara, Silkeborg die von Fram, Västerås die von Silkeborg.
+- **Extern bestätigt:** Fram – KR begann wirklich um **21:15** in der **Besta deild karla** — genau die beiden Werte, die im Log an Sonnets Eintrag zu Silkeborg – Odense hängen.
+
+**10. Es sind ZWEI Probleme, nicht eines.** Die Positionsverschiebung erklärt den 10. August. Sie erklärt **nicht** den 8. August, an dem sieben von zehn Zeiten falsch waren und **beide Gehirne übereinstimmten**. Übereinstimmung heisst nur, dass beide dieselbe Listenstelle gelesen haben — nicht, dass die Zeit stimmt. **Die Ursache der falschen Zeiten in der Liste selbst bleibt unbekannt** (Art. 11).
+
+**11. Was von alldem unberührt bleibt:** Alle Prozentangaben, Tipps und Märkte stammen aus der Antwort des Gehirns selbst. **Die Kalibrierungsmessung ist von der Positionsverschiebung nicht betroffen.**
+
+**12. Arbeitsregel L erfüllt:** Backlog-Punkt 6 (Drei-Ebenen-Trennung) und Punkt 7 (Übergaberegel in einer Fassung für ChatGPT) sind gebaut. Erst danach wurde der neue Punkt 41 aufgenommen.
+
+**13. Sicherung:** 13.8.2026, 16:28 Uhr — 293 Vorhersagen, 6 Wetten. Eine frühere Sicherung desselben Tages lag um 09:17 Uhr vor.
 
 ---
 
@@ -213,7 +261,7 @@ Der erste Lauf am 9.8. lieferte nur **zwei** Spiele. Ondo drückte ein zweites M
 
 Ondo hat den Vorschlag aus Punkt 27 abgelehnt: **Das Prüffenster zu erweitern behebt nichts, die Ursache muss gesucht werden.** Claude hat gesucht. Vier Dinge sind belegt.
 
-**Erstens: Das Programm verschiebt nichts.** Die Anpfiffzeit kommt als Text aus der Antwort des Modells und wird unverändert gespeichert, angezeigt und für die 2,5-Stunden-Regel benutzt — `String(s.anpfiff||'')` in `stufeHolen`, dann `paket.liste[idx].anpfiff` beim Anlegen. **Keine Umrechnung, keine Zeitzone, keine Rechnung an keiner Stelle.** Die Ursache liegt nicht im Code.
+**Erstens (berichtigt):** ~~Das Programm verschiebt nichts.~~ **🔴 BERICHTIGT am 13.8.2026, 16:32 Uhr — siehe Abschnitt „Der 13. August", Unterpunkt 9.** Richtig ist: Das Programm **verändert** keine Anpfiffzeit — `String(s.anpfiff||'')` in `stufeHolen`, dann `paket.liste[idx].anpfiff` beim Anlegen, keine Umrechnung, keine Zeitzone, keine Rechnung an keiner Stelle. **Es kann eine Zeit aber an das falsche Spiel hängen**, weil die Zuordnung über die laufende Nummer erfolgt und nicht über den Spielnamen. Der Schlusssatz „Die Ursache liegt nicht im Code" ist damit für einen Teil der Fälle widerlegt. Der ursprüngliche Wortlaut bleibt zur Nachvollziehbarkeit stehen.
 
 **Zweitens: Es begann am 28. Juli.** Im Log vom 1.7. bis 8.8. tragen die Einträge vom 23. bis 27. Juli **keine einzige Anpfiffzeit**. Ab dem 28. Juli tragen sie alle eine. An diesem Tag kam die zweistufige Spielliste (v19.6) und mit ihr das Feld. **Die Zeiten waren also nie geprüft richtig** — sie sind seit dem ersten Tag drin, und erst am 5. August ist es aufgefallen.
 
@@ -1129,7 +1177,7 @@ Belege vom 31.7.:
 
 ---
 
-## Der Schiedsrichter — neun Fehlerarten
+## Der Schiedsrichter — zehn Fehlerarten
 
 | # | Fehlerart | Datum | Absicherung | Version |
 |---|---|---|---|---|
@@ -1142,6 +1190,7 @@ Belege vom 31.7.:
 | 7 | **Heim und Gast vertauscht** | 29.7. | *keine* — zweimal unabhängig aufgetreten | — |
 | 8 | **Falscher Endstand trotz aller Prüfungen** | 30.7. | *keine* — alle Absicherungen prüfen die Form, nicht die Wahrheit | — |
 | 9 | **Erfundene 0:0** | 31.7. | *keine* — löst nicht einmal eine Warnung aus | — |
+| 10 | **Stand aus der Verlängerung statt nach 90 Minuten** | 11.8. (gefunden 13.8.) | *keine* — Halbzeitstand, Datum, Wettbewerb und der Vermerk `n.Verl.` waren alle richtig; nur die Grenze bei Minute 90 war falsch gezogen. Im zweiten Lauf lieferte derselbe Schiedsrichter den richtigen Wert | — |
 | — | ~~Dasselbe Spiel doppelt in der Spielliste~~ | 3.8. | **VERSCHOBEN am 7.8. (Ondo) in die eigene Tabelle „Die Spielliste" weiter unten.** Sie ist Datenhygiene, kein Schiedsrichterurteil — Geminis eigene Einordnung vom 4.8. | — |
 
 **Die wichtigste Erkenntnis (25.7.):** Alle drei KIs urteilten unabhängig, Ergebnisse unterklassiger Spiele seien nicht beschaffbar. **Das war falsch.** Ondo drückte den Prüf-Knopf mehrfach: 2 von 7, dann 4 von 7, schließlich 7 von 7. Es war kein Verfügbarkeits-, sondern ein Zuverlässigkeitsproblem.
@@ -1240,48 +1289,43 @@ Bis v18.6 war die Beta ein **Wett-Berater**. Am 23. Juli wurde sie zum **Messger
 
 ---
 
-## Aktueller Messstand (abgelesen aus der App am 9.8.2026, 05:10 Uhr)
+## Aktueller Messstand (abgelesen aus der App am 13.8.2026, 16:32 Uhr)
 
-**Bestand insgesamt:** **224 Vorhersagen**, davon **204 aus der Messphase** und 20 im v18-Archiv. **Je 207 bewertete Aussagen.** Nicht bewertet sind 66 Vorhersagen — **52 geparkt**, 14 wirklich offen (Vorhersagelauf vom 9. August früh).
+*Zur Herkunft (Art. 14): **Alle Zahlen dieses Abschnitts sind aus der Anzeige der App abgelesen, keine ist gerechnet.** Der Abschnitt wurde am 13.8. vollständig neu geschrieben, weil die vorige Fassung ab der Mitte auf dem Stand vom 8. August stehengeblieben war (Fehlerart C3 und C4).*
 
-*Zur Herkunft (Art. 14): Alle Zahlen dieses Abschnitts sind **aus der Anzeige der App abgelesen**, keine ist gerechnet.*
+**Bestand:** **293 Vorhersagen** und 6 Wetten im Speicher (abgelesen aus dem Sicherungsfeld, 16:28 Uhr). Wie sich der Bestand auf Messphase und v18-Archiv verteilt und wie viele Einträge geparkt sind, war aus der heutigen Anzeige **nicht ablesbar** und wird deshalb nicht angegeben.
 
 | | bewertete Aussagen | Kalibrierungs-Abweichung | Trefferquote |
 |---|---|---|---|
-| Sonnet | 207 | **5 %** (grün) | 50 % (103/207) |
-| Flash | 207 | **6 %** (grün) | 52 % (108/207) |
-| gesamt | 414 | — | 51 % (211/414) |
+| Sonnet | 300 | **4 %** (grün) | 52 % (155/300) |
+| Flash | 297 | **8 %** (grün) | 50 % (148/297) |
+| gesamt | 597 | — | 51 % (303/597) |
 
-> **⚠ Die 5 % bei Sonnet sind NICHT das Ergebnis einer Berichtigung.** Die **16** nachweislich falsch bewerteten Sonnet-Aussagen stecken unverändert in diesen Werten. Der Rückgang von 8 % auf 5 % kommt allein von 27 neuen Aussagen am 9. August. Dass die Buchführung für die Berichtigung denselben Wert „rund 5 %" vorhergesagt hatte, ist ein Zusammentreffen und kein Vollzug. **Ondos Entscheidung über die Berichtigung steht weiterhin aus.** Die Vergleichsrechnung vom 8.8. (85/180 vorher, **94/180** nachher) steht in Abschnitt „Der 8. August", Unterpunkt 7.
+> **⚠ Die 4 % bei Sonnet sind weiterhin NICHT das Ergebnis einer Berichtigung.** Die **16** nachweislich falsch bewerteten Sonnet-Aussagen stecken unverändert in diesen Werten; die Neuauszählung vom 13.8. hat die Zahl bestätigt. **Ondos Entscheidung über die Berichtigung steht weiterhin aus.**
 
-**Entschlossenheit:** Sonnet Ø Abstand von 50 = **6,8**, Anteil ab 60 % = 18 % (38/207) · Flash Ø **9,7**, Anteil ab 60 % = 44 % (92/207).
+**Sonnets Verteilung** *(Anzahl je Stufe, in Klammern behauptet/wirklich)*: 1–49 % → 47 (44/36) · 50–59 % → 194 (54/55) · 60–69 % → 38 (63/58) · 70–79 % → 21 (73/48) · ab 80 % → 0
 
-**Sonnets Verteilung:** 1–49 % → 29 Aussagen (behauptet 43, wirklich 31) · 50–59 % → **140** (54/54) · 60–69 % → 24 (63/54) · 70–79 % → 14 (**74/43** — hier sitzen sechs der falsch bewerteten Einträge)
+**Flashs Verteilung** *(Anzahl je Stufe, in Klammern behauptet/wirklich)*: 1–49 % → 43 (43/28) · 50–59 % → 124 (55/52) · 60–69 % → 108 (63/54) · 70–79 % → 18 (72/56) · 80–89 % → 3 (82/100) · 90–99 % → 1 (90/100)
 
-**Flashs Verteilung:** 1–49 % → 29 (42/28) · 50–59 % → 86 (55/53) · 60–69 % → **74 (63/57)** · 70–79 % → 14 (73/57) · 80–89 % → 3 (82/100) · 90–99 % → 1 (90/100)
-
-**Ehrliche Einordnung (Art. 14):**
-- **🔴 Der dokumentierte Vorsprung Sonnets besteht nicht mehr.** Zuletzt 5 gegen 9 Prozent, jetzt **beide 8**. Sonnet hat sich um drei Punkte verschlechtert, Flash um einen verbessert.
-- **Sonnet hat jetzt 35 Aussagen ab 60 %** statt zehn. In der Stufe 70–79 % behauptet es 74 und trifft 43 — schlechter als Münzwurf. In der Stufe 60–69 % behauptet es 63 und trifft 52. **Sein guter Wert war vermutlich zum grossen Teil Vorsicht** — Deutung, keine Messung. 67 Prozent aller Sonnet-Aussagen liegen weiterhin zwischen 50 und 59 Prozent.
-- **🔴 Diese Lesart ist durch Punkt F verunreinigt, und zwar genau in den Stufen 60–79 %.** Dort liegen die umgedrehten „beide treffen"-Werte, die als falsch gewertet werden, obwohl Sonnets Wort richtig war. **Wie viel von Sonnets Überzuversicht Rechenfehler und wie viel Urteilsfehler ist, ist ohne Behebung von Punkt F nicht bestimmbar** (Art. 11).
-- **Flashs Schwachstelle bleibt belegt:** 66 Aussagen im Bereich 60–69 %, behauptet 63, eingetroffen 53. Die Lücke ist gegenüber dem 6.8. kleiner geworden (damals 63/49), aber vorhanden. In den Stufen 80–99 % hat Flash vier Aussagen, alle richtig.
-- **Sonnet hat in den Stufen ab 80 % keine einzige Aussage.** Seine 92-%- und 85-%-Angaben vom 7.8. abends stecken in geparkten Einträgen zu erfundenen Spielen und werden nie bewertet.
-- **Die Trefferquoten gehen erstmals auseinander:** 47 gegen 51 Prozent. Ein Teil davon geht nachweislich auf Punkt F zurück — allein am Abend des 7.8. zwei Punkte.
-- Zeilen mit ein bis vier Aussagen sind **bedeutungslos**.
-- **Die sieben CL-Vorhersagen vom 29.7. stecken NICHT in diesen 180.**
-- **Flash lief die ganze Zeit als `gemini-3.1-flash-lite`.**
-- Ondos eigene Bilanz: **−29,75 €**, eigene Trefferquote 17 % (1/6). Papier-Modus bleibt die stehende Empfehlung.
-
-**Entschlossenheit (aus denselben 180 Aussagen je Gehirn):**
+**Entschlossenheit:**
 
 | | Ø Abstand von 50 | Anteil ab 60 % |
 |---|---|---|
-| Sonnet | 7 | 19 % (35/180) |
-| Flash | 10,1 | 46 % (83/180) |
+| Sonnet | 6,7 | 20 % (59/300) |
+| Flash | 9,5 | 44 % (130/297) |
 
-*Lesart: Flash legt sich weiterhin deutlich öfter fest als Sonnet, aber der Abstand schrumpft — am 6.8. war es 7 gegen 40 Prozent, jetzt 19 gegen 46. **Beide Gehirne sind entschlossener geworden, Sonnet stärker.** Die Zahl allein sagt nichts über Qualität. **Den Gehirnen wird sie nicht mitgeteilt.***
+**Ehrliche Einordnung (Art. 14):**
+- **Sonnet steht wieder vor Flash — aber der Vorsprung ist jung.** Am 8.8. lagen beide bei 8 %, am 9.8. 5 gegen 6, heute 4 gegen 8. Nach Backlog-Punkt 35 liegt eine Schwankung dieser Grösse im Rauschen; der Bootstrap-Bereich für Sonnet reichte von 3,9 bis 14,7 Prozent. **Die eine Nachkommastelle täuscht Genauigkeit vor, die die Zahl nicht hat.**
+- **Sonnets schwache Stelle ist die Stufe 70–79 %:** 21 Aussagen, behauptet 73, eingetroffen 48 — schlechter als Münzwurf. **Ein Teil davon ist Rechenfehler und nicht Urteilsfehler**, weil dort die falsch bewerteten „beide treffen"-Einträge sitzen. Wie gross dieser Teil ist, bleibt ohne Berichtigung unbestimmbar (Art. 11).
+- **65 Prozent aller Sonnet-Aussagen liegen weiterhin zwischen 50 und 59 Prozent** (194 von 300). Sonnet legt sich selten fest.
+- **Flashs Schwachstelle bleibt belegt und ist die grösste Einzelposten:** 108 Aussagen im Bereich 60–69 %, behauptet 63, eingetroffen 54. Das ist mehr als ein Drittel seines gesamten Bestands.
+- **Flash ist entschlossener, Sonnet vorsichtiger** — 44 gegen 20 Prozent Aussagen ab 60 %. Die Zahl allein sagt nichts über Qualität. **Den Gehirnen wird sie nicht mitgeteilt.**
+- Zeilen mit ein bis vier Aussagen (Flash 80–99 %) sind **bedeutungslos**.
+- **Ungleiche Anzahl:** Sonnet hat 300 bewertete Aussagen, Flash 297. Woher die Differenz von drei kommt, ist **nicht geklärt** (Art. 11).
+- **Flash lief die ganze Zeit als `gemini-3.1-flash-lite`.**
+- Ondos eigene Bilanz: **−29,75 €**, Wett-Saldo −19,51 € bei 6 abgeschlossenen Wetten, eigene Trefferquote 17 % (1/6), Tipico-Kontostand rund 0,25 €. **Papier-Modus bleibt die stehende Empfehlung.**
 
-*Vorherige Stände: 6.8. — je 135 Aussagen, Sonnet 5 % / 4,8 / 7 %, Flash 9 % / 8,7 / 40 %. 3.8. — je 87 Aussagen, 4,8 und 8,6.*
+*Vorherige Stände: 9.8. — je 207 Aussagen, Sonnet 5 % / 6,8 / 18 %, Flash 6 % / 9,7 / 44 %. 8.8. — je 180, beide 8 %. 6.8. — je 135, Sonnet 5 % / 4,8 / 7 %, Flash 9 % / 8,7 / 40 %. 3.8. — je 87 Aussagen, 4,8 und 8,6.*
 
 ## Was v19.7 kann
 
@@ -1417,6 +1461,7 @@ Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp 
 | 6./7.8.2026 | Chat 10 → Chat 11 | Raw-Links + Projektdateien + Mappe | **9 von 9** | beide Fangfragen bestanden (Ursache der falschen Anpfiffzeiten als unbekannt benannt und die Zeitzonen-Vermutung als am 6.8. widerlegt erkannt; aus zwei fehlerfreien Prüfläufen nichts für die neun Fehlerarten geschlossen); vier Antworten über dem Schlüssel — die siebte Fehlerart mit beiden Spielen benannt, die stabile v17 als zweiter Fall gewollten Rückstands, der sachliche Grund für Temperatur 0,0 beim Schiedsrichter. **Der Nachfolger fand vor der Prüfung, dass die Projektkopie des Backlogs auf Fassung 10 stand, während im Repo Fassung 11 lag — und baute nichts nach, sondern meldete es. Zweiter Fall einer Abweichung zwischen Kopie und Repo nach dem 5.8.** |
 | 7.8.2026 | Chat 11 → Chat 12 | Raw-Links + Projektdateien + Mappe | **9 von 9** | beide Fangfragen bestanden (drei verschiedene Muster bei den Anpfiffzeiten benannt und die Ursache als unbekannt geführt, ohne das dritte Muster als Bestätigung der widerlegten Zeitzonen-These zu lesen; aus dem guten zweiten Spiellisten-Lauf nichts für den Bau geschlossen); vier Antworten über dem Schlüssel — Weg A am Code statt am Dokument belegt, Geminis zu starke Formulierung als schon beim Eintragen zurückgewiesen erkannt, der `checkUpdate`-Mechanismus und der Blueprint-Eintrag vom 10.7. als Belege für die zwei gewollten Rückstände. **Der Nachfolger fand vor der Prüfung vier Fehler in der Buchführung des Vorgängers — drei veraltete Angaben (v19.7.7 statt v19.7.8, 199 statt 201 Sprachschlüssel) und eine doppelt eingesetzte Sicherungsliste — und unterschied dabei richtig zwischen Stands- und Verlaufsangaben.** |
 | 8.8.2026 | Chat 12 → Chat 13 | Raw-Links + Projektdateien + Mappe | **9 von 9** | sechs Fragen bereits in der ersten Antwort beantwortet, drei nachgereicht; **beide Fangfragen bestanden** (Motherwell unaufgefordert als zweite Fehlerart erkannt und die pauschale Regel verworfen; aus der Umkehr der Prüfer nichts über die erste Antwort geschlossen, sondern die gleichzeitige Änderung zweier Dinge benannt). **Vier Punkte über dem Schlüssel: den KI-Log selbst maschinell ausgezählt statt die Zahlen zu übernehmen — Ergebnis in jeder Zeile deckungsgleich; sechs Codestellen selbst belegt; die Folgerung aus der Prüfer-Umkehr präziser gefasst als der Schlüssel; beide Bedingungen zu Arbeitsregel M ungefragt genannt.** Kein Fehler. |
+| 13.8.2026 | Chat 13 → Chat 14 | Raw-Links + Projektdateien + Mappe | **9 von 9** | **Alle drei Fangfragen bestanden** (Berichtigung trotz übereinstimmender 5 % als nicht erledigt erkannt; Ursache der Anpfiffzeiten als unbekannt nach Art. 11 benannt, ohne die widerlegte Vermutung zu wiederholen; Punkt 27 nicht zum Bau empfohlen und ausdrücklich als Entscheidung des Besitzers gekennzeichnet). **Vier Punkte über dem Schlüssel:** zwei Herkunftseinschränkungen bei den Modellnamen ungefragt genannt; Motherwell unaufgefordert als zweite Fehlerart; die 16 selbst als fortgeschriebene Zahl der Fehlerart C1 zugeordnet; **vor der Prüfung zwei Abweichungen von sich aus gemeldet und in beiden recht behalten** — frischerer KI-Log als angekündigt und der widersprüchliche Abschnitt „Aktueller Messstand" (Fehlerart C3 und C4, Fehler von Chat 13). Kein Fehler. Zwei Kleinigkeiten nachgereicht: Trefferquoten bei Frage 2, zweite Bedingung zu Arbeitsregel M bei Frage 8. **Anmerkung des abgebenden Chats:** Die Abnahme war zunächst geschrieben worden, BEVOR die Kontrollfragen gestellt waren, und behauptete darin einen Ausfall der Prüfung — von Ondo sofort bemerkt und berichtigt. |
 
 ---
 
@@ -1457,6 +1502,8 @@ Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp 
 *Zweiter Nachtrag von Claude (Chat 10) am 6.8.2026, nachmittags: Bericht an beide Prüfer verschickt und beantwortet, Übergabe an ChatGPT vollzogen, zwei Befunde über die Arbeitsweise der Prüfer eingetragen.*
 
 *Aktualisiert von Claude (Chat 10) am 6.8.2026: Abschnitt „Der 6. August" neu, Messstand nachgerechnet und auf je 135 Aussagen gebracht, drei Entscheidungen vom 5.8. abends nachgetragen, Sicherungsstand auf 08:28 Uhr, Übergabe-Eintrag Chat 9 → Chat 10 ergänzt, das veraltete Zitat des 0a-Codekommentars berichtigt. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen.*
+
+*Aktualisiert von Claude (Chat 14) am 13.8.2026, **16:32 Uhr (Uhrzeit unmittelbar vor dem Schreiben abgefragt)**: Abschnitt „Der 13. August" neu (13 Unterpunkte). **Abschnitt „Aktueller Messstand" vollständig neu geschrieben** und diesmal bis zum Ende des Abschnitts — die vorige Fassung war ab der Mitte auf dem Stand von 180 Aussagen stehengeblieben (Fehlerart C3 und C4, Fehler von Chat 13). Alle Zahlen aus der Anzeige vom 16:32 Uhr abgelesen, keine gerechnet. **Unterpunkt 11 des 9. August berichtigt:** Das Programm verändert keine Anpfiffzeit, kann sie aber an das falsche Spiel hängen — am Log des 10. August bewiesen. Der ursprüngliche Wortlaut bleibt stehen. Kopfzeile und Datierungshinweis auf den 13.8. gebracht, Übergabezeile Chat 13 → Chat 14 eingetragen. **Zehnte Fehlerart des Schiedsrichters aufgenommen.** Zusammen mit Backlog-Fassung 18, Blueprint 0.16 und `Ondo-Core-Architektur.md` 0.4. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen; geändert wurden nur die betroffenen Stellen.*
 
 *Vorige Fassung: aktualisiert von Claude (Chat 9) am 5.8.2026, 13:15 Uhr: Übergabe-Eintrag Chat 8 → Chat 9 ergänzt, Sicherungsstand auf 13:06 Uhr nachgetragen, zwei vertauschte Zeilen der Protokolltabelle in die richtige Reihenfolge gebracht. Sonst nichts geändert. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen.*
 

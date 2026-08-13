@@ -3,11 +3,13 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.15
-**Stand:** 9. August 2026, 13:55 Uhr
+**Version:** 0.16
+**Stand:** 13. August 2026, 16:32 Uhr
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
-> **Was Fassung 0.15 ändert (9.8.2026):** **Die Spielliste ist Messwerkzeug, nicht Messgegenstand — das ist jetzt festgehalten und angewandt.** Sie hat seit v19.8.1 eine eigene Rolle und ein eigenes Modell; Arbeitsregel J steht dem nicht entgegen. Dazu die Feststellung, dass die falschen Anpfiffzeiten nicht aus dem Programm stammen. Vier Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
+> **Was Fassung 0.16 ändert (13.8.2026):** **Die Übergaberegel hat jetzt eine eigene Fassung für ChatGPT** (Backlog-Punkt 7, beschlossen am 30.7., gebaut am 13.8.) — neuer Abschnitt 2d. **Die Feststellung aus 0.15, die falschen Anpfiffzeiten stammten nicht aus dem Programm, ist teilweise widerlegt** und im Protokoll berichtigt: Das Programm verändert keine Zeit, kann sie aber an das falsche Spiel hängen. Dazu die zehnte Fehlerart des Schiedsrichters und die Feststellung, dass ein Prüfer selbst gemessen werden muss. Fünf Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
+
+> **Was Fassung 0.15 änderte (9.8.2026):** **Die Spielliste ist Messwerkzeug, nicht Messgegenstand — das ist jetzt festgehalten und angewandt.** Sie hat seit v19.8.1 eine eigene Rolle und ein eigenes Modell; Arbeitsregel J steht dem nicht entgegen. Dazu die Feststellung, dass die falschen Anpfiffzeiten nicht aus dem Programm stammen. Vier Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
 >
 > **Was Fassung 0.14 änderte (9.8.2026):** **Verlängerte Spielformate gehören nicht in die Messreihe** — festgehalten am Fall Leeds – RB Leipzig, der geparkt wurde. Dazu die Feststellung, dass die Kalibrierungszahl an einem einzigen Tag um drei Prozentpunkte springen kann. Drei Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
 >
@@ -153,6 +155,27 @@ Quellen erhalten Vertrauenswerte (z. B. offizielle Verbände hoch, Foren niedrig
 **M — Kein Dokument ohne maschinelle Vorabprüfung** *(8.8., Claude, nach vierzehn eigenen Fehlern an einem Vormittag)* **Vor jeder Dateiausgabe läuft `pruefe.py` mit einer frisch abgelesenen Uhrzeit als Parameter.** Geprüft werden Kopf-Zeitstempel, Lücken in Abschnittsnummern, Auflösbarkeit von Querverweisen, veraltete Messzahlen ausserhalb von Korrekturvermerken, Fassungs- und Versionsnummern über Kopf, Änderungsnotiz und Protokoll hinweg, und eine Liste von Pflichtinhalten.
 *Zwei Bedingungen, ohne die die Regel wertlos ist: **Der Sollwert darf nie vom Geprüften stammen** — Chat 12 hatte seine eigene erfundene Uhrzeit fest ins Skript geschrieben, worauf es „alles sauber" meldete. Und **die Systemzeit des Rechners ist unbrauchbar**, sie läuft in UTC und lag um zwei Stunden daneben.*
 *Die acht Fehlerarten, gegen die sich die Regel richtet, stehen vollständig in `PROJEKT-STATUS.md`, Abschnitt „Acht Fehlerarten Claudes — stehende Warnung für jeden neuen Chat".*
+
+---
+
+## 2d. Die Übergaberegel in einer Fassung für ChatGPT
+
+*Beschlossen als Backlog-Punkt 7 am 30.7., geschrieben am 13.8.2026. **Anlass:** ChatGPT kann keinen neuen Chat öffnen und keine Datei ablegen. Die Übergaberegel, wie sie für Claude gilt, ist dort nicht ausführbar.*
+
+**Der Unterschied in einem Satz:** Claude übergibt an einen Nachfolger, der die Dateien selbst liest. ChatGPT übergibt an Ondo, der weiterträgt.
+
+**Was für ChatGPT gilt:**
+
+1. **Die Mappe ist eine Nachricht, keine Datei.** ChatGPT erzeugt sie im laufenden Chat als zusammenhängenden Text, den Ondo kopieren kann. Es fordert Ondo nicht auf, einen neuen Chat zu öffnen, und legt nichts im Repo ab.
+2. **Keine Kontrollfragen, kein Antwortschlüssel.** Beides setzt einen Nachfolger voraus, der geprüft werden kann. ChatGPT hat keinen. Stattdessen nennt es am Ende **die drei Dinge, die es selbst nicht nachprüfen konnte**.
+3. **Herkunft jeder Zahl ausweisen.** ChatGPT liest die Projektdateien über Suchtreffer und sieht nicht immer das ganze Dokument. Jede Zahl in seiner Mappe trägt deshalb die Fundstelle, oder den ausdrücklichen Vermerk, dass sie ungeprüft übernommen wurde. *Anlass: Am 6.8. meldete ChatGPT eine veraltete Zahl als aktuell.*
+4. **Nur die geänderten Stellen, nicht ganze Dateien** (Arbeitsregel K). ChatGPT liest über GitHub-Pages-Links, nicht über `raw.githubusercontent.com`.
+5. **Höchstens zwei geschlossene Ja-Nein-Fragen** je Bericht — dieselbe Grenze wie bei den Prüferberichten.
+6. **Widerspruch ist ausdrücklich erwünscht.** Ein Prüferurteil ist ein Vorschlag, kein Auftrag (Art. 8). ChatGPT und Gemini sind schon uneins gewesen; das ist kein Mangel, sondern der Zweck zweier Prüfer.
+
+**Was auch für ChatGPT gilt, unverändert:** Prüfer bekommen **frische Chats ausserhalb der Projektordner**. Dateinamen tragen Datum und Uhrzeit. Nichts, was nur im Chat steht, gilt als festgehalten.
+
+**Grenze dieser Regel (Art. 14):** Sie macht ChatGPTs Übergabe nachvollziehbar, nicht vollständig. Ob ein Dokument ganz gelesen wurde, lässt sich von aussen nicht feststellen.
 
 ---
 
@@ -382,6 +405,12 @@ ONDO CONTROL
 | 9.8.2026 | **Wird ein Bauteil ausgetauscht, um eine Ursache einzugrenzen, wird NUR EIN Ding auf einmal geändert.** Bei der Spielliste wurde das Modell gewechselt und die Temperatur ausdrücklich unangetastet gelassen. Würden beide zugleich geändert und das Ergebnis besser, wäre nicht ablesbar, woran es lag. |
 | 9.8.2026 | **Die falschen Anpfiffzeiten stammen nicht aus dem Programm (Entscheidung Ondo: Ursache suchen statt Symptom entschärfen).** Im Code findet keine Umrechnung statt; die Zeit ist ein unveränderter Text aus der Antwort des Modells. Belegt: sie erscheint erstmals am **28. Juli** mit der zweistufigen Spielliste (v19.6) · sie stammte bis v19.8.1 vom kleinsten Gemini-Modell · sie ist innerhalb eines Laufs widersprüchlich (dasselbe Spiel am 6.8. mit 18:00 und 19:00). **Die Ursache selbst bleibt unbekannt** (Art. 11). Der Vorschlag aus Backlog-Punkt 27, stattdessen das Prüffenster zu erweitern, ist damit überholt. |
 | 9.8.2026 | Blueprint auf Version 0.15 gehoben. |
+| 13.8.2026 | **🔴 BERICHTIGUNG zum Eintrag vom 9.8.:** Die Feststellung „Die falschen Anpfiffzeiten stammen nicht aus dem Programm" ist **teilweise widerlegt**. Richtig ist: Das Programm **verändert** keine Zeit, **kann sie aber an das falsche Spiel hängen**, weil die Listenangaben über die laufende Nummer zugeordnet werden. Am Log des 10. August bewiesen. Der ursprüngliche Eintrag bleibt stehen. |
+| 13.8.2026 | **Es sind zwei getrennte Probleme.** Die Positionsverschiebung erklärt einen von fünfzehn Tagen. Die Ursache falscher Zeiten in der Liste selbst bleibt **unbekannt** (Art. 11). Eine bewiesene Teilursache darf nicht als Erklärung des Ganzen gebucht werden. |
+| 13.8.2026 | **Ein Prüfer muss selbst gemessen werden, bevor man sich auf ihn verlässt.** Am 13.8. prüften drei fremde Chats dieselben 30 Ergebnisse: Claude fand den einen echten Fehler, ChatGPT übersah ihn, DeepSeek bestätigte den falschen Wert ausdrücklich als richtig. **Ein Tag ist kein Urteil**, aber die Annahme ist damit durch einen Messwert ersetzt. |
+| 13.8.2026 | **Zehnte Fehlerart des Schiedsrichters: Stand aus der Verlängerung statt nach 90 Minuten.** Alle bestehenden Absicherungen meldeten „in Ordnung". Derselbe Schiedsrichter lieferte im zweiten Lauf den richtigen Wert — er ist **schwankend, nicht systematisch falsch**. |
+| 13.8.2026 | **Arbeitsregel D erneut bestätigt:** Drei erfolglose Suchen nach Fram – KR führten Claude zur Empfehlung, den Eintrag zu parken. Ondo fand das Spiel selbst. **Unzuverlässigkeit ist nicht Unverfügbarkeit.** |
+| 13.8.2026 | Blueprint auf Version 0.16 gehoben. **Übergaberegel in einer Fassung für ChatGPT (Abschnitt 2d) geschrieben** — Backlog-Punkt 7, beschlossen am 30.7., 14 Tage offen. |
 
 ---
 
