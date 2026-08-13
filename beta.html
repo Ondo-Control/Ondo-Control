@@ -222,6 +222,7 @@ var I18N = {
   logExpT:'📄 Log als Text', logExpD:'Gibt die Vorhersagen eines Zeitraums als reinen Text aus — zum Kopieren in einen Chat. Ersetzt Bildschirmfotos: kostet einen Bruchteil und ist maschinell auswertbar.',
   logExpFrom:'von', logExpTo:'bis', logExpBtn:'📄 Text erzeugen', logExpCopy:'📋 Kopieren',
   logExpHint:'Markieren und kopieren, oder den Kopieren-Knopf benutzen.', logExpEmpty:'Keine Vorhersagen in diesem Zeitraum.',
+  korrT:'🔧 Einmalige Berichtigung — Punkt F', korrD:'Berichtigt die vor dem 9.8.2026 falsch bewerteten "beide treffen"-Aussagen von Sonnet. Erst pruefen, dann anwenden. Laeuft nur einmal.', korrPruef:'🔍 Nur pruefen (aendert nichts)', korrGo:'✅ Jetzt berichtigen', korrDone:'Bereits ausgefuehrt am {d}. Der Knopf laeuft kein zweites Mal.', korrNone:'Keine betroffenen Eintraege gefunden.', korrAsk:'{a} Eintraege werden berichtigt ({b} Etikett, {c} Prozentzahl). Fortfahren?', korrOk:'Berichtigt: {a} Eintraege.',
   parkBtn:'Nicht prüfen', unparkBtn:'Wieder prüfen', parked:'GEPARKT',
   parkedD:'Geparkte Vorhersagen werden beim Ergebnis-Prüfen übersprungen. Die Daten bleiben vollständig erhalten, jederzeit umkehrbar.',
   parkedCount:'{a} geparkt', dateSwap:'⚠ Zeitraum war verkehrt herum — Datumsfelder getauscht.',
@@ -306,6 +307,7 @@ var I18N = {
   logExpT:'📄 Log en texte', logExpD:'Sort les prédictions d’une période en texte brut — à copier dans un chat. Remplace les captures d’écran : coûte une fraction et reste exploitable par machine.',
   logExpFrom:'du', logExpTo:'au', logExpBtn:'📄 Générer le texte', logExpCopy:'📋 Copier',
   logExpHint:'Sélectionne et copie, ou utilise le bouton Copier.', logExpEmpty:'Aucune prédiction sur cette période.',
+  korrT:'🔧 Correction unique — point F', korrD:'Corrige les affirmations "les deux marquent" de Sonnet mal évaluées avant le 9.8.2026. Vérifier d\'abord, puis appliquer. Ne s\'exécute qu\'une fois.', korrPruef:'🔍 Vérifier seulement (ne modifie rien)', korrGo:'✅ Corriger maintenant', korrDone:'Déjà exécuté le {d}. Le bouton ne s\'exécute pas une deuxième fois.', korrNone:'Aucune entrée concernée trouvée.', korrAsk:'{a} entrées seront corrigées ({b} étiquette, {c} pourcentage). Continuer ?', korrOk:'Corrigé : {a} entrées.',
   parkBtn:'Ne pas vérifier', unparkBtn:'Vérifier à nouveau', parked:'EN PAUSE',
   parkedD:'Les prédictions en pause sont ignorées lors de la vérification. Les données restent intactes, réversible à tout moment.',
   parkedCount:'{a} en pause', dateSwap:'⚠ Période inversée — les dates ont été échangées.',
@@ -390,6 +392,7 @@ var I18N = {
   logExpT:'📄 Log as text', logExpD:'Outputs the predictions of a date range as plain text — to paste into a chat. Replaces screenshots: costs a fraction and stays machine-readable.',
   logExpFrom:'from', logExpTo:'to', logExpBtn:'📄 Create text', logExpCopy:'📋 Copy',
   logExpHint:'Select and copy, or use the Copy button.', logExpEmpty:'No predictions in this range.',
+  korrT:'🔧 One-time correction — point F', korrD:'Corrects Sonnet\'s wrongly evaluated "both teams to score" statements from before 9.8.2026. Check first, then apply. Runs only once.', korrPruef:'🔍 Check only (changes nothing)', korrGo:'✅ Correct now', korrDone:'Already run on {d}. The button does not run a second time.', korrNone:'No affected entries found.', korrAsk:'{a} entries will be corrected ({b} label, {c} percentage). Continue?', korrOk:'Corrected: {a} entries.',
   parkBtn:'Do not check', unparkBtn:'Check again', parked:'PARKED',
   parkedD:'Parked predictions are skipped when checking results. The data stays fully intact and this is reversible at any time.',
   parkedCount:'{a} parked', dateSwap:'⚠ Date range was reversed — the two dates have been swapped.',
@@ -573,6 +576,106 @@ function logTextKopieren(feldId){
   }
   try{ document.execCommand('copy'); }catch(e){}
   fertig();
+}
+/* ================= EINMALIGE BERICHTIGUNG — BACKLOG-PUNKT F (13.8.2026) =================
+   Beschluss Ondo 13.8.2026. Bis v19.7.8 leitete maerkteBauen() die Behauptung
+   "beide treffen" aus dem getippten Ergebnis ab, statt das Gehirn zu fragen.
+   Sonnet beantwortete den Wert aber als "wie wahrscheinlich treffen beide".
+   Dadurch steht bei einem Teil der Alt-Eintraege das falsche Etikett im Log.
+
+   GRENZE (zwingend): Nur Eintraege OHNE codeVersion — also von vor dem Schnitt
+   bei v19.8.0. Ab dem Schnitt bedeutet 'gedreht' nur noch "Prozentzahl lag unter 50"
+   und ist harmlos; eine Berichtigung dort wuerde richtige Eintraege beschaedigen.
+
+   AUSLOESER ist die Null im Tipp, NICHT das Kennzeichen 'gedreht'. Eintraege mit
+   Tipp ohne Null (z. B. 1:1) bleiben unangetastet — sie sind richtig bewertet.
+   Ondos Entscheidung 13.8.: Amerika Mineiro und Remo (26.7., Tipp 1:1) bleiben stehen.
+
+   ZWEI FAELLE:
+   A  Tipp mit Null UND gedreht  -> Etikett drehen, Prozentzahl bleibt.
+   B  Tipp mit Null, NICHT gedreht -> Etikett bleibt, Prozentzahl wird zum Gegenwert.
+
+   UMKEHRBAR: Jeder geaenderte Markt bekommt fAlt mit den Ursprungswerten.
+   EINMALIG: state.korrekturF haelt Datum und Anzahl fest. */
+function korrFTreffer(){
+  var a=[], b=[];
+  (state.kiProtokoll||[]).forEach(function(e){
+    if(e.codeVersion) return;                          /* nach dem Schnitt: nicht anfassen */
+    if(e.herkunft==='flash') return;                   /* nur Sonnet */
+    if(!(e.heim===0 || e.gast===0)) return;            /* Ausloeser: Null im Tipp */
+    (e.maerkte||[]).forEach(function(m){
+      if(m.typ!=='btts' || m.fAlt) return;
+      (m.gedreht ? a : b).push({e:e, m:m});
+    });
+  });
+  return {a:a, b:b};
+}
+function korrFText(tr){
+  var z=[];
+  tr.a.concat(tr.b).forEach(function(x){
+    z.push(x.e.datum+' · '+x.e.match+' · getippt '+x.e.heim+':'+x.e.gast+
+      ' · '+x.m.label+' '+x.m.p+'% '+(x.m.status||'offen')+
+      '  ->  '+(x.m.gedreht ? (x.m.code==='btts_ja'?'Nein':'Ja')+' '+x.m.p+'%'
+                            : x.m.label+' '+(100-x.m.p)+'%'));
+  });
+  return z.join('\n');
+}
+function korrFPruefen(){
+  var tr=korrFTreffer(), f=document.getElementById('korrText');
+  if(!f) return;
+  if(!tr.a.length && !tr.b.length){ f.value=t('korrNone'); return; }
+  f.value='BETROFFEN: '+(tr.a.length+tr.b.length)+' Aussagen — '+
+    tr.a.length+' vom Typ A (Etikett), '+tr.b.length+' vom Typ B (Prozentzahl)\n'+
+    'Nichts wurde geaendert.\n\n'+korrFText(tr);
+}
+function korrFAnwenden(){
+  if(state.korrekturF){ alert(t('korrDone').replace('{d}', state.korrekturF.datum)); return; }
+  var tr=korrFTreffer();
+  var n=tr.a.length+tr.b.length;
+  if(!n){ alert(t('korrNone')); return; }
+  if(!confirm(t('korrAsk').replace('{a}',n).replace('{b}',tr.a.length).replace('{c}',tr.b.length))) return;
+  tr.a.forEach(function(x){
+    var m=x.m;
+    m.fAlt={code:m.code, label:m.label, p:m.p, status:m.status};
+    if(m.code==='btts_ja'){ m.code='btts_nein'; m.label=t('bttsNo'); }
+    else                  { m.code='btts_ja';   m.label=t('bttsYes'); }
+    m.fKorr='A';
+  });
+  tr.b.forEach(function(x){
+    var m=x.m;
+    m.fAlt={code:m.code, label:m.label, p:m.p, status:m.status};
+    m.p=100-m.p;
+    m.fKorr='B';
+  });
+  /* Urteil neu rechnen — nur dort, wo ein Endstand vorliegt. Geparkte und offene
+     Eintraege bleiben offen; die Bewertung erfindet keinen Endstand. */
+  tr.a.concat(tr.b).forEach(function(x){
+    var e=x.e;
+    if(e.ergebnisHeim===null || e.ergebnisHeim===undefined ||
+       e.ergebnisGast===null || e.ergebnisGast===undefined){ x.m.status='offen'; return; }
+    var u=marktUrteil(x.m.code, e.ergebnisHeim, e.ergebnisGast);
+    x.m.status = (u===null) ? 'offen' : (u ? 'richtig' : 'falsch');
+  });
+  state.korrekturF={datum:new Date().toLocaleDateString('de-DE')+' '+jetztUhr(),
+                    anzahl:n, typA:tr.a.length, typB:tr.b.length};
+  save(); render();
+  alert(t('korrOk').replace('{a}', n));
+}
+function korrFBlock(){
+  if(state.korrekturF){
+    return '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">'+t('korrT')+'</div>'+
+      '<div class="muted">'+t('korrDone').replace('{d}', state.korrekturF.datum)+
+      ' ('+state.korrekturF.anzahl+': '+state.korrekturF.typA+' A / '+state.korrekturF.typB+' B)</div></div>';
+  }
+  return '<div class="card" style="border-color:rgba(245,217,10,.35)">'+
+    '<div class="disp" style="font-size:20px;margin-bottom:6px">'+t('korrT')+'</div>'+
+    '<div class="muted" style="margin-bottom:10px">'+t('korrD')+'</div>'+
+    '<button class="btn btn-ghost" onclick="korrFPruefen()">'+t('korrPruef')+'</button>'+
+    '<textarea id="korrText" readonly rows="8" style="width:100%;margin-top:10px;background:var(--inner);'+
+      'border:1px solid var(--edge);border-radius:8px;color:var(--text);padding:10px;'+
+      'font-size:12px;font-family:ui-monospace,Menlo,monospace;line-height:1.5"></textarea>'+
+    '<button class="btn" style="margin-top:10px" onclick="korrFAnwenden()">'+t('korrGo')+'</button>'+
+  '</div>';
 }
 function logExportBlock(){
   var heute=heuteIso();
@@ -1880,7 +1983,7 @@ function viewBets(c){
             '</div>'+chip+'</div></div>';
         }).join('')
       : '';
-    return sub+'<div class="muted" style="margin-bottom:10px">'+t('logD')+'</div>'+pruefBlock()+parkBlock+logExportBlock()+eintraege+archiv;
+    return sub+'<div class="muted" style="margin-bottom:10px">'+t('logD')+'</div>'+pruefBlock()+parkBlock+korrFBlock()+logExportBlock()+eintraege+archiv;
   }
 
   if(wtab==="historie" && !state.bets.length) return sub+pruefBlock()+'<div class="card empty">'+t('noBets')+'</div>';
