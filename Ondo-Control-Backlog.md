@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Gepflegt von Claude · Stand 13.8.2026, 16:32 Uhr, Fassung 18 · jede Idee mit Datum, Urheber und Status**
+**Gepflegt von Claude · Stand 13.8.2026, 22:20 Uhr, Fassung 19 · jede Idee mit Datum, Urheber und Status**
 
 ## Regeln für dieses Dokument
 
@@ -13,6 +13,15 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 19 ändert (13.8., abends)
+
+- **🔴 Die rückwirkende Berichtigung ist beschlossen und ausgeführt.** Sie stand seit dem 5. August offen. Gebaut als zweistufiger Knopf in `beta.html`, umkehrbar über `fAlt`, einmalig über `state.korrekturF`. 28 Aussagen geändert — 16 bewertete und 11 geparkte vom Typ A, dazu Motherwell vom Typ B.
+- **Wirkung:** Sonnets Trefferquote 52 → 55 Prozent. **Die Kalibrierungsabweichung bleibt bei 4 %** — der Fehler wurde verschoben, nicht beseitigt.
+- **Neue stehende Regel (Punkt 42):** Vor jedem Entparken wird der **Grund** des Parkens geprüft, nicht die Anzahl.
+- **Beschlossen und nicht gebaut: weiterhin vier** (E, 2, 3, 4).
 
 ---
 
@@ -799,6 +808,21 @@ Der Fehler war nicht, unbekannte Fehler zu behandeln. Der Fehler war, sie **paus
 
 ## 🔴 Prio 1 — als Nächstes dran
 
+**42. Vor dem Entparken den Grund prüfen, nicht die Anzahl** · *Fund Ondo 13.8.2026, abends* · **Status: als stehende Regel beschlossen Ondo 13.8.**
+
+**Anlass.** Claude empfahl, fünf Tage zu entparken, um elf Sonnet-Aussagen in die Messung zurückzuholen — und stützte die Empfehlung allein darauf, **wie viele** Einträge je Tag geparkt sind. **Ondo wies darauf hin, dass darunter Testspiele sind, die nicht über zweimal 45 Minuten gingen.** Genau die Fälle aus Punkt 36, die Claude am selben Tag bei Union – Aris selbst beschrieben hatte.
+
+**Die Regel.** Ein geparkter Eintrag ist keine offene Aufgabe, sondern meistens eine getroffene Entscheidung. Vor einem Entparken wird je Eintrag geprüft, warum er geparkt wurde — Wettbewerb und Spielformat stehen in jeder Log-Zeile und sind maschinell auswertbar.
+
+**Die Gegenseite, die dabei nicht untergehen darf.** Geparkte Einträge sind **nicht zufällig**: Es sind überwiegend Sonnets entschlossenste Aussagen. Die Verzerrung ist real und gehört in jede Aussage über die Messreihe — sie rechtfertigt nur kein pauschales Entparken.
+
+**Nebenbefund vom selben Tag.** Am 6. August steht Salzburg – Pafos zweimal im Log: 19:00 Uhr [UEFA Europa League] bewertet, 18:00 Uhr [Qualifikation] geparkt. Ein Entparken dieses Tages nähme dasselbe Spiel doppelt in die Messung.
+
+→ **Kosten:** keine. Die Regel verhindert Arbeit, sie verursacht keine.
+→ **Ondos Entscheidung 13.8.:** Die geparkten Einträge bleiben, wie sie sind.
+
+---
+
 **41. 🔴 Zuordnung der Listenangaben über den Spielnamen statt über die laufende Nummer** · *Spur Chat 13 (12.8.), am 13.8. von Chat 14 am Log BEWIESEN* · **Status: Idee, Ondo vorzulegen — die URSACHE ist belegt, die Abhilfe ist es nicht**
 
 **Der Befund.** In `vorhersagen()` kommt der Spielname aus der Antwort des Gehirns, aber **Anpfiffzeit, Wettbewerb und Stufe kommen aus der Spielliste an derselben Zählstelle**:
@@ -981,6 +1005,8 @@ Der Auftragstext fragt heute: „wie sicher in Prozent, dass *beide Teams treffe
 → **Kosten:** kein Geld, kein zusätzlicher Aufruf — aber ein **Schnitt in der laufenden Messreihe**. Das ist der eigentliche Preis.
 → Folge für Punkt 0b: Eine Widerspruchsquote wird nach dem Umbau erst sinnvoll messbar.
 
+
+**✅ ERLEDIGT am 13.8.2026, abends (Chat 14): beschlossen von Ondo, gebaut als Knopf in `beta.html`, ausgeführt.** 28 Aussagen geändert (16 bewertete, 11 geparkte, 1 vom Typ B). Umkehrbar über `fAlt`, einmalig über `state.korrekturF`. Die zwei Zweifelsfälle vom 26.7. blieben auf Ondos Entscheidung unangetastet. *Der folgende Absatz beschreibt den Stand davor und bleibt zur Nachvollziehbarkeit stehen:*
 
 **⚠ Stand am Ende von Chat 12 (8.8.): beschlossen, gemessen, NICHT gebaut.** Chat 12 hat den Umfang vollständig vermessen (15 betroffene Aussagen, netto +9 für Sonnet, Befund A widerlegt — Einzelheiten in `PROJEKT-STATUS.md`, Abschnitt „Der 8. August", Unterpunkte 7 und 19) und **auf Ondos Anweisung nicht gebaut**. Ondo: „Bauen macht der nächste Chat."
 
@@ -1336,6 +1362,8 @@ Einzelheiten in `PROJEKT-STATUS.md`, Abschnitt „Der 8. August", Unterpunkte 6 
 *Nachtrag zu Fassung 12, eingetragen am 7.8.2026, 21:45 Uhr von Chat 12: Punkt 28 ist von Ondo als **Arbeitsregel K** beschlossen und um seine fehlende zweite Hälfte ergänzt — den festen Zusammenhangsblock. Die Lücke kam durch Ondos Rückfrage ans Licht, ob ein neuer Prüfer-Chat mit dem reinen Zeilendiff etwas anfangen kann. Eingetragen in die Vormerk-Tabelle und im Blueprint 0.9, Abschnitt 2c. Sonst nichts geändert.*
 
 *Fassung 12, geschrieben am 7.8.2026 von Chat 11: v19.7.8 geliefert (Weg A, Punkt 25, Punkt 26) · Prüflauf vom 7.8. mit zehn von zehn Endständen · dritter falscher Halbzeitstand in Folge · die Spielliste hat am 7.8. Spiele erfunden, zehn Vorhersagen geparkt · Sonnet widerspricht sich bei „beide treffen" in drei von fünf Fällen · Punkt 28 neu · Befund über Geminis Leseverhalten.*
+
+*Fassung 19, geschrieben am 13.8.2026, 22:20 Uhr von Chat 14: Punkt 42 neu, die rückwirkende Berichtigung als erledigt gefuehrt, Fassungsabschnitt 19 ergaenzt.*
 
 *Fassung 18, geschrieben am 13.8.2026, 16:32 Uhr von Chat 14. **Punkt 41 neu** (Positionsverschiebung, Ursache belegt). **Punkt 6 und Punkt 7 gebaut** — beide lagen seit dem 23.7. beziehungsweise 30.7. beschlossen und ungebaut; damit ist Arbeitsregel L erfüllt und die Zahl der beschlossenen, nicht gebauten Punkte sinkt von sechs auf vier (E, 2, 3, 4). **Punkt 36 um den zweiten und stärkeren Fall erweitert** (Union – Aris, dreimal 45 Minuten, Stand nach 90 Minuten zwischen zwei Quellen strittig) und auf entscheidungsreif gesetzt. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen; geändert wurden nur die betroffenen Stellen.*
 

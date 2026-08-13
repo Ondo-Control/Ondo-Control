@@ -1,5 +1,5 @@
 # ONDO CONTROL — PROJEKT-STATUS
-*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 13. August 2026, 16:32 Uhr, v19.8.1*
+*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 13. August 2026, 22:20 Uhr, v19.8.1*
 
 > **Zur Datierung:** Die Kalibrierungszahlen im Abschnitt „Aktueller Messstand" sind am **13.8.2026, 16:32 Uhr aus der Anzeige der App abgelesen** — Sonnet 300 bewertete Aussagen bei 4 % Abweichung, Flash 297 bei 8 %. Die Werte des 9.8. (je 207, 5 % und 6 %) sind ab jetzt Verlaufsangaben, ebenso die des 8.8. (je 180, beide 8 %) und ältere Zahlen in den Tagesabschnitten. Massgeblich ist immer der Abschnitt „Aktueller Messstand".
 
@@ -152,6 +152,25 @@ Zwölf Chats in fünf Wochen. **Punkt 18 („Dokumente auf Diät") bestimmt inzw
 **12. Arbeitsregel L erfüllt:** Backlog-Punkt 6 (Drei-Ebenen-Trennung) und Punkt 7 (Übergaberegel in einer Fassung für ChatGPT) sind gebaut. Erst danach wurde der neue Punkt 41 aufgenommen.
 
 **13. Sicherung:** 13.8.2026, 16:28 Uhr — 293 Vorhersagen, 6 Wetten. Eine frühere Sicherung desselben Tages lag um 09:17 Uhr vor.
+
+**14. 🔴 DIE RÜCKWIRKENDE BERICHTIGUNG IST BESCHLOSSEN UND AUSGEFÜHRT.** Ondos Entscheidung am 13.8., abends. Sie stand seit dem 5. August offen.
+- **Gebaut als Knopf in `beta.html`**, nicht als Handarbeit — die Sicherungsdatei enthält Ondos API-Schlüssel und kann nicht hochgeladen werden.
+- **Zwei Stufen:** „Nur prüfen" listet jede betroffene Aussage mit Vorher und Nachher und ändert nichts. Erst „Jetzt berichtigen" schreibt.
+- **Grenze im Code erzwungen:** nur Einträge **ohne `codeVersion`**, nur Sonnet, nur wenn der Tipp eine Null enthält. Der Auslöser ist die Null im Tipp, **nicht** das Kennzeichen `gedreht`.
+- **Umkehrbar:** Jeder geänderte Markt trägt `fAlt` mit Code, Etikett, Prozentzahl und Status von vorher. **Einmalig:** `state.korrekturF` hält Datum und Anzahl fest.
+- **Ondos Entscheidung zu den zwei Zweifelsfällen:** América Mineiro und Remo (26.7., Tipp 1:1, gedreht) bleiben **unangetastet**. Sie sind richtig bewertet und bleiben der Prüfstein dafür, dass `gedreht` allein keinen Fehler anzeigt.
+- **Geändert wurden 28 Aussagen:** 27 vom Typ A und Motherwell vom Typ B. Davon waren **16 bewertet** und **11 geparkt**; die geparkten behielten den Status *offen*, es wurde kein Endstand erfunden.
+- **⚠ Claudes Prüfkriterium war falsch, nicht der Knopf.** Claude hatte angekündigt, die Liste müsse 16 Aussagen zeigen, und dabei die geparkten vergessen. Ondo legte die Liste vor, Claude rechnete nach: 27 minus 11 offene ergibt 16 bewertete. **Eine erwartete Zahl gehört mit ihrer Bedingung genannt, sonst wird eine richtige Ausgabe für falsch gehalten.**
+
+**15. Was die Berichtigung bewirkt hat — und was nicht.** Siehe Abschnitt „Aktueller Messstand" mit dem Vorher-Nachher-Vergleich und drei Gegenproben. Kurz: Trefferquote 52 → 55 Prozent, die Stufen 60–79 % kippen von unterschätzt auf überschätzt, **die Abweichung bleibt bei 4 %**. Die frühere Aussage „Sonnet überschätzt sich bei hoher Zuversicht" beruhte auf dem Rechenfehler und ist hinfällig.
+
+**16. 🔴 CLAUDES FEHLER DES TAGES: Anzahl gezählt statt Grund geprüft.** Claude empfahl, fünf Tage zu entparken, um elf Aussagen zurückzuholen — und zählte dafür nur, **wie viele** Einträge je Tag geparkt sind. **Ondo wies darauf hin, dass darunter Testspiele sind, die nicht über zweimal 45 Minuten gingen** — genau die Fälle aus Backlog-Punkt 36, die Claude am selben Tag bei Union – Aris selbst beschrieben hatte. Die Prüfung wäre möglich gewesen: Der Wettbewerb steht in jeder Log-Zeile.
+- **Daraus folgt eine stehende Regel:** **Vor jedem Entparken wird der Grund des Parkens geprüft, nicht die Anzahl.** Ein geparkter Eintrag ist keine offene Aufgabe, sondern meistens eine getroffene Entscheidung.
+- **Die Verzerrung bleibt trotzdem real:** Geparkte Einträge sind überwiegend Sonnets entschlossenste Aussagen. Das rechtfertigt kein pauschales Entparken, aber es gehört bei jeder Aussage über die Messreihe dazu.
+- **Ondos Entscheidung: Die geparkten Einträge bleiben, wie sie sind.**
+- **Nebenbefund:** Am 6. August steht Salzburg – Pafos **zweimal** im Log — 19:00 Uhr [UEFA Europa League] bewertet, 18:00 Uhr [Qualifikation] geparkt. Ein Entparken dieses Tages würde dasselbe Spiel doppelt in die Messung nehmen.
+
+**17. Sicherung nach der Berichtigung:** 13.8.2026, 18:38 Uhr — 293 Vorhersagen, 6 Wetten.
 
 ---
 
@@ -1289,21 +1308,19 @@ Bis v18.6 war die Beta ein **Wett-Berater**. Am 23. Juli wurde sie zum **Messger
 
 ---
 
-## Aktueller Messstand (abgelesen aus der App am 13.8.2026, 16:32 Uhr)
+## Aktueller Messstand (abgelesen aus der App am 13.8.2026, 22:20 Uhr — NACH der Berichtigung)
 
-*Zur Herkunft (Art. 14): **Alle Zahlen dieses Abschnitts sind aus der Anzeige der App abgelesen, keine ist gerechnet.** Der Abschnitt wurde am 13.8. vollständig neu geschrieben, weil die vorige Fassung ab der Mitte auf dem Stand vom 8. August stehengeblieben war (Fehlerart C3 und C4).*
+*Zur Herkunft (Art. 14): **Alle Zahlen dieses Abschnitts sind aus der Anzeige der App abgelesen, keine ist gerechnet.** Der Abschnitt wird seit dem 13.8. immer vollständig ersetzt, nie in Teilen — die vorige Praxis hatte eine Hälfte auf altem Stand stehenlassen.*
 
-**Bestand:** **293 Vorhersagen** und 6 Wetten im Speicher (abgelesen aus dem Sicherungsfeld, 16:28 Uhr). Wie sich der Bestand auf Messphase und v18-Archiv verteilt und wie viele Einträge geparkt sind, war aus der heutigen Anzeige **nicht ablesbar** und wird deshalb nicht angegeben.
+**Bestand:** **293 Vorhersagen** und 6 Wetten im Speicher (abgelesen aus dem Sicherungsfeld, 18:38 Uhr).
 
 | | bewertete Aussagen | Kalibrierungs-Abweichung | Trefferquote |
 |---|---|---|---|
-| Sonnet | 300 | **4 %** (grün) | 52 % (155/300) |
+| Sonnet | 300 | **4 %** (grün) | 55 % (165/300) |
 | Flash | 297 | **8 %** (grün) | 50 % (148/297) |
-| gesamt | 597 | — | 51 % (303/597) |
+| gesamt | 597 | — | 52 % (313/597) |
 
-> **⚠ Die 4 % bei Sonnet sind weiterhin NICHT das Ergebnis einer Berichtigung.** Die **16** nachweislich falsch bewerteten Sonnet-Aussagen stecken unverändert in diesen Werten; die Neuauszählung vom 13.8. hat die Zahl bestätigt. **Ondos Entscheidung über die Berichtigung steht weiterhin aus.**
-
-**Sonnets Verteilung** *(Anzahl je Stufe, in Klammern behauptet/wirklich)*: 1–49 % → 47 (44/36) · 50–59 % → 194 (54/55) · 60–69 % → 38 (63/58) · 70–79 % → 21 (73/48) · ab 80 % → 0
+**Sonnets Verteilung** *(Anzahl je Stufe, in Klammern behauptet/wirklich)*: 1–49 % → 46 (44/35) · 50–59 % → 195 (54/55) · 60–69 % → 38 (63/71) · 70–79 % → 21 (73/67) · ab 80 % → 0
 
 **Flashs Verteilung** *(Anzahl je Stufe, in Klammern behauptet/wirklich)*: 1–49 % → 43 (43/28) · 50–59 % → 124 (55/52) · 60–69 % → 108 (63/54) · 70–79 % → 18 (72/56) · 80–89 % → 3 (82/100) · 90–99 % → 1 (90/100)
 
@@ -1314,18 +1331,35 @@ Bis v18.6 war die Beta ein **Wett-Berater**. Am 23. Juli wurde sie zum **Messger
 | Sonnet | 6,7 | 20 % (59/300) |
 | Flash | 9,5 | 44 % (130/297) |
 
-**Ehrliche Einordnung (Art. 14):**
-- **Sonnet steht wieder vor Flash — aber der Vorsprung ist jung.** Am 8.8. lagen beide bei 8 %, am 9.8. 5 gegen 6, heute 4 gegen 8. Nach Backlog-Punkt 35 liegt eine Schwankung dieser Grösse im Rauschen; der Bootstrap-Bereich für Sonnet reichte von 3,9 bis 14,7 Prozent. **Die eine Nachkommastelle täuscht Genauigkeit vor, die die Zahl nicht hat.**
-- **Sonnets schwache Stelle ist die Stufe 70–79 %:** 21 Aussagen, behauptet 73, eingetroffen 48 — schlechter als Münzwurf. **Ein Teil davon ist Rechenfehler und nicht Urteilsfehler**, weil dort die falsch bewerteten „beide treffen"-Einträge sitzen. Wie gross dieser Teil ist, bleibt ohne Berichtigung unbestimmbar (Art. 11).
-- **65 Prozent aller Sonnet-Aussagen liegen weiterhin zwischen 50 und 59 Prozent** (194 von 300). Sonnet legt sich selten fest.
-- **Flashs Schwachstelle bleibt belegt und ist die grösste Einzelposten:** 108 Aussagen im Bereich 60–69 %, behauptet 63, eingetroffen 54. Das ist mehr als ein Drittel seines gesamten Bestands.
-- **Flash ist entschlossener, Sonnet vorsichtiger** — 44 gegen 20 Prozent Aussagen ab 60 %. Die Zahl allein sagt nichts über Qualität. **Den Gehirnen wird sie nicht mitgeteilt.**
-- Zeilen mit ein bis vier Aussagen (Flash 80–99 %) sind **bedeutungslos**.
-- **Ungleiche Anzahl:** Sonnet hat 300 bewertete Aussagen, Flash 297. Woher die Differenz von drei kommt, ist **nicht geklärt** (Art. 11).
-- **Flash lief die ganze Zeit als `gemini-3.1-flash-lite`.**
-- Ondos eigene Bilanz: **−29,75 €**, Wett-Saldo −19,51 € bei 6 abgeschlossenen Wetten, eigene Trefferquote 17 % (1/6), Tipico-Kontostand rund 0,25 €. **Papier-Modus bleibt die stehende Empfehlung.**
+**Was die Berichtigung bewirkt hat (Vergleich 16:32 Uhr → 22:20 Uhr, gleicher Bestand):**
 
-*Vorherige Stände: 9.8. — je 207 Aussagen, Sonnet 5 % / 6,8 / 18 %, Flash 6 % / 9,7 / 44 %. 8.8. — je 180, beide 8 %. 6.8. — je 135, Sonnet 5 % / 4,8 / 7 %, Flash 9 % / 8,7 / 40 %. 3.8. — je 87 Aussagen, 4,8 und 8,6.*
+| | vorher | nachher |
+|---|---|---|
+| Sonnet Trefferquote | 52 % (155) | **55 % (165)** |
+| Sonnet 60–69 % wirklich | 58 % | **71 %** |
+| Sonnet 70–79 % wirklich | 48 % | **67 %** |
+| Sonnet 1–49 % Anzahl | 47 | **46** |
+| Sonnet 50–59 % Anzahl | 194 | **195** |
+| Sonnet Abweichung | 4 % | **4 %** |
+| Flash | unverändert | unverändert |
+
+**Drei Gegenproben, die die Berichtigung bestätigen:**
+1. **+10 Treffer, nicht +16.** Von den 16 berichtigten Aussagen standen 13 auf *falsch* und 3 auf *richtig*. 13 minus 3 ergibt genau die beobachteten +10 (155 → 165).
+2. **Eine Aussage wechselte die Stufe.** Motherwell (Typ B) ging von 42 auf 58 Prozent — deshalb 1–49 % um eine Aussage kleiner und 50–59 % um eine grösser.
+3. **Flash blieb in jeder Zahl unverändert.** Die Berichtigung hat den Nachbarn nicht berührt.
+
+**Ehrliche Einordnung (Art. 14):**
+- **🔴 Die Berichtigung hat die Kalibrierung NICHT verbessert.** Sie steht vorher wie nachher bei 4 %. Der Fehler wurde **verschoben, nicht beseitigt**: Die Stufe 70–79 % ging von 25 Punkten Abweichung auf 6 zurück, die Stufe 60–69 % kippte von 5 Punkten zu wenig auf 8 Punkte zu viel. **Wer nur auf die 4 % sieht, hält den Vorgang für wirkungslos.** Das ist er nicht — die Trefferquote und die Verteilung zeigen die Wirkung.
+- **Sonnet ist jetzt in den oberen Stufen zu vorsichtig, nicht mehr zu zuversichtlich.** Bei 60–69 % behauptet, trafen 71 % ein; bei 70–79 % behauptet, 67 %. Vor der Berichtigung sah es genau umgekehrt aus. **Die frühere Aussage „Sonnet überschätzt sich bei hoher Zuversicht" beruhte auf dem Rechenfehler und ist damit hinfällig.**
+- **Der Vorsprung gegenüber Flash ist weiterhin jung** — 8:8 am 8.8., 5:6 am 9.8., 4:8 heute. Nach Backlog-Punkt 35 liegt eine Schwankung dieser Grösse im Rauschen.
+- **65 Prozent aller Sonnet-Aussagen liegen zwischen 50 und 59 Prozent** (195 von 300). Sonnet legt sich selten fest.
+- **Flashs Schwachstelle bleibt der grösste Einzelposten:** 108 Aussagen bei 60–69 %, behauptet 63, eingetroffen 54.
+- Zeilen mit ein bis vier Aussagen (Flash 80–99 %) sind **bedeutungslos**.
+- **Ungleiche Anzahl:** Sonnet 300, Flash 297. Woher die Differenz von drei kommt, ist **nicht geklärt** (Art. 11).
+- **Der Brier-Score war aus der Anzeige nicht ablesbar** und wird deshalb nicht angegeben. Die Erwartung aus der Buchführung — er kippt von schlechter auf besser als Raten — ist **ungeprüft**.
+- Ondos eigene Bilanz unverändert: **−29,75 €**, Wett-Saldo −19,51 €, eigene Trefferquote 17 % (1/6).
+
+*Vorherige Stände: 13.8. vor der Berichtigung — je 300 und 297, Sonnet 4 % bei 52 % Treffern. 9.8. — je 207, Sonnet 5 %, Flash 6 %. 8.8. — je 180, beide 8 %. 6.8. — je 135, 5 und 9. 3.8. — je 87, 4,8 und 8,6.*
 
 ## Was v19.7 kann
 
@@ -1502,6 +1536,8 @@ Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp 
 *Zweiter Nachtrag von Claude (Chat 10) am 6.8.2026, nachmittags: Bericht an beide Prüfer verschickt und beantwortet, Übergabe an ChatGPT vollzogen, zwei Befunde über die Arbeitsweise der Prüfer eingetragen.*
 
 *Aktualisiert von Claude (Chat 10) am 6.8.2026: Abschnitt „Der 6. August" neu, Messstand nachgerechnet und auf je 135 Aussagen gebracht, drei Entscheidungen vom 5.8. abends nachgetragen, Sicherungsstand auf 08:28 Uhr, Übergabe-Eintrag Chat 9 → Chat 10 ergänzt, das veraltete Zitat des 0a-Codekommentars berichtigt. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen.*
+
+*Aktualisiert von Claude (Chat 14) am 13.8.2026, **22:20 Uhr (Uhrzeit unmittelbar vor dem Schreiben abgefragt)**: Abschnitt „Der 13. August" um die Unterpunkte 14 bis 17 erweitert — die rückwirkende Berichtigung ist beschlossen, gebaut und ausgeführt. **Abschnitt „Aktueller Messstand" erneut vollständig ersetzt**, mit Vorher-Nachher-Vergleich und drei Gegenproben. Festgehalten, dass die Berichtigung die Abweichung **nicht** verbessert hat, und dass die frühere Aussage über Sonnets Selbstüberschätzung hinfällig ist. Zwei eigene Fehler eingetragen: das falsch angekündigte Prüfkriterium und die Entpark-Empfehlung ohne Prüfung des Parkgrundes.*
 
 *Aktualisiert von Claude (Chat 14) am 13.8.2026, **16:32 Uhr (Uhrzeit unmittelbar vor dem Schreiben abgefragt)**: Abschnitt „Der 13. August" neu (13 Unterpunkte). **Abschnitt „Aktueller Messstand" vollständig neu geschrieben** und diesmal bis zum Ende des Abschnitts — die vorige Fassung war ab der Mitte auf dem Stand von 180 Aussagen stehengeblieben (Fehlerart C3 und C4, Fehler von Chat 13). Alle Zahlen aus der Anzeige vom 16:32 Uhr abgelesen, keine gerechnet. **Unterpunkt 11 des 9. August berichtigt:** Das Programm verändert keine Anpfiffzeit, kann sie aber an das falsche Spiel hängen — am Log des 10. August bewiesen. Der ursprüngliche Wortlaut bleibt stehen. Kopfzeile und Datierungshinweis auf den 13.8. gebracht, Übergabezeile Chat 13 → Chat 14 eingetragen. **Zehnte Fehlerart des Schiedsrichters aufgenommen.** Zusammen mit Backlog-Fassung 18, Blueprint 0.16 und `Ondo-Core-Architektur.md` 0.4. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen; geändert wurden nur die betroffenen Stellen.*
 

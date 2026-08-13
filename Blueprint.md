@@ -4,7 +4,7 @@
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
 **Version:** 0.16
-**Stand:** 13. August 2026, 16:32 Uhr
+**Stand:** 13. August 2026, 22:20 Uhr
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
 > **Was Fassung 0.16 ändert (13.8.2026):** **Die Übergaberegel hat jetzt eine eigene Fassung für ChatGPT** (Backlog-Punkt 7, beschlossen am 30.7., gebaut am 13.8.) — neuer Abschnitt 2d. **Die Feststellung aus 0.15, die falschen Anpfiffzeiten stammten nicht aus dem Programm, ist teilweise widerlegt** und im Protokoll berichtigt: Das Programm verändert keine Zeit, kann sie aber an das falsche Spiel hängen. Dazu die zehnte Fehlerart des Schiedsrichters und die Feststellung, dass ein Prüfer selbst gemessen werden muss. Fünf Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
@@ -410,6 +410,9 @@ ONDO CONTROL
 | 13.8.2026 | **Ein Prüfer muss selbst gemessen werden, bevor man sich auf ihn verlässt.** Am 13.8. prüften drei fremde Chats dieselben 30 Ergebnisse: Claude fand den einen echten Fehler, ChatGPT übersah ihn, DeepSeek bestätigte den falschen Wert ausdrücklich als richtig. **Ein Tag ist kein Urteil**, aber die Annahme ist damit durch einen Messwert ersetzt. |
 | 13.8.2026 | **Zehnte Fehlerart des Schiedsrichters: Stand aus der Verlängerung statt nach 90 Minuten.** Alle bestehenden Absicherungen meldeten „in Ordnung". Derselbe Schiedsrichter lieferte im zweiten Lauf den richtigen Wert — er ist **schwankend, nicht systematisch falsch**. |
 | 13.8.2026 | **Arbeitsregel D erneut bestätigt:** Drei erfolglose Suchen nach Fram – KR führten Claude zur Empfehlung, den Eintrag zu parken. Ondo fand das Spiel selbst. **Unzuverlässigkeit ist nicht Unverfügbarkeit.** |
+| 13.8.2026 | **Vor dem Entparken wird der GRUND des Parkens geprüft, nicht die Anzahl.** Claude empfahl, fünf Tage zu entparken, und zählte dafür nur Einträge. Ondo wies auf Testspiele darunter hin, die nicht über zweimal 45 Minuten gingen. **Ein geparkter Eintrag ist meistens eine getroffene Entscheidung, keine offene Aufgabe.** |
+| 13.8.2026 | **Eine erwartete Zahl gehört mit ihrer Bedingung genannt.** Claude kündigte an, die Berichtigungsliste müsse 16 Aussagen zeigen, und vergass die geparkten. Die Liste zeigte 27 und war richtig. **Ohne die Bedingung wird eine richtige Ausgabe für falsch gehalten.** |
+| 13.8.2026 | **Eine Berichtigung muss die Kennzahl nicht verbessern.** Nach der Berichtigung stieg Sonnets Trefferquote von 52 auf 55 Prozent, die Kalibrierungsabweichung blieb bei 4 %. **Der Fehler wurde verschoben, nicht beseitigt.** Wer nur auf die Kennzahl sieht, hält einen wirksamen Vorgang für wirkungslos. |
 | 13.8.2026 | Blueprint auf Version 0.16 gehoben. **Übergaberegel in einer Fassung für ChatGPT (Abschnitt 2d) geschrieben** — Backlog-Punkt 7, beschlossen am 30.7., 14 Tage offen. |
 
 ---
