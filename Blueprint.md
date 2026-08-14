@@ -3,11 +3,13 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.18
-**Stand:** 14. August 2026, 17:11 Uhr
+**Version:** 0.19
+**Stand:** 14. August 2026, 22:41 Uhr
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
-> **Was Fassung 0.18 ändert (14.8.2026, nachmittags):** **Die fünf Beschlüsse der Grundsatzbesprechung** sind eingetragen — Messdaten-Export ohne Schlüssel, Trennung von Stand und Chronik, ein Ort je Tatsache, Claude Code auf dem Tablet, Selbsttest für die App. **Drei Regeländerungen sind beschlossen, treten aber erst nach der Trennung der Dokumente in Kraft.** Kein Verfassungsartikel geändert.
+> **Was Fassung 0.19 ändert (14.8.2026, abends):** **Backlog-Punkt 44 ist gebaut** — der erste der fünf Beschlüsse steht. Dazu drei Berichtigungen an Fassung 0.18: Der Abschnitt 10 führte **Punkt 18 weiter als offene Frage**, obwohl er am selben Tag beschlossen wurde — geschlossen. Aus „drei Regeländerungen" werden **zwei Änderungen und eine Bestätigung**. Und **Punkt 46 war ein Doppeleintrag zu Backlog-Punkt 8**, dessen Kostenangabe zum Wochen-Limit dabei verlorenging. Vier Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
+
+> **Was Fassung 0.18 änderte (14.8.2026, nachmittags):** **Die fünf Beschlüsse der Grundsatzbesprechung** sind eingetragen — Messdaten-Export ohne Schlüssel, Trennung von Stand und Chronik, ein Ort je Tatsache, Claude Code auf dem Tablet, Selbsttest für die App. **~~Drei~~ ZWEI Regeländerungen sind beschlossen, treten aber erst nach der Trennung der Dokumente in Kraft** *(berichtigt am 14.8. abends: der dritte Aufzählungspunkt hält fest, was unverändert bleibt — eine Bestätigung ist keine Änderung)*. Kein Verfassungsartikel geändert.
 
 > **Was Fassung 0.17 änderte (14.8.2026, früh):** **`CODE_VERSION` ist entschieden** — sie ist ein reines Lieferkennzeichen und wird ausnahmslos hochgezählt; der Schnitt in der Messreihe wird am **Fehlen** des Feldes `codeVersion` erkannt, nicht an seinem Wert. **Ondos Entscheidung, die Sammlung nach dem nächsten Prüflauf zu pausieren**, ist eingetragen — mit dem Hinweis, dass Backlog-Punkt 3 dadurch blockiert ist. **Die Drei-Ebenen-Trennung ist an beiden Stellen als erledigt geschlossen** (Abschnitt 5 und 10); sie stand seit dem 13.8. in `Ondo-Core-Architektur.md` 0.4. Sechs Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
 
@@ -433,6 +435,12 @@ ONDO CONTROL
 | 14.8.2026 | **Messdaten an einem einzigen Ort sind das größte Risiko des Projekts** — größer als jeder offene Fehler. Die vorhandene Sicherung enthält API-Schlüssel und kann das Gerät nicht verlassen. Deshalb steht der schlüsselfreie Export vor allem anderen. |
 | 14.8.2026 | **Erst lesen, was da ist, dann fragen.** Claude hat an diesem Tag nach Anpfiffzeiten gefragt, die in derselben Nachricht bereits mitgeschickt waren, und Bekanntes als Fund ausgegeben. |
 | 14.8.2026 | Blueprint auf Version 0.18 gehoben. |
+| **— ab hier eingetragen am 14.8.2026, abends —** | |
+| 14.8.2026 | **Backlog-Punkt 44 gebaut — `beta.html` v19.8.2, Messdaten-Export ohne Schlüssel.** Der erste der fünf Beschlüsse steht. **Kein Schnitt in der Messreihe**; weder Auftragstexte noch Bewertung noch Bestandsdaten sind berührt. Entscheidung Ondos dazu: alles ausgeben, einschliesslich v18-Archiv. |
+| 14.8.2026 | **Eine Positivliste ist einer Sperrliste vorzuziehen, wo etwas nicht hinausgelangen darf.** Der Export gibt nur aus, was ausdrücklich benannt ist; ein später hinzugefügtes Schlüsselfeld kommt gar nicht erst hinein. Eine Sperrliste kennt nur, was jemand vorhergesehen hat — genau dieser Bautyp ist am 4.8. dreimal gescheitert. **Dazu eine zweite Prüfstufe, die über das erzeugte Ergebnis läuft statt über die Liste**, damit geprüft wird, was die Liste nur verspricht. |
+| 14.8.2026 | **Ein Prüfskript, das für einen anderen Chat geschrieben wurde, prüft den eigenen nicht.** `pruefe.py` enthielt die Pflichtinhalte von Chat 15 und hätte nach dieser Lieferung falsche Fehler gemeldet und die eigenen Zusagen gar nicht geprüft. **Ondo hat das von sich aus angesprochen, bevor geliefert wurde.** Abschnitt 7 wird ab jetzt bei jeder Übernahme mit umgestellt. **Grenze, ausdrücklich (Art. 14):** Wer die Lieferung schreibt, schreibt auch diese Liste — sie fängt fehlende Buchführung, nicht falsche Entscheidungen. |
+| 14.8.2026 | **Fällt ein Werkzeug aus, wird das gemeldet und gewartet — nicht ersatzweise geraten.** Am Abend des 14.8. antwortete der Dateizugriff rund achtzehn Minuten lang nicht. Statt Code aus dem Gedächtnis in den Chat zu schreiben, wurde der Ausfall benannt und der Bau angehalten. |
+| 14.8.2026 | Blueprint auf Version 0.19 gehoben. |
 
 ---
 
@@ -455,7 +463,7 @@ Oder soll er nur verifizierte Fakten bewerten? Die neunte Fehlerart vom 31.7. ve
 
 **Offen — Beförderungskriterium (c) neu fassen:** 15 bewertete Tipps sind statistisch zu wenig, ChatGPTs 100er-Stichprobe dauert Monate. Vorschlag Claude: Beförderung nach Stabilität und Fehlerfreiheit entscheiden, die Messung läuft danach weiter.
 
-**Offen — Backlog-Punkt 18 (die Dokumente auf Diät setzen)** *(Ondo, 31.7.)*: Soll `PROJEKT-STATUS.md` auf das gekürzt werden, was ein neuer Chat wirklich braucht, und die Chronik in eine Archivdatei wandern, die beim Start nicht gelesen wird?
+**✅ Geschlossen — Backlog-Punkt 18 (die Dokumente auf Diät setzen)** *(Idee Ondo/Claude 31.7., **beschlossen von Ondo am 14.8.2026** in der Grundsatzbesprechung)*: `PROJEKT-STATUS.md` wird getrennt in `STAND.md` und Chronikdateien, die nur auf Zuruf gelesen werden. *Stand bis zum 14.8. abends hier weiter unter „offen" — der Punkt war da bereits entschieden; berichtigt von Chat 16. **Dieselbe Fehlerart wie beim Drei-Ebenen-Leitbild darüber, und derselbe Abschnitt.***
 
 **✅ Geschlossen — Drei-Ebenen-Leitbild** nach `Ondo-Core-Architektur.md` übertragen (beschlossen 23.7., **eingetragen am 13.8.2026 als Abschnitt 1b, Fassung 0.4**). *Stand bis zum 14.8. weiter unter „offen"; der Punkt war da bereits abgearbeitet.*
 

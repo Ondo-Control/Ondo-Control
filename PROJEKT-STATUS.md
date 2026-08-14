@@ -1,5 +1,5 @@
 # ONDO CONTROL — PROJEKT-STATUS
-*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 14. August 2026, 17:11 Uhr, v19.8.1*
+*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 14. August 2026, 22:41 Uhr, v19.8.2*
 
 > **Zur Datierung:** Die Kalibrierungszahlen im Abschnitt „Aktueller Messstand" sind am **14.8.2026 aus dem Bildschirmfoto der Finanzen-Seite abgelesen** — Sonnet 330 bewertete Aussagen bei 4 % Abweichung und 55 % Treffern, Flash 327 bei 8 % und 50 %. *Die genaue Ablesezeit ist unbekannt (Art. 11); das Bild nennt als Sicherungszeit 07:14 Uhr, das ist NICHT die Ablesezeit.* Alle älteren Zahlen — 13.8. (300/297), 9.8. (je 207), 8.8. (je 180) — sind ab jetzt Verlaufsangaben. Massgeblich ist immer der Abschnitt „Aktueller Messstand".
 
@@ -194,7 +194,7 @@ Zwölf Chats in fünf Wochen. **Punkt 18 („Dokumente auf Diät") bestimmt inzw
 | 5 | **Das Kontrollexamen kostet etwa ein Viertel jedes Chats.** Noetig, solange die Dokumente gross und stellenweise unzuverlaessig sind. | faellt mit 18 |
 | 6 | **Das Verfahren haengt an Ondo allein.** Nicht aufloesbar; die Zahl seiner Handgriffe laesst sich senken. | Punkt 46 |
 
-**14. Regelaenderungen, beschlossen — wirksam erst NACH Punkt 18.** Ondo: Regeln duerfen die Arbeit nicht erschweren, und brauchbare Loesungen sollen nicht ausgeschlossen werden.
+**14. Regelaenderungen, beschlossen — wirksam erst NACH Punkt 18.** *(🔴 Berichtigt am 14.8. abends: Hier und im Blueprint stand „drei Regelaenderungen“. Es sind **zwei Aenderungen und eine Bestaetigung** — der dritte Spiegelstrich haelt fest, was unveraendert bleibt. Der Wortlaut der Spiegelstriche bleibt stehen.)* Ondo: Regeln duerfen die Arbeit nicht erschweren, und brauchbare Loesungen sollen nicht ausgeschlossen werden.
 
 - **„Lies alle sechs Dateien vollstaendig" wird zu „Lies `STAND.md` und die offenen Backlog-Punkte vollstaendig, alles andere auf Zuruf."** Begruendung: Die Regel entstand gegen Bequemlichkeit. Ist das Pflichtteil klein, gibt es keine Bequemlichkeit zu verbieten.
 - **Das Kontrollexamen schrumpft von neun auf vier Fragen** — nur noch die Fangfragen. Reine Abfragefragen pruefen Lesefaehigkeit, nicht Verstaendnis.
@@ -204,6 +204,47 @@ Zwölf Chats in fünf Wochen. **Punkt 18 („Dokumente auf Diät") bestimmt inzw
 **15. Arbeitsregel L ist fuer diesen Chat NICHT erfuellt.** Gebaut wurde nichts. Entschieden wurde viel, ausgewertet wurde Punkt 43, geheilt wurden fuenf Buchfuehrungsfehler — aber kein beschlossener Punkt ist gebaut worden. **Der naechste Chat baut Punkt 44, bevor er irgendetwas anderes tut.**
 
 **16. Messstand nach der Uebernahme.** Sonnet 330 Aussagen bei 4 % und 55 %, Flash 327 bei 8 % und 50 %, gesamt 53 % (346/657). Die Abweichung ist bei beiden Gehirnen gleich geblieben. Sicherung 14.8., 07:14 Uhr.
+
+**17. 🔴 PUNKT 44 IST GEBAUT — `beta.html` v19.8.2, 14.8.2026, 22:36 Uhr.** Damit ist Arbeitsregel L fuer diesen Chat erfuellt, zum ersten Mal seit dem 13. August.
+
+**Was gebaut wurde:** Eine neue Karte unter „Mehr", direkt unter der Datensicherung. Ein Knopf erzeugt die Messdaten als Text, ein zweiter gibt sie als Datei aus, dazu der bekannte Kopieren-Knopf. **Ausgegeben werden Vorhersagen und Wetten ohne API-Schluessel und ohne PIN.** Der bestehende Sicherungsknopf ist unangetastet.
+
+**Fuenf Stellen geaendert:** `CODE_VERSION` auf v19.8.2 · sechs neue Sprachschluessel in DE, FR und EN (`messT`, `messD`, `messBtn`, `messFile`, `messHint`, `messBlock`) · der neue Codeblock mit `MESS_FELDER`, `messGeheimFund`, `messDatenBauen`, `messTextBauen` und `messDatei` · die Anzeigefunktion `messExportBlock` · der Aufruf im Mehr-Tab.
+
+**Die Positivliste ist der Kern des Baus.** Ausgegeben wird ausschliesslich, was in `MESS_FELDER` steht: `kiProtokoll`, `bets`, `regeln`, `startSaldo`, `eingezahlt`, `ausgezahlt`, `korrekturF`, `letzteSicherung`. Dazu ein Kopf mit Codeversion, Erzeugungszeit und Anzahl und eine Schlusszeile `ende`. **Eine Sperrliste waere falsch gewesen** — sie kennt nur, was jemand vorhergesehen hat, und genau dieser Bautyp ist am 4. August dreimal gescheitert. Ein spaeter hinzugefuegtes Schluesselfeld kommt in eine Positivliste gar nicht erst hinein.
+
+**Zwei Pruefstufen, und keine holt ihren Sollwert vom Geprueften (Fehlerart C6).** Erste Stufe ist die Positivliste im Code. Zweite Stufe ist `messGeheimFund`: Sie laeuft ueber das **erzeugte Ergebnis**, nicht ueber die Liste, und schlaegt an bei Feldnamen mit `key`, `pin`, `token`, `secret` oder `passw` und bei Werten, die mit `sk-ant-` oder `AIza` beginnen. Schlaegt sie an, wird **nichts** ausgegeben und eine Warnung angezeigt. Sie prueft die echten Daten auf Ondos Geraet — das kann keine Pruefung bei Claude.
+
+**Entscheidung Ondos: alles ausgeben, einschliesslich v18-Archiv.** Kein Zeitraumfilter, kein Aera-Filter. Eine Sicherung mit Datumsbereich waere keine Sicherung.
+
+**Geprueft vor der Lieferung:** `node --check` sauber · Sprachschluessel **217** in DE, FR und EN, maschinell abgeglichen, keine Abweichung in beide Richtungen · **Trockentest mit drei konstruierten Faellen.** Fall 1 (normale Daten, darunter ein v18-Eintrag): Ausgabe enthaelt `apiKey`, `geminiKey`, `pin`, `sk-ant-`, `AIza` und die PIN-Ziffern **nicht**, das v18-Archiv **schon**, Pruefstufe 2 meldet nichts. Fall 2 (ein Schluesselfeld wird kuenstlich in die Positivliste gesetzt): Pruefstufe 2 meldet `daten.apiKey (Feldname)`. Fall 3 (ein Schluesselwert wird tief in eine Begruendung geschmuggelt): Pruefstufe 2 meldet `daten.kiProtokoll[0].begruendung (Wert sieht aus wie ein Schluessel)`. **Beide Stufen wurden also nicht nur gebaut, sondern zum Anschlagen gebracht.**
+
+**Was NICHT angefasst wurde:** `datenSichern` · `datenLaden` · `logTextBauen` · die Auftragstexte beider Gehirne · die Bewertung · `APP_VERSION` bleibt 18. **Kein Schnitt in der Messreihe.**
+
+**Was der Bau NICHT loest (Art. 14):** Er erzeugt keine Sicherung von selbst. Solange Ondo den Knopf nicht drueckt und die Ausgabe nicht ablegt, liegen die Daten weiterhin an einem Ort. Der Bau nimmt die Sperre weg, er handelt nicht.
+
+**18. Vier bestaetigte Funde gegen Chat 15.** Drei kamen aus der Kontrollpruefung, der vierte beim Bauen.
+
+| | Fund | Stand |
+|---|---|---|
+| 1 | **Der Blueprint fuehrte Punkt 18 in Abschnitt 10 weiter als offene Frage**, obwohl er am 14.8. beschlossen wurde — Fehlerart C3, derselbe Fehler, den Chat 15 am Vortag bei Chat 14 geheilt hatte | geschlossen, Blueprint 0.19 |
+| 2 | **Punkt 46 ist ein Doppeleintrag zu Punkt 8** vom 9./10.7. Punkt 46 nannte „kein zusaetzliches Geld" und verschwieg, dass die Arbeit am Wochen-Limit des Pro-Abos zehrt — das stand seit dem 9. Juli in Punkt 8 | zusammengelegt, Backlog Fassung 22 |
+| 3 | **„Drei Regelaenderungen" sind zwei Aenderungen und eine Bestaetigung.** Chat 15 hat drei Aufzaehlungspunkte gezaehlt statt drei Aenderungen | berichtigt in Blueprint und Unterpunkt 14 |
+| 4 | **Drei veraltete Zahlen im Abschnitt „Aktueller Messstand"**, in der „Ehrlichen Einordnung": 195 von 300 statt 212 von 330 · Flash 108 Aussagen statt 117 · „Sonnet 300, Flash 297" statt 330 und 327 | berichtigt, mit Vermerk |
+
+**Fund 4 ist der unangenehmste**, weil der Abschnitt von sich selbst behauptet, er werde **immer vollstaendig ersetzt, nie in Teilen**. Genau das ist am 13.8. schon einmal passiert (Fehlerart C3 und C4, Fehler von Chat 13) und war der Anlass fuer Abschnitt 4b in `pruefe.py`. **Die Pruefung hat es nicht gefangen, weil sie den Teil hinter dem Berichtigungsvergleich ausdruecklich aussparte.** `pruefe.py` prueft ab jetzt auch diesen Teil.
+
+**19. `pruefe.py` auf diesen Chat umgestellt.** Abschnitt 7 enthielt die Pflichtinhalte von Chat 15 und haette nach dieser Lieferung dreierlei getan: bei richtigen Aenderungen „FEHL" gemeldet, die eigenen Zusagen dieses Chats gar nicht geprueft, und trotzdem ein Urteil abgegeben. **Ondo hat von sich aus danach gefragt, bevor irgendetwas geliefert wurde.** Geaendert: Abschnitt 5 auf v19.8.2 · Abschnitt 7 vollstaendig auf die Inhalte dieses Chats · Abschnitt 8 auf sieben statt acht offene Punkte · Abschnitt 4b um die „Ehrliche Einordnung" erweitert · **neuer Abschnitt 9**, der die Positivliste gegen die drei Schluesselfelder prueft und seinen Sollwert dabei aus den Eingabefeldern der Einstellungen zieht, nicht aus der Ausgabefunktion.
+
+**Die Grenze von Abschnitt 7, ausdruecklich (Art. 14):** Claude schreibt die Lieferung **und** die Liste, an der sie gemessen wird. Der Abschnitt faengt genau einen Fehler — dass Zugesagtes nicht aufgeschrieben wird. Er faengt nicht, dass das Falsche beschlossen wird. Stark sind die Abschnitte davor, weil ihr Sollwert von aussen kommt: die Uhrzeit von der Uhr, die Sprachschluesselzahl aus `beta.html`, die Fassungsnummern aus dem Dokument selbst.
+
+**20. Der Werkzeugausfall am Abend.** Zwischen etwa 22:15 und 22:33 Uhr antwortete der Dateizugriff nicht — acht Versuche, immer dieselbe Fehlermeldung. Die Uhr antwortete weiter. **Claude hat nicht ersatzweise Code aus dem Gedaechtnis in den Chat geschrieben**, sondern den Ausfall gemeldet und gewartet. Beim neunten Versuch lief es wieder. Festgehalten, weil der naechste Chat wissen soll, dass dieser Fall vorkommt und was dabei richtig ist: **melden und warten, nicht ersatzweise raten.**
+
+**21. 🔴 FUENFTER FUND: Die Liste der beschlossenen, nicht gebauten Punkte war unvollstaendig.** Chat 15 fuehrte acht — E, 2, 3, 4, 44, 45, 46, 47. **Punkt 18 fehlt darin**, obwohl er am selben Nachmittag von Ondo beschlossen und nicht gebaut wurde. Vermutlich, weil er im Backlog dicht an Punkt 45 gefuehrt wird („zusammen mit Punkt 18"); ein eigener Punkt bleibt er trotzdem.
+
+**Richtig sind damit neun vor dieser Lieferung und acht danach: E, 2, 3, 4, 18, 45, 46, 47.** Punkt 44 ist gebaut und faellt heraus.
+
+*Diese Zahl steht ab jetzt an genau einer Stelle — im Backlog, Abschnitt „Was Fassung 22 aendert". Hier wird sie nur genannt, weil dieser Tagesabschnitt die Aenderung festhaelt. Das ist die Arbeitsweise, die Punkt 45 zur Regel machen soll.*
 
 ---
 
@@ -1169,7 +1210,7 @@ Dateiname beginnt mit Datum und Uhrzeit: `2026-07-31_1430_Ondo-Control_Thema.md`
 **Nie empfehlen, Ergebnisse von Hand nachzuschlagen.** Seit dem 25.7. abgelehnt. Die Zuverlässigkeit des Schiedsrichters gehört zum Test, nicht in Ondos Freizeit. Zwei Claude-Instanzen sind trotzdem darauf zurückgefallen.
 
 **Datensicherung:** Ondo regelmäßig daran erinnern.
-**Letzte bestätigte Sicherung: 14.8.2026, 07:14 Uhr** — 293 Vorhersagen, 6 Wetten, nach der Uebernahme der zehn Endstaende. Davor: 13.8., 18:38 Uhr (nach der Berichtigung), 16:28 Uhr (293 Vorhersagen) und 09:17 Uhr. Früher: 8.8., 07:54 Uhr (210 Vorhersagen) · 7.8., 08:00 Uhr · 6.8., 08:28 Uhr (170 Vorhersagen) · 5.8., 13:06 Uhr · 4.8., 17:58 Uhr (138 Vorhersagen) · 3.8. · 2.8. · 31.7., 07:49 Uhr. ⚠ **Vor jeder Codelieferung ist eine frische Sicherung zu verlangen.**
+**Letzte bestätigte Sicherung: 14.8.2026, 22:22 Uhr** — 293 Vorhersagen, 6 Wetten, unmittelbar vor der Lieferung v19.8.2. Davor: 14.8., 07:14 Uhr (nach der Uebernahme der zehn Endstaende) · 13.8., 18:38 Uhr (nach der Berichtigung), 16:28 Uhr (293 Vorhersagen) und 09:17 Uhr. Früher: 8.8., 07:54 Uhr (210 Vorhersagen) · 7.8., 08:00 Uhr · 6.8., 08:28 Uhr (170 Vorhersagen) · 5.8., 13:06 Uhr · 4.8., 17:58 Uhr (138 Vorhersagen) · 3.8. · 2.8. · 31.7., 07:49 Uhr. ⚠ **Vor jeder Codelieferung ist eine frische Sicherung zu verlangen.**
 
 *Diese Zeile ist eine **Standsangabe**, keine Verlaufsangabe. Sie stand vom 7. bis zum 14. August auf dem 7.8. und war damit sechs Tage falsch, während zwei andere Stellen des Dokuments den richtigen Wert trugen. Seit dem 14.8. prüft `pruefe.py` sie gegen die jüngste Sicherungsangabe im Dokument.*
 *Am 4.8. hat sich die Sicherung bewährt: Ondo hat den Browserverlauf gelöscht, Safari löschte dabei den Websitespeicher mit, alle Daten waren weg — und wurden vollständig wiederhergestellt. **Nichts verloren.** Zwei bekannte Verlustwege: Browserdaten löschen · getrennter Speicher Safari gegen Startbildschirm.*
@@ -1383,10 +1424,11 @@ Zwei Schreibweisen desselben Spiels ergeben zwei verschiedene Schlüssel. Folgen
 ## Versionen
 
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.8.1** (`beta.html`, geliefert 9.8.2026, 13:55 Uhr) — **die Spielliste hat eine eigene Rolle und läuft auf `gemini-flash-latest`.** Jeder neue Eintrag trägt zusätzlich die **Stufe**. Kein Schnitt in der Messreihe. `APP_VERSION` weiter 18.
+- **Beta: v19.8.2** (`beta.html`, geliefert 14.8.2026, 22:36 Uhr) — **Backlog-Punkt 44 gebaut: Messdaten-Export ohne Schlüssel.** Ein zweiter Knopf unter „Mehr" gibt Vorhersagen und Wetten als Text oder Datei aus, ohne API-Schlüssel und ohne PIN. Kein Schnitt in der Messreihe. `APP_VERSION` weiter 18.
+- **Beta zuvor: v19.8.1** (`beta.html`, geliefert 9.8.2026, 13:55 Uhr) — **die Spielliste hat eine eigene Rolle und läuft auf `gemini-flash-latest`.** Jeder neue Eintrag trägt zusätzlich die **Stufe**. Kein Schnitt in der Messreihe. `APP_VERSION` weiter 18.
 - **Beta zuvor: v19.8.0** (`beta.html`, geliefert 9.8.2026, 04:15 Uhr) — **Schnitt in der Messreihe bei „beide treffen", Punkt F gebaut.** Werte vor und ab dieser Version sind bei diesem Markt nicht vergleichbar. Jeder neue Log-Eintrag trägt das Feld `codeVersion`. `APP_VERSION` weiter 18.
 - **Beta zuvor: v19.7.8** (`beta.html`, geliefert 7.8.2026) — getrennter Speicher, aktive Messphase. Vier Nachbesserungen am 3. und 4. August, alle ausgelöst durch Punkt 0a; Einzelheiten im Backlog. Im Code steht weiterhin `APP_VERSION = 18` (technische Schuld, bewusst nicht nebenbei geändert, vor der Beförderung zu klären)
-- **Sprachschlüssel: 211** in DE, FR und EN, maschinell abgeglichen und identisch (**gezählt am 14.8.2026 aus `beta.html`**). *Verlauf: die früher dokumentierten 184 waren nie geprüft; nachgezählt waren es 185, dann 193, dann 199, dann 201 (v19.7.8), dann 203 (v19.8.1). Die acht Schlüssel des Berichtigungsknopfes vom 13.8. (`korrT` bis `korrOk`) waren nirgends nachgetragen — 203 + 8 = 211.* **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
+- **Sprachschlüssel: 217** in DE, FR und EN, maschinell abgeglichen und identisch (**gezählt am 14.8.2026 abends aus `beta.html`**). *Verlauf: die früher dokumentierten 184 waren nie geprüft; nachgezählt waren es 185, dann 193, dann 199, dann 201 (v19.7.8), dann 203 (v19.8.1). Die acht Schlüssel des Berichtigungsknopfes vom 13.8. (`korrT` bis `korrOk`) waren nirgends nachgetragen — 203 + 8 = 211. Punkt 44 bringt sechs weitere (`messT` bis `messBlock`) — 211 + 6 = 217.* **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
 
 ---
 
@@ -1414,7 +1456,7 @@ Bis v18.6 war die Beta ein **Wett-Berater**. Am 23. Juli wurde sie zum **Messger
 
 *Zur Herkunft (Art. 14): **Alle Zahlen dieses Abschnitts sind aus der Anzeige der App abgelesen, keine ist gerechnet.** Der Abschnitt wird immer vollstaendig ersetzt, nie in Teilen. Die genaue Ablesezeit ist unbekannt (Art. 11).*
 
-**Bestand:** **293 Vorhersagen** und 6 Wetten im Speicher. **Letzte Sicherung: 14.8.2026, 07:14 Uhr.**
+**Bestand:** **293 Vorhersagen** und 6 Wetten im Speicher. **Letzte Sicherung: 14.8.2026, 22:22 Uhr.**
 
 *Der Bestand ist gleich geblieben, die Zahl der bewerteten Aussagen um je 30 gestiegen: Am 14.8. wurden zehn Endstaende des 13.8. uebernommen — zehn Spiele mal drei Maerkte. Es kamen keine neuen Vorhersagen dazu.*
 
@@ -1462,10 +1504,10 @@ Bis v18.6 war die Beta ein **Wett-Berater**. Am 23. Juli wurde sie zum **Messger
 - **🔴 Die Berichtigung hat die Kalibrierung NICHT verbessert.** Sie steht vorher wie nachher bei 4 %. Der Fehler wurde **verschoben, nicht beseitigt**: Die Stufe 70–79 % ging von 25 Punkten Abweichung auf 6 zurück, die Stufe 60–69 % kippte von 5 Punkten zu wenig auf 8 Punkte zu viel. **Wer nur auf die 4 % sieht, hält den Vorgang für wirkungslos.** Das ist er nicht — die Trefferquote und die Verteilung zeigen die Wirkung.
 - **Sonnet ist jetzt in den oberen Stufen zu vorsichtig, nicht mehr zu zuversichtlich.** Bei 60–69 % behauptet, trafen 71 % ein; bei 70–79 % behauptet, 67 %. Vor der Berichtigung sah es genau umgekehrt aus. **Die frühere Aussage „Sonnet überschätzt sich bei hoher Zuversicht" beruhte auf dem Rechenfehler und ist damit hinfällig.**
 - **Der Vorsprung gegenüber Flash ist weiterhin jung** — 8:8 am 8.8., 5:6 am 9.8., 4:8 heute. Nach Backlog-Punkt 35 liegt eine Schwankung dieser Grösse im Rauschen.
-- **65 Prozent aller Sonnet-Aussagen liegen zwischen 50 und 59 Prozent** (195 von 300). Sonnet legt sich selten fest.
-- **Flashs Schwachstelle bleibt der grösste Einzelposten:** 108 Aussagen bei 60–69 %, behauptet 63, eingetroffen 54.
+- **64 Prozent aller Sonnet-Aussagen liegen zwischen 50 und 59 Prozent** (212 von 330). Sonnet legt sich selten fest. *(Stand zuvor hier: 195 von 300 — beim Ersetzen des Abschnitts am 14.8. stehengeblieben, berichtigt am 14.8. abends.)*
+- **Flashs Schwachstelle bleibt der grösste Einzelposten:** 117 Aussagen bei 60–69 %, behauptet 63, eingetroffen 56. *(Stand zuvor hier: 108 Aussagen, eingetroffen 54 — berichtigt am 14.8. abends.)*
 - Zeilen mit ein bis vier Aussagen (Flash 80–99 %) sind **bedeutungslos**.
-- **Ungleiche Anzahl:** Sonnet 300, Flash 297. Woher die Differenz von drei kommt, ist **nicht geklärt** (Art. 11).
+- **Ungleiche Anzahl:** Sonnet 330, Flash 327. Woher die Differenz von drei kommt, ist **nicht geklärt** (Art. 11). *(Stand zuvor hier: 300 und 297 — berichtigt am 14.8. abends.)*
 - **Der Brier-Score war aus der Anzeige nicht ablesbar** und wird deshalb nicht angegeben. Die Erwartung aus der Buchführung — er kippt von schlechter auf besser als Raten — ist **ungeprüft**.
 - Ondos eigene Bilanz unverändert: **−29,75 €**, Wett-Saldo −19,51 €, eigene Trefferquote 17 % (1/6).
 
@@ -1554,7 +1596,7 @@ Geplant sind Finanzen, Content, Organisation. Fast alles, was gebaut wird, ist d
 
 Ondo schreibt „Ondo Control: [Anliegen]" und fügt Raw-Links ein, **immer mit angehängter Zahl**, z. B. `?v=20260731`. **Alle sechs Dateien plus `version.json` werden gelesen, bevor irgendetwas beurteilt wird** — Blueprint und Ondo-Core eingeschlossen. Das Weglassen hat am 30./31.7. zweimal zu falschen Empfehlungen geführt.
 
-**Vor jeder Lieferung:** Syntax-Check (`node --check`), Sprachdatei-Abgleich (DE/FR/EN gleiche Schlüssel, **aktuell 211**), Trockentest der neuen Logik — am besten gegen Ondos jüngste Sicherungsdatei, das prüft die Rechnung an echten Daten. Versionsnummer im Header hochzählen. **Und die Dokumente (Arbeitsregel F).**
+**Vor jeder Lieferung:** Syntax-Check (`node --check`), Sprachdatei-Abgleich (DE/FR/EN gleiche Schlüssel, **aktuell 217**), Trockentest der neuen Logik — am besten gegen Ondos jüngste Sicherungsdatei, das prüft die Rechnung an echten Daten. Versionsnummer im Header hochzählen. **Und die Dokumente (Arbeitsregel F).**
 
 ### Chat-Übergabe ist Claudes Pflicht, nicht Ondos (**Übergaberegel**, 30.7.)
 
@@ -1607,6 +1649,7 @@ Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp 
 | 8.8.2026 | Chat 12 → Chat 13 | Raw-Links + Projektdateien + Mappe | **9 von 9** | sechs Fragen bereits in der ersten Antwort beantwortet, drei nachgereicht; **beide Fangfragen bestanden** (Motherwell unaufgefordert als zweite Fehlerart erkannt und die pauschale Regel verworfen; aus der Umkehr der Prüfer nichts über die erste Antwort geschlossen, sondern die gleichzeitige Änderung zweier Dinge benannt). **Vier Punkte über dem Schlüssel: den KI-Log selbst maschinell ausgezählt statt die Zahlen zu übernehmen — Ergebnis in jeder Zeile deckungsgleich; sechs Codestellen selbst belegt; die Folgerung aus der Prüfer-Umkehr präziser gefasst als der Schlüssel; beide Bedingungen zu Arbeitsregel M ungefragt genannt.** Kein Fehler. |
 | 13.8.2026 | Chat 13 → Chat 14 | Raw-Links + Projektdateien + Mappe | **9 von 9** | **Alle drei Fangfragen bestanden** (Berichtigung trotz übereinstimmender 5 % als nicht erledigt erkannt; Ursache der Anpfiffzeiten als unbekannt nach Art. 11 benannt, ohne die widerlegte Vermutung zu wiederholen; Punkt 27 nicht zum Bau empfohlen und ausdrücklich als Entscheidung des Besitzers gekennzeichnet). **Vier Punkte über dem Schlüssel:** zwei Herkunftseinschränkungen bei den Modellnamen ungefragt genannt; Motherwell unaufgefordert als zweite Fehlerart; die 16 selbst als fortgeschriebene Zahl der Fehlerart C1 zugeordnet; **vor der Prüfung zwei Abweichungen von sich aus gemeldet und in beiden recht behalten** — frischerer KI-Log als angekündigt und der widersprüchliche Abschnitt „Aktueller Messstand" (Fehlerart C3 und C4, Fehler von Chat 13). Kein Fehler. Zwei Kleinigkeiten nachgereicht: Trefferquoten bei Frage 2, zweite Bedingung zu Arbeitsregel M bei Frage 8. **Anmerkung des abgebenden Chats:** Die Abnahme war zunächst geschrieben worden, BEVOR die Kontrollfragen gestellt waren, und behauptete darin einen Ausfall der Prüfung — von Ondo sofort bemerkt und berichtigt. |
 | 13.8.2026 | Chat 14 → Chat 15 | Raw-Links + Projektdateien + Mappe | **9 von 9** | **Alle vier Fangfragen bestanden** (Berichtigung hat die Kalibrierung NICHT verbessert; der Knopf war richtig und das Prüfkriterium falsch; Positionsverschiebung bewiesen, Ursache weiterhin unbekannt, zwei Probleme; kein Entparken — Grund prüfen statt Anzahl, ohne die reale Verzerrung zu leugnen). **Fünf Punkte über dem Schlüssel:** Codebeleg statt blosser Rechnung bei Frage 3; `stufe` fehlt ebenfalls im Log-Text (Frage 9, war nicht gefragt und Chat 14 unbekannt); Kosten und fehlender Schnitt bei Frage 7 ungefragt genannt; **vier Abweichungen vor der Prüfung gemeldet und alle vier bestätigt** — drei davon Versäumnisse von Chat 14 (Sprachschlüsselzahl 211 statt 201, `CODE_VERSION` nicht nachgezogen und die Entscheidung nur im Chat, Drei-Ebenen-Trennung im Blueprint an zwei Stellen noch als offen, veraltete Sicherungsangabe vom 7.8.); ungelesene Dateien ausdrücklich benannt und die Speicherfrage zur Entscheidung vorgelegt. Kein Fehler. Zwei Kleinigkeiten nachgereicht: sechs auf vier beschlossene Punkte bei Frage 6, Unberührtheit der Kalibrierungsmessung bei Frage 7. |
+| 14.8.2026 | Chat 15 → Chat 16 | Projektdateien + Mappe | **7 von 7** | **Alle drei Fangfragen bestanden** (Ursache der falschen Anpfiffzeiten NICHT gefunden — ein sauberer Tag ist ein Hinweis, kein Beweis; die Regelaenderungen gelten erst nach Punkt 18; keine Verlaengerung ist automatisch ein Punkt-36-Fall, entscheidend ist die Bestimmbarkeit des 90-Minuten-Standes). Kein Fehler. **Ueber dem Schluessel:** Artikel-14-Luecken bei Frage 2 ungefragt genannt · Punkt 3 als blockiert erwaehnt · Raw-Link-Abgleich je Datei einzeln deklariert · die beiden Probleme bei Frage 3 zusaetzlich getrennt. **FUENF Funde, alle bestaetigt, alle Fehler von Chat 15:** Blueprint fuehrte Punkt 18 noch als offen · Punkt 46 ist ein Doppeleintrag zu Punkt 8 samt verschwiegener Kostenangabe · „drei Regelaenderungen“ sind zwei Aenderungen und eine Bestaetigung · drei veraltete Zahlen in der „Ehrlichen Einordnung“ des Messstands · die Liste der beschlossenen, nicht gebauten Punkte liess Punkt 18 aus. **Abweichung, nachgeholt:** Backlog und Blueprint waren nach der Abnahme zunaechst nicht vollstaendig gelesen; vor der Lieferung nachgeholt. **Arbeitsregel L erfuellt: Punkt 44 gebaut (v19.8.2).** |
 
 ---
 
@@ -1647,6 +1690,8 @@ Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp 
 *Zweiter Nachtrag von Claude (Chat 10) am 6.8.2026, nachmittags: Bericht an beide Prüfer verschickt und beantwortet, Übergabe an ChatGPT vollzogen, zwei Befunde über die Arbeitsweise der Prüfer eingetragen.*
 
 *Aktualisiert von Claude (Chat 10) am 6.8.2026: Abschnitt „Der 6. August" neu, Messstand nachgerechnet und auf je 135 Aussagen gebracht, drei Entscheidungen vom 5.8. abends nachgetragen, Sicherungsstand auf 08:28 Uhr, Übergabe-Eintrag Chat 9 → Chat 10 ergänzt, das veraltete Zitat des 0a-Codekommentars berichtigt. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen.*
+
+*Aktualisiert von Claude (Chat 16) am 14.8.2026, **22:41 Uhr (Uhrzeit unmittelbar vor dem Schreiben der Kopfzeilen abgefragt; die Codelieferung selbst traegt 22:36 Uhr, ebenfalls abgelesen)**: **Backlog-Punkt 44 GEBAUT — `beta.html` v19.8.2, Messdaten-Export ohne Schluessel.** Arbeitsregel L erfuellt. Tagesabschnitt „Der 14. August" um die Unterpunkte 17 bis 21 erweitert. **Fuenf Funde gegen Chat 15 bestaetigt und berichtigt:** Punkt 18 im Blueprint noch als offen · Punkt 46 Doppeleintrag zu Punkt 8 · „drei Regelaenderungen" sind zwei · drei veraltete Zahlen in der „Ehrlichen Einordnung" des Messstands · Punkt 18 fehlte in der Liste der beschlossenen, nicht gebauten Punkte. **Standsangaben nachgezogen:** Sprachschluessel **217** an drei Stellen, Beta-Version v19.8.2, letzte Sicherung 14.8., **22:22 Uhr**. **`pruefe.py` auf diesen Chat umgestellt** — Abschnitt 7 vollstaendig ersetzt, Abschnitt 4b um die „Ehrliche Einordnung" erweitert, neuer Abschnitt 9 zur Schluesselpruefung. Uebergabezeile Chat 15 → Chat 16 eingetragen. Der Messstand selbst ist **unveraendert** (330/327) — es kamen keine neuen Bewertungen dazu. Zusammen mit Backlog-Fassung 22 und Blueprint 0.19. `Ondo-Core-Architektur.md` 0.4 bleibt unveraendert gueltig. Geaendert wurden nur die betroffenen Stellen; `beta.html` wurde hochgeladen, nicht aus dem Gedaechtnis ausgeschrieben.*
 
 *Aktualisiert von Claude (Chat 15) am 14.8.2026, **17:11 Uhr (Uhrzeit unmittelbar vor dem Schreiben abgefragt)**: Tagesabschnitt „Der 14. August" auf 16 Unterpunkte erweitert. **Fuenf Beschluesse der Grundsatzbesprechung** (Punkte 44, 18, 45, 46, 47) mit Reihenfolge. **Punkt 43 ausgewertet** — der 13. August ist sauber, zehn von zehn Anpfiffzeiten. **Zehn Endstaende uebernommen und gegengeprueft.** **Messstand auf 330/327 gebracht**, Sicherungsangabe auf 14.8., 07:14 Uhr. **Regelaenderungen beschlossen, wirksam erst nach Punkt 18.** Ein eigener Fehler dieses Tages eingetragen. Zusammen mit Backlog-Fassung 21 und Blueprint 0.18.*
 

@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Gepflegt von Claude · Stand 14.8.2026, 17:11 Uhr, Fassung 21 · jede Idee mit Datum, Urheber und Status**
+**Gepflegt von Claude · Stand 14.8.2026, 22:41 Uhr, Fassung 22 · jede Idee mit Datum, Urheber und Status**
 
 ## Regeln für dieses Dokument
 
@@ -13,6 +13,18 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 22 ändert (14.8., abends)
+
+**🔴 Punkt 44 ist GEBAUT — `beta.html` v19.8.2, 22:36 Uhr. Arbeitsregel L ist erfüllt.**
+
+- **Messdaten-Export ohne Schlüssel steht.** Neue Karte unter „Mehr", Text- und Dateiausgabe, ohne API-Schlüssel und ohne PIN. **Positivliste statt Sperrliste**, dazu eine zweite Prüfstufe auf den echten Daten. Alles ausgegeben, einschliesslich v18-Archiv (Entscheidung Ondo). Kein Schnitt in der Messreihe. Sprachschlüssel 211 → **217**.
+- **Punkt 8 und Punkt 46 sind ZUSAMMENGELEGT** — es war derselbe Vorschlag. Punkt 46 führt ihn weiter, Punkt 8 verweist dorthin. **Die von Punkt 8 seit dem 9. Juli genannte Kostenangabe fehlte in Punkt 46 und ist ergänzt:** die Arbeit zehrt am Wochen-Limit des Pro-Abos.
+- **Vier weitere Funde gegen Chat 15**, alle bestätigt: Blueprint führte Punkt 18 noch als offen · „drei Regeländerungen" sind zwei Änderungen und eine Bestätigung · drei veraltete Zahlen im Abschnitt „Aktueller Messstand" · **Punkt 18 fehlte in der Liste der beschlossenen, nicht gebauten Punkte.**
+- **🔴 Beschlossen und nicht gebaut: acht** — **E, 2, 3, 4, 18, 45, 46, 47.** Das ist die massgebliche Stelle für diese Zahl; andere Dokumente verweisen hierher, statt sie zu wiederholen (Punkt 45, vorweggenommen).
+- **`pruefe.py` auf Chat 16 umgestellt** — Abschnitt 7 vollständig ersetzt, Abschnitt 4b erweitert, neuer Abschnitt 9 zur Schlüsselprüfung.
 
 ---
 
@@ -37,7 +49,7 @@
 
 ---
 
-**44. Messdaten-Export ohne Schlüssel** · *Vorschlag 14.8., Claude · beschlossen 14.8., Ondo* · **Status: BESCHLOSSEN — erster Bauauftrag des nächsten Chats**
+**44. Messdaten-Export ohne Schlüssel** · *Vorschlag 14.8., Claude · beschlossen 14.8., Ondo* · **Status: 🔴 GEBAUT am 14.8.2026, 22:36 Uhr, `beta.html` v19.8.2 (Chat 16)**
 
 Ein zweiter Knopf neben „Daten sichern", der **nur** Vorhersagen und Wetten ausgibt — **ohne API-Schlüssel, ohne PIN**. Der bestehende Sicherungsknopf bleibt unangetastet.
 
@@ -45,6 +57,18 @@ Ein zweiter Knopf neben „Daten sichern", der **nur** Vorhersagen und Wetten au
 → **Was es zusätzlich löst:** Claude bekommt zum ersten Mal die Rohdaten. Brier-Score, Unsicherheitsbereiche und die Rechnung zur Verzerrung durch geparkte Einträge werden damit erst möglich — drei offene Artikel-14-Lücken. Keine Bildschirmfotos mehr, keine abgetippten Zahlen.
 → **Bauhinweise:** Nur ausgeben, nichts speichern, nichts rechnen, nichts an ein Gehirn schicken. Vor der Lieferung ist zu prüfen, dass in der Ausgabe **kein** Schluesselfeld vorkommt — maschinell, nicht durch Hinsehen. Textknopf wie bei Log und Prüfliste, damit es vom iPhone aus verschickt werden kann.
 → **Kosten:** ein Baublock in `beta.html`, kein Geld, kein Modellaufruf, **kein Schnitt in der Messreihe**. Nächste Lieferung heißt v19.8.2.
+
+**🔴 GEBAUT am 14.8.2026, 22:36 Uhr (Chat 16).** Fünf Stellen geändert: `CODE_VERSION` auf v19.8.2 · sechs neue Sprachschlüssel in DE/FR/EN (211 → **217**) · der Codeblock mit `MESS_FELDER`, `messGeheimFund`, `messDatenBauen`, `messTextBauen`, `messDatei` · die Anzeigefunktion `messExportBlock` · der Aufruf im Mehr-Tab unter der Datensicherung.
+
+**Positivliste statt Sperrliste.** Ausgegeben wird ausschliesslich `kiProtokoll`, `bets`, `regeln`, `startSaldo`, `eingezahlt`, `ausgezahlt`, `korrekturF`, `letzteSicherung`, dazu ein Kopf mit Anzahl und eine Schlusszeile. Eine Sperrliste kennt nur Vorhergesehenes — der Bautyp, der am 4.8. dreimal gescheitert ist.
+
+**Zwei Prüfstufen, keine holt ihren Sollwert vom Geprüften (C6).** `messGeheimFund` läuft über das erzeugte Ergebnis und schlägt an bei Feldnamen mit `key`, `pin`, `token`, `secret`, `passw` und bei Werten mit `sk-ant-` oder `AIza`. Dann wird **nichts** ausgegeben. `pruefe.py` Abschnitt 9 prüft die Positivliste zusätzlich gegen die drei Eingabefelder der Einstellungen.
+
+**Entscheidung Ondo 14.8.: alles ausgeben, einschliesslich v18-Archiv.** Kein Zeitraum- und kein Aera-Filter — eine Sicherung mit Datumsbereich wäre keine Sicherung.
+
+**Geprüft:** `node --check` sauber · 217 Schlüssel in DE/FR/EN identisch · **Trockentest mit drei Fällen**, darunter zwei, die beide Prüfstufen zum Anschlagen bringen. Einzelheiten in `PROJEKT-STATUS.md`, Abschnitt „Der 14. August", Unterpunkt 17.
+
+**Was er NICHT löst (Art. 14):** Er erzeugt keine Sicherung von selbst. Solange Ondo den Knopf nicht drückt und die Ausgabe nicht ablegt, liegen die Daten weiterhin an einem Ort.
 
 ---
 
@@ -58,7 +82,9 @@ Jede Kennzahl steht künftig an **genau einer** Stelle. Überall sonst wird dara
 
 ---
 
-**46. Claude Code auf dem Surface Go** · *Vorschlag 14.8., Claude · beschlossen 14.8., Ondo* · **Status: BESCHLOSSEN als Versuch**
+**46. Claude Code auf dem Surface Go** · *Idee 9./10.7., Claude (als Punkt 8) · neu vorgelegt 14.8. · beschlossen 14.8., Ondo* · **Status: BESCHLOSSEN als Versuch**
+
+> **🔴 ZUSAMMENGELEGT am 14.8. abends (Chat 16).** Dies ist derselbe Vorschlag wie **Punkt 8** („Claude Code auf dem Windows-Tablet über das Pro-Abo", 9./10.7.). Chat 15 hat ihn als neuen Punkt aufgenommen, ohne den alten zu finden. **Punkt 8 verweist ab jetzt hierher; dieser Punkt führt ihn weiter.** Fund von Chat 16, bestätigt von Chat 15.
 
 Ondos Gerät: Surface Go, Windows 10 Home 22H2, 64 Bit, 8 GB RAM, 110 GB frei, Pentium 4415Y.
 
@@ -67,6 +93,7 @@ Ondos Gerät: Surface Go, Windows 10 Home 22H2, 64 Bit, 8 GB RAM, 110 GB frei, P
 → **Ehrlich zu den Hürden:** Es ist ein Terminalfenster, kein Fenster mit Knöpfen. Die Einrichtung ist einmalig, aber eine Hürde. Claude sieht das Tablet nicht und kann nur eine Schritt-für-Schritt-Anleitung liefern und bei Fehlern helfen.
 → **Zur Alternative Claude Desktop mit Cowork:** ausdrücklich für Leute ohne Programmierkenntnisse, aber für angenehmes Arbeiten werden 16 GB RAM als Untergrenze genannt. Auf 8 GB vermutlich zäh. **Claude Code ist der leichtere Weg.**
 → **Kosten:** kein zusätzliches Geld bei vorhandenem Pro-Konto. Ein Abend Einrichtung. **Risiko für das Projekt: keines** — das Repo bleibt wie es ist, und wenn es nicht klappt, geht es weiter wie bisher.
+→ **🔴 Kostenangabe ergänzt am 14.8. abends, sie fehlte:** **Die Arbeit zehrt am Wochen-Limit des Pro-Abos.** Das steht seit dem 9./10. Juli in Punkt 8 und ist bei der Neuaufnahme untergegangen. „Kein zusätzliches Geld" ist damit richtig, aber unvollständig — ein Nutzungslimit ist nach Arbeitsregel G ausdrücklich mitzunennen. Zweiter Haken aus Punkt 8, ebenfalls weiterhin gültig: Es läuft nur, wenn Ondo es am Tablet anstösst.
 
 ---
 
@@ -1237,9 +1264,10 @@ Ebene 1 Daten · Ebene 2 Denken · Ebene 3 Bewertung. **Eingetragen in `Ondo-Cor
 ChatGPT kann keinen neuen Chat öffnen; er erzeugt die Übergabemappe nur als Nachricht. Die Übergaberegel braucht dafür eine angepasste Fassung. **Inhalt gehört in den Blueprint.**
 *Namenskonflikt erledigt (Ondo, 31.7., eingetragen 3.8.): Die Vorschrift zur Chat-Übergabe heißt jetzt **Übergaberegel**; „Arbeitsregel G" meint ausschließlich die Kostenregel. (Frühere Fassung: nicht zu verwechseln mit der Arbeitsregel G „Kostenregel" — die Buchstaben überschneiden sich, weil „Regel G" bisher die Chat-Übergabe meinte. Bei der nächsten Blueprint-Fassung zu entwirren.)*
 
-**8. Claude Code auf dem Windows-Tablet über das Pro-Abo** · *Idee 9./10.7., Claude* · **Status: Idee**
+**8. Claude Code auf dem Windows-Tablet über das Pro-Abo** · *Idee 9./10.7., Claude* · **Status: 🔴 AUFGEGANGEN IN PUNKT 46 (14.8.2026)**
 Statt API-Guthaben zu verbrauchen, könnte das bezahlte Pro-Abo die Arbeit leisten. Haken: läuft nur, wenn Ondo es am Tablet anstößt; Einrichtung etwa 45 Minuten; zehrt am Wochen-Limit.
 → *Nach der Beförderung neu bewerten.*
+→ **🔴 Punkt 46 vom 14.8. ist derselbe Vorschlag.** Chat 15 hat ihn aufgenommen, ohne diesen Punkt zu finden; Chat 16 hat es bemerkt, Chat 15 hat es bestätigt. **Weitergeführt wird Punkt 46.** Dieser Eintrag bleibt stehen, weil nichts gelöscht wird — und weil die Kostenangabe zum Wochen-Limit hier seit dem 9. Juli richtig stand und in Punkt 46 fehlte.
 
 **9. Echte Quoten automatisch (GitHub Actions + Quotendienst)** · *Idee 23.7., Claude* · **Status: Idee**
 Offene Vorfrage (Gemini): Deckt ein kostenloser Dienst überhaupt Ondos Spiele ab? Verfassungsfrage offen: Der Actions-Wecker ist ein winziger Server, der Blueprint sagt „kein Server". **Die Entscheidung gehört in den Blueprint.**
@@ -1375,7 +1403,7 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 | **Rückblick auf eigene Tipps enthält Vermutungen, keine Tatsachen** | Ein falscher Tipp kann Grundlage des nächsten werden | **wird mit v19.7 behoben** → Punkt D |
 | **Nur lokale Speicherung** (localStorage) | Sicherung seit v19.1 gebaut; offen bleibt die Übertragung in die stabile Version | → Prio 2, Punkt 4 |
 | **Eine lange JS-Datei** (keine Module) | Änderungen werden mit der Zeit riskanter | mittel |
-| **Sprachdateien von Hand** (211 Schlüssel × 3 Sprachen, gezählt am 14.8. — maschinell abgeglichen, identisch) | Dreifache Pflege bei jeder neuen Beschriftung. Rückgriff bleibt Punkt 19 | niedrig |
+| **Sprachdateien von Hand** (217 Schlüssel × 3 Sprachen, gezählt am 14.8. abends — maschinell abgeglichen, identisch) | Dreifache Pflege bei jeder neuen Beschriftung. Rückgriff bleibt Punkt 19 | niedrig |
 | **Seed-Daten fest im Code** (WM-Wetten vom Juli) | Ballast bei jedem Start | niedrig |
 | **Kein automatischer Test** | Jede Änderung wird nur von Hand geprüft | mittel → Punkt B wäre der erste Schritt |
 | **Gemini-Kaskade komplex** | Funktioniert, aber schwer zu durchschauen bei Fehlern | niedrig |
@@ -1460,6 +1488,8 @@ Einzelheiten in `PROJEKT-STATUS.md`, Abschnitt „Der 8. August", Unterpunkte 6 
 *Nachtrag zu Fassung 12, eingetragen am 7.8.2026, 21:45 Uhr von Chat 12: Punkt 28 ist von Ondo als **Arbeitsregel K** beschlossen und um seine fehlende zweite Hälfte ergänzt — den festen Zusammenhangsblock. Die Lücke kam durch Ondos Rückfrage ans Licht, ob ein neuer Prüfer-Chat mit dem reinen Zeilendiff etwas anfangen kann. Eingetragen in die Vormerk-Tabelle und im Blueprint 0.9, Abschnitt 2c. Sonst nichts geändert.*
 
 *Fassung 12, geschrieben am 7.8.2026 von Chat 11: v19.7.8 geliefert (Weg A, Punkt 25, Punkt 26) · Prüflauf vom 7.8. mit zehn von zehn Endständen · dritter falscher Halbzeitstand in Folge · die Spielliste hat am 7.8. Spiele erfunden, zehn Vorhersagen geparkt · Sonnet widerspricht sich bei „beide treffen" in drei von fünf Fällen · Punkt 28 neu · Befund über Geminis Leseverhalten.*
+
+*Fassung 22, geschrieben am 14.8.2026, 22:41 Uhr von Chat 16 (Codelieferung 22:36 Uhr): **Punkt 44 GEBAUT** (`beta.html` v19.8.2, Messdaten-Export ohne Schluessel, Positivliste und zweistufige Schluesselpruefung, Sprachschluessel 217) — **Arbeitsregel L erfuellt.** **Punkt 8 und Punkt 46 zusammengelegt**, Kostenangabe zum Wochen-Limit ergaenzt. Vier weitere Funde gegen Chat 15 berichtigt. **Beschlossen und nicht gebaut: acht — E, 2, 3, 4, 18, 45, 46, 47**; diese Zahl steht ab jetzt nur noch hier. `pruefe.py` auf Chat 16 umgestellt. Backlog und Blueprint vor der Lieferung vollstaendig nachgelesen; `beta.html` hochgeladen und nur an den betroffenen Stellen geaendert; `OndoControl.html` nicht gelesen.*
 
 *Fassung 21, geschrieben am 14.8.2026, 17:11 Uhr von Chat 15: Die fuenf Beschluesse der Grundsatzbesprechung — **Punkt 44** (Messdaten-Export ohne Schluessel, erster Bauauftrag), **Punkt 18 endlich entschieden** (Dokumente trennen), **Punkt 45** (ein Ort je Tatsache), **Punkt 46** (Claude Code auf dem Surface Go), **Punkt 47** (Selbsttest fuer die App). Reihenfolge 44 → 18+45 → 46 → 47. Regelaenderungen beschlossen, wirksam erst nach Punkt 18. Punkt 43 ausgewertet. Beschlossen und nicht gebaut: jetzt acht.*
 

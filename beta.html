@@ -122,7 +122,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.1';
+var CODE_VERSION = 'v19.8.2';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -222,6 +222,10 @@ var I18N = {
   logExpT:'📄 Log als Text', logExpD:'Gibt die Vorhersagen eines Zeitraums als reinen Text aus — zum Kopieren in einen Chat. Ersetzt Bildschirmfotos: kostet einen Bruchteil und ist maschinell auswertbar.',
   logExpFrom:'von', logExpTo:'bis', logExpBtn:'📄 Text erzeugen', logExpCopy:'📋 Kopieren',
   logExpHint:'Markieren und kopieren, oder den Kopieren-Knopf benutzen.', logExpEmpty:'Keine Vorhersagen in diesem Zeitraum.',
+  messT:'📤 Messdaten ausgeben (ohne Schlüssel)', messD:'Gibt alle Vorhersagen und Wetten aus — OHNE API-Schlüssel und OHNE PIN. Diese Ausgabe darfst du verschicken, ablegen und in einen Chat hochladen. Die Datensicherung oben bleibt davon unberührt und enthält weiterhin die Schlüssel.',
+  messBtn:'📤 Messdaten erzeugen', messFile:'💾 Als Datei',
+  messHint:'Kopf und Schlusszeile nennen die Anzahl. Fehlt die Schlusszeile, wurde beim Kopieren abgeschnitten.',
+  messBlock:'⛔ NICHT AUSGEGEBEN — die Prüfung hat ein mögliches Schlüsselfeld gefunden:',
   korrT:'🔧 Einmalige Berichtigung — Punkt F', korrD:'Berichtigt die vor dem 9.8.2026 falsch bewerteten "beide treffen"-Aussagen von Sonnet. Erst pruefen, dann anwenden. Laeuft nur einmal.', korrPruef:'🔍 Nur pruefen (aendert nichts)', korrGo:'✅ Jetzt berichtigen', korrDone:'Bereits ausgefuehrt am {d}. Der Knopf laeuft kein zweites Mal.', korrNone:'Keine betroffenen Eintraege gefunden.', korrAsk:'{a} Eintraege werden berichtigt ({b} Etikett, {c} Prozentzahl). Fortfahren?', korrOk:'Berichtigt: {a} Eintraege.',
   parkBtn:'Nicht prüfen', unparkBtn:'Wieder prüfen', parked:'GEPARKT',
   parkedD:'Geparkte Vorhersagen werden beim Ergebnis-Prüfen übersprungen. Die Daten bleiben vollständig erhalten, jederzeit umkehrbar.',
@@ -307,6 +311,10 @@ var I18N = {
   logExpT:'📄 Log en texte', logExpD:'Sort les prédictions d’une période en texte brut — à copier dans un chat. Remplace les captures d’écran : coûte une fraction et reste exploitable par machine.',
   logExpFrom:'du', logExpTo:'au', logExpBtn:'📄 Générer le texte', logExpCopy:'📋 Copier',
   logExpHint:'Sélectionne et copie, ou utilise le bouton Copier.', logExpEmpty:'Aucune prédiction sur cette période.',
+  messT:'📤 Exporter les données de mesure (sans clés)', messD:'Sort toutes les prédictions et tous les paris — SANS clé API et SANS code PIN. Tu peux envoyer, archiver et téléverser cette sortie dans un chat. La sauvegarde ci-dessus reste inchangée et contient toujours les clés.',
+  messBtn:'📤 Générer les données', messFile:'💾 En fichier',
+  messHint:'L’en-tête et la dernière ligne indiquent le nombre. Si la dernière ligne manque, la copie a été tronquée.',
+  messBlock:'⛔ RIEN SORTI — la vérification a trouvé un champ de clé possible :',
   korrT:'🔧 Correction unique — point F', korrD:'Corrige les affirmations "les deux marquent" de Sonnet mal évaluées avant le 9.8.2026. Vérifier d\'abord, puis appliquer. Ne s\'exécute qu\'une fois.', korrPruef:'🔍 Vérifier seulement (ne modifie rien)', korrGo:'✅ Corriger maintenant', korrDone:'Déjà exécuté le {d}. Le bouton ne s\'exécute pas une deuxième fois.', korrNone:'Aucune entrée concernée trouvée.', korrAsk:'{a} entrées seront corrigées ({b} étiquette, {c} pourcentage). Continuer ?', korrOk:'Corrigé : {a} entrées.',
   parkBtn:'Ne pas vérifier', unparkBtn:'Vérifier à nouveau', parked:'EN PAUSE',
   parkedD:'Les prédictions en pause sont ignorées lors de la vérification. Les données restent intactes, réversible à tout moment.',
@@ -392,6 +400,10 @@ var I18N = {
   logExpT:'📄 Log as text', logExpD:'Outputs the predictions of a date range as plain text — to paste into a chat. Replaces screenshots: costs a fraction and stays machine-readable.',
   logExpFrom:'from', logExpTo:'to', logExpBtn:'📄 Create text', logExpCopy:'📋 Copy',
   logExpHint:'Select and copy, or use the Copy button.', logExpEmpty:'No predictions in this range.',
+  messT:'📤 Export measurement data (no keys)', messD:'Outputs all predictions and bets — WITHOUT API keys and WITHOUT PIN. You may send, store and upload this output to a chat. The backup above is untouched and still contains the keys.',
+  messBtn:'📤 Create measurement data', messFile:'💾 As file',
+  messHint:'Header and final line state the count. If the final line is missing, the copy was truncated.',
+  messBlock:'⛔ NOTHING WRITTEN — the check found a possible key field:',
   korrT:'🔧 One-time correction — point F', korrD:'Corrects Sonnet\'s wrongly evaluated "both teams to score" statements from before 9.8.2026. Check first, then apply. Runs only once.', korrPruef:'🔍 Check only (changes nothing)', korrGo:'✅ Correct now', korrDone:'Already run on {d}. The button does not run a second time.', korrNone:'No affected entries found.', korrAsk:'{a} entries will be corrected ({b} label, {c} percentage). Continue?', korrOk:'Corrected: {a} entries.',
   parkBtn:'Do not check', unparkBtn:'Check again', parked:'PARKED',
   parkedD:'Parked predictions are skipped when checking results. The data stays fully intact and this is reversible at any time.',
@@ -577,6 +589,110 @@ function logTextKopieren(feldId){
   try{ document.execCommand('copy'); }catch(e){}
   fertig();
 }
+/* ================= MESSDATEN-EXPORT OHNE SCHLUESSEL — BACKLOG-PUNKT 44 (14.8.2026) =================
+   Beschluss Ondo 14.8.2026, erster Bauauftrag der Grundsatzbesprechung.
+
+   DAS PROBLEM: Die Datensicherung enthaelt state VOLLSTAENDIG, also auch apiKey,
+   geminiKey und pin. Sie kann das Geraet deshalb nicht verlassen. Damit liegen sechs
+   Wochen Messdaten an genau EINEM Ort — das groesste Risiko des Projekts.
+
+   POSITIVLISTE, KEIN AUSSCHLUSSFILTER (erste Stufe): Ausgegeben wird ausschliesslich,
+   was in MESS_FELDER steht. Ein spaeter hinzugefuegtes Schluesselfeld kommt dadurch gar
+   nicht erst hinein. Eine Sperrliste kennt nur, was jemand vorhergesehen hat — genau
+   dieser Bautyp ist am 4.8. dreimal gescheitert (lyria-3-pro-preview kam ueber das
+   Wort "pro" durch den Filter).
+
+   ZWEITE STUFE, auf den ECHTEN Daten: messGeheimFund() laeuft ueber das erzeugte
+   Ergebnis, nicht ueber die Positivliste. Findet es einen verdaechtigen Feldnamen oder
+   einen Wert in Schluesselform, wird NICHTS ausgegeben. Diese Stufe prueft, was die
+   Positivliste nur verspricht.
+
+   NUR AUSGEBEN: nichts gespeichert, nichts gerechnet, nichts an ein Gehirn geschickt.
+   datenSichern und datenLaden sind unangetastet. KEIN Schnitt in der Messreihe.
+   Kein Zeitraumfilter und kein Aera-Filter — eine Sicherung mit Datumsbereich waere
+   keine Sicherung. Das v18-Archiv ist ausdruecklich enthalten (Entscheidung Ondo 14.8.). */
+var MESS_FELDER = ['kiProtokoll','bets','regeln','startSaldo','eingezahlt','ausgezahlt','korrekturF','letzteSicherung'];
+var MESS_VERBOTEN = /key|pin|token|secret|passw/i;
+
+function messGeheimFund(wert, pfad){
+  if(wert===null || wert===undefined) return null;
+  if(typeof wert === 'string'){
+    if(wert.indexOf('sk-ant-')===0 || wert.indexOf('AIza')===0) return pfad+' (Wert sieht aus wie ein Schluessel)';
+    return null;
+  }
+  if(typeof wert !== 'object') return null;
+  if(Object.prototype.toString.call(wert)==='[object Array]'){
+    for(var i=0;i<wert.length;i++){
+      var tA = messGeheimFund(wert[i], pfad+'['+i+']');
+      if(tA) return tA;
+    }
+    return null;
+  }
+  for(var k in wert){
+    if(!Object.prototype.hasOwnProperty.call(wert,k)) continue;
+    if(MESS_VERBOTEN.test(k)) return pfad+'.'+k+' (Feldname)';
+    var tB = messGeheimFund(wert[k], pfad+'.'+k);
+    if(tB) return tB;
+  }
+  return null;
+}
+
+function messDatenBauen(){
+  var eintraege = (state.kiProtokoll||[]).length;
+  var wetten = (state.bets||[]).length;
+  var raus = {};
+  raus.kopf = {
+    was: 'ONDO CONTROL Messdaten — ohne Schluessel',
+    codeVersion: CODE_VERSION,
+    erzeugt: new Date().toLocaleDateString('de-DE')+' '+jetztUhr(),
+    eintraege: eintraege,
+    wetten: wetten,
+    felder: MESS_FELDER.slice(),
+    hinweis: 'Enthaelt KEINE API-Schluessel und KEINE PIN. Vollstaendig, ohne Zeitraum- und ohne Aera-Filter.'
+  };
+  MESS_FELDER.forEach(function(f){ if(f in state) raus[f] = state[f]; });
+  raus.ende = 'ENDE · '+eintraege+' Eintraege · '+wetten+' Wetten';
+  return raus;
+}
+
+function messTextBauen(){
+  var feld = document.getElementById('messText');
+  var hinw = document.getElementById('messHinweis');
+  if(hinw) hinw.textContent = '';
+  if(!feld) return null;
+  var daten = messDatenBauen();
+  var fund = messGeheimFund(daten, 'daten');
+  if(fund){
+    feld.value = '';
+    if(hinw) hinw.textContent = t('messBlock')+' '+fund;
+    return null;
+  }
+  feld.value = JSON.stringify(daten);
+  return daten;
+}
+
+function messDatei(){
+  var daten = messDatenBauen();
+  var fund = messGeheimFund(daten, 'daten');
+  var hinw = document.getElementById('messHinweis');
+  if(hinw) hinw.textContent = '';
+  if(fund){
+    if(hinw) hinw.textContent = t('messBlock')+' '+fund;
+    return;
+  }
+  var d = new Date();
+  var name = 'ondo-control-messdaten-'+d.getFullYear()+'-'+
+    ('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)+'.json';
+  var blob = new Blob([JSON.stringify(daten)], {type:'application/json'});
+  var datei = null;
+  try{ datei = new File([blob], name, {type:'application/json'}); }catch(e){}
+  if(datei && navigator.share && navigator.canShare && navigator.canShare({files:[datei]})){
+    navigator.share({ files:[datei], title:name }).catch(function(){ dateiHerunterladen(blob, name); });
+    return;
+  }
+  dateiHerunterladen(blob, name);
+}
+
 /* ================= EINMALIGE BERICHTIGUNG — BACKLOG-PUNKT F (13.8.2026) =================
    Beschluss Ondo 13.8.2026. Bis v19.7.8 leitete maerkteBauen() die Behauptung
    "beide treffen" aus dem getippten Ergebnis ab, statt das Gehirn zu fragen.
@@ -697,6 +813,24 @@ function logExportBlock(){
       'font-size:12px;font-family:ui-monospace,Menlo,monospace;line-height:1.5"></textarea>'+
     '<button class="btn btn-ghost" style="margin-top:8px" onclick="logTextKopieren()">'+t('logExpCopy')+'</button>'+
     '<div class="muted" style="margin-top:8px">'+t('logExpHint')+'</div>'+
+  '</div>';
+}
+function messExportBlock(){
+  return '<div class="card" style="border-color:rgba(245,217,10,.35)">'+
+    '<div class="disp" style="font-size:20px;margin-bottom:6px">'+t('messT')+'</div>'+
+    '<div class="muted" style="margin-bottom:10px">'+t('messD')+'</div>'+
+    '<div class="muted" style="margin-bottom:10px">'+
+      t('backupInfo').replace('{a}',(state.kiProtokoll||[]).length).replace('{b}',(state.bets||[]).length)+
+    '</div>'+
+    '<button class="btn" onclick="messTextBauen()">'+t('messBtn')+'</button>'+
+    '<div id="messHinweis" class="muted" style="color:var(--loss);margin-top:8px"></div>'+
+    '<textarea id="messText" readonly rows="6" style="width:100%;margin-top:10px;background:var(--inner);'+
+      'border:1px solid var(--edge);border-radius:8px;color:var(--text);padding:10px;'+
+      'font-size:12px;font-family:ui-monospace,Menlo,monospace;line-height:1.5"></textarea>'+
+    '<button class="btn btn-ghost" style="margin-top:8px" onclick="logTextKopieren(\'messText\')">'+t('logExpCopy')+'</button>'+
+    '<div style="height:8px"></div>'+
+    '<button class="btn btn-ghost" onclick="messDatei()">'+t('messFile')+'</button>'+
+    '<div class="muted" style="margin-top:8px">'+t('messHint')+'</div>'+
   '</div>';
 }
 
@@ -2167,6 +2301,7 @@ function viewMore(){
     '<input type="file" accept=".json,application/json" id="sicherungInput" style="display:none" onchange="datenLaden(this)"/>'+
     '<button class="btn btn-ghost" onclick="document.getElementById(\'sicherungInput\').click()">'+t('restoreBtn')+'</button>'+
   '</div>'+
+  messExportBlock()+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">'+t('rulesT')+'</div>'+
     '<div class="muted" style="margin-bottom:12px">'+t('rulesD')+'</div>'+
     '<label>'+t('maxStake')+'</label>'+
