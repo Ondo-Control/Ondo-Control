@@ -3,11 +3,13 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.16
-**Stand:** 13. August 2026, 22:20 Uhr
+**Version:** 0.17
+**Stand:** 14. August 2026, 06:17 Uhr
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
-> **Was Fassung 0.16 ändert (13.8.2026):** **Die Übergaberegel hat jetzt eine eigene Fassung für ChatGPT** (Backlog-Punkt 7, beschlossen am 30.7., gebaut am 13.8.) — neuer Abschnitt 2d. **Die Feststellung aus 0.15, die falschen Anpfiffzeiten stammten nicht aus dem Programm, ist teilweise widerlegt** und im Protokoll berichtigt: Das Programm verändert keine Zeit, kann sie aber an das falsche Spiel hängen. Dazu die zehnte Fehlerart des Schiedsrichters und die Feststellung, dass ein Prüfer selbst gemessen werden muss. Fünf Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
+> **Was Fassung 0.17 ändert (14.8.2026):** **`CODE_VERSION` ist entschieden** — sie ist ein reines Lieferkennzeichen und wird ausnahmslos hochgezählt; der Schnitt in der Messreihe wird am **Fehlen** des Feldes `codeVersion` erkannt, nicht an seinem Wert. **Ondos Entscheidung, die Sammlung nach dem nächsten Prüflauf zu pausieren**, ist eingetragen — mit dem Hinweis, dass Backlog-Punkt 3 dadurch blockiert ist. **Die Drei-Ebenen-Trennung ist an beiden Stellen als erledigt geschlossen** (Abschnitt 5 und 10); sie stand seit dem 13.8. in `Ondo-Core-Architektur.md` 0.4. Sechs Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
+
+> **Was Fassung 0.16 änderte (13.8.2026):** **Die Übergaberegel hat jetzt eine eigene Fassung für ChatGPT** (Backlog-Punkt 7, beschlossen am 30.7., gebaut am 13.8.) — neuer Abschnitt 2d. **Die Feststellung aus 0.15, die falschen Anpfiffzeiten stammten nicht aus dem Programm, ist teilweise widerlegt** und im Protokoll berichtigt: Das Programm verändert keine Zeit, kann sie aber an das falsche Spiel hängen. Dazu die zehnte Fehlerart des Schiedsrichters und die Feststellung, dass ein Prüfer selbst gemessen werden muss. Fünf Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
 
 > **Was Fassung 0.15 änderte (9.8.2026):** **Die Spielliste ist Messwerkzeug, nicht Messgegenstand — das ist jetzt festgehalten und angewandt.** Sie hat seit v19.8.1 eine eigene Rolle und ein eigenes Modell; Arbeitsregel J steht dem nicht entgegen. Dazu die Feststellung, dass die falschen Anpfiffzeiten nicht aus dem Programm stammen. Vier Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
 >
@@ -240,7 +242,7 @@ ONDO CONTROL
 4. Gegenprüfung — was könnte falsch sein? (interner "Kritiker")
 5. Ergebnis — Antwort + Begründung + Unsicherheit + Empfehlung
 
-**Hinweis (29.7.):** Das Drei-Ebenen-Leitbild von ChatGPT (Ebene 1 Daten · Ebene 2 Denken · Ebene 3 Bewertung, beschlossen 23.7.) gehört nach der Abgrenzungsregel in `Ondo-Core-Architektur.md` und ist dort **noch einzutragen** — siehe Backlog Prio 2, Punkt 6.
+**Hinweis (29.7., ✅ erledigt am 13.8.2026):** Das Drei-Ebenen-Leitbild von ChatGPT (Ebene 1 Daten · Ebene 2 Denken · Ebene 3 Bewertung, beschlossen 23.7.) gehört nach der Abgrenzungsregel in `Ondo-Core-Architektur.md`. **Es steht dort seit dem 13.8.2026 als Abschnitt 1b, Fassung 0.4** (Backlog-Punkt 6). *Dieser Hinweis führte den Punkt bis zum 14.8. weiter als offen — eingetragen war er da schon; berichtigt am 14.8.2026.*
 
 ---
 
@@ -414,6 +416,13 @@ ONDO CONTROL
 | 13.8.2026 | **Eine erwartete Zahl gehört mit ihrer Bedingung genannt.** Claude kündigte an, die Berichtigungsliste müsse 16 Aussagen zeigen, und vergass die geparkten. Die Liste zeigte 27 und war richtig. **Ohne die Bedingung wird eine richtige Ausgabe für falsch gehalten.** |
 | 13.8.2026 | **Eine Berichtigung muss die Kennzahl nicht verbessern.** Nach der Berichtigung stieg Sonnets Trefferquote von 52 auf 55 Prozent, die Kalibrierungsabweichung blieb bei 4 %. **Der Fehler wurde verschoben, nicht beseitigt.** Wer nur auf die Kennzahl sieht, hält einen wirksamen Vorgang für wirkungslos. |
 | 13.8.2026 | Blueprint auf Version 0.16 gehoben. **Übergaberegel in einer Fassung für ChatGPT (Abschnitt 2d) geschrieben** — Backlog-Punkt 7, beschlossen am 30.7., 14 Tage offen. |
+| **— ab hier eingetragen am 14.8.2026 —** | |
+| 14.8.2026 | **`CODE_VERSION` entschieden — von Claude, auf Ondos ausdrückliche Delegation.** Ondo gab die Frage zurück: Sie sei aus Claudes Arbeit entstanden, er habe von Anfang an gewarnt, dass es zu kompliziert werde, und erwarte eine einfache Lösung. **Die Regel: `CODE_VERSION` wird bei jeder Lieferung hochgezählt, ausnahmslos — sie ist ein Lieferkennzeichen und sonst nichts. Der Schnitt in der Messreihe wird NICHT aus der Nummer gelesen; ein Eintrag liegt vor dem Schnitt, wenn das Feld `codeVersion` FEHLT.** Gibt es je einen zweiten Schnitt, wird die betroffene Version ausdrücklich als Schnittversion benannt; bis heute gibt es genau eine, **v19.8.0** für „beide treffen". Damit trägt die Zahl nur noch eine Aufgabe, und der Eintrag vom 9.8. ist wieder widerspruchsfrei. **Rückwirkend wird nicht umnummeriert:** Die Einträge vom Abend des 13.8. tragen `v19.8.1`, obwohl der Code zusätzlich den Berichtigungsknopf enthielt — folgenlos für die Messung. Die nächste Codelieferung heißt v19.8.2. |
+| 14.8.2026 | **Eine bewusste Entscheidung, die nur im Chat gesagt wird, existiert nicht.** Chat 14 hatte `CODE_VERSION` mit Absicht stehen lassen und es Ondo im Chat mitgeteilt, aber in kein Dokument geschrieben. Zurück blieb ein unerklärter Widerspruch zum Blueprint. **Auch ein begründeter Verzicht gehört in ein Dokument — gerade dann.** |
+| 14.8.2026 | **Die Sammlung wird nach dem nächsten Prüflauf pausiert (Entscheidung Ondo).** Begründung: Es sind genug Daten da, damit lässt sich arbeiten. Keine neuen Vorhersageläufe bis auf Weiteres; Auswertung, Buchführung und Bau laufen weiter. **🔴 Folge, die Ondo vorzulegen ist: Backlog-Punkt 3 (Such-Experiment) ist damit blockiert, nicht erledigt** — sein zweiter Teil verlangt neue Vorhersagen mit zugeschalteter Websuche, und die vier Wochen ohne Suche enden am 20. August. Punkt 41 verliert zugleich seine Dringlichkeit: Ohne neue Vorhersagetage kann sich nichts mehr verschieben. |
+| 14.8.2026 | **Vier Buchführungsfehler des 13.8. geheilt**, alle vom Nachfolger gefunden und vom abgebenden Chat bestätigt: Sprachschlüsselzahl 211 statt 201 · `CODE_VERSION` · die Drei-Ebenen-Trennung an zwei Stellen weiter als offen geführt · eine sechs Tage alte Sicherungsangabe. **Gemeinsame Form: ein Abschnitt geschrieben, ohne zu prüfen, was dadurch anderswo falsch wird — Fehlerart C3.** |
+| 14.8.2026 | **Der blinde Fleck wird benannt statt umgangen.** Chat 15 hat `OndoControl.html` nicht gelesen und `beta.html` nur in Teilen; die Entscheidung dafür steht mit ihrer Liste in `PROJEKT-STATUS.md`, Abschnitt „Der 14. August". **Auflage: Vor jeder Codeänderung wird die betroffene Stelle vollständig gelesen.** Ein benannter blinder Fleck ist ein Vorbehalt, ein unbenannter eine Falle für den Nächsten. |
+| 14.8.2026 | Blueprint auf Version 0.17 gehoben. |
 
 ---
 
@@ -438,7 +447,7 @@ Oder soll er nur verifizierte Fakten bewerten? Die neunte Fehlerart vom 31.7. ve
 
 **Offen — Backlog-Punkt 18 (die Dokumente auf Diät setzen)** *(Ondo, 31.7.)*: Soll `PROJEKT-STATUS.md` auf das gekürzt werden, was ein neuer Chat wirklich braucht, und die Chronik in eine Archivdatei wandern, die beim Start nicht gelesen wird?
 
-**Offen — Drei-Ebenen-Leitbild** nach `Ondo-Core-Architektur.md` übertragen (beschlossen 23.7.).
+**✅ Geschlossen — Drei-Ebenen-Leitbild** nach `Ondo-Core-Architektur.md` übertragen (beschlossen 23.7., **eingetragen am 13.8.2026 als Abschnitt 1b, Fassung 0.4**). *Stand bis zum 14.8. weiter unter „offen"; der Punkt war da bereits abgearbeitet.*
 
 **Klarstellung, keine offene Frage (31.7.):** Der Beschluss vom 5.7. über Vertrauens-STUFEN statt Prozentwerten gilt für **Empfehlungen an den Besitzer**. Die Prozentzahlen der Messphase sind **Messwerte** — Kalibrierung ist ohne sie nicht messbar. Beides steht nicht im Widerspruch, und die Messphase ist an dieser Stelle **nicht zu reparieren**.
 

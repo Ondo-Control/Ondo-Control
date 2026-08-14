@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Gepflegt von Claude · Stand 13.8.2026, 22:20 Uhr, Fassung 19 · jede Idee mit Datum, Urheber und Status**
+**Gepflegt von Claude · Stand 14.8.2026, 06:17 Uhr, Fassung 20 · jede Idee mit Datum, Urheber und Status**
 
 ## Regeln für dieses Dokument
 
@@ -13,6 +13,17 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 20 ändert (14.8., früh)
+
+- **🔴 `CODE_VERSION` ist entschieden** — von Claude, auf Ondos ausdrückliche Delegation. Sie ist ein reines **Lieferkennzeichen** und wird bei jeder Lieferung hochgezählt. Der Schnitt in der Messreihe wird am **Fehlen** des Feldes `codeVersion` erkannt, nicht an seinem Wert. Nicht rückwirkend umnummeriert; die nächste Codelieferung heißt **v19.8.2**. Eingetragen im Blueprint 0.17.
+- **🔴 Ondos Entscheidung: Die Sammlung wird nach dem nächsten Prüflauf pausiert.** Genug Daten. **Folge: Punkt 3 (Such-Experiment) ist blockiert, nicht erledigt** — sein zweiter Teil verlangt neue Vorhersagen mit Websuche. Ondo vorzulegen.
+- **Vier Buchführungsfehler des 13.8. geheilt:** Sprachschlüsselzahl **211 statt 201** · `CODE_VERSION` · Drei-Ebenen-Trennung im Blueprint an zwei Stellen noch als offen · Sicherungsangabe sechs Tage alt. Alle vier vom Nachfolger gefunden, alle vier vom abgebenden Chat bestätigt.
+- **`pruefe.py` erweitert** um Abschnitt **4c**: Standsangaben werden gegen die jüngste Angabe derselben Art im selben Dokument geprüft. Dazu ist die **Ablesezeit des Messstands von der Schreibzeit entkoppelt**.
+- **Punkt 29 ist gebaut und nirgends ausgewertet** — als eigener Punkt festgehalten, siehe unten. Der einzige noch offene Weg zur zweiten, unbekannten Ursache der falschen Anpfiffzeiten.
+- **Beschlossen und nicht gebaut: weiterhin vier** (E, 2, 3, 4). **Arbeitsregel L ist für diesen Chat noch nicht erfüllt** — dieser Block ist Buchführung und Werkzeugpflege.
 
 ---
 
@@ -1121,9 +1132,28 @@ Für **Flash** ist die Lehre klar benennbar: 29 Aussagen im Bereich 60–69 %, b
 
 ---
 
-**3. Such-Experiment** · *Idee 23.7., Claude* · **Status: beschlossen**
+**3. Such-Experiment** · *Idee 23.7., Claude* · **Status: beschlossen — 🔴 seit dem 14.8. BLOCKIERT, Ondo vorzulegen**
 
 Vier Wochen ohne Websuche messen, dann Suche zuschalten, Kalibrierung vergleichen. Die Messung ohne Suche läuft seit dem 23. Juli — **vier Wochen sind am 20. August um.**
+
+→ **🔴 Die Pause bricht den zweiten Teil.** Ondo hat am 14.8. entschieden, die Sammlung nach dem nächsten Prüflauf zu pausieren. Der erste Teil ist damit erfüllt, der zweite nicht: Ein Vergleich **mit** Suche verlangt neue Vorhersagen, und die gibt es in einer Pause nicht.
+→ **Drei Wege, alle Ondos Entscheidung:** den Punkt bis auf Weiteres ruhen lassen · für den Vergleich eine begrenzte Zahl zusätzlicher Läufe ausnehmen · den Punkt streichen und die vier Wochen ohne Suche als alleinigen Befund führen.
+→ **Kosten:** Ruhenlassen und Streichen kosten nichts. Zusätzliche Läufe kosten Modellaufrufe in unbekannter Höhe, weil die Zahl der nötigen Läufe nicht feststeht.
+→ **Empfehlung Claude: ruhen lassen.** Der Punkt ist nicht verdorben, nur vertagt — die Messreihe ohne Suche bleibt vollständig erhalten und wäre jederzeit die Vergleichsgrundlage.
+
+---
+
+**43. Punkt 29 ist gebaut und nirgends ausgewertet** · *Fund 13.8., Chat 14 in der Abnahme · aufgenommen 14.8.* · **Status: Aufgabe, nicht entschieden — auszuführen, sobald ein frischer KI-Log vorliegt**
+
+Die eigene Rolle für die Spielliste (`rolle:'liste'`, `gemini-flash-latest`) wurde am 9.8. **ausdrücklich als diagnostischer Test** gebaut, nicht als Abhilfe: Läuft die Liste auf dem grösseren Modell und werden die Zeiten richtig, war das Modell die Ursache; bleiben sie falsch, liegt sie woanders. **Beides wäre ein Ergebnis.**
+
+Seither sind mehrere Vorhersagetage vergangen. **Ob die Anpfiffzeiten seit dem 10. August besser geworden sind, steht in keinem Dokument.**
+
+→ **Warum es zählt:** Es ist der einzige noch offene Weg zur **zweiten, unbekannten** Ursache — der, die Punkt 41 ausdrücklich nicht löst.
+→ **Was gebraucht wird:** ein frischer KI-Log-Text ab dem 10. August. Claude gleicht die Anpfiffzeiten per Websuche gegen die Wettbewerbe ab, die im Log stehen.
+→ **Grenze, vorab benannt (Art. 14):** Ein einzelner sauberer Tag beweist nichts, ein einzelner falscher auch nicht. Es ist zu sagen, was gemessen wurde — und zu sagen, wenn es nicht reicht.
+→ **Zusätzliche Grenze:** Mit der Pause kommen keine neuen Tage mehr dazu. Was jetzt im Log steht, ist alles, was es je geben wird.
+→ **Kosten:** einige Websuchen, kein Geld, kein Eingriff in Code oder Messreihe.
 
 ---
 
@@ -1277,7 +1307,7 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 | **Rückblick auf eigene Tipps enthält Vermutungen, keine Tatsachen** | Ein falscher Tipp kann Grundlage des nächsten werden | **wird mit v19.7 behoben** → Punkt D |
 | **Nur lokale Speicherung** (localStorage) | Sicherung seit v19.1 gebaut; offen bleibt die Übertragung in die stabile Version | → Prio 2, Punkt 4 |
 | **Eine lange JS-Datei** (keine Module) | Änderungen werden mit der Zeit riskanter | mittel |
-| **Sprachdateien von Hand** (201 Schlüssel × 3 Sprachen, Stand 7.8. — maschinell abgeglichen) | Dreifache Pflege bei jeder neuen Beschriftung. Rückgriff bleibt Punkt 19 | niedrig |
+| **Sprachdateien von Hand** (211 Schlüssel × 3 Sprachen, gezählt am 14.8. — maschinell abgeglichen, identisch) | Dreifache Pflege bei jeder neuen Beschriftung. Rückgriff bleibt Punkt 19 | niedrig |
 | **Seed-Daten fest im Code** (WM-Wetten vom Juli) | Ballast bei jedem Start | niedrig |
 | **Kein automatischer Test** | Jede Änderung wird nur von Hand geprüft | mittel → Punkt B wäre der erste Schritt |
 | **Gemini-Kaskade komplex** | Funktioniert, aber schwer zu durchschauen bei Fehlern | niedrig |
@@ -1362,6 +1392,8 @@ Einzelheiten in `PROJEKT-STATUS.md`, Abschnitt „Der 8. August", Unterpunkte 6 
 *Nachtrag zu Fassung 12, eingetragen am 7.8.2026, 21:45 Uhr von Chat 12: Punkt 28 ist von Ondo als **Arbeitsregel K** beschlossen und um seine fehlende zweite Hälfte ergänzt — den festen Zusammenhangsblock. Die Lücke kam durch Ondos Rückfrage ans Licht, ob ein neuer Prüfer-Chat mit dem reinen Zeilendiff etwas anfangen kann. Eingetragen in die Vormerk-Tabelle und im Blueprint 0.9, Abschnitt 2c. Sonst nichts geändert.*
 
 *Fassung 12, geschrieben am 7.8.2026 von Chat 11: v19.7.8 geliefert (Weg A, Punkt 25, Punkt 26) · Prüflauf vom 7.8. mit zehn von zehn Endständen · dritter falscher Halbzeitstand in Folge · die Spielliste hat am 7.8. Spiele erfunden, zehn Vorhersagen geparkt · Sonnet widerspricht sich bei „beide treffen" in drei von fünf Fällen · Punkt 28 neu · Befund über Geminis Leseverhalten.*
+
+*Fassung 20, geschrieben am 14.8.2026, 06:17 Uhr von Chat 15: `CODE_VERSION` entschieden (Lieferkennzeichen, ausnahmslos hochzaehlen; Schnitt am Fehlen des Feldes) · Ondos Pause der Sammlung eingetragen und Punkt 3 als blockiert gekennzeichnet · **Punkt 43 neu** (Punkt 29 gebaut, nie ausgewertet) · vier Buchfuehrungsfehler des 13.8. geheilt, darunter die Sprachschluesselzahl 211 statt 201 · `pruefe.py` um Abschnitt 4c erweitert. Vier Dokumente vollstaendig gelesen, `beta.html` in Teilen, `OndoControl.html` nicht — die Entscheidung samt Liste steht in `PROJEKT-STATUS.md`, Abschnitt „Der 14. August". Geaendert wurden nur die betroffenen Stellen.*
 
 *Fassung 19, geschrieben am 13.8.2026, 22:20 Uhr von Chat 14: Punkt 42 neu, die rückwirkende Berichtigung als erledigt gefuehrt, Fassungsabschnitt 19 ergaenzt.*
 
