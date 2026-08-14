@@ -1,7 +1,7 @@
 # ONDO CONTROL — PROJEKT-STATUS
-*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 14. August 2026, 06:17 Uhr, v19.8.1*
+*Chat-übergreifende Zusammenfassung. Bei jedem Meilenstein aktualisieren. Stand: 14. August 2026, 17:11 Uhr, v19.8.1*
 
-> **Zur Datierung:** Die Kalibrierungszahlen im Abschnitt „Aktueller Messstand" sind am **13.8.2026, 22:20 Uhr aus der Anzeige der App abgelesen — nach der Berichtigung** — Sonnet 300 bewertete Aussagen bei 4 % Abweichung und 55 % Treffern, Flash 297 bei 8 %. *(Hier stand bis zum 14.8. „16:32 Uhr" — die Ablesung **vor** der Berichtigung. Die Abschnittsüberschrift nannte schon 22:20 Uhr; berichtigt am 14.8.2026. Fünfter Fund derselben Art, siehe Abschnitt „Der 14. August".)* Die Werte des 9.8. (je 207, 5 % und 6 %) sind ab jetzt Verlaufsangaben, ebenso die des 8.8. (je 180, beide 8 %) und ältere Zahlen in den Tagesabschnitten. Massgeblich ist immer der Abschnitt „Aktueller Messstand".
+> **Zur Datierung:** Die Kalibrierungszahlen im Abschnitt „Aktueller Messstand" sind am **14.8.2026 aus dem Bildschirmfoto der Finanzen-Seite abgelesen** — Sonnet 330 bewertete Aussagen bei 4 % Abweichung und 55 % Treffern, Flash 327 bei 8 % und 50 %. *Die genaue Ablesezeit ist unbekannt (Art. 11); das Bild nennt als Sicherungszeit 07:14 Uhr, das ist NICHT die Ablesezeit.* Alle älteren Zahlen — 13.8. (300/297), 9.8. (je 207), 8.8. (je 180) — sind ab jetzt Verlaufsangaben. Massgeblich ist immer der Abschnitt „Aktueller Messstand".
 
 ---
 
@@ -154,7 +154,56 @@ Zwölf Chats in fünf Wochen. **Punkt 18 („Dokumente auf Diät") bestimmt inzw
 
 **8. Arbeitsregel L ist für diesen Chat noch NICHT erfüllt.** Dieser Arbeitsblock ist Buchführung und Werkzeugpflege, kein beschlossener Backlog-Punkt. Offen bleiben E, 2, 3, 4.
 
-**9. Messstand unverändert.** Seit dem 13.8., 22:20 Uhr wurde nichts bewertet. Sonnet 300 Aussagen bei 4 %, Flash 297 bei 8 %.
+**9. Zehn Endstaende des 13. August uebernommen und gegengeprueft.** Ein unabhaengiger Chat ausserhalb des Projektordners hat alle zehn geprueft und keinen Fehler gefunden. Claude hat einen Fall zusaetzlich selbst per Websuche nachgeprueft: **Austria Wien – Beitar Jerusalem**, weil dort eine Verlaengerung stattfand und das die zehnte Fehlerart des Schiedsrichters ist. Ergebnis: Nach 90 wie nach 120 Minuten 1:2, Halbzeit 0:1, danach 4:2 im Elfmeterschiessen. **Kein Fall fuer Punkt 36** — es wurden normal zweimal 45 Minuten gespielt, die Verlaengerung blieb torlos, der Stand nach 90 Minuten ist eindeutig. Bei den uebrigen neun war nur eine Rechenprobe moeglich: Die Torminuten des Pruefers ergeben genau den gemeldeten End- und Halbzeitstand. **Das ist keine zweite Quelle**, und es ist als das zu lesen, was es ist.
+
+**10. 🔴 PUNKT 43 AUSGEWERTET — der 13. August ist sauber.** Alle zehn Anpfiffzeiten im KI-Log stimmen mit den extern geprueften Zeiten ueberein, ebenso alle zehn Wettbewerbe. Beide Gehirne nennen an allen zehn Spielen dieselbe Zeit.
+
+| Spiel | Log | extern | |
+|---|---|---|---|
+| Besiktas – Hradec Kralove | 19:00 | 19:00 | ✓ |
+| Craiova – KuPS | 19:00 | 19:00 | ✓ |
+| Pafos – Salzburg | 19:00 | 19:00 | ✓ |
+| Vikingur – Thun | 19:30 | 19:30 | ✓ |
+| Austria Wien – Beitar | 20:30 | 20:30 | ✓ |
+| Rangers – Jagiellonia | 20:30 | 20:30 | ✓ |
+| Anderlecht – PAOK | 20:30 | 20:30 | ✓ |
+| Hearts – Benfica | 20:45 | 20:45 | ✓ |
+| Shelbourne – Ajax | 20:45 | 20:45 | ✓ |
+| Egnatia – Shamrock Rovers | 21:00 | 21:00 | ✓ |
+
+**Auch der 11. und der 12. August sind unauffaellig** — zehn beziehungsweise sechs Spiele, beide Gehirne durchweg einig, keine Doppelung, kein Eintrag ohne Zeit. **Der 10. August bleibt der einzige auffaellige Tag**, und sein Fehler war die Positionsverschiebung im Code, nicht die Liste.
+
+**Was das hergibt und was nicht (Art. 11):** Bewiesen ist nur der 13. August, denn nur fuer ihn gibt es gepruefte Vergleichszeiten. Fuer den 11. und 12. sagt die Uebereinstimmung beider Gehirne nichts — am 8. August waren sich beide ebenfalls einig und die Zeiten waren trotzdem falsch. **Ein sauberer Tag von einem ist ein Hinweis darauf, dass das kleinere Modell die Ursache war — kein Beweis.** Mit der Pause kommt kein weiterer Tag mehr dazu. **Die zweite Ursache bleibt unbewiesen; sie zeigt sich seit dem Modellwechsel nicht mehr.**
+
+**11. Ein Fehler von Claude an diesem Tag.** Claude hat Ondo nach den Anpfiffzeiten gefragt, die Ondo in derselben Nachricht bereits mitgeschickt hatte — und hat ausserdem als Fund verkauft, dass die Vorschlagsliste keine Anpfiffzeiten enthaelt, was seit dem vorigen Chat bekannt war. **Erst lesen, was da ist, dann fragen. Und nichts als Fund ausgeben, was in den Buechern steht.**
+
+**12. 🔴 DIE GRUNDSATZBESPRECHUNG — fuenf Beschluesse.** Ondo hat am Nachmittag des 14.8. fuenf Probleme benannt und um Loesungen gebeten. **Alle fuenf Vorschlaege sind beschlossen.** Sie sind der Arbeitsauftrag der naechsten Chats und stehen im Backlog als Punkte 44 bis 47 sowie als endlich entschiedener Punkt 18.
+
+**Die gemeinsame Ursache, die Ondo benannt hat:** Die Dokumente sind gleichzeitig Archiv und Arbeitsanweisung. `PROJEKT-STATUS.md` ist rund 180 KB gross, davon ist nur ein kleiner Teil der aktuelle Stand. Daraus folgen der Speichermangel, die Eintragungsfehler, das Hochladen von Hand und der Regelaufwand. **Solange das nicht geloest ist, kommt das Projekt nicht vernuenftig weiter — das ist Ondos ausdrueckliche Einschaetzung.**
+
+**Die Reihenfolge ist beschlossen: 44 → 18 + 45 → 46 → 47.**
+
+**13. Probleme, die vorher nicht benannt waren.** Claude hat sechs genannt, Ondo hat sie uebernommen:
+
+| | Problem | Loesung |
+|---|---|---|
+| 1 | **🔴 Die Messdaten existieren an genau einem Ort** — localStorage eines Browsers auf einem Geraet. Die Sicherungsdatei enthaelt API-Schluessel und kann deshalb nirgendwohin. Es gibt keine Kopie ausserhalb des iPhones, und Claude hat die Rohdaten noch nie gesehen. Loescht Safari den Websitespeicher, sind sechs Wochen Messung weg. | Punkt 44 |
+| 2 | **Dieselbe Tatsache steht an mehreren Stellen.** Alle vier Buchfuehrungsfehler des 13.8. waren derselbe Fehler. | Punkt 45 |
+| 3 | **Es gibt keinen Test fuer die App selbst.** `pruefe.py` prueft nur Dokumente. | Punkt 47 |
+| 4 | **Die Auswertung fehlt und ist ab jetzt die eigentliche Arbeit** — Brier-Score, Unsicherheitsbereiche, Verzerrung durch geparkte Eintraege. Drei offene Artikel-14-Luecken, kein Werkzeug dafuer. | wird durch 44 erst moeglich |
+| 5 | **Das Kontrollexamen kostet etwa ein Viertel jedes Chats.** Noetig, solange die Dokumente gross und stellenweise unzuverlaessig sind. | faellt mit 18 |
+| 6 | **Das Verfahren haengt an Ondo allein.** Nicht aufloesbar; die Zahl seiner Handgriffe laesst sich senken. | Punkt 46 |
+
+**14. Regelaenderungen, beschlossen — wirksam erst NACH Punkt 18.** Ondo: Regeln duerfen die Arbeit nicht erschweren, und brauchbare Loesungen sollen nicht ausgeschlossen werden.
+
+- **„Lies alle sechs Dateien vollstaendig" wird zu „Lies `STAND.md` und die offenen Backlog-Punkte vollstaendig, alles andere auf Zuruf."** Begruendung: Die Regel entstand gegen Bequemlichkeit. Ist das Pflichtteil klein, gibt es keine Bequemlichkeit zu verbieten.
+- **Das Kontrollexamen schrumpft von neun auf vier Fragen** — nur noch die Fangfragen. Reine Abfragefragen pruefen Lesefaehigkeit, nicht Verstaendnis.
+- **Unveraendert, ohne Diskussion:** kein Ergebnis von Hand nachschlagen · erst abstimmen, dann bauen · nichts behaupten, was nicht belegt ist.
+- **⚠ Diese drei Aenderungen treten NICHT vor der Trennung der Dokumente in Kraft.** Wer sie vorher anwendet, liest zu wenig.
+
+**15. Arbeitsregel L ist fuer diesen Chat NICHT erfuellt.** Gebaut wurde nichts. Entschieden wurde viel, ausgewertet wurde Punkt 43, geheilt wurden fuenf Buchfuehrungsfehler — aber kein beschlossener Punkt ist gebaut worden. **Der naechste Chat baut Punkt 44, bevor er irgendetwas anderes tut.**
+
+**16. Messstand nach der Uebernahme.** Sonnet 330 Aussagen bei 4 % und 55 %, Flash 327 bei 8 % und 50 %, gesamt 53 % (346/657). Die Abweichung ist bei beiden Gehirnen gleich geblieben. Sicherung 14.8., 07:14 Uhr.
 
 ---
 
@@ -1120,7 +1169,7 @@ Dateiname beginnt mit Datum und Uhrzeit: `2026-07-31_1430_Ondo-Control_Thema.md`
 **Nie empfehlen, Ergebnisse von Hand nachzuschlagen.** Seit dem 25.7. abgelehnt. Die Zuverlässigkeit des Schiedsrichters gehört zum Test, nicht in Ondos Freizeit. Zwei Claude-Instanzen sind trotzdem darauf zurückgefallen.
 
 **Datensicherung:** Ondo regelmäßig daran erinnern.
-**Letzte bestätigte Sicherung: 13.8.2026, 18:38 Uhr** — 293 Vorhersagen, 6 Wetten, nach der rückwirkenden Berichtigung. Davor am selben Tag: 16:28 Uhr (293 Vorhersagen) und 09:17 Uhr. Früher: 8.8., 07:54 Uhr (210 Vorhersagen) · 7.8., 08:00 Uhr · 6.8., 08:28 Uhr (170 Vorhersagen) · 5.8., 13:06 Uhr · 4.8., 17:58 Uhr (138 Vorhersagen) · 3.8. · 2.8. · 31.7., 07:49 Uhr. ⚠ **Vor jeder Codelieferung ist eine frische Sicherung zu verlangen.**
+**Letzte bestätigte Sicherung: 14.8.2026, 07:14 Uhr** — 293 Vorhersagen, 6 Wetten, nach der Uebernahme der zehn Endstaende. Davor: 13.8., 18:38 Uhr (nach der Berichtigung), 16:28 Uhr (293 Vorhersagen) und 09:17 Uhr. Früher: 8.8., 07:54 Uhr (210 Vorhersagen) · 7.8., 08:00 Uhr · 6.8., 08:28 Uhr (170 Vorhersagen) · 5.8., 13:06 Uhr · 4.8., 17:58 Uhr (138 Vorhersagen) · 3.8. · 2.8. · 31.7., 07:49 Uhr. ⚠ **Vor jeder Codelieferung ist eine frische Sicherung zu verlangen.**
 
 *Diese Zeile ist eine **Standsangabe**, keine Verlaufsangabe. Sie stand vom 7. bis zum 14. August auf dem 7.8. und war damit sechs Tage falsch, während zwei andere Stellen des Dokuments den richtigen Wert trugen. Seit dem 14.8. prüft `pruefe.py` sie gegen die jüngste Sicherungsangabe im Dokument.*
 *Am 4.8. hat sich die Sicherung bewährt: Ondo hat den Browserverlauf gelöscht, Safari löschte dabei den Websitespeicher mit, alle Daten waren weg — und wurden vollständig wiederhergestellt. **Nichts verloren.** Zwei bekannte Verlustwege: Browserdaten löschen · getrennter Speicher Safari gegen Startbildschirm.*
@@ -1361,28 +1410,36 @@ Bis v18.6 war die Beta ein **Wett-Berater**. Am 23. Juli wurde sie zum **Messger
 
 ---
 
-## Aktueller Messstand (abgelesen aus der App am 13.8.2026, 22:20 Uhr — NACH der Berichtigung)
+## Aktueller Messstand (abgelesen aus dem Bildschirmfoto der App am 14.8.2026)
 
-*Zur Herkunft (Art. 14): **Alle Zahlen dieses Abschnitts sind aus der Anzeige der App abgelesen, keine ist gerechnet.** Der Abschnitt wird seit dem 13.8. immer vollständig ersetzt, nie in Teilen — die vorige Praxis hatte eine Hälfte auf altem Stand stehenlassen.*
+*Zur Herkunft (Art. 14): **Alle Zahlen dieses Abschnitts sind aus der Anzeige der App abgelesen, keine ist gerechnet.** Der Abschnitt wird immer vollstaendig ersetzt, nie in Teilen. Die genaue Ablesezeit ist unbekannt (Art. 11).*
 
-**Bestand:** **293 Vorhersagen** und 6 Wetten im Speicher (abgelesen aus dem Sicherungsfeld, 18:38 Uhr).
+**Bestand:** **293 Vorhersagen** und 6 Wetten im Speicher. **Letzte Sicherung: 14.8.2026, 07:14 Uhr.**
+
+*Der Bestand ist gleich geblieben, die Zahl der bewerteten Aussagen um je 30 gestiegen: Am 14.8. wurden zehn Endstaende des 13.8. uebernommen — zehn Spiele mal drei Maerkte. Es kamen keine neuen Vorhersagen dazu.*
 
 | | bewertete Aussagen | Kalibrierungs-Abweichung | Trefferquote |
 |---|---|---|---|
-| Sonnet | 300 | **4 %** (grün) | 55 % (165/300) |
-| Flash | 297 | **8 %** (grün) | 50 % (148/297) |
-| gesamt | 597 | — | 52 % (313/597) |
+| Sonnet | 330 | **4 %** (gruen) | 55 % (182/330) |
+| Flash | 327 | **8 %** (gruen) | 50 % (164/327) |
+| gesamt | 657 | — | 53 % (346/657) |
 
-**Sonnets Verteilung** *(Anzahl je Stufe, in Klammern behauptet/wirklich)*: 1–49 % → 46 (44/35) · 50–59 % → 195 (54/55) · 60–69 % → 38 (63/71) · 70–79 % → 21 (73/67) · ab 80 % → 0
+**Sonnets Verteilung** *(Anzahl je Stufe, in Klammern behauptet/wirklich)*: 1–49 % → 49 (44/35) · 50–59 % → 212 (54/57) · 60–69 % → 44 (63/66) · 70–79 % → 25 (73/64) · ab 80 % → 0
 
-**Flashs Verteilung** *(Anzahl je Stufe, in Klammern behauptet/wirklich)*: 1–49 % → 43 (43/28) · 50–59 % → 124 (55/52) · 60–69 % → 108 (63/54) · 70–79 % → 18 (72/56) · 80–89 % → 3 (82/100) · 90–99 % → 1 (90/100)
+**Flashs Verteilung** *(Anzahl je Stufe, in Klammern behauptet/wirklich)*: 1–49 % → 46 (43/28) · 50–59 % → 135 (55/51) · 60–69 % → 117 (63/56) · 70–79 % → 24 (73/54) · 80–89 % → 4 (83/75) · 90–99 % → 1 (90/100)
 
 **Entschlossenheit:**
 
 | | Ø Abstand von 50 | Anteil ab 60 % |
 |---|---|---|
-| Sonnet | 6,7 | 20 % (59/300) |
-| Flash | 9,5 | 44 % (130/297) |
+| Sonnet | 6,8 | 21 % (69/330) |
+| Flash | 9,7 | 45 % (146/327) |
+
+**Wetten:** Saldo −19,51 €, 6 abgeschlossen, 0,00 € offen, Trefferquote 17 % (1 von 6). Gesamt-Bilanz −29,75 €.
+
+**Sonnet hat weiterhin KEINE bewertete Aussage ab 80 %.** Flash hat dort fuenf. Die Verzerrung durch geparkte Eintraege besteht unveraendert und gehoert neben jede Aussage ueber Sonnets Verhalten bei hoher Zuversicht.
+
+*Vorherige Staende: 13.8. nach der Berichtigung — Sonnet 300 bei 4 % und 55 %, Flash 297 bei 8 % und 50 %. 13.8. vor der Berichtigung — Sonnet 300 bei 4 % und 52 %. 9.8. — je 207. 8.8. — je 180.*
 
 **Was die Berichtigung bewirkt hat (Vergleich 16:32 Uhr → 22:20 Uhr, gleicher Bestand):**
 
@@ -1590,6 +1647,8 @@ Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp 
 *Zweiter Nachtrag von Claude (Chat 10) am 6.8.2026, nachmittags: Bericht an beide Prüfer verschickt und beantwortet, Übergabe an ChatGPT vollzogen, zwei Befunde über die Arbeitsweise der Prüfer eingetragen.*
 
 *Aktualisiert von Claude (Chat 10) am 6.8.2026: Abschnitt „Der 6. August" neu, Messstand nachgerechnet und auf je 135 Aussagen gebracht, drei Entscheidungen vom 5.8. abends nachgetragen, Sicherungsstand auf 08:28 Uhr, Übergabe-Eintrag Chat 9 → Chat 10 ergänzt, das veraltete Zitat des 0a-Codekommentars berichtigt. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen.*
+
+*Aktualisiert von Claude (Chat 15) am 14.8.2026, **17:11 Uhr (Uhrzeit unmittelbar vor dem Schreiben abgefragt)**: Tagesabschnitt „Der 14. August" auf 16 Unterpunkte erweitert. **Fuenf Beschluesse der Grundsatzbesprechung** (Punkte 44, 18, 45, 46, 47) mit Reihenfolge. **Punkt 43 ausgewertet** — der 13. August ist sauber, zehn von zehn Anpfiffzeiten. **Zehn Endstaende uebernommen und gegengeprueft.** **Messstand auf 330/327 gebracht**, Sicherungsangabe auf 14.8., 07:14 Uhr. **Regelaenderungen beschlossen, wirksam erst nach Punkt 18.** Ein eigener Fehler dieses Tages eingetragen. Zusammen mit Backlog-Fassung 21 und Blueprint 0.18.*
 
 *Aktualisiert von Claude (Chat 15) am 14.8.2026, **06:17 Uhr (abgelesen zu Beginn dieses Arbeitsblocks; das Uhr-Werkzeug antwortete danach zweimal nicht — eine spätere Zahl wurde NICHT erfunden)**: Abschnitt „Der 14. August" neu (9 Unterpunkte). **`CODE_VERSION` entschieden** — Lieferkennzeichen, ausnahmslos hochzaehlen; der Schnitt wird am Fehlen des Feldes `codeVersion` erkannt, nicht an seinem Wert; nicht rueckwirkend umnummeriert. **Ondos Entscheidung, die Sammlung nach dem naechsten Pruflauf zu pausieren**, eingetragen — mit dem Hinweis, dass Backlog-Punkt 3 dadurch blockiert ist. **Fuenf veraltete Standsangaben berichtigt:** Sprachschluessel 211 statt 201 (zwei Stellen), letzte Sicherung 13.8. statt 7.8., Ablesezeit im Datierungshinweis 22:20 statt 16:32 — und im Blueprint die Drei-Ebenen-Trennung an zwei Stellen geschlossen. Uebergabezeile Chat 14 → Chat 15 eingetragen. **Speicherentscheidung mit der Liste des Ungelesenen festgehalten.** Zusammen mit Backlog-Fassung 20, Blueprint 0.17 und `pruefe.py` (neuer Abschnitt 4c). `Ondo-Core-Architektur.md` 0.4 bleibt unveraendert gueltig. Geaendert wurden nur die betroffenen Stellen.*
 

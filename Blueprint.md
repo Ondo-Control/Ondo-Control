@@ -3,11 +3,13 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.17
-**Stand:** 14. August 2026, 06:17 Uhr
+**Version:** 0.18
+**Stand:** 14. August 2026, 17:11 Uhr
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
-> **Was Fassung 0.17 ändert (14.8.2026):** **`CODE_VERSION` ist entschieden** — sie ist ein reines Lieferkennzeichen und wird ausnahmslos hochgezählt; der Schnitt in der Messreihe wird am **Fehlen** des Feldes `codeVersion` erkannt, nicht an seinem Wert. **Ondos Entscheidung, die Sammlung nach dem nächsten Prüflauf zu pausieren**, ist eingetragen — mit dem Hinweis, dass Backlog-Punkt 3 dadurch blockiert ist. **Die Drei-Ebenen-Trennung ist an beiden Stellen als erledigt geschlossen** (Abschnitt 5 und 10); sie stand seit dem 13.8. in `Ondo-Core-Architektur.md` 0.4. Sechs Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
+> **Was Fassung 0.18 ändert (14.8.2026, nachmittags):** **Die fünf Beschlüsse der Grundsatzbesprechung** sind eingetragen — Messdaten-Export ohne Schlüssel, Trennung von Stand und Chronik, ein Ort je Tatsache, Claude Code auf dem Tablet, Selbsttest für die App. **Drei Regeländerungen sind beschlossen, treten aber erst nach der Trennung der Dokumente in Kraft.** Kein Verfassungsartikel geändert.
+
+> **Was Fassung 0.17 änderte (14.8.2026, früh):** **`CODE_VERSION` ist entschieden** — sie ist ein reines Lieferkennzeichen und wird ausnahmslos hochgezählt; der Schnitt in der Messreihe wird am **Fehlen** des Feldes `codeVersion` erkannt, nicht an seinem Wert. **Ondos Entscheidung, die Sammlung nach dem nächsten Prüflauf zu pausieren**, ist eingetragen — mit dem Hinweis, dass Backlog-Punkt 3 dadurch blockiert ist. **Die Drei-Ebenen-Trennung ist an beiden Stellen als erledigt geschlossen** (Abschnitt 5 und 10); sie stand seit dem 13.8. in `Ondo-Core-Architektur.md` 0.4. Sechs Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
 
 > **Was Fassung 0.16 änderte (13.8.2026):** **Die Übergaberegel hat jetzt eine eigene Fassung für ChatGPT** (Backlog-Punkt 7, beschlossen am 30.7., gebaut am 13.8.) — neuer Abschnitt 2d. **Die Feststellung aus 0.15, die falschen Anpfiffzeiten stammten nicht aus dem Programm, ist teilweise widerlegt** und im Protokoll berichtigt: Das Programm verändert keine Zeit, kann sie aber an das falsche Spiel hängen. Dazu die zehnte Fehlerart des Schiedsrichters und die Feststellung, dass ein Prüfer selbst gemessen werden muss. Fünf Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
 
@@ -423,6 +425,14 @@ ONDO CONTROL
 | 14.8.2026 | **Vier Buchführungsfehler des 13.8. geheilt**, alle vom Nachfolger gefunden und vom abgebenden Chat bestätigt: Sprachschlüsselzahl 211 statt 201 · `CODE_VERSION` · die Drei-Ebenen-Trennung an zwei Stellen weiter als offen geführt · eine sechs Tage alte Sicherungsangabe. **Gemeinsame Form: ein Abschnitt geschrieben, ohne zu prüfen, was dadurch anderswo falsch wird — Fehlerart C3.** |
 | 14.8.2026 | **Der blinde Fleck wird benannt statt umgangen.** Chat 15 hat `OndoControl.html` nicht gelesen und `beta.html` nur in Teilen; die Entscheidung dafür steht mit ihrer Liste in `PROJEKT-STATUS.md`, Abschnitt „Der 14. August". **Auflage: Vor jeder Codeänderung wird die betroffene Stelle vollständig gelesen.** Ein benannter blinder Fleck ist ein Vorbehalt, ein unbenannter eine Falle für den Nächsten. |
 | 14.8.2026 | Blueprint auf Version 0.17 gehoben. |
+| **— ab hier eingetragen am 14.8.2026, nachmittags —** | |
+| 14.8.2026 | **Grundsatzbesprechung. Ondo hat fünf Probleme benannt: Claudes Speichergrenze · Fehler und Vergessen in neuen Chats · die App muss weiterentwickelt werden · das Hochladen von Hand nervt · Regeln dürfen die Arbeit nicht erschweren.** Seine Vorgabe: Solange diese Probleme nicht gelöst sind, kommt das Projekt nicht vernünftig weiter. **Gemeinsame Ursache: Die Dokumente sind gleichzeitig Archiv und Arbeitsanweisung.** Daraus folgen Speichermangel, Eintragungsfehler, Hochladeaufwand und Regellast. |
+| 14.8.2026 | **Fünf Beschlüsse, feste Reihenfolge: 44 → 18 + 45 → 46 → 47.** Punkt 44 Messdaten-Export ohne Schlüssel · Punkt 18 Dokumente trennen · Punkt 45 ein Ort je Tatsache · Punkt 46 Claude Code auf dem Surface Go · Punkt 47 Selbsttest für die App. |
+| 14.8.2026 | **Eine Kennzahl gehört an genau einen Ort.** Alle vier Buchführungsfehler des 13.8. entstanden dadurch, dass dieselbe Tatsache an mehreren Stellen stand und nur eine geändert wurde. **Die Abhilfe ist nicht mehr Sorgfalt, sondern Redundanz beseitigen** — Sorgfalt hat bei keinem Chat gereicht. |
+| 14.8.2026 | **Regeln dürfen die Arbeit nicht erschweren (Ondo).** Beschlossen, wirksam erst NACH der Trennung der Dokumente: Die Lesepflicht schrumpft auf `STAND.md` und die offenen Backlog-Punkte, alles andere auf Zuruf. Das Kontrollexamen schrumpft von neun auf vier Fragen — nur noch die Fangfragen. **Unverändert: kein Ergebnis von Hand nachschlagen · erst abstimmen, dann bauen · nichts behaupten, was nicht belegt ist.** |
+| 14.8.2026 | **Messdaten an einem einzigen Ort sind das größte Risiko des Projekts** — größer als jeder offene Fehler. Die vorhandene Sicherung enthält API-Schlüssel und kann das Gerät nicht verlassen. Deshalb steht der schlüsselfreie Export vor allem anderen. |
+| 14.8.2026 | **Erst lesen, was da ist, dann fragen.** Claude hat an diesem Tag nach Anpfiffzeiten gefragt, die in derselben Nachricht bereits mitgeschickt waren, und Bekanntes als Fund ausgegeben. |
+| 14.8.2026 | Blueprint auf Version 0.18 gehoben. |
 
 ---
 

@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Gepflegt von Claude · Stand 14.8.2026, 06:17 Uhr, Fassung 20 · jede Idee mit Datum, Urheber und Status**
+**Gepflegt von Claude · Stand 14.8.2026, 17:11 Uhr, Fassung 21 · jede Idee mit Datum, Urheber und Status**
 
 ## Regeln für dieses Dokument
 
@@ -13,6 +13,69 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 21 ändert (14.8., nachmittags)
+
+**🔴 Die Grundsatzbesprechung. Fünf Beschlüsse, feste Reihenfolge: 44 → 18 + 45 → 46 → 47.**
+
+- **Punkt 44 NEU und BESCHLOSSEN** — Messdaten-Export ohne Schlüssel. **Erster Bauauftrag des nächsten Chats.**
+- **Punkt 18 ENDLICH ENTSCHIEDEN** — Dokumente trennen in Stand und Chronik. Lag seit dem 31.7. als unentschiedene Idee.
+- **Punkt 45 NEU und BESCHLOSSEN** — ein Ort je Tatsache.
+- **Punkt 46 NEU und BESCHLOSSEN** — Claude Code auf dem Surface Go, als Versuch.
+- **Punkt 47 NEU und BESCHLOSSEN** — Selbsttest für die App.
+- **Regeländerungen beschlossen**, wirksam erst nach Punkt 18: Lesepflicht schrumpft auf `STAND.md` plus offene Punkte, Kontrollexamen von neun auf vier Fragen.
+- **Punkt 43 ausgewertet** — der 13. August ist sauber, zehn von zehn Anpfiffzeiten. Hinweis, kein Beweis.
+- **Beschlossen und nicht gebaut: jetzt acht** (E, 2, 3, 4, 44, 45, 46, 47). **Arbeitsregel L in diesem Chat nicht erfüllt.**
+
+---
+
+## 🔴 DIE FÜNF BESCHLÜSSE DER GRUNDSATZBESPRECHUNG (14.8.)
+
+**Ondos Rahmen:** Solange diese Probleme nicht gelöst sind, kommt das Projekt nicht vernünftig weiter. Regeln dürfen die Arbeit nicht erschweren; brauchbare Lösungen sollen nicht ausgeschlossen werden, wenn sie nichts kaputt machen.
+
+---
+
+**44. Messdaten-Export ohne Schlüssel** · *Vorschlag 14.8., Claude · beschlossen 14.8., Ondo* · **Status: BESCHLOSSEN — erster Bauauftrag des nächsten Chats**
+
+Ein zweiter Knopf neben „Daten sichern", der **nur** Vorhersagen und Wetten ausgibt — **ohne API-Schlüssel, ohne PIN**. Der bestehende Sicherungsknopf bleibt unangetastet.
+
+→ **Warum zuerst:** Die Messdaten liegen an genau einem Ort. Die vorhandene Sicherungsdatei enthält die Schlüssel und kann das Gerät nicht verlassen. **Das ist das größte Risiko im ganzen Projekt** — größer als jeder offene Fehler.
+→ **Was es zusätzlich löst:** Claude bekommt zum ersten Mal die Rohdaten. Brier-Score, Unsicherheitsbereiche und die Rechnung zur Verzerrung durch geparkte Einträge werden damit erst möglich — drei offene Artikel-14-Lücken. Keine Bildschirmfotos mehr, keine abgetippten Zahlen.
+→ **Bauhinweise:** Nur ausgeben, nichts speichern, nichts rechnen, nichts an ein Gehirn schicken. Vor der Lieferung ist zu prüfen, dass in der Ausgabe **kein** Schluesselfeld vorkommt — maschinell, nicht durch Hinsehen. Textknopf wie bei Log und Prüfliste, damit es vom iPhone aus verschickt werden kann.
+→ **Kosten:** ein Baublock in `beta.html`, kein Geld, kein Modellaufruf, **kein Schnitt in der Messreihe**. Nächste Lieferung heißt v19.8.2.
+
+---
+
+**45. Ein Ort je Tatsache** · *Vorschlag 14.8., Claude · beschlossen 14.8., Ondo* · **Status: BESCHLOSSEN — zusammen mit Punkt 18**
+
+Jede Kennzahl steht künftig an **genau einer** Stelle. Überall sonst wird darauf verwiesen statt sie zu wiederholen. `pruefe.py` bekommt eine Prüfung, die anschlägt, sobald eine Standsangabe zweimal vorkommt.
+
+→ **Warum:** Alle vier Buchführungsfehler des 13.8. waren derselbe Fehler — eine Stelle geändert, die anderen nicht. Die Sprachschlüsselzahl stand an vier Stellen, die letzte Sicherung an drei.
+→ **Der Kern:** Das behebt die Fehlerart nicht durch mehr Sorgfalt, sondern dadurch, **dass es nichts mehr zu vergessen gibt**. Sorgfalt hat bisher nicht gereicht, bei keinem Chat.
+→ **Kosten:** Teil von Punkt 18, keine zusätzlichen.
+
+---
+
+**46. Claude Code auf dem Surface Go** · *Vorschlag 14.8., Claude · beschlossen 14.8., Ondo* · **Status: BESCHLOSSEN als Versuch**
+
+Ondos Gerät: Surface Go, Windows 10 Home 22H2, 64 Bit, 8 GB RAM, 110 GB frei, Pentium 4415Y.
+
+→ **Es passt:** Unterstützt sind Windows 10 oder neuer, mindestens 4 GB RAM, unter 1 GB Platte. Der native Installer braucht **kein** Node.js. Nötig ist ein Claude-Konto ab Pro. Der schwache Prozessor stört wenig, weil die Rechenarbeit auf Anthropics Servern läuft.
+→ **Was sich ändert:** Claude Code sitzt im Ordner mit den Projektdateien, liest eine Datei **erst wenn es sie braucht** und nur die nötige Stelle, ändert direkt, führt `pruefe.py` selbst aus und schickt die Änderung selbst zu GitHub. **Ondo lädt dann nichts mehr von Hand hoch.** Das Speicherproblem verschwindet weitgehend, weil nicht mehr alles vorher in den Chat geladen werden muss.
+→ **Ehrlich zu den Hürden:** Es ist ein Terminalfenster, kein Fenster mit Knöpfen. Die Einrichtung ist einmalig, aber eine Hürde. Claude sieht das Tablet nicht und kann nur eine Schritt-für-Schritt-Anleitung liefern und bei Fehlern helfen.
+→ **Zur Alternative Claude Desktop mit Cowork:** ausdrücklich für Leute ohne Programmierkenntnisse, aber für angenehmes Arbeiten werden 16 GB RAM als Untergrenze genannt. Auf 8 GB vermutlich zäh. **Claude Code ist der leichtere Weg.**
+→ **Kosten:** kein zusätzliches Geld bei vorhandenem Pro-Konto. Ein Abend Einrichtung. **Risiko für das Projekt: keines** — das Repo bleibt wie es ist, und wenn es nicht klappt, geht es weiter wie bisher.
+
+---
+
+**47. Selbsttest für die App** · *Vorschlag 14.8., Claude · beschlossen 14.8., Ondo* · **Status: BESCHLOSSEN — nach Punkt 44**
+
+Vor jeder Codelieferung: Syntaxprüfung von `beta.html`, Sprachschlüssel-Abgleich DE/FR/EN, und feste Rechenproben — eine bekannte Eingabe muss die bekannte Bewertung ergeben.
+
+→ **Warum:** `pruefe.py` prüft nur Dokumente. Nichts prüft, ob die App nach einer Änderung noch läuft. Ein Codefehler fällt heute erst im Betrieb auf.
+→ **Kosten:** ein halber Arbeitsblock, kein Geld.
 
 ---
 
@@ -1191,10 +1254,15 @@ Zwei Ergänzungen von Claude offen: Architekt und unabhängiger Prüfer sollten 
 → **Folge: Gemini bekommt Dateien, ChatGPT bekommt Links.** Die Annahme „Prüfer bekommen Links statt Anhänge" gilt nur zur Hälfte.
 → **Zweite offene Frage aus derselben Runde:** ChatGPT meldete am 4.8., die Pages-Seiten trügen noch den Stand vom 30. Juli. **Nicht nachgeprüft** — Claudes Abrufwerkzeug kam nicht an die Adresse heran, und der erneute Raw-Abruf lieferte die eigene zwischengespeicherte Kopie zurück. Zwei Erklärungen bleiben offen: die Pages-Seiten sind wirklich alt, **oder** ChatGPT hat nicht abgerufen, sondern aus dem Gedächtnis geantwortet. *Trennschärfer Test: nach dem Wortlaut von Arbeitsregel J und nach dem Namen `lyria-3-pro-preview` fragen — beides steht nur in der Fassung vom 4. August.*
 
-**18. Die Dokumente selbst auf Diät setzen** · *Idee 31.7., Ondo* · **Status: Idee — NEU**
-`PROJEKT-STATUS.md` ist kein Onboarding-Dokument mehr, sondern eine Chronik. Jeder Vorfall erzeugt einen neuen Abschnitt, nichts schrumpft. Folge: Das Einlesen kostet einen neuen Chat etwa die Hälfte seines Arbeitsspeichers, bevor die erste Aufgabe beginnt — was übrig bleibt, reicht für eine Lieferung, dann ist Übergabe. Der nächste Chat liest dieselben, inzwischen größeren Dokumente.
-→ *Vorschlag: `PROJEKT-STATUS.md` auf das kürzen, was ein neuer Chat wirklich braucht; die Chronik in eine Archivdatei auslagern, die beim Start **nicht** gelesen wird.*
-→ *Die Zwei-Probleme-Regel ist bisher nie auf die Verwaltung angewandt worden. Sie sollte es werden.*
+**18. Dokumente kürzen und Chronik auslagern** · *Idee 31.7., Claude* · **Status: 🔴 BESCHLOSSEN am 14.8. — zweiter Bauauftrag, zusammen mit Punkt 45**
+
+Lag seit dem 31. Juli als unentschiedene Idee. **Ondo hat sie am 14.8. zur Grundlage aller weiteren Arbeit gemacht.**
+
+→ **Was getrennt wird:** `PROJEKT-STATUS.md` (rund 180 KB) wird zu **`STAND.md`** — nur die aktuelle Wahrheit, Ziel unter 25 KB — und **`CHRONIK-2026-07.md`** sowie **`CHRONIK-2026-08.md`**, die nur auf Zuruf gelesen werden. Der Backlog wird zu offenen Punkten und einem Erledigt-Archiv.
+→ **Was das löst:** Ein neuer Chat liest dann etwa 50 KB statt 380 KB und hat fast seinen ganzen Speicher zum Arbeiten. **Das ist die Lösung für Ondos erstes Problem.**
+→ **Was in `STAND.md` gehört:** Messstand · Versionen und Fassungen · letzte Sicherung · offene beschlossene Punkte · Entscheidungen, die bei Ondo liegen · die acht Fehlerarten · die Arbeitsregeln · bekannte offene Fehler. **Nichts, was ein Datum in der Vergangenheit als Überschrift trägt.**
+→ **Regel beim Trennen:** **Es wird nichts gelöscht, nur verschoben.** Jeder Satz landet in genau einer der beiden Dateien.
+→ **Kosten:** ein bis zwei Arbeitsblöcke, kein Geld. Risiko: Beim Trennen kann etwas verlorengehen — deshalb wird `pruefe.py` vorher um eine Zeilenzählung erweitert, die Verluste sichtbar macht.
 
 ---
 
@@ -1392,6 +1460,8 @@ Einzelheiten in `PROJEKT-STATUS.md`, Abschnitt „Der 8. August", Unterpunkte 6 
 *Nachtrag zu Fassung 12, eingetragen am 7.8.2026, 21:45 Uhr von Chat 12: Punkt 28 ist von Ondo als **Arbeitsregel K** beschlossen und um seine fehlende zweite Hälfte ergänzt — den festen Zusammenhangsblock. Die Lücke kam durch Ondos Rückfrage ans Licht, ob ein neuer Prüfer-Chat mit dem reinen Zeilendiff etwas anfangen kann. Eingetragen in die Vormerk-Tabelle und im Blueprint 0.9, Abschnitt 2c. Sonst nichts geändert.*
 
 *Fassung 12, geschrieben am 7.8.2026 von Chat 11: v19.7.8 geliefert (Weg A, Punkt 25, Punkt 26) · Prüflauf vom 7.8. mit zehn von zehn Endständen · dritter falscher Halbzeitstand in Folge · die Spielliste hat am 7.8. Spiele erfunden, zehn Vorhersagen geparkt · Sonnet widerspricht sich bei „beide treffen" in drei von fünf Fällen · Punkt 28 neu · Befund über Geminis Leseverhalten.*
+
+*Fassung 21, geschrieben am 14.8.2026, 17:11 Uhr von Chat 15: Die fuenf Beschluesse der Grundsatzbesprechung — **Punkt 44** (Messdaten-Export ohne Schluessel, erster Bauauftrag), **Punkt 18 endlich entschieden** (Dokumente trennen), **Punkt 45** (ein Ort je Tatsache), **Punkt 46** (Claude Code auf dem Surface Go), **Punkt 47** (Selbsttest fuer die App). Reihenfolge 44 → 18+45 → 46 → 47. Regelaenderungen beschlossen, wirksam erst nach Punkt 18. Punkt 43 ausgewertet. Beschlossen und nicht gebaut: jetzt acht.*
 
 *Fassung 20, geschrieben am 14.8.2026, 06:17 Uhr von Chat 15: `CODE_VERSION` entschieden (Lieferkennzeichen, ausnahmslos hochzaehlen; Schnitt am Fehlen des Feldes) · Ondos Pause der Sammlung eingetragen und Punkt 3 als blockiert gekennzeichnet · **Punkt 43 neu** (Punkt 29 gebaut, nie ausgewertet) · vier Buchfuehrungsfehler des 13.8. geheilt, darunter die Sprachschluesselzahl 211 statt 201 · `pruefe.py` um Abschnitt 4c erweitert. Vier Dokumente vollstaendig gelesen, `beta.html` in Teilen, `OndoControl.html` nicht — die Entscheidung samt Liste steht in `PROJEKT-STATUS.md`, Abschnitt „Der 14. August". Geaendert wurden nur die betroffenen Stellen.*
 
