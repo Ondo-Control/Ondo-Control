@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Gepflegt von Claude · Stand 14.8.2026, 22:41 Uhr, Fassung 22 · jede Idee mit Datum, Urheber und Status**
+**Gepflegt von Claude · Stand 14.8.2026, 22:41 Uhr, Fassung 23 · jede Idee mit Datum, Urheber und Status**
 
 ## Regeln für dieses Dokument
 
@@ -13,6 +13,17 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 23 ändert (14.8., spätabends)
+
+**🔴 Die Rohdaten sind zum ersten Mal ausgewertet. Punkt 44 hat im Echtbetrieb geliefert.**
+
+- **Punkt 34 (Brier-Score) und Punkt 35 (Streuungsangabe) sind GERECHNET** — aus den Rohdaten, nicht mehr aus dem Log geschätzt. Sonnet 0,2429 (2,3–8,7 % Abweichung), Flash 0,2497 (4,7–12,4 %). **Bei keinem Gehirn ist bewiesen, dass es besser ist als „immer 50 %".** Beide Punkte bleiben als **Bauaufgabe** offen: gerechnet ist nicht gebaut.
+- **Die Verzerrung durch geparkte Einträge ist gemessen — und die bisherige Beschreibung war falsch.** Sie betrifft **beide** Gehirne, nicht nur eines. Berichtigt in `PROJEKT-STATUS.md`, Fund 2.
+- **Gegenprobe bestanden:** Jede angezeigte Zahl der App ist erstmals aus den Rohdaten reproduziert.
+- **Sicherung 14.8., 22:53 Uhr.** Beschlossen und nicht gebaut: unverändert acht.
 
 ---
 
@@ -479,7 +490,7 @@ Die App unterscheidet nicht zwischen einem Ergebnis, das **vorhanden**, einem, d
 
 ---
 
-**34. Brier-Score als zweite Kennzahl neben der Kalibrierung** · *Fund 8.8., frischer Claude-Chat (nicht Chat 12) · nachgerechnet und in einem Punkt berichtigt von Chat 12* · **Status: Idee — NEU**
+**34. Brier-Score als zweite Kennzahl neben der Kalibrierung** *(🔴 GERECHNET am 14.8. abends aus den Rohdaten — Sonnet **0,2429**, Bereich 0,2350–0,2513 · Flash **0,2497**, Bereich 0,2391–0,2603. **Beide Bereiche schliessen 0,2500 ein: kein Gehirn ist nachweislich besser als „immer 50 %".** Die Vorabrechnung von Chat 12 war brauchbar. **In der App gebaut ist der Wert weiterhin nicht** — Ondos Entscheidung steht aus.)* · *Fund 8.8., frischer Claude-Chat (nicht Chat 12) · nachgerechnet und in einem Punkt berichtigt von Chat 12* · **Status: Idee — NEU**
 
 Die Dokumente enthalten seit Wochen den Satz „Ein perfekt kalibriertes Gehirn, das immer 50 % sagt, gewinnt kein Geld." **Die Grenze war benannt, aber nie gemessen.** Der Brier-Score verrechnet Kalibrierung und Entschlossenheit zu einer Zahl und lässt sich nicht durch Ausweichen auf 50 % schönen. Der Begriff kommt in keinem Projektdokument vor.
 
@@ -491,7 +502,7 @@ Die Dokumente enthalten seit Wochen den Satz „Ein perfekt kalibriertes Gehirn,
 
 ---
 
-**35. Streuungsangabe für die Hauptkennzahl** · *Fund 8.8., frischer Claude-Chat · nachgerechnet von Chat 12* · **Status: Idee — NEU**
+**35. Streuungsangabe für die Hauptkennzahl** *(🔴 NEU GERECHNET am 14.8. abends bei 330 und 327 Aussagen: Sonnet **4,35 %**, Bereich **2,3–8,7 %** · Flash **7,72 %**, Bereich **4,7–12,4 %**. **Die Bereiche überlappen sich — Sonnets Vorsprung ist auch bei fast doppelter Datenmenge nicht bewiesen.** Enger geworden ist er. **In der App gebaut ist die Angabe weiterhin nicht.**)* · *Fund 8.8., frischer Claude-Chat · nachgerechnet von Chat 12* · **Status: Idee — NEU**
 
 „Sonnet 5 %, Flash 9 %" galt wochenlang als Vorsprung; jetzt stehen beide bei 8 %. **Eine einzelne Prozentzahl ohne Streuungsangabe ist die Scheinpräzision, die Artikel 14 verbietet — angewandt auf die eigenen Kennzahlen.**
 
@@ -1488,6 +1499,8 @@ Einzelheiten in `PROJEKT-STATUS.md`, Abschnitt „Der 8. August", Unterpunkte 6 
 *Nachtrag zu Fassung 12, eingetragen am 7.8.2026, 21:45 Uhr von Chat 12: Punkt 28 ist von Ondo als **Arbeitsregel K** beschlossen und um seine fehlende zweite Hälfte ergänzt — den festen Zusammenhangsblock. Die Lücke kam durch Ondos Rückfrage ans Licht, ob ein neuer Prüfer-Chat mit dem reinen Zeilendiff etwas anfangen kann. Eingetragen in die Vormerk-Tabelle und im Blueprint 0.9, Abschnitt 2c. Sonst nichts geändert.*
 
 *Fassung 12, geschrieben am 7.8.2026 von Chat 11: v19.7.8 geliefert (Weg A, Punkt 25, Punkt 26) · Prüflauf vom 7.8. mit zehn von zehn Endständen · dritter falscher Halbzeitstand in Folge · die Spielliste hat am 7.8. Spiele erfunden, zehn Vorhersagen geparkt · Sonnet widerspricht sich bei „beide treffen" in drei von fünf Fällen · Punkt 28 neu · Befund über Geminis Leseverhalten.*
+
+*Fassung 23, geschrieben am 14.8.2026, spaetabends von Chat 16: **Die Rohdaten sind erstmals ausgewertet.** Gegenprobe gegen die Anzeige bestanden. Punkt 34 und 35 gerechnet, beide bleiben als Bauaufgabe offen. **Kein Gehirn ist nachweislich besser als „immer 50 %".** Verzerrung durch geparkte Eintraege gemessen und die bisherige Beschreibung berichtigt — sie betrifft beide Gehirne. Sicherung 22:53 Uhr. Beschlossen und nicht gebaut: unveraendert acht.*
 
 *Fassung 22, geschrieben am 14.8.2026, 22:41 Uhr von Chat 16 (Codelieferung 22:36 Uhr): **Punkt 44 GEBAUT** (`beta.html` v19.8.2, Messdaten-Export ohne Schluessel, Positivliste und zweistufige Schluesselpruefung, Sprachschluessel 217) — **Arbeitsregel L erfuellt.** **Punkt 8 und Punkt 46 zusammengelegt**, Kostenangabe zum Wochen-Limit ergaenzt. Vier weitere Funde gegen Chat 15 berichtigt. **Beschlossen und nicht gebaut: acht — E, 2, 3, 4, 18, 45, 46, 47**; diese Zahl steht ab jetzt nur noch hier. `pruefe.py` auf Chat 16 umgestellt. Backlog und Blueprint vor der Lieferung vollstaendig nachgelesen; `beta.html` hochgeladen und nur an den betroffenen Stellen geaendert; `OndoControl.html` nicht gelesen.*
 

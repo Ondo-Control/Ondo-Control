@@ -3,11 +3,13 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.19
+**Version:** 0.20
 **Stand:** 14. August 2026, 22:41 Uhr
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
-> **Was Fassung 0.19 ändert (14.8.2026, abends):** **Backlog-Punkt 44 ist gebaut** — der erste der fünf Beschlüsse steht. Dazu drei Berichtigungen an Fassung 0.18: Der Abschnitt 10 führte **Punkt 18 weiter als offene Frage**, obwohl er am selben Tag beschlossen wurde — geschlossen. Aus „drei Regeländerungen" werden **zwei Änderungen und eine Bestätigung**. Und **Punkt 46 war ein Doppeleintrag zu Backlog-Punkt 8**, dessen Kostenangabe zum Wochen-Limit dabei verlorenging. Vier Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
+> **Was Fassung 0.20 ändert (14.8.2026, spätabends):** **Die Rohdaten sind zum ersten Mal ausgewertet** — möglich geworden durch Punkt 44. **Bei keinem der beiden Gehirne ist bewiesen, dass es besser ist als jemand, der immer 50 % sagt.** Die Verzerrung durch geparkte Einträge betrifft **beide** Gehirne, nicht nur eines. Drei Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
+
+> **Was Fassung 0.19 änderte (14.8.2026, abends):** **Backlog-Punkt 44 ist gebaut** — der erste der fünf Beschlüsse steht. Dazu drei Berichtigungen an Fassung 0.18: Der Abschnitt 10 führte **Punkt 18 weiter als offene Frage**, obwohl er am selben Tag beschlossen wurde — geschlossen. Aus „drei Regeländerungen" werden **zwei Änderungen und eine Bestätigung**. Und **Punkt 46 war ein Doppeleintrag zu Backlog-Punkt 8**, dessen Kostenangabe zum Wochen-Limit dabei verlorenging. Vier Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
 
 > **Was Fassung 0.18 änderte (14.8.2026, nachmittags):** **Die fünf Beschlüsse der Grundsatzbesprechung** sind eingetragen — Messdaten-Export ohne Schlüssel, Trennung von Stand und Chronik, ein Ort je Tatsache, Claude Code auf dem Tablet, Selbsttest für die App. **~~Drei~~ ZWEI Regeländerungen sind beschlossen, treten aber erst nach der Trennung der Dokumente in Kraft** *(berichtigt am 14.8. abends: der dritte Aufzählungspunkt hält fest, was unverändert bleibt — eine Bestätigung ist keine Änderung)*. Kein Verfassungsartikel geändert.
 
@@ -441,6 +443,11 @@ ONDO CONTROL
 | 14.8.2026 | **Ein Prüfskript, das für einen anderen Chat geschrieben wurde, prüft den eigenen nicht.** `pruefe.py` enthielt die Pflichtinhalte von Chat 15 und hätte nach dieser Lieferung falsche Fehler gemeldet und die eigenen Zusagen gar nicht geprüft. **Ondo hat das von sich aus angesprochen, bevor geliefert wurde.** Abschnitt 7 wird ab jetzt bei jeder Übernahme mit umgestellt. **Grenze, ausdrücklich (Art. 14):** Wer die Lieferung schreibt, schreibt auch diese Liste — sie fängt fehlende Buchführung, nicht falsche Entscheidungen. |
 | 14.8.2026 | **Fällt ein Werkzeug aus, wird das gemeldet und gewartet — nicht ersatzweise geraten.** Am Abend des 14.8. antwortete der Dateizugriff rund achtzehn Minuten lang nicht. Statt Code aus dem Gedächtnis in den Chat zu schreiben, wurde der Ausfall benannt und der Bau angehalten. |
 | 14.8.2026 | Blueprint auf Version 0.19 gehoben. |
+| **— ab hier eingetragen am 14.8.2026, spätabends —** | |
+| 14.8.2026 | **🔴 Erste Auswertung der Rohdaten. Bei KEINEM der beiden Gehirne ist bewiesen, dass es besser ist als jemand, der immer 50 % sagt.** Brier Sonnet 0,2429 (Bereich 0,2350–0,2513), Flash 0,2497 (0,2391–0,2603); der Vergleichswert 0,2500 liegt in beiden Bereichen. Auch Sonnets Kalibrierungsvorsprung ist nicht bewiesen — die Bereiche überlappen sich zwischen 4,7 und 8,7 Prozent. **Das ist ein Urteil über die Datenmenge, nicht über die Gehirne (Art. 14).** |
+| 14.8.2026 | **Vor jeder Auswertung steht die Gegenprobe gegen die Anzeige.** Jede Zahl der App wurde aus den Rohdaten reproduziert, bevor eine einzige neue gerechnet wurde. Ohne diesen Schritt wäre nicht unterscheidbar, ob eine Abweichung aus den Daten oder aus der Rechenweise stammt. |
+| 14.8.2026 | **Die Verzerrung durch geparkte Einträge betrifft BEIDE Gehirne.** Die Beschreibung vom 8.8., sie treffe nur eines, ist am Rohdatenbestand widerlegt: geparkt wird bei beiden systematisch das Entschlossenere, bei Sonnet stärker. Berichtigt in `PROJEKT-STATUS.md`, Fund 2. |
+| 14.8.2026 | Blueprint auf Version 0.20 gehoben. |
 
 ---
 

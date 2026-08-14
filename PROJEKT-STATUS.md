@@ -53,11 +53,15 @@ In den Dokumenten steht seit Wochen der Satz: *„Ein perfekt kalibriertes Gehir
 
 **🔴 Abweichung vom Fund, die Chat 12 selbst gefunden hat:** Der Fund behauptet, das Umdrehen der als `[gedreht]` markierten Einträge ändere die Zahl nicht. **Das ist falsch.** Es ändert sie erheblich: Sonnet springt von *schlechter als Raten* auf *besser als Raten*. **Damit ist der Brier-Score ein weiteres Argument für die Berichtigung** — heute sieht Sonnet aus, als trüge es keine Information bei, und das ist ein Artefakt des Zählfehlers.
 
+**🔴 GEMESSEN am 14.8.2026 abends, aus den Rohdaten (Chat 16) — der Fund ist damit beantwortet.** Bei 330 beziehungsweise 327 bewerteten Aussagen: **Sonnet 0,2429** (90 %-Bereich 0,2350–0,2513), **Flash 0,2497** (0,2391–0,2603). Die Vorabrechnung von Chat 12 hatte 0,2418 und 0,2471 erwartet und war brauchbar. **Der entscheidende Satz: Bei KEINEM der beiden Gehirne ist bewiesen, dass es besser ist als jemand, der immer 50 % sagt** — beide Bereiche schliessen 0,2500 ein. Sonnet liegt näher dran, Flash sitzt praktisch darauf.
+
 **Was der Fund trotzdem zeigt:** Beide Gehirne liegen dicht an 0,25. Zwei grüne Kalibrierungswerte können das nicht sichtbar machen, der Brier-Score schon. → **Backlog-Punkt 34.** Aus vorhandenen Daten rechenbar, keine neue Messung, keine Kosten. **Die Zahlen oben sind eine Vorabrechnung aus dem Log, kein Ergebnis** — sie sind gegen die App zu prüfen, sobald die App sie rechnet.
 
 ### Fund 2 — Der Ausschluss geparkter Einträge ist eine systematische Verzerrung
 
-**Sonnets einzige Aussagen ab 80 % (92 % und 85 %) stecken in geparkten Einträgen zu erfundenen Spielen und werden nie bewertet.** Damit fällt **systematisch genau der Rand weg, an dem sich Überzuversicht zeigen würde** — und zwar **nur bei einem der beiden Gehirne**. Flash hat in den Stufen 80–99 % vier bewertete Aussagen, Sonnet keine.
+**Sonnets einzige Aussagen ab 80 % (92 % und 85 %) stecken in geparkten Einträgen zu erfundenen Spielen und werden nie bewertet.** Damit fällt **systematisch genau der Rand weg, an dem sich Überzuversicht zeigen würde** — ~~und zwar **nur bei einem der beiden Gehirne**~~.
+
+> **🔴 BERICHTIGT am 14.8.2026 abends aus den Rohdaten (Chat 16): Es betrifft BEIDE Gehirne, Sonnet nur stärker.** Gemessen an den behaupteten Prozentzahlen: Sonnet bewertet 21 % ab 60 % und 0 % ab 80 %, geparkt dagegen **33 %** und **4 %**. Flash bewertet 45 % und 2 %, geparkt **48 %** und **7 %**. **Geparkt wird bei beiden systematisch das Entschlossenere.** Der ursprüngliche Wortlaut bleibt zur Nachvollziehbarkeit stehen. Flash hat in den Stufen 80–99 % vier bewertete Aussagen, Sonnet keine.
 
 Insgesamt sind **50 der 190 Einträge geparkt**, davon 11 Sonnet-Einträge mit gedrehtem „beide treffen".
 
@@ -75,6 +79,8 @@ Insgesamt sind **50 der 190 Einträge geparkt**, davon 11 Sonnet-Einträge mit g
 | Flash | 8,1 % | **4,9 bis 14,5 %** |
 
 **Der Unterschied „5 gegen 9" lag damit vollständig im Rauschen.** Bei 180 Aussagen ist die Kennzahl auf mehrere Prozentpunkte genau, nicht auf einen. **Wochenlang wurde ein Vorsprung berichtet, den die Datenmenge nicht hergibt.** → **Backlog-Punkt 35.**
+
+**🔴 NEU GERECHNET am 14.8.2026 abends aus den Rohdaten (Chat 16), bei 330 und 327 Aussagen:** Sonnet **4,35 %** mit einem 90 %-Bereich von **2,3 bis 8,7 %**, Flash **7,72 %** mit **4,7 bis 12,4 %**. Die Rechenweise der App ist dabei exakt nachgebildet und ergibt gerundet die angezeigten 4 % und 8 %. **Die Bereiche überlappen sich zwischen 4,7 und 8,7 Prozent — der Vorsprung Sonnets ist auch bei fast doppelter Datenmenge nicht bewiesen.** Enger geworden ist er: bei 180 Aussagen lag Sonnets Bereich noch bei 3,9 bis 14,7.
 
 *Anmerkung zur Rechenweise (Art. 14): 7,6 und 8,1 sind Claudes Nachbildung; die App zeigt 8 und 8. Die Abweichung liegt an Rundung und Stufenzuschnitt. **Für die Aussage über die Streuung ist das ohne Belang** — der Bereich ist in beiden Fällen mehrere Punkte breit.*
 
@@ -245,6 +251,27 @@ Zwölf Chats in fünf Wochen. **Punkt 18 („Dokumente auf Diät") bestimmt inzw
 **Richtig sind damit neun vor dieser Lieferung und acht danach: E, 2, 3, 4, 18, 45, 46, 47.** Punkt 44 ist gebaut und faellt heraus.
 
 *Diese Zahl steht ab jetzt an genau einer Stelle — im Backlog, Abschnitt „Was Fassung 22 aendert". Hier wird sie nur genannt, weil dieser Tagesabschnitt die Aenderung festhaelt. Das ist die Arbeitsweise, die Punkt 45 zur Regel machen soll.*
+
+**22. 🔴 DIE ROHDATEN SIND ZUM ERSTEN MAL AUSGEWERTET.** Ondo hat den neuen Knopf noch am selben Abend benutzt und die Datei geliefert: 186 KB, 293 Eintraege, 6 Wetten, erzeugt 22:51 Uhr. **Punkt 44 hat damit im Echtbetrieb geliefert, nicht nur im Trockentest** — und die Datei enthaelt nachgeprueft weder `apiKey` noch `geminiKey` noch `pin` noch einen Wert in Schluesselform.
+
+**Gegenprobe zuerst, Auswertung danach.** Aus den Rohdaten reproduziert: Sonnet 330 bewertete Aussagen, 182 richtig, 55 % · Flash 327, 164 richtig, 50 % · Abweichung 4,35 und 7,72 Prozent, gerundet die angezeigten 4 und 8 · Sonnet hat keine bewertete Aussage ab 80 %, Hoechstwert 78. **Jede Zahl der App ist damit erstmals an den Rohdaten nachgerechnet und stimmt.** Ohne diese Gegenprobe waere alles Weitere wertlos.
+
+**Die drei offenen Artikel-14-Luecken sind geschlossen.** Einzelheiten stehen bei den Funden 1 bis 3 im Abschnitt „Drei Funde von aussen"; hier nur das Ergebnis:
+
+| | Sonnet | Flash |
+|---|---|---|
+| Brier-Score | **0,2429** (0,2350–0,2513) | **0,2497** (0,2391–0,2603) |
+| Kalibrierungs-Abweichung | **4,35 %** (2,3–8,7 %) | **7,72 %** (4,7–12,4 %) |
+
+**🔴 Der wichtigste Satz dieses Tages: Bei keinem der beiden Gehirne ist bewiesen, dass es besser ist als jemand, der immer 50 Prozent sagt.** Beide Brier-Bereiche schliessen den Vergleichswert 0,2500 ein. **Und Sonnets Vorsprung bei der Kalibrierung ist ebenfalls nicht bewiesen** — die Bereiche ueberlappen sich zwischen 4,7 und 8,7 Prozent.
+
+*Das ist kein Urteil ueber die Gehirne, sondern ueber die Datenmenge (Art. 14). Enger geworden ist der Bereich sehr wohl: bei 180 Aussagen reichte Sonnets Bereich noch von 3,9 bis 14,7 Prozent.*
+
+**Die Verzerrung durch geparkte Eintraege ist gemessen — und die bisherige Beschreibung war falsch.** Sie betrifft **beide** Gehirne, nicht nur eines. Geparkt wird bei beiden systematisch das Entschlossenere. Von den 54 geparkten Eintraegen sind 36 erfundene oder abgelaufene Spielpaarungen und 12 Test- oder Freundschaftsspiele; sie bleiben aus guten Gruenden geparkt (Punkt 42). **In welche Richtung sich die Kennzahlen ohne die Parkung verschieben wuerden, ist nicht bestimmbar** (Art. 11) — die geparkten Eintraege haben kein Ergebnis.
+
+**Was daraus fuer die Arbeit folgt:** Diese Rechnungen gehoeren in die App, nicht in einen Chat. Solange sie ein Chat rechnet, sind sie bei jeder neuen Uebernahme wieder veraltet. Als Aufgabe bei den Backlog-Punkten 34 und 35 vermerkt; **gebaut ist nichts, entschieden ist nichts.**
+
+**23. Buchfuehrung dieses Chats — einmal, nicht dreimal.** Ondo hat ausdruecklich beanstandet, dass er dieselben Dateien mehrfach bekommt. Alles nach der Codelieferung wurde deshalb gesammelt und in **einem** Durchgang eingetragen: Sicherung 22:53 Uhr, die Auswertung, die Berichtigung zu Fund 2. **Das ist die Regel aus der neunten Fehlerart — eintragen heisst in die Datei schreiben, nicht sie Ondo in die Hand druecken.**
 
 ---
 
@@ -1210,7 +1237,7 @@ Dateiname beginnt mit Datum und Uhrzeit: `2026-07-31_1430_Ondo-Control_Thema.md`
 **Nie empfehlen, Ergebnisse von Hand nachzuschlagen.** Seit dem 25.7. abgelehnt. Die Zuverlässigkeit des Schiedsrichters gehört zum Test, nicht in Ondos Freizeit. Zwei Claude-Instanzen sind trotzdem darauf zurückgefallen.
 
 **Datensicherung:** Ondo regelmäßig daran erinnern.
-**Letzte bestätigte Sicherung: 14.8.2026, 22:22 Uhr** — 293 Vorhersagen, 6 Wetten, unmittelbar vor der Lieferung v19.8.2. Davor: 14.8., 07:14 Uhr (nach der Uebernahme der zehn Endstaende) · 13.8., 18:38 Uhr (nach der Berichtigung), 16:28 Uhr (293 Vorhersagen) und 09:17 Uhr. Früher: 8.8., 07:54 Uhr (210 Vorhersagen) · 7.8., 08:00 Uhr · 6.8., 08:28 Uhr (170 Vorhersagen) · 5.8., 13:06 Uhr · 4.8., 17:58 Uhr (138 Vorhersagen) · 3.8. · 2.8. · 31.7., 07:49 Uhr. ⚠ **Vor jeder Codelieferung ist eine frische Sicherung zu verlangen.**
+**Letzte bestätigte Sicherung: 14.8.2026, 22:53 Uhr** — 293 Vorhersagen, 6 Wetten, nach dem Einbau von v19.8.2. Davor: 14.8., 22:22 Uhr (vor der Lieferung) · 14.8., 07:14 Uhr (nach der Uebernahme der zehn Endstaende) · 13.8., 18:38 Uhr (nach der Berichtigung), 16:28 Uhr (293 Vorhersagen) und 09:17 Uhr. Früher: 8.8., 07:54 Uhr (210 Vorhersagen) · 7.8., 08:00 Uhr · 6.8., 08:28 Uhr (170 Vorhersagen) · 5.8., 13:06 Uhr · 4.8., 17:58 Uhr (138 Vorhersagen) · 3.8. · 2.8. · 31.7., 07:49 Uhr. ⚠ **Vor jeder Codelieferung ist eine frische Sicherung zu verlangen.**
 
 *Diese Zeile ist eine **Standsangabe**, keine Verlaufsangabe. Sie stand vom 7. bis zum 14. August auf dem 7.8. und war damit sechs Tage falsch, während zwei andere Stellen des Dokuments den richtigen Wert trugen. Seit dem 14.8. prüft `pruefe.py` sie gegen die jüngste Sicherungsangabe im Dokument.*
 *Am 4.8. hat sich die Sicherung bewährt: Ondo hat den Browserverlauf gelöscht, Safari löschte dabei den Websitespeicher mit, alle Daten waren weg — und wurden vollständig wiederhergestellt. **Nichts verloren.** Zwei bekannte Verlustwege: Browserdaten löschen · getrennter Speicher Safari gegen Startbildschirm.*
@@ -1456,7 +1483,7 @@ Bis v18.6 war die Beta ein **Wett-Berater**. Am 23. Juli wurde sie zum **Messger
 
 *Zur Herkunft (Art. 14): **Alle Zahlen dieses Abschnitts sind aus der Anzeige der App abgelesen, keine ist gerechnet.** Der Abschnitt wird immer vollstaendig ersetzt, nie in Teilen. Die genaue Ablesezeit ist unbekannt (Art. 11).*
 
-**Bestand:** **293 Vorhersagen** und 6 Wetten im Speicher. **Letzte Sicherung: 14.8.2026, 22:22 Uhr.**
+**Bestand:** **293 Vorhersagen** und 6 Wetten im Speicher. **Letzte Sicherung: 14.8.2026, 22:53 Uhr.**
 
 *Der Bestand ist gleich geblieben, die Zahl der bewerteten Aussagen um je 30 gestiegen: Am 14.8. wurden zehn Endstaende des 13.8. uebernommen — zehn Spiele mal drei Maerkte. Es kamen keine neuen Vorhersagen dazu.*
 
@@ -1691,7 +1718,7 @@ Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp 
 
 *Aktualisiert von Claude (Chat 10) am 6.8.2026: Abschnitt „Der 6. August" neu, Messstand nachgerechnet und auf je 135 Aussagen gebracht, drei Entscheidungen vom 5.8. abends nachgetragen, Sicherungsstand auf 08:28 Uhr, Übergabe-Eintrag Chat 9 → Chat 10 ergänzt, das veraltete Zitat des 0a-Codekommentars berichtigt. Alle sechs Dateien plus `version.json` wurden vor Arbeitsbeginn vollständig gelesen.*
 
-*Aktualisiert von Claude (Chat 16) am 14.8.2026, **22:41 Uhr (Uhrzeit unmittelbar vor dem Schreiben der Kopfzeilen abgefragt; die Codelieferung selbst traegt 22:36 Uhr, ebenfalls abgelesen)**: **Backlog-Punkt 44 GEBAUT — `beta.html` v19.8.2, Messdaten-Export ohne Schluessel.** Arbeitsregel L erfuellt. Tagesabschnitt „Der 14. August" um die Unterpunkte 17 bis 21 erweitert. **Fuenf Funde gegen Chat 15 bestaetigt und berichtigt:** Punkt 18 im Blueprint noch als offen · Punkt 46 Doppeleintrag zu Punkt 8 · „drei Regelaenderungen" sind zwei · drei veraltete Zahlen in der „Ehrlichen Einordnung" des Messstands · Punkt 18 fehlte in der Liste der beschlossenen, nicht gebauten Punkte. **Standsangaben nachgezogen:** Sprachschluessel **217** an drei Stellen, Beta-Version v19.8.2, letzte Sicherung 14.8., **22:22 Uhr**. **`pruefe.py` auf diesen Chat umgestellt** — Abschnitt 7 vollstaendig ersetzt, Abschnitt 4b um die „Ehrliche Einordnung" erweitert, neuer Abschnitt 9 zur Schluesselpruefung. Uebergabezeile Chat 15 → Chat 16 eingetragen. Der Messstand selbst ist **unveraendert** (330/327) — es kamen keine neuen Bewertungen dazu. Zusammen mit Backlog-Fassung 22 und Blueprint 0.19. `Ondo-Core-Architektur.md` 0.4 bleibt unveraendert gueltig. Geaendert wurden nur die betroffenen Stellen; `beta.html` wurde hochgeladen, nicht aus dem Gedaechtnis ausgeschrieben.*
+*Aktualisiert von Claude (Chat 16) am 14.8.2026 in zwei Arbeitsbloecken. **Zur Uhrzeit (Fehlerart C2):** Die Kopfzeilen tragen **22:41 Uhr** — die letzte Zahl, die das Uhr-Werkzeug wirklich geliefert hat. Vor dem zweiten Block antwortete es **zweimal nicht mehr**; eine spaetere Zahl wurde **NICHT erfunden**. Der zweite Block liegt nachweislich danach, denn er verarbeitet Ondos Sicherung von **22:53 Uhr** und eine Exportdatei mit dem Vermerk 22:51 Uhr. Die Codelieferung traegt 22:36 Uhr, ebenfalls abgelesen. **Die Kopfzeit ist damit zu frueh, aber belegt — eine erfundene richtige Zahl waere schlechter als eine belegte falsche.** Inhalt: **Backlog-Punkt 44 GEBAUT — `beta.html` v19.8.2, Messdaten-Export ohne Schluessel.** Arbeitsregel L erfuellt. Tagesabschnitt „Der 14. August" um die Unterpunkte 17 bis 21 erweitert. **Fuenf Funde gegen Chat 15 bestaetigt und berichtigt:** Punkt 18 im Blueprint noch als offen · Punkt 46 Doppeleintrag zu Punkt 8 · „drei Regelaenderungen" sind zwei · drei veraltete Zahlen in der „Ehrlichen Einordnung" des Messstands · Punkt 18 fehlte in der Liste der beschlossenen, nicht gebauten Punkte. **Standsangaben nachgezogen:** Sprachschluessel **217** an drei Stellen, Beta-Version v19.8.2, letzte Sicherung 14.8., **22:22 Uhr**. **`pruefe.py` auf diesen Chat umgestellt** — Abschnitt 7 vollstaendig ersetzt, Abschnitt 4b um die „Ehrliche Einordnung" erweitert, neuer Abschnitt 9 zur Schluesselpruefung. Uebergabezeile Chat 15 → Chat 16 eingetragen. Der Messstand selbst ist **unveraendert** (330/327) — es kamen keine neuen Bewertungen dazu. Zusammen mit Backlog-Fassung 22 und Blueprint 0.19. `Ondo-Core-Architektur.md` 0.4 bleibt unveraendert gueltig. Geaendert wurden nur die betroffenen Stellen; `beta.html` wurde hochgeladen, nicht aus dem Gedaechtnis ausgeschrieben.*
 
 *Aktualisiert von Claude (Chat 15) am 14.8.2026, **17:11 Uhr (Uhrzeit unmittelbar vor dem Schreiben abgefragt)**: Tagesabschnitt „Der 14. August" auf 16 Unterpunkte erweitert. **Fuenf Beschluesse der Grundsatzbesprechung** (Punkte 44, 18, 45, 46, 47) mit Reihenfolge. **Punkt 43 ausgewertet** — der 13. August ist sauber, zehn von zehn Anpfiffzeiten. **Zehn Endstaende uebernommen und gegengeprueft.** **Messstand auf 330/327 gebracht**, Sicherungsangabe auf 14.8., 07:14 Uhr. **Regelaenderungen beschlossen, wirksam erst nach Punkt 18.** Ein eigener Fehler dieses Tages eingetragen. Zusammen mit Backlog-Fassung 21 und Blueprint 0.18.*
 
