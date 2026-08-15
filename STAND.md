@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 15. August 2026, 19:51 Uhr, v19.8.2*
+*Die aktuelle Wahrheit. Stand: 15. August 2026, 22:32 Uhr, v19.8.2*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -177,9 +177,13 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 
 **Was alle drei teilen: Die Ursache ist bei keiner bekannt (Art. 11), und gegen keine ist etwas gebaut worden.** Bei S2 und S3 ist zusätzlich unbekannt, warum derselbe Auftrag am selben Tag einmal Unbrauchbares und einmal Belegtes liefert.
 
-**🔴 Bekannte Verzerrung, die neben jeder dieser Zahlen mitzulesen ist:** **50 der 190 Einträge sind geparkt und werden nie bewertet.** Darunter Sonnets **einzige** Aussagen ab 80 % (92 % und 85 %). Damit fällt systematisch der Rand weg, an dem sich Überzuversicht zeigen würde — **und nur bei einem der beiden Gehirne**. Flash hat dort vier bewertete Aussagen, Sonnet keine.
+**🔴 Bekannte Verzerrung, die neben jeder dieser Zahlen mitzulesen ist:** Geparkte Einträge werden nie bewertet. Damit fällt systematisch der Rand weg, an dem sich Überzuversicht zeigen würde. Sonnet hat dort keine bewertete Aussage, Flash fünf.
 
-**🔴 Zur Genauigkeit:** Die Abweichung ist bei 180 Aussagen auf **mehrere Prozentpunkte** genau, nicht auf einen. Bei einer Wiederholung läge sie mit 90 % zwischen rund 4 und 15 % — **bei beiden Gehirnen**. Der wochenlang berichtete Vorsprung „5 gegen 9" lag vollständig im Rauschen.
+> **🔴 BERICHTIGT am 15.8.2026 (Chat 17).** Hier stand bis heute: *„50 der 190 Einträge sind geparkt … **und nur bei einem der beiden Gehirne**."* **Beides ist überholt.** Die Auswertung der Rohdaten vom 14.8. hat ergeben: **Die Parkung verzerrt BEIDE Gehirne**, bei Sonnet stärker — geparkt wird bei beiden systematisch das Entschlossenere. Es sind **54 geparkte Einträge**, nicht 50, und der Bestand ist 330/327, nicht 190. **In welche Richtung sich die Kennzahlen ohne die Parkung verschieben würden, ist nicht bestimmbar** (Art. 11) — geparkte Einträge haben kein Ergebnis. Einzelheiten in `CHRONIK-2026-08.md`, „Der 14. August".
+>
+> **Wie das hierher kam:** Bei der Trennung am 15.8. wurde dieser Abschnitt unverändert nach `STAND.md` übernommen, ohne zu prüfen, ob sein Inhalt noch gilt. **„Nichts löschen, nur verschieben" hat eine widerlegte Aussage mit in die Datei getragen, die nur Gültiges enthalten soll.** Gefunden, weil Chat 18 sie im Kontrollexamen korrekt wiedergab.
+
+**🔴 Zur Genauigkeit:** Die Abweichung ist auf **mehrere Prozentpunkte** genau, nicht auf einen — **bei beiden Gehirnen**. *(Verlaufsangabe vom 8.8.: bei damals 180 Aussagen lag sie mit 90 % zwischen rund 4 und 15 %. Die heutigen Bereiche stehen im Messstand.)* Der wochenlang berichtete Vorsprung „5 gegen 9" lag vollständig im Rauschen.
 
 **Ehrliche Einordnung (Art. 14):** Die Spielliste erzeugt inzwischen fast so viele ungelöste Probleme wie der Schiedsrichter, über den seit dem 22. Juli geredet wird. Das stand bis zum 7. August nirgends zusammen, weil jeder Fund einzeln eingetragen wurde.
 

@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 15.8.2026, 19:51 Uhr, Fassung 26 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 15.8.2026, 22:32 Uhr, Fassung 27 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -14,6 +14,19 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 27 ändert (15.8., spätabends)
+
+**🔴 `STAND.md` enthielt eine am 14.8. widerlegte Aussage — gefunden über das Kontrollexamen von Chat 18.**
+
+- **Der Befund:** Im Abschnitt „Die Spielliste" stand weiterhin, die Verzerrung durch geparkte Einträge treffe **nur eines** der beiden Gehirne, dazu die überholten Zahlen 50 von 190. Die Rohdaten-Auswertung vom 14.8. hatte beides berichtigt: **beide Gehirne betroffen, 54 geparkt, Bestand 330/327.** Berichtigt mit Vermerk, nicht überschrieben.
+- **Die Ursache liegt bei der Trennung.** Der Abschnitt wurde am 15.8. unverändert übernommen. **„Nichts löschen, nur verschieben" sichert die Vollständigkeit, nicht die Gültigkeit** — und `STAND.md` soll nur Gültiges enthalten.
+- **Chat 18 hat den Fehler nicht gemacht, sondern sichtbar gemacht.** Er hat korrekt wiedergegeben, was dastand.
+- **`pruefe.py` prüft jetzt ganz `STAND.md` auf überholte Zahlen**, nicht nur den Messstand-Abschnitt.
+- **🔴 Punkt 49 ist damit belegt, nicht mehr nur empfohlen.** ChatGPTs Warnung war richtig: Ein neuer Chat leitet aus richtig gelesenen Dokumenten eine falsche Aussage ab, wenn die Grenzen nicht danebenstehen. **Punkt 49 wird trotzdem nicht vorgezogen** — die Reihenfolge bleibt (Ondo, 15.8.).
+- **🔴 Beschlossen und nicht gebaut: neun** — **E, 2, 3, 4, 46, 47, 49, 50, 51.**
 
 ---
 
