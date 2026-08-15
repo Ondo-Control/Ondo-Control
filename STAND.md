@@ -1,0 +1,337 @@
+# ONDO CONTROL — STAND
+*Die aktuelle Wahrheit. Stand: 15. August 2026, 12:31 Uhr, v19.8.2*
+
+> **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
+> - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
+> - **`CHRONIK-2026-08.md`** — die Tagesabschnitte vom 3. bis 15. August, das Uebergabe-Protokoll und die Aenderungsvermerke. Wird **nur auf Zuruf** gelesen.
+> - **`CHRONIK-2026-07.md`** — alles bis einschliesslich 31. Juli. Wird **nur auf Zuruf** gelesen.
+>
+> **Es wurde nichts geloescht, nur verschoben.** Der Beweis steht in `pruefe.py`, Abschnitt 10: Jede Zeile des Originals kommt in genau einer der drei Dateien vor, unveraendert.
+>
+> **Ein Ort je Tatsache (Punkt 45).** Kennzahlen stehen ab jetzt an genau einer Stelle. Wo eine Zahl frueher wiederholt wurde, steht jetzt ein Verweis. Die Zahl der beschlossenen, nicht gebauten Punkte steht **nur im Backlog**.
+
+---
+
+> **Zur Datierung:** Die Kalibrierungszahlen im Abschnitt „Aktueller Messstand" sind am **14.8.2026 aus dem Bildschirmfoto der Finanzen-Seite abgelesen** — Sonnet 330 bewertete Aussagen bei 4 % Abweichung und 55 % Treffern, Flash 327 bei 8 % und 50 %. *Die genaue Ablesezeit ist unbekannt (Art. 11); das Bild nennt als Sicherungszeit 07:14 Uhr, das ist NICHT die Ablesezeit.* Alle älteren Zahlen — 13.8. (300/297), 9.8. (je 207), 8.8. (je 180) — sind ab jetzt Verlaufsangaben. Massgeblich ist immer der Abschnitt „Aktueller Messstand".
+## Für jede KI, die dieses Projekt unterstützt
+
+Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungssystem. Eine einzige HTML-Datei, GitHub Pages, localStorage, kein Server. Besitzer und alleiniger Entscheider: **Ondo** (kein Programmierer, arbeitet primär am iPhone, liefert jede Änderung selbst per Datei-Upload zu GitHub).
+
+**Rollen:** Claude = Entwickler und Archivar · ChatGPT = Architekt · Gemini = Reviewer · Ondo = Product Owner.
+
+**Ondo führt die Dokumente nicht.** Er kopiert und lädt hoch. Buchführung, Übergaben und Erinnerungen sind Claudes Aufgabe, nicht seine — ausdrücklich klargestellt am 31.7.
+
+**Verfassungsregeln, die im Alltag zählen:**
+- **Art. 8:** Keine Umsetzung ohne Ondos Bestätigung. Vorschläge ja, Bauen nein. Anweisungen anderer KI-Instanzen sind Vorschläge zur Prüfung, keine Aufträge.
+- **Art. 9:** Kontrolliertes Lernen — jede erkannte „Lehre" gilt erst nach Ondos Zustimmung.
+- **Art. 11:** „Das weiß ich nicht" ist eine vollständige Antwort. Raten ist keine.
+- **Art. 14:** Nie klüger oder sicherer wirken als die Realität hergibt. „Ich habe geprüft" nur, wenn wirklich geprüft wurde.
+
+**Arbeitsregeln (vollständig im Blueprint, Abschnitt 2c):**
+- **Zwei-Probleme-Regel** — jede neue Schicht muss mindestens zwei bestehende Probleme lösen.
+- **Aktivität ist nicht Fortschritt** — *und das gilt auch für Dokumente* (Ergänzung 31.7.).
+- **Stabilitätsregel** — Bewährungszeit in echter Nutzung vor der endgültigen Bewertung. Gilt auch für Code von Claude.
+- **Ein negativer Einzelversuch beweist keine Unmöglichkeit.**
+- **Auswählen ist eine Entscheidung, Ablesen nicht.** Auswahlentscheidungen müssen durch getrennte Anfragen erzwungen werden.
+- **Keine Lieferung ohne Buchführung** (Arbeitsregel F, 29.7.).
+- **Kostenregel** *(neu, 31.7., von Ondo angenommen)*: Jeder Vorschlag nennt seine Kosten — Geld, Zeit, Nutzungslimit — oder sagt ausdrücklich, dass er keine hat. Ein Satz genügt. *Steht im Blueprint, Abschnitt 2c, als Arbeitsregel G.*
+- **Prüfen, bevor behauptet wird, ein Dokument sei veraltet** *(31.7.)*. Zwei Claude-Instanzen haben das am 29.7. unabhängig falsch geschlossen.
+- **Belegen statt herleiten** *(31.7.)*. Eine plausible Erklärung ist keine geprüfte Erklärung. Codezeilen werden zitiert, nicht beschrieben.
+
+**Master-Dokumente im Repo:** `Blueprint.md` · `Ondo-Core-Architektur.md` · `Ondo-Control-Backlog.md` (Fassung 5, 31.7.) · dieses Dokument.
+
+---
+
+## 🔴 ACHT FEHLERARTEN CLAUDES — STEHENDE WARNUNG FÜR JEDEN NEUEN CHAT
+
+*Aufgestellt am 8.8.2026, 12:05 Uhr von Chat 12 auf Ondos Verlangen, nach einem Vormittag mit **vierzehn eigenen Fehlern**. Ondo hat jeden einzelnen gefunden, nicht Claude. Diese Liste ist keine Selbstanklage, sondern eine Prüfliste: Es sind Fehlerarten, keine Einzelfälle, und jede ist an diesem Tag mindestens einmal aufgetreten.*
+
+| # | Fehlerart | Wie sie an diesem Tag aussah | Gegenmittel |
+|---|---|---|---|
+| **C1** | **Zahl hergeleitet statt abgelesen** | Messstand als „150" fortgeschrieben (135 + 15), richtig waren **180** — die zehn am Morgen des 7.8. übernommenen Ergebnisse waren übersehen. | **Jede Messzahl kommt aus der App oder aus dem Log.** Nie aus einer älteren Zahl plus eigener Rechnung. Wenn kein Bildschirmfoto vorliegt: danach fragen oder die Zahl offen lassen. |
+| **C2** | **Zeitstempel erfunden** | **Dreimal.** „07:00" im Prüferbericht (es war 06:28) · „08:10" im Kopf (es war 08:04) · „11:55" ursprünglich als „08:35" (es war 11:58, **drei Stunden daneben**). Muster: Uhr abfragen, dann eine spätere Zahl dazuerfinden. | **Uhr unmittelbar vor dem Schreiben abfragen, nie schätzen.** Die Systemzeit des Rechners ist unbrauchbar — sie läuft in UTC und lag um zwei Stunden daneben. |
+| **C3** | **Neuen Abschnitt geschrieben, Folgewirkung woanders nicht geprüft** | Abschnitt „Aktueller Messstand" blieb auf 135 stehen · Backlog-Kopf blieb auf dem 7.8. · Kopfzeile blieb auf einer alten Uhrzeit. | **Nach jeder Änderung die Dokumente nach Zahlen durchsuchen, die den Stand beschreiben** — Version, Fassung, Uhrzeit, Messzahl. Historische Abschnitte bleiben unberührt. |
+| **C4** | **Widerspruch im selben Dokument stehen lassen** | Unterpunkt 4 behauptete „Test A: 39 von 39 ohne Ausnahme", Unterpunkt 7 belegte drei Ausnahmen. Richtig ist **92 von 95**. | **Wenn ein neuer Befund eine ältere Aussage berührt, die ältere im selben Durchgang berichtigen** — nicht nur den neuen Befund danebenstellen. |
+| **C5** | **Zugesagtes nicht ausgeführt** | Die Anpfiffzeit-Prüfung wurde angekündigt und erst auf Nachfrage gemacht · die zweite Prüferrunde wurde vollständig vergessen — das Ergebnis, für das die frischen Chats überhaupt eingerichtet wurden. | **Zusagen am Ende jeder Antwort gegenprüfen.** Was in einer Antwort versprochen wurde, wird in der nächsten eingelöst oder ausdrücklich vertagt. |
+| **C6** | **🔴 Prüfung, deren Sollwert vom Geprüften stammt** | Das Prüfskript enthielt `STAMP = "08:35 Uhr"` — Claudes erfundene Uhrzeit. Es prüfte sie gegen sich selbst und meldete **„alles sauber"**. | **Ein Prüfer darf seinen Sollwert nie vom Geprüften bekommen.** `pruefe.py` bricht jetzt ab, wenn keine abgelesene Uhrzeit übergeben wird. |
+| **C7** | **Konvention des Dokuments gebrochen** | Neun „Nachträge" auf Fassung 12 gestapelt, statt Fassung 13 zu eröffnen — obwohl die Fassungen 5 bis 12 die Handhabung eindeutig zeigen. Im Kopf stand „Fassung 12 mit neun Nachträgen". | **Vor dem Ändern eines Dokuments ansehen, wie es bisher geführt wurde.** Die Handhabung steht in seiner eigenen Geschichte. |
+| **C8** | **Zu starke Verallgemeinerung aus wenigen Fällen** | „Flash dreht nie" (falsch: zweimal) · „39 von 39 ohne eine einzige Ausnahme" (falsch: drei Ausnahmen) · die Regel „alle Einträge mit Null im Tipp umdrehen" **hätte einen richtigen Eintrag zerstört** (Motherwell, 23.7. — zweite Fehlerart). | **Vor jeder Regel, die auf Daten angewandt wird, die Daten vollständig auszählen.** Nicht aus dem Ausschnitt der letzten Tage schliessen. |
+
+**Eine neunte, andersartige:** Arbeitsregel F („jede Entscheidung sofort eintragen") wurde zu wörtlich genommen — Claude gab Ondo an einem Abend **dreimal** Dateien zum Hochladen. *Eintragen heisst in die Datei schreiben, nicht sie Ondo in die Hand drücken.* Gesammelt wird bis zum Ende eines Arbeitsblocks, aber **nie über das Ende eines Chats hinaus**.
+
+**Das Werkzeug dagegen:** `pruefe.py` prüft Kopf-Zeitstempel gegen eine übergebene Ablesung, Abschnittsnummern auf Lücken, Querverweise auf Auflösbarkeit, veraltete Messzahlen ausserhalb von Korrekturvermerken, Fassungs- und Versionsnummern über Kopf, Änderungsnotiz und Protokoll hinweg, sowie eine Liste von Pflichtinhalten. **Vor jeder Dateiausgabe laufen lassen, mit frisch abgelesener Uhrzeit als Parameter.**
+
+**Und der wichtigste Satz zum Schluss:** Alle vierzehn Fehler wurden von **Ondo** gefunden. Keiner von Claude. Wer diese Liste liest und daraus schliesst, er selbst mache solche Fehler nicht, hat sie nicht verstanden.
+
+---
+
+## Aktueller Messstand (abgelesen aus dem Bildschirmfoto der App am 14.8.2026)
+
+*Zur Herkunft (Art. 14): **Alle Zahlen dieses Abschnitts sind aus der Anzeige der App abgelesen, keine ist gerechnet.** Der Abschnitt wird immer vollstaendig ersetzt, nie in Teilen. Die genaue Ablesezeit ist unbekannt (Art. 11).*
+
+**Bestand:** **293 Vorhersagen** und 6 Wetten im Speicher. **Letzte Sicherung: 14.8.2026, 22:53 Uhr.**
+
+*Der Bestand ist gleich geblieben, die Zahl der bewerteten Aussagen um je 30 gestiegen: Am 14.8. wurden zehn Endstaende des 13.8. uebernommen — zehn Spiele mal drei Maerkte. Es kamen keine neuen Vorhersagen dazu.*
+
+| | bewertete Aussagen | Kalibrierungs-Abweichung | Trefferquote |
+|---|---|---|---|
+| Sonnet | 330 | **4 %** (gruen) | 55 % (182/330) |
+| Flash | 327 | **8 %** (gruen) | 50 % (164/327) |
+| gesamt | 657 | — | 53 % (346/657) |
+
+**Sonnets Verteilung** *(Anzahl je Stufe, in Klammern behauptet/wirklich)*: 1–49 % → 49 (44/35) · 50–59 % → 212 (54/57) · 60–69 % → 44 (63/66) · 70–79 % → 25 (73/64) · ab 80 % → 0
+
+**Flashs Verteilung** *(Anzahl je Stufe, in Klammern behauptet/wirklich)*: 1–49 % → 46 (43/28) · 50–59 % → 135 (55/51) · 60–69 % → 117 (63/56) · 70–79 % → 24 (73/54) · 80–89 % → 4 (83/75) · 90–99 % → 1 (90/100)
+
+**Entschlossenheit:**
+
+| | Ø Abstand von 50 | Anteil ab 60 % |
+|---|---|---|
+| Sonnet | 6,8 | 21 % (69/330) |
+| Flash | 9,7 | 45 % (146/327) |
+
+**Wetten:** Saldo −19,51 €, 6 abgeschlossen, 0,00 € offen, Trefferquote 17 % (1 von 6). Gesamt-Bilanz −29,75 €.
+
+**Sonnet hat weiterhin KEINE bewertete Aussage ab 80 %.** Flash hat dort fuenf. Die Verzerrung durch geparkte Eintraege besteht unveraendert und gehoert neben jede Aussage ueber Sonnets Verhalten bei hoher Zuversicht.
+
+*Vorherige Staende: 13.8. nach der Berichtigung — Sonnet 300 bei 4 % und 55 %, Flash 297 bei 8 % und 50 %. 13.8. vor der Berichtigung — Sonnet 300 bei 4 % und 52 %. 9.8. — je 207. 8.8. — je 180.*
+
+**Was die Berichtigung bewirkt hat (Vergleich 16:32 Uhr → 22:20 Uhr, gleicher Bestand):**
+
+| | vorher | nachher |
+|---|---|---|
+| Sonnet Trefferquote | 52 % (155) | **55 % (165)** |
+| Sonnet 60–69 % wirklich | 58 % | **71 %** |
+| Sonnet 70–79 % wirklich | 48 % | **67 %** |
+| Sonnet 1–49 % Anzahl | 47 | **46** |
+| Sonnet 50–59 % Anzahl | 194 | **195** |
+| Sonnet Abweichung | 4 % | **4 %** |
+| Flash | unverändert | unverändert |
+
+**Drei Gegenproben, die die Berichtigung bestätigen:**
+1. **+10 Treffer, nicht +16.** Von den 16 berichtigten Aussagen standen 13 auf *falsch* und 3 auf *richtig*. 13 minus 3 ergibt genau die beobachteten +10 (155 → 165).
+2. **Eine Aussage wechselte die Stufe.** Motherwell (Typ B) ging von 42 auf 58 Prozent — deshalb 1–49 % um eine Aussage kleiner und 50–59 % um eine grösser.
+3. **Flash blieb in jeder Zahl unverändert.** Die Berichtigung hat den Nachbarn nicht berührt.
+
+**Ehrliche Einordnung (Art. 14):**
+- **🔴 Die Berichtigung hat die Kalibrierung NICHT verbessert.** Sie steht vorher wie nachher bei 4 %. Der Fehler wurde **verschoben, nicht beseitigt**: Die Stufe 70–79 % ging von 25 Punkten Abweichung auf 6 zurück, die Stufe 60–69 % kippte von 5 Punkten zu wenig auf 8 Punkte zu viel. **Wer nur auf die 4 % sieht, hält den Vorgang für wirkungslos.** Das ist er nicht — die Trefferquote und die Verteilung zeigen die Wirkung.
+- **Sonnet ist jetzt in den oberen Stufen zu vorsichtig, nicht mehr zu zuversichtlich.** Bei 60–69 % behauptet, trafen 71 % ein; bei 70–79 % behauptet, 67 %. Vor der Berichtigung sah es genau umgekehrt aus. **Die frühere Aussage „Sonnet überschätzt sich bei hoher Zuversicht" beruhte auf dem Rechenfehler und ist damit hinfällig.**
+- **Der Vorsprung gegenüber Flash ist weiterhin jung** — 8:8 am 8.8., 5:6 am 9.8., 4:8 heute. Nach Backlog-Punkt 35 liegt eine Schwankung dieser Grösse im Rauschen.
+- **64 Prozent aller Sonnet-Aussagen liegen zwischen 50 und 59 Prozent** (212 von 330). Sonnet legt sich selten fest. *(Stand zuvor hier: 195 von 300 — beim Ersetzen des Abschnitts am 14.8. stehengeblieben, berichtigt am 14.8. abends.)*
+- **Flashs Schwachstelle bleibt der grösste Einzelposten:** 117 Aussagen bei 60–69 %, behauptet 63, eingetroffen 56. *(Stand zuvor hier: 108 Aussagen, eingetroffen 54 — berichtigt am 14.8. abends.)*
+- Zeilen mit ein bis vier Aussagen (Flash 80–99 %) sind **bedeutungslos**.
+- **Ungleiche Anzahl:** Sonnet 330, Flash 327. Woher die Differenz von drei kommt, ist **nicht geklärt** (Art. 11). *(Stand zuvor hier: 300 und 297 — berichtigt am 14.8. abends.)*
+- **Der Brier-Score war aus der Anzeige nicht ablesbar** und wird deshalb nicht angegeben. Die Erwartung aus der Buchführung — er kippt von schlechter auf besser als Raten — ist **ungeprüft**.
+- Ondos eigene Bilanz unverändert: **−29,75 €**, Wett-Saldo −19,51 €, eigene Trefferquote 17 % (1/6).
+
+*Vorherige Stände: 13.8. vor der Berichtigung — je 300 und 297, Sonnet 4 % bei 52 % Treffern. 9.8. — je 207, Sonnet 5 %, Flash 6 %. 8.8. — je 180, beide 8 %. 6.8. — je 135, 5 und 9. 3.8. — je 87, 4,8 und 8,6.*
+
+## Versionen
+
+- **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
+- **Beta: v19.8.2** (`beta.html`, geliefert 14.8.2026, 22:36 Uhr) — **Backlog-Punkt 44 gebaut: Messdaten-Export ohne Schlüssel.** Ein zweiter Knopf unter „Mehr" gibt Vorhersagen und Wetten als Text oder Datei aus, ohne API-Schlüssel und ohne PIN. Kein Schnitt in der Messreihe. `APP_VERSION` weiter 18.
+- **Beta zuvor: v19.8.1** (`beta.html`, geliefert 9.8.2026, 13:55 Uhr) — **die Spielliste hat eine eigene Rolle und läuft auf `gemini-flash-latest`.** Jeder neue Eintrag trägt zusätzlich die **Stufe**. Kein Schnitt in der Messreihe. `APP_VERSION` weiter 18.
+- **Beta zuvor: v19.8.0** (`beta.html`, geliefert 9.8.2026, 04:15 Uhr) — **Schnitt in der Messreihe bei „beide treffen", Punkt F gebaut.** Werte vor und ab dieser Version sind bei diesem Markt nicht vergleichbar. Jeder neue Log-Eintrag trägt das Feld `codeVersion`. `APP_VERSION` weiter 18.
+- **Beta zuvor: v19.7.8** (`beta.html`, geliefert 7.8.2026) — getrennter Speicher, aktive Messphase. Vier Nachbesserungen am 3. und 4. August, alle ausgelöst durch Punkt 0a; Einzelheiten im Backlog. Im Code steht weiterhin `APP_VERSION = 18` (technische Schuld, bewusst nicht nebenbei geändert, vor der Beförderung zu klären)
+- **Sprachschlüssel: 217** in DE, FR und EN, maschinell abgeglichen und identisch (**gezählt am 14.8.2026 abends aus `beta.html`**). *Verlauf: die früher dokumentierten 184 waren nie geprüft; nachgezählt waren es 185, dann 193, dann 199, dann 201 (v19.7.8), dann 203 (v19.8.1). Die acht Schlüssel des Berichtigungsknopfes vom 13.8. (`korrT` bis `korrOk`) waren nirgends nachgetragen — 203 + 8 = 211. Punkt 44 bringt sechs weitere (`messT` bis `messBlock`) — 211 + 6 = 217.* **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
+
+---
+
+## Der Schiedsrichter — zehn Fehlerarten
+
+| # | Fehlerart | Datum | Absicherung | Version |
+|---|---|---|---|---|
+| 1 | Urteil nicht-deterministisch | 22.7. | **Logik in festen Code** | v19.0 |
+| 2 | Falsches Duell (altes 0:0 vom Januar) | 23.7. | **Datums- und Wettbewerbspflicht** | v19.2 |
+| 3 | Spiel übersehen (Zeitzone Südamerika) | 23.7. | **Sichtbare Bilanz** + Zeitzonen-Hinweis | v19.4 |
+| 4 | Nicht gefunden trotz Verfügbarkeit | 24./25.7. | **Automatisches Wiederholen** | v19.4 |
+| 5 | „läuft noch" bei längst beendetem Spiel | 27.7. | **Zeitrechnung im Code** (2,5-Stunden-Regel) | v19.5 |
+| 6 | Halbzeitstand statt Endstand | 27.7. | **Phasen-Pflicht** + Vertauschungs-Kontrolle | v19.6 |
+| 7 | **Heim und Gast vertauscht** | 29.7. | *keine* — zweimal unabhängig aufgetreten | — |
+| 8 | **Falscher Endstand trotz aller Prüfungen** | 30.7. | *keine* — alle Absicherungen prüfen die Form, nicht die Wahrheit | — |
+| 9 | **Erfundene 0:0** | 31.7. | *keine* — löst nicht einmal eine Warnung aus | — |
+| 10 | **Stand aus der Verlängerung statt nach 90 Minuten** | 11.8. (gefunden 13.8.) | *keine* — Halbzeitstand, Datum, Wettbewerb und der Vermerk `n.Verl.` waren alle richtig; nur die Grenze bei Minute 90 war falsch gezogen. Im zweiten Lauf lieferte derselbe Schiedsrichter den richtigen Wert | — |
+| — | ~~Dasselbe Spiel doppelt in der Spielliste~~ | 3.8. | **VERSCHOBEN am 7.8. (Ondo) in die eigene Tabelle „Die Spielliste" weiter unten.** Sie ist Datenhygiene, kein Schiedsrichterurteil — Geminis eigene Einordnung vom 4.8. | — |
+
+**Die wichtigste Erkenntnis (25.7.):** Alle drei KIs urteilten unabhängig, Ergebnisse unterklassiger Spiele seien nicht beschaffbar. **Das war falsch.** Ondo drückte den Prüf-Knopf mehrfach: 2 von 7, dann 4 von 7, schließlich 7 von 7. Es war kein Verfügbarkeits-, sondern ein Zuverlässigkeitsproblem.
+
+**Was weiterhin gilt:** Ondos manuelle Kontrolle hat **jeden** Fehler gefangen, den die Automatik durchgelassen hat.
+
+**Bekannte Lücke:** Die Wiederholung greift nur bei „nicht gefunden". Ein einmal als *fertig* gemeldetes Ergebnis wird nie wieder hinterfragt.
+
+---
+
+## Die Spielliste — drei Fehlerarten
+
+*Eigene Tabelle, beschlossen von Ondo am 7.8. Die Prüfer hatten empfohlen, den Doppeleintrag als **zehnte** Fehlerart des Schiedsrichters zu führen. Dagegen sprach: Alle neun Schiedsrichter-Fehlerarten sind Fehler beim **Ablesen von Ergebnissen**. Die Spielliste erzeugt ihre Probleme, bevor der Schiedsrichter überhaupt beteiligt ist. Beides in einer Tabelle zu führen hätte eine Tabelle ergeben, die vorgibt, über den Schiedsrichter zu sprechen, und in Wirklichkeit zwei Dinge vermischt.*
+
+| # | Fehlerart | Datum | Absicherung | Wirkung auf die Messung |
+|---|---|---|---|---|
+| S1 | **Dasselbe Spiel doppelt in der Liste** — „Bohemians – Galway United FC" (20:00) und „Bohemians Dublin – Galway United" (19:00) | 2.8., erneut 6.8. (Salzburg – Pafos) | *keine* — die Doppelten-Sperre in `spielListeHolen` vergleicht Buchstaben; zwei Schreibweisen sind für sie zwei Spiele | **sechs bewertete Aussagen je Gehirn aus einem Spiel statt drei**, und eine der beiden Anpfiffzeiten ist falsch |
+| S2 | **Falsche Anpfiffzeiten** — drei Tage in Folge, **drei verschiedene Muster**: neun Stunden starr (5.8.) · null bis drei Stunden ungleich (6.8.) · eine Stunde gleichmäßig (7.8.) | 5.–7.8. | *keine* — Sofortmaßnahme ohne Code: erst spätabends prüfen | **die Anpfiffzeit geht in die 2,5-Stunden-Regel des Schiedsrichters ein.** Alle drei Muster zeigen in dieselbe gefährliche Richtung: zu früh |
+| S3 | **Erfundene Spiele** — vier frei zusammengesetzte Paarungen und eine bereits gespielte, alle als „UEFA Conference League Qualifikation" am 7.8. datiert | 7.8. | *keine* | **zehn Vorhersagen geparkt.** Zu solchen Spielen kann nie ein Ergebnis entstehen; der Schiedsrichter hätte danach gesucht |
+
+**Was alle drei teilen: Die Ursache ist bei keiner bekannt (Art. 11), und gegen keine ist etwas gebaut worden.** Bei S2 und S3 ist zusätzlich unbekannt, warum derselbe Auftrag am selben Tag einmal Unbrauchbares und einmal Belegtes liefert.
+
+**🔴 Bekannte Verzerrung, die neben jeder dieser Zahlen mitzulesen ist:** **50 der 190 Einträge sind geparkt und werden nie bewertet.** Darunter Sonnets **einzige** Aussagen ab 80 % (92 % und 85 %). Damit fällt systematisch der Rand weg, an dem sich Überzuversicht zeigen würde — **und nur bei einem der beiden Gehirne**. Flash hat dort vier bewertete Aussagen, Sonnet keine.
+
+**🔴 Zur Genauigkeit:** Die Abweichung ist bei 180 Aussagen auf **mehrere Prozentpunkte** genau, nicht auf einen. Bei einer Wiederholung läge sie mit 90 % zwischen rund 4 und 15 % — **bei beiden Gehirnen**. Der wochenlang berichtete Vorsprung „5 gegen 9" lag vollständig im Rauschen.
+
+**Ehrliche Einordnung (Art. 14):** Die Spielliste erzeugt inzwischen fast so viele ungelöste Probleme wie der Schiedsrichter, über den seit dem 22. Juli geredet wird. Das stand bis zum 7. August nirgends zusammen, weil jeder Fund einzeln eingetragen wurde.
+
+**Was NICHT folgt:** dass die Spielliste defekt ist. Am 6.8. lieferte sie nacheinander null, ein und zehn Spiele; am 7.8. erst Erfundenes, dann Belegtes. Das ist Unzuverlässigkeit, nicht Ausfall — die Unterscheidung aus Arbeitsregel D.
+
+---
+
+## Arbeitsweise (wichtig für neue Chats)
+
+### Dateizugriff — der Eintrag vom 23.7. ist ÜBERHOLT
+
+**Alte Fassung (falsch):** „Raw-Links funktionieren nur bei Claude. ChatGPT und Gemini brauchen Dateien als Anhang."
+
+**Richtig (Befund vom 30.7.):** ChatGPTs Web-Werkzeug scheitert an `raw.githubusercontent.com` und an `.md`-Dateien wegen des Formats — und es **sucht**, statt direkt abzurufen. GitHub Pages wandelt Markdown aber automatisch in HTML um. Diese Adressform funktioniert:
+
+```
+https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html
+https://ondo-control.github.io/Ondo-Control/Ondo-Control-Backlog.html
+https://ondo-control.github.io/Ondo-Control/Blueprint.html
+https://ondo-control.github.io/Ondo-Control/Ondo-Core-Architektur.html
+```
+
+**Folgen:**
+- Prüfer bekommen **Links statt Anhänge**. Kein Upload-Kontingent, immer aktueller Stand.
+- `beta.html` wird ChatGPT bewusst **nicht** gegeben, nur auf ausdrückliche Nachfrage.
+- Der **Sperrvermerk für Übergabemappen gilt verschärft**. Die Mappe darf unter keinen Umständen ins Repo.
+- **Gegenprobe mit Gemini steht noch aus.**
+- **Handgeschriebene Projektzusammenfassungen in Übergaben sind zu unterlassen.** ChatGPTs eigene Mappe vom 30.7. war an sechs Stellen veraltet. Eine Übergabe verweist auf die Dokumente, sie fasst sie nicht nach Gedächtnis zusammen.
+
+**⚠ Für Claude gilt weiterhin: Raw-Links immer mit angehängter Zahl abrufen**, z. B. `…/PROJEKT-STATUS.md?v=20260731`. Ohne diesen Zusatz kann eine veraltete Zwischenkopie zurückkommen. Zweite Falle: In hochgeladenen Chat-PDFs steht die alte Fassung dieses Dokuments im Volltext.
+
+### Keine Lieferung ohne Buchführung (Arbeitsregel F, 29.7.)
+- **Backlog:** jede Entscheidung sofort eintragen, in derselben Antwort. Bei Code-Lieferungen kommt die Backlog-Datei mit dem Code zusammen.
+- **Dieses Dokument:** am Ende eines Arbeitstags mit Änderungen, und zwingend vor jeder Chat-Übergabe.
+- **Blueprint / Ondo-Core:** nur bei Verfassungs- und Architekturentscheidungen.
+- **Ondos Kontrollsatz nach jeder Lieferung: „Und die Dokumente?"** Der wirksame Teil der Regel — er kommt nicht von der KI.
+
+### Berichte an die Prüfer
+Dateiname beginnt mit Datum und Uhrzeit: `2026-07-31_1430_Ondo-Control_Thema.md`
+- Antwort an alle vier richten, nicht nur an Ondo
+- Einfache Sprache, Fachbegriffe beim ersten Mal erklären
+- **Höchstens zwei geschlossene Fragen** (Ja/Nein plus ein Satz)
+- **Ausnahme:** Bei Problemen ohne erkennbare Lösung wird eine Frage ausdrücklich **offen** gestellt. **Lehre: Ein Format, das nur abfragt, bekommt keine Mitarbeit.**
+- Ausdrücklich hinschreiben, was **nicht** Thema ist
+- Eigene Zweifel mit zur Prüfung stellen
+
+**Zusammenfassungen:** Claude schlägt von selbst vor: *„Zeitpunkt für eine Zusammenfassung zum Teilen mit den Projektpartnern wäre angebracht. Jetzt durchführen — Ja/Nein?"* Bei Nein sofort einen Ersatzzeitpunkt nennen.
+
+**Erklärpflicht:** Ondo kann nichts entscheiden, was er nicht versteht. Vor jeder Entscheidung in Alltagssprache erklären. **Bildliche Vergleiche haben sich als hinderlich erwiesen — konkret bleiben.**
+
+**Nie empfehlen, Ergebnisse von Hand nachzuschlagen.** Seit dem 25.7. abgelehnt. Die Zuverlässigkeit des Schiedsrichters gehört zum Test, nicht in Ondos Freizeit. Zwei Claude-Instanzen sind trotzdem darauf zurückgefallen.
+
+**Datensicherung:** Ondo regelmäßig daran erinnern.
+**Letzte bestätigte Sicherung: 14.8.2026, 22:53 Uhr** — 293 Vorhersagen, 6 Wetten, nach dem Einbau von v19.8.2. Davor: 14.8., 22:22 Uhr (vor der Lieferung) · 14.8., 07:14 Uhr (nach der Uebernahme der zehn Endstaende) · 13.8., 18:38 Uhr (nach der Berichtigung), 16:28 Uhr (293 Vorhersagen) und 09:17 Uhr. Früher: 8.8., 07:54 Uhr (210 Vorhersagen) · 7.8., 08:00 Uhr · 6.8., 08:28 Uhr (170 Vorhersagen) · 5.8., 13:06 Uhr · 4.8., 17:58 Uhr (138 Vorhersagen) · 3.8. · 2.8. · 31.7., 07:49 Uhr. ⚠ **Vor jeder Codelieferung ist eine frische Sicherung zu verlangen.**
+
+*Diese Zeile ist eine **Standsangabe**, keine Verlaufsangabe. Sie stand vom 7. bis zum 14. August auf dem 7.8. und war damit sechs Tage falsch, während zwei andere Stellen des Dokuments den richtigen Wert trugen. Seit dem 14.8. prüft `pruefe.py` sie gegen die jüngste Sicherungsangabe im Dokument.*
+*Am 4.8. hat sich die Sicherung bewährt: Ondo hat den Browserverlauf gelöscht, Safari löschte dabei den Websitespeicher mit, alle Daten waren weg — und wurden vollständig wiederhergestellt. **Nichts verloren.** Zwei bekannte Verlustwege: Browserdaten löschen · getrennter Speicher Safari gegen Startbildschirm.*
+*Hinweis (3.8.): Die Sicherungsdatei enthält `apiKey`, `geminiKey` und `pin` im Klartext. Sie darf nie an ChatGPT oder Gemini gehen, nie an einen Bericht angehängt und nie ins Repo. Ondo hat am 3.8. beide Schlüssel neu erzeugt und die alten deaktiviert. **Folge: Eine Sicherung von vor dem 3.8. überschreibt beim Zurückladen die neuen Schlüssel mit den toten alten** — dann Schlüssel neu eintragen, die Messdaten bleiben unberührt.*
+
+---
+
+## Arbeitsablauf für neue Chats
+
+Ondo schreibt „Ondo Control: [Anliegen]" und fügt Raw-Links ein, **immer mit angehängter Zahl**, z. B. `?v=20260731`. **Alle sechs Dateien plus `version.json` werden gelesen, bevor irgendetwas beurteilt wird** — Blueprint und Ondo-Core eingeschlossen. Das Weglassen hat am 30./31.7. zweimal zu falschen Empfehlungen geführt.
+
+**Vor jeder Lieferung:** Syntax-Check (`node --check`), Sprachdatei-Abgleich (DE/FR/EN gleiche Schlüssel, **Zahl siehe Abschnitt „Versionen" — sie steht nur dort**), Trockentest der neuen Logik — am besten gegen Ondos jüngste Sicherungsdatei, das prüft die Rechnung an echten Daten. Versionsnummer im Header hochzählen. **Und die Dokumente (Arbeitsregel F).**
+
+### Chat-Übergabe ist Claudes Pflicht, nicht Ondos (**Übergaberegel**, 30.7.)
+
+*Namensklärung erledigt (Ondo, 31.7., eingetragen 3.8.): Diese Vorschrift hieß bis dahin ebenfalls „Regel G" und ließ sich mit der Arbeitsregel G (Kostenregel) im Blueprint verwechseln. Sie heißt jetzt **Übergaberegel**.*
+
+Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp wird. Sie besteht aus drei Teilen: aktualisierter PROJEKT-STATUS, aktualisierter Backlog, und einer **Übergabemappe** mit den Abschnitten: (A) Nachricht zum Einfügen, (B) Kontrollfragen, (C) Antwortschlüssel nur für Ondo, (D) was zu tun ist, wenn Antworten falsch sind, (E) erste Arbeit nach der Abnahme.
+
+**Begründung:** Eine Übergabenachricht allein beweist nichts. Erst die richtig beantwortete Kontrollfrage beweist etwas. Die Kontrollfragen werden bei jeder Übergabe **neu geschrieben**. Mindestens eine muss eine Fangfrage sein, deren richtige Antwort „das weiß ich nicht" lautet (Art. 11 und 14).
+
+**Die Mappe verweist auf die Dokumente. Sie fasst sie nicht nach Gedächtnis zusammen.**
+
+**Auslöser (Claude prüft das selbst):** eine vollständige Ausgabe von `beta.html` (74 KB) passt nicht mehr sicher in eine Antwort · zusätzliche große Dokumente wurden eingelesen · Antworten werden erkennbar kürzer oder ungenauer, als die Aufgabe verlangt.
+
+**Was den Speicher wirklich füllt** *(gemessen am 31.7.)*: Vier PDF-Ausdrucke der KI-Log-Seite kosteten zusammen mehr als `beta.html`, `Blueprint.md` und `Ondo-Core-Architektur.md` zusammen — jeder enthält das gesamte Log im Volltext, und das Log wächst mit jeder Vorhersage.
+
+**Grobe Zahlen zum Rechnen** *(Claude, 31.7. — Schätzungen, ausdrücklich keine Messungen)*: Gesamter Arbeitsspeicher etwa **400 KB Text**. Einlesen aller sieben Dateien ≈ **240 KB (60 %)**. Drei Dokumente ausschreiben ≈ **90 KB**. `beta.html` ≈ 74 KB · `OndoControl.html` ≈ 66 KB · die vier Markdown-Dateien zusammen ≈ 100 KB.
+
+**⛑ Seit dem 5.8.: Für den KI-Log gibt es keine Bildschirmfotos mehr, sondern den Textknopf** (Backlog-Punkt 22, unter „KI-Log"). Zehn Vorhersagen als Text kosten einen Bruchteil eines Bildes und sind maschinell auswertbar — Test A war auf diesem Weg auswertbar und wäre es auf einem Bild nicht gewesen. Für alles andere gilt weiter:
+
+**Bildschirmfotos:** **Zwei bis drei normale Bildschirmfotos vom oberen Teil (≈ 15 KB je Stück) sind das Günstigste.** Ein Bild der ganzen langen Seite kostet 40–60 KB und ist kaum lesbar. Ein PDF-Ausdruck ist am teuersten, weil er das gesamte Log als Text enthält, auch die nicht sichtbaren Einträge.
+
+**⚑ Das Hochlade-Verfahren (3.8., bewährt bei v19.7) — ab sofort Standard:** Zu ändernde Dateien werden von Ondo **hochgeladen** statt von Claude aus dem Gedächtnis neu ausgeschrieben. Claude ändert nur die betroffenen Stellen und gibt die fertige Datei zurück; der Rest läuft nie durch den Speicher. Ersparnis bei `beta.html` grob ein Viertel eines ganzen Chats. Dadurch passten am 3.8. Code **und** vollständige Buchführung in denselben Chat.
+
+**Ablauf:** Teil A in den neuen Chat → dessen Bestätigung abwarten → Teil B einfügen → die Antworten in den **alten** Chat zurückkopieren → Abnahme durch den abgebenden Chat. Vorher wird im neuen Chat nichts gebaut. Erste Arbeit ist Teil E.
+
+**Eigene Fassung für ChatGPT:** ChatGPT kann keinen neuen Chat öffnen. Die Übergaberegel braucht dafür eine angepasste Fassung — **noch zu schreiben.**
+
+**Die Übergabemappe gehört NICHT ins Repo.** Sie enthält den Antwortschlüssel. Sie bleibt auf Ondos Gerät und wird gelöscht, **sobald Teil E vollständig in Repo-Dateien steht** — nicht früher.
+
+---
+
+## Lernkette (beschlossen 6.7., Reihenfolge fixiert, noch nicht gebaut)
+
+> **Evidence Ledger** (warum wurde empfohlen) → **Decision Ledger** (was machte Ondo daraus) → **Observation Layer** (Muster erkennen)
+
+Jede Lehre braucht Ondos Bestätigung (Art. 9). Der Evidence Ledger wird seit v19.0 faktisch gefüllt.
+
+**Aktueller Wahrheitsstand: Das System lernt noch nicht.** Es hat Erinnerung, kein Lernen. Das ist Absicht.
+
+---
+
+## Wetten ist das Pilotmodul, nicht die Vision
+
+Geplant sind Finanzen, Content, Organisation. Fast alles, was gebaut wird, ist domänenunabhängig: askBrain-Abstraktion, Vertrauensstufen, Quellen-Transparenz, Kalibrierung, Evidence Ledger.
+
+**ChatGPTs Leitbild (23.7., soll in Ondo-Core — steht dort noch nicht):** Ebene 1 Daten (Fakten, keine KI) · Ebene 2 Denken (die Gehirne, arbeiten nur mit Ebene-1-Daten) · Ebene 3 Bewertung (Log, Kalibrierung, Lernkette).
+
+**Ehrlicher Hinweis:** Andere Module werden schwerer. Beim Fußball urteilt die Realität nach 90 Minuten unbestechlich. Bei Finanz- oder Organisationsentscheidungen kommt die Rückmeldung später und verrauschter.
+
+---
+
+---
+
+## Uebergabe-Protokoll — steht in der Chronik
+
+Die Tabelle aller bisherigen Chat-Uebergaben ist nach `CHRONIK-2026-08.md` gewandert, Abschnitt „Uebergabe-Protokoll". Sie ist ein Archiv und wird nur bei einer Uebergabe gebraucht.
+
+**Fortgeschrieben wird sie dort**, von Claude, bei jeder Uebergabe — nicht hier.
+
+---
+---
+
+## Entscheidungen, die bei Ondo liegen
+
+*Neu angelegt am 15.8.2026 (Punkt 18). **Diese Liste nennt nur Namen und Fundstellen** — der Inhalt jedes Punktes steht im Backlog und wird hier nicht wiederholt (Punkt 45). Bisher war sie ueber Backlog, Blueprint und die Uebergabemappen verstreut; genau deshalb standen in einer einzigen Aufzaehlung zwei Fehler nebeneinander.*
+
+| Punkt | Worum es geht | Fundstelle |
+|---|---|---|
+| **41** | Zuordnung der Listenangaben ueber den Spielnamen statt ueber die laufende Nummer | Backlog, Prio 1 |
+| **36** | Verlaengerte Spielformate ausschliessen — entscheidungsreif, zwei belegte Faelle | Backlog, Prio 1 |
+| **37** | Kein Schutz gegen einen zweiten Vorhersagelauf am selben Tag | Backlog, Prio 1 |
+| **30** | Freundschaftsspiele aus der Spielliste ausschliessen? | Backlog |
+| **2** | Erster Lernschritt — beide Pruefer raten, zunaechst nur Flash zu korrigieren | Backlog, Prio 1 |
+| **34** | Brier-Score in die App bauen. **Gerechnet ist nicht gebaut** | Backlog |
+| **35** | Streuungsangabe in die App bauen. **Gerechnet ist nicht gebaut** | Backlog |
+| **3** | Such-Experiment — durch die Pause **blockiert**, laeuft am **20. August** ab. Empfehlung Claude: ruhen lassen | Backlog, Prio 1 |
+| **0b** | Widersprueche messen statt korrigieren. **Der Eintrag widerspricht sich selbst** — Kopfzeile „zurueckgestellt", Schlusszeile „Entscheidung Ondos steht aus". Zu klaeren, bevor er als offen oder als entschieden gefuehrt wird | Backlog |
+| **Befund A** | Als nicht auswertbar fuehren? **Womoeglich durch die Auszaehlung vom 8.8. erledigt** — zu klaeren, nicht zu behaupten | Chronik August, „Der 8. August" |
+| **„Fail Safe"** | Bei unbekannten Fehlern anhalten statt automatisch das naechste Modell nehmen — als Arbeitsregel? | Blueprint, Abschnitt 10 |
+| **GitHub Actions** | Verfassungsfrage: Der Actions-Wecker ist ein winziger Server, der Blueprint sagt „kein Server" | Blueprint, Abschnitt 10 |
+| **Echtes 0:0** | Wie unterscheidet der Auftragstext ein echtes 0:0 von „nicht gefunden"? Muss **vor** Punkt E beantwortet sein | Blueprint, Abschnitt 10 |
+| **Schiedsrichter** | Darf er ueberhaupt selbst Ergebnisse lesen, oder nur verifizierte Fakten bewerten? | Blueprint, Abschnitt 10 |
+| **Kriterium (c)** | Befoerderungskriterium neu fassen — 15 bewertete Tipps sind zu wenig | Blueprint, Abschnitt 10 |
+| **Rollenmodell** | Rollenabschnitt in den Blueprint, mit zwei Konfliktregeln | Blueprint, Abschnitt 10 |
+
+**Nicht offen, sondern entschieden — damit sie nicht wieder auf diese Liste geraten:**
+- **Punkt 38** (Sonnet als waehlbares Modell) — von Ondo am 9.8. zurueckgestellt, nicht verworfen.
+- **Die rueckwirkende Berichtigung** — am 13.8. beschlossen und ausgefuehrt.
+- **`CODE_VERSION`** — am 14.8. entschieden, Lieferkennzeichen, ausnahmslos hochzaehlen.
+
+**Was hier NICHT steht:** die Zahl der beschlossenen, nicht gebauten Punkte. Sie steht ausschliesslich im Backlog (Punkt 45).
+
+---

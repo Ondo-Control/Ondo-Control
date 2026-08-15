@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Gepflegt von Claude · Stand 14.8.2026, 22:41 Uhr, Fassung 23 · jede Idee mit Datum, Urheber und Status**
+**Gepflegt von Claude · Stand 15.8.2026, 12:31 Uhr, Fassung 24 · jede Idee mit Datum, Urheber und Status**
 
 ## Regeln für dieses Dokument
 
@@ -13,6 +13,19 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 24 ändert (15.8., mittags)
+
+**🔴 Punkt 18 ist zur Hälfte gebaut und Punkt 45 ist gebaut. Arbeitsregel L ist erfüllt.**
+
+- **`PROJEKT-STATUS.md` ist getrennt.** Aus 199 KB wurden `STAND.md` (34 KB), `CHRONIK-2026-08.md` und `CHRONIK-2026-07.md`. **Nichts gelöscht, nur verschoben** — der Beweis läuft maschinell in `pruefe.py`, Abschnitt 10, und sein Sollwert kommt aus dem Original.
+- **🔴 Punkt 18 ist NICHT vollständig.** Der zweite Teil — den Backlog in offene Punkte und ein Erledigt-Archiv trennen — steht noch aus. **Er ist der nächste Arbeitsblock.**
+- **Punkt 45 gebaut:** `pruefe.py` Abschnitt 11 schlägt an, sobald eine Standsangabe zweimal in `STAND.md` vorkommt. Eine Doppelung war da und ist beseitigt — die Sprachschlüsselzahl stand in „Versionen" **und** im Arbeitsablauf; im Arbeitsablauf steht jetzt ein Verweis.
+- **Neu in `STAND.md`: eine vollständige Liste der Entscheidungen, die bei Ondo liegen.** Sechzehn Punkte, jeweils mit Fundstelle, ohne den Inhalt zu wiederholen. Sie war bisher über Backlog, Blueprint und die Übergabemappen verstreut.
+- **Drei Funde gegen Chat 16, alle belegt:** Der Backlog ist Fassung 23, nicht 24 — `pruefe.py` verlangte eine Fassung 24, die es nicht gab, und kann deshalb nicht „ALLES SAUBER" gemeldet haben · die Protokollzeile Chat 16 → Chat 17 fehlte in der Buchführung · die neuen Blueprint-Einträge standen in falscher Reihenfolge, und die Zeile „auf 0.21 gehoben" trug den 14.8. statt den 15.8.
+- **🔴 Beschlossen und nicht gebaut: sechs** — **E, 2, 3, 4, 46, 47.** Das ist die massgebliche Stelle für diese Zahl; andere Dokumente verweisen hierher, statt sie zu wiederholen.
 
 ---
 
@@ -83,7 +96,9 @@ Ein zweiter Knopf neben „Daten sichern", der **nur** Vorhersagen und Wetten au
 
 ---
 
-**45. Ein Ort je Tatsache** · *Vorschlag 14.8., Claude · beschlossen 14.8., Ondo* · **Status: BESCHLOSSEN — zusammen mit Punkt 18**
+**45. Ein Ort je Tatsache** · *Vorschlag 14.8., Claude · beschlossen 14.8., Ondo* · **Status: 🔴 GEBAUT am 15.8.2026 (Chat 17)**
+
+> **Gebaut als Abschnitt 11 in `pruefe.py`.** Er schlägt an, sobald die Sprachschlüsselzahl, die letzte Sicherung oder die Beta-Version mehr als einmal in `STAND.md` steht, und er verlangt, dass die Zahl der offenen Punkte dort **gar nicht** steht. **Eine Doppelung wurde gefunden und beseitigt:** die Sprachschlüsselzahl stand in „Versionen" und im Arbeitsablauf.
 
 Jede Kennzahl steht künftig an **genau einer** Stelle. Überall sonst wird darauf verwiesen statt sie zu wiederholen. `pruefe.py` bekommt eine Prüfung, die anschlägt, sobald eine Standsangabe zweimal vorkommt.
 
@@ -1293,7 +1308,11 @@ Zwei Ergänzungen von Claude offen: Architekt und unabhängiger Prüfer sollten 
 → **Folge: Gemini bekommt Dateien, ChatGPT bekommt Links.** Die Annahme „Prüfer bekommen Links statt Anhänge" gilt nur zur Hälfte.
 → **Zweite offene Frage aus derselben Runde:** ChatGPT meldete am 4.8., die Pages-Seiten trügen noch den Stand vom 30. Juli. **Nicht nachgeprüft** — Claudes Abrufwerkzeug kam nicht an die Adresse heran, und der erneute Raw-Abruf lieferte die eigene zwischengespeicherte Kopie zurück. Zwei Erklärungen bleiben offen: die Pages-Seiten sind wirklich alt, **oder** ChatGPT hat nicht abgerufen, sondern aus dem Gedächtnis geantwortet. *Trennschärfer Test: nach dem Wortlaut von Arbeitsregel J und nach dem Namen `lyria-3-pro-preview` fragen — beides steht nur in der Fassung vom 4. August.*
 
-**18. Dokumente kürzen und Chronik auslagern** · *Idee 31.7., Claude* · **Status: 🔴 BESCHLOSSEN am 14.8. — zweiter Bauauftrag, zusammen mit Punkt 45**
+**18. Dokumente kürzen und Chronik auslagern** · *Idee 31.7., Claude* · **Status: 🔴 ZUR HÄLFTE GEBAUT am 15.8.2026 (Chat 17) — `PROJEKT-STATUS.md` getrennt, der Backlog steht noch aus**
+
+> **🔴 GEBAUT am 15.8.2026: `STAND.md` (34 KB) · `CHRONIK-2026-08.md` · `CHRONIK-2026-07.md`.** Jede Zeile des Originals kommt in genau einer der drei Dateien vor, unverändert; `pruefe.py` Abschnitt 10 beweist das gegen das Original. **Das Ziel „unter 25 KB" ist NICHT erreicht** — es sind 34 KB. Was fehlt, um darunter zu kommen, steht unten.
+>
+> **Der zweite Teil steht aus:** der Backlog in offene Punkte und ein Erledigt-Archiv. Nächster Arbeitsblock.
 
 Lag seit dem 31. Juli als unentschiedene Idee. **Ondo hat sie am 14.8. zur Grundlage aller weiteren Arbeit gemacht.**
 
