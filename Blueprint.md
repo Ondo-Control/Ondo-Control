@@ -3,11 +3,13 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.20
-**Stand:** 14. August 2026, 22:41 Uhr
+**Version:** 0.21
+**Stand:** 15. August 2026, 07:30 Uhr
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
-> **Was Fassung 0.20 ändert (14.8.2026, spätabends):** **Die Rohdaten sind zum ersten Mal ausgewertet** — möglich geworden durch Punkt 44. **Bei keinem der beiden Gehirne ist bewiesen, dass es besser ist als jemand, der immer 50 % sagt.** Die Verzerrung durch geparkte Einträge betrifft **beide** Gehirne, nicht nur eines. Drei Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
+> **Was Fassung 0.21 ändert (eingetragen 15.8.2026, 07:30 Uhr):** Zwei Formfehler von Chat 16, von Ondo gefunden: **der Aufbau von Übergabemappe und Abnahme wurde ohne Zustimmung geändert**, und **das Kontrollexamen wurde gekürzt, obwohl die Kürzung erst nach Punkt 18 gilt.** Drei Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel** — die Regeln, die verletzt wurden, gab es bereits.
+
+> **Was Fassung 0.20 änderte (14.8.2026, spätabends):** **Die Rohdaten sind zum ersten Mal ausgewertet** — möglich geworden durch Punkt 44. **Bei keinem der beiden Gehirne ist bewiesen, dass es besser ist als jemand, der immer 50 % sagt.** Die Verzerrung durch geparkte Einträge betrifft **beide** Gehirne, nicht nur eines. Drei Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
 
 > **Was Fassung 0.19 änderte (14.8.2026, abends):** **Backlog-Punkt 44 ist gebaut** — der erste der fünf Beschlüsse steht. Dazu drei Berichtigungen an Fassung 0.18: Der Abschnitt 10 führte **Punkt 18 weiter als offene Frage**, obwohl er am selben Tag beschlossen wurde — geschlossen. Aus „drei Regeländerungen" werden **zwei Änderungen und eine Bestätigung**. Und **Punkt 46 war ein Doppeleintrag zu Backlog-Punkt 8**, dessen Kostenangabe zum Wochen-Limit dabei verlorenging. Vier Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
 
@@ -448,6 +450,12 @@ ONDO CONTROL
 | 14.8.2026 | **Vor jeder Auswertung steht die Gegenprobe gegen die Anzeige.** Jede Zahl der App wurde aus den Rohdaten reproduziert, bevor eine einzige neue gerechnet wurde. Ohne diesen Schritt wäre nicht unterscheidbar, ob eine Abweichung aus den Daten oder aus der Rechenweise stammt. |
 | 14.8.2026 | **Die Verzerrung durch geparkte Einträge betrifft BEIDE Gehirne.** Die Beschreibung vom 8.8., sie treffe nur eines, ist am Rohdatenbestand widerlegt: geparkt wird bei beiden systematisch das Entschlossenere, bei Sonnet stärker. Berichtigt in `PROJEKT-STATUS.md`, Fund 2. |
 | 14.8.2026 | Blueprint auf Version 0.20 gehoben. |
+| **— ab hier eingetragen am 15.8.2026, 07:30 Uhr —** | |
+| 15.8.2026 | **Der Dateiname gehört zum Format.** `JJJJ-MM-TT_HHMM_Ondo-Control_Uebergabe.md` für die Mappe, `JJJJ-MM-TT_Ondo-Control_Abnahme.md` für die Abnahme — die Mappe mit Uhrzeit, die Abnahme ohne. Chat 16 hat beim ersten Berichtigen nur den Inhalt hergestellt und den Namen übersehen; Ondo musste denselben Einwand zweimal erheben. **Wird eine Abweichung berichtigt, wird sie vollständig berichtigt.** |
+| 14.8.2026 | **Am Aufbau von Übergabemappe und Abnahme ändert ein Chat nichts ohne Ondos ausdrückliche Zustimmung.** Der Aufbau stammt aus Chat 3 und hat sich über sieben Übergaben gehalten. Chat 16 hat ihn geändert, indem er das bereits abgewichene Format von Chat 15 ungeprüft übernahm. **Weicht die geerbte Mappe ab, wird das gemeldet — nicht weitergereicht.** Ondo hat denselben Einwand am 4. August gegenüber Chat 6 erhoben; er ist damit zum zweiten Mal nötig gewesen. |
+| 14.8.2026 | **Eine beschlossene Regel gilt nicht, bevor ihre Bedingung erfüllt ist.** Das Kontrollexamen bleibt bei **neun** Fragen, bis Punkt 18 gebaut ist. Chat 15 stellte sieben, Chat 16 sechs. Chat 16 hat die Verwechslung zugleich als Fangfrage in den eigenen Antwortschlüssel geschrieben und selbst begangen. |
+| 14.8.2026 | **Die Erlaubnis, `beta.html` und `OndoControl.html` nicht vollständig zu lesen, ist befristet** (Klarstellung Ondos). Sie gilt nur, solange die Speicher- und Fehlerprobleme der Chats bearbeitet werden, und endet mit Punkt 18. Danach wird wieder alles vollständig gelesen. |
+| 14.8.2026 | Blueprint auf Version 0.21 gehoben. |
 
 ---
 
