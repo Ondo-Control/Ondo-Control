@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.23
+**Version:** 0.24
 **Stand:** 15. August 2026, 12:31 Uhr
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.24 ändert (15.8.2026, abends):** **Punkt 48 gebaut** — der Verlustbeweis prüft jetzt auch Struktur und Reihenfolge; die Lücke fanden ChatGPT und Gemini unabhängig voneinander, Claude hatte sie nicht gesehen. **Drei Entscheidungen Ondos**, alle drei berichtigen eine Annahme Claudes: der 20. August ist keine Frist · die Reihenfolge der Arbeiten wird durch neue Punkte nicht geändert · Entparken ist Claudes Arbeit und wird je Eintrag am Grund geprüft. **Kein Verfassungsartikel geändert.**
 
 > **Was Fassung 0.23 ändert (15.8.2026, nachmittags):** **Punkt 18 ist fertig.** Auch Backlog und Blueprint sind getrennt; dieses Dokument enthält nur noch, was gilt. **Das Entscheidungs-Protokoll steht ab jetzt in `BLUEPRINT-PROTOKOLL.md`** und wird nur auf Zuruf gelesen — dort stehen auch die neuen Einträge dieser Fassung. **Verfassung und Arbeitsregeln bleiben Pflichtlektüre**, sie wandern ausdrücklich nicht ins Archiv. **Beschluss Ondo: im Kontrollexamen künftig alle Fangfragen**, keine feste Zahl. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
 

@@ -10,6 +10,8 @@
 >
 > **Es wurde nichts geloescht, nur verschoben.** Der Beweis steht in `pruefe.py`, Abschnitt 10: Jede Zeile des Originals kommt in genau einer der drei Dateien vor, unveraendert.
 >
+> **Die Reihenfolge in dieser Datei ist neu gesetzt** — Messstand und Versionen stehen vorn, nicht mehr dort, wo sie im alten Dokument standen. **Das ist Absicht und der einzige Unterschied zur Vorlage.** In den beiden Chronikdateien ist die Reihenfolge unveraendert; `pruefe.py` Abschnitt 9b prueft das.
+>
 > **Ein Ort je Tatsache (Punkt 45).** Kennzahlen stehen ab jetzt an genau einer Stelle. Wo eine Zahl frueher wiederholt wurde, steht jetzt ein Verweis. Die Zahl der beschlossenen, nicht gebauten Punkte steht **nur im Backlog**.
 
 ---
@@ -319,7 +321,7 @@ Die Tabelle aller bisherigen Chat-Uebergaben ist nach `CHRONIK-2026-08.md` gewan
 | **2** | Erster Lernschritt — beide Pruefer raten, zunaechst nur Flash zu korrigieren | Backlog, Prio 1 |
 | **34** | Brier-Score in die App bauen. **Gerechnet ist nicht gebaut** | Backlog |
 | **35** | Streuungsangabe in die App bauen. **Gerechnet ist nicht gebaut** | Backlog |
-| **3** | Such-Experiment — durch die Pause **blockiert**, laeuft am **20. August** ab. Empfehlung Claude: ruhen lassen | Backlog, Prio 1 |
+| **3** | Such-Experiment — durch die Pause **blockiert**. *Der 20. August ist **keine Frist** (Ondo, 15.8.): eine Zeitspanne sagt nicht, wie viele Messungen noetig sind.* Empfehlung Claude: ruhen lassen | Backlog, Prio 1 |
 | **0b** | Widersprueche messen statt korrigieren. **Der Eintrag widerspricht sich selbst** — Kopfzeile „zurueckgestellt", Schlusszeile „Entscheidung Ondos steht aus". Zu klaeren, bevor er als offen oder als entschieden gefuehrt wird | Backlog |
 | **Befund A** | Als nicht auswertbar fuehren? **Womoeglich durch die Auszaehlung vom 8.8. erledigt** — zu klaeren, nicht zu behaupten | Chronik August, „Der 8. August" |
 | **„Fail Safe"** | Bei unbekannten Fehlern anhalten statt automatisch das naechste Modell nehmen — als Arbeitsregel? | Blueprint, Abschnitt 10 |

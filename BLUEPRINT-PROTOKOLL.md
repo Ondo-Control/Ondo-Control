@@ -208,3 +208,10 @@
 | 15.8.2026 | **Ein Prüfskript, das jeder Chat von Hand umstellen muss, prüft irgendwann das Falsche.** `pruefe.py` Fassung 2 hat die per Hand gepflegte Zusagenliste ersatzlos gestrichen. **Der Sollwert kommt ab jetzt ausschliesslich aus den Dokumenten selbst** — Status gegen Liste, Kennzahl gegen Kennzahl, Ergebnis gegen Original. |
 | 15.8.2026 | **Eine Zahl, die niemand abgezählt hat, ist keine Regel (Beschluss Ondo).** Das Kontrollexamen umfasst künftig **alle Fangfragen**, nicht vier. Die beschlossene Vier stammte aus keiner Zählung; die Mappe vom 15.8. kennzeichnet fünf. |
 | 15.8.2026 | Blueprint auf Version 0.23 gehoben. |
+
+| **— ab hier eingetragen am 15.8.2026, abends —** | |
+| 15.8.2026 | **Ein Beweis, den man selbst entworfen hat, prüft, woran man gedacht hat.** Der Zeilenbeweis zeigte Vollständigkeit und wurde für ausreichend gehalten. **Zwei unabhängige Prüfer fanden dieselbe Lücke: er erkennt keine Verschiebung.** Gebaut als Abschnitt 9b. **Eine bewusst geänderte Reihenfolge zählt nur, wenn sie in der Datei selbst erklärt ist** — sonst liesse sich jede Unordnung nachträglich zur Absicht erklären. |
+| 15.8.2026 | **Eine Zeitspanne ist keine Stichprobengrösse (Ondo).** Der 20. August wurde von Claude zweimal als Frist behandelt und begründete eine Dringlichkeit, die es nicht gibt. **Wie viele Messungen nötig sind, sagt kein Datum.** |
+| 15.8.2026 | **Neue Erkenntnis ändert nicht automatisch die Reihenfolge (Ondo).** Vier neue Punkte aus der Prüferrunde wurden aufgenommen und **nicht** vorgezogen. Zuerst werden die Probleme mit Chats und Nutzungsgrenzen gelöst. Ausnahme war allein Punkt 48, weil er einen Beweis absichert, auf den sich alles Weitere stützt. |
+| 15.8.2026 | **Wer parkt, muss den Grund prüfen, nicht die Anzahl (Ondo).** Ondo hat die wahren Parkgründe zweimal selbst aufgedeckt, weil Claude nur gezählt hatte. **Vor jedem Entparken wird jeder Eintrag einzeln am Grund geprüft, maschinell.** Ondo prüft nichts von Hand nach. |
+| 15.8.2026 | Blueprint auf Version 0.24 gehoben. |

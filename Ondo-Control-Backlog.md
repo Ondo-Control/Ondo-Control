@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 15.8.2026, 12:31 Uhr, Fassung 25 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 15.8.2026, 12:31 Uhr, Fassung 26 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -17,6 +17,18 @@
 
 ---
 
+## ⚠ Was Fassung 26 ändert (15.8., abends)
+
+**🔴 Punkt 48 ist gebaut. Vier neue Punkte aufgenommen. Drei Entscheidungen Ondos berichtigen Annahmen, die Claude gemacht hatte.**
+
+- **Punkt 48 gebaut:** `pruefe.py` Abschnitt 9b beweist zusätzlich zur Vollständigkeit die **Struktur und die Reihenfolge**. Der Zeilenbeweis zeigte nur, dass nichts fehlt — nicht, dass der Text noch dort steht, wo er hingehört. **ChatGPT und Gemini haben diese Lücke unabhängig voneinander gefunden; Claude hatte sie nicht gesehen.** Der neue Beweis fand sofort zwei Befunde, einer davon echt.
+- **🔴 Der 20. August ist keine Frist (Ondo, 15.8.).** Claude hat ihn zweimal als Termin behandelt und daraus eine Dringlichkeit abgeleitet. **Eine Zeitspanne sagt nicht, wie viele Messungen nötig sind.** Punkt 3 wird nicht nach Ablaufdatum entschieden.
+- **🔴 Die Reihenfolge der Arbeiten bleibt, wie sie ist (Ondo, 15.8.).** Neue Punkte werden aufgenommen, nicht vorgezogen. **Zuerst werden die Probleme mit Chats und Nutzungsgrenzen gelöst** — Punkt 46 —, damit später überhaupt besser gearbeitet werden kann. Punkt 48 war die einzige Ausnahme, weil er einen Beweis absichert, auf den sich alles Weitere stützt.
+- **🔴 Entparken ist Claudes Arbeit, nicht Ondos (Ondo, 15.8.).** Ondo hat die wahren Parkgründe zweimal selbst aufgedeckt — 45-Minuten-Testspiele, doppelte Vorhersagen —, weil Claude nur die Anzahl geprüft hatte, nicht den Grund. **Vor jedem Entparken wird jeder Eintrag einzeln auf seinen Grund geprüft, maschinell und nachvollziehbar.** Wird das geleistet, dürfen die geeigneten Spiele entparkt werden.
+- **🔴 Beschlossen und nicht gebaut: neun** — **E, 2, 3, 4, 46, 47, 49, 50, 51.**
+
+---
+
 ## ⚠ Was Fassung 25 ändert (15.8., nachmittags)
 
 **🔴 Punkt 18 ist fertig. Backlog und Blueprint sind getrennt.**
@@ -27,7 +39,7 @@
 - **Nichts gelöscht, nur verschoben.** `pruefe.py` Abschnitt 9 beweist alle drei Trennungen gegen die Originale.
 - **`pruefe.py` ist Fassung 2 und chatübergreifend.** Die von Hand gepflegte Zusagenliste des jeweiligen Chats ist ersatzlos weg. An ihre Stelle treten Prüfungen, die ihren Sollwert aus den Dokumenten ziehen — darunter der Abgleich der Status jedes Punktes gegen die Liste der offenen Punkte. Genau dieser Fehler ist Chat 15 unterlaufen.
 - **Beschluss Ondo 15.8.: künftig alle Fangfragen im Kontrollexamen**, keine feste Zahl. Die beschlossene Kürzung auf „vier" war nicht abgezählt — die Mappe vom 15.8. kennzeichnet fünf.
-- **🔴 Beschlossen und nicht gebaut: fünf** — **E, 2, 3, 4, 46, 47.** Das ist die massgebliche Stelle für diese Zahl.
+- **Beschlossen und nicht gebaut — die massgebliche Zahl steht im neuesten Fassungsabschnitt oben.**
 
 ---
 
@@ -296,6 +308,26 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 → **Geminis weiterreichende Aussage:** Kalibrierung setzt eine stabile Wahrscheinlichkeitsverteilung voraus. Schwankt ein Gehirn bei identischem Auftrag, ist die Prozentzahl teilweise willkürlich. **Vor jedem Korrekturfaktor braucht es deshalb eine vorgeschaltete Kennzahl für Antwortstabilität.** Das stellt die Hauptkennzahl des Projekts erstmals grundsätzlich infrage.
 → **Kosten: nicht null.** Mehrere Läufe je Spiel verbrauchen echte Anfragen. Vor dem Bauen zu beziffern.
 → *Hängt eng mit dem Temperatur-Fund zusammen: Ein Schattenlauf bei unbekannter Temperatur misst womöglich nur die Standardeinstellung des Anbieters.*
+
+---
+
+**48. Struktur- und Reihenfolgebeweis** · *Vorschlag 15.8., ChatGPT und Gemini unabhängig · beschlossen 15.8., Ondo* · **Status: 🔴 GEBAUT am 15.8.2026 (Chat 17)**
+
+> Der Zeilenbeweis zeigt, dass nichts fehlt. Er zeigt nicht, dass der Text noch an seinem Platz steht. `pruefe.py` Abschnitt 9b prüft jetzt zusätzlich, dass jeder Block **am Stück** in **genau einer** Zieldatei steht und dass die **Reihenfolge** erhalten ist. Eine bewusst geänderte Reihenfolge zählt nur, wenn sie **in der Datei selbst** erklärt ist — sonst liesse sich jede Unordnung nachträglich zur Absicht erklären.
+
+**49. Messmethodik und Interpretationsgrenzen in `STAND.md`** · *Vorschlag 15.8., ChatGPT* · **Status: BESCHLOSSEN — Reihenfolge unverändert, nach Punkt 46**
+
+> Ein neuer Chat kann heute aus richtigen Zahlen eine falsche Empfehlung ableiten, weil die Zahlen dastehen und ihre Grenzen nicht. In die Pflichtlektüre gehören: Definition der drei Märkte · wie Brier-Score und Kalibrierung gerechnet werden · was in den Nenner zählt und was nicht · dass geparkte Einträge **kein** Ergebnis haben · welcher Rohdatenstand ausgewertet wurde · der Schnitt bei „beide treffen" · die ungeklärten Anpfiffzeiten. **Und als Kern eine Liste: „Was darf aus diesem Messstand NICHT geschlossen werden?"**
+
+**50. Verworfen-und-warum-Liste im Blueprint** · *Vorschlag 15.8., Gemini (abgeschwächt von Claude)* · **Status: BESCHLOSSEN — Reihenfolge unverändert, zuletzt**
+
+> Gemini wollte das ganze Entscheidungs-Protokoll zurück in die Pflichtlektüre, damit ein frischer Chat keine geschlossenen Debatten neu eröffnet. **Das wären 48 KB und die Trennung rückgängig.** Stattdessen eine kurze Liste im Blueprint: was verworfen wurde, je ein Satz warum, Verweis ins Protokoll für Einzelheiten.
+
+**51. Gepaarter Vergleich Sonnet gegen Flash** · *Vorschlag 15.8., ChatGPT* · **Status: BESCHLOSSEN — Reihenfolge unverändert, nach Punkt 46**
+
+> Zwei getrennt betrachtete Unsicherheitsbereiche sind der schwächere Weg; **überlappende Bereiche beweisen nicht, dass die Gehirne gleich gut sind.** Beide bekommen dieselbe Spielliste — deshalb ist ein Vergleich Spiel für Spiel aussagekräftiger. **Die Rohdaten liegen vor; es braucht keine einzige neue Vorhersage.**
+>
+> **🔴 Voraussetzung (Ondo, 15.8.): sauberes Entparken durch Claude.** Jeder geparkte Eintrag wird einzeln auf seinen **Grund** geprüft — 45-Minuten-Testspiele, doppelte Vorhersagen, erfundene Paarungen —, maschinell und nachvollziehbar, nicht nach Anzahl. Ondo prüft nichts von Hand nach.
 
 ---
 
