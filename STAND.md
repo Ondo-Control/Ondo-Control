@@ -6,6 +6,8 @@
 > - **`CHRONIK-2026-08.md`** — die Tagesabschnitte vom 3. bis 15. August, das Uebergabe-Protokoll und die Aenderungsvermerke. Wird **nur auf Zuruf** gelesen.
 > - **`CHRONIK-2026-07.md`** — alles bis einschliesslich 31. Juli. Wird **nur auf Zuruf** gelesen.
 >
+> **Nachtrag vom Nachmittag: Punkt 18 ist fertig.** Auch der Backlog und der Blueprint sind getrennt — `BACKLOG-ARCHIV.md` und `BLUEPRINT-PROTOKOLL.md` sind ebenfalls Archiv und werden nur auf Zuruf gelesen. **Pflichtlektuere beim Start: `STAND.md`, `Ondo-Control-Backlog.md`, `Blueprint.md`, `Ondo-Core-Architektur.md` — zusammen rund 116 KB statt 452 KB.** Verfassung und Arbeitsregeln bleiben ausdruecklich Pflicht.
+>
 > **Es wurde nichts geloescht, nur verschoben.** Der Beweis steht in `pruefe.py`, Abschnitt 10: Jede Zeile des Originals kommt in genau einer der drei Dateien vor, unveraendert.
 >
 > **Ein Ort je Tatsache (Punkt 45).** Kennzahlen stehen ab jetzt an genau einer Stelle. Wo eine Zahl frueher wiederholt wurde, steht jetzt ein Verweis. Die Zahl der beschlossenen, nicht gebauten Punkte steht **nur im Backlog**.
