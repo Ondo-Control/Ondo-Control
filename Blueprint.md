@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.24
-**Stand:** 15. August 2026, 12:31 Uhr
+**Version:** 0.25
+**Stand:** 15. August 2026, 19:51 Uhr
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.25 ändert (15.8.2026, abends):** **Ein Formfehler, von Ondo gefunden — der dritte dieser Art in zwei Tagen.** Chat 17 hat den Aufbau der Übergabemappe geändert: Teil A und Teil B standen nicht im Codeblock, und die Bedeutung der Teile D bis G wich vom bewährten Muster ab. **Beides ungeprüft von Chat 16 übernommen, das seinerseits von Chat 15 übernommen hatte.** Ein Protokolleintrag. **Kein Verfassungsartikel geändert.**
 
 > **Was Fassung 0.24 ändert (15.8.2026, abends):** **Punkt 48 gebaut** — der Verlustbeweis prüft jetzt auch Struktur und Reihenfolge; die Lücke fanden ChatGPT und Gemini unabhängig voneinander, Claude hatte sie nicht gesehen. **Drei Entscheidungen Ondos**, alle drei berichtigen eine Annahme Claudes: der 20. August ist keine Frist · die Reihenfolge der Arbeiten wird durch neue Punkte nicht geändert · Entparken ist Claudes Arbeit und wird je Eintrag am Grund geprüft. **Kein Verfassungsartikel geändert.**
 
