@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 15.8.2026, 22:32 Uhr, Fassung 27 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 16.8.2026, 10:49 Uhr, Fassung 28 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -14,6 +14,19 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 28 ändert (16.8., vormittags)
+
+**🔴 Punkt 46 ist gebaut. Claude Code arbeitet auf dem Surface Go.**
+
+- **Was steht:** die Desktop-App mit dem Bereich „Code" · Git 2.55.0 · Python 3.14.7 · ein frisch von GitHub geholter Ordner `Claude-Ondo-Control-Repo`, der mit dem Verzeichnis verbunden ist.
+- **Der Abgleich war sauber.** Ondos Handkopie und das Verzeichnis waren bei allen vierzehn gemeinsamen Dateien Byte für Byte gleich. **Damit ist zugleich belegt, dass der Raw-Link diesem Chat eine veraltete Zwischenkopie geliefert hat und nicht das Repo veraltet war.**
+- **Was aussteht:** Das erste Hochladen vom Tablet hat noch nicht stattgefunden. Punkt 46 gilt als gebaut, nicht als bewährt.
+- **🔴 Drei Angaben in Punkt 46 waren falsch** und sind dort mit Vermerk berichtigt, nicht überschrieben: das Terminalfenster, die 16 GB für die Desktop-App und „unter 1 GB Platte".
+- **Ein neuer Fund, noch offen:** Liegt `pruefe.py` außerhalb des Repo-Ordners, meldet sein Abschnitt 2 die eigene Datei als fehlend. Zu klären, bevor das Tablet zum ersten Mal eine Datei ausgibt.
+- **🔴 Beschlossen und nicht gebaut: acht** — **E, 2, 3, 4, 47, 49, 50, 51.**
 
 ---
 
@@ -75,7 +88,7 @@
 
 ---
 
-**46. Claude Code auf dem Surface Go** · *Idee 9./10.7., Claude (als Punkt 8) · neu vorgelegt 14.8. · beschlossen 14.8., Ondo* · **Status: BESCHLOSSEN als Versuch**
+**46. Claude Code auf dem Surface Go** · *Idee 9./10.7., Claude (als Punkt 8) · neu vorgelegt 14.8. · beschlossen 14.8., Ondo · eingerichtet 16.8., Chat 18* · **Status: GEBAUT 16.8. — Bewährung steht aus, erstes Hochladen noch nicht erfolgt**
 
 > **🔴 ZUSAMMENGELEGT am 14.8. abends (Chat 16).** Dies ist derselbe Vorschlag wie **Punkt 8** („Claude Code auf dem Windows-Tablet über das Pro-Abo", 9./10.7.). Chat 15 hat ihn als neuen Punkt aufgenommen, ohne den alten zu finden. **Punkt 8 verweist ab jetzt hierher; dieser Punkt führt ihn weiter.** Fund von Chat 16, bestätigt von Chat 15.
 
@@ -87,6 +100,12 @@ Ondos Gerät: Surface Go, Windows 10 Home 22H2, 64 Bit, 8 GB RAM, 110 GB frei, P
 → **Zur Alternative Claude Desktop mit Cowork:** ausdrücklich für Leute ohne Programmierkenntnisse, aber für angenehmes Arbeiten werden 16 GB RAM als Untergrenze genannt. Auf 8 GB vermutlich zäh. **Claude Code ist der leichtere Weg.**
 → **Kosten:** kein zusätzliches Geld bei vorhandenem Pro-Konto. Ein Abend Einrichtung. **Risiko für das Projekt: keines** — das Repo bleibt wie es ist, und wenn es nicht klappt, geht es weiter wie bisher.
 → **🔴 Kostenangabe ergänzt am 14.8. abends, sie fehlte:** **Die Arbeit zehrt am Wochen-Limit des Pro-Abos.** Das steht seit dem 9./10. Juli in Punkt 8 und ist bei der Neuaufnahme untergegangen. „Kein zusätzliches Geld" ist damit richtig, aber unvollständig — ein Nutzungslimit ist nach Arbeitsregel G ausdrücklich mitzunennen. Zweiter Haken aus Punkt 8, ebenfalls weiterhin gültig: Es läuft nur, wenn Ondo es am Tablet anstösst.
+
+> **🔴 BERICHTIGT am 16.8.2026 (Chat 18), nach Abruf der offiziellen Anleitung.** Drei Angaben oben stimmen nicht. **Erstens:** „Es ist ein Terminalfenster, kein Fenster mit Knöpfen" — es gibt eine Desktop-App, die Claude Code mit Oberfläche anbietet, und genau über sie ist eingerichtet worden. **Zweitens:** Die 16 GB als Untergrenze für die Desktop-App stehen in der Anleitung nicht; auf 8 GB läuft sie nach Ondos Beobachtung normal. **Drittens:** „unter 1 GB Platte" ist nirgends belegt, die Anleitung nennt keine Zahl. **Belegt geblieben ist:** Windows 10 ab 1809, mindestens 4 GB RAM, x64, kein Node.js beim nativen Weg, Konto ab Pro. **Zusätzlich, oben nicht erwähnt:** Git für Windows ist freiwillig, wurde hier aber installiert.
+
+→ **Ergebnis 16.8.2026 (Chat 18):** Auf dem Tablet stehen die Desktop-App mit dem Bereich „Code", Git 2.55.0, Python 3.14.7 und der Ordner `Claude-Ondo-Control-Repo` unter Dokumente, frisch von GitHub geholt und mit dem Verzeichnis verbunden. Der maschinelle Abgleich der Handkopie gegen das Verzeichnis fand bei allen vierzehn gemeinsamen Dateien keinen Unterschied.
+→ **Zwei Auflagen, die dauerhaft gelten:** Die Sicherungen mit `apiKey`, `geminiKey` und `pin` und die Übergabemappen liegen außerhalb des Repo-Ordners und werden dort nie geöffnet. `pruefe.py` liegt in einem eigenen Ordner daneben, damit es nicht ins Verzeichnis gerät.
+→ **Zwei offene Stellen (Art. 11):** Läuft `pruefe.py` aus einem anderen Ordner, meldet sein Abschnitt 2 die eigene Datei als fehlend. Und der Repo-Ordner liegt unter OneDrive — ob OneDrive beim Hochladen dazwischenfunkt, ist ungeprüft.
 
 ---
 
@@ -343,6 +362,18 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 > **🔴 Voraussetzung (Ondo, 15.8.): sauberes Entparken durch Claude.** Jeder geparkte Eintrag wird einzeln auf seinen **Grund** geprüft — 45-Minuten-Testspiele, doppelte Vorhersagen, erfundene Paarungen —, maschinell und nachvollziehbar, nicht nach Anzahl. Ondo prüft nichts von Hand nach.
 
 ---
+
+**52. Der Verlustbeweis braucht ein Ende** · *Fund 16.8., Claude* · **Status: Idee — Entscheidung Ondos steht aus**
+
+Der Beweis aus Punkt 48 vergleicht `STAND.md` gegen `PROJEKT-STATUS.md`. **Jede Pflege einer Zeile, die von dort stammt, bricht ihn** — auch eine richtige. Am 16.8. traf es die Zeile mit der letzten Sicherung; sie musste in die Ausnahmeliste. **Die Liste wächst damit mit jeder Pflege, und eine wachsende Ausnahmeliste beweist immer weniger.**
+
+Das Skript sieht selbst vor, dass der Beweis entfällt, sobald das Original nicht mehr im Ordner liegt — „nach der Bewährungszeit gewollt". Wann diese Bewährungszeit endet, hat niemand festgelegt.
+
+→ **Zur Entscheidung:** Wird eine Frist gesetzt, nach der `PROJEKT-STATUS.md` aus dem Ordner genommen wird? **Claude schlägt nichts vor, bevor Ondo den Zweck bestimmt hat** — der Beweis sichert die Trennung vom 15.8., nicht die laufende Pflege.
+→ **Kosten:** keine, solange nicht entschieden wird.
+
+---
+
 
 ## 📋 Für Blueprint und Ondo-Core vorgemerkt
 

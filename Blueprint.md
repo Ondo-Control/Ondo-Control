@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.26
-**Stand:** 15. August 2026, 22:32 Uhr
+**Version:** 0.27
+**Stand:** 16. August 2026, 10:49 Uhr
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.27 ändert (16.8.2026, vormittags):** **Punkt 46 ist gebaut** — Claude Code arbeitet auf Ondos Surface Go, das Hochladen von Hand soll damit entfallen. **Bewährt ist es noch nicht:** Das erste Hochladen steht aus. Dazu ein Fund gegen die Buchführung von Chat 16 — drei technische Angaben in Punkt 46 waren falsch und sind mit Vermerk berichtigt. **Zwei Protokolleinträge. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
 
 > **Was Fassung 0.26 ändert (15.8.2026, spätabends):** **Eine widerlegte Aussage hat die Dokumententrennung überlebt** und stand in `STAND.md`, der Datei, die nur Gültiges enthalten soll. Gefunden über das Kontrollexamen von Chat 18. Ein Protokolleintrag. **Kein Verfassungsartikel geändert.**
 
