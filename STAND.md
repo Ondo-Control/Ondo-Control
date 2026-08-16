@@ -264,6 +264,12 @@ Dateiname beginnt mit Datum und Uhrzeit: `2026-07-31_1430_Ondo-Control_Thema.md`
 
 **Beim Abgleich mitgefunden:** `lesetest.html` im Verzeichnis stammt von einem Versuch, ob ChatGPT HTML-Dateien lesen kann (Ondo, 16.8.). Sie gehört zu keinem offenen Punkt.
 
+**Der erste Durchlauf hat funktioniert (16.8.):** vier Dokumentdateien vom Tablet zu GitHub hochgeladen, ohne Handarbeit. `pruefe.py` lief dort aus seinem eigenen Ordner heraus und meldete dasselbe wie der Lauf im Chat. **Ein geglückter Versuch ist keine Bewährung** — die Stabilitätsregel gilt.
+
+**Anmeldung am Verzeichnis:** Name `Ondo-Control`, E-Mail eine Apple-Weiterleitung. Beides steht öffentlich an jeder Änderung; die echte Adresse bleibt verborgen. Gilt nur für diesen Ordner.
+
+**🔴 Was noch von Hand läuft:** der Projektordner der App. Er liegt bei Anthropic, nicht auf dem Tablet, und Claude Code schreibt nur auf die Platte. **Ondos Vorgabe, dass auch das aufhören soll, steht als Punkt 53 im Backlog.**
+
 ---
 
 ## Arbeitsablauf für neue Chats

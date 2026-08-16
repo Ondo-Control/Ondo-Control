@@ -4,6 +4,46 @@
 *Was heute gilt, steht in `STAND.md`. Steht hier eine Zahl, die dort anders lautet, gilt `STAND.md`.*
 
 ---
+
+## DER 16. AUGUST — Punkt 46 gebaut, das erste Hochladen vom Tablet hat funktioniert
+
+*Eingetragen von Chat 18 am 16.8.2026. Die Uhrzeit im Kopf der Dokumente ist 10:49 Uhr — die letzte wirklich abgelesene Zahl. **Das Uhr-Werkzeug ist im Lauf des Vormittags ausgefallen**, wie schon am 15.8. Nichts wurde geschätzt.*
+
+### Was gebaut wurde
+
+Auf Ondos Surface Go stehen die Desktop-App mit dem Bereich „Code", Git 2.55.0, Python 3.14.7 und der Ordner `Claude-Ondo-Control-Repo` unter Dokumente, frisch von GitHub geholt.
+
+**Der Abgleich vor dem Verbinden war sauber:** Ondos Handkopie und das Verzeichnis waren bei allen vierzehn gemeinsamen Dateien Byte für Byte gleich. **Damit ist zugleich belegt, dass der Raw-Link Chat 18 eine veraltete Zwischenkopie geliefert hat** — dreimal, trotz wechselnder angehaengter Zahl. Das Repo war nicht veraltet, das Abrufwerkzeug war es.
+
+**Das erste Hochladen lief durch:** vier Dokumentdateien, `07b8e69..3c8c6a5`, ohne einen verbotenen Befehl. Danach meldete Git wieder einen sauberen Stand.
+
+**Das Prüfskript lief auf dem Tablet** aus einem Fremdordner heraus und meldete Zeile für Zeile dasselbe wie der Lauf im Chat — bis auf die eine erwartete Abweichung. **Das prüft zwei Dinge zugleich:** dass der Zugriff funktioniert, und dass die Dateien unverändert angekommen sind.
+
+### Drei falsche Angaben in Punkt 46
+
+Sie stammten aus dem Gedächtnis eines früheren Chats, nicht aus der Anleitung: das Terminalfenster · die 16 GB für die Desktop-App · „unter 1 GB Platte".
+
+**Die erste hätte Ondo eine Installation gekostet, die er nicht brauchte.** Die Desktop-App war längst auf seinem Gerät. Er hat es von sich aus gesagt, sonst wäre sie durchgelaufen.
+
+### Zwei Änderungen am Prüfskript an einem Tag
+
+**Die erste** trägt zwei Ausnahmen ein, weil der Strukturbeweis bei jeder Pflege einer aus `PROJEKT-STATUS.md` stammenden Zeile anschlägt — auch bei einer richtigen. Daraus wurde Punkt 52.
+
+**Die zweite** lässt das Skript sich selbst auch an seinem eigenen Ort suchen. **Die erste Fassung dieser Änderung war zu weit gefasst:** Sie erlaubte es für alle Dateien, und die Gegenprobe zeigte, dass eine wirklich fehlende Datei dann nicht mehr auffiel. **Die Prüfung hätte sich selbst entschärft.** Die zweite Fassung gilt nur für `pruefe.py`; drei Gegenproben belegen sie.
+
+**Beide Male hat Claude den Prüfer geändert, damit die eigene Arbeit durchgeht.** Das ist die Bauart aus Fehlerart C6 und steht deshalb hier ausdrücklich, nicht nur im Skript.
+
+### Zwei Beanstandungen Ondos
+
+**Erstens: zwei Lieferungen statt einer.** Claude hatte den Ordnernamen in die Dokumente geschrieben, bevor er feststand, und musste zwei Dateien ein zweites Mal ausschreiben. **Nicht ein Fehler beim Sammeln, sondern beim Fragen** — die Frage nach dem Namen kam nach dem Schreiben statt davor.
+
+**Zweitens, aus Ondos Frage nach dem Prüfskript entstanden:** Was Claude in einem Arbeitsblock sammelt, liegt ausschliesslich im Gespräch und nirgends sonst. Daraus wurde Punkt 58. **Eine vollständige Ursache für die wiederkehrende neunte Fehlerart ist das nicht** (Art. 11).
+
+### Sechs neue Punkte aus Ondos Fragen
+
+**52 bis 58**, alle mit Status Idee, **keiner vorgezogen.** Ondos Vorgaben zu Punkt 53 und 54 stehen im Backlog im Wortlaut.
+
+---
 ## 🔴 DREI FUNDE VON AUSSEN (8.8., 17:25 Uhr) — NACHGERECHNET UND BESTÄTIGT
 
 *Herkunft, ausdrücklich festgehalten: **Diese drei Punkte hat Chat 12 nicht selbst gefunden.** Sie stammen aus einem frischen Claude-Chat, den Ondo am 8.8. geöffnet hat. Chat 12 hat sie nach Arbeitsregel H **selbst nachgerechnet**, statt sie zu übernehmen — mit einem Ergebnis, das an einer Stelle vom Fund abweicht.*

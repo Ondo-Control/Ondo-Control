@@ -26,6 +26,9 @@
 - **Was aussteht:** Das erste Hochladen vom Tablet hat noch nicht stattgefunden. Punkt 46 gilt als gebaut, nicht als bewährt.
 - **🔴 Drei Angaben in Punkt 46 waren falsch** und sind dort mit Vermerk berichtigt, nicht überschrieben: das Terminalfenster, die 16 GB für die Desktop-App und „unter 1 GB Platte".
 - **Ein neuer Fund, noch offen:** Liegt `pruefe.py` außerhalb des Repo-Ordners, meldet sein Abschnitt 2 die eigene Datei als fehlend. Zu klären, bevor das Tablet zum ersten Mal eine Datei ausgibt.
+- **Sechs neue Punkte aus Ondos Fragen vom 16.8.: 52 bis 58.** Alle mit Status Idee. Punkt 53 und 54 tragen Ondos Vorgaben im Wortlaut.
+- **🔴 Neue Gruppe „Chats und Arbeitsstruktur" ganz oben, auf Ondos Anweisung vom 16.8.:** 54 · 53 · 55 · 56 · 58 · 57. Sie steht **vor Prio 1 und damit vor allen App-Punkten**. Punkt 52 bleibt bei den App-nahen Punkten stehen, weil er das Prüfskript betrifft und nicht die Arbeitsstruktur.
+- **Damit ist offen, ob Punkt 47 wartet.** Er ist beschlossen und der nächste in der alten Reihenfolge, gehört aber zur App. **Die Entscheidung liegt bei Ondo; Claude hat nichts von sich aus zurückgestellt.**
 - **🔴 Beschlossen und nicht gebaut: acht** — **E, 2, 3, 4, 47, 49, 50, 51.**
 
 ---
@@ -115,6 +118,81 @@ Vor jeder Codelieferung: Syntaxprüfung von `beta.html`, Sprachschlüssel-Abglei
 
 → **Warum:** `pruefe.py` prüft nur Dokumente. Nichts prüft, ob die App nach einer Änderung noch läuft. Ein Codefehler fällt heute erst im Betrieb auf.
 → **Kosten:** ein halber Arbeitsblock, kein Geld.
+
+---
+
+## 🔴 CHATS UND ARBEITSSTRUKTUR — VOR ALLEN APP-PUNKTEN (Ondo, 16.8.)
+
+**Ondos Vorgabe:** Zuerst werden die Probleme mit Chats, Nutzungsgrenzen und Arbeitsstruktur gelöst, dann geht es an der App weiter. Diese Gruppe steht deshalb vor **Prio 1**.
+
+**Das gilt auch gegenüber der Reihenfolge der beschlossenen Punkte.** Der nächste beschlossene ist Punkt 47, und der gehört zur App. **Ondo entscheidet, ob er wartet** — Claude zieht nichts von sich aus vor und stellt nichts von sich aus zurück.
+
+**Reihenfolge innerhalb der Gruppe, Vorschlag Claudes:** 54 zuerst, weil ohne sie der Bereich „Code" ohne Pflichtlektüre arbeitet · dann 53 · dann 55 · dann 56 · dann 58 · dann 57.
+
+---
+
+**54. `CLAUDE.md` für den Code-Bereich** · *Frage 16.8., Ondo* · **Status: Idee — von Claude als stärkster der sechs Punkte eingeschätzt**
+
+Wer im Bereich „Code" arbeitet, hat die Pflichtlektüre nicht gelesen. Er kennt weder die Arbeitsregeln noch die Fehlerarten. **Damit fällt genau der Schutz weg, für den das Kontrollexamen gebaut wurde.**
+
+Claude Code liest beim Start eine Datei mit diesem Namen aus dem Arbeitsordner. Darin könnten die Regeln stehen, ohne dass Ondo sie einfügt.
+
+→ **Ungeprüft:** der genaue Name, der genaue Ort, wie viel Text sinnvoll ist und ob die Datei ins Repo gehört oder daneben.
+→ **Hängt zusammen mit Punkt 55.** Ohne diese Datei ist die Arbeitsteilung nicht sicher zu betreiben.
+→ **Kosten:** keine ausser Zeit.
+
+---
+
+**53. Erzeugte Dateien ohne Handarbeit an den richtigen Ort** · *Vorgabe 16.8., Ondo* · **Status: Idee — Ondos Vorgabe steht, der Weg ist offen**
+
+**Ondos Vorgabe im Wortlaut:** Er will nicht mehr von Hand hochladen. Erzeugte Dateien sollen auf dem Tablet in den richtigen Ordnern landen — **im Repo und im Projektordner der App**. Er arbeitet parallel am Handy. Ziel ist, das Tablet zu Hause laufen zu lassen. **Es kann aber aus sein**, etwa nach einem Windows-Update. Er will mit **einem Klick** entscheiden, wohin gespeichert wird — Handy, Tablet, Repo, Projektordner — und welche Dateien. **Einmal eingestellt, danach immer automatisch, wenn er es auslöst.**
+
+→ **Was belegt ist:** Der Projektordner der App liegt bei Anthropic, nicht auf dem Tablet. Claude Code schreibt nur auf die Platte des Geräts.
+→ **Was NICHT bekannt ist (Art. 11):** ob es überhaupt einen Weg in den Projektordner gibt · was geschieht, wenn das Tablet aus ist · ob der Weg vom Handy aus anstossbar ist. **Claude hat keine dieser Fragen geprüft.**
+→ **Vor jedem Vorschlag ist zu untersuchen, nicht zu vermuten.** Punkt 46 hat am 16.8. gezeigt, was eine Angabe aus dem Gedächtnis kostet.
+→ **Kosten:** unbekannt, bis die Untersuchung vorliegt.
+
+---
+
+**55. Arbeitsteilung zwischen Chat, Code und Cowork festlegen** · *Frage 16.8., Ondo* · **Status: Idee — Vorschlag Claudes liegt vor, Entscheidung offen**
+
+Ondos Frage: Wer erstellt und prüft künftig die Dateien, wer lädt hoch, wo wird besprochen?
+
+→ **Vorschlag Claude (16.8.):** Besprechen und entscheiden im Chat · erstellen, ändern, prüfen und hochladen im Bereich „Code" · Cowork vorerst nicht, weil Claude es zu wenig kennt, um es einzuordnen.
+→ **Der Haken:** siehe Punkt 54.
+→ **Kosten:** keine.
+
+---
+
+**56. Nutzungsgrenzen — welche Wege gibt es?** · *Frage 16.8., Ondo* · **Status: Idee — Claude hat KEINE belastbare Auskunft gegeben**
+
+Ondos Frage: API, grösseres Abo oder etwas anderes? Was kostet es, brauchen wir es jetzt?
+
+→ **Claude hat am 16.8. ausdrücklich keine Zahlen genannt**, weil sie aus dem Gedächtnis stammen würden. Die API rechnet nach Verbrauch statt nach Woche und kostet echtes Geld; alles Weitere ist ungeprüft.
+→ **Auflage:** Die Antwort wird aus der offiziellen Preisseite geholt, nicht erinnert.
+→ **Kosten der Untersuchung:** wenige Abrufe, kein Geld.
+
+---
+
+**58. Die Sammlung im Chat hat keinen Ablageort** · *Fund 16.8., Claude, auf Ondos Frage* · **Status: Idee — die Ursache ist benannt, die Abhilfe nicht**
+
+Ondos Frage war, ob `pruefe.py` den Chat prüfen kann, damit Beschlossenes nicht verlorengeht. **Das kann es nicht** — es liest Dateien, nicht Gespräche.
+
+**Der eigentliche Fund liegt darunter:** Was Claude im Lauf eines Arbeitsblocks sammelt, liegt ausschliesslich im Gespräch. Es gibt keinen zweiten Ort. Geht der Speicher zur Neige oder kommt etwas dazwischen, ist alles weg, was nicht in einer Datei steht.
+
+→ **Das ist ein belegbarer Teil der Ursache** für die neunte Fehlerart und für vergessene Zusagen. **Nicht die ganze Ursache** — die ist weiterhin unbekannt (Art. 11).
+→ **Zur Entscheidung:** ein mitlaufender Merkzettel als Datei, in den jeder Beschluss sofort wandert? Das wäre wieder eine Lieferung je Beschluss — genau das, was Ondo am 16.8. beanstandet hat. **Der Widerspruch ist ungelöst; Claude legt ihn offen, statt ihn zu überspielen.**
+→ **Kosten:** keine, solange nicht entschieden wird.
+
+---
+
+**57. Weitere Werkzeuge — Connectors und anderes** · *Frage 16.8., Ondo* · **Status: Idee — ungeprüft**
+
+Ondos Frage: Es gibt Chat und Code. Gibt es weitere Möglichkeiten, die Arbeit zu erleichtern?
+
+→ **Claude weiss es nicht.** Nichts davon ist geprüft.
+→ **Nachrangig gegenüber 53 bis 56**, weil dort konkrete Vorgaben vorliegen und hier nur eine offene Frage.
+→ **Kosten:** unbekannt.
 
 ---
 
