@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 16.8.2026, 10:49 Uhr, Fassung 28 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 16.8.2026, 16:03 Uhr, Fassung 29 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -17,13 +17,25 @@
 
 ---
 
+## ⚠ Was Fassung 29 ändert (16.8., nachmittags)
+
+**🔴 Widerspruch zum ersten Hochladen berichtigt. Ondo hat entschieden: Die Gruppe „Chats und Arbeitsstruktur" geht für diesen Chat vor Arbeitsregel L.**
+
+- **Der Befund:** Punkt 46 trug seit der Übergabe an Chat 19 zwei sich widersprechende Angaben zum ersten Hochladen — „noch nicht stattgefunden" in der Statuszeile hier und im entsprechenden Abschnitt von `STAND.md`, „hat funktioniert" in Chat 18s Abnahme an Chat 19. `STAND.md` trug beide Angaben sogar im selben Abschnitt nebeneinander. **Fehlerart C4**, wörtlich: eine neue Aussage wurde neben eine ältere, widersprechende gestellt, statt sie im selben Durchgang zu berichtigen.
+- **Berichtigt:** Das erste Hochladen vom Tablet hat am 16.8. stattgefunden und funktioniert. **Beleg:** Ondo bestätigt, Repo, Tablet und Projektkopien seien seither auf demselben Stand — gezeigt am GitHub-Screenshot, Commits auf `main` zuletzt vor 3 Stunden. **Bewährt ist Punkt 46 damit weiterhin nicht** — ein geglückter erster Versuch ist kein Nachweis von Zuverlässigkeit.
+- **Klargestellt:** Das Hochladen von Hand entfällt nur für den Weg zu GitHub. Der Projektordner der App läuft weiterhin von Hand — dafür steht Punkt 53.
+- **🔴 Entscheidung Ondo (16.8., nachmittags):** Auf die Frage, ob die Gruppe „Chats und Arbeitsstruktur" für diesen Chat vor Arbeitsregel L geht — Ondos Antwort: „Vorrang hat Chat und Arbeitsstruktur." Der nächste beschlossene Punkt (47) wartet damit für diesen Chat; Claude hat ihn nicht von sich aus zurückgestellt.
+- **🔴 Beschlossen und nicht gebaut: acht** — **E, 2, 3, 4, 47, 49, 50, 51.**
+
+---
+
 ## ⚠ Was Fassung 28 ändert (16.8., vormittags)
 
 **🔴 Punkt 46 ist gebaut. Claude Code arbeitet auf dem Surface Go.**
 
 - **Was steht:** die Desktop-App mit dem Bereich „Code" · Git 2.55.0 · Python 3.14.7 · ein frisch von GitHub geholter Ordner `Claude-Ondo-Control-Repo`, der mit dem Verzeichnis verbunden ist.
 - **Der Abgleich war sauber.** Ondos Handkopie und das Verzeichnis waren bei allen vierzehn gemeinsamen Dateien Byte für Byte gleich. **Damit ist zugleich belegt, dass der Raw-Link diesem Chat eine veraltete Zwischenkopie geliefert hat und nicht das Repo veraltet war.**
-- **Was aussteht:** Das erste Hochladen vom Tablet hat noch nicht stattgefunden. Punkt 46 gilt als gebaut, nicht als bewährt.
+- **Was aussteht:** Das erste Hochladen vom Tablet hat noch nicht stattgefunden. Punkt 46 gilt als gebaut, nicht als bewährt. **🔴 Berichtigt in Fassung 29:** Das erste Hochladen hat inzwischen stattgefunden und funktioniert. Weiterhin richtig bleibt: Punkt 46 gilt nicht als bewährt.
 - **🔴 Drei Angaben in Punkt 46 waren falsch** und sind dort mit Vermerk berichtigt, nicht überschrieben: das Terminalfenster, die 16 GB für die Desktop-App und „unter 1 GB Platte".
 - **Ein neuer Fund, noch offen:** Liegt `pruefe.py` außerhalb des Repo-Ordners, meldet sein Abschnitt 2 die eigene Datei als fehlend. Zu klären, bevor das Tablet zum ersten Mal eine Datei ausgibt.
 - **Sechs neue Punkte aus Ondos Fragen vom 16.8.: 52 bis 58.** Alle mit Status Idee. Punkt 53 und 54 tragen Ondos Vorgaben im Wortlaut.
@@ -91,7 +103,7 @@
 
 ---
 
-**46. Claude Code auf dem Surface Go** · *Idee 9./10.7., Claude (als Punkt 8) · neu vorgelegt 14.8. · beschlossen 14.8., Ondo · eingerichtet 16.8., Chat 18* · **Status: GEBAUT 16.8. — Bewährung steht aus, erstes Hochladen noch nicht erfolgt**
+**46. Claude Code auf dem Surface Go** · *Idee 9./10.7., Claude (als Punkt 8) · neu vorgelegt 14.8. · beschlossen 14.8., Ondo · eingerichtet 16.8., Chat 18* · **Status: GEBAUT 16.8. — erstes Hochladen geglückt, Bewährung steht aus**
 
 > **🔴 ZUSAMMENGELEGT am 14.8. abends (Chat 16).** Dies ist derselbe Vorschlag wie **Punkt 8** („Claude Code auf dem Windows-Tablet über das Pro-Abo", 9./10.7.). Chat 15 hat ihn als neuen Punkt aufgenommen, ohne den alten zu finden. **Punkt 8 verweist ab jetzt hierher; dieser Punkt führt ihn weiter.** Fund von Chat 16, bestätigt von Chat 15.
 
@@ -109,6 +121,8 @@ Ondos Gerät: Surface Go, Windows 10 Home 22H2, 64 Bit, 8 GB RAM, 110 GB frei, P
 → **Ergebnis 16.8.2026 (Chat 18):** Auf dem Tablet stehen die Desktop-App mit dem Bereich „Code", Git 2.55.0, Python 3.14.7 und der Ordner `Claude-Ondo-Control-Repo` unter Dokumente, frisch von GitHub geholt und mit dem Verzeichnis verbunden. Der maschinelle Abgleich der Handkopie gegen das Verzeichnis fand bei allen vierzehn gemeinsamen Dateien keinen Unterschied.
 → **Zwei Auflagen, die dauerhaft gelten:** Die Sicherungen mit `apiKey`, `geminiKey` und `pin` und die Übergabemappen liegen außerhalb des Repo-Ordners und werden dort nie geöffnet. `pruefe.py` liegt in einem eigenen Ordner daneben, damit es nicht ins Verzeichnis gerät.
 → **Zwei offene Stellen (Art. 11):** Läuft `pruefe.py` aus einem anderen Ordner, meldet sein Abschnitt 2 die eigene Datei als fehlend. Und der Repo-Ordner liegt unter OneDrive — ob OneDrive beim Hochladen dazwischenfunkt, ist ungeprüft.
+
+> **🔴 BERICHTIGT am 16.8.2026, nachmittags (Chat 19).** Hier stand bis heute in der Statuszeile: „GEBAUT 16.8. — Bewährung steht aus, erstes Hochladen noch nicht erfolgt." **Das erste Hochladen hat inzwischen stattgefunden und funktioniert** — laut Ondo sind Repo, Tablet und Projektkopien seither auf demselben Stand. **Ursache des Fehlers (Fehlerart C4):** Chat 18 hatte den Satz zum offenen Hochladen geschrieben, bevor Ondo hochgeladen hat, und den späteren Erfolg in der Abnahme daneben vermerkt, statt die ältere Aussage im selben Durchgang zu berichtigen. **Weiterhin unverändert: Punkt 46 gilt nicht als bewährt** — ein geglückter erster Versuch ist kein Nachweis von Zuverlässigkeit.
 
 ---
 

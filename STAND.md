@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 16. August 2026, 10:49 Uhr, v19.8.2*
+*Die aktuelle Wahrheit. Stand: 16. August 2026, 16:03 Uhr, v19.8.2*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -247,11 +247,13 @@ Dateiname beginnt mit Datum und Uhrzeit: `2026-07-31_1430_Ondo-Control_Thema.md`
 
 ## Claude Code auf dem Tablet — die neue Arbeitsweise (Punkt 46, 16.8.2026)
 
-*Eingerichtet am 16.8.2026. **Noch nicht bewährt:** Das erste Hochladen vom Tablet hat noch nicht stattgefunden.*
+*Eingerichtet am 16.8.2026. **Noch nicht bewährt:** ein geglückter erster Versuch ist kein Nachweis von Zuverlässigkeit (Stabilitätsregel).*
+
+> **🔴 BERICHTIGT am 16.8.2026, nachmittags (Chat 19).** Hier stand bis heute: „Das erste Hochladen vom Tablet hat noch nicht stattgefunden." **Das war seit dem Vormittag des 16.8. nicht mehr richtig** und stand im selben Abschnitt im Widerspruch zum Absatz „Der erste Durchlauf hat funktioniert" weiter unten — Fehlerart C4. Ondo bestätigt: Repo, Tablet und Projektkopien sind seither auf demselben Stand. **Unverändert bleibt: Punkt 46 gilt weiterhin nicht als bewährt.**
 
 **Was auf dem Surface Go steht:** die Desktop-App mit den Bereichen „Chat und Cowork" und „Code" · Git 2.55.0 · Python 3.14.7 · der Ordner `Claude-Ondo-Control-Repo` unter Dokumente, frisch von GitHub geholt und mit dem Verzeichnis verbunden.
 
-**Was das ändert:** Im Bereich „Code" liest Claude eine Datei erst, wenn es sie braucht, und nur die nötige Stelle. Es ändert direkt und kann die Änderung selbst zu GitHub schicken. **Das Hochladen von Hand entfällt, sobald der erste Versuch geglückt ist** — vorher nicht.
+**Was das ändert:** Im Bereich „Code" liest Claude eine Datei erst, wenn es sie braucht, und nur die nötige Stelle. Es ändert direkt und kann die Änderung selbst zu GitHub schicken. **Das Hochladen von Hand zu GitHub entfällt, seit der erste Versuch am 16.8. geglückt ist.** 🔴 Berichtigt (Chat 19): Das gilt ausschliesslich für den Weg zu GitHub. **Der Projektordner der App bleibt weiterhin Handarbeit** — er liegt bei Anthropic, nicht auf dem Tablet, und Claude Code schreibt nur auf die Platte des Geräts. Genau deshalb steht Punkt 53 im Backlog.
 
 **Drei Auflagen, die dauerhaft gelten:**
 - Die Sicherungen mit `apiKey`, `geminiKey` und `pin` und die Übergabemappen liegen **außerhalb** des Repo-Ordners und werden dort nie geöffnet.
