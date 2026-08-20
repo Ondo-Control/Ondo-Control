@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 16. August 2026, 16:03 Uhr, v19.8.2*
+*Die aktuelle Wahrheit. Stand: 20. August 2026, 05:39 Uhr, v19.8.2*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -285,6 +285,8 @@ Ondo schreibt „Ondo Control: [Anliegen]" und fügt Raw-Links ein, **immer mit 
 *Namensklärung erledigt (Ondo, 31.7., eingetragen 3.8.): Diese Vorschrift hieß bis dahin ebenfalls „Regel G" und ließ sich mit der Arbeitsregel G (Kostenregel) im Blueprint verwechseln. Sie heißt jetzt **Übergaberegel**.*
 
 Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp wird. Sie besteht aus drei Teilen: aktualisierter PROJEKT-STATUS, aktualisierter Backlog, und einer **Übergabemappe** mit den Abschnitten: (A) Nachricht zum Einfügen, (B) Kontrollfragen, (C) Antwortschlüssel nur für Ondo, (D) was zu tun ist, wenn Antworten falsch sind, (E) erste Arbeit nach der Abnahme.
+
+**Teil A enthält immer den Raw-Link-Block für alle vier Pflichtdokumente, mit tagesaktueller Zahl angehängt, direkt als Text in der Nachricht — nicht als Datei-Anhang.** Grund für den Zusatz „nicht als Datei-Anhang" (bestätigt 16.8.2026, Chat 19, per Testabruf): Ein Link, der nur im Text einer hochgeladenen Datei steht, ist für den Chat-Bereich nicht abrufbar. Nur ein Link, der als Text der Nachricht selbst dasteht, ist es. Dieser Block war zwischen dem 15.8. (Chat 16→17, noch vorhanden) und dem 16.8. (Chat 18→19, nicht mehr vorhanden) ohne Meldung weggefallen und damit vorübergehend unbrauchbar geworden.
 
 **Begründung:** Eine Übergabenachricht allein beweist nichts. Erst die richtig beantwortete Kontrollfrage beweist etwas. Die Kontrollfragen werden bei jeder Übergabe **neu geschrieben**. Mindestens eine muss eine Fangfrage sein, deren richtige Antwort „das weiß ich nicht" lautet (Art. 11 und 14).
 

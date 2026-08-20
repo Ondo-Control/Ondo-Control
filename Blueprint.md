@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.28
-**Stand:** 16. August 2026, 16:03 Uhr
+**Version:** 0.29
+**Stand:** 20. August 2026, 05:39 Uhr
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.29 ändert (20.8.2026, morgens):** Nur der Kopf-Zeitstempel wurde auf die aktuelle Ablesung gebracht, damit `STAND.md`, Backlog und Blueprint dieselbe Uhrzeit tragen (Arbeitsregel M) — Anlass war der Abschluss von Punkt 54 und die feste Verankerung des Raw-Link-Blocks (Backlog Fassung 30). **Kein Inhalt hier geändert, kein Verfassungsartikel geändert, keine neue Arbeitsregel.** Blueprint auf 0.29 gehoben.
 
 > **Was Fassung 0.28 ändert (16.8.2026, nachmittags):** Nur der Kopf-Zeitstempel wurde auf die aktuelle Ablesung gebracht, damit `STAND.md`, Backlog und Blueprint dieselbe Uhrzeit tragen (Arbeitsregel M) — Anlass war die Berichtigung des Widerspruchs zum ersten Hochladen in `STAND.md` und im Backlog (dort Fassung 29). **Kein Inhalt hier geändert, kein Verfassungsartikel geändert, keine neue Arbeitsregel.** Blueprint auf 0.28 gehoben.
 

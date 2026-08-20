@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 16.8.2026, 16:03 Uhr, Fassung 29 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 20.8.2026, 05:39 Uhr, Fassung 30 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -14,6 +14,18 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 30 ändert (20.8., morgens)
+
+**Punkt 54 untersucht und beschlossen. Raw-Link-Block dauerhaft in Teil A der Übergabemappe verankert.**
+
+- **Punkt 54:** Name, Ort und Umfang von `CLAUDE.md` geklärt anhand der offiziellen Dokumentation. Ondo hat beide vorgeschlagenen Bausteine beschlossen — Selbsterzeugung durch Claude Code, plus ein Auslöser bei Sitzungsstart, der nur bei geänderten Pflichtdokumenten an eine Erneuerung erinnert. Gebaut wird das nicht im Chat, sondern auf dem Tablet oder in einer Cloud-Sitzung. Einzelheiten bei Punkt 54.
+- **Raw-Link-Block:** In `STAND.md`, Abschnitt „Chat-Übergabe ist Claudes Pflicht, nicht Ondos", jetzt ausdrücklich festgehalten: Teil A jeder Übergabe enthält den Raw-Link-Block für alle vier Pflichtdokumente, als Text der Nachricht, nicht als Anhang. Begründung und Fund von Chat 19 direkt dort vermerkt.
+- **Nebenbefund, gehört zu Punkt 53, dort nicht abschliessend behandelt:** Ein Testabruf am 16.8. hat bestätigt, dass ein Raw-Link, der als Text der Nachricht steht, im Chat-Bereich abrufbar ist — ein Link, der nur im Text einer angehängten Datei steht, dagegen nicht. Ausserdem: Der Code-Bereich der Claude-App kann laut offizieller Dokumentation Cloud-Sitzungen starten, die unabhängig von jedem eigenen Gerät auf das Repo zugreifen — zu unterscheiden von „Fernsteuerung", die an ein eingeschaltetes Gerät gebunden bleibt. Live am 16.8. bestätigt: Die vorhandene Sitzung „Ondo Control: Code 1" ist als Fernsteuerung gekennzeichnet, keine Cloud-Sitzung. Einrichtung einer Cloud-Sitzung steht noch aus, Ondo prüft das auf seinem Gerät.
+- **Zeitsprung vermerkt:** Zwischen dem Beginn dieser Chat-Sitzung (16.8.) und dieser Lieferung liegen laut frisch abgelesener Uhr tatsächlich vier Tage (20.8.). Kein Fehler, nur festgehalten, weil Zeitangaben in diesem Projekt nie geschätzt werden.
+- **🔴 Beschlossen und nicht gebaut: neun** — **E, 2, 3, 4, 47, 49, 50, 51, 54.**
 
 ---
 
@@ -145,15 +157,17 @@ Vor jeder Codelieferung: Syntaxprüfung von `beta.html`, Sprachschlüssel-Abglei
 
 ---
 
-**54. `CLAUDE.md` für den Code-Bereich** · *Frage 16.8., Ondo* · **Status: Idee — von Claude als stärkster der sechs Punkte eingeschätzt**
+**54. `CLAUDE.md` für den Code-Bereich** · *Frage 16.8., Ondo · untersucht 16.8., Chat 19 · beschlossen 16.8., Ondo* · **Status: beschlossen, noch nicht gebaut**
 
 Wer im Bereich „Code" arbeitet, hat die Pflichtlektüre nicht gelesen. Er kennt weder die Arbeitsregeln noch die Fehlerarten. **Damit fällt genau der Schutz weg, für den das Kontrollexamen gebaut wurde.**
 
 Claude Code liest beim Start eine Datei mit diesem Namen aus dem Arbeitsordner. Darin könnten die Regeln stehen, ohne dass Ondo sie einfügt.
 
-→ **Ungeprüft:** der genaue Name, der genaue Ort, wie viel Text sinnvoll ist und ob die Datei ins Repo gehört oder daneben.
-→ **Hängt zusammen mit Punkt 55.** Ohne diese Datei ist die Arbeitsteilung nicht sicher zu betreiben.
-→ **Kosten:** keine ausser Zeit.
+→ **Geklärt (16.8., anhand der offiziellen Dokumentation, nicht aus dem Gedächtnis):** Der Name steht fest — `CLAUDE.md`, nicht `AGENTS.md`. Ort: im Repo, unter `./CLAUDE.md`, passend zu Punkt 45 (ein Ort je Tatsache, mitversioniert). Umfang: unter 200 Zeilen empfohlen — die vier Pflichtdokumente selbst gehören nicht per `@Import` hinein, das würde bei jedem Sitzungsstart alle rund 120 KB neu laden. Stattdessen eine feste Anweisung, die vier Dokumente vor inhaltlicher Arbeit vollständig zu lesen.
+→ **Beschlossen (Ondo, 16.8.), zwei Bausteine:** (1) Claude Code liest die vier Pflichtdokumente auf Anweisung vollständig und erzeugt oder erneuert `CLAUDE.md` daraus. (2) Ein Auslöser bei Sitzungsstart prüft, ob sich die vier Dokumente seit der letzten Erzeugung geändert haben, und erinnert nur dann an eine Erneuerung.
+→ **Grenze, die dabei bleibt:** `CLAUDE.md` ist Kontext, keine erzwungene Einstellung — keine Garantie, dass Claude Code die Anweisung befolgt, ähnlich wie eine Regel im Prompt sich anders verhält als eine Regel im Code. Eine dem Kontrollexamen entsprechende Prüfung gibt es dafür nicht.
+→ **Hängt zusammen mit Punkt 55.** Ohne diese Datei ist die Arbeitsteilung nicht sicher zu betreiben. Gebaut wird beides auf dem Tablet oder in einer Cloud-Sitzung (Punkt 53), nicht im Chat-Bereich.
+→ **Kosten:** keine ausser Zeit, und dem Kontext, den das Lesen der vier Dokumente bei jeder betroffenen Sitzung kostet.
 
 ---
 
