@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 20.8.2026, 05:39 Uhr, Fassung 30 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 20.8.2026, 13:00 Uhr, Fassung 31 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -14,6 +14,18 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 31 ändert (20.8., mittags)
+
+**Punkt 53 zur Hälfte bewiesen — NICHT erledigt. Ondos sieben neue Fragen eingetragen. Ein Rückfall Claudes vermerkt.**
+
+- **Punkt 53, Teilbefund:** Live bewiesen bei ausgeschaltetem Tablet — eine Cloud-Sitzung im Code-Bereich schreibt ohne jedes eigene Gerät ins Repo. Ebenfalls geklärt: „Fernsteuerung" und „Dispatch" sind gerätegebunden und scheiden für Ondos Vorgabe aus. **Der Kern des Punktes bleibt offen** — Ondos sieben Fragen vom 20.8. stehen dort im Wortlaut, samt der Auflage, sie durch Versuch zu klären statt durch Nachschlagen. **Status bleibt „Idee".**
+- **Punkte 55, 56, 58 ergänzt:** Sitzungsfortsetzung Handy↔Tablet und paralleles Ablegen zu 55 · Ondos Wochenlimit nach sechs Nachrichten und die Bestätigung, dass Cloud-Sitzungen am selben Kontingent zehren, zu 56 · der mögliche Ausweg über einen internen Sammelspeicher von Claude Code zu 58.
+- **🔴 Rückfall Claudes, von Ondo gefunden (20.8.):** Chat 19 hat den Übergabebedarf nicht von selbst gemeldet, obwohl die Übergaberegel das ausdrücklich verlangt. Ondo musste danach fragen. Ausserdem hat Chat 19 zweimal geliefert statt einmal und dabei einmal ohne Rückfrage geschrieben — dieselben zwei Fehler, die schon Chat 18 begangen hat. **Beide in der Übergabemappe an Chat 20 als stehende Warnung vermerkt.**
+- **Zum Testbranch:** `claude/readme-datum-hinzufuegen-bis926` war reine Prüfung. Der Beweis steht hier, nicht im Branch. **Kein Pull Request erstellt, `main` unberührt**; der Branch kann gelöscht werden.
+- **Beschlossen und nicht gebaut: neun** — **E, 2, 3, 4, 47, 49, 50, 51, 54.**
 
 ---
 
@@ -176,9 +188,13 @@ Claude Code liest beim Start eine Datei mit diesem Namen aus dem Arbeitsordner. 
 **Ondos Vorgabe im Wortlaut:** Er will nicht mehr von Hand hochladen. Erzeugte Dateien sollen auf dem Tablet in den richtigen Ordnern landen — **im Repo und im Projektordner der App**. Er arbeitet parallel am Handy. Ziel ist, das Tablet zu Hause laufen zu lassen. **Es kann aber aus sein**, etwa nach einem Windows-Update. Er will mit **einem Klick** entscheiden, wohin gespeichert wird — Handy, Tablet, Repo, Projektordner — und welche Dateien. **Einmal eingestellt, danach immer automatisch, wenn er es auslöst.**
 
 → **Was belegt ist:** Der Projektordner der App liegt bei Anthropic, nicht auf dem Tablet. Claude Code schreibt nur auf die Platte des Geräts.
-→ **Was NICHT bekannt ist (Art. 11):** ob es überhaupt einen Weg in den Projektordner gibt · was geschieht, wenn das Tablet aus ist · ob der Weg vom Handy aus anstossbar ist. **Claude hat keine dieser Fragen geprüft.**
-→ **Vor jedem Vorschlag ist zu untersuchen, nicht zu vermuten.** Punkt 46 hat am 16.8. gezeigt, was eine Angabe aus dem Gedächtnis kostet.
-→ **Kosten:** unbekannt, bis die Untersuchung vorliegt.
+→ **🔴 Live bewiesen am 20.8.2026, 06:13–06:20 Uhr, durch Ondo am Handy, Tablet nachweislich ausgeschaltet:** Über „Code → + Neue Sitzung" lässt sich eine **Cloud-Sitzung** starten, die das Repo auf Anthropics eigener Rechenanlage klont, ändert und zu GitHub zurückschiebt — **ohne jedes eigene Gerät**. Testauftrag: eine Datumszeile an `README.md` anhängen. Ergebnis: Commit `a1324a6` auf Branch `claude/readme-datum-hinzufuegen-bis926`, auf GitHub sichtbar, `main` unberührt. Kein Handupload nötig. **Damit ist Ondos Frage „was, wenn das Tablet aus ist" beantwortet: der Repo-Weg funktioniert trotzdem.**
+→ **Zu unterscheiden, und das war der entscheidende Fund:** Die bereits vorhandene Sitzung „Ondo Control: Code 1" trägt die Kennzeichnung **„Fernsteuerung"** und ist an das eingeschaltete Tablet gebunden. **Dispatch ebenfalls** — dessen Meldung „Desktop nicht erreichbar" am 16.8. war kein Fehler, sondern die vorgesehene Wirkung. **Nur die Cloud-Sitzung ist geräteunabhängig.** Fernsteuerung und Dispatch scheiden für Ondos Vorgabe aus.
+→ **Nebenbefund zu den Betriebsarten:** „Plan" legt vor der Ausführung einen Plan vor und wartet auf Genehmigung — passend zu Artikel 8 und deshalb als Standard empfohlen. „Änderungen akzeptieren" überspringt die Rückfrage. „Auto" überlässt Claude Code auch die Frage, wofür überhaupt eine Erlaubnis nötig ist.
+→ **Was NICHT bekannt ist (Art. 11), Ondos Fragen vom 20.8. — der Kern des Punktes ist damit NICHT erledigt:** ob Claude Code die **Projektdokumente selbst fortschreiben** kann (Buchführung statt nur Codeänderung) · ob es einen **internen Sammelspeicher** gibt, in dem anstehende Änderungen bis zum Nachtragen liegen (berührt Punkt 58) · ob eine Aktualisierung **auf Befehl UND zu fester Uhrzeit** einstellbar ist, etwa abends · ob das **im Hintergrund** läuft · ob eine am Handy begonnene Sitzung **am Tablet fortgesetzt** werden kann · ob sich Dateien **parallel** ablegen lassen (Tablet aus: nur Repo; Tablet an: Repo und Tablet) · **wann der Speicher einer Code-Sitzung voll ist**, wann ihr Inhalt gelöscht und eine neue Sitzung begonnen werden sollte, und ob Claude Code das von selbst vorschlägt.
+→ **Auflage für den nächsten Chat:** Diese Fragen sind **durch Versuch in einer Cloud-Sitzung** zu klären, nicht durch Nachschlagen und nicht durch Vermuten — sie kosten dort weder Chat-Speicher noch Handarbeit. Der Weg über die Dokumentation bleibt zweite Wahl.
+→ **Der Projektordner der App bleibt ungelöst** und ist es vermutlich auch: Ein maschineller Weg dorthin ist nicht vorgesehen (geprüft 16.8.). Er verliert aber an Gewicht, weil Chat über die Raw-Links selbst lesen kann (siehe Fassung 30) und das Repo nun ohne Tablet beschreibbar ist.
+→ **Kosten:** Cloud-Sitzungen zehren am selben Wochenlimit wie der Chat; kein zusätzliches Geld, kein zusätzliches Abo. Pro genügt.
 
 ---
 
@@ -188,6 +204,8 @@ Ondos Frage: Wer erstellt und prüft künftig die Dateien, wer lädt hoch, wo wi
 
 → **Vorschlag Claude (16.8.):** Besprechen und entscheiden im Chat · erstellen, ändern, prüfen und hochladen im Bereich „Code" · Cowork vorerst nicht, weil Claude es zu wenig kennt, um es einzuordnen.
 → **Der Haken:** siehe Punkt 54.
+→ **🔴 Neu am 20.8. (Ondo):** Offen ist zusätzlich, ob eine am Handy begonnene Code-Sitzung **am Tablet fortgesetzt** werden kann, und ob dieselbe Sitzung Dateien **parallel** an beide Orte legen kann — Tablet aus: nur Repo, Tablet an: Repo und Tablet. Prüfung gehört zu Punkt 53, die Entscheidung über die Arbeitsteilung hierher.
+→ **🔴 Belegt am 20.8., stützt den Vorschlag:** Chat kann Repo-Dateien über Raw-Links selbst lesen, und der Code-Bereich kann ohne Tablet ins Repo schreiben. Beide Hälften des Vorschlags sind damit technisch möglich.
 → **Kosten:** keine.
 
 ---
@@ -198,6 +216,8 @@ Ondos Frage: API, grösseres Abo oder etwas anderes? Was kostet es, brauchen wir
 
 → **Claude hat am 16.8. ausdrücklich keine Zahlen genannt**, weil sie aus dem Gedächtnis stammen würden. Die API rechnet nach Verbrauch statt nach Woche und kostet echtes Geld; alles Weitere ist ungeprüft.
 → **Auflage:** Die Antwort wird aus der offiziellen Preisseite geholt, nicht erinnert.
+→ **🔴 Beobachtung Ondos, 20.8.:** Das Wochenlimit war an diesem Morgen **nach sechs Nachrichten** erreicht. Am 16.8. stand es bei 85 %. **Der Punkt wird damit dringlich, nicht mehr nur wünschenswert.**
+→ **🔴 Belegt am 20.8. (offizielle Dokumentation):** Cloud-Sitzungen im Code-Bereich zehren am **selben** Kontingent wie der Chat — sie sparen Handarbeit, aber kein Limit. Das Pro-Abo genügt für Cloud-Sitzungen; auf Pro ist Claude Code laut Quellen Dritter auf Sonnet-Modelle beschränkt. Zahlen zu Token je Zeitfenster veröffentlicht Anthropic nicht; kursierende Werte sind unbestätigt.
 → **Kosten der Untersuchung:** wenige Abrufe, kein Geld.
 
 ---
@@ -210,6 +230,8 @@ Ondos Frage war, ob `pruefe.py` den Chat prüfen kann, damit Beschlossenes nicht
 
 → **Das ist ein belegbarer Teil der Ursache** für die neunte Fehlerart und für vergessene Zusagen. **Nicht die ganze Ursache** — die ist weiterhin unbekannt (Art. 11).
 → **Zur Entscheidung:** ein mitlaufender Merkzettel als Datei, in den jeder Beschluss sofort wandert? Das wäre wieder eine Lieferung je Beschluss — genau das, was Ondo am 16.8. beanstandet hat. **Der Widerspruch ist ungelöst; Claude legt ihn offen, statt ihn zu überspielen.**
+→ **🔴 Möglicher Ausweg, neu am 20.8. (Ondo):** Hat **Claude Code** einen internen Sammelspeicher, in dem anstehende Änderungen bis zum Nachtragen liegen, und kann er sie später auf Befehl oder zu fester Uhrzeit in die Dateien schreiben, dann läge der zweite Ort dort — **ohne Lieferung je Beschluss und ohne Handarbeit**. Das würde den Widerspruch auflösen, statt ihn nur zu benennen. **Ungeprüft.** Prüfung gehört zu Punkt 53.
+→ **🔴 Belegter Rückfall am 20.8.:** Chat 19 hat den Übergabebedarf **nicht von selbst gemeldet**, obwohl die Übergaberegel das verlangt — Ondo musste fragen. Derselbe Mechanismus: Was nur im Gespräch liegt, wird nicht ausgelöst.
 → **Kosten:** keine, solange nicht entschieden wird.
 
 ---
