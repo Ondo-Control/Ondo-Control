@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 21.8.2026, 16:12 Uhr, Fassung 33 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 21.8.2026, 18:11 Uhr, Fassung 34 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -14,6 +14,18 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 34 ändert (21.8., abends)
+
+**Punkt 54 ist gebaut: `CLAUDE.md` liegt im Repo, dazu ein Auslöser bei Sitzungsstart. Der Status von Punkt 52 ist an die Entscheidung aus Fassung 33 angeglichen.**
+
+- **🔴 Punkt 54 GEBAUT (21.8., Chat 21, Cloud-Sitzung):** `./CLAUDE.md`, unter 200 Zeilen, geschrieben aus den vier vollständig gelesenen Pflichtdokumenten. Es wiederholt keine Kennzahl und keine Liste, sondern nennt den Fundort (Punkt 45). Dazu der zweite beschlossene Baustein: ein Hook in `.claude/settings.json`, der bei jedem Sitzungsstart `.claude/hooks/claude_md_frisch.py` aufruft. Das Skript vergleicht den Git-Blob-Hash der vier Dokumente mit der Tabelle am Ende von `CLAUDE.md` und **erinnert nur** an eine Erneuerung. **Bewährt ist nichts davon** (Stabilitätsregel), und `CLAUDE.md` bleibt Kontext, keine erzwungene Einstellung.
+- **Punkt 52, Statuszeile angeglichen:** Die Kopfzeile trug weiterhin „Idee — Entscheidung Ondos steht aus", während am Ende desselben Punktes seit Fassung 33 „Status: erledigt" stand. **Fehlerart C4**, im selben Durchgang berichtigt statt danebengestellt. Die Entscheidung selbst ist unverändert: keine Frist, die zwei FEHL aus `dabf9bb` bleiben stehen.
+- **Warum diese Fassung überhaupt:** Sobald `CLAUDE.md` im Repo liegt, wäre „beschlossen und nicht gebaut" für Punkt 54 falsch. Die Zahl unten ändert sich dadurch von neun auf acht; sie steht nur hier (Punkt 45).
+- **Zeitstempel:** alle drei aktiven Dokumente auf die Ablesung 18:11 Uhr, Blueprint auf 0.33 gehoben — nur der Kopf, kein Inhalt.
+- **Beschlossen und nicht gebaut: acht** — **E, 2, 3, 4, 47, 49, 50, 51.**
 
 ---
 
@@ -198,7 +210,7 @@ Vor jeder Codelieferung: Syntaxprüfung von `beta.html`, Sprachschlüssel-Abglei
 
 ---
 
-**54. `CLAUDE.md` für den Code-Bereich** · *Frage 16.8., Ondo · untersucht 16.8., Chat 19 · beschlossen 16.8., Ondo* · **Status: beschlossen, noch nicht gebaut**
+**54. `CLAUDE.md` für den Code-Bereich** · *Frage 16.8., Ondo · untersucht 16.8., Chat 19 · beschlossen 16.8., Ondo · gebaut 21.8., Chat 21 in einer Cloud-Sitzung* · **Status: GEBAUT 21.8.2026 — Bewährung steht aus**
 
 Wer im Bereich „Code" arbeitet, hat die Pflichtlektüre nicht gelesen. Er kennt weder die Arbeitsregeln noch die Fehlerarten. **Damit fällt genau der Schutz weg, für den das Kontrollexamen gebaut wurde.**
 
@@ -209,6 +221,8 @@ Claude Code liest beim Start eine Datei mit diesem Namen aus dem Arbeitsordner. 
 → **Grenze, die dabei bleibt:** `CLAUDE.md` ist Kontext, keine erzwungene Einstellung — keine Garantie, dass Claude Code die Anweisung befolgt, ähnlich wie eine Regel im Prompt sich anders verhält als eine Regel im Code. Eine dem Kontrollexamen entsprechende Prüfung gibt es dafür nicht.
 → **Hängt zusammen mit Punkt 55.** Ohne diese Datei ist die Arbeitsteilung nicht sicher zu betreiben. Gebaut wird beides auf dem Tablet oder in einer Cloud-Sitzung (Punkt 53), nicht im Chat-Bereich.
 → **Kosten:** keine ausser Zeit, und dem Kontext, den das Lesen der vier Dokumente bei jeder betroffenen Sitzung kostet.
+→ **🔴 GEBAUT am 21.8.2026 (Chat 21, Cloud-Sitzung), beide Bausteine:** (1) `./CLAUDE.md` liegt im Repo, unter 200 Zeilen, aus den vier vollständig gelesenen Pflichtdokumenten geschrieben. Es wiederholt keine Kennzahl und keine Liste, sondern nennt für jede den Fundort (Punkt 45). (2) Der Auslöser bei Sitzungsstart ist ein Hook in `.claude/settings.json`, der `.claude/hooks/claude_md_frisch.py` aufruft. Das Skript vergleicht den Git-Blob-Hash der vier Dokumente mit der Tabelle am Ende von `CLAUDE.md` und **erinnert nur** an eine Erneuerung; es erneuert nichts von selbst und bricht nichts ab.
+→ **Bewährung steht aus, und die Grenze von oben gilt unverändert:** `CLAUDE.md` ist Kontext, keine erzwungene Einstellung. Zusätzlich muss eine Sitzung den Hook aus dem Repo einmal bestätigen — geschieht das nicht, läuft die Erinnerung nicht.
 
 ---
 
@@ -532,7 +546,7 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 
 ---
 
-**52. Der Verlustbeweis braucht ein Ende** · *Fund 16.8., Claude* · **Status: Idee — Entscheidung Ondos steht aus**
+**52. Der Verlustbeweis braucht ein Ende** · *Fund 16.8., Claude · entschieden 21.8., Claude auf Ondos ausdrückliche Übertragung* · **Status: ERLEDIGT 21.8.2026 — keine Frist, die zwei FEHL bleiben stehen**
 
 Der Beweis aus Punkt 48 vergleicht `STAND.md` gegen `PROJEKT-STATUS.md`. **Jede Pflege einer Zeile, die von dort stammt, bricht ihn** — auch eine richtige. Am 16.8. traf es die Zeile mit der letzten Sicherung; sie musste in die Ausnahmeliste. **Die Liste wächst damit mit jeder Pflege, und eine wachsende Ausnahmeliste beweist immer weniger.**
 

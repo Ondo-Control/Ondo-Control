@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .claude/hooks/claude_md_frisch.py"
+          }
+        ]
+      }
+    ]
+  }
+}
