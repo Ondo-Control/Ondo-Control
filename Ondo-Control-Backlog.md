@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 20.8.2026, 13:00 Uhr, Fassung 31 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 21.8.2026, 05:50 Uhr, Fassung 32 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -14,6 +14,20 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 32 ändert (21.8., morgens)
+
+**Punkt 53 zu drei von sieben Fragen live geprüft — NICHT erledigt. Der vermutete Ausweg aus Punkt 58 ist widerlegt. Vier neue Funde einer Cloud-Sitzung. Ein Verweis im Blueprint berichtigt. Ein ausgefallener Prüflauf hat zwei Beweise gebrochen.**
+
+- **Punkt 53, live geprüft am 21.8. durch eine Cloud-Sitzung (Chat 20), Commit `dabf9bb`:** Frage 1 (Projektdokumente selbst fortschreiben) **JA, bewiesen** — bewährt ist es damit nicht · Frage 2 (interner Sammelspeicher) **NEIN, bewiesen** · Frage 7 (Sitzungsspeicher) beantwortet: Claude Code meldet ein Volllaufen **nicht von selbst**, bei Überlauf wird ältere Konversation zusammengefasst. **Die Fragen 3, 4 und 5 bleiben UNGEPRÜFT** — sie wurden aus Kenntnis der Umgebung beantwortet, nicht durch Versuch, und Ondos Auflage verlangt Versuch. **Frage 6 wurde gar nicht erst gestellt** — Chat hat sieben Fragen zu sechs zusammengezogen, **Fehlerart C5**, von Claude selbst gemeldet. **Status bleibt „Idee".**
+- **Punkt 58:** Der am 20.8. von Ondo vermutete Ausweg über einen internen Sammelspeicher von Claude Code ist **widerlegt**. **Der Widerspruch aus Punkt 58 bleibt ungelöst.**
+- **Vier neue Funde vom 21.8. (Chat 20):** Eine Cloud-Sitzung erbt den Branch, auf dem sie gestartet wurde, und liest nicht von selbst den aktuellen Stand — **Auflage: jede Cloud-Sitzung holt zuerst `main`** (bei Punkt 55) · `pruefe.py` liegt nicht im Repo, eine Cloud-Sitzung findet es nicht und kann Arbeitsregel M nicht von sich aus erfüllen, Aufnahme ins Repo ist **Ondos Entscheidung** (bei Punkt 46) · zwei Verweise im Blueprint auf die Archivdatei `PROJEKT-STATUS.md`, einer davon berichtigt (Beobachtungspunkte).
+- **🔴 Punkt 52 ist eingetreten:** Die Berichtigungen vom 21.8., 05:24 Uhr haben in `STAND.md` zwei aus `PROJEKT-STATUS.md` stammende Zeilen gepflegt; seither meldet `pruefe.py` einen unerklärten Verlust und zwei Blöcke ausser der Reihe. **Die Berichtigungen waren richtig — gebrochen ist der Beweis, nicht das Dokument.** Nichts geändert; die Entscheidung liegt bei Ondo.
+- **Blueprint 0.31:** Im Text der Arbeitsregel F steht für die laufende Pflicht jetzt `STAND.md` statt `PROJEKT-STATUS.md`, mit dem Zusatz „(bis 15.8. in `PROJEKT-STATUS.md`, seither Archiv)". Die zweite, rein rückblickende Fundstelle bleibt unverändert.
+- **Arbeitsregel M:** `pruefe.py` ist vor dieser Lieferung gelaufen — aber erst, nachdem Ondo es von Hand in die Cloud-Sitzung hochgeladen hatte. **Von sich aus kann eine Cloud-Sitzung die Regel nicht erfüllen.**
+- **Beschlossen und nicht gebaut: neun** — **E, 2, 3, 4, 47, 49, 50, 51, 54.**
 
 ---
 
@@ -145,6 +159,7 @@ Ondos Gerät: Surface Go, Windows 10 Home 22H2, 64 Bit, 8 GB RAM, 110 GB frei, P
 → **Ergebnis 16.8.2026 (Chat 18):** Auf dem Tablet stehen die Desktop-App mit dem Bereich „Code", Git 2.55.0, Python 3.14.7 und der Ordner `Claude-Ondo-Control-Repo` unter Dokumente, frisch von GitHub geholt und mit dem Verzeichnis verbunden. Der maschinelle Abgleich der Handkopie gegen das Verzeichnis fand bei allen vierzehn gemeinsamen Dateien keinen Unterschied.
 → **Zwei Auflagen, die dauerhaft gelten:** Die Sicherungen mit `apiKey`, `geminiKey` und `pin` und die Übergabemappen liegen außerhalb des Repo-Ordners und werden dort nie geöffnet. `pruefe.py` liegt in einem eigenen Ordner daneben, damit es nicht ins Verzeichnis gerät.
 → **Zwei offene Stellen (Art. 11):** Läuft `pruefe.py` aus einem anderen Ordner, meldet sein Abschnitt 2 die eigene Datei als fehlend. Und der Repo-Ordner liegt unter OneDrive — ob OneDrive beim Hochladen dazwischenfunkt, ist ungeprüft.
+→ **🔴 Beobachtung 21.8. (Chat 20, Cloud-Sitzung):** `pruefe.py` liegt nicht im Repo — die Auflage oben hält es bewusst daneben. **Eine Cloud-Sitzung findet es deshalb nicht und kann Arbeitsregel M nicht von sich aus erfüllen.** Belegt am 21.8.: Beim Durchgang um 05:24 Uhr (Commit `dabf9bb`) lief es nicht; für die Lieferung um 05:50 Uhr lief es erst, nachdem Ondo es von Hand in die Sitzung hochgeladen hatte — also genau die Handarbeit, die Punkt 53 beenden soll. Es meldet dabei sich selbst als fehlend (Abschnitt 2). **Was der ausgefallene Lauf gekostet hat, steht bei Punkt 52.** **Zu entscheiden: `pruefe.py` ins Repo aufnehmen? Die Entscheidung liegt bei Ondo.**
 
 > **🔴 BERICHTIGT am 16.8.2026, nachmittags (Chat 19).** Hier stand bis heute in der Statuszeile: „GEBAUT 16.8. — Bewährung steht aus, erstes Hochladen noch nicht erfolgt." **Das erste Hochladen hat inzwischen stattgefunden und funktioniert** — laut Ondo sind Repo, Tablet und Projektkopien seither auf demselben Stand. **Ursache des Fehlers (Fehlerart C4):** Chat 18 hatte den Satz zum offenen Hochladen geschrieben, bevor Ondo hochgeladen hat, und den späteren Erfolg in der Abnahme daneben vermerkt, statt die ältere Aussage im selben Durchgang zu berichtigen. **Weiterhin unverändert: Punkt 46 gilt nicht als bewährt** — ein geglückter erster Versuch ist kein Nachweis von Zuverlässigkeit.
 
@@ -196,6 +211,15 @@ Claude Code liest beim Start eine Datei mit diesem Namen aus dem Arbeitsordner. 
 → **Der Projektordner der App bleibt ungelöst** und ist es vermutlich auch: Ein maschineller Weg dorthin ist nicht vorgesehen (geprüft 16.8.). Er verliert aber an Gewicht, weil Chat über die Raw-Links selbst lesen kann (siehe Fassung 30) und das Repo nun ohne Tablet beschreibbar ist.
 → **Kosten:** Cloud-Sitzungen zehren am selben Wochenlimit wie der Chat; kein zusätzliches Geld, kein zusätzliches Abo. Pro genügt.
 
+> **Live geprüft am 21.8.2026 durch Cloud-Sitzung (Chat 20), Commit `dabf9bb`**
+>
+> - **Frage 1, Projektdokumente selbst fortschreiben: JA, bewiesen.** Drei Berichtigungen in `STAND.md` und `Blueprint.md` wurden von einer Cloud-Sitzung eingetragen, committet und auf `main` gepusht, ohne Handupload durch Ondo. **Bewährt ist das damit nicht** (Stabilitätsregel).
+> - **Frage 2, interner Sammelspeicher: NEIN, bewiesen.** Eine Plandatei lag im Arbeitsverzeichnis der Sitzung, nicht im Repo, und verschwindet mit der Sitzung.
+> - **Frage 7, Sitzungsspeicher:** Claude Code meldet ein Volllaufen **nicht von selbst** und sieht keine Anzeige dazu. Bei Überlauf wird ältere Konversation zusammengefasst, ältere Einzelheiten werden ungenau. **Die Übergaberegel ist in diesem Bereich damit nicht zuverlässig einhaltbar.**
+> - **Fragen 3 (feste Uhrzeit), 4 (Hintergrundlauf) und 5 (Sitzung am anderen Gerät fortsetzen): UNGEPRÜFT.** Claude Code hat sie aus Kenntnis der Umgebung beantwortet, nicht durch Versuch. **Ondos Auflage verlangt Versuch. Sie bleiben offen.**
+> - **Frage 6, paralleles Ablegen: NICHT GESTELLT.** Claude im Chat-Bereich hat sie beim Schreiben der Versuchsaufträge weggelassen, sieben Fragen zu sechs zusammengezogen. **Fehlerart C5**, von Claude selbst gemeldet. Bleibt offen.
+> - **Status von Punkt 53 bleibt „Idee".** Drei von sieben Fragen sind beantwortet.
+
 ---
 
 **55. Arbeitsteilung zwischen Chat, Code und Cowork festlegen** · *Frage 16.8., Ondo* · **Status: Idee — Vorschlag Claudes liegt vor, Entscheidung offen**
@@ -206,6 +230,7 @@ Ondos Frage: Wer erstellt und prüft künftig die Dateien, wer lädt hoch, wo wi
 → **Der Haken:** siehe Punkt 54.
 → **🔴 Neu am 20.8. (Ondo):** Offen ist zusätzlich, ob eine am Handy begonnene Code-Sitzung **am Tablet fortgesetzt** werden kann, und ob dieselbe Sitzung Dateien **parallel** an beide Orte legen kann — Tablet aus: nur Repo, Tablet an: Repo und Tablet. Prüfung gehört zu Punkt 53, die Entscheidung über die Arbeitsteilung hierher.
 → **🔴 Belegt am 20.8., stützt den Vorschlag:** Chat kann Repo-Dateien über Raw-Links selbst lesen, und der Code-Bereich kann ohne Tablet ins Repo schreiben. Beide Hälften des Vorschlags sind damit technisch möglich.
+→ **🔴 Beobachtung 21.8. (Chat 20, Cloud-Sitzung):** Eine Cloud-Sitzung **erbt den Branch, auf dem sie gestartet wurde**, und liest nicht von selbst den aktuellen Stand. **Belegt:** Eine Sitzung las den Stand vom 20.8., 06:20 Uhr und hätte gegen veraltete Zeilennummern geschrieben. **Folge als Auflage: Jede Cloud-Sitzung holt zuerst `main`.**
 → **Kosten:** keine.
 
 ---
@@ -231,6 +256,7 @@ Ondos Frage war, ob `pruefe.py` den Chat prüfen kann, damit Beschlossenes nicht
 → **Das ist ein belegbarer Teil der Ursache** für die neunte Fehlerart und für vergessene Zusagen. **Nicht die ganze Ursache** — die ist weiterhin unbekannt (Art. 11).
 → **Zur Entscheidung:** ein mitlaufender Merkzettel als Datei, in den jeder Beschluss sofort wandert? Das wäre wieder eine Lieferung je Beschluss — genau das, was Ondo am 16.8. beanstandet hat. **Der Widerspruch ist ungelöst; Claude legt ihn offen, statt ihn zu überspielen.**
 → **🔴 Möglicher Ausweg, neu am 20.8. (Ondo):** Hat **Claude Code** einen internen Sammelspeicher, in dem anstehende Änderungen bis zum Nachtragen liegen, und kann er sie später auf Befehl oder zu fester Uhrzeit in die Dateien schreiben, dann läge der zweite Ort dort — **ohne Lieferung je Beschluss und ohne Handarbeit**. Das würde den Widerspruch auflösen, statt ihn nur zu benennen. **Ungeprüft.** Prüfung gehört zu Punkt 53.
+→ **🔴 WIDERLEGT am 21.8.2026 (Chat 20, Cloud-Sitzung):** Den vermuteten internen Sammelspeicher gibt es nicht — siehe Punkt 53, Frage 2. Eine Plandatei lag im Arbeitsverzeichnis der Sitzung, nicht im Repo, und verschwindet mit der Sitzung. **Der Widerspruch aus diesem Punkt bleibt damit ungelöst.** Der Wortlaut oben bleibt als alte Vermutung stehen.
 → **🔴 Belegter Rückfall am 20.8.:** Chat 19 hat den Übergabebedarf **nicht von selbst gemeldet**, obwohl die Übergaberegel das verlangt — Ondo musste fragen. Derselbe Mechanismus: Was nur im Gespräch liegt, wird nicht ausgelöst.
 → **Kosten:** keine, solange nicht entschieden wird.
 
@@ -498,6 +524,7 @@ Der Beweis aus Punkt 48 vergleicht `STAND.md` gegen `PROJEKT-STATUS.md`. **Jede 
 Das Skript sieht selbst vor, dass der Beweis entfällt, sobald das Original nicht mehr im Ordner liegt — „nach der Bewährungszeit gewollt". Wann diese Bewährungszeit endet, hat niemand festgelegt.
 
 → **Zur Entscheidung:** Wird eine Frist gesetzt, nach der `PROJEKT-STATUS.md` aus dem Ordner genommen wird? **Claude schlägt nichts vor, bevor Ondo den Zweck bestimmt hat** — der Beweis sichert die Trennung vom 15.8., nicht die laufende Pflege.
+→ **🔴 Eingetreten am 21.8.2026 (Chat 20, Lauf um 05:50 Uhr):** Die drei Berichtigungen vom selben Morgen, 05:24 Uhr (Commit `dabf9bb`), haben in `STAND.md` zwei Zeilen gepflegt, die aus `PROJEKT-STATUS.md` stammen — den Klammerzusatz „(Fassung 5, 31.7.)" bei „Master-Dokumente im Repo" und den neuen Leitbild-Vermerk unter „Wetten ist das Pilotmodul". **Seither meldet `pruefe.py` einen unerklärten Verlust (Abschnitt 9) und zwei Blöcke, die nicht mehr am Stück wiedergefunden werden (Abschnitt 9b).** Beide Berichtigungen waren inhaltlich richtig; **gebrochen ist der Beweis, nicht das Dokument.** Aufgefallen ist es erst einen Lauf später, weil `pruefe.py` in der Cloud-Sitzung nicht lag (siehe Punkt 46). **Nichts geändert** — ob die Ausnahmeliste erneut wächst, ist genau die Entscheidung, die dieser Punkt Ondo vorlegt.
 → **Kosten:** keine, solange nicht entschieden wird.
 
 ---
@@ -532,6 +559,8 @@ Das Skript sieht selbst vor, dass der Beweis entfällt, sobald das Original nich
 
 | Beobachtung | Gefunden | Von wem | Stand |
 |---|---|---|---|
+| **`Blueprint.md`, Zeile 133 verwies für eine LAUFENDE Pflicht auf `PROJEKT-STATUS.md`** — eine Archivdatei. Betroffen war der Aufzählungspunkt in Arbeitsregel F: Aktualisierung am Ende eines Arbeitstags und vor jeder Chat-Übergabe. *(Zeile 133 nach der Zählung von Chat 20; im Repo-Stand `dabf9bb` steht der Satz auf Zeile 135.)* | 21.8. | Chat 20, Cloud-Sitzung | **BERICHTIGT am 21.8.** Dort steht jetzt `STAND.md` mit dem Zusatz „(bis 15.8. in `PROJEKT-STATUS.md`, seither Archiv)". Blueprint auf 0.31 gehoben |
+| **`Blueprint.md`, Zeile 142 verweist ebenfalls auf `PROJEKT-STATUS.md`** — dort aber nur **rückblickend**, auf die Namensklärung vom 31.7. *(Zeile 142 nach der Zählung von Chat 20; im Repo-Stand `dabf9bb` Zeile 144.)* | 21.8. | Chat 20, Cloud-Sitzung | **Vermutlich harmlos, nicht geändert.** Ein Rückblick darf auf die Archivdatei zeigen |
 | **Die Gehirne sind bei identischer Aufgabe unterschiedlich stabil** — auf dieselbe Paarung, die durch den Doppeleintrag zweimal gestellt wurde, antwortete **Flash zweimal verschieden** (Unentschieden/unter 2,5 gegen Heimsieg/über 2,5), **Sonnet zweimal gleich** | 4.8. | Claude, Zufallsfund aus dem Doppeleintrag | **NEU und wichtig.** Bisher war Nichtdeterminismus ausschliesslich beim Schiedsrichter dokumentiert (Fehlerart 1), nicht bei den Gehirnen. Ein einzelner Fall beweist nichts (Arbeitsregel D), aber er berührt die Hauptkennzahl: Schwankt ein Gehirn bei gleicher Frage, misst die Kalibrierung teils Zufall. **Nichts gebaut, weiter beobachten** |
 | **Dasselbe Spiel doppelt in der Spielliste** — am 2.8. standen „Bohemians – Galway United FC" (Anpfiff 20:00) und „Bohemians Dublin – Galway United" (Anpfiff 19:00) als zwei Spiele in derselben Liste. Sonnet hat es selbst bemerkt: „Gleiche Paarung wie heute früher" | 3.8. | Claude, aus Ondos Sicherung | Die Doppelten-Sperre in `spielListeHolen` vergleicht Namen buchstabenweise; zwei Schreibweisen sind für sie zwei Spiele. Folge: **sechs Aussagen je Gehirn aus einem einzigen Spiel**, und eine der beiden Anpfiffzeiten ist falsch — die geht in die 2,5-Stunden-Regel des Schiedsrichters ein. **✅ ENTSCHIEDEN am 7.8. (Ondo): eigene Tabelle, nicht die zehnte Schiedsrichter-Fehlerart.** Geführt als **S1** in der neuen Tabelle „Die Spielliste — drei Fehlerarten" in `PROJEKT-STATUS.md`, zusammen mit den falschen Anpfiffzeiten (S2) und den erfundenen Spielen (S3). Begründung: Alle neun Schiedsrichter-Fehlerarten sind Fehler beim Ablesen von Ergebnissen; die Spielliste erzeugt ihre Probleme davor. Die Schiedsrichter-Tabelle bleibt bei neun. Geminis eigene Einordnung „Datenhygiene, nicht Schiedsrichterurteil" (4.8.) stützt das. Der Schiedsrichter fand am 4.8. beide Einträge und lieferte beide Male 1:1; Ondo hat beide ignoriert. Nichts gebaut |
 | **Zugangsschlüssel im Klartext in der Sicherungsdatei** — die Sicherung enthält den gesamten Zustand, also auch `apiKey`, `geminiKey` und `pin` | 3.8. | Claude | **NEU.** Kein Fehler, aber nirgends aufgeschrieben. Folgen: Die Datei darf nie an ChatGPT oder Gemini gehen, nie an einen Bericht angehängt und nie ins Repo. **Ondo hat am 3.8. beide Schlüssel neu erzeugt und die alten deaktiviert.** Zweite Folge: Wird eine Sicherung von vor dem 3.8. zurückgeladen, überschreibt sie die neuen Schlüssel mit den toten alten — dann Schlüssel neu eintragen, die Messdaten bleiben unberührt |

@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.30
-**Stand:** 20. August 2026, 13:00 Uhr
+**Version:** 0.31
+**Stand:** 21. August 2026, 05:50 Uhr
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.31 ändert (21.8.2026, morgens):** **Eine Berichtigung im Text der Arbeitsregel F.** Für die laufende Pflicht, das Onboarding-Dokument am Ende eines Arbeitstags und vor jeder Chat-Übergabe zu aktualisieren, stand dort `PROJEKT-STATUS.md` — seit dem 15.8. eine Archivdatei. Sie heisst jetzt `STAND.md`, mit dem Zusatz „(bis 15.8. in `PROJEKT-STATUS.md`, seither Archiv)". Die zweite Fundstelle in Abschnitt 2c — die Namensklärung vom 31.7. — verweist nur rückblickend und bleibt unverändert. Kopf-Zeitstempel auf die Ablesung vom 21.8., 05:50 Uhr gebracht, damit alle drei aktiven Dokumente dieselbe Uhrzeit tragen. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.** Blueprint auf 0.31 gehoben. *(Zu Arbeitsregel M: `pruefe.py` ist vor dieser Lieferung gelaufen, aber erst nach einem Handupload durch Ondo — es liegt nicht im Repo. Einzelheiten im Backlog, Fassung 32.)*
 
 > **Was Fassung 0.30 ändert (20.8.2026, mittags):** Nur der Kopf-Zeitstempel wurde auf die aktuelle Ablesung gebracht, damit alle drei aktiven Dokumente dieselbe Uhrzeit tragen (Arbeitsregel M) — Anlass war der Teilbefund zu Punkt 53 (Backlog Fassung 31). **Kein Inhalt hier geändert, kein Verfassungsartikel geändert, keine neue Arbeitsregel.** Blueprint auf 0.30 gehoben.
 
@@ -132,7 +134,7 @@ Quellen erhalten Vertrauenswerte (z. B. offizielle Verbände hoch, Foren niedrig
 
 **F — Keine Lieferung ohne Buchführung** *(29.7., Vorschlag Claude, von Ondo angenommen)* Wissen, das nur im Chat steht, existiert nach dem Chatwechsel nicht mehr. Deshalb gilt:
 - **Backlog:** Jede Entscheidung — angenommen, abgelehnt, vertagt — wird **sofort** eingetragen, in derselben Antwort, in der sie fällt. Nie „notiere ich später". Bei einer Code-Lieferung wird die aktualisierte Backlog-Datei **zusammen mit dem Code** geliefert.
-- **PROJEKT-STATUS.md:** wird am Ende eines Arbeitstags aktualisiert, an dem sich etwas geändert hat, und **unbedingt vor jeder Chat-Übergabe**. Es ist das Onboarding-Dokument; solange es falsch ist, startet jeder Nachfolger mit falschem Weltbild.
+- **STAND.md (bis 15.8. in `PROJEKT-STATUS.md`, seither Archiv):** wird am Ende eines Arbeitstags aktualisiert, an dem sich etwas geändert hat, und **unbedingt vor jeder Chat-Übergabe**. Es ist das Onboarding-Dokument; solange es falsch ist, startet jeder Nachfolger mit falschem Weltbild.
 - **Blueprint / Ondo-Core:** nur bei Verfassungs- und Architekturentscheidungen.
 - **Kontrollsatz des Besitzers:** Nach jeder Lieferung fragt Ondo **„Und die Dokumente?"** Das ist der einzige Teil dieser Regel, den keine KI vergessen kann, weil er nicht von ihr kommt.
 
