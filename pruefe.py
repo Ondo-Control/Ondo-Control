@@ -327,23 +327,40 @@ pruef("Beschlossen und nicht gebaut" not in S,
 print("11) Uebergabemappe und Abnahme — Form")
 _mappen = [n for n in os.listdir('.') if re.match(r'\d{4}-\d{2}-\d{2}_\d{4}_Ondo-Control_Uebergabe\.md$', n)]
 _abn = [n for n in os.listdir('.') if re.match(r'\d{4}-\d{2}-\d{2}_Ondo-Control_Abnahme\.md$', n)]
+# Die leeren Muster liegen ABSICHTLICH im Repo (Entscheidung Ondos, 21.8.). Sie
+# enthalten nur die Form, keine Fragen und keine Antworten. Sie sind deshalb kein
+# Name ausserhalb des Musters.
+MUSTER = {'MUSTER_Ondo-Control_Uebergabe.md',
+          'MUSTER_Ondo-Control_Abnahme.md'}
 _fremd = [n for n in os.listdir('.') if re.search(r'uebergabe|abnahme', n, re.I)
-          and n not in _mappen + _abn]
+          and n not in _mappen + _abn and n not in MUSTER]
 pruef(not _fremd, f"kein Mappen- oder Abnahmename ausserhalb des Musters {_fremd if _fremd else ''}")
+# 21.8., Chat 21: Die Formpruefung lief bisher nur, wenn eine ausgefuellte Mappe
+# im Ordner lag. Die liegt dort nie — sie gehoert nicht ins Repo. Die Pruefung
+# lief also nie an. Fehlt die ausgefuellte Mappe, wird ersatzweise das leere
+# Muster mit denselben Pruefungen geprueft; die Meldung nennt, was geprueft wurde.
+_MUSTER_MAPPE = 'MUSTER_Ondo-Control_Uebergabe.md'
 if _mappen:
-    M = lies(_mappen[0])
+    M, _was = lies(_mappen[0]), f"Mappe ({_mappen[0]})"
+else:
+    M, _was = lies(_MUSTER_MAPPE), f"Muster der Mappe ({_MUSTER_MAPPE})"
+if M:
     for teil in ('# TEIL A', '# TEIL B', '# TEIL C', '# TEIL D', '# TEIL E', '# TEIL F', '# TEIL G'):
-        pruef(teil in M, f"Mappe enthaelt {teil}")
+        pruef(teil in M, f"{_was} enthaelt {teil}")
     # Aufbau aus Chat 3 — dreimal in zwei Tagen von einem Chat eigenmaechtig geaendert.
     for stueck in ('⛔ NICHT INS REPO HOCHLADEN', '## SO BENUTZT DU DIESE MAPPE',
                    '## Kurzfassung des offenen Stands'):
-        pruef(stueck in M, f"Mappe: Bestandteil '{stueck[:38]}'")
+        pruef(stueck in M, f"{_was}: Bestandteil '{stueck[:38]}'")
     # Teil A und Teil B MUESSEN im Codeblock stehen, sonst kann Ondo sie nicht
     # am Stueck kopieren. Genau das hat Chat 17 am 15.8. weggelassen.
+    # Die Grenze zum naechsten Teil wird ohne feste Rautenzahl gesucht: die
+    # ausgefuellte Mappe schreibt '# TEIL', das Muster '## TEIL'. Mit fester
+    # Zeichenkette bricht der Lauf hier ab, statt einen FEHL zu melden.
     for teil in ('# TEIL A', '# TEIL B'):
         _ab = M.index(teil)
-        _bis = M.index('\n# TEIL', _ab + 10)
-        pruef(M[_ab:_bis].count('```') >= 2, f"Mappe: {teil} steht im Codeblock")
+        _nx = re.search(r'\n#+ TEIL', M[_ab + 10:])
+        _bis = _ab + 10 + _nx.start() if _nx else len(M)
+        pruef(M[_ab:_bis].count('```') >= 2, f"{_was}: {teil} steht im Codeblock")
     _fragen = len(re.findall(r'^\d+\. ', M, re.M))
     # Seit 15.8. gilt: ALLE Fragen sind Fangfragen (Beschluss Ondo). Eine feste
     # Zahl gibt es nicht mehr. Anerkannt wird beides: einzelne Kennzeichnung
@@ -351,10 +368,10 @@ if _mappen:
     _fang = len(re.findall(r'FANGFRAGE', M))
     _alle = re.search(r'Alle \w+ sind Fangfragen', M) is not None
     pruef(_alle or _fang >= 4,
-          f"Mappe: alle Fragen als Fangfragen ausgewiesen (einzeln: {_fang}, pauschal: {_alle})")
+          f"{_was}: alle Fragen als Fangfragen ausgewiesen (einzeln: {_fang}, pauschal: {_alle})")
     print(f"         (Fragen im Text gezaehlt: {_fragen})")
 else:
-    pruef(True, "keine Uebergabemappe im Ordner — Pruefung uebersprungen")
+    pruef(True, "weder ausgefuellte Mappe noch Muster im Ordner — Pruefung uebersprungen")
 
 print("12) Punkt 44 — kein Schluesselfeld in der Messdaten-Ausgabe")
 _BH = lies('beta.html')

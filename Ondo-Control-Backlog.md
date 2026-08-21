@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 21.8.2026, 05:50 Uhr, Fassung 32 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 21.8.2026, 16:12 Uhr, Fassung 33 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -14,6 +14,20 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 33 ändert (21.8., nachmittags)
+
+**`pruefe.py` liegt ab heute im Repo. Muster für Übergabemappe und Abnahme angelegt. Drei kleinere Punkte von Claude entschieden, auf Ondos ausdrückliche Übertragung.**
+
+- **Entscheidung Ondos (21.8.):** `pruefe.py` wird ins Repo aufgenommen. Vorher wurde das ganze Skript durchgesehen — keine Schlüssel, keine PIN, kein Gerätepfad, keine Messdaten. Die Auflage vom 16.8. ist damit gegenstandslos und in `STAND.md` mit Vermerk berichtigt. **Folge:** Eine Cloud-Sitzung kann Arbeitsregel M ohne Handarbeit erfüllen.
+- **Muster angelegt:** `MUSTER_Ondo-Control_Uebergabe.md` und `MUSTER_Ondo-Control_Abnahme.md`, leer, im Repo. Die ausgefüllten Dateien gehören weiterhin nicht hinein.
+- **Nebenfund dabei:** Abschnitt 11 von `pruefe.py` prüft die Mappe auf drei Pflichtbestandteile, die in der Mappe vom 21.8. fehlten. Die Prüfung lief nie an, weil nie eine Mappe im Ordner lag. Sie prüft jetzt ersatzweise das Muster.
+- **Punkt 52 entschieden (Claude, 21.8., auf Ondos Übertragung):** keine Frist. Die zwei FEHL bleiben stehen und werden nicht mehr bei jedem Lauf gemeldet.
+- **Punkt 53:** der fünfte Fund vom 21.8. eingetragen.
+- **Antwortschlüssel:** keine Formänderung, dafür eine Zeile in Teil A. Einzelheiten in `STAND.md`.
+- **Beschlossen und nicht gebaut: neun** — **E, 2, 3, 4, 47, 49, 50, 51, 54.**
 
 ---
 
@@ -159,7 +173,7 @@ Ondos Gerät: Surface Go, Windows 10 Home 22H2, 64 Bit, 8 GB RAM, 110 GB frei, P
 → **Ergebnis 16.8.2026 (Chat 18):** Auf dem Tablet stehen die Desktop-App mit dem Bereich „Code", Git 2.55.0, Python 3.14.7 und der Ordner `Claude-Ondo-Control-Repo` unter Dokumente, frisch von GitHub geholt und mit dem Verzeichnis verbunden. Der maschinelle Abgleich der Handkopie gegen das Verzeichnis fand bei allen vierzehn gemeinsamen Dateien keinen Unterschied.
 → **Zwei Auflagen, die dauerhaft gelten:** Die Sicherungen mit `apiKey`, `geminiKey` und `pin` und die Übergabemappen liegen außerhalb des Repo-Ordners und werden dort nie geöffnet. `pruefe.py` liegt in einem eigenen Ordner daneben, damit es nicht ins Verzeichnis gerät.
 → **Zwei offene Stellen (Art. 11):** Läuft `pruefe.py` aus einem anderen Ordner, meldet sein Abschnitt 2 die eigene Datei als fehlend. Und der Repo-Ordner liegt unter OneDrive — ob OneDrive beim Hochladen dazwischenfunkt, ist ungeprüft.
-→ **🔴 Beobachtung 21.8. (Chat 20, Cloud-Sitzung):** `pruefe.py` liegt nicht im Repo — die Auflage oben hält es bewusst daneben. **Eine Cloud-Sitzung findet es deshalb nicht und kann Arbeitsregel M nicht von sich aus erfüllen.** Belegt am 21.8.: Beim Durchgang um 05:24 Uhr (Commit `dabf9bb`) lief es nicht; für die Lieferung um 05:50 Uhr lief es erst, nachdem Ondo es von Hand in die Sitzung hochgeladen hatte — also genau die Handarbeit, die Punkt 53 beenden soll. Es meldet dabei sich selbst als fehlend (Abschnitt 2). **Was der ausgefallene Lauf gekostet hat, steht bei Punkt 52.** **Zu entscheiden: `pruefe.py` ins Repo aufnehmen? Die Entscheidung liegt bei Ondo.**
+→ **🔴 Beobachtung 21.8. (Chat 20, Cloud-Sitzung):** `pruefe.py` liegt nicht im Repo — die Auflage oben hält es bewusst daneben. **Eine Cloud-Sitzung findet es deshalb nicht und kann Arbeitsregel M nicht von sich aus erfüllen.** Belegt am 21.8.: Beim Durchgang um 05:24 Uhr (Commit `dabf9bb`) lief es nicht; für die Lieferung um 05:50 Uhr lief es erst, nachdem Ondo es von Hand in die Sitzung hochgeladen hatte — also genau die Handarbeit, die Punkt 53 beenden soll. Es meldet dabei sich selbst als fehlend (Abschnitt 2). **Was der ausgefallene Lauf gekostet hat, steht bei Punkt 52.** **ENTSCHIEDEN am 21.8.2026 (Ondo): `pruefe.py` wird ins Repo aufgenommen.** Der Inhalt wurde vorher vollständig durchgesehen; er enthält nichts, was nicht öffentlich sein darf. Die Auflage vom 16.8. ist gegenstandslos, siehe `STAND.md`.
 
 > **🔴 BERICHTIGT am 16.8.2026, nachmittags (Chat 19).** Hier stand bis heute in der Statuszeile: „GEBAUT 16.8. — Bewährung steht aus, erstes Hochladen noch nicht erfolgt." **Das erste Hochladen hat inzwischen stattgefunden und funktioniert** — laut Ondo sind Repo, Tablet und Projektkopien seither auf demselben Stand. **Ursache des Fehlers (Fehlerart C4):** Chat 18 hatte den Satz zum offenen Hochladen geschrieben, bevor Ondo hochgeladen hat, und den späteren Erfolg in der Abnahme daneben vermerkt, statt die ältere Aussage im selben Durchgang zu berichtigen. **Weiterhin unverändert: Punkt 46 gilt nicht als bewährt** — ein geglückter erster Versuch ist kein Nachweis von Zuverlässigkeit.
 
@@ -218,6 +232,7 @@ Claude Code liest beim Start eine Datei mit diesem Namen aus dem Arbeitsordner. 
 > - **Frage 7, Sitzungsspeicher:** Claude Code meldet ein Volllaufen **nicht von selbst** und sieht keine Anzeige dazu. Bei Überlauf wird ältere Konversation zusammengefasst, ältere Einzelheiten werden ungenau. **Die Übergaberegel ist in diesem Bereich damit nicht zuverlässig einhaltbar.**
 > - **Fragen 3 (feste Uhrzeit), 4 (Hintergrundlauf) und 5 (Sitzung am anderen Gerät fortsetzen): UNGEPRÜFT.** Claude Code hat sie aus Kenntnis der Umgebung beantwortet, nicht durch Versuch. **Ondos Auflage verlangt Versuch. Sie bleiben offen.**
 > - **Frage 6, paralleles Ablegen: NICHT GESTELLT.** Claude im Chat-Bereich hat sie beim Schreiben der Versuchsaufträge weggelassen, sieben Fragen zu sechs zusammengezogen. **Fehlerart C5**, von Claude selbst gemeldet. Bleibt offen.
+> - **Fünfter Fund, nachgetragen am 21.8. (Chat 21):** Ein an eine Cloud-Sitzung **angehängtes** `pruefe.py` kam beim ersten Versuch nicht im Arbeitsverzeichnis an; über einen **Dateiverweis** hat es funktioniert. **Ein gescheiterter Versuch beweist keine Unmöglichkeit (Arbeitsregel D)** — ob Anhänge grundsätzlich ankommen, ist ungeprüft. Für `pruefe.py` selbst ist der Fund gegenstandslos, seit es im Repo liegt.
 > - **Status von Punkt 53 bleibt „Idee".** Drei von sieben Fragen sind beantwortet.
 
 ---
@@ -526,6 +541,7 @@ Das Skript sieht selbst vor, dass der Beweis entfällt, sobald das Original nich
 → **Zur Entscheidung:** Wird eine Frist gesetzt, nach der `PROJEKT-STATUS.md` aus dem Ordner genommen wird? **Claude schlägt nichts vor, bevor Ondo den Zweck bestimmt hat** — der Beweis sichert die Trennung vom 15.8., nicht die laufende Pflege.
 → **🔴 Eingetreten am 21.8.2026 (Chat 20, Lauf um 05:50 Uhr):** Die drei Berichtigungen vom selben Morgen, 05:24 Uhr (Commit `dabf9bb`), haben in `STAND.md` zwei Zeilen gepflegt, die aus `PROJEKT-STATUS.md` stammen — den Klammerzusatz „(Fassung 5, 31.7.)" bei „Master-Dokumente im Repo" und den neuen Leitbild-Vermerk unter „Wetten ist das Pilotmodul". **Seither meldet `pruefe.py` einen unerklärten Verlust (Abschnitt 9) und zwei Blöcke, die nicht mehr am Stück wiedergefunden werden (Abschnitt 9b).** Beide Berichtigungen waren inhaltlich richtig; **gebrochen ist der Beweis, nicht das Dokument.** Aufgefallen ist es erst einen Lauf später, weil `pruefe.py` in der Cloud-Sitzung nicht lag (siehe Punkt 46). **Nichts geändert** — ob die Ausnahmeliste erneut wächst, ist genau die Entscheidung, die dieser Punkt Ondo vorlegt.
 → **Kosten:** keine, solange nicht entschieden wird.
+→ **🔴 ENTSCHIEDEN am 21.8.2026 (Claude, auf Ondos ausdrückliche Übertragung): keine Frist.** Die beiden FEHL aus `dabf9bb` bleiben stehen und werden nicht mehr bei jedem Lauf gemeldet. **Begründung:** Der Beweis sichert die Trennung vom 15.8., und die ist bewiesen. Er kann die laufende Pflege nicht überwachen, weil jede richtige Pflege ihn bricht. Fällt er später ganz weg, ist das kein Verlust. **Status: erledigt.**
 
 ---
 

@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 21. August 2026, 05:50 Uhr, v19.8.2*
+*Die aktuelle Wahrheit. Stand: 21. August 2026, 16:12 Uhr, v19.8.2*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -258,6 +258,9 @@ Dateiname beginnt mit Datum und Uhrzeit: `2026-07-31_1430_Ondo-Control_Thema.md`
 **Drei Auflagen, die dauerhaft gelten:**
 - Die Sicherungen mit `apiKey`, `geminiKey` und `pin` und die Übergabemappen liegen **außerhalb** des Repo-Ordners und werden dort nie geöffnet.
 - `pruefe.py` liegt in einem eigenen Ordner daneben, damit es nicht ins Verzeichnis gerät. Es gehört nicht ins Repo.
+
+  > **BERICHTIGT am 21.8.2026, 16:12 Uhr (Chat 21, Entscheidung Ondos).** Diese Auflage gilt nicht mehr. `pruefe.py` liegt ab heute im Repo. Geprüft wurde vorher der gesamte Inhalt des Skripts: es enthält keine Schlüssel, keine PIN, keinen Gerätepfad und keine Messdaten. Der ursprüngliche Grund — es soll auf dem Tablet nicht versehentlich ins öffentliche Verzeichnis geraten — ist damit gegenstandslos. **Folge:** Eine Cloud-Sitzung findet das Skript jetzt selbst und kann Arbeitsregel M ohne Handarbeit erfüllen.
+
 - Der alte Ordner mit Ondos Handkopie bleibt liegen, wird aber **nicht mehr für GitHub benutzt.** Sonst gäbe es zwei Stellen, die beide als die richtige gelten.
 
 **Zwei ungeklärte Stellen (Art. 11):**
@@ -309,6 +312,10 @@ Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp 
 **Eigene Fassung für ChatGPT:** ChatGPT kann keinen neuen Chat öffnen. Die Übergaberegel braucht dafür eine angepasste Fassung — **noch zu schreiben.**
 
 **Die Übergabemappe gehört NICHT ins Repo.** Sie enthält den Antwortschlüssel. Sie bleibt auf Ondos Gerät und wird gelöscht, **sobald Teil E vollständig in Repo-Dateien steht** — nicht früher.
+
+**Muster im Repo (21.8.2026).** Der Aufbau von Übergabemappe und Abnahme liegt als leeres Muster im Repo: `MUSTER_Ondo-Control_Uebergabe.md` und `MUSTER_Ondo-Control_Abnahme.md`. Sie enthalten keine Fragen und keine Antworten. **Die ausgefüllten Dateien gehören weiterhin nie ins Repo.** Grund für die Muster: Der Aufbau ist dreimal in zwei Tagen eigenmächtig geändert worden, und eine Vorlage, die nur auf Ondos Gerät liegt, altert unbemerkt.
+
+**Der Antwortschlüssel ist für den geprüften Chat auffindbar (Fund 21.8.).** Teil C stand im Text des abgebenden Chats und ist über die Suche in alten Chats erreichbar. **Folge, ohne Formänderung:** Teil A enthält ab jetzt die Zeile „Kontrollfragen beantwortest du ohne Suche in alten Chats", und Teil C wird in keinem Projektchat ausgeschrieben. Aufgefallen ist es, weil Chat 21 den Zugriff von selbst gemeldet hat.
 
 ---
 

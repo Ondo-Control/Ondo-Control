@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.31
-**Stand:** 21. August 2026, 05:50 Uhr
+**Version:** 0.32
+**Stand:** 21. August 2026, 16:12 Uhr
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.32 ändert (21.8.2026, nachmittags):** Nur der Kopf-Zeitstempel wurde auf die aktuelle Ablesung gebracht, damit alle drei aktiven Dokumente dieselbe Uhrzeit tragen (Arbeitsregel M) — Anlass war die Aufnahme von `pruefe.py` ins Repo und die Anlage der beiden Muster (Backlog Fassung 33). **Kein Inhalt hier geändert, kein Verfassungsartikel geändert, keine neue Arbeitsregel.** Blueprint auf 0.32 gehoben.
 
 > **Was Fassung 0.31 ändert (21.8.2026, morgens):** **Eine Berichtigung im Text der Arbeitsregel F.** Für die laufende Pflicht, das Onboarding-Dokument am Ende eines Arbeitstags und vor jeder Chat-Übergabe zu aktualisieren, stand dort `PROJEKT-STATUS.md` — seit dem 15.8. eine Archivdatei. Sie heisst jetzt `STAND.md`, mit dem Zusatz „(bis 15.8. in `PROJEKT-STATUS.md`, seither Archiv)". Die zweite Fundstelle in Abschnitt 2c — die Namensklärung vom 31.7. — verweist nur rückblickend und bleibt unverändert. Kopf-Zeitstempel auf die Ablesung vom 21.8., 05:50 Uhr gebracht, damit alle drei aktiven Dokumente dieselbe Uhrzeit tragen. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.** Blueprint auf 0.31 gehoben. *(Zu Arbeitsregel M: `pruefe.py` ist vor dieser Lieferung gelaufen, aber erst nach einem Handupload durch Ondo — es liegt nicht im Repo. Einzelheiten im Backlog, Fassung 32.)*
 
