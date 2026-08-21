@@ -42,7 +42,7 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 - **Prüfen, bevor behauptet wird, ein Dokument sei veraltet** *(31.7.)*. Zwei Claude-Instanzen haben das am 29.7. unabhängig falsch geschlossen.
 - **Belegen statt herleiten** *(31.7.)*. Eine plausible Erklärung ist keine geprüfte Erklärung. Codezeilen werden zitiert, nicht beschrieben.
 
-**Master-Dokumente im Repo:** `Blueprint.md` · `Ondo-Core-Architektur.md` · `Ondo-Control-Backlog.md` (Fassung 5, 31.7.) · dieses Dokument.
+**Master-Dokumente im Repo:** `Blueprint.md` · `Ondo-Core-Architektur.md` · `Ondo-Control-Backlog.md` · dieses Dokument.
 
 ---
 
@@ -327,6 +327,8 @@ Jede Lehre braucht Ondos Bestätigung (Art. 9). Der Evidence Ledger wird seit v1
 Geplant sind Finanzen, Content, Organisation. Fast alles, was gebaut wird, ist domänenunabhängig: askBrain-Abstraktion, Vertrauensstufen, Quellen-Transparenz, Kalibrierung, Evidence Ledger.
 
 **ChatGPTs Leitbild (23.7., soll in Ondo-Core — steht dort noch nicht):** Ebene 1 Daten (Fakten, keine KI) · Ebene 2 Denken (die Gehirne, arbeiten nur mit Ebene-1-Daten) · Ebene 3 Bewertung (Log, Kalibrierung, Lernkette).
+
+> **🔴 BERICHTIGT am 21.8.2026, 05:24 Uhr (Chat 20, ausgeführt durch Claude Code).** Der Klammerzusatz oben — „soll in Ondo-Core — steht dort noch nicht" — ist überholt. **Das Leitbild steht seit dem 13.8.2026 in `Ondo-Core-Architektur.md`, Abschnitt 1b „Drei-Ebenen-Trennung"**, dort eingetragen mit Fassung 0.4 (Backlog-Punkt 6, beschlossen am 23.7.). Der alte Wortlaut bleibt stehen; massgeblich ist dieser Vermerk.
 
 **Ehrlicher Hinweis:** Andere Module werden schwerer. Beim Fußball urteilt die Realität nach 90 Minuten unbestechlich. Bei Finanz- oder Organisationsentscheidungen kommt die Rückmeldung später und verrauschter.
 

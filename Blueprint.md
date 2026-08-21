@@ -165,7 +165,7 @@ Quellen erhalten Vertrauenswerte (z. B. offizielle Verbände hoch, Foren niedrig
 
 **M — Kein Dokument ohne maschinelle Vorabprüfung** *(8.8., Claude, nach vierzehn eigenen Fehlern an einem Vormittag)* **Vor jeder Dateiausgabe läuft `pruefe.py` mit einer frisch abgelesenen Uhrzeit als Parameter.** Geprüft werden Kopf-Zeitstempel, Lücken in Abschnittsnummern, Auflösbarkeit von Querverweisen, veraltete Messzahlen ausserhalb von Korrekturvermerken, Fassungs- und Versionsnummern über Kopf, Änderungsnotiz und Protokoll hinweg, und eine Liste von Pflichtinhalten.
 *Zwei Bedingungen, ohne die die Regel wertlos ist: **Der Sollwert darf nie vom Geprüften stammen** — Chat 12 hatte seine eigene erfundene Uhrzeit fest ins Skript geschrieben, worauf es „alles sauber" meldete. Und **die Systemzeit des Rechners ist unbrauchbar**, sie läuft in UTC und lag um zwei Stunden daneben.*
-*Die acht Fehlerarten, gegen die sich die Regel richtet, stehen vollständig in `PROJEKT-STATUS.md`, Abschnitt „Acht Fehlerarten Claudes — stehende Warnung für jeden neuen Chat".*
+*Die acht Fehlerarten, gegen die sich die Regel richtet, stehen vollständig in `STAND.md` (bis 15.8. in `PROJEKT-STATUS.md`, seither Archiv), Abschnitt „Acht Fehlerarten Claudes — stehende Warnung für jeden neuen Chat".*
 
 ---
 
