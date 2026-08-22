@@ -137,6 +137,14 @@ nachzuschlagen.**
 
 ---
 
+## 8. Bekannte Einschränkung
+
+**Fund 21.8.:** Eine Sitzung kann auf GitHub Zweige anlegen, aber nicht löschen
+(HTTP 403 — das ist eine Rechte-Grenze, keine Störung; nicht wiederholen,
+sondern melden und um manuelles Löschen bitten).
+
+---
+
 ## Prüfstand dieser Datei
 
 *Git-Blob-Hashes der vier Pflichtdokumente zum Zeitpunkt der Erzeugung. Der Hook

@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.33
-**Stand:** 21. August 2026, 18:11 Uhr
+**Version:** 0.34
+**Stand:** 22. August 2026, 08:55 Uhr
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.34 ändert (22.8.2026, morgens):** Nur Kopf-Zeitstempel angeglichen (Arbeitsregel M). Kein Inhalt geändert, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.34 gehoben.
 
 > **Was Fassung 0.33 ändert (21.8.2026, abends):** Nur der Kopf-Zeitstempel wurde auf die aktuelle Ablesung gebracht, damit alle drei aktiven Dokumente dieselbe Uhrzeit tragen (Arbeitsregel M) — Anlass war der Bau von Punkt 54, `CLAUDE.md` mit Auslöser bei Sitzungsstart (Backlog Fassung 34). **Kein Inhalt hier geändert, kein Verfassungsartikel geändert, keine neue Arbeitsregel.** Blueprint auf 0.33 gehoben. *(`CLAUDE.md` ist eine Datei für den Code-Bereich, keine Regel — die Arbeitsregeln in Abschnitt 2c bleiben die Quelle, `CLAUDE.md` verweist auf sie.)*
 

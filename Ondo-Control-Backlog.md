@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 21.8.2026, 18:11 Uhr, Fassung 34 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 22.8.2026, 08:55 Uhr, Fassung 35 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -14,6 +14,15 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 35 ändert (22.8., morgens)
+
+**Punkt 53: Fragen 4 und 5 durch Versuch bestätigt, Frage 3 teilweise bestätigt (Chat 21). Offen bleiben Frage 6 und der API-Teil von Frage 3. Zwei Nebenfunde ergänzt: Zweige lassen sich anlegen, aber nicht löschen (Rechte-Grenze); der Routinen-Assistent kann fremde Konnektoren übernehmen.**
+
+- **Zeitstempel:** alle aktiven Dokumente auf die Ablesung 08:55 Uhr, Blueprint auf 0.34 gehoben — nur der Kopf, kein Inhalt.
+- **Beschlossen und nicht gebaut: acht** — **E, 2, 3, 4, 47, 49, 50, 51.**
 
 ---
 
@@ -226,7 +235,7 @@ Claude Code liest beim Start eine Datei mit diesem Namen aus dem Arbeitsordner. 
 
 ---
 
-**53. Erzeugte Dateien ohne Handarbeit an den richtigen Ort** · *Vorgabe 16.8., Ondo* · **Status: Idee — Ondos Vorgabe steht, der Weg ist offen**
+**53. Erzeugte Dateien ohne Handarbeit an den richtigen Ort** · *Vorgabe 16.8., Ondo* · **Status: Idee — fünf Fragen vollständig bestätigt (1, 2, 4, 5, 7), eine teilweise bestätigt (3 — Zeitplan-Teil ja, API-Teil offen), eine weiterhin offen (6)**
 
 **Ondos Vorgabe im Wortlaut:** Er will nicht mehr von Hand hochladen. Erzeugte Dateien sollen auf dem Tablet in den richtigen Ordnern landen — **im Repo und im Projektordner der App**. Er arbeitet parallel am Handy. Ziel ist, das Tablet zu Hause laufen zu lassen. **Es kann aber aus sein**, etwa nach einem Windows-Update. Er will mit **einem Klick** entscheiden, wohin gespeichert wird — Handy, Tablet, Repo, Projektordner — und welche Dateien. **Einmal eingestellt, danach immer automatisch, wenn er es auslöst.**
 
@@ -247,7 +256,13 @@ Claude Code liest beim Start eine Datei mit diesem Namen aus dem Arbeitsordner. 
 > - **Fragen 3 (feste Uhrzeit), 4 (Hintergrundlauf) und 5 (Sitzung am anderen Gerät fortsetzen): UNGEPRÜFT.** Claude Code hat sie aus Kenntnis der Umgebung beantwortet, nicht durch Versuch. **Ondos Auflage verlangt Versuch. Sie bleiben offen.**
 > - **Frage 6, paralleles Ablegen: NICHT GESTELLT.** Claude im Chat-Bereich hat sie beim Schreiben der Versuchsaufträge weggelassen, sieben Fragen zu sechs zusammengezogen. **Fehlerart C5**, von Claude selbst gemeldet. Bleibt offen.
 > - **Fünfter Fund, nachgetragen am 21.8. (Chat 21):** Ein an eine Cloud-Sitzung **angehängtes** `pruefe.py` kam beim ersten Versuch nicht im Arbeitsverzeichnis an; über einen **Dateiverweis** hat es funktioniert. **Ein gescheiterter Versuch beweist keine Unmöglichkeit (Arbeitsregel D)** — ob Anhänge grundsätzlich ankommen, ist ungeprüft. Für `pruefe.py` selbst ist der Fund gegenstandslos, seit es im Repo liegt.
-> - **Status von Punkt 53 bleibt „Idee".** Drei von sieben Fragen sind beantwortet.
+> - **Frage 4 (Hintergrundlauf), BESTÄTIGT am 21.8.2026, Chat 21, durch Versuch.** Zwei echte Commits (`31e2ef0`, `0a4fa33`), 321 Sekunden auseinander, während die App auf dem iPhone vollständig geschlossen war. **Einschränkung:** echtes Warten im Vordergrund war in der Umgebung gesperrt; der Befehl lief als Hintergrundaufgabe, die Sitzung wurde danach automatisch geweckt. Geprüft ist ein Zeitraum von rund fünf Minuten, nicht länger.
+> - **Frage 5 (Sitzungsfortsetzung Handy zu Tablet), BESTÄTIGT am 21.8.2026, Chat 21, durch Versuch.** Dieselbe Cloud-Sitzung war auf dem Tablet im Code-Bereich mit vollem Verlauf auffindbar und ansprechbar, nachdem sie auf dem iPhone gestartet worden war.
+> - **Frage 3 (feste Uhrzeit / auf Befehl), TEILWEISE BESTÄTIGT am 22.8.2026, Chat 21, durch Versuch.** Eine „Routine" mit Zeitplan-Auslöser („einmalig zu einem festen Zeitpunkt") hat punktgenau gefeuert: geplant 04:23 MESZ (02:23 UTC), tatsächlicher Commit-Zeitstempel 02:24:07 UTC in `TEST-ROUTINE.md` auf Zweig `test/routine-22-8`. **Offen bleibt der zweite Teil der Frage:** der Auslöser „API" (per eigener Anfrage von aussen gestartet) ist in der App als eigene Option sichtbar, aber nicht ausprobiert.
+> - **Frage 6 (paralleles Ablegen): weiterhin offen, zurückgestellt.** Braucht einen eigenen, anders aufgebauten Test.
+> - **Fund (21.8.2026, Chat 21):** Eine Cloud-Sitzung darf auf GitHub Zweige anlegen, aber nicht löschen. Fünf Löschversuche scheiterten mit HTTP 403; die Umgebungsbeschreibung der Sitzung nennt das ausdrücklich eine Rechte-Grenze, keine Störung. Ein von einer Sitzung angelegter Zweig muss von Hand entfernt werden (github.com, „Branches", Mülleimer-Symbol) oder bleibt stehen.
+> - **Fund (22.8.2026, Chat 21):** Beim Anlegen einer neuen Routine kann der Einrichtungsassistent Konnektoren aus früheren Routinen übernehmen, auch wenn sie zur neuen Aufgabe nicht passen. Die App warnt selbst: angehängte Konnektoren dürfen während der Ausführung ohne Rückfrage benutzt werden, einschliesslich Schreibzugriff. Vor jeder neuen Routine: Reiter „Konnektoren" prüfen, nicht benötigte entfernen.
+> - **Status von Punkt 53, berichtigt am 22.8.2026 (Fehlerart C4, im selben Durchgang statt danebengestellt):** fünf Fragen vollständig bestätigt (1, 2, 4, 5, 7), eine teilweise bestätigt (3 — Zeitplan-Teil ja, API-Teil offen), eine weiterhin offen (6). Status des Punktes bleibt „Idee".
 
 ---
 
