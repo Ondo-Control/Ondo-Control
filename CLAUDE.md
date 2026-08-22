@@ -143,6 +143,11 @@ nachzuschlagen.**
 (HTTP 403 — das ist eine Rechte-Grenze, keine Störung; nicht wiederholen,
 sondern melden und um manuelles Löschen bitten).
 
+**Fund 22.8.:** `fire_trigger` funktioniert nur für Routinen, die eine Sitzung
+selbst angelegt hat. Für über die App angelegte Routinen (`created_via:
+http_api`) schlägt es fehl - dort ist nur der externe Weg per
+Webhook-Adresse und Token möglich.
+
 ---
 
 ## Prüfstand dieser Datei
