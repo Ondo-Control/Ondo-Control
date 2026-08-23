@@ -19,7 +19,7 @@ aktuellen Stand — am 21.8.2026 belegt: eine Sitzung arbeitete gegen einen Stan
 Vortag und hätte gegen veraltete Zeilennummern geschrieben.
 
 ```
-git fetch origin main && git checkout main && git reset --hard origin/main
+git fetch origin main && git checkout main && git merge --ff-only origin/main
 ```
 
 Gearbeitet wird auf `main`, sofern der Auftrag nichts anderes sagt. **Kein Pull
