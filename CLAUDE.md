@@ -169,4 +169,3 @@ erinnert an eine Erneuerung, sobald einer abweicht. Er erneuert nichts von selbs
 - Ondo-Core-Architektur.md — `fed67804d793df1ee868fcb67e047f9bcef57e9a`
 
 *Erzeugt aus dem Stand von `main` am 23.8.2026, 13:45 Uhr.*
-<!-- Testzeile Ablage-Sync-Pruefung, 23.8.2026 -->
