@@ -1,6 +1,6 @@
 # ONDO CONTROL — Kurzanleitung für den Code-Bereich
 
-*Erzeugt am 21.8.2026, 18:11 Uhr (abgelesen) aus den vier vollständig gelesenen
+*Erzeugt am 23.8.2026, 13:45 Uhr (abgelesen) aus den vier vollständig gelesenen
 Pflichtdokumenten. Backlog-Punkt 54. **Diese Datei ist Kontext, keine erzwungene
 Einstellung** — sie ersetzt die Pflichtlektüre nicht, sie sagt, was vor der ersten
 Änderung zu tun ist.*
@@ -148,6 +148,13 @@ selbst angelegt hat. Für über die App angelegte Routinen (`created_via:
 http_api`) schlägt es fehl - dort ist nur der externe Weg per
 Webhook-Adresse und Token möglich.
 
+**Fund 22.8.:** Eine Sitzung besitzt selbst die Werkzeuge `create_trigger` und
+`create_session` und kann damit eigene Routinen anlegen. Beim Anlegen kann der
+Einrichtungsassistent Konnektoren aus früheren Routinen übernehmen, auch wenn
+sie zur neuen Aufgabe nicht passen — sie dürfen dann ohne Rückfrage benutzt
+werden, einschliesslich Schreibzugriff. Vor jeder neuen Routine: Reiter
+„Konnektoren" prüfen, nicht benötigte entfernen.
+
 ---
 
 ## Prüfstand dieser Datei
@@ -156,9 +163,9 @@ Webhook-Adresse und Token möglich.
 `.claude/hooks/claude_md_frisch.py` vergleicht sie bei jedem Sitzungsstart und
 erinnert an eine Erneuerung, sobald einer abweicht. Er erneuert nichts von selbst.*
 
-- STAND.md — `3fa8fd7905b677465386869cfa5f4c917ac58504`
-- Ondo-Control-Backlog.md — `bdbcc93e5cd38d2c554fd5bd98d93927bcca5356`
-- Blueprint.md — `c35291c5dd302a8155f34b65f76fd5b1fa4fe4c1`
+- STAND.md — `8c1f078817ac2c32a41d74950ae99f6d90cabc6c`
+- Ondo-Control-Backlog.md — `8d316d3aebcf0ab7e6ec5fa0504ec984112e31be`
+- Blueprint.md — `6794195ca7bb004cee85f12499fadb94d6afd4fc`
 - Ondo-Core-Architektur.md — `fed67804d793df1ee868fcb67e047f9bcef57e9a`
 
-*Erzeugt aus dem Stand von `main` am 21.8.2026, 18:11 Uhr.*
+*Erzeugt aus dem Stand von `main` am 23.8.2026, 13:45 Uhr.*
