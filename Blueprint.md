@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.37
-**Stand:** 23. August 2026, 20:26 Uhr
+**Version:** 0.38
+**Stand:** 24. August 2026, 09:54 Uhr
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.38 ändert (24.8.2026, nachts):** Nur Kopf-Zeitstempel angeglichen (Arbeitsregel M) — Anlass war die Berichtigung von Backlog-Punkt 53 (Fund zum Feld „Anweisungen" widerlegt; Backlog Fassung 39). Kein Inhalt geändert, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.38 gehoben. **Ausdrücklicher Vermerk:** Die zugrundeliegende Zeit (09:54 Uhr) stammt aus einer Werkzeug-Systemuhr, nicht von Ondo persönlich abgelesen — Abweichung von Arbeitsregel M mit Ondos ausdrücklicher Zustimmung in dieser einen Nacht (24.8., spät). Für künftige Aufträge gilt die Regel unverändert.
 
 > **Was Fassung 0.37 ändert (23.8.2026, abends):** Nur Kopf-Zeitstempel angeglichen (Arbeitsregel M) — Anlass war die Eintragung der Punkt-53-Funde sowie die Entscheidungen zu Punkt 55 und 58 (Backlog Fassung 38). Kein Inhalt geändert, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.37 gehoben.
 
