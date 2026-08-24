@@ -34,6 +34,13 @@ in diese Datei.
 Sag es. Rate nicht. Eine ehrliche Luecke ist besser als eine
 erfundene Antwort, die richtig aussieht.
 
+## Wie du antwortest
+
+Gib deine vollstaendige Antwort, einschliesslich deines
+Denkverhaltens/Reasonings, immer als EINEN zusammenhaengenden
+Codeblock aus. Ondo fuegt deine Antwort damit unveraendert in den
+Chat mit Claude ein.
+
 ## Bekannte Einschraenkung
 
 Im "work"-Modus hat sich das GitHub-Lesewerkzeug wiederholt als
