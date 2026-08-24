@@ -155,6 +155,13 @@ sie zur neuen Aufgabe nicht passen — sie dürfen dann ohne Rückfrage benutzt
 werden, einschliesslich Schreibzugriff. Vor jeder neuen Routine: Reiter
 „Konnektoren" prüfen, nicht benötigte entfernen.
 
+**Fund 23.8.:** `pruefe.py` Abschnitt 1 prüft ausschliesslich STAND-Kopf,
+Backlog-Kopf und Blueprint-Kopf gegen die übergebene Zeit. `CLAUDE.md` gehört
+nicht zu diesen drei Dokumenten. Ändert ein Auftrag NUR `CLAUDE.md`, gilt für
+`pruefe.py` weiterhin die zuletzt gesetzte gemeinsame Zeit der drei aktiven
+Dokumente, NICHT die frisch abgelesene Zeit des `CLAUDE.md`-Auftrags —
+zweifach am 23.8. so angewendet und bestätigt.
+
 ---
 
 ## Prüfstand dieser Datei

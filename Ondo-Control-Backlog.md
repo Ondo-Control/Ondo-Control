@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 23.8.2026, 10:54 Uhr, Fassung 37 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 23.8.2026, 20:26 Uhr, Fassung 38 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -14,6 +14,15 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 38 ändert (23.8., abends)
+
+**Punkt 53: acht neue Funde ergänzt — ein zuverlässiger Lesezugang über `github.com/OWNER/REPO/blob/main/DATEI` gefunden, geplante Aufgaben als verlässlicher Weg für die Ablage-Synchronisierung ausgeschlossen. Punkt 55 entschieden (Fassung A: Chat entscheidet, Code baut, Cowork vorerst draussen). Punkt 58 beantwortet: Nein.**
+
+- **Zeitstempel:** alle aktiven Dokumente auf die Ablesung 20:26 Uhr, Blueprint auf 0.37 gehoben. Anlass ist eine inhaltliche Änderung im Backlog, nicht nur ein Zeitangleich.
+- **Beschlossen und nicht gebaut: acht** — **E, 2, 3, 4, 47, 49, 50, 51.**
 
 ---
 
@@ -286,11 +295,19 @@ Claude Code liest beim Start eine Datei mit diesem Namen aus dem Arbeitsordner. 
 > - **Fund (22.8.2026, Chat 21):** Ein Raw-Link mit einer Commit-Kennung statt `main` (`.../<commit-hash>/Datei.md`) umgeht zuverlässig eine Zwischenspeicherung, die den Chat sonst bei wiederholtem Abruf desselben Pfades auf eine alte Fassung festhält. Wichtig für jede künftige Prüfung durch den Chat selbst.
 > - **Fund (21.8.2026, Chat 21):** Eine Cloud-Sitzung darf auf GitHub Zweige anlegen, aber nicht löschen. Fünf Löschversuche scheiterten mit HTTP 403; die Umgebungsbeschreibung der Sitzung nennt das ausdrücklich eine Rechte-Grenze, keine Störung. Ein von einer Sitzung angelegter Zweig muss von Hand entfernt werden (github.com, „Branches", Mülleimer-Symbol) oder bleibt stehen.
 > - **Fund (22.8.2026, Chat 21):** Beim Anlegen einer neuen Routine kann der Einrichtungsassistent Konnektoren aus früheren Routinen übernehmen, auch wenn sie zur neuen Aufgabe nicht passen. Die App warnt selbst: angehängte Konnektoren dürfen während der Ausführung ohne Rückfrage benutzt werden, einschliesslich Schreibzugriff. Vor jeder neuen Routine: Reiter „Konnektoren" prüfen, nicht benötigte entfernen.
+> - **Neuer, zuverlässiger Lesezugang gefunden, 23.8.2026, zweifach durch Versuch bestätigt.** Die Adressform `github.com/OWNER/REPO/blob/main/DATEI` zeigt zuverlässig den aktuellen `main`-Stand, auch bei wiederholtem Abruf im selben Chat — anders als `raw.githubusercontent.com`, das nach dem ersten Abruf hängen bleibt. Für Dateien ausserhalb einer festen Liste: zuerst die Repo-Hauptseite (`github.com/OWNER/REPO`) abrufen, von dort den passenden Datei-Link nehmen.
+> - **Fund 23.8.2026:** Die automatische Projekt-Suche (`project_knowledge_search`) liefert ebenfalls KEINEN live-aktuellen Stand — gegen einen bekannten frischen Commit geprüft, zeigte veralteten Inhalt. Dieselbe Einschränkung wie beim manuellen Ablage-Sync.
+> - **Technischer Fund, 23.8.2026:** Eine über die GitHub-Verbindung synchronisierte Datei ist für eine geplante Aufgabe nur über die Projekt-Suche auffindbar, nicht über deren Schreib-/Lesewerkzeuge direkt ansprechbar (`project_read`/`project_write` melden „kein Dokument").
+> - **Fund 23.8.2026:** Eine geplante Aufgabe kann eine bestehende, synchronisierte Datei NICHT überschreiben — ein Schreibversuch legt zwangsläufig eine neue, separate Datei an einem anderen Pfad an.
+> - **Fund 23.8.2026:** Bei drei identischen Testläufen derselben Aufgabe, gleicher Auftragstext, drei unterschiedliche Ergebnisse (einmal neue Datei angelegt, zweimal mit unterschiedlicher Begründung abgebrochen). Das Verhalten ist nicht stabil.
+> - **Fund 23.8.2026:** Der „Geplant"-Dialog im Projekt: Felder Name, Anweisungen, Berechtigungen (Manuell genehmigen / Automatisch genehmigen / Alle Genehmigungen überspringen), Modell (mehrere einzeln wählbar), Häufigkeit (Handbuch/Stündlich/Täglich/Wochentage/Wöchentlich). Kein sichtbarer Konnektoren-Reiter, anders als bei Routinen.
+> - **Fund 23.8.2026:** Websuche findet das Repo nicht (vier verschiedene Anfragen erfolglos) — offenbar nicht ausreichend indexiert. Kein GitHub-Konnektor im Werkzeug-Verzeichnis gefunden (drei Suchanfragen). Beide Wege sind damit als Sackgasse dokumentiert.
+> - **Fund 23.8.2026:** Das Feld „Anweisungen" des Projekts trägt seit heute die neuen Github-blob-Adressen zu den fünf Kern-Dokumenten, dazu die Anleitung, über die Repo-Hauptseite jede andere Datei zu finden. Das Feld sagt nur WIE gelesen wird, nicht OB oder WANN — das regelt weiterhin die jeweilige Übergabe oder Einzelnachricht.
 > - **Status von Punkt 53, aktualisiert am 22.8.2026:** Alle sieben Fragen beantwortet - sechs bestätigt (1, 2, 3, 4, 5, 7), eine mit dem Ergebnis Nein (6). Die Untersuchung ist damit abgeschlossen. Status des Punktes bleibt "Idee" - der ursprüngliche Wunsch (Ein-Klick-Mehrfachablage an mehrere Orte) ist damit noch nicht gebaut, nur die technischen Grundlagen sind jetzt bekannt.
 
 ---
 
-**55. Arbeitsteilung zwischen Chat, Code und Cowork festlegen** · *Frage 16.8., Ondo* · **Status: Idee — Vorschlag Claudes liegt vor, Entscheidung offen**
+**55. Arbeitsteilung zwischen Chat, Code und Cowork festlegen** · *Frage 16.8., Ondo* · **Status: ENTSCHIEDEN 23.8.2026 (Ondo) — Fassung A**
 
 Ondos Frage: Wer erstellt und prüft künftig die Dateien, wer lädt hoch, wo wird besprochen?
 
@@ -299,6 +316,7 @@ Ondos Frage: Wer erstellt und prüft künftig die Dateien, wer lädt hoch, wo wi
 → **🔴 Neu am 20.8. (Ondo):** Offen ist zusätzlich, ob eine am Handy begonnene Code-Sitzung **am Tablet fortgesetzt** werden kann, und ob dieselbe Sitzung Dateien **parallel** an beide Orte legen kann — Tablet aus: nur Repo, Tablet an: Repo und Tablet. Prüfung gehört zu Punkt 53, die Entscheidung über die Arbeitsteilung hierher.
 → **🔴 Belegt am 20.8., stützt den Vorschlag:** Chat kann Repo-Dateien über Raw-Links selbst lesen, und der Code-Bereich kann ohne Tablet ins Repo schreiben. Beide Hälften des Vorschlags sind damit technisch möglich.
 → **🔴 Beobachtung 21.8. (Chat 20, Cloud-Sitzung):** Eine Cloud-Sitzung **erbt den Branch, auf dem sie gestartet wurde**, und liest nicht von selbst den aktuellen Stand. **Belegt:** Eine Sitzung las den Stand vom 20.8., 06:20 Uhr und hätte gegen veraltete Zeilennummern geschrieben. **Folge als Auflage: Jede Cloud-Sitzung holt zuerst `main`.**
+→ **🔴 Entschieden (Ondo, 23.8.2026), Fassung A:** Chat bespricht und entscheidet, Code baut und schreibt ins Repo. **Cowork bleibt vorerst draussen** — rückholbar, wie Punkt 19, keine endgültige Ablehnung, falls später die Ablage-Werkzeuge von Cowork gebraucht werden.
 → **Kosten:** keine.
 
 ---
@@ -315,7 +333,7 @@ Ondos Frage: API, grösseres Abo oder etwas anderes? Was kostet es, brauchen wir
 
 ---
 
-**58. Die Sammlung im Chat hat keinen Ablageort** · *Fund 16.8., Claude, auf Ondos Frage* · **Status: Idee — die Ursache ist benannt, die Abhilfe nicht**
+**58. Die Sammlung im Chat hat keinen Ablageort** · *Fund 16.8., Claude, auf Ondos Frage* · **Status: BEANTWORTET 23.8.2026 — Nein**
 
 Ondos Frage war, ob `pruefe.py` den Chat prüfen kann, damit Beschlossenes nicht verlorengeht. **Das kann es nicht** — es liest Dateien, nicht Gespräche.
 
@@ -326,6 +344,7 @@ Ondos Frage war, ob `pruefe.py` den Chat prüfen kann, damit Beschlossenes nicht
 → **🔴 Möglicher Ausweg, neu am 20.8. (Ondo):** Hat **Claude Code** einen internen Sammelspeicher, in dem anstehende Änderungen bis zum Nachtragen liegen, und kann er sie später auf Befehl oder zu fester Uhrzeit in die Dateien schreiben, dann läge der zweite Ort dort — **ohne Lieferung je Beschluss und ohne Handarbeit**. Das würde den Widerspruch auflösen, statt ihn nur zu benennen. **Ungeprüft.** Prüfung gehört zu Punkt 53.
 → **🔴 WIDERLEGT am 21.8.2026 (Chat 20, Cloud-Sitzung):** Den vermuteten internen Sammelspeicher gibt es nicht — siehe Punkt 53, Frage 2. Eine Plandatei lag im Arbeitsverzeichnis der Sitzung, nicht im Repo, und verschwindet mit der Sitzung. **Der Widerspruch aus diesem Punkt bleibt damit ungelöst.** Der Wortlaut oben bleibt als alte Vermutung stehen.
 → **🔴 Belegter Rückfall am 20.8.:** Chat 19 hat den Übergabebedarf **nicht von selbst gemeldet**, obwohl die Übergaberegel das verlangt — Ondo musste fragen. Derselbe Mechanismus: Was nur im Gespräch liegt, wird nicht ausgelöst.
+→ **🔴 Beantwortet (Ondo, 23.8.2026): Nein.** Eine geplante Aufgabe eignet sich nicht als verlässlicher automatischer Weg für die Projekt-Ablage (Belege siehe Punkt 53, neue Funde). Der manuelle Weg (Datei entfernen, über den GitHub-Dialog neu hinzufügen) bleibt der einzige zuverlässige.
 → **Kosten:** keine, solange nicht entschieden wird.
 
 ---
