@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 27. August 2026, 08:01 Uhr, v19.8.2*
+*Die aktuelle Wahrheit. Stand: 27.8.2026, Fassung 41, v19.8.2*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -243,6 +243,8 @@ Dateiname beginnt mit Datum und Uhrzeit: `2026-07-31_1430_Ondo-Control_Thema.md`
 *Am 4.8. hat sich die Sicherung bewährt: Ondo hat den Browserverlauf gelöscht, Safari löschte dabei den Websitespeicher mit, alle Daten waren weg — und wurden vollständig wiederhergestellt. **Nichts verloren.** Zwei bekannte Verlustwege: Browserdaten löschen · getrennter Speicher Safari gegen Startbildschirm.*
 *Hinweis (3.8.): Die Sicherungsdatei enthält `apiKey`, `geminiKey` und `pin` im Klartext. Sie darf nie an ChatGPT oder Gemini gehen, nie an einen Bericht angehängt und nie ins Repo. Ondo hat am 3.8. beide Schlüssel neu erzeugt und die alten deaktiviert. **Folge: Eine Sicherung von vor dem 3.8. überschreibt beim Zurückladen die neuen Schlüssel mit den toten alten** — dann Schlüssel neu eintragen, die Messdaten bleiben unberührt.*
 
+**Nutzungslimit-Schätzung (Backlog-Punkt 56, 27.8.2026):** Anthropic veröffentlicht keine festen Zahlen; dieses Feld wird nur gelegentlich von Ondo per Bildschirmfoto kalibriert, keine Automatik, keine feste Häufigkeit. **Zuletzt gesehen: 27.8.2026, 10:30 Uhr** — aktuelle 5-Stunden-Sitzung 86 % verbraucht (Reset nach 19 Min.), Wochenlimit „Alle Modelle" 8 % verbraucht (Reset Donnerstag 03:59 Uhr). Cloud-/Code-Sitzungen und Chat teilen sich dasselbe Kontingent (belegt über `support.claude.com`, 27.8.2026).
+
 ---
 
 ## Claude Code auf dem Tablet — die neue Arbeitsweise (Punkt 46, 16.8.2026)
@@ -316,6 +318,8 @@ Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp 
 **Muster im Repo (21.8.2026).** Der Aufbau von Übergabemappe und Abnahme liegt als leeres Muster im Repo: `MUSTER_Ondo-Control_Uebergabe.md` und `MUSTER_Ondo-Control_Abnahme.md`. Sie enthalten keine Fragen und keine Antworten. **Die ausgefüllten Dateien gehören weiterhin nie ins Repo.** Grund für die Muster: Der Aufbau ist dreimal in zwei Tagen eigenmächtig geändert worden, und eine Vorlage, die nur auf Ondos Gerät liegt, altert unbemerkt.
 
 **Der Antwortschlüssel ist für den geprüften Chat auffindbar (Fund 21.8.).** Teil C stand im Text des abgebenden Chats und ist über die Suche in alten Chats erreichbar. **Folge, ohne Formänderung:** Teil A enthält ab jetzt die Zeile „Kontrollfragen beantwortest du ohne Suche in alten Chats", und Teil C wird in keinem Projektchat ausgeschrieben. Aufgefallen ist es, weil Chat 21 den Zugriff von selbst gemeldet hat.
+
+**Für den Code-Bereich gilt die Übergaberegel abgeschwächt (Backlog-Punkt 61, 27.8.2026).** Das Kontrollexamen oben prüft, ob eine neue Sitzung wirklich gelesen hat, was sie lesen sollte — nötig im Chat, der die Dateien nicht selbst nachschlagen kann. Eine Sitzung im Bereich „Code" liest die Dateien direkt aus dem Repository und kann das Lesen nicht vortäuschen; ein Kontrollexamen prüft dort nichts, was nicht ohnehin nachprüfbar ist. Für den Code-Bereich genügt: die vier Pflichtdokumente vollständig lesen (Arbeitsregel H), offene Punkte aus dem Backlog übernehmen, kein Antwortschlüssel nötig. **Das gilt als Einzelfall eingeführt, noch nicht als bewährt** (Stabilitätsregel) — erster Testlauf war die Übergabe an „Chat 25" aus einem vorbereiteten, aber inzwischen veralteten Text von „Chat 23".
 
 ---
 

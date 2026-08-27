@@ -1,6 +1,20 @@
 # -*- coding: utf-8 -*-
 """ONDO CONTROL — Vorabpruefung vor jeder Dateiausgabe (Arbeitsregel M).
 
+FASSUNG 3, 27.8.2026 (Backlog-Punkt 59/61). Eine Aenderung gegenueber Fassung 2:
+
+3. ABSCHNITT 1 PRUEFT EINE GANZZAHL, KEINE UHRZEIT MEHR. Fassung 2 verglich
+   eine per Kommandozeile uebergebene Uhrzeit gegen jede der drei Kopfzeilen
+   einzeln, statt die drei Kopfzeilen untereinander zu vergleichen. Das erzeugte
+   falschen Alarm, sobald eine Lieferung keinen der drei Koepfe aenderte
+   (Backlog-Punkt 59, 24.–27.8.2026, dreifach unabhaengig aufgetreten). Neu:
+   STAND.md, der Backlog und Blueprint tragen dieselbe Fassungszahl im Kopf;
+   Abschnitt 1 prueft nur noch, ob alle drei gleich sind. Keine Uhrzeit mehr
+   noetig, kein Kommandozeilen-Argument mehr noetig. Echte Uhrzeiten bleiben
+   dort sinnvoll, wo ein wirkliches Ereignis belegt wird (ein Fund, ein Commit,
+   ein Testlauf) — das ist ein anderer, engerer Anwendungsfall als der
+   Kopf-Abgleich und bleibt unveraendert.
+
 FASSUNG 2, 15.8.2026 (Chat 17). Zwei Aenderungen gegenueber Fassung 1:
 
 1. SIE IST CHATUEBERGREIFEND. Fassung 1 hatte in Abschnitt 7 eine von Hand
@@ -18,15 +32,9 @@ FASSUNG 2, 15.8.2026 (Chat 17). Zwei Aenderungen gegenueber Fassung 1:
    - Abschnitt 9: Verlustbeweis fuer alle drei Trennungen.
    - Abschnitt 11: Uebergabemappe und Abnahme werden auf Form geprueft.
 
-Aufruf: python3 pruefe.py 'HH:MM Uhr'
-Die Uhrzeit MUSS vom Uhr-Werkzeug stammen. Die Systemzeit des Rechners ist
-unbrauchbar, sie laeuft in UTC (Fehlerart C2/C6).
+Aufruf: python3 pruefe.py — ohne Argument.
 """
 import re, sys, os, collections
-
-STAMP = sys.argv[1] if len(sys.argv) > 1 else sys.exit(
-    "ABBRUCH: Uhrzeit fehlt. Aufruf: python3 pruefe.py 'HH:MM Uhr' — der Wert MUSS "
-    "vom Uhr-Werkzeug stammen, NICHT von date im Container (laeuft in UTC).")
 
 def lies(name):
     try:
@@ -63,11 +71,18 @@ for n, t in AKTIV.items():
 for n, t in ARCHIV.items():
     pruef(t is not None, f"archiv: {n}")
 
-print("1) Zeitstempel — alle aktiven Dokumente tragen DIESELBE Ablesung")
-pruef(STAMP in S.split('\n')[1], "STAND-Kopf")
-pruef(STAMP in B.split('\n')[1], "Backlog-Kopf")
-_bpk = [l for l in BP.split('\n')[:12] if l.startswith('**Stand:**')]
-pruef(len(_bpk) == 1 and STAMP in _bpk[0], "Blueprint-Kopf")
+print("1) Fassungszahl — STAND, Backlog und Blueprint tragen dieselbe Ganzzahl")
+_fs_m = re.search(r'Fassung (\d+)', S.split('\n')[1])
+_fb_m = re.search(r'Fassung (\d+)', B.split('\n')[1])
+_bpk = [l for l in BP.split('\n')[:12] if l.startswith('**Version:**')]
+_fp_m = re.search(r'\*\*Version:\*\* 0\.(\d+)', _bpk[0]) if len(_bpk) == 1 else None
+pruef(_fs_m is not None, "STAND-Kopf nennt eine Fassungszahl")
+pruef(_fb_m is not None, "Backlog-Kopf nennt eine Fassungszahl")
+pruef(_fp_m is not None, "Blueprint-Kopf nennt eine Versionsnummer")
+if _fs_m and _fb_m and _fp_m:
+    _fs, _fb, _fp = int(_fs_m.group(1)), int(_fb_m.group(1)), int(_fp_m.group(1)) + 1
+    pruef(_fs == _fb == _fp,
+          f"alle drei dieselbe Zahl (STAND {_fs} / Backlog {_fb} / Blueprint-Version+1 {_fp})")
 
 print("2) Erwaehnte Dateien existieren wirklich")
 PROJEKTDATEIEN = {'STAND.md','Ondo-Control-Backlog.md','Blueprint.md',

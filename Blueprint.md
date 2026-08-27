@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.39
-**Stand:** 27. August 2026, 08:01 Uhr
+**Version:** 0.40
+**Stand:** 27. August 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.40 ändert (27.8.2026):** Arbeitsregel M inhaltlich geändert, nicht nur der Kopf: Die Kopf-Prüfung in `pruefe.py` vergleicht STAND/Backlog/Blueprint jetzt über eine gemeinsame Fassungszahl, nicht mehr über eine von Ondo abzulesende Uhrzeit (Backlog-Punkt 59/61 — Einzelheiten in Abschnitt 2c). Ausserdem: Übergaberegel für den Code-Bereich abgeschwächt (kein Kontrollexamen mehr nötig, Backlog-Punkt 61), `PROJEKT-STATUS.md` nach `archiv/` verschoben (Punkt 52 geschlossen). Kein Verfassungsartikel geändert. Blueprint auf 0.40 gehoben.
 
 > **Was Fassung 0.39 ändert (27.8.2026, morgens):** Nur Kopf-Zeitstempel angeglichen (Arbeitsregel M) — Anlass war die Klärung von Backlog-Punkt 59 und die Erneuerung von `CLAUDE.md` (Backlog Fassung 40). Kein Inhalt geändert, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.39 gehoben.
 
@@ -181,8 +183,8 @@ Quellen erhalten Vertrauenswerte (z. B. offizielle Verbände hoch, Foren niedrig
 *Anlass: Bilanz vom 8.8. — 39 Backlog-Punkte, sieben gebaut, **sieben von Ondo beschlossen und nicht gebaut**, der älteste vom 25. Juli. Ondos Kritik: Punkte werden jedes Mal eingetragen und nie durchgehend abgearbeitet, und er stehe später vor Entscheidungen, deren Zusammenhang er nicht mehr kenne. Ursache: Es gab eine Regel, jede Entscheidung sofort **einzutragen**, aber keine, sie zu **bauen**. Chat 12 hat selbst keinen einzigen Punkt gebaut — genau das Muster, das diese Regel beendet.*
 *Zweite Beobachtung aus demselben Anlass, nicht als Regel beschlossen: **Die Messphase hat kein definiertes Ende.** Nirgends steht, wie viele Aussagen genügen. Was kein Ende hat, hört nicht auf.*
 
-**M — Kein Dokument ohne maschinelle Vorabprüfung** *(8.8., Claude, nach vierzehn eigenen Fehlern an einem Vormittag)* **Vor jeder Dateiausgabe läuft `pruefe.py` mit einer frisch abgelesenen Uhrzeit als Parameter.** Geprüft werden Kopf-Zeitstempel, Lücken in Abschnittsnummern, Auflösbarkeit von Querverweisen, veraltete Messzahlen ausserhalb von Korrekturvermerken, Fassungs- und Versionsnummern über Kopf, Änderungsnotiz und Protokoll hinweg, und eine Liste von Pflichtinhalten.
-*Zwei Bedingungen, ohne die die Regel wertlos ist: **Der Sollwert darf nie vom Geprüften stammen** — Chat 12 hatte seine eigene erfundene Uhrzeit fest ins Skript geschrieben, worauf es „alles sauber" meldete. Und **die Systemzeit des Rechners ist unbrauchbar**, sie läuft in UTC und lag um zwei Stunden daneben.*
+**M — Kein Dokument ohne maschinelle Vorabprüfung** *(8.8., Claude, nach vierzehn eigenen Fehlern an einem Vormittag; Kopf-Prüfung am 27.8. auf eine Fassungszahl umgestellt, Backlog-Punkt 59)* **Vor jeder Dateiausgabe läuft `python3 pruefe.py` — ohne Argument.** Geprüft werden: dieselbe Fassungszahl im Kopf von `STAND.md`, Backlog und Blueprint, Lücken in Abschnittsnummern, Auflösbarkeit von Querverweisen, veraltete Messzahlen ausserhalb von Korrekturvermerken, Änderungsnotiz und Protokoll über Kopf hinweg, und eine Liste von Pflichtinhalten.
+*Bis 27.8.2026 verglich Abschnitt 1 eine übergebene, frisch abgelesene Uhrzeit gegen jede der drei Kopfzeilen einzeln, statt die drei untereinander zu vergleichen — das meldete falschen Alarm, sobald eine Lieferung keinen der drei Köpfe änderte (Backlog-Punkt 59, dreifach aufgetreten). Die neue Fassungszahl-Prüfung braucht keine Uhrzeit mehr und vergleicht die drei Dokumente nur noch untereinander. Echte Uhrzeiten bleiben dort sinnvoll, wo ein wirkliches Ereignis belegt wird — das ist unverändert.*
 *Die acht Fehlerarten, gegen die sich die Regel richtet, stehen vollständig in `STAND.md` (bis 15.8. in `PROJEKT-STATUS.md`, seither Archiv), Abschnitt „Acht Fehlerarten Claudes — stehende Warnung für jeden neuen Chat".*
 
 ---

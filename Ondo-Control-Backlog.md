@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 27.8.2026, 08:01 Uhr, Fassung 40 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 27.8.2026, Fassung 41 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -14,6 +14,15 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 41 ändert (27.8., Sammel-Batch)
+
+**Sechs offene Verwaltungspunkte in einem Zug geschlossen, auf Ondos ausdrücklichen Wunsch: `pruefe.py`-Kopfprüfung auf Fassungszahl umgestellt (kein Zeitstempel mehr nötig) · Punkt 52 geschlossen (`PROJEKT-STATUS.md` nach `archiv/` verschoben) · Punkt 53 zurückgestellt · Punkt 56 beantwortet · Übergaberegel für den Code-Bereich abgeschwächt (neuer Punkt 61) · Mistral-Zusammenarbeit als eigener Punkt nachgetragen (Punkt 62). Prioritätsgruppe „Chats und Arbeitsstruktur" damit im Kern abgeschlossen.**
+
+- **Fassungszahl statt Zeitstempel:** `STAND.md`, Backlog und Blueprint tragen ab jetzt dieselbe Ganzzahl im Kopf (hier: 41), `pruefe.py` Abschnitt 1 vergleicht nur noch diese drei Zahlen untereinander — kein Kommandozeilen-Argument mehr nötig. Behebt Punkt 59 strukturell, nicht nur dokumentiert als Ausnahme.
+- **Beschlossen und nicht gebaut: sieben** — **E, 2, 3, 4, 49, 50, 51.**
 
 ---
 
@@ -259,9 +268,11 @@ Vor jeder Codelieferung: Syntaxprüfung von `beta.html`, Sprachschlüssel-Abglei
 
 **Ondos Vorgabe:** Zuerst werden die Probleme mit Chats, Nutzungsgrenzen und Arbeitsstruktur gelöst, dann geht es an der App weiter. Diese Gruppe steht deshalb vor **Prio 1**.
 
-**Das gilt auch gegenüber der Reihenfolge der beschlossenen Punkte.** Der nächste beschlossene ist Punkt 47, und der gehört zur App. **Ondo entscheidet, ob er wartet** — Claude zieht nichts von sich aus vor und stellt nichts von sich aus zurück.
+**Das gilt auch gegenüber der Reihenfolge der beschlossenen Punkte.** Der nächste beschlossene war zum Zeitpunkt dieser Vorgabe (16.8.) Punkt 47, und der gehört zur App. **🔴 Berichtigt (27.8.): Punkt 47 ist seither gebaut** (über Mistrals Code-Modus, von Claude gegengeprüft) — die Aussage ist damit historisch, nicht mehr aktuell. **Ondo entscheidet, ob die App-Arbeit wartet** — Claude zieht nichts von sich aus vor und stellt nichts von sich aus zurück.
 
 **Reihenfolge innerhalb der Gruppe, Vorschlag Claudes:** 54 zuerst, weil ohne sie der Bereich „Code" ohne Pflichtlektüre arbeitet · dann 53 · dann 55 · dann 56 · dann 58 · dann 57.
+
+**🔴 Gruppe im Kern abgeschlossen (27.8.2026):** 54 gebaut, 55 entschieden, 58 beantwortet, 56 beantwortet, 53 zurückgestellt. Nur 57 bleibt offen (bewusst nicht bearbeitet, nachrangig). **Prio 1 (App-Arbeit) hat ab jetzt wieder Vorrang** — Ondos Entscheidung, 27.8.2026.
 
 ---
 
@@ -281,7 +292,7 @@ Claude Code liest beim Start eine Datei mit diesem Namen aus dem Arbeitsordner. 
 
 ---
 
-**53. Erzeugte Dateien ohne Handarbeit an den richtigen Ort** · *Vorgabe 16.8., Ondo* · **Status: Idee - Untersuchung abgeschlossen, alle sieben Fragen beantwortet (sechs bestätigt, eine mit Ergebnis Nein). Entscheidung über das Bauen liegt bei Ondo.**
+**53. Erzeugte Dateien ohne Handarbeit an den richtigen Ort** · *Vorgabe 16.8., Ondo · zurückgestellt 27.8.2026, Vorschlag Claude* · **Status: ZURÜCKGESTELLT 27.8.2026 — nicht abgelehnt**
 
 **Ondos Vorgabe im Wortlaut:** Er will nicht mehr von Hand hochladen. Erzeugte Dateien sollen auf dem Tablet in den richtigen Ordnern landen — **im Repo und im Projektordner der App**. Er arbeitet parallel am Handy. Ziel ist, das Tablet zu Hause laufen zu lassen. **Es kann aber aus sein**, etwa nach einem Windows-Update. Er will mit **einem Klick** entscheiden, wohin gespeichert wird — Handy, Tablet, Repo, Projektordner — und welche Dateien. **Einmal eingestellt, danach immer automatisch, wenn er es auslöst.**
 
@@ -325,6 +336,8 @@ Claude Code liest beim Start eine Datei mit diesem Namen aus dem Arbeitsordner. 
 > - **🔴 BERICHTIGT, noch in derselben Nacht (23./24.8.2026).** Der Weg über „Anweisungen" oben ist überholt: Der dort eingetragene Lesezugang über `github.com/.../blob/...` wurde denselben Abend mehrfach widerlegt — er lieferte veraltete Inhalte, auch bestätigt mit einem selbst erzeugten, nie zuvor benutzten Zeitanhängsel. **Das Feld „Anweisungen" ist seither wieder leer.** Der Weg zu den Dokumenten steht seither wieder in der jeweiligen Übergabe oder Einzelnachricht selbst, mit Commit-Kennung statt `main`.
 > - **Status von Punkt 53, aktualisiert am 22.8.2026:** Alle sieben Fragen beantwortet - sechs bestätigt (1, 2, 3, 4, 5, 7), eine mit dem Ergebnis Nein (6). Die Untersuchung ist damit abgeschlossen. Status des Punktes bleibt "Idee" - der ursprüngliche Wunsch (Ein-Klick-Mehrfachablage an mehrere Orte) ist damit noch nicht gebaut, nur die technischen Grundlagen sind jetzt bekannt.
 
+→ **🔴 ZURÜCKGESTELLT am 27.8.2026 (Vorschlag Claude, wie Punkt 0b/38 — nicht abgelehnt):** Das eigentliche Problem hinter Ondos Vorgabe vom 16.8. — ohne eigenes Gerät ins Repo schreiben — ist durch Cloud-/Code-Sitzungen gelöst und wird in dieser Sitzung selbst vorgeführt. Offen bleibt nur noch der ursprüngliche Ein-Klick-Mehrfachablage-Wunsch (Repo **und** Projektordner der App gleichzeitig); der Projektordner-Weg ist weiterhin technisch nicht erreichbar (unverändert seit der Untersuchung). Jederzeit neu aufgreifbar, falls der Mehrfachablage-Wunsch wieder wichtig wird.
+
 ---
 
 **55. Arbeitsteilung zwischen Chat, Code und Cowork festlegen** · *Frage 16.8., Ondo* · **Status: ENTSCHIEDEN 23.8.2026 (Ondo) — Fassung A**
@@ -341,14 +354,15 @@ Ondos Frage: Wer erstellt und prüft künftig die Dateien, wer lädt hoch, wo wi
 
 ---
 
-**56. Nutzungsgrenzen — welche Wege gibt es?** · *Frage 16.8., Ondo* · **Status: Idee — Claude hat KEINE belastbare Auskunft gegeben**
+**56. Nutzungsgrenzen — welche Wege gibt es?** · *Frage 16.8., Ondo · beantwortet 27.8.2026 aus offiziellen Quellen* · **Status: BEANTWORTET 27.8.2026**
 
 Ondos Frage: API, grösseres Abo oder etwas anderes? Was kostet es, brauchen wir es jetzt?
 
-→ **Claude hat am 16.8. ausdrücklich keine Zahlen genannt**, weil sie aus dem Gedächtnis stammen würden. Die API rechnet nach Verbrauch statt nach Woche und kostet echtes Geld; alles Weitere ist ungeprüft.
-→ **Auflage:** Die Antwort wird aus der offiziellen Preisseite geholt, nicht erinnert.
-→ **🔴 Beobachtung Ondos, 20.8.:** Das Wochenlimit war an diesem Morgen **nach sechs Nachrichten** erreicht. Am 16.8. stand es bei 85 %. **Der Punkt wird damit dringlich, nicht mehr nur wünschenswert.**
-→ **🔴 Belegt am 20.8. (offizielle Dokumentation):** Cloud-Sitzungen im Code-Bereich zehren am **selben** Kontingent wie der Chat — sie sparen Handarbeit, aber kein Limit. Das Pro-Abo genügt für Cloud-Sitzungen; auf Pro ist Claude Code laut Quellen Dritter auf Sonnet-Modelle beschränkt. Zahlen zu Token je Zeitfenster veröffentlicht Anthropic nicht; kursierende Werte sind unbestätigt.
+→ **Claude hat am 16.8. ausdrücklich keine Zahlen genannt**, weil sie aus dem Gedächtnis stammen würden.
+→ **🔴 Offiziell abgerufen am 27.8.2026** (`support.claude.com`, `claude.com/pricing`): Anthropic veröffentlicht **keine festen Zahlen** für Nachrichten, Stunden oder Tokens je Plan — weder für Pro noch für Claude Code. Belegt: Pro kostet 17 $/Monat (jährlich) bzw. 20 $/Monat (monatlich). Nutzung wird nach **Anmeldeart** gezählt, nicht nach Sitzungstyp — Cloud-/Code-Sitzungen und Chat teilen sich dasselbe Kontingent, damit ist die frühere Vermutung dazu jetzt belegt statt vermutet. Eigener, aktueller Stand ist einsehbar unter „Einstellungen → Nutzung" in der App bzw. mit `/cost` in Claude Code. Nicht-offizielle Drittseiten-Schätzung (unbestätigt, nicht übernommen): grob 40–80 aktive Sonnet-Stunden/Woche für Pro.
+→ **Erster echter Messpunkt, von Ondo per Screenshot geliefert (27.8.2026, 10:30 Uhr):** aktuelle 5-Stunden-Sitzung 86 % verbraucht (Reset in 19 Min.) · Wochenlimit „Alle Modelle" 8 % verbraucht (Reset Donnerstag 03:59 Uhr) · Nutzungsguthaben 0 Punkte, Funktion ausgeschaltet.
+→ **Laufende Pflege, Ondos Entscheidung (27.8.2026):** Keine eigene Messreihe (zu viele Parameter, unverhältnismässiger Aufwand für den Nutzen). Stattdessen ein einfaches Schätzfeld in `STAND.md`, gelegentlich per Screenshot kalibriert, ohne Automatik oder feste Häufigkeit — der Messpunkt von eben ist der erste Eintrag dort.
+→ **Ergänzende ältere Funde, weiterhin gültig:** Die API rechnet nach Verbrauch statt nach Woche und kostet echtes Geld (16.8.) · Das Wochenlimit war am 20.8. morgens **nach sechs Nachrichten** erreicht, am 16.8. stand es noch bei 85 % — der Punkt war damit schon vor der heutigen Antwort dringlich · Auf Pro ist Claude Code laut Quellen Dritter auf Sonnet-Modelle beschränkt (ungeprüft, keine offizielle Quelle gefunden).
 → **Kosten der Untersuchung:** wenige Abrufe, kein Geld.
 
 ---
@@ -376,6 +390,28 @@ Ondos Frage: Es gibt Chat und Code. Gibt es weitere Möglichkeiten, die Arbeit z
 → **Claude weiss es nicht.** Nichts davon ist geprüft.
 → **Nachrangig gegenüber 53 bis 56**, weil dort konkrete Vorgaben vorliegen und hier nur eine offene Frage.
 → **Kosten:** unbekannt.
+
+---
+
+**61. Übergaberegel für den Code-Bereich abgeschwächt** · *Vorschlag Claude, 27.8.2026, auf Ondos Rückfrage zum Arbeitsprozess* · **Status: EINGEFÜHRT 27.8.2026 — als Einzelfall, noch nicht bewährt**
+
+Die Übergaberegel (`STAND.md`) verlangt ein Kontrollexamen mit Fangfragen und Antwortschlüssel, weil eine neue Chat-Sitzung nicht selbst nachprüfen kann, ob sie die Pflichtdokumente wirklich gelesen hat. Eine Sitzung im Code-Bereich liest die Dateien direkt aus dem Repository und kann das Lesen nicht vortäuschen — das Kontrollexamen prüft dort nichts, was nicht ohnehin nachprüfbar ist.
+
+→ **Umgesetzt:** `STAND.md` bekommt einen eigenen, kurzen Absatz „Für den Code-Bereich" — dort genügt vollständiges Lesen der vier Pflichtdokumente plus Übernahme der offenen Backlog-Punkte, kein Antwortschlüssel.
+→ **Erster Testfall:** Ein für „Chat 25" vorbereiteter Übergabetext (ursprünglich Chat 23 → 24, von Ondo als Datei geliefert) war beim Eintreffen bereits durch diese Sitzung überholt (Punkt 47 und 59 bereits erledigt). Aus dem tatsächlichen Endstand dieser Sitzung wird stattdessen ein neuer, aktueller Text erstellt — ausserhalb des Repos, wie jede ausgefüllte Übergabemappe.
+→ **Stabilitätsregel:** Gilt als Einzelfall, nicht sofort als Dauerregel. Ob es das wird, entscheidet sich nach diesem ersten Testfall.
+→ **Kosten:** keine.
+
+---
+
+**62. Zusammenarbeit mit Mistral als beaufsichtigtem Mitarbeiter** · *Eingerichtet vor dem 24.8.2026, nachgetragen 27.8.2026 (Lücke gefunden über einen gelieferten Übergabetext)* · **Status: LÄUFT — erster Backlog-Eintrag, nachträglich**
+
+Ein zweiter Arbeits-Branch `mistral` existiert seit vor dem 24.8.2026 (aktuell fünf Commits vor `main`, zuletzt `b43c38b`), ausschliesslich für eine zweite, beaufsichtigte KI (Mistral) im Code-Modus. `main` ist davon unberührt. Die Dateien `MISTRAL.md` (Regeln für Mistral, von Claude gepflegt), `MISTRAL-AUFGABEN.md` (Aufgabenliste, von Claude gepflegt) und `MISTRAL-ERLEDIGT.md` (Ergebnisprotokoll, von Mistral gepflegt) liegen nur auf diesem Branch. Mistral arbeitet ausschliesslich dort, nie auf `main`, ohne eigene Entscheidung über die nächste Aufgabe — die kommt von Claude. Punkt 47 (Selbsttest für `beta.html`) wurde über diesen Weg gebaut und von Claude gegengeprüft.
+
+→ **🔴 Lücke, die zu diesem Nachtrag geführt hat:** Trotz mehrerer Aufgaben und Tage Zusammenarbeit hatte Mistral bis heute **keinen eigenen Backlog-Punkt** — nur auf dem `mistral`-Branch in `MISTRAL.md` dokumentiert, gegen den Geist von Arbeitsregel F. Gefunden über einen von Ondo gelieferten, sonst veralteten Übergabetext (Chat 23 → 24).
+→ **🔴 Dabei mit entdeckt, festgehalten als Warnung:** Eine frühere Testsitzung („Chat 24") hat `CLAUDE.md` nachweislich korrekt abgerufen, danach aber einen falschen Fund behauptet — angeblich stehe dort `reset --hard` statt `merge --ff-only`. Das existiert nicht in der Datei, zweifach durch eigenen Abruf widerlegt. Richtig gelesen, falsch wiedergegeben — keine der acht bekannten Fehlerarten, sondern ein Gedächtnisfehler beim Zusammenfassen. Kein Codeänderung, nur eine Warnung für künftige Zusammenfassungen (Arbeitsregel H: belegen statt herleiten).
+→ **Git-Regel für den Branch:** Für `main` gilt `--ff-only` beim Holen. Für `mistral` gilt das NICHT — dort ein normaler Merge, weil der Branch eigene Commits trägt, die `main` nicht hat.
+→ **Kosten:** keine neuen, die Zusammenarbeit läuft bereits.
 
 ---
 
@@ -624,13 +660,14 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 
 ---
 
-**52. Der Verlustbeweis braucht ein Ende** · *Fund 16.8., Claude · entschieden 21.8., Claude auf Ondos ausdrückliche Übertragung* · **Status: ERLEDIGT 21.8.2026 — keine Frist, die zwei FEHL bleiben stehen**
+**52. Der Verlustbeweis braucht ein Ende** · *Fund 16.8., Claude · entschieden 21.8., Claude auf Ondos ausdrückliche Übertragung · geschlossen 27.8.2026, Ondo (verschieben statt löschen)* · **Status: GESCHLOSSEN 27.8.2026 — `PROJEKT-STATUS.md` nach `archiv/PROJEKT-STATUS.md` verschoben**
 
 Der Beweis aus Punkt 48 vergleicht `STAND.md` gegen `PROJEKT-STATUS.md`. **Jede Pflege einer Zeile, die von dort stammt, bricht ihn** — auch eine richtige. Am 16.8. traf es die Zeile mit der letzten Sicherung; sie musste in die Ausnahmeliste. **Die Liste wächst damit mit jeder Pflege, und eine wachsende Ausnahmeliste beweist immer weniger.**
 
 Das Skript sieht selbst vor, dass der Beweis entfällt, sobald das Original nicht mehr im Ordner liegt — „nach der Bewährungszeit gewollt". Wann diese Bewährungszeit endet, hat niemand festgelegt.
 
 → **Zur Entscheidung:** Wird eine Frist gesetzt, nach der `PROJEKT-STATUS.md` aus dem Ordner genommen wird? **Claude schlägt nichts vor, bevor Ondo den Zweck bestimmt hat** — der Beweis sichert die Trennung vom 15.8., nicht die laufende Pflege.
+→ **🔴 GESCHLOSSEN am 27.8.2026 (Ondo entscheidet: verschieben statt löschen):** `PROJEKT-STATUS.md` liegt jetzt unter `archiv/PROJEKT-STATUS.md`. `pruefe.py`s eigener Code sieht das bereits vor — `verlust()`/`struktur()` überspringen den Beweis mit „Original nicht im Ordner — Beweis uebersprungen", sobald die Datei am geprüften Pfad (Repo-Wurzel) fehlt, unabhängig davon, ob sie gelöscht oder nur verschoben wurde. Die zwei stehenden FEHL werden dadurch zu OK. Nichts ist verloren gegangen, nur der Ort hat sich geändert.
 → **🔴 Eingetreten am 21.8.2026 (Chat 20, Lauf um 05:50 Uhr):** Die drei Berichtigungen vom selben Morgen, 05:24 Uhr (Commit `dabf9bb`), haben in `STAND.md` zwei Zeilen gepflegt, die aus `PROJEKT-STATUS.md` stammen — den Klammerzusatz „(Fassung 5, 31.7.)" bei „Master-Dokumente im Repo" und den neuen Leitbild-Vermerk unter „Wetten ist das Pilotmodul". **Seither meldet `pruefe.py` einen unerklärten Verlust (Abschnitt 9) und zwei Blöcke, die nicht mehr am Stück wiedergefunden werden (Abschnitt 9b).** Beide Berichtigungen waren inhaltlich richtig; **gebrochen ist der Beweis, nicht das Dokument.** Aufgefallen ist es erst einen Lauf später, weil `pruefe.py` in der Cloud-Sitzung nicht lag (siehe Punkt 46). **Nichts geändert** — ob die Ausnahmeliste erneut wächst, ist genau die Entscheidung, die dieser Punkt Ondo vorlegt.
 → **Kosten:** keine, solange nicht entschieden wird.
 → **🔴 ENTSCHIEDEN am 21.8.2026 (Claude, auf Ondos ausdrückliche Übertragung): keine Frist.** Die beiden FEHL aus `dabf9bb` bleiben stehen und werden nicht mehr bei jedem Lauf gemeldet. **Begründung:** Der Beweis sichert die Trennung vom 15.8., und die ist bewiesen. Er kann die laufende Pflege nicht überwachen, weil jede richtige Pflege ihn bricht. Fällt er später ganz weg, ist das kein Verlust. **Status: erledigt.**
