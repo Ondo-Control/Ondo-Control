@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 27.8.2026, Fassung 42 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 27.8.2026, Fassung 43 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -14,6 +14,15 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 43 ändert (27.8., erster Prio-1-Punkt seit dem Aufräumtag)
+
+**Punkt 49 gebaut: neuer Abschnitt „Messmethodik und Interpretationsgrenzen" in `STAND.md`, direkt vor „Aktueller Messstand". Jede Aussage an Code oder bestehendem Satz belegt, keine neue Methode entschieden.**
+
+- **Fassungszahl:** alle drei aktiven Dokumente auf 43 gehoben. Kein Blueprint-Inhalt geändert, keine Versionsänderung dort nötig.
+- **Beschlossen und nicht gebaut: sechs** — **E, 2, 3, 4, 50, 51.** *(Punkt 49 verlässt die Liste, weil er jetzt gebaut ist.)*
 
 ---
 
@@ -663,9 +672,11 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 
 > Der Zeilenbeweis zeigt, dass nichts fehlt. Er zeigt nicht, dass der Text noch an seinem Platz steht. `pruefe.py` Abschnitt 9b prüft jetzt zusätzlich, dass jeder Block **am Stück** in **genau einer** Zieldatei steht und dass die **Reihenfolge** erhalten ist. Eine bewusst geänderte Reihenfolge zählt nur, wenn sie **in der Datei selbst** erklärt ist — sonst liesse sich jede Unordnung nachträglich zur Absicht erklären.
 
-**49. Messmethodik und Interpretationsgrenzen in `STAND.md`** · *Vorschlag 15.8., ChatGPT* · **Status: BESCHLOSSEN — Reihenfolge unverändert, nach Punkt 46**
+**49. Messmethodik und Interpretationsgrenzen in `STAND.md`** · *Vorschlag 15.8., ChatGPT · gebaut 27.8.2026, Claude* · **Status: 🔴 GEBAUT am 27.8.2026**
 
 > Ein neuer Chat kann heute aus richtigen Zahlen eine falsche Empfehlung ableiten, weil die Zahlen dastehen und ihre Grenzen nicht. In die Pflichtlektüre gehören: Definition der drei Märkte · wie Brier-Score und Kalibrierung gerechnet werden · was in den Nenner zählt und was nicht · dass geparkte Einträge **kein** Ergebnis haben · welcher Rohdatenstand ausgewertet wurde · der Schnitt bei „beide treffen" · die ungeklärten Anpfiffzeiten. **Und als Kern eine Liste: „Was darf aus diesem Messstand NICHT geschlossen werden?"**
+>
+> **🔴 GEBAUT am 27.8.2026:** Neuer Abschnitt „Messmethodik und Interpretationsgrenzen" in `STAND.md`, direkt vor „Aktueller Messstand". Jede Aussage darin an einer Codezeile (`maerkteBauen`, `calcKalibrierung` in `beta.html`) oder einem bereits bestehenden Satz belegt (Arbeitsregel H) — keine neue Methode entschieden, nur die bestehende aufgeschrieben.
 
 **50. Verworfen-und-warum-Liste im Blueprint** · *Vorschlag 15.8., Gemini (abgeschwächt von Claude)* · **Status: BESCHLOSSEN — Reihenfolge unverändert, zuletzt**
 

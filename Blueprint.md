@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.41
+**Version:** 0.42
 **Stand:** 27. August 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.42 ändert (27.8.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war der Bau von Backlog-Punkt 49 (Messmethodik und Interpretationsgrenzen in `STAND.md`, Backlog Fassung 43). Kein Blueprint-Inhalt geändert. Blueprint auf 0.42 gehoben.
 
 > **Was Fassung 0.41 ändert (27.8.2026):** Ein Beleg zur seit 23.7. offenen Verfassungsfrage „GitHub Actions" ergänzt (Abschnitt 10) — ein Strukturvergleich mit `ondo-jarvis` zeigt, dass Actions dort bei jedem Push kurzlebig läuft, ohne dauerhaften Server. **Das entscheidet die Frage nicht**, nur ein Erfahrungswert dazu. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.41 gehoben.
 

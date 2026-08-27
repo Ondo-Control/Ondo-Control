@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 27.8.2026, Fassung 42, v19.8.2*
+*Die aktuelle Wahrheit. Stand: 27.8.2026, Fassung 43, v19.8.2*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -66,6 +66,40 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 **Das Werkzeug dagegen:** `pruefe.py` prüft Kopf-Zeitstempel gegen eine übergebene Ablesung, Abschnittsnummern auf Lücken, Querverweise auf Auflösbarkeit, veraltete Messzahlen ausserhalb von Korrekturvermerken, Fassungs- und Versionsnummern über Kopf, Änderungsnotiz und Protokoll hinweg, sowie eine Liste von Pflichtinhalten. **Vor jeder Dateiausgabe laufen lassen, mit frisch abgelesener Uhrzeit als Parameter.**
 
 **Und der wichtigste Satz zum Schluss:** Alle vierzehn Fehler wurden von **Ondo** gefunden. Keiner von Claude. Wer diese Liste liest und daraus schliesst, er selbst mache solche Fehler nicht, hat sie nicht verstanden.
+
+---
+
+## Messmethodik und Interpretationsgrenzen (Backlog-Punkt 49, gebaut 27.8.2026)
+
+*Ein neuer Chat kann aus richtigen Zahlen eine falsche Empfehlung ableiten, wenn die Zahlen dastehen und ihre Grenzen nicht. Dieser Abschnitt holt das nach — er entscheidet nichts neu, er schreibt auf, was der Code bereits tut (`beta.html`, Funktionen `maerkteBauen` und `calcKalibrierung`).*
+
+**Die drei Märkte:**
+1. **Sieger (1x2):** Heimsieg / Auswärtssieg / Remis, aus dem getippten Ergebnis abgeleitet.
+2. **Über/Unter 2,5 Tore:** Ja/Nein-Markt.
+3. **Beide treffen (BTTS):** Ja/Nein-Markt — **seit v19.8.0 (Punkt F) wird das Gehirn direkt gefragt**, die Behauptung wird nicht mehr aus dem Tipp abgeleitet. Das war der Fehler, der zum Schnitt unten führte.
+
+**Die Dreh-Mechanik bei den beiden Ja/Nein-Märkten:** Liegt die genannte Prozentzahl unter 50 %, dreht die App die Behauptung auf die Gegenseite um (100 minus die Zahl) und markiert den Eintrag als „gedreht". Grund: „Ja zu 42 %" heisst inhaltlich „Nein zu 58 %" — die gespeicherte Zahl ist immer die, an die das Gehirn wirklich glaubt. **Eine gedrehte Aussage bedeutet nicht, dass ein Gehirn seine Meinung geändert hat.**
+
+**Wie die Kalibrierung gerechnet wird:** Alle bewerteten Aussagen werden in sechs feste Bänder einsortiert (1–49, 50–59, 60–69, 70–79, 80–89, 90–99 %). Je Band: **behauptet** = Durchschnitt der genannten Prozentzahlen, **echt** = Anteil der tatsächlich eingetroffenen Aussagen in diesem Band. Die **Abweichung** (die Kopfzahl, z. B. „4 %") ist der nach Bandgrösse gewichtete Durchschnitt von |behauptet − echt| über alle Bänder.
+
+**Was in den Nenner zählt:** nur Aussagen aus der Ära „v19", nur Märkte mit Status „richtig" oder „falsch". **Geparkte Einträge erreichen diesen Status nie** — der Prüf-Vorgang lässt geparkte Einträge aus, sie bleiben auf „offen" stehen und fliessen nie in die Kalibrierung ein.
+
+**Der Brier-Score wird nirgends berechnet** — weder im Code noch in der Anzeige (siehe unten, „Was NICHT geschlossen werden darf").
+
+**Rohdatenstand:** Die Zahlen im Abschnitt „Aktueller Messstand" stammen aus einem Bildschirmfoto vom 14.8.2026 (siehe „Zur Datierung" dort).
+
+**Der Schnitt bei „beide treffen":** Werte vor und ab v19.8.0 sind bei diesem Markt nicht vergleichbar (siehe „Versionen").
+
+**Anpfiffzeiten:** waren an mehreren Tagen nachweislich falsch protokolliert (siehe „Die Spielliste — drei Fehlerarten", S2).
+
+**Was aus diesem Messstand NICHT geschlossen werden darf:**
+- Kein Brier-Score — weder abgelesen noch selbst gerechnet, in keiner Zahl dieses Dokuments enthalten.
+- Eine niedrige Abweichung heisst nicht „öfter richtig" — das ist die Trefferquote, eine andere Zahl.
+- Bänder mit wenigen Aussagen (z. B. Flashs 80–99 %) sind statistisch bedeutungslos.
+- Werte vor und nach dem Schnitt bei „beide treffen" sind nicht vergleichbar.
+- Anpfiffzeiten sind teilweise falsch protokolliert — Grenzfälle der 2,5-Stunden-Regel des Schiedsrichters sind entsprechend unsicher.
+- Geparkte Einträge fehlen vollständig — wie sich das auf sehr hohe Zuversichtsstufen auswirkt (wo am meisten geparkt wird), ist unbekannt, nicht vernachlässigbar.
+- Ein „gedrehter" Eintrag ist keine Meinungsänderung, nur eine ursprüngliche Zahl unter 50 %.
 
 ---
 
