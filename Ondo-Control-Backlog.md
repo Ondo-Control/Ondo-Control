@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 27.8.2026, Fassung 43 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 27.8.2026, Fassung 44 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -14,6 +14,15 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 44 ändert (27.8., Widerspruch in Punkt E berichtigt)
+
+**Fehlerart C4 behoben: Punkt E enthielt zwei sich widersprechende Aussagen zum selben Sachverhalt.** Ein Satz vom 8.8. („NICHT MEHR BLOCKIERT") sagt, Gemini habe die eigene Rückfrage vom 4.8. selbst beantwortet (Zustand vor Ziffer). Ein älterer, nie berichtigter Satz stand trotzdem weiter als „Offene Rückfrage von Gemini, bisher unbeantwortet" daneben. Berichtigt: die Frage ist beantwortet, nicht mehr offen — offen ist nur noch Ondos Entscheidung, ob Geminis Antwort gegen ChatGPTs Widerspruch übernommen wird.
+
+- **Fassungszahl:** alle drei aktiven Dokumente auf 44 gehoben. Kein Blueprint-Inhalt geändert, keine Versionsänderung dort nötig.
+- **Beschlossen und nicht gebaut: sechs** — **E, 2, 3, 4, 50, 51.** *(unverändert — Punkt E ist weiterhin nicht gebaut, nur sein Text war widersprüchlich.)*
 
 ---
 
@@ -529,8 +538,7 @@ ChatGPTs Umformulierung, im Blueprint unter dem 25.7. protokolliert: **Der Schie
 **Vermutete Folge:** die erfundenen 0:0 vom 31.7. Ein Modell, das suchen soll, liefert irgendetwas; ein Modell, das bestätigen soll, kann „nein" sagen. **Vermutung, nicht bewiesen (Art. 13).**
 
 → **Beide Prüfer, 4.8.: „Prüfen statt suchen trifft den Kern."** Die Aufgabe zu schärfen ist mächtiger, als ein größeres Modell auf einen unscharfen Auftrag zu werfen. Nach der Rücknahme von 0a ist E der einzige verbliebene Ansatz gegen erfundene Ergebnisse.
-→ **Offene Rückfrage von Gemini, bisher unbeantwortet:** Wie soll der neue Auftragstext ein **echtes** 0:0 von einem „nicht gefunden" wasserdicht unterscheiden? Ohne Antwort darauf ersetzt E die neunte Fehlerart womöglich nur durch eine zehnte. **Diese Frage muss vor dem Bauen beantwortet sein.**
-→ Hängt zusammen mit ChatGPTs offener Frage vom 30.7.: Darf der Schiedsrichter überhaupt selbst Ergebnisse lesen, oder nur verifizierte Fakten bewerten? Diese Frage gehört in den Blueprint.
+→ **🔴 Berichtigt (27.8., Fehlerart C4 — Widerspruch im selben Dokument):** Hier stand weiterhin „Offene Rückfrage von Gemini, bisher unbeantwortet" — das war seit dem 8.8. nicht mehr richtig, siehe die Notiz „NICHT MEHR BLOCKIERT" oben: Gemini hat die eigene Rückfrage selbst beantwortet (Zustand vor Ziffer). Die Frage ist damit **beantwortet, nicht mehr offen** — was fehlt, ist Ondos Entscheidung, ob Geminis Antwort (gegen ChatGPTs Widerspruch) übernommen wird. Hängt zusammen mit ChatGPTs offener Frage vom 30.7.: Darf der Schiedsrichter überhaupt selbst Ergebnisse lesen, oder nur verifizierte Fakten bewerten? Diese Frage gehört in den Blueprint.
 → *Warum es drei Tage unentdeckt blieb: Der Beschluss stand nur im Blueprint-Protokoll, nie im Backlog. Genau der Fall, gegen den Arbeitsregel F gemacht wurde.*
 
 ---

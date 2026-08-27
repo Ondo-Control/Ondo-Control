@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.42
+**Version:** 0.43
 **Stand:** 27. August 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.43 ändert (27.8.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war die Berichtigung eines Widerspruchs (Fehlerart C4) in Backlog-Punkt E: eine als „offen" stehengelassene Rückfrage Geminis war seit dem 8.8. bereits beantwortet (Backlog Fassung 44). Kein Blueprint-Inhalt geändert. Blueprint auf 0.43 gehoben.
 
 > **Was Fassung 0.42 ändert (27.8.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war der Bau von Backlog-Punkt 49 (Messmethodik und Interpretationsgrenzen in `STAND.md`, Backlog Fassung 43). Kein Blueprint-Inhalt geändert. Blueprint auf 0.42 gehoben.
 
