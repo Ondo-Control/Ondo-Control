@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 27.8.2026, Fassung 46, v19.8.3*
+*Die aktuelle Wahrheit. Stand: 27.8.2026, Fassung 47, v19.8.3*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -278,7 +278,11 @@ Dateiname beginnt mit Datum und Uhrzeit: `2026-07-31_1430_Ondo-Control_Thema.md`
 *Am 4.8. hat sich die Sicherung bewährt: Ondo hat den Browserverlauf gelöscht, Safari löschte dabei den Websitespeicher mit, alle Daten waren weg — und wurden vollständig wiederhergestellt. **Nichts verloren.** Zwei bekannte Verlustwege: Browserdaten löschen · getrennter Speicher Safari gegen Startbildschirm.*
 *Hinweis (3.8.): Die Sicherungsdatei enthält `apiKey`, `geminiKey` und `pin` im Klartext. Sie darf nie an ChatGPT oder Gemini gehen, nie an einen Bericht angehängt und nie ins Repo. Ondo hat am 3.8. beide Schlüssel neu erzeugt und die alten deaktiviert. **Folge: Eine Sicherung von vor dem 3.8. überschreibt beim Zurückladen die neuen Schlüssel mit den toten alten** — dann Schlüssel neu eintragen, die Messdaten bleiben unberührt.*
 
-**Nutzungslimit-Schätzung (Backlog-Punkt 56, 27.8.2026):** Anthropic veröffentlicht keine festen Zahlen; dieses Feld wird nur gelegentlich von Ondo per Bildschirmfoto kalibriert, keine Automatik, keine feste Häufigkeit. **Zuletzt gesehen: 27.8.2026, 10:30 Uhr** — aktuelle 5-Stunden-Sitzung 86 % verbraucht (Reset nach 19 Min.), Wochenlimit „Alle Modelle" 8 % verbraucht (Reset Donnerstag 03:59 Uhr). Cloud-/Code-Sitzungen und Chat teilen sich dasselbe Kontingent (belegt über `support.claude.com`, 27.8.2026).
+**Nutzungslimit-Schätzung (Backlog-Punkt 56, 27.8.2026):** Anthropic veröffentlicht keine festen Zahlen; dieses Feld wird nur gelegentlich von Ondo per Bildschirmfoto kalibriert, keine Automatik, keine feste Häufigkeit. **Zuletzt gesehen: 27.8.2026, 23:08 Uhr** — aktuelle 5-Stunden-Sitzung 34 % verbraucht (Reset in 3 Std. 41 Min.), Wochenlimit „Alle Modelle" 26 % verbraucht (Reset Donnerstag 03:59 Uhr). Cloud-/Code-Sitzungen und Chat teilen sich dasselbe Kontingent (belegt über `support.claude.com`, 27.8.2026).
+
+**⚠ Zwei verschiedene Zahlen, nicht verwechseln (Ondo, 27.8., 23:08 Uhr):** Die 5-Stunden-Sitzung setzt sich alle fünf Stunden zurück und sagt nichts über den Tag als Ganzes. Das Wochenlimit dagegen war heute, am Tag des Wochenstarts, noch nicht durch frühere Tage vorbelastet — die 26 % sind an diesem einen Tag darum praktisch gleichbedeutend mit dem **Tagesverbrauch über alle drei heute gleichzeitig gelaufenen Sitzungen** (dieser Chat, eine Code-Sitzung zum Vergleich mit `ondo-jarvis`, und Chat 25).
+
+**Richtwert aus dem Tagesverbrauch (27.8.2026, grobe Schätzung, keine Messung):** Die drei Sitzungen zusammen haben nach eigener Angabe rund 42 Prompts und deutlich mehr als 1.000 KB an gelesenem und geschriebenem Text bewegt — allein in dieser Sitzung wurden `STAND.md`, `Ondo-Control-Backlog.md`, `Blueprint.md`, `beta.html`, die Messdaten-Datei und das KI-Log zusammen rund 900 KB an Dateien genannt (real gemessen mit `wc -c`, nicht geschätzt); die beiden anderen Sitzungen berichten vergleichbare Grössenordnungen (volle Pflichtlektüre, mehrfache Dokumentabrufe, Web-Suchen), ohne dass eine genaue Byte-Zahl dafür vorliegt. **Grober Richtwert, nur zur Einordnung:** rund 1 Megabyte Textverkehr über drei gleichzeitige Sitzungen an einem Tag entsprach rund einem Viertel des Wochenlimits. **Das ist keine Formel** — Denkaufwand und Werkzeugaufrufe kosten zusätzlich, unabhängig von reiner Textmenge —, nur ein Anhaltspunkt für die Grössenordnung.
 
 ---
 

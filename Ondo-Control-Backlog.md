@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 27.8.2026, Fassung 46 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 27.8.2026, Fassung 47 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -14,6 +14,15 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 47 ändert (27.8., Nutzungslimit-Ablesung und Richtwert)
+
+**Neue Ablesung (Ondo, 23:08 Uhr):** 5-Stunden-Sitzung 34 %, Wochenlimit 26 %. Ondos Einordnung, festgehalten in `STAND.md`: Da die Woche heute begann, entspricht das Wochenlimit an diesem Tag praktisch dem Tagesverbrauch über alle drei heute gelaufenen Sitzungen (dieser Chat, Jarvis-Vergleichs-Sitzung, Chat 25). Aus den drei Sitzungen zusammengetragen: rund 42 Prompts, rund 1 MB bewegter Text — als grober Richtwert festgehalten, ausdrücklich keine Formel.
+
+- **Fassungszahl:** alle drei aktiven Dokumente auf 47 gehoben (Blueprint 0.46). Kein Blueprint-Inhalt geändert.
+- **Beschlossen und nicht gebaut: drei** — **3, 4, 51.** *(unverändert.)*
 
 ---
 
