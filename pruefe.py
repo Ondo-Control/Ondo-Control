@@ -409,4 +409,37 @@ else:
         pruef(_cv.group(1) == _bv.group(1),
               f"CODE_VERSION {_cv.group(1)} == Beta-Version in STAND {_bv.group(1)}")
 
+print("13) Punkt 60 — Sprachschluessel selbst gezaehlt, nicht von Hand behauptet")
+# 27.8.2026: STAND.md nannte 217, ein Nachzaehler (Mistral) fand 142. Statt die
+# Zahl weiter von Hand zu pflegen und zu erraten, wer richtig zaehlte, zaehlt
+# pruefe.py sie jetzt selbst — direkt aus beta.html, bei jedem Lauf.
+if _BH is None:
+    pruef(True, "beta.html nicht im Ordner — Abschnitt 13 uebersprungen")
+else:
+    _i18n = re.search(r'var I18N = \{(.*?)\n\};', _BH, re.S)
+    pruef(_i18n is not None, "I18N-Block in beta.html gefunden")
+    if _i18n:
+        _chunks = re.split(r'(?=\n (?:de|fr|en):\{)', _i18n.group(1))
+        _sprachen = {}
+        for _ch in _chunks:
+            _lm = re.match(r'\n (de|fr|en):\{', _ch)
+            if not _lm:
+                continue
+            _inhalt = _ch[_lm.end() - 1:]
+            _sprachen[_lm.group(1)] = re.findall(r'[,{]\s*([A-Za-z_][A-Za-z0-9_]*):\x27', _inhalt)
+        pruef(set(_sprachen) == {'de', 'fr', 'en'}, f"alle drei Sprachen gefunden {sorted(_sprachen)}")
+        if set(_sprachen) == {'de', 'fr', 'en'}:
+            _anzahlen = {l: len(k) for l, k in _sprachen.items()}
+            pruef(len(set(_anzahlen.values())) == 1,
+                  f"alle drei Sprachen dieselbe Anzahl Schluessel {_anzahlen}")
+            _mengen = {l: set(k) for l, k in _sprachen.items()}
+            pruef(_mengen['de'] == _mengen['fr'] == _mengen['en'],
+                  "alle drei Sprachen dieselben Schluesselnamen")
+            _gezaehlt = _anzahlen.get('de')
+            _bsv = re.search(r'\*\*Sprachschlüssel: (\d+)\*\*', S)
+            pruef(_bsv is not None, "STAND.md nennt eine Sprachschluesselzahl")
+            if _bsv:
+                pruef(int(_bsv.group(1)) == _gezaehlt,
+                      f"selbst gezaehlt {_gezaehlt} == STAND.md behauptet {_bsv.group(1)}")
+
 print("\nERGEBNIS:", "ALLES SAUBER" if not f else f"{len(f)} FEHLER: {f}")

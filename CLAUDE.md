@@ -201,9 +201,9 @@ der Sitzung aus; melden und nicht wiederholt versuchen.
 `.claude/hooks/claude_md_frisch.py` vergleicht sie bei jedem Sitzungsstart und
 erinnert an eine Erneuerung, sobald einer abweicht. Er erneuert nichts von selbst.*
 
-- STAND.md — `e94e1394a3c32c5aefbe8f2375509dbddf7f75b4`
-- Ondo-Control-Backlog.md — `5081d2ad91f51bcad6b01f683efcd98ca0079fcc`
-- Blueprint.md — `5be46e35336d61c518672663f53935cfeb391a75`
+- STAND.md — `44f28a5c028ba75394cd0fef44f28be42cccb15f`
+- Ondo-Control-Backlog.md — `8f740f32e13d56433509b4ed4b30b30c541a1974`
+- Blueprint.md — `0c69cdc11a2f94723b73ca0277963bebf02eb5a5`
 - Ondo-Core-Architektur.md — `fed67804d793df1ee868fcb67e047f9bcef57e9a`
 
 *Erzeugt aus dem Stand von `main` am 27.8.2026.*

@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 27.8.2026, Fassung 41 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 27.8.2026, Fassung 42 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -14,6 +14,16 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 42 ändert (27.8., nach dem Ondo-Jarvis-Vergleich)
+
+**Punkt 60 geklärt und gebaut: 217 Sprachschlüssel war die richtige Zahl, Mistrals Zählung hatte unterzählt. `pruefe.py` zählt jetzt selbst nach (neuer Abschnitt 13). Neuer Punkt 63 aufgenommen (nicht gebaut). Ein Beleg zur offenen GitHub-Actions-Verfassungsfrage im Blueprint ergänzt.**
+
+- **Anlass:** Ein Strukturvergleich zwischen Ondo Control und dem Schwesterprojekt `ondo-jarvis`, in einer eigenen Sitzung mit Zugriff auf beide Repos erstellt, von Chat 25 und Claude unabhängig bewertet.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 42 gehoben, Blueprint auf 0.41.
+- **Beschlossen und nicht gebaut: sieben** — **E, 2, 3, 4, 49, 50, 51.** *(unverändert — Punkt 60 war GEFUNDEN, nicht beschlossen, und Punkt 63 ist neue Idee, keine Entscheidung.)*
 
 ---
 
@@ -415,6 +425,15 @@ Ein zweiter Arbeits-Branch `mistral` existiert seit vor dem 24.8.2026 (aktuell f
 
 ---
 
+**63. `selbsttest.py` auf weitere Kernfunktionen ausweiten** · *Vorschlag 27.8.2026, aus einem Strukturvergleich mit `ondo-jarvis` (unabhängige Sitzung mit Zugriff auf beide Repos), befürwortet von Chat 25 und Claude* · **Status: Idee — noch nicht gebaut**
+
+`selbsttest.py` (Punkt 47) deckt bisher eine Funktion ab (`marktUrteil`). Vorschlag: schrittweise weitere Kernfunktionen mit festen Rechenproben absichern — die Dubletten-Sperre in `spielListeHolen`, die 2,5-Stunden-Regel des Schiedsrichters, die Datums-/Wettbewerbsprüfung. Das sind genau die Fehlerarten, die `STAND.md` bereits als wiederkehrend dokumentiert (Der Schiedsrichter — zehn Fehlerarten · Die Spielliste — drei Fehlerarten).
+
+→ **Bewusst nicht gebaut, sondern nur aufgenommen (Arbeitsregel L):** Sieben ältere, bereits beschlossene Punkte (E, 2, 3, 4, 49, 50, 51) sind weiterhin nicht gebaut, der älteste seit dem 25.7. Dieser Punkt ist neu und noch nicht beschlossen — er reiht sich hinten ein, statt die älteren zu überholen.
+→ **Kosten:** klein, in Stücken baubar, kein Geld, keine grosse Umbauarbeit — ähnlich wie Punkt 47 selbst.
+
+---
+
 ## 🔴 Prio 1 — als Nächstes dran
 
 **41. 🔴 Zuordnung der Listenangaben über den Spielnamen statt über die laufende Nummer** · *Spur Chat 13 (12.8.), am 13.8. von Chat 14 am Log BEWIESEN* · **Status: Idee, Ondo vorzulegen — die URSACHE ist belegt, die Abhilfe ist es nicht**
@@ -684,11 +703,13 @@ Drei unabhängige Läufe (Claude Code 24.8., 12:38 Uhr · Mistral 24.8., 12:52 U
 
 ---
 
-**60. Sprachschlüsselzahl in `STAND.md` stimmt nicht mit tatsächlicher Zählung überein** · *Fund 24.8.2026, Mistral (Backlog-Punkt 47)* · **Status: GEFUNDEN, UNGEKLÄRT**
+**60. Sprachschlüsselzahl in `STAND.md` stimmt nicht mit tatsächlicher Zählung überein** · *Fund 24.8.2026, Mistral (Backlog-Punkt 47) · geklärt und gebaut 27.8.2026, Claude, Vorschlag aus dem Ondo-Jarvis-Strukturvergleich* · **Status: GEKLÄRT UND GEBAUT 27.8.2026 — 217 war richtig**
 
-`STAND.md` nennt 217 Sprachschlüssel. Ein unabhängiges Prüfskript (Mistral, Backlog-Punkt 47, 24.8.2026) zählt 142 Schlüssel je Sprache (DE/FR/EN), übereinstimmend zwischen allen drei Sprachen. Ursache der Differenz (217 gegen 142) noch nicht geklärt — entweder ist die Zählmethode unterschiedlich, oder eine der beiden Zahlen ist veraltet.
+`STAND.md` nennt 217 Sprachschlüssel. Ein unabhängiges Prüfskript (Mistral, Backlog-Punkt 47, 24.8.2026) zählte 142 Schlüssel je Sprache (DE/FR/EN), übereinstimmend zwischen allen drei Sprachen. Ursache der Differenz (217 gegen 142) war zunächst nicht geklärt — entweder war die Zählmethode unterschiedlich, oder eine der beiden Zahlen war veraltet.
 
-→ **Nächster Schritt:** beide Zählmethoden nebeneinanderlegen und prüfen, welche korrekt zählt.
+→ **🔴 GEKLÄRT am 27.8.2026 (Claude, Codezitat statt Vermutung):** `pruefe.py` zählt die Schlüssel jetzt selbst direkt aus dem `I18N`-Block in `beta.html` (neuer Abschnitt 13). Ergebnis, mehrfach mit unterschiedlichen Regeln gegengeprüft: **217, identisch in DE, FR und EN.** `STAND.md` war richtig. Mistrals Zählmethode hat unterzählt — vermutlich hat sie einen Teil der Schlüssel-Syntax nicht erfasst (z. B. Schlüssel direkt nach der öffnenden Klammer der jeweiligen Sprache); die genaue Fehlerursache in Mistrals Skript selbst ist nicht weiter untersucht, das ist nicht mehr nötig, seit `pruefe.py` unabhängig selbst zählt.
+→ **🔴 GEBAUT am 27.8.2026:** `pruefe.py` Abschnitt 13 zählt bei jedem Lauf automatisch nach, vergleicht die drei Sprachen gegeneinander und gegen die Zahl in `STAND.md` — eine künftige Abweichung fällt sofort auf, ohne von Hand nachzuzählen. Vorschlag stammt aus einem Strukturvergleich mit `ondo-jarvis` (27.8.2026, unabhängige Sitzung mit Zugriff auf beide Repos), von Chat 25 und Claude unabhängig voneinander befürwortet.
+→ **Kosten:** keine, `pruefe.py` läuft ohnehin vor jeder Lieferung.
 
 ---
 

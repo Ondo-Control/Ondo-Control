@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.40
+**Version:** 0.41
 **Stand:** 27. August 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.41 ändert (27.8.2026):** Ein Beleg zur seit 23.7. offenen Verfassungsfrage „GitHub Actions" ergänzt (Abschnitt 10) — ein Strukturvergleich mit `ondo-jarvis` zeigt, dass Actions dort bei jedem Push kurzlebig läuft, ohne dauerhaften Server. **Das entscheidet die Frage nicht**, nur ein Erfahrungswert dazu. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.41 gehoben.
 
 > **Was Fassung 0.40 ändert (27.8.2026):** Arbeitsregel M inhaltlich geändert, nicht nur der Kopf: Die Kopf-Prüfung in `pruefe.py` vergleicht STAND/Backlog/Blueprint jetzt über eine gemeinsame Fassungszahl, nicht mehr über eine von Ondo abzulesende Uhrzeit (Backlog-Punkt 59/61 — Einzelheiten in Abschnitt 2c). Ausserdem: Übergaberegel für den Code-Bereich abgeschwächt (kein Kontrollexamen mehr nötig, Backlog-Punkt 61), `PROJEKT-STATUS.md` nach `archiv/` verschoben (Punkt 52 geschlossen). Kein Verfassungsartikel geändert. Blueprint auf 0.40 gehoben.
 
@@ -319,6 +321,7 @@ ONDO CONTROL
 **Offene Verfassungsfrage — GitHub Actions:**
 Für automatische, echte Quoten wäre ein GitHub-Actions-Wecker nötig: ein Programm, das in festen Abständen von selbst startet, Quoten holt und als Datei ins Repo legt. Das ist **streng genommen ein winziger Server**, und dieser Blueprint sagt „kein Server" (Grenze 1). ChatGPT und Gemini halten die Ausnahme beide für vertretbar. **Die Entscheidung liegt beim Besitzer (Art. 8) und gehört, wenn sie fällt, hierher — nicht in den Backlog.**
 Vorgelagerte Sachfrage *(Gemini, 23.7.)*: Deckt ein kostenloser Quotendienst Ondos Spiele überhaupt ab?
+**Neuer Beleg (27.8.2026), aus einem Strukturvergleich mit dem Schwesterprojekt `ondo-jarvis`:** Dort läuft GitHub Actions bereits bei jedem Push/Pull-Request (Dokument- und Codeprüfung zusammen) und endet nach Sekunden — kein dauerhaft laufender Prozess. Das ist ein Erfahrungswert, kein Beschluss: Er zeigt, dass ein Actions-Lauf in der Praxis kurzlebig bleibt, entscheidet aber nicht, ob das für diesen Blueprint als Ausnahme von Grenze 1 gelten soll. Backlog-Punkt 9 hängt an derselben Frage.
 
 **Offen — „Fail Safe" als Arbeitsregel?** *(ChatGPT, 4.8.)*
 ChatGPTs Antwort auf den Denkfehler vom 4.8.: Bei einem **unbekannten** Fehler nie automatisch das nächste Modell nehmen, sondern anhalten und die Lage als Unklarheit melden. Das passt zum Grundsatz des Projekts, ist aber noch kein Beschluss. **Entscheidung Ondos steht aus (Art. 8).**
