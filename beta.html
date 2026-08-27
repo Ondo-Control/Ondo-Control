@@ -122,7 +122,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.2';
+var CODE_VERSION = 'v19.8.3';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -1300,6 +1300,9 @@ function vorhersageGehirn(gehirn, liste){
     'WICHTIG ZUR EHRLICHKEIT: Deine Prozentangaben werden gemessen. Sagst du oft 80 Prozent, muessen etwa 8 von 10 dieser Aussagen eintreffen. '+
     'Wenn du ein Team oder eine Liga kaum kennst, nenne Werte nahe 50 — das ist kein Makel, sondern korrekt. '+
     'Uebertriebene Sicherheit faellt in der Auswertung auf. Gib fuer JEDES Spiel eine Vorhersage ab, auch bei duenner Datenlage.\n\n'+
+    (gehirn==='flash' ? ('LEHRE AUS DEINER EIGENEN KALIBRIERUNG (Backlog-Punkt 2, bestaetigt 27.8.2026): '+
+      'Du ueberschaetzt deine eigene Zuversicht im Bereich 60-69 Prozent deutlich: von 49 Aussagen mit im Schnitt behaupteten 63 Prozent trafen nur 49 Prozent ein. '+
+      'Dasselbe Muster zeigt sich darunter. Nimm diese Abweichung als festen Erfahrungswert in deine eigene Einschaetzung auf.\n\n') : '')+
     (fruehere?('Deine letzten eigenen Vorhersagen: '+fruehere+'\n\n'):'')+
     'SPIELE:\n'+spieleTxt+'\n\n'+
     'Letzte Nachricht: NUR kompaktes JSON:\n'+
@@ -1482,7 +1485,7 @@ function ergebnissePruefen(btn){
     var k=e.match+'|'+e.datum;
     if(!spiele[k]){
       spiele[k]={ id:'S'+posten.length, art:'log', match:e.match, datum:e.datum,
-        anpfiff:e.anpfiff||'', eintraege:[], zustand:'offen', gefragt:false };
+        anpfiff:e.anpfiff||'', wettbewerb:e.wettbewerb||'', eintraege:[], zustand:'offen', gefragt:false };
       posten.push(spiele[k]);
     }
     spiele[k].eintraege.push(e.id);
@@ -1587,13 +1590,17 @@ function ergebnissePruefen(btn){
     ziel.forEach(function(p){ p.gefragt=true; });
 
     var zeilen = ziel.map(function(p){
-      return p.id+': '+p.match+' (angesetzt am '+p.datum+(p.anpfiff?(', Anpfiff '+p.anpfiff+' Uhr'):'')+')'+((p.art==='bet')?' — Wettschein':'');
+      return p.id+': '+p.match+(p.wettbewerb?(' ['+p.wettbewerb+']'):'')+' (angesetzt am '+p.datum+(p.anpfiff?(', Anpfiff '+p.anpfiff+' Uhr'):'')+')'+((p.art==='bet')?' — Wettschein':'');
     });
     var quellPflicht = (runde>=3)
       ? 'WICHTIG IN DIESEM DURCHGANG: Zu jedem gefundenen Ergebnis MUSST du im Feld "quelle" die vollstaendige URL der Seite nennen, auf der du den Endstand gelesen hast. Ein Ergebnis ohne echte Quellen-URL wird verworfen.\n\n'
       : 'Nenne im Feld "quelle" nach Moeglichkeit die URL der Seite, auf der du den Endstand gelesen hast.\n\n';
+    /* Backlog-Punkt E (Beschluss Ondo 25.7., Zustand-vor-Ziffer-Ergaenzung Gemini/Ondo 27.8.):
+       Wettbewerb, Datum und beide Teams stehen unten schon fest. Der Auftrag ist BESTAETIGEN,
+       nicht frei suchen — ein bestaetigtes Ergebnis muss zu allen vier Angaben passen. */
     var prompt='Heute ist '+heuteStr()+', es ist '+jetztUhr()+' Uhr (deutsche Zeit). '+
-      'Ermittle per Websuche fuer jedes Spiel den ENDSTAND NACH 90 MINUTEN inkl. Nachspielzeit — OHNE Verlaengerung, OHNE Elfmeterschiessen.\n\n'+
+      'Zu jedem Spiel unten stehen Wettbewerb, Datum und beide Teams bereits fest. Deine Aufgabe ist BESTAETIGEN, nicht frei suchen: '+
+      'ermittle per Websuche den ENDSTAND NACH 90 MINUTEN inkl. Nachspielzeit — OHNE Verlaengerung, OHNE Elfmeterschiessen — und melde ihn nur, wenn Wettbewerb, Datum und beide Teams deiner Quelle zu den unten genannten Angaben passen. Weicht auch nur eine der vier Angaben ab, ist es das falsche Spiel: dann "nicht_gefunden".\n\n'+
       'Du sollst NICHT beurteilen, ob eine Wette gewonnen hat. Nenne ausschliesslich die Tore. '+
       'heim = erstgenanntes Team, gast = zweitgenanntes Team.\n\n'+
       'Gib jedem Spiel GENAU EINEN Status:\n'+
@@ -1602,10 +1609,11 @@ function ergebnissePruefen(btn){
       'ACHTUNG: Wenn seit dem angegebenen Anpfiff mehr als zwei Stunden vergangen sind, ist das Spiel mit an Sicherheit grenzender Wahrscheinlichkeit vorbei — nimm dann NICHT "laeuft". '+
       'Laeuft gerade Verlaengerung oder Elfmeterschiessen, steht der Stand nach 90 Minuten bereits fest: melde ihn als "fertig".\n'+
       '- "nicht_gefunden": Spiel ist vorbei oder Status unklar, aber kein verlaesslicher Endstand auffindbar. NIEMALS raten.\n\n'+
-      'DREI HAEUFIGE FEHLER, DIE DU VERMEIDEN MUSST:\n'+
+      'VIER HAEUFIGE FEHLER, DIE DU VERMEIDEN MUSST:\n'+
       '1. FALSCHES DUELL: Zwei Teams spielen mehrmals pro Jahr gegeneinander. Pruefe, dass dein Ergebnis wirklich vom angesetzten Datum stammt — NICHT von einer frueheren Begegnung derselben Teams.\n'+
       '2. ZEITZONEN: Spiele in Suedamerika und Nordamerika werden abends Ortszeit angepfiffen und enden in Europa erst NACH MITTERNACHT, also am Folgetag. Suche nach dem Spieltag der Liga, nicht nur nach dem Kalenderdatum.\n'+
-      '3. RATEN: Lieber "nicht_gefunden" als ein unsicherer Endstand.\n\n'+
+      '3. RATEN: Lieber "nicht_gefunden" als ein unsicherer Endstand.\n'+
+      '4. TORLOSES UNENTSCHIEDEN (0:0): Ein 0:0 sieht in deiner Antwort genauso aus wie eine Ausflucht, wenn du nichts gefunden hast. Melde 0:0 NUR, wenn eine konkrete Quelle das ausdruecklich bestaetigt — niemals als Verlegenheitsantwort. Im Zweifel "nicht_gefunden" statt eines geratenen 0:0.\n\n'+
       quellPflicht+
       zeilen.join('\n')+
       '\n\nLetzte Nachricht: NUR kompaktes JSON:\n{"ergebnisse":[{"id":"S0","status":"fertig","halbzeit":"1:0","heim":2,"gast":1,"verlaengerung":"","datum":"24.07.2026","wettbewerb":"MLS","quelle":"https://..."}]}';

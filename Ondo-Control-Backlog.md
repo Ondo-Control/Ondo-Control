@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 27.8.2026, Fassung 44 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 27.8.2026, Fassung 45 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -14,6 +14,21 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 45 ändert (27.8., zweiter Prio-1-Batch: E, 2 gebaut, 3 berichtigt, 50 entschieden, 51 geprüft)
+
+**Vier Punkte auf einmal bewegt, alle mit Ondos ausdrücklicher Entscheidung oder Delegation:**
+
+- **Punkt E gebaut:** Schiedsrichter-Auftrag bestätigt jetzt anhand von Wettbewerb+Datum+Teams, statt frei zu suchen; plus Geminis 0:0-Vorsichtsregel. `beta.html` auf v19.8.3. Ondos Auflage: nicht wirkt es, wird es zurückgenommen oder ersetzt.
+- **Punkt 2 gebaut:** Flash bekommt seine Kalibrierungs-Lehre im Auftragstext mitgeteilt (Wortlaut von Ondo bestätigt), Sonnet unverändert. Ebenfalls v19.8.3.
+- **Punkt 3 berichtigt:** Die Behauptung „Pause bricht den zweiten Teil" war seit dem 25.8. widerlegt (neue Vorhersagen laut KI-Log vorhanden). Ondos Entscheidung trotzdem: vorerst ruhen lassen.
+- **Punkt 50 entschieden (Claude, delegiert):** nicht gebaut — Pflegeaufwand ohne belegten Nutzen.
+- **Punkt 51 geprüft:** Alle 54 geparkten Einträge einzeln auf ihren Grund geprüft, 26 von 27 Paarungen bereits in Archivdokumenten belegt (keine Websuche nötig). Nur eine Paarung (Leeds–Leipzig, 8.8.) wird entparkt, mit genauer Klick-Anleitung für die App.
+
+- **Fassungszahl:** alle drei aktiven Dokumente auf 45 gehoben. `beta.html` auf v19.8.3 (Beta-Version-Eintrag in STAND.md aktualisiert).
+- **Beschlossen und nicht gebaut: drei** — **3, 4, 51.** *(E und 2 verlassen die Liste, weil gebaut. 50 verlässt die Liste, weil entschieden. Das ist die massgebliche Stelle für diese Zahl; ältere Vorkommen weiter unten sind Verlauf.)*
 
 ---
 
@@ -521,7 +536,10 @@ Am 9.8. lieferte der erste Lauf nur zwei Spiele. Ondo drückte ein zweites Mal u
 
 ---
 
-**E. „Prüfen statt suchen" — beschlossen am 25.7., bis heute nicht gebaut** · *Idee 25.7., ChatGPT · Beschluss Ondo 25.7.* · **Status: beschlossen, noch nicht gebaut — NEU eingetragen 31.7.**
+**E. „Prüfen statt suchen"** · *Idee 25.7., ChatGPT · Beschluss Ondo 25.7., Bau bestätigt 27.8.* · **Status: 🔴 GEBAUT am 27.8.2026, mit Rückfall-Zusage**
+
+> **🔴 GEBAUT am 27.8.2026:** Zwei Änderungen am Schiedsrichter-Auftragstext in `beta.html` (v19.8.3). Erstens die eigentliche Umformulierung von ChatGPT: Wettbewerb wird jetzt an den Schiedsrichter mitgegeben (vorher nur Spielname, Datum, Anpfiff), und der Auftrag beginnt mit „Deine Aufgabe ist BESTAETIGEN, nicht frei suchen" — ein Ergebnis zählt nur, wenn Wettbewerb, Datum und beide Teams übereinstimmen, sonst „nicht_gefunden". Zweitens Geminis Ergänzung vom 8.8.: eine vierte Regel in der Fehlerliste, die ein torloses 0:0 ausdrücklich von einer Verlegenheitsantwort abgrenzt — Ziffern nur bei konkret bestätigtem 0:0. **Ondos Auflage:** Funktioniert es nicht, wird eine andere Lösung gesucht oder der Schritt rückgängig gemacht.
+> **Weiterhin gültig (Claude, Art. 14):** Das senkt die Wahrscheinlichkeit erfundener Ergebnisse, schliesst sie nicht aus. Ob es wirkt, zeigt erst der nächste Prüflauf.
 
 **⚠ NICHT MEHR BLOCKIERT (8.8.).** Geminis Rückfrage vom 4.8. — wie ein Prüf-Auftragstext ein **echtes** 0:0 von einem „nicht gefunden" unterscheidet — ist im Bericht nach Arbeitsregel K vom 8.8., 06:35 Uhr gestellt und **von Gemini selbst beantwortet worden**. Sein Vorschlag: Das Modell muss den **Zustand** klassifizieren, bevor es Ziffern ausgeben darf — sinngemäss „Status: beendet, Ergebnis 0:0" gegen „Status: nicht gefunden", und Ziffern ausschliesslich bei bestätigtem torlosem Unentschieden.
 
@@ -583,7 +601,9 @@ Kern von ChatGPTs Architekturantwort: **Formvalidierung statt Inhaltsvalidierung
 
 ---
 
-**2. Erster Lernschritt** · *Idee 6.7., ChatGPT (Lernkette) · Art. 9* · **Status: beschlossen, Termin offen**
+**2. Erster Lernschritt** · *Idee 6.7., ChatGPT (Lernkette) · Art. 9* · **Status: 🔴 GEBAUT am 27.8.2026 — nur Flash, Wortlaut von Ondo bestätigt**
+
+> **🔴 GEBAUT am 27.8.2026:** Der Vorhersage-Auftrag in `beta.html` (v19.8.3) trägt jetzt, ausschliesslich für Flash, den Absatz: „LEHRE AUS DEINER EIGENEN KALIBRIERUNG: Du ueberschaetzt deine eigene Zuversicht im Bereich 60-69 Prozent deutlich: von 49 Aussagen mit im Schnitt behaupteten 63 Prozent trafen nur 49 Prozent ein. Dasselbe Muster zeigt sich darunter. Nimm diese Abweichung als festen Erfahrungswert in deine eigene Einschaetzung auf." Sonnet bleibt unverändert, wie von beiden Prüfern (4.8.) empfohlen. **Ab hier gemessene Flash-Aussagen sind mit den älteren nicht mehr direkt vergleichbar** — dieselbe Art Schnitt wie bei Punkt F.
 
 Jedes Gehirn bekommt seine eigene Kalibrierung mitgeteilt, Ondo bestätigt die Lehre, dann gilt sie.
 
@@ -604,14 +624,14 @@ Für **Flash** ist die Lehre klar benennbar: 29 Aussagen im Bereich 60–69 %, b
 
 ---
 
-**3. Such-Experiment** · *Idee 23.7., Claude* · **Status: beschlossen — 🔴 seit dem 14.8. BLOCKIERT, Ondo vorzulegen**
+**3. Such-Experiment** · *Idee 23.7., Claude* · **Status: beschlossen — ruht auf Ondos Wunsch (27.8.), nicht mehr blockiert**
 
 Vier Wochen ohne Websuche messen, dann Suche zuschalten, Kalibrierung vergleichen. Die Messung ohne Suche läuft seit dem 23. Juli — **vier Wochen sind am 20. August um.**
 
-→ **🔴 Die Pause bricht den zweiten Teil.** Ondo hat am 14.8. entschieden, die Sammlung nach dem nächsten Prüflauf zu pausieren. Der erste Teil ist damit erfüllt, der zweite nicht: Ein Vergleich **mit** Suche verlangt neue Vorhersagen, und die gibt es in einer Pause nicht.
-→ **Drei Wege, alle Ondos Entscheidung:** den Punkt bis auf Weiteres ruhen lassen · für den Vergleich eine begrenzte Zahl zusätzlicher Läufe ausnehmen · den Punkt streichen und die vier Wochen ohne Suche als alleinigen Befund führen.
+→ **🔴 Berichtigt (27.8.):** Hier stand „die Pause bricht den zweiten Teil", weil ein Vergleich mit Suche neue Vorhersagen brauche und die Pause seit 14.8. keine liefere. **Das war ab dem 25.8. nicht mehr richtig** — laut KI-Log gibt es am 25.8. (24 offene) und 26.8. (10 offene) neue Vorhersagen. Der zweite Teil ist also technisch wieder möglich, eine kleine Messreihe könnte jederzeit gestartet werden.
+→ **Ondos Entscheidung (27.8.): trotzdem vorerst ruhen lassen.** Keiner der drei Wege ist damit ausgeschlossen, nur bewusst noch nicht gewählt.
 → **Kosten:** Ruhenlassen und Streichen kosten nichts. Zusätzliche Läufe kosten Modellaufrufe in unbekannter Höhe, weil die Zahl der nötigen Läufe nicht feststeht.
-→ **Empfehlung Claude: ruhen lassen.** Der Punkt ist nicht verdorben, nur vertagt — die Messreihe ohne Suche bleibt vollständig erhalten und wäre jederzeit die Vergleichsgrundlage.
+→ **Empfehlung Claude weiterhin: ruhen lassen.** Der Punkt ist nicht verdorben, nur vertagt — die Messreihe ohne Suche bleibt vollständig erhalten und wäre jederzeit die Vergleichsgrundlage.
 
 ---
 
@@ -686,15 +706,29 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 >
 > **🔴 GEBAUT am 27.8.2026:** Neuer Abschnitt „Messmethodik und Interpretationsgrenzen" in `STAND.md`, direkt vor „Aktueller Messstand". Jede Aussage darin an einer Codezeile (`maerkteBauen`, `calcKalibrierung` in `beta.html`) oder einem bereits bestehenden Satz belegt (Arbeitsregel H) — keine neue Methode entschieden, nur die bestehende aufgeschrieben.
 
-**50. Verworfen-und-warum-Liste im Blueprint** · *Vorschlag 15.8., Gemini (abgeschwächt von Claude)* · **Status: BESCHLOSSEN — Reihenfolge unverändert, zuletzt**
+**50. Verworfen-und-warum-Liste im Blueprint** · *Vorschlag 15.8., Gemini (abgeschwächt von Claude)* · **Status: 🔴 NICHT GEBAUT (Claude, 27.8., Entscheidung an Claude delegiert) — bleibt sichtbar, nicht gestrichen**
 
 > Gemini wollte das ganze Entscheidungs-Protokoll zurück in die Pflichtlektüre, damit ein frischer Chat keine geschlossenen Debatten neu eröffnet. **Das wären 48 KB und die Trennung rückgängig.** Stattdessen eine kurze Liste im Blueprint: was verworfen wurde, je ein Satz warum, Verweis ins Protokoll für Einzelheiten.
+>
+> **🔴 Entscheidung (Claude, 27.8., von Ondo ausdrücklich delegiert):** nicht gebaut. Die Liste bräuchte bei jeder künftig verworfenen Idee eine eigene Pflege — genau die Art Doku-Aufwand, gegen den Ondo sich wandte —, ohne dass bisher ein echter Fall aufgetreten ist, in dem ein Chat eine geschlossene Debatte neu aufgemacht hätte. Der Nutzen ist unbelegt, die laufenden Kosten sind sicher. **Sollte künftig tatsächlich einmal eine alte Debatte unnötig neu aufgemacht werden, ist das der Beleg, der die Liste doch rechtfertigt** — bis dahin bleibt es bei Blueprint-Protokoll und Backlog als alleinigen Fundorten.
 
-**51. Gepaarter Vergleich Sonnet gegen Flash** · *Vorschlag 15.8., ChatGPT* · **Status: BESCHLOSSEN — Reihenfolge unverändert, nach Punkt 46**
+**51. Gepaarter Vergleich Sonnet gegen Flash** · *Vorschlag 15.8., ChatGPT* · **Status: BESCHLOSSEN — Voraussetzung „sauberes Entparken" am 27.8. abgeschlossen**
 
 > Zwei getrennt betrachtete Unsicherheitsbereiche sind der schwächere Weg; **überlappende Bereiche beweisen nicht, dass die Gehirne gleich gut sind.** Beide bekommen dieselbe Spielliste — deshalb ist ein Vergleich Spiel für Spiel aussagekräftiger. **Die Rohdaten liegen vor; es braucht keine einzige neue Vorhersage.**
 >
 > **🔴 Voraussetzung (Ondo, 15.8.): sauberes Entparken durch Claude.** Jeder geparkte Eintrag wird einzeln auf seinen **Grund** geprüft — 45-Minuten-Testspiele, doppelte Vorhersagen, erfundene Paarungen —, maschinell und nachvollziehbar, nicht nach Anzahl. Ondo prüft nichts von Hand nach.
+>
+> **🔴 GEPRÜFT am 27.8.2026, anhand der Messdaten und des KI-Logs vom selben Tag (54 geparkte Einträge, 27 Spielpaarungen) UND gezielt gegen die Archivdokumente (Backlog-Archiv, Chronik Juli/August, Blueprint-Protokoll, `archiv/PROJEKT-STATUS.md`).** Für 26 der 27 Paarungen steht der Grund bereits dort, nicht neu ermittelt:
+> - **15 Paarungen (29./30./31.7., 30 Einträge) — die gesperrte „Prüfbibliothek" der neunten Fehlerart (erfundene 0:0, verschiedene Endstände aus derselben Quelle, dokumentiert im Blueprint-Protokoll 31.7.).** Ausdrücklich „dürfen NICHT übernommen werden" (Chronik 31.7.). **Bleiben dauerhaft geparkt.**
+> - **5 Paarungen (7.8., 10 Einträge) — die erfundenen Paarungen (Fund S3).** Vier frei zusammengesetzte, eine falsch datiert. Zu solchen Spielen kann nie ein echtes Ergebnis entstehen. **Bleiben dauerhaft geparkt.**
+> - **2 Paarungen (28.7., Crystal Palace–Famalicão und –Lens, 4 Einträge) — Ergebnisse waren am 4.8. gefunden (0:0 bzw. 0:3), aber wegen der „45-Minuten-Frage" bewusst nicht übernommen (Backlog-Archiv, 5.8.).** Verkürztes Vorbereitungsformat, kein gültiger 90-Minuten-Stand. **Bleiben geparkt.**
+> - **1 Paarung (2.8., Bohemians – Galway United, doppelt gelistet, 4 Einträge) — Ergebnis war am 4.8. gefunden (1:1), Ondo hat das Spiel aber ausdrücklich ganz herausgenommen:** Bei den beiden Listungen hatte Flash einmal 3 von 3, einmal 1 von 3 richtig; jede Auswahl hätte Flashs Bilanz einseitig verschoben (Chronik 3.–4.8.). **Bleibt dauerhaft geparkt, das ist Ondos eigene Entscheidung, keine offene Frage.**
+> - **1 Paarung (9.8., 1. FC Union Berlin – Aris Limassol, 2 Einträge) — bereits in `STAND.md` dokumentiert: dreimal 45 Minuten, zwei Quellen widersprechen sich beim 90-Minuten-Stand.** Echte, unaufgelöste Unklarheit. **Bleibt geparkt.**
+> - **1 Paarung (8.8., Leeds United – RB Leipzig, 2 Einträge) — bereits in `STAND.md` dokumentiert: 120-Minuten-Freundschaftsspiel, offizieller Endstand 2:0 (zweites Tor 109. Minute), Stand nach 90 Minuten ist bekannt und gesichert: 1:0.** Verlängerte Formate fallen nicht unter den Ausschluss. **Einzige Paarung, die entparkt wird.**
+>
+> **Keine Websuche für die 26 anderen Paarungen nötig gewesen — alles bereits an anderer Stelle im Projekt belegt (Arbeitsregel H).** Für keine der 26 wäre ohne neuen Beleg etwas anderes als „bleibt geparkt" verantwortbar gewesen.
+>
+> **Ausführung (27.8.2026):** `logParkenTag('8.8.2026', false)` in der App entparkt genau diese eine Paarung — geprüft, dass an diesem Tag sonst nichts geparkt ist, der Klick trifft also nur die beiden Leeds-Leipzig-Einträge. **Nach dem Entparken meldet der nächste Prüflauf vermutlich erneut ein Ergebnis für dieses Spiel — vor dem Übernehmen gegen den hier bereits gesicherten 90-Minuten-Stand 1:0 prüfen, nicht ungeprüft übernehmen**, falls die Suche durch die Verlängerung erneut auf 2:0 hereinfällt.
 
 ---
 

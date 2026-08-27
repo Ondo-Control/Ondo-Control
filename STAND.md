@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 27.8.2026, Fassung 44, v19.8.2*
+*Die aktuelle Wahrheit. Stand: 27.8.2026, Fassung 45, v19.8.3*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -167,7 +167,8 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 ## Versionen
 
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.8.2** (`beta.html`, geliefert 14.8.2026, 22:36 Uhr) — **Backlog-Punkt 44 gebaut: Messdaten-Export ohne Schlüssel.** Ein zweiter Knopf unter „Mehr" gibt Vorhersagen und Wetten als Text oder Datei aus, ohne API-Schlüssel und ohne PIN. Kein Schnitt in der Messreihe. `APP_VERSION` weiter 18.
+- **Beta: v19.8.3** (`beta.html`, geliefert 27.8.2026) — **Backlog-Punkte E und 2 gebaut.** Der Schiedsrichter-Auftrag bestätigt jetzt Wettbewerb+Datum+Teams statt frei zu suchen, plus eine Vorsichtsregel gegen geratene 0:0. Flash bekommt zusätzlich seine eigene Kalibrierungs-Lehre im Auftragstext mitgeteilt (Sonnet unverändert) — **Flash-Aussagen ab hier sind mit älteren nicht mehr direkt vergleichbar**, derselbe Schnitt wie bei Punkt F. `APP_VERSION` weiter 18.
+- **Beta zuvor: v19.8.2** (`beta.html`, geliefert 14.8.2026, 22:36 Uhr) — **Backlog-Punkt 44 gebaut: Messdaten-Export ohne Schlüssel.** Ein zweiter Knopf unter „Mehr" gibt Vorhersagen und Wetten als Text oder Datei aus, ohne API-Schlüssel und ohne PIN. Kein Schnitt in der Messreihe. `APP_VERSION` weiter 18.
 - **Beta zuvor: v19.8.1** (`beta.html`, geliefert 9.8.2026, 13:55 Uhr) — **die Spielliste hat eine eigene Rolle und läuft auf `gemini-flash-latest`.** Jeder neue Eintrag trägt zusätzlich die **Stufe**. Kein Schnitt in der Messreihe. `APP_VERSION` weiter 18.
 - **Beta zuvor: v19.8.0** (`beta.html`, geliefert 9.8.2026, 04:15 Uhr) — **Schnitt in der Messreihe bei „beide treffen", Punkt F gebaut.** Werte vor und ab dieser Version sind bei diesem Markt nicht vergleichbar. Jeder neue Log-Eintrag trägt das Feld `codeVersion`. `APP_VERSION` weiter 18.
 - **Beta zuvor: v19.7.8** (`beta.html`, geliefert 7.8.2026) — getrennter Speicher, aktive Messphase. Vier Nachbesserungen am 3. und 4. August, alle ausgelöst durch Punkt 0a; Einzelheiten im Backlog. Im Code steht weiterhin `APP_VERSION = 18` (technische Schuld, bewusst nicht nebenbei geändert, vor der Beförderung zu klären)
