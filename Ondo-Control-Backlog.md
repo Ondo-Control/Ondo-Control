@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 27.8.2026, Fassung 45 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 27.8.2026, Fassung 46 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -14,6 +14,19 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 46 ändert (27.8., Fehlerart C3 in STAND.md berichtigt)
+
+**Fund von Chat 25**, bei der Gegenprüfung des Übergabeberichts zu Fassung 45: Der neue Abschnitt „Messmethodik" bzw. der Bau von Punkt E und Punkt 2 hatte zwei ältere Zeilen in STAND.md, Abschnitt „Entscheidungen, die bei Ondo liegen", überholt gemacht, ohne dass das im selben Durchgang geprüft wurde — Fehlerart C3 (neuer Abschnitt geschrieben, Folgewirkung an anderer Stelle im Dokument nicht geprüft).
+
+- **Gestrichen:** Zeile „2 — Erster Lernschritt — beide Prüfer raten, zunächst nur Flash zu korrigieren" — Punkt 2 ist seit Fassung 45 gebaut, keine offene Entscheidung mehr.
+- **Gestrichen:** Zeile „Echtes 0:0 — Wie unterscheidet der Auftragstext ein echtes 0:0 von 'nicht gefunden'? Muss vor Punkt E beantwortet sein" — laut dem Backlog-Eintrag zu Punkt E war das bereits am 8.8. von Gemini selbst beantwortet, und Punkt E ist seit Fassung 45 gebaut.
+- Sonst nichts an dem Abschnitt geändert.
+
+- **Fassungszahl:** alle drei aktiven Dokumente auf 46 gehoben (Blueprint 0.45).
+- **Beschlossen und nicht gebaut: drei** — **3, 4, 51.** *(unverändert — diese Berichtigung betraf nur die Ondo-Entscheidungsliste in STAND.md, keinen Backlog-Status.)*
 
 ---
 

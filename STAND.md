@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 27.8.2026, Fassung 45, v19.8.3*
+*Die aktuelle Wahrheit. Stand: 27.8.2026, Fassung 46, v19.8.3*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -401,7 +401,6 @@ Die Tabelle aller bisherigen Chat-Uebergaben ist nach `CHRONIK-2026-08.md` gewan
 | **36** | Verlaengerte Spielformate ausschliessen — entscheidungsreif, zwei belegte Faelle | Backlog, Prio 1 |
 | **37** | Kein Schutz gegen einen zweiten Vorhersagelauf am selben Tag | Backlog, Prio 1 |
 | **30** | Freundschaftsspiele aus der Spielliste ausschliessen? | Backlog |
-| **2** | Erster Lernschritt — beide Pruefer raten, zunaechst nur Flash zu korrigieren | Backlog, Prio 1 |
 | **34** | Brier-Score in die App bauen. **Gerechnet ist nicht gebaut** | Backlog |
 | **35** | Streuungsangabe in die App bauen. **Gerechnet ist nicht gebaut** | Backlog |
 | **3** | Such-Experiment — durch die Pause **blockiert**. *Der 20. August ist **keine Frist** (Ondo, 15.8.): eine Zeitspanne sagt nicht, wie viele Messungen noetig sind.* Empfehlung Claude: ruhen lassen | Backlog, Prio 1 |
@@ -409,7 +408,6 @@ Die Tabelle aller bisherigen Chat-Uebergaben ist nach `CHRONIK-2026-08.md` gewan
 | **Befund A** | Als nicht auswertbar fuehren? **Womoeglich durch die Auszaehlung vom 8.8. erledigt** — zu klaeren, nicht zu behaupten | Chronik August, „Der 8. August" |
 | **„Fail Safe"** | Bei unbekannten Fehlern anhalten statt automatisch das naechste Modell nehmen — als Arbeitsregel? | Blueprint, Abschnitt 10 |
 | **GitHub Actions** | Verfassungsfrage: Der Actions-Wecker ist ein winziger Server, der Blueprint sagt „kein Server" | Blueprint, Abschnitt 10 |
-| **Echtes 0:0** | Wie unterscheidet der Auftragstext ein echtes 0:0 von „nicht gefunden"? Muss **vor** Punkt E beantwortet sein | Blueprint, Abschnitt 10 |
 | **Schiedsrichter** | Darf er ueberhaupt selbst Ergebnisse lesen, oder nur verifizierte Fakten bewerten? | Blueprint, Abschnitt 10 |
 | **Kriterium (c)** | Befoerderungskriterium neu fassen — 15 bewertete Tipps sind zu wenig | Blueprint, Abschnitt 10 |
 | **Rollenmodell** | Rollenabschnitt in den Blueprint, mit zwei Konfliktregeln | Blueprint, Abschnitt 10 |

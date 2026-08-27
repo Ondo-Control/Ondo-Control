@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.44
+**Version:** 0.45
 **Stand:** 27. August 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.45 ändert (27.8.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war eine Fehlerart-C3-Berichtigung in STAND.md, Abschnitt „Entscheidungen, die bei Ondo liegen" (gefunden von Chat 25 bei der Gegenprüfung des Übergabeberichts, Backlog Fassung 46). Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.45 gehoben.
 
 > **Was Fassung 0.44 ändert (27.8.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war der Bau von Backlog-Punkt E und Punkt 2, die Berichtigung von Punkt 3, die Entscheidung zu Punkt 50 und die Prüfung von Punkt 51 (Backlog Fassung 45). Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.44 gehoben.
 
