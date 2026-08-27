@@ -1,6 +1,6 @@
 # ONDO CONTROL — Kurzanleitung für den Code-Bereich
 
-*Erzeugt am 23.8.2026, 13:45 Uhr (abgelesen) aus den vier vollständig gelesenen
+*Erzeugt am 27.8.2026, 08:01 Uhr (abgelesen) aus den vier vollständig gelesenen
 Pflichtdokumenten. Backlog-Punkt 54. **Diese Datei ist Kontext, keine erzwungene
 Einstellung** — sie ersetzt die Pflichtlektüre nicht, sie sagt, was vor der ersten
 Änderung zu tun ist.*
@@ -67,6 +67,17 @@ Zwei Bedingungen, ohne die die Regel wertlos ist:
   ein Prüfer bekommt seinen Sollwert nie vom Geprüften (Fehlerart C6).
 - **NIE die Systemzeit des Containers.** Sie läuft in UTC und lag schon zwei Stunden
   daneben. Auch nicht `date`. Ist keine abgelesene Zeit da: danach fragen.
+
+**Ausnahme von der frischen Ablesung (Backlog-Punkt 59, 27.8., GEKLÄRT):** Abschnitt
+1 von `pruefe.py` vergleicht die übergebene Uhrzeit gegen jede der drei Kopfzeilen
+(STAND, Backlog, Blueprint) einzeln — nicht die drei Kopfzeilen untereinander.
+**Ändert ein Auftrag keines der drei Dokumente inhaltlich**, gilt für `pruefe.py`
+die zuletzt gesetzte gemeinsame Zeit der drei Dokumente, NICHT eine frisch
+abgelesene Zeit — sonst meldet Abschnitt 1 bis zu drei zusätzliche FEHL, obwohl an
+den Dokumenten nichts falsch ist. **Ändert der Auftrag eines der drei Dokumente**
+(auch nur den Kopf, zum Angleichen), wird trotzdem eine neue Fassung/Version mit
+eigenem Änderungsvermerk angelegt — kein stiller Datumswechsel in einer alten
+Fassung (Fehlerart C7).
 
 **Zwei FEHL sind bekannt und bleiben stehen** (Entscheidung zu Backlog-Punkt 52 vom
 21.8.2026): der unerklärte Verlust in Abschnitt 9 und die zwei Blöcke nicht am Stück
@@ -155,12 +166,10 @@ sie zur neuen Aufgabe nicht passen — sie dürfen dann ohne Rückfrage benutzt
 werden, einschliesslich Schreibzugriff. Vor jeder neuen Routine: Reiter
 „Konnektoren" prüfen, nicht benötigte entfernen.
 
-**Fund 23.8.:** `pruefe.py` Abschnitt 1 prüft ausschliesslich STAND-Kopf,
-Backlog-Kopf und Blueprint-Kopf gegen die übergebene Zeit. `CLAUDE.md` gehört
-nicht zu diesen drei Dokumenten. Ändert ein Auftrag NUR `CLAUDE.md`, gilt für
-`pruefe.py` weiterhin die zuletzt gesetzte gemeinsame Zeit der drei aktiven
-Dokumente, NICHT die frisch abgelesene Zeit des `CLAUDE.md`-Auftrags —
-zweifach am 23.8. so angewendet und bestätigt.
+**Fund 23.8., geklärt als Backlog-Punkt 59 (27.8.):** `pruefe.py` Abschnitt 1
+prüft ausschliesslich STAND-Kopf, Backlog-Kopf und Blueprint-Kopf gegen die
+übergebene Zeit — Einzelheiten und die Regel dazu stehen jetzt in Abschnitt 3
+dieser Datei, nicht mehr doppelt hier.
 
 ---
 
@@ -170,9 +179,9 @@ zweifach am 23.8. so angewendet und bestätigt.
 `.claude/hooks/claude_md_frisch.py` vergleicht sie bei jedem Sitzungsstart und
 erinnert an eine Erneuerung, sobald einer abweicht. Er erneuert nichts von selbst.*
 
-- STAND.md — `8c1f078817ac2c32a41d74950ae99f6d90cabc6c`
-- Ondo-Control-Backlog.md — `8d316d3aebcf0ab7e6ec5fa0504ec984112e31be`
-- Blueprint.md — `6794195ca7bb004cee85f12499fadb94d6afd4fc`
+- STAND.md — `07cba5ff0a384907744c5a75aab0f128d3d8167d`
+- Ondo-Control-Backlog.md — `b5463f6e894384ffe054be84058ebeb3334e292b`
+- Blueprint.md — `0781420f76a59c32384047d90fa2303cc91da4cf`
 - Ondo-Core-Architektur.md — `fed67804d793df1ee868fcb67e047f9bcef57e9a`
 
-*Erzeugt aus dem Stand von `main` am 23.8.2026, 13:45 Uhr.*
+*Erzeugt aus dem Stand von `main` am 27.8.2026, 08:01 Uhr.*

@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 24.8.2026, 09:54 Uhr, Fassung 39 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 27.8.2026, 08:01 Uhr, Fassung 40 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -14,6 +14,15 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 40 ändert (27.8., morgens)
+
+**Punkt 59 geklärt: Kein Fehler im Projekt — die drei Zeitstempel-FEHL entstanden, weil betroffenen `pruefe.py`-Läufen eine frisch abgelesene Uhrzeit übergeben wurde, obwohl die Aufträge keines der drei Kopf-Dokumente inhaltlich änderten. `CLAUDE.md` neu erzeugt.**
+
+- **Zeitstempel:** alle aktiven Dokumente auf die Ablesung 08:01 Uhr gehoben, Blueprint auf 0.39 gehoben — nur der Kopf, kein Inhalt ausser der Klärung von Punkt 59 im Backlog.
+- **Beschlossen und nicht gebaut: sieben** — **E, 2, 3, 4, 49, 50, 51.**
 
 ---
 
@@ -628,12 +637,13 @@ Das Skript sieht selbst vor, dass der Beweis entfällt, sobald das Original nich
 
 ---
 
-**59. `pruefe.py` Abschnitt 1 meldet zusätzliche Zeitstempel-FEHL trotz gleicher Kopfzeiten** · *Fund 24.8.2026, drei unabhängige Läufe (Claude Code, Mistral, ein dritter Beleg)* · **Status: GEFUNDEN, UNGEKLÄRT**
+**59. `pruefe.py` Abschnitt 1 meldet zusätzliche Zeitstempel-FEHL trotz gleicher Kopfzeiten** · *Fund 24.8.2026, drei unabhängige Läufe (Claude Code, Mistral, ein dritter Beleg)* · **Status: GEKLÄRT**
 
 Drei unabhängige Läufe (Claude Code 24.8., 12:38 Uhr · Mistral 24.8., 12:52 Uhr · sowie ein dritter Beleg) melden bei gleichlautenden Kopf-Zeitstempeln (`STAND.md`, Backlog, Blueprint — alle „24. August 2026, 09:54 Uhr" bzw. „24.8.2026, 09:54 Uhr") dennoch drei FEHL: STAND-Kopf, Backlog-Kopf, Blueprint-Kopf. Zusätzlich zu den zwei bekannten, akzeptierten FEHL aus Punkt 52 (Abschnitt 9 + 9b). Ergibt fünf FEHL statt der bisher als sauber geltenden zwei.
 
 → **Ursache noch nicht untersucht** — möglicherweise ein Unterschied zwischen den Datumsformaten („24. August 2026" gegen „24.8.2026"), noch nicht geprüft.
 → **Nächster Schritt:** die genaue Prüfzeile in Abschnitt 1 von `pruefe.py` selbst lesen.
+→ **Ursache gefunden (27.8.2026):** Kein Fehler in den Dokumenten oder in `pruefe.py`. Alle drei Kopf-Zeitstempel (STAND, Backlog, Blueprint) stimmen tatsächlich überein. Die drei FEHL entstanden, weil den betroffenen `pruefe.py`-Läufen eine frisch abgelesene Uhrzeit übergeben wurde, obwohl die Aufträge keines der drei Dokumente inhaltlich änderten — in diesem Fall verlangt Arbeitsregel M die ZULETZT GESETZTE Zeit der drei Dokumente, nicht eine frische Ablesung. Fehler lag bei der Auftragsformulierung durch Claude, nicht im Projekt. Kein weiterer Handlungsbedarf.
 
 ---
 
