@@ -22,7 +22,7 @@
 **Punkt 53: Der Fund vom 23.8. zum Feld „Anweisungen" berichtigt (Arbeitsregel H) — der dort verwendete Lesezugang über `github.com/.../blob/...` wurde noch in derselben Nacht widerlegt, das Feld ist seither wieder leer.**
 
 - **Zeitstempel:** alle aktiven Dokumente auf die Ablesung 09:54 Uhr, Blueprint auf 0.38 gehoben — nur der Kopf, kein Inhalt ausser der Berichtigung im Backlog. **Ausdrücklicher Vermerk:** Diese Zeit stammt aus einer Werkzeug-Systemuhr, nicht von Ondo persönlich abgelesen — Abweichung von Arbeitsregel M mit Ondos ausdrücklicher Zustimmung in dieser einen Nacht (24.8., spät). Für künftige Aufträge gilt die Regel unverändert.
-- **Beschlossen und nicht gebaut: acht** — **E, 2, 3, 4, 47, 49, 50, 51.**
+- **Beschlossen und nicht gebaut: sieben** — **E, 2, 3, 4, 49, 50, 51.**
 
 ---
 
@@ -236,12 +236,13 @@ Ondos Gerät: Surface Go, Windows 10 Home 22H2, 64 Bit, 8 GB RAM, 110 GB frei, P
 
 ---
 
-**47. Selbsttest für die App** · *Vorschlag 14.8., Claude · beschlossen 14.8., Ondo* · **Status: BESCHLOSSEN — nach Punkt 44**
+**47. Selbsttest für die App** · *Vorschlag 14.8., Claude · beschlossen 14.8., Ondo · gebaut 24.8.2026, Mistral im Code-Modus (Skript `selbsttest.py`, Branch `mistral`), gegengeprüft von Claude* · **Status: GEBAUT 24.8.2026 — gebaut und verifiziert über Mistrals Code-Modus (Skript `selbsttest.py` auf Branch „mistral"), Ergebnis von Claude gegengeprüft (Funktion `marktUrteil` in `beta.html` stimmt mit dem Testskript überein, beide Testfälle korrekt)**
 
 Vor jeder Codelieferung: Syntaxprüfung von `beta.html`, Sprachschlüssel-Abgleich DE/FR/EN, und feste Rechenproben — eine bekannte Eingabe muss die bekannte Bewertung ergeben.
 
 → **Warum:** `pruefe.py` prüft nur Dokumente. Nichts prüft, ob die App nach einer Änderung noch läuft. Ein Codefehler fällt heute erst im Betrieb auf.
 → **Kosten:** ein halber Arbeitsblock, kein Geld.
+→ **🔴 GEBAUT am 24.8.2026 (Mistral, Code-Modus, Branch `mistral`):** Skript `selbsttest.py` liefert die festen Rechenproben aus diesem Punkt. **Von Claude gegengeprüft:** Die Funktion `marktUrteil` in `beta.html` stimmt mit dem Testskript überein, beide Testfälle liefern das richtige Ergebnis.
 
 ---
 
@@ -624,6 +625,23 @@ Das Skript sieht selbst vor, dass der Beweis entfällt, sobald das Original nich
 → **🔴 Eingetreten am 21.8.2026 (Chat 20, Lauf um 05:50 Uhr):** Die drei Berichtigungen vom selben Morgen, 05:24 Uhr (Commit `dabf9bb`), haben in `STAND.md` zwei Zeilen gepflegt, die aus `PROJEKT-STATUS.md` stammen — den Klammerzusatz „(Fassung 5, 31.7.)" bei „Master-Dokumente im Repo" und den neuen Leitbild-Vermerk unter „Wetten ist das Pilotmodul". **Seither meldet `pruefe.py` einen unerklärten Verlust (Abschnitt 9) und zwei Blöcke, die nicht mehr am Stück wiedergefunden werden (Abschnitt 9b).** Beide Berichtigungen waren inhaltlich richtig; **gebrochen ist der Beweis, nicht das Dokument.** Aufgefallen ist es erst einen Lauf später, weil `pruefe.py` in der Cloud-Sitzung nicht lag (siehe Punkt 46). **Nichts geändert** — ob die Ausnahmeliste erneut wächst, ist genau die Entscheidung, die dieser Punkt Ondo vorlegt.
 → **Kosten:** keine, solange nicht entschieden wird.
 → **🔴 ENTSCHIEDEN am 21.8.2026 (Claude, auf Ondos ausdrückliche Übertragung): keine Frist.** Die beiden FEHL aus `dabf9bb` bleiben stehen und werden nicht mehr bei jedem Lauf gemeldet. **Begründung:** Der Beweis sichert die Trennung vom 15.8., und die ist bewiesen. Er kann die laufende Pflege nicht überwachen, weil jede richtige Pflege ihn bricht. Fällt er später ganz weg, ist das kein Verlust. **Status: erledigt.**
+
+---
+
+**59. `pruefe.py` Abschnitt 1 meldet zusätzliche Zeitstempel-FEHL trotz gleicher Kopfzeiten** · *Fund 24.8.2026, drei unabhängige Läufe (Claude Code, Mistral, ein dritter Beleg)* · **Status: GEFUNDEN, UNGEKLÄRT**
+
+Drei unabhängige Läufe (Claude Code 24.8., 12:38 Uhr · Mistral 24.8., 12:52 Uhr · sowie ein dritter Beleg) melden bei gleichlautenden Kopf-Zeitstempeln (`STAND.md`, Backlog, Blueprint — alle „24. August 2026, 09:54 Uhr" bzw. „24.8.2026, 09:54 Uhr") dennoch drei FEHL: STAND-Kopf, Backlog-Kopf, Blueprint-Kopf. Zusätzlich zu den zwei bekannten, akzeptierten FEHL aus Punkt 52 (Abschnitt 9 + 9b). Ergibt fünf FEHL statt der bisher als sauber geltenden zwei.
+
+→ **Ursache noch nicht untersucht** — möglicherweise ein Unterschied zwischen den Datumsformaten („24. August 2026" gegen „24.8.2026"), noch nicht geprüft.
+→ **Nächster Schritt:** die genaue Prüfzeile in Abschnitt 1 von `pruefe.py` selbst lesen.
+
+---
+
+**60. Sprachschlüsselzahl in `STAND.md` stimmt nicht mit tatsächlicher Zählung überein** · *Fund 24.8.2026, Mistral (Backlog-Punkt 47)* · **Status: GEFUNDEN, UNGEKLÄRT**
+
+`STAND.md` nennt 217 Sprachschlüssel. Ein unabhängiges Prüfskript (Mistral, Backlog-Punkt 47, 24.8.2026) zählt 142 Schlüssel je Sprache (DE/FR/EN), übereinstimmend zwischen allen drei Sprachen. Ursache der Differenz (217 gegen 142) noch nicht geklärt — entweder ist die Zählmethode unterschiedlich, oder eine der beiden Zahlen ist veraltet.
+
+→ **Nächster Schritt:** beide Zählmethoden nebeneinanderlegen und prüfen, welche korrekt zählt.
 
 ---
 
