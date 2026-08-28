@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 28.8.2026, Fassung 49 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 28.8.2026, Fassung 50 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -14,6 +14,19 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 50 ändert (28.8., Leeds-Leipzig-Parkstatus eindeutig gemacht, Chat-26-Übergabe abgenommen)
+
+**Anlass:** Die Übergabemappe an Chat 26 formulierte „Leeds–Leipzig bleibt geparkt" mehrdeutig — sie liess offen, ob das ein bereits bestätigter Zustand oder eine noch ausstehende Handlung ist, und Chat 26 hat diese Lücke bei der Übergabe zu Recht aufgegriffen. Ondo hatte den Parkstatus bereits gegenüber Chat 25 bestätigt; diese Bestätigung stand nur in jenem Gespräch, nicht im Dokument.
+
+- **Punkt 51 (und der Fassung-48-Kurzeintrag bei Punkt 36) eindeutig gemacht:** Leeds–Leipzig **ist geparkt**, von Ondo bestätigt, kein offener Ausführungsschritt in der App. Lehre eingetragen: eine Ondo-Bestätigung aus einem anderen Chat gehört in derselben Antwort ins Dokument (Arbeitsregel F), nicht nur ins Gespräch.
+- **Übergabe an Chat 26 geprüft und abgenommen:** Alle neun Kontrollfragen aus Teil B korrekt beantwortet — Einzelheiten in der separaten Abnahme-Datei (nicht im Repo, wie vorgeschrieben).
+- **Kein neuer Backlog-Punkt-Status geändert.**
+
+- **Fassungszahl:** alle drei aktiven Dokumente auf 50 gehoben (Blueprint 0.49). Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+- **Beschlossen und nicht gebaut: drei** — **3, 4, 51.** *(unverändert.)*
 
 ---
 
@@ -34,7 +47,7 @@
 
 **Anlass:** Ondo hatte am 8.8.2026 über „Wieder prüfen" 18 Vorschläge aus ERGEBNISSE PRÜFEN erzeugt. Eine unabhängige externe Prüfung (separater Chat, eigene Websuche je Spiel) hat alle 18 gegengeprüft: 15 waren fehlerfrei und sind bereits übernommen, drei waren fehlerhaft und wurden NICHT übernommen — NK Celje–Slovan Bratislava, Sabah FC–Hapoel Beer-Sheva FC, Leeds United–RB Leipzig.
 
-- **Punkt 36:** Leeds–RB Leipzig ist bei dieser Prüfung erneut aufgetaucht — dreifach durch Primärquellen belegt (Vereinsseite, Sportschau/ARD, Sky Sport): 120 Minuten, zweites Tor in der 109. Minute. **🔴 Berichtigt, kein neuer dritter Fall:** Es ist dasselbe Spiel, das seit dem 9.8. als ERSTER Beleg in diesem Punkt steht — nicht ein zusätzlicher, dritter Fall. Wichtiger: Die Annahme aus Punkt 51 vom 27.8. („Stand nach 90 Minuten ist bekannt und gesichert: 1:0") ist mit diesem Fund fraglich geworden — bei 60/60 Minuten gibt es keine reguläre 90-Minuten-Marke, die Halbzeit liegt bei Minute 60. Einzelheiten und die Berichtigung stehen bei Punkt 51. **Ondo (28.8.): Leeds–Leipzig bleibt geparkt, keine Übernahme.** Punkt 36 selbst bleibt unentschieden.
+- **Punkt 36:** Leeds–RB Leipzig ist bei dieser Prüfung erneut aufgetaucht — dreifach durch Primärquellen belegt (Vereinsseite, Sportschau/ARD, Sky Sport): 120 Minuten, zweites Tor in der 109. Minute. **🔴 Berichtigt, kein neuer dritter Fall:** Es ist dasselbe Spiel, das seit dem 9.8. als ERSTER Beleg in diesem Punkt steht — nicht ein zusätzlicher, dritter Fall. Wichtiger: Die Annahme aus Punkt 51 vom 27.8. („Stand nach 90 Minuten ist bekannt und gesichert: 1:0") ist mit diesem Fund fraglich geworden — bei 60/60 Minuten gibt es keine reguläre 90-Minuten-Marke, die Halbzeit liegt bei Minute 60. Einzelheiten und die Berichtigung stehen bei Punkt 51. **Ondo (28.8.): Leeds–Leipzig ist geparkt, keine Übernahme — bereits bestätigt (auch Chat 25 mitgeteilt).** Kein offener Ausführungsschritt in der App. Punkt 36 selbst bleibt unentschieden.
 - **Punkt 51 berichtigt:** Die Ausführung vom 27.8. („Einzige Paarung, die entparkt wird") hat sich mit dem heutigen Fund als voreilig herausgestellt — siehe dort.
 - **Neue, elfte Fehlerart des Schiedsrichters** in `STAND.md` aufgenommen: NK Celje–Slovan Bratislava und Sabah FC–Hapoel Beer-Sheva FC liefen je dreimal bei Temperatur 0 und ergaben je drei verschiedene Endstände; keiner der sechs Läufe traf den extern belegten Wert. Bezug zum ersten, schwächeren Einzelfall vom 13.8. (Apollon Limassol–SK Brann, bereits Fehlerart 10).
 - **Code-Untersuchung (nichts gebaut, nur belegt, Art. 8):** Die rohe Schiedsrichter-Antwort wird nirgends gespeichert — nur die daraus geparste Endstands-Angabe erreicht `pruefListe`. Codebeleg: `beta.html`, `geminiCall` (Zeile ~1141/1145, Text `txt` wird nur zurückgegeben, nie in `state` geschrieben), `parseJsonBlock` (Zeile 1167ff., verwirft den Rest des Texts), `verarbeite` (Zeile 1529ff., übernimmt nur geparste Felder). Temperatur 0 ist unbedingt für **jeden** Aufruf mit `rolle:'ref'` gesetzt (Zeile 1082, keine Ausnahme im Code gefunden). Der Modellname `gemini-flash-latest` ist laut Googles eigener Dokumentation ein beweglicher Alias, der bei jeder neuen Freigabe ausgetauscht wird (Ankündigungsfrist zwei Wochen bei Breaking Changes); ein fest benennbares, nicht-bewegliches Modell existiert derzeit (`gemini-3.7-flash`, GA/stabil) und liesse sich ohne Codeänderung über das bestehende Modell-Dropdown auswählen — Kosten/Folgen bei Punkt 64 und im Chat-Bericht, **nicht umgestellt.**
@@ -796,6 +809,8 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 > **Ausführung (27.8.2026):** `logParkenTag('8.8.2026', false)` in der App entparkt genau diese eine Paarung — geprüft, dass an diesem Tag sonst nichts geparkt ist, der Klick trifft also nur die beiden Leeds-Leipzig-Einträge. **Nach dem Entparken meldet der nächste Prüflauf vermutlich erneut ein Ergebnis für dieses Spiel — vor dem Übernehmen gegen den hier bereits gesicherten 90-Minuten-Stand 1:0 prüfen, nicht ungeprüft übernehmen**, falls die Suche durch die Verlängerung erneut auf 2:0 hereinfällt.
 >
 > **🔴 BERICHTIGT am 28.8.2026, Fehlerart C4 (Widerspruch nicht danebenstellen, sondern im selben Durchgang berichtigen).** Der Satz „Stand nach 90 Minuten ist bekannt und gesichert: 1:0" oben war die Grundlage fürs Entparken — und ist falsch begründet. Leeds–RB Leipzig lief über zwei Hälften zu je 60 Minuten (dreifach durch Primärquellen bestätigt: Vereinsseite, Sportschau/ARD, Sky Sport — 120 Minuten, zweites Tor 109. Minute, Halbzeit bei Minute 60 mit Stand 1:0). Bei diesem Format gibt es **keine reguläre Marke bei Minute 90** — sie liegt mitten in der zweiten Hälfte, nicht an der Halbzeitgrenze. Der „Stand nach 90 Minuten" ist damit keine gesicherte Grösse, sondern eine Momentaufnahme ohne die Bedeutung, die ihr die Ausführung vom 27.8. gegeben hat. **Die Restarbeit an diesem Punkt hat das am 28.8.2026 aufgedeckt:** Von 18 durch ERGEBNISSE PRÜFEN erzeugten Vorschlägen (ausgelöst über Ondos „Wieder prüfen" vom 8.8.) hat eine externe Gegenprüfung (separater Chat, eigene Websuche je Spiel) 15 als fehlerfrei bestätigt — bereits übernommen — und drei als fehlerhaft verworfen, **nicht übernommen**: NK Celje–Slovan Bratislava, Sabah FC–Hapoel Beer-Sheva FC, und **Leeds United–RB Leipzig**, aus dem oben genannten Grund. **Ondo (28.8.): Leeds–Leipzig bleibt geparkt.** Die beiden anderen Fälle (NK Celje, Sabah FC) gehören nicht zu Punkt 36 — sie sind bei der neuen elften Fehlerart des Schiedsrichters dokumentiert (`STAND.md`).
+>
+> **🔴 EINDEUTIG BESTÄTIGT am 28.8.2026 (Ondo, bereits Chat 25 mitgeteilt):** Leeds–Leipzig **ist geparkt** — kein offener Ausführungsschritt in der App, kein Widerspruch zur `logParkenTag`-Ausführung vom 27.8. Diese Bestätigung stand nur in einem anderen Chat, nicht in diesem Dokument — genau das führte in einer Übergabe zu einer unnötigen Rückfrage. Lehre daraus: eine Ondo mündlich/in einem anderen Chat gegebene Bestätigung gehört in derselben Antwort ins Dokument, nicht nur ins Gespräch (Arbeitsregel F).
 
 ---
 

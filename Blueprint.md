@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.48
+**Version:** 0.49
 **Stand:** 28. August 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.49 ändert (28.8.2026):** Leeds-Leipzig-Parkstatus in Backlog-Punkt 51 eindeutig gemacht — von Ondo bestätigt, kein offener Ausführungsschritt (Backlog Fassung 50). Anlass war eine mehrdeutige Formulierung in der Übergabemappe an Chat 26, die zu einer unnötigen Rückfrage führte. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.49 gehoben.
 
 > **Was Fassung 0.48 ändert (28.8.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war eine neue Nutzungsdaten-Ablesung (85 % / 33 %, ersetzt die vom 27.8. vollständig) und fünf Sitzungs-Selbstauskünfte zum heutigen Verbrauch in `STAND.md` (Backlog Fassung 49). Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.48 gehoben.
 
