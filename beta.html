@@ -122,7 +122,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.5';
+var CODE_VERSION = 'v19.8.6';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -1234,7 +1234,11 @@ function geminiCall(opts, modellIndex){
       if(opts.rolle==='ref' || opts.rolle==='gehirn') zuletztModell[opts.rolle] = modell;
       if(stark){ if(!state.geminiProModel){ state.geminiProModel = modell; save(); } }
       else if(!state.geminiModel){ state.geminiModel = modell; save(); }
-      return { content:[{ type:'text', text:txt }], stop_reason:'end_turn', _status:res._status };
+      /* Nachfrage zu Punkt 64 (28.8.2026): modelVersion ist ein von Google dokumentiertes
+         Antwortfeld, das die tatsaechlich aufgeloeste Modellversion nennt — nicht den
+         aufgerufenen Alias-Namen (Beleg: ai.google.dev, GenerateContentResponse). Genau das
+         wird gebraucht, weil gemini-flash-latest ein beweglicher Alias ist. */
+      return { content:[{ type:'text', text:txt }], stop_reason:'end_turn', _status:res._status, modelVersion: res.modelVersion || null };
     }catch(e){
       return { error:{ message:'Gemini ('+modell+'): Antwort nicht lesbar' }, _status:500 };
     }
@@ -1618,7 +1622,7 @@ function ergebnissePruefen(btn){
     return m ? m[1].replace(/^www\./,'') : '';
   }
 
-  function verarbeite(r, ziel, rohText){
+  function verarbeite(r, ziel, rohText, modellGenutzt){
     var id=String(r.id||'');
     var p=null;
     for(var i=0;i<ziel.length;i++){ if(ziel[i].id===id){ p=ziel[i]; break; } }
@@ -1628,12 +1632,15 @@ function ergebnissePruefen(btn){
        Status (fertig/laeuft/fehlt), nicht nur bei einem Fehlschlag. Array, weil ein
        Spiel ueber mehrere Laeufe hinweg mehrfach gefragt werden kann (Celje/Sabah,
        elfte Fehlerart) — jede Antwort bleibt erhalten, keine wird ueberschrieben.
-       Nur art==='log' (kiProtokoll); state.bets bleibt unberuehrt (Zwei-Probleme-Regel). */
+       Nur art==='log' (kiProtokoll); state.bets bleibt unberuehrt (Zwei-Probleme-Regel).
+       Nachfrage 28.8.2026: modellGenutzt haelt fest, welches Modell tatsaechlich
+       geantwortet hat — bei Gemini die von Google aufgeloeste modelVersion (nicht der
+       gemini-flash-latest-Alias), bei Sonnet der feste Modellname. */
     if(p.art==='log'){
       (state.kiProtokoll||[]).forEach(function(e){
         if(p.eintraege.indexOf(e.id)<0) return;
         if(!e.refRoh) e.refRoh=[];
-        e.refRoh.push({ datum:heuteStr(), text:rohText });
+        e.refRoh.push({ datum:heuteStr(), text:rohText, modell:modellGenutzt });
       });
     }
     var status=String(r.status||'').toLowerCase();
@@ -1677,7 +1684,7 @@ function ergebnissePruefen(btn){
       pruefListe.push({ art:'log', id:p.id, match:p.match, heim:h, gast:g,
         halbzeit:halbzeit, verl:verl, warnP:warnP,
         gefDatum:gefDatum, gefWb:gefWb, quelle:quellHost(quelle), warn:warn, warnQ:warnQ,
-        eintraege:p.eintraege, urteile:urteile, rohAntwort:rohText });
+        eintraege:p.eintraege, urteile:urteile, rohAntwort:rohText, modell:modellGenutzt });
     } else {
       pruefListe.push({ art:'bet', id:p.id, betId:p.betId, match:p.match, tipp:p.tipp,
         heim:h, gast:g, halbzeit:halbzeit, verl:verl, warnP:warnP,
@@ -1732,10 +1739,15 @@ function ergebnissePruefen(btn){
       /* Backlog-Punkt 64: die volle rohe Antwort dieser Runde, unabhaengig vom Parsen —
          dieselbe Extraktion wie parseJsonBlock, nur ohne die JSON-Filterung. */
       var rohText=(res.content||[]).filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join('\n');
+      /* Nachfrage 28.8.2026: welches Modell hat tatsaechlich geantwortet? Nicht ueber die
+         blosse Anwesenheit von modelVersion raten, sondern ueber denselben hatGemini()-
+         Schalter, der schon entscheidet, welcher Pfad lief. Fehlt modelVersion trotz
+         Gemini-Pfad ausnahmsweise: null, ausdruecklich unbekannt, nicht vermutet. */
+      var modellGenutzt = hatGemini() ? (res.modelVersion||null) : 'claude-sonnet-4-6';
       var parsed=parseJsonBlock(res);
       var neu=0;
       if(parsed && parsed.ergebnisse){
-        parsed.ergebnisse.forEach(function(r){ neu += verarbeite(r, ziel, rohText); });
+        parsed.ergebnisse.forEach(function(r){ neu += verarbeite(r, ziel, rohText, modellGenutzt); });
       }
       /* Gefragte ohne Antwort gelten als nicht gefunden */
       ziel.forEach(function(p){ if(p.zustand==='offen') p.zustand='fehlt'; });
