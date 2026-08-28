@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 28.8.2026, Fassung 50 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 28.8.2026, Fassung 51 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -14,6 +14,22 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 51 ändert (28.8., Beteiligtenkreis aktualisiert — Ondos Entscheidung)
+
+**Anlass:** Ondo hat am 28.8.2026 entschieden, wer weiter am Projekt beteiligt ist. Keine Empfehlung, sondern umgesetzt. Nichts gelöscht — historische Einträge bleiben stehen, geändert wird nur, was den heutigen Zustand beschreibt, mit datierten Vermerken.
+
+- **Gemini scheidet aus** (mangelnder Nutzen). **DeepSeek** war ohnehin nie Beteiligter hier, nur zur Klarstellung vermerkt.
+- **Beteiligt ab jetzt:** Ondo (Entscheider) · Claude (Entwickler und Archivar) · ChatGPT (Architekt und Prüfer) · Mistral (auf dem Prüfstand).
+- **`STAND.md`:** Rollen-Zeile aktualisiert, datierter Vermerk zu Gemini ergänzt · „Gegenprobe mit Gemini" als gegenstandslos markiert · „alle vier" → „alle drei" Prüfer bei Berichten · Abschnitt „Dateizugriff": ChatGPTs eigener GitHub-Zugriff vermerkt, GitHub-Pages-Weg bleibt als Rückfallweg, Sperrvermerk für Übergabemappen ausdrücklich als weiterhin (eher verschärft) geltend bestätigt.
+- **Backlog Punkt 62 (Mistral):** Prüfstand-Status, Ondos Absicht (Schulung in eigenem Projekt, mögliches lokales Modell später) als Absicht vermerkt, dazu Claudes Einordnung — ein lokales Modell hat keine Websuche, käme nicht als Gehirn oder Schiedsrichter infrage, wohl aber als Prüfer für Dokumente/Code/Skripte.
+- **Backlog Punkt 11 und Blueprint Abschnitt 10 (Rollenmodell):** Geminis Doppelrolle-Konfliktregel als gegenstandslos vermerkt; die andere Konfliktregel (Architekt ≠ unabhängiger Prüfer) bleibt offen und betrifft jetzt ChatGPT.
+- **Backlog Punkt E, Blueprint Abschnitt 10 und die Vormerk-Tabelle:** Vermerk, dass die offene 0:0-Sachfrage trotz Geminis Ausscheiden unverändert gültig bleibt.
+
+- **Fassungszahl:** alle drei aktiven Dokumente auf 51 gehoben (Blueprint 0.50). `Ondo-Core-Architektur.md` unverändert, nicht betroffen. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+- **Beschlossen und nicht gebaut: drei** — **3, 4, 51.** *(unverändert — diese Fassung ändert keinen Punkt-Status.)*
 
 ---
 
@@ -517,6 +533,7 @@ Ein zweiter Arbeits-Branch `mistral` existiert seit vor dem 24.8.2026 (aktuell f
 → **🔴 Lücke, die zu diesem Nachtrag geführt hat:** Trotz mehrerer Aufgaben und Tage Zusammenarbeit hatte Mistral bis heute **keinen eigenen Backlog-Punkt** — nur auf dem `mistral`-Branch in `MISTRAL.md` dokumentiert, gegen den Geist von Arbeitsregel F. Gefunden über einen von Ondo gelieferten, sonst veralteten Übergabetext (Chat 23 → 24).
 → **🔴 Dabei mit entdeckt, festgehalten als Warnung:** Eine frühere Testsitzung („Chat 24") hat `CLAUDE.md` nachweislich korrekt abgerufen, danach aber einen falschen Fund behauptet — angeblich stehe dort `reset --hard` statt `merge --ff-only`. Das existiert nicht in der Datei, zweifach durch eigenen Abruf widerlegt. Richtig gelesen, falsch wiedergegeben — keine der acht bekannten Fehlerarten, sondern ein Gedächtnisfehler beim Zusammenfassen. Kein Codeänderung, nur eine Warnung für künftige Zusammenfassungen (Arbeitsregel H: belegen statt herleiten).
 → **Git-Regel für den Branch:** Für `main` gilt `--ff-only` beim Holen. Für `mistral` gilt das NICHT — dort ein normaler Merge, weil der Branch eigene Commits trägt, die `main` nicht hat.
+→ **🔴 Auf dem Prüfstand seit 28.8.2026 (Ondo):** Mistrals weitere Beteiligung an Ondo Control ist offen und Ondos Entscheidung — nicht dasselbe wie „läuft bereits" oben, das beschreibt nur den technischen Ist-Zustand. **Ondos Absicht** (ausdrücklich Absicht, kein Beschluss): Mistral in einem eigenen, separaten Projekt durch Claude und ChatGPT schulen zu lassen, mit dem Ziel, ihn später möglicherweise als lokal laufendes Modell zu nutzen. **Claudes Einordnung dazu:** Ein lokal laufendes Modell hat keine Websuche und käme deshalb weder als Gehirn (braucht Websuche für Marktaussagen) noch als Schiedsrichter (braucht Websuche für Endstände) in Frage — wohl aber als Prüfer für Dokumente, Code und Skripte, wo keine Websuche nötig ist.
 → **Kosten:** keine neuen, die Zusammenarbeit läuft bereits.
 
 ---
@@ -620,6 +637,7 @@ Am 9.8. lieferte der erste Lauf nur zwei Spiele. Ondo drückte ein zweites Mal u
 > **Weiterhin gültig (Claude, Art. 14):** Das senkt die Wahrscheinlichkeit erfundener Ergebnisse, schliesst sie nicht aus. Ob es wirkt, zeigt erst der nächste Prüflauf.
 
 **⚠ NICHT MEHR BLOCKIERT (8.8.).** Geminis Rückfrage vom 4.8. — wie ein Prüf-Auftragstext ein **echtes** 0:0 von einem „nicht gefunden" unterscheidet — ist im Bericht nach Arbeitsregel K vom 8.8., 06:35 Uhr gestellt und **von Gemini selbst beantwortet worden**. Sein Vorschlag: Das Modell muss den **Zustand** klassifizieren, bevor es Ziffern ausgeben darf — sinngemäss „Status: beendet, Ergebnis 0:0" gegen „Status: nicht gefunden", und Ziffern ausschliesslich bei bestätigtem torlosem Unentschieden.
+*Vermerk 28.8.2026: Gemini (Urheber der Rückfrage) ist seither nicht mehr am Projekt beteiligt. Die Frage und sein eigener Vorschlag dazu bleiben unverändert gültig — der Beteiligtenwechsel ändert nichts an der Sachfrage.*
 
 → **ChatGPT widerspricht** und antwortet auf dieselbe Frage „nein, ohne externe Quelle nicht". **Die Prüfer sind hier uneins.**
 → **Einordnung Claudes (Art. 14):** Geminis Formulierung trennt Zustand und Ergebnis und ist dadurch eine echte Verbesserung. **Sie beseitigt die neunte Fehlerart nicht.** Ein Modell, das ein Ergebnis erfindet, kann ebenso gut den Status erfinden. Sie senkt die Wahrscheinlichkeit, sie schliesst nichts aus.
@@ -744,6 +762,7 @@ Offene Vorfrage (Gemini): Deckt ein kostenloser Dienst überhaupt Ondos Spiele a
 
 **11. Rollenmodell in den Blueprint** · *Idee 23.7., ChatGPT* · **Status: Idee**
 Zwei Ergänzungen von Claude offen: Architekt und unabhängiger Prüfer sollten nicht dieselbe Rolle sein; Geminis Doppelrolle (Duell-Teilnehmer und Schiedsrichter) muss benannt werden.
+→ **🔴 Vermerk 28.8.2026:** Die zweite Ergänzung (Geminis Doppelrolle) ist mit seinem Ausscheiden aus dem Projekt gegenstandslos — als erledigt vermerkt, nicht gelöscht. **Die erste Ergänzung bleibt offen und betrifft jetzt ChatGPT:** Architekt und unabhängiger Prüfer sollten nicht dieselbe Rolle sein, und ChatGPT ist seit 27.8./28.8. beides — Architekt (seit Projektbeginn) und Prüfer (Rollen-Zeile in `STAND.md`).
 
 **19. Beta auf Deutsch beschränken** · *Idee 31.7., Ondo · vorgelegt 3.8.* · **Status: Idee — NEU**
 In `beta.html` steht jede Beschriftung dreimal (DE/FR/EN), rund 13 % der Datei. Jede neue Beschriftung kostet dreifache Arbeit, und vor jeder Lieferung müssen 175 Schlüssel × 3 abgeglichen werden. Die stabile v17 behielte alle drei Sprachen.
@@ -858,7 +877,7 @@ Drei unabhängige Läufe (Claude Code 24.8., 12:38 Uhr · Mistral 24.8., 12:52 U
 | Arbeitsregel **K — Bericht statt Datei**: *Prüfer bekommen nur die geänderten Stellen mit Zeilennummer, altem und neuem Text und Begründung — davor ein fester Zusammenhangsblock, jedes Mal neu aus den Dokumenten geschrieben.* | **Claude 7.8., beschlossen von Ondo 7.8.** | Blueprint 2c | **eingetragen** (Blueprint 0.9, Abschnitt 2c) |
 | Arbeitsregel **J — Korrekturfaktor gilt nur für sein Modell**: *Wechselt das Modell, verfällt der Faktor und muss neu gemessen werden.* | **Ondos Frage, 4.8.** | Blueprint 2c | **eingetragen** (Blueprint 0.6, Abschnitt 2c) |
 | **„Fail Safe" bei unbekannten Fehlern** — nicht automatisch wechseln, sondern anhalten und als Unklarheit melden | ChatGPT, 4.8. | Blueprint 2c | **offen — Ondos Entscheidung steht aus** |
-| **Wie unterscheidet der Auftragstext ein echtes 0:0 von „nicht gefunden"?** (Geminis Rückfrage) | Gemini, 4.8. | Blueprint / Punkt E | offen |
+| **Wie unterscheidet der Auftragstext ein echtes 0:0 von „nicht gefunden"?** (Geminis Rückfrage) | Gemini, 4.8. *(Urheber seit 28.8. nicht mehr beteiligt — Frage bleibt gültig)* | Blueprint / Punkt E | offen |
 | **Darf der Schiedsrichter überhaupt selbst Ergebnisse lesen, oder nur verifizierte Fakten bewerten?** (offene Frage) | ChatGPT, 30.7. | Blueprint | offen |
 | Arbeitsregel **G — Kostenregel**: *Jeder Vorschlag nennt seine Kosten — Geld, Zeit, Nutzungslimit — oder sagt ausdrücklich, dass er keine hat.* Ein Satz, kein Formular | **Ondo, 31.7., angenommen** | Blueprint 2c | **eingetragen** (Blueprint 0.4, Abschnitt 2c) |
 | Arbeitsregel: **Belegen statt herleiten** — Codezeilen zitieren, nicht beschreiben | Ondo, 31.7. | Blueprint 2c | **eingetragen** (Arbeitsregel H) |

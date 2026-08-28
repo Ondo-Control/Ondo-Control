@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.49
+**Version:** 0.50
 **Stand:** 28. August 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.50 ändert (28.8.2026):** Beteiligtenkreis aktualisiert (Ondos Entscheidung, Backlog Fassung 51): Gemini scheidet aus, DeepSeek war nie beteiligt, ChatGPT hat eigenen GitHub-Zugriff, Mistral steht auf dem Prüfstand. Betroffen hier: Abschnitt 10, „Offen — Rollenmodell" (Geminis Doppelrolle-Konfliktregel gegenstandslos, die andere betrifft jetzt ChatGPT) und „Offen — Wie unterscheidet der Auftragstext ein echtes 0:0..." (Urheber Gemini nicht mehr beteiligt, Frage bleibt gültig). Nichts gelöscht, nur datierte Vermerke ergänzt. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.50 gehoben.
 
 > **Was Fassung 0.49 ändert (28.8.2026):** Leeds-Leipzig-Parkstatus in Backlog-Punkt 51 eindeutig gemacht — von Ondo bestätigt, kein offener Ausführungsschritt (Backlog Fassung 50). Anlass war eine mehrdeutige Formulierung in der Übergabemappe an Chat 26, die zu einer unnötigen Rückfrage führte. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.49 gehoben.
 
@@ -344,11 +346,12 @@ ChatGPTs Antwort auf den Denkfehler vom 4.8.: Bei einem **unbekannten** Fehler n
 
 **Offen — Wie unterscheidet der Auftragstext ein echtes 0:0 von „nicht gefunden"?** *(Gemini, 4.8., unbeantwortet)*
 Diese Rückfrage muss beantwortet sein, **bevor** Punkt E („Prüfen statt suchen") gebaut wird. Sonst ersetzt E die neunte Fehlerart womöglich nur durch eine andere.
+*Vermerk 28.8.2026: Der Urheber (Gemini) ist seither nicht mehr am Projekt beteiligt. Die Frage selbst bleibt gültig, unabhängig davon, wer sie gestellt hat — siehe auch Backlog-Punkt E.*
 
 **Offene Frage — Darf der Schiedsrichter überhaupt selbst Ergebnisse lesen?** *(ChatGPT, 30.7.)*
 Oder soll er nur verifizierte Fakten bewerten? Die neunte Fehlerart vom 31.7. verschärft die Frage: Ein Modell, das suchen soll, liefert im Zweifel etwas Erfundenes; ein Modell, das bestätigen soll, kann „nein" sagen. Hängt unmittelbar mit dem unerledigten Beschluss vom 25.7. zusammen (Backlog-Punkt E).
 
-**Offen — Rollenmodell** *(ChatGPT, 23.7.; Einwände Claude)*: Ein Rollenabschnitt soll in den Blueprint, aber als änderbarer Abschnitt, nicht als Hierarchie, und mit zwei Konfliktregeln: (1) Wer die Architektur entwirft, kann sie nicht unabhängig prüfen. (2) Geminis Doppelrolle als Duell-Teilnehmer und Schiedsrichter muss benannt werden.
+**Offen — Rollenmodell** *(ChatGPT, 23.7.; Einwände Claude)*: Ein Rollenabschnitt soll in den Blueprint, aber als änderbarer Abschnitt, nicht als Hierarchie, und mit zwei Konfliktregeln: (1) Wer die Architektur entwirft, kann sie nicht unabhängig prüfen. (2) ~~Geminis Doppelrolle als Duell-Teilnehmer und Schiedsrichter muss benannt werden.~~ **Gegenstandslos seit 28.8.2026** — Gemini ist nicht mehr am Projekt beteiligt. **Konfliktregel (1) bleibt offen und betrifft jetzt ChatGPT:** Architekt seit Projektbeginn, seit 27./28.8.2026 zusätzlich Prüfer.
 
 **Offen — Beförderungskriterium (c) neu fassen:** 15 bewertete Tipps sind statistisch zu wenig, ChatGPTs 100er-Stichprobe dauert Monate. Vorschlag Claude: Beförderung nach Stabilität und Fehlerfreiheit entscheiden, die Messung läuft danach weiter.
 
