@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 28.8.2026, Fassung 55 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 28.8.2026, Fassung 56 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -17,12 +17,26 @@
 
 ---
 
+## ⚠ Was Fassung 56 ändert (28.8., abends, Berichtigung: Chat 25 und Chat 26 fälschlich zusammengelegt)
+
+**Anlass:** Ondos Rückfrage zu Fassung 55 — dort stand, die 21:43-Uhr-Selbstauskunft „Ondos Chat-Sitzung" sei dieselbe Sitzung wie die bereits bestehende Auskunft (d), nur später fortgeführt (15→17 Prompts). **Das war falsch.** (d) ist Chat 25, bis zur Übergabe an Chat 26. Die 21:43-Uhr-Auskunft ist Chat 26 — eine eigene, neue Sitzung, hervorgegangen aus der Übergabe, die in dieser Sitzung selbst dokumentiert ist (Übergabemappe und Abnahme). Der Fehler entstand aus blosser Textähnlichkeit der Tätigkeitsbeschreibung, ohne die bereits belegte Chat-25→26-Trennung zu prüfen (Arbeitsregel H: belegen statt herleiten).
+
+- **`STAND.md`:** (d) auf den ursprünglichen Chat-25-Stand zurückgesetzt (15 Prompts, bis zur Übergabe). Neuer, eigenständiger Punkt (f): Chat 26, 17 Prompts, Stand 21:43 Uhr, ausdrücklich als eigene Sitzung gekennzeichnet. Die bisherige eigene Sitzungs-Auskunft rückt von (f) auf (g).
+- **Richtwert-Prüfung entsprechend nachgerechnet:** sieben Selbstauskünfte (a)–(g) statt sechs. Ergebnis unverändert — keine einzige stuft sich selbst als „Mittel" ein, der Richtwert (23,8 KB/Prompt) bleibt unverändert.
+- **Berichtigungsvermerk** direkt bei (d)/(f) in `STAND.md` eingetragen, nicht stillschweigend überschrieben.
+
+- **Fassungszahl:** alle drei aktiven Dokumente auf 56 gehoben (Blueprint 0.55). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
+
+---
+
 ## ⚠ Was Fassung 55 ändert (28.8., abends, Nutzungsdaten-Ablesung 21:43 Uhr, Sitzungs-Selbstauskünfte nachgeführt, Richtwert überprüft)
 
 **Anlass:** Neue Ablesung von Ondo (28.8., 21:43 Uhr), ersetzt die vom selben Tag 13:33 Uhr vollständig. Dazu eine neue Selbstauskunft dieser Sitzung seit dem 13:33-Uhr-Auftrag sowie eine nachgetragene Aktualisierung von Ondos eigener Chat-Sitzung, und die im Auftrag verlangte Überprüfung des Richtwerts.
 
 - **`STAND.md`, Nutzungslimit-Abschnitt:** Ablesung 13:33 Uhr (85 % / 33 %) vollständig ersetzt durch 21:43 Uhr (49 % / 47 %). Neuer Vermerk: drei verschiedene 5-Stunden-Sitzungsfenster liefen am 28.8. nacheinander; das Wochenlimit stieg um 21 Prozentpunkte (26 %→47 %) über den ganzen Tag, verteilt auf alle heutigen Sitzungen.
 - **Sitzungs-Selbstauskunft (d)** (Ondos Chat-Sitzung, „Vorgänger von Chat 26") auf den 21:43-Uhr-Stand aktualisiert (15→17 Prompts) — **als Aktualisierung derselben Sitzung erkannt und korrigiert, nicht als neuer, siebter Eintrag doppelt gezählt**: Der ursprüngliche Auftragstext hätte das als eigenen Punkt eingetragen, die Beschreibung deckte sich aber praktisch wörtlich mit (d).
+  > **🔴 BERICHTIGT, Fassung 56, noch am selben Abend:** Das war falsch — (d) ist Chat 25, die 21:43-Uhr-Auskunft ist Chat 26, eine eigene neue Sitzung (Übergabe in dieser Sitzung dokumentiert). Aus Textähnlichkeit hergeleitet statt belegt. Beide stehen jetzt als eigene Punkte (d) und (f) in `STAND.md`.
 - **Neue Selbstauskunft (f):** diese Code-Sitzung, 12 Prompts seit dem 13:33-Uhr-Auftrag bis einschliesslich dieses Auftrags, Aufwand sehr hoch, grob 400–700 KB geschätzt.
 - **Richtwert überprüft, nicht ersetzt:** Alle sechs Selbstauskünfte gegeneinander geprüft — keine stuft sich selbst als „Mittel" ein, sie liegen an den Extremen. Ein Durchschnitt darüber würde keinen neuen „Mittel"-Wert ergeben, sondern unvergleichbare Aufwandsstufen vermischen. **23,8 KB/Prompt (Stand 27.8.) bleibt deshalb unverändert.**
 
