@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.50
+**Version:** 0.51
 **Stand:** 28. August 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.51 ändert (28.8.2026):** Backlog-Punkt 51 gebaut — gepaarter Vergleich Sonnet gegen Flash, `beta.html` v19.8.4 (Backlog Fassung 52). Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.51 gehoben.
 
 > **Was Fassung 0.50 ändert (28.8.2026):** Beteiligtenkreis aktualisiert (Ondos Entscheidung, Backlog Fassung 51): Gemini scheidet aus, DeepSeek war nie beteiligt, ChatGPT hat eigenen GitHub-Zugriff, Mistral steht auf dem Prüfstand. Betroffen hier: Abschnitt 10, „Offen — Rollenmodell" (Geminis Doppelrolle-Konfliktregel gegenstandslos, die andere betrifft jetzt ChatGPT) und „Offen — Wie unterscheidet der Auftragstext ein echtes 0:0..." (Urheber Gemini nicht mehr beteiligt, Frage bleibt gültig). Nichts gelöscht, nur datierte Vermerke ergänzt. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.50 gehoben.
 

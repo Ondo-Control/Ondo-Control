@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 28.8.2026, Fassung 51 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 28.8.2026, Fassung 52 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -14,6 +14,21 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 52 ändert (28.8., Punkt 51 gebaut — gepaarter Vergleich Sonnet gegen Flash)
+
+**Anlass:** Backlog-Punkt 51 war beschlossen, Voraussetzung seit 27.8. erfüllt. Ondo hat sich für eine feste Funktion in der App entschieden.
+
+- **`beta.html` v19.8.4:** neue Funktion `calcGepaartVergleich()` und Anzeige `gepaartBlock()` im Tab „Finanzen", direkt unter der Kalibrierungsanzeige. Für jedes Spiel, das beide Gehirne bewertet haben, je Markt die Anzahl nur-Sonnet/nur-Flash/beide-richtig/beide-falsch. Reine Zahlen, keine Wertung im Code.
+- **Paarung über exakten Spielnamen + Datum**, nicht über den Listen-Index — vor dem Bauen gegen Backlog-Punkt 41 geprüft, betrifft dieses Feld nicht (Einzelheiten bei Punkt 51). Mehrdeutige Fälle (Doppel-Läufe) werden nicht gepaart, sondern separat ausgewiesen.
+- **`calcKalibrierung`/`maerkteBauen` unverändert**, kein Schnitt in der Messreihe, keine gespeicherte Vorhersage angefasst.
+- **11 neue Sprachschlüssel** (DE/FR/EN) — Sprachschlüsselzahl in `STAND.md` 217 → 228.
+- **Verifiziert:** `node --check` bestanden, vier Fixture-Fälle in einem nicht committeten Python-Nachbau bestanden, `pruefe.py` ALLES SAUBER.
+
+- **Fassungszahl:** alle drei aktiven Dokumente auf 52 gehoben (Blueprint 0.51). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(Punkt 51 verlässt die Liste, weil gebaut.)*
 
 ---
 
@@ -809,7 +824,7 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 >
 > **🔴 Entscheidung (Claude, 27.8., von Ondo ausdrücklich delegiert):** nicht gebaut. Die Liste bräuchte bei jeder künftig verworfenen Idee eine eigene Pflege — genau die Art Doku-Aufwand, gegen den Ondo sich wandte —, ohne dass bisher ein echter Fall aufgetreten ist, in dem ein Chat eine geschlossene Debatte neu aufgemacht hätte. Der Nutzen ist unbelegt, die laufenden Kosten sind sicher. **Sollte künftig tatsächlich einmal eine alte Debatte unnötig neu aufgemacht werden, ist das der Beleg, der die Liste doch rechtfertigt** — bis dahin bleibt es bei Blueprint-Protokoll und Backlog als alleinigen Fundorten.
 
-**51. Gepaarter Vergleich Sonnet gegen Flash** · *Vorschlag 15.8., ChatGPT* · **Status: BESCHLOSSEN — Voraussetzung „sauberes Entparken" am 27.8. abgeschlossen**
+**51. Gepaarter Vergleich Sonnet gegen Flash** · *Vorschlag 15.8., ChatGPT · Voraussetzung „sauberes Entparken" am 27.8. abgeschlossen · gebaut 28.8.2026* · **Status: 🔴 GEBAUT am 28.8.2026 — `beta.html` v19.8.4**
 
 > Zwei getrennt betrachtete Unsicherheitsbereiche sind der schwächere Weg; **überlappende Bereiche beweisen nicht, dass die Gehirne gleich gut sind.** Beide bekommen dieselbe Spielliste — deshalb ist ein Vergleich Spiel für Spiel aussagekräftiger. **Die Rohdaten liegen vor; es braucht keine einzige neue Vorhersage.**
 >
@@ -830,6 +845,12 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 > **🔴 BERICHTIGT am 28.8.2026, Fehlerart C4 (Widerspruch nicht danebenstellen, sondern im selben Durchgang berichtigen).** Der Satz „Stand nach 90 Minuten ist bekannt und gesichert: 1:0" oben war die Grundlage fürs Entparken — und ist falsch begründet. Leeds–RB Leipzig lief über zwei Hälften zu je 60 Minuten (dreifach durch Primärquellen bestätigt: Vereinsseite, Sportschau/ARD, Sky Sport — 120 Minuten, zweites Tor 109. Minute, Halbzeit bei Minute 60 mit Stand 1:0). Bei diesem Format gibt es **keine reguläre Marke bei Minute 90** — sie liegt mitten in der zweiten Hälfte, nicht an der Halbzeitgrenze. Der „Stand nach 90 Minuten" ist damit keine gesicherte Grösse, sondern eine Momentaufnahme ohne die Bedeutung, die ihr die Ausführung vom 27.8. gegeben hat. **Die Restarbeit an diesem Punkt hat das am 28.8.2026 aufgedeckt:** Von 18 durch ERGEBNISSE PRÜFEN erzeugten Vorschlägen (ausgelöst über Ondos „Wieder prüfen" vom 8.8.) hat eine externe Gegenprüfung (separater Chat, eigene Websuche je Spiel) 15 als fehlerfrei bestätigt — bereits übernommen — und drei als fehlerhaft verworfen, **nicht übernommen**: NK Celje–Slovan Bratislava, Sabah FC–Hapoel Beer-Sheva FC, und **Leeds United–RB Leipzig**, aus dem oben genannten Grund. **Ondo (28.8.): Leeds–Leipzig bleibt geparkt.** Die beiden anderen Fälle (NK Celje, Sabah FC) gehören nicht zu Punkt 36 — sie sind bei der neuen elften Fehlerart des Schiedsrichters dokumentiert (`STAND.md`).
 >
 > **🔴 EINDEUTIG BESTÄTIGT am 28.8.2026 (Ondo, bereits Chat 25 mitgeteilt):** Leeds–Leipzig **ist geparkt** — kein offener Ausführungsschritt in der App, kein Widerspruch zur `logParkenTag`-Ausführung vom 27.8. Diese Bestätigung stand nur in einem anderen Chat, nicht in diesem Dokument — genau das führte in einer Übergabe zu einer unnötigen Rückfrage. Lehre daraus: eine Ondo mündlich/in einem anderen Chat gegebene Bestätigung gehört in derselben Antwort ins Dokument, nicht nur ins Gespräch (Arbeitsregel F).
+>
+> **🔴 GEBAUT am 28.8.2026, `beta.html` v19.8.4.** Neue Funktion `calcGepaartVergleich()` plus Anzeige `gepaartBlock()`, im Tab „Finanzen" direkt unter der bestehenden Kalibrierungsanzeige. `calcKalibrierung`/`maerkteBauen` unverändert, kein Schnitt in der Messreihe.
+> **Paarung — vor dem Bauen geprüft, wie von Ondo verlangt:** Kein gemeinsames ID-Feld zwischen einem Sonnet- und einem Flash-Eintrag. Backlog-Punkt 41 betrifft hier nichts: Der dort beschriebene Fehler sitzt in `wettbewerb`/`anpfiff`/`stufe` (über den Listen-Index `paket.liste[idx]` geholt) — `match` dagegen kommt direkt aus der Antwort des jeweiligen Gehirns selbst (`v.match`), unabhängig vom Index. **Gewählter Schlüssel: exakter Text von `match` (getrimmt) + exakter Text von `datum`** — bewusst keine Normalisierung wie bei der Dubletten-Sperre in `spielListeHolen`: das kann Paare übersehen (bei geringfügig anders benannten Spielen, Fehlerart S1), kann aber nie zwei verschiedene Spiele fälschlich zusammenlegen. Kommt derselbe Schlüssel beim selben Gehirn mehrfach vor (z. B. zweiter Lauf am selben Tag, Punkt 37): nicht gepaart, separat als „mehrdeutig" gezählt und in der App ausgewiesen — nicht geraten.
+> **Verifiziert:** `node --check` auf den Skriptinhalt bestanden. Zusätzlich ein nicht committeter Python-Nachbau von `calcGepaartVergleich()` mit vier Fixture-Fällen (sauberes Paar mit gemischtem Ergebnis über die drei Märkte · nur einseitiger Eintrag, kein Paar · mehrdeutiger Doppel-Schlüssel · geparkter Eintrag ausgeschlossen) — alle vier bestanden. `pruefe.py` danach: ALLES SAUBER.
+> **11 neue Sprachschlüssel** (`gepaart` bis `gepaartMehrdeutig`, DE/FR/EN) — Sprachschlüsselzahl in `STAND.md` von 217 auf 228 angehoben, von `pruefe.py` Abschnitt 13 selbst nachgezählt.
+> **Was die Anzeige zeigt, je Markt (1x2/Tore/BTTS):** Anzahl gepaarter Spiele, davon nur Sonnet richtig / nur Flash richtig / beide richtig / beide falsch — reine Zahlen, keine Wertung im Code. Einordnung bleibt `STAND.md` und Ondo vorbehalten, wie verlangt.
 
 ---
 

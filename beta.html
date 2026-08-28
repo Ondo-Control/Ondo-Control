@@ -122,7 +122,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.3';
+var CODE_VERSION = 'v19.8.4';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -165,6 +165,11 @@ var I18N = {
   bttsYes:'Beide treffen: Ja', bttsNo:'Beide treffen: Nein',
   finalScore:'Endstand (90 Min.)',
   calib:'Kalibrierung', calibD:'Stimmen die Prozentangaben mit der Wirklichkeit überein? Kleine Abweichung = ehrliche Schätzung.',
+  gepaart:'Gepaarter Vergleich', gepaartD:'Nur Spiele, die BEIDE Gehirne bewertet haben — Tipp gegen Tipp, statt getrennter Gesamtzahlen.',
+  gepaartGesamtLabel:'Gepaarte Spiele insgesamt', gepaartMarkt:'Markt', gepaartSpiele:'Spiele',
+  gepaartNurS:'Nur Sonnet', gepaartNurF:'Nur Flash', gepaartBeideR:'Beide richtig', gepaartBeideF:'Beide falsch',
+  gepaartNone:'Noch keine gepaarten Spiele.',
+  gepaartMehrdeutig:'{a} Spiel(e) nicht eindeutig zuordenbar (mehrere gleich benannte Einträge desselben Gehirns am selben Tag) — nicht mitgezählt.',
   calibDev:'Abweichung', calibPts:'Bewertete Aussagen', calibNone:'Noch zu wenig Daten',
   calibBand:'Angabe', calibClaim:'behauptet', calibReal:'wirklich', calibN:'Anzahl',
   archive:'Archiv v18', archiveD:'Alte Einträge aus der Value-Phase. Zählen nicht mehr in die Statistik, bleiben als Verhaltens-Archiv erhalten.',
@@ -254,6 +259,11 @@ var I18N = {
   bttsYes:'Les deux marquent : Oui', bttsNo:'Les deux marquent : Non',
   finalScore:'Score final (90 min)',
   calib:'Calibrage', calibD:'Les pourcentages correspondent-ils à la réalité ? Petit écart = estimation honnête.',
+  gepaart:'Comparaison appariée', gepaartD:'Seulement les matchs évalués par LES DEUX cerveaux — pronostic contre pronostic, pas seulement les totaux séparés.',
+  gepaartGesamtLabel:'Matchs appariés au total', gepaartMarkt:'Marché', gepaartSpiele:'Matchs',
+  gepaartNurS:'Seulement Sonnet', gepaartNurF:'Seulement Flash', gepaartBeideR:'Les deux corrects', gepaartBeideF:'Les deux faux',
+  gepaartNone:'Aucun match apparié pour le moment.',
+  gepaartMehrdeutig:'{a} match(s) non attribuable(s) sans ambiguïté (plusieurs entrées du même cerveau nommées pareil le même jour) — non comptabilisé(s).',
   calibDev:'Écart', calibPts:'Affirmations évaluées', calibNone:'Pas encore assez de données',
   calibBand:'Indiqué', calibClaim:'annoncé', calibReal:'réel', calibN:'Nombre',
   archive:'Archive v18', archiveD:'Anciennes entrées de la phase value. Ne comptent plus dans les stats, conservées comme archive.',
@@ -343,6 +353,11 @@ var I18N = {
   bttsYes:'Both to score: Yes', bttsNo:'Both to score: No',
   finalScore:'Final score (90 min)',
   calib:'Calibration', calibD:'Do the percentages match reality? Small deviation = honest estimate.',
+  gepaart:'Paired comparison', gepaartD:'Only games BOTH brains evaluated — call against call, not just the separate totals.',
+  gepaartGesamtLabel:'Paired games in total', gepaartMarkt:'Market', gepaartSpiele:'Games',
+  gepaartNurS:'Only Sonnet', gepaartNurF:'Only Flash', gepaartBeideR:'Both correct', gepaartBeideF:'Both wrong',
+  gepaartNone:'No paired games yet.',
+  gepaartMehrdeutig:'{a} game(s) not uniquely assignable (multiple identically named entries from the same brain on the same day) — not counted.',
   calibDev:'Deviation', calibPts:'Rated statements', calibNone:'Not enough data yet',
   calibBand:'Stated', calibClaim:'claimed', calibReal:'actual', calibN:'Count',
   archive:'Archive v18', archiveD:'Old entries from the value phase. No longer counted in statistics, kept as a behaviour archive.',
@@ -946,6 +961,53 @@ function calcKalibrierung(quelle){
     summe += Math.abs(behauptet-echt)*g.length; n+=g.length;
   });
   return { zeilen:zeilen, gesamt:punkte.length, abw: n? Math.round(summe/n):null };
+}
+
+/* Gepaarter Vergleich Sonnet gegen Flash (Backlog-Punkt 51, Beschluss Ondo/ChatGPT 15.8.,
+   gebaut 28.8.2026). Nur Spiele, die BEIDE Gehirne bewertet haben — Tipp gegen Tipp, statt
+   nur die getrennten Gesamtzahlen zu vergleichen. calcKalibrierung bleibt unveraendert.
+   Paar-Schluessel: exakter Text von match (getrimmt) + exakter Text von datum — dieselbe
+   Art Vergleich wie logParkenTag fuer "ein Tag" benutzt. Bewusst KEINE Normalisierung (wie
+   bei der Dubletten-Sperre in spielListeHolen): das kann Paare uebersehen, wenn beide
+   Gehirne dasselbe Spiel geringfuegig anders benennen (Fehlerart S1), aber es kann NIE zwei
+   verschiedene Spiele faelschlich zusammenlegen. Backlog-Punkt 41 betrifft hier nichts —
+   der Fehler dort sitzt in wettbewerb/anpfiff/stufe (ueber paket.liste[idx] geholt), match
+   kommt direkt aus der Antwort des jeweiligen Gehirns. Kommt derselbe Schluessel beim
+   selben Gehirn mehrfach vor (z. B. zweiter Lauf am selben Tag, Punkt 37): nicht paaren,
+   separat zaehlen — nicht raten. Reine Zahlen, keine Wertung im Code. */
+function calcGepaartVergleich(){
+  var TYPEN=['1x2','tore','btts'];
+  var sonnet={}, flash={};
+  (state.kiProtokoll||[]).forEach(function(e){
+    if(e.aera!=='v19' || e.geparkt) return;
+    var key=e.datum+'|'+String(e.match||'').trim();
+    var ziel=((e.herkunft||'sonnet')==='flash') ? flash : sonnet;
+    (ziel[key]=ziel[key]||[]).push(e);
+  });
+  var maerkte={};
+  TYPEN.forEach(function(ty){ maerkte[ty]={nurSonnet:0,nurFlash:0,beideRichtig:0,beideFalsch:0}; });
+  var gepaartGesamt=0, mehrdeutig=0;
+  Object.keys(sonnet).forEach(function(key){
+    if(!(key in flash)) return;
+    var sList=sonnet[key], fList=flash[key];
+    if(sList.length!==1 || fList.length!==1){ mehrdeutig++; return; }
+    gepaartGesamt++;
+    var s=sList[0], f=fList[0];
+    TYPEN.forEach(function(ty){
+      var sm=(s.maerkte||[]).filter(function(m){return m.typ===ty;})[0];
+      var fm=(f.maerkte||[]).filter(function(m){return m.typ===ty;})[0];
+      if(!sm || !fm) return;
+      if(sm.status!=='richtig' && sm.status!=='falsch') return;
+      if(fm.status!=='richtig' && fm.status!=='falsch') return;
+      var sOk=sm.status==='richtig', fOk=fm.status==='richtig';
+      var z=maerkte[ty];
+      if(sOk && fOk) z.beideRichtig++;
+      else if(!sOk && !fOk) z.beideFalsch++;
+      else if(sOk) z.nurSonnet++;
+      else z.nurFlash++;
+    });
+  });
+  return { maerkte:maerkte, gepaartGesamt:gepaartGesamt, mehrdeutig:mehrdeutig };
 }
 
 /* Entschlossenheit (v19.7 Punkt 1): Wie oft legt sich ein Gehirn ueberhaupt fest?
@@ -2184,6 +2246,32 @@ function kalibBlock(){
   '</div>';
 }
 
+/* ================= GEPAARTER VERGLEICH SONNET GEGEN FLASH (Backlog-Punkt 51) ========== */
+function gepaartBlock(){
+  var g=calcGepaartVergleich();
+  var TYPEN=[['1x2','mkt1x2'],['tore','mktTore'],['btts','mktBtts']];
+  var rows=TYPEN.map(function(ty){
+    var z=g.maerkte[ty[0]];
+    var n=z.nurSonnet+z.nurFlash+z.beideRichtig+z.beideFalsch;
+    return '<tr><td>'+t(ty[1])+'</td><td>'+n+'</td><td>'+z.nurSonnet+'</td><td>'+z.nurFlash+'</td>'+
+      '<td>'+z.beideRichtig+'</td><td>'+z.beideFalsch+'</td></tr>';
+  }).join('');
+  var tabelle = g.gepaartGesamt
+    ? '<table class="ktab"><tr><th>'+t('gepaartMarkt')+'</th><th>'+t('gepaartSpiele')+'</th>'+
+      '<th>'+t('gepaartNurS')+'</th><th>'+t('gepaartNurF')+'</th>'+
+      '<th>'+t('gepaartBeideR')+'</th><th>'+t('gepaartBeideF')+'</th></tr>'+rows+'</table>'
+    : '<div class="muted">'+t('gepaartNone')+'</div>';
+  var hinweis = g.mehrdeutig
+    ? '<div class="muted" style="margin-top:8px">'+t('gepaartMehrdeutig').replace('{a}',g.mehrdeutig)+'</div>'
+    : '';
+  return '<div class="card">'+
+    '<div class="disp" style="font-size:20px;margin-bottom:6px">🆚 '+t('gepaart')+'</div>'+
+    '<div class="muted">'+t('gepaartD')+'</div>'+
+    '<div class="muted" style="margin-top:6px">'+t('gepaartGesamtLabel')+': <b style="color:var(--text)">'+g.gepaartGesamt+'</b></div>'+
+    tabelle+hinweis+
+  '</div>';
+}
+
 /* ================= FINANZEN ================= */
 function viewFinance(c){
   var ai=calcAI();
@@ -2196,6 +2284,7 @@ function viewFinance(c){
       '<div class="stat-sub">'+t('tipicoSub')+'</div></div>'+
   '</div>'+
   kalibBlock()+
+  gepaartBlock()+
   '<div class="row">'+
     '<div class="card"><div class="stat-label">'+t('betBal')+'</div>'+
       '<div class="stat-val" style="color:'+(c.wettSaldo>0?"var(--win)":c.wettSaldo<0?"var(--loss)":"var(--text)")+'">'+fmt(c.wettSaldo)+'</div>'+
