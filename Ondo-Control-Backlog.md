@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 28.8.2026, Fassung 48 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 28.8.2026, Fassung 49 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -14,6 +14,19 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 49 ändert (28.8., neue Nutzungsdaten-Ablesung und fünf Sitzungs-Selbstauskünfte)
+
+**Anlass:** Branch `claude/ergebnisse-pruefen-28-8-mnq1au` nach `main` gemergt (Fassung 48 damit auf `main`). Danach neue Nutzungsdaten-Ablesung von Ondo (28.8.2026, 13:33 Uhr) und fünf gesammelte Sitzungs-Selbstauskünfte in `STAND.md` eingetragen.
+
+- **`STAND.md`, Abschnitt „Nutzungslimit-Schätzung":** Ablesung vom 27.8., 23:08 Uhr (34 % / 26 %) vollständig ersetzt durch die vom 28.8., 13:33 Uhr (85 % / 33 %, Nutzungsguthaben 0 Punkte, Funktion aus). Vermerk ergänzt: Der Anstieg des Wochenlimits von 26 % auf 33 % über den 28.8. verteilt sich auf mehrere Sitzungen, nicht auf eine einzelne.
+- **Fünf Sitzungs-Selbstauskünfte (a–e)** direkt darunter eingetragen, ausdrücklich als Selbsteinschätzungen gekennzeichnet, keine gemessenen Werte (Art. 14): zwei geringe (gestrige Code-Sitzung, Job-Recherche Haiku 4.5), eine sehr aufwendige (externe Prüfung der 18 Ergebnisse, rund 30 Websuchen), eine hoch bis sehr hoch (Vorgänger-Chat von Chat 26, über 200 KB grob geschätzt), und diese Code-Sitzung selbst (ebenfalls hoch bis sehr hoch, grob geschätzt eher über 200 KB, nicht unabhängig gegengeprüft).
+- **Kein Backlog-Punkt-Status geändert.** Reine Nutzungsdaten-Pflege, wie schon bei Fassung 47.
+
+- **Fassungszahl:** alle drei aktiven Dokumente auf 49 gehoben (Blueprint 0.48). Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+- **Beschlossen und nicht gebaut: drei** — **3, 4, 51.** *(unverändert.)*
 
 ---
 

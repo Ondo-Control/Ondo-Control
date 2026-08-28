@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.47
+**Version:** 0.48
 **Stand:** 28. August 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.48 ändert (28.8.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war eine neue Nutzungsdaten-Ablesung (85 % / 33 %, ersetzt die vom 27.8. vollständig) und fünf Sitzungs-Selbstauskünfte zum heutigen Verbrauch in `STAND.md` (Backlog Fassung 49). Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.48 gehoben.
 
 > **Was Fassung 0.47 ändert (28.8.2026):** Restarbeit zu Backlog-Punkt 51 (Backlog Fassung 48): drei geparkte Spiele aus dem Prüflauf vom 8.8. extern gegengeprüft (NK Celje–Slovan Bratislava, Sabah FC–Hapoel Beer-Sheva FC, Leeds United–RB Leipzig) und nicht übernommen. Dabei eine Berichtigung (Fehlerart C4) an Punkt 51s eigener Ausführung vom 27.8. und eine neue, elfte Fehlerart des Schiedsrichters in `STAND.md` (schwankende Antworten trotz Temperatur 0 bei Celje und Sabah). Eine Code-Untersuchung hat belegt, dass die rohe Schiedsrichter-Antwort nirgends gespeichert wird — daraus ein neuer, nicht gebauter Idee-Punkt 64. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.47 gehoben.
 
