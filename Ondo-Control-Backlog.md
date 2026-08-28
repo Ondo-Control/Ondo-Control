@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 28.8.2026, Fassung 54 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 28.8.2026, Fassung 55 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -14,6 +14,20 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 55 ändert (28.8., abends, Nutzungsdaten-Ablesung 21:43 Uhr, Sitzungs-Selbstauskünfte nachgeführt, Richtwert überprüft)
+
+**Anlass:** Neue Ablesung von Ondo (28.8., 21:43 Uhr), ersetzt die vom selben Tag 13:33 Uhr vollständig. Dazu eine neue Selbstauskunft dieser Sitzung seit dem 13:33-Uhr-Auftrag sowie eine nachgetragene Aktualisierung von Ondos eigener Chat-Sitzung, und die im Auftrag verlangte Überprüfung des Richtwerts.
+
+- **`STAND.md`, Nutzungslimit-Abschnitt:** Ablesung 13:33 Uhr (85 % / 33 %) vollständig ersetzt durch 21:43 Uhr (49 % / 47 %). Neuer Vermerk: drei verschiedene 5-Stunden-Sitzungsfenster liefen am 28.8. nacheinander; das Wochenlimit stieg um 21 Prozentpunkte (26 %→47 %) über den ganzen Tag, verteilt auf alle heutigen Sitzungen.
+- **Sitzungs-Selbstauskunft (d)** (Ondos Chat-Sitzung, „Vorgänger von Chat 26") auf den 21:43-Uhr-Stand aktualisiert (15→17 Prompts) — **als Aktualisierung derselben Sitzung erkannt und korrigiert, nicht als neuer, siebter Eintrag doppelt gezählt**: Der ursprüngliche Auftragstext hätte das als eigenen Punkt eingetragen, die Beschreibung deckte sich aber praktisch wörtlich mit (d).
+- **Neue Selbstauskunft (f):** diese Code-Sitzung, 12 Prompts seit dem 13:33-Uhr-Auftrag bis einschliesslich dieses Auftrags, Aufwand sehr hoch, grob 400–700 KB geschätzt.
+- **Richtwert überprüft, nicht ersetzt:** Alle sechs Selbstauskünfte gegeneinander geprüft — keine stuft sich selbst als „Mittel" ein, sie liegen an den Extremen. Ein Durchschnitt darüber würde keinen neuen „Mittel"-Wert ergeben, sondern unvergleichbare Aufwandsstufen vermischen. **23,8 KB/Prompt (Stand 27.8.) bleibt deshalb unverändert.**
+
+- **Fassungszahl:** alle drei aktiven Dokumente auf 55 gehoben (Blueprint 0.54). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
 
 ---
 

@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.53
+**Version:** 0.54
 **Stand:** 28. August 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.54 ändert (28.8.2026, abends):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war die Nutzungsdaten-Ablesung 21:43 Uhr, nachgeführte Sitzungs-Selbstauskünfte und die Überprüfung des Richtwerts (unverändert bei 23,8 KB/Prompt), Backlog Fassung 55. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.54 gehoben.
 
 > **Was Fassung 0.53 ändert (28.8.2026):** Nachfrage zu Backlog-Punkt 64 beantwortet und ergänzt — Modellversion wird jetzt mit `refRoh` gespeichert (`beta.html` v19.8.6, Backlog Fassung 54). Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.53 gehoben.
 
