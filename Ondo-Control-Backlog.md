@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 27.8.2026, Fassung 47 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 28.8.2026, Fassung 48 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -14,6 +14,21 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 48 ändert (28.8., Restarbeit zu Punkt 51 — drei geparkte Spiele extern gegengeprüft, elfte Fehlerart des Schiedsrichters, neue Untersuchung zu Punkt 26)
+
+**Anlass:** Ondo hatte am 8.8.2026 über „Wieder prüfen" 18 Vorschläge aus ERGEBNISSE PRÜFEN erzeugt. Eine unabhängige externe Prüfung (separater Chat, eigene Websuche je Spiel) hat alle 18 gegengeprüft: 15 waren fehlerfrei und sind bereits übernommen, drei waren fehlerhaft und wurden NICHT übernommen — NK Celje–Slovan Bratislava, Sabah FC–Hapoel Beer-Sheva FC, Leeds United–RB Leipzig.
+
+- **Punkt 36:** Leeds–RB Leipzig ist bei dieser Prüfung erneut aufgetaucht — dreifach durch Primärquellen belegt (Vereinsseite, Sportschau/ARD, Sky Sport): 120 Minuten, zweites Tor in der 109. Minute. **🔴 Berichtigt, kein neuer dritter Fall:** Es ist dasselbe Spiel, das seit dem 9.8. als ERSTER Beleg in diesem Punkt steht — nicht ein zusätzlicher, dritter Fall. Wichtiger: Die Annahme aus Punkt 51 vom 27.8. („Stand nach 90 Minuten ist bekannt und gesichert: 1:0") ist mit diesem Fund fraglich geworden — bei 60/60 Minuten gibt es keine reguläre 90-Minuten-Marke, die Halbzeit liegt bei Minute 60. Einzelheiten und die Berichtigung stehen bei Punkt 51. **Ondo (28.8.): Leeds–Leipzig bleibt geparkt, keine Übernahme.** Punkt 36 selbst bleibt unentschieden.
+- **Punkt 51 berichtigt:** Die Ausführung vom 27.8. („Einzige Paarung, die entparkt wird") hat sich mit dem heutigen Fund als voreilig herausgestellt — siehe dort.
+- **Neue, elfte Fehlerart des Schiedsrichters** in `STAND.md` aufgenommen: NK Celje–Slovan Bratislava und Sabah FC–Hapoel Beer-Sheva FC liefen je dreimal bei Temperatur 0 und ergaben je drei verschiedene Endstände; keiner der sechs Läufe traf den extern belegten Wert. Bezug zum ersten, schwächeren Einzelfall vom 13.8. (Apollon Limassol–SK Brann, bereits Fehlerart 10).
+- **Code-Untersuchung (nichts gebaut, nur belegt, Art. 8):** Die rohe Schiedsrichter-Antwort wird nirgends gespeichert — nur die daraus geparste Endstands-Angabe erreicht `pruefListe`. Codebeleg: `beta.html`, `geminiCall` (Zeile ~1141/1145, Text `txt` wird nur zurückgegeben, nie in `state` geschrieben), `parseJsonBlock` (Zeile 1167ff., verwirft den Rest des Texts), `verarbeite` (Zeile 1529ff., übernimmt nur geparste Felder). Temperatur 0 ist unbedingt für **jeden** Aufruf mit `rolle:'ref'` gesetzt (Zeile 1082, keine Ausnahme im Code gefunden). Der Modellname `gemini-flash-latest` ist laut Googles eigener Dokumentation ein beweglicher Alias, der bei jeder neuen Freigabe ausgetauscht wird (Ankündigungsfrist zwei Wochen bei Breaking Changes); ein fest benennbares, nicht-bewegliches Modell existiert derzeit (`gemini-3.7-flash`, GA/stabil) und liesse sich ohne Codeänderung über das bestehende Modell-Dropdown auswählen — Kosten/Folgen bei Punkt 64 und im Chat-Bericht, **nicht umgestellt.**
+- **Neuer Punkt 64 aufgenommen** (Idee, nicht gebaut): rohe Schiedsrichter-Antwort mitschreiben.
+
+- **Fassungszahl:** alle drei aktiven Dokumente auf 48 gehoben (Blueprint 0.47). Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+- **Beschlossen und nicht gebaut: drei** — **3, 4, 51.** *(unverändert — Punkt 64 ist neue Idee, keine Entscheidung; die Berichtigung bei 36/51 ändert an deren Status nichts.)*
 
 ---
 
@@ -489,6 +504,17 @@ Ein zweiter Arbeits-Branch `mistral` existiert seit vor dem 24.8.2026 (aktuell f
 
 ---
 
+**64. Rohe Schiedsrichter-Antwort mitschreiben** · *Vorschlag Claude, 28.8.2026, aus der Restarbeit zu Punkt 51* · **Status: Idee — nicht gebaut, Ondos Entscheidung steht aus (Art. 8)**
+
+Bei NK Celje–Slovan Bratislava und Sabah FC–Hapoel Beer-Sheva FC lieferte der Schiedsrichter an drei Läufen drei verschiedene Endstände, trotz Temperatur 0 (siehe `STAND.md`, elfte Fehlerart). **Belegt (Codezitat):** In `geminiCall` (`beta.html`, Zeile 1141/1145) wird der rohe Antworttext `txt` nur zurückgegeben, nie in `state` geschrieben. `parseJsonBlock` (Zeile 1167ff.) extrahiert daraus nur den JSON-Block und verwirft den Rest. `verarbeite` (Zeile 1529ff.) übernimmt in `pruefListe` ausschliesslich die geparsten Felder (Status, Tore, Halbzeit, Quelle). **Die rohe Antwort existiert nirgends mehr, sobald der Lauf durch ist** — deshalb liess sich die Ursache der drei widersprüchlichen Celje/Sabah-Läufe im Nachhinein nicht rekonstruieren.
+
+→ **Vorschlag:** Die rohe Antwort zusätzlich mitschreiben — z. B. als zusätzliches Feld am geparkten oder offenen Eintrag in `pruefListe` bzw. `state.kiProtokoll`. Zweck: Künftige Abweichungen wie bei Celje und Sabah wären nachträglich nachvollziehbar, nicht nur als Symptom sichtbar.
+→ **Kein Schnitt in der Messreihe:** Der Schiedsrichter ist Messwerkzeug, nicht Messgegenstand (dieselbe Begründung wie bei Punkt 26) — eine Änderung an seiner Protokollierung berührt die Bewertung der Gehirne nicht.
+→ **Kosten (Arbeitsregel G):** eine Codeänderung an der Stelle, die das Schiedsrichter-Ergebnis entgegennimmt (`verarbeite`, `pruefListe`); etwas mehr gespeicherter Text je Prüflauf, kein zusätzlicher Modellaufruf, kein Geld.
+→ **Ausdrücklich nicht gebaut** — Ondo entscheidet (Art. 8).
+
+---
+
 ## 🔴 Prio 1 — als Nächstes dran
 
 **41. 🔴 Zuordnung der Listenangaben über den Spielnamen statt über die laufende Nummer** · *Spur Chat 13 (12.8.), am 13.8. von Chat 14 am Log BEWIESEN* · **Status: Idee, Ondo vorzulegen — die URSACHE ist belegt, die Abhilfe ist es nicht**
@@ -531,6 +557,10 @@ Weg A (Beschluss Ondo 6.8.) schliesst aus der Spielliste **verkürzte** Formate 
 → **🔴 ZWEITER, STÄRKERER FALL (13.8.): 1. FC Union Berlin – Aris Limassol (9.8.), dreimal 45 Minuten.** Der Endstand 3:2 ist gesichert, der **Stand nach 90 Minuten nicht bestimmbar** — der Vereinsbericht legt alle fünf Tore in die ersten 90 Minuten (3:2 nach 90, Halbzeit 2:1), Flashscore nennt dieselben Torschützen mit 44./49./55./90./110. Minute (3:1 nach 90, Halbzeit 1:0). Beide Quellen widersprechen sich auch darin, wer zuerst traf. **Der Eintrag ist geparkt.**
 → **Warum dieser Fall stärker ist als Leeds:** Bei Leeds fehlte nur die Angabe. Hier liegen **zwei gleichwertige Quellen mit unvereinbaren Angaben** vor. Das Spiel ist nicht falsch gefunden, es ist mit der Messregel **nicht messbar**.
 → **Status jetzt: entscheidungsreif.** Es liegen zwei belegte Fälle in fünf Tagen vor.
+
+→ **🔴 Dritte Bestätigung des Leeds-Falls, 28.8.2026 (externe Gegenprüfung im Rahmen der Restarbeit zu Punkt 51):** Drei unabhängige Primärquellen — Leeds United (offizielle Vereinsseite), Sportschau/ARD, Sky Sport — bestätigen übereinstimmend: **120 Minuten**, zwei Hälften zu je 60 Minuten, ausdrücklich zu diesem Zweck vereinbart. Endstand 2:0, **zweites Tor in der 109. Minute**, Halbzeit (bei Minute 60) 1:0. **Das ist dasselbe Spiel wie oben, kein dritter Fall** — die neuen Quellen bestätigen nur, was hier bereits seit dem 9.8. steht.
+→ **Wichtiger als die Bestätigung: Sie stellt eine Annahme aus Punkt 51 (27.8.) infrage.** Dort wurde die Paarung entparkt mit der Begründung „Stand nach 90 Minuten ist bekannt und gesichert: 1:0". Bei einem 60/60-Format gibt es aber **keinen regulären Stand nach 90 Minuten** — die Halbzeitmarke liegt bei Minute 60, nicht 45, und Minute 90 fällt mitten in die zweite Hälfte. Der Massstab „Stand nach 90 Minuten", den die App misst, ist auf dieses Format schlicht nicht anwendbar; „1:0" ist kein bewiesener Zwischenstand, sondern eine Momentaufnahme ohne besondere Bedeutung für dieses Format. Einzelheiten und die Berichtigung der Ausführung stehen bei Punkt 51.
+→ **Entschieden (Ondo, 28.8.2026): Leeds–Leipzig bleibt geparkt, keine Übernahme.** Punkt 36 selbst bleibt weiterhin unentschieden — dieser Fund entscheidet nichts vor, er dokumentiert nur.
 
 ---
 
@@ -751,6 +781,8 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 > **Keine Websuche für die 26 anderen Paarungen nötig gewesen — alles bereits an anderer Stelle im Projekt belegt (Arbeitsregel H).** Für keine der 26 wäre ohne neuen Beleg etwas anderes als „bleibt geparkt" verantwortbar gewesen.
 >
 > **Ausführung (27.8.2026):** `logParkenTag('8.8.2026', false)` in der App entparkt genau diese eine Paarung — geprüft, dass an diesem Tag sonst nichts geparkt ist, der Klick trifft also nur die beiden Leeds-Leipzig-Einträge. **Nach dem Entparken meldet der nächste Prüflauf vermutlich erneut ein Ergebnis für dieses Spiel — vor dem Übernehmen gegen den hier bereits gesicherten 90-Minuten-Stand 1:0 prüfen, nicht ungeprüft übernehmen**, falls die Suche durch die Verlängerung erneut auf 2:0 hereinfällt.
+>
+> **🔴 BERICHTIGT am 28.8.2026, Fehlerart C4 (Widerspruch nicht danebenstellen, sondern im selben Durchgang berichtigen).** Der Satz „Stand nach 90 Minuten ist bekannt und gesichert: 1:0" oben war die Grundlage fürs Entparken — und ist falsch begründet. Leeds–RB Leipzig lief über zwei Hälften zu je 60 Minuten (dreifach durch Primärquellen bestätigt: Vereinsseite, Sportschau/ARD, Sky Sport — 120 Minuten, zweites Tor 109. Minute, Halbzeit bei Minute 60 mit Stand 1:0). Bei diesem Format gibt es **keine reguläre Marke bei Minute 90** — sie liegt mitten in der zweiten Hälfte, nicht an der Halbzeitgrenze. Der „Stand nach 90 Minuten" ist damit keine gesicherte Grösse, sondern eine Momentaufnahme ohne die Bedeutung, die ihr die Ausführung vom 27.8. gegeben hat. **Die Restarbeit an diesem Punkt hat das am 28.8.2026 aufgedeckt:** Von 18 durch ERGEBNISSE PRÜFEN erzeugten Vorschlägen (ausgelöst über Ondos „Wieder prüfen" vom 8.8.) hat eine externe Gegenprüfung (separater Chat, eigene Websuche je Spiel) 15 als fehlerfrei bestätigt — bereits übernommen — und drei als fehlerhaft verworfen, **nicht übernommen**: NK Celje–Slovan Bratislava, Sabah FC–Hapoel Beer-Sheva FC, und **Leeds United–RB Leipzig**, aus dem oben genannten Grund. **Ondo (28.8.): Leeds–Leipzig bleibt geparkt.** Die beiden anderen Fälle (NK Celje, Sabah FC) gehören nicht zu Punkt 36 — sie sind bei der neuen elften Fehlerart des Schiedsrichters dokumentiert (`STAND.md`).
 
 ---
 

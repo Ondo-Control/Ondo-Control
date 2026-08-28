@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 27.8.2026, Fassung 47, v19.8.3*
+*Die aktuelle Wahrheit. Stand: 28.8.2026, Fassung 48, v19.8.3*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -176,7 +176,7 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 
 ---
 
-## Der Schiedsrichter — zehn Fehlerarten
+## Der Schiedsrichter — elf Fehlerarten
 
 | # | Fehlerart | Datum | Absicherung | Version |
 |---|---|---|---|---|
@@ -190,6 +190,7 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 | 8 | **Falscher Endstand trotz aller Prüfungen** | 30.7. | *keine* — alle Absicherungen prüfen die Form, nicht die Wahrheit | — |
 | 9 | **Erfundene 0:0** | 31.7. | *keine* — löst nicht einmal eine Warnung aus | — |
 | 10 | **Stand aus der Verlängerung statt nach 90 Minuten** | 11.8. (gefunden 13.8.) | *keine* — Halbzeitstand, Datum, Wettbewerb und der Vermerk `n.Verl.` waren alle richtig; nur die Grenze bei Minute 90 war falsch gezogen. Im zweiten Lauf lieferte derselbe Schiedsrichter den richtigen Wert | — |
+| 11 | **Schwankende Antworten bei mehreren Läufen desselben Spiels trotz Temperatur 0** | 28.8. (Fälle vom 8.8./9.8., extern gegengeprüft) | *keine* — NK Celje–Slovan Bratislava: drei Läufe, drei Stände (1:2 / 1:1 / 0:1); Sabah FC–Hapoel Beer-Sheva FC: drei Läufe, drei Endstände (5:2 / 2:2 / 3:1 n.Verl.). **Keiner der sechs Läufe traf den extern belegten Wert** (Celje 1:2, Sabah 5:2). Erstes, schwächeres Auftreten desselben Musters: Fehlerart 10 oben (Apollon Limassol – SK Brann, 13.8., zwei Läufe, zwei Werte). Die rohe Antwort wird in keinem der Läufe gespeichert (nur das geparste Ergebnis) — deshalb lässt sich die Ursache im Nachhinein nicht rekonstruieren (Backlog-Punkt 64) | — |
 | — | ~~Dasselbe Spiel doppelt in der Spielliste~~ | 3.8. | **VERSCHOBEN am 7.8. (Ondo) in die eigene Tabelle „Die Spielliste" weiter unten.** Sie ist Datenhygiene, kein Schiedsrichterurteil — Geminis eigene Einordnung vom 4.8. | — |
 
 **Die wichtigste Erkenntnis (25.7.):** Alle drei KIs urteilten unabhängig, Ergebnisse unterklassiger Spiele seien nicht beschaffbar. **Das war falsch.** Ondo drückte den Prüf-Knopf mehrfach: 2 von 7, dann 4 von 7, schließlich 7 von 7. Es war kein Verfügbarkeits-, sondern ein Zuverlässigkeitsproblem.
