@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 28.8.2026, Fassung 56 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 29.8.2026, Fassung 57 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -14,6 +14,20 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 57 ändert (29.8., Rückberichtigung Chat 25/26, Nutzungsdaten-Ablesung 22:52 Uhr, drei neue Selbstauskünfte)
+
+**Anlass:** Ondo hat Fassung 56 selbst korrigiert: Die dort vorgenommene Trennung Chat 25 / Chat 26 war falsch — er hatte den Selbstauskunft-Prompt versehentlich noch im alten Chat-Fenster (Chat 25) abgeschickt. Die „21:43-Uhr-Auskunft" war also Chat 25s eigener Endstand, keine zweite Sitzung. Der allererste Stand aus Fassung 55 (15→17 Prompts, eine Sitzung) war die ganze Zeit richtig.
+
+- **`STAND.md`:** (d) wieder zusammengeführt (15→17 Prompts, Chat 25, Endstand). (f) als entfallen markiert, nicht gelöscht — mit Vermerk, worauf sich das bezieht. Zweite Berichtigung direkt neben der ersten eingetragen (nicht überschrieben), mit der Lehre, dass auch eine Ondo-Korrektur geprüft werden kann, sobald neue Belege vorliegen.
+- **Richtwert-Prüfung aus Fassung 55** entsprechend nachgerechnet: sechs statt sieben Selbstauskünfte — Ergebnis unverändert, 23,8 KB/Prompt bleibt stehen.
+- **Neue Ablesung:** 29.8.2026, 22:52 Uhr — 12 % (5-Stunden-Fenster) / 54 % (Wochenlimit), ersetzt die vom 28.8., 21:43 Uhr vollständig. Wochenlimit-Anstieg über Nacht: 47 %→54 % (7 Punkte).
+- **Drei neue Selbstauskünfte zum 29.8.:** (h) Chat 26, echte gesamte Sitzung 28.–29.8. (24 Nachrichten, 22 Sonnet + 2 Opus, Aufwand hoch bis sehr hoch, eigene Schätzung 700–900 KB gegen rechnerische 524 KB aus dem Richtwert), (i) unabhängiger, projektfremder Chat (2 Prompts, Opus/Hoch + Sonnet/Mittel, geschätzt 260–420 KB, ausdrücklich für den Kontingent-Zusammenhang mitgezählt), (j) diese Code-Sitzung für diesen Auftrag.
+
+- **Fassungszahl:** alle drei aktiven Dokumente auf 57 gehoben (Blueprint 0.56), Datum auf 29.8.2026 vorgerückt. `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
 
 ---
 
