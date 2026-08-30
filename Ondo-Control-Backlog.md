@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 29.8.2026, Fassung 57 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 30.8.2026, Fassung 58 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -14,6 +14,19 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 58 ändert (30.8., Fund: harte Leselängen-Grenze im Chat-Bereich bei rund 120.000 Zeichen)
+
+**Anlass:** Bei der Übergabe an Chat 27 (29.8.2026) hat eine Code-Sitzung gemessen, dass ein Raw-Link-Abruf im Chat-Bereich **exakt bei 120.000 Zeichen** abbricht — zweifach mit unterschiedlicher angehängter Zahl geprüft, derselbe Abbruch an derselben Stelle. Der Backlog selbst, eines der vier Pflichtdokumente, lag mit 150.591 Zeichen darüber; Chat 27 fehlte dadurch ein Fünftel der Pflichtlektüre, ohne dass eine Fehlermeldung erschien. Der fehlende Teil wurde als separate Datei nachgeliefert und hat die Übergabe gerettet — das behebt aber nichts strukturell.
+
+- **Neuer Backlog-Punkt 65 aufgenommen** (Fund, keine Entscheidung): Drei Wege benannt, jeder mit Kosten (Arbeitsregel G). **Ondo entscheidet, welcher Weg gegangen wird — keiner ist bisher gewählt.**
+- **Betrifft nur den Chat-Bereich.** Eine Sitzung im Code-Bereich liest Dateien direkt aus dem Repository, ohne dieses Abrufwerkzeug — dort tritt die Grenze nicht auf. Gefunden hat sie folgerichtig eine Code-Sitzung.
+- **Kein Backlog-Punkt-Status geändert**, ausser der Aufnahme von Punkt 65 selbst. Reiner Fund, wie bei den Punkten 53/58/59 üblich.
+
+- **Fassungszahl:** alle drei aktiven Dokumente auf 58 gehoben (Blueprint 0.57). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert — Punkt 65 ist Fund, keine Entscheidung, zählt daher nicht zu dieser Liste.)*
 
 ---
 
@@ -644,6 +657,27 @@ Bei NK Celje–Slovan Bratislava und Sabah FC–Hapoel Beer-Sheva FC lieferte de
 → **🔴 Celje/Sabah markiert, im selben Zug (28.8.2026):** Neues Feld `parkGrund` (bisher gab es nur `e.geparkt` als Boolean, kein Grund-Feld). Einmalige, automatische Migration in `load()` (`state.seedV<5`, dasselbe Muster wie die bestehende v18-Archiv-Markierung) setzt `parkGrund:'unstable_ref'` bei geparkten Einträgen, deren Datum und Spielname (Stichwörter, klein geschrieben) zu NK Celje–Slovan Bratislava (25.8.) bzw. Sabah FC–Hapoel Beer-Sheva FC (26.8.) passen. **Grenze, offen ausgesprochen:** Stichwort- statt Exakt-Vergleich, weil `match` roh vom jeweiligen Gehirn stammt und leicht unterschiedlich geschrieben sein kann (dieselbe Grenze wie bei Punkt 51) — kein „zweifelsfrei" wie dort, sondern ein einmaliges, gezieltes Markieren zweier bekannter Spiele. Deshalb zusätzlich **sichtbar im Log** (Text- und Kartenansicht), damit Ondo nach der Lieferung selbst sieht, ob genau die richtigen Einträge markiert sind. **Bedingung, ausdrücklich: Neubewertung dieser beiden Spiele erst, sobald die Ursache der elften Fehlerart geklärt und der Schiedsrichter entsprechend repariert ist — nicht jetzt, kein Entparken, keine rückwirkende Rekonstruktion der bereits gelaufenen Antworten (nicht möglich, sie existieren nicht mehr).** Leeds-Leipzig (Punkt 36) ist ein anderer Fall und unberührt.
 → **Verifiziert:** `node --check` bestanden. Nicht committeter Python-Nachbau mit drei Fixture-Fällen (mehrere Läufe überschreiben `refRoh` nicht · Stichwortmuster markiert genau Celje/Sabah, nicht Leeds oder ein unbeteiligtes geparktes Spiel · ein bereits markierter Eintrag wird beim erneuten Durchlauf nicht doppelt verändert) — alle drei bestanden. `pruefe.py` danach: ALLES SAUBER.
 → **🔴 Nachfrage 28.8.2026, ERGÄNZT, `beta.html` v19.8.6: Modellversion bei `refRoh`.** Geprüft und belegt (`ai.google.dev`, GenerateContentResponse): Die Gemini-API liefert ein eigenes Feld `modelVersion` — die tatsächlich aufgelöste Version, nicht den aufgerufenen `gemini-flash-latest`-Alias (dokumentiertes Beispiel: Aufruf über `gemini-1.5-flash-latest` lieferte `modelVersion:"gemini-1.5-flash-002"`). `geminiCall()` verwarf dieses Feld bisher zusammen mit dem restlichen rohen `res`. Jetzt wird es durchgereicht und landet als `modell` an jedem neuen `refRoh`-Eintrag — bei Gemini die aufgelöste Version (oder `null`, falls sie ausnahmsweise fehlt, ausdrücklich nicht geraten, Art. 11/14), beim Sonnet-Rückfallpfad der feste, alias-freie Modellname `claude-sonnet-4-6`. **Gilt nur für künftige Läufe** — keine rückwirkende Ergänzung, es gab ohnehin noch keinen Prüflauf mit `refRoh` seit dem 28.8.2026. **Verifiziert:** `node --check` bestanden, drei Fixture-Fälle im Python-Nachbau bestanden (Gemini mit vorhandener Version · Gemini ohne Version → `null`, nicht geraten · Sonnet-Pfad immer fest), `pruefe.py` danach: ALLES SAUBER.
+
+---
+
+**65. Harte Leselängen-Grenze im Chat-Bereich bei rund 120.000 Zeichen** · *Fund 29.8.2026, Claude, bei der Übergabe an Chat 27* · **Status: Fund — Ondo vorzulegen, drei Wege genannt, keiner gewählt**
+
+Ein Raw-Link-Abruf im Chat-Bereich liefert nicht die ganze Datei, sondern bricht **exakt bei 120.000 Zeichen** ab — kein ungefährer Rand, eine feste Grenze. Zweifach geprüft: derselbe Abbruch an derselben Stelle, mit zwei verschieden angehängten Zahlen zum Umgehen der Zwischenspeicherung (Backlog-Punkt 53, Fund vom 22.8.).
+
+**Betroffen ist der Backlog selbst**, eines der vier Pflichtdokumente: 150.591 Zeichen — **rund ein Fünftel fehlt** bei einem Abruf im Chat-Bereich, ohne dass eine Fehlermeldung erscheint. Nachgemessen über alle Commits: Der Backlog lag am 27.8.2026 abends bei 119.812 Zeichen, knapp unter der Grenze. **Mit Fassung 48 am 28.8.2026 (127.660 Zeichen) ist er darüber, und jede weitere Fassung seither noch weiter darüber.**
+
+Auch betroffen, ausserhalb der Pflichtlektüre: `CHRONIK-2026-08.md` (164.036 Zeichen), `BACKLOG-ARCHIV.md` (122.003), `archiv/PROJEKT-STATUS.md` (199.347), `beta.html` (148.695 — wird ohnehin nicht ganz gelesen, siehe Ausnahme in `STAND.md`). `STAND.md`, `Blueprint.md` und `Ondo-Core-Architektur.md` liegen mit 60.896 / 43.501 / 11.302 Zeichen deutlich darunter.
+
+→ **Nicht betroffen: der Code-Bereich.** Eine Sitzung dort liest Dateien direkt aus dem Repository, nicht über das Abrufwerkzeug des Chat-Bereichs — die Grenze tritt dort nicht auf. Gefunden hat sie folgerichtig eine Code-Sitzung, nicht ein Chat.
+→ **Folge, solange nichts entschieden ist:** Jede Chat-Übergabe muss den fehlenden Teil eigens erkennen und nachliefern, wie am 29.8.2026 bei Chat 27 geschehen — sonst arbeitet ein neuer Chat mit einem Fünftel weniger Pflichtlektüre, ohne es zu merken.
+
+**Drei Wege, mit Kosten (Arbeitsregel G):**
+→ **A — Ganze Datei als Anhang hochladen.** Umgeht das Abrufwerkzeug, bewährtes Verfahren seit dem 3.8. Kosten: rund 150 KB Speicher in der jeweiligen Sitzung, bei jeder künftigen Übergabe erneut.
+→ **B — Nur den fehlenden Teil gezielt nachliefern**, mit vorher gemessener, überlappender Nahtstelle. Kosten: gering (rund 30 KB), aber Handarbeit bei jeder betroffenen Übergabe, kein struktureller Fix.
+→ **C — Backlog kürzen**, nach dem Vorbild von Punkt 18: Die gestapelten Abschnitte „Was Fassung N ändert" (48.553 Zeichen, knapp ein Drittel der Datei) ins Archiv verschieben. Kosten: eine Code-Sitzung, kein Geld. **Zwei Haken:** `BACKLOG-ARCHIV.md` liegt mit 122.003 Zeichen selbst schon über der Grenze — das Ziel wäre auch nicht vollständig lesbar. Und der maschinelle Verlustbeweis für den Backlog ist seit dem 27.8. übersprungen (Punkt 52); eine neue Trennung bräuchte eine neue Vergleichsgrundlage, sonst gäbe es keinen Beweis, dass nichts verlorengeht.
+
+→ **Empfehlung Claude: B für die jeweils nächste anstehende Übergabe, C als spätere, von Ondo zu entscheidende Strukturfrage.** B behebt nichts dauerhaft, ist aber sofort verfügbar und günstig. C behebt die Ursache, ist aber nicht so dringend, dass sie vorgezogen werden müsste.
+→ **Kein Schnitt in der Messreihe, kein Eingriff in `beta.html`.** Reine Dokument- und Arbeitsablauffrage.
 
 ---
 
