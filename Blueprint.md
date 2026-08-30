@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.62
+**Version:** 0.63
 **Stand:** 30. August 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.63 ändert (30.8.2026):** Ondo hat Backlog-Punkte 36, 37 und 41 entschieden und in einer Lieferung gebaut (`beta.html` v19.8.7). Punkt 36: Schiedsrichter-/Spielformat-Auftragstext schliesst jetzt namentlich Sonderformate aus (2x60, 3x45 u. ä.) statt nur verkürzte, reguläre Verlängerung bleibt erlaubt. Punkt 37: `vorhersagen()` überspringt einen Eintrag, wenn dasselbe Gehirn für dasselbe Spiel am selben Tag bereits einen hat (keine Begrenzung der Läufe pro Tag). Punkt 41: `wettbewerb`/`anpfiff`/`stufe` werden über den Spielnamen statt über die Listenposition nachgeschlagen, kein Treffer lässt die Felder leer. Neue gemeinsame Funktion `normName()` löst die bisher lokale S1-Normalisierung ab, ohne deren Verhalten zu ändern — bekannte Grenze (kein Ausgleich für fehlendes/zusätzliches „FC" u. ä.) bleibt unverändert und durch Trockentest bestätigt. Kein Schnitt in der Messreihe, keine neuen Sprachschlüssel, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.63 gehoben.
 
 > **Was Fassung 0.62 ändert (30.8.2026):** Ondos eigenes Gegenlesen von Commit `a939a86` fand eine 31. Fundstelle ohne Fundort-Angabe (`STAND.md`, „Backlog-Punkte E und 2 gebaut" — nur Punkt 2 archiviert). Korrigiert, bewusst mit anderem Wortlaut als vorgeschlagen, um Punkt E nicht fälschlich als archiviert erscheinen zu lassen. Bei der daraufhin verlangten unabhängigen Neusuche in diesem Dokument ein eigener Methodenfehler der Code-Sitzung gefunden (Genitiv-Formen wie „Punkt 51s" wurden vom ersten Suchmuster nicht erkannt) — folgenlos für das Ergebnis, aber als zweiter Beleg für die Grenzen manueller Nachsuche in Backlog-Punkt 66 ergänzt. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.62 gehoben.
 

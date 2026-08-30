@@ -122,7 +122,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.6';
+var CODE_VERSION = 'v19.8.7';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -547,6 +547,10 @@ function teamsAus(match){
   var p = String(match||'').split(/\s+[-–]\s+/);
   return { heim:(p[0]||'Heim').trim(), gast:(p[1]||'Gast').trim() };
 }
+/* v19.8.7 (Backlog-Punkte 37, 41): dieselbe Namensvarianten-Normalisierung, die spielListeHolen
+   fuer die Dubletten-Sperre (S1) verwendet - jetzt an einer Stelle, damit alle drei Verwender
+   (Dubletten-Sperre, Punkt 37, Punkt 41) garantiert dieselbe Regel anwenden. */
+function normName(str){ return String(str||'').toLowerCase().replace(/[^a-z0-9]/g,''); }
 function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
 /* ================= LOG ALS TEXT (v19.7.5, Backlog-Punkt 22) =================
@@ -1320,7 +1324,13 @@ function stufeHolen(stufe){
        ist aber nicht dieselbe Aussage. Keine Fehlerart des Schiedsrichters, sondern eine Luecke
        in der Spielliste. Ausgeschlossen wird das FORMAT, nicht nach Minuten gefragt. */
     'Turniere mit verkuerzter Spielzeit (Vorbereitungsturniere mit 45- oder 60-Minuten-Partien).\n'+
-    'Jedes aufgenommene Spiel muss ueber die vollen 90 Minuten gehen. Im Zweifel nicht aufnehmen.\n'+
+    /* v19.8.7 (Backlog-Punkt 36, Ondo-Entscheidung): "ueber die vollen 90 Minuten" schloss nur
+       verkuerzte Formate aus, nicht verlaengerte Sonderformate wie Leeds-RB Leipzig (8.8., zwei
+       Haelften zu je 60 Minuten) oder Union Berlin-Aris Limassol (9.8., dreimal 45 Minuten) - bei
+       beiden gibt es keine reguläre Marke bei Minute 90. Jetzt namentlich auf das Standardformat
+       eingegrenzt, regulaere Verlaengerung bleibt ausdruecklich erlaubt. */
+    'Nur Spiele im Standardformat (2x45 Minuten, bei Bedarf plus reguläre Verlängerung 2x15 Minuten) werden aufgenommen. '+
+    'Spiele mit abweichender Halbzeit- oder Periodenlänge (z. B. 2x60, 3x45) werden ausgeschlossen. Im Zweifel nicht aufnehmen.\n'+
     'Nimm auch NICHTS auf, was ausserhalb des oben abgegrenzten Bereichs liegt — auch dann nicht, wenn du sonst nur wenige Spiele findest. '+
     'Eine kurze Liste ist richtig, eine mit fremden Wettbewerben ist falsch.\n\n'+
     'Findest du in diesem Bereich heute gar nichts, antworte mit einer leeren Liste.\n\n'+
@@ -1339,11 +1349,10 @@ function stufeHolen(stufe){
 }
 function spielListeHolen(){
   var ZIEL=5, gesammelt=[];
-  function schluessel(s){ return String(s.match).toLowerCase().replace(/[^a-z0-9]/g,''); }
   function dazu(liste){
     liste.forEach(function(s){
-      var k=schluessel(s);
-      var schon=gesammelt.some(function(x){ return schluessel(x)===k; });
+      var k=normName(s.match);
+      var schon=gesammelt.some(function(x){ return normName(x.match)===k; });
       if(!schon) gesammelt.push(s);
     });
   }
@@ -1454,6 +1463,22 @@ function vorhersagen(btn){
           return '';
         }
         var match=String(v.match||'');
+        /* v19.8.7 (Backlog-Punkt 37): Vor dem Anlegen pruefen, ob dieses Gehirn fuer dasselbe
+           Spiel (Namensvarianten wie bei S1) am selben Tag schon einen Eintrag geschrieben hat.
+           Bewusst je Gehirn geprueft, nicht global — Sonnet und Flash duerfen beide legitim
+           einen eigenen Eintrag fuer dasselbe Spiel haben, nur ein zweiter Lauf desselben
+           Gehirns am selben Tag fuer dasselbe Spiel wird uebersprungen. Keine Begrenzung der
+           Laeufe pro Tag - nur echte Duplikate werden nicht angelegt. */
+        var istDuplikat = state.kiProtokoll.some(function(e){
+          return e.aera==='v19' && e.herkunft===gehirn && e.datum===heuteD && normName(e.match)===normName(match);
+        });
+        if(istDuplikat) return;
+        /* v19.8.7 (Backlog-Punkt 41): wettbewerb/anpfiff/stufe kamen bisher ueber paket.liste[idx] -
+           also ueber die Position in der Liste, nicht ueber das Spiel, das das Gehirn tatsaechlich
+           beantwortet hat. Stimmte die Reihenfolge der Antwort nicht mit der Liste ueberein, wurden
+           diese Felder dem falschen Spiel zugeschrieben. Jetzt Nachschlagen ueber den Spielnamen
+           (gleiche Namensvarianten-Logik wie bei S1/Punkt 37). Kein Treffer: Felder bleiben leer. */
+        var spielGefunden = paket.liste.find(function(s){ return normName(s.match)===normName(match); });
         var eintrag={
           id:'v'+Date.now()+'_'+gehirn+'_'+idx,
           aera:'v19',
@@ -1465,12 +1490,12 @@ function vorhersagen(btn){
           codeVersion:CODE_VERSION,
           datum:heuteD,
           match:match,
-          wettbewerb:(paket.liste[idx]&&paket.liste[idx].wettbewerb)||'',
-          anpfiff:(paket.liste[idx]&&paket.liste[idx].anpfiff)||'',
+          wettbewerb:(spielGefunden&&spielGefunden.wettbewerb)||'',
+          anpfiff:(spielGefunden&&spielGefunden.anpfiff)||'',
           /* v19.8.1: Aus welchem der drei Suchdurchgaenge das Spiel stammt. Die Nummer wurde
              bisher in stufeHolen berechnet und beim Anlegen weggeworfen. Sie zeigt, ob falsche
              Anpfiffzeiten aus einer bestimmten Stufe kommen. Aendert nichts am Rechnen. */
-          stufe:(paket.liste[idx]&&paket.liste[idx].stufe)||null,
+          stufe:(spielGefunden&&spielGefunden.stufe)||null,
           herkunft:gehirn,
           heim:h, gast:g,
           bttsWort:jaNeinWort(v.bttsWort),

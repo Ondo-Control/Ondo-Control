@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 30.8.2026, Fassung 63 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 30.8.2026, Fassung 64 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -15,6 +15,22 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 64 ändert (30.8., drei Backlog-Punkte gebaut — Auftrag Ondo)
+
+**Anlass:** Ondo hat Backlog-Punkte 36, 37 und 41 entschieden und in einer Lieferung in Auftrag gegeben.
+
+- **Punkt 36 gebaut:** Schiedsrichter-/Spielformat-Auftragstext schliesst jetzt namentlich Sonderformate aus (2x60, 3x45 u. ä.) statt nur verkürzte Formate; reguläre Verlängerung (2x15) bleibt ausdrücklich erlaubt. Gemessen wird weiterhin Stand nach 90 Minuten plus Nachspielzeit.
+- **Punkt 37 gebaut:** `vorhersagen()` überspringt einen Eintrag, wenn dasselbe Gehirn für dasselbe Spiel (Namensvarianten wie bei S1) am selben Tag bereits einen Eintrag hat. Keine Begrenzung der Läufe pro Tag, nur Duplikate werden übersprungen.
+- **Punkt 41 gebaut:** `wettbewerb`/`anpfiff`/`stufe` werden über den Spielnamen aus der Liste nachgeschlagen statt über `paket.liste[idx]`. Kein Treffer: Felder bleiben leer/`null`.
+- **Neue gemeinsame Funktion `normName()`** in `beta.html` (v19.8.7): fasst die bisher in `spielListeHolen` lokale Namensnormalisierung (S1) an einer Stelle zusammen, jetzt auch von Punkt 37 und Punkt 41 verwendet. Kein Verhaltensunterschied gegenüber der bisherigen `schluessel()`-Funktion in `spielListeHolen`.
+- **Bekannte, unveränderte Grenze bei allen drei Namensvergleichen (S1, Punkt 37, Punkt 41):** `normName()` gleicht Gross-/Kleinschreibung, Satzzeichen und Strichvarianten aus, entfernt aber keine Wörter wie „FC" — der historische Fall „Red Bull Salzburg" gegen „FC Red Bull Salzburg" (Punkt 37) bleibt damit ein nicht erkanntes Duplikat. Durch Trockentest bestätigt, nicht neu — unverändert durch diese Lieferung.
+- **Verifikation:** `node --check` auf dem extrahierten Skript bestanden. Trockentest bestanden: Punkt 37 (zwei Läufe desselben Spiels/Tages/Gehirns → zweiter übersprungen; anderes Spiel/Tag/Gehirn → nicht übersprungen) und Punkt 41 (Antwort in anderer Reihenfolge als die Liste → richtiges Spiel gefunden; kein Treffer → Felder leer/`null`). `pruefe.py`: ALLES SAUBER.
+- **Kein Schnitt in der Messreihe bei allen dreien.** Keine neuen Sprachschlüssel (Sprachschlüsselzahl unverändert 229, gegen die Änderung geprüft).
+- **Fassungszahl:** alle drei aktiven Dokumente auf 64 gehoben (Blueprint 0.63). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
 
 ---
 
@@ -301,9 +317,12 @@ Auch betroffen, ausserhalb der Pflichtlektüre: `CHRONIK-2026-08.md` (164.036 Ze
 
 ## 🔴 Prio 1 — als Nächstes dran
 
-**41. 🔴 Zuordnung der Listenangaben über den Spielnamen statt über die laufende Nummer** · *Spur Chat 13 (12.8.), am 13.8. von Chat 14 am Log BEWIESEN* · **Status: Idee, Ondo vorzulegen — die URSACHE ist belegt, die Abhilfe ist es nicht**
+**41. 🔴 Zuordnung der Listenangaben über den Spielnamen statt über die laufende Nummer** · *Spur Chat 13 (12.8.), am 13.8. von Chat 14 am Log BEWIESEN* · **Status: 🔴 GEBAUT am 30.8.2026 (Beschluss Ondo)**
 
-**Der Befund.** In `vorhersagen()` kommt der Spielname aus der Antwort des Gehirns, aber **Anpfiffzeit, Wettbewerb und Stufe kommen aus der Spielliste an derselben Zählstelle**:
+> **🔴 GEBAUT am 30.8.2026:** In `vorhersagen()` (`beta.html`, v19.8.7) werden `wettbewerb`, `anpfiff` und `stufe` nicht mehr über `paket.liste[idx]` (Position), sondern über `paket.liste.find(...)` mit Namensabgleich über die neue gemeinsame Funktion `normName()` nachgeschlagen (dieselbe Regel wie bei der Dubletten-Sperre in `spielListeHolen`, S1, und bei Punkt 37). Kein Treffer in der Liste: Alle drei Felder bleiben leer/`null`, statt dem falschen Spiel zugeschrieben zu werden. Trockentest bestanden (Antwort in anderer Reihenfolge als die Liste findet trotzdem das richtige Spiel; kein Treffer lässt die Felder leer). Kein Schnitt in der Messreihe — ändert nichts am Auftragstext der Gehirne oder an Prozentangaben, Tipps, Märkten. Keine neuen Sprachschlüssel.
+> **Bekannte Grenze, unverändert durch diese Lieferung:** `normName()` gleicht Gross-/Kleinschreibung, Satzzeichen und Strichvarianten aus, entfernt aber keine Wörter wie „FC" — der Fall aus Punkt 37 („Red Bull Salzburg" gegen „FC Red Bull Salzburg") wäre auch mit dieser Funktion kein erkannter Treffer.
+
+**Der Befund (Ausgangslage vor dem Bau).** In `vorhersagen()` kommt der Spielname aus der Antwort des Gehirns, aber **Anpfiffzeit, Wettbewerb und Stufe kommen aus der Spielliste an derselben Zählstelle**:
 
 ```
 vorher.forEach(function(v, idx){
@@ -328,7 +347,10 @@ Liefert ein Gehirn mehr, weniger oder anders geordnete Vorhersagen als die Liste
 
 ### Als v19.7 gebaut am 3.8.: A · 0a · 1 · D — Bewährungszeit läuft
 
-**36. Verlängerte Spielformate schliessen — die andere Hälfte von Weg A** · *Fund 9.8., Claude beim Prüflauf* · **Status: Idee, Ondo vorzulegen**
+**36. Verlängerte Spielformate schliessen — die andere Hälfte von Weg A** · *Fund 9.8., Claude beim Prüflauf* · **Status: 🔴 GEBAUT am 30.8.2026 (Beschluss Ondo)**
+
+> **🔴 GEBAUT am 30.8.2026:** Der Schiedsrichter-/Spielformat-Auftragstext in `stufeHolen()` (`beta.html`, v19.8.7) schliesst jetzt namentlich Sonderformate aus, statt nur verkürzte: „Nur Spiele im Standardformat (2x45 Minuten, bei Bedarf plus reguläre Verlängerung 2x15 Minuten) werden aufgenommen. Spiele mit abweichender Halbzeit- oder Periodenlänge (z. B. 2x60, 3x45) werden ausgeschlossen." Reguläre Verlängerung bleibt ausdrücklich eingeschlossen — anders als der ursprüngliche Vorschlag „genau 90 Minuten … weder verkürzt noch verlängert" weiter unten, der reguläre Verlängerung mit ausgeschlossen hätte (Ondos Entscheidung weicht davon ab). Gemessen wird weiterhin der Stand nach 90 Minuten plus Nachspielzeit — unverändert. Kein Schnitt in der Messreihe. Keine neuen Sprachschlüssel.
+> **Grenze der Wirkung bleibt bestehen** (siehe unten): Das schliesst nur aus, was die Spielliste als Sonderformat erkennt — ein Modell, das das Format nicht kennt, nimmt es trotzdem auf.
 
 Weg A (Beschluss Ondo 6.8.) schliesst aus der Spielliste **verkürzte** Formate aus: „Turniere mit verkuerzter Spielzeit (Vorbereitungsturniere mit 45- oder 60-Minuten-Partien)" und verlangt „Jedes aufgenommene Spiel muss ueber die vollen 90 Minuten gehen."
 
@@ -348,7 +370,10 @@ Weg A (Beschluss Ondo 6.8.) schliesst aus der Spielliste **verkürzte** Formate 
 
 ---
 
-**37. Kein Schutz gegen einen zweiten Vorhersagelauf am selben Tag** · *Fund 9.8., Claude* · **Status: Idee, Ondo vorzulegen**
+**37. Kein Schutz gegen einen zweiten Vorhersagelauf am selben Tag** · *Fund 9.8., Claude* · **Status: 🔴 GEBAUT am 30.8.2026 (Beschluss Ondo)**
+
+> **🔴 GEBAUT am 30.8.2026:** `vorhersagen()` (`beta.html`, v19.8.7) prüft vor dem Anlegen eines Eintrags, ob dasselbe Gehirn (`herkunft`) für dasselbe Spiel (Namensvarianten über die neue gemeinsame Funktion `normName()`, dieselbe Regel wie bei S1) am selben Tag (`datum`) bereits einen Eintrag im Bestand hat, und überspringt einen echten Doppeleintrag ohne ihn anzulegen. **Geklärt (unten offene Frage „ob ein bewusst zweiter Lauf zulässig ist"):** Es gibt weiterhin keine Begrenzung der Läufe pro Tag — nur echte Duplikate (gleiches Spiel, gleicher Tag, gleiches Gehirn) werden übersprungen, ein zweiter Lauf mit anderen oder zusätzlichen Spielen legt diese normal an. Sonnet und Flash dürfen weiterhin je einen eigenen Eintrag für dasselbe Spiel haben (Prüfung ist je Gehirn, nicht global). Trockentest bestanden (zweiter Lauf desselben Spiels/Tags/Gehirns wird übersprungen; anderes Spiel, anderer Tag oder anderes Gehirn legt normal an). Kein Schnitt in der Messreihe. Keine neuen Sprachschlüssel.
+> **Bekannte Grenze, unverändert durch diese Lieferung:** Der historische Fall unten („Red Bull Salzburg" gegen „FC Red Bull Salzburg") wird von `normName()` weiterhin **nicht** als Duplikat erkannt — die Funktion gleicht Gross-/Kleinschreibung, Satzzeichen und Strichvarianten aus, entfernt aber keine Wörter wie „FC".
 
 `vorhersagen()` legt jeden zurückgegebenen Eintrag ungeprüft an. Es gibt **keine Prüfung**, ob ein Spiel für denselben Tag bereits im Log steht.
 
