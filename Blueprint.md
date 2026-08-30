@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.59
+**Version:** 0.60
 **Stand:** 30. August 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.60 ändert (30.8.2026):** Chat 27s Auftrag, Teil 2 und 3: Zehn erledigte Backlog-Punkte (2, 47, 48, 49, 51, 52, 55, 56, 59, 60) nach `BACKLOG-ARCHIV.md` verschoben — Kriterium: GEBAUT/GEKLÄRT/ENTSCHIEDEN/BEANTWORTET/GESCHLOSSEN und keine Bewährungs-Einschränkung im Punkt selbst (Backlog Fassung 61). Sechs Punkte bewusst nicht verschoben, mit Begründung im Backlog (46, 54, 61, E, 64, 58) plus zwei ausdrückliche Ondo-Ausnahmen (50, 62). Ein Querverweis berichtigt (Punkt 36 auf das jetzt archivierte Punkt 51). Backlog jetzt 88.442 Zeichen (vorher 108.699). **Teil 3, neue dauerhafte Regel:** Backlog-Pflege (reines Archivieren eindeutig Erledigten) ist ab jetzt Code-Aufgabe ohne Chat-Anstoss, als Regel 4 im Backlog-Kopf festgehalten — keine neue Arbeitsregel im Sinn von Abschnitt 2c, Art. 8 bleibt für alles andere unverändert. Kein Verfassungsartikel geändert. Blueprint auf 0.60 gehoben.
 
 > **Was Fassung 0.59 ändert (30.8.2026):** Backlog-Punkt 65, Weg C ausgeführt (Ondos Entscheidung): Die Fassungsabschnitte 24–59 (50.570 Zeichen) sind aus `Ondo-Control-Backlog.md` nach `BACKLOG-ARCHIV.md` verschoben, nach dem Vorbild von Punkt 18. Verlustbeweis von Hand geführt (byte-genaue Rekonstruktion gegen den vorherigen Commit), nicht durch einen neuen `pruefe.py`-Abschnitt — dieselbe Lücke wie bei Punkt 52, offen benannt. Backlog jetzt 108.699 Zeichen (vorher 156.999), wieder unter der 120.000-Zeichen-Grenze aus Punkt 65. **Neuer, unentschiedener Fund dabei:** Auch ohne jede Änderungsnotiz liegt der Backlog wegen inline stehender abgeschlossener Punkte bei rund 106.400 Zeichen — nur benannt, nicht behoben. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.59 gehoben.
 

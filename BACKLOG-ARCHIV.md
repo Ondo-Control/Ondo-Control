@@ -5,6 +5,150 @@
 *Offene Punkte stehen in `Ondo-Control-Backlog.md`. Steht hier ein Status, der dort anders lautet, gilt der Backlog.*
 
 ---
+## Erledigte Punkte, archiviert am 30.8.2026 (Backlog Fassung 61, Teil 2 des Auftrags von Chat 27)
+
+*Zehn Punkte, alle mit Status GEBAUT/GEKLÄRT/ENTSCHIEDEN/BEANTWORTET/GESCHLOSSEN und ohne Bewährungs-Einschränkung im eigenen Text — Kriterium und Ausnahmen stehen in Fassung 61 des Backlogs und in Regel 4 dort. Wortgleich verschoben, nichts gekürzt. Reihenfolge: aufsteigende Punktnummer.*
+
+---
+
+**2. Erster Lernschritt** · *Idee 6.7., ChatGPT (Lernkette) · Art. 9* · **Status: 🔴 GEBAUT am 27.8.2026 — nur Flash, Wortlaut von Ondo bestätigt**
+
+> **🔴 GEBAUT am 27.8.2026:** Der Vorhersage-Auftrag in `beta.html` (v19.8.3) trägt jetzt, ausschliesslich für Flash, den Absatz: „LEHRE AUS DEINER EIGENEN KALIBRIERUNG: Du ueberschaetzt deine eigene Zuversicht im Bereich 60-69 Prozent deutlich: von 49 Aussagen mit im Schnitt behaupteten 63 Prozent trafen nur 49 Prozent ein. Dasselbe Muster zeigt sich darunter. Nimm diese Abweichung als festen Erfahrungswert in deine eigene Einschaetzung auf." Sonnet bleibt unverändert, wie von beiden Prüfern (4.8.) empfohlen. **Ab hier gemessene Flash-Aussagen sind mit den älteren nicht mehr direkt vergleichbar** — dieselbe Art Schnitt wie bei Punkt F.
+
+Jedes Gehirn bekommt seine eigene Kalibrierung mitgeteilt, Ondo bestätigt die Lehre, dann gilt sie.
+
+Für **Flash** ist die Lehre klar benennbar: 29 Aussagen im Bereich 60–69 %, behauptet 62 %, eingetroffen 45 %.
+
+**Warnung (Claude, verschärft 31.7.):** Für **Sonnet** gibt es insgesamt **fünf** bewertete Aussagen oberhalb von 60 %. Die 87 Aussagen stammen überwiegend aus Testspielen und ausgeglichenen Partien; die sieben CL-Vorhersagen vom 29.7. sind nicht darunter, weil sie nie übernommen wurden. Eine Lehre auf dieser Grundlage misst vor allem, wie schwer die Spiele waren.
+
+**Zweiter Grund zum Verschieben (31.7.):** Ein Lernschritt ist nach Art. 9 eine bestätigte Lehre. Eine Lehre auf ungeklärter Datengrundlage wieder zurückzunehmen ist teurer, als sie später zu geben. Solange Test A offen ist, weiß niemand, was ein Teil dieser Zahlen bedeutet.
+
+→ *Empfehlung Claude: verschieben. **Entscheidung Ondos steht aus.***
+→ **⚠ Neu am 6.8.: Die Schwelle ist überschritten.** *(Verlaufsangabe vom 6.8. — der heutige Messstand steht in `STAND.md` und nur dort.)* Nachgerechnet aus dem KI-Log-Text und gegen die App geprüft: **je 135 bewertete Aussagen**. Der belegte Maßstab „rund 100 je Gehirn" ist damit erreicht, und der **erste** Grund zum Verschieben ist weggefallen.
+→ **Der zweite Grund besteht fort:** Sonnet hat über 60 % nur **10 von 135** Aussagen. Über Sonnets Verhalten bei Zuversicht wissen wir weiterhin fast nichts.
+→ **Flashs Lehre ist jetzt sehr solide belegt:** 49 Aussagen im Bereich 60–69 %, behauptet 63 %, eingetroffen 49 %. Dazu dasselbe Muster nach unten: unter 50 % behauptet 43, eingetroffen 32.
+→ Das deckt sich mit der Antwort beider Prüfer vom 4.8.: im ersten Durchgang nur Flash korrigieren. **Ondos Entscheidung steht weiterhin aus.**
+→ **Beschlossen (Ondo, 31.7.): als ausdrücklich OFFENE Frage an ChatGPT und Gemini geben.** Bericht gestellt am 4.8., 06:15 Uhr.
+→ **Antwort beider Prüfer (4.8.): ja, im ersten Durchgang nur Flash korrigieren, Sonnet unangetastet lassen.** Begründung: Sonnet ist mit 5 % solide; zu mehr Entschlossenheit zu drängen, erzöge ein ehrliches Modell zu falscher Sicherheit. **Entscheidung Ondos steht weiterhin aus** — eine Prüferantwort ist ein Vorschlag, kein Auftrag (Art. 8).
+→ **⚠ Zahlenberichtigung (4.8., gefunden von Chat 5):** Der Bericht vom 4.8. behauptet, eine „150er-Schwelle" für den Lernschritt sei mit 174 Aussagen überschritten. **Beides ist falsch.** Eine 150er-Schwelle steht in keiner Projektdatei; belegt ist ausschliesslich „rund 100 **pro Gehirn**" (PROJEKT-STATUS, Abschnitt Richtungswechsel 23.7.). Und 87 + 87 zu addieren ist unsinnig, weil der Lernschritt je Gehirn gilt. **Nach dem belegten Maßstab ist die Schwelle nicht erreicht.** Eine berichtigte Fassung ist den Prüfern nachzureichen.
+
+---
+
+**47. Selbsttest für die App** · *Vorschlag 14.8., Claude · beschlossen 14.8., Ondo · gebaut 24.8.2026, Mistral im Code-Modus (Skript `selbsttest.py`, Branch `mistral`), gegengeprüft von Claude* · **Status: GEBAUT 24.8.2026 — gebaut und verifiziert über Mistrals Code-Modus (Skript `selbsttest.py` auf Branch „mistral"), Ergebnis von Claude gegengeprüft (Funktion `marktUrteil` in `beta.html` stimmt mit dem Testskript überein, beide Testfälle korrekt)**
+
+Vor jeder Codelieferung: Syntaxprüfung von `beta.html`, Sprachschlüssel-Abgleich DE/FR/EN, und feste Rechenproben — eine bekannte Eingabe muss die bekannte Bewertung ergeben.
+
+→ **Warum:** `pruefe.py` prüft nur Dokumente. Nichts prüft, ob die App nach einer Änderung noch läuft. Ein Codefehler fällt heute erst im Betrieb auf.
+→ **Kosten:** ein halber Arbeitsblock, kein Geld.
+→ **🔴 GEBAUT am 24.8.2026 (Mistral, Code-Modus, Branch `mistral`):** Skript `selbsttest.py` liefert die festen Rechenproben aus diesem Punkt. **Von Claude gegengeprüft:** Die Funktion `marktUrteil` in `beta.html` stimmt mit dem Testskript überein, beide Testfälle liefern das richtige Ergebnis.
+
+---
+
+**48. Struktur- und Reihenfolgebeweis** · *Vorschlag 15.8., ChatGPT und Gemini unabhängig · beschlossen 15.8., Ondo* · **Status: 🔴 GEBAUT am 15.8.2026 (Chat 17)**
+
+> Der Zeilenbeweis zeigt, dass nichts fehlt. Er zeigt nicht, dass der Text noch an seinem Platz steht. `pruefe.py` Abschnitt 9b prüft jetzt zusätzlich, dass jeder Block **am Stück** in **genau einer** Zieldatei steht und dass die **Reihenfolge** erhalten ist. Eine bewusst geänderte Reihenfolge zählt nur, wenn sie **in der Datei selbst** erklärt ist — sonst liesse sich jede Unordnung nachträglich zur Absicht erklären.
+
+---
+
+**49. Messmethodik und Interpretationsgrenzen in `STAND.md`** · *Vorschlag 15.8., ChatGPT · gebaut 27.8.2026, Claude* · **Status: 🔴 GEBAUT am 27.8.2026**
+
+> Ein neuer Chat kann heute aus richtigen Zahlen eine falsche Empfehlung ableiten, weil die Zahlen dastehen und ihre Grenzen nicht. In die Pflichtlektüre gehören: Definition der drei Märkte · wie Brier-Score und Kalibrierung gerechnet werden · was in den Nenner zählt und was nicht · dass geparkte Einträge **kein** Ergebnis haben · welcher Rohdatenstand ausgewertet wurde · der Schnitt bei „beide treffen" · die ungeklärten Anpfiffzeiten. **Und als Kern eine Liste: „Was darf aus diesem Messstand NICHT geschlossen werden?"**
+>
+> **🔴 GEBAUT am 27.8.2026:** Neuer Abschnitt „Messmethodik und Interpretationsgrenzen" in `STAND.md`, direkt vor „Aktueller Messstand". Jede Aussage darin an einer Codezeile (`maerkteBauen`, `calcKalibrierung` in `beta.html`) oder einem bereits bestehenden Satz belegt (Arbeitsregel H) — keine neue Methode entschieden, nur die bestehende aufgeschrieben.
+
+---
+
+**51. Gepaarter Vergleich Sonnet gegen Flash** · *Vorschlag 15.8., ChatGPT · Voraussetzung „sauberes Entparken" am 27.8. abgeschlossen · gebaut 28.8.2026* · **Status: 🔴 GEBAUT am 28.8.2026 — `beta.html` v19.8.4**
+
+> Zwei getrennt betrachtete Unsicherheitsbereiche sind der schwächere Weg; **überlappende Bereiche beweisen nicht, dass die Gehirne gleich gut sind.** Beide bekommen dieselbe Spielliste — deshalb ist ein Vergleich Spiel für Spiel aussagekräftiger. **Die Rohdaten liegen vor; es braucht keine einzige neue Vorhersage.**
+>
+> **🔴 Voraussetzung (Ondo, 15.8.): sauberes Entparken durch Claude.** Jeder geparkte Eintrag wird einzeln auf seinen **Grund** geprüft — 45-Minuten-Testspiele, doppelte Vorhersagen, erfundene Paarungen —, maschinell und nachvollziehbar, nicht nach Anzahl. Ondo prüft nichts von Hand nach.
+>
+> **🔴 GEPRÜFT am 27.8.2026, anhand der Messdaten und des KI-Logs vom selben Tag (54 geparkte Einträge, 27 Spielpaarungen) UND gezielt gegen die Archivdokumente (Backlog-Archiv, Chronik Juli/August, Blueprint-Protokoll, `archiv/PROJEKT-STATUS.md`).** Für 26 der 27 Paarungen steht der Grund bereits dort, nicht neu ermittelt:
+> - **15 Paarungen (29./30./31.7., 30 Einträge) — die gesperrte „Prüfbibliothek" der neunten Fehlerart (erfundene 0:0, verschiedene Endstände aus derselben Quelle, dokumentiert im Blueprint-Protokoll 31.7.).** Ausdrücklich „dürfen NICHT übernommen werden" (Chronik 31.7.). **Bleiben dauerhaft geparkt.**
+> - **5 Paarungen (7.8., 10 Einträge) — die erfundenen Paarungen (Fund S3).** Vier frei zusammengesetzte, eine falsch datiert. Zu solchen Spielen kann nie ein echtes Ergebnis entstehen. **Bleiben dauerhaft geparkt.**
+> - **2 Paarungen (28.7., Crystal Palace–Famalicão und –Lens, 4 Einträge) — Ergebnisse waren am 4.8. gefunden (0:0 bzw. 0:3), aber wegen der „45-Minuten-Frage" bewusst nicht übernommen (Backlog-Archiv, 5.8.).** Verkürztes Vorbereitungsformat, kein gültiger 90-Minuten-Stand. **Bleiben geparkt.**
+> - **1 Paarung (2.8., Bohemians – Galway United, doppelt gelistet, 4 Einträge) — Ergebnis war am 4.8. gefunden (1:1), Ondo hat das Spiel aber ausdrücklich ganz herausgenommen:** Bei den beiden Listungen hatte Flash einmal 3 von 3, einmal 1 von 3 richtig; jede Auswahl hätte Flashs Bilanz einseitig verschoben (Chronik 3.–4.8.). **Bleibt dauerhaft geparkt, das ist Ondos eigene Entscheidung, keine offene Frage.**
+> - **1 Paarung (9.8., 1. FC Union Berlin – Aris Limassol, 2 Einträge) — bereits in `STAND.md` dokumentiert: dreimal 45 Minuten, zwei Quellen widersprechen sich beim 90-Minuten-Stand.** Echte, unaufgelöste Unklarheit. **Bleibt geparkt.**
+> - **1 Paarung (8.8., Leeds United – RB Leipzig, 2 Einträge) — bereits in `STAND.md` dokumentiert: 120-Minuten-Freundschaftsspiel, offizieller Endstand 2:0 (zweites Tor 109. Minute), Stand nach 90 Minuten ist bekannt und gesichert: 1:0.** Verlängerte Formate fallen nicht unter den Ausschluss. **Einzige Paarung, die entparkt wird.**
+>
+> **Keine Websuche für die 26 anderen Paarungen nötig gewesen — alles bereits an anderer Stelle im Projekt belegt (Arbeitsregel H).** Für keine der 26 wäre ohne neuen Beleg etwas anderes als „bleibt geparkt" verantwortbar gewesen.
+>
+> **Ausführung (27.8.2026):** `logParkenTag('8.8.2026', false)` in der App entparkt genau diese eine Paarung — geprüft, dass an diesem Tag sonst nichts geparkt ist, der Klick trifft also nur die beiden Leeds-Leipzig-Einträge. **Nach dem Entparken meldet der nächste Prüflauf vermutlich erneut ein Ergebnis für dieses Spiel — vor dem Übernehmen gegen den hier bereits gesicherten 90-Minuten-Stand 1:0 prüfen, nicht ungeprüft übernehmen**, falls die Suche durch die Verlängerung erneut auf 2:0 hereinfällt.
+>
+> **🔴 BERICHTIGT am 28.8.2026, Fehlerart C4 (Widerspruch nicht danebenstellen, sondern im selben Durchgang berichtigen).** Der Satz „Stand nach 90 Minuten ist bekannt und gesichert: 1:0" oben war die Grundlage fürs Entparken — und ist falsch begründet. Leeds–RB Leipzig lief über zwei Hälften zu je 60 Minuten (dreifach durch Primärquellen bestätigt: Vereinsseite, Sportschau/ARD, Sky Sport — 120 Minuten, zweites Tor 109. Minute, Halbzeit bei Minute 60 mit Stand 1:0). Bei diesem Format gibt es **keine reguläre Marke bei Minute 90** — sie liegt mitten in der zweiten Hälfte, nicht an der Halbzeitgrenze. Der „Stand nach 90 Minuten" ist damit keine gesicherte Grösse, sondern eine Momentaufnahme ohne die Bedeutung, die ihr die Ausführung vom 27.8. gegeben hat. **Die Restarbeit an diesem Punkt hat das am 28.8.2026 aufgedeckt:** Von 18 durch ERGEBNISSE PRÜFEN erzeugten Vorschlägen (ausgelöst über Ondos „Wieder prüfen" vom 8.8.) hat eine externe Gegenprüfung (separater Chat, eigene Websuche je Spiel) 15 als fehlerfrei bestätigt — bereits übernommen — und drei als fehlerhaft verworfen, **nicht übernommen**: NK Celje–Slovan Bratislava, Sabah FC–Hapoel Beer-Sheva FC, und **Leeds United–RB Leipzig**, aus dem oben genannten Grund. **Ondo (28.8.): Leeds–Leipzig bleibt geparkt.** Die beiden anderen Fälle (NK Celje, Sabah FC) gehören nicht zu Punkt 36 — sie sind bei der neuen elften Fehlerart des Schiedsrichters dokumentiert (`STAND.md`).
+>
+> **🔴 EINDEUTIG BESTÄTIGT am 28.8.2026 (Ondo, bereits Chat 25 mitgeteilt):** Leeds–Leipzig **ist geparkt** — kein offener Ausführungsschritt in der App, kein Widerspruch zur `logParkenTag`-Ausführung vom 27.8. Diese Bestätigung stand nur in einem anderen Chat, nicht in diesem Dokument — genau das führte in einer Übergabe zu einer unnötigen Rückfrage. Lehre daraus: eine Ondo mündlich/in einem anderen Chat gegebene Bestätigung gehört in derselben Antwort ins Dokument, nicht nur ins Gespräch (Arbeitsregel F).
+>
+> **🔴 GEBAUT am 28.8.2026, `beta.html` v19.8.4.** Neue Funktion `calcGepaartVergleich()` plus Anzeige `gepaartBlock()`, im Tab „Finanzen" direkt unter der bestehenden Kalibrierungsanzeige. `calcKalibrierung`/`maerkteBauen` unverändert, kein Schnitt in der Messreihe.
+> **Paarung — vor dem Bauen geprüft, wie von Ondo verlangt:** Kein gemeinsames ID-Feld zwischen einem Sonnet- und einem Flash-Eintrag. Backlog-Punkt 41 betrifft hier nichts: Der dort beschriebene Fehler sitzt in `wettbewerb`/`anpfiff`/`stufe` (über den Listen-Index `paket.liste[idx]` geholt) — `match` dagegen kommt direkt aus der Antwort des jeweiligen Gehirns selbst (`v.match`), unabhängig vom Index. **Gewählter Schlüssel: exakter Text von `match` (getrimmt) + exakter Text von `datum`** — bewusst keine Normalisierung wie bei der Dubletten-Sperre in `spielListeHolen`: das kann Paare übersehen (bei geringfügig anders benannten Spielen, Fehlerart S1), kann aber nie zwei verschiedene Spiele fälschlich zusammenlegen. Kommt derselbe Schlüssel beim selben Gehirn mehrfach vor (z. B. zweiter Lauf am selben Tag, Punkt 37): nicht gepaart, separat als „mehrdeutig" gezählt und in der App ausgewiesen — nicht geraten.
+> **Verifiziert:** `node --check` auf den Skriptinhalt bestanden. Zusätzlich ein nicht committeter Python-Nachbau von `calcGepaartVergleich()` mit vier Fixture-Fällen (sauberes Paar mit gemischtem Ergebnis über die drei Märkte · nur einseitiger Eintrag, kein Paar · mehrdeutiger Doppel-Schlüssel · geparkter Eintrag ausgeschlossen) — alle vier bestanden. `pruefe.py` danach: ALLES SAUBER.
+> **11 neue Sprachschlüssel** (`gepaart` bis `gepaartMehrdeutig`, DE/FR/EN) — Sprachschlüsselzahl in `STAND.md` von 217 auf 228 angehoben, von `pruefe.py` Abschnitt 13 selbst nachgezählt.
+> **Was die Anzeige zeigt, je Markt (1x2/Tore/BTTS):** Anzahl gepaarter Spiele, davon nur Sonnet richtig / nur Flash richtig / beide richtig / beide falsch — reine Zahlen, keine Wertung im Code. Einordnung bleibt `STAND.md` und Ondo vorbehalten, wie verlangt.
+
+---
+
+**52. Der Verlustbeweis braucht ein Ende** · *Fund 16.8., Claude · entschieden 21.8., Claude auf Ondos ausdrückliche Übertragung · geschlossen 27.8.2026, Ondo (verschieben statt löschen)* · **Status: GESCHLOSSEN 27.8.2026 — `PROJEKT-STATUS.md` nach `archiv/PROJEKT-STATUS.md` verschoben**
+
+Der Beweis aus Punkt 48 vergleicht `STAND.md` gegen `PROJEKT-STATUS.md`. **Jede Pflege einer Zeile, die von dort stammt, bricht ihn** — auch eine richtige. Am 16.8. traf es die Zeile mit der letzten Sicherung; sie musste in die Ausnahmeliste. **Die Liste wächst damit mit jeder Pflege, und eine wachsende Ausnahmeliste beweist immer weniger.**
+
+Das Skript sieht selbst vor, dass der Beweis entfällt, sobald das Original nicht mehr im Ordner liegt — „nach der Bewährungszeit gewollt". Wann diese Bewährungszeit endet, hat niemand festgelegt.
+
+→ **Zur Entscheidung:** Wird eine Frist gesetzt, nach der `PROJEKT-STATUS.md` aus dem Ordner genommen wird? **Claude schlägt nichts vor, bevor Ondo den Zweck bestimmt hat** — der Beweis sichert die Trennung vom 15.8., nicht die laufende Pflege.
+→ **🔴 GESCHLOSSEN am 27.8.2026 (Ondo entscheidet: verschieben statt löschen):** `PROJEKT-STATUS.md` liegt jetzt unter `archiv/PROJEKT-STATUS.md`. `pruefe.py`s eigener Code sieht das bereits vor — `verlust()`/`struktur()` überspringen den Beweis mit „Original nicht im Ordner — Beweis uebersprungen", sobald die Datei am geprüften Pfad (Repo-Wurzel) fehlt, unabhängig davon, ob sie gelöscht oder nur verschoben wurde. Die zwei stehenden FEHL werden dadurch zu OK. Nichts ist verloren gegangen, nur der Ort hat sich geändert.
+→ **🔴 Eingetreten am 21.8.2026 (Chat 20, Lauf um 05:50 Uhr):** Die drei Berichtigungen vom selben Morgen, 05:24 Uhr (Commit `dabf9bb`), haben in `STAND.md` zwei Zeilen gepflegt, die aus `PROJEKT-STATUS.md` stammen — den Klammerzusatz „(Fassung 5, 31.7.)" bei „Master-Dokumente im Repo" und den neuen Leitbild-Vermerk unter „Wetten ist das Pilotmodul". **Seither meldet `pruefe.py` einen unerklärten Verlust (Abschnitt 9) und zwei Blöcke, die nicht mehr am Stück wiedergefunden werden (Abschnitt 9b).** Beide Berichtigungen waren inhaltlich richtig; **gebrochen ist der Beweis, nicht das Dokument.** Aufgefallen ist es erst einen Lauf später, weil `pruefe.py` in der Cloud-Sitzung nicht lag (siehe Punkt 46). **Nichts geändert** — ob die Ausnahmeliste erneut wächst, ist genau die Entscheidung, die dieser Punkt Ondo vorlegt.
+→ **Kosten:** keine, solange nicht entschieden wird.
+→ **🔴 ENTSCHIEDEN am 21.8.2026 (Claude, auf Ondos ausdrückliche Übertragung): keine Frist.** Die beiden FEHL aus `dabf9bb` bleiben stehen und werden nicht mehr bei jedem Lauf gemeldet. **Begründung:** Der Beweis sichert die Trennung vom 15.8., und die ist bewiesen. Er kann die laufende Pflege nicht überwachen, weil jede richtige Pflege ihn bricht. Fällt er später ganz weg, ist das kein Verlust. **Status: erledigt.**
+
+---
+
+**55. Arbeitsteilung zwischen Chat, Code und Cowork festlegen** · *Frage 16.8., Ondo* · **Status: ENTSCHIEDEN 23.8.2026 (Ondo) — Fassung A**
+
+Ondos Frage: Wer erstellt und prüft künftig die Dateien, wer lädt hoch, wo wird besprochen?
+
+→ **Vorschlag Claude (16.8.):** Besprechen und entscheiden im Chat · erstellen, ändern, prüfen und hochladen im Bereich „Code" · Cowork vorerst nicht, weil Claude es zu wenig kennt, um es einzuordnen.
+→ **Der Haken:** siehe Punkt 54.
+→ **🔴 Neu am 20.8. (Ondo):** Offen ist zusätzlich, ob eine am Handy begonnene Code-Sitzung **am Tablet fortgesetzt** werden kann, und ob dieselbe Sitzung Dateien **parallel** an beide Orte legen kann — Tablet aus: nur Repo, Tablet an: Repo und Tablet. Prüfung gehört zu Punkt 53, die Entscheidung über die Arbeitsteilung hierher.
+→ **🔴 Belegt am 20.8., stützt den Vorschlag:** Chat kann Repo-Dateien über Raw-Links selbst lesen, und der Code-Bereich kann ohne Tablet ins Repo schreiben. Beide Hälften des Vorschlags sind damit technisch möglich.
+→ **🔴 Beobachtung 21.8. (Chat 20, Cloud-Sitzung):** Eine Cloud-Sitzung **erbt den Branch, auf dem sie gestartet wurde**, und liest nicht von selbst den aktuellen Stand. **Belegt:** Eine Sitzung las den Stand vom 20.8., 06:20 Uhr und hätte gegen veraltete Zeilennummern geschrieben. **Folge als Auflage: Jede Cloud-Sitzung holt zuerst `main`.**
+→ **🔴 Entschieden (Ondo, 23.8.2026), Fassung A:** Chat bespricht und entscheidet, Code baut und schreibt ins Repo. **Cowork bleibt vorerst draussen** — rückholbar, wie Punkt 19, keine endgültige Ablehnung, falls später die Ablage-Werkzeuge von Cowork gebraucht werden.
+→ **Kosten:** keine.
+
+---
+
+**56. Nutzungsgrenzen — welche Wege gibt es?** · *Frage 16.8., Ondo · beantwortet 27.8.2026 aus offiziellen Quellen* · **Status: BEANTWORTET 27.8.2026**
+
+Ondos Frage: API, grösseres Abo oder etwas anderes? Was kostet es, brauchen wir es jetzt?
+
+→ **Claude hat am 16.8. ausdrücklich keine Zahlen genannt**, weil sie aus dem Gedächtnis stammen würden.
+→ **🔴 Offiziell abgerufen am 27.8.2026** (`support.claude.com`, `claude.com/pricing`): Anthropic veröffentlicht **keine festen Zahlen** für Nachrichten, Stunden oder Tokens je Plan — weder für Pro noch für Claude Code. Belegt: Pro kostet 17 $/Monat (jährlich) bzw. 20 $/Monat (monatlich). Nutzung wird nach **Anmeldeart** gezählt, nicht nach Sitzungstyp — Cloud-/Code-Sitzungen und Chat teilen sich dasselbe Kontingent, damit ist die frühere Vermutung dazu jetzt belegt statt vermutet. Eigener, aktueller Stand ist einsehbar unter „Einstellungen → Nutzung" in der App bzw. mit `/cost` in Claude Code. Nicht-offizielle Drittseiten-Schätzung (unbestätigt, nicht übernommen): grob 40–80 aktive Sonnet-Stunden/Woche für Pro.
+→ **Erster echter Messpunkt, von Ondo per Screenshot geliefert (27.8.2026, 10:30 Uhr):** aktuelle 5-Stunden-Sitzung 86 % verbraucht (Reset in 19 Min.) · Wochenlimit „Alle Modelle" 8 % verbraucht (Reset Donnerstag 03:59 Uhr) · Nutzungsguthaben 0 Punkte, Funktion ausgeschaltet.
+→ **Laufende Pflege, Ondos Entscheidung (27.8.2026):** Keine eigene Messreihe (zu viele Parameter, unverhältnismässiger Aufwand für den Nutzen). Stattdessen ein einfaches Schätzfeld in `STAND.md`, gelegentlich per Screenshot kalibriert, ohne Automatik oder feste Häufigkeit — der Messpunkt von eben ist der erste Eintrag dort.
+→ **Ergänzende ältere Funde, weiterhin gültig:** Die API rechnet nach Verbrauch statt nach Woche und kostet echtes Geld (16.8.) · Das Wochenlimit war am 20.8. morgens **nach sechs Nachrichten** erreicht, am 16.8. stand es noch bei 85 % — der Punkt war damit schon vor der heutigen Antwort dringlich · Auf Pro ist Claude Code laut Quellen Dritter auf Sonnet-Modelle beschränkt (ungeprüft, keine offizielle Quelle gefunden).
+→ **Kosten der Untersuchung:** wenige Abrufe, kein Geld.
+
+---
+
+**59. `pruefe.py` Abschnitt 1 meldet zusätzliche Zeitstempel-FEHL trotz gleicher Kopfzeiten** · *Fund 24.8.2026, drei unabhängige Läufe (Claude Code, Mistral, ein dritter Beleg)* · **Status: GEKLÄRT**
+
+Drei unabhängige Läufe (Claude Code 24.8., 12:38 Uhr · Mistral 24.8., 12:52 Uhr · sowie ein dritter Beleg) melden bei gleichlautenden Kopf-Zeitstempeln (`STAND.md`, Backlog, Blueprint — alle „24. August 2026, 09:54 Uhr" bzw. „24.8.2026, 09:54 Uhr") dennoch drei FEHL: STAND-Kopf, Backlog-Kopf, Blueprint-Kopf. Zusätzlich zu den zwei bekannten, akzeptierten FEHL aus Punkt 52 (Abschnitt 9 + 9b). Ergibt fünf FEHL statt der bisher als sauber geltenden zwei.
+
+→ **Ursache noch nicht untersucht** — möglicherweise ein Unterschied zwischen den Datumsformaten („24. August 2026" gegen „24.8.2026"), noch nicht geprüft.
+→ **Nächster Schritt:** die genaue Prüfzeile in Abschnitt 1 von `pruefe.py` selbst lesen.
+→ **Ursache gefunden (27.8.2026):** Kein Fehler in den Dokumenten oder in `pruefe.py`. Alle drei Kopf-Zeitstempel (STAND, Backlog, Blueprint) stimmen tatsächlich überein. Die drei FEHL entstanden, weil den betroffenen `pruefe.py`-Läufen eine frisch abgelesene Uhrzeit übergeben wurde, obwohl die Aufträge keines der drei Dokumente inhaltlich änderten — in diesem Fall verlangt Arbeitsregel M die ZULETZT GESETZTE Zeit der drei Dokumente, nicht eine frische Ablesung. Fehler lag bei der Auftragsformulierung durch Claude, nicht im Projekt. Kein weiterer Handlungsbedarf.
+
+---
+
+**60. Sprachschlüsselzahl in `STAND.md` stimmt nicht mit tatsächlicher Zählung überein** · *Fund 24.8.2026, Mistral (Backlog-Punkt 47) · geklärt und gebaut 27.8.2026, Claude, Vorschlag aus dem Ondo-Jarvis-Strukturvergleich* · **Status: GEKLÄRT UND GEBAUT 27.8.2026 — 217 war richtig**
+
+`STAND.md` nennt 217 Sprachschlüssel. Ein unabhängiges Prüfskript (Mistral, Backlog-Punkt 47, 24.8.2026) zählte 142 Schlüssel je Sprache (DE/FR/EN), übereinstimmend zwischen allen drei Sprachen. Ursache der Differenz (217 gegen 142) war zunächst nicht geklärt — entweder war die Zählmethode unterschiedlich, oder eine der beiden Zahlen war veraltet.
+
+→ **🔴 GEKLÄRT am 27.8.2026 (Claude, Codezitat statt Vermutung):** `pruefe.py` zählt die Schlüssel jetzt selbst direkt aus dem `I18N`-Block in `beta.html` (neuer Abschnitt 13). Ergebnis, mehrfach mit unterschiedlichen Regeln gegengeprüft: **217, identisch in DE, FR und EN.** `STAND.md` war richtig. Mistrals Zählmethode hat unterzählt — vermutlich hat sie einen Teil der Schlüssel-Syntax nicht erfasst (z. B. Schlüssel direkt nach der öffnenden Klammer der jeweiligen Sprache); die genaue Fehlerursache in Mistrals Skript selbst ist nicht weiter untersucht, das ist nicht mehr nötig, seit `pruefe.py` unabhängig selbst zählt.
+→ **🔴 GEBAUT am 27.8.2026:** `pruefe.py` Abschnitt 13 zählt bei jedem Lauf automatisch nach, vergleicht die drei Sprachen gegeneinander und gegen die Zahl in `STAND.md` — eine künftige Abweichung fällt sofort auf, ohne von Hand nachzuzählen. Vorschlag stammt aus einem Strukturvergleich mit `ondo-jarvis` (27.8.2026, unabhängige Sitzung mit Zugriff auf beide Repos), von Chat 25 und Claude unabhängig voneinander befürwortet.
+→ **Kosten:** keine, `pruefe.py` läuft ohnehin vor jeder Lieferung.
+
+---
+
 ## ⚠ Was Fassung 59 ändert (30.8., drei Nachträge aus der Übergabe an Chat 27)
 
 **Anlass:** Teil E der Übergabemappe an Chat 27 (29.8.2026) nannte drei Berichtigungen als offen. Auf Ondos Auftrag „Nachtragen" jetzt nachgeholt — zwei vollständig, eine nur teilweise, mit offenem Vermerk statt stillschweigender Lücke.
