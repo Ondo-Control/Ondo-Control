@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.58
+**Version:** 0.59
 **Stand:** 30. August 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.59 ändert (30.8.2026):** Backlog-Punkt 65, Weg C ausgeführt (Ondos Entscheidung): Die Fassungsabschnitte 24–59 (50.570 Zeichen) sind aus `Ondo-Control-Backlog.md` nach `BACKLOG-ARCHIV.md` verschoben, nach dem Vorbild von Punkt 18. Verlustbeweis von Hand geführt (byte-genaue Rekonstruktion gegen den vorherigen Commit), nicht durch einen neuen `pruefe.py`-Abschnitt — dieselbe Lücke wie bei Punkt 52, offen benannt. Backlog jetzt 108.699 Zeichen (vorher 156.999), wieder unter der 120.000-Zeichen-Grenze aus Punkt 65. **Neuer, unentschiedener Fund dabei:** Auch ohne jede Änderungsnotiz liegt der Backlog wegen inline stehender abgeschlossener Punkte bei rund 106.400 Zeichen — nur benannt, nicht behoben. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.59 gehoben.
 
 > **Was Fassung 0.58 ändert (30.8.2026):** Drei Nachträge aus Teil E der Übergabe an Chat 27 (Backlog Fassung 59). Zwei vollständig berichtigt: `STAND.md` Punkt 3 (nicht mehr „blockiert"), Backlog-Sprachschlüsselzahl (217 → 229). Der dritte — fehlende Zeilen im Übergabe-Protokoll — liess sich **nicht** wie zugesagt vollständig nachtragen: Für Chat 20 → 21 bis Chat 25 → 26 gibt es im Repo keine belegbare Kontrollfragen-Zahl (Art. 11); eingetragen wurde eine Lückenzeile statt einer geratenen Zahl, dazu die vollständig belegte Zeile Chat 26 → Chat 27. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.58 gehoben.
 
