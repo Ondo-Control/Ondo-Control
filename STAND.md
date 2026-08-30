@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 30.8.2026, Fassung 58, v19.8.6*
+*Die aktuelle Wahrheit. Stand: 30.8.2026, Fassung 59, v19.8.6*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -437,7 +437,7 @@ Die Tabelle aller bisherigen Chat-Uebergaben ist nach `CHRONIK-2026-08.md` gewan
 | **30** | Freundschaftsspiele aus der Spielliste ausschliessen? | Backlog |
 | **34** | Brier-Score in die App bauen. **Gerechnet ist nicht gebaut** | Backlog |
 | **35** | Streuungsangabe in die App bauen. **Gerechnet ist nicht gebaut** | Backlog |
-| **3** | Such-Experiment — durch die Pause **blockiert**. *Der 20. August ist **keine Frist** (Ondo, 15.8.): eine Zeitspanne sagt nicht, wie viele Messungen noetig sind.* Empfehlung Claude: ruhen lassen | Backlog, Prio 1 |
+| **3** | Such-Experiment — beschlossen, **ruht auf Ondos Wunsch (27.8.), nicht mehr blockiert**. *Der 20. August ist **keine Frist** (Ondo, 15.8.): eine Zeitspanne sagt nicht, wie viele Messungen noetig sind.* Empfehlung Claude: ruhen lassen | Backlog, Prio 1 |
 | **0b** | Widersprueche messen statt korrigieren. **Der Eintrag widerspricht sich selbst** — Kopfzeile „zurueckgestellt", Schlusszeile „Entscheidung Ondos steht aus". Zu klaeren, bevor er als offen oder als entschieden gefuehrt wird | Backlog |
 | **Befund A** | Als nicht auswertbar fuehren? **Womoeglich durch die Auszaehlung vom 8.8. erledigt** — zu klaeren, nicht zu behaupten | Chronik August, „Der 8. August" |
 | **„Fail Safe"** | Bei unbekannten Fehlern anhalten statt automatisch das naechste Modell nehmen — als Arbeitsregel? | Blueprint, Abschnitt 10 |

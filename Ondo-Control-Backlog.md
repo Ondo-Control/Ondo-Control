@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 30.8.2026, Fassung 58 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 30.8.2026, Fassung 59 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -14,6 +14,19 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 59 ändert (30.8., drei Nachträge aus der Übergabe an Chat 27)
+
+**Anlass:** Teil E der Übergabemappe an Chat 27 (29.8.2026) nannte drei Berichtigungen als offen. Auf Ondos Auftrag „Nachtragen" jetzt nachgeholt — zwei vollständig, eine nur teilweise, mit offenem Vermerk statt stillschweigender Lücke.
+
+- **`STAND.md`, „Entscheidungen, die bei Ondo liegen", Punkt 3:** „durch die Pause blockiert" war seit dem 27.8. (Backlog Fassung 45) überholt. Berichtigt auf „beschlossen, ruht auf Ondos Wunsch (27.8.), nicht mehr blockiert".
+- **Backlog, „Technische Schuld", Zeile „Sprachdateien von Hand":** 217 → **229**, mit Verweis auf `pruefe.py` Abschnitt 13 statt auf ein Handzähldatum.
+- **`CHRONIK-2026-08.md`, Übergabe-Protokoll: NICHT vollständig nachtragbar.** Die Tabelle endete bei Chat 19 → Chat 20 (20.8.2026). **Berichtigung an der eigenen Zusage aus der Übergabemappe:** Dort stand, „die fehlenden Zeilen" würden ergänzt — das war zu optimistisch, ohne vorherige Prüfung zugesagt. Tatsächlich lässt sich für Chat 20 → 21 bis Chat 25 → 26 **keine einzige Kontrollfragen-Zahl aus dem Repo belegen** (Art. 11). Eingetragen sind stattdessen: eine Lückenzeile mit dem, was belegbar ist (Backlog-Punkt 61 zur Chat-Zählungs-Verwirrung im selben Fenster), und die neue, vollständig belegte Zeile Chat 26 → Chat 27 (9 von 9).
+
+- **Fassungszahl:** alle drei aktiven Dokumente auf 59 gehoben (Blueprint 0.58). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
 
 ---
 
@@ -1061,7 +1074,7 @@ Drei unabhängige Läufe (Claude Code 24.8., 12:38 Uhr · Mistral 24.8., 12:52 U
 | **Rückblick auf eigene Tipps enthält Vermutungen, keine Tatsachen** | Ein falscher Tipp kann Grundlage des nächsten werden | **wird mit v19.7 behoben** → Punkt D |
 | **Nur lokale Speicherung** (localStorage) | Sicherung seit v19.1 gebaut; offen bleibt die Übertragung in die stabile Version | → Prio 2, Punkt 4 |
 | **Eine lange JS-Datei** (keine Module) | Änderungen werden mit der Zeit riskanter | mittel |
-| **Sprachdateien von Hand** (217 Schlüssel × 3 Sprachen, gezählt am 14.8. abends — maschinell abgeglichen, identisch) | Dreifache Pflege bei jeder neuen Beschriftung. Rückgriff bleibt Punkt 19 | niedrig |
+| **Sprachdateien von Hand** (229 Schlüssel × 3 Sprachen — von `pruefe.py` Abschnitt 13 bei jedem Lauf selbst gezählt, identisch in DE/FR/EN, Stand 28.8.2026) | Dreifache Pflege bei jeder neuen Beschriftung. Rückgriff bleibt Punkt 19 | niedrig |
 | **Seed-Daten fest im Code** (WM-Wetten vom Juli) | Ballast bei jedem Start | niedrig |
 | **Kein automatischer Test** | Jede Änderung wird nur von Hand geprüft | mittel → Punkt B wäre der erste Schritt |
 | **Gemini-Kaskade komplex** | Funktioniert, aber schwer zu durchschauen bei Fehlern | niedrig |
