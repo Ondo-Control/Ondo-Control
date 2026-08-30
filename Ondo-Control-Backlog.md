@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 30.8.2026, Fassung 62 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 30.8.2026, Fassung 63 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -15,6 +15,19 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 63 ändert (30.8., 31. Fundstelle nachgetragen — Ondos eigenes Gegenlesen)
+
+**Anlass:** Ondo hat Commit `a939a86` selbst über die vollen Commit-Hash-Links gegengelesen (zweites, echt unabhängiges Gegenlesen nach ChatGPT) und eine weitere Stelle gefunden, die die als „vollständig" bezeichnete Nachsuche zu Fassung 62 übersehen hatte.
+
+- **`STAND.md`, Abschnitt „Versionen", „Beta zuvor: v19.8.3":** „Backlog-Punkte E und 2 gebaut." — Punkt 2 ist archiviert, Punkt E nicht. Berichtigt auf „Backlog-Punkte E und 2 gebaut (Punkt 2 seit 30.8.2026 in `BACKLOG-ARCHIV.md`, Punkt E unverändert im Backlog)" — **bewusst nicht Ondos vorgeschlagener Wortlaut „E und 2 (seit 30.8.2026 in BACKLOG-ARCHIV.md) gebaut"**, weil der die Klammer über beide Punkte spannt und damit fälschlich nahelegen würde, auch Punkt E sei archiviert. Abweichung vom vorgeschlagenen Wortlaut, mit Begründung, nicht stillschweigend.
+- **`Blueprint.md` unabhängig neu abgesucht, wie aufgetragen** — nicht die eigene Fundliste von Fassung 62 bestätigt, sondern neu gesucht. Dabei ein eigener Methodenfehler gefunden: Das erste Suchmuster erkannte Genitiv-Formen wie „Punkt 51s" nicht (keine Wortgrenze zwischen Ziffer und folgendem Buchstaben). Mit korrigiertem Muster erneut über alle drei Dokumente gesucht — **keine weitere, bisher unentdeckte Lücke gefunden**, alle Genitiv-Stellen lagen zufällig im selben Satz wie eine bereits korrekte Angabe.
+- **Backlog-Punkt 66 ergänzt** (nicht neu angelegt): Der eigene Methodenfehler ist ein zweiter, unabhängiger Beleg dafür, dass manuelle bzw. ad-hoc-skriptgestützte Nachsuche bei drei Dokumenten und zehn Nummern an Grenzen stösst — Mensch (Ondo, `STAND.md`) und Skript (diese Sitzung, `Blueprint.md`) übersahen je eine andere Art von Lücke. Stützt den in Punkt 66 stehenden, nicht gebauten Vorschlag stärker, ändert aber nichts an der Kostenentscheidung.
+
+- **Fassungszahl:** alle drei aktiven Dokumente auf 63 gehoben (Blueprint 0.62). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
 
 ---
 
@@ -282,6 +295,7 @@ Auch betroffen, ausserhalb der Pflichtlektüre: `CHRONIK-2026-08.md` (164.036 Ze
 → **Warum das keine Kleinigkeit ist:** Ein Prüflauf, der „ALLES SAUBER" meldet, obwohl Fundort-Angaben fehlen, erzeugt genau die falsche Sicherheit, vor der Fehlerart C6 warnt — der Prüfer prüft nur, was er zu prüfen gelernt hat, nicht das eigentliche Problem.
 → **Vorschlag, nicht gebaut:** Abschnitt 3 könnte zusätzlich prüfen, ob ein Verweis auf einen ausschliesslich im Archiv stehenden Punkt in unmittelbarer Nähe (gleicher Satz oder gleiche Zeile) einen Hinweis auf `BACKLOG-ARCHIV.md` oder das Wort „archiviert" trägt. Nicht trivial: Der Prüfer bräuchte eine Regel dafür, wie nah „in unmittelbarer Nähe" sein muss, und liefe sonst Gefahr, selbst wieder nur eine formale Bedingung zu prüfen statt der eigentlichen Verständlichkeit.
 → **Kosten:** eine Codeänderung an `pruefe.py`, die vermutlich neue eigene Randfälle mitbringt (z. B. mehrere Punktnummern im selben Satz, wie in mehreren der jetzt gefundenen Stellen). Nicht jetzt zu bauen — erst wenn eine zweite, unabhängige Archivierung zeigt, ob das Problem wiederkehrt oder ob die manuelle Nachsuche ausreicht (Arbeitsregel D: ein Einzelfall beweist keine Notwendigkeit).
+→ **🔴 Ergänzung 30.8.2026, Fassung 63 — die manuelle Nachsuche selbst stösst nachweislich an Grenzen:** Trotz der als „vollständig" bezeichneten Nachsuche zu Fassung 62 fand Ondo beim eigenen Gegenlesen noch eine 31. Stelle (`STAND.md`, „Beta zuvor: v19.8.3" — Punkt 2 ohne Fundort). Bei der daraufhin verlangten erneuten, unabhängigen Suche in `Blueprint.md` fand die Code-Sitzung dabei einen eigenen Fehler in ihrer ersten Suchmethode: Das verwendete Muster erkannte Genitiv-Formen wie „Punkt 51s" nicht, weil zwischen einer Ziffer und einem folgenden Buchstaben keine Wortgrenze liegt. **Folgenlos in diesem Fall** — jede so verpasste Stelle stand zufällig im selben Satz wie eine bereits korrekte Angabe —, aber ein zweiter, unabhängiger Beleg dafür, dass Mensch und Ad-hoc-Skript bei drei Dokumenten und zehn Nummern beide je eigene, unterschiedliche Lücken übersehen. **Stützt den oben genannten Vorschlag stärker, als ein Einzelfall es könnte — bleibt aber aus denselben Kostengründen unentschieden.**
 
 ---
 

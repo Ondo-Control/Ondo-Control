@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.61
+**Version:** 0.62
 **Stand:** 30. August 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.62 ändert (30.8.2026):** Ondos eigenes Gegenlesen von Commit `a939a86` fand eine 31. Fundstelle ohne Fundort-Angabe (`STAND.md`, „Backlog-Punkte E und 2 gebaut" — nur Punkt 2 archiviert). Korrigiert, bewusst mit anderem Wortlaut als vorgeschlagen, um Punkt E nicht fälschlich als archiviert erscheinen zu lassen. Bei der daraufhin verlangten unabhängigen Neusuche in diesem Dokument ein eigener Methodenfehler der Code-Sitzung gefunden (Genitiv-Formen wie „Punkt 51s" wurden vom ersten Suchmuster nicht erkannt) — folgenlos für das Ergebnis, aber als zweiter Beleg für die Grenzen manueller Nachsuche in Backlog-Punkt 66 ergänzt. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.62 gehoben.
 
 > **Was Fassung 0.61 ändert (30.8.2026):** ChatGPTs Gegenlesen zu PR #1 ergab „Freigabe — nein": Querverweise auf archivierte Punkte nannten nur die Nummer, nicht den Fundort. Vier von ChatGPT zitierte Stellen korrigiert, plus 26 weitere bei vollständiger Nachsuche über Backlog, `STAND.md` und dieses Dokument gefunden (darunter fünf allein zu Punkt 47) — alle 30 jetzt mit Fundort-Angabe (Backlog Fassung 62). Neuer Backlog-Punkt 66: `pruefe.py` prüft Existenz von Querverweisen, nicht deren Fundort-Angabe — Fund, nicht gebaut. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.61 gehoben.
 
