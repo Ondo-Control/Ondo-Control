@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 30.8.2026, Fassung 64 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 30.8.2026, Fassung 65 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -15,6 +15,19 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 65 ändert (30.8., Nachfrage zu Punkt 64 — refRoh lesbar gemacht)
+
+**Anlass:** Seit v19.8.5 (Punkt 64) speichert die App den rohen Schiedsrichter-Antworttext (`e.refRoh`), aber ohne Ansicht oder Export — Ondo bat um eine kleine, zusätzliche Ausgabe dafür.
+
+- **Punkt 64 ergänzt (nicht neu angelegt), `beta.html` v19.8.8:** Neuer Knopf im selben Kartenbereich wie „Log als Text", nutzt denselben Zeitraum. Gibt zu den ausgewählten Einträgen zusätzlich `e.refRoh` aus, falls vorhanden — sonst „kein refRoh gespeichert" statt leerem Text. Kein Zugriff auf Schlüsselfelder.
+- **2 neue Sprachschlüssel** (`refRohBtn`, `refRohEmpty`) — mehr als die angefragte „evtl. eine Knopfbeschriftung", ausdrücklich gemeldet: ein zweiter Schlüssel für die übersetzbare Fallback-Meldung.
+- **Verifikation:** `node --check` bestanden. Trockentest bestanden (Eintrag mit `refRoh`, Eintrag ohne, leerer Zeitraum). `pruefe.py`: ALLES SAUBER.
+- **Kein Schnitt in der Messreihe.** Sprachschlüsselzahl 229 → 231.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 65 gehoben (Blueprint 0.64). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
 
 ---
 
@@ -279,6 +292,7 @@ Bei NK Celje–Slovan Bratislava und Sabah FC–Hapoel Beer-Sheva FC lieferte de
 → **🔴 Celje/Sabah markiert, im selben Zug (28.8.2026):** Neues Feld `parkGrund` (bisher gab es nur `e.geparkt` als Boolean, kein Grund-Feld). Einmalige, automatische Migration in `load()` (`state.seedV<5`, dasselbe Muster wie die bestehende v18-Archiv-Markierung) setzt `parkGrund:'unstable_ref'` bei geparkten Einträgen, deren Datum und Spielname (Stichwörter, klein geschrieben) zu NK Celje–Slovan Bratislava (25.8.) bzw. Sabah FC–Hapoel Beer-Sheva FC (26.8.) passen. **Grenze, offen ausgesprochen:** Stichwort- statt Exakt-Vergleich, weil `match` roh vom jeweiligen Gehirn stammt und leicht unterschiedlich geschrieben sein kann (dieselbe Grenze wie bei Punkt 51 (seit 30.8.2026 in `BACKLOG-ARCHIV.md`)) — kein „zweifelsfrei" wie dort, sondern ein einmaliges, gezieltes Markieren zweier bekannter Spiele. Deshalb zusätzlich **sichtbar im Log** (Text- und Kartenansicht), damit Ondo nach der Lieferung selbst sieht, ob genau die richtigen Einträge markiert sind. **Bedingung, ausdrücklich: Neubewertung dieser beiden Spiele erst, sobald die Ursache der elften Fehlerart geklärt und der Schiedsrichter entsprechend repariert ist — nicht jetzt, kein Entparken, keine rückwirkende Rekonstruktion der bereits gelaufenen Antworten (nicht möglich, sie existieren nicht mehr).** Leeds-Leipzig (Punkt 36) ist ein anderer Fall und unberührt.
 → **Verifiziert:** `node --check` bestanden. Nicht committeter Python-Nachbau mit drei Fixture-Fällen (mehrere Läufe überschreiben `refRoh` nicht · Stichwortmuster markiert genau Celje/Sabah, nicht Leeds oder ein unbeteiligtes geparktes Spiel · ein bereits markierter Eintrag wird beim erneuten Durchlauf nicht doppelt verändert) — alle drei bestanden. `pruefe.py` danach: ALLES SAUBER.
 → **🔴 Nachfrage 28.8.2026, ERGÄNZT, `beta.html` v19.8.6: Modellversion bei `refRoh`.** Geprüft und belegt (`ai.google.dev`, GenerateContentResponse): Die Gemini-API liefert ein eigenes Feld `modelVersion` — die tatsächlich aufgelöste Version, nicht den aufgerufenen `gemini-flash-latest`-Alias (dokumentiertes Beispiel: Aufruf über `gemini-1.5-flash-latest` lieferte `modelVersion:"gemini-1.5-flash-002"`). `geminiCall()` verwarf dieses Feld bisher zusammen mit dem restlichen rohen `res`. Jetzt wird es durchgereicht und landet als `modell` an jedem neuen `refRoh`-Eintrag — bei Gemini die aufgelöste Version (oder `null`, falls sie ausnahmsweise fehlt, ausdrücklich nicht geraten, Art. 11/14), beim Sonnet-Rückfallpfad der feste, alias-freie Modellname `claude-sonnet-4-6`. **Gilt nur für künftige Läufe** — keine rückwirkende Ergänzung, es gab ohnehin noch keinen Prüflauf mit `refRoh` seit dem 28.8.2026. **Verifiziert:** `node --check` bestanden, drei Fixture-Fälle im Python-Nachbau bestanden (Gemini mit vorhandener Version · Gemini ohne Version → `null`, nicht geraten · Sonnet-Pfad immer fest), `pruefe.py` danach: ALLES SAUBER.
+→ **🔴 Nachfrage 30.8.2026, ERGÄNZT, `beta.html` v19.8.8: `refRoh` lesbar gemacht.** `e.refRoh` wurde seit v19.8.5 zwar gespeichert, aber nirgends angezeigt oder ausgegeben — für Ondo nicht lesbar. Neuer Knopf im selben Kartenbereich wie der bestehende „Log als Text"-Export (`logExportBlock()`), nutzt dieselben Zeitraumfelder (`logVon`/`logBis`), keine eigene Datumsauswahl: `refRohTextBauen()` gibt zu den im Zeitraum gefundenen Einträgen zusätzlich den vollen `refRoh`-Text aus (je Lauf: Nummer, Datum, Modell, Rohtext), Kopierknopf wie beim bestehenden Export. Fehlt `refRoh` (jeder Eintrag vor v19.8.5): „kein refRoh gespeichert" statt leerem Text. Liest nur `datum`, `anpfiff`, `match`, `wettbewerb`, `herkunft`, `refRoh` — kein Zugriff auf `apiKey`, `geminiKey` oder `pin`, dieselbe Positivauswahl wie beim bestehenden „Log als Text"-Knopf. Kein Schnitt in der Messreihe, liest nur bestehende Daten neu aus. **2 neue Sprachschlüssel** (`refRohBtn`, `refRohEmpty`) — **mehr als die in der Anfrage erwähnte „evtl. eine Knopfbeschriftung", ausdrücklich gemeldet:** ein zweiter Schlüssel kam für die übersetzbare Fallback-Meldung dazu. **Verifiziert:** `node --check` bestanden. Trockentest (Nachbau der Kernlogik auf Kunstdaten, nicht die App selbst) mit einem Eintrag MIT `refRoh` und einem OHNE (wie vor v19.8.5) — beide Fälle korrekt, dazu ein leerer Zeitraum → Fallback-Meldung statt leerem Text — alle bestanden. `pruefe.py` danach: ALLES SAUBER.
 
 ---
 

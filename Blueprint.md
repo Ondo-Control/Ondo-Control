@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.63
+**Version:** 0.64
 **Stand:** 30. August 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.64 ändert (30.8.2026):** Nachfrage zu Backlog-Punkt 64 beantwortet: `refRoh` (seit v19.8.5 gespeichert, aber ohne Ansicht) ist jetzt lesbar. Neuer Knopf im selben Kartenbereich wie „Log als Text", nutzt denselben Zeitraum, gibt `e.refRoh` zu den ausgewählten Einträgen aus, sonst „kein refRoh gespeichert" (`beta.html` v19.8.8, Backlog Fassung 65). 2 neue Sprachschlüssel, mehr als angefragt — gemeldet. Kein Schnitt in der Messreihe, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.64 gehoben.
 
 > **Was Fassung 0.63 ändert (30.8.2026):** Ondo hat Backlog-Punkte 36, 37 und 41 entschieden und in einer Lieferung gebaut (`beta.html` v19.8.7). Punkt 36: Schiedsrichter-/Spielformat-Auftragstext schliesst jetzt namentlich Sonderformate aus (2x60, 3x45 u. ä.) statt nur verkürzte, reguläre Verlängerung bleibt erlaubt. Punkt 37: `vorhersagen()` überspringt einen Eintrag, wenn dasselbe Gehirn für dasselbe Spiel am selben Tag bereits einen hat (keine Begrenzung der Läufe pro Tag). Punkt 41: `wettbewerb`/`anpfiff`/`stufe` werden über den Spielnamen statt über die Listenposition nachgeschlagen, kein Treffer lässt die Felder leer. Neue gemeinsame Funktion `normName()` löst die bisher lokale S1-Normalisierung ab, ohne deren Verhalten zu ändern — bekannte Grenze (kein Ausgleich für fehlendes/zusätzliches „FC" u. ä.) bleibt unverändert und durch Trockentest bestätigt. Kein Schnitt in der Messreihe, keine neuen Sprachschlüssel, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.63 gehoben.
 

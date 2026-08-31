@@ -122,7 +122,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.7';
+var CODE_VERSION = 'v19.8.8';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -227,6 +227,7 @@ var I18N = {
   logExpT:'📄 Log als Text', logExpD:'Gibt die Vorhersagen eines Zeitraums als reinen Text aus — zum Kopieren in einen Chat. Ersetzt Bildschirmfotos: kostet einen Bruchteil und ist maschinell auswertbar.',
   logExpFrom:'von', logExpTo:'bis', logExpBtn:'📄 Text erzeugen', logExpCopy:'📋 Kopieren',
   logExpHint:'Markieren und kopieren, oder den Kopieren-Knopf benutzen.', logExpEmpty:'Keine Vorhersagen in diesem Zeitraum.',
+  refRohBtn:'🗒 Schiedsrichter-Rohtext erzeugen', refRohEmpty:'kein refRoh gespeichert',
   messT:'📤 Messdaten ausgeben (ohne Schlüssel)', messD:'Gibt alle Vorhersagen und Wetten aus — OHNE API-Schlüssel und OHNE PIN. Diese Ausgabe darfst du verschicken, ablegen und in einen Chat hochladen. Die Datensicherung oben bleibt davon unberührt und enthält weiterhin die Schlüssel.',
   messBtn:'📤 Messdaten erzeugen', messFile:'💾 Als Datei',
   messHint:'Kopf und Schlusszeile nennen die Anzahl. Fehlt die Schlusszeile, wurde beim Kopieren abgeschnitten.',
@@ -322,6 +323,7 @@ var I18N = {
   logExpT:'📄 Log en texte', logExpD:'Sort les prédictions d’une période en texte brut — à copier dans un chat. Remplace les captures d’écran : coûte une fraction et reste exploitable par machine.',
   logExpFrom:'du', logExpTo:'au', logExpBtn:'📄 Générer le texte', logExpCopy:'📋 Copier',
   logExpHint:'Sélectionne et copie, ou utilise le bouton Copier.', logExpEmpty:'Aucune prédiction sur cette période.',
+  refRohBtn:'🗒 Générer le texte brut de l\'arbitre', refRohEmpty:'aucun refRoh enregistré',
   messT:'📤 Exporter les données de mesure (sans clés)', messD:'Sort toutes les prédictions et tous les paris — SANS clé API et SANS code PIN. Tu peux envoyer, archiver et téléverser cette sortie dans un chat. La sauvegarde ci-dessus reste inchangée et contient toujours les clés.',
   messBtn:'📤 Générer les données', messFile:'💾 En fichier',
   messHint:'L’en-tête et la dernière ligne indiquent le nombre. Si la dernière ligne manque, la copie a été tronquée.',
@@ -417,6 +419,7 @@ var I18N = {
   logExpT:'📄 Log as text', logExpD:'Outputs the predictions of a date range as plain text — to paste into a chat. Replaces screenshots: costs a fraction and stays machine-readable.',
   logExpFrom:'from', logExpTo:'to', logExpBtn:'📄 Create text', logExpCopy:'📋 Copy',
   logExpHint:'Select and copy, or use the Copy button.', logExpEmpty:'No predictions in this range.',
+  refRohBtn:'🗒 Generate referee raw text', refRohEmpty:'no refRoh stored',
   messT:'📤 Export measurement data (no keys)', messD:'Outputs all predictions and bets — WITHOUT API keys and WITHOUT PIN. You may send, store and upload this output to a chat. The backup above is untouched and still contains the keys.',
   messBtn:'📤 Create measurement data', messFile:'💾 As file',
   messHint:'Header and final line state the count. If the final line is missing, the copy was truncated.',
@@ -619,6 +622,46 @@ function logTextBauen(){
       (e.begruendung?(' · "'+e.begruendung+'"'):'');
   });
   feld.value=kopf+'\n\n'+zeilen.join('\n');
+}
+/* v19.8.8 (Backlog-Punkt 64, Nachfrage): Seit v19.8.5 speichert die App den rohen
+   Schiedsrichter-Antworttext an jedem Eintrag (e.refRoh) — bisher ohne Ansicht oder Export.
+   Nutzt denselben Zeitraum wie logTextBauen (Felder logVon/logBis), keine eigene Auswahl.
+   Nur e.datum, e.anpfiff, e.match, e.wettbewerb, e.herkunft und e.refRoh werden gelesen —
+   dieselbe Positivauswahl wie bei logTextBauen, keine Schluesselfelder im Zugriff. */
+function refRohTextBauen(){
+  var vEl=document.getElementById('logVon'), bEl=document.getElementById('logBis');
+  var von=datumZahl(vEl&&vEl.value), bis=datumZahl(bEl&&bEl.value);
+  var treffer=[];
+  (state.kiProtokoll||[]).forEach(function(e){
+    if(e.aera!=='v19') return;
+    var d=datumZahl(e.datum);
+    if(d===null) return;
+    if(von!==null && d<von) return;
+    if(bis!==null && d>bis) return;
+    treffer.push(e);
+  });
+  treffer.sort(function(a,b){
+    var x=datumZahl(a.datum)-datumZahl(b.datum);
+    if(x!==0) return x;
+    return String(a.match).localeCompare(String(b.match));
+  });
+  var feld=document.getElementById('refRohText');
+  if(!feld) return;
+  if(!treffer.length){ feld.value=t('logExpEmpty'); return; }
+  var kopf='ONDO CONTROL — Schiedsrichter-Rohantworten '+((vEl&&vEl.value)||'?')+' bis '+((bEl&&bEl.value)||'?')+
+    ' · '+treffer.length+' Eintraege · erzeugt '+new Date().toLocaleDateString('de-DE')+' '+jetztUhr();
+  var bloecke=treffer.map(function(e){
+    var gehirn=(e.herkunft==='flash')?'Flash':'Sonnet';
+    var kopfzeile=e.datum+(e.anpfiff?(' '+e.anpfiff):'')+' · '+e.match+
+      (e.wettbewerb?(' ['+e.wettbewerb+']'):'')+' · '+gehirn;
+    if(!e.refRoh || !e.refRoh.length) return kopfzeile+'\n  '+t('refRohEmpty');
+    var laeufe=e.refRoh.map(function(r,i){
+      return '  Lauf '+(i+1)+' ('+(r.datum||'?')+(r.modell?(', '+r.modell):'')+'):\n  '+
+        String(r.text||'').split('\n').join('\n  ');
+    }).join('\n');
+    return kopfzeile+'\n'+laeufe;
+  });
+  feld.value=kopf+'\n\n'+bloecke.join('\n\n');
 }
 /* v19.7.8: Feld-Kennung als Argument, damit dieselbe Funktion auch den Pruef-Text kopiert.
    Ohne Argument verhaelt sie sich unveraendert wie bisher. */
@@ -862,6 +905,14 @@ function logExportBlock(){
       'font-size:12px;font-family:ui-monospace,Menlo,monospace;line-height:1.5"></textarea>'+
     '<button class="btn btn-ghost" style="margin-top:8px" onclick="logTextKopieren()">'+t('logExpCopy')+'</button>'+
     '<div class="muted" style="margin-top:8px">'+t('logExpHint')+'</div>'+
+    /* v19.8.8 (Backlog-Punkt 64, Nachfrage): refRoh-Ausgabe im selben Bereich, nutzt denselben
+       Zeitraum (logVon/logBis) wie der Knopf oben — keine eigene Datumsauswahl. */
+    '<div style="height:8px"></div>'+
+    '<button class="btn btn-ghost" onclick="refRohTextBauen()">'+t('refRohBtn')+'</button>'+
+    '<textarea id="refRohText" readonly rows="8" style="width:100%;margin-top:10px;background:var(--inner);'+
+      'border:1px solid var(--edge);border-radius:8px;color:var(--text);padding:10px;'+
+      'font-size:12px;font-family:ui-monospace,Menlo,monospace;line-height:1.5"></textarea>'+
+    '<button class="btn btn-ghost" style="margin-top:8px" onclick="logTextKopieren(\'refRohText\')">'+t('logExpCopy')+'</button>'+
   '</div>';
 }
 function messExportBlock(){
