@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.64
+**Version:** 0.65
 **Stand:** 30. August 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.65 ändert (30.8.2026):** Nachfrage zu Backlog-Punkt 64, drei Teile (`beta.html` v19.8.9, Backlog Fassung 66). Teil 1: Codezitat bestätigt, dass kein Auswahlmechanismus unter mehreren Schiedsrichter-Läufen besteht. Teil 2: Widersprechende Läufe werden jetzt sichtbar gemacht (`refRohAbgleich()`), statt unkommentiert einen Wert zu zeigen. Teil 3: NK Celje–Slovan Bratislava und Sabah FC–Hapoel Beer-Sheva FC extern verifiziert und von Hand eingetragen, Herkunft ehrlich gekennzeichnet, behebt nicht die elfte Fehlerart selbst. Dabei ein Widerspruch in `STAND.md`s Fehlerart-11-Zeile gefunden und berichtigt; ein zweiter Widerspruch (vertauschte Daten in der Anfrage) per Rückfrage geklärt statt geraten. 3 neue Sprachschlüssel. Kein Schnitt in der Messreihe, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.65 gehoben.
 
 > **Was Fassung 0.64 ändert (30.8.2026):** Nachfrage zu Backlog-Punkt 64 beantwortet: `refRoh` (seit v19.8.5 gespeichert, aber ohne Ansicht) ist jetzt lesbar. Neuer Knopf im selben Kartenbereich wie „Log als Text", nutzt denselben Zeitraum, gibt `e.refRoh` zu den ausgewählten Einträgen aus, sonst „kein refRoh gespeichert" (`beta.html` v19.8.8, Backlog Fassung 65). 2 neue Sprachschlüssel, mehr als angefragt — gemeldet. Kein Schnitt in der Messreihe, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.64 gehoben.
 

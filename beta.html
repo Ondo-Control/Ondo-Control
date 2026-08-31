@@ -122,7 +122,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.8';
+var CODE_VERSION = 'v19.8.9';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -228,6 +228,8 @@ var I18N = {
   logExpFrom:'von', logExpTo:'bis', logExpBtn:'📄 Text erzeugen', logExpCopy:'📋 Kopieren',
   logExpHint:'Markieren und kopieren, oder den Kopieren-Knopf benutzen.', logExpEmpty:'Keine Vorhersagen in diesem Zeitraum.',
   refRohBtn:'🗒 Schiedsrichter-Rohtext erzeugen', refRohEmpty:'kein refRoh gespeichert',
+  refWiderspruch:'⚠ Schiedsrichter-Läufe widersprechen sich:', refRunsVon:'{a} von {b} Läufen: {c}',
+  ergebnisManuell:'Extern verifiziert, von Hand eingetragen — nicht vom Schiedsrichter-Lauf der App',
   messT:'📤 Messdaten ausgeben (ohne Schlüssel)', messD:'Gibt alle Vorhersagen und Wetten aus — OHNE API-Schlüssel und OHNE PIN. Diese Ausgabe darfst du verschicken, ablegen und in einen Chat hochladen. Die Datensicherung oben bleibt davon unberührt und enthält weiterhin die Schlüssel.',
   messBtn:'📤 Messdaten erzeugen', messFile:'💾 Als Datei',
   messHint:'Kopf und Schlusszeile nennen die Anzahl. Fehlt die Schlusszeile, wurde beim Kopieren abgeschnitten.',
@@ -324,6 +326,8 @@ var I18N = {
   logExpFrom:'du', logExpTo:'au', logExpBtn:'📄 Générer le texte', logExpCopy:'📋 Copier',
   logExpHint:'Sélectionne et copie, ou utilise le bouton Copier.', logExpEmpty:'Aucune prédiction sur cette période.',
   refRohBtn:'🗒 Générer le texte brut de l\'arbitre', refRohEmpty:'aucun refRoh enregistré',
+  refWiderspruch:'⚠ Les passages de l\'arbitre se contredisent :', refRunsVon:'{a} sur {b} passages : {c}',
+  ergebnisManuell:'Vérifié en externe, saisi à la main — pas issu du passage arbitre de l\'appli',
   messT:'📤 Exporter les données de mesure (sans clés)', messD:'Sort toutes les prédictions et tous les paris — SANS clé API et SANS code PIN. Tu peux envoyer, archiver et téléverser cette sortie dans un chat. La sauvegarde ci-dessus reste inchangée et contient toujours les clés.',
   messBtn:'📤 Générer les données', messFile:'💾 En fichier',
   messHint:'L’en-tête et la dernière ligne indiquent le nombre. Si la dernière ligne manque, la copie a été tronquée.',
@@ -420,6 +424,8 @@ var I18N = {
   logExpFrom:'from', logExpTo:'to', logExpBtn:'📄 Create text', logExpCopy:'📋 Copy',
   logExpHint:'Select and copy, or use the Copy button.', logExpEmpty:'No predictions in this range.',
   refRohBtn:'🗒 Generate referee raw text', refRohEmpty:'no refRoh stored',
+  refWiderspruch:'⚠ Referee runs disagree:', refRunsVon:'{a} of {b} runs: {c}',
+  ergebnisManuell:'Externally verified, entered by hand — not taken from the app\'s referee run',
   messT:'📤 Export measurement data (no keys)', messD:'Outputs all predictions and bets — WITHOUT API keys and WITHOUT PIN. You may send, store and upload this output to a chat. The backup above is untouched and still contains the keys.',
   messBtn:'📤 Create measurement data', messFile:'💾 As file',
   messHint:'Header and final line state the count. If the final line is missing, the copy was truncated.',
@@ -516,6 +522,47 @@ function load(){
       });
     });
     state.seedV = 5;
+    try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+  }
+  /* v19.8.9 (Nachfrage zu Punkt 64, Teil 3, Ondo 30.8.2026): NK Celje-Slovan Bratislava (25.8.)
+     und Sabah FC-Hapoel Beer-Sheva FC (26.8.) extern verifiziert (ESPN/Sky Sports/TNT bzw. drei
+     unabhaengige Primaerquellen) und von Hand eingetragen - NICHT vom Schiedsrichter-Lauf der
+     App uebernommen (Art. 14: Herkunft ehrlich gekennzeichnet in e.ergebnisQuelle). Behebt NICHT
+     die elfte Fehlerart selbst (der Schiedsrichter bleibt unzuverlaessig), nur diese zwei
+     Faelle. Dieselbe Stichwort+Datum-Erkennung wie die seedV<5-Markierung oben, diesmal mit dem
+     jeweils verifizierten Endstand. Beide fliessen normal in die Kalibrierung ein: Maerkte
+     bewertet wie bei einem normalen Uebernehmen (pruefAnwenden), parkGrund entfernt, geparkt
+     aufgehoben. Nur state.kiProtokoll — state.bets bleibt unberuehrt, wie schon bei
+     pruefAnwenden() selbst (dort existiert keine Uebernehmen-Logik fuer Wettscheine). */
+  if(state.seedV < 6){
+    var VERIFIZIERT=[
+      { keys:['celje','bratislava'], tag:25, mon:8, jahr:2026,
+        heim:1, gast:1, halbzeit:'1:1', verl:'1:2' },
+      { keys:['sabah','beer'],       tag:26, mon:8, jahr:2026,
+        heim:3, gast:2, halbzeit:'1:1', verl:'5:2' }
+    ];
+    (state.kiProtokoll||[]).forEach(function(e){
+      var dm=String(e.datum||'').match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);
+      if(!dm) return;
+      var mtxt=String(e.match||'').toLowerCase();
+      VERIFIZIERT.forEach(function(v){
+        if(Number(dm[1])!==v.tag || Number(dm[2])!==v.mon || Number(dm[3])!==v.jahr) return;
+        if(!v.keys.every(function(k){ return mtxt.indexOf(k)>=0; })) return;
+        if(e.ergebnisHeim!==null && e.ergebnisHeim!==undefined) return; /* schon bewertet: nicht ueberschreiben */
+        e.ergebnisHeim=v.heim; e.ergebnisGast=v.gast;
+        e.ergebnisHalbzeit=v.halbzeit; e.ergebnisVerl=v.verl;
+        e.ergebnisQuelle='extern_manuell';
+        (e.maerkte||[]).forEach(function(m){
+          var ok=marktUrteil(m.code,v.heim,v.gast);
+          if(ok===null) return;
+          m.status = ok ? 'richtig' : 'falsch';
+        });
+        e.status='bewertet';
+        e.geparkt=false;
+        delete e.parkGrund;
+      });
+    });
+    state.seedV = 6;
     try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
   }
 }
@@ -1747,6 +1794,19 @@ function ergebnissePruefen(btn){
     var warn=(abstand!==null && abstand>1);
     var warnQ=(runde>=3 && !urlOk(quelle));
     p.zustand='fertig';
+    /* v19.8.9 (Nachfrage zu Punkt 64, Teil 2): Zusaetzlich zum rohen Antworttext (oben, immer
+       geschrieben) wird bei einem bestaetigten Ergebnis JETZT auch der geparste Stand am
+       zuletzt gepushten refRoh-Eintrag vermerkt (e.refRoh[...].geparst). Grundlage fuer
+       refRohAbgleich(), das mehrere Laeufe desselben Spiels auf Widerspruch prueft. Nur fuer
+       kuenftige Laeufe - bereits gespeicherte refRoh-Eintraege (z. B. Celje, Sabah) bleiben
+       ohne geparst und fliessen deshalb nicht in den Abgleich ein (Grenze, siehe Backlog). */
+    if(p.art==='log'){
+      (state.kiProtokoll||[]).forEach(function(e){
+        if(p.eintraege.indexOf(e.id)<0) return;
+        var letzter = e.refRoh && e.refRoh[e.refRoh.length-1];
+        if(letzter) letzter.geparst = { heim:h, gast:g, halbzeit:halbzeit, verl:verl };
+      });
+    }
     if(p.art==='log'){
       var urteile=[];
       (state.kiProtokoll||[]).forEach(function(e){
@@ -2177,6 +2237,34 @@ function viewHome(c){
   modHtml;
 }
 
+/* v19.8.9 (Nachfrage zu Punkt 64, Teil 2 — Arbeitsregel "Auswaehlen ist eine Entscheidung,
+   Ablesen nicht"): Prueft, ob mehrere geparste refRoh-Laeufe desselben Eintrags beim Stand
+   nach 90 Minuten oder bei der Verlaengerung auseinanderlaufen. Liefert null, wenn es keine
+   zwei geparsten Laeufe gibt oder sie uebereinstimmen — sonst eine Gruppierung je Wert, zur
+   Anzeige "X von Y Laeufen: WERT". Nur Laeufe MIT geparst (ab dieser Version) zaehlen mit;
+   aeltere refRoh-Eintraege ohne geparst bleiben aussen vor (siehe Backlog, bekannte Grenze). */
+function refRohAbgleich(e){
+  var laeufe = (e.refRoh||[]).filter(function(r){
+    return r.geparst && r.geparst.heim!==undefined && r.geparst.heim!==null &&
+      r.geparst.gast!==undefined && r.geparst.gast!==null;
+  });
+  if(laeufe.length<2) return null;
+  function gruppen(werte){
+    var reihenfolge=[], anzahl={};
+    werte.forEach(function(w){
+      if(w===null || w===undefined || w==='') return;
+      if(!(w in anzahl)) reihenfolge.push(w);
+      anzahl[w]=(anzahl[w]||0)+1;
+    });
+    return reihenfolge.map(function(w){ return { wert:w, anzahl:anzahl[w] }; });
+  }
+  var g90=gruppen(laeufe.map(function(r){ return r.geparst.heim+':'+r.geparst.gast; }));
+  var gVerl=gruppen(laeufe.map(function(r){ return r.geparst.verl; }));
+  var w90=g90.length>1, wVerl=gVerl.length>1;
+  if(!w90 && !wVerl) return null;
+  return { gesamt:laeufe.length, g90:g90, gVerl:gVerl, w90:w90, wVerl:wVerl };
+}
+
 /* ================= VORHERSAGE-KARTE ================= */
 function vorhersageKarte(e, mitKnoepfen){
   var quelle = (e.herkunft==='flash') ? '🌱 Flash' : '🧠 Sonnet';
@@ -2206,8 +2294,35 @@ function vorhersageKarte(e, mitKnoepfen){
       (abweich?('<span class="muted" style="color:var(--loss)">'+t('bttsMismatch')+'</span>'):'')+'</div></div>';
   }
   var endstand = (e.ergebnisHeim!==null && e.ergebnisHeim!==undefined)
-    ? '<div class="muted" style="margin-top:8px">'+t('finalScore')+': <b style="color:var(--text)">'+e.ergebnisHeim+':'+e.ergebnisGast+'</b></div>'
+    ? '<div class="muted" style="margin-top:8px">'+t('finalScore')+': <b style="color:var(--text)">'+e.ergebnisHeim+':'+e.ergebnisGast+'</b>'+
+      ((e.ergebnisHalbzeit||e.ergebnisVerl)?('<br><span style="font-size:11px">'+
+        (e.ergebnisHalbzeit?(t('phaseHz')+' '+esc(e.ergebnisHalbzeit)):'')+
+        (e.ergebnisVerl?((e.ergebnisHalbzeit?' · ':'')+t('phaseVerl')+' '+esc(e.ergebnisVerl)):'')+'</span>'):'')+
+      /* v19.8.9 (Nachfrage zu Punkt 64, Teil 3, Art. 14): Herkunft ehrlich kennzeichnen, wenn
+         der Endstand von Hand extern verifiziert wurde statt vom Schiedsrichter-Lauf der App. */
+      (e.ergebnisQuelle==='extern_manuell'?('<br><span style="font-size:11px;color:var(--loss)">'+t('ergebnisManuell')+'</span>'):'')+
+    '</div>'
     : '';
+  /* v19.8.9 (Nachfrage zu Punkt 64, Teil 2): sichtbar machen statt unkommentiert einen Wert
+     zu zeigen, wenn mehrere geparste Schiedsrichter-Laeufe sich widersprechen. Ondo entscheidet
+     dann selbst, welcher Stand stimmt (Arbeitsregel "Auswaehlen ist eine Entscheidung"). */
+  var widerspruch = refRohAbgleich(e);
+  var widerspruchZeile = '';
+  if(widerspruch){
+    var teile=[];
+    if(widerspruch.w90){
+      teile.push(t('finalScore')+' — '+widerspruch.g90.map(function(x){
+        return t('refRunsVon').replace('{a}',x.anzahl).replace('{b}',widerspruch.gesamt).replace('{c}',x.wert);
+      }).join(' · '));
+    }
+    if(widerspruch.wVerl){
+      teile.push(t('phaseVerl')+' — '+widerspruch.gVerl.map(function(x){
+        return t('refRunsVon').replace('{a}',x.anzahl).replace('{b}',widerspruch.gesamt).replace('{c}',x.wert);
+      }).join(' · '));
+    }
+    widerspruchZeile = '<div class="muted" style="margin-top:8px;color:var(--loss)">'+t('refWiderspruch')+
+      '<br>'+teile.join('<br>')+'</div>';
+  }
   return '<div class="card"'+(e.geparkt?' style="opacity:.6"':'')+'>'+
     '<div class="flex"><div>'+
       '<div class="disp" style="font-size:18px">'+esc(e.match)+
@@ -2222,6 +2337,7 @@ function vorhersageKarte(e, mitKnoepfen){
     wortZeile+
     (e.begruendung?'<div class="muted" style="margin-top:8px;border-top:1px solid var(--edge);padding-top:8px">'+esc(e.begruendung)+'</div>':'')+
     endstand+
+    widerspruchZeile+
     (mitKnoepfen?('<div style="margin-top:10px">'+
       (e.status==='offen'
         ? (e.geparkt
