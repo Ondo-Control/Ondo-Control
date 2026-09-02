@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.69
+**Version:** 0.70
 **Stand:** 2. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.70 ändert (2.9.2026):** Rechenfehler in Fassung 0.69/Backlog Fassung 70 berichtigt — der Nachfolgechat (Chat 28) fand einen Widerspruch (12.299 gegen 12.289 Zeichen) im selben Absatz von Punkt 65. Nachgerechnet gegen den historischen Commit: richtig ist 12.289; die 12.299 waren ab dem Anfang der Anker-Zeile gezählt statt ab dem wahren Bruchpunkt, zehn Zeichen Differenz. Mit Streichung und Vermerk berichtigt, nicht stillschweigend überschrieben (Backlog Fassung 71). Kein Codeaufwand, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.70 gehoben.
 
 > **Was Fassung 0.69 ändert (2.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war eine Ergänzung zu Backlog-Punkt 65 und eine Berichtigung im Backlog (Backlog Fassung 70). Die 120.000-Zeichen-Grenze im Chat-Bereich ist ein drittes Mal belegt, diesmal vom Nachfolgechat selbst gemeldet und im Repo auf das Zeichen genau nachgerechnet; der Backlog lag mit 132.289 Zeichen um 12.289 darüber, der fehlende Rest wurde nach Weg B nachgeliefert. Dabei eine seit v19.8.9 veraltete Sprachschlüsselzahl (229 statt 234) in der Tabelle „Technische Schuld" gefunden und durch einen Verweis auf `STAND.md` ersetzt statt aktualisiert (Punkt 45). Zweiter Fund am Prüfwerkzeug festgehalten, nicht behoben: `pruefe.py` prüft an dieser Stelle eine Schreibweise, nicht eine Tatsache. Kein Codeaufwand, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.69 gehoben.
 

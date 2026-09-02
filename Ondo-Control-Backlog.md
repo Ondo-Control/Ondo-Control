@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 2.9.2026, Fassung 70 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 2.9.2026, Fassung 71 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -18,11 +18,25 @@
 
 ---
 
+## ⚠ Was Fassung 71 ändert (2.9., Rechenfehler in Fassung 70 selbst berichtigt — vom Nachfolgechat gefunden)
+
+**Anlass:** Der Nachfolgechat (Chat 28) hat beim Gegenlesen der Nachlieferung einen Widerspruch im selben Absatz von Fassung 70 gemeldet: „132.289 Zeichen, 12.289 über der Grenze" stand neben „nachgeliefert worden (12.299 Zeichen)" — zwei verschiedene Zahlen für dieselbe Sache. Chat 28 hat sich zurecht geweigert, selbst zu entscheiden, welche richtig ist, und die Prüfung an eine Code-Sitzung verwiesen (Art. 11, keine Rategenauigkeit).
+
+- **Nachgerechnet gegen den historischen Commit (`2ae6682`, der Stand zum Zeitpunkt der Meldung):** Der wahre Bruchpunkt liegt bei Zeichen 120.000, mitten im Wort „Wie un". **Richtig ist 12.289** (132.289 − 120.000) — dieselbe Zahl, die im selben Absatz bereits einmal richtig stand. Die 12.299 waren ein eigener Messfehler dieser Sitzung: gezählt ab dem **Anfang der Anker-Zeile** (Zeichen 119.990), nicht ab dem **wahren Bruchpunkt** — zehn Zeichen Differenz, genau die Länge von `| **Wie un`, die der Nachfolger durch die Überlappungszeile ohnehin schon hatte.
+- **Fassung 70s Absatz mit Streichung und Vermerk berichtigt, nicht stillschweigend überschrieben** (Arbeitsregel „Berichtigen statt danebenstellen") — die falsche Zahl bleibt sichtbar durchgestrichen, mit Erklärung der Ursache.
+- **Zweite, kleinere Klärung im selben Zug (von Chat 28 als Randbemerkung genannt, nicht als Fehler):** „rund ein Zehntel der Pflichtlektüre fehlte" bezog sich auf den Backlog allein, nicht auf alle vier Dokumente zusammen — wie bereits beim ersten Beleg von Punkt 65 („rund ein Fünftel fehlt"). Wortlaut ergänzt, damit das nicht missverständlich bleibt.
+- **Bestätigt, nicht verändert:** Chat 28s Einschätzung „Weg C wirkt, hält aber nicht" ist richtig und durch die Fassungen 61–69 selbst belegt — keine Korrektur nötig.
+- **Kein Codeaufwand**, `beta.html` bleibt v19.8.11. `pruefe.py`: ALLES SAUBER.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 71 gehoben (Blueprint 0.70). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
+
+---
+
 ## ⚠ Was Fassung 70 ändert (2.9., Leselängen-Grenze ein drittes Mal belegt, veraltete Sprachschlüsselzahl berichtigt)
 
 **Anlass:** Der Nachfolgechat hat bei der Übergabe von selbst gemeldet, dass sein Backlog-Abruf mitten im Wort abbricht — genau der Fall aus Punkt 65. Beim Nachliefern des fehlenden Teils ist eine veraltete Zahl darin aufgefallen.
 
-- **Punkt 65 ergänzt, dritte unabhängige Bestätigung — diesmal von aussen gemeldet und im Repo nachgerechnet.** Der Nachfolger nannte den letzten empfangenen Text im Wortlaut (`| **Wie un`); nachgemessen liegt diese Stelle bei **exakt Zeichen 120.000**. Der Backlog stand bei **132.289 Zeichen**, **12.289 über der Grenze** — rund ein Zehntel der Pflichtlektüre fehlte. **Rückfall gegenüber Fassung 60:** Weg C hatte auf 108.699 Zeichen gekürzt, die Fassungen 61 bis 69 sind wieder darüber gewachsen. Weg C wirkt, hält aber nicht. Der fehlende Rest ist nach Weg B nachgeliefert worden (12.299 Zeichen mit überlappender Nahtstelle). **Keine Entscheidung getroffen** — die Wahl zwischen A, B und C liegt weiterhin bei Ondo.
+- **Punkt 65 ergänzt, dritte unabhängige Bestätigung — diesmal von aussen gemeldet und im Repo nachgerechnet.** Der Nachfolger nannte den letzten empfangenen Text im Wortlaut (`| **Wie un`); nachgemessen liegt diese Stelle bei **exakt Zeichen 120.000**. Der Backlog stand bei **132.289 Zeichen**, **12.289 über der Grenze** — rund ein Zehntel des Backlogs fehlte (Bezug auf diese eine Datei, nicht auf alle vier Pflichtdokumente zusammen — wie schon bei der ersten Bestätigung von Punkt 65, „rund ein Fünftel fehlt"). **Rückfall gegenüber Fassung 60:** Weg C hatte auf 108.699 Zeichen gekürzt, die Fassungen 61 bis 69 sind wieder darüber gewachsen. Weg C wirkt, hält aber nicht. ~~Der fehlende Rest ist nach Weg B nachgeliefert worden (12.299 Zeichen mit überlappender Nahtstelle).~~ **🔴 BERICHTIGT (Fassung 71, 2.9.2026, gefunden vom Nachfolgechat):** Die 12.299 waren falsch gerechnet — nicht vom wahren Bruchpunkt (Zeichen 120.000, mitten im Wort „Wie un") aus gezählt, sondern vom Anfang der Anker-Zeile (Zeichen 119.990), die der Nachfolger durch die Überlappung ohnehin schon hatte. Richtig ist **12.289 Zeichen** — dieselbe Zahl wie oben (132.289 − 120.000), kein zweiter, abweichender Wert. Der fehlende Rest ist nach Weg B nachgeliefert worden, mit einer zusätzlichen Zeile Überlappung zur Nahtprüfung. **Keine Entscheidung getroffen** — die Wahl zwischen A, B und C liegt weiterhin bei Ondo.
 - **🔴 Veraltete Zahl im fehlenden Teil berichtigt (Fehlerart C3 — Folgewirkung woanders nicht geprüft):** Die Tabelle „Technische Schuld" nannte **229 Sprachschlüssel, Stand 28.8.2026**; richtig sind seit v19.8.9 **234**. Die Zahl ist **nicht** auf den neuen Wert gesetzt, sondern durch einen Verweis auf `STAND.md` ersetzt worden — sie war hier ein zweiter Ort für dieselbe Tatsache (Punkt 45) und wäre sonst erneut unbemerkt gealtert. **Gefunden, weil der fehlende Teil vor dem Nachliefern durchgesehen wurde**, nicht durch den Prüflauf.
 - **Zweiter Fund am Prüfwerkzeug, nicht behoben:** `pruefe.py` Abschnitt 6 hat die falsche Zahl nicht gefangen. Er prüft das Muster `**Sprachschlüssel: N**`; die Tabellenzelle schrieb die Zahl anders (`(229 Schlüssel × 3 Sprachen …)`). **Der Prüfer prüft eine Schreibweise, nicht eine Tatsache** — dieselbe Art Lücke wie in Punkt 66 und wie der Fund zur festen Bestandszahlen-Liste in Fassung 69. Nur festgehalten, kein Vorschlag, keine Entscheidung.
 - **Kein Codeaufwand** (kein neuer `beta.html`-Stand, `beta.html` bleibt v19.8.11). `pruefe.py`: ALLES SAUBER.
