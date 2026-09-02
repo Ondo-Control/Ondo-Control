@@ -149,6 +149,50 @@ Drei unabhängige Läufe (Claude Code 24.8., 12:38 Uhr · Mistral 24.8., 12:52 U
 
 ---
 
+## Erledigte Punkte, archiviert am 2.9.2026 (Backlog Fassung 72, Regel 4 — ohne Chat-Anstoss)
+
+*Zwei Punkte, Status GEBAUT/ENTSCHIEDEN und ohne Bewährungs-Einschränkung im eigenen Text — Kriterium und Ausnahmen stehen in Fassung 61 des Backlogs und in Regel 4 dort. Wortgleich verschoben, nichts gekürzt. Reihenfolge: aufsteigende Punktnummer.*
+
+---
+
+**37. Kein Schutz gegen einen zweiten Vorhersagelauf am selben Tag** · *Fund 9.8., Claude* · **Status: 🔴 GEBAUT am 30.8.2026 (Beschluss Ondo)**
+
+> **🔴 GEBAUT am 30.8.2026:** `vorhersagen()` (`beta.html`, v19.8.7) prüft vor dem Anlegen eines Eintrags, ob dasselbe Gehirn (`herkunft`) für dasselbe Spiel (Namensvarianten über die neue gemeinsame Funktion `normName()`, dieselbe Regel wie bei S1) am selben Tag (`datum`) bereits einen Eintrag im Bestand hat, und überspringt einen echten Doppeleintrag ohne ihn anzulegen. **Geklärt (unten offene Frage „ob ein bewusst zweiter Lauf zulässig ist"):** Es gibt weiterhin keine Begrenzung der Läufe pro Tag — nur echte Duplikate (gleiches Spiel, gleicher Tag, gleiches Gehirn) werden übersprungen, ein zweiter Lauf mit anderen oder zusätzlichen Spielen legt diese normal an. Sonnet und Flash dürfen weiterhin je einen eigenen Eintrag für dasselbe Spiel haben (Prüfung ist je Gehirn, nicht global). Trockentest bestanden (zweiter Lauf desselben Spiels/Tags/Gehirns wird übersprungen; anderes Spiel, anderer Tag oder anderes Gehirn legt normal an). Kein Schnitt in der Messreihe. Keine neuen Sprachschlüssel.
+> **Bekannte Grenze, unverändert durch diese Lieferung:** Der historische Fall unten („Red Bull Salzburg" gegen „FC Red Bull Salzburg") wird von `normName()` weiterhin **nicht** als Duplikat erkannt — die Funktion gleicht Gross-/Kleinschreibung, Satzzeichen und Strichvarianten aus, entfernt aber keine Wörter wie „FC".
+
+`vorhersagen()` legt jeden zurückgegebenen Eintrag ungeprüft an. Es gibt **keine Prüfung**, ob ein Spiel für denselben Tag bereits im Log steht.
+
+**🔴 Nachtrag 9.8., mittags — es ist bereits passiert.** Im KI-Log steht am **6. August** dasselbe Spiel zweimal:
+
+```
+6.8.2026 18:00 · Red Bull Salzburg - Pafos FC     [UEFA Europa League Qualifikation]
+6.8.2026 19:00 · FC Red Bull Salzburg - Pafos FC  [UEFA Europa League]
+```
+
+**Ein Spiel, zwei Einträge, zwei verschiedene Anpfiffzeiten.** Der Doppelschutz in `spielListeHolen` vergleicht `String(s.match).toLowerCase().replace(/[^a-z0-9]/g,'')` — das vorangestellte „FC" macht aus `redbullsalzburgpafosfc` ein `fcredbullsalzburgpafosfc`, und die Prüfung schlägt fehl. **Der Punkt ist damit belegt, nicht mehr nur befürchtet, und er betrifft zwei Vorhersagen je Gehirn im Bestand.**
+
+→ **Folge für den Bauvorschlag:** Ein Vergleich auf exakte Zeichengleichheit reicht nicht. Er muss auch Namensvarianten erfassen, oder der Vergleich läuft über Datum und Wettbewerb mit.
+
+Am 9.8. lieferte der erste Lauf nur zwei Spiele. Ondo drückte ein zweites Mal und bekam fünf **andere** — keine Doppeleinträge. **Das war Glück.** Bei gleicher Spielliste stünden dieselben Spiele zweimal im Bestand und zählten zweimal in die Kalibrierung.
+
+→ **Vorschlag zur Vorlage:** Vor dem Anlegen prüfen, ob Spielname und Datum schon vorhanden sind, und den Eintrag dann überspringen. Wenige Zeilen.
+→ **Zu klären, bevor gebaut wird:** Ob ein bewusst zweiter Lauf am selben Tag ein zulässiger Anwendungsfall ist — etwa wenn der erste zu wenige Spiele lieferte. Dann wäre Überspringen richtig, Blockieren falsch.
+→ **Kein Schnitt.** Betrifft weder den Auftragstext der Gehirne noch den des Schiedsrichters.
+→ Hängt zusammen mit Frage 2 („Doppelter Spieleintrag als zehnte Fehlerart?").
+
+---
+
+**67. Kein eigener Branch mehr für Code-Lieferungen — direkt auf `main`** · *Entscheidung Ondo, 30.8.2026* · **Status: 🔴 ENTSCHIEDEN UND EINGEFÜHRT 30.8.2026**
+
+**Ondos Entscheidung im Wortlaut:** Ondo will keine Branches mehr für die laufende Arbeit — nur `main`, direkt. Ausnahme: der Branch `mistral` bleibt unberührt (eigene, bestehende Regel für Mistral, Punkt 62).
+
+→ **Ab sofort:** Jede Code-Lieferung arbeitet direkt auf `main`, kein eigener Branch je Lieferung mehr. `main` bleibt dabei weiterhin nur per `--ff-only` aktualisiert — kein Force, kein Rebase, das ändert sich nicht, nur der Umweg über einen Branch entfällt.
+→ **Anlass:** Der bisherige, sitzungseigene Branch `claude/ondo-control-chat-handover-o4v9vz` (PR #1) lag zwischenzeitlich mehrfach hinter `main` zurück — zuletzt bei Commit `4506cd0`, während `main` erst nachträglich per `--ff-only` nachgezogen wurde (Fassung 67). Ein direkter Weg ohne Branch-Umweg macht diese Verzögerung strukturell unmöglich.
+→ **Zwei verwaiste Branches als Beleg für das Risiko:** `claude/backlog-stand-update-wgp612` und `claude/ergebnisse-pruefen-28-8-mnq1au` blieben unerklärt stehen, nachdem ihr Inhalt längst in `main` aufgegangen war (siehe Punkt 53, Fund 30.8.2026) — ohne Löschrecht dieser Sitzung (bekannte Rechte-Grenze, HTTP 403) bleiben solche Branches sonst dauerhaft als Altlast liegen.
+→ **Kosten:** keine. Eine Umstellung der Arbeitsweise, kein Codeaufwand.
+
+---
+
 ## ⚠ Was Fassung 59 ändert (30.8., drei Nachträge aus der Übergabe an Chat 27)
 
 **Anlass:** Teil E der Übergabemappe an Chat 27 (29.8.2026) nannte drei Berichtigungen als offen. Auf Ondos Auftrag „Nachtragen" jetzt nachgeholt — zwei vollständig, eine nur teilweise, mit offenem Vermerk statt stillschweigender Lücke.

@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.70
+**Version:** 0.71
 **Stand:** 2. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.71 ändert (2.9.2026):** Regel 4 nachgeholt, auf Ondos Nachfrage („Hast du das gemacht?"): Die stehende Regel „Backlog-Pflege ist Code-Aufgabe" (30.8.2026) war in dieser Sitzung nicht laufend angewandt worden. Alle Punkte mit Status GEBAUT/GEKLÄRT/ENTSCHIEDEN/BEANTWORTET/GESCHLOSSEN gegen die zwei Kriterien geprüft; zwei archiviert (37, 67), zehn mit Begründung stehen gelassen (Backlog Fassung 72) — darunter ein Fund, nur benannt, nicht verändert: Punkt 36 trägt eine Kopfzeile „GEBAUT" und eine Schlusszeile „bleibt weiterhin unentschieden". Verlustbeweis von Hand geführt. Kein Codeaufwand, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.71 gehoben.
 
 > **Was Fassung 0.70 ändert (2.9.2026):** Rechenfehler in Fassung 0.69/Backlog Fassung 70 berichtigt — der Nachfolgechat (Chat 28) fand einen Widerspruch (12.299 gegen 12.289 Zeichen) im selben Absatz von Punkt 65. Nachgerechnet gegen den historischen Commit: richtig ist 12.289; die 12.299 waren ab dem Anfang der Anker-Zeile gezählt statt ab dem wahren Bruchpunkt, zehn Zeichen Differenz. Mit Streichung und Vermerk berichtigt, nicht stillschweigend überschrieben (Backlog Fassung 71). Kein Codeaufwand, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.70 gehoben.
 

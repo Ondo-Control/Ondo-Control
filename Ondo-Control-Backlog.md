@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 2.9.2026, Fassung 71 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 2.9.2026, Fassung 72 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -15,6 +15,32 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 72 ändert (2.9., Regel 4 nachgeholt — Backlog-Pflege ohne Chat-Anstoss, auf Ondos Nachfrage)
+
+**Anlass:** Ondo hat gefragt, ob die stehende Regel 4 („Code prüft und archiviert den Backlog künftig selbstständig, ohne Anstoss durch Chat") in dieser Sitzung angewandt wurde. **Antwort, ehrlich zuerst gegeben: Nein, nicht laufend** — obwohl in dieser Sitzung selbst mehrere Punkte mit genau den relevanten Status-Wörtern (GEBAUT, BEANTWORTET/GEKLÄRT) bearbeitet wurden. Nachgeholt, statt offen gelassen.
+
+- **Alle Punkte mit Status GEBAUT/GEKLÄRT/ENTSCHIEDEN/BEANTWORTET/GESCHLOSSEN systematisch gegen die zwei Kriterien aus Regel 4 geprüft** (keine Bewährungs-Einschränkung im eigenen Text · an keine offene Untersuchung gebunden): 46, 54, 58, 63, 64, 67, 41, 36, 37, E, 43, 50.
+- **Zwei Punkte archiviert, nach `BACKLOG-ARCHIV.md` verschoben:**
+  - **37** (Kein Schutz gegen einen zweiten Vorhersagelauf am selben Tag) — GEBAUT 30.8.2026, die im Text offen gebliebene Frage („Zu klären, bevor gebaut wird…") ist im selben Punkt durch den GEBAUT-Block ausdrücklich beantwortet, kein Bewährungsvorbehalt, keine offene Untersuchung.
+  - **67** (Kein eigener Branch mehr, direkt auf `main`) — ENTSCHIEDEN UND EINGEFÜHRT 30.8.2026, reine Ablaufregel ohne jeden Vorbehalt.
+- **Zehn Punkte bewusst NICHT verschoben, mit Begründung:**
+  - **46, 54** — tragen wörtlich „Bewährung steht aus".
+  - **E** — trägt „mit Rückfall-Zusage" (Ondos Auflage „Funktioniert es nicht, wird eine andere Lösung gesucht oder der Schritt rückgängig gemacht") — sinngemäss dieselbe Einschränkung wie „Bewährung steht aus".
+  - **58** — der eigentliche Fund („Der Widerspruch ist ungelöst") bleibt im selben Punkt ausdrücklich offen. Dieselbe Begründung wie schon bei der Archivierung vom 30.8.2026 (Fassung 61); nichts hat sich daran geändert.
+  - **64** — die Celje/Sabah-Fälle warten ausdrücklich weiter auf die Reparatur des Schiedsrichters (siehe Rücknahme vom 2.9.2026) — direkt an eine offene Untersuchung (elfte Fehlerart) gebunden.
+  - **41** — der Punkt selbst benennt „es sind zwei Probleme", die zweite Ursache der falschen Anpfiffzeiten bleibt unbekannt (Art. 11) und ist an die noch nicht abschliessend geklärte Untersuchung aus Punkt 43 gebunden.
+  - **36** — der Punkt selbst sagt im letzten Satz „Punkt 36 selbst bleibt weiterhin unentschieden": Nur die Auftragstext-Änderung ist gebaut, die Grundsatzfrage nicht. **Nur festgehalten, nicht verändert** (Regel 4 erlaubt reines Verschieben, keine inhaltliche Klärung): Ein Punkt, dessen Kopfzeile „GEBAUT" sagt und dessen Schlusszeile „bleibt unentschieden" — das ist für einen künftigen Leser leicht misszuverstehen. Keine Entscheidung dazu getroffen, nur benannt.
+  - **63** — Status ist „Idee — noch nicht gebaut", keine Erledigt-Kategorie, zählt nicht.
+  - **43** — heute erst in dieser Sitzung angelegt (Fassung 69). Kein Bewährungsvorbehalt im Wortlaut, aber der Punkt bindet sich selbst an die noch unbeantwortete zweite Ursache aus Punkt 41 (Art. 11) — und ein am selben Tag anlegter Punkt sofort wieder zu archivieren, widerspricht dem Zweck der Regel (Bewährung im Sichtbaren). **Im Zweifel stehen gelassen.**
+  - **50** — Ondos ausdrückliche Ausnahme („bleibt sichtbar"), unverändert seit Fassung 61.
+- **Verlustbeweis von Hand geführt** (dieselbe Methode wie bei Punkt 65/Weg C, kein automatischer `pruefe.py`-Abschnitt dafür): Länge, Enthaltensein und Zeilen-Multimenge von (gekürzter Backlog + beide verschobenen Blöcke) gegen den Originaltext geprüft — identisch.
+- **Querverweise geprüft:** Alle gefundenen Erwähnungen von „Punkt 37" und „Punkt 67" ausserhalb ihrer eigenen Einträge sind reine Nennungen ohne „siehe dort für Details" — bleiben unverändert, lösen sich über `pruefe.py` Abschnitt 3 weiterhin auf (Backlog und Archiv werden gemeinsam durchsucht), dieselbe Konvention wie bei Fassung 61.
+- **Kein Codeaufwand**, `beta.html` bleibt v19.8.11. `pruefe.py`: ALLES SAUBER.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 72 gehoben (Blueprint 0.71). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. **Reine Anwendung der bereits am 30.8.2026 beschlossenen Regel 4** — keine neue inhaltliche Entscheidung über offene Punkte (Art. 8 unberührt, wie Regel 4 selbst festhält).
+- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
 
 ---
 
@@ -439,16 +465,6 @@ Auch betroffen, ausserhalb der Pflichtlektüre: `CHRONIK-2026-08.md` (164.036 Ze
 
 ---
 
-**67. Kein eigener Branch mehr für Code-Lieferungen — direkt auf `main`** · *Entscheidung Ondo, 30.8.2026* · **Status: 🔴 ENTSCHIEDEN UND EINGEFÜHRT 30.8.2026**
-
-**Ondos Entscheidung im Wortlaut:** Ondo will keine Branches mehr für die laufende Arbeit — nur `main`, direkt. Ausnahme: der Branch `mistral` bleibt unberührt (eigene, bestehende Regel für Mistral, Punkt 62).
-
-→ **Ab sofort:** Jede Code-Lieferung arbeitet direkt auf `main`, kein eigener Branch je Lieferung mehr. `main` bleibt dabei weiterhin nur per `--ff-only` aktualisiert — kein Force, kein Rebase, das ändert sich nicht, nur der Umweg über einen Branch entfällt.
-→ **Anlass:** Der bisherige, sitzungseigene Branch `claude/ondo-control-chat-handover-o4v9vz` (PR #1) lag zwischenzeitlich mehrfach hinter `main` zurück — zuletzt bei Commit `4506cd0`, während `main` erst nachträglich per `--ff-only` nachgezogen wurde (Fassung 67). Ein direkter Weg ohne Branch-Umweg macht diese Verzögerung strukturell unmöglich.
-→ **Zwei verwaiste Branches als Beleg für das Risiko:** `claude/backlog-stand-update-wgp612` und `claude/ergebnisse-pruefen-28-8-mnq1au` blieben unerklärt stehen, nachdem ihr Inhalt längst in `main` aufgegangen war (siehe Punkt 53, Fund 30.8.2026) — ohne Löschrecht dieser Sitzung (bekannte Rechte-Grenze, HTTP 403) bleiben solche Branches sonst dauerhaft als Altlast liegen.
-→ **Kosten:** keine. Eine Umstellung der Arbeitsweise, kein Codeaufwand.
-
----
 
 ## 🔴 Prio 1 — als Nächstes dran
 
@@ -505,32 +521,6 @@ Weg A (Beschluss Ondo 6.8.) schliesst aus der Spielliste **verkürzte** Formate 
 
 ---
 
-**37. Kein Schutz gegen einen zweiten Vorhersagelauf am selben Tag** · *Fund 9.8., Claude* · **Status: 🔴 GEBAUT am 30.8.2026 (Beschluss Ondo)**
-
-> **🔴 GEBAUT am 30.8.2026:** `vorhersagen()` (`beta.html`, v19.8.7) prüft vor dem Anlegen eines Eintrags, ob dasselbe Gehirn (`herkunft`) für dasselbe Spiel (Namensvarianten über die neue gemeinsame Funktion `normName()`, dieselbe Regel wie bei S1) am selben Tag (`datum`) bereits einen Eintrag im Bestand hat, und überspringt einen echten Doppeleintrag ohne ihn anzulegen. **Geklärt (unten offene Frage „ob ein bewusst zweiter Lauf zulässig ist"):** Es gibt weiterhin keine Begrenzung der Läufe pro Tag — nur echte Duplikate (gleiches Spiel, gleicher Tag, gleiches Gehirn) werden übersprungen, ein zweiter Lauf mit anderen oder zusätzlichen Spielen legt diese normal an. Sonnet und Flash dürfen weiterhin je einen eigenen Eintrag für dasselbe Spiel haben (Prüfung ist je Gehirn, nicht global). Trockentest bestanden (zweiter Lauf desselben Spiels/Tags/Gehirns wird übersprungen; anderes Spiel, anderer Tag oder anderes Gehirn legt normal an). Kein Schnitt in der Messreihe. Keine neuen Sprachschlüssel.
-> **Bekannte Grenze, unverändert durch diese Lieferung:** Der historische Fall unten („Red Bull Salzburg" gegen „FC Red Bull Salzburg") wird von `normName()` weiterhin **nicht** als Duplikat erkannt — die Funktion gleicht Gross-/Kleinschreibung, Satzzeichen und Strichvarianten aus, entfernt aber keine Wörter wie „FC".
-
-`vorhersagen()` legt jeden zurückgegebenen Eintrag ungeprüft an. Es gibt **keine Prüfung**, ob ein Spiel für denselben Tag bereits im Log steht.
-
-**🔴 Nachtrag 9.8., mittags — es ist bereits passiert.** Im KI-Log steht am **6. August** dasselbe Spiel zweimal:
-
-```
-6.8.2026 18:00 · Red Bull Salzburg - Pafos FC     [UEFA Europa League Qualifikation]
-6.8.2026 19:00 · FC Red Bull Salzburg - Pafos FC  [UEFA Europa League]
-```
-
-**Ein Spiel, zwei Einträge, zwei verschiedene Anpfiffzeiten.** Der Doppelschutz in `spielListeHolen` vergleicht `String(s.match).toLowerCase().replace(/[^a-z0-9]/g,'')` — das vorangestellte „FC" macht aus `redbullsalzburgpafosfc` ein `fcredbullsalzburgpafosfc`, und die Prüfung schlägt fehl. **Der Punkt ist damit belegt, nicht mehr nur befürchtet, und er betrifft zwei Vorhersagen je Gehirn im Bestand.**
-
-→ **Folge für den Bauvorschlag:** Ein Vergleich auf exakte Zeichengleichheit reicht nicht. Er muss auch Namensvarianten erfassen, oder der Vergleich läuft über Datum und Wettbewerb mit.
-
-Am 9.8. lieferte der erste Lauf nur zwei Spiele. Ondo drückte ein zweites Mal und bekam fünf **andere** — keine Doppeleinträge. **Das war Glück.** Bei gleicher Spielliste stünden dieselben Spiele zweimal im Bestand und zählten zweimal in die Kalibrierung.
-
-→ **Vorschlag zur Vorlage:** Vor dem Anlegen prüfen, ob Spielname und Datum schon vorhanden sind, und den Eintrag dann überspringen. Wenige Zeilen.
-→ **Zu klären, bevor gebaut wird:** Ob ein bewusst zweiter Lauf am selben Tag ein zulässiger Anwendungsfall ist — etwa wenn der erste zu wenige Spiele lieferte. Dann wäre Überspringen richtig, Blockieren falsch.
-→ **Kein Schnitt.** Betrifft weder den Auftragstext der Gehirne noch den des Schiedsrichters.
-→ Hängt zusammen mit Frage 2 („Doppelter Spieleintrag als zehnte Fehlerart?").
-
----
 
 **E. „Prüfen statt suchen"** · *Idee 25.7., ChatGPT · Beschluss Ondo 25.7., Bau bestätigt 27.8.* · **Status: 🔴 GEBAUT am 27.8.2026, mit Rückfall-Zusage**
 
