@@ -122,7 +122,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.9';
+var CODE_VERSION = 'v19.8.10';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -533,7 +533,16 @@ function load(){
      jeweils verifizierten Endstand. Beide fliessen normal in die Kalibrierung ein: Maerkte
      bewertet wie bei einem normalen Uebernehmen (pruefAnwenden), parkGrund entfernt, geparkt
      aufgehoben. Nur state.kiProtokoll — state.bets bleibt unberuehrt, wie schon bei
-     pruefAnwenden() selbst (dort existiert keine Uebernehmen-Logik fuer Wettscheine). */
+     pruefAnwenden() selbst (dort existiert keine Uebernehmen-Logik fuer Wettscheine).
+     🔴 BERICHTIGT v19.8.10 (30.8.2026): Die Datumsannahme hier (Celje 25.8., Sabah 26.8.) ist
+     nachtraeglich als falsch erkannt worden (mehrfach extern gegengeprueft: Sabah 25.8., Celje
+     26.8.). Dieser Block bleibt unveraendert stehen — bereits verbraucht (state.seedV kann bei
+     einer Sitzung, die diese Version schon geladen hat, bereits auf 6 stehen), eine Aenderung
+     an dieser Gate-Nummer wuerde dort nie mehr ausgefuehrt. Die Berichtigung steht deshalb im
+     separaten, neuen Block seedV<7 unten, mit robusteren, datumsunabhaengigeren Kriterien statt
+     einer erneuten festen (und diesmal wieder angreifbaren) Datumsannahme. Wegen der eindeutigen,
+     kollisionsfreien Stichwoerter (celje/bratislava vs. sabah/beer) konnte dieser Block niemals
+     die zwei Spiele VERTAUSCHEN — nur bestenfalls NICHT ZUORDNEN, wenn das Datum nicht passte. */
   if(state.seedV < 6){
     var VERIFIZIERT=[
       { keys:['celje','bratislava'], tag:25, mon:8, jahr:2026,
@@ -563,6 +572,58 @@ function load(){
       });
     });
     state.seedV = 6;
+    try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+  }
+  /* v19.8.10 (Nachfrage zu Punkt 64 Teil 3, Berichtigung, 30.8.2026): Ondo hat die Daten von
+     NK Celje-Slovan Bratislava und Sabah FC-Hapoel Beer-Sheva FC nach mehrfacher externer
+     Gegenpruefung (ESPN, UEFA.com, Sofascore, TNT Sports, Flashscore, plus das KI-Log selbst)
+     berichtigt: Sabah = 25.8.2026, Celje = 26.8.2026 — genau umgekehrt zur Annahme in der
+     seedV<5- und seedV<6-Migration oben (dort: Celje 25.8., Sabah 26.8., seit v19.8.5
+     unveraendert falsch dokumentiert). NEUE Gate-Nummer statt Aenderung an seedV<6, weil diese
+     Sitzung nicht weiss, ob seedV<6 bei Ondo schon gelaufen ist (dann wuerde eine Aenderung an
+     derselben Nummer nie mehr ausgefuehrt) — diese Code-Sitzung hat keinen Zugriff auf Ondos
+     Browser-localStorage und kann das nicht pruefen, deshalb robust statt vermutet.
+     Robustheit statt einer erneuten festen Datumsannahme: Da unklar bleibt, welches Datum die
+     echten Eintraege tatsaechlich tragen (bzw. ob eine vorherige Sitzung dieselben zwei Spiele
+     schon unter der falschen Datumsannahme gefunden hat, was dank eindeutiger Stichwoerter
+     nie zu einer Vertauschung fuehren konnte, siehe Kommentar oben), sind BEIDE Tage (25. und
+     26.8.2026) fuer BEIDE Spiele zugelassen — die Stichwoerter bleiben die alleinige, eindeutige
+     Unterscheidung (celje+bratislava kann sabah+beer nie treffen). Zusaetzliche Sicherung:
+     e.geparkt muss zutreffen, wenn der Eintrag noch nicht bewertet ist — nur ein Spiel, das
+     Ondo selbst geparkt hat (manuell, unabhaengig von jeder Datumsannahme im Code), kommt
+     ueberhaupt infrage. Idempotent wie oben: ein bereits bewerteter Eintrag (ergebnisHeim
+     gesetzt) wird nicht angefasst — das ist wertsicher, weil eine etwaige fruehere Zuordnung
+     durch seedV<6 dank der eindeutigen Stichwoerter garantiert am richtigen Spiel geschah. */
+  if(state.seedV < 7){
+    var VERIFIZIERT2=[
+      { keys:['celje','bratislava'], tage:[25,26], mon:8, jahr:2026,
+        heim:1, gast:1, halbzeit:'1:1', verl:'1:2' },
+      { keys:['sabah','beer'],       tage:[25,26], mon:8, jahr:2026,
+        heim:3, gast:2, halbzeit:'1:1', verl:'5:2' }
+    ];
+    (state.kiProtokoll||[]).forEach(function(e){
+      var dm=String(e.datum||'').match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);
+      if(!dm) return;
+      var mtxt=String(e.match||'').toLowerCase();
+      VERIFIZIERT2.forEach(function(v){
+        if(v.tage.indexOf(Number(dm[1]))<0 || Number(dm[2])!==v.mon || Number(dm[3])!==v.jahr) return;
+        if(!v.keys.every(function(k){ return mtxt.indexOf(k)>=0; })) return;
+        if(e.ergebnisHeim!==null && e.ergebnisHeim!==undefined) return; /* schon bewertet: nicht ueberschreiben */
+        if(!e.geparkt) return; /* nur ein von Ondo selbst geparktes Spiel kommt infrage */
+        e.ergebnisHeim=v.heim; e.ergebnisGast=v.gast;
+        e.ergebnisHalbzeit=v.halbzeit; e.ergebnisVerl=v.verl;
+        e.ergebnisQuelle='extern_manuell';
+        (e.maerkte||[]).forEach(function(m){
+          var ok=marktUrteil(m.code,v.heim,v.gast);
+          if(ok===null) return;
+          m.status = ok ? 'richtig' : 'falsch';
+        });
+        e.status='bewertet';
+        e.geparkt=false;
+        delete e.parkGrund;
+      });
+    });
+    state.seedV = 7;
     try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
   }
 }

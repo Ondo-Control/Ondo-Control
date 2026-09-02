@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.65
+**Version:** 0.66
 **Stand:** 30. August 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.66 ändert (30.8.2026):** Berichtigung zu Fassung 0.65: Die Daten von NK Celje–Slovan Bratislava und Sabah FC–Hapoel Beer-Sheva FC waren seit v19.8.5 (28.8.2026) durchgehend vertauscht dokumentiert und kodiert — richtig, mehrfach extern belegt: Sabah 25.8.2026, Celje 26.8.2026 (`beta.html` v19.8.10, Backlog Fassung 67). Codezitat bestätigt: eine Vertauschung zwischen den zwei Spielen war durch die eindeutigen Stichwörter strukturell ausgeschlossen, ein falsches Datum konnte höchstens zu Nicht-Zuordnung führen, nicht zu Datenschaden. Neue, robustere Migration `state.seedV<7` statt Änderung an der bereits gelaufenen `seedV<6`. `STAND.md` entsprechend korrigiert, mit Streichung und Vermerk, nicht stillschweigend überschrieben. Keine neuen Sprachschlüssel, kein Schnitt in der Messreihe, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.66 gehoben.
 
 > **Was Fassung 0.65 ändert (30.8.2026):** Nachfrage zu Backlog-Punkt 64, drei Teile (`beta.html` v19.8.9, Backlog Fassung 66). Teil 1: Codezitat bestätigt, dass kein Auswahlmechanismus unter mehreren Schiedsrichter-Läufen besteht. Teil 2: Widersprechende Läufe werden jetzt sichtbar gemacht (`refRohAbgleich()`), statt unkommentiert einen Wert zu zeigen. Teil 3: NK Celje–Slovan Bratislava und Sabah FC–Hapoel Beer-Sheva FC extern verifiziert und von Hand eingetragen, Herkunft ehrlich gekennzeichnet, behebt nicht die elfte Fehlerart selbst. Dabei ein Widerspruch in `STAND.md`s Fehlerart-11-Zeile gefunden und berichtigt; ein zweiter Widerspruch (vertauschte Daten in der Anfrage) per Rückfrage geklärt statt geraten. 3 neue Sprachschlüssel. Kein Schnitt in der Messreihe, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.65 gehoben.
 
