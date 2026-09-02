@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.66
+**Version:** 0.67
 **Stand:** 30. August 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.67 ändert (30.8.2026):** `main` auf den vollständigen Stand gebracht (`--ff-only` auf `4506cd0`, Fassung 67/v19.8.10 — drei zwischenzeitliche Lieferungen hatten `main` nie erreicht). Zwei verwaiste Branches geklärt (`claude/backlog-stand-update-wgp612`, `claude/ergebnisse-pruefen-28-8-mnq1au`) — beide vollständig in `main` enthalten, Löschung an der bekannten Rechte-Grenze gescheitert (HTTP 403), bleiben stehen bis Ondo sie von Hand löscht. **Neue Arbeitsweise entschieden (Ondo, 30.8.2026), Backlog-Punkt 67:** Code-Lieferungen ab sofort direkt auf `main`, kein eigener Branch mehr je Lieferung — `--ff-only` bleibt, kein Force, kein Rebase. Ausnahme unverändert: Branch `mistral`. Kein Codeaufwand, kein Verfassungsartikel geändert, keine neue Arbeitsregel (reine Ablaufentscheidung). Blueprint auf 0.67 gehoben.
 
 > **Was Fassung 0.66 ändert (30.8.2026):** Berichtigung zu Fassung 0.65: Die Daten von NK Celje–Slovan Bratislava und Sabah FC–Hapoel Beer-Sheva FC waren seit v19.8.5 (28.8.2026) durchgehend vertauscht dokumentiert und kodiert — richtig, mehrfach extern belegt: Sabah 25.8.2026, Celje 26.8.2026 (`beta.html` v19.8.10, Backlog Fassung 67). Codezitat bestätigt: eine Vertauschung zwischen den zwei Spielen war durch die eindeutigen Stichwörter strukturell ausgeschlossen, ein falsches Datum konnte höchstens zu Nicht-Zuordnung führen, nicht zu Datenschaden. Neue, robustere Migration `state.seedV<7` statt Änderung an der bereits gelaufenen `seedV<6`. `STAND.md` entsprechend korrigiert, mit Streichung und Vermerk, nicht stillschweigend überschrieben. Keine neuen Sprachschlüssel, kein Schnitt in der Messreihe, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.66 gehoben.
 

@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 30.8.2026, Fassung 67 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 30.8.2026, Fassung 68 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -15,6 +15,19 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 68 ändert (30.8., main auf vollständigen Stand gebracht, zwei Branches geklärt, neue Arbeitsweise)
+
+**Anlass:** Ondo will keine Branches mehr für laufende Arbeit — nur `main`, direkt (Ausnahme: `mistral`, Punkt 62).
+
+- **Teil 1 gebaut:** `main` stand seit dem ersten Merge (`f795796`) zurück, während der Arbeitsbranch bei `4506cd0` (Fassung 67, v19.8.10) stand — drei Lieferungen (36/37/41/64-Nachfrage, refRoh-Export, Celje/Sabah-Berichtigung) hatten `main` nie erreicht. Jetzt per `--ff-only` nachgezogen, ohne Konflikt. `main` geprüft: Fassung 67, v19.8.10, `pruefe.py`: ALLES SAUBER.
+- **Teil 2 geklärt:** `claude/backlog-stand-update-wgp612` und `claude/ergebnisse-pruefen-28-8-mnq1au` waren unerklärt. Beleg (`git merge-base --is-ancestor`): beide vollständig in `main` enthalten, keine fehlende Arbeit, kein Konflikt. Löschung versucht, wie erwartet an der bekannten Rechte-Grenze gescheitert (HTTP 403, siehe Punkt 53) — beide Branches bleiben stehen, Ondo müsste sie von Hand löschen.
+- **Teil 3 entschieden und festgehalten:** Neuer Backlog-Punkt 67 — ab sofort direkt auf `main`, kein eigener Branch mehr je Lieferung. `--ff-only` bleibt, kein Force, kein Rebase.
+- **Kein Codeaufwand** (kein neuer `beta.html`-Stand), `node --check` trotzdem bestanden (nichts geändert). `pruefe.py`: ALLES SAUBER.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 68 gehoben (Blueprint 0.67). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel (reine Ablaufentscheidung, wie schon bei Backlog-Regel 4).
+- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
 
 ---
 
@@ -248,6 +261,7 @@ Claude Code liest beim Start eine Datei mit diesem Namen aus dem Arbeitsordner. 
 > - **Status von Punkt 53, aktualisiert am 22.8.2026:** Alle sieben Fragen beantwortet - sechs bestätigt (1, 2, 3, 4, 5, 7), eine mit dem Ergebnis Nein (6). Die Untersuchung ist damit abgeschlossen. Status des Punktes bleibt "Idee" - der ursprüngliche Wunsch (Ein-Klick-Mehrfachablage an mehrere Orte) ist damit noch nicht gebaut, nur die technischen Grundlagen sind jetzt bekannt.
 
 → **🔴 ZURÜCKGESTELLT am 27.8.2026 (Vorschlag Claude, wie Punkt 0b/38 — nicht abgelehnt):** Das eigentliche Problem hinter Ondos Vorgabe vom 16.8. — ohne eigenes Gerät ins Repo schreiben — ist durch Cloud-/Code-Sitzungen gelöst und wird in dieser Sitzung selbst vorgeführt. Offen bleibt nur noch der ursprüngliche Ein-Klick-Mehrfachablage-Wunsch (Repo **und** Projektordner der App gleichzeitig); der Projektordner-Weg ist weiterhin technisch nicht erreichbar (unverändert seit der Untersuchung). Jederzeit neu aufgreifbar, falls der Mehrfachablage-Wunsch wieder wichtig wird.
+→ **🔴 Zwei verwaiste Branches geklärt, 30.8.2026 (Auftrag Ondo):** `claude/backlog-stand-update-wgp612` (Spitze `2ebce39`) und `claude/ergebnisse-pruefen-28-8-mnq1au` (Spitze `f651e18`) waren unerklärt stehengeblieben. **Beleg statt Vermutung:** `git merge-base --is-ancestor <branch> main` bestätigt für beide **JA** — jeder Commit dieser Branches ist bereits Vorfahre von `main`, `main..branch` zeigt null eigene Commits. Beide sind also vollständig in `main` enthalten, keine fehlende Arbeit, kein Konflikt, kein Zusammenführen nötig. **Löschung versucht, wie erwartet blockiert:** `git push origin --delete claude/backlog-stand-update-wgp612` scheitert mit **HTTP 403** — dieselbe, bereits am 21.8.2026 (oben) dokumentierte Rechte-Grenze. Kein `delete_branch`-Werkzeug im GitHub-Werkzeugsatz dieser Sitzung vorhanden, keine zweite Anfrage an dieselbe, bereits belegte Grenze gestellt (Arbeitsregel D gilt hier andersherum: die Grenze ist bereits zweifach belegt, ein dritter Versuch würde nichts Neues zeigen). **Beide Branches bleiben stehen, bis Ondo sie von Hand löscht** (github.com, „Branches", Mülleimer-Symbol) — inhaltlich unbedenklich, da vollständig in `main` enthalten.
 
 ---
 
@@ -365,6 +379,17 @@ Auch betroffen, ausserhalb der Pflichtlektüre: `CHRONIK-2026-08.md` (164.036 Ze
 → **Vorschlag, nicht gebaut:** Abschnitt 3 könnte zusätzlich prüfen, ob ein Verweis auf einen ausschliesslich im Archiv stehenden Punkt in unmittelbarer Nähe (gleicher Satz oder gleiche Zeile) einen Hinweis auf `BACKLOG-ARCHIV.md` oder das Wort „archiviert" trägt. Nicht trivial: Der Prüfer bräuchte eine Regel dafür, wie nah „in unmittelbarer Nähe" sein muss, und liefe sonst Gefahr, selbst wieder nur eine formale Bedingung zu prüfen statt der eigentlichen Verständlichkeit.
 → **Kosten:** eine Codeänderung an `pruefe.py`, die vermutlich neue eigene Randfälle mitbringt (z. B. mehrere Punktnummern im selben Satz, wie in mehreren der jetzt gefundenen Stellen). Nicht jetzt zu bauen — erst wenn eine zweite, unabhängige Archivierung zeigt, ob das Problem wiederkehrt oder ob die manuelle Nachsuche ausreicht (Arbeitsregel D: ein Einzelfall beweist keine Notwendigkeit).
 → **🔴 Ergänzung 30.8.2026, Fassung 63 — die manuelle Nachsuche selbst stösst nachweislich an Grenzen:** Trotz der als „vollständig" bezeichneten Nachsuche zu Fassung 62 fand Ondo beim eigenen Gegenlesen noch eine 31. Stelle (`STAND.md`, „Beta zuvor: v19.8.3" — Punkt 2 ohne Fundort). Bei der daraufhin verlangten erneuten, unabhängigen Suche in `Blueprint.md` fand die Code-Sitzung dabei einen eigenen Fehler in ihrer ersten Suchmethode: Das verwendete Muster erkannte Genitiv-Formen wie „Punkt 51s" nicht, weil zwischen einer Ziffer und einem folgenden Buchstaben keine Wortgrenze liegt. **Folgenlos in diesem Fall** — jede so verpasste Stelle stand zufällig im selben Satz wie eine bereits korrekte Angabe —, aber ein zweiter, unabhängiger Beleg dafür, dass Mensch und Ad-hoc-Skript bei drei Dokumenten und zehn Nummern beide je eigene, unterschiedliche Lücken übersehen. **Stützt den oben genannten Vorschlag stärker, als ein Einzelfall es könnte — bleibt aber aus denselben Kostengründen unentschieden.**
+
+---
+
+**67. Kein eigener Branch mehr für Code-Lieferungen — direkt auf `main`** · *Entscheidung Ondo, 30.8.2026* · **Status: 🔴 ENTSCHIEDEN UND EINGEFÜHRT 30.8.2026**
+
+**Ondos Entscheidung im Wortlaut:** Ondo will keine Branches mehr für die laufende Arbeit — nur `main`, direkt. Ausnahme: der Branch `mistral` bleibt unberührt (eigene, bestehende Regel für Mistral, Punkt 62).
+
+→ **Ab sofort:** Jede Code-Lieferung arbeitet direkt auf `main`, kein eigener Branch je Lieferung mehr. `main` bleibt dabei weiterhin nur per `--ff-only` aktualisiert — kein Force, kein Rebase, das ändert sich nicht, nur der Umweg über einen Branch entfällt.
+→ **Anlass:** Der bisherige, sitzungseigene Branch `claude/ondo-control-chat-handover-o4v9vz` (PR #1) lag zwischenzeitlich mehrfach hinter `main` zurück — zuletzt bei Commit `4506cd0`, während `main` erst nachträglich per `--ff-only` nachgezogen wurde (Fassung 67). Ein direkter Weg ohne Branch-Umweg macht diese Verzögerung strukturell unmöglich.
+→ **Zwei verwaiste Branches als Beleg für das Risiko:** `claude/backlog-stand-update-wgp612` und `claude/ergebnisse-pruefen-28-8-mnq1au` blieben unerklärt stehen, nachdem ihr Inhalt längst in `main` aufgegangen war (siehe Punkt 53, Fund 30.8.2026) — ohne Löschrecht dieser Sitzung (bekannte Rechte-Grenze, HTTP 403) bleiben solche Branches sonst dauerhaft als Altlast liegen.
+→ **Kosten:** keine. Eine Umstellung der Arbeitsweise, kein Codeaufwand.
 
 ---
 
