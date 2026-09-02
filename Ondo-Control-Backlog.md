@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 2.9.2026, Fassung 69 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 2.9.2026, Fassung 70 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -15,6 +15,19 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 70 ändert (2.9., Leselängen-Grenze ein drittes Mal belegt, veraltete Sprachschlüsselzahl berichtigt)
+
+**Anlass:** Der Nachfolgechat hat bei der Übergabe von selbst gemeldet, dass sein Backlog-Abruf mitten im Wort abbricht — genau der Fall aus Punkt 65. Beim Nachliefern des fehlenden Teils ist eine veraltete Zahl darin aufgefallen.
+
+- **Punkt 65 ergänzt, dritte unabhängige Bestätigung — diesmal von aussen gemeldet und im Repo nachgerechnet.** Der Nachfolger nannte den letzten empfangenen Text im Wortlaut (`| **Wie un`); nachgemessen liegt diese Stelle bei **exakt Zeichen 120.000**. Der Backlog stand bei **132.289 Zeichen**, **12.289 über der Grenze** — rund ein Zehntel der Pflichtlektüre fehlte. **Rückfall gegenüber Fassung 60:** Weg C hatte auf 108.699 Zeichen gekürzt, die Fassungen 61 bis 69 sind wieder darüber gewachsen. Weg C wirkt, hält aber nicht. Der fehlende Rest ist nach Weg B nachgeliefert worden (12.299 Zeichen mit überlappender Nahtstelle). **Keine Entscheidung getroffen** — die Wahl zwischen A, B und C liegt weiterhin bei Ondo.
+- **🔴 Veraltete Zahl im fehlenden Teil berichtigt (Fehlerart C3 — Folgewirkung woanders nicht geprüft):** Die Tabelle „Technische Schuld" nannte **229 Sprachschlüssel, Stand 28.8.2026**; richtig sind seit v19.8.9 **234**. Die Zahl ist **nicht** auf den neuen Wert gesetzt, sondern durch einen Verweis auf `STAND.md` ersetzt worden — sie war hier ein zweiter Ort für dieselbe Tatsache (Punkt 45) und wäre sonst erneut unbemerkt gealtert. **Gefunden, weil der fehlende Teil vor dem Nachliefern durchgesehen wurde**, nicht durch den Prüflauf.
+- **Zweiter Fund am Prüfwerkzeug, nicht behoben:** `pruefe.py` Abschnitt 6 hat die falsche Zahl nicht gefangen. Er prüft das Muster `**Sprachschlüssel: N**`; die Tabellenzelle schrieb die Zahl anders (`(229 Schlüssel × 3 Sprachen …)`). **Der Prüfer prüft eine Schreibweise, nicht eine Tatsache** — dieselbe Art Lücke wie in Punkt 66 und wie der Fund zur festen Bestandszahlen-Liste in Fassung 69. Nur festgehalten, kein Vorschlag, keine Entscheidung.
+- **Kein Codeaufwand** (kein neuer `beta.html`-Stand, `beta.html` bleibt v19.8.11). `pruefe.py`: ALLES SAUBER.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 70 gehoben (Blueprint 0.69). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
 
 ---
 
@@ -394,6 +407,7 @@ Auch betroffen, ausserhalb der Pflichtlektüre: `CHRONIK-2026-08.md` (164.036 Ze
 → **B — Nur den fehlenden Teil gezielt nachliefern**, mit vorher gemessener, überlappender Nahtstelle. Kosten: gering (rund 30 KB), aber Handarbeit bei jeder betroffenen Übergabe, kein struktureller Fix.
 → **C — Backlog kürzen**, nach dem Vorbild von Punkt 18: Die gestapelten Abschnitte „Was Fassung N ändert" (48.553 Zeichen, knapp ein Drittel der Datei) ins Archiv verschieben. Kosten: eine Code-Sitzung, kein Geld. **Zwei Haken:** `BACKLOG-ARCHIV.md` liegt mit 122.003 Zeichen selbst schon über der Grenze — das Ziel wäre auch nicht vollständig lesbar. Und der maschinelle Verlustbeweis für den Backlog ist seit dem 27.8. übersprungen (Punkt 52, seit 30.8.2026 in `BACKLOG-ARCHIV.md`); eine neue Trennung bräuchte eine neue Vergleichsgrundlage, sonst gäbe es keinen Beweis, dass nichts verlorengeht.
 
+→ **🔴 DRITTE BESTÄTIGUNG UND RÜCKFALL, 2.9.2026 — die Grenze ist wieder überschritten.** Bei der Übergabe an den Nachfolgechat brach der Backlog-Abruf erneut ab. **Der Nachfolger hat es von selbst gemeldet**, ohne danach gefragt worden zu sein, und den letzten empfangenen Text im Wortlaut genannt: `| **Wie un` — die Zeile nach dem „Fail Safe"-Eintrag in der Tabelle „Für Blueprint und Ondo-Core vorgemerkt". **Nachgemessen in der Code-Sitzung, nicht geschätzt:** Diese Stelle liegt bei **exakt Zeichen 120.000**. Damit ist die feste Grenze zum dritten Mal unabhängig belegt, diesmal mit einer von aussen gemeldeten und im Repo nachgerechneten Bruchstelle. **Der Backlog stand zu diesem Zeitpunkt bei 132.289 Zeichen — 12.289 darüber, rund ein Zehntel fehlte.** Ursache des Rückfalls: Weg C (Fassung 60) hatte den Backlog auf 108.699 Zeichen gebracht; die Fassungen 61 bis 69 haben ihn wieder darüber wachsen lassen, vor allem durch ausführliche Punkte, die im Haupttext stehen bleiben (genau der Fund, der in Fassung 60 schon benannt und nicht behoben wurde). **Weg C wirkt also, hält aber nicht** — er verschafft Luft, ohne die Ursache zu beseitigen. Der fehlende Rest ist nach Weg B nachgeliefert worden (12.299 Zeichen mit überlappender Nahtstelle). **Keine Entscheidung, kein neuer Weg** — nur der Beleg, dass die Wahl zwischen A, B und C ansteht, und dass B bei jeder Übergabe erneut Handarbeit kostet.
 → **Empfehlung Claude: B für die jeweils nächste anstehende Übergabe, C als spätere, von Ondo zu entscheidende Strukturfrage.** B behebt nichts dauerhaft, ist aber sofort verfügbar und günstig. C behebt die Ursache, ist aber nicht so dringend, dass sie vorgezogen werden müsste.
 → **Kein Schnitt in der Messreihe, kein Eingriff in `beta.html`.** Reine Dokument- und Arbeitsablauffrage.
 
@@ -725,7 +739,7 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 | **Rückblick auf eigene Tipps enthält Vermutungen, keine Tatsachen** | Ein falscher Tipp kann Grundlage des nächsten werden | **wird mit v19.7 behoben** → Punkt D |
 | **Nur lokale Speicherung** (localStorage) | Sicherung seit v19.1 gebaut; offen bleibt die Übertragung in die stabile Version | → Prio 2, Punkt 4 |
 | **Eine lange JS-Datei** (keine Module) | Änderungen werden mit der Zeit riskanter | mittel |
-| **Sprachdateien von Hand** (229 Schlüssel × 3 Sprachen — von `pruefe.py` Abschnitt 13 bei jedem Lauf selbst gezählt, identisch in DE/FR/EN, Stand 28.8.2026) | Dreifache Pflege bei jeder neuen Beschriftung. Rückgriff bleibt Punkt 19 | niedrig |
+| **Sprachdateien von Hand** (drei Sprachen, DE/FR/EN, von `pruefe.py` Abschnitt 13 bei jedem Lauf selbst gezählt und auf Gleichheit geprüft — **die Zahl selbst steht nur in `STAND.md`, Abschnitt „Versionen"**, Punkt 45). *🔴 Berichtigt 2.9.2026: Hier stand „229 Schlüssel × 3 Sprachen, Stand 28.8.2026" — seit v19.8.9 überholt, richtig sind 234. Die Zahl ist bewusst **nicht** auf den neuen Wert gesetzt, sondern durch den Verweis ersetzt worden: Sie war hier ein zweiter Ort für dieselbe Tatsache und wäre an dieser Stelle erneut unbemerkt gealtert. `pruefe.py` hat es nicht gefangen — Abschnitt 6 prüft nur das Muster `**Sprachschlüssel: N**`, diese Tabellenzelle schrieb die Zahl anders.* | Dreifache Pflege bei jeder neuen Beschriftung. Rückgriff bleibt Punkt 19 | niedrig |
 | **Seed-Daten fest im Code** (WM-Wetten vom Juli) | Ballast bei jedem Start | niedrig |
 | **Kein automatischer Test** | Jede Änderung wird nur von Hand geprüft | mittel → Punkt B wäre der erste Schritt |
 | **Gemini-Kaskade komplex** | Funktioniert, aber schwer zu durchschauen bei Fehlern | niedrig |

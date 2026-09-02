@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.68
+**Version:** 0.69
 **Stand:** 2. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.69 ändert (2.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war eine Ergänzung zu Backlog-Punkt 65 und eine Berichtigung im Backlog (Backlog Fassung 70). Die 120.000-Zeichen-Grenze im Chat-Bereich ist ein drittes Mal belegt, diesmal vom Nachfolgechat selbst gemeldet und im Repo auf das Zeichen genau nachgerechnet; der Backlog lag mit 132.289 Zeichen um 12.289 darüber, der fehlende Rest wurde nach Weg B nachgeliefert. Dabei eine seit v19.8.9 veraltete Sprachschlüsselzahl (229 statt 234) in der Tabelle „Technische Schuld" gefunden und durch einen Verweis auf `STAND.md` ersetzt statt aktualisiert (Punkt 45). Zweiter Fund am Prüfwerkzeug festgehalten, nicht behoben: `pruefe.py` prüft an dieser Stelle eine Schreibweise, nicht eine Tatsache. Kein Codeaufwand, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.69 gehoben.
 
 > **Was Fassung 0.68 ändert (2.9.2026):** Rücknahme einer verfrühten Eintragung (`beta.html` v19.8.11, Backlog Fassung 69). Ondo hat klargestellt, was „der Schiedsrichter ist repariert" heisst: er liefert ab sofort nur noch richtige, zuverlässige Ergebnisse für alle künftigen Spiele, **ohne Gegenprüfung im Chat**. Diese Bedingung ist nicht erfüllt; die manuelle Eintragung von Sabah FC–Hapoel Beer-Sheva FC und NK Celje–Slovan Bratislava vom 30.8.2026 war damit verfrüht und ist per neuer Migration `state.seedV<8` zurückgesetzt — beide Spiele stehen wieder geparkt und fallen aus der Kalibrierung heraus. Der Auftrag nannte nur Sabah; dass auch Celje betroffen war, ist am Code belegt, vor der Änderung rückgefragt (Art. 11) und von Ondo entschieden worden. Ausserdem: Messstand in `STAND.md` vollständig auf die Ablesung vom 2.9.2026 ersetzt, Backlog-Punkt 43 als beantwortet nachgetragen (mit ausdrücklicher Grenze „interner Abgleich, keine erschöpfende externe Prüfung"), zwei kleine Berichtigungen am leeren Muster der Übergabemappe. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.68 gehoben.
 
