@@ -76,7 +76,7 @@ Nachricht selbst. Am 16.8. durch Testabruf belegt.
 
 ARCHIV — wird NICHT beim Start gelesen, nur auf Zuruf:
 CHRONIK-2026-08.md, CHRONIK-2026-07.md, BACKLOG-ARCHIV.md,
-BLUEPRINT-PROTOKOLL.md, PROJEKT-STATUS.md.
+BLUEPRINT-PROTOKOLL.md, archiv/PROJEKT-STATUS.md.
 
 ERLAUBNIS, und sie gilt AUSSCHLIESSLICH für diese zwei Dateien:
 beta.html und OndoControl.html liest du NICHT vollständig. Für
@@ -95,9 +95,10 @@ Hinweise für dich:
 - Erst abstimmen, dann bauen (Artikel 8).
 - Arbeitsregel L: Jeder Chat arbeitet mindestens einen bereits
   BESCHLOSSENEN Punkt ab.
-- Arbeitsregel M: Vor jeder Dateiausgabe läuft pruefe.py mit
-  einer frisch abgelesenen Uhrzeit als Parameter. Nicht
-  schätzen.
+- Arbeitsregel M: Vor jeder Dateiausgabe läuft
+  "python3 pruefe.py" — OHNE Argument. Geprüft wird unter
+  anderem, ob STAND.md, Backlog und Blueprint dieselbe
+  Fassungszahl im Kopf tragen.
 - Am Format der Übergabemappe wird nichts geändert, und der
   Dateiname gehört zum Format.
 - Jeder Vorschlag nennt seine Kosten — Geld, Zeit,
@@ -201,7 +202,7 @@ trotzdem beantworten, was beantwortbar ist.
 
 **Stand der Buchführung zum Zeitpunkt der Übergabe:** Commit <…> auf `main`, Backlog
 Fassung <…>, Blueprint <…>, `STAND.md` auf <Datum, Uhrzeit>. `pruefe.py` lief um <Uhrzeit>
-mit frisch abgelesener Zeit; Ergebnis: <…>
+ohne Argument; Ergebnis: <…>
 
 **Erste Aufgabe:** <…> — mit Kosten zu nennen, nicht nur mit Namen.
 

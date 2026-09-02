@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.67
-**Stand:** 30. August 2026
+**Version:** 0.68
+**Stand:** 2. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.68 ändert (2.9.2026):** Rücknahme einer verfrühten Eintragung (`beta.html` v19.8.11, Backlog Fassung 69). Ondo hat klargestellt, was „der Schiedsrichter ist repariert" heisst: er liefert ab sofort nur noch richtige, zuverlässige Ergebnisse für alle künftigen Spiele, **ohne Gegenprüfung im Chat**. Diese Bedingung ist nicht erfüllt; die manuelle Eintragung von Sabah FC–Hapoel Beer-Sheva FC und NK Celje–Slovan Bratislava vom 30.8.2026 war damit verfrüht und ist per neuer Migration `state.seedV<8` zurückgesetzt — beide Spiele stehen wieder geparkt und fallen aus der Kalibrierung heraus. Der Auftrag nannte nur Sabah; dass auch Celje betroffen war, ist am Code belegt, vor der Änderung rückgefragt (Art. 11) und von Ondo entschieden worden. Ausserdem: Messstand in `STAND.md` vollständig auf die Ablesung vom 2.9.2026 ersetzt, Backlog-Punkt 43 als beantwortet nachgetragen (mit ausdrücklicher Grenze „interner Abgleich, keine erschöpfende externe Prüfung"), zwei kleine Berichtigungen am leeren Muster der Übergabemappe. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.68 gehoben.
 
 > **Was Fassung 0.67 ändert (30.8.2026):** `main` auf den vollständigen Stand gebracht (`--ff-only` auf `4506cd0`, Fassung 67/v19.8.10 — drei zwischenzeitliche Lieferungen hatten `main` nie erreicht). Zwei verwaiste Branches geklärt (`claude/backlog-stand-update-wgp612`, `claude/ergebnisse-pruefen-28-8-mnq1au`) — beide vollständig in `main` enthalten, Löschung an der bekannten Rechte-Grenze gescheitert (HTTP 403), bleiben stehen bis Ondo sie von Hand löscht. **Neue Arbeitsweise entschieden (Ondo, 30.8.2026), Backlog-Punkt 67:** Code-Lieferungen ab sofort direkt auf `main`, kein eigener Branch mehr je Lieferung — `--ff-only` bleibt, kein Force, kein Rebase. Ausnahme unverändert: Branch `mistral`. Kein Codeaufwand, kein Verfassungsartikel geändert, keine neue Arbeitsregel (reine Ablaufentscheidung). Blueprint auf 0.67 gehoben.
 

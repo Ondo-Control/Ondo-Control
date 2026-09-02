@@ -122,7 +122,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.10';
+var CODE_VERSION = 'v19.8.11';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -624,6 +624,57 @@ function load(){
       });
     });
     state.seedV = 7;
+    try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+  }
+  /* v19.8.11 (RUECKNAHME, Auftrag Ondo 2.9.2026): Die manuelle Eintragung der beiden Spiele
+     (seedV<6 und seedV<7 oben) war verfrueht und wird zurueckgenommen. Ondos Klarstellung:
+     "Schiedsrichter repariert" heisst — er liefert ab sofort nur noch richtige, zuverlaessige
+     Ergebnisse fuer alle kuenftigen Spiele, OHNE Gegenpruefung im Chat. Diese Bedingung ist
+     NICHT erfuellt, die elfte Fehlerart besteht unveraendert. Die Bedingung aus Punkt 64
+     ("Neubewertung erst, sobald die Ursache geklaert und der Schiedsrichter repariert ist")
+     galt also weiter, als die zwei Spiele am 30.8.2026 eingetragen wurden.
+     Betroffen sind BEIDE Spiele: Sabah FC-Hapoel Beer-Sheva FC und NK Celje-Slovan Bratislava.
+     Der Auftrag nannte nur Sabah und hielt Celje fuer "bereits geparkt"; der Code oben zeigt,
+     dass seedV<7 beide entparkt und eingetragen hat. Vor der Aenderung rueckgefragt (Art. 11),
+     Ondo hat am 2.9.2026 entschieden: beide zuruecknehmen.
+     NEUE Gate-Nummer statt Aenderung an seedV<7 — dieselbe Begruendung wie dort: seedV<7 ist
+     bei Ondo bereits gelaufen (App laeuft laut Bildschirmfoto vom 2.9.2026 auf v19.8.10), eine
+     Aenderung an derselben Nummer wuerde nie mehr ausgefuehrt. seedV<7 bleibt deshalb
+     unveraendert stehen (Codehistorie, ausdrueckliche Auflage des Auftrags).
+     KEINE Datumsannahme mehr: Anker ist e.ergebnisQuelle==='extern_manuell' — dieses Feld
+     setzen ausschliesslich die beiden Bloecke oben, und ausschliesslich fuer diese zwei Spiele.
+     Die Stichwoerter bleiben als zweite, unabhaengige Bedingung (celje+bratislava kann
+     sabah+beer nie treffen). Damit kann kein anderer Eintrag getroffen werden, unabhaengig
+     davon, welches Datum die echten Eintraege tragen.
+     Zurueckgesetzt wird auf genau den Zustand eines geparkten, unbewerteten Eintrags:
+     Endstand/Halbzeit/Verlaengerung entfernt, Herkunftskennzeichen entfernt, alle Maerkte
+     wieder 'offen', status wieder 'offen', geparkt wieder true, parkGrund wieder
+     'unstable_ref'. Damit fallen beide Spiele wieder vollstaendig aus der Kalibrierung heraus
+     (calcKalibrierung zaehlt nur Maerkte mit Status richtig/falsch).
+     NICHT angetastet, wie im Auftrag verlangt: state.seedV<7 selbst, refRohAbgleich() und der
+     refRoh-Export. e.refRoh bleibt vollstaendig erhalten — die rohen Schiedsrichter-Antworten
+     sind der Beleg fuer die elfte Fehlerart und werden nicht geloescht. */
+  if(state.seedV < 8){
+    var RUECKNAHME=[
+      { keys:['celje','bratislava'] },
+      { keys:['sabah','beer'] }
+    ];
+    (state.kiProtokoll||[]).forEach(function(e){
+      if(e.ergebnisQuelle!=='extern_manuell') return; /* nur die von Hand eingetragenen */
+      var mtxt=String(e.match||'').toLowerCase();
+      RUECKNAHME.forEach(function(r){
+        if(!r.keys.every(function(k){ return mtxt.indexOf(k)>=0; })) return;
+        e.ergebnisHeim=null; e.ergebnisGast=null;
+        delete e.ergebnisHalbzeit;
+        delete e.ergebnisVerl;
+        delete e.ergebnisQuelle;
+        (e.maerkte||[]).forEach(function(m){ m.status='offen'; });
+        e.status='offen';
+        e.geparkt=true;
+        e.parkGrund='unstable_ref';
+      });
+    });
+    state.seedV = 8;
     try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
   }
 }

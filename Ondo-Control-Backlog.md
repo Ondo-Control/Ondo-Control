@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 30.8.2026, Fassung 68 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 2.9.2026, Fassung 69 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -15,6 +15,24 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 69 ändert (2.9., Sabah/Celje-Rücknahme, neuer Messstand, Punkt 43 nachgetragen, Aufräumen)
+
+**Anlass:** Diese Chat-Sitzung endet. Ondo hat vor der Übergabe an einen neuen Chat fünf Teile beauftragt — der dringlichste ist die Rücknahme einer verfrühten Eintragung.
+
+- **Teil 1 gebaut, `beta.html` v19.8.11 — Rücknahme.** Ondos Klarstellung: „Der Schiedsrichter ist repariert" heisst, **er liefert ab sofort nur noch richtige, zuverlässige Ergebnisse für alle künftigen Spiele, ohne Gegenprüfung im Chat.** Diese Bedingung ist nicht erfüllt, die elfte Fehlerart besteht unverändert — die manuelle Eintragung vom 30.8.2026 (Punkt 64, Nachfrage Teil 3) war verfrüht und übergeht die eigene Auflage aus Punkt 64. Neue Migration `state.seedV<8` setzt beide Spiele vollständig zurück (Endstand, Halbzeit, Verlängerung und `ergebnisQuelle` entfernt, Märkte und Eintrag wieder `offen`, `geparkt` wieder `true`, `parkGrund` wieder `'unstable_ref'`). Anker ist `e.ergebnisQuelle==='extern_manuell'` statt eines Datums — die Datumsfrage, die diesen Punkt zweimal in die Irre geführt hat, ist damit für die Rücknahme gegenstandslos. `state.seedV<7`, `refRohAbgleich()` und der `refRoh`-Export **nicht angetastet**; `e.refRoh` bleibt vollständig erhalten.
+- **🔴 Abweichung vom Wortlaut des Auftrags, per Rückfrage geklärt (Art. 11):** Der Auftrag nannte nur Sabah und hielt NK Celje–Slovan Bratislava für „bereits geparkt". Der Code belegt das Gegenteil — `seedV<7` entparkt und bewertet **beide**. Vor der Änderung rückgefragt statt geraten; **Ondo hat am 2.9.2026 entschieden, beide zurückzunehmen.** Punkt 64 und `STAND.md` sind entsprechend berichtigt, mit Streichung und Vermerk, nicht stillschweigend.
+- **Teil 2 gebaut:** Der Abschnitt „Aktueller Messstand" in `STAND.md` ist **vollständig ersetzt** durch die Ablesung vom 2.9.2026 (403 Vorhersagen, Sonnet 402 bei 6 %, Flash 399 bei 5 %, gepaarter Vergleich, Wett-Saldo). Der nie eingetragene Zwischenstand vom 30.8.2026 (399/396) ist zusammen mit dem alten 14.8.-Stand (330/327) in die Zeile „Vorherige Stände" gewandert. **Ausdrücklich vermerkt:** Diese Zahlen enthalten die beiden zurückgenommenen Spiele noch — sie fallen erst heraus, wenn Ondo v19.8.11 lädt.
+- **Teil 3 nachgetragen:** Punkt 43 (Auswertung der Anpfiffzeiten seit dem 10.8.) ist als **beantwortet/geklärt** eingetragen, mit der ausdrücklichen Grenze „interner Abgleich, keine erschöpfende externe Prüfung". Die Antwort war im Chat gegeben und nie eingetragen — Arbeitsregel F.
+- **Teil 4, Aufräumen:** **PR #1 war bereits geschlossen** (nicht gemergt, Stand 31.8.2026) — nichts zu tun, nur festgestellt. **Drei** verwaiste Branches statt der zwei genannten (`claude/ondo-control-chat-handover-o4v9vz` kommt hinzu, die Spitze von PR #1), alle drei per `git merge-base --is-ancestor` als vollständig in `main` enthalten belegt; Löschung **nicht erneut versucht** (Rechte-Grenze HTTP 403, bereits zweifach belegt). **Muster-Korrektur ausgeführt:** zwei eindeutige, kleine Stellen in `MUSTER_Ondo-Control_Uebergabe.md` berichtigt (veraltete `pruefe.py`-Zeile, fehlender `archiv/`-Pfad).
+- **Teil 5:** Übergabemappe und Abnahme für einen **neuen Chat** erstellt — volle Übergaberegel mit Kontrollfragen, **nicht** die abgeschwächte Code-Fassung aus Punkt 61. Beide ausdrücklich **nicht** ins Repo, nur als Text in der Antwort.
+- **Verifikation:** `node --check` bestanden. Trockentest der neuen Migration, 16 Prüfungen, alle bestanden. `pruefe.py`: ALLES SAUBER (76 Einzelprüfungen).
+- **🔴 Fund am Prüfwerkzeug, dabei aufgefallen, nicht behoben:** `pruefe.py` Abschnitt 8 führt eine feste Liste überholter Bestandszahlen (180, 207, 135, 87, 224, 204, 190, 414) und meldet FEHL, sobald eine davon im Messstand-Abschnitt auftaucht. Beim neuen Messstand hat er die **135** beanstandet — das ist hier aber Flashs Anzahl in der Stufe 60–69 %, ein gültiger aktueller Wert, nicht der alte Bestand vom 6.8. **Der Prüfer wurde bewusst NICHT entschärft** (das wäre Fehlerart C6, ein Prüfer, der seinen Sollwert vom Geprüften bekommt); statt dessen ist die doppelte Zahl aus der Einordnungszeile entfernt worden — sie steht ohnehin schon in der Verteilungszeile (Punkt 45). **Die Kollision kehrt wieder**, sobald ein anderer gültiger Wert zufällig einer alten Bestandszahl gleicht. Nur festgehalten, kein Vorschlag, keine Entscheidung — dieselbe Art Werkzeuglücke wie in Punkt 66.
+- **Keine neuen Sprachschlüssel** (Sprachschlüsselzahl unverändert 234, von `pruefe.py` Abschnitt 13 selbst gezählt). **Kein Schnitt in der Messreihe**, aber ein Sprung in den Kennzahlen, sobald v19.8.11 geladen wird.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 69 gehoben (Blueprint 0.68). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
 
 ---
 
@@ -323,7 +341,18 @@ Ein zweiter Arbeits-Branch `mistral` existiert seit vor dem 24.8.2026 (aktuell f
 
 ---
 
-**64. Rohe Schiedsrichter-Antwort mitschreiben** · *Vorschlag Claude, 28.8.2026, aus der Restarbeit zu Punkt 51 (seit 30.8.2026 in `BACKLOG-ARCHIV.md`) · von Ondo in Chat 25 entschieden, „wenn alles passt" · nachgetragen und gebaut 28.8.2026* · **Status: 🔴 GEBAUT am 28.8.2026 — `beta.html` v19.8.5**
+**64. Rohe Schiedsrichter-Antwort mitschreiben** · *Vorschlag Claude, 28.8.2026, aus der Restarbeit zu Punkt 51 (seit 30.8.2026 in `BACKLOG-ARCHIV.md`) · von Ondo in Chat 25 entschieden, „wenn alles passt" · nachgetragen und gebaut 28.8.2026 · Teil 3 am 2.9.2026 zurückgenommen* · **Status: 🔴 Mitschreiben GEBAUT am 28.8.2026 (`beta.html` v19.8.5) — die zwei Celje/Sabah-Fälle WARTEN WEITER AUF DIE REPARATUR DES SCHIEDSRICHTERS (Stand seit der Rücknahme vom 2.9.2026)**
+
+> **🔴 ZURÜCKGENOMMEN am 2.9.2026 (Entscheidung Ondos), `beta.html` v19.8.11.** Die manuelle Eintragung der beiden Spiele (unten, „Nachfrage 30.8.2026, Teil 3", berichtigt in v19.8.10) **war verfrüht** und ist zurückgesetzt. **Ondos Klarstellung, die den Ausschlag gab:** „Der Schiedsrichter ist repariert" heisst — **er liefert ab sofort nur noch richtige, zuverlässige Ergebnisse für alle künftigen Spiele, ohne Gegenprüfung im Chat.** Diese Bedingung ist nicht erfüllt; die elfte Fehlerart besteht unverändert. Damit galt die Auflage aus diesem Punkt („Neubewertung dieser beiden Spiele erst, sobald die Ursache der elften Fehlerart geklärt und der Schiedsrichter entsprechend repariert ist") am 30.8.2026 unverändert weiter — sie ist übergangen worden.
+>
+> **Was zurückgesetzt wurde:** Neue Migration `state.seedV<8` entfernt bei beiden Einträgen Endstand, Halbzeit, Verlängerung und `ergebnisQuelle`, setzt alle Märkte und den Eintrag wieder auf `offen`, `geparkt` wieder auf `true` und `parkGrund` wieder auf `'unstable_ref'`. Beide fallen damit wieder vollständig aus der Kalibrierung heraus.
+> **Kein Datumskriterium mehr:** Anker ist `e.ergebnisQuelle==='extern_manuell'` — dieses Feld setzen ausschliesslich `seedV<6` und `seedV<7`, und ausschliesslich für diese zwei Spiele. Die Stichwörter (`celje`+`bratislava` bzw. `sabah`+`beer`) bleiben als zweite, unabhängige Bedingung. Damit ist die ganze Datumsfrage, die diesen Punkt zweimal in die Irre geführt hat, für die Rücknahme gegenstandslos.
+> **Neue Gate-Nummer statt Änderung an `seedV<7`:** `seedV<7` ist bei Ondo bereits gelaufen (die App läuft laut Bildschirmfoto vom 2.9.2026 auf v19.8.10), eine Änderung an derselben Nummer würde dort nie mehr ausgeführt. `seedV<7` bleibt unverändert stehen — ausdrückliche Auflage des Auftrags.
+> **Nicht angetastet, wie im Auftrag verlangt:** `state.seedV<7`, `refRohAbgleich()` und der `refRoh`-Export. **`e.refRoh` bleibt vollständig erhalten** — die rohen Schiedsrichter-Antworten sind der Beleg für die elfte Fehlerart und werden nicht gelöscht.
+> **🔴 Abweichung vom Wortlaut des Auftrags, mit Rückfrage geklärt (Art. 11):** Der Auftrag nannte nur Sabah und hielt NK Celje–Slovan Bratislava für „bereits geparkt". Der Code belegt das Gegenteil — `seedV<7` (Zeile 597–628) entparkt und bewertet **beide** Spiele. Vor der Änderung rückgefragt statt geraten; Ondo hat am 2.9.2026 entschieden, **beide** zurückzunehmen. Seine Begründung trifft auf Celje genauso zu wie auf Sabah.
+> **Verifiziert:** `node --check` bestanden. Trockentest am Nachbau der neuen Migration auf Kunstdaten, 16 Prüfungen, alle bestanden: beide Spiele vollständig zurückgesetzt · `refRoh` unberührt · unbeteiligtes bewertetes Spiel unberührt · unbeteiligtes geparktes Spiel unberührt · gleiche Stichwörter ohne `extern_manuell` nicht angefasst · zweiter Durchlauf ändert nichts (idempotent) · bei `seedV=8` läuft der Block nicht erneut · datumsunabhängig. `pruefe.py`: ALLES SAUBER.
+> **Folge für die Messzahlen:** Die Kennzahlen im Abschnitt „Aktueller Messstand" von `STAND.md` (abgelesen am 2.9.2026) enthalten die beiden Spiele **noch**. Sie fallen erst heraus, wenn Ondo v19.8.11 lädt. **Der nächste Messstand ist neu abzulesen, nicht aus dem jetzigen fortzuschreiben** (Fehlerart C1).
+> **Was NICHT zurückgenommen ist:** die externe Recherche selbst. Die belegten Werte (Sabah 3:2, HZ 1:1, n.Verl. 5:2 · Celje 1:1, HZ 1:1, n.Verl. 1:2) und die Datumsberichtigung (Sabah 25.8.2026, Celje 26.8.2026) bleiben richtig und stehen weiterhin in `STAND.md`. Zurückgenommen ist nur ihre Eintragung in die Messdaten.
 
 > **🔴 Nachtrag (Arbeitsregel F):** Diese Entscheidung stand bereits aus einem vorherigen Chat (Chat 25), unter der Bedingung „wenn alles passt" — bisher nicht im Backlog nachgetragen. Wird mit dieser Lieferung nachgeholt, nicht erst nachträglich behauptet.
 
@@ -552,7 +581,19 @@ Vier Wochen ohne Websuche messen, dann Suche zuschalten, Kalibrierung vergleiche
 
 ---
 
-**43. Punkt 29 ist gebaut und nirgends ausgewertet** · *Fund 13.8., Chat 14 in der Abnahme · aufgenommen 14.8.* · **Status: Aufgabe, nicht entschieden — auszuführen, sobald ein frischer KI-Log vorliegt**
+**43. Punkt 29 ist gebaut und nirgends ausgewertet** · *Fund 13.8., Chat 14 in der Abnahme · aufgenommen 14.8. · ausgeführt und beantwortet im Chat, nachgetragen 2.9.2026* · **Status: 🔴 BEANTWORTET / GEKLÄRT am 2.9.2026 — mit ausdrücklicher Grenze: interner Abgleich, keine erschöpfende externe Prüfung**
+
+> **🔴 NACHGETRAGEN am 2.9.2026 (Arbeitsregel F).** Die Antwort war im Chat bereits gegeben und **nie eingetragen** — genau der Fall, gegen den Arbeitsregel F gemacht wurde. Sie wird hier nachgeholt, nicht nachträglich behauptet.
+>
+> **Der Befund, in drei Teilen:**
+> 1. **Am 10.8. selbst gab es mehrere Fälle**, in denen Flash und Sonnet für dasselbe Spiel **unterschiedliche Wettbewerbe oder Anpfiffzeiten** zeigten. **Vor allem Sonnet war betroffen** — das ist genau der Positionsfehler aus Punkt 41 (Zuordnung über die Listenposition statt über den Spielnamen), an diesem Tag am Log bewiesen.
+> 2. **Ab dem 11.8. bis zum 30.8. wurde kein einziger Widerspruch mehr zwischen den beiden Gehirnen gefunden.** An drei Stellen extern gegengeprüft — unter anderem NK Celje–Ararat-Armenia (11.8.) und Bayern–Stuttgart (28.8.) — alle geprüften Angaben korrekt.
+> 3. **Das passt zeitlich zur eigenen Rolle für die Spielliste** (v19.8.1, geliefert 9.8.2026, 13:55 Uhr): Der Bruch im Fehlerbild liegt unmittelbar danach.
+>
+> **🔴 Grenze, ausdrücklich (Art. 14):** Das ist ein **interner Abgleich** — Flash gegen Sonnet im eigenen KI-Log —, **keine erschöpfende externe Prüfung**. Extern gegengeprüft wurden drei Stellen, nicht alle Tage. Stimmen beide Gehirne überein und sind trotzdem beide falsch, fällt das in diesem Abgleich nicht auf. **Genau dieser Fall ist am 8.8. belegt** (sieben von zehn Zeiten falsch, beide Gehirne übereinstimmend) und bleibt von diesem Befund unberührt.
+> **Was daraus NICHT folgt:** dass die zweite, unbekannte Ursache aus Punkt 41 („der 8. August") geklärt wäre. Sie bleibt unbekannt (Art. 11). Der Befund zeigt, dass die eine Ursache — die Positionsverschiebung — sichtbar zurückgegangen ist, nicht, dass die andere verschwunden ist.
+> **Was daraus auch nicht folgt:** dass die Änderung von v19.8.1 die Ursache beseitigt hat. Zeitliche Nähe ist kein Beweis (Arbeitsregel H). Punkt 41 selbst ist erst am 30.8.2026 gebaut worden, also nach dem hier ausgewerteten Zeitraum.
+> **Kosten:** keine — die Auswertung ist gelaufen, dieser Eintrag ist reine Buchführung.
 
 Die eigene Rolle für die Spielliste (`rolle:'liste'`, `gemini-flash-latest`) wurde am 9.8. **ausdrücklich als diagnostischer Test** gebaut, nicht als Abhilfe: Läuft die Liste auf dem grösseren Modell und werden die Zeiten richtig, war das Modell die Ursache; bleiben sie falsch, liegt sie woanders. **Beides wäre ein Ergebnis.**
 
