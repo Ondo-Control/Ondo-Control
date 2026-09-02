@@ -143,7 +143,7 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 **Sonnet hat weiterhin KEINE bewertete Aussage ab 80 %.** Flash hat dort fünf. Die Verzerrung durch geparkte Einträge besteht unverändert und gehört neben jede Aussage über Sonnets Verhalten bei hoher Zuversicht.
 
 **Ehrliche Einordnung (Art. 14):**
-- **Beide Abweichungen sind gestiegen, nicht gefallen** — Sonnet von 4 % auf 6 %, Flash von 8 % auf 5 %; genauer: Sonnet hat sich verschlechtert, Flash verbessert. Die Zahlen sind auf **mehrere Prozentpunkte** genau, nicht auf einen. Ein Vorsprung dieser Grösse liegt weiterhin im Rauschen (Backlog-Punkt 35).
+- **Die beiden Gehirne haben sich gegenläufig entwickelt** — Sonnets Abweichung ist von 4 % (14.8.) auf 6 % **gestiegen**, Flashs von 8 % auf 5 % **gefallen**. **Flash steht damit zum ersten Mal besser da als Sonnet.** Die Zahlen sind auf **mehrere Prozentpunkte** genau, nicht auf einen; ein Unterschied dieser Grösse liegt weiterhin im Rauschen (Backlog-Punkt 35). **Daraus folgt nicht, dass Flash das bessere Gehirn ist** — die Trefferquote sagt das Gegenteil (Sonnet 57 %, Flash 52 %), und Abweichung und Trefferquote sind zwei verschiedene Zahlen.
 - **Sonnet legt sich noch seltener fest als zuvor:** 257 von 402 Aussagen (64 %) liegen zwischen 50 und 59 Prozent.
 - **Flashs grösster Einzelposten bleibt die Stufe 60–69 %:** behauptet 63, eingetroffen 59. *(Die Anzahl steht in der Verteilungszeile oben und wird hier nicht wiederholt — Punkt 45.)*
 - Zeilen mit ein bis vier Aussagen (Flash 80–99 %) sind **bedeutungslos**.
@@ -151,7 +151,7 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 - **Der Brier-Score ist aus der Anzeige nicht ablesbar** und wird deshalb nicht angegeben. Er wird nirgends berechnet.
 - **🔴 Diese Zahlen enthalten noch die beiden von Hand eingetragenen Spiele.** Sabah FC–Hapoel Beer-Sheva FC und NK Celje–Slovan Bratislava waren am 30.8.2026 (v19.8.9/v19.8.10) entparkt und bewertet worden; die Rücknahme ist erst am 2.9.2026 mit v19.8.11 gebaut worden und wirkt in Ondos App erst, wenn er diese Fassung lädt. **Danach sinken die bewerteten Aussagen um je drei Märkte je Gehirn und je Spiel, und die Kennzahlen ändern sich entsprechend.** Der nächste Messstand ist deshalb neu abzulesen, nicht aus diesem fortzuschreiben (Fehlerart C1).
 
-*Vorherige Stände: 30.8.2026 — Sonnet 399 bei 5 % und 57 %, Flash 396 bei 6 % und 52 % *(dieser Zwischenstand war nie in `STAND.md` eingetragen worden; hier nachgetragen, damit die Reihe keine Lücke hat)*. 14.8.2026 — Sonnet 330 bei 4 % und 55 %, Flash 327 bei 8 % und 50 %. 13.8. nach der Berichtigung — 300/297. 9.8. — je 207. 8.8. — je 180. 6.8. — je 135, 5 und 9. 3.8. — je 87, 4,8 und 8,6.*
+**Vorherige Stände:** *30.8.2026 — Sonnet 399, Flash 396 bewertete Aussagen. Dieser Zwischenstand war nie in `STAND.md` eingetragen worden und wird hier nachgetragen, damit die Reihe keine Lücke hat; **Abweichung und Trefferquote sind für diesen Tag nicht überliefert** und werden nicht ergänzt (Art. 11, Fehlerart C1 — nicht aus den Nachbarwerten herleiten). 14.8.2026 — Sonnet 330 bei 4 % und 55 %, Flash 327 bei 8 % und 50 %. 13.8. nach der Berichtigung — 300/297. 9.8. — je 207. 8.8. — je 180. 6.8. — je 135, 5 und 9. 3.8. — je 87, 4,8 und 8,6.*
 
 ---
 
