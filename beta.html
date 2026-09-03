@@ -122,7 +122,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.11';
+var CODE_VERSION = 'v19.8.12';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -230,6 +230,10 @@ var I18N = {
   refRohBtn:'🗒 Schiedsrichter-Rohtext erzeugen', refRohEmpty:'kein refRoh gespeichert',
   refWiderspruch:'⚠ Schiedsrichter-Läufe widersprechen sich:', refRunsVon:'{a} von {b} Läufen: {c}',
   ergebnisManuell:'Extern verifiziert, von Hand eingetragen — nicht vom Schiedsrichter-Lauf der App',
+  refEinig2von3:'⚠ nicht einstimmig — {a} von {b} Läufen', refQuellenZahl:'{a} Läufe, aber nur {b} Quelle(n) — nicht unabhängig',
+  refVerworfen:'⚠ verworfene Läufe: {a}', parkGrundFormat:'Sonderformat erkannt — kein 90-Minuten-Wert',
+  refEinAnbieter:'⚠ Nur ein Anbieter verfügbar — alle drei Läufe auf demselben Modell',
+  refDauer:'Dauer', balGeparkt:'in diesem Lauf geparkt',
   messT:'📤 Messdaten ausgeben (ohne Schlüssel)', messD:'Gibt alle Vorhersagen und Wetten aus — OHNE API-Schlüssel und OHNE PIN. Diese Ausgabe darfst du verschicken, ablegen und in einen Chat hochladen. Die Datensicherung oben bleibt davon unberührt und enthält weiterhin die Schlüssel.',
   messBtn:'📤 Messdaten erzeugen', messFile:'💾 Als Datei',
   messHint:'Kopf und Schlusszeile nennen die Anzahl. Fehlt die Schlusszeile, wurde beim Kopieren abgeschnitten.',
@@ -328,6 +332,10 @@ var I18N = {
   refRohBtn:'🗒 Générer le texte brut de l\'arbitre', refRohEmpty:'aucun refRoh enregistré',
   refWiderspruch:'⚠ Les passages de l\'arbitre se contredisent :', refRunsVon:'{a} sur {b} passages : {c}',
   ergebnisManuell:'Vérifié en externe, saisi à la main — pas issu du passage arbitre de l\'appli',
+  refEinig2von3:'⚠ pas unanime — {a} passages sur {b}', refQuellenZahl:'{a} passages, mais seulement {b} source(s) — pas indépendant',
+  refVerworfen:'⚠ passages rejetés : {a}', parkGrundFormat:'Format particulier détecté — pas de score à 90 minutes',
+  refEinAnbieter:'⚠ Un seul fournisseur disponible — les trois passages sur le même modèle',
+  refDauer:'Durée', balGeparkt:'mis de côté lors de ce passage',
   messT:'📤 Exporter les données de mesure (sans clés)', messD:'Sort toutes les prédictions et tous les paris — SANS clé API et SANS code PIN. Tu peux envoyer, archiver et téléverser cette sortie dans un chat. La sauvegarde ci-dessus reste inchangée et contient toujours les clés.',
   messBtn:'📤 Générer les données', messFile:'💾 En fichier',
   messHint:'L’en-tête et la dernière ligne indiquent le nombre. Si la dernière ligne manque, la copie a été tronquée.',
@@ -426,6 +434,10 @@ var I18N = {
   refRohBtn:'🗒 Generate referee raw text', refRohEmpty:'no refRoh stored',
   refWiderspruch:'⚠ Referee runs disagree:', refRunsVon:'{a} of {b} runs: {c}',
   ergebnisManuell:'Externally verified, entered by hand — not taken from the app\'s referee run',
+  refEinig2von3:'⚠ not unanimous — {a} of {b} runs', refQuellenZahl:'{a} runs, but only {b} source(s) — not independent',
+  refVerworfen:'⚠ discarded runs: {a}', parkGrundFormat:'Special format detected — no 90-minute score',
+  refEinAnbieter:'⚠ Only one provider available — all three runs on the same model',
+  refDauer:'Duration', balGeparkt:'parked in this run',
   messT:'📤 Export measurement data (no keys)', messD:'Outputs all predictions and bets — WITHOUT API keys and WITHOUT PIN. You may send, store and upload this output to a chat. The backup above is untouched and still contains the keys.',
   messBtn:'📤 Create measurement data', messFile:'💾 As file',
   messHint:'Header and final line state the count. If the final line is missing, the copy was truncated.',
@@ -777,7 +789,15 @@ function logTextBauen(){
       ' · getippt '+e.heim+':'+e.gast+' · wirklich '+echt+
       (m?(' · '+m):'')+
       (e.bttsWort?(' · Wort '+e.bttsWort):'')+
-      (e.geparkt?' [geparkt'+(e.parkGrund==='unstable_ref'?(': '+t('parkGrundInstabil')):'')+']':'')+
+      (e.geparkt?' [geparkt'+
+        (e.parkGrund==='unstable_ref'?(': '+t('parkGrundInstabil')):'')+
+        (e.parkGrund==='sonderformat'?(': '+t('parkGrundFormat')+(e.parkFormat?(' '+e.parkFormat):'')):'')+']':'')+
+      /* v19.8.12 (Backlog-Punkt 68): Die Markierung gehoert ausdruecklich auch in den
+         Log-Text-Export, nicht nur in die Karte — sonst waere sie im Chat nicht auswertbar. */
+      (e.refEinigkeit==='3verschieden' ? ' [3 Laeufe, 3 verschiedene Werte]' :
+        (e.refEinigkeit?(' [nicht einstimmig: '+e.refEinigkeit.replace('von',' von ')+']'):''))+
+      ((e.refQuellen && e.refLaeufe && e.refQuellen<e.refLaeufe)
+        ?(' ['+e.refLaeufe+' Laeufe, '+e.refQuellen+' Quelle(n)]'):'')+
       (e.begruendung?(' · "'+e.begruendung+'"'):'');
   });
   feld.value=kopf+'\n\n'+zeilen.join('\n');
@@ -1645,6 +1665,11 @@ function vorhersagen(btn){
   }
   var f=document.getElementById('ladeFehler'); if(f) f.textContent='';
   btn.disabled=true; btn.textContent=t('predListing');
+  /* Teil 4 des Auftrags vom 3.9.2026 (reine Diagnose): die tatsaechliche Dauer eines
+     Vorhersage-Laufs messen statt sie zu schaetzen. Das ist KEINE Aenderung am Lauf der
+     Gehirne — kein anderer Auftragstext, kein anderes Modell, kein zusaetzlicher Aufruf,
+     nur eine Uhrzeit-Differenz um den bestehenden Ablauf herum. */
+  var startZeitV = Date.now();
 
   spielListeHolen().then(function(liste){
     if(!liste.length) throw new Error(t('loadFail'));
@@ -1721,7 +1746,9 @@ function vorhersagen(btn){
       });
     });
     state.vorhersagen = { datum:heuteStr(), ids:neu.map(function(e){return e.id;}) };
-    state.vorschlaegeInfo = t('kiOf')+': '+heuteStr()+(fehler.length?(' · ⚠ '+fehler.join(' · ')):'');
+    state.vorschlaegeInfo = t('kiOf')+': '+heuteStr()+
+      ' · '+t('refDauer')+' '+Math.round((Date.now()-startZeitV)/1000)+' s'+
+      (fehler.length?(' · ⚠ '+fehler.join(' · ')):'');
     save();
     btn.disabled=false; btn.textContent=t('predBtn');
     render();
@@ -1791,6 +1818,141 @@ function fotoLesen(input){
   reader.readAsDataURL(input.files[0]);
 }
 
+/* ================= SCHIEDSRICHTER — FESTE PRUEFUNGEN OHNE MODELL (v19.8.12) =================
+   Backlog-Punkt 68 (Ondo, 3.9.2026) und Punkt 36, zweiter Teil. Diese drei Funktionen stehen
+   bewusst auf oberster Ebene und nicht in der Closure von ergebnissePruefen — nur so sind sie
+   im Trockentest einzeln aufrufbar, ohne die App zu starten (dieselbe Bauweise wie
+   refRohAbgleich). Sie entscheiden ohne jeden Modellaufruf und ohne Netz. */
+
+/* Teil 3 (Ergaenzung zu Backlog-Punkt 0c): NEGATIVLISTE, ausdruecklich KEINE Positivliste.
+   Eine Positivliste "amtlicher" Quellen wuerde Wettbewerbe ausserhalb Europas (z. B. Gabun,
+   Indien) nicht abdecken und eine Vollstaendigkeit vortaeuschen, die nicht besteht. Jede hier
+   nicht genannte Quelle zaehlt neutral und ohne Rangfolge — auch OneFootball, Flashscore,
+   Sofascore und UEFA.com bekommen keine Sonderstellung.
+   Zwei Gruppen:
+   1. Belegt falsch (30./31.7.2026): terrikon.com und flashfussball.de lieferten die falschen
+      Ergebnisse des UEFA-Abgleichs und vier erfundene 0:0 in Folge.
+   2. Wett- und Buchmacherseiten: Blueprint Grenze 5 belegt technisch, dass solche Seiten ihre
+      Zahlen erst im Browser per JavaScript nachladen — ein Abruf sieht nur Werbetext.
+   GRENZE, ausdruecklich (Art. 14): Die Liste erkennt nur, was auf ihr steht; eine unbekannte
+   Wettseite faellt durch. Und der Beleg zu Grenze 5 wurde mit WETTQUOTEN gefuehrt, nicht mit
+   Endstaenden — dieselbe technische Ursache traefe vermutlich auch den Endstand auf derselben
+   Seite, bewiesen ist das fuer Endstaende NICHT. */
+var REF_QUELLE_FALSCH = ['terrikon.com','flashfussball.de'];
+var REF_QUELLE_WETTE  = ['tipico','bet365','bwin','interwetten','unibet','betano','betway',
+  'williamhill','bet-at-home','winamax','betfair','pinnacle','1xbet','ladbrokes','betsson',
+  'sportingbet','xtip','admiralbet','oddset','mybet','betvictor','888sport','wettbasis'];
+function quelleUnzuverlaessig(host){
+  var h=String(host||'').toLowerCase();
+  if(!h) return '';
+  for(var i=0;i<REF_QUELLE_FALSCH.length;i++){
+    if(h===REF_QUELLE_FALSCH[i] || h.indexOf('.'+REF_QUELLE_FALSCH[i])>=0) return 'belegt_falsch';
+  }
+  for(var j=0;j<REF_QUELLE_WETTE.length;j++){
+    if(h.indexOf(REF_QUELLE_WETTE[j])>=0) return 'wettanbieter';
+  }
+  return '';
+}
+
+/* Prueft EINEN Schiedsrichter-Lauf gegen die festen Regeln aus Backlog-Punkt 68. Kein Modell
+   ist daran beteiligt — was hier scheitert, scheitert an Arithmetik, nicht an einem Urteil.
+   Rueckgabe: { ok, grund, text, heim, gast, halbzeit, verl, host, quelleSchwach, sonderformat }
+   grund ist eine unveraenderliche Kennung fuer die Logik, text die kurze Anzeigefassung. */
+function refLaufPruefen(r, host){
+  var erg={ ok:false, grund:'', text:'', heim:null, gast:null, halbzeit:'', verl:'',
+            host:String(host||''), quelleSchwach:'', sonderformat:'' };
+  function nein(grund, text){ erg.grund=grund; erg.text=text; return erg; }
+  if(!r) return nein('leer','keine Antwort');
+  /* Ziffern zuerst lesen, damit sie am refRoh-Lauf vermerkt werden koennen, auch wenn der
+     Lauf gleich darauf an einer festen Pruefung scheitert — sonst waere der Widerspruch fuer
+     refRohAbgleich() unsichtbar. */
+  var h=Math.round(Number(r.heim)), g=Math.round(Number(r.gast));
+  if(!isNaN(h) && !isNaN(g)){ erg.heim=h; erg.gast=g; }
+  erg.halbzeit=String(r.halbzeit||'').trim();
+  erg.verl=String(r.verlaengerung||'').trim();
+  /* Punkt 36, zweiter Teil: Meldet ein Lauf ein Sonderformat, wird sofort geparkt —
+     unabhaengig von den anderen zwei Laeufen und ohne dass ein 90-Minuten-Wert erzwungen
+     oder gerechnet wird. Das ergaenzt die Erkennung in der Spielliste (stufeHolen, seit
+     v19.8.7) und faengt auf, was dort durchrutscht, wie Leeds-Leipzig am 8.8.2026.
+     Ein LEERES Feld ist kein Sonderformat, sondern eine fehlende Angabe: Der Auftragstext
+     verlangt ausdruecklich, nicht zu raten. Die bekannte Grenze aus Punkt 36 bleibt damit
+     bestehen — ein Modell, das das Format nicht kennt, meldet es auch nicht. */
+  var fmt=String(r.format||'').toLowerCase().replace(/×/g,'x').replace(/[\s·]/g,'');
+  if(fmt && !(/^2x45/.test(fmt) || fmt.indexOf('standard')>=0)){
+    erg.sonderformat=String(r.format);
+    return nein('sonderformat','Sonderformat '+String(r.format));
+  }
+  var status=String(r.status||'').toLowerCase();
+  if(status!=='fertig') return nein('kein_ergebnis','kein Ergebnis');
+  if(erg.heim===null) return nein('keine_ziffern','keine Ziffern');
+  /* Feste Pruefung 1: In der zweiten Halbzeit koennen keine Tore verschwinden. Bis v19.8.11
+     war das nur eine Warnung an Ondo (warnP) — jetzt wird der Lauf verworfen. */
+  var hz=erg.halbzeit.match(/(\d+)\s*[:\-]\s*(\d+)/);
+  if(hz && (Number(hz[1])>erg.heim || Number(hz[2])>erg.gast)){
+    return nein('halbzeit_hoeher','Halbzeit hoeher als Endstand');
+  }
+  /* Feste Pruefung 2: Ein torloses 0:0 nur bei ausdruecklichem Status. Blosses Fehlen von
+     Ziffern faellt schon oben als "keine Ziffern" heraus; hier geht es um die Verlegenheits-
+     antwort, die wie ein gefundenes Ergebnis aussieht (neunte Fehlerart, 31.7.2026). */
+  if(erg.heim===0 && erg.gast===0 && String(r.torlos||'').trim().toLowerCase()!=='bestaetigt'){
+    return nein('null_unbestaetigt','0:0 ohne Bestaetigung');
+  }
+  /* Feste Pruefung 3: Bei Verlaengerung muessen 90-Minuten-Stand und Verlaengerungsstand
+     getrennt genannt sein (zehnte Fehlerart, 11.8.2026 — ein Stand aus der Verlaengerung
+     stand als 90-Minuten-Wert in den Messdaten). Der Verlaengerungsstand darf ausserdem je
+     Mannschaft nicht unter dem 90-Minuten-Stand liegen. */
+  var vGespielt=/^(ja|yes|oui)$/i.test(String(r.verlaengerungGespielt||'').trim());
+  if(vGespielt || erg.verl){
+    var vt=erg.verl.match(/(\d+)\s*[:\-]\s*(\d+)/);
+    if(!vt) return nein('verl_ohne_stand','Verlaengerung ohne getrennten Stand');
+    if(Number(vt[1])<erg.heim || Number(vt[2])<erg.gast){
+      return nein('verl_kleiner','Verlaengerungsstand kleiner als 90 Minuten');
+    }
+  }
+  /* Feste Pruefung 4 (Teil 3): Eine Quelle von der Negativliste zaehlt nicht als Beleg.
+     Der Lauf bleibt vollstaendig sichtbar (refRoh, Vorschlagskarte, Text-Ausgabe) und wird
+     benannt — er geht nur nicht in die Einigkeitspruefung ein (Entscheidung Ondo 3.9.2026). */
+  erg.quelleSchwach=quelleUnzuverlaessig(erg.host);
+  if(erg.quelleSchwach==='wettanbieter') return nein('quelle_wettanbieter','Quelle Wettanbieter '+erg.host);
+  if(erg.quelleSchwach==='belegt_falsch') return nein('quelle_belegt_falsch','Quelle belegt unzuverlaessig '+erg.host);
+  erg.ok=true;
+  return erg;
+}
+
+/* EINIGKEITSREGEL (Ondo, 3.9.2026). Bekommt die gepruefen Laeufe EINES Spiels und entscheidet.
+   Verglichen wird der 90-Minuten-Stand zusammen mit dem Verlaengerungsstand — beides zusammen
+   bildet den Wert eines Laufs, wie im Auftrag verlangt ("im 90-Minuten-Stand und ggf.
+   Verlaengerungsstand").
+   fall = 'einstimmig'  -> uebernehmen, keine Markierung noetig
+          'zweivondrei' -> uebernehmen, aber SICHTBARE Markierung (Pflichtbestandteil der
+                           Regel, kein Extra — ohne Markierung wird nicht uebernommen)
+          'uneinig'     -> parken, parkGrund 'unstable_ref'
+          'zuwenig'     -> nichts uebernehmen, erneut fragen (Entscheidung Ondo 3.9.2026)
+   quellenZahl zaehlt die VERSCHIEDENEN Quellen der gueltigen Laeufe: Nennen alle drei Laeufe
+   dieselbe Quelle, ist das EIN Beleg, nicht drei unabhaengige. Es gibt aber ausdruecklich
+   keine Pflicht zu drei verschiedenen Quellen — bei unterklassigen Wettbewerben kann es nur
+   eine geben (Blueprint Grenze 6/7). */
+function refEinigkeit(gepruefte){
+  var gut=(gepruefte||[]).filter(function(x){ return x && x.ok; });
+  var quellen=[];
+  gut.forEach(function(x){ if(x.host && quellen.indexOf(x.host)<0) quellen.push(x.host); });
+  var basis={ gesamt:gut.length, quellen:quellen, quellenZahl:quellen.length };
+  if(gut.length<3){ basis.fall='zuwenig'; basis.wert=null; basis.mehrheit=0; return basis; }
+  var reihen=[], zahl={}, muster={};
+  gut.forEach(function(x){
+    var k=x.heim+':'+x.gast+'|'+(x.verl||'');
+    if(!(k in zahl)){ reihen.push(k); muster[k]=x; }
+    zahl[k]=(zahl[k]||0)+1;
+  });
+  var best=reihen[0];
+  reihen.forEach(function(k){ if(zahl[k]>zahl[best]) best=k; });
+  basis.mehrheit=zahl[best];
+  basis.fall = (zahl[best]===gut.length) ? 'einstimmig'
+             : (zahl[best]>=2 ? 'zweivondrei' : 'uneinig');
+  basis.wert = (basis.fall==='uneinig') ? null : muster[best];
+  return basis;
+}
+
 /* ================= ERGEBNISSE PRUEFEN (v19: KI liefert nur Tore) ================= */
 /* ================= ERGEBNISSE PRUEFEN (v19.4) =================
    Mehrrundig: wiederholt, solange jede Runde mindestens ein neues Ergebnis bringt
@@ -1833,6 +1995,12 @@ function ergebnissePruefen(btn){
   pruefListe=[]; pruefBilanz=null;
   pruefStark = { anfragen:0, modell:'', fallback:false, grund:'' };
   var runde=0, MAXR=6;
+  /* Teil 4 des Auftrags vom 3.9.2026 (reine Diagnose, kein Backlog-Punkt): die tatsaechliche
+     Dauer eines Prueflaufs messen statt sie zu schaetzen. Eine Vorher-Zahl gibt es
+     ausdruecklich nicht — eine Code-Sitzung hat keine API-Schluessel und keinen Browser mit
+     Ondos Daten und koennte sie nur raten (Art. 11/14, Entscheidung Ondo 3.9.2026). */
+  var startZeit = Date.now();
+  var einAnbieter = false;
 
   function tageAbstand(a,b){
     function z(s){ var m=String(s||'').match(/(\d{1,2})\.(\d{1,2})\.(\d{4})/); if(!m) return null;
@@ -1857,11 +2025,18 @@ function ergebnissePruefen(btn){
     return m ? m[1].replace(/^www\./,'') : '';
   }
 
+  /* v19.8.12 (Backlog-Punkt 68): verarbeite() entscheidet NICHT mehr allein ueber den
+     Vorschlag. Es schreibt den Rohtext mit, prueft den einzelnen Lauf gegen die festen Regeln
+     (refLaufPruefen) und legt das Ergebnis in p.laeufe ab. Entschieden wird erst, wenn alle
+     drei Laeufe der Runde da sind — in pruefAuswerten(). Grund: Bei drei gleichzeitigen
+     Laeufen gibt es keinen "letzten" Lauf mehr, an dem sich etwas festmachen liesse; v19.8.9
+     setzte geparst noch am zuletzt gepushten refRoh-Eintrag (das trug bei einem Lauf je Runde,
+     bei dreien nicht mehr). */
   function verarbeite(r, ziel, rohText, modellGenutzt){
     var id=String(r.id||'');
     var p=null;
     for(var i=0;i<ziel.length;i++){ if(ziel[i].id===id){ p=ziel[i]; break; } }
-    if(!p) return 0;
+    if(!p) return;
     /* Backlog-Punkt 64 (28.8.2026): Die rohe Schiedsrichter-Antwort wird ab hier
        mitgeschrieben — an JEDEM Eintrag, den diese Runde betrifft, unabhaengig vom
        Status (fertig/laeuft/fehlt), nicht nur bei einem Fehlschlag. Array, weil ein
@@ -1871,13 +2046,19 @@ function ergebnissePruefen(btn){
        Nachfrage 28.8.2026: modellGenutzt haelt fest, welches Modell tatsaechlich
        geantwortet hat — bei Gemini die von Google aufgeloeste modelVersion (nicht der
        gemini-flash-latest-Alias), bei Sonnet der feste Modellname. */
+    /* Backlog-Punkt 64: die erzeugten refRoh-Zeilen werden als Referenz festgehalten, damit
+       geparst weiter unten an GENAU diesem Lauf landet und nicht am zufaellig letzten. */
+    var rohZeilen=[];
     if(p.art==='log'){
       (state.kiProtokoll||[]).forEach(function(e){
         if(p.eintraege.indexOf(e.id)<0) return;
         if(!e.refRoh) e.refRoh=[];
-        e.refRoh.push({ datum:heuteStr(), text:rohText, modell:modellGenutzt });
+        var zeile={ datum:heuteStr(), text:rohText, modell:modellGenutzt };
+        e.refRoh.push(zeile);
+        rohZeilen.push(zeile);
       });
     }
+    if(!p.laeufe) p.laeufe=[];
     var status=String(r.status||'').toLowerCase();
     if(status==='laeuft'){
       /* Ein regulaeres Spiel ist rund 2 Stunden nach Anpfiff vorbei. Laeuft Verlaengerung
@@ -1886,59 +2067,116 @@ function ergebnissePruefen(btn){
          nicht mehr und suchen weiter. Bei echten Unterbrechungen (Unwetter) kostet das
          nur eine zusaetzliche Nachfrage; ein uebersehenes Ergebnis waere schlimmer. */
       var vergangen=stundenSeitAnpfiff(p.datum, p.anpfiff);
-      p.zustand = (vergangen!==null && vergangen>2.5) ? 'fehlt' : 'laeuft';
-      return 0;
+      p.laeufe.push({ ok:false, grund:'laeuft', text:'laeuft noch',
+        nochAktuell:!(vergangen!==null && vergangen>2.5),
+        heim:null, gast:null, halbzeit:'', verl:'', host:'', quelleSchwach:'', sonderformat:'' });
+      return;
     }
-    var h=Math.round(Number(r.heim)), g=Math.round(Number(r.gast));
-    if(status!=='fertig' || isNaN(h) || isNaN(g)){ p.zustand='fehlt'; return 0; }
-    var gefDatum=String(r.datum||''), gefWb=String(r.wettbewerb||''), quelle=String(r.quelle||'');
-    var halbzeit=String(r.halbzeit||'').trim(), verl=String(r.verlaengerung||'').trim();
-    /* Plausibilitaetspruefung der Phasen: In der zweiten Halbzeit koennen keine Tore
-       verschwinden. Ist der Halbzeitstand hoeher als der Stand nach 90 Minuten, hat
-       der Schiedsrichter die Staende vertauscht. */
-    var hzT=halbzeit.match(/(\d+)\s*[:\-]\s*(\d+)/);
-    var warnP=false;
-    if(hzT){
-      var hzH=Number(hzT[1]), hzG=Number(hzT[2]);
-      if(hzH>h || hzG>g) warnP=true;
-    }
-    var abstand=tageAbstand(p.datum, gefDatum);
-    var warn=(abstand!==null && abstand>1);
-    var warnQ=(runde>=3 && !urlOk(quelle));
-    p.zustand='fertig';
-    /* v19.8.9 (Nachfrage zu Punkt 64, Teil 2): Zusaetzlich zum rohen Antworttext (oben, immer
-       geschrieben) wird bei einem bestaetigten Ergebnis JETZT auch der geparste Stand am
-       zuletzt gepushten refRoh-Eintrag vermerkt (e.refRoh[...].geparst). Grundlage fuer
-       refRohAbgleich(), das mehrere Laeufe desselben Spiels auf Widerspruch prueft. Nur fuer
-       kuenftige Laeufe - bereits gespeicherte refRoh-Eintraege (z. B. Celje, Sabah) bleiben
-       ohne geparst und fliessen deshalb nicht in den Abgleich ein (Grenze, siehe Backlog). */
-    if(p.art==='log'){
-      (state.kiProtokoll||[]).forEach(function(e){
-        if(p.eintraege.indexOf(e.id)<0) return;
-        var letzter = e.refRoh && e.refRoh[e.refRoh.length-1];
-        if(letzter) letzter.geparst = { heim:h, gast:g, halbzeit:halbzeit, verl:verl };
+    var quelle=String(r.quelle||'');
+    var pr=refLaufPruefen(r, quellHost(quelle));
+    pr.quelleRoh=quelle;
+    pr.gefDatum=String(r.datum||'');
+    pr.gefWb=String(r.wettbewerb||'');
+    pr.rohText=rohText;
+    pr.modell=modellGenutzt;
+    /* v19.8.9 (Nachfrage zu Punkt 64, Teil 2), unveraendert in der Sache: Hat der Lauf Ziffern
+       genannt, wird der geparste Stand am refRoh-Eintrag DIESES Laufs vermerkt — auch wenn er
+       an einer festen Pruefung gescheitert ist. Nur so bleibt der Widerspruch fuer
+       refRohAbgleich() sichtbar, das ausdruecklich nicht angetastet wird. */
+    if(pr.heim!==null && pr.gast!==null){
+      rohZeilen.forEach(function(z){
+        z.geparst={ heim:pr.heim, gast:pr.gast, halbzeit:pr.halbzeit, verl:pr.verl };
       });
     }
+    p.laeufe.push(pr);
+  }
+
+  /* Parken aus dem Prueflauf heraus. Es wird KEIN Ergebnis eingetragen und kein Markt
+     bewertet — derselbe, jederzeit umkehrbare Schritt wie Ondos Park-Knopf (logParken).
+     Nur state.kiProtokoll; state.bets kennt kein Parken (unveraenderte Luecke). */
+  function parkeEintraege(p, grund, einigkeit, format){
+    if(p.art!=='log') return;
+    (state.kiProtokoll||[]).forEach(function(e){
+      if(p.eintraege.indexOf(e.id)<0) return;
+      e.geparkt=true;
+      e.parkGrund=grund;
+      if(einigkeit) e.refEinigkeit=einigkeit;
+      if(format) e.parkFormat=format;
+    });
+  }
+
+  /* v19.8.12 (Backlog-Punkt 68): Entscheidung ueber EIN Spiel, nachdem alle drei Laeufe der
+     Runde da sind. Die Reihenfolge ist Absicht: Sonderformat schlaegt alles, dann "laeuft
+     noch", dann die Zahl der brauchbaren Laeufe, dann die Einigkeitsregel.
+     Rueckgabe 1, wenn diese Runde fuer dieses Spiel etwas erreicht hat (Vorschlag oder
+     Parkung) — das steuert wie bisher, ob eine weitere Runde laeuft. */
+  function pruefAuswerten(p){
+    var laeufe=p.laeufe||[];
+    /* 1. Punkt 36: Ein einziger Lauf mit Sonderformat parkt den Eintrag, unabhaengig von den
+       anderen zwei. Es wird kein 90-Minuten-Wert erzwungen oder gerechnet. */
+    var sf=null;
+    laeufe.forEach(function(x){ if(!sf && x.sonderformat) sf=x; });
+    if(sf){
+      parkeEintraege(p, 'sonderformat', '', sf.sonderformat);
+      p.zustand='geparkt'; p.parkGrund='sonderformat'; p.parkInfo=sf.sonderformat;
+      return 1;
+    }
+    var gut=laeufe.filter(function(x){ return x.ok; });
+    /* 2. "laeuft noch" gilt nur, wenn kein einziger Lauf ein brauchbares Ergebnis geliefert
+       hat und die 2,5-Stunden-Regel (v19.5, fuenfte Fehlerart) die Angabe stuetzt. */
+    if(!gut.length && laeufe.some(function(x){ return x.grund==='laeuft' && x.nochAktuell; })){
+      p.zustand='laeuft';
+      return 0;
+    }
+    var u=refEinigkeit(laeufe);
+    p.einigkeit=u;
+    p.verworfen=laeufe.filter(function(x){ return !x.ok && x.grund!=='laeuft'; })
+                      .map(function(x){ return x.text; });
+    /* 3. Weniger als drei brauchbare Laeufe (Entscheidung Ondo, 3.9.2026): nichts uebernehmen,
+       im naechsten Durchgang erneut fragen. NICHT parken — der Eintrag bleibt unveraendert
+       offen und faellt am Ende unter "nicht gefunden". */
+    if(u.fall==='zuwenig'){ p.zustand='fehlt'; return 0; }
+    /* 4. Alle drei verschieden: parken mit dem bestehenden Feld parkGrund 'unstable_ref'.
+       Die drei widersprechenden refRoh-Laeufe sind ueber refRohAbgleich() sichtbar. */
+    if(u.fall==='uneinig'){
+      parkeEintraege(p, 'unstable_ref', '3verschieden', '');
+      p.zustand='geparkt'; p.parkGrund='unstable_ref';
+      return 1;
+    }
+    /* 5. Einstimmig oder zwei von drei: uebernehmen. Bei zwei von drei ist die sichtbare
+       Markierung Pflichtbestandteil der Regel, kein Extra (Ondo, 3.9.2026) — sie wird in
+       pruefAnwenden() an den Eintrag geschrieben. */
+    var w=u.wert;
+    var abstand=tageAbstand(p.datum, w.gefDatum);
+    var warn=(abstand!==null && abstand>1);
+    var warnQ=(runde>=3 && !urlOk(w.quelleRoh));
+    /* warnP heisst weiterhin, was sein Text sagt: mindestens ein Lauf hatte den Halbzeit-
+       stand hoeher als den Endstand. Neu ist nur, dass dieser Lauf zusaetzlich verworfen
+       wurde, statt bloss eine Warnung auszuloesen. */
+    var warnP=laeufe.some(function(x){ return x.grund==='halbzeit_hoeher'; });
+    var einigkeit=(u.fall==='zweivondrei') ? (u.mehrheit+'von'+u.gesamt) : '';
+    p.zustand='fertig';
+    var gemeinsam={ id:p.id, match:p.match, heim:w.heim, gast:w.gast,
+      halbzeit:w.halbzeit, verl:w.verl, warnP:warnP,
+      gefDatum:w.gefDatum, gefWb:w.gefWb, quelle:w.host, warn:warn, warnQ:warnQ,
+      einigkeit:einigkeit, laeufeGut:u.gesamt, quellen:u.quellen, quellenZahl:u.quellenZahl,
+      verworfen:p.verworfen };
     if(p.art==='log'){
       var urteile=[];
       (state.kiProtokoll||[]).forEach(function(e){
         if(p.eintraege.indexOf(e.id)<0) return;
         (e.maerkte||[]).forEach(function(m){
-          var ok=marktUrteil(m.code,h,g);
+          var ok=marktUrteil(m.code,w.heim,w.gast);
           if(ok===null) return;
           urteile.push({ gehirn:e.herkunft, label:m.label, ok:ok });
         });
       });
-      pruefListe.push({ art:'log', id:p.id, match:p.match, heim:h, gast:g,
-        halbzeit:halbzeit, verl:verl, warnP:warnP,
-        gefDatum:gefDatum, gefWb:gefWb, quelle:quellHost(quelle), warn:warn, warnQ:warnQ,
-        eintraege:p.eintraege, urteile:urteile, rohAntwort:rohText, modell:modellGenutzt });
+      gemeinsam.art='log'; gemeinsam.eintraege=p.eintraege; gemeinsam.urteile=urteile;
+      gemeinsam.rohAntwort=w.rohText; gemeinsam.modell=w.modell;
     } else {
-      pruefListe.push({ art:'bet', id:p.id, betId:p.betId, match:p.match, tipp:p.tipp,
-        heim:h, gast:g, halbzeit:halbzeit, verl:verl, warnP:warnP,
-        gefDatum:gefDatum, gefWb:gefWb, quelle:quellHost(quelle),
-        warn:warn, warnQ:warnQ });
+      gemeinsam.art='bet'; gemeinsam.betId=p.betId; gemeinsam.tipp=p.tipp;
     }
+    pruefListe.push(gemeinsam);
     return 1;
   }
 
@@ -1947,7 +2185,9 @@ function ergebnissePruefen(btn){
     var ziel = posten.filter(function(p){ return p.zustand==='offen'||p.zustand==='fehlt'; }).slice(0,5);
     if(!ziel.length || runde>MAXR){ abschluss(); return; }
     btn.textContent = t('checkingRound').replace('{a}',runde).replace('{b}',MAXR);
-    ziel.forEach(function(p){ p.gefragt=true; });
+    /* p.laeufe wird je Runde geleert: Die Einigkeitsregel darf nur die drei Laeufe DIESER
+       Runde vergleichen, nicht Laeufe frueherer Runden mitzaehlen. */
+    ziel.forEach(function(p){ p.gefragt=true; p.laeufe=[]; });
 
     var zeilen = ziel.map(function(p){
       return p.id+': '+p.match+(p.wettbewerb?(' ['+p.wettbewerb+']'):'')+' (angesetzt am '+p.datum+(p.anpfiff?(', Anpfiff '+p.anpfiff+' Uhr'):'')+')'+((p.art==='bet')?' — Wettschein':'');
@@ -1963,6 +2203,15 @@ function ergebnissePruefen(btn){
       'ermittle per Websuche den ENDSTAND NACH 90 MINUTEN inkl. Nachspielzeit — OHNE Verlaengerung, OHNE Elfmeterschiessen — und melde ihn nur, wenn Wettbewerb, Datum und beide Teams deiner Quelle zu den unten genannten Angaben passen. Weicht auch nur eine der vier Angaben ab, ist es das falsche Spiel: dann "nicht_gefunden".\n\n'+
       'Du sollst NICHT beurteilen, ob eine Wette gewonnen hat. Nenne ausschliesslich die Tore. '+
       'heim = erstgenanntes Team, gast = zweitgenanntes Team.\n\n'+
+      /* v19.8.12 (Backlog-Punkt 36, zweiter Teil): Der Schiedsrichter meldet ab jetzt selbst,
+         in welchem Format tatsaechlich gespielt wurde. Das ergaenzt die Erkennung in der
+         Spielliste (stufeHolen, seit v19.8.7) und faengt auf, was dort durchrutscht — wie
+         Leeds-RB Leipzig am 8.8.2026 (zwei Haelften zu 60 Minuten). Erkennt ein Lauf ein
+         Sonderformat, parkt die App den Eintrag und erzwingt KEINEN 90-Minuten-Wert. */
+      'AUSSERDEM PFLICHT — das tatsaechlich gespielte Spielformat im Feld "format":\n'+
+      '- "2x45" fuer das Standardformat. Das gilt auch dann, wenn danach eine REGULAERE Verlaengerung von 2x15 Minuten oder ein Elfmeterschiessen folgte.\n'+
+      '- Wurde in einem anderen Format gespielt, schreibe es hin, z. B. "2x60" oder "3x45". Solche Spiele haben keine regulaere Marke bei Minute 90.\n'+
+      '- Findest du keine Angabe zum Format, LASS DAS FELD LEER. Rate nicht.\n\n'+
       'Gib jedem Spiel GENAU EINEN Status:\n'+
       '- "fertig": Endstand aus verlaesslicher Quelle bestaetigt (dann heim, gast, datum, wettbewerb, quelle angeben)\n'+
       '- "laeuft": Spiel laeuft gerade noch oder wurde noch nicht angepfiffen. '+
@@ -1973,41 +2222,78 @@ function ergebnissePruefen(btn){
       '1. FALSCHES DUELL: Zwei Teams spielen mehrmals pro Jahr gegeneinander. Pruefe, dass dein Ergebnis wirklich vom angesetzten Datum stammt — NICHT von einer frueheren Begegnung derselben Teams.\n'+
       '2. ZEITZONEN: Spiele in Suedamerika und Nordamerika werden abends Ortszeit angepfiffen und enden in Europa erst NACH MITTERNACHT, also am Folgetag. Suche nach dem Spieltag der Liga, nicht nur nach dem Kalenderdatum.\n'+
       '3. RATEN: Lieber "nicht_gefunden" als ein unsicherer Endstand.\n'+
-      '4. TORLOSES UNENTSCHIEDEN (0:0): Ein 0:0 sieht in deiner Antwort genauso aus wie eine Ausflucht, wenn du nichts gefunden hast. Melde 0:0 NUR, wenn eine konkrete Quelle das ausdruecklich bestaetigt — niemals als Verlegenheitsantwort. Im Zweifel "nicht_gefunden" statt eines geratenen 0:0.\n\n'+
+      '4. TORLOSES UNENTSCHIEDEN (0:0): Ein 0:0 sieht in deiner Antwort genauso aus wie eine Ausflucht, wenn du nichts gefunden hast. Melde 0:0 NUR, wenn eine konkrete Quelle das ausdruecklich bestaetigt — niemals als Verlegenheitsantwort. Im Zweifel "nicht_gefunden" statt eines geratenen 0:0. '+
+      /* v19.8.12 (Backlog-Punkt 68): Geminis Vorschlag vom 8.8.2026 — Zustand vor Ziffer.
+         Erst ab hier gibt es ein Feld, dessen FEHLEN auffaellt; bisher sah ein erfundenes
+         0:0 genauso aus wie ein gefundenes (neunte Fehlerart). */
+      'Bei 0:0 MUSST du zusaetzlich das Feld "torlos" auf "bestaetigt" setzen. Ein 0:0 ohne dieses Feld wird verworfen.\n'+
+      '5. VERLAENGERUNG: Setze "verlaengerungGespielt" auf "ja" oder "nein". Bei "ja" MUSST du beide Staende GETRENNT nennen: heim und gast = Stand NACH 90 MINUTEN inkl. Nachspielzeit, "verlaengerung" = Stand nach der Verlaengerung. Ein einziger zusammengefasster Stand wird verworfen.\n'+
+      /* v19.8.12 (Teil 3, Ergaenzung zu Backlog-Punkt 0c): Blueprint Grenze 5 — Wettseiten
+         laden ihre Zahlen erst im Browser per JavaScript nach; ein Abruf sieht nur Werbetext.
+         Der Code prueft das ohnehin nach (Negativliste); der Hinweis spart nur nutzlose Laeufe. */
+      '6. QUELLE: Nenne KEINE Wett- oder Buchmacherseite als Quelle. Solche Seiten laden ihre Zahlen erst im Browser nach; ein Abruf sieht dort nicht die echten Ergebnisse. Ein Lauf mit einer solchen Quelle wird nicht als Beleg gezaehlt.\n\n'+
       quellPflicht+
       zeilen.join('\n')+
-      '\n\nLetzte Nachricht: NUR kompaktes JSON:\n{"ergebnisse":[{"id":"S0","status":"fertig","halbzeit":"1:0","heim":2,"gast":1,"verlaengerung":"","datum":"24.07.2026","wettbewerb":"MLS","quelle":"https://..."}]}';
+      '\n\nLetzte Nachricht: NUR kompaktes JSON:\n{"ergebnisse":[{"id":"S0","status":"fertig","format":"2x45","halbzeit":"1:0","heim":2,"gast":1,"verlaengerungGespielt":"nein","verlaengerung":"","torlos":"nein","datum":"24.07.2026","wettbewerb":"MLS","quelle":"https://..."}]}';
 
-    var call = hatGemini()
-      ? geminiCall({ prompt: prompt, useSearch: true, rolle:'ref' })   /* 0a zurueckgenommen in v19.7.3, siehe Backlog */
-      : sonnetSuche(prompt, 5, 1500);
+    /* v19.8.12 (Backlog-Punkt 68, Entscheidung Ondo 3.9.2026): DREI Laeufe statt einem,
+       GLEICHZEITIG abgeschickt (Promise.all), damit sich die Wartezeit nicht verdreifacht.
+       Mindestens einer laeuft auf einem anderen Modell — dafuer wird der bestehende
+       Sonnet-Rueckfallpfad benutzt (claude-sonnet-4-6 mit Websuche) statt eines dritten
+       Gemini-Laufs. Steht nur ein Anbieter zur Verfuegung, laufen alle drei dort; das wird
+       in der Bilanz sichtbar gemeldet, nicht stillschweigend hingenommen (Art. 14). */
+    var wege=[];
+    if(hatGemini()){ wege.push('gemini'); wege.push('gemini'); }   /* 0a zurueckgenommen in v19.7.3, siehe Backlog */
+    if(hatSonnet()){ wege.push('sonnet'); }
+    while(wege.length<3) wege.push(wege[0]);
+    wege=wege.slice(0,3);
+    einAnbieter = (wege[0]===wege[1] && wege[1]===wege[2]);
 
-    call.then(function(res){
-      if(res.error) throw new Error(res.error.message||('HTTP '+res._status));
-      /* Backlog-Punkt 64: die volle rohe Antwort dieser Runde, unabhaengig vom Parsen —
-         dieselbe Extraktion wie parseJsonBlock, nur ohne die JSON-Filterung. */
-      var rohText=(res.content||[]).filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join('\n');
-      /* Nachfrage 28.8.2026: welches Modell hat tatsaechlich geantwortet? Nicht ueber die
-         blosse Anwesenheit von modelVersion raten, sondern ueber denselben hatGemini()-
-         Schalter, der schon entscheidet, welcher Pfad lief. Fehlt modelVersion trotz
-         Gemini-Pfad ausnahmsweise: null, ausdruecklich unbekannt, nicht vermutet. */
-      var modellGenutzt = hatGemini() ? (res.modelVersion||null) : 'claude-sonnet-4-6';
-      var parsed=parseJsonBlock(res);
+    /* Ein Fehler in einem Lauf wirft nicht mehr die ganze Runde weg: jeder Aufruf wird
+       einzeln abgefangen und zaehlt dann als "kein Ergebnis". Bis v19.8.11 beendete ein
+       einziger Fehlschlag den gesamten Prueflauf. */
+    function einLauf(weg){
+      var call = (weg==='gemini')
+        ? geminiCall({ prompt: prompt, useSearch: true, rolle:'ref' })
+        : sonnetSuche(prompt, 5, 1500);
+      return call.then(function(res){ return { weg:weg, res:res||{} }; })
+                 .catch(function(e){ return { weg:weg, res:{ error:{ message:(e&&e.message)?e.message:'?' } } }; });
+    }
+
+    Promise.all(wege.map(einLauf)).then(function(antworten){
+      var fehlerTexte=[];
+      antworten.forEach(function(a){
+        var res=a.res||{};
+        if(res.error){ fehlerTexte.push(res.error.message||('HTTP '+res._status)); return; }
+        /* Backlog-Punkt 64: die volle rohe Antwort dieses Laufs, unabhaengig vom Parsen —
+           dieselbe Extraktion wie parseJsonBlock, nur ohne die JSON-Filterung. */
+        var rohText=(res.content||[]).filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join('\n');
+        /* Nachfrage 28.8.2026: welches Modell hat tatsaechlich geantwortet? Nicht ueber die
+           blosse Anwesenheit von modelVersion raten, sondern ueber den Weg, der lief. Fehlt
+           modelVersion trotz Gemini-Pfad ausnahmsweise: null, ausdruecklich unbekannt. */
+        var modellGenutzt = (a.weg==='gemini') ? (res.modelVersion||null) : 'claude-sonnet-4-6';
+        var parsed=parseJsonBlock(res);
+        if(parsed && parsed.ergebnisse){
+          parsed.ergebnisse.forEach(function(r){ verarbeite(r, ziel, rohText, modellGenutzt); });
+        }
+      });
+      /* Erst jetzt, mit allen drei Laeufen, wird je Spiel entschieden. */
       var neu=0;
-      if(parsed && parsed.ergebnisse){
-        parsed.ergebnisse.forEach(function(r){ neu += verarbeite(r, ziel, rohText, modellGenutzt); });
-      }
-      /* Gefragte ohne Antwort gelten als nicht gefunden */
+      ziel.forEach(function(p){ neu += pruefAuswerten(p); });
+      /* Gefragte ohne jede Antwort gelten als nicht gefunden */
       ziel.forEach(function(p){ if(p.zustand==='offen') p.zustand='fehlt'; });
       /* Sofort sichern: geht eine Runde nicht in eine Uebernahme (wie bei Celje/Sabah,
          drei Laeufe, keiner uebernommen), waeren die rohen Antworten sonst verloren —
-         genau der Fall, den Punkt 64 beheben soll. */
+         genau der Fall, den Punkt 64 beheben soll. Ab v19.8.12 sichert das ausserdem die
+         Parkungen aus pruefAuswerten(). */
       save();
       var nochWas = posten.some(function(p){
         return p.zustand==='fehlt' || (p.zustand==='offen' && !p.gefragt);
       });
       var ungefragt = posten.some(function(p){ return p.zustand==='offen' && !p.gefragt; });
       if(runde<MAXR && nochWas && (neu>0 || ungefragt)){ rundeLaufen(); }
+      /* Alle drei Laeufe gescheitert und nichts erreicht: den Grund zeigen statt schweigen. */
+      else if(fehlerTexte.length===antworten.length && !neu){ abschluss(fehlerTexte[0]); }
       else { abschluss(); }
     })
     .catch(function(e){
@@ -2020,8 +2306,15 @@ function ergebnissePruefen(btn){
       gesamt: posten.length,
       gef: posten.filter(function(p){ return p.zustand==='fertig'; }).length,
       laeuft: posten.filter(function(p){ return p.zustand==='laeuft'; }).map(function(p){ return p.match; }),
-      fehlt: posten.filter(function(p){ return p.zustand!=='fertig' && p.zustand!=='laeuft'; }).map(function(p){ return p.match; }),
+      /* v19.8.12 (Backlog-Punkt 68): geparkte Spiele bekommen eine eigene Zeile — sie sind
+         etwas anderes als "nicht gefunden" und duerfen nicht darin verschwinden. */
+      geparkt: posten.filter(function(p){ return p.zustand==='geparkt'; })
+        .map(function(p){ return p.match+(p.parkInfo?(' ('+p.parkInfo+')'):''); }),
+      fehlt: posten.filter(function(p){ return p.zustand!=='fertig' && p.zustand!=='laeuft' && p.zustand!=='geparkt'; }).map(function(p){ return p.match; }),
       runden: Math.min(runde, MAXR),
+      /* Teil 4 (Diagnose): echte Dauer dieses Prueflaufs, gemessen, nicht geschaetzt. */
+      dauerMs: Date.now()-startZeit,
+      einAnbieter: einAnbieter,
       starkAnfragen: pruefStark.anfragen,
       starkModell: pruefStark.modell,
       starkFallback: pruefStark.fallback,
@@ -2041,6 +2334,16 @@ function pruefAnwenden(pid){
     (state.kiProtokoll||[]).forEach(function(e){
       if(p.eintraege.indexOf(e.id)<0) return;
       e.ergebnisHeim=p.heim; e.ergebnisGast=p.gast;
+      /* v19.8.12 (Backlog-Punkt 68): Die Markierung "nicht einstimmig" ist Pflichtbestandteil
+         der Einigkeitsregel, kein optionales Extra — ohne sie duerfte eine Zwei-gegen-eins-Lage
+         gar nicht uebernommen werden. Bei Einstimmigkeit bleibt das Feld leer (keine Markierung
+         noetig, Entscheidung Ondo 3.9.2026). refQuellen/refLaeufe halten fest, auf wie vielen
+         VERSCHIEDENEN Quellen die Laeufe beruhten: drei Laeufe auf derselben Quelle sind EIN
+         Beleg, nicht drei unabhaengige. Beides ist spaeter auswertbar — genau dafuer wird es
+         gespeichert statt nur angezeigt. */
+      if(p.einigkeit) e.refEinigkeit=p.einigkeit; else delete e.refEinigkeit;
+      e.refLaeufe=p.laeufeGut||null;
+      e.refQuellen=(p.quellenZahl===undefined?null:p.quellenZahl);
       (e.maerkte||[]).forEach(function(m){
         var ok=marktUrteil(m.code,p.heim,p.gast);
         if(ok===null) return;
@@ -2105,6 +2408,13 @@ function pruefTextBauen(){
     if(p.warn)  warn.push('DATUM WEICHT AB');
     if(p.warnQ) warn.push('KEINE QUELLE');
     if(p.warnP) warn.push('PHASEN VERTAUSCHT?');
+    /* v19.8.12 (Backlog-Punkt 68): Die Markierung gehoert auch in die Text-Ausgabe, damit
+       sie beim Gegenpruefen im Chat sichtbar ist und nicht nur auf dem Bildschirm steht. */
+    if(p.einigkeit) warn.push('NICHT EINSTIMMIG ('+p.einigkeit.replace('von',' VON ')+')');
+    if(p.quellenZahl && p.laeufeGut && p.quellenZahl<p.laeufeGut){
+      warn.push(p.laeufeGut+' LAEUFE, NUR '+p.quellenZahl+' QUELLE(N)');
+    }
+    if(p.verworfen && p.verworfen.length) warn.push('VERWORFEN: '+p.verworfen.join(' / '));
     return p.match+' · '+p.heim+':'+p.gast+
       (p.halbzeit?(' · HZ '+p.halbzeit):'')+
       (p.verl?(' · n.Verl. '+p.verl):'')+
@@ -2137,7 +2447,10 @@ function pruefBlock(){
     html += '<div class="card" style="padding:10px 14px">'+
       '<b>'+t('balance').replace('{a}',b.gef).replace('{b}',b.gesamt)+'</b>'+
       (b.laeuft.length?('<div class="muted" style="margin-top:4px">'+t('balLaeuft')+': '+b.laeuft.map(esc).join(' · ')+'</div>'):'')+
+      ((b.geparkt&&b.geparkt.length)?('<div class="muted" style="margin-top:4px;color:var(--loss)">'+t('balGeparkt')+': '+b.geparkt.map(esc).join(' · ')+'</div>'):'')+
       (b.fehlt.length?('<div class="muted" style="margin-top:4px;color:var(--loss)">'+t('balFehlt')+': '+b.fehlt.map(esc).join(' · ')+'</div>'):'')+
+      (b.einAnbieter?('<div class="muted" style="margin-top:4px;color:var(--loss)">'+t('refEinAnbieter')+'</div>'):'')+
+      ((b.dauerMs||b.dauerMs===0)?('<div class="muted" style="margin-top:4px">'+t('refDauer')+': '+Math.round(b.dauerMs/1000)+' s</div>'):'')+
       (b.starkAnfragen?('<div class="muted" style="margin-top:4px">'+t('refModel')+': '+esc(b.starkModell)+
         ' · '+t('refCalls')+': '+b.starkAnfragen+'</div>'):'')+
       (b.starkFallback?('<div class="muted" style="margin-top:4px;color:var(--loss)">'+t('refFallback')+(b.starkGrund?(' — '+esc(b.starkGrund)):'')+'</div>'):'')+
@@ -2168,7 +2481,18 @@ function pruefBlock(){
           (p.warnQ
           ? '<div style="font-size:12.5px;color:var(--loss);font-weight:600;margin:4px 0">'+t('srcWarn')+'</div>' : '')+
           (p.warnP
-          ? '<div style="font-size:12.5px;color:var(--loss);font-weight:600;margin:4px 0">'+t('phaseWarn')+'</div>' : '');
+          ? '<div style="font-size:12.5px;color:var(--loss);font-weight:600;margin:4px 0">'+t('phaseWarn')+'</div>' : '')+
+          /* v19.8.12 (Backlog-Punkt 68): Die Einigkeit der drei Laeufe steht schon VOR dem
+             Uebernehmen da, nicht erst hinterher am Eintrag. */
+          (p.einigkeit
+          ? '<div style="font-size:12.5px;color:var(--loss);font-weight:600;margin:4px 0">'+
+            t('refEinig2von3').replace('{a}',p.einigkeit.split('von')[0]).replace('{b}',p.einigkeit.split('von')[1])+'</div>' : '')+
+          ((p.quellenZahl && p.laeufeGut && p.quellenZahl<p.laeufeGut)
+          ? '<div style="font-size:12.5px;color:var(--loss);margin:4px 0">'+
+            t('refQuellenZahl').replace('{a}',p.laeufeGut).replace('{b}',p.quellenZahl)+'</div>' : '')+
+          ((p.verworfen && p.verworfen.length)
+          ? '<div class="muted" style="font-size:11.5px;margin:4px 0">'+
+            t('refVerworfen').replace('{a}',esc(p.verworfen.join(' · ')))+'</div>' : '');
         html += quelle + warnung +
         '<div style="margin:6px 0 8px">'+p.urteile.map(function(u){
           var farbe=u.ok?'var(--win)':'var(--loss)';
@@ -2418,6 +2742,25 @@ function vorhersageKarte(e, mitKnoepfen){
   /* v19.8.9 (Nachfrage zu Punkt 64, Teil 2): sichtbar machen statt unkommentiert einen Wert
      zu zeigen, wenn mehrere geparste Schiedsrichter-Laeufe sich widersprechen. Ondo entscheidet
      dann selbst, welcher Stand stimmt (Arbeitsregel "Auswaehlen ist eine Entscheidung"). */
+  /* v19.8.12 (Backlog-Punkt 68): Die Einigkeit der drei Schiedsrichter-Laeufe wird am Eintrag
+     sichtbar gemacht, nicht versteckt — damit sich spaeter auswerten laesst, ob 2-von-3-Faelle
+     seltener zutreffen als einstimmige. Bei Einstimmigkeit steht hier nichts (keine Markierung
+     noetig, Entscheidung Ondo 3.9.2026).
+     Verhaeltnis zur Zeile aus refRohAbgleich() darunter: Beide koennen beim selben Eintrag
+     gleichzeitig erscheinen und widersprechen sich nicht. Diese Zeile sagt, WAS uebernommen
+     wurde und wie knapp (2 von 3); die Zeile darunter zeigt die einzelnen widersprechenden
+     Staende. Bei einem geparkten Eintrag (drei verschiedene Werte) steht nur die Zeile
+     darunter, weil nichts uebernommen wurde. */
+  var einigZeile = '';
+  var einigT = /^(\d+)von(\d+)$/.exec(String(e.refEinigkeit||''));
+  if(einigT){
+    einigZeile += '<div class="muted" style="margin-top:8px;color:var(--loss)">'+
+      t('refEinig2von3').replace('{a}',einigT[1]).replace('{b}',einigT[2])+'</div>';
+  }
+  if(e.refQuellen && e.refLaeufe && e.refQuellen<e.refLaeufe){
+    einigZeile += '<div class="muted" style="margin-top:4px;color:var(--loss)">'+
+      t('refQuellenZahl').replace('{a}',e.refLaeufe).replace('{b}',e.refQuellen)+'</div>';
+  }
   var widerspruch = refRohAbgleich(e);
   var widerspruchZeile = '';
   if(widerspruch){
@@ -2439,7 +2782,10 @@ function vorhersageKarte(e, mitKnoepfen){
     '<div class="flex"><div>'+
       '<div class="disp" style="font-size:18px">'+esc(e.match)+
         (e.geparkt?(' <span class="badge b-open" style="font-size:11px">'+t('parked')+'</span>'):'')+
-        (e.parkGrund==='unstable_ref'?(' <span class="badge b-open" style="font-size:11px">'+t('parkGrundInstabil')+'</span>'):'')+'</div>'+
+        (e.parkGrund==='unstable_ref'?(' <span class="badge b-open" style="font-size:11px">'+t('parkGrundInstabil')+'</span>'):'')+
+        /* v19.8.12 (Backlog-Punkt 36, zweiter Teil): eigener Parkgrund fuer ein erkanntes
+           Sonderformat — er ist etwas anderes als der instabile Schiedsrichter. */
+        (e.parkGrund==='sonderformat'?(' <span class="badge b-open" style="font-size:11px">'+t('parkGrundFormat')+(e.parkFormat?(': '+esc(e.parkFormat)):'')+'</span>'):'')+'</div>'+
       '<div class="muted">'+e.datum+(e.anpfiff?(' '+esc(e.anpfiff)):'')+' · '+quelle+(e.wettbewerb?(' · '+esc(e.wettbewerb)):'')+'</div>'+
     '</div><div style="text-align:right">'+
       '<div class="score">'+e.heim+':'+e.gast+'</div>'+
@@ -2449,6 +2795,7 @@ function vorhersageKarte(e, mitKnoepfen){
     wortZeile+
     (e.begruendung?'<div class="muted" style="margin-top:8px;border-top:1px solid var(--edge);padding-top:8px">'+esc(e.begruendung)+'</div>':'')+
     endstand+
+    einigZeile+
     widerspruchZeile+
     (mitKnoepfen?('<div style="margin-top:10px">'+
       (e.status==='offen'

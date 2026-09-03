@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 2.9.2026, Fassung 72 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 3.9.2026, Fassung 73 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -15,6 +15,25 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 73 ändert (3.9., Schiedsrichter robuster — Punkt 36 abgeschlossen, neuer Punkt 68, Zeitmessung)
+
+**Anlass:** Ondos Auftrag vom 3.9.2026 in vier Teilen. Der Schiedsrichter entschied bis heute mit **einem** Lauf allein; ein Gedächtnis für frühere Läufe gibt es nicht (belegt: `pruefListe=[]` bei jedem Tastendruck). Gegen die Fehlerarten 7 bis 11 war nichts gebaut.
+
+- **Teil 1 gebaut, `beta.html` v19.8.12 — Punkt 36 abgeschlossen.** Der **Schiedsrichter**-Auftragstext bekommt die Pflicht, das tatsächlich gespielte Format zu melden (Pflichtfeld `format`). Meldet **ein** Lauf ein Sonderformat, wird der Eintrag **sofort geparkt** — kein 90-Minuten-Wert wird erzwungen oder gerechnet, unabhängig von den anderen zwei Läufen. Neuer `parkGrund`-Wert `'sonderformat'`, sichtbar in Karte und Log-Text-Export. `stufeHolen()` bleibt unverändert; dies ergänzt die dortige Erkennung und fängt auf, was durchrutscht (Leeds-Leipzig).
+- **Teil 2 gebaut — neuer Punkt 68, Mehrfachlauf-Absicherung.** Statt einem Lauf je Runde **drei, gleichzeitig abgeschickt** (`Promise.all`), damit sich die Wartezeit nicht verdreifacht. Zwei über Gemini, einer über den bestehenden Sonnet-Rückfallpfad (`claude-sonnet-4-6`) — mindestens einer also auf einem anderen Modell. Einigkeitsregel: 3/3 übernehmen ohne Markierung · genau zwei gleich übernehmen **mit** sichtbarer Markierung `e.refEinigkeit='2von3'` · alle drei verschieden **parken** (`parkGrund:'unstable_ref'`). Dazu vier feste Prüfungen im Code, ohne Modell.
+- **Teil 3 gebaut — Quellenprüfung als NEGATIVliste** (Ergänzung zu Punkt 0c, jetzt gebaut statt nur Idee). Ausdrücklich **keine** Positivliste und keine Rangfolge unter den übrigen Quellen.
+- **Teil 4 (Diagnose, kein Backlog-Punkt): Zeitmessung eingebaut, aber nur die Nachher-Zahl.** Eine Code-Sitzung hat keine API-Schlüssel und keinen Browser mit Ondos Daten — sie kann keinen echten Prüflauf messen und hat deshalb **keine Vorher-Zahl geschätzt** (Art. 11/14, Entscheidung Ondos vom 3.9.2026). Die App misst ab jetzt selbst und zeigt die Dauer eines Prüflaufs (in der Bilanz) und eines Vorhersage-Laufs an. **Beide Zahlen entstehen erst in Ondos App und sind noch nicht abgelesen.**
+- **Vier Entscheidungen Ondos vom 3.9.2026 vorab eingeholt**, statt sie zu raten: (1) nur die Nachher-Zahl · (2) ein Lauf mit einer Quelle von der Negativliste bleibt sichtbar, zählt aber **nicht** als Beleg · (3) weniger als drei brauchbare Läufe → nichts übernehmen, erneut fragen, **nicht** parken · (4) drei einige Läufe mit nur einer Quelle → übernehmen und als „3 Läufe, 1 Quelle" markieren.
+- **Verifikation:** `node --check` bestanden. Trockentest bestanden — **57 Prüfungen, alle bestanden**, und zwar an den **echten, aus `beta.html` herausgeschnittenen Funktionen**, nicht an einem Nachbau. `pruefe.py`: ALLES SAUBER.
+- **7 neue Sprachschlüssel** (`refEinig2von3`, `refQuellenZahl`, `refVerworfen`, `parkGrundFormat`, `refEinAnbieter`, `refDauer`, `balGeparkt`) — Sprachschlüsselzahl 234 → **241**, von `pruefe.py` Abschnitt 13 selbst gezählt.
+- **Kein Schnitt in der Messreihe** — der Schiedsrichter ist Messwerkzeug, nicht Messgegenstand (dieselbe Begründung wie bei Punkt 26 und 64).
+- **Nicht angetastet, wie im Auftrag verlangt:** `state.seedV<7`, `state.seedV<8`, der `refRoh`-Export, `refRohAbgleich()`, die Vorhersage-Läufe der Gehirne, `bttsWort`/`bttsMismatch`, `stufeHolen()`. Keine rückwirkende Neubewertung von Sabah oder Celje — beide bleiben geparkt.
+- **🔴 Fund am Prüfwerkzeug, dabei aufgefallen, NICHT behoben:** `pruefe.py` Abschnitt 3 sucht Querverweise mit **zwei** Mustern — `Punkt (\d+)(?![\da-c])` und `Backlog-Punkt (\d+)`. **Nur das erste hat den Zusatz, der einen Buchstaben nach der Ziffer ausschliesst.** Steht im Text das Wort „Backlog-Punkt" unmittelbar vor einer der Buchstaben-Nummern (0a, 0b, 0c), liest der Prüfer daraus einen Verweis auf eine **nackte Null als Punktnummer**, die es nicht gibt, und meldet FEHL — obwohl der Punkt existiert. Genau das ist beim Schreiben dieser Fassung **dreimal** passiert: erst in der Blueprint-Zeile, dann zweimal **in diesem Fundvermerk selbst** — einmal, weil er die kurze Schreibweise als Beispiel zitierte, und einmal, weil er die falsch gelesene Nummer in Anführungszeichen wiedergab. Ein Fundvermerk, der seinen eigenen Fund auslöst, ist selbst der beste Beleg dafür, wie leicht die Lücke zu treffen ist. **Der Prüfer wurde bewusst nicht entschärft** (eine Prüfung zu lockern, damit der eigene Text durchgeht, wäre Fehlerart C6); statt dessen sind beide Stellen umformuliert — im Blueprint auf „Punkt 0c des Backlogs". **Die Lücke bleibt und kehrt wieder**, sobald jemand die kurze Schreibweise wieder benutzt. Dieselbe Art Werkzeuglücke wie in Punkt 66 und wie die Funde in Fassung 69 und 70: der Prüfer prüft eine Schreibweise, nicht eine Tatsache. Nur festgehalten, kein Vorschlag, keine Entscheidung.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 73 gehoben (Blueprint 0.72). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
 
 ---
 
@@ -431,6 +450,51 @@ Bei NK Celje–Slovan Bratislava und Sabah FC–Hapoel Beer-Sheva FC lieferte de
 
 ---
 
+**68. Mehrfachlauf-Absicherung des Schiedsrichters — drei Läufe statt einem** · *Auftrag Ondo, 3.9.2026 · gebaut am selben Tag* · **Status: 🔴 GEBAUT am 3.9.2026 — Bewährung steht aus**
+
+**Nummernwahl:** Ondos Vorschlag war 68; gegen den Backlog und `BACKLOG-ARCHIV.md` geprüft — der höchste vergebene Punkt ist 67 (archiviert), 68 war frei. Keine Kollision.
+
+**Der Befund, der dahintersteht (Codezitat, keine Vermutung).** Bis v19.8.11 entschied **ein einziger** Schiedsrichter-Lauf allein. `pruefListe` wird bei jedem Druck auf „Ergebnisse prüfen" komplett neu aufgebaut, `verarbeite()` rechnete den Vorschlag ausschliesslich aus der aktuellen Antwort. Es gab kein Gedächtnis für frühere Läufe und keinen Vergleich — das ist die Lage, die die elfte Fehlerart erst möglich macht (Sabah: drei Läufe, drei Endstände; Celje: drei Läufe, drei Stände).
+
+→ **🔴 GEBAUT, `beta.html` v19.8.12 — drei Läufe, parallel.** Je Runde werden **drei** Läufe mit demselben Auftragstext **gleichzeitig** abgeschickt (`Promise.all`), nicht nacheinander — die Wartezeit ist damit ungefähr die des langsamsten Laufs, nicht das Dreifache. Zwei laufen über Gemini, **einer über den bestehenden Sonnet-Rückfallpfad** (`claude-sonnet-4-6` mit Websuche); mindestens ein Lauf liegt also auf einem anderen Modell. **Steht nur ein Anbieter zur Verfügung, laufen alle drei dort** — das wird in der Bilanz sichtbar gemeldet (`refEinAnbieter`), nicht stillschweigend hingenommen (Art. 14).
+→ **Nebenwirkung, ausdrücklich gewollt:** Ein Fehler in einem Lauf wirft nicht mehr die ganze Runde weg. Bis v19.8.11 beendete ein einziger Fehlschlag den gesamten Prüflauf.
+
+**EINIGKEITSREGEL (Entscheidung Ondos, 3.9.2026) — so gebaut:**
+
+| Lage der drei Läufe | Was die App tut |
+|---|---|
+| alle drei gleich | übernehmen, **keine** Markierung nötig |
+| genau zwei gleich, einer weicht ab | übernehmen mit dem Mehrheitswert, **sichtbare** Markierung `e.refEinigkeit='2von3'` in Karte **und** Log-Text-Export |
+| alle drei verschieden | **parken**, `parkGrund:'unstable_ref'` (bestehendes Feld), `e.refEinigkeit='3verschieden'`, kein Vorschlag |
+| weniger als drei brauchbare Läufe | nichts übernehmen, im nächsten Durchgang erneut fragen; Eintrag bleibt **offen**, wird **nicht** geparkt |
+
+**Die Markierung ist Pflichtbestandteil dieser Regel, kein optionales Extra** — ohne sie darf eine Zwei-gegen-eins-Lage nicht übernommen werden. Sie wird in `pruefAnwenden()` an den Eintrag geschrieben und ist deshalb später **auswertbar**: Ob 2-von-3-Fälle seltener zutreffen als einstimmige, lässt sich dann an den Daten messen statt vermuten. Verglichen wird der 90-Minuten-Stand zusammen mit dem Verlängerungsstand.
+
+**VIER FESTE PRÜFUNGEN IM CODE, OHNE MODELL** (`refLaufPruefen()`, oberste Ebene, damit im Trockentest einzeln aufrufbar). Was hier scheitert, scheitert an Arithmetik, nicht an einem Urteil:
+1. **Halbzeitstand nie höher als der 90-Minuten-Stand**, je Mannschaft geprüft. Bis v19.8.11 war das nur eine Warnung an Ondo (`warnP`); jetzt wird der Lauf **verworfen**. Die Warnzeile bleibt zusätzlich erhalten.
+2. **Ein torloses 0:0 nur bei ausdrücklichem Status.** Der Auftragstext verlangt bei 0:0 zusätzlich `torlos:"bestaetigt"`; fehlt es, wird der Lauf verworfen. Das ist Geminis Vorschlag vom 8.8.2026 (Zustand vor Ziffer) — erstmals gibt es ein Feld, **dessen Fehlen auffällt**. Blosses Fehlen von Ziffern fiel schon vorher heraus.
+3. **Bei Verlängerung müssen beide Stände getrennt genannt sein** (`verlaengerungGespielt` plus `verlaengerung`), und der Verlängerungsstand darf je Mannschaft nicht **unter** dem 90-Minuten-Stand liegen. Das zielt auf die zehnte Fehlerart (11.8.2026, ein Verlängerungsstand stand als 90-Minuten-Wert in den Messdaten).
+4. **Sonderformat** (Punkt 36): ein einziger meldender Lauf parkt den Eintrag sofort.
+
+**Wichtig für die Nachvollziehbarkeit:** Ein verworfener Lauf verschwindet **nicht**. Seine volle Rohantwort bleibt in `e.refRoh`, sein geparster Stand wird weiterhin vermerkt, und `refRohAbgleich()` zeigt ihn unverändert an. Verworfene Läufe werden ausserdem im Vorschlag und in der Text-Ausgabe benannt (`refVerworfen`), mit Grund.
+
+**Umbau, der dafür nötig war:** `verarbeite()` entscheidet nicht mehr selbst. Es schreibt den Rohtext mit, prüft den einzelnen Lauf und legt ihn in `p.laeufe` ab; entschieden wird erst in der neuen Funktion `pruefAuswerten()`, wenn alle drei Läufe da sind. **Grund:** v19.8.9 setzte `geparst` am **zuletzt** gepushten `refRoh`-Eintrag — das trug bei einem Lauf je Runde, bei drei gleichzeitigen nicht mehr. Jede refRoh-Zeile wird jetzt als Referenz festgehalten und bekommt den Stand **ihres eigenen** Laufs.
+
+→ **Verifiziert:** `node --check` bestanden. **Trockentest bestanden — 57 Prüfungen, alle bestanden.** Er läuft ausdrücklich **nicht** an einem Nachbau: Die geprüften Funktionen (`quelleUnzuverlaessig`, `refLaufPruefen`, `refEinigkeit`, `verarbeite`, `parkeEintraege`, `pruefAuswerten`, `refRohAbgleich`) werden im Wortlaut aus `beta.html` herausgeschnitten und ausgeführt; nur die Umgebung ist gestellt. Geprüfte Fälle: 3/3-Einigkeit · 2/3 mit sichtbarer Markierung · drei verschiedene Werte → geparkt · ein Lauf meldet Sonderformat → geparkt trotz zweier einiger Läufe · Halbzeit > Endstand abgefangen · 0:0 ohne ausdrücklichen Status abgefangen · Verlängerung ohne getrennte Stände abgefangen · Verlängerungsstand kleiner als 90 Minuten abgefangen · dieselbe Quelle in allen drei Läufen zählt als ein Beleg · Wettseite erkannt und nicht als Beleg gezählt · „läuft noch" bleibt erhalten · gar keine Antwort parkt nicht. `pruefe.py`: ALLES SAUBER.
+→ **7 neue Sprachschlüssel** (`refEinig2von3`, `refQuellenZahl`, `refVerworfen`, `parkGrundFormat`, `refEinAnbieter`, `refDauer`, `balGeparkt`), 234 → 241.
+→ **Kosten (Arbeitsregel G) — grobe Richtung, keine genaue Zahl; die kennen nur Anthropic und Google:**
+  - **Rund die dreifache Anzahl Schiedsrichter-Modellaufrufe** je Prüfrunde. **Keine zusätzlichen Vorhersage-Aufrufe** — die Gehirne sind unverändert.
+  - **Neu: echtes Geld bei Anthropic.** Der dritte Lauf geht über `claude-sonnet-4-6` mit Websuche. Bisher lief Sonnet nur als Rückfall, wenn kein Gemini-Schlüssel vorhanden war. Websuchen kosten je Suche (Kosten-Nachtrag Blueprint Abschnitt 6).
+  - **Wartezeit:** durch die parallele Ausführung ungefähr die Dauer des langsamsten Laufs, nicht das Dreifache. Belastbar erst nach der Messung (Teil 4).
+  - **Speicher:** `e.refRoh` wächst dreimal so schnell, in `localStorage` und in der Sicherungsdatei.
+→ **🔴 Ehrlich zu nennende Zweitwirkung (Art. 14):** Die strengeren Regeln lassen voraussichtlich **mehr Spiele offen oder geparkt** als vorher. Geparkte Einträge erreichen den Status „richtig"/„falsch" nie und fliessen nie in die Kalibrierung ein — **die bereits dokumentierte Verzerrung durch Parkung wird dadurch eher grösser, nicht kleiner.** Das ist der Preis dafür, dass weniger falsche Endstände in die Messdaten geraten; es ist kein Nebeneffekt, den man wegdiskutieren kann.
+→ **🔴 Was dieser Punkt NICHT leistet:** Er behebt die elfte Fehlerart nicht. Drei Läufe auf zwei Modellen sind **keine** drei unabhängigen Quellen, und drei einige Läufe können gemeinsam falsch liegen — genau das ist am 8.8.2026 bei den Anpfiffzeiten belegt (sieben von zehn falsch, **beide** Gehirne übereinstimmend). Ob die Absicherung wirkt, zeigt erst der Betrieb (Stabilitätsregel). **Nach Ondos eigener Definition** — der Schiedsrichter liefert zuverlässige Ergebnisse für alle künftigen Spiele **ohne Gegenprüfung im Chat** — ist er weiterhin **nicht repariert.**
+→ **Keine rückwirkende Neubewertung.** Sabah und Celje bleiben geparkt, unabhängig vom Ausgang dieses Umbaus (ausdrückliche Auflage des Auftrags, und die Bedingung aus Punkt 64 gilt unverändert weiter).
+→ **🔴 Ondos Rückfrage bei der Planfreigabe, hier beantwortet: Können die neue Markierung `2von3` und die bestehende Warnung aus `refRohAbgleich()` beim selben Eintrag gleichzeitig erscheinen?** **Ja, und das ist der Regelfall bei 2 von 3 — es ist kein Widerspruch.** Die beiden Zeilen sagen Verschiedenes und stehen untereinander: Die obere („nicht einstimmig — 2 von 3 Läufen") sagt, **dass** ein Wert übernommen wurde und wie knapp. Die untere („Schiedsrichter-Läufe widersprechen sich: 2 von 3 Läufen: 2:1 · 1 von 3 Läufen: 3:1") zeigt die **einzelnen** Stände, die dahinterstehen. In den drei Lagen sieht das so aus: **3/3 einstimmig** → keine der beiden Zeilen. **2/3** → beide Zeilen, obere zuerst. **Drei verschiedene Werte** → nur die untere, weil nichts übernommen wurde und es keine Markierung an einem übernommenen Wert geben kann; der Eintrag trägt statt dessen das Kennzeichen „geparkt". `refRohAbgleich()` ist dabei unverändert geblieben (ausdrückliche Auflage) — sie wirkt nur jetzt öfter, weil es je Runde drei geparste Läufe gibt statt einem.
+→ **🔴 Zweiter Fund, dabei aufgefallen, NICHT behoben und nicht Gegenstand dieses Auftrags:** `pruefAnwenden()` schreibt beim Übernehmen **nur** `ergebnisHeim`/`ergebnisGast` an den Eintrag. **Halbzeitstand und Verlängerungsstand werden verworfen**, obwohl der Schiedsrichter sie liefert und die App sie sogar prüft — sie überleben nur in `e.refRoh[...].geparst`. Die Karte kann `ergebnisHalbzeit`/`ergebnisVerl` anzeigen, bekommt sie aber ausschliesslich aus der von Hand eingetragenen Migration. Bewusst nicht mitgeändert: Es ändert, was dauerhaft gespeichert wird, und war nicht beauftragt (Art. 8). Nur benannt.
+
+---
+
 **65. Harte Leselängen-Grenze im Chat-Bereich bei rund 120.000 Zeichen** · *Fund 29.8.2026, Claude, bei der Übergabe an Chat 27* · **Status: Fund — Ondo vorzulegen, drei Wege genannt, keiner gewählt**
 
 Ein Raw-Link-Abruf im Chat-Bereich liefert nicht die ganze Datei, sondern bricht **exakt bei 120.000 Zeichen** ab — kein ungefährer Rand, eine feste Grenze. Zweifach geprüft: derselbe Abbruch an derselben Stelle, mit zwei verschieden angehängten Zahlen zum Umgehen der Zwischenspeicherung (Backlog-Punkt 53, Fund vom 22.8.).
@@ -498,7 +562,16 @@ Liefert ein Gehirn mehr, weniger oder anders geordnete Vorhersagen als die Liste
 
 ### Als v19.7 gebaut am 3.8.: A · 0a · 1 · D — Bewährungszeit läuft
 
-**36. Verlängerte Spielformate schliessen — die andere Hälfte von Weg A** · *Fund 9.8., Claude beim Prüflauf* · **Status: 🔴 GEBAUT am 30.8.2026 (Beschluss Ondo)**
+**36. Verlängerte Spielformate schliessen — die andere Hälfte von Weg A** · *Fund 9.8., Claude beim Prüflauf · zweiter Teil gebaut 3.9.2026* · **Status: 🔴 GEBAUT UND ABGESCHLOSSEN am 3.9.2026 (Beschluss Ondo) — beide Hälften stehen**
+
+> **🔴 WIDERSPRUCH IM PUNKT SELBST BEHOBEN, 3.9.2026 (Auftrag Ondo).** Dieser Punkt trug bis heute eine Kopfzeile „GEBAUT" und einen Schlusssatz „Punkt 36 selbst bleibt weiterhin unentschieden" — für einen künftigen Leser nicht auflösbar (Fehlerart C4). Fassung 72 hatte das nur **benannt**, nicht geklärt, weil Regel 4 reines Verschieben erlaubt, keine inhaltliche Entscheidung. Jetzt ist es entschieden und gebaut, und die beiden Aussagen sind in Einklang gebracht.
+>
+> **Was offen war und was es jetzt ist:** Am 30.8.2026 war nur die **eine** Hälfte gebaut — die Spielliste (`stufeHolen()`) schliesst Sonderformate aus. Offen blieb die Grundsatzfrage, was mit einem Sonderformat geschieht, das dort **durchrutscht** (der belegte Leeds-Fall) und erst beim Ergebnis-Prüfen auffällt. **Ondos Entscheidung vom 3.9.2026:** Der Schiedsrichter erkennt es selbst und der Eintrag wird geparkt.
+>
+> **🔴 ZWEITER TEIL GEBAUT am 3.9.2026, `beta.html` v19.8.12 — Sonderformat-Erkennung beim Schiedsrichter.** Der Schiedsrichter-Auftragstext in `rundeLaufen()` verlangt jetzt zusätzlich das tatsächlich gespielte Format als Pflichtfeld `format`: `"2x45"` für das Standardformat (ausdrücklich einschliesslich einer regulären Verlängerung von 2x15 und eines Elfmeterschiessens), sonst der abweichende Wert im Klartext (`"2x60"`, `"3x45"`). **Findet ein Lauf keine Formatangabe, bleibt das Feld leer — es wird nicht geraten.** `refLaufPruefen()` wertet das aus: Meldet **ein** Lauf ein Sonderformat, wird der Eintrag **sofort geparkt**, unabhängig von den anderen zwei Läufen der Mehrfachlauf-Absicherung (Punkt 68). **Es wird kein 90-Minuten-Wert erzwungen oder gerechnet** — genau der Punkt, an dem Leeds–RB Leipzig ein „1:0" bekam, das für ein 60/60-Format keine Bedeutung hat. Neuer eigener `parkGrund`-Wert `'sonderformat'` (nicht `'unstable_ref'` — ein Sonderformat ist etwas anderes als ein instabiler Schiedsrichter), sichtbar als Kennzeichen in der Karte und im Log-Text-Export, zusammen mit dem erkannten Format.
+> **Trockentest bestanden:** ein Lauf mit `"2x60"` parkt den Eintrag, obwohl die anderen zwei Läufe sich auf 1:0 einig waren · `"3x45"` wird erkannt · `"2x45 + 2x15"` bleibt gültig · ein leeres Formatfeld ist **kein** Sonderformat · kein Ergebnis wird eingetragen.
+> **Die Grenze der Wirkung bleibt bestehen und ist durch diesen Bau NICHT beseitigt:** Ein Modell, das das Format nicht kennt, meldet es auch nicht — es lässt das Feld leer, und der Lauf gilt weiter. Die Erkennung ist jetzt an **zwei** Stellen (Spielliste und Schiedsrichter) statt an einer; das senkt die Wahrscheinlichkeit, es schliesst nichts aus (Art. 14).
+> **Kein Schnitt in der Messreihe.** Keine neuen Sprachschlüssel für diesen Teil ausser `parkGrundFormat` (mitgezählt bei Punkt 68).
 
 > **🔴 GEBAUT am 30.8.2026:** Der Schiedsrichter-/Spielformat-Auftragstext in `stufeHolen()` (`beta.html`, v19.8.7) schliesst jetzt namentlich Sonderformate aus, statt nur verkürzte: „Nur Spiele im Standardformat (2x45 Minuten, bei Bedarf plus reguläre Verlängerung 2x15 Minuten) werden aufgenommen. Spiele mit abweichender Halbzeit- oder Periodenlänge (z. B. 2x60, 3x45) werden ausgeschlossen." Reguläre Verlängerung bleibt ausdrücklich eingeschlossen — anders als der ursprüngliche Vorschlag „genau 90 Minuten … weder verkürzt noch verlängert" weiter unten, der reguläre Verlängerung mit ausgeschlossen hätte (Ondos Entscheidung weicht davon ab). Gemessen wird weiterhin der Stand nach 90 Minuten plus Nachspielzeit — unverändert. Kein Schnitt in der Messreihe. Keine neuen Sprachschlüssel.
 > **Grenze der Wirkung bleibt bestehen** (siehe unten): Das schliesst nur aus, was die Spielliste als Sonderformat erkennt — ein Modell, das das Format nicht kennt, nimmt es trotzdem auf.
@@ -517,7 +590,7 @@ Weg A (Beschluss Ondo 6.8.) schliesst aus der Spielliste **verkürzte** Formate 
 
 → **🔴 Dritte Bestätigung des Leeds-Falls, 28.8.2026 (externe Gegenprüfung im Rahmen der Restarbeit zu Punkt 51, seit 30.8.2026 in `BACKLOG-ARCHIV.md`):** Drei unabhängige Primärquellen — Leeds United (offizielle Vereinsseite), Sportschau/ARD, Sky Sport — bestätigen übereinstimmend: **120 Minuten**, zwei Hälften zu je 60 Minuten, ausdrücklich zu diesem Zweck vereinbart. Endstand 2:0, **zweites Tor in der 109. Minute**, Halbzeit (bei Minute 60) 1:0. **Das ist dasselbe Spiel wie oben, kein dritter Fall** — die neuen Quellen bestätigen nur, was hier bereits seit dem 9.8. steht.
 → **Wichtiger als die Bestätigung: Sie stellt eine Annahme aus Punkt 51 (27.8., seit 30.8.2026 in `BACKLOG-ARCHIV.md`) infrage.** Dort wurde die Paarung entparkt mit der Begründung „Stand nach 90 Minuten ist bekannt und gesichert: 1:0". Bei einem 60/60-Format gibt es aber **keinen regulären Stand nach 90 Minuten** — die Halbzeitmarke liegt bei Minute 60, nicht 45, und Minute 90 fällt mitten in die zweite Hälfte. Der Massstab „Stand nach 90 Minuten", den die App misst, ist auf dieses Format schlicht nicht anwendbar; „1:0" ist kein bewiesener Zwischenstand, sondern eine Momentaufnahme ohne besondere Bedeutung für dieses Format. Einzelheiten und die Berichtigung der Ausführung stehen bei Punkt 51 (seit 30.8.2026 in `BACKLOG-ARCHIV.md`, dort archiviert, Fassung 61).
-→ **Entschieden (Ondo, 28.8.2026): Leeds–Leipzig bleibt geparkt, keine Übernahme.** Punkt 36 selbst bleibt weiterhin unentschieden — dieser Fund entscheidet nichts vor, er dokumentiert nur.
+→ **Entschieden (Ondo, 28.8.2026): Leeds–Leipzig bleibt geparkt, keine Übernahme.** ~~Punkt 36 selbst bleibt weiterhin unentschieden — dieser Fund entscheidet nichts vor, er dokumentiert nur.~~ **🔴 ÜBERHOLT am 3.9.2026:** Dieser Satz stand im Widerspruch zur Kopfzeile „GEBAUT" desselben Punktes (Fehlerart C4, benannt in Fassung 72, geklärt in Fassung 73). Er galt für den Stand vom 28.8.2026, an dem nur die Spielliste geändert war. **Ondo hat den offenen Rest am 3.9.2026 entschieden und er ist gebaut** — siehe den Block „ZWEITER TEIL GEBAUT" am Kopf dieses Punktes. **Leeds–Leipzig selbst bleibt unverändert geparkt; rückwirkend wird nichts neu bewertet.**
 
 ---
 
@@ -562,12 +635,30 @@ Ursprünglich: Widersprüche zwischen Ergebnis-Tipp und Marktaussage bekommen ei
 
 ---
 
-**0c. Amtliche Quellen bevorzugen** · *Idee 30.7., Claude* · **Status: Idee**
+**0c. Amtliche Quellen bevorzugen** · *Idee 30.7., Claude · als Negativliste gebaut 3.9.2026* · **Status: 🔴 TEILWEISE GEBAUT am 3.9.2026 — als NEGATIVliste, nicht als Positivliste. Die ursprüngliche Idee einer bevorzugten Quelle je Wettbewerbsfamilie bleibt ausdrücklich unerledigt und wurde bewusst NICHT gebaut**
 
 Beim UEFA-Abgleich am 30.7. benutzte keine Schiedsrichter-Antwort `uefa.com`. Die falschen Ergebnisse stammten von `terrikon.com` und `flashfussball.de`. Am 31.7. kamen vier 0:0 in Folge aus derselben Quelle.
 
 → *Vorschlag: pro Wettbewerbsfamilie eine bevorzugte Quelle vorgeben. Die bestehende Quellenpflicht verlangt nur, **dass** eine Quelle genannt wird, nicht **welche**.*
 → *ChatGPT (30.7.) hält diesen Punkt für billiger als eine zweite unabhängige Quelle.*
+
+> **🔴 GEBAUT am 3.9.2026 als Teil 3 des Schiedsrichter-Auftrags, `beta.html` v19.8.12 — aber ausdrücklich anders als oben vorgeschlagen.**
+>
+> **Ondos Begründung gegen die Positivliste:** Eine Liste „amtlicher" Quellen deckt Wettbewerbe ausserhalb Europas (z. B. Gabun, Indien) nicht ab und würde eine Vollständigkeit vortäuschen, die nicht besteht. Gebaut ist deshalb eine kurze **Negativliste** in `quelleUnzuverlaessig()`:
+> - **Belegt falsch (30./31.7.2026):** `terrikon.com`, `flashfussball.de`.
+> - **Wett- und Buchmacherseiten** (`tipico`, `bet365`, `bwin`, `interwetten` und weitere): **Blueprint Grenze 5** belegt technisch, dass solche Seiten ihre Zahlen erst im Browser per JavaScript nachladen — ein Abruf sieht nur Werbetext.
+>
+> **Jede andere genannte Quelle zählt neutral, ohne Sonderstellung und ohne Rangfolge untereinander** — auch OneFootball, Flashscore, Sofascore und UEFA.com. Es gibt **keine** Pflicht zu drei verschiedenen Quellen; bei unterklassigen Wettbewerben kann es nur eine geben (Blueprint Grenze 6/7).
+>
+> **Wirkung (Entscheidung Ondos, 3.9.2026):** Ein Lauf mit einer Quelle von der Negativliste bleibt **vollständig sichtbar** (`refRoh`, Vorschlag, Text-Ausgabe) und wird benannt — er zählt aber bei der Einigkeitsprüfung aus Punkt 68 **nicht als Beleg**. Bleiben dadurch weniger als drei brauchbare Läufe, wird nichts übernommen und im nächsten Durchgang erneut gefragt.
+>
+> **Nennen alle drei Läufe dieselbe Quelle, zählt das als EIN Beleg, nicht als drei unabhängige.** Der Eintrag wird übernommen und trägt sichtbar „3 Läufe, 1 Quelle" (`e.refLaeufe`/`e.refQuellen`), in Karte und Log-Text-Export.
+>
+> **🔴 Zwei Grenzen, ausdrücklich benannt (Art. 14):**
+> 1. **Die Liste erkennt nur, was auf ihr steht.** Eine unbekannte Wettseite fällt durch. Das ist der Preis dafür, keine Erkennung zu bauen, die auf Wortmustern rät und dabei echte Quellen fälschlich aussortiert.
+> 2. **Der Beleg zu Grenze 5 wurde mit WETTQUOTEN geführt, nicht mit Endständen.** Dieselbe technische Ursache träfe vermutlich auch den Endstand auf derselben Seite — **bewiesen ist das für Endstände nicht.** Die Einstufung dieser Seiten beruht insoweit auf einer begründeten Annahme, nicht auf einer Messung.
+>
+> **Was offen bleibt:** die ursprüngliche Idee dieses Punktes, je Wettbewerbsfamilie eine bevorzugte Quelle vorzugeben. Sie ist nicht gebaut und nicht abgelehnt — sie ist durch die Negativliste nur weniger dringlich geworden.
 
 ---
 
