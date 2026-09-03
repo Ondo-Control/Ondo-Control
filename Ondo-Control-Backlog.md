@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 3.9.2026, Fassung 73 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 3.9.2026, Fassung 74 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -15,6 +15,20 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 74 ändert (3.9., Fund gemeldet und geprüft — `pruefListe` wird nie gespeichert, kein Bau)
+
+**Anlass:** Chat 28 leitete Ondos Meldung weiter — nach einem Neuladen der App waren gefundene, noch nicht übernommene Schiedsrichter-Vorschläge verschwunden. Ausdrückliche Auflage: nur untersuchen und berichten, nichts an `beta.html` bauen.
+
+- **Vermutung geprüft und bestätigt, mit Codezitat:** `pruefListe`/`pruefBilanz`/`pruefStark` sind `var`-Deklarationen ausserhalb von `state`; `save()` schreibt ausschliesslich `state` in `localStorage`. Ein Neuladen und ein zweiter Tastendruck lösen denselben, bereits seit der v19.8.9-Notiz dokumentierten Mechanismus aus — **neu ist nur das Gewicht des Verlusts** (seit v19.8.12 hängt an jedem Prüflauf ein bezahlter Sonnet-Lauf), nicht der Verlust selbst.
+- **Nebenbefund geprüft:** `state.vorschlaege` ist nachweislich totes Feld (kein Zugriff ausserhalb der Initialisierung). Herkunft (vermutlich v18-„Value-Rechnung"-Rest) **nicht belegbar** — `beta.html` kam erst mit Fassung 35 (21.8.2026) in dieses Repo, frühere Geschichte fehlt. Als Vermutung gekennzeichnet, nicht als Befund.
+- **Neuer Backlog-Punkt 69** mit vollständiger Kosten-/Komplexitätseinschätzung einer möglichen Absicherung angelegt — Status „Fund — Ondo vorzulegen, NICHT gebaut". **Kein Codeaufwand**, `beta.html` bleibt v19.8.12.
+- **Regel-4-Prüfung durchgeführt (Backlog-Pflege ohne Chat-Anstoss):** Die seit Fassung 73 neu hinzugekommenen Punkte gegen die zwei Archivierungs-Kriterien geprüft. **Keiner qualifiziert:** Punkt 68 trägt wörtlich „Bewährung steht aus" · Punkt 0c ist nur teilweise gebaut, die ursprüngliche Idee bleibt ausdrücklich offen · Punkt 36 ist zwar in sich abgeschlossen, bleibt aber eng an die weiterhin ungeklärte elfte Fehlerart gebunden (dieselbe Behandlung wie bei Punkt 64) — im Zweifel stehen gelassen. **Kein Punkt archiviert.**
+- **Grösse zur Kenntnis genommen, nicht behoben:** `Ondo-Control-Backlog.md` liegt bei rund 160.000 Zeichen, weiterhin über der 120.000-Zeichen-Grenze aus Punkt 65 — ein Abruf im Chat-Bereich bricht weiterhin vorzeitig ab. Ursache unverändert: viele abgeschlossene Punkte stehen mit voller Begründung im Haupttext, nicht die gestapelten Fassungsnotizen (die wurden mit Weg C schon einmal verschoben). Die Wahl zwischen den in Punkt 65 genannten Wegen bleibt Ondos Entscheidung.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 74 gehoben (Blueprint 0.73). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
 
 ---
 
@@ -492,6 +506,28 @@ Bei NK Celje–Slovan Bratislava und Sabah FC–Hapoel Beer-Sheva FC lieferte de
 → **Keine rückwirkende Neubewertung.** Sabah und Celje bleiben geparkt, unabhängig vom Ausgang dieses Umbaus (ausdrückliche Auflage des Auftrags, und die Bedingung aus Punkt 64 gilt unverändert weiter).
 → **🔴 Ondos Rückfrage bei der Planfreigabe, hier beantwortet: Können die neue Markierung `2von3` und die bestehende Warnung aus `refRohAbgleich()` beim selben Eintrag gleichzeitig erscheinen?** **Ja, und das ist der Regelfall bei 2 von 3 — es ist kein Widerspruch.** Die beiden Zeilen sagen Verschiedenes und stehen untereinander: Die obere („nicht einstimmig — 2 von 3 Läufen") sagt, **dass** ein Wert übernommen wurde und wie knapp. Die untere („Schiedsrichter-Läufe widersprechen sich: 2 von 3 Läufen: 2:1 · 1 von 3 Läufen: 3:1") zeigt die **einzelnen** Stände, die dahinterstehen. In den drei Lagen sieht das so aus: **3/3 einstimmig** → keine der beiden Zeilen. **2/3** → beide Zeilen, obere zuerst. **Drei verschiedene Werte** → nur die untere, weil nichts übernommen wurde und es keine Markierung an einem übernommenen Wert geben kann; der Eintrag trägt statt dessen das Kennzeichen „geparkt". `refRohAbgleich()` ist dabei unverändert geblieben (ausdrückliche Auflage) — sie wirkt nur jetzt öfter, weil es je Runde drei geparste Läufe gibt statt einem.
 → **🔴 Zweiter Fund, dabei aufgefallen, NICHT behoben und nicht Gegenstand dieses Auftrags:** `pruefAnwenden()` schreibt beim Übernehmen **nur** `ergebnisHeim`/`ergebnisGast` an den Eintrag. **Halbzeitstand und Verlängerungsstand werden verworfen**, obwohl der Schiedsrichter sie liefert und die App sie sogar prüft — sie überleben nur in `e.refRoh[...].geparst`. Die Karte kann `ergebnisHalbzeit`/`ergebnisVerl` anzeigen, bekommt sie aber ausschliesslich aus der von Hand eingetragenen Migration. Bewusst nicht mitgeändert: Es ändert, was dauerhaft gespeichert wird, und war nicht beauftragt (Art. 8). Nur benannt.
+
+---
+
+**69. `pruefListe`/`pruefBilanz` werden nie gespeichert — ein Neuladen verwirft ungeprüfte Vorschläge** · *Fund Ondo, 3.9.2026, nach v19.8.12 · untersucht und bestätigt 3.9.2026* · **Status: Fund — Ondo vorzulegen, NICHT gebaut (ausdrückliche Auflage)**
+
+**Der Befund (Ondo):** Nach einem Neuladen der App waren die Vorschlagskarten aus „Ergebnisse prüfen" („9 von 30 gefunden", noch nicht übernommen) verschwunden. Stehen geblieben sind nur Einträge, die ohnehin schon dauerhaft markiert sind (z. B. die `refRohAbgleich()`-Widerspruchszeile an bestehenden KI-Log-Einträgen) — die sitzen in `state.kiProtokoll` und sind gespeichert.
+
+**Vermutung bestätigt, mit Codezitat (nicht vermutet — belegt):** `pruefListe` (Zeile 1961), `pruefBilanz` (Zeile 1962) und `pruefStark` (Zeile 1340) sind `var`-Deklarationen auf oberster Skript-Ebene, **ausserhalb** des `state`-Objekts (`state` beginnt Zeile 458). `save()` (Zeile 693–698) schreibt ausschliesslich `JSON.stringify(state)` in `localStorage` — keine der drei Variablen wird je in `state` geschrieben. Vollständiger Scan nach `localStorage.setItem`/`localStorage.getItem` (11 Fundstellen im ganzen Skript): genau ein Speicherschlüssel (`KEY = "ondo-control-v1"`), er transportiert ausschliesslich `state`. Kein `beforeunload`-Handler oder vergleichbarer Mechanismus fängt einen Verlust vor dem Neuladen ab.
+
+**Präzisierung, die zur Vermutung dazugehört:** Das Verhalten ist **nicht neu und nicht durch v19.8.12 verursacht.** Dieselbe Architektur bestand schon, als die v19.8.9-Notiz oben („`pruefListe` wird bei jedem Druck auf 'Ergebnisse prüfen' komplett neu aufgebaut") geschrieben wurde. Ein zweiter Tastendruck auf denselben Knopf und ein blosses Neuladen der Seite lösen exakt denselben Mechanismus aus — beides ist ein Neustart der laufenden JavaScript-Umgebung, bei dem die Zeile `var pruefListe = []` erneut ausgeführt wird. **Neu ist nur das Gewicht des Verlusts, nicht der Verlust selbst** — siehe Kostenabschnitt unten.
+
+**Nebenbefund, wie erbeten geprüft:** `state.vorschlaege` (Zeile 465, initialisiert als leeres Array) ist im ganzen übrigen Code nachweislich **tot** — kein einziger Schreib- oder Lesezugriff ausserhalb der Initialisierung (Suche nach `.vorschlaege` ohne den Zusatz `Info` findet nur diese eine Zeile; `state.vorschlaegeInfo`, ein anderes Feld mit ähnlichem Namen, ist dagegen aktiv in Gebrauch, Zeile 1749/2836, füllt den Hinweistext über den Vorhersage-Vorschlägen). **Woher es stammt, ist nicht belegbar:** `beta.html` selbst kam erst mit Commit `5bc5388` (Fassung 35, 21.8.2026) ins Repository und trug das Feld da bereits — frühere Geschichte liegt ausserhalb der Git-Historie dieses Repos. Die Vermutung, es sei ein Rest aus der v18-„Value-Rechnung"-Phase (Punkt 9/10), ist naheliegend, aber **nicht geprüft und deshalb nicht als Befund geführt** (Art. 11, Arbeitsregel H — belegen statt herleiten).
+
+**Einschätzung, ob eine Persistenz sinnvoll wäre:** Ja, nach Ondos eigener Kostenbegründung. Seit v19.8.12 hängt an jedem Prüflauf ein bezahlter Sonnet-Lauf mit Websuche (Backlog-Punkt 68); ein Verlust vor dem Übernehmen kostet jetzt echtes Geld je Wiederholung, nicht nur einen günstigen bzw. kostenlosen Gemini-Lauf wie zuvor.
+
+**Kosten/Komplexität einer Absicherung (Arbeitsregel G, grobe Richtung, kein Bau):**
+- **Kern:** `pruefListe`/`pruefBilanz` (sinnvollerweise auch `pruefStark`) aus globalen `var`s in `state.*`-Felder verschieben. Technisch unkompliziert — der Inhalt ist bereits reine, JSON-taugliche Daten (Zeichenketten, Zahlen, Arrays, flache Objekte), keine Funktionen, keine Zirkelbezüge.
+- **Ein Aufwand kommt geschenkt:** Der bestehende `save()`-Aufruf direkt nach `pruefAuswerten()` (eingeführt mit v19.8.12) würde neue Vorschläge automatisch mitsichern, ohne neue Aufrufstelle.
+- **Der eigentliche Aufwand und die eigentliche Fehlerquelle:** `pruefAnwenden()` ruft `save()` bisher nur im `art==='log'`-Zweig auf, nicht im `art==='bet'`-Zweig; `pruefIgnorieren()` ruft `save()` gar nicht auf — bisher folgenlos, weil `pruefListe` nie persistiert wurde. Würde `pruefListe` Teil von `state`, bräuchten **beide** Stellen zusätzlich einen `save()`-Aufruf, sonst taucht ein bereits übernommener oder bewusst ignorierter Vorschlag nach einem Neuladen wieder auf — eine neue, subtilere Variante desselben Problems. Zusätzlich müssten rund zehn Lese-/Schreibstellen (`pruefBlock()`, `pruefTextBauen()`, `pruefAnwenden()`, `pruefIgnorieren()`, `abschluss()`, `rundeLaufen()`, `verarbeite()`, `pruefAuswerten()`) konsequent auf `state.pruefListe`/`state.pruefBilanz` umgestellt werden — eine übersehene Stelle wäre der Fehler, den die Änderung gerade beheben soll.
+- **Offene Gestaltungsfrage, nicht Teil der Kostenschätzung, sondern zur Entscheidung Ondos:** Soll ein während des Neuladens noch laufender, unfertiger Prüfdurchgang absichtlich verloren bleiben? Der Fund selbst betrifft nur bereits abgeschlossene, aber noch nicht übernommene oder ignorierte Vorschläge — nicht einen mitten im Lauf unterbrochenen.
+- **Grobe Einordnung:** niedrig bis mittel. Kein neuer Modellaufruf, keine neue Abhängigkeit, kein Geld für die Änderung selbst — sie **spart** künftig Geld (weniger wiederholte, bezahlte Sonnet-Läufe). Das Risiko liegt ausschliesslich in der Vollständigkeit der Umstellung, nicht in ihrer Schwierigkeit.
+→ **Kein Bau in dieser Lieferung — Ondos ausdrückliche Auflage.**
 
 ---
 
