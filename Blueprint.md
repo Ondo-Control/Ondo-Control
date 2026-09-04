@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.73
-**Stand:** 3. September 2026
+**Version:** 0.74
+**Stand:** 4. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.74 ändert (4.9.2026):** Backlog-Punkt 69 gebaut (`beta.html` v19.8.13, Backlog Fassung 75): `pruefListe`/`pruefBilanz` sind jetzt Teil von `state` statt globaler Variablen ausserhalb davon — ein Neuladen der App wirft seither keinen noch nicht übernommenen oder ignorierten Schiedsrichter-Vorschlag mehr weg. Zwei bisher fehlende `save()`-Aufrufe ergänzt (`pruefAnwenden()`s `bet`-Zweig, `pruefIgnorieren()` vollständig), dazu ein `save()` am Ende von `abschluss()` für die endgültige Bilanz. `pruefStark` bewusst nicht verschoben. Dazu eine Nachfrage Ondos beantwortet (chronologische Einsortierung nach dem Übernehmen — nicht nötig, Eintrag wird nie im Array verschoben, mit Zeilenzitat belegt) und zwei neue Backlog-Punkte als reine Ideen aufgenommen (70, 71), keiner gebaut. Trockentest: 19 neue Prüfungen plus 57 bestehende aus Punkt 68 erneut bestanden, keine Regression. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.74 gehoben.
 
 > **Was Fassung 0.73 ändert (3.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war eine reine Untersuchung ohne Codeänderung (Backlog Fassung 74): Ondo meldete, nach einem Neuladen der App verschwänden noch nicht übernommene Schiedsrichter-Vorschläge. Bestätigt mit Codezitat: `pruefListe`/`pruefBilanz`/`pruefStark` liegen als globale Variablen ausserhalb von `state` und werden von `save()` nie mitgeschrieben — derselbe, schon länger dokumentierte Mechanismus wie beim zweiten Tastendruck, neu ist nur das Kostengewicht seit dem bezahlten Sonnet-Lauf in Punkt 68. Als neuer Backlog-Punkt 69 angelegt, ausdrücklich nicht gebaut. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.73 gehoben.
 

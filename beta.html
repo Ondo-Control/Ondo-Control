@@ -122,7 +122,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.12';
+var CODE_VERSION = 'v19.8.13';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -465,7 +465,12 @@ var state = {
   vorschlaege: [],
   vorschlaegeInfo: "",
   kiProtokoll: [],
-  verworfen: []
+  verworfen: [],
+  /* v19.8.13 (Backlog-Punkt 69, 4.9.2026): pruefListe/pruefBilanz gehoeren ab hier zu state,
+     keine seedV-Migration noetig — load() uebernimmt nur Schluessel, die im gespeicherten
+     JSON stehen, ein altes Save ohne diese Schluessel behaelt einfach diese Defaults. */
+  pruefListe: [],
+  pruefBilanz: null
 };
 
 function load(){
@@ -1958,8 +1963,16 @@ function refEinigkeit(gepruefte){
    Mehrrundig: wiederholt, solange jede Runde mindestens ein neues Ergebnis bringt
    (Obergrenze 6 Runden), hoechstens 5 Spiele pro Anfrage, drei Zustaende je Spiel,
    sichtbare Bilanz am Ende. Quellen-Pflicht bei spaeten Funden (ab Runde 3). */
-var pruefListe = [];
-var pruefBilanz = null;
+/* v19.8.13 (Backlog-Punkt 69, 4.9.2026): pruefListe und pruefBilanz sind ab hier Teil von
+   state (state.pruefListe, state.pruefBilanz) statt globaler Variablen ausserhalb davon.
+   Grund: Ein Neuladen der Seite startet das Skript neu und leerte bisher unwiderruflich
+   jeden noch nicht uebernommenen oder ignorierten Schiedsrichter-Vorschlag — save() schrieb
+   ausschliesslich state, diese beiden Variablen nie. Seit v19.8.12 haengt an jedem Lauf ein
+   bezahlter Sonnet-Aufruf, ein solcher Verlust kostet jetzt echtes Geld je Wiederholung.
+   pruefStark (oben, Zeile 1340) bleibt bewusst aussen vor: Sie beschreibt nur den Ablauf des
+   gerade laufenden Prueflaufs (Anfragezaehler, gewaehltes Modell), keinen Vorschlag, der
+   verloren gehen koennte — ihre Persistenz waere Ballast im gespeicherten Zustand, kein
+   Gewinn (Ondo, 4.9.2026). */
 function ergebnissePruefen(btn){
   if(!hatGemini() && !hatSonnet()){
     var f0=document.getElementById('pruefStatus'); if(f0) f0.textContent=t('noKey'); return;
@@ -1992,7 +2005,7 @@ function ergebnissePruefen(btn){
   if(!posten.length){ if(st) st.textContent=t('noOpen'); return; }
   btn.disabled=true;
   if(st) st.textContent='';
-  pruefListe=[]; pruefBilanz=null;
+  state.pruefListe=[]; state.pruefBilanz=null;
   pruefStark = { anfragen:0, modell:'', fallback:false, grund:'' };
   var runde=0, MAXR=6;
   /* Teil 4 des Auftrags vom 3.9.2026 (reine Diagnose, kein Backlog-Punkt): die tatsaechliche
@@ -2176,7 +2189,7 @@ function ergebnissePruefen(btn){
     } else {
       gemeinsam.art='bet'; gemeinsam.betId=p.betId; gemeinsam.tipp=p.tipp;
     }
-    pruefListe.push(gemeinsam);
+    state.pruefListe.push(gemeinsam);
     return 1;
   }
 
@@ -2302,7 +2315,7 @@ function ergebnissePruefen(btn){
   }
 
   function abschluss(fehler){
-    pruefBilanz = {
+    state.pruefBilanz = {
       gesamt: posten.length,
       gef: posten.filter(function(p){ return p.zustand==='fertig'; }).length,
       laeuft: posten.filter(function(p){ return p.zustand==='laeuft'; }).map(function(p){ return p.match; }),
@@ -2321,6 +2334,11 @@ function ergebnissePruefen(btn){
       starkGrund: pruefStark.grund,
       fehler: fehler||null
     };
+    /* v19.8.13 (Backlog-Punkt 69): Das save() in rundeLaufen() (oben) laeuft VOR abschluss()
+       im selben Tick und sichert deshalb nie die endgueltige Bilanz dieser Runde (Fehlertext,
+       runden, dauerMs, einAnbieter) — nur den Stand davor. Ohne diesen Aufruf bliebe
+       state.pruefBilanz nach einem Neuladen auf einem aelteren Zwischenstand stehen. */
+    save();
     btn.disabled=false; btn.textContent=t('checkBtn');
     render();
   }
@@ -2328,7 +2346,7 @@ function ergebnissePruefen(btn){
   rundeLaufen();
 }
 function pruefAnwenden(pid){
-  var p = pruefListe.filter(function(x){return x.id===pid;})[0];
+  var p = state.pruefListe.filter(function(x){return x.id===pid;})[0];
   if(!p) return;
   if(p.art==='log'){
     (state.kiProtokoll||[]).forEach(function(e){
@@ -2351,13 +2369,21 @@ function pruefAnwenden(pid){
       });
       e.status='bewertet';
     });
-    save();
   }
-  pruefListe = pruefListe.filter(function(x){return x.id!==pid;});
+  /* v19.8.13 (Backlog-Punkt 69): EIN unconditional save() nach dem Filtern statt eines save()
+     nur im log-Zweig — deckt jetzt auch den bet-Zweig ab. Vorher folgenlos, weil pruefListe
+     nie gespeichert wurde; jetzt Pflicht, sonst taucht ein bereits uebernommener Vorschlag
+     nach einem Neuladen wieder auf. */
+  state.pruefListe = state.pruefListe.filter(function(x){return x.id!==pid;});
+  save();
   render();
 }
 function pruefIgnorieren(pid){
-  pruefListe = pruefListe.filter(function(x){return x.id!==pid;});
+  /* v19.8.13 (Backlog-Punkt 69): save() ist hier neu — bisher folgenlos, weil pruefListe nie
+     gespeichert wurde. Ohne diesen Aufruf wuerde ein bewusst ignorierter Vorschlag nach einem
+     Neuladen wieder auftauchen, dieselbe Art Luecke wie beim Uebernehmen. */
+  state.pruefListe = state.pruefListe.filter(function(x){return x.id!==pid;});
+  save();
   render();
 }
 function logMarktSet(eid, idx, status){
@@ -2394,16 +2420,18 @@ function logLoeschen(eid){
 /* ========= GEFUNDENE ENDSTAENDE ALS TEXT (v19.7.8, Backlog-Punkt 25) =========
    Ondos Vorschlag vom 6.8. Die Vorschlaege des Schiedsrichters stehen vor dem Uebernehmen nur
    auf dem Bildschirm; fuer die Gegenpruefung war deshalb weiterhin ein Bildschirmfoto noetig.
-   Reine Ausgabe aus pruefListe — es wird nichts gespeichert, nichts gerechnet und nichts an ein
-   Gehirn geschickt. Die Reihenfolge bleibt: erst gegenpruefen, dann uebernehmen. Ein falsch
-   uebernommener Endstand ist der einzige Schritt, der sich nicht einfach zuruecknehmen laesst. */
+   Reine Ausgabe aus state.pruefListe — diese Funktion selbst speichert nichts, rechnet nichts
+   und schickt nichts an ein Gehirn (dass pruefListe seit v19.8.13/Punkt 69 an anderer Stelle
+   gespeichert wird, aendert daran nichts). Die Reihenfolge bleibt: erst gegenpruefen, dann
+   uebernehmen. Ein falsch uebernommener Endstand ist der einzige Schritt, der sich nicht
+   einfach zuruecknehmen laesst. */
 function pruefTextBauen(){
   var feld=document.getElementById('pruefText');
   if(!feld) return;
-  if(!pruefListe.length){ feld.value=''; return; }
+  if(!state.pruefListe.length){ feld.value=''; return; }
   var kopf='ONDO CONTROL — gefundene Endstaende, NOCH NICHT uebernommen · '+
-    pruefListe.length+' Vorschlaege · erzeugt '+new Date().toLocaleDateString('de-DE')+' '+jetztUhr();
-  var zeilen=pruefListe.map(function(p){
+    state.pruefListe.length+' Vorschlaege · erzeugt '+new Date().toLocaleDateString('de-DE')+' '+jetztUhr();
+  var zeilen=state.pruefListe.map(function(p){
     var warn=[];
     if(p.warn)  warn.push('DATUM WEICHT AB');
     if(p.warnQ) warn.push('KEINE QUELLE');
@@ -2442,8 +2470,8 @@ function pruefBlock(){
   var html='';
   html += '<button class="btn btn-ghost" onclick="ergebnissePruefen(this)">'+t('checkBtn')+'</button>';
   html += '<div id="pruefStatus" class="muted" style="color:var(--loss);margin:8px 0"></div>';
-  if(pruefBilanz){
-    var b=pruefBilanz;
+  if(state.pruefBilanz){
+    var b=state.pruefBilanz;
     html += '<div class="card" style="padding:10px 14px">'+
       '<b>'+t('balance').replace('{a}',b.gef).replace('{b}',b.gesamt)+'</b>'+
       (b.laeuft.length?('<div class="muted" style="margin-top:4px">'+t('balLaeuft')+': '+b.laeuft.map(esc).join(' · ')+'</div>'):'')+
@@ -2457,11 +2485,11 @@ function pruefBlock(){
       (b.fehler?('<div class="muted" style="margin-top:4px;color:var(--loss)">'+esc(b.fehler)+'</div>'):'')+
     '</div>';
   }
-  if(pruefListe.length){
+  if(state.pruefListe.length){
     /* v19.7.8: Der Textblock steht bewusst VOR den Uebernehmen-Knoepfen — erst gegenpruefen, dann uebernehmen. */
     html += pruefTextBlock();
     html += '<div class="card" style="border-color:rgba(91,141,239,.4)"><div class="muted" style="margin-bottom:8px">'+t('proposals')+'</div>';
-    pruefListe.forEach(function(p){
+    state.pruefListe.forEach(function(p){
       html += '<div style="padding:10px 0;border-top:1px solid var(--edge)">'+
         '<div class="flex"><div><b>'+esc(p.match)+'</b>'+
         '<div class="muted">'+t('finalScore')+': <b style="color:var(--accent)">'+p.heim+':'+p.gast+'</b>'+

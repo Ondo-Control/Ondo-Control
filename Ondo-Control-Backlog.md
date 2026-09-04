@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 3.9.2026, Fassung 74 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 4.9.2026, Fassung 75 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -15,6 +15,34 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 75 ändert (4.9., Backlog-Punkt 69 gebaut, Nachfrage beantwortet, zwei Idee-Punkte)
+
+**Anlass:** Auftrag Ondo — Backlog-Punkt 69 umsetzen (`pruefListe`/`pruefBilanz` speichern),
+dazu eine Nachfrage zur chronologischen Einsortierung und zwei neue Idee-Punkte, nicht gebaut.
+
+- **Punkt 69 gebaut, `beta.html` v19.8.13.** `pruefListe`/`pruefBilanz` sind Teil von `state`,
+  keine `seedV`-Migration nötig. `pruefStark` bewusst aussen vor (Ondos Vorgabe). Alle rund
+  zehn Fundstellen umgestellt, erschöpfend geprüft. Zwei bisher fehlende `save()`-Aufrufe
+  ergänzt (`pruefAnwenden()`s `bet`-Zweig, `pruefIgnorieren()` vollständig), dazu ein
+  `save()` am Ende von `abschluss()` für die endgültige Bilanz. Der Reset am Rundenanfang
+  bekommt bewusst **kein** eigenes `save()` — löst sich von selbst, siehe Punkt 69.
+- **Nachfrage beantwortet, mit Zeilenzitat:** Ein übernommener Vorschlag braucht keine
+  gesonderte chronologische Einsortierung — er wird nie aus `state.kiProtokoll` entfernt,
+  nur an Ort und Stelle verändert. Einzelheiten bei Punkt 69.
+- **Zwei neue Punkte, nur Idee, nicht gebaut:** **70** (Such- und Filterfunktion im KI-Log)
+  und **71** (eigener Reiter für offene Spiele, Rest als Archiv — ausdrücklich mit eigenem
+  Plan und eigener Freigabe, nicht neben Punkt 69 gebaut).
+- **Verifikation:** `node --check` bestanden. Trockentest: 19 neue Prüfungen plus die
+  bestehenden 57 aus Punkt 68 erneut bestanden (keine Regression), alle an den echten,
+  aus `beta.html` herausgeschnittenen Funktionen. `pruefe.py`: ALLES SAUBER.
+- **Keine neuen Sprachschlüssel** (241 unverändert). **Kein Schnitt in der Messreihe.**
+- **Fassungszahl:** alle drei aktiven Dokumente auf 75 gehoben (Blueprint 0.74).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
 
 ---
 
@@ -509,7 +537,7 @@ Bei NK Celje–Slovan Bratislava und Sabah FC–Hapoel Beer-Sheva FC lieferte de
 
 ---
 
-**69. `pruefListe`/`pruefBilanz` werden nie gespeichert — ein Neuladen verwirft ungeprüfte Vorschläge** · *Fund Ondo, 3.9.2026, nach v19.8.12 · untersucht und bestätigt 3.9.2026* · **Status: Fund — Ondo vorzulegen, NICHT gebaut (ausdrückliche Auflage)**
+**69. `pruefListe`/`pruefBilanz` werden nie gespeichert — ein Neuladen verwirft ungeprüfte Vorschläge** · *Fund Ondo, 3.9.2026, nach v19.8.12 · untersucht und bestätigt 3.9.2026 · Auftrag Ondo 4.9.2026, gebaut am selben Tag* · **Status: 🔴 GEBAUT am 4.9.2026, `beta.html` v19.8.13**
 
 **Der Befund (Ondo):** Nach einem Neuladen der App waren die Vorschlagskarten aus „Ergebnisse prüfen" („9 von 30 gefunden", noch nicht übernommen) verschwunden. Stehen geblieben sind nur Einträge, die ohnehin schon dauerhaft markiert sind (z. B. die `refRohAbgleich()`-Widerspruchszeile an bestehenden KI-Log-Einträgen) — die sitzen in `state.kiProtokoll` und sind gespeichert.
 
@@ -527,7 +555,45 @@ Bei NK Celje–Slovan Bratislava und Sabah FC–Hapoel Beer-Sheva FC lieferte de
 - **Der eigentliche Aufwand und die eigentliche Fehlerquelle:** `pruefAnwenden()` ruft `save()` bisher nur im `art==='log'`-Zweig auf, nicht im `art==='bet'`-Zweig; `pruefIgnorieren()` ruft `save()` gar nicht auf — bisher folgenlos, weil `pruefListe` nie persistiert wurde. Würde `pruefListe` Teil von `state`, bräuchten **beide** Stellen zusätzlich einen `save()`-Aufruf, sonst taucht ein bereits übernommener oder bewusst ignorierter Vorschlag nach einem Neuladen wieder auf — eine neue, subtilere Variante desselben Problems. Zusätzlich müssten rund zehn Lese-/Schreibstellen (`pruefBlock()`, `pruefTextBauen()`, `pruefAnwenden()`, `pruefIgnorieren()`, `abschluss()`, `rundeLaufen()`, `verarbeite()`, `pruefAuswerten()`) konsequent auf `state.pruefListe`/`state.pruefBilanz` umgestellt werden — eine übersehene Stelle wäre der Fehler, den die Änderung gerade beheben soll.
 - **Offene Gestaltungsfrage, nicht Teil der Kostenschätzung, sondern zur Entscheidung Ondos:** Soll ein während des Neuladens noch laufender, unfertiger Prüfdurchgang absichtlich verloren bleiben? Der Fund selbst betrifft nur bereits abgeschlossene, aber noch nicht übernommene oder ignorierte Vorschläge — nicht einen mitten im Lauf unterbrochenen.
 - **Grobe Einordnung:** niedrig bis mittel. Kein neuer Modellaufruf, keine neue Abhängigkeit, kein Geld für die Änderung selbst — sie **spart** künftig Geld (weniger wiederholte, bezahlte Sonnet-Läufe). Das Risiko liegt ausschliesslich in der Vollständigkeit der Umstellung, nicht in ihrer Schwierigkeit.
-→ **Kein Bau in dieser Lieferung — Ondos ausdrückliche Auflage.**
+
+> **🔴 GEBAUT am 4.9.2026 (Auftrag Ondo, `beta.html` v19.8.13).** `pruefListe` und `pruefBilanz` sind Teil von `state` (`state.pruefListe`, `state.pruefBilanz`), initialisiert wie `vorschlaege: []` — **keine `seedV`-Migration nötig**, ein altes Save ohne diese Schlüssel behält einfach die frischen Defaults. `pruefStark` bleibt bewusst aussen vor, wie im Auftrag verlangt — sie beschreibt nur den laufenden Prüfdurchgang, keinen Vorschlag, der verloren gehen könnte.
+>
+> **Alle rund zehn Fundstellen umgestellt** (`state`-Objekt, der Reset in `ergebnissePruefen()`, `pruefAuswerten()`, `abschluss()`, `pruefAnwenden()`, `pruefIgnorieren()`, `pruefTextBauen()`, `pruefBlock()`) — vollständig geprüft mit `grep -n "pruefListe\|pruefBilanz"` gegen den fertigen Stand: keine unqualifizierte Fundstelle mehr übrig, `pruefStark` an allen fünf Stellen unverändert.
+>
+> **Die im Fund benannte eigentliche Fehlerquelle behoben:** `pruefAnwenden()` rief `save()` bisher nur im `art==='log'`-Zweig auf. Statt zwei separate Aufrufe zu pflegen, **ein** unconditional `save()` nach dem Entfernen aus der Liste — deckt beide Zweige ab. `pruefIgnorieren()` rief bisher **gar kein** `save()` auf, jetzt ergänzt. Zusätzlich ein `save()` am Ende von `abschluss()`: Das bestehende `save()` in `rundeLaufen()` läuft **vor** `abschluss()` im selben Tick und sichert deshalb nie die endgültige Bilanz (Fehlertext, `runden`, `dauerMs`, `einAnbieter` der letzten Runde) — ohne diesen Zusatz bliebe `state.pruefBilanz` nach einem Neuladen auf einem älteren Zwischenstand stehen.
+>
+> **Offene Gestaltungsfrage aus dem Fund, beantwortet:** Ein während des Neuladens noch laufender Durchgang bleibt bewusst **ohne** eigenes `save()` am Reset (`state.pruefListe=[]; state.pruefBilanz=null;`) — das löst sich von selbst. `pruefAuswerten()` trägt einen Eintrag erst **nach** Abschluss seiner Prüfung in `pruefListe` ein; ein mitten im Lauf unterbrochener Durchgang stand also ohnehin nie darin, nur in noch offenen Promises. Ein Reload mitten im Reset liefert dadurch den zuletzt **gesicherten**, älteren Stand zurück, statt ihn zu verlieren — durch Trockentest bestätigt (siehe unten).
+>
+> **Nachfrage Ondos beantwortet, mit Zeilenzitat (Belegen statt herleiten):** Ein übernommener Vorschlag wird **nicht** eigens chronologisch neu einsortiert — Ondos eigene Vermutung war richtig. `vorhersagen()` legt jeden neuen Eintrag per `state.kiProtokoll.unshift(eintrag)` an (Zeile 1744); die KI-Log-Anzeige (`wtab==='kilog'`) rendert `neu.map(...)` **ohne erneute Sortierung**, direkt in der Filter-Reihenfolge von `state.kiProtokoll`. `pruefAnwenden()` **verändert nur Felder** am gefundenen Eintrag über `.forEach` mit Id-Abgleich — kein `splice`/`push`/`unshift` auf `state.kiProtokoll`. Der Eintrag bleibt exakt an seiner ursprünglichen Array-Position; es gibt nichts, das ihn „wieder einsortieren" müsste, weil er nie entfernt wurde. **Ehrliche Einschränkung:** Das ist Einfüge-Reihenfolge, kein echter Sortierschlüssel über `e.datum` — fällt im normalen Tagesbetrieb zusammen, ist aber nicht dasselbe. Die Text-Exporte (`logTextBauen()`/`refRohTextBauen()`) sortieren dagegen ausdrücklich nach `datumZahl`, unabhängig von dieser Frage.
+>
+> **Verifiziert:** `node --check` bestanden. Trockentest bestanden — **19 neue Prüfungen**, an den echten, aus `beta.html` herausgeschnittenen Funktionen (`state`-Initialisierung, `load()`, `save()`, `pruefAnwenden()`, `pruefIgnorieren()`, die volle Referee-Entscheidungskette), mit einem In-Memory-`localStorage`-Stub und einem echt simulierten Neuladen (State zurückgesetzt, `load()` erneut gegen denselben Speicher ausgeführt): ein echter Prüfdurchgang landet in `state.pruefListe` und übersteht das simulierte Neuladen · Übernehmen (`art:'log'`) entfernt den Vorschlag, bewertet den Eintrag, schreibt `localStorage` neu · dasselbe für `art:'bet'` — der bisher fehlende `save()`-Aufruf greift jetzt nachweislich · Ignorieren entfernt und speichert ebenso · nach jedem Übernehmen/Ignorieren bleibt der Eintrag nach simuliertem Neuladen verschwunden · `pruefStark` fehlt im gespeicherten JSON vollständig · der Reset am Rundenanfang verliert bei einem Reload mitten im Lauf nichts. **Die bestehenden 57 Prüfungen aus Punkt 68 erneut ausgeführt, alle weiterhin bestanden** (keine Regression). `pruefe.py`: ALLES SAUBER.
+>
+> **Keine neuen Sprachschlüssel** (241 unverändert — keine neuen Anzeigetexte, selbst gezählt von `pruefe.py` Abschnitt 13). **Kein Schnitt in der Messreihe.**
+
+---
+
+**70. Such- und Filterfunktion im KI-Log** · *Idee 4.9.2026, Ondo* · **Status: Idee — NEU, nicht gebaut**
+
+Bei inzwischen über 400 Einträgen wird die KI-Log-Liste ohne Filter unübersichtlich.
+Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o. ä.).
+
+→ **Kein Bauauftrag** — nur als Idee mit Datum und Urheber eingetragen.
+→ **Kosten (Arbeitsregel G):** noch nicht geschätzt, dazu müsste erst ein Ansatz feststehen.
+
+---
+
+**71. Eigener Reiter für offene Spiele, Rest als Archiv** · *Idee 4.9.2026, Ondo* · **Status: Idee — NEU, nicht gebaut, braucht eigenen Plan und eigene Freigabe**
+
+Vorschlag Ondos: ein neuer Reiter, aufgebaut wie das bestehende KI-Log, aber nur für offene
+(noch nicht bewertete) Spiele; geparkte und bereits geprüft/bewertete Einträge wandern in
+eine Archiv-Ansicht. Zweck: Übersicht bei wachsender Datenmenge, verwandt mit Punkt 70, aber
+eine grössere strukturelle Änderung an der Anzeige — betrifft KI-Log, Bilanz und Text-Export
+gemeinsam.
+
+→ **Ausdrücklich NICHT neben Teil 1 dieses Auftrags (Punkt 69) gebaut** — eigener Plan und
+  eigene Freigabe nötig, bevor irgendetwas daran gebaut wird.
+→ **Kein Bauauftrag** — nur als Idee mit Datum und Urheber eingetragen.
+→ **Kosten (Arbeitsregel G):** noch nicht geschätzt, dazu müsste erst ein Ansatz feststehen.
 
 ---
 
