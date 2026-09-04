@@ -122,7 +122,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.14';
+var CODE_VERSION = 'v19.8.15';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -205,10 +205,10 @@ var I18N = {
   foundAs:'Gefunden als', dateWarn:'⚠ Datum weicht ab — womöglich falsches Spiel! Vor Übernehmen prüfen.',
   srcWarn:'⚠ Später Fund ohne benannte Quelle — vor Übernehmen selbst prüfen!', srcLabel:'Quelle',
   checkingRound:'🔎 Prüfe … Durchgang {a}/{b}', balance:'{a} von {b} gefunden', balLaeuft:'noch nicht gespielt', balFehlt:'nicht gefunden',
-  logEmpty:'Noch keine KI-Vorhersagen protokolliert.',
-  filterT:'🔎 Filter', filterWettbewerbPh:'Wettbewerb (Teiltext)', filterStatusAlle:'Alle', filterStatusOffen:'Offen',
-  filterStatusGeparkt:'Geparkt', filterStatusBewRichtig:'Bewertet — alle Märkte richtig', filterStatusBewFalsch:'Bewertet — mind. ein Markt falsch',
+  filterT:'🔎 Filter', filterWettbewerbPh:'Wettbewerb (Teiltext)', filterMannschaftPh:'Mannschaft (Teiltext)', filterStatusAlle:'Alle', filterStatusOffen:'Offen',
+  filterStatusGeparkt:'Geparkt', filterStatusBewRichtig:'Richtig', filterStatusBewFalsch:'Falsch',
   filterReset:'Zurücksetzen', filterCount:'{a} von {b}', filterEmpty:'Kein Eintrag passt zum Filter.',
+  kilogTabBewertet:'Bewertet', kilogTabArchiv:'Archiv', kilogTabWerkzeuge:'Werkzeuge',
   logD:'Jede KI-Vorhersage wird hier bewertet. Aus einem Ergebnis-Tipp leitet die App drei Aussagen ab.',
   gKeyT:'🌱 Zweites Gehirn (Google Gemini)', gKeyD:'Schlüssel von aistudio.google.com — bleibt NUR auf diesem Gerät. Übernimmt Ergebnis-Prüfen & Foto-Lesen fast gratis.', gOn:'✅ Gemini-Schlüssel gespeichert', gOff:'❌ Kein Gemini-Schlüssel',
   duellT:'Duell-Modus', duellD:'Beide Gehirne bekommen dieselbe Spielliste und sagen dieselben Spiele vorher. Ohne Gemini-Schlüssel läuft nur Sonnet.',
@@ -310,10 +310,10 @@ var I18N = {
   foundAs:'Trouvé comme', dateWarn:'⚠ La date diffère — peut-être le mauvais match ! Vérifie avant d’appliquer.',
   srcWarn:'⚠ Trouvé tardivement sans source nommée — vérifie toi-même avant d’appliquer !', srcLabel:'Source',
   checkingRound:'🔎 Vérification … passage {a}/{b}', balance:'{a} sur {b} trouvés', balLaeuft:'pas encore joué', balFehlt:'introuvable',
-  logEmpty:'Aucune prédiction IA enregistrée.',
-  filterT:'🔎 Filtre', filterWettbewerbPh:'Compétition (texte partiel)', filterStatusAlle:'Tous', filterStatusOffen:'Ouvert',
-  filterStatusGeparkt:'En pause', filterStatusBewRichtig:'Évalué — tous les marchés corrects', filterStatusBewFalsch:'Évalué — au moins un marché faux',
+  filterT:'🔎 Filtre', filterWettbewerbPh:'Compétition (texte partiel)', filterMannschaftPh:'Équipe (texte partiel)', filterStatusAlle:'Tous', filterStatusOffen:'Ouvert',
+  filterStatusGeparkt:'En pause', filterStatusBewRichtig:'Correct', filterStatusBewFalsch:'Faux',
   filterReset:'Réinitialiser', filterCount:'{a} sur {b}', filterEmpty:'Aucune entrée ne correspond au filtre.',
+  kilogTabBewertet:'Évalué', kilogTabArchiv:'Archive', kilogTabWerkzeuge:'Outils',
   logD:'Chaque prédiction IA est évaluée ici. À partir d’un score prédit, l’app déduit trois affirmations.',
   gKeyT:'🌱 Second cerveau (Google Gemini)', gKeyD:'Clé de aistudio.google.com — reste UNIQUEMENT sur cet appareil. Prend en charge vérification & lecture photo presque gratuitement.', gOn:'✅ Clé Gemini enregistrée', gOff:'❌ Pas de clé Gemini',
   duellT:'Mode duel', duellD:'Les deux cerveaux reçoivent la même liste de matchs. Sans clé Gemini, seul Sonnet fonctionne.',
@@ -415,10 +415,10 @@ var I18N = {
   foundAs:'Found as', dateWarn:'⚠ Date differs — possibly the wrong match! Check before applying.',
   srcWarn:'⚠ Late find without a named source — verify yourself before applying!', srcLabel:'Source',
   checkingRound:'🔎 Checking … pass {a}/{b}', balance:'{a} of {b} found', balLaeuft:'not played yet', balFehlt:'not found',
-  logEmpty:'No AI predictions logged yet.',
-  filterT:'🔎 Filter', filterWettbewerbPh:'Competition (partial text)', filterStatusAlle:'All', filterStatusOffen:'Open',
-  filterStatusGeparkt:'Parked', filterStatusBewRichtig:'Rated — all markets correct', filterStatusBewFalsch:'Rated — at least one market wrong',
+  filterT:'🔎 Filter', filterWettbewerbPh:'Competition (partial text)', filterMannschaftPh:'Team (partial text)', filterStatusAlle:'All', filterStatusOffen:'Open',
+  filterStatusGeparkt:'Parked', filterStatusBewRichtig:'Correct', filterStatusBewFalsch:'Wrong',
   filterReset:'Reset', filterCount:'{a} of {b}', filterEmpty:'No entry matches the filter.',
+  kilogTabBewertet:'Rated', kilogTabArchiv:'Archive', kilogTabWerkzeuge:'Tools',
   logD:'Every AI prediction is rated here. From one predicted score the app derives three statements.',
   gKeyT:'🌱 Second brain (Google Gemini)', gKeyD:'Key from aistudio.google.com — stays ONLY on this device. Handles result checking & photo reading almost free.', gOn:'✅ Gemini key saved', gOff:'❌ No Gemini key',
   duellT:'Duel mode', duellD:'Both brains receive the same fixture list. Without a Gemini key only Sonnet runs.',
@@ -1110,15 +1110,19 @@ function logExportBlock(){
 }
 /* v19.8.14 (Backlog-Punkt 70, 4.9.2026): reine Anzeigefilter fuer das KI-Log. Wirkt nur auf die
    Darstellung — state.kiProtokoll bleibt unangetastet, .filter() liefert immer ein neues Array. */
-function kilogGefiltert(liste, von, bis, wettbewerb, status){
+function kilogGefiltert(liste, von, bis, wettbewerb, status, mannschaft){
   var vonZ = von ? datumZahl(von) : null;
   var bisZ = bis ? datumZahl(bis) : null;
   var wSuche = String(wettbewerb||'').trim().toLowerCase();
+  /* v19.8.15 (Backlog-Punkt 71): angehaengter Parameter, damit alte Aufrufe mit nur fuenf
+     Argumenten unveraendert weiterlaufen (mannschaft ist dann undefined, die Teamsuche ein No-op). */
+  var mSuche = String(mannschaft||'').trim().toLowerCase();
   return liste.filter(function(e){
     var dz = datumZahl(e.datum);
     if(vonZ!==null && (dz===null || dz<vonZ)) return false;
     if(bisZ!==null && (dz===null || dz>bisZ)) return false;
     if(wSuche && String(e.wettbewerb||'').toLowerCase().indexOf(wSuche)<0) return false;
+    if(mSuche && String(e.match||'').toLowerCase().indexOf(mSuche)<0) return false;
     if(status==='offen' && !(e.status==='offen' && !e.geparkt)) return false;
     if(status==='geparkt' && !e.geparkt) return false;
     if(status==='bewRichtig' && !(e.status==='bewertet' && (e.maerkte||[]).every(function(m){return m.status==='richtig';}))) return false;
@@ -1126,7 +1130,16 @@ function kilogGefiltert(liste, von, bis, wettbewerb, status){
     return true;
   });
 }
-function kilogFilterBlock(gesamt, gezeigt){
+/* v19.8.15 (Backlog-Punkt 71): auf zwei Modi erweitert — 'offen' zeigt kein Status-Feld
+   (in diesem Reiter implizit), 'bewertet' zeigt ein Status-Feld mit nur drei Optionen. */
+function kilogFilterBlock(gesamt, gezeigt, modus){
+  var statusFeld = (modus==='bewertet')
+    ? '<div style="margin-top:10px"><select id="kilogStatus" onchange="kilogStatus=this.value;render()">'+
+        '<option value="alle"'+(kilogStatus==='alle'?' selected':'')+'>'+t('filterStatusAlle')+'</option>'+
+        '<option value="bewRichtig"'+(kilogStatus==='bewRichtig'?' selected':'')+'>'+t('filterStatusBewRichtig')+'</option>'+
+        '<option value="bewFalsch"'+(kilogStatus==='bewFalsch'?' selected':'')+'>'+t('filterStatusBewFalsch')+'</option>'+
+      '</select></div>'
+    : '';
   return '<div class="card">'+
     '<div class="disp" style="font-size:20px;margin-bottom:6px">'+t('filterT')+'</div>'+
     '<div style="display:flex;gap:10px">'+
@@ -1139,15 +1152,11 @@ function kilogFilterBlock(gesamt, gezeigt){
     '</div>'+
     '<div style="margin-top:10px"><input id="kilogWettbewerb" placeholder="'+esc(t('filterWettbewerbPh'))+'" '+
       'value="'+esc(kilogWettbewerb)+'" onchange="kilogWettbewerb=this.value;render()"/></div>'+
-    '<div style="margin-top:10px"><select id="kilogStatus" onchange="kilogStatus=this.value;render()">'+
-      '<option value="alle"'+(kilogStatus==='alle'?' selected':'')+'>'+t('filterStatusAlle')+'</option>'+
-      '<option value="offen"'+(kilogStatus==='offen'?' selected':'')+'>'+t('filterStatusOffen')+'</option>'+
-      '<option value="geparkt"'+(kilogStatus==='geparkt'?' selected':'')+'>'+t('filterStatusGeparkt')+'</option>'+
-      '<option value="bewRichtig"'+(kilogStatus==='bewRichtig'?' selected':'')+'>'+t('filterStatusBewRichtig')+'</option>'+
-      '<option value="bewFalsch"'+(kilogStatus==='bewFalsch'?' selected':'')+'>'+t('filterStatusBewFalsch')+'</option>'+
-    '</select></div>'+
+    '<div style="margin-top:10px"><input id="kilogMannschaft" placeholder="'+esc(t('filterMannschaftPh'))+'" '+
+      'value="'+esc(kilogMannschaft)+'" onchange="kilogMannschaft=this.value;render()"/></div>'+
+    statusFeld+
     '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">'+
-      '<button class="btn btn-ghost" onclick="kilogVon=\'\';kilogBis=\'\';kilogWettbewerb=\'\';kilogStatus=\'alle\';render()">'+t('filterReset')+'</button>'+
+      '<button class="btn btn-ghost" onclick="kilogVon=\'\';kilogBis=\'\';kilogWettbewerb=\'\';kilogMannschaft=\'\';kilogStatus=\'alle\';render()">'+t('filterReset')+'</button>'+
       '<div class="muted">'+t('filterCount').replace('{a}',gezeigt).replace('{b}',gesamt)+'</div>'+
     '</div>'+
   '</div>';
@@ -2680,6 +2689,9 @@ var tab="home", wtab="vorschlaege";
 /* v19.8.14 (Backlog-Punkt 70): reiner Anzeige-Filterzustand fuer das KI-Log, wie wtab nicht
    Teil von state — setzt sich bei jedem Neuladen zurueck, nichts geht dabei verloren. */
 var kilogVon='', kilogBis='', kilogWettbewerb='', kilogStatus='alle';
+/* v19.8.15 (Backlog-Punkt 71): Reiter-Zustand fuer das KI-Log (vier Reiter) plus die neue
+   Mannschafts-Suche — ebenfalls reiner Anzeigezustand, nicht Teil von state. */
+var kilogTab='offen', kilogMannschaft='';
 var entsperrt=false;
 
 function viewLock(){
@@ -2945,49 +2957,79 @@ function viewBets(c){
     var pl=(state.kiProtokoll||[]);
     var neu=pl.filter(function(e){ return e.aera==='v19'; });
     var alt=pl.filter(function(e){ return e.aera!=='v19'; });
-    var gefiltert = kilogGefiltert(neu, kilogVon, kilogBis, kilogWettbewerb, kilogStatus);
-    var eintraege = !neu.length ? '<div class="card empty">'+t('logEmpty')+'</div>'
-      : !gefiltert.length ? '<div class="card empty">'+t('filterEmpty')+'</div>'
-      : gefiltert.map(function(e){ return vorhersageKarte(e,true); }).join('');
-    /* v19.7.6: Tageweise parken. Die offenen Vorhersagen liegen nach Tagen beieinander;
-       einzeln zu klicken waeren bei den gesperrten Ergebnissen dutzende Griffe. */
-    var tage=[], nachTag={};
-    neu.forEach(function(e){
-      if(e.status!=='offen') return;
-      if(!nachTag[e.datum]){ nachTag[e.datum]={offen:0, geparkt:0}; tage.push(e.datum); }
-      nachTag[e.datum].offen++;
-      if(e.geparkt) nachTag[e.datum].geparkt++;
-    });
-    tage.sort(function(a,b){ return (datumZahl(b)||0)-(datumZahl(a)||0); });
-    var parkBlock = tage.length
-      ? '<div class="card"><div class="disp" style="font-size:18px;margin-bottom:6px">🅿 '+t('parkBtn')+'</div>'+
-        '<div class="muted" style="margin-bottom:10px">'+t('parkedD')+'</div>'+
-        tage.map(function(d){
-          var z=nachTag[d], allePark=(z.geparkt>=z.offen);
-          return '<div class="mkt"><div>'+esc(d)+' <span class="muted">('+z.offen+' '+t('open_')+
-            (z.geparkt?(' · '+t('parkedCount').replace('{a}',z.geparkt)):'')+')</span></div>'+
-            '<div style="white-space:nowrap">'+
-            (allePark
-              ? '<button class="btn-sm btn-open" onclick="logParkenTag(\''+esc(d)+'\',false)">'+t('unparkBtn')+'</button>'
-              : '<button class="btn-sm" onclick="logParkenTag(\''+esc(d)+'\',true)">'+t('parkBtn')+'</button>')+
-            '</div></div>';
-        }).join('')+'</div>'
-      : '';
-    var archiv = alt.length
-      ? '<div class="muted" style="margin:18px 0 8px;letter-spacing:1px;text-transform:uppercase">'+t('archive')+'</div>'+
-        '<div class="muted" style="margin-bottom:10px">'+t('archiveD')+'</div>'+
-        alt.map(function(e){
-          var chip = e.status==='richtig' ? '<span class="badge b-win">'+t('stRight')+'</span>'
-            : e.status==='falsch' ? '<span class="badge b-loss">'+t('stWrong')+'</span>'
-            : '<span class="badge b-open">'+t('openB')+'</span>';
-          var quelle = (e.herkunft==='flash') ? ' · 🌱 Flash' : ' · 🧠 Sonnet';
-          return '<div class="card" style="opacity:.65"><div class="flex"><div>'+
-            '<div class="disp" style="font-size:16px">'+esc(e.match)+'</div>'+
-            '<div class="muted">'+e.datum+' · '+t('tip')+': '+esc(e.tipp||'?')+' · '+t('odds')+' '+esc(e.quote||'?')+quelle+'</div>'+
-            '</div>'+chip+'</div></div>';
-        }).join('')
-      : '';
-    return sub+'<div class="muted" style="margin-bottom:10px">'+t('logD')+'</div>'+pruefBlock()+parkBlock+korrFBlock()+logExportBlock()+kilogFilterBlock(neu.length, gefiltert.length)+eintraege+archiv;
+    /* v19.8.15 (Backlog-Punkt 71): lueckenlose, ueberschneidungsfreie Dreiteilung von neu —
+       geparkt===true und status==='bewertet' kommen nie gemeinsam vor (belegt bei Punkt 70),
+       also deckt offenListe+bewertetListe+geparktListe neu vollstaendig ab, ohne Ueberschneidung. */
+    var offenListe = neu.filter(function(e){ return e.status==='offen' && !e.geparkt; });
+    var bewertetListe = neu.filter(function(e){ return e.status==='bewertet'; });
+    var geparktListe = neu.filter(function(e){ return e.geparkt===true; });
+
+    var tabBar = '<div class="subtabs">'+
+      '<button class="subtab '+(kilogTab==="offen"?"on":"")+'" onclick="kilogTab=\'offen\';render()">'+t('filterStatusOffen')+'</button>'+
+      '<button class="subtab '+(kilogTab==="bewertet"?"on":"")+'" onclick="kilogTab=\'bewertet\';render()">'+t('kilogTabBewertet')+'</button>'+
+      '<button class="subtab '+(kilogTab==="archiv"?"on":"")+'" onclick="kilogTab=\'archiv\';render()">'+t('kilogTabArchiv')+'</button>'+
+      '<button class="subtab '+(kilogTab==="werkzeuge"?"on":"")+'" onclick="kilogTab=\'werkzeuge\';render()">'+t('kilogTabWerkzeuge')+'</button>'+
+    '</div>';
+
+    var body='';
+    if(kilogTab==='bewertet'){
+      var g = kilogGefiltert(bewertetListe, kilogVon, kilogBis, kilogWettbewerb, kilogStatus, kilogMannschaft);
+      body = kilogFilterBlock(bewertetListe.length, g.length, 'bewertet')+
+        (g.length ? g.map(function(e){ return vorhersageKarte(e,true); }).join('') : '<div class="card empty">'+t('filterEmpty')+'</div>');
+    } else if(kilogTab==='archiv'){
+      body =
+        (geparktListe.length
+          ? '<div class="muted" style="margin:18px 0 8px;letter-spacing:1px;text-transform:uppercase">'+t('filterStatusGeparkt')+'</div>'+
+            geparktListe.map(function(e){ return vorhersageKarte(e,true); }).join('')
+          : '') +
+        (alt.length
+          ? '<div class="muted" style="margin:18px 0 8px;letter-spacing:1px;text-transform:uppercase">'+t('archive')+'</div>'+
+            '<div class="muted" style="margin-bottom:10px">'+t('archiveD')+'</div>'+
+            alt.map(function(e){
+              var chip = e.status==='richtig' ? '<span class="badge b-win">'+t('stRight')+'</span>'
+                : e.status==='falsch' ? '<span class="badge b-loss">'+t('stWrong')+'</span>'
+                : '<span class="badge b-open">'+t('openB')+'</span>';
+              var quelle = (e.herkunft==='flash') ? ' · 🌱 Flash' : ' · 🧠 Sonnet';
+              return '<div class="card" style="opacity:.65"><div class="flex"><div>'+
+                '<div class="disp" style="font-size:16px">'+esc(e.match)+'</div>'+
+                '<div class="muted">'+e.datum+' · '+t('tip')+': '+esc(e.tipp||'?')+' · '+t('odds')+' '+esc(e.quote||'?')+quelle+'</div>'+
+                '</div>'+chip+'</div></div>';
+            }).join('')
+          : '');
+    } else if(kilogTab==='werkzeuge'){
+      body = korrFBlock()+logExportBlock();
+    } else { // 'offen', Standardfall
+      /* v19.7.6: Tageweise parken. Die offenen Vorhersagen liegen nach Tagen beieinander;
+         einzeln zu klicken waeren bei den gesperrten Ergebnissen dutzende Griffe. Unveraendert
+         seit Punkt 71, weiterhin aus neu berechnet (alle offenen, geparkt oder nicht). */
+      var tage=[], nachTag={};
+      neu.forEach(function(e){
+        if(e.status!=='offen') return;
+        if(!nachTag[e.datum]){ nachTag[e.datum]={offen:0, geparkt:0}; tage.push(e.datum); }
+        nachTag[e.datum].offen++;
+        if(e.geparkt) nachTag[e.datum].geparkt++;
+      });
+      tage.sort(function(a,b){ return (datumZahl(b)||0)-(datumZahl(a)||0); });
+      var parkBlock = tage.length
+        ? '<div class="card"><div class="disp" style="font-size:18px;margin-bottom:6px">🅿 '+t('parkBtn')+'</div>'+
+          '<div class="muted" style="margin-bottom:10px">'+t('parkedD')+'</div>'+
+          tage.map(function(d){
+            var z=nachTag[d], allePark=(z.geparkt>=z.offen);
+            return '<div class="mkt"><div>'+esc(d)+' <span class="muted">('+z.offen+' '+t('open_')+
+              (z.geparkt?(' · '+t('parkedCount').replace('{a}',z.geparkt)):'')+')</span></div>'+
+              '<div style="white-space:nowrap">'+
+              (allePark
+                ? '<button class="btn-sm btn-open" onclick="logParkenTag(\''+esc(d)+'\',false)">'+t('unparkBtn')+'</button>'
+                : '<button class="btn-sm" onclick="logParkenTag(\''+esc(d)+'\',true)">'+t('parkBtn')+'</button>')+
+              '</div></div>';
+          }).join('')+'</div>'
+        : '';
+      var g = kilogGefiltert(offenListe, kilogVon, kilogBis, kilogWettbewerb, 'alle', kilogMannschaft);
+      body = pruefBlock()+parkBlock+kilogFilterBlock(offenListe.length, g.length, 'offen')+
+        (g.length ? g.map(function(e){ return vorhersageKarte(e,true); }).join('') : '<div class="card empty">'+t('filterEmpty')+'</div>');
+    }
+
+    return sub+'<div class="muted" style="margin-bottom:10px">'+t('logD')+'</div>'+tabBar+body;
   }
 
   if(wtab==="historie" && !state.bets.length) return sub+pruefBlock()+'<div class="card empty">'+t('noBets')+'</div>';

@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.76
+**Version:** 0.77
 **Stand:** 4. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.77 ändert (4.9.2026):** Backlog-Punkt 71 gebaut (`beta.html` v19.8.15, Backlog Fassung 78) — Schritt 1 von 3 eines KI-Log-Redesigns: vier Reiter (Offen/Bewertet/Archiv/Werkzeuge) statt einer langen Seite, mit einer belegten, lückenlosen und überschneidungsfreien Dreiteilung aller v19-Einträge nach `e.status`/`e.geparkt`. Neuer, ans Ende angehängter Parameter `mannschaft` an `kilogGefiltert()` (Teilstring-Suche gegen `e.match`) — angehängt statt eingefügt, damit die 19 bestehenden Trockentest-Aufrufe aus Punkt 70 unverändert weiterlaufen. Zähler beziehen sich je Reiter jetzt auf dessen eigene Grundmenge, nicht mehr auf alle Einträge zusammen. Neuer Backlog-Punkt 72 hält das dreiteilige Redesign-Vorhaben fest (Struktur — gebaut, Karten einklappen — offen, Optik/Logo — offen), Schritt 2/3 ohne Bauauftrag. Trockentest: 19 neue Prüfungen plus die bestehenden 57 (Punkt 68), 19 (Punkt 69) und 19 (Punkt 70) erneut bestanden, keine Regression. Sprachschlüssel: 4 neu, 1 entfernt (`logEmpty`, nachweislich ungenutzt geworden) — 251 → 254. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.77 gehoben.
 
 > **Was Fassung 0.76 ändert (4.9.2026):** Backlog-Punkt 70 gebaut (`beta.html` v19.8.14, Backlog Fassung 77): drei kombinierbare Filter im KI-Log (Datum von/bis, Wettbewerb-Teilstring case-insensitiv, Status aus fünf aus den tatsächlichen Codewerten `e.status`/`e.geparkt`/`e.parkGrund` abgeleiteten Optionen), rein im Browser, wirken nur auf die Anzeige — `state.kiProtokoll` bleibt unangetastet. Neue reine Funktion `kilogGefiltert()`, Filterzustand in vier plain globalen `var`s wie `wtab`, bewusst nicht Teil von `state`. Dazu reine Buchführung: Backlog-Punkt 41 (seit 30.8.2026 gebaut) aus der „Prio 1"-Überschrift im Backlog entfernt und aus `STAND.md`s Entscheidungstabelle gestrichen — keine offene Entscheidung mehr. Trockentest: 19 neue Prüfungen plus die bestehenden 57 (Punkt 68) und 19 (Punkt 69) erneut bestanden, keine Regression. 10 neue Sprachschlüssel (241 → 251). Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.76 gehoben.
 

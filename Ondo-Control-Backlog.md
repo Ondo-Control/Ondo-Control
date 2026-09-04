@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 4.9.2026, Fassung 77 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 4.9.2026, Fassung 78 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -15,6 +15,33 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 78 ändert (4.9., Backlog-Punkt 71 gebaut — KI-Log in vier Reiter, Schritt 1 von 3)
+
+**Anlass:** Auftrag Ondo — Backlog-Punkt 71 umsetzen: KI-Log in vier Reiter (Offen/
+Bewertet/Archiv/Werkzeuge), Schritt 1 eines mehrteiligen Redesigns, nur Struktur, keine
+Optik-Änderung.
+
+- **Backlog-Punkt 71 gebaut, `beta.html` v19.8.15:** vier Reiter statt einer langen Seite.
+  Volle Begründung, die belegte Vierteilung der Einträge und das Verifikationsergebnis
+  stehen als angehängter Block direkt bei Punkt 71 (nicht hier wiederholt — Punkt 45).
+- **Neuer Backlog-Punkt 72** angelegt: hält das dreiteilige Redesign-Vorhaben fest (1.
+  Struktur — Punkt 71, gebaut · 2. Karten einklappen — offen · 3. Optik/Logo — offen),
+  Schritt 2/3 ohne Bauauftrag.
+- **Sprachschlüssel:** 4 neu, 1 entfernt (nachweislich ungenutztes `logEmpty`, ersetzt durch
+  die vereinfachte, einheitliche Leermeldung `filterEmpty`), 2 bestehende Schlüssel mit
+  gekürztem Wert bei gleichem Namen — macht 251 − 1 + 4 = 254, selbst gezählt von `pruefe.py`
+  Abschnitt 13.
+- **Verifikation:** `node --check` bestanden · Trockentest: 19 neue Prüfungen an
+  `kilogGefiltert()`/der Vier-Wege-Zerlegung, plus die bestehenden 57 (Punkt 68), 19 (Punkt
+  69) und 19 (Punkt 70) erneut ausgeführt, alle weiterhin bestanden · `pruefe.py` ohne
+  Argument — ALLES SAUBER.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 78 gehoben (Blueprint 0.77).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
 
 ---
 
@@ -698,7 +725,7 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
-**71. Eigener Reiter für offene Spiele, Rest als Archiv** · *Idee 4.9.2026, Ondo* · **Status: Idee — NEU, nicht gebaut, braucht eigenen Plan und eigene Freigabe**
+**71. Eigener Reiter für offene Spiele, Rest als Archiv** · *Idee 4.9.2026, Ondo · Auftrag Ondo 4.9.2026, gebaut am selben Tag* · **Status: 🔴 GEBAUT am 4.9.2026, `beta.html` v19.8.15**
 
 Vorschlag Ondos: ein neuer Reiter, aufgebaut wie das bestehende KI-Log, aber nur für offene
 (noch nicht bewertete) Spiele; geparkte und bereits geprüft/bewertete Einträge wandern in
@@ -706,10 +733,95 @@ eine Archiv-Ansicht. Zweck: Übersicht bei wachsender Datenmenge, verwandt mit P
 eine grössere strukturelle Änderung an der Anzeige — betrifft KI-Log, Bilanz und Text-Export
 gemeinsam.
 
-→ **Ausdrücklich NICHT neben Teil 1 dieses Auftrags (Punkt 69) gebaut** — eigener Plan und
-  eigene Freigabe nötig, bevor irgendetwas daran gebaut wird.
-→ **Kein Bauauftrag** — nur als Idee mit Datum und Urheber eingetragen.
-→ **Kosten (Arbeitsregel G):** noch nicht geschätzt, dazu müsste erst ein Ansatz feststehen.
+> **🔴 GEBAUT am 4.9.2026 (Auftrag Ondo, `beta.html` v19.8.15) — Schritt 1 von einem
+> mehrteiligen Redesign, siehe Backlog-Punkt 72.** Der KI-Log-Bereich war eine einzige lange
+> Seite (Werkzeuge, Vorschläge, Park-Übersicht, Filter, alle Vorhersagen, v18-Archiv
+> nacheinander); Ondo musste bis ganz unten scrollen und hatte das v18-Archiv mit geparkten
+> Spielen verwechselt, weil beides unmittelbar aufeinanderfolgte.
+>
+> **Umgesetzt als vier Reiter, nicht als zwei wie ursprünglich skizziert:** Reiter „Offen"
+> erfüllt den in der Idee genannten Wunsch unmittelbar. Reiter „Bewertet", „Archiv" und
+> „Werkzeuge" sind eine im Auftrag ausdrücklich erweiterte Umsetzung — die ursprüngliche Idee
+> sah „bewertet" noch als Teil von „Archiv" vor, im Auftrag ist „Bewertet" bewusst ein
+> eigener Reiter.
+>
+> **Die vier Reiter, mit belegten Grundmengen:** Aus Backlog-Punkt 70 bereits mit Codezitat
+> belegt: `e.status` hat im ganzen Skript nur `'offen'`/`'bewertet'`, `e.geparkt===true` und
+> `e.status==='bewertet'` kommen nie gemeinsam vor (`vorhersageKarte()`s Park-Knopf
+> erscheint nur bei `status==='offen'`). Daraus folgt eine lückenlose,
+> überschneidungsfreie Dreiteilung aller `neu` (`aera==='v19'`) Einträge: **Offen**
+> (`status==='offen' && !geparkt`) zeigt `pruefBlock()`, die unveränderte
+> Tag-für-Tag-Park-Übersicht und einen vereinfachten Filter (Datum, Wettbewerb, Mannschaft —
+> kein Status-Feld, hier implizit). **Bewertet** (`status==='bewertet'`) zeigt denselben
+> Filter, zusätzlich mit einer auf drei Optionen verkürzten Status-Auswahl (Alle/Richtig/
+> Falsch — „Offen"/„Geparkt" entfallen, weil in diesem Reiter unmöglich). **Archiv** zeigt
+> zwei klar getrennte, eigens überschriebene Abschnitte: die v19-Einträge mit
+> `geparkt===true` (mit dem bestehenden „Wieder prüfen"-Knopf) und direkt darunter,
+> unverändert, der bestehende v18-Archiv-Block — beide erscheinen jetzt als zwei erkennbare
+> Abschnitte statt ineinanderzulaufen. Kein Filter in diesem Reiter (kann später ergänzt
+> werden). **Werkzeuge** zeigt `korrFBlock()` und `logExportBlock()`, unverändert, nur an
+> neuer Stelle.
+>
+> **Neue Funktionen und Variablen:** `kilogGefiltert()` bekommt einen neuen, ans Ende
+> angehängten Parameter `mannschaft` (Teilstring-Suche gegen `e.match`, dieselbe Technik wie
+> die bestehende Wettbewerbs-Suche) — angehängt statt eingefügt, damit die 19 bestehenden
+> Trockentest-Aufrufe aus Punkt 70 mit der alten fünf-Parameter-Signatur unverändert
+> weiterlaufen (Regression bestätigt, siehe unten). `kilogFilterBlock()` bekommt einen
+> dritten Parameter `modus` (`'offen'`/`'bewertet'`), der nur steuert, ob das Status-Feld
+> erscheint. Neue reine Anzeigevariablen `kilogTab` (Standard `'offen'`) und
+> `kilogMannschaft` — wie `wtab` **nicht** Teil von `state`, setzen sich beim Neuladen
+> zurück. Die Zähler „`{gezeigt}` von `{gesamt}`" beziehen sich in jedem Reiter auf dessen
+> eigene Grundmenge (`offenListe.length`/`bewertetListe.length`), nicht mehr auf alle
+> Einträge zusammen.
+>
+> **Was unverändert bleibt, nur an neuer Stelle:** `pruefBlock()`, der
+> Park-Übersicht-Berechnungscode, `korrFBlock()`, `logExportBlock()`, der v18-Archiv-Code,
+> `vorhersageKarte()` selbst — keine Änderung an Karten, Farben oder Knöpfen. `state.kiProtokoll`,
+> seine Reihenfolge und Felder sind unangetastet — reine Anzeige-Umsortierung.
+>
+> **Verifiziert:** `node --check` bestanden. Trockentest bestanden — **19 neue Prüfungen**
+> an den echten, aus `beta.html` herausgeschnittenen Funktionen: die Vier-Wege-Zerlegung an
+> einer Kunstliste ist lückenlos und überschneidungsfrei · die neue Mannschafts-Suche findet
+> Teiltreffer, case-insensitiv, auch gegen den zweiten Teamnamen im Feld · alle vier Filter
+> (Datum, Wettbewerb, Status, Mannschaft) kombinieren sich korrekt (UND) · die Zähler-Basis
+> ist je Reiter die richtige Grundmenge, nicht die Gesamtzahl · ein Aufruf mit der alten,
+> fünf-Parameter-Signatur aus Punkt 70 funktioniert weiterhin identisch · `state.kiProtokoll`
+> bleibt nach allen Aufrufen bytegleich (JSON-Vergleich). **Die bestehenden 57 (Punkt 68), 19
+> (Punkt 69) und 19 (Punkt 70) Prüfungen erneut ausgeführt, alle weiterhin bestanden** — die
+> 19 aus Punkt 70 insbesondere unverändert, als direkter Beweis, dass der neue, angehängte
+> Parameter alte Aufrufe nicht bricht. `pruefe.py`: ALLES SAUBER.
+>
+> **Ein Sprachschlüssel dabei entfernt, nicht nur hinzugefügt:** `logEmpty` (die alte
+> Leermeldung „Noch keine KI-Vorhersagen protokolliert") wurde durch die vereinfachte, in
+> jedem Reiter einheitliche Leermeldung `filterEmpty` ersetzt und war danach nachweislich
+> ungenutzt (`grep` fand keinen `t('logEmpty')`-Aufruf mehr) — entfernt statt als toter Rest
+> stehen gelassen. **4 neue Sprachschlüssel** (`kilogTabBewertet`, `kilogTabArchiv`,
+> `kilogTabWerkzeuge`, `filterMannschaftPh`), macht 251 − 1 + 4 = **254**, von `pruefe.py`
+> Abschnitt 13 selbst nachgezählt, nicht wie im Plan angekündigt 255 — die Entfernung von
+> `logEmpty` war im Plan als Konsequenz der vereinfachten Leermeldung beschrieben, die
+> Zahl selbst aber nicht vorab genannt; hier berichtigt. Zwei bestehende Schlüssel
+> (`filterStatusBewRichtig`/`filterStatusBewFalsch`) behalten ihren Namen, bekommen aber
+> kürzere Werte („Richtig"/„Falsch" statt der langen Form) — kein Einfluss auf den Zähler.
+
+---
+
+**72. Mehrteiliges Redesign des KI-Log-Bereichs** · *Idee 4.9.2026, Ondo, aufgenommen beim Bau von Punkt 71* · **Status: Idee — Schritt 1 gebaut (Punkt 71), Schritt 2/3 offen, je eigener Plan und eigene Freigabe nötig**
+
+Ondos KI-Log-Redesign ist als dreiteiliges Vorhaben angelegt, damit die einzelnen Schritte
+nachvollziehbar bleiben und jeder für sich freigegeben werden kann:
+
+→ **Schritt 1 — Struktur:** vier Reiter (Offen/Bewertet/Archiv/Werkzeuge) statt einer langen
+  Seite. **Das ist Backlog-Punkt 71, gebaut am 4.9.2026 mit `beta.html` v19.8.15.**
+→ **Schritt 2 — Karten einklappen:** noch nicht beauftragt, reine Idee. Zweck (aus dem
+  Auftrag zu Schritt 1 übernommen): auch innerhalb eines Reiters wird eine lange Liste bei
+  wachsender Datenmenge unübersichtlich; eingeklappte Karten würden nur das Nötigste zeigen,
+  bis angetippt.
+→ **Schritt 3 — Optik/Logo:** noch nicht beauftragt, reine Idee. Kein Umfang bisher
+  genannt.
+→ **Kein Bauauftrag für Schritt 2/3** — nur als Idee mit Datum und Urheber eingetragen,
+  eigener Plan und eigene Freigabe nötig, wenn Ondo so weit ist (Art. 8, Arbeitsregel L).
+→ **Kosten (Arbeitsregel G):** noch nicht geschätzt, dazu müsste erst je ein Ansatz
+  feststehen.
 
 ---
 
