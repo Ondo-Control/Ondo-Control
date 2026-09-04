@@ -34,6 +34,10 @@
     border-radius:8px;color:var(--text);padding:11px 12px;font-size:15px;outline:none;
     font-family:inherit;}
   select{appearance:none;-webkit-appearance:none;}
+  /* v19.8.16 (Backlog-Punkt 73): iOS/WebKit rendert den Inhalt von input[type=date] ueber ein
+     eigenes internes Element, auf das text-align am input selbst nicht wirkt. Wirkungslos in
+     Browsern ohne dieses Element, keine Aenderung an Wert oder Bedienung des Feldes. */
+  input[type="date"]::-webkit-date-and-time-value{text-align:center;}
   .btn{background:var(--accent);color:#0B1220;border:none;border-radius:9px;padding:12px 16px;
     font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;letter-spacing:1px;
     cursor:pointer;text-transform:uppercase;width:100%;}
@@ -122,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.15';
+var CODE_VERSION = 'v19.8.16';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -2692,6 +2696,14 @@ var kilogVon='', kilogBis='', kilogWettbewerb='', kilogStatus='alle';
 /* v19.8.15 (Backlog-Punkt 71): Reiter-Zustand fuer das KI-Log (vier Reiter) plus die neue
    Mannschafts-Suche — ebenfalls reiner Anzeigezustand, nicht Teil von state. */
 var kilogTab='offen', kilogMannschaft='';
+/* v19.8.16 (Backlog-Punkt 72, Schritt 2): Menge der aufgeklappten Karten-Ids im KI-Log, als
+   einfaches Objekt — wie kilogTab nicht Teil von state, setzt sich beim Neuladen zurueck
+   (leer = alles eingeklappt, der verlangte Standard). Ein gemeinsames Objekt genuegt fuer alle
+   drei Reiter, weil jede Id aus Punkt 71 belegt genau einem Reiter angehoert. */
+var kilogAufgeklappt={};
+function kilogToggle(id, el){
+  if(el.open) kilogAufgeklappt[id]=true; else delete kilogAufgeklappt[id];
+}
 var entsperrt=false;
 
 function viewLock(){
@@ -2798,7 +2810,13 @@ function refRohAbgleich(e){
 }
 
 /* ================= VORHERSAGE-KARTE ================= */
-function vorhersageKarte(e, mitKnoepfen){
+/* v19.8.16 (Backlog-Punkt 72, Schritt 2): dritter, angehaengter Parameter einklappbar — wie
+   kilogGefiltert()s mannschaft-Parameter aus Punkt 71, alte Aufrufe mit nur zwei Argumenten
+   bleiben unveraendert lauffaehig (einklappbar dann undefined, falsy). Bewusst NICHT ueber
+   mitKnoepfen entschieden: der steuert ausschliesslich, ob Aktions-Knoepfe erscheinen, nicht
+   ob eine Karte einklappbar sein soll — beide Aufrufmuster faellen heute zufaellig zusammen,
+   das ist keine Bedeutung von mitKnoepfen selbst. */
+function vorhersageKarte(e, mitKnoepfen, einklappbar){
   var quelle = (e.herkunft==='flash') ? '🌱 Flash' : '🧠 Sonnet';
   var maerkte = (e.maerkte||[]).map(function(m,idx){
     var chip = m.status==='richtig' ? '<span class="badge b-win">'+t('stRight')+'</span>'
@@ -2874,7 +2892,11 @@ function vorhersageKarte(e, mitKnoepfen){
     widerspruchZeile = '<div class="muted" style="margin-top:8px;color:var(--loss)">'+t('refWiderspruch')+
       '<br>'+teile.join('<br>')+'</div>';
   }
-  return '<div class="card"'+(e.geparkt?' style="opacity:.6"':'')+'>'+
+  /* v19.8.16 (Backlog-Punkt 72, Schritt 2): kopf ist der beim Einklappen immer sichtbare
+     Teil — unveraendert der bisherige Kopfblock, plus einigZeile/widerspruchZeile, die dafuer
+     hierher vorgezogen werden (ihre Berechnung oben bleibt unveraendert, nur die Einfuegestelle
+     aendert sich). rest ist nur im aufgeklappten Zustand sichtbar. */
+  var kopf =
     '<div class="flex"><div>'+
       '<div class="disp" style="font-size:18px">'+esc(e.match)+
         (e.geparkt?(' <span class="badge b-open" style="font-size:11px">'+t('parked')+'</span>'):'')+
@@ -2887,12 +2909,13 @@ function vorhersageKarte(e, mitKnoepfen){
       '<div class="score">'+e.heim+':'+e.gast+'</div>'+
       '<div class="muted" style="font-size:10px">'+t('resultTip')+'</div>'+
     '</div></div>'+
+    einigZeile+
+    widerspruchZeile;
+  var rest =
     maerkte+
     wortZeile+
     (e.begruendung?'<div class="muted" style="margin-top:8px;border-top:1px solid var(--edge);padding-top:8px">'+esc(e.begruendung)+'</div>':'')+
     endstand+
-    einigZeile+
-    widerspruchZeile+
     (mitKnoepfen?('<div style="margin-top:10px">'+
       (e.status==='offen'
         ? (e.geparkt
@@ -2900,8 +2923,13 @@ function vorhersageKarte(e, mitKnoepfen){
             : '<button class="btn-sm" onclick="logParken(\''+e.id+'\',true)">'+t('parkBtn')+'</button>')
         : '')+
       '<button class="btn-sm" style="float:right" onclick="logLoeschen(\''+e.id+'\')">'+t('del')+'</button>'+
-      '<div style="clear:both"></div></div>'):'')+
-  '</div>';
+      '<div style="clear:both"></div></div>'):'');
+  if(einklappbar){
+    var offenAttr = kilogAufgeklappt[e.id] ? ' open' : '';
+    return '<details class="card"'+(e.geparkt?' style="opacity:.6"':'')+offenAttr+
+      ' ontoggle="kilogToggle(\''+e.id+'\',this)"><summary>'+kopf+'</summary>'+rest+'</details>';
+  }
+  return '<div class="card"'+(e.geparkt?' style="opacity:.6"':'')+'>'+kopf+rest+'</div>';
 }
 
 /* ================= WETTEN ================= */
@@ -2975,12 +3003,12 @@ function viewBets(c){
     if(kilogTab==='bewertet'){
       var g = kilogGefiltert(bewertetListe, kilogVon, kilogBis, kilogWettbewerb, kilogStatus, kilogMannschaft);
       body = kilogFilterBlock(bewertetListe.length, g.length, 'bewertet')+
-        (g.length ? g.map(function(e){ return vorhersageKarte(e,true); }).join('') : '<div class="card empty">'+t('filterEmpty')+'</div>');
+        (g.length ? g.map(function(e){ return vorhersageKarte(e,true,true); }).join('') : '<div class="card empty">'+t('filterEmpty')+'</div>');
     } else if(kilogTab==='archiv'){
       body =
         (geparktListe.length
           ? '<div class="muted" style="margin:18px 0 8px;letter-spacing:1px;text-transform:uppercase">'+t('filterStatusGeparkt')+'</div>'+
-            geparktListe.map(function(e){ return vorhersageKarte(e,true); }).join('')
+            geparktListe.map(function(e){ return vorhersageKarte(e,true,true); }).join('')
           : '') +
         (alt.length
           ? '<div class="muted" style="margin:18px 0 8px;letter-spacing:1px;text-transform:uppercase">'+t('archive')+'</div>'+
@@ -3026,7 +3054,7 @@ function viewBets(c){
         : '';
       var g = kilogGefiltert(offenListe, kilogVon, kilogBis, kilogWettbewerb, 'alle', kilogMannschaft);
       body = pruefBlock()+parkBlock+kilogFilterBlock(offenListe.length, g.length, 'offen')+
-        (g.length ? g.map(function(e){ return vorhersageKarte(e,true); }).join('') : '<div class="card empty">'+t('filterEmpty')+'</div>');
+        (g.length ? g.map(function(e){ return vorhersageKarte(e,true,true); }).join('') : '<div class="card empty">'+t('filterEmpty')+'</div>');
     }
 
     return sub+'<div class="muted" style="margin-bottom:10px">'+t('logD')+'</div>'+tabBar+body;

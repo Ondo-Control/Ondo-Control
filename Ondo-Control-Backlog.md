@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 4.9.2026, Fassung 78 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 4.9.2026, Fassung 79 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -15,6 +15,36 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 79 ändert (4.9., Karten einklappen — Punkt 72 Schritt 2 —, iOS-Datumsfelder, CLAUDE.md erneuert)
+
+**Anlass:** Auftrag Ondo, drei Teile in einer Lieferung, jeder einzeln verifiziert: Karten
+einklappen (Backlog-Punkt 72, Schritt 2 des KI-Log-Redesigns), die iOS-Zentrierung der
+Datumsfelder, und die fällige Auffrischung von CLAUDE.md.
+
+- **Backlog-Punkt 72, Schritt 2 gebaut, `beta.html` v19.8.16:** Karten in den drei
+  KI-Log-Reitern Offen/Bewertet/Archiv starten eingeklappt, zeigen dabei weiterhin Spielname,
+  Datum, Gehirn-Symbol, Ergebnis-Tipp und alle Warn-Markierungen; antippen zeigt den vollen
+  Inhalt. Volle Begründung und Verifikationsergebnis stehen als angehängter Block direkt bei
+  Punkt 72 (nicht hier wiederholt — Punkt 45).
+- **Neuer Backlog-Punkt 73 gebaut:** die iOS-Zentrierung der Datumsfelder, mit einer eigenen,
+  nebenwirkungsfreien CSS-Regel behoben — sichtbare Wirkung auf echtem iOS von Ondo zu
+  bestätigen, da diese Umgebung keinen WebKit-Renderer hat.
+- **`CLAUDE.md` (Backlog-Punkt 54) erneuert:** aus den vier vollständig gelesenen
+  Pflichtdokumenten neu geschrieben, zwei Abschnitte gestrafft, jetzt 185 statt 209 Zeilen,
+  Hash-Tabelle auf den tatsächlich committeten Stand dieser Lieferung berechnet.
+- **Sprachschlüssel:** unverändert bei 254 — keiner der drei Teile fügt neue Anzeigetexte
+  hinzu, von `pruefe.py` Abschnitt 13 selbst nachgezählt.
+- **Verifikation:** `node --check` bestanden · Trockentest: 20 neue Prüfungen an
+  `vorhersageKarte()`, plus die bestehenden 57 (Punkt 68), 19 (Punkt 69), 19 (Punkt 70) und
+  19 (Punkt 71) erneut ausgeführt, alle weiterhin bestanden · `pruefe.py` ohne Argument —
+  ALLES SAUBER.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 79 gehoben (Blueprint 0.78).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
 
 ---
 
@@ -440,6 +470,20 @@ Claude Code liest beim Start eine Datei mit diesem Namen aus dem Arbeitsordner. 
 → **Kosten:** keine ausser Zeit, und dem Kontext, den das Lesen der vier Dokumente bei jeder betroffenen Sitzung kostet.
 → **🔴 GEBAUT am 21.8.2026 (Chat 21, Cloud-Sitzung), beide Bausteine:** (1) `./CLAUDE.md` liegt im Repo, unter 200 Zeilen, aus den vier vollständig gelesenen Pflichtdokumenten geschrieben. Es wiederholt keine Kennzahl und keine Liste, sondern nennt für jede den Fundort (Punkt 45). (2) Der Auslöser bei Sitzungsstart ist ein Hook in `.claude/settings.json`, der `.claude/hooks/claude_md_frisch.py` aufruft. Das Skript vergleicht den Git-Blob-Hash der vier Dokumente mit der Tabelle am Ende von `CLAUDE.md` und **erinnert nur** an eine Erneuerung; es erneuert nichts von selbst und bricht nichts ab.
 → **Bewährung steht aus, und die Grenze von oben gilt unverändert:** `CLAUDE.md` ist Kontext, keine erzwungene Einstellung. Zusätzlich muss eine Sitzung den Hook aus dem Repo einmal bestätigen — geschieht das nicht, läuft die Erinnerung nicht.
+→ **🔴 Erneuert am 4.9.2026 (Auftrag Ondo, Teil 3 eines grösseren Auftrags), aus den vier
+  vollständig gelesenen Pflichtdokumenten (Fassung 79) neu geschrieben, nicht aus dem
+  Gedächtnis ergänzt — wie es die Datei selbst verlangt.** Anlass: Die vier Dokumente sind
+  seit dem letzten Bau mehrfach neu gefasst worden, `CLAUDE.md` war mit 209 Zeilen bereits
+  über der ursprünglich empfohlenen Grenze von unter 200. Eine reine Auffrischung von Zahlen
+  hätte nicht genügt — zwei Abschnitte wurden gestrafft, ohne Inhalt zu verlieren, den eine
+  neue Sitzung wirklich braucht: die Geschichte der inzwischen ersetzten
+  Fassungszahl-Prüfung (steht bereits vollständig in Blueprint.md, Arbeitsregel M) und die
+  Liste der bekannten Einschränkungen, dort um den neuen Fund aus Backlog-Punkt 73 ergänzt.
+  Struktur, Reihenfolge der acht Abschnitte und das Prinzip „Fundort nennen, keine Kennzahl
+  wiederholen" (Punkt 45) bleiben wie beim ersten Bau. Neue Zeilenzahl: 185. Die
+  Hash-Tabelle am Ende ist auf den tatsächlich in dieser Lieferung committeten Stand von
+  `STAND.md`, `Ondo-Control-Backlog.md` und `Blueprint.md` berechnet (`git hash-object`),
+  nicht nur eingetragen.
 
 ---
 
@@ -805,23 +849,100 @@ gemeinsam.
 
 ---
 
-**72. Mehrteiliges Redesign des KI-Log-Bereichs** · *Idee 4.9.2026, Ondo, aufgenommen beim Bau von Punkt 71* · **Status: Idee — Schritt 1 gebaut (Punkt 71), Schritt 2/3 offen, je eigener Plan und eigene Freigabe nötig**
+**72. Mehrteiliges Redesign des KI-Log-Bereichs** · *Idee 4.9.2026, Ondo, aufgenommen beim Bau von Punkt 71 · Schritt 2 Auftrag Ondo 4.9.2026, gebaut am selben Tag* · **Status: Schritt 1 und 2 GEBAUT, Schritt 3 offen — je eigener Plan und eigene Freigabe**
 
 Ondos KI-Log-Redesign ist als dreiteiliges Vorhaben angelegt, damit die einzelnen Schritte
 nachvollziehbar bleiben und jeder für sich freigegeben werden kann:
 
 → **Schritt 1 — Struktur:** vier Reiter (Offen/Bewertet/Archiv/Werkzeuge) statt einer langen
   Seite. **Das ist Backlog-Punkt 71, gebaut am 4.9.2026 mit `beta.html` v19.8.15.**
-→ **Schritt 2 — Karten einklappen:** noch nicht beauftragt, reine Idee. Zweck (aus dem
-  Auftrag zu Schritt 1 übernommen): auch innerhalb eines Reiters wird eine lange Liste bei
-  wachsender Datenmenge unübersichtlich; eingeklappte Karten würden nur das Nötigste zeigen,
-  bis angetippt.
+→ **Schritt 2 — Karten einklappen:** Zweck (aus dem Auftrag zu Schritt 1 übernommen): auch
+  innerhalb eines Reiters wird eine lange Liste bei wachsender Datenmenge unübersichtlich;
+  eingeklappte Karten zeigen nur das Nötigste, bis angetippt. **🔴 GEBAUT am 4.9.2026,
+  `beta.html` v19.8.16.**
 → **Schritt 3 — Optik/Logo:** noch nicht beauftragt, reine Idee. Kein Umfang bisher
   genannt.
-→ **Kein Bauauftrag für Schritt 2/3** — nur als Idee mit Datum und Urheber eingetragen,
-  eigener Plan und eigene Freigabe nötig, wenn Ondo so weit ist (Art. 8, Arbeitsregel L).
-→ **Kosten (Arbeitsregel G):** noch nicht geschätzt, dazu müsste erst je ein Ansatz
-  feststehen.
+→ **Kosten (Arbeitsregel G) für Schritt 3:** noch nicht geschätzt, dazu müsste erst ein
+  Ansatz feststehen.
+
+> **🔴 Schritt 2 GEBAUT am 4.9.2026 (Auftrag Ondo, `beta.html` v19.8.16).** Betrifft nur die
+> drei KI-Log-Reiter Offen/Bewertet/Archiv (Punkt 71) — nicht die „Vorschläge"-Ansicht
+> (heutige Tipps, wenige Einträge) und nicht das separate v18-Archiv (eigene, bereits
+> kompakte Kartenform ohne `vorhersageKarte()`).
+>
+> **Geklärt, nicht vermutet: `mitKnoepfen` ist keine Kontextunterscheidung.** Alle vier
+> Aufrufstellen von `vorhersageKarte(e, mitKnoepfen)` geprüft: Der zweite Parameter steuert
+> ausschliesslich, ob Aktions-Knöpfe erscheinen (Nicht prüfen/Wieder prüfen/Löschen, die
+> Markt-Knöpfe Richtig/Falsch) — dass die drei Reiter-Aufrufe zufällig dieselben sind, die
+> auch `mitKnoepfen=true` tragen, ist eine Übereinstimmung der heutigen Aufrufstellen, keine
+> Bedeutung des Parameters selbst. Deshalb ein neuer, dritter, ans Ende **angehängter**
+> Parameter `einklappbar` — dasselbe Muster wie `kilogGefiltert()`s `mannschaft`-Parameter
+> aus Punkt 71, rückwärtskompatibel: Der Aufruf der „Vorschläge"-Ansicht mit nur zwei
+> Argumenten bleibt unverändert lauffähig.
+>
+> **Inhalt zerlegt in einen immer sichtbaren Kopf und einen nur aufgeklappt sichtbaren
+> Rest.** Kopf: der bestehende Kopfblock (Spielname mit GEPARKT-/parkGrund-Abzeichen, Datum,
+> Anpfiff, Gehirn-Symbol, Wettbewerb, Ergebnis-Tipp) unverändert, dazu — neu an diese Stelle
+> vorgezogen, ihre Berechnung selbst bleibt unverändert — die `refEinigkeit`-Zeile („nicht
+> einstimmig", Quellen-Hinweis) und der `refRohAbgleich()`-Widerspruchshinweis. Rest:
+> Markt-Zeilen mit Prozentzahlen, BTTS-Wort-Zeile, Begründung, der tatsächliche Endstand
+> (zu unterscheiden vom Ergebnis-Tipp, der im Kopf bleibt), die Knopf-Zeile. **Ehrlich
+> benannt:** Weil die beiden Warn-Zeilen jetzt vor statt hinter dem aufklappbaren Teil
+> stehen, ändert sich im aufgeklappten Zustand ihre Position gegenüber vorher — notwendige
+> Folge davon, dass sie beim Einklappen sichtbar bleiben sollen. Am Inhalt der Markt-Zeilen,
+> Prozentzahlen, Begründung und Knöpfe ändert sich nichts.
+>
+> **Natives `<details>`/`<summary>` statt eigener Klapplogik** — die bestehende
+> `.card`-Formatierung ist eine reine CSS-Klasse ohne Bindung an ein Element und gilt
+> unverändert weiter; der Browser liefert dabei von selbst den verlangten Pfeil, keine neue
+> Optik. Der Auf-/Zu-Zustand liegt aber **nicht** allein im DOM: `render()` baut bei jeder
+> Änderung irgendwo in der App das komplette `innerHTML` neu auf, ein rein natives
+> `<details>` würde dabei bei jedem Rendern wieder zuklappen. Deshalb eine neue, reine
+> Anzeigevariable `kilogAufgeklappt` (ein Objekt, Eintrags-Id als Schlüssel) — wie `kilogTab`
+> nicht Teil von `state`, Standard leer (alles eingeklappt). Ein `ontoggle`-Handler
+> (`kilogToggle()`) schreibt bei jedem Öffnen/Schliessen den tatsächlichen Zustand dorthin
+> zurück, **ohne** `render()` aufzurufen — das Auf-/Zuklappen selbst löst kein komplettes
+> Neuzeichnen aus. Ein gemeinsames Objekt genügt für alle drei Reiter, weil jede Id aus
+> Punkt 71 belegt genau einem Reiter angehört.
+>
+> **Verifiziert:** `node --check` bestanden. Trockentest bestanden — **20 neue Prüfungen**
+> an der echten, aus `beta.html` herausgeschnittenen Funktion `vorhersageKarte()` (kein
+> Nachbau): eine Karte ohne Eintrag in `kilogAufgeklappt` hat kein `open`-Attribut · ein
+> Eintrag erzeugt das `open`-Attribut · alle vier Warn-Markierungen (GEPARKT,
+> parkGrund-Abzeichen, `refEinig2von3`-Zeile, `refWiderspruch`-Zeile) stehen im `<summary>`,
+> nicht dahinter · Markt-Zeilen, Begründung, Endstand und die Knopf-Zeile stehen weiterhin im
+> aufklappbaren Rest · ein Aufruf mit nur zwei Argumenten liefert weiterhin genau ein `<div>`,
+> nicht `<details>` · der übergebene Eintrag bleibt nach mehreren Aufrufen bytegleich (reine
+> Anzeigefunktion) · `kilogToggle()` schreibt den tatsächlichen `open`-Zustand korrekt
+> zurück. **Die bestehenden 57 (Punkt 68), 19 (Punkt 69), 19 (Punkt 70) und 19 (Punkt 71)
+> Prüfungen erneut ausgeführt, alle weiterhin bestanden** — keine Regression. `pruefe.py`:
+> ALLES SAUBER. **Keine neuen Sprachschlüssel** (254 unverändert — der native Pfeil braucht
+> keine Beschriftung).
+
+---
+
+**73. iOS-Zentrierung der Datumsfelder** · *Fund 3.9.2026, bisher nicht untersucht · Auftrag Ondo 4.9.2026, gebaut am selben Tag* · **Status: 🔴 GEBAUT am 4.9.2026, `beta.html` v19.8.16 — sichtbare Wirkung auf echtem iOS von Ondo zu bestätigen**
+
+Die von/bis-Datumsfelder (`logExportBlock()`, `kilogFilterBlock()` aus Punkt 70/71) tragen
+`text-align:center` inline im Code, erscheinen auf iOS trotzdem nicht zentriert.
+
+> **🔴 Untersucht und behoben am 4.9.2026.** Ursache: eine dokumentierte WebKit-Eigenheit —
+> `input[type="date"]` rendert seinen sichtbaren Inhalt über ein eigenes, browser-internes
+> Element (`::-webkit-date-and-time-value`), auf das `text-align` am `input` selbst nicht
+> wirkt. Der dafür vorgesehene, seit Langem gebräuchliche und nebenwirkungsfreie CSS-Weg:
+> eine eigene Regel auf genau dieses interne Element, `input[type="date"]::-webkit-date-and-time-value{text-align:center;}`.
+> Ändert nichts an Wert, Verhalten oder Bedienung des Feldes, nur an der Textausrichtung; in
+> Browsern ohne dieses interne Element wirkt sie einfach gar nicht (keine Fehlermeldung,
+> kein Schaden). Keine gebastelte Notlösung, sondern die für dieses Problem vorgesehene
+> Standardlösung — deshalb angewendet statt nur als bekannte Grenze dokumentiert.
+> **Ehrliche Grenze der eigenen Prüfung (Art. 11):** Diese Umgebung hat keinen Safari-/
+> WebKit-Renderer (nur Chromium ist vorinstalliert) — die tatsächliche, sichtbare Zentrierung
+> auf einem echten iPhone lässt sich von hier aus nicht selbst beobachten, nur dass die Regel
+> syntaktisch korrekt ist und nichts an der bestehenden Funktion der Felder ändert. Ondo
+> wird gebeten, nach der Lieferung kurz zu bestätigen, ob die Zentrierung jetzt greift.
+> **Verifiziert:** `node --check` bestanden. Keine automatisierte Prüfung möglich (reine
+> Bildschirmdarstellung ohne eigene Logik). `pruefe.py`: ALLES SAUBER. Keine neuen
+> Sprachschlüssel, kein Schnitt in der Messreihe.
 
 ---
 
