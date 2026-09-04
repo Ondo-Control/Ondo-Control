@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 4.9.2026, Fassung 75, v19.8.13*
+*Die aktuelle Wahrheit. Stand: 4.9.2026, Fassung 76, v19.8.13*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -16,7 +16,7 @@
 
 ---
 
-> **Zur Datierung:** Die Kalibrierungszahlen im Abschnitt „Aktueller Messstand" sind am **2.9.2026 aus den Bildschirmfotos der App abgelesen** — Sonnet 402 bewertete Aussagen bei 6 % Abweichung und 57 % Treffern, Flash 399 bei 5 % und 52 %. *Die genaue Ablesezeit ist unbekannt (Art. 11); das Bild nennt als Sicherungszeit 17:33 Uhr, das ist NICHT die Ablesezeit.* Alle älteren Zahlen — 30.8. (399/396), 14.8. (330/327), 13.8. (300/297), 9.8. (je 207), 8.8. (je 180) — sind ab jetzt Verlaufsangaben. Massgeblich ist immer der Abschnitt „Aktueller Messstand". *(Bis zum 2.9.2026 stand hier die Ablesung vom 14.8.2026; sie ist durch diese vollständig ersetzt, nicht ergänzt.)*
+> **Zur Datierung:** Die Kalibrierungszahlen im Abschnitt „Aktueller Messstand" sind am **4.9.2026 aus den Bildschirmfotos der App abgelesen** — Sonnet 468 bewertete Aussagen bei 3 % Abweichung und 54 % Treffern, Flash 465 bei 7 % und 50 %. *Die genaue Ablesezeit ist unbekannt (Art. 11); die Sicherungszeit steht unter „Datensicherung" und ist NICHT die Ablesezeit.* Alle älteren Zahlen — 2.9. (402/399), 30.8. (399/396), 14.8. (330/327), 13.8. (300/297), 9.8. (je 207), 8.8. (je 180) — sind ab jetzt Verlaufsangaben. Massgeblich ist immer der Abschnitt „Aktueller Messstand". *(Bis zum 4.9.2026 stand hier die Ablesung vom 2.9.2026; sie ist durch diese vollständig ersetzt, nicht ergänzt.)*
 ## Für jede KI, die dieses Projekt unterstützt
 
 Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungssystem. Eine einzige HTML-Datei, GitHub Pages, localStorage, kein Server. Besitzer und alleiniger Entscheider: **Ondo** (kein Programmierer, arbeitet primär am iPhone, liefert jede Änderung selbst per Datei-Upload zu GitHub).
@@ -105,53 +105,54 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 
 ---
 
-## Aktueller Messstand (abgelesen aus den Bildschirmfotos der App am 2.9.2026)
+## Aktueller Messstand (abgelesen aus den Bildschirmfotos der App am 4.9.2026)
 
-*Zur Herkunft (Art. 14): **Alle Zahlen dieses Abschnitts sind aus der Anzeige der App abgelesen, keine ist gerechnet.** Der Abschnitt wird immer vollstaendig ersetzt, nie in Teilen. Quelle: Bildschirmfotos der App mit der Kopfzeile „Mittwoch, 2. September 2026 — v19.8.10 BETA". Die genaue Ablesezeit ist unbekannt (Art. 11); die im Bild sichtbare Sicherungszeit steht unter „Datensicherung" und ist NICHT die Ablesezeit.*
+*Zur Herkunft (Art. 14): **Alle Zahlen dieses Abschnitts sind aus der Anzeige der App abgelesen, keine ist gerechnet.** Der Abschnitt wird immer vollstaendig ersetzt, nie in Teilen. Quelle: Bildschirmfotos der App mit der Kopfzeile „Freitag, 4. September 2026 — v19.8.13 BETA". Die genaue Ablesezeit ist unbekannt (Art. 11); die Sicherungszeit steht unter „Datensicherung" und ist NICHT die Ablesezeit.*
 
-**Bestand:** **403 Vorhersagen** und 6 Wetten im Speicher. *(Die Sicherungszeit steht nur unter „Datensicherung" — Punkt 45, ein Ort je Tatsache.)*
+**Bestand:** **403 Vorhersagen** und 6 Wetten im Speicher — **unverändert gegenüber dem 2.9.2026**, weil die seither übernommenen Spiele bereits bestehende, bisher offene Einträge waren, keine neuen Vorhersagen (Ondo, 4.9.2026). *(Die Sicherungszeit steht nur unter „Datensicherung" — Punkt 45, ein Ort je Tatsache.)*
 
 | | bewertete Aussagen | Kalibrierungs-Abweichung | Trefferquote |
 |---|---|---|---|
-| Sonnet | 402 | **6 %** | 57 % (229/402) |
-| Flash | 399 | **5 %** | 52 % (209/399) |
-| gesamt | 801 | — | 55 % (438/801) |
+| Sonnet | 468 | **3 %** | 54 % (253/468) |
+| Flash | 465 | **7 %** | 50 % (233/465) |
+| gesamt | 933 | — | 52 % (486/933) |
 
-**Sonnets Verteilung** *(Anzahl je Stufe, in Klammern behauptet/wirklich)*: 1–49 % → 63 (43/35) · 50–59 % → 257 (54/58) · 60–69 % → 54 (63/70) · 70–79 % → 28 (73/68) · ab 80 % → 0
+**Sonnets Verteilung** *(Anzahl je Stufe, in Klammern behauptet/wirklich)*: 1–49 % → 78 (43/36) · 50–59 % → 295 (54/55) · 60–69 % → 61 (63/67) · 70–79 % → 32 (73/63) · 80–89 % → 0 · 90–99 % → 2 (94/100)
 
-**Flashs Verteilung** *(Anzahl je Stufe, in Klammern behauptet/wirklich)*: 1–49 % → 61 (43/28) · 50–59 % → 173 (55/54) · 60–69 % → 135 (63/59) · 70–79 % → 25 (72/56) · 80–89 % → 4 (83/75) · 90–99 % → 1 (90/100)
+**Flashs Verteilung** *(Anzahl je Stufe, in Klammern behauptet/wirklich)*: 1–49 % → 74 (43/28) · 50–59 % → 212 (55/51) · 60–69 % → 147 (63/56) · 70–79 % → 25 (72/56) · 80–89 % → 5 (83/80) · 90–99 % → 2 (91/100)
 
 **Entschlossenheit:**
 
 | | Ø Abstand von 50 | Anteil ab 60 % |
 |---|---|---|
-| Sonnet | 6,7 | 20 % (82/402) |
-| Flash | 9,2 | 41 % (165/399) |
+| Sonnet | 6,9 | 20 % (95/468) |
+| Flash | 8,8 | 38 % (179/465) |
 
-**Gepaarter Vergleich (Backlog-Punkt 51, seit 30.8.2026 in `BACKLOG-ARCHIV.md`) — 154 gepaarte Spiele:**
+**Gepaarter Vergleich (Backlog-Punkt 51, seit 30.8.2026 in `BACKLOG-ARCHIV.md`) — 161 gepaarte Spiele:**
 
 | Markt | Spiele | Nur Sonnet | Nur Flash | Beide richtig | Beide falsch |
 |---|---|---|---|---|---|
-| Sieger | 132 | 10 | 11 | 51 | 60 |
-| Über/Unter 2,5 Tore | 132 | 21 | 15 | 55 | 41 |
-| Beide treffen | 132 | 16 | 5 | 72 | 39 |
+| Sieger | 154 | 12 | 12 | 59 | 71 |
+| Über/Unter 2,5 Tore | 154 | 22 | 17 | 64 | 51 |
+| Beide treffen | 154 | 17 | 6 | 75 | 56 |
 
-*1 Spiel ist nicht eindeutig zuordenbar und wird nicht mitgezählt (Anzeige der App). **Warum je Markt nur 132 der 154 gepaarten Spiele auftauchen, ist nicht geklärt** (Art. 11) — die Differenz ist abgelesen, nicht erklärt. Naheliegend wäre, dass die übrigen Paarungen keinen bewerteten Markt haben (geparkt oder offen); das ist eine Vermutung und ausdrücklich nicht geprüft.*
+*1 Spiel ist nicht eindeutig zuordenbar und wird nicht mitgezählt (Anzeige der App). **Warum je Markt nur 154 der 161 gepaarten Spiele auftauchen, ist weiterhin nicht geklärt** (Art. 11) — 1 Spiel ist durch die Nichtzuordenbarkeit erklärt, die restlichen 6 nicht. Dieselbe unerklärte Lücke wie beim vorigen Stand (dort 132 von 154), diesmal in anderer Grösse — die Differenz ist abgelesen, nicht erklärt.*
 
-**Wetten:** Saldo −19,51 €, 6 abgeschlossen, 0,00 € offen, Trefferquote 17 % (1 von 6). Gesamt-Bilanz −29,75 €, unverändert.
+**Wetten:** Zahlen zu dieser Ablesung nicht mitgeliefert — zuletzt bekannt (2.9.2026): Saldo −19,51 €, 6 abgeschlossen, 0,00 € offen, Trefferquote 17 % (1 von 6), Gesamt-Bilanz −29,75 €. Nicht als aktueller Stand wiederholt, um keine falsche Aktualität vorzutäuschen (Art. 14).
 
-**Sonnet hat weiterhin KEINE bewertete Aussage ab 80 %.** Flash hat dort fünf. Die Verzerrung durch geparkte Einträge besteht unverändert und gehört neben jede Aussage über Sonnets Verhalten bei hoher Zuversicht.
+**🔴 Sonnet hat zum ersten Mal eine bewertete Aussage ab 80 %** — zwei Aussagen in der Stufe 90–99 %, beide eingetroffen. In allen bisherigen Messständen stand hier „Sonnet hat weiterhin KEINE bewertete Aussage ab 80 %"; das gilt ab dieser Ablesung nicht mehr. Bei nur zwei Aussagen ist daraus **nichts** über Sonnets Verhalten bei hoher Zuversicht ableitbar (zu kleine Stichprobe) — nur der Umstand selbst wird festgehalten. Die Verzerrung durch geparkte Einträge besteht unverändert und gehört neben jede Aussage über beide Gehirne bei hoher Zuversicht.
 
 **Ehrliche Einordnung (Art. 14):**
-- **Die beiden Gehirne haben sich gegenläufig entwickelt** — Sonnets Abweichung ist von 4 % (14.8.) auf 6 % **gestiegen**, Flashs von 8 % auf 5 % **gefallen**. **Flash steht damit zum ersten Mal besser da als Sonnet.** Die Zahlen sind auf **mehrere Prozentpunkte** genau, nicht auf einen; ein Unterschied dieser Grösse liegt weiterhin im Rauschen (Backlog-Punkt 35). **Daraus folgt nicht, dass Flash das bessere Gehirn ist** — die Trefferquote sagt das Gegenteil (Sonnet 57 %, Flash 52 %), und Abweichung und Trefferquote sind zwei verschiedene Zahlen.
-- **Sonnet legt sich noch seltener fest als zuvor:** 257 von 402 Aussagen (64 %) liegen zwischen 50 und 59 Prozent.
-- **Flashs grösster Einzelposten bleibt die Stufe 60–69 %:** behauptet 63, eingetroffen 59. *(Die Anzahl steht in der Verteilungszeile oben und wird hier nicht wiederholt — Punkt 45.)*
-- Zeilen mit ein bis vier Aussagen (Flash 80–99 %) sind **bedeutungslos**.
-- **Ungleiche Anzahl:** Sonnet 402, Flash 399. Woher die Differenz von drei kommt, ist weiterhin **nicht geklärt** (Art. 11).
-- **Der Brier-Score ist aus der Anzeige nicht ablesbar** und wird deshalb nicht angegeben. Er wird nirgends berechnet.
-- **🔴 Diese Zahlen enthalten noch die beiden von Hand eingetragenen Spiele.** Sabah FC–Hapoel Beer-Sheva FC und NK Celje–Slovan Bratislava waren am 30.8.2026 (v19.8.9/v19.8.10) entparkt und bewertet worden; die Rücknahme ist erst am 2.9.2026 mit v19.8.11 gebaut worden und wirkt in Ondos App erst, wenn er diese Fassung lädt. **Danach sinken die bewerteten Aussagen um je drei Märkte je Gehirn und je Spiel, und die Kennzahlen ändern sich entsprechend.** Der nächste Messstand ist deshalb neu abzulesen, nicht aus diesem fortzuschreiben (Fehlerart C1).
+- **Die Kalibrierungsabweichung hat sich bei beiden Gehirnen wieder gegenläufig entwickelt** — Sonnets Abweichung ist von 6 % (2.9.) auf 3 % **gefallen**, Flashs von 5 % auf 7 % **gestiegen**. **Sonnet steht damit wieder besser da als Flash**, nachdem am 2.9. zum ersten Mal das Gegenteil galt. Die Zahlen sind auf **mehrere Prozentpunkte** genau, nicht auf einen; ein Unterschied dieser Grösse liegt weiterhin im Rauschen (Backlog-Punkt 35).
+- **Beide Trefferquoten sind leicht gesunken:** Sonnet von 57 % auf 54 %, Flash von 52 % auf 50 %. Die kombinierte Trefferquote (52 %) ist eine eigene, direkt abgelesene Zahl, keine eigene Rechnung.
+- **Sonnet legt sich weiterhin am häufigsten zwischen 50 und 59 Prozent fest:** 295 von 468 Aussagen (63 %), fast derselbe Anteil wie am 2.9. (64 %).
+- **Flashs grösster Einzelposten bleibt die Stufe 60–69 %:** behauptet 63, eingetroffen 56. *(Die Anzahl steht in der Verteilungszeile oben und wird hier nicht wiederholt — Punkt 45.)*
+- Zeilen mit sehr wenigen Aussagen (Sonnet 90–99 %, Flash 80–89 % und 90–99 %) sind **bedeutungslos**.
+- **Ungleiche Anzahl, unverändert:** Sonnet 468, Flash 465 — dieselbe Differenz von drei wie beim vorigen Stand. Woher sie kommt, ist weiterhin **nicht geklärt** (Art. 11).
+- **Entschlossenheit:** Sonnets Anteil ab 60 % bleibt bei 20 %, jetzt bei grösserer Grundgesamtheit. Flashs Anteil ist von 41 % auf 38 % gesunken.
+- **Der Brier-Score ist aus der Anzeige weiterhin nicht ablesbar** und wird deshalb nicht angegeben. Er wird nirgends berechnet.
 
-**Vorherige Stände:** *30.8.2026 — Sonnet 399, Flash 396 bewertete Aussagen. Dieser Zwischenstand war nie in `STAND.md` eingetragen worden und wird hier nachgetragen, damit die Reihe keine Lücke hat; **Abweichung und Trefferquote sind für diesen Tag nicht überliefert** und werden nicht ergänzt (Art. 11, Fehlerart C1 — nicht aus den Nachbarwerten herleiten). 14.8.2026 — Sonnet 330 bei 4 % und 55 %, Flash 327 bei 8 % und 50 %. 13.8. nach der Berichtigung — 300/297. 9.8. — je 207. 8.8. — je 180. 6.8. — je 135, 5 und 9. 3.8. — je 87, 4,8 und 8,6.*
+**Vorherige Stände:** *2.9.2026 — Sonnet 402 bei 6 % und 57 %, Flash 399 bei 5 % und 52 %. 30.8.2026 — Sonnet 399, Flash 396 bewertete Aussagen; **Abweichung und Trefferquote sind für diesen Tag nicht überliefert** (Art. 11, Fehlerart C1 — nicht aus den Nachbarwerten herleiten). 14.8.2026 — Sonnet 330 bei 4 % und 55 %, Flash 327 bei 8 % und 50 %. 13.8. nach der Berichtigung — 300/297. 9.8. — je 207. 8.8. — je 180. 6.8. — je 135, 5 und 9. 3.8. — je 87, 4,8 und 8,6.*
 
 ---
 
@@ -292,7 +293,7 @@ Dateiname beginnt mit Datum und Uhrzeit: `2026-07-31_1430_Ondo-Control_Thema.md`
 **Nie empfehlen, Ergebnisse von Hand nachzuschlagen.** Seit dem 25.7. abgelehnt. Die Zuverlässigkeit des Schiedsrichters gehört zum Test, nicht in Ondos Freizeit. Zwei Claude-Instanzen sind trotzdem darauf zurückgefallen.
 
 **Datensicherung:** Ondo regelmäßig daran erinnern.
-**Letzte bestätigte Sicherung: 2.9.2026, 17:33 Uhr** — 403 Vorhersagen, 6 Wetten, im Bildschirmfoto der App sichtbar, nicht geschätzt. Davor: 16.8., 10:47 Uhr (293 Vorhersagen) · 14.8., 22:53 Uhr (nach dem Einbau von v19.8.2) · 14.8., 22:22 Uhr (vor der Lieferung) · 14.8., 07:14 Uhr (nach der Uebernahme der zehn Endstaende) · 13.8., 18:38 Uhr (nach der Berichtigung), 16:28 Uhr (293 Vorhersagen) und 09:17 Uhr. Früher: 8.8., 07:54 Uhr (210 Vorhersagen) · 7.8., 08:00 Uhr · 6.8., 08:28 Uhr (170 Vorhersagen) · 5.8., 13:06 Uhr · 4.8., 17:58 Uhr (138 Vorhersagen) · 3.8. · 2.8. · 31.7., 07:49 Uhr. ⚠ **Vor jeder Codelieferung ist eine frische Sicherung zu verlangen.**
+**Letzte bestätigte Sicherung: 4.9.2026, 09:33 Uhr** — 403 Vorhersagen, 6 Wetten. Davor: 2.9., 17:33 Uhr (403 Vorhersagen, 6 Wetten, im Bildschirmfoto der App sichtbar) · 16.8., 10:47 Uhr (293 Vorhersagen) · 14.8., 22:53 Uhr (nach dem Einbau von v19.8.2) · 14.8., 22:22 Uhr (vor der Lieferung) · 14.8., 07:14 Uhr (nach der Uebernahme der zehn Endstaende) · 13.8., 18:38 Uhr (nach der Berichtigung), 16:28 Uhr (293 Vorhersagen) und 09:17 Uhr. Früher: 8.8., 07:54 Uhr (210 Vorhersagen) · 7.8., 08:00 Uhr · 6.8., 08:28 Uhr (170 Vorhersagen) · 5.8., 13:06 Uhr · 4.8., 17:58 Uhr (138 Vorhersagen) · 3.8. · 2.8. · 31.7., 07:49 Uhr. ⚠ **Vor jeder Codelieferung ist eine frische Sicherung zu verlangen.**
 
 *Diese Zeile ist eine **Standsangabe**, keine Verlaufsangabe. Sie stand vom 7. bis zum 14. August auf dem 7.8. und war damit sechs Tage falsch, während zwei andere Stellen des Dokuments den richtigen Wert trugen. Seit dem 14.8. prüft `pruefe.py` sie gegen die jüngste Sicherungsangabe im Dokument.*
 *Am 4.8. hat sich die Sicherung bewährt: Ondo hat den Browserverlauf gelöscht, Safari löschte dabei den Websitespeicher mit, alle Daten waren weg — und wurden vollständig wiederhergestellt. **Nichts verloren.** Zwei bekannte Verlustwege: Browserdaten löschen · getrennter Speicher Safari gegen Startbildschirm.*

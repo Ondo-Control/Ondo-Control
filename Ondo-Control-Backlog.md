@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 4.9.2026, Fassung 75 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 4.9.2026, Fassung 76 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -15,6 +15,45 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 76 ändert (4.9., Messstand nachgeführt — reine Dokumentation)
+
+**Anlass:** Auftrag Ondo — Messstand in `STAND.md` mit den Zahlen vom 4.9.2026 nachführen.
+Kein Codeaufwand, keine Backlog-Punkte betroffen.
+
+- **`STAND.md`, Abschnitt „Aktueller Messstand" vollständig ersetzt** (Punkt 45 — ein Fakt,
+  ein Ort, nicht daneben stehen lassen): Sonnet 468 bewertete Aussagen bei 3 % Abweichung
+  und 54 % Trefferquote, Flash 465 bei 7 % und 50 %. Bestand unverändert 403
+  Vorhersagen/6 Wetten — von Ondo selbst erklärt: die seither übernommenen Spiele waren
+  bereits bestehende, offene Einträge, keine neuen. Gepaarter Vergleich jetzt 161 gepaarte
+  Spiele (154 je Markt, dieselbe unerklärte Lücke wie zuvor, in anderer Grösse). KI-Trefferquote
+  gesamt 52 % (486/933).
+- **Erst angehalten, dann nachgeliefert (Arbeitsregel M):** Der erste Versuch, die vom
+  Auftrag gelieferten Zahlen einzusetzen, liess `pruefe.py` FEHL melden — die
+  Stufen-Verteilung je Gehirn fehlte, `pruefe.py` Abschnitt 8 verlangt sie mit einer Summe,
+  die exakt die neue Kopfzahl ergibt. Nichts ausgeliefert, die Meldung im Wortlaut gezeigt,
+  angehalten. Ondo hat die fehlenden Stufen nachgereicht (sein eigener Auslassungsfehler,
+  nicht Claudes); beide Summen unabhängig nachgerechnet (Sonnet 78+295+61+32+0+2=468,
+  Flash 74+212+147+25+5+2=465), erst danach eingesetzt.
+- **Dabei zwei eigene Formulierungsfehler im ersten Versuch gefunden und behoben, ohne den
+  Prüfer aufzuweichen (Fehlerart C6 vermieden):** Alte Vergleichszahlen als `(402/399)` bzw.
+  „82 von 402" geschrieben — sieht für `pruefe.py`s Nenner-Heuristik wie eine neue,
+  unpassende Bruchzahl aus. Umformuliert, nicht die Prüfung gelockert.
+- **Neuer Befund, festgehalten:** Sonnet hat zum ersten Mal eine bewertete Aussage ab 80 %
+  (zwei Aussagen, Stufe 90–99 %, beide eingetroffen) — löst die in mehreren vorigen
+  Messständen stehende Aussage „Sonnet hat weiterhin KEINE bewertete Aussage ab 80 %" ab.
+  Bei nur zwei Aussagen ausdrücklich **keine** Schlussfolgerung daraus gezogen (zu kleine
+  Stichprobe).
+- **`STAND.md`:** Fassungszahl allein geändert bei Datensicherung — Zeile zur letzten
+  bestätigten Sicherung (4.9.2026, 09:33 Uhr) nachgeführt.
+- **Verifikation:** `pruefe.py` ohne Argument — ALLES SAUBER. Kein Code betroffen, kein
+  `node --check` nötig.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 76 gehoben (Blueprint 0.75).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
 
 ---
 
