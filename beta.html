@@ -122,7 +122,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.13';
+var CODE_VERSION = 'v19.8.14';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -206,6 +206,9 @@ var I18N = {
   srcWarn:'⚠ Später Fund ohne benannte Quelle — vor Übernehmen selbst prüfen!', srcLabel:'Quelle',
   checkingRound:'🔎 Prüfe … Durchgang {a}/{b}', balance:'{a} von {b} gefunden', balLaeuft:'noch nicht gespielt', balFehlt:'nicht gefunden',
   logEmpty:'Noch keine KI-Vorhersagen protokolliert.',
+  filterT:'🔎 Filter', filterWettbewerbPh:'Wettbewerb (Teiltext)', filterStatusAlle:'Alle', filterStatusOffen:'Offen',
+  filterStatusGeparkt:'Geparkt', filterStatusBewRichtig:'Bewertet — alle Märkte richtig', filterStatusBewFalsch:'Bewertet — mind. ein Markt falsch',
+  filterReset:'Zurücksetzen', filterCount:'{a} von {b}', filterEmpty:'Kein Eintrag passt zum Filter.',
   logD:'Jede KI-Vorhersage wird hier bewertet. Aus einem Ergebnis-Tipp leitet die App drei Aussagen ab.',
   gKeyT:'🌱 Zweites Gehirn (Google Gemini)', gKeyD:'Schlüssel von aistudio.google.com — bleibt NUR auf diesem Gerät. Übernimmt Ergebnis-Prüfen & Foto-Lesen fast gratis.', gOn:'✅ Gemini-Schlüssel gespeichert', gOff:'❌ Kein Gemini-Schlüssel',
   duellT:'Duell-Modus', duellD:'Beide Gehirne bekommen dieselbe Spielliste und sagen dieselben Spiele vorher. Ohne Gemini-Schlüssel läuft nur Sonnet.',
@@ -308,6 +311,9 @@ var I18N = {
   srcWarn:'⚠ Trouvé tardivement sans source nommée — vérifie toi-même avant d’appliquer !', srcLabel:'Source',
   checkingRound:'🔎 Vérification … passage {a}/{b}', balance:'{a} sur {b} trouvés', balLaeuft:'pas encore joué', balFehlt:'introuvable',
   logEmpty:'Aucune prédiction IA enregistrée.',
+  filterT:'🔎 Filtre', filterWettbewerbPh:'Compétition (texte partiel)', filterStatusAlle:'Tous', filterStatusOffen:'Ouvert',
+  filterStatusGeparkt:'En pause', filterStatusBewRichtig:'Évalué — tous les marchés corrects', filterStatusBewFalsch:'Évalué — au moins un marché faux',
+  filterReset:'Réinitialiser', filterCount:'{a} sur {b}', filterEmpty:'Aucune entrée ne correspond au filtre.',
   logD:'Chaque prédiction IA est évaluée ici. À partir d’un score prédit, l’app déduit trois affirmations.',
   gKeyT:'🌱 Second cerveau (Google Gemini)', gKeyD:'Clé de aistudio.google.com — reste UNIQUEMENT sur cet appareil. Prend en charge vérification & lecture photo presque gratuitement.', gOn:'✅ Clé Gemini enregistrée', gOff:'❌ Pas de clé Gemini',
   duellT:'Mode duel', duellD:'Les deux cerveaux reçoivent la même liste de matchs. Sans clé Gemini, seul Sonnet fonctionne.',
@@ -410,6 +416,9 @@ var I18N = {
   srcWarn:'⚠ Late find without a named source — verify yourself before applying!', srcLabel:'Source',
   checkingRound:'🔎 Checking … pass {a}/{b}', balance:'{a} of {b} found', balLaeuft:'not played yet', balFehlt:'not found',
   logEmpty:'No AI predictions logged yet.',
+  filterT:'🔎 Filter', filterWettbewerbPh:'Competition (partial text)', filterStatusAlle:'All', filterStatusOffen:'Open',
+  filterStatusGeparkt:'Parked', filterStatusBewRichtig:'Rated — all markets correct', filterStatusBewFalsch:'Rated — at least one market wrong',
+  filterReset:'Reset', filterCount:'{a} of {b}', filterEmpty:'No entry matches the filter.',
   logD:'Every AI prediction is rated here. From one predicted score the app derives three statements.',
   gKeyT:'🌱 Second brain (Google Gemini)', gKeyD:'Key from aistudio.google.com — stays ONLY on this device. Handles result checking & photo reading almost free.', gOn:'✅ Gemini key saved', gOff:'❌ No Gemini key',
   duellT:'Duel mode', duellD:'Both brains receive the same fixture list. Without a Gemini key only Sonnet runs.',
@@ -1097,6 +1106,50 @@ function logExportBlock(){
       'border:1px solid var(--edge);border-radius:8px;color:var(--text);padding:10px;'+
       'font-size:12px;font-family:ui-monospace,Menlo,monospace;line-height:1.5"></textarea>'+
     '<button class="btn btn-ghost" style="margin-top:8px" onclick="logTextKopieren(\'refRohText\')">'+t('logExpCopy')+'</button>'+
+  '</div>';
+}
+/* v19.8.14 (Backlog-Punkt 70, 4.9.2026): reine Anzeigefilter fuer das KI-Log. Wirkt nur auf die
+   Darstellung — state.kiProtokoll bleibt unangetastet, .filter() liefert immer ein neues Array. */
+function kilogGefiltert(liste, von, bis, wettbewerb, status){
+  var vonZ = von ? datumZahl(von) : null;
+  var bisZ = bis ? datumZahl(bis) : null;
+  var wSuche = String(wettbewerb||'').trim().toLowerCase();
+  return liste.filter(function(e){
+    var dz = datumZahl(e.datum);
+    if(vonZ!==null && (dz===null || dz<vonZ)) return false;
+    if(bisZ!==null && (dz===null || dz>bisZ)) return false;
+    if(wSuche && String(e.wettbewerb||'').toLowerCase().indexOf(wSuche)<0) return false;
+    if(status==='offen' && !(e.status==='offen' && !e.geparkt)) return false;
+    if(status==='geparkt' && !e.geparkt) return false;
+    if(status==='bewRichtig' && !(e.status==='bewertet' && (e.maerkte||[]).every(function(m){return m.status==='richtig';}))) return false;
+    if(status==='bewFalsch' && !(e.status==='bewertet' && (e.maerkte||[]).some(function(m){return m.status==='falsch';}))) return false;
+    return true;
+  });
+}
+function kilogFilterBlock(gesamt, gezeigt){
+  return '<div class="card">'+
+    '<div class="disp" style="font-size:20px;margin-bottom:6px">'+t('filterT')+'</div>'+
+    '<div style="display:flex;gap:10px">'+
+      '<div style="flex:1;min-width:0"><label>'+t('logExpFrom')+'</label>'+
+        '<input type="date" id="kilogVon" style="min-width:0;text-align:center" value="'+esc(kilogVon)+'" '+
+        'onchange="kilogVon=this.value;render()"/></div>'+
+      '<div style="flex:1;min-width:0"><label>'+t('logExpTo')+'</label>'+
+        '<input type="date" id="kilogBis" style="min-width:0;text-align:center" value="'+esc(kilogBis)+'" '+
+        'onchange="kilogBis=this.value;render()"/></div>'+
+    '</div>'+
+    '<div style="margin-top:10px"><input id="kilogWettbewerb" placeholder="'+esc(t('filterWettbewerbPh'))+'" '+
+      'value="'+esc(kilogWettbewerb)+'" onchange="kilogWettbewerb=this.value;render()"/></div>'+
+    '<div style="margin-top:10px"><select id="kilogStatus" onchange="kilogStatus=this.value;render()">'+
+      '<option value="alle"'+(kilogStatus==='alle'?' selected':'')+'>'+t('filterStatusAlle')+'</option>'+
+      '<option value="offen"'+(kilogStatus==='offen'?' selected':'')+'>'+t('filterStatusOffen')+'</option>'+
+      '<option value="geparkt"'+(kilogStatus==='geparkt'?' selected':'')+'>'+t('filterStatusGeparkt')+'</option>'+
+      '<option value="bewRichtig"'+(kilogStatus==='bewRichtig'?' selected':'')+'>'+t('filterStatusBewRichtig')+'</option>'+
+      '<option value="bewFalsch"'+(kilogStatus==='bewFalsch'?' selected':'')+'>'+t('filterStatusBewFalsch')+'</option>'+
+    '</select></div>'+
+    '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">'+
+      '<button class="btn btn-ghost" onclick="kilogVon=\'\';kilogBis=\'\';kilogWettbewerb=\'\';kilogStatus=\'alle\';render()">'+t('filterReset')+'</button>'+
+      '<div class="muted">'+t('filterCount').replace('{a}',gezeigt).replace('{b}',gesamt)+'</div>'+
+    '</div>'+
   '</div>';
 }
 function messExportBlock(){
@@ -2624,6 +2677,9 @@ function wdAdd(){
 
 /* ================= NAVIGATION & RENDER ================= */
 var tab="home", wtab="vorschlaege";
+/* v19.8.14 (Backlog-Punkt 70): reiner Anzeige-Filterzustand fuer das KI-Log, wie wtab nicht
+   Teil von state — setzt sich bei jedem Neuladen zurueck, nichts geht dabei verloren. */
+var kilogVon='', kilogBis='', kilogWettbewerb='', kilogStatus='alle';
 var entsperrt=false;
 
 function viewLock(){
@@ -2889,8 +2945,10 @@ function viewBets(c){
     var pl=(state.kiProtokoll||[]);
     var neu=pl.filter(function(e){ return e.aera==='v19'; });
     var alt=pl.filter(function(e){ return e.aera!=='v19'; });
-    var eintraege = neu.length ? neu.map(function(e){ return vorhersageKarte(e,true); }).join('')
-      : '<div class="card empty">'+t('logEmpty')+'</div>';
+    var gefiltert = kilogGefiltert(neu, kilogVon, kilogBis, kilogWettbewerb, kilogStatus);
+    var eintraege = !neu.length ? '<div class="card empty">'+t('logEmpty')+'</div>'
+      : !gefiltert.length ? '<div class="card empty">'+t('filterEmpty')+'</div>'
+      : gefiltert.map(function(e){ return vorhersageKarte(e,true); }).join('');
     /* v19.7.6: Tageweise parken. Die offenen Vorhersagen liegen nach Tagen beieinander;
        einzeln zu klicken waeren bei den gesperrten Ergebnissen dutzende Griffe. */
     var tage=[], nachTag={};
@@ -2929,7 +2987,7 @@ function viewBets(c){
             '</div>'+chip+'</div></div>';
         }).join('')
       : '';
-    return sub+'<div class="muted" style="margin-bottom:10px">'+t('logD')+'</div>'+pruefBlock()+parkBlock+korrFBlock()+logExportBlock()+eintraege+archiv;
+    return sub+'<div class="muted" style="margin-bottom:10px">'+t('logD')+'</div>'+pruefBlock()+parkBlock+korrFBlock()+logExportBlock()+kilogFilterBlock(neu.length, gefiltert.length)+eintraege+archiv;
   }
 
   if(wtab==="historie" && !state.bets.length) return sub+pruefBlock()+'<div class="card empty">'+t('noBets')+'</div>';

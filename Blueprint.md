@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.75
+**Version:** 0.76
 **Stand:** 4. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.76 ändert (4.9.2026):** Backlog-Punkt 70 gebaut (`beta.html` v19.8.14, Backlog Fassung 77): drei kombinierbare Filter im KI-Log (Datum von/bis, Wettbewerb-Teilstring case-insensitiv, Status aus fünf aus den tatsächlichen Codewerten `e.status`/`e.geparkt`/`e.parkGrund` abgeleiteten Optionen), rein im Browser, wirken nur auf die Anzeige — `state.kiProtokoll` bleibt unangetastet. Neue reine Funktion `kilogGefiltert()`, Filterzustand in vier plain globalen `var`s wie `wtab`, bewusst nicht Teil von `state`. Dazu reine Buchführung: Backlog-Punkt 41 (seit 30.8.2026 gebaut) aus der „Prio 1"-Überschrift im Backlog entfernt und aus `STAND.md`s Entscheidungstabelle gestrichen — keine offene Entscheidung mehr. Trockentest: 19 neue Prüfungen plus die bestehenden 57 (Punkt 68) und 19 (Punkt 69) erneut bestanden, keine Regression. 10 neue Sprachschlüssel (241 → 251). Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.76 gehoben.
 
 > **Was Fassung 0.75 ändert (4.9.2026):** Messstand in `STAND.md` nachgeführt (Backlog Fassung 76), reine Dokumentation, kein Codeaufwand. Sonnet 468 bewertete Aussagen bei 3 % Abweichung, Flash 465 bei 7 %. Ein erster Versuch liess `pruefe.py` FEHL melden (fehlende Stufen-Verteilung je Gehirn) — nichts ausgeliefert, angehalten, Ondo hat die Zahlen nachgereicht, beide Summen unabhängig nachgerechnet vor dem Einsetzen (Arbeitsregel M). Neuer Befund: Sonnet hat zum ersten Mal eine bewertete Aussage ab 80 % (zwei Aussagen), ohne Schlussfolgerung wegen zu kleiner Stichprobe. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.75 gehoben.
 

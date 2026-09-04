@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 4.9.2026, Fassung 76 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 4.9.2026, Fassung 77 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -15,6 +15,35 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 77 ändert (4.9., Backlog-Punkt 70 gebaut — Filter im KI-Log, Punkt 41 umgeordnet)
+
+**Anlass:** Auftrag Ondo — Backlog-Punkt 70 (Such- und Filterfunktion im KI-Log) umsetzen,
+dazu reine Buchführung zu Punkt 41.
+
+- **Backlog-Punkt 70 gebaut, `beta.html` v19.8.14:** Drei kombinierbare Filter (Datum
+  von/bis, Wettbewerb-Teilstring case-insensitiv, Status aus fünf aus den tatsächlichen
+  Codewerten abgeleiteten Optionen), rein im Browser, wirken nur auf die Anzeige. Volle
+  Begründung, Codezitat der tatsächlichen `e.status`/`e.geparkt`/`e.parkGrund`-Werte und
+  Verifikationsergebnis stehen als angehängter Block direkt bei Punkt 70 (nicht hier
+  wiederholt — Punkt 45).
+- **Buchführung Backlog-Punkt 41 (reine Einordnung, kein Bau):** Die Überschrift
+  „🔴 Prio 1 — als Nächstes dran" ist entfernt — Punkt 41 war seit 30.8.2026 gebaut, ihr
+  einziger Inhalt, die Einordnung war seither nicht mitgewandert. Punkt 41s Inhalt bleibt
+  unverändert stehen, nur ohne diese Überschrift darüber.
+- **`STAND.md`:** Zeile zu Punkt 41 aus der Tabelle „Entscheidungen, die bei Ondo liegen"
+  entfernt (keine offene Entscheidung mehr) · neuer Eintrag `v19.8.14` unter „Versionen" ·
+  Sprachschlüsselzahl von 241 auf 251 nachgeführt (10 neue Schlüssel, von `pruefe.py`
+  Abschnitt 13 selbst nachgezählt).
+- **Verifikation:** `node --check` bestanden · Trockentest: 19 neue Prüfungen an
+  `kilogGefiltert()`, plus die bestehenden 57 (Punkt 68) und 19 (Punkt 69) erneut
+  ausgeführt, alle weiterhin bestanden · `pruefe.py` ohne Argument — ALLES SAUBER.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 77 gehoben (Blueprint 0.76).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
 
 ---
 
@@ -611,13 +640,61 @@ Bei NK Celje–Slovan Bratislava und Sabah FC–Hapoel Beer-Sheva FC lieferte de
 
 ---
 
-**70. Such- und Filterfunktion im KI-Log** · *Idee 4.9.2026, Ondo* · **Status: Idee — NEU, nicht gebaut**
+**70. Such- und Filterfunktion im KI-Log** · *Idee 4.9.2026, Ondo · Auftrag Ondo 4.9.2026, gebaut am selben Tag* · **Status: 🔴 GEBAUT am 4.9.2026, `beta.html` v19.8.14**
 
 Bei inzwischen über 400 Einträgen wird die KI-Log-Liste ohne Filter unübersichtlich.
 Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o. ä.).
 
-→ **Kein Bauauftrag** — nur als Idee mit Datum und Urheber eingetragen.
-→ **Kosten (Arbeitsregel G):** noch nicht geschätzt, dazu müsste erst ein Ansatz feststehen.
+> **🔴 GEBAUT am 4.9.2026 (Auftrag Ondo, `beta.html` v19.8.14).** Drei kombinierbare Filter
+> (UND-Verknüpfung), rein im Browser, keine neuen Modellaufrufe, keine Kosten — Filter wirken
+> nur auf die Anzeige, `state.kiProtokoll` selbst bleibt unangetastet.
+>
+> **Die tatsächlichen Werte von `e.status`/`e.geparkt`/`e.parkGrund`, mit Codezitat (nicht
+> vermutet — belegt):** `e.status` hat im ganzen Skript nur zwei Ausprägungen, `'offen'`
+> (`vorhersagen()`) und `'bewertet'` (seedV-Migrationen und `pruefAnwenden()`) — **kein**
+> `'richtig'`/`'falsch'` auf Eintrag-Ebene, das gibt es nur pro Markt (`e.maerkte[i].status`).
+> `e.geparkt` (boolesch) wird sowohl manuell (`logParken()`/`logParkenTag()`) als auch
+> automatisch durch den Schiedsrichter (`parkeEintraege()`, Backlog-Punkt 68) gesetzt;
+> `e.parkGrund` (`'unstable_ref'`/`'sonderformat'`) nur beim automatischen Parken, beim
+> manuellen bleibt es unbesetzt. **Belegt:** `e.geparkt===true` und `e.status==='bewertet'`
+> kommen nie gemeinsam vor — `vorhersageKarte()` zeigt den Park-Knopf ausschliesslich bei
+> `e.status==='offen'`, ein bewerteter Eintrag kann über die Oberfläche gar nicht geparkt
+> werden. Daraus abgeleitet, fünf Filteroptionen: Alle · Offen (`status==='offen' &&
+> !geparkt`) · Geparkt (`geparkt===true`) · Bewertet — alle Märkte richtig · Bewertet —
+> mind. ein Markt falsch (die beiden letzten zusammen ergeben genau die "bewertet"-Menge,
+> ohne Überschneidung, weil jeder bewertete Eintrag drei entschiedene Märkte hat).
+>
+> **Umsetzung:** neue reine Funktion `kilogGefiltert(liste, von, bis, wettbewerb, status)` —
+> `.filter()` liefert immer ein neues Array, verändert die Eingabeliste nie. Datum nutzt die
+> bestehende `datumZahl()` (versteht `TT.MM.JJJJ` und ISO), Wettbewerb-Suche ist ein
+> Teilstring-Vergleich über `.toLowerCase()`. Filterzustand (`kilogVon`, `kilogBis`,
+> `kilogWettbewerb`, `kilogStatus`) liegt in vier plain globalen `var`s wie `wtab` — bewusst
+> **nicht** Teil von `state`, reine Anzeigeeinstellung, setzt sich bei jedem Neuladen zurück.
+> Neue Eingabefelder lösen `onchange`, nicht `oninput`, aus — `render()` ersetzt bei jedem
+> Aufruf das komplette `innerHTML`, ein `oninput`-Handler würde bei jedem Tastendruck den
+> Cursor verlieren. Neue Anzeigefunktion `kilogFilterBlock()` (Kartenstil wie
+> `logExportBlock()`) zeigt „`{gezeigt}` von `{gesamt}`" und einen Zurücksetzen-Knopf. Zwei
+> bewusste Abgrenzungen: die Tag-für-Tag-Park-Übersicht bleibt auf der ungefilterten Liste
+> berechnet (sonst könnte ein Tag nicht mehr vollständig geparkt werden, während gefiltert
+> wird), das v18-Archiv (andere Feldstruktur) bleibt vom Filter unberührt.
+>
+> **Verifiziert:** `node --check` bestanden. Trockentest bestanden — **19 neue Prüfungen** an
+> der echten, aus `beta.html` herausgeschnittenen Funktion `kilogGefiltert()` (kein Nachbau):
+> Datum von/bis grenzt in beide Richtungen korrekt ein, auch im ISO-Format · leeres Datum
+> zeigt alles · Wettbewerb-Suche findet Teiltreffer, ignoriert Gross-/Kleinschreibung · jede
+> der fünf Status-Optionen liefert genau die erwartete Teilmenge, "bewRichtig" und
+> "bewFalsch" zusammen ergeben ohne Überschneidung exakt die "bewertet"-Menge · alle drei
+> Filter gleichzeitig kombiniert korrekt (UND) · Zurücksetzen liefert die volle Liste ·
+> Eingabeliste vor/nach mehreren Filteraufrufen bytegleich (JSON-Vergleich) · Rückgabe ist ein
+> neues Array, nicht dieselbe Referenz. **Die bestehenden 57 Prüfungen aus Punkt 68 und 19
+> aus Punkt 69 erneut ausgeführt, alle weiterhin bestanden** (keine Regression). `pruefe.py`:
+> ALLES SAUBER.
+>
+> **10 neue Sprachschlüssel** (241 → 251, von `pruefe.py` Abschnitt 13 selbst nachgezählt):
+> `filterT`, `filterWettbewerbPh`, `filterStatusAlle`, `filterStatusOffen`,
+> `filterStatusGeparkt`, `filterStatusBewRichtig`, `filterStatusBewFalsch`, `filterReset`,
+> `filterCount`, `filterEmpty` — in DE/FR/EN. Die Datumslabel nutzen die bestehenden
+> `logExpFrom`/`logExpTo`, keine Dopplung.
 
 ---
 
@@ -669,9 +746,6 @@ Auch betroffen, ausserhalb der Pflichtlektüre: `CHRONIK-2026-08.md` (164.036 Ze
 → **🔴 Ergänzung 30.8.2026, Fassung 63 — die manuelle Nachsuche selbst stösst nachweislich an Grenzen:** Trotz der als „vollständig" bezeichneten Nachsuche zu Fassung 62 fand Ondo beim eigenen Gegenlesen noch eine 31. Stelle (`STAND.md`, „Beta zuvor: v19.8.3" — Punkt 2 ohne Fundort). Bei der daraufhin verlangten erneuten, unabhängigen Suche in `Blueprint.md` fand die Code-Sitzung dabei einen eigenen Fehler in ihrer ersten Suchmethode: Das verwendete Muster erkannte Genitiv-Formen wie „Punkt 51s" nicht, weil zwischen einer Ziffer und einem folgenden Buchstaben keine Wortgrenze liegt. **Folgenlos in diesem Fall** — jede so verpasste Stelle stand zufällig im selben Satz wie eine bereits korrekte Angabe —, aber ein zweiter, unabhängiger Beleg dafür, dass Mensch und Ad-hoc-Skript bei drei Dokumenten und zehn Nummern beide je eigene, unterschiedliche Lücken übersehen. **Stützt den oben genannten Vorschlag stärker, als ein Einzelfall es könnte — bleibt aber aus denselben Kostengründen unentschieden.**
 
 ---
-
-
-## 🔴 Prio 1 — als Nächstes dran
 
 **41. 🔴 Zuordnung der Listenangaben über den Spielnamen statt über die laufende Nummer** · *Spur Chat 13 (12.8.), am 13.8. von Chat 14 am Log BEWIESEN* · **Status: 🔴 GEBAUT am 30.8.2026 (Beschluss Ondo)**
 
