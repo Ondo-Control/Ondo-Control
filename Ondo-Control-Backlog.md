@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 4.9.2026, Fassung 79 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 5.9.2026, Fassung 80 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -15,6 +15,59 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 80 ändert (5.9., Dokumente pflegen und Übergabe — reine Buchführung, kein Codeaufwand)
+
+**Anlass:** Auftrag Ondo — vollständiger Durchgang durch Backlog und `STAND.md` nach
+offenen, unbeantworteten oder vergessenen Punkten, Punkt 73 erneut geöffnet (Ondo hat am
+echten iPhone keine sichtbare Wirkung bestätigt), Dokumente pflegen, Übergabe an den
+Nachfolgechat vorbereiten. **Ausdrücklich keine inhaltliche Klärung der gefundenen offenen
+Fragen in dieser Sitzung** — sie gehen als Auftrag an den Nachfolgechat, nicht als gelöste
+Sache. Die vollständige Fundliste steht in der Übergabemappe, nicht hier wiederholt
+(Punkt 45).
+
+- **Backlog-Punkt 73 erneut geöffnet:** Ondo bestätigt, die iOS-Zentrierungsregel zeigt auf
+  seinem echten iPhone keine sichtbare Wirkung, trotz syntaktisch korrektem Code. Nicht in
+  dieser Sitzung untersucht oder neu gebaut — als offene Fehlerstelle mit unbearbeiteten
+  Vorschlägen für die nächsten Schritte festgehalten.
+- **Backlog-Punkt 41 archiviert** (`BACKLOG-ARCHIV.md`, neue Sammlung vom 5.9.2026):
+  GEBAUT am 30.8.2026, keine Bewährungs-Einschränkung im eigenen Text, kein offener
+  Verweis mehr aus einer aktiven Überschrift — nach Regel 4 archivierbar. Wortgleich
+  verschoben, nichts gekürzt.
+- **`STAND.md`, Tabelle „Entscheidungen, die bei Ondo liegen" berichtigt:** Die Zeilen zu
+  Punkt 36 und Punkt 37 sind entfernt — beide sind längst gebaut (37 seit 30.8.2026 sogar
+  bereits archiviert), keine offenen Entscheidungen mehr. Die Fundstelle bei Punkt 3
+  („Backlog, Prio 1") ist auf „Backlog" berichtigt — die Überschrift „Prio 1" existiert seit
+  Fassung 77 nicht mehr; der Verweis zeigte seither ins Leere.
+- **Zwei gezielt geprüfte Fragen, keine davon hier geklärt:** (a) Ob `refEinigkeit`- und
+  `refRohAbgleich()`-Warnzeile an derselben Karte gleichzeitig erscheinen können, ist
+  bereits beantwortet — im Code-Kommentar von `vorhersageKarte()` selbst (`beta.html`):
+  „Beide koennen beim selben Eintrag gleichzeitig erscheinen und widersprechen sich nicht."
+  Keine offene Frage. (b) Backlog-Punkt 65 trägt weiterhin die widersprüchlichen Zahlen
+  „12.289" gegenüber „12.299" für dieselbe fehlende Zeichenmenge — obwohl die Fassung-71-
+  Änderungsnotiz behauptet, das sei bereits „mit Streichung und Vermerk berichtigt"
+  worden. Diese Berichtigung wurde nie tatsächlich in Punkt 65 selbst eingetragen. Nicht
+  hier entschieden, welche Zahl stimmt — als offene Korrektur an den Nachfolgechat
+  gegeben.
+- **Alle vier Pflichtdokumente sowie `CLAUDE.md` gegen die Punkt-65-Grenze geprüft** (`wc
+  -c`, Stand dieser Lieferung): `STAND.md` 98.708 Byte, `Blueprint.md` 65.027 Byte,
+  `Ondo-Core-Architektur.md` 12.088 Byte, `CLAUDE.md` 9.806 Byte — alle vier unter der
+  120.000-Grenze. **Dieses Dokument selbst liegt bei rund 203.000 Byte, deutlich über der
+  Grenze**, trotz der Archivierung von Punkt 41 — Punkt 65 bleibt unentschieden (Weg A/B/C),
+  wird durch das Wachstum aber dringlicher.
+- **`CLAUDE.md` (Backlog-Punkt 54) erneut erneuert**, weil sich Backlog und `STAND.md` seit
+  der letzten Erzeugung geändert haben — Hash-Tabelle auf den tatsächlich committeten Stand
+  dieser Lieferung berechnet.
+- **Sprachschlüssel:** unverändert bei 254 — reine Dokumentpflege, kein Codeaufwand ausser
+  der bereits beschriebenen Buchführung.
+- **Verifikation:** `pruefe.py` ohne Argument — ALLES SAUBER. Kein `node --check` nötig,
+  `beta.html` unverändert.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 80 gehoben (Blueprint 0.79).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
 
 ---
 
@@ -921,7 +974,7 @@ nachvollziehbar bleiben und jeder für sich freigegeben werden kann:
 
 ---
 
-**73. iOS-Zentrierung der Datumsfelder** · *Fund 3.9.2026, bisher nicht untersucht · Auftrag Ondo 4.9.2026, gebaut am selben Tag* · **Status: 🔴 GEBAUT am 4.9.2026, `beta.html` v19.8.16 — sichtbare Wirkung auf echtem iOS von Ondo zu bestätigen**
+**73. iOS-Zentrierung der Datumsfelder** · *Fund 3.9.2026, bisher nicht untersucht · Auftrag Ondo 4.9.2026, gebaut am selben Tag · 🔴 von Ondo am echten Gerät geprüft und ERNEUT GEÖFFNET am 5.9.2026* · **Status: 🔴 OFFEN — Code syntaktisch korrekt, aber KEINE sichtbare Wirkung auf Ondos echtem iPhone, Ursache ungeklärt**
 
 Die von/bis-Datumsfelder (`logExportBlock()`, `kilogFilterBlock()` aus Punkt 70/71) tragen
 `text-align:center` inline im Code, erscheinen auf iOS trotzdem nicht zentriert.
@@ -943,6 +996,22 @@ Die von/bis-Datumsfelder (`logExportBlock()`, `kilogFilterBlock()` aus Punkt 70/
 > **Verifiziert:** `node --check` bestanden. Keine automatisierte Prüfung möglich (reine
 > Bildschirmdarstellung ohne eigene Logik). `pruefe.py`: ALLES SAUBER. Keine neuen
 > Sprachschlüssel, kein Schnitt in der Messreihe.
+
+> **🔴 ERNEUT GEÖFFNET am 5.9.2026 (Ondo, am echten Gerät geprüft).** Ondo bestätigt: Die
+> Regel zeigt auf seinem echten iPhone **keine sichtbare Wirkung** — die Datumsfelder
+> erscheinen weiterhin nicht zentriert, obwohl der Code syntaktisch korrekt ist und genau
+> die dafür dokumentierte WebKit-Eigenschaft anspricht. **Ausdrücklich NICHT in dieser
+> Sitzung untersucht oder neu gebaut** (Auftrag Ondo, reine Dokumentpflege) — als offene,
+> wieder aufgemachte Fehlerstelle für den Nachfolgechat festgehalten. **Mögliche nächste
+> Schritte, unbearbeitet, nur als Vorschlag:** Browser-/Seiten-Cache auf dem Gerät prüfen
+> (die Regel könnte technisch korrekt ausgeliefert, aber durch eine alte zwischengespeicherte
+> Fassung von `beta.html` nicht angekommen sein) · Platzbedarf des kleinen Kalender-Icons
+> im Feld prüfen (`::-webkit-date-and-time-value` zentriert den Text, das native Icon selbst
+> nimmt aber eigenen Platz ein und könnte den sichtbaren Eindruck trotz korrekt zentriertem
+> Text wieder verschieben) · Unterschiede zwischen iOS-/Safari-Versionen (die Pseudo-Klasse
+> ist nicht in jeder WebKit-Version gleich implementiert, möglich, dass Ondos iOS-Version
+> sie anders behandelt oder ignoriert). **Keiner dieser Wege ist geprüft — reine Vorschläge,
+> kein Befund.**
 
 ---
 
@@ -977,34 +1046,6 @@ Auch betroffen, ausserhalb der Pflichtlektüre: `CHRONIK-2026-08.md` (164.036 Ze
 → **Vorschlag, nicht gebaut:** Abschnitt 3 könnte zusätzlich prüfen, ob ein Verweis auf einen ausschliesslich im Archiv stehenden Punkt in unmittelbarer Nähe (gleicher Satz oder gleiche Zeile) einen Hinweis auf `BACKLOG-ARCHIV.md` oder das Wort „archiviert" trägt. Nicht trivial: Der Prüfer bräuchte eine Regel dafür, wie nah „in unmittelbarer Nähe" sein muss, und liefe sonst Gefahr, selbst wieder nur eine formale Bedingung zu prüfen statt der eigentlichen Verständlichkeit.
 → **Kosten:** eine Codeänderung an `pruefe.py`, die vermutlich neue eigene Randfälle mitbringt (z. B. mehrere Punktnummern im selben Satz, wie in mehreren der jetzt gefundenen Stellen). Nicht jetzt zu bauen — erst wenn eine zweite, unabhängige Archivierung zeigt, ob das Problem wiederkehrt oder ob die manuelle Nachsuche ausreicht (Arbeitsregel D: ein Einzelfall beweist keine Notwendigkeit).
 → **🔴 Ergänzung 30.8.2026, Fassung 63 — die manuelle Nachsuche selbst stösst nachweislich an Grenzen:** Trotz der als „vollständig" bezeichneten Nachsuche zu Fassung 62 fand Ondo beim eigenen Gegenlesen noch eine 31. Stelle (`STAND.md`, „Beta zuvor: v19.8.3" — Punkt 2 ohne Fundort). Bei der daraufhin verlangten erneuten, unabhängigen Suche in `Blueprint.md` fand die Code-Sitzung dabei einen eigenen Fehler in ihrer ersten Suchmethode: Das verwendete Muster erkannte Genitiv-Formen wie „Punkt 51s" nicht, weil zwischen einer Ziffer und einem folgenden Buchstaben keine Wortgrenze liegt. **Folgenlos in diesem Fall** — jede so verpasste Stelle stand zufällig im selben Satz wie eine bereits korrekte Angabe —, aber ein zweiter, unabhängiger Beleg dafür, dass Mensch und Ad-hoc-Skript bei drei Dokumenten und zehn Nummern beide je eigene, unterschiedliche Lücken übersehen. **Stützt den oben genannten Vorschlag stärker, als ein Einzelfall es könnte — bleibt aber aus denselben Kostengründen unentschieden.**
-
----
-
-**41. 🔴 Zuordnung der Listenangaben über den Spielnamen statt über die laufende Nummer** · *Spur Chat 13 (12.8.), am 13.8. von Chat 14 am Log BEWIESEN* · **Status: 🔴 GEBAUT am 30.8.2026 (Beschluss Ondo)**
-
-> **🔴 GEBAUT am 30.8.2026:** In `vorhersagen()` (`beta.html`, v19.8.7) werden `wettbewerb`, `anpfiff` und `stufe` nicht mehr über `paket.liste[idx]` (Position), sondern über `paket.liste.find(...)` mit Namensabgleich über die neue gemeinsame Funktion `normName()` nachgeschlagen (dieselbe Regel wie bei der Dubletten-Sperre in `spielListeHolen`, S1, und bei Punkt 37). Kein Treffer in der Liste: Alle drei Felder bleiben leer/`null`, statt dem falschen Spiel zugeschrieben zu werden. Trockentest bestanden (Antwort in anderer Reihenfolge als die Liste findet trotzdem das richtige Spiel; kein Treffer lässt die Felder leer). Kein Schnitt in der Messreihe — ändert nichts am Auftragstext der Gehirne oder an Prozentangaben, Tipps, Märkten. Keine neuen Sprachschlüssel.
-> **Bekannte Grenze, unverändert durch diese Lieferung:** `normName()` gleicht Gross-/Kleinschreibung, Satzzeichen und Strichvarianten aus, entfernt aber keine Wörter wie „FC" — der Fall aus Punkt 37 („Red Bull Salzburg" gegen „FC Red Bull Salzburg") wäre auch mit dieser Funktion kein erkannter Treffer.
-
-**Der Befund (Ausgangslage vor dem Bau).** In `vorhersagen()` kommt der Spielname aus der Antwort des Gehirns, aber **Anpfiffzeit, Wettbewerb und Stufe kommen aus der Spielliste an derselben Zählstelle**:
-
-```
-vorher.forEach(function(v, idx){
-  var match = String(v.match||'');                                  /* aus der Antwort */
-  wettbewerb:(paket.liste[idx]&&paket.liste[idx].wettbewerb)||'',   /* aus der LISTE  */
-  anpfiff:(paket.liste[idx]&&paket.liste[idx].anpfiff)||'',
-  stufe:(paket.liste[idx]&&paket.liste[idx].stufe)||null,
-```
-
-Liefert ein Gehirn mehr, weniger oder anders geordnete Vorhersagen als die Liste Spiele hat, hängen Zeit und Wettbewerb am falschen Spiel. **Eine Kennung, die das verhindern würde, gibt es im Auftragstext der Gehirne nicht** — nur der Schiedsrichter arbeitet mit `id`.
-
-**Der Beweis (13.8., aus dem KI-Log ausgezählt).** An vierzehn von fünfzehn Vorhersagetagen stimmen Anpfiffzeit und Wettbewerb bei beiden Gehirnen überein. Am **10. August** weichen vier von sieben Paaren ab. An diesem Tag lieferte Sonnet **neun** Vorhersagen für eine Liste mit **acht** Spielen (Pendikspor doppelt), und der letzte Eintrag hat **gar keine Anpfiffzeit und gar keinen Wettbewerb** — `paket.liste[9]` existiert nicht. Die verschobenen Werte sind eine Vertauschung innerhalb desselben Tages.
-
-**Vorschlag zur Vorlage:** Die Listenangaben nicht über `idx` holen, sondern über den Spielnamen aus der Antwort in der Liste nachschlagen. Findet sich kein passendes Spiel, bleiben Zeit und Wettbewerb leer — sichtbar leer statt falsch belegt.
-
-→ **Kosten:** kein Geld, keine neuen Sprachschlüssel, eine Änderung an einer Stelle im Code.
-→ **Kein Schnitt in der Messreihe (Art. J zu prüfen):** Der Punkt ändert weder den Auftragstext der Gehirne noch die Bewertung. Prozentangaben, Tipps und Märkte stammen aus der Antwort des Gehirns selbst und sind unberührt.
-→ **⚠ Grenze — was dieser Punkt NICHT löst:** Er erklärt den 10. August. Er erklärt **nicht** den 8. August, an dem sieben von zehn Zeiten falsch waren und **beide Gehirne übereinstimmten**. **Es sind zwei Probleme.** Die Ursache der falschen Zeiten in der Liste selbst bleibt unbekannt (Art. 11).
-→ **Aufgenommen erst, nachdem die beschlossenen Punkte 6 und 7 gebaut waren** (Arbeitsregel L).
 
 ---
 

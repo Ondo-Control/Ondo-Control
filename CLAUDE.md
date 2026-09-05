@@ -1,7 +1,7 @@
 # ONDO CONTROL — Kurzanleitung für den Code-Bereich
 
-*Erneuert am 4.9.2026 aus den vier vollständig gelesenen Pflichtdokumenten (Backlog-Punkt
-54, Fassung 79). **Diese Datei ist Kontext, keine erzwungene Einstellung** — sie ersetzt
+*Erneuert am 5.9.2026 aus den vier vollständig gelesenen Pflichtdokumenten (Backlog-Punkt
+54, Fassung 80). **Diese Datei ist Kontext, keine erzwungene Einstellung** — sie ersetzt
 die Pflichtlektüre nicht, sie sagt, was vor der ersten Änderung zu tun ist.*
 
 **Erneuern, nicht fortschreiben:** Ändert sich eines der vier Dokumente, wird diese Datei
@@ -162,12 +162,15 @@ auch für ein bereits angehängtes, längst funktionierendes Repository. Kein Pr
 Zielrepositories oder seiner GitHub-Rechte. Nicht behebbar von der Sitzung aus; melden und
 nicht wiederholt versuchen.
 
-**iOS/WebKit-Eigenheiten (Backlog-Punkt 73):** `input[type="date"]` rendert seinen Inhalt
-über ein eigenes, internes Element, auf das gewöhnliches CSS am Eingabefeld selbst nicht
-wirkt (z. B. `text-align`). Der dafür vorgesehene Weg ist eine eigene Regel auf
-`::-webkit-date-and-time-value`. Diese Umgebung hat keinen Safari-/WebKit-Renderer — eine
-solche Regel lässt sich hier nur syntaktisch prüfen, ihre sichtbare Wirkung nicht selbst
-beobachten.
+**iOS/WebKit-Eigenheiten (Backlog-Punkt 73, 🔴 OFFEN, erneut geöffnet am 5.9.2026):**
+`input[type="date"]` rendert seinen Inhalt über ein eigenes, internes Element, auf das
+gewöhnliches CSS am Eingabefeld selbst nicht wirkt (z. B. `text-align`). Der dafür
+vorgesehene Weg ist eine eigene Regel auf `::-webkit-date-and-time-value`. Diese Umgebung
+hat keinen Safari-/WebKit-Renderer — eine solche Regel lässt sich hier nur syntaktisch
+prüfen, ihre sichtbare Wirkung nicht selbst beobachten. Ondo hat inzwischen am echten
+iPhone geprüft und bestätigt: **keine sichtbare Wirkung**, trotz syntaktisch korrektem
+Code. Ursache ungeklärt — Einzelheiten und mögliche nächste Schritte stehen im Backlog
+bei Punkt 73, nicht hier wiederholt (Punkt 45).
 
 ---
 
@@ -177,9 +180,9 @@ beobachten.
 `.claude/hooks/claude_md_frisch.py` vergleicht sie bei jedem Sitzungsstart und erinnert an
 eine Erneuerung, sobald einer abweicht. Er erneuert nichts von selbst.*
 
-- STAND.md — `831f9d8aa30e22237b8389d6e46b8d735be321e0`
-- Ondo-Control-Backlog.md — `98a104c8973af79678ee85270ea94e7ec7855cec`
-- Blueprint.md — `25a367c1637c2a7b8c20a36c79d3c1416bb201e9`
+- STAND.md — `d46ad39183c950c8e4134bd66a2257dd941d506b`
+- Ondo-Control-Backlog.md — `37abd6f50d251d71159ba71fb477b0e7b3ca937c`
+- Blueprint.md — `6ca0f1bd04b0f00168fec71c06093a514531e23e`
 - Ondo-Core-Architektur.md — `fed67804d793df1ee868fcb67e047f9bcef57e9a`
 
-*Erzeugt aus dem Stand von `main` am 4.9.2026.*
+*Erzeugt aus dem Stand von `main` am 5.9.2026.*

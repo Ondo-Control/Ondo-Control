@@ -193,6 +193,40 @@ Am 9.8. lieferte der erste Lauf nur zwei Spiele. Ondo drückte ein zweites Mal u
 
 ---
 
+## Erledigte Punkte, archiviert am 5.9.2026 (Backlog Fassung 80, Übergabe-Auftrag Ondo)
+
+*Ein Punkt, Status GEBAUT und ohne Bewährungs-Einschränkung im eigenen Text — Kriterium und Ausnahmen stehen in Fassung 61 des Backlogs und in Regel 4 dort. Wortgleich verschoben, nichts gekürzt.*
+
+---
+
+**41. 🔴 Zuordnung der Listenangaben über den Spielnamen statt über die laufende Nummer** · *Spur Chat 13 (12.8.), am 13.8. von Chat 14 am Log BEWIESEN* · **Status: 🔴 GEBAUT am 30.8.2026 (Beschluss Ondo)**
+
+> **🔴 GEBAUT am 30.8.2026:** In `vorhersagen()` (`beta.html`, v19.8.7) werden `wettbewerb`, `anpfiff` und `stufe` nicht mehr über `paket.liste[idx]` (Position), sondern über `paket.liste.find(...)` mit Namensabgleich über die neue gemeinsame Funktion `normName()` nachgeschlagen (dieselbe Regel wie bei der Dubletten-Sperre in `spielListeHolen`, S1, und bei Punkt 37). Kein Treffer in der Liste: Alle drei Felder bleiben leer/`null`, statt dem falschen Spiel zugeschrieben zu werden. Trockentest bestanden (Antwort in anderer Reihenfolge als die Liste findet trotzdem das richtige Spiel; kein Treffer lässt die Felder leer). Kein Schnitt in der Messreihe — ändert nichts am Auftragstext der Gehirne oder an Prozentangaben, Tipps, Märkten. Keine neuen Sprachschlüssel.
+> **Bekannte Grenze, unverändert durch diese Lieferung:** `normName()` gleicht Gross-/Kleinschreibung, Satzzeichen und Strichvarianten aus, entfernt aber keine Wörter wie „FC" — der Fall aus Punkt 37 („Red Bull Salzburg" gegen „FC Red Bull Salzburg") wäre auch mit dieser Funktion kein erkannter Treffer.
+
+**Der Befund (Ausgangslage vor dem Bau).** In `vorhersagen()` kommt der Spielname aus der Antwort des Gehirns, aber **Anpfiffzeit, Wettbewerb und Stufe kommen aus der Spielliste an derselben Zählstelle**:
+
+```
+vorher.forEach(function(v, idx){
+  var match = String(v.match||'');                                  /* aus der Antwort */
+  wettbewerb:(paket.liste[idx]&&paket.liste[idx].wettbewerb)||'',   /* aus der LISTE  */
+  anpfiff:(paket.liste[idx]&&paket.liste[idx].anpfiff)||'',
+  stufe:(paket.liste[idx]&&paket.liste[idx].stufe)||null,
+```
+
+Liefert ein Gehirn mehr, weniger oder anders geordnete Vorhersagen als die Liste Spiele hat, hängen Zeit und Wettbewerb am falschen Spiel. **Eine Kennung, die das verhindern würde, gibt es im Auftragstext der Gehirne nicht** — nur der Schiedsrichter arbeitet mit `id`.
+
+**Der Beweis (13.8., aus dem KI-Log ausgezählt).** An vierzehn von fünfzehn Vorhersagetagen stimmen Anpfiffzeit und Wettbewerb bei beiden Gehirnen überein. Am **10. August** weichen vier von sieben Paaren ab. An diesem Tag lieferte Sonnet **neun** Vorhersagen für eine Liste mit **acht** Spielen (Pendikspor doppelt), und der letzte Eintrag hat **gar keine Anpfiffzeit und gar keinen Wettbewerb** — `paket.liste[9]` existiert nicht. Die verschobenen Werte sind eine Vertauschung innerhalb desselben Tages.
+
+**Vorschlag zur Vorlage:** Die Listenangaben nicht über `idx` holen, sondern über den Spielnamen aus der Antwort in der Liste nachschlagen. Findet sich kein passendes Spiel, bleiben Zeit und Wettbewerb leer — sichtbar leer statt falsch belegt.
+
+→ **Kosten:** kein Geld, keine neuen Sprachschlüssel, eine Änderung an einer Stelle im Code.
+→ **Kein Schnitt in der Messreihe (Art. J zu prüfen):** Der Punkt ändert weder den Auftragstext der Gehirne noch die Bewertung. Prozentangaben, Tipps und Märkte stammen aus der Antwort des Gehirns selbst und sind unberührt.
+→ **⚠ Grenze — was dieser Punkt NICHT löst:** Er erklärt den 10. August. Er erklärt **nicht** den 8. August, an dem sieben von zehn Zeiten falsch waren und **beide Gehirne übereinstimmten**. **Es sind zwei Probleme.** Die Ursache der falschen Zeiten in der Liste selbst bleibt unbekannt (Art. 11).
+→ **Aufgenommen erst, nachdem die beschlossenen Punkte 6 und 7 gebaut waren** (Arbeitsregel L).
+
+---
+
 ## ⚠ Was Fassung 59 ändert (30.8., drei Nachträge aus der Übergabe an Chat 27)
 
 **Anlass:** Teil E der Übergabemappe an Chat 27 (29.8.2026) nannte drei Berichtigungen als offen. Auf Ondos Auftrag „Nachtragen" jetzt nachgeholt — zwei vollständig, eine nur teilweise, mit offenem Vermerk statt stillschweigender Lücke.
