@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.16';
+var CODE_VERSION = 'v19.8.17';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -1146,12 +1146,18 @@ function kilogFilterBlock(gesamt, gezeigt, modus){
     : '';
   return '<div class="card">'+
     '<div class="disp" style="font-size:20px;margin-bottom:6px">'+t('filterT')+'</div>'+
-    '<div style="display:flex;gap:10px">'+
-      '<div style="flex:1;min-width:0"><label>'+t('logExpFrom')+'</label>'+
-        '<input type="date" id="kilogVon" style="min-width:0;text-align:center" value="'+esc(kilogVon)+'" '+
+    /* v19.8.17 (Backlog-Punkt 73, Kandidat 2): Flexbox durch CSS-Grid ersetzt. minmax(0,1fr)
+       erzwingt zwei exakt gleich breite Spalten unabhaengig von der inneren Mindestbreite, die
+       iOS/WebKit einem input[type=date] gibt — ein staerkerer Riegel als min-width:0 bei
+       Flexbox, wo flex-basis auf der Inhaltsbreite aufsetzt. min-width:0 bleibt zusaetzlich am
+       Kind, weil ein Grid-Item von sich aus min-width:auto hat und die Spalte sonst doch
+       aufblaehen koennte. Reine Anzeigeaenderung, kein Eingriff in Wert oder Bedienung. */
+    '<div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px">'+
+      '<div style="min-width:0"><label>'+t('logExpFrom')+'</label>'+
+        '<input type="date" id="kilogVon" style="width:100%;box-sizing:border-box;text-align:center" value="'+esc(kilogVon)+'" '+
         'onchange="kilogVon=this.value;render()"/></div>'+
-      '<div style="flex:1;min-width:0"><label>'+t('logExpTo')+'</label>'+
-        '<input type="date" id="kilogBis" style="min-width:0;text-align:center" value="'+esc(kilogBis)+'" '+
+      '<div style="min-width:0"><label>'+t('logExpTo')+'</label>'+
+        '<input type="date" id="kilogBis" style="width:100%;box-sizing:border-box;text-align:center" value="'+esc(kilogBis)+'" '+
         'onchange="kilogBis=this.value;render()"/></div>'+
     '</div>'+
     '<div style="margin-top:10px"><input id="kilogWettbewerb" placeholder="'+esc(t('filterWettbewerbPh'))+'" '+

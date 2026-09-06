@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 5.9.2026, Fassung 80 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 6.9.2026, Fassung 81 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -15,6 +15,66 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 81 ändert (6.9., Backlog-Punkt 73 — Kandidat 2 für die Datumsfelder im KI-Log-Filter)
+
+**Anlass:** Auftrag Ondo — der tatsächliche Fehler ist ein anderer als der bis zum 5.9.2026
+verfolgte. Nicht die Zentrierung ist das Problem, sondern die Breite: In `kilogFilterBlock()`
+ragt das rechte Datumsfeld („bis") über den Kartenrand hinaus, bei **leeren** Feldern, am
+echten iPhone beobachtet und mit Bildschirmfoto belegt. Der Auftrag verlangte in fester
+Reihenfolge: erst vollständig lesen, dann nach einem strukturellen Unterschied zwischen
+Filter- und Exportkarte suchen, und nur bei ausbleibendem spezifischerem Fund umbauen.
+
+- **Zwei Funde aus Schritt 2, beide mit Codezitat belegt — die volle Begründung steht als
+  angehängter Block direkt bei Punkt 73, nicht hier wiederholt (Punkt 45).** Kurz: **(A)** Die
+  im Auftrag erwogene „abweichende Kartenbreite zwischen Wetten- und Mehr-Tab" scheidet aus —
+  `logExportBlock()` steht seit v19.8.15 (Punkt 71) nicht mehr im Mehr-Tab, sondern im
+  KI-Log-Reiter „Werkzeuge"; der Mehr-Tab zeigt `messExportBlock()`, das gar keine
+  Datumsfelder hat. Beide Reihen liegen im selben Container, in derselben `.wrap`, in
+  derselben `.card` — es gibt keinen Breitenunterschied. **(B)** Der einzige inhaltliche
+  Unterschied ist der Feldwert: `logExportBlock()` belegt beide Felder fest mit `heute`,
+  `kilogFilterBlock()` liest `kilogVon`/`kilogBis`, die als leerer String initialisiert sind.
+  Das deckt sich genau mit Ondos „beobachtet bei LEEREN Feldern". **Als Vermutung
+  gekennzeichnet, nicht als Befund** (Art. 11) — dass ein leeres Datumsfeld auf iOS durch
+  seinen Platzhalter breiter wird, ist von hier aus nicht messbar.
+- **Schritt 3 trotzdem wie beauftragt ausgeführt, mit Begründung:** Fund B ist spezifischer
+  als die erwogene Kartenbreite, **führt aber zu keiner anderen Abhilfe** — gegen eine zu
+  grosse intrinsische Mindestbreite ist `minmax(0,1fr)` der Riegel, gleich woher sie kommt.
+  Die Datumsfeld-Reihe in `kilogFilterBlock()` ist von Flexbox auf CSS-Grid umgestellt
+  (`beta.html` v19.8.17). `min-width:0` bleibt an den Container-Divs stehen, weil ein
+  Grid-Item von sich aus `min-width:auto` hat.
+- **`logExportBlock()` bewusst NICHT mitgeändert** (Auftrag Schritt 4): Dieselbe Ursache liegt
+  dort nach Fund B nicht belegt vor (die Felder sind nie leer), und eine unveränderte Stelle
+  ist die **Vergleichsgrundlage** für Ondos Prüfung am Gerät.
+- **Keine ungefragte Zusatzänderung (Art. 8):** Kein Eingriff an `kilogGefiltert()`, an `state`
+  oder an der Datenhaltung. Auch die naheliegende Vorbelegung der Filterfelder ist
+  **unterlassen** — sie würde das Verhalten des Filters ändern und ist nicht beauftragt.
+- **Verifikation:** `node --check` bestanden · Trockentest **30 Prüfungen, alle bestanden**, an
+  der echten, im Wortlaut aus `beta.html` herausgeschnittenen `kilogFilterBlock()`, mit
+  `logExportBlock()` als Kontrollwert · `pruefe.py` ohne Argument — ALLES SAUBER. **Ein
+  Fehlschlag im ersten Trockentestlauf war ein Messfehler der Prüfung selbst** — vor der
+  Änderung an der Prüfung die tatsächliche Ausgabe belegt, die Prüfung präziser gemacht statt
+  gelockert (Fehlerart C6 vermieden).
+- **Trockentest-Bericht, wie im Auftrag verlangt: Keine bestehende Prüfung berührt diese
+  Anzeigefunktion.** Auf `main` liegt keine committete Trockentest-Datei; `selbsttest.py`
+  (Punkt 47) liegt nur auf `mistral` und prüft keine Anzeigefunktion. Trotzdem ausgeführt:
+  Syntax und Rechenproben bestanden, **Sprachschlüssel-Abgleich fehlgeschlagen — vorbestehend,
+  durch Gegenprobe gegen den unveränderten `origin/main`-Stand als Nicht-Regression belegt**.
+  Sein Regex erkennt in der heutigen `beta.html` nur 67 statt 254 Schlüssel je Sprache.
+  Dieselbe Art Werkzeuglücke wie in Punkt 66. **Nur festgehalten, nichts geändert** — die
+  Datei liegt auf `mistral`, ohne Auftrag nicht anzufassen.
+- **Sprachschlüssel:** unverändert bei 254 — reine Anzeigeänderung ohne neue Beschriftung.
+  **Kein Schnitt in der Messreihe.** `APP_VERSION` weiter 18.
+- **🔴 Punkt 73 bleibt 🔴 OFFEN**, Vermerk „Kandidat Nr. 2 ausgeliefert, Bestätigung am echten
+  Gerät steht aus" — **ausdrücklich nicht auf behoben gesetzt**, obwohl alle Prüfungen sauber
+  durchlaufen. Diese Umgebung hat keinen Safari-/WebKit-Renderer und kann die sichtbare
+  Wirkung nicht selbst beobachten (Art. 14).
+- **Fassungszahl:** alle drei aktiven Dokumente auf 81 gehoben (Blueprint 0.80).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
 
 ---
 
@@ -974,10 +1034,20 @@ nachvollziehbar bleiben und jeder für sich freigegeben werden kann:
 
 ---
 
-**73. iOS-Zentrierung der Datumsfelder** · *Fund 3.9.2026, bisher nicht untersucht · Auftrag Ondo 4.9.2026, gebaut am selben Tag · 🔴 von Ondo am echten Gerät geprüft und ERNEUT GEÖFFNET am 5.9.2026* · **Status: 🔴 OFFEN — Code syntaktisch korrekt, aber KEINE sichtbare Wirkung auf Ondos echtem iPhone, Ursache ungeklärt**
+**73. iOS-Datumsfelder im KI-Log-Filter** · *Fund 3.9.2026, bisher nicht untersucht · Auftrag Ondo 4.9.2026, Kandidat 1 gebaut am selben Tag · 🔴 von Ondo am echten Gerät geprüft und ERNEUT GEÖFFNET am 5.9.2026 · Kandidat 2 gebaut 6.9.2026* · **Status: 🔴 OFFEN — Kandidat Nr. 2 ausgeliefert (`beta.html` v19.8.17), Bestätigung am echten Gerät steht aus. Ausdrücklich NICHT als behoben geführt, auch wenn `node --check`, Trockentest und `pruefe.py` sauber durchlaufen — diese Umgebung hat keinen WebKit-Renderer und kann die sichtbare Wirkung nicht selbst beobachten**
 
 Die von/bis-Datumsfelder (`logExportBlock()`, `kilogFilterBlock()` aus Punkt 70/71) tragen
 `text-align:center` inline im Code, erscheinen auf iOS trotzdem nicht zentriert.
+
+> **🔴 Der tatsächliche Fehler ist ein anderer als der bis zum 5.9.2026 verfolgte (Ondo,
+> 6.9.2026, am echten iPhone beobachtet und mit Bildschirmfoto belegt).** Nicht die
+> Zentrierung des Textes ist das Problem, sondern die Breite des Feldes: In
+> `kilogFilterBlock()` (KI-Log, Filterkarte) **ragt das rechte der beiden Datumsfelder
+> („bis") über den Kartenrand hinaus** und sitzt nicht in derselben Flucht wie die Felder
+> darunter (Wettbewerb, Mannschaft, Alle). **Beobachtet bei LEEREN Feldern.** Die
+> Zentrierungsregel aus v19.8.16 (Kandidat 1) hat damit ein anderes Problem behoben als das
+> tatsächliche — sie bleibt stehen, sie schadet nicht, aber sie war nie die Antwort auf
+> diesen Befund.
 
 > **🔴 Untersucht und behoben am 4.9.2026.** Ursache: eine dokumentierte WebKit-Eigenheit —
 > `input[type="date"]` rendert seinen sichtbaren Inhalt über ein eigenes, browser-internes
@@ -1012,6 +1082,121 @@ Die von/bis-Datumsfelder (`logExportBlock()`, `kilogFilterBlock()` aus Punkt 70/
 > ist nicht in jeder WebKit-Version gleich implementiert, möglich, dass Ondos iOS-Version
 > sie anders behandelt oder ignoriert). **Keiner dieser Wege ist geprüft — reine Vorschläge,
 > kein Befund.**
+
+> **🔴 UNTERSUCHT UND KANDIDAT 2 GEBAUT am 6.9.2026 (Auftrag Ondo, `beta.html` v19.8.17).**
+> Der Auftrag verlangte ausdrücklich, vor jeder Änderung nach einem strukturellen Unterschied
+> zwischen der Filterkarte im KI-Log und der Exportkarte zu suchen, der erklären könnte, warum
+> nur eine der beiden sichtbar überläuft. **Zwei Funde, beide mit Codezitat belegt
+> (Arbeitsregel H):**
+>
+> **Fund A — die im Auftrag vermutete Ursache scheidet aus, weil ihre Voraussetzung nicht mehr
+> stimmt.** Der Auftrag verortet `logExportBlock()` im Mehr-Tab und erwägt eine „abweichende
+> Kartenbreite zwischen Wetten- und Mehr-Tab". **Seit v19.8.15 (Punkt 71) steht
+> `logExportBlock()` nicht mehr im Mehr-Tab**, sondern im KI-Log-Reiter „Werkzeuge"
+> (`beta.html`, einzige Aufrufstelle: `body = korrFBlock()+logExportBlock();` im Zweig
+> `kilogTab==='werkzeuge'`). Der Mehr-Tab ruft `messExportBlock()` auf — und das hat **gar
+> keine Datumsfelder**. Beide Datumsreihen liegen damit im selben Reiter, im selben Container
+> `#view` innerhalb derselben `.wrap` (`max-width:700px`) und in derselben `.card`
+> (`padding:15px`). **Es gibt keinen Breitenunterschied.** Die im Auftrag erwogene Erklärung
+> ist damit nicht nur unbelegt, sondern ausgeschlossen.
+>
+> **Fund B — der einzige inhaltliche Unterschied zwischen den beiden Reihen ist der Feldwert,
+> und er deckt sich genau mit Ondos Beobachtung „bei LEEREN Feldern".** `logExportBlock()`
+> setzt `value="'+heute+'"` an **beiden** Feldern — sie sind nie leer. `kilogFilterBlock()`
+> setzt `value="'+esc(kilogVon)+'"` bzw. `esc(kilogBis)`, und beide Variablen sind mit
+> `var kilogVon='', kilogBis=''` initialisiert — die Filterfelder **starten leer** und bleiben
+> es, bis Ondo etwas einträgt. Ein leeres `input[type="date"]` zeigt auf iOS statt eines Werts
+> einen Platzhalter. **Als Vermutung gekennzeichnet, ausdrücklich nicht als Befund (Art. 11,
+> Arbeitsregel H):** dass dieser Platzhalter breiter ausfällt als ein formatiertes Datum und
+> so die intrinsische Mindestbreite des Feldes erhöht, ist eine begründete Annahme — diese
+> Umgebung hat keinen WebKit-Renderer und kann keine Breite messen.
+>
+> **Zweitwirkung von Fund B, die auch erklärt, warum Kandidat 1 wirkungslos blieb — ebenfalls
+> Vermutung, nicht Befund:** `::-webkit-date-and-time-value` ist das interne Element, das den
+> **Wert** rendert. Bei leerem Feld gibt es keinen Wert; die Regel hätte dort nichts zu
+> zentrieren. Das würde zusammenpassen mit dem, was Ondo am Gerät gesehen hat, beweist aber
+> nichts.
+>
+> **Warum Fund B den Bau von Schritt 3 nicht ersetzt, sondern stützt.** Der Auftrag stellt
+> Schritt 3 unter die Bedingung „nur wenn Schritt 2 keinen spezifischeren Fund ergibt". Fund B
+> ist spezifischer als die im Auftrag erwogene Kartenbreite — er erklärt die Asymmetrie —,
+> **führt aber zu keiner anderen Abhilfe**: Gegen eine zu grosse intrinsische Mindestbreite,
+> gleich ob sie vom Platzhalter oder vom nativen Kalender-Icon herrührt, ist genau
+> `minmax(0,1fr)` der Riegel. Deshalb ist Schritt 3 wie beauftragt ausgeführt, und Fund B ist
+> hier festgehalten statt gebaut. **Keine ungefragte zusätzliche Änderung** (Art. 8) — es wäre
+> naheliegend, den Filterfeldern einen Vorbelegungswert zu geben, damit sie nie leer sind; das
+> ist ausdrücklich **nicht** getan, weil es das Verhalten des Filters ändern würde (ein
+> vorbelegtes Datumsfeld filtert sofort) und nicht beauftragt ist.
+>
+> **Was gebaut ist, nur an dieser einen Stelle:** Die Datumsfeld-Reihe in `kilogFilterBlock()`
+> ist von Flexbox auf CSS-Grid umgestellt — `display:grid;grid-template-columns:minmax(0,1fr)
+> minmax(0,1fr);gap:10px` statt `display:flex;gap:10px`, die beiden Container-Divs ohne
+> `flex:1`, die Inputs mit `width:100%;box-sizing:border-box;text-align:center` statt nur
+> `min-width:0`. **`min-width:0` bleibt an den Container-Divs stehen** — ein Grid-Item hat von
+> sich aus `min-width:auto` und könnte die Spalte sonst trotz `minmax(0,1fr)` aufblähen; der
+> Auftrag verlangte nur den Wegfall von `flex:1`. Warum Grid stärker ist als der bisherige
+> Weg: Bei Flexbox setzt `flex-basis` auf der Inhaltsbreite auf, `min-width:0` erlaubt das
+> Schrumpfen nur, erzwingt es nicht; `minmax(0,1fr)` legt die Spaltenbreite dagegen fest,
+> unabhängig vom Inhalt.
+>
+> **`logExportBlock()` ist bewusst NICHT mitgeändert** (Auftrag Schritt 4), aus zwei Gründen:
+> Erstens sind seine Felder nach Fund B nie leer, und genau bei leeren Feldern ist der
+> Überlauf gemeldet — dieselbe Ursache liegt dort also nicht belegt vor. Zweitens ist eine
+> unveränderte Stelle die **Vergleichsgrundlage**: Meldet Ondo nach dieser Lieferung, dass die
+> Filterkarte sitzt und die Exportkarte weiterhin nicht, ist das der Beleg, dass die
+> Grid-Umstellung wirkt. Ohne einen unveränderten Kontrollwert wäre das nicht unterscheidbar.
+>
+> **Verifiziert:** `node --check` bestanden. **Trockentest bestanden — 30 Prüfungen, alle
+> bestanden**, an der echten, aus `beta.html` im Wortlaut herausgeschnittenen Funktion
+> `kilogFilterBlock()` (kein Nachbau), zusammen mit `logExportBlock()` als Kontrollwert: der
+> Container ist Grid und trägt beide `minmax(0,1fr)` · kein `flex:1` und kein `display:flex`
+> mehr in der Datumsreihe · beide Container-Divs behalten `min-width:0` · beide Inputs tragen
+> `width:100%;box-sizing:border-box;text-align:center` · beide bleiben `type="date"` mit
+> unveränderten Ids und `onchange`-Handlern · leerer wie gefüllter Filterzustand wird korrekt
+> durchgereicht · Wettbewerb-, Mannschaft-, Zurücksetzen- und Zählerzeile unverändert · der
+> `modus`-Parameter aus Punkt 71 wirkt unverändert (kein Status-Feld bei „offen", genau drei
+> Optionen bei „bewertet") · die Ausgabe ist tag-balanciert · `logExportBlock()` trägt
+> weiterhin `display:flex` und `flex:1;min-width:0` und **kein** Grid, seine Felder sind nie
+> leer · der Filterzustand bleibt nach mehreren Aufrufen unverändert (reine Anzeigefunktion) ·
+> zwei gleiche Aufrufe liefern identische Ausgabe · die Regel aus Kandidat 1 steht weiterhin
+> im Dokument. **Ein Fehlschlag im ersten Lauf war ein Messfehler der Prüfung selbst** (das
+> Ausschnittfenster schnitt das öffnende Container-Div ab) — vor der Änderung an der Prüfung
+> die tatsächliche Ausgabe der Funktion angesehen und belegt, dass der Code richtig ist; die
+> Prüfung wurde präziser gemacht, **nicht gelockert** (Fehlerart C6 vermieden).
+> `pruefe.py` ohne Argument: ALLES SAUBER.
+>
+> **Bericht zur Trockentest-Frage des Auftrags: Keine bestehende Trockentest-Prüfung berührt
+> diese Anzeigefunktion.** Auf `main` liegt überhaupt keine committete Trockentest-Datei — die
+> 57 (Punkt 68), 19 (Punkt 69), 19 (Punkt 70), 19 (Punkt 71) und 20 (Punkt 72) Prüfungen waren
+> nicht committete Ad-hoc-Skripte früherer Sitzungen und stehen nicht mehr zur Verfügung.
+> `selbsttest.py` (Punkt 47) existiert, liegt aber **nur auf dem Branch `mistral`**, nicht auf
+> `main`; es prüft Syntax, Sprachschlüssel-Abgleich und `marktUrteil` — **keine
+> Anzeigefunktion**, `kilogFilterBlock()` kommt darin nicht vor. **Trotzdem ausgeführt, gegen
+> den neuen Stand:** Syntaxprüfung bestanden, Rechenproben bestanden, **Sprachschlüssel-Abgleich
+> fehlgeschlagen — und zwar vorbestehend, nicht durch diese Lieferung.** Gegenprobe gegen den
+> unveränderten `origin/main`-Stand von `beta.html` gelaufen: **identisches Ergebnis**, also
+> keine Regression. Ursache: Das Regex-Muster des Skripts erkennt in der heutigen `beta.html`
+> nur 67 DE-, 67 FR- und 0 EN-Schlüssel statt der tatsächlichen 254 je Sprache — das Skript
+> stammt aus einem älteren Stand und ist nie nachgeführt worden. **Dieselbe Art Werkzeuglücke
+> wie in Punkt 66 und in den Funden der Fassungen 69, 70 und 73: der Prüfer prüft eine
+> Schreibweise, nicht eine Tatsache.** Massgeblich bleibt `pruefe.py` Abschnitt 13, der die
+> Schlüssel selbst zählt und Gleichheit über DE/FR/EN prüft. **Nur festgehalten, nichts daran
+> geändert** — das Skript liegt auf `mistral`, und dieser Branch ist ohne ausdrücklichen
+> Auftrag nicht anzufassen.
+>
+> **Nicht angetastet, wie im Auftrag verlangt:** `kilogGefiltert()`, `state`, die Datenhaltung,
+> `logExportBlock()`, `messExportBlock()`, die CSS-Regel aus Kandidat 1. Keine neuen
+> Sprachschlüssel (254 unverändert). Kein Schnitt in der Messreihe — reine Anzeigefunktion.
+> `APP_VERSION` weiter 18.
+>
+> **🔴 Der Punkt bleibt OFFEN.** Dies ist ein Kandidat, keine bestätigte Lösung. Ondo wird
+> gebeten, am echten iPhone zu prüfen, ob das „bis"-Feld jetzt innerhalb des Kartenrandes
+> sitzt und in derselben Flucht wie die Felder darunter — **und dabei die Exportkarte im
+> Reiter „Werkzeuge" mit anzusehen**, die als unveränderter Vergleichswert stehen geblieben
+> ist. **Falls Kandidat 2 ebenfalls wirkungslos bleibt**, ist der nächste unbearbeitete
+> Vorschlag Fund B: den Platzhalter-Fall gezielt angehen, statt weiter an der Breitenverteilung
+> zu arbeiten. Ebenfalls unverbraucht bleibt der Cache-Verdacht aus der Wiedereröffnung vom
+> 5.9.2026 — er ist durch diese Lieferung weder geprüft noch ausgeschlossen.
 
 ---
 
