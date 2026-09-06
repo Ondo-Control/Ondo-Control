@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 6.9.2026, Fassung 81 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 6.9.2026, Fassung 82 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -15,6 +15,58 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 82 ändert (6.9., main nachgezogen — Vorfall zu Punkt 67 festgehalten, kein Codeaufwand)
+
+**Anlass:** Auftrag Ondo. Die Lieferung zu Punkt 73 (Fassung 81, `beta.html` v19.8.17) lag auf
+dem Branch `claude/kilog-date-fields-overflow-1lc1vx` statt auf `main`. **Ondo hat das nicht
+erlaubt und wusste nichts von einem neuen Branch.** Backlog-Punkt 67 (seit 2.9.2026 in
+`BACKLOG-ARCHIV.md`) verlangt direkt auf `main`, `--ff-only`, einzige Ausnahme `mistral`.
+
+- **`main` per `--ff-only` nachgezogen, ohne Konflikt.** `main` stand unverändert auf
+  `f1ec414`, der Branch genau einen Commit darüber (`0b66be0`) — der Schnellvorlauf war
+  möglich, es war kein Merge-Commit und kein Rebase nötig. **Die Anweisung für den Fehlerfall
+  („anhalten, nicht automatisch mergen oder rebasen") kam nicht zum Tragen**, weil sich `main`
+  seit der Lieferung nicht bewegt hatte.
+- **`STAND.md` ergänzt, neuer Abschnitt „Push ausschliesslich auf `main` — Vorfall vom
+  6.9.2026"** im Bereich zur Cloud-/Code-Arbeitsweise. **Abweichung vom Wortlaut des Auftrags,
+  ausdrücklich gemeldet statt stillschweigend gelöst:** Der Auftrag nennt „den Abschnitt zu
+  Backlog-Punkt 67 (main-Push-Regel)" in `STAND.md` — **einen solchen Abschnitt gibt es dort
+  nicht.** Punkt 67 ist am 2.9.2026 (Fassung 72) vollständig nach `BACKLOG-ARCHIV.md`
+  gewandert und war in `STAND.md` nie eigens abgebildet. Statt zu raten oder die Ergänzung
+  wegzulassen, steht sie am sachlich nächstliegenden Ort, mit einem Verweis auf den Fundort
+  des Punktes selbst (Punkt 45, ein Ort je Tatsache).
+- **Drei Dinge festgehalten, wie beauftragt:** der Vorfall selbst · dass eine Sitzung Zweige
+  anlegen, aber nicht löschen kann (HTTP 403, Rechte-Grenze, Löschen bleibt Ondos Handarbeit
+  auf github.com) · **dass GitHub Pages ausschliesslich `main` liest** — eine Lieferung auf
+  einem anderen Branch erreicht Ondos Browser nicht, unabhängig vom Ergebnis jeder Prüfung.
+  Das ist der eigentliche Grund, warum der Vorfall kein Formfehler ist: Eine geprüfte Datei,
+  die niemand laden kann, ist keine Lieferung.
+- **Ursache benannt, ohne Ausrede (Art. 14):** Die Sitzung war von aussen auf diesen Branch
+  festgelegt worden und durfte nach dieser Vorgabe auf keinen anderen pushen. **Das hebt Punkt
+  67 nicht auf** — nach Artikel 8 kommen Aufträge ausschliesslich von Ondo. Richtig wäre
+  gewesen, **vor** dem Push anzuhalten und zu fragen. Dass die Sitzung den abweichenden Branch
+  im Antworttext gemeldet und um Entscheidung gebeten hat, ist kein Ersatz dafür: gemeldet ist
+  nicht genehmigt.
+- **Stehende Regel aufgenommen (Ondo, 6.9.2026), in `STAND.md` im Wortlaut:** Push
+  ausschliesslich auf `main`, `--ff-only`. Kein neuer Branch, ausser `mistral`. Bei einem
+  Konflikt anhalten und fragen, nicht selbst entscheiden. **Keine neue Arbeitsregel im Sinn
+  von Blueprint-Abschnitt 2c** — Punkt 67 ändert sich inhaltlich nicht, es wird nur ein
+  Vorfall festgehalten und die bestehende Regel geschärft.
+- **Kein Codeaufwand**, `beta.html` bleibt unverändert bei v19.8.17, kein `node --check` nötig.
+  Sprachschlüssel unverändert bei 254. Kein Schnitt in der Messreihe.
+- **Offen geblieben, nicht in diesem Auftrag enthalten:** Der Branch
+  `claude/kilog-date-fields-overflow-1lc1vx` bleibt auf GitHub stehen, bis Ondo ihn von Hand
+  löscht — inhaltlich unbedenklich, weil sein einziger Commit jetzt vollständig in `main`
+  enthalten ist. Er ist damit der **vierte** verwaiste Zweig neben den drei aus Fassung 69.
+- **Verifikation:** `git log` auf `main` zeigt den Schnellvorlauf · `pruefe.py` ohne Argument —
+  ALLES SAUBER.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 82 gehoben (Blueprint 0.81).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
 
 ---
 

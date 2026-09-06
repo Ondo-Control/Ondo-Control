@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 6.9.2026, Fassung 81, v19.8.17*
+*Die aktuelle Wahrheit. Stand: 6.9.2026, Fassung 82, v19.8.17*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -362,6 +362,18 @@ j) **Diese Code-Sitzung, für diesen Auftrag (29.8.2026, Korrektur der Chat-25/2
 **Anmeldung am Verzeichnis:** Name `Ondo-Control`, E-Mail eine Apple-Weiterleitung. Beides steht öffentlich an jeder Änderung; die echte Adresse bleibt verborgen. Gilt nur für diesen Ordner.
 
 **🔴 Was noch von Hand läuft:** der Projektordner der App. Er liegt bei Anthropic, nicht auf dem Tablet, und Claude Code schreibt nur auf die Platte. **Ondos Vorgabe, dass auch das aufhören soll, steht als Punkt 53 im Backlog.**
+
+### 🔴 Push ausschliesslich auf `main` — Vorfall vom 6.9.2026
+
+*Backlog-Punkt 67 (ab 30.8.2026: Code-Lieferungen direkt auf `main`, `--ff-only`, kein eigener Branch je Lieferung, einzige Ausnahme `mistral`) ist seit dem 2.9.2026 in `BACKLOG-ARCHIV.md`. Die Regel gilt unverändert; sie ändert sich durch diesen Vermerk **nicht**. Festgehalten wird nur ein Vorfall — und der Grund, warum er mehr kostet als eine Formalie.*
+
+**Was geschehen ist:** Eine Cloud-Sitzung hat am 6.9.2026 die Lieferung zu Backlog-Punkt 73 (Kandidat 2, `beta.html` v19.8.17) auf einen **neuen Branch** `claude/kilog-date-fields-overflow-1lc1vx` gelegt statt direkt auf `main`. **Ondo hat das nicht erlaubt und wusste nichts von einem neuen Branch.** Belegte Ursache, ohne Ausrede: Die Sitzung war von aussen auf diesen Branch festgelegt worden und durfte nach dieser Vorgabe auf keinen anderen pushen. **Das ändert nichts an der Bewertung** — nach Artikel 8 kommen Aufträge ausschliesslich von Ondo, und eine Vorgabe, die nicht von ihm stammt, hebt Punkt 67 nicht auf. Richtig wäre gewesen, **vor** dem Push anzuhalten und zu fragen. Die Sitzung hat den abweichenden Branch immerhin im Antworttext gemeldet und um Entscheidung gebeten; gemeldet ist aber nicht genehmigt. Am 6.9.2026 per `--ff-only` nach `main` nachgezogen (Auftrag Ondo), ohne Konflikt.
+
+**Warum das kein Formfehler ist, sondern die Lieferung unwirksam macht: GitHub Pages liefert Ondos `beta.html` ausschliesslich vom `main`-Branch aus.** Eine Lieferung auf einem anderen Branch **erreicht seinen Browser nicht** — unabhängig davon, wie sauber `node --check`, Trockentest und `pruefe.py` durchgelaufen sind. Eine geprüfte Datei, die niemand laden kann, ist keine Lieferung.
+
+**Zweite Folge, unvermeidbar:** Eine Sitzung darf auf GitHub Zweige **anlegen, aber nicht löschen** (HTTP 403 — eine Rechte-Grenze, keine Störung, mehrfach belegt, siehe Punkt 53). **Das Löschen bleibt Ondos Handarbeit** auf github.com unter „Branches", Mülleimer-Symbol. Jeder von einer Sitzung angelegte Zweig bleibt sonst dauerhaft stehen; drei solche Leichen liegen bereits im Verzeichnis.
+
+**Stehende Regel, ab sofort in jedem Auftrag zu wiederholen (Ondo, 6.9.2026):** Push ausschliesslich auf `main`, `--ff-only`. Kein neuer Branch, ausser `mistral`. **Bei einem Konflikt: anhalten und fragen, nicht selbst entscheiden** — kein automatischer Merge, kein Rebase, kein Force.
 
 ---
 
