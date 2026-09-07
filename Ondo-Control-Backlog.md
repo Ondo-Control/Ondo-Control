@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 7.9.2026, Fassung 83 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 7.9.2026, Fassung 84 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -15,6 +15,47 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 84 ändert (7.9., vier offene Entscheidungen geklärt, kein Codeaufwand)
+
+**Anlass:** Ondo hat vier der in `STAND.md`s Entscheidungstabelle offen geführten Punkte
+entschieden (30, 34, 35, 0b), im selben Zug wie die Rückmeldung, dass auch Kandidat 3 zu
+Punkt 73 nicht wirkt (siehe eigener, gesonderter Punkt 73 unten — hier nur Buchführung, kein
+Code).
+
+- **Punkt 30 (Freundschaftsspiele) ENTSCHIEDEN: bleiben drin, kein Ausschluss.** Ondos
+  Begründung im Wortlaut: „Die Gehirne sollen in der Lage sein, mit solchen Variablen zu
+  rechnen." Punkt liegt vollständig geschlossen in `BACKLOG-ARCHIV.md` (dort schon vorher,
+  jetzt mit Abschlussvermerk).
+- **Punkt 34 (Brier-Score) und Punkt 35 (Streuungsangabe) ENTSCHIEDEN: werden gebaut** — Ondo
+  hatte die Nützlichkeitsfrage an Claude delegiert; Claudes Einschätzung ist „ja" zu beiden,
+  mit Begründung bei den Punkten selbst. **Beide von `BACKLOG-ARCHIV.md` nach hier
+  verschoben, wortgleich** — eine Bauaufgabe ist kein abgeschlossener Punkt im Sinn von
+  Regel 4, sie gehört in den aktiven Bestand, nicht ins Archiv. Die konkrete Umsetzung
+  (Anzeigeort, Rechenverfahren) ist ein eigener, noch nicht beauftragter Bauschritt.
+- **Punkt 0b (Widersprüche messen) ENTSCHIEDEN: Wiederaufnahme ja.** Dabei ein Widerspruch im
+  Punkt selbst gefunden und behoben (Kopfzeile „zurückgestellt" gegen Schlusssatz
+  „Entscheidung Ondos steht aus" — `STAND.md`s Tabelle hatte genau das schon als offen
+  benannt). **Neuer Fund vor dem Bau:** Der ursprüngliche Zurückstellungsgrund (Punkt A,
+  Ambiguität bei „beide treffen") ist für diesen einen Markt seit v19.8.0 behoben — das
+  Gehirn wird dort direkt gefragt, nicht mehr aus dem Tipp abgeleitet. Ob dieselbe Ambiguität
+  beim Markt „Über/Unter 2,5 Tore" nie bestand oder weiterhin besteht, ist **nicht geprüft** —
+  offen als Umsetzungsfrage (vermutlich Widerspruchsquote je Markt getrennt, nicht als eine
+  gemeinsame Zahl), nicht als Grundsatzfrage.
+- **`STAND.md`, Tabelle „Entscheidungen, die bei Ondo liegen" bereinigt:** Die vier Zeilen (30,
+  34, 35, 0b) entfernt — keine offenen Entscheidungen an Ondo mehr. Verbleibend: 3 (Such-
+  Experiment, ruht weiterhin auf eigenen Wunsch), Befund A, „Fail Safe", GitHub Actions,
+  Schiedsrichter-Grundsatzfrage, Kriterium (c), Rollenmodell — zu den letzten drei hat Claude
+  im selben Chat erklärende Antworten gegeben, ohne dass Ondo bereits entschieden hätte.
+- **Beschlossen und nicht gebaut jetzt fünf** — **3, 4, 0b, 34, 35** *(vorher zwei: 3, 4)*.
+- **Kein Codeaufwand**, `beta.html` bleibt v19.8.18 (Punkt 73 wartet auf Ondos Entscheidung
+  zu Kandidat 4, siehe eigener Punkt). `node --check` nicht nötig.
+- **Verifikation:** `pruefe.py` ohne Argument — ALLES SAUBER.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 84 gehoben (Blueprint 0.83).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
 
 ---
 
@@ -1136,7 +1177,7 @@ nachvollziehbar bleiben und jeder für sich freigegeben werden kann:
 
 ---
 
-**73. iOS-Datumsfelder im KI-Log-Filter** · *Fund 3.9.2026, bisher nicht untersucht · Auftrag Ondo 4.9.2026, Kandidat 1 gebaut am selben Tag · 🔴 von Ondo am echten Gerät geprüft und ERNEUT GEÖFFNET am 5.9.2026 · Kandidat 2 gebaut 6.9.2026, von Ondo am echten Gerät geprüft — WEITERHIN WIRKUNGSLOS · Kandidat 3 gebaut 7.9.2026, Ondos eigene Wahl* · **Status: 🔴 OFFEN — Kandidat Nr. 3 ausgeliefert (`beta.html` v19.8.18), Bestätigung am echten Gerät steht aus. Ausdrücklich NICHT als behoben geführt, auch wenn `node --check`, Trockentest und `pruefe.py` sauber durchlaufen — diese Umgebung hat keinen WebKit-Renderer und kann die sichtbare Wirkung nicht selbst beobachten**
+**73. iOS-Datumsfelder im KI-Log-Filter** · *Fund 3.9.2026, bisher nicht untersucht · Auftrag Ondo 4.9.2026, Kandidat 1 gebaut am selben Tag · 🔴 von Ondo am echten Gerät geprüft und ERNEUT GEÖFFNET am 5.9.2026 · Kandidat 2 gebaut 6.9.2026, von Ondo am echten Gerät geprüft — WEITERHIN WIRKUNGSLOS · Kandidat 3 gebaut 7.9.2026, Ondos eigene Wahl, 🔴 von Ondo am echten Gerät geprüft — ERNEUT WIRKUNGSLOS, Kandidat 4 vorgeschlagen, nicht gebaut* · **Status: 🔴 OFFEN — dritter Fehlschlag in Folge. Diagnostisch wichtiger Fund: Wettbewerb-/Mannschaft-Felder in derselben Karte überlaufen NICHT, nur `type="date"` ist betroffen. Kandidat 4 vorgeschlagen (Ondos Entscheidung steht aus), kein Code geändert**
 
 Die von/bis-Datumsfelder (`logExportBlock()`, `kilogFilterBlock()` aus Punkt 70/71) tragen
 `text-align:center` inline im Code, erscheinen auf iOS trotzdem nicht zentriert.
@@ -1368,6 +1409,58 @@ Die von/bis-Datumsfelder (`logExportBlock()`, `kilogFilterBlock()` aus Punkt 70/
 > Cache-Verdacht aus der Wiedereröffnung vom 5.9.2026 — er ist bis heute weder geprüft noch
 > ausgeschlossen.
 
+> **🔴 KANDIDAT 3 AM ECHTEN GERÄT GEPRÜFT UND WIDERLEGT, 7.9.2026 (Ondo, drei Bildschirmfotos
+> belegt, v19.8.18 über GitHub Pages ausgeliefert).** Auch die Umstellung auf untereinander
+> hat das Überlaufen nicht behoben — **dritter Fehlschlag in Folge**, nach drei verschiedenen
+> CSS-Mechanismen (Flexbox, Grid, Blockstapel). Ondos eigene Nachfrage war der entscheidende
+> Hinweis: „Warum die Grösse nicht auf die von Wettbewerb (Teiltext) und Mannschaft (Teiltext)
+> gleichsetzen?"
+>
+> **Nachgeprüft, mit Codezitat (Arbeitsregel H) — zwei Funde:**
+> 1. **Es gibt keine versteckte CSS-Regel, die das erklären könnte.** Das gesamte Stylesheet
+>    enthält für `input[type="date"]` nur zwei Regeln: die globale `input,select{width:100%;
+>    …}` (Zeile 33, gilt für **alle** Inputs gleichermassen) und
+>    `input[type="date"]::-webkit-date-and-time-value{text-align:center;}` aus Kandidat 1
+>    (betrifft nur die Textausrichtung, nicht die Breite). Keine dritte, spezifischere Regel
+>    überschreibt die Breite nur bei Datumsfeldern.
+> 2. **Kandidat 3 hatte die Behandlung bereits exakt gleichgesetzt.** Die Datumsfelder tragen
+>    seit v19.8.18 kein eigenes `width` mehr, genau wie `#kilogWettbewerb`/`#kilogMannschaft` —
+>    beide Feldarten erben ausschliesslich dieselbe globale Regel, in derselben Karte, in
+>    derselben Struktur (`<div><label>…</label><input…/></div>`). **Trotzdem überläuft nur das
+>    Datumsfeld.** Das ist kein Vermutungsfund mehr, sondern ein direkter Vergleich: Die
+>    einzige verbliebene Variable zwischen einem funktionierenden und einem nicht
+>    funktionierenden Feld in derselben Karte, mit identischer CSS-Behandlung, ist das
+>    Attribut `type="date"` selbst.
+>
+> **Was das bedeutet:** Nicht unsere CSS ist falsch — Safaris eigene, browserinterne
+> Darstellung des nativen Datumsfelds ignoriert die von uns gesetzte `width:100%`
+> offensichtlich für ihre eigene minimale Breite (Kalender-Symbol plus Platzhalter/Wert). Das
+> ist ein bekanntes Verhaltensmuster bei nativen Formularelementen: Browser geben solchen
+> Elementen oft eine eigene, interne `min-width`, die eine Autoren-`width`-Angabe allein nicht
+> aussticht — dagegen hilft nur ein **eigenes, explizites `min-width:0` am `<input>` selbst**.
+> **Das wurde bisher nie versucht:** Kandidat 2 setzte `min-width:0` nur an der umschliessenden
+> Spalte (dem Grid-Item), nie am Input; Kandidat 3 hat `min-width:0` überall entfernt, weil es
+> ausserhalb von Flex/Grid als wirkungslos eingeschätzt wurde — genau diese Einschätzung war
+> vermutlich der Fehler, wenn die Ursache tatsächlich eine browsereigene `min-width` direkt am
+> Element ist, nicht am umschliessenden Layout.
+>
+> **Kandidat 4, vorgeschlagen, NICHT gebaut:** `min-width:0` direkt an beiden
+> `<input type="date">`-Elementen ergänzen, sonst nichts an Kandidat 3 verändern (Struktur,
+> `width:100%` aus der globalen Regel, `text-align:center` bleiben). Eine einzelne, kleine,
+> risikoarme Ergänzung — keine Rückkehr zu Grid oder Flex. **Zweiter, nicht ausgeschlossener
+> Weg:** `overflow:hidden` an den Feld-Containern (aus Kandidat 3s eigener Vorlage weiterhin
+> unverbraucht) — würde eine überschiessende Zeichnung abschneiden, statt sie zu verhindern;
+> Risiko: bei sehr wenig Platz könnte der sichtbare Text selbst beschnitten wirken.
+> **Dritter, deutlich grösserer Weg, nur benannt:** Den nativen Datumspicker ganz ersetzen
+> (z. B. durch reinen Text mit eigener Validierung oder zwei `<select>`-Felder) — würde das
+> Problem an der Wurzel umgehen, ist aber ein echter Eingriff in Bedienung und Verhalten, kein
+> reiner Layout-Fix mehr, und deutlich teurer.
+>
+> **🔴 Nicht ungefragt weitergebaut.** Nach drei Fehlschlägen in Folge, jeder ohne die
+> Möglichkeit, ihn vor der Auslieferung selbst zu prüfen, wartet Claude diesmal auf Ondos
+> Entscheidung, bevor ein vierter Versuch geliefert wird — Kandidat 4 ist vorgeschlagen, aber
+> **nicht** gebaut. **Kein Codeaufwand in dieser Lieferung**, `beta.html` bleibt v19.8.18.
+
 ---
 
 **65. Harte Leselängen-Grenze im Chat-Bereich bei rund 120.000 Zeichen** · *Fund 29.8.2026, Claude, bei der Übergabe an Chat 27* · **Status: Fund — Ondo vorzulegen, drei Wege genannt, keiner gewählt**
@@ -1465,7 +1558,7 @@ ChatGPTs Umformulierung, im Blueprint unter dem 25.7. protokolliert: **Der Schie
 
 ---
 
-**0b. Widersprüche messen statt korrigieren** · *Idee 29.7., Ondo* · **Status: ZURÜCKGESTELLT (31.7.), war beschlossen**
+**0b. Widersprüche messen statt korrigieren** · *Idee 29.7., Ondo · Wiederaufnahme ENTSCHIEDEN 7.9.2026, Ondo* · **Status: 🔴 WIEDERAUFNAHME BESCHLOSSEN, NICHT GEBAUT — eine Detailfrage vor dem Bau noch offen**
 
 Ursprünglich: Widersprüche zwischen Ergebnis-Tipp und Marktaussage bekommen eine eigene Kennzahl je Gehirn.
 
@@ -1475,7 +1568,32 @@ Ursprünglich: Widersprüche zwischen Ergebnis-Tipp und Marktaussage bekommen ei
 1. Die Quote ist **rückwirkend** aus den vorhandenen Daten auslesbar (`gedreht`-Vermerk), ohne neue Messung.
 2. Der Vorsatz „die betroffene Aussage fließt nicht in die Kalibrierung ein" ist **falsch herum**. Die umgedrehte Aussage ist die, an die das Gehirn glaubt. Sie herauszunehmen entfernt ehrliche Daten.
 
-→ *Wiederaufnahme nach Test A.* **Test A ist am 5.8. abgeschlossen; die Voraussetzung ist damit erfüllt. Entscheidung Ondos steht aus.**
+→ *Wiederaufnahme nach Test A.* Test A ist am 5.8. abgeschlossen; die Voraussetzung war damit erfüllt.
+
+> **🔴 Widerspruch im Punkt selbst behoben (7.9.2026, gefunden von Chat 29 beim Beantworten
+> der Frage — die Kopfzeile sagte „zurückgestellt", der Schlusssatz „Entscheidung Ondos steht
+> aus", ein Fehlerart-C4-Fall, den `STAND.md`s Entscheidungstabelle bereits als offen benannt
+> hatte).** Ondo hat entschieden: **ja, wieder aufnehmen.**
+>
+> **Neuer Fund, mit Codezitat, bevor gebaut wird (Arbeitsregel H):** Der ursprüngliche Grund
+> für die Zurückstellung — Punkt A, die Ambiguität der Frage „beide treffen" — ist **inzwischen
+> für genau diesen Markt behoben.** Bis v19.8.0 wurde die BTTS-Behauptung aus dem getippten
+> Ergebnis **abgeleitet**, statt das Gehirn direkt zu fragen; das erzeugte Widersprüche, die
+> nicht am Gehirn lagen, sondern an unserer eigenen Ableitungslogik (belegt in
+> `Ondo-Core-Architektur.md`, Abschnitt 1b, als einer von zwei dokumentierten Verstössen gegen
+> die Drei-Ebenen-Trennung). **Seit v19.8.0 wird das Gehirn beim Markt „beide treffen" direkt
+> gefragt** — für diesen Markt misst eine Widerspruchsquote jetzt wieder etwas Echtes.
+>
+> **Was noch nicht geprüft ist, ausdrücklich als offene Frage benannt, nicht als Befund:** Der
+> Markt „Sieger" (1x2) wird weiterhin **aus dem Tipp abgeleitet**, nicht separat erfragt — dort
+> kann es strukturell keinen Widerspruch geben (die Ableitung stimmt mit sich selbst immer
+> überein). Ob beim Markt „Über/Unter 2,5 Tore" (seit jeher direkt erfragt, nie von der
+> Ableitungs-Ambiguität aus Punkt A betroffen) eine andere, unbehobene Ambiguität besteht, ist
+> **nicht untersucht.** **Deshalb, vor dem Bau zu klären:** Eine Widerspruchsquote sollte
+> vermutlich **je Markt getrennt** ausgewiesen werden statt als eine gemeinsame Zahl über alle
+> drei Märkte — sonst würde ein sauberer Markt („beide treffen") mit einem womöglich noch
+> unsauberen vermischt. Das ist eine Umsetzungsfrage, keine Grundsatzfrage, und heute nicht
+> entschieden.
 
 ---
 
@@ -1565,6 +1683,87 @@ Seither sind mehrere Vorhersagetage vergangen. **Ob die Anpfiffzeiten seit dem 1
 **4. Daten-Export in die stabile Version** · *Idee Chat 1, erneut 28.7.* · **Status: beschlossen**
 **Nicht zu verwechseln mit „Datensicherung" (gebaut in v19.1).** Die Sicherung schützt vor Datenverlust; dieser Punkt überträgt die Messdaten aus der Beta in die stabile Version. Ohne ihn geht bei der Beförderung alles Gesammelte verloren.
 → *Unmittelbar vor der Beförderung.*
+
+**34. Brier-Score als zweite Kennzahl neben der Kalibrierung** *(🔴 GERECHNET am 14.8. abends aus
+den Rohdaten — Sonnet **0,2429**, Bereich 0,2350–0,2513 · Flash **0,2497**, Bereich
+0,2391–0,2603. **Beide Bereiche schliessen 0,2500 ein: kein Gehirn ist nachweislich besser als
+„immer 50 %".** Die Vorabrechnung von Chat 12 war brauchbar.)* · *Fund 8.8., frischer
+Claude-Chat (nicht Chat 12) · nachgerechnet und in einem Punkt berichtigt von Chat 12 · Bau
+ENTSCHIEDEN 7.9.2026, Ondo* · **Status: 🔴 BESCHLOSSEN UND NICHT GEBAUT — wird umgesetzt**
+
+*Wortgleich aus `BACKLOG-ARCHIV.md` hierher verschoben (7.9.2026, Fassung 84) — eine
+Bauaufgabe ist kein abgeschlossener Punkt im Sinn von Regel 4.*
+
+Die Dokumente enthalten seit Wochen den Satz „Ein perfekt kalibriertes Gehirn, das immer 50 %
+sagt, gewinnt kein Geld." **Die Grenze war benannt, aber nie gemessen.** Der Brier-Score
+verrechnet Kalibrierung und Entschlossenheit zu einer Zahl und lässt sich nicht durch
+Ausweichen auf 50 % schönen. Der Begriff kommt in keinem Projektdokument vor.
+
+→ **Vorabrechnung von Chat 12 aus dem KI-Log, je 180 bewertete Aussagen:** Sonnet **0,2593**
+(schlechter als Raten), Flash **0,2471** (knapp besser). Vergleichswert **0,2500** = wer immer
+50 % sagt.
+→ **🔴 Berichtigung des Funds:** Er behauptet, die Berichtigung von Punkt F ändere die Zahl
+nicht. **Falsch** — Sonnet springt auf **0,2418** und damit von *schlechter als Raten* auf
+*besser als Raten*. **Der Brier-Score ist damit ein zusätzliches Argument für die
+Berichtigung.**
+→ **Zwei-Probleme-Regel erfüllt:** macht die Gehirne trotz unterschiedlicher Entschlossenheit
+vergleichbar **und** schliesst die selbst benannte 50-%-Lücke.
+→ **Kosten: keine.** Aus vorhandenen Daten rechenbar, keine neue Messung, kein Modellaufruf,
+kein Schnitt.
+→ **Die Zahlen von 14.8. sind eine Vorabrechnung, kein Ergebnis** — bei 330/327 Aussagen
+gerechnet, heute stehen 501/504. Vor der Übernahme in die Dokumente neu gegen die App rechnen.
+
+> **🔴 ENTSCHIEDEN am 7.9.2026 (Ondo, delegiert an Claudes Einschätzung: „wenn du das als
+> nützlich findest, dann ja"). Claudes Einschätzung, mit Begründung:** Ja — aus drei Gründen.
+> **Erstens** ist der Brier-Score kein Duplikat der bestehenden Kalibrierungsabweichung: Die
+> Abweichung mittelt über sechs feste Bänder (1–49 % usw.), der Brier-Score wird je
+> Einzelaussage gebildet und leidet deshalb nicht an der „zu wenige Aussagen im Band"-Grenze,
+> die STAND.md bei kleinen Bändern (z. B. Sonnets 90–99 %) ausdrücklich benennt. **Zweitens**
+> ist er bereits zweimal von Hand gerechnet worden und beide Male aussagekräftig — die
+> auffälligste Erkenntnis („kein Gehirn ist nachweislich besser als immer 50 %") steht bisher
+> in keinem laufend aktualisierten Dokument, nur in dieser archivierten Fassungsnotiz.
+> **Drittens die Kosten:** reine Rechnung aus bereits vorhandenen Daten (`state.kiProtokoll`),
+> kein neuer Modellaufruf, kein Geld, keine neue Messung, kein Schnitt in der Messreihe —
+> dieselbe Kostenklasse wie die bestehende Kalibrierungs-/Entschlossenheits-Anzeige im
+> Finanzen-Tab. **Was heute NICHT entschieden ist:** die genaue Umsetzung (Anzeigeort,
+> Rundung, ob als eigene Zeile oder in der bestehenden Kalibrierungstabelle) — das ist ein
+> eigener, noch nicht beauftragter Bauschritt.
+
+---
+
+**35. Streuungsangabe für die Hauptkennzahl** *(🔴 NEU GERECHNET am 14.8. abends bei 330 und 327
+Aussagen: Sonnet **4,35 %**, Bereich **2,3–8,7 %** · Flash **7,72 %**, Bereich **4,7–12,4 %**.
+**Die Bereiche überlappen sich — Sonnets Vorsprung ist auch bei fast doppelter Datenmenge nicht
+bewiesen.** Enger geworden ist er.)* · *Fund 8.8., frischer Claude-Chat · nachgerechnet von
+Chat 12 · Bau ENTSCHIEDEN 7.9.2026, Ondo* · **Status: 🔴 BESCHLOSSEN UND NICHT GEBAUT — wird
+umgesetzt**
+
+*Wortgleich aus `BACKLOG-ARCHIV.md` hierher verschoben (7.9.2026, Fassung 84) — eine
+Bauaufgabe ist kein abgeschlossener Punkt im Sinn von Regel 4.*
+
+„Sonnet 5 %, Flash 9 %" galt wochenlang als Vorsprung; jetzt stehen beide bei 8 %. **Eine
+einzelne Prozentzahl ohne Streuungsangabe ist die Scheinpräzision, die Artikel 14 verbietet —
+angewandt auf die eigenen Kennzahlen.**
+
+→ **Nachgerechnet von Chat 12** (Bootstrap, 600 Ziehungen über die 180 Aussagen): Sonnet 7,6 %
+mit einem 90-%-Bereich von **3,9 bis 14,7** · Flash 8,1 % mit **4,9 bis 14,5**.
+→ **Folge:** Der Unterschied „5 gegen 9" lag **vollständig im Rauschen**. Die Kennzahl ist bei
+dieser Datenmenge auf mehrere Prozentpunkte genau, nicht auf einen.
+→ **Kosten:** keine für die Entscheidung; die Anzeige in der App wäre eine kleine
+Codeänderung ohne Schnitt.
+
+> **🔴 ENTSCHIEDEN am 7.9.2026 (Ondo, delegiert an Claudes Einschätzung).** Ja, aus demselben
+> Grund wie bei Punkt 34, mit einem zusätzlichen, konkreten Nutzen: **In `STAND.md` steht bei
+> praktisch jedem Messstand von Hand der Satz „die Zahlen sind auf mehrere Prozentpunkte
+> genau, nicht auf einen" — eine Absicherung ohne Zahl.** Eine echte Streuungsangabe würde
+> diesen wiederkehrenden, handgeschriebenen Vorbehalt durch eine tatsächliche Zahl ersetzen,
+> statt ihn bei jedem Messstand neu zu formulieren (Punkt 45 — ein Ort je Tatsache gälte dann
+> auch hier). **Kosten wie bei Punkt 34:** keine neue Messung, kein Geld. **Offene
+> Umsetzungsfrage, heute nicht entschieden:** ob Bootstrap (wie Chat 12s Nachrechnung) oder ein
+> geschlossenes Rechenverfahren (Standardfehler) verwendet wird — das ist eine Detailfrage des
+> Bauschritts, nicht der Grundsatzentscheidung.
+
+---
 
 **5. Beförderungskriterium (c) neu fassen** · *Idee 23.7., ChatGPT* · **Status: Idee**
 15 Bewertungen sind statistisch zu wenig, 100 dauern Monate. Vorschlag Claude: Beförderung nach Stabilität und Fehlerfreiheit entscheiden, die Messung läuft danach weiter. **Inhalt gehört in den Blueprint.**

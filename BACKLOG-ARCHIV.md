@@ -1065,7 +1065,8 @@ Die Spielliste läuft unter `rolle:'gehirn'`. In `gWahl` gibt es nur zwei Rollen
 
 ---
 
-**30. Freundschaftsspiele aus der Spielliste ausschliessen?** · *Beobachtung 8.8., Claude* · **Status: Idee — NEU, nicht entschieden**
+**30. Freundschaftsspiele aus der Spielliste ausschliessen?** · *Beobachtung 8.8., Claude ·
+ENTSCHIEDEN 7.9.2026, Ondo* · **Status: 🔴 ENTSCHIEDEN — bleiben drin, kein Ausschluss gebaut**
 
 **Der Befund.** Die Spielliste vom Morgen des 8.8. enthält **sechs Freundschaftsspiele von zehn Spielen** — Köln – Real Sociedad, Augsburg – Sassuolo, Schalke – Atalanta, Leeds – Leipzig, Real Betis – Bournemouth, Stuttgart – Everton. Zwölf der zwanzig Vorhersagen hängen damit an Testspielen.
 
@@ -1075,6 +1076,14 @@ Weg A (v19.7.8) verbietet nur Formate mit **verkürzter Spielzeit**. Gewöhnlich
 → **Gegenargument, das ernst zu nehmen ist:** Gemessen wird **Kalibrierung**, nicht Trefferquote. Ein Gehirn, das bei einem Testspiel zurückhaltend antwortet und damit richtig liegt, liefert einen **guten** Messwert. Ein Ausschluss würde genau die Fälle entfernen, in denen Zurückhaltung angemessen ist — und damit möglicherweise das Bild verzerren statt es zu schärfen.
 → **Kosten eines Ausschlusses:** ein Satz im Auftragstext von `stufeHolen`, kein Schnitt in der Messreihe, kein Geld. Der Preis liegt in der Grösse der Stichprobe: An Sommertagen bliebe womöglich zu wenig übrig.
 → **Empfehlung Claude: nicht entscheiden, erst zählen.** Wie viele Spiele der Messreihe bisher Freundschaftsspiele waren, steht nirgends. Diese Zahl lässt sich aus den vorhandenen Daten rückwirkend bestimmen, ohne neue Messung und ohne Eingriff. Erst danach ist die Frage überhaupt beantwortbar.
+
+> **🔴 ENTSCHIEDEN am 7.9.2026 (Ondo).** Freundschaftsspiele bleiben in der Spielliste, kein
+> Ausschluss wird gebaut. **Ondos Begründung im Wortlaut:** „Die Gehirne sollen in der Lage
+> sein, mit solchen Variablen zu rechnen." Das deckt sich mit dem oben bereits notierten
+> Gegenargument, das seinerzeit ernst genommen wurde: Ein Gehirn, das bei einem Testspiel
+> zurückhaltend antwortet und damit richtig liegt, liefert einen guten Messwert — ein
+> Ausschluss hätte genau diese Fälle entfernt. **Kein Codeaufwand.** Der Punkt ist damit
+> vollständig geschlossen, keine offene Bauaufgabe mehr.
 
 ---
 
@@ -1112,26 +1121,10 @@ Die App unterscheidet nicht zwischen einem Ergebnis, das **vorhanden**, einem, d
 
 ---
 
-**34. Brier-Score als zweite Kennzahl neben der Kalibrierung** *(🔴 GERECHNET am 14.8. abends aus den Rohdaten — Sonnet **0,2429**, Bereich 0,2350–0,2513 · Flash **0,2497**, Bereich 0,2391–0,2603. **Beide Bereiche schliessen 0,2500 ein: kein Gehirn ist nachweislich besser als „immer 50 %".** Die Vorabrechnung von Chat 12 war brauchbar. **In der App gebaut ist der Wert weiterhin nicht** — Ondos Entscheidung steht aus.)* · *Fund 8.8., frischer Claude-Chat (nicht Chat 12) · nachgerechnet und in einem Punkt berichtigt von Chat 12* · **Status: Idee — NEU**
-
-Die Dokumente enthalten seit Wochen den Satz „Ein perfekt kalibriertes Gehirn, das immer 50 % sagt, gewinnt kein Geld." **Die Grenze war benannt, aber nie gemessen.** Der Brier-Score verrechnet Kalibrierung und Entschlossenheit zu einer Zahl und lässt sich nicht durch Ausweichen auf 50 % schönen. Der Begriff kommt in keinem Projektdokument vor.
-
-→ **Vorabrechnung von Chat 12 aus dem KI-Log, je 180 bewertete Aussagen:** Sonnet **0,2593** (schlechter als Raten), Flash **0,2471** (knapp besser). Vergleichswert **0,2500** = wer immer 50 % sagt.
-→ **🔴 Berichtigung des Funds:** Er behauptet, die Berichtigung von Punkt F ändere die Zahl nicht. **Falsch** — Sonnet springt auf **0,2418** und damit von *schlechter als Raten* auf *besser als Raten*. **Der Brier-Score ist damit ein zusätzliches Argument für die Berichtigung.**
-→ **Zwei-Probleme-Regel erfüllt:** macht die Gehirne trotz unterschiedlicher Entschlossenheit vergleichbar **und** schliesst die selbst benannte 50-%-Lücke.
-→ **Kosten: keine.** Aus vorhandenen Daten rechenbar, keine neue Messung, kein Modellaufruf, kein Schnitt.
-→ **Die Zahlen sind eine Vorabrechnung, kein Ergebnis.** Vor der Übernahme in die Dokumente gegen die App rechnen.
-
----
-
-**35. Streuungsangabe für die Hauptkennzahl** *(🔴 NEU GERECHNET am 14.8. abends bei 330 und 327 Aussagen: Sonnet **4,35 %**, Bereich **2,3–8,7 %** · Flash **7,72 %**, Bereich **4,7–12,4 %**. **Die Bereiche überlappen sich — Sonnets Vorsprung ist auch bei fast doppelter Datenmenge nicht bewiesen.** Enger geworden ist er. **In der App gebaut ist die Angabe weiterhin nicht.**)* · *Fund 8.8., frischer Claude-Chat · nachgerechnet von Chat 12* · **Status: Idee — NEU**
-
-„Sonnet 5 %, Flash 9 %" galt wochenlang als Vorsprung; jetzt stehen beide bei 8 %. **Eine einzelne Prozentzahl ohne Streuungsangabe ist die Scheinpräzision, die Artikel 14 verbietet — angewandt auf die eigenen Kennzahlen.**
-
-→ **Nachgerechnet von Chat 12** (Bootstrap, 600 Ziehungen über die 180 Aussagen): Sonnet 7,6 % mit einem 90-%-Bereich von **3,9 bis 14,7** · Flash 8,1 % mit **4,9 bis 14,5**.
-→ **Folge:** Der Unterschied „5 gegen 9" lag **vollständig im Rauschen**. Die Kennzahl ist bei dieser Datenmenge auf mehrere Prozentpunkte genau, nicht auf einen.
-→ **Offene Frage an Ondo:** Blueprint (Artikel 14 auf die eigenen Kennzahlen angewandt) oder Backlog (Aufgabe)?
-→ **Kosten:** keine für die Entscheidung; die Anzeige in der App wäre eine kleine Codeänderung ohne Schnitt.
+*(Punkt 34 und Punkt 35 standen hier — beide am 7.9.2026, Fassung 84, nach Ondos Entscheidung
+„ja, wenn du es für nützlich hältst" ENTSCHIEDEN: werden gebaut. Nach `Ondo-Control-Backlog.md`
+verschoben, weil eine Bauaufgabe kein archivierter, abgeschlossener Punkt ist — Regel 4 verlangt
+GEBAUT, nicht nur „entschieden zu bauen". Wortgleich verschoben, nichts gekürzt.)*
 
 ---
 
