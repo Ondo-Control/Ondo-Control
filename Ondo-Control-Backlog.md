@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 6.9.2026, Fassung 82 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 7.9.2026, Fassung 83 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -15,6 +15,56 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 83 ändert (7.9., Backlog-Punkt 73 — Kandidat 3, Ondos eigene Wahl)
+
+**Anlass:** Ondo hat am echten iPhone bestätigt: Kandidat 2 (CSS-Grid, v19.8.17) hat weder das
+Herausragen noch ein zusätzlich beobachtetes Überlappen der beiden Datumsfelder behoben — der
+zweite Fehlschlag in Folge. Zur Wahl gestellt: eine kleine Zusatzänderung (`overflow:hidden`)
+oder eine sichtbar grössere, strukturell sicherere Änderung (Felder untereinander statt
+nebeneinander). **Ondo hat sich für Letzteres entschieden.**
+
+- **Kandidat 3 gebaut, `beta.html` v19.8.18:** Die Datumsfeld-Reihe in `kilogFilterBlock()`
+  steht jetzt untereinander statt nebeneinander — dasselbe Muster wie die Felder
+  Wettbewerb/Mannschaft in derselben Karte. Kein eigenes `width` mehr am Input nötig
+  (`input,select{width:100%}` gilt bereits global), `min-width:0` an den Containern entfällt
+  (ausserhalb eines Flex-/Grid-Kontexts wirkungslos). Volle Begründung, warum das strukturell
+  sicherer ist als beide vorigen Kandidaten (kein Nachbar mehr, mit dem ein Feld um Breite
+  konkurrieren müsste), steht als angehängter Block direkt bei Punkt 73 (nicht hier
+  wiederholt — Punkt 45).
+- **`logExportBlock()` weiterhin bewusst nicht mitgeändert** — bleibt die einzige seit v19.8.14
+  unveränderte Vergleichsgrundlage für Ondos nächste Prüfung am Gerät.
+- **Sichtbare Folge, nicht verschwiegen:** Die Filterkarte wird zwei Zeilen höher. Ondo hat
+  diesen Weg in Kenntnis dieser Folge gewählt.
+- **Verifikation:** `node --check` bestanden · Trockentest mit **32 Prüfungen** an der echten,
+  im Wortlaut aus `beta.html` herausgeschnittenen `kilogFilterBlock()`, mit `logExportBlock()`
+  weiterhin als Kontrollwert — alle bestanden · `pruefe.py` ohne Argument — ALLES SAUBER.
+- **Nebenbei, auf Ondos Angebot, exploratorisch geprüft, nicht Teil dieser Codelieferung:** Ein
+  von Ondo hochgeladener Rohtext-Export des Schiedsrichters (122 KI-Log-Einträge, 30.8.–
+  7.9.2026) wurde ausgewertet, um die wachsende Liste unbewerteter Vorhersagen einzuordnen.
+  **Befund, mit Zahlen belegt:** Nach Bereinigung der im Export mehrfach angehängten
+  Wiederholungen (derselbe Prüflauf wird an jedem betroffenen Eintrag gespeichert) bleiben 24
+  echte, unterschiedliche Prüfläufe mit 120 Einzelergebnissen — davon 109 gefunden und
+  ausgewertet (91 %), 6 nicht gefunden (5 %, alle an derselben Listenposition „S12", darunter
+  belegt Sligo Rovers–Galway United, 5.9.2026, League of Ireland), 5 noch laufend. **Kein
+  einziger Widerspruch zu einem bereits übernommenen Ergebnis gefunden** — deckt sich mit
+  Ondos eigener Beobachtung (36 geprüfte Spiele über zwei Läufe, alle richtig). **Ausdrücklich
+  nicht erklärt:** Warum die „Ergebnisse prüfen"-Ansicht in einem einzelnen Lauf nur 13 von 40
+  gefunden hat. Der Rohtext-Export deckt nur den Zeitraum 30.8.–7.9.2026 ab; die
+  Park-Übersicht zeigt aber unbewertete Einträge bis zurück zum 28.7.2026 — deutlich ausserhalb
+  dieses Fensters. **Als Vermutung gekennzeichnet, nicht als Befund:** Die schlechte Trefferquote
+  des einzelnen grossen Prüflaufs dürfte eher am Alter/an der Kleinheit der Wettbewerbe der
+  seit Wochen unbewerteten Altbestände liegen als an einem neuen Fehler in der aktuellen
+  Tagesprüfung — nicht geprüft, nur naheliegend. **Nicht ins Backlog oder in `STAND.md`
+  übernommen** — reiner Chat-Befund auf Zuruf, kein Bau, keine Entscheidung; wird nachgetragen,
+  falls Ondo das wünscht.
+- **Keine neuen Sprachschlüssel** (254 unverändert). **Kein Schnitt in der Messreihe.**
+- **Fassungszahl:** alle drei aktiven Dokumente auf 83 gehoben (Blueprint 0.82).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
 
 ---
 
@@ -1086,7 +1136,7 @@ nachvollziehbar bleiben und jeder für sich freigegeben werden kann:
 
 ---
 
-**73. iOS-Datumsfelder im KI-Log-Filter** · *Fund 3.9.2026, bisher nicht untersucht · Auftrag Ondo 4.9.2026, Kandidat 1 gebaut am selben Tag · 🔴 von Ondo am echten Gerät geprüft und ERNEUT GEÖFFNET am 5.9.2026 · Kandidat 2 gebaut 6.9.2026* · **Status: 🔴 OFFEN — Kandidat Nr. 2 ausgeliefert (`beta.html` v19.8.17), Bestätigung am echten Gerät steht aus. Ausdrücklich NICHT als behoben geführt, auch wenn `node --check`, Trockentest und `pruefe.py` sauber durchlaufen — diese Umgebung hat keinen WebKit-Renderer und kann die sichtbare Wirkung nicht selbst beobachten**
+**73. iOS-Datumsfelder im KI-Log-Filter** · *Fund 3.9.2026, bisher nicht untersucht · Auftrag Ondo 4.9.2026, Kandidat 1 gebaut am selben Tag · 🔴 von Ondo am echten Gerät geprüft und ERNEUT GEÖFFNET am 5.9.2026 · Kandidat 2 gebaut 6.9.2026, von Ondo am echten Gerät geprüft — WEITERHIN WIRKUNGSLOS · Kandidat 3 gebaut 7.9.2026, Ondos eigene Wahl* · **Status: 🔴 OFFEN — Kandidat Nr. 3 ausgeliefert (`beta.html` v19.8.18), Bestätigung am echten Gerät steht aus. Ausdrücklich NICHT als behoben geführt, auch wenn `node --check`, Trockentest und `pruefe.py` sauber durchlaufen — diese Umgebung hat keinen WebKit-Renderer und kann die sichtbare Wirkung nicht selbst beobachten**
 
 Die von/bis-Datumsfelder (`logExportBlock()`, `kilogFilterBlock()` aus Punkt 70/71) tragen
 `text-align:center` inline im Code, erscheinen auf iOS trotzdem nicht zentriert.
@@ -1245,10 +1295,78 @@ Die von/bis-Datumsfelder (`logExportBlock()`, `kilogFilterBlock()` aus Punkt 70/
 > gebeten, am echten iPhone zu prüfen, ob das „bis"-Feld jetzt innerhalb des Kartenrandes
 > sitzt und in derselben Flucht wie die Felder darunter — **und dabei die Exportkarte im
 > Reiter „Werkzeuge" mit anzusehen**, die als unveränderter Vergleichswert stehen geblieben
-> ist. **Falls Kandidat 2 ebenfalls wirkungslos bleibt**, ist der nächste unbearbeitete
-> Vorschlag Fund B: den Platzhalter-Fall gezielt angehen, statt weiter an der Breitenverteilung
-> zu arbeiten. Ebenfalls unverbraucht bleibt der Cache-Verdacht aus der Wiedereröffnung vom
-> 5.9.2026 — er ist durch diese Lieferung weder geprüft noch ausgeschlossen.
+> ist. Vorlaeufig durch Kandidat 3 abgeloest, siehe unten — dieser Absatz bleibt als
+> Codehistorie stehen, nicht rueckwirkend veraendert.
+
+> **🔴 KANDIDAT 2 AM ECHTEN GERÄT GEPRÜFT UND WIDERLEGT, 6.9.2026 (Ondo, Bildschirmfoto
+> belegt, v19.8.17 bereits über GitHub Pages ausgeliefert).** Kandidat 2 hat **weder das
+> Herausragen noch ein zusätzlich beobachtetes Überlappen der beiden Felder behoben** — der
+> zweite Fehlschlag in Folge bei einer Nebeneinander-Aufteilung, nach unterschiedlichen
+> CSS-Mechanismen (Flexbox mit `min-width:0` in Kandidat 1/2-Vorstufe, dann Grid mit
+> `minmax(0,1fr)` in Kandidat 2 selbst). **Die Erklärung aus Fund B (leeres Feld → breiterer
+> Platzhalter → `minmax(0,1fr)` als Riegel) war damit nicht die vollständige oder nicht die
+> richtige Erklärung** — rein rechnerisch hätte der Grid-Umbau die Spaltenbreite unabhängig
+> vom Feldinhalt erzwingen müssen; dass er es sichtbar nicht tut, spricht für eine Ursache
+> **unterhalb** der CSS-Boxberechnung.
+>
+> **Neue, weiterhin ausdrücklich ungeprüfte Vermutung:** iOS/WebKit zeichnet das eingebaute
+> Kalender-Symbol samt Platzhalter/Wert des nativen `input[type="date"]` womöglich
+> **unabhängig von der berechneten Spaltenbreite** — die Layout-Box wäre dann korrekt schmal
+> berechnet, aber die sichtbare Zeichnung ignoriert das und malt in voller nativer Grösse.
+> Das würde beide von Ondo beschriebenen Symptome gleichzeitig erklären (Überlappen, weil
+> beide Felder in voller Grösse zeichnen; Herausragen, weil die Zeichnung einfach dort endet,
+> wo der Platz zu Ende ist) — **nicht verifiziert, diese Umgebung kann das nicht rendern.**
+>
+> **🔴 KANDIDAT 3 GEBAUT am 7.9.2026 (Ondos eigene Wahl zwischen zwei vorgeschlagenen Wegen —
+> `overflow:hidden` als kleiner Zusatz, oder die Felder untereinander statt nebeneinander;
+> Ondo hat sich für Letzteres entschieden), `beta.html` v19.8.18.** Die Datumsfeld-Reihe in
+> `kilogFilterBlock()` steht jetzt **untereinander statt nebeneinander** — jedes Feld ein
+> eigener Block, das zweite mit `margin-top:10px`, genau das Muster, das die Felder
+> Wettbewerb/Mannschaft in derselben Karte bereits benutzen. Kein eigenes `width` mehr am
+> Input nötig: `input,select{width:100%}` gilt bereits global (`beta.html` Zeile 33), wie bei
+> den Feldern darunter auch. `min-width:0` an den Containern ist entfallen — ausserhalb eines
+> Flex-/Grid-Kontexts ohne Wirkung, dieselbe Vereinfachung wie beim Rest der Karte.
+> **Warum das strukturell sicherer ist als Kandidat 1/2:** Beide vorigen Kandidaten haben
+> versucht, zwei Felder verlässlich auf eine gemeinsame Zeile mit fester Breitenteilung zu
+> zwingen — das ist genau die Konstellation, in der eine native Kontrolle mit eigenem
+> Platzbedarf mit ihrem Nachbarn kollidieren kann. Bei einer Zeile je Feld gibt es **keinen
+> Nachbarn mehr, mit dem ein Feld um Breite konkurrieren müsste**, und die Kartenbreite bietet
+> deutlich mehr Raum als ein einzelnes Datumsfeld braucht — ein Überlappen ist damit
+> geometrisch ausgeschlossen, ein Herausragen nur noch denkbar, wenn ein einzelnes Feld breiter
+> wäre als die ganze Karte, was bei keinem der bisherigen Funde beobachtet wurde.
+> **Sichtbare Änderung, keine verborgene Fehlerbehebung:** Die Filterkarte wird zwei Zeilen
+> höher als vorher — Ondo hat diesen Weg ausdrücklich gewählt, in Kenntnis dieser Folge.
+> **`logExportBlock()` weiterhin bewusst NICHT mitgeändert**, aus demselben Grund wie bei
+> Kandidat 2: Es ist die einzige Stelle, die seit v19.8.14 durchgehend unverändert blieb und
+> damit die einzige verlässliche Vergleichsgrundlage für Ondos nächste Prüfung am Gerät.
+> **Verifiziert:** `node --check` bestanden. **Trockentest bestanden — 32 Prüfungen, alle
+> bestanden**, an der echten, aus `beta.html` im Wortlaut herausgeschnittenen
+> `kilogFilterBlock()`, mit `logExportBlock()` weiterhin als Kontrollwert: kein `display:grid`,
+> kein `display:flex` und kein `grid-template-columns` mehr in der Datumsreihe · kein
+> `min-width` mehr an den Containern · das Von-Feld steht strukturell vor dem Bis-Feld, jedes
+> in einem eigenen Block, der zweite mit `margin-top:10px` · beide Inputs ohne eigenes
+> `width`/`box-sizing`, `text-align:center` bleibt erhalten · beide bleiben `type="date"` mit
+> unveränderten Ids und `onchange`-Handlern · leerer wie gefüllter Filterzustand wird korrekt
+> durchgereicht · Wettbewerb-, Mannschaft-, Zurücksetzen- und Zählerzeile unverändert · der
+> `modus`-Parameter aus Punkt 71 wirkt unverändert, auch im Modus „bewertet" stehen die Felder
+> untereinander · die Ausgabe ist tag-balanciert · `logExportBlock()` bleibt unverändert bei
+> `display:flex` und `flex:1;min-width:0`, weiterhin nebeneinander · der Filterzustand bleibt
+> nach mehreren Aufrufen unverändert, zwei gleiche Aufrufe liefern identische Ausgabe · die
+> CSS-Regel aus Kandidat 1 steht weiterhin unverändert im Dokument. `pruefe.py` ohne Argument:
+> ALLES SAUBER. Keine neuen Sprachschlüssel (254 unverändert). Kein Schnitt in der Messreihe —
+> reine Anzeigefunktion. `APP_VERSION` weiter 18.
+>
+> **🔴 Der Punkt bleibt weiterhin OFFEN.** Auch das ist ein Kandidat, keine bestätigte Lösung —
+> die dritte Vermutung in Folge, wieder ohne die Möglichkeit, sie hier selbst zu prüfen. Ondo
+> wird gebeten, am echten iPhone zu bestätigen, ob die Datumsfelder jetzt innerhalb der Karte
+> bleiben, ohne sich zu überlappen — und, falls auch das nicht wirkt, festzuhalten, ob das
+> Symptom sich verändert hat (z. B. ragt jetzt gar nichts mehr heraus, aber der Text bleibt
+> unlesbar, oder Ähnliches), weil das die nächste Vermutung eingrenzen würde. Der zweite,
+> nicht gewählte Weg (`overflow:hidden` als kleinerer Zusatz statt der Umstellung auf
+> untereinander) bleibt unverbraucht, falls Kandidat 3 ebenfalls nicht wirkt oder Ondo das
+> Aussehen zweizeiliger Felder nicht behalten möchte. Ebenfalls unverbraucht bleibt der
+> Cache-Verdacht aus der Wiedereröffnung vom 5.9.2026 — er ist bis heute weder geprüft noch
+> ausgeschlossen.
 
 ---
 
