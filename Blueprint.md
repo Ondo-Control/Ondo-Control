@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.83
+**Version:** 0.84
 **Stand:** 7. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.84 ändert (7.9.2026):** Drei Entscheidungen Ondos umgesetzt (Backlog Fassung 85). **Neue Arbeitsregel N — Fail Safe:** bei einem unbekannten Fehler anhalten statt automatisch das nächste Modell zu nehmen, mit dem realen Anlass vom 3./4.8.2026 (14 Flash-Modelle automatisch durchprobiert, weil ein erschöpftes Kontingent fälschlich als unbekannter Fehler behandelt wurde) und dem geprüften Befund, dass diese blinde Logik im heutigen Code nicht mehr existiert — die Regel gilt vorsorglich. **Neuer Abschnitt 2e — Rollen im Projekt:** bewusst minimal, nur die bereits in `STAND.md` stehenden Rollen plus die eine noch wirksame Konfliktregel (Architekt ≠ unabhängiger Prüfer, betrifft ChatGPT seit 27./28.8.2026), keine neue Hierarchie. **GitHub Actions, Abschnitt 10, teilweise geklärt:** Eine durch Knopfdruck ausgelöste Aktualisierung verletzt Grenze 1 nicht — ein Knopfdruck ist die verlangte Aufforderung selbst. Eine zeitgesteuerte, unbeaufsichtigte Ausführung bleibt davon ausgenommen und weiterhin offen; die Vorfrage zur Quotenabdeckung ist unverändert unbeantwortet. Zusätzlich, am selben Tag: Backlog-Punkt 73, Kandidat 4 gebaut (`beta.html` v19.8.19) — `min-width:0` direkt an beiden Datumsfeldern, auf Ondos eigenen Vorschlag, nachdem Kandidat 3 am echten Gerät widerlegt wurde; eine Rücksetz-Regel für einen weiteren Fehlschlag ist vorab vereinbart. Kein Verfassungsartikel geändert. Blueprint auf 0.84 gehoben.
 
 > **Was Fassung 0.83 ändert (7.9.2026):** Vier offene Entscheidungen aus Abschnitt 10 geklärt, kein Codeaufwand (Backlog Fassung 84). Punkt 30 (Freundschaftsspiele): bleiben in der Spielliste, Ondos Begründung „die Gehirne sollen mit solchen Variablen rechnen können". Punkt 34 (Brier-Score) und 35 (Streuungsangabe): werden gebaut — Ondo hatte die Nützlichkeitsfrage an Claude delegiert, Claudes Einschätzung ist „ja" zu beiden, mit Begründung im Backlog; beide von `BACKLOG-ARCHIV.md` zurück in den aktiven Backlog verschoben, weil eine Bauaufgabe kein archivierter Punkt ist. Punkt 0b (Widersprüche messen): Wiederaufnahme entschieden — dabei ein Widerspruch im Punkt selbst behoben und ein neuer Fund festgehalten: Der ursprüngliche Zurückstellungsgrund ist für den Markt „beide treffen" seit v19.8.0 behoben (das Gehirn wird dort direkt gefragt, nicht mehr abgeleitet), für „Über/Unter 2,5" ungeprüft — offene Umsetzungsfrage vor dem Bau. Zusätzlich, am selben Tag: Kandidat 3 zu Backlog-Punkt 73 wurde am echten Gerät geprüft und widerlegt, dritter Fehlschlag in Folge; ein direkter Vergleich mit den unveränderten Textfeldern in derselben Karte zeigt, dass nur `type="date"` betroffen ist — Kandidat 4 vorgeschlagen, bewusst nicht ungefragt gebaut, Ondos Entscheidung steht aus. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.83 gehoben.
 
@@ -273,6 +275,10 @@ Quellen erhalten Vertrauenswerte (z. B. offizielle Verbände hoch, Foren niedrig
 *Bis 27.8.2026 verglich Abschnitt 1 eine übergebene, frisch abgelesene Uhrzeit gegen jede der drei Kopfzeilen einzeln, statt die drei untereinander zu vergleichen — das meldete falschen Alarm, sobald eine Lieferung keinen der drei Köpfe änderte (Backlog-Punkt 59, seit 30.8.2026 in `BACKLOG-ARCHIV.md`, dreifach aufgetreten). Die neue Fassungszahl-Prüfung braucht keine Uhrzeit mehr und vergleicht die drei Dokumente nur noch untereinander. Echte Uhrzeiten bleiben dort sinnvoll, wo ein wirkliches Ereignis belegt wird — das ist unverändert.*
 *Die acht Fehlerarten, gegen die sich die Regel richtet, stehen vollständig in `STAND.md` (bis 15.8. in `PROJEKT-STATUS.md`, seither Archiv), Abschnitt „Acht Fehlerarten Claudes — stehende Warnung für jeden neuen Chat".*
 
+**N — Fail Safe: bei einem unbekannten Fehler anhalten, nicht automatisch das nächste Modell nehmen** *(ChatGPT, 4.8.2026, als Reaktion auf den Denkfehler vom 3./4.8. · von Ondo entschieden 7.9.2026)* **Meldet ein Modellaufruf einen Fehler, dessen Art nicht vorgesehen war, wird nicht automatisch ein anderes Modell probiert — der Vorgang hält an und meldet die Lage als unklar.**
+*Anlass, mit Beleg (`CHRONIK-2026-08.md`, „Der Denkfehler, der den Schaden vergrössert hat"): Nach einem gescheiterten Versuch, ein stärkeres Modell für den Schiedsrichter zu nutzen, wurde eine Regel gebaut: „jeder unbekannte Fehler heisst: nimm das nächste Modell." Tatsächlich war das Nutzungskontingent erschöpft — ein Fall, der Anhalten verlangt, nicht Weitermachen. Die Regel liess die App **alle 14 verfügbaren Flash-Modelle** nacheinander durchprobieren. Derselbe Denkfehler, der dem Schiedsrichter vorgeworfen wird: eine unklare Lage in falsche Sicherheit übersetzen, statt sie als unklar zu melden.*
+*Stand im Code (geprüft 7.9.2026): Diese Regel behebt kein aktuelles Problem — die blinde „nimm das nächste Modell"-Logik existiert seit der Modellwahl-Umstellung (v19.7.4) nicht mehr. Der einzige verbliebene automatische Wechsel in `geminiCall()` ist eng gefasst und **bekannt**, kein unbekannter Fehler: fehlt ein stärkeres Modell für den vorhandenen Schlüssel, wird stattdessen mit Flash geprüft. Die Regel gilt vorsorglich für jede künftige Stelle, an der die App bei einem Fehler automatisch das Modell wechseln könnte.*
+
 ---
 
 ## 2d. Die Übergaberegel in einer Fassung für ChatGPT
@@ -293,6 +299,27 @@ Quellen erhalten Vertrauenswerte (z. B. offizielle Verbände hoch, Foren niedrig
 **Was auch für ChatGPT gilt, unverändert:** Prüfer bekommen **frische Chats ausserhalb der Projektordner**. Dateinamen tragen Datum und Uhrzeit. Nichts, was nur im Chat steht, gilt als festgehalten.
 
 **Grenze dieser Regel (Art. 14):** Sie macht ChatGPTs Übergabe nachvollziehbar, nicht vollständig. Ob ein Dokument ganz gelesen wurde, lässt sich von aussen nicht feststellen.
+
+---
+
+## 2e. Rollen im Projekt
+
+*Eingetragen am 7.9.2026, Ondos Entscheidung, bewusst minimal — kein neues Regelwerk, nur das
+schon in `STAND.md` Geltende an einem zweiten, verfassungsnahen Ort festgehalten, plus die eine
+noch wirksame Konfliktregel. Ein änderbarer Abschnitt, keine Hierarchie.*
+
+**Rollen, unverändert aus `STAND.md`:** Claude = Entwickler und Archivar · ChatGPT = Architekt
+und Prüfer · Mistral = beaufsichtigter Mitarbeiter, auf dem Prüfstand · Ondo = Product Owner.
+
+**Eine Konfliktregel:** Wer eine Architektur entwirft, sollte sie nicht auch unabhängig prüfen —
+beides zusammen ist keine echte, unabhängige Kontrolle. Das betrifft seit 27./28.8.2026
+ChatGPT, der beides zugleich ist: Architekt seit Projektbeginn, seit diesem Datum zusätzlich
+Prüfer. **Nicht gelöst, nur benannt** — was daraus folgt (z. B. ein zweiter, unabhängiger
+Prüfer für Architekturentscheidungen), ist Ondos Entscheidung, wenn sie ansteht, nicht heute
+vorweggenommen.
+
+**Wer die Rollen festlegt und ändert:** Ondo (Art. 8) — dieser Abschnitt ist eine Aufzeichnung
+dessen, was bereits gilt, keine neue Zuständigkeit, die Claude sich selbst gegeben hätte.
 
 ---
 
@@ -402,13 +429,15 @@ ONDO CONTROL
 
 ## 10. Offene Punkte / Verfassungsfragen
 
-**Offene Verfassungsfrage — GitHub Actions:**
-Für automatische, echte Quoten wäre ein GitHub-Actions-Wecker nötig: ein Programm, das in festen Abständen von selbst startet, Quoten holt und als Datei ins Repo legt. Das ist **streng genommen ein winziger Server**, und dieser Blueprint sagt „kein Server" (Grenze 1). ChatGPT und Gemini halten die Ausnahme beide für vertretbar. **Die Entscheidung liegt beim Besitzer (Art. 8) und gehört, wenn sie fällt, hierher — nicht in den Backlog.**
-Vorgelagerte Sachfrage *(Gemini, 23.7.)*: Deckt ein kostenloser Quotendienst Ondos Spiele überhaupt ab?
-**Neuer Beleg (27.8.2026), aus einem Strukturvergleich mit dem Schwesterprojekt `ondo-jarvis`:** Dort läuft GitHub Actions bereits bei jedem Push/Pull-Request (Dokument- und Codeprüfung zusammen) und endet nach Sekunden — kein dauerhaft laufender Prozess. Das ist ein Erfahrungswert, kein Beschluss: Er zeigt, dass ein Actions-Lauf in der Praxis kurzlebig bleibt, entscheidet aber nicht, ob das für diesen Blueprint als Ausnahme von Grenze 1 gelten soll. Backlog-Punkt 9 hängt an derselben Frage.
+**Teilweise geklärt — GitHub Actions:**
+Für automatische, echte Quoten wäre ein Weg nötig, Quoten ohne Ondos Handarbeit zu holen und im Repo zu speichern. Zwei Varianten sind zu unterscheiden, die vorher nicht auseinandergehalten wurden:
+1. **Zeitgesteuert, ohne Zutun** — ein GitHub-Actions-Wecker, der in festen Abständen von selbst startet. Das ist **streng genommen ein winziger Server**, und dieser Blueprint sagt „kein Server" (Grenze 1). **Bleibt offen**, ChatGPT und Gemini hielten die Ausnahme beide für vertretbar, entschieden ist nichts.
+2. **Durch einen Knopfdruck in der App ausgelöst** — Ondo fragte am 7.9.2026 gezielt danach. **🔴 GEKLÄRT (Ondo, 7.9.2026): Das verletzt Grenze 1 nicht.** Der Kern der Regel ist „jede Arbeitsphase braucht eine Aufforderung" — ein Knopfdruck **ist** eine ausdrückliche Aufforderung, genau das, was die Regel verlangt. Eine zeitgesteuerte, unbeaufsichtigte Ausführung bliebe davon ausdrücklich ausgenommen und fällt weiterhin unter Variante 1.
+   *Technische Einordnung, ungeprüft (Claude, 7.9.2026):* Ob dafür überhaupt GitHub Actions nötig wäre, ist offen — ein reiner Abruf im Browser bei Knopfdruck (wie die bestehenden Knöpfe „Vorhersagen"/„Ergebnisse prüfen" es schon tun) bräuchte gar keine Actions-Infrastruktur. Nur wenn das Ergebnis dauerhaft im Repo statt nur auf einem Gerät liegen soll, käme Actions über einen manuell ausgelösten `workflow_dispatch` infrage — das bräuchte einen GitHub-Zugriffsschlüssel im Code, eine neue Art von Geheimnis, die heute nicht existiert und eigens abgesichert werden müsste, ähnlich wie `apiKey`/`geminiKey`/`pin` heute. **Nicht geprüft, ob das technisch überhaupt so funktioniert.**
+Vorgelagerte Sachfrage *(Gemini, 23.7., weiterhin unbeantwortet)*: Deckt ein kostenloser Quotendienst Ondos Spiele überhaupt ab? Unabhängig von Variante 1 oder 2 zu klären, bevor gebaut wird.
+**Beleg (27.8.2026), aus einem Strukturvergleich mit dem Schwesterprojekt `ondo-jarvis`:** Dort läuft GitHub Actions bei jedem Push/Pull-Request und endet nach Sekunden — kein dauerhaft laufender Prozess. Erfahrungswert, kein Beschluss. Backlog-Punkt 9 hängt an dieser gesamten Frage.
 
-**Offen — „Fail Safe" als Arbeitsregel?** *(ChatGPT, 4.8.)*
-ChatGPTs Antwort auf den Denkfehler vom 4.8.: Bei einem **unbekannten** Fehler nie automatisch das nächste Modell nehmen, sondern anhalten und die Lage als Unklarheit melden. Das passt zum Grundsatz des Projekts, ist aber noch kein Beschluss. **Entscheidung Ondos steht aus (Art. 8).**
+**✅ Geschlossen — „Fail Safe" als Arbeitsregel** *(ChatGPT, 4.8. · entschieden Ondo, 7.9.2026: „ja, für einen Satz im Blueprint")*: Eingetragen als **Arbeitsregel N**, Abschnitt 2c.
 
 **Offen — Wie unterscheidet der Auftragstext ein echtes 0:0 von „nicht gefunden"?** *(Gemini, 4.8., unbeantwortet)*
 Diese Rückfrage muss beantwortet sein, **bevor** Punkt E („Prüfen statt suchen") gebaut wird. Sonst ersetzt E die neunte Fehlerart womöglich nur durch eine andere.
@@ -417,7 +446,7 @@ Diese Rückfrage muss beantwortet sein, **bevor** Punkt E („Prüfen statt such
 **Offene Frage — Darf der Schiedsrichter überhaupt selbst Ergebnisse lesen?** *(ChatGPT, 30.7.)*
 Oder soll er nur verifizierte Fakten bewerten? Die neunte Fehlerart vom 31.7. verschärft die Frage: Ein Modell, das suchen soll, liefert im Zweifel etwas Erfundenes; ein Modell, das bestätigen soll, kann „nein" sagen. Hängt unmittelbar mit dem unerledigten Beschluss vom 25.7. zusammen (Backlog-Punkt E).
 
-**Offen — Rollenmodell** *(ChatGPT, 23.7.; Einwände Claude)*: Ein Rollenabschnitt soll in den Blueprint, aber als änderbarer Abschnitt, nicht als Hierarchie, und mit zwei Konfliktregeln: (1) Wer die Architektur entwirft, kann sie nicht unabhängig prüfen. (2) ~~Geminis Doppelrolle als Duell-Teilnehmer und Schiedsrichter muss benannt werden.~~ **Gegenstandslos seit 28.8.2026** — Gemini ist nicht mehr am Projekt beteiligt. **Konfliktregel (1) bleibt offen und betrifft jetzt ChatGPT:** Architekt seit Projektbeginn, seit 27./28.8.2026 zusätzlich Prüfer.
+**✅ Geschlossen — Rollenmodell** *(ChatGPT, 23.7.; Einwände Claude · entschieden Ondo, 7.9.2026: „wenn du das für richtig hältst, dann ja nach deiner Empfehlung")*: Eingetragen als **Abschnitt 2e**, bewusst minimal — die schon in `STAND.md` stehenden Rollen plus die eine noch wirksame Konfliktregel, keine neue Hierarchie und keine weiteren Unterregeln (Ondos ausdrückliche Sorge vor zu vielen Regeln, die die Arbeit erschweren).
 
 **Offen — Beförderungskriterium (c) neu fassen:** 15 bewertete Tipps sind statistisch zu wenig, ChatGPTs 100er-Stichprobe dauert Monate. Vorschlag Claude: Beförderung nach Stabilität und Fehlerfreiheit entscheiden, die Messung läuft danach weiter.
 

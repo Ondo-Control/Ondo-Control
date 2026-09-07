@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 7.9.2026, Fassung 84 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 7.9.2026, Fassung 85 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -15,6 +15,54 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 85 ändert (7.9., drei weitere Entscheidungen, Punkt 73 Kandidat 4 gebaut)
+
+**Anlass:** Ondo hat im selben Chat drei weitere offene Punkte entschieden und für Punkt 73
+den vorgeschlagenen Kandidaten 4 in Auftrag gegeben, mit einer vorab vereinbarten
+Rücksetz-Regel für den Fall eines weiteren Fehlschlags.
+
+- **Backlog-Punkt 73, Kandidat 4 gebaut, `beta.html` v19.8.19** — `min-width:0` jetzt direkt
+  an beiden `<input type="date">`-Elementen, auf Ondos eigenen Vorschlag. Der entscheidende
+  Fund kam von Ondo selbst: Die Textfelder Wettbewerb/Mannschaft in derselben Karte, mit
+  identischer CSS-Behandlung, laufen nicht über — nur `type="date"` ist betroffen. Volle
+  Begründung und Verifikation stehen als angehängter Block direkt bei Punkt 73 (nicht hier
+  wiederholt — Punkt 45). **Rücksetz-Regel vorab vereinbart:** Wirkt auch das nicht, wird die
+  Datumsfeld-Reihe vollständig auf die Flexbox-Struktur zurückgesetzt, die sie vor Punkt 73
+  hatte — kein fünfter CSS-Versuch, kein weiterer Rückfrage-Zyklus. Trockentest: **29
+  Prüfungen**, alle bestanden.
+- **„Fail Safe" ENTSCHIEDEN: ja, ein Satz im Blueprint.** Eingetragen als **Arbeitsregel N**
+  (Blueprint 0.83, Abschnitt 2c), mit dem realen Anlass vom 3./4.8.2026 (14 Flash-Modelle
+  automatisch durchprobiert, weil ein erschöpftes Kontingent fälschlich als „unbekannter
+  Fehler" behandelt wurde) und dem geprüften Befund, dass die blinde Wechsel-Logik im
+  heutigen Code nicht mehr existiert — die Regel gilt vorsorglich für die Zukunft.
+- **Rollenmodell ENTSCHIEDEN: „wenn du das für richtig hältst, dann ja nach deiner
+  Empfehlung".** Eingetragen als **Blueprint, Abschnitt 2e** — bewusst minimal, wie empfohlen:
+  nur die bereits in `STAND.md` stehenden Rollen plus die eine noch wirksame Konfliktregel
+  (Architekt ≠ unabhängiger Prüfer, betrifft ChatGPT), keine neue Hierarchie, keine weiteren
+  Unterregeln. Backlog-Punkt 11 als gebaut vermerkt.
+- **GitHub Actions TEILWEISE GEKLÄRT.** Ondos gezielte Nachfrage — verletzt eine durch
+  Knopfdruck ausgelöste Aktualisierung die „kein Server"-Regel? — mit Nein beantwortet: Ein
+  Knopfdruck ist die von Grenze 1 verlangte Aufforderung, keine Umgehung davon. Eine
+  zeitgesteuerte, unbeaufsichtigte Ausführung bleibt davon ausdrücklich ausgenommen und
+  weiterhin offen. Eingetragen in Blueprint, Abschnitt 10, mit einer ungeprüften technischen
+  Einordnung (ob dafür überhaupt GitHub Actions nötig wäre, oder ein reiner Browser-Abruf bei
+  Knopfdruck genügt). Backlog-Punkt 9 entsprechend ergänzt, bleibt offen — die Vorfrage
+  „deckt ein kostenloser Quotendienst Ondos Spiele ab?" ist weiterhin unbeantwortet.
+- **`STAND.md`, Entscheidungstabelle bereinigt:** „Fail Safe" und „Rollenmodell" entfernt
+  (keine offenen Entscheidungen mehr), „GitHub Actions" umformuliert (teilweise geklärt,
+  zeitgesteuerte Variante bleibt offen).
+- **Keine neuen Sprachschlüssel** (254 unverändert). **Kein Schnitt in der Messreihe.**
+- **Verifikation:** `node --check` bestanden · `pruefe.py` ohne Argument — ALLES SAUBER.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 85 gehoben (Blueprint 0.84).
+  `Ondo-Core-Architektur.md` unverändert. **Eine neue Arbeitsregel (N), ein neuer
+  Blueprint-Abschnitt (2e) — beide auf Ondos ausdrückliche Entscheidung, kein
+  Verfassungsartikel geändert.**
+- **Beschlossen und nicht gebaut weiterhin fünf** — **3, 4, 0b, 34, 35** *(unverändert;
+  Punkt 73 zählt nicht mit, da fortlaufend in Bearbeitung, nicht „beschlossen und liegen
+  gelassen").*
 
 ---
 
@@ -1177,7 +1225,7 @@ nachvollziehbar bleiben und jeder für sich freigegeben werden kann:
 
 ---
 
-**73. iOS-Datumsfelder im KI-Log-Filter** · *Fund 3.9.2026, bisher nicht untersucht · Auftrag Ondo 4.9.2026, Kandidat 1 gebaut am selben Tag · 🔴 von Ondo am echten Gerät geprüft und ERNEUT GEÖFFNET am 5.9.2026 · Kandidat 2 gebaut 6.9.2026, von Ondo am echten Gerät geprüft — WEITERHIN WIRKUNGSLOS · Kandidat 3 gebaut 7.9.2026, Ondos eigene Wahl, 🔴 von Ondo am echten Gerät geprüft — ERNEUT WIRKUNGSLOS, Kandidat 4 vorgeschlagen, nicht gebaut* · **Status: 🔴 OFFEN — dritter Fehlschlag in Folge. Diagnostisch wichtiger Fund: Wettbewerb-/Mannschaft-Felder in derselben Karte überlaufen NICHT, nur `type="date"` ist betroffen. Kandidat 4 vorgeschlagen (Ondos Entscheidung steht aus), kein Code geändert**
+**73. iOS-Datumsfelder im KI-Log-Filter** · *Fund 3.9.2026, bisher nicht untersucht · Auftrag Ondo 4.9.2026, Kandidat 1 gebaut am selben Tag · 🔴 von Ondo am echten Gerät geprüft und ERNEUT GEÖFFNET am 5.9.2026 · Kandidat 2 gebaut 6.9.2026, von Ondo am echten Gerät geprüft — WEITERHIN WIRKUNGSLOS · Kandidat 3 gebaut 7.9.2026, Ondos eigene Wahl, 🔴 von Ondo am echten Gerät geprüft — ERNEUT WIRKUNGSLOS · Kandidat 4 gebaut 7.9.2026, auf Ondos eigenen Vorschlag* · **Status: 🔴 OFFEN — Kandidat Nr. 4 ausgeliefert (`beta.html` v19.8.19), Bestätigung am echten Gerät steht aus. Rücksetz-Regel vorab vereinbart: wirkt auch das nicht, wird die Datumsfeld-Reihe vollständig auf den Stand vor Punkt 73 zurückgesetzt, kein fünfter CSS-Versuch**
 
 Die von/bis-Datumsfelder (`logExportBlock()`, `kilogFilterBlock()` aus Punkt 70/71) tragen
 `text-align:center` inline im Code, erscheinen auf iOS trotzdem nicht zentriert.
@@ -1460,6 +1508,49 @@ Die von/bis-Datumsfelder (`logExportBlock()`, `kilogFilterBlock()` aus Punkt 70/
 > Möglichkeit, ihn vor der Auslieferung selbst zu prüfen, wartet Claude diesmal auf Ondos
 > Entscheidung, bevor ein vierter Versuch geliefert wird — Kandidat 4 ist vorgeschlagen, aber
 > **nicht** gebaut. **Kein Codeaufwand in dieser Lieferung**, `beta.html` bleibt v19.8.18.
+
+> **🔴 KANDIDAT 4 GEBAUT am 7.9.2026 (auf Ondos eigenen Vorschlag — genau der vorgeschlagene
+> Weg, ohne Abweichung), `beta.html` v19.8.19.** Einzige Änderung gegenüber Kandidat 3:
+> `min-width:0` steht jetzt direkt an beiden `<input type="date">`-Elementen selbst
+> (`style="min-width:0;text-align:center"`), nicht mehr nur — wie in Kandidat 2 — an einer
+> umschliessenden Spalte, und nicht mehr — wie in Kandidat 3 — nirgends. Struktur, Reihenfolge,
+> `width` (aus der globalen Regel), `text-align:center` und alles andere aus Kandidat 3
+> unverändert. `logExportBlock()` weiterhin bewusst unverändert, als Kontrollwert.
+>
+> **Verifiziert:** `node --check` bestanden. **Trockentest bestanden — 29 Prüfungen, alle
+> bestanden**, an der echten, im Wortlaut aus `beta.html` herausgeschnittenen
+> `kilogFilterBlock()`, mit `logExportBlock()` weiterhin als Kontrollwert: beide Inputs tragen
+> `min-width:0` direkt am Element · `text-align:center` bleibt erhalten · kein `display:grid`
+> mehr, wie zuvor · Von-Feld steht strukturell vor Bis-Feld, beide in eigenen Blöcken, der
+> zweite mit `margin-top:10px` · beide bleiben `type="date"` mit unveränderten Ids und
+> `onchange`-Handlern · leerer wie gefüllter Filterzustand wird korrekt durchgereicht ·
+> Wettbewerb-, Mannschaft-, Zurücksetzen- und Zählerzeile unverändert · der `modus`-Parameter
+> aus Punkt 71 wirkt unverändert, auch im Modus „bewertet" tragen beide Felder `min-width:0` ·
+> die Ausgabe ist tag-balanciert · `logExportBlock()` bleibt unverändert bei `display:flex` und
+> `flex:1;min-width:0` · der Filterzustand bleibt nach mehreren Aufrufen unverändert, zwei
+> gleiche Aufrufe liefern identische Ausgabe · die CSS-Regel aus Kandidat 1 steht weiterhin
+> unverändert im Dokument. **Ein Fehlschlag im ersten Lauf war erneut ein Messfehler der
+> Prüfung selbst** (eine zu strikte Positionsannahme, nicht die tatsächliche Struktur betreffend)
+> — vor der Korrektur an der tatsächlichen Ausgabe belegt, die Prüfung präziser gemacht statt
+> gelockert (Fehlerart C6 vermieden). `pruefe.py` ohne Argument: ALLES SAUBER.
+>
+> **🔴 Rücksetz-Regel vorab vereinbart, Ondos eigene Vorgabe: „Wenn es nicht klappt, dann
+> alles zurücksetzen auf den ursprünglichen Stand."** Damit ist für den Fall eines vierten
+> Fehlschlags bereits jetzt entschieden, was zu tun ist — kein weiterer Rückfrage-Zyklus nötig.
+> **„Ursprünglicher Stand" ist damit festgelegt als:** die Flexbox-Struktur, die
+> `kilogFilterBlock()`s Datumsfeld-Reihe vor Backlog-Punkt 73 hatte und die `logExportBlock()`
+> bis heute unverändert trägt — `display:flex;gap:10px` am Container, `flex:1;min-width:0` an
+> den beiden Feld-Divs, `min-width:0;text-align:center` an den Inputs. **Ausdrücklich NICHT
+> zurückgesetzt würde dabei** die CSS-Regel aus Kandidat 1
+> (`::-webkit-date-and-time-value{text-align:center;}`) — sie ist harmlos, hat nie eine
+> Nebenwirkung gezeigt und war nie Teil des Überlauf-Problems. Meldet Ondo, dass Kandidat 4
+> ebenfalls nicht wirkt, wird diese Rücksetzung ohne weitere Rückfrage ausgeführt, und Punkt 73
+> geht dann in die grössere, nicht mehr reine Layout-Frage über (nativen Datumspicker ersetzen
+> oder `overflow:hidden` als letzter, noch unversuchter kleiner Schritt).
+>
+> **Keine neuen Sprachschlüssel** (254 unverändert). **Kein Schnitt in der Messreihe.**
+> `APP_VERSION` weiter 18. **🔴 Der Punkt bleibt weiterhin OFFEN** — die vierte Vermutung in
+> Folge, wieder ohne die Möglichkeit, sie hier selbst zu prüfen.
 
 ---
 
@@ -1769,14 +1860,23 @@ Codeänderung ohne Schnitt.
 15 Bewertungen sind statistisch zu wenig, 100 dauern Monate. Vorschlag Claude: Beförderung nach Stabilität und Fehlerfreiheit entscheiden, die Messung läuft danach weiter. **Inhalt gehört in den Blueprint.**
 → *Vermerk 31.7.: Die Beförderung ist derzeit ohnehin gesperrt — Kriterium (f) verlangt Null-Fehler-Toleranz beim Schiedsrichter. Einzelheiten in `PROJEKT-STATUS.md`.*
 
-**9. Echte Quoten automatisch (GitHub Actions + Quotendienst)** · *Idee 23.7., Claude* · **Status: Idee**
-Offene Vorfrage (Gemini): Deckt ein kostenloser Dienst überhaupt Ondos Spiele ab? Verfassungsfrage offen: Der Actions-Wecker ist ein winziger Server, der Blueprint sagt „kein Server". **Die Entscheidung gehört in den Blueprint.**
+**9. Echte Quoten automatisch (GitHub Actions + Quotendienst)** · *Idee 23.7., Claude · Verfassungsfrage teilweise geklärt 7.9.2026* · **Status: Idee — Vorfrage weiterhin unbeantwortet**
+Offene Vorfrage (Gemini, weiterhin unbeantwortet): Deckt ein kostenloser Dienst überhaupt Ondos Spiele ab? **🔴 Verfassungsfrage teilweise geklärt (Ondo, 7.9.2026, Blueprint 0.83, Abschnitt 10):** Eine durch Knopfdruck in der App ausgelöste Aktualisierung verletzt „kein Server" nicht — ein Knopfdruck ist die von der Regel verlangte Aufforderung. Eine zeitgesteuerte, unbeaufsichtigte Ausführung bleibt weiterhin offen und ist eine andere Variante. **Ungeprüft, technische Einordnung:** Ob dafür überhaupt GitHub Actions nötig wäre (ein reiner Abruf im Browser bei Knopfdruck bräuchte gar keine Actions-Infrastruktur, wie die bestehenden Knöpfe es schon vormachen) oder ob ein dauerhaft im Repo gespeichertes Ergebnis einen manuell auslösbaren `workflow_dispatch` mit einem neuen, eigens abzusicherndem GitHub-Zugriffsschlüssel bräuchte, ist nicht untersucht.
 
 **10. Value-Rechnung zurückholen** · *Idee 22.7., Gemini* · **Status: Idee** · hängt an Punkt 9
 
-**11. Rollenmodell in den Blueprint** · *Idee 23.7., ChatGPT* · **Status: Idee**
+**11. Rollenmodell in den Blueprint** · *Idee 23.7., ChatGPT · GEBAUT 7.9.2026, Ondo* · **Status: 🔴 GEBAUT — bewusst minimal, eine Konfliktregel bleibt unaufgelöst**
 Zwei Ergänzungen von Claude offen: Architekt und unabhängiger Prüfer sollten nicht dieselbe Rolle sein; Geminis Doppelrolle (Duell-Teilnehmer und Schiedsrichter) muss benannt werden.
 → **🔴 Vermerk 28.8.2026:** Die zweite Ergänzung (Geminis Doppelrolle) ist mit seinem Ausscheiden aus dem Projekt gegenstandslos — als erledigt vermerkt, nicht gelöscht. **Die erste Ergänzung bleibt offen und betrifft jetzt ChatGPT:** Architekt und unabhängiger Prüfer sollten nicht dieselbe Rolle sein, und ChatGPT ist seit 27.8./28.8. beides — Architekt (seit Projektbeginn) und Prüfer (Rollen-Zeile in `STAND.md`).
+
+> **🔴 GEBAUT am 7.9.2026 (Ondo: „wenn du das für richtig hältst, dann ja nach deiner
+> Empfehlung").** Neuer Abschnitt 2e im Blueprint — bewusst knapp gehalten, angesichts Ondos
+> ausdrücklicher Sorge, zu viele Regeln erschwerten schon die Arbeit: nur die bereits in
+> `STAND.md` stehenden Rollen, an einem zweiten, verfassungsnahen Ort, plus die eine noch
+> wirksame Konfliktregel (Architekt ≠ unabhängiger Prüfer, betrifft ChatGPT). **Die
+> Konfliktregel selbst bleibt bewusst unaufgelöst** — was aus ChatGPTs Doppelrolle folgen
+> sollte, ist nicht heute entschieden, nur benannt. Wer die Rollen festlegt: Ondo (Art. 8),
+> ausdrücklich im neuen Abschnitt festgehalten. Kein Codeaufwand.
 
 **19. Beta auf Deutsch beschränken** · *Idee 31.7., Ondo · vorgelegt 3.8.* · **Status: Idee — NEU**
 In `beta.html` steht jede Beschriftung dreimal (DE/FR/EN), rund 13 % der Datei. Jede neue Beschriftung kostet dreifache Arbeit, und vor jeder Lieferung müssen 175 Schlüssel × 3 abgeglichen werden. Die stabile v17 behielte alle drei Sprachen.
@@ -1821,7 +1921,7 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 |---|---|---|---|
 | Arbeitsregel **K — Bericht statt Datei**: *Prüfer bekommen nur die geänderten Stellen mit Zeilennummer, altem und neuem Text und Begründung — davor ein fester Zusammenhangsblock, jedes Mal neu aus den Dokumenten geschrieben.* | **Claude 7.8., beschlossen von Ondo 7.8.** | Blueprint 2c | **eingetragen** (Blueprint 0.9, Abschnitt 2c) |
 | Arbeitsregel **J — Korrekturfaktor gilt nur für sein Modell**: *Wechselt das Modell, verfällt der Faktor und muss neu gemessen werden.* | **Ondos Frage, 4.8.** | Blueprint 2c | **eingetragen** (Blueprint 0.6, Abschnitt 2c) |
-| **„Fail Safe" bei unbekannten Fehlern** — nicht automatisch wechseln, sondern anhalten und als Unklarheit melden | ChatGPT, 4.8. | Blueprint 2c | **offen — Ondos Entscheidung steht aus** |
+| **„Fail Safe" bei unbekannten Fehlern** — nicht automatisch wechseln, sondern anhalten und als Unklarheit melden | ChatGPT, 4.8., entschieden Ondo 7.9.2026 | Blueprint 2c | **eingetragen** (Blueprint 0.83, Arbeitsregel N) |
 | **Wie unterscheidet der Auftragstext ein echtes 0:0 von „nicht gefunden"?** (Geminis Rückfrage) | Gemini, 4.8. *(Urheber seit 28.8. nicht mehr beteiligt — Frage bleibt gültig)* | Blueprint / Punkt E | offen |
 | **Darf der Schiedsrichter überhaupt selbst Ergebnisse lesen, oder nur verifizierte Fakten bewerten?** (offene Frage) | ChatGPT, 30.7. | Blueprint | offen |
 | Arbeitsregel **G — Kostenregel**: *Jeder Vorschlag nennt seine Kosten — Geld, Zeit, Nutzungslimit — oder sagt ausdrücklich, dass er keine hat.* Ein Satz, kein Formular | **Ondo, 31.7., angenommen** | Blueprint 2c | **eingetragen** (Blueprint 0.4, Abschnitt 2c) |
@@ -1831,8 +1931,8 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 | Drei-Ebenen-Trennung | ChatGPT, 23.7. | Ondo-Core | beschlossen |
 | Übergaberegel (Chat-Übergabe) in einer Fassung für ChatGPT | 30.7. | Blueprint | beschlossen |
 | Beförderungskriterium (c) | ChatGPT, 23.7. | Blueprint | offen |
-| Verfassungsfrage GitHub Actions („kein Server") | 23.7. | Blueprint | offen |
-| Rollenmodell | ChatGPT, 23.7. | Blueprint | offen |
+| Verfassungsfrage GitHub Actions („kein Server") | 23.7., teilweise geklärt Ondo 7.9.2026 | Blueprint | **teilweise geklärt** (Blueprint 0.83, Abschnitt 10) — Knopfdruck-Variante verletzt Grenze 1 nicht, zeitgesteuerte Variante bleibt offen |
+| Rollenmodell | ChatGPT, 23.7., entschieden Ondo 7.9.2026 | Blueprint | **eingetragen** (Blueprint 0.83, Abschnitt 2e) |
 
 **Hinweis für den nächsten Chat (31.7.):** Prozentzahlen in der Messphase widersprechen **nicht** dem Beschluss vom 5.7. über Vertrauensstufen HOCH/MITTEL/NIEDRIG. Die Stufen gelten für **Empfehlungen an Ondo**, die Prozentzahlen für **Messwerte** — Kalibrierung ist ohne Prozentzahlen nicht messbar. Das ist kein Fehler und nicht zu reparieren.
 

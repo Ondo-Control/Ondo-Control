@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.18';
+var CODE_VERSION = 'v19.8.19';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -1146,24 +1146,24 @@ function kilogFilterBlock(gesamt, gezeigt, modus){
     : '';
   return '<div class="card">'+
     '<div class="disp" style="font-size:20px;margin-bottom:6px">'+t('filterT')+'</div>'+
-    /* v19.8.18 (Backlog-Punkt 73, Kandidat 3): Ondo hat am echten iPhone bestaetigt, dass
-       Kandidat 2 (CSS-Grid, v19.8.17) weder das Ueberlappen noch das Herausragen behoben hat —
-       zweiter Fehlschlag in Folge bei einer Nebeneinander-Aufteilung. Neue, weiterhin
-       ungeprüfte Vermutung: iOS/WebKit zeichnet Kalender-Symbol und Platzhalter des nativen
-       input[type=date] offenbar unabhaengig von der berechneten Spaltenbreite — dagegen hilft
-       keine Aufteilung in zwei nebeneinanderliegende Spalten, gleich ob Flexbox oder Grid.
-       Kandidat 3 umgeht das Problem strukturell statt es zu loesen: die beiden Felder stehen
-       jetzt UNTEREINANDER, jedes bekommt die volle Kartenbreite — kein Nachbar mehr, mit dem
-       sich ein Feld die Breite teilen muesste, also kein Ueberlappen moeglich und die
-       Kartenbreite bietet deutlich mehr Raum als ein einzelnes Feld braucht. Sichtbare
-       Aenderung (Filterkarte wird zwei Zeilen hoeher), von Ondo ausdruecklich als Weg gewaehlt.
-       Kein eigenes width mehr am Input noetig — width:100% gilt bereits global fuer input,
-       select (Zeile 33), genau wie bei den Feldern Wettbewerb/Mannschaft darunter. */
+    /* v19.8.18 (Backlog-Punkt 73, Kandidat 3): Felder untereinander statt nebeneinander —
+       siehe Codehistorie. Auch das hat am echten Geraet nicht gewirkt (Ondo, 7.9.2026): dritter
+       Fehlschlag in Folge, und ein direkter Vergleich mit den unveraendert danebenstehenden
+       Feldern Wettbewerb/Mannschaft (gleiche Karte, gleiche CSS-Behandlung, kein Ueberlauf dort)
+       zeigt, dass ausschliesslich type="date" betroffen ist.
+       v19.8.19 (Backlog-Punkt 73, Kandidat 4): Ondos eigener Vorschlag, aufgegriffen — ein
+       browsereigenes min-width fuer das native Datumsfeld ist die naheliegendste Erklaerung,
+       warum weder Flexbox noch Grid noch der Wegfall jedes Nachbarn half: keiner der drei
+       bisherigen Kandidaten hat min-width:0 je DIREKT am <input> selbst gesetzt (Kandidat 2
+       setzte es nur an der umschliessenden Spalte, Kandidat 3 entfernte es ganz, weil es
+       ausserhalb von Flex/Grid als wirkungslos eingeschaetzt wurde — genau diese Einschaetzung
+       war der vermutliche Fehler). Einzige Aenderung: min-width:0 an beiden Inputs ergaenzt,
+       sonst nichts an Kandidat 3 veraendert. */
     '<div><label>'+t('logExpFrom')+'</label>'+
-      '<input type="date" id="kilogVon" style="text-align:center" value="'+esc(kilogVon)+'" '+
+      '<input type="date" id="kilogVon" style="min-width:0;text-align:center" value="'+esc(kilogVon)+'" '+
       'onchange="kilogVon=this.value;render()"/></div>'+
     '<div style="margin-top:10px"><label>'+t('logExpTo')+'</label>'+
-      '<input type="date" id="kilogBis" style="text-align:center" value="'+esc(kilogBis)+'" '+
+      '<input type="date" id="kilogBis" style="min-width:0;text-align:center" value="'+esc(kilogBis)+'" '+
       'onchange="kilogBis=this.value;render()"/></div>'+
     '<div style="margin-top:10px"><input id="kilogWettbewerb" placeholder="'+esc(t('filterWettbewerbPh'))+'" '+
       'value="'+esc(kilogWettbewerb)+'" onchange="kilogWettbewerb=this.value;render()"/></div>'+
