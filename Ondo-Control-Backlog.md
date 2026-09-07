@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 7.9.2026, Fassung 85 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 7.9.2026, Fassung 86 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -15,6 +15,38 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 86 ändert (7.9., Backlog-Punkt 73 zurückgesetzt — vierter Fehlschlag in Folge)
+
+**Anlass:** Kandidat 4 (`min-width:0` direkt am Input, v19.8.19) wurde am echten iPhone geprüft
+und widerlegt. Ondos Auftrag, unmittelbar und ohne weitere Rückfrage: „Zurücksetzen."
+
+- **`beta.html` v19.8.20 — `kilogFilterBlock()`s Datumsfeld-Reihe vollständig auf den Stand vor
+  Backlog-Punkt 73 zurückgesetzt**, nach der am selben Tag vorab vereinbarten Rücksetz-Regel.
+  `display:flex;gap:10px` am Container, `flex:1;min-width:0` an beiden Feld-Divs,
+  `min-width:0;text-align:center` an beiden Inputs — **byte-für-byte derselbe Aufbau wie
+  `logExportBlock()`s seit v19.8.14 unveränderte Datumsreihe**, mit Trockentest belegt (25
+  Prüfungen, darunter ein Normalisierungs-Vergleich, der exakte Übereinstimmung zeigt). Alle
+  vier Kandidaten sind damit rückgängig gemacht. Die harmlose Zentrierungsregel aus Kandidat 1
+  bleibt bewusst stehen — sie war nie Teil des Problems.
+- **Ehrlich benannt: Der ursprüngliche Überlauf-Fehler besteht damit wieder** — keine neue
+  Regression, sondern die bewusste Rückkehr zum Ausgangspunkt, nachdem vier unabhängig
+  begründete CSS-Ansätze (Zentrierung, Grid, Felder untereinander, `min-width:0` am Input) am
+  echten Gerät alle gescheitert sind. Volle Begründung steht als angehängter Block direkt bei
+  Punkt 73 (nicht hier wiederholt — Punkt 45).
+- **Kein fünfter CSS-Versuch ohne neuen Auftrag.** Zwei Wege bleiben unverbraucht, falls Ondo
+  das Thema wieder aufnimmt: `overflow:hidden` an den Feld-Containern (nie ausprobiert) oder
+  der native Datumspicker ganz ersetzt (grösserer Eingriff, ändert Bedienung, nicht nur Layout).
+- **Verifikation:** `node --check` bestanden · Trockentest 25 Prüfungen, alle bestanden ·
+  `pruefe.py` ohne Argument — ALLES SAUBER.
+- **Keine neuen Sprachschlüssel** (254 unverändert). **Kein Schnitt in der Messreihe.**
+  `APP_VERSION` weiter 18.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 86 gehoben (Blueprint 0.85).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut weiterhin fünf** — **3, 4, 0b, 34, 35** *(unverändert.)*
 
 ---
 
@@ -1225,7 +1257,7 @@ nachvollziehbar bleiben und jeder für sich freigegeben werden kann:
 
 ---
 
-**73. iOS-Datumsfelder im KI-Log-Filter** · *Fund 3.9.2026, bisher nicht untersucht · Auftrag Ondo 4.9.2026, Kandidat 1 gebaut am selben Tag · 🔴 von Ondo am echten Gerät geprüft und ERNEUT GEÖFFNET am 5.9.2026 · Kandidat 2 gebaut 6.9.2026, von Ondo am echten Gerät geprüft — WEITERHIN WIRKUNGSLOS · Kandidat 3 gebaut 7.9.2026, Ondos eigene Wahl, 🔴 von Ondo am echten Gerät geprüft — ERNEUT WIRKUNGSLOS · Kandidat 4 gebaut 7.9.2026, auf Ondos eigenen Vorschlag* · **Status: 🔴 OFFEN — Kandidat Nr. 4 ausgeliefert (`beta.html` v19.8.19), Bestätigung am echten Gerät steht aus. Rücksetz-Regel vorab vereinbart: wirkt auch das nicht, wird die Datumsfeld-Reihe vollständig auf den Stand vor Punkt 73 zurückgesetzt, kein fünfter CSS-Versuch**
+**73. iOS-Datumsfelder im KI-Log-Filter** · *Fund 3.9.2026, bisher nicht untersucht · Auftrag Ondo 4.9.2026, Kandidat 1 gebaut am selben Tag · 🔴 von Ondo am echten Gerät geprüft und ERNEUT GEÖFFNET am 5.9.2026 · Kandidat 2 gebaut 6.9.2026, von Ondo am echten Gerät geprüft — WEITERHIN WIRKUNGSLOS · Kandidat 3 gebaut 7.9.2026, Ondos eigene Wahl, 🔴 von Ondo am echten Gerät geprüft — ERNEUT WIRKUNGSLOS · Kandidat 4 gebaut 7.9.2026, auf Ondos eigenen Vorschlag, 🔴 von Ondo am echten Gerät geprüft — ERNEUT WIRKUNGSLOS · nach vorab vereinbarter Regel auf den Stand vor Punkt 73 ZURÜCKGESETZT, 7.9.2026* · **Status: 🔴 OFFEN, ZURÜCKGESETZT — vier CSS-Kandidaten hintereinander wirkungslos, kein fünfter Versuch ohne neuen Auftrag. `kilogFilterBlock()`s Datumsreihe ist wieder codegleich mit `logExportBlock()`s unverändert gebliebener Reihe — derselbe ursprüngliche Überlauf-Fehler besteht wieder, bewusst in Kauf genommen**
 
 Die von/bis-Datumsfelder (`logExportBlock()`, `kilogFilterBlock()` aus Punkt 70/71) tragen
 `text-align:center` inline im Code, erscheinen auf iOS trotzdem nicht zentriert.
@@ -1551,6 +1583,44 @@ Die von/bis-Datumsfelder (`logExportBlock()`, `kilogFilterBlock()` aus Punkt 70/
 > **Keine neuen Sprachschlüssel** (254 unverändert). **Kein Schnitt in der Messreihe.**
 > `APP_VERSION` weiter 18. **🔴 Der Punkt bleibt weiterhin OFFEN** — die vierte Vermutung in
 > Folge, wieder ohne die Möglichkeit, sie hier selbst zu prüfen.
+
+> **🔴 KANDIDAT 4 AM ECHTEN GERÄT GEPRÜFT UND WIDERLEGT, 7.9.2026 (Ondo, zwei Bildschirmfotos
+> belegt, v19.8.19 über GitHub Pages ausgeliefert) — VIERTER FEHLSCHLAG IN FOLGE.** Auch
+> `min-width:0` direkt am `<input>` hat den Überlauf nicht behoben. Ondos eigener Auftrag,
+> unmittelbar und ohne weitere Rückfrage: „Zurücksetzen."
+>
+> **🔴 ZURÜCKGESETZT am 7.9.2026, `beta.html` v19.8.20 — nach der vorab vereinbarten
+> Rücksetz-Regel, ohne neuen Rückfrage-Zyklus.** `kilogFilterBlock()`s Datumsfeld-Reihe trägt
+> jetzt wieder exakt den Aufbau, den sie vor Backlog-Punkt 73 hatte: `display:flex;gap:10px`
+> am Container, `flex:1;min-width:0` an beiden Feld-Divs, `min-width:0;text-align:center` an
+> beiden Inputs — **byte-für-byte derselbe Aufbau wie `logExportBlock()`s seit v19.8.14
+> unveränderte Datumsreihe**, nur mit den eigenen Ids, `onchange`-Handlern und Werten. Alle
+> vier Kandidaten (Zentrierung/v19.8.16, Grid/v19.8.17, untereinander/v19.8.18,
+> `min-width:0` am Input/v19.8.19) sind damit rückgängig gemacht. **Bewusst NICHT
+> zurückgesetzt:** die CSS-Regel aus Kandidat 1
+> (`input[type="date"]::-webkit-date-and-time-value{text-align:center;}`) — sie war nie Teil
+> des Überlauf-Problems, hat nie eine Nebenwirkung gezeigt, und Rückgängigmachen hätte hier
+> nur ein zusätzliches, unbeteiligtes Detail verändert.
+>
+> **Ehrlich benannt: Der ursprüngliche Fehler besteht damit wieder** — das rechte Datumsfeld
+> ragt bei leeren Feldern über den Kartenrand, genau wie vor dem ersten Auftrag zu Punkt 73
+> am 4.9.2026. Das ist keine neue Regression, sondern die bewusste Rückkehr zum Ausgangspunkt,
+> nachdem vier unterschiedliche, unabhängig begründete CSS-Ansätze am echten Gerät alle
+> gescheitert sind.
+>
+> **Verifiziert:** `node --check` bestanden. **Trockentest bestanden — 25 Prüfungen, alle
+> bestanden**, an der echten, im Wortlaut aus `beta.html` herausgeschnittenen
+> `kilogFilterBlock()`, mit `logExportBlock()` als Kontrollwert — darunter, als direktester
+> Beleg: Die Datumsreihe ist nach Normalisierung von Id, `onchange` und `value` **byte-genau
+> identisch** mit `logExportBlock()`s Reihe. `pruefe.py` ohne Argument: ALLES SAUBER.
+>
+> **Kein fünfter CSS-Versuch ohne neuen Auftrag** — wie vorab vereinbart. **Zwei Wege bleiben
+> unverbraucht, falls Ondo das Thema erneut aufnehmen möchte:** `overflow:hidden` an den
+> Feld-Containern (nie ausprobiert, würde eine überschiessende Zeichnung abschneiden statt sie
+> zu verhindern) · den nativen Datumspicker ganz ersetzen (grösserer Eingriff in Bedienung,
+> nicht nur Layout). **Kein Eingriff an `kilogGefiltert()`, `state` oder der Datenhaltung.**
+> Keine neuen Sprachschlüssel (254 unverändert). Kein Schnitt in der Messreihe. `APP_VERSION`
+> weiter 18.
 
 ---
 
