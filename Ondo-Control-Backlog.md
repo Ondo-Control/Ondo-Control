@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 10.9.2026, Fassung 89 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 10.9.2026, Fassung 90 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -15,6 +15,41 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 90 ändert (10.9., neuer Arbeitsweg mit ChatGPT — Punkt 74 gebaut, erste Anwendung bei Punkt 68)
+
+**Anlass:** Ondos Auftrag — ChatGPT soll versuchen, eine klein umrissene Codeänderung selbst zu
+schreiben (Kostensenkung beim Schiedsrichter), Claude prüft nachträglich, um Nutzung zu sparen.
+
+- **Neuer Backlog-Punkt 74 angelegt und im selben Zug angewendet:** Der Arbeitsweg selbst
+  (Claude schreibt eine geschlossene Spezifikation, ChatGPT liefert Code, Claude prüft
+  byte-für-byte, Syntax und per Trockentest, bevor committet wird) und seine erste Anwendung.
+  **Geprüft und verworfen:** ChatGPT liest `beta.html` selbst über einen Link — GitHub Pages
+  zeigt nur die laufende Anzeige, der Rohtext-Link bricht bei dieser Dateigrösse vor der
+  gesuchten Stelle ab (dieselbe Grössenordnung wie Backlog-Punkt 65). **Kein eigener Branch**,
+  entgegen der ursprünglichen Ankündigung — mit Begründung: die stehende „kein neuer Branch"-
+  Regel entstand nach einem echten Vorfall (nicht löschbare Zweige), ein Branch hätte daran
+  nichts geändert, die Prüfung selbst geschieht ohnehin vor dem Commit.
+- **Backlog-Punkt 68 nachgeführt, `beta.html` v19.8.22:** Dritter Lauf des Schiedsrichters auf
+  `claude-sonnet-5` umgestellt (rund ein Drittel weniger pro Token), Websuche auf
+  `web_search_20260209` gehoben, `output_config:{effort:'low'}` ergänzt. Dabei gefunden und
+  berichtigt: das Modell-Label `modellGenutzt` (Backlog-Punkt 64) war nach der Umstellung
+  veraltet — nicht Teil des ChatGPT-Auftrags, sondern ein Fund bei der Prüfung.
+- **Volle Begründung, Grenzen der Prüfung und Verifikationsdetails stehen als angehängte
+  Blöcke direkt bei Punkt 74 und Punkt 68** (nicht hier wiederholt — Punkt 45).
+- **Verifiziert:** `node --check` bestanden. Trockentest mit 15 Prüfungen an der echten,
+  eingesetzten Funktion (gestubbter `apiCall()`, kein echter Netzwerkaufruf, keine echten
+  Kosten). `pruefe.py` ohne Argument — ALLES SAUBER.
+- **Ausdrücklich nicht geprüft:** ob Sonnet 5 tatsächlich weniger kostet oder genauso gut
+  funktioniert — das zeigt erst Ondos eigener Betrieb.
+- **Keine neuen Sprachschlüssel** (256 unverändert). **Kein Schnitt in der Messreihe.**
+  `APP_VERSION` weiter 18.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 90 gehoben (Blueprint 0.89).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut weiterhin drei** — **3, 4, 0b** *(unverändert.)*
 
 ---
 
@@ -1131,6 +1166,53 @@ Bei NK Celje–Slovan Bratislava und Sabah FC–Hapoel Beer-Sheva FC lieferte de
 > nachgeprüft richtig waren.
 > **Kein Codeaufwand**, reine Beobachtung. Sabah und Celje sind seither erneut geprüft und
 > von Ondo übernommen — Einzelheiten bei Backlog-Punkt 64 (Punkt 45, nicht hier wiederholt).
+
+> **🔴 Dritter Lauf auf `claude-sonnet-5` umgestellt, 10.9.2026, `beta.html` v19.8.22 —
+> erste Anwendung des neuen Arbeitswegs aus Backlog-Punkt 74 (ChatGPT als geprüfter
+> Code-Zulieferer).** Anlass: Ondos Kostensorge — der dritte Lauf (`sonnetSuche()`) ist der
+> einzige der drei mit echten Anthropic-Kosten. Umgesetzt: `claude-sonnet-4-6` →
+> `claude-sonnet-5` (rund ein Drittel weniger pro Token, geprüfte Preistabelle), die
+> Websuche auf die neuere `web_search_20260209`-Variante mit Dynamic Filtering gehoben, und
+> `output_config:{effort:'low'}` ergänzt, weil Sonnet 5 anders als 4.6 standardmässig
+> automatisch mitdenkt. **Dabei gefunden und im selben Zug berichtigt:** Das Label
+> `modellGenutzt`, das dem Sonnet-Pfad fest den String `'claude-sonnet-4-6'` zuwies (für
+> `refRoh`/die Anzeige, welches Modell tatsächlich geantwortet hat, Backlog-Punkt 64), war
+> nach der Umstellung nicht mehr korrekt — auf `'claude-sonnet-5'` berichtigt. War **nicht**
+> Teil des an ChatGPT gegebenen Auftrags (der war bewusst eng auf `sonnetSuche()` begrenzt),
+> sondern eine direkte Folge, die erst bei der Prüfung auffiel. Einzelheiten zum Arbeitsweg,
+> zur Prüfung von ChatGPTs Code und was NICHT geprüft werden kann, stehen bei Punkt 74.
+
+---
+
+**74. Zusammenarbeit mit ChatGPT als geprüftem Code-Zulieferer** · *Vorschlag Ondo, 10.9.2026, aus Kostensorge zum Schiedsrichter · Auftrag Ondo, 10.9.2026 · erste Anwendung am selben Tag* · **Status: 🔴 GEBAUT UND ERSTMALS ANGEWENDET am 10.9.2026, `beta.html` v19.8.22 — Bewährung steht aus**
+
+**Ondos Auftrag im Wortlaut (sinngemäss):** ChatGPT soll versuchen, eine klein umrissene Codeänderung selbst zu schreiben, damit sich zeigt, ob es das kann. Claude prüft das Ergebnis nachträglich und holt es erst nach `main`, wenn es die Prüfung besteht. Zweck: Nutzung bei Claude sparen — das Schreiben von Code kostet mehr als das Prüfen eines bereits fertigen, klar spezifizierten Diffs.
+
+→ **Der Arbeitsweg, Schritt für Schritt:** Claude schreibt eine vollständige, in sich geschlossene Spezifikation (die betroffene Funktion im Wortlaut, die genau erlaubten Änderungen, eine feste Regel „sonst nichts ändern") — ChatGPT braucht dafür **nicht** das Repository zu lesen. Ondo trägt den Text zu ChatGPT und den Code zurück. Claude vergleicht das Ergebnis **byte-für-byte** gegen die Spezifikation, prüft Syntax (`node --check`) und, wo möglich, mit einem Trockentest an der echten, eingesetzten Funktion. Erst danach wird committet.
+→ **Geprüft und verworfen: ChatGPT liest die Datei selbst.** Naheliegender Vorschlag Ondos, um noch mehr Nutzung zu sparen — getestet, nicht nur vermutet (Art. 11). Der GitHub-Pages-Link zeigt bei `beta.html` die laufende Anzeige, nicht den Quelltext (funktioniert nur bei Markdown-Dateien). Der Rohtext-Link (`raw.githubusercontent.com`) liefert echten Quelltext, bricht bei einer Datei dieser Grösse (~150.000 Zeichen) aber mitten drin ab, vor der gesuchten Stelle — dieselbe Grössenordnung, bei der das Chat-Abrufwerkzeug in diesem Projekt schon einmal nachweislich abgebrochen ist (Backlog-Punkt 65), ohne Fehlermeldung. Deshalb bleibt die Spezifikation mit eingebettetem Quelltext der verlässliche Weg für Dateien dieser Grösse.
+→ **Grenze der Prüfung, offen ausgesprochen (Art. 14):** Claude kann Struktur, Syntax und — mit Stub statt echtem Netzwerkaufruf — die genau übergebenen Parameter und die Ablaufsteuerung prüfen. Ob eine Änderung in der echten App tatsächlich funktioniert (z. B. ob ein neues Modell wirklich weniger kostet oder genauso gute Ergebnisse liefert), sieht diese Sitzung nicht — kein Zugriff auf Ondos API-Schlüssel oder Abrechnung. Das bleibt Ondos eigene Rückmeldung nach dem Laden der neuen Fassung, wie schon bei den Backlog-Punkt-73-Kandidaten.
+→ **Kein eigener Branch, entgegen der ursprünglichen Ankündigung — mit Begründung, nicht stillschweigend:** Die stehende Regel aus dieser Sitzung („Push ausschliesslich auf `main`, kein neuer Branch ausser `mistral`") wurde nach einem echten Vorfall eingeführt — eine Sitzung kann auf GitHub Zweige anlegen, aber nicht löschen (HTTP 403, belegte Rechte-Grenze), ein liegen gebliebener Zweig bräuchte Ondos eigene Handarbeit zum Aufräumen. Ein eigener Branch für ChatGPTs Code hätte an dieser Regel nichts geändert. Die Prüfung selbst braucht keinen Branch — sie geschieht vor dem Commit, nicht durch ihn.
+
+→ **🔴 Erste Anwendung, 10.9.2026: Backlog-Punkt 68, dritter Lauf auf `claude-sonnet-5`
+umgestellt.** ChatGPT lieferte die Funktion `sonnetSuche()` mit genau den drei angeforderten
+Änderungen zurück (Modell, Websuche-Werkzeug, Aufwandstufe) — byte-für-byte verglichen
+gegen die Spezifikation, keine einzige zusätzliche oder fehlende Änderung. **Verifiziert:**
+`node --check` bestanden. Trockentest an der echten, eingesetzten Funktion mit gestubbtem
+`apiCall()` (kein echter Netzwerkaufruf, keine echten Kosten) — **15 Prüfungen**: alle drei
+Parameter korrekt bei Erst- und Wiederholungsaufruf · die `pause_turn`-Nachfass-Schleife
+(maximal drei Wiederholungen, danach ungeprüfte Rückgabe) unverändert · Fehlerbehandlung
+(401, leeres Guthaben) unverändert · `state` bleibt unberührt. Zwei eigene Testfehler dabei
+gefunden und korrigiert, nicht der Code — ein falsch angenommener Rundenzähler und eine
+Prüfung auf eine später mutierte Array-Referenz statt eines Schnappschusses zur Aufrufzeit
+(belegt durch Nachrechnen der tatsächlichen Ablaufsteuerung). `pruefe.py` danach: ALLES
+SAUBER. Dabei ein weiterer Fund ausserhalb des ChatGPT-Auftrags, siehe Punkt 68.
+**Keine neuen Sprachschlüssel.** **Kein Schnitt in der Messreihe.** `APP_VERSION` weiter 18.
+→ **Was diese erste Anwendung NICHT zeigt:** ob Sonnet 5 tatsächlich weniger kostet oder
+genauso gut funktioniert — das zeigt erst Ondos eigener Betrieb (Stabilitätsregel). Auch
+nicht, ob der Arbeitsweg bei einer grösseren, weniger klar umrissenen Aufgabe ebenso gut
+trägt — bewusst mit einer kleinen, mechanischen Änderung begonnen.
+→ **Kosten:** kein Geld für diese Lieferung selbst. Ob künftig tatsächlich Nutzung gespart
+wird, lässt sich erst über mehrere Anwendungen hinweg beurteilen, nicht nach der ersten.
 
 ---
 

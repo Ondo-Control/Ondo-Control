@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.21';
+var CODE_VERSION = 'v19.8.22';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -1679,13 +1679,13 @@ function sonnetSuche(prompt, maxUses, maxTokens){
     if(res.stop_reason==='pause_turn' && runden<3){
       runden++;
       messages.push({role:'assistant',content:res.content});
-      return apiCall({model:'claude-sonnet-4-6',max_tokens:maxTokens,messages:messages,
-        tools:[{type:'web_search_20250305',name:'web_search',max_uses:maxUses}]}).then(schritt);
+      return apiCall({model:'claude-sonnet-5',max_tokens:maxTokens,messages:messages,
+        tools:[{type:'web_search_20260209',name:'web_search',max_uses:maxUses}],output_config:{effort:'low'}}).then(schritt);
     }
     return res;
   }
-  return apiCall({model:'claude-sonnet-4-6',max_tokens:maxTokens,messages:messages,
-    tools:[{type:'web_search_20250305',name:'web_search',max_uses:maxUses}]}).then(schritt);
+  return apiCall({model:'claude-sonnet-5',max_tokens:maxTokens,messages:messages,
+    tools:[{type:'web_search_20260209',name:'web_search',max_uses:maxUses}],output_config:{effort:'low'}}).then(schritt);
 }
 
 /* ================= SCHRITT 1: SPIELLISTE (zweistufig, v19.6) =================
@@ -2440,7 +2440,7 @@ function ergebnissePruefen(btn){
         /* Nachfrage 28.8.2026: welches Modell hat tatsaechlich geantwortet? Nicht ueber die
            blosse Anwesenheit von modelVersion raten, sondern ueber den Weg, der lief. Fehlt
            modelVersion trotz Gemini-Pfad ausnahmsweise: null, ausdruecklich unbekannt. */
-        var modellGenutzt = (a.weg==='gemini') ? (res.modelVersion||null) : 'claude-sonnet-4-6';
+        var modellGenutzt = (a.weg==='gemini') ? (res.modelVersion||null) : 'claude-sonnet-5';
         var parsed=parseJsonBlock(res);
         if(parsed && parsed.ergebnisse){
           parsed.ergebnisse.forEach(function(r){ verarbeite(r, ziel, rohText, modellGenutzt); });

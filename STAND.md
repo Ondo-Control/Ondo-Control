@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 10.9.2026, Fassung 89, v19.8.21*
+*Die aktuelle Wahrheit. Stand: 10.9.2026, Fassung 90, v19.8.22*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -175,7 +175,24 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 ## Versionen
 
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.8.21** (`beta.html`, geliefert 10.9.2026) — **Backlog-Punkt 34 (Brier-Score) und
+- **Beta: v19.8.22** (`beta.html`, geliefert 10.9.2026) — **Backlog-Punkt 68, dritter Lauf auf
+  `claude-sonnet-5` umgestellt — erste Anwendung des neuen Arbeitswegs aus Backlog-Punkt 74
+  (ChatGPT als geprüfter Code-Zulieferer, Ondos Auftrag).** In `sonnetSuche()`:
+  `claude-sonnet-4-6` → `claude-sonnet-5` (rund ein Drittel weniger pro Token), Websuche auf
+  `web_search_20260209` (Dynamic Filtering) gehoben, `output_config:{effort:'low'}` ergänzt.
+  ChatGPT lieferte die Funktion mit genau den drei angeforderten Änderungen, byte-für-byte
+  gegen die Spezifikation geprüft. **Dabei gefunden und berichtigt:** das Label
+  `modellGenutzt` (für `refRoh`, Backlog-Punkt 64) hing fest an `'claude-sonnet-4-6'` und war
+  nach der Umstellung nicht mehr korrekt — auf `'claude-sonnet-5'` berichtigt, nicht Teil des
+  ChatGPT-Auftrags. **Verifiziert:** `node --check` bestanden · Trockentest mit **15
+  Prüfungen** an der echten, eingesetzten Funktion (gestubbter `apiCall()`, kein echter
+  Netzwerkaufruf) · `pruefe.py`: ALLES SAUBER. **Ausdrücklich nicht geprüft und hier nicht
+  behauptet:** ob Sonnet 5 tatsächlich weniger kostet oder genauso gut funktioniert — das
+  zeigt erst der echte Betrieb (Stabilitätsregel), diese Sitzung hat keinen Zugriff auf
+  Ondos API-Schlüssel oder Abrechnung. Einzelheiten zum Arbeitsweg bei Backlog-Punkt 74.
+  **Keine neuen Sprachschlüssel** (256 unverändert). **Kein Schnitt in der Messreihe.**
+  `APP_VERSION` weiter 18.
+- **Beta zuvor: v19.8.21** (`beta.html`, geliefert 10.9.2026) — **Backlog-Punkt 34 (Brier-Score) und
   35 (Streuungsangabe) gebaut, beide seit 7.9.2026 entschieden.** Zwei neue reine Funktionen,
   `calcBrierScore(quelle)` und `calcStreuung(quelle)` — eigene, unveränderte Sammelschleifen
   wie `calcKalibrierung()`, das selbst unangetastet bleibt. Brier-Score: `(p/100 − Treffer)²`

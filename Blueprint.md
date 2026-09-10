@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.88
+**Version:** 0.89
 **Stand:** 10. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.89 ändert (10.9.2026):** Neuer Backlog-Punkt 74 gebaut und im selben Zug erstmals angewendet (Backlog Fassung 90) — ChatGPT übernimmt auf Ondos Auftrag eine neue, eng begrenzte Rolle als geprüfter Code-Zulieferer für klein umrissene, von Claude vollständig spezifizierte Änderungen, mit dem Zweck Nutzung zu sparen (Codeschreiben ist teurer als das Prüfen eines fertigen Diffs). Abschnitt 2e entsprechend ergänzt. Erste Anwendung: Backlog-Punkt 68, dritter Schiedsrichter-Lauf von `claude-sonnet-4-6` auf `claude-sonnet-5` umgestellt (`beta.html` v19.8.22, rund ein Drittel weniger pro Token), Websuche auf die neuere `web_search_20260209`-Variante gehoben. ChatGPTs Code stimmte byte-für-byte mit der Spezifikation überein; 15 Prüfungen am echten, eingesetzten Code mit gestubbtem Netzwerkaufruf bestanden. Dabei ein bei der Prüfung gefundenes und berichtigtes Modell-Label (`modellGenutzt`), das nicht Teil des ChatGPT-Auftrags war. Ausdrücklich nicht geprüft: ob Sonnet 5 wirklich weniger kostet oder gleich gut funktioniert — das zeigt erst der echte Betrieb. Geprüft und verworfen: ChatGPT liest die Datei selbst über einen Link — funktioniert bei `beta.html`s Grösse nicht zuverlässig. Kein eigener Branch, mit Begründung von der ursprünglichen Ankündigung abgewichen (die stehende „kein neuer Branch"-Regel gilt weiter). Kein Verfassungsartikel geändert, keine neue Arbeitsregel — die Konfliktregel zu ChatGPTs Doppelrolle bleibt unberührt. Blueprint auf 0.89 gehoben.
 
 > **Was Fassung 0.88 ändert (10.9.2026):** Backlog-Punkt 34 (Brier-Score) und 35 (Streuungsangabe) gebaut, `beta.html` v19.8.21 (Backlog Fassung 89). Zwei neue reine Funktionen, `calcBrierScore(quelle)` und `calcStreuung(quelle)` — eigene, unveränderte Sammelschleifen, `calcKalibrierung()` selbst bleibt unangetastet. Brier-Score verrechnet behauptete Zuversicht und Eintreffen je Aussage zu einer Zahl, lässt sich nicht durch Ausweichen auf 50 % schönen. Streuung per Bootstrap (600 Ziehungen, dasselbe Verfahren wie eine frühere Handrechnung), macht den wiederkehrenden handgeschriebenen Vorbehalt „auf mehrere Prozentpunkte genau, nicht auf einen" zu einer echten Zahl. Beide in der bestehenden Kalibrierungstabelle angezeigt. 20 Prüfungen am echten, herausgeschnittenen Code bestanden, davon 9 an einer Funktion mit echtem Zufall — deshalb auf Kennwerte statt exakte Zahlen geprüft, fünffach gegen Flakiness wiederholt. 2 neue Sprachschlüssel (254 → 256). Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.88 gehoben.
 
@@ -318,6 +320,12 @@ noch wirksame Konfliktregel. Ein änderbarer Abschnitt, keine Hierarchie.*
 
 **Rollen, unverändert aus `STAND.md`:** Claude = Entwickler und Archivar · ChatGPT = Architekt
 und Prüfer · Mistral = beaufsichtigter Mitarbeiter, auf dem Prüfstand · Ondo = Product Owner.
+
+**🔴 Ergänzung, 10.9.2026 (Ondos Auftrag, Backlog-Punkt 74):** ChatGPT übernimmt seither auf
+Zuruf zusätzlich eine vierte, eng begrenzte Rolle — geprüfter Code-Zulieferer für klein
+umrissene, von Claude vollständig spezifizierte Änderungen, ähnlich Mistrals Rolle, aber ohne
+eigenen Repo-Zugang: der Code kommt über Ondo, Claude prüft ihn vor jedem Commit. Einzelheiten
+beim genannten Backlog-Punkt (Punkt 45, nicht hier wiederholt).
 
 **Eine Konfliktregel:** Wer eine Architektur entwirft, sollte sie nicht auch unabhängig prüfen —
 beides zusammen ist keine echte, unabhängige Kontrolle. Das betrifft seit 27./28.8.2026
