@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 7.9.2026, Fassung 86 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 10.9.2026, Fassung 87 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -15,6 +15,35 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 87 ändert (10.9., erste Bewährungsbeobachtung zu Backlog-Punkt 68)
+
+**Anlass:** Ondo, eine Woche nach dem Bau der Mehrfachlauf-Absicherung (3.9.2026), direkte
+Aussage aus der App: „Seit dem 3.9. wurden keine Spiele geparkt außer das Spiel am 5.9. was
+verschoben ist."
+
+- **Backlog-Punkt 68 nachgeführt, kein Codeaufwand.** Der 5.9.-Fall (Sligo Rovers – Galway
+  United) ist keine Instabilität im Sinn dieses Punktes, sondern eine von Ondo von Hand
+  vorgenommene Parkung wegen einer extern belegten Spielverlegung (14.9.2026, per WebSearch
+  gegengeprüft, mit Einschränkung wegen blockierter Sport-Datenseiten). Damit hat die
+  automatische Uneinigkeitsregel (`parkeEintraege()`, `parkGrund:'unstable_ref'`) in der
+  ersten vollen Betriebswoche seit dem 3.9.2026 kein einziges Mal ausgelöst — ein echter,
+  positiver erster Datenpunkt.
+- **Ehrlich eingeschränkt (Art. 14, Stabilitätsregel):** Das beweist nicht, dass der
+  Schiedsrichter „repariert" ist — eine Woche ist eine kurze Beobachtung, und ob die in
+  dieser Woche übernommenen 3/3- und 2/3-Werte extern nachgeprüft richtig waren, ist nicht
+  untersucht und hier nicht behauptet. Sabah FC – Hapoel Beer-Sheva FC und NK Celje – Slovan
+  Bratislava bleiben unverändert geparkt (beide vor Punkt 68) und warten weiter auf Ondos
+  eigenen erneuten Prüfversuch — kein Code nötig.
+- **Anlass für die Nachfrage:** Ondo hatte Rohdaten des Schiedsrichters zur Durchsicht
+  angeboten; eine erste Auswertung war fehlerhaft (Zuordnung von Ergebnissen ohne
+  Mannschaftsnamen auf falsche Einträge), selbst korrigiert vor der Vorlage. Die Rohdaten
+  taugen für eine vollständige Liste „welche Spiele wegen Instabilität geparkt waren" nicht
+  zuverlässig — nur Wettbewerb+Datum-Kombinationen ohne weiteres Spiel am selben Tag sind
+  daraus verlässlich lesbar. Reiner Chat-Befund, nicht als eigener Punkt aufgenommen.
+- **Beschlossen und nicht gebaut weiterhin fünf** — **3, 4, 0b, 34, 35** *(unverändert.)*
 
 ---
 
@@ -967,7 +996,7 @@ Bei NK Celje–Slovan Bratislava und Sabah FC–Hapoel Beer-Sheva FC lieferte de
 
 ---
 
-**68. Mehrfachlauf-Absicherung des Schiedsrichters — drei Läufe statt einem** · *Auftrag Ondo, 3.9.2026 · gebaut am selben Tag* · **Status: 🔴 GEBAUT am 3.9.2026 — Bewährung steht aus**
+**68. Mehrfachlauf-Absicherung des Schiedsrichters — drei Läufe statt einem** · *Auftrag Ondo, 3.9.2026 · gebaut am selben Tag · erste Bewährungsbeobachtung 10.9.2026, Ondo* · **Status: 🔴 GEBAUT am 3.9.2026 — Bewährung läuft, erste Woche ohne instabilitätsbedingten Park**
 
 **Nummernwahl:** Ondos Vorschlag war 68; gegen den Backlog und `BACKLOG-ARCHIV.md` geprüft — der höchste vergebene Punkt ist 67 (archiviert), 68 war frei. Keine Kollision.
 
@@ -1009,6 +1038,32 @@ Bei NK Celje–Slovan Bratislava und Sabah FC–Hapoel Beer-Sheva FC lieferte de
 → **Keine rückwirkende Neubewertung.** Sabah und Celje bleiben geparkt, unabhängig vom Ausgang dieses Umbaus (ausdrückliche Auflage des Auftrags, und die Bedingung aus Punkt 64 gilt unverändert weiter).
 → **🔴 Ondos Rückfrage bei der Planfreigabe, hier beantwortet: Können die neue Markierung `2von3` und die bestehende Warnung aus `refRohAbgleich()` beim selben Eintrag gleichzeitig erscheinen?** **Ja, und das ist der Regelfall bei 2 von 3 — es ist kein Widerspruch.** Die beiden Zeilen sagen Verschiedenes und stehen untereinander: Die obere („nicht einstimmig — 2 von 3 Läufen") sagt, **dass** ein Wert übernommen wurde und wie knapp. Die untere („Schiedsrichter-Läufe widersprechen sich: 2 von 3 Läufen: 2:1 · 1 von 3 Läufen: 3:1") zeigt die **einzelnen** Stände, die dahinterstehen. In den drei Lagen sieht das so aus: **3/3 einstimmig** → keine der beiden Zeilen. **2/3** → beide Zeilen, obere zuerst. **Drei verschiedene Werte** → nur die untere, weil nichts übernommen wurde und es keine Markierung an einem übernommenen Wert geben kann; der Eintrag trägt statt dessen das Kennzeichen „geparkt". `refRohAbgleich()` ist dabei unverändert geblieben (ausdrückliche Auflage) — sie wirkt nur jetzt öfter, weil es je Runde drei geparste Läufe gibt statt einem.
 → **🔴 Zweiter Fund, dabei aufgefallen, NICHT behoben und nicht Gegenstand dieses Auftrags:** `pruefAnwenden()` schreibt beim Übernehmen **nur** `ergebnisHeim`/`ergebnisGast` an den Eintrag. **Halbzeitstand und Verlängerungsstand werden verworfen**, obwohl der Schiedsrichter sie liefert und die App sie sogar prüft — sie überleben nur in `e.refRoh[...].geparst`. Die Karte kann `ergebnisHalbzeit`/`ergebnisVerl` anzeigen, bekommt sie aber ausschliesslich aus der von Hand eingetragenen Migration. Bewusst nicht mitgeändert: Es ändert, was dauerhaft gespeichert wird, und war nicht beauftragt (Art. 8). Nur benannt.
+
+> **🔴 Erste Bewährungsbeobachtung, 10.9.2026 (Ondo, direkte Aussage aus der App, eine Woche
+> nach dem Bau).** Ondos Wortlaut: „Seit dem 3.9. wurden keine Spiele geparkt außer das Spiel
+> am 5.9. was verschoben ist." Der 5.9.-Fall (Sligo Rovers – Galway United) ist kein echter
+> Instabilitätsfall im Sinn dieses Punktes — das Spiel wurde extern nachweislich verschoben
+> (Backlog-Punkt 73-nahes Ereignis, ausserhalb dieses Punktes dokumentiert) und von Ondo von
+> Hand geparkt, nicht durch die automatische 3-von-3-Uneinigkeitsregel. **Damit hat die
+> automatische Parkung wegen Uneinigkeit (`parkeEintraege()`, `parkGrund:'unstable_ref'`) in
+> der ersten vollen Betriebswoche seit dem 3.9.2026 kein einziges Mal ausgelöst.**
+>
+> **Was das zeigt und was nicht (Art. 14, Stabilitätsregel):** Das ist ein echter, positiver
+> erster Datenpunkt für die Bewährung im Betrieb — mehr nicht. Er zeigt, dass die drei
+> parallelen Läufe sich in dieser Woche bei jedem geprüften Spiel entweder einig waren
+> (3/3, keine Markierung) oder höchstens knapp uneinig (2/3, mit sichtbarer Markierung), nie
+> vollständig zerstritten. **Er beweist nicht, dass der Schiedsrichter „repariert" ist** —
+> weder nach der ursprünglichen, milden Lesart noch nach Ondos eigener, strenger Definition
+> (zuverlässige Ergebnisse für alle künftigen Spiele, ohne Gegenprüfung im Chat). Eine Woche
+> ohne 3-von-3-Uneinigkeit sagt nichts darüber, ob die **übernommenen** Werte (3/3 oder 2/3)
+> tatsächlich richtig waren — dieselbe Grenze, die schon beim Bau benannt wurde: drei einige
+> Läufe können gemeinsam falsch liegen, das ist am 8.8.2026 bei den Anpfiffzeiten belegt
+> (sieben von zehn falsch, **beide** Gehirne übereinstimmend). **Nicht geprüft und hier nicht
+> behauptet:** ob die in dieser Woche übernommenen 3/3- und 2/3-Ergebnisse extern
+> nachgeprüft richtig waren.
+> **Kein Codeaufwand**, reine Beobachtung. Sabah und Celje bleiben unverändert geparkt und
+> warten weiterhin auf einen gezielten erneuten Prüfversuch (Ondos eigener nächster Schritt,
+> per „Wieder prüfen"-Knopf — kein Code nötig).
 
 ---
 

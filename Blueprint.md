@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.85
-**Stand:** 7. September 2026
+**Version:** 0.86
+**Stand:** 10. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.86 ändert (10.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war Ondos erste Bewährungsbeobachtung zu Backlog-Punkt 68 (Backlog Fassung 87), kein Codeaufwand. Eine Woche nach dem Bau der Mehrfachlauf-Absicherung (3.9.2026) meldet Ondo aus der App: seit dem 3.9. kein einziger instabilitätsbedingter Park, der einzige Park seither (5.9., Sligo Rovers – Galway United) war eine von Hand vorgenommene Parkung wegen einer extern belegten Spielverlegung, kein Instabilitätsfall. Ausdrücklich nicht behauptet: dass der Schiedsrichter „repariert" ist (Art. 14, Stabilitätsregel) — eine Woche ist eine kurze Beobachtung, ob übernommene Werte extern richtig waren ist ungeprüft. Sabah FC – Hapoel Beer-Sheva FC und NK Celje – Slovan Bratislava bleiben geparkt und warten auf Ondos eigenen erneuten Prüfversuch. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.86 gehoben.
 
 > **Was Fassung 0.85 ändert (7.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war Backlog-Punkt 73s Zurücksetzung (Backlog Fassung 86): Kandidat 4 wurde am echten Gerät geprüft und widerlegt, vierter Fehlschlag in Folge. Ondos Auftrag, ohne weitere Rückfrage: „Zurücksetzen." `kilogFilterBlock()`s Datumsfeld-Reihe (`beta.html` v19.8.20) trägt jetzt wieder exakt den Aufbau von vor Punkt 73, byte-für-byte identisch mit `logExportBlock()`s unverändert gebliebener Reihe, mit Trockentest belegt. Der ursprüngliche Überlauf-Fehler besteht damit bewusst wieder — keine neue Regression. Kein fünfter CSS-Versuch ohne neuen Auftrag; zwei Wege bleiben unverbraucht (`overflow:hidden`, nativen Picker ersetzen). Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.85 gehoben.
 
