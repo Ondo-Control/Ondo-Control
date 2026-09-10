@@ -227,6 +227,189 @@ Liefert ein Gehirn mehr, weniger oder anders geordnete Vorhersagen als die Liste
 
 ---
 
+## Erledigte Punkte, archiviert am 10.9.2026 (Backlog Fassung 88, Regel 4 — ohne Chat-Anstoss)
+
+*Fünf Punkte, alle mit Status GEBAUT/BEANTWORTET/GEKLÄRT und ohne Bewährungs-Einschränkung im
+eigenen Text — Kriterium und Ausnahmen stehen in Fassung 61 des Backlogs und in Regel 4 dort.
+Wortgleich verschoben, nichts gekürzt. Reihenfolge: aufsteigende Punktnummer.*
+
+---
+
+**36. Verlängerte Spielformate schliessen — die andere Hälfte von Weg A** · *Fund 9.8., Claude beim Prüflauf · zweiter Teil gebaut 3.9.2026* · **Status: 🔴 GEBAUT UND ABGESCHLOSSEN am 3.9.2026 (Beschluss Ondo) — beide Hälften stehen**
+
+> **🔴 WIDERSPRUCH IM PUNKT SELBST BEHOBEN, 3.9.2026 (Auftrag Ondo).** Dieser Punkt trug bis heute eine Kopfzeile „GEBAUT" und einen Schlusssatz „Punkt 36 selbst bleibt weiterhin unentschieden" — für einen künftigen Leser nicht auflösbar (Fehlerart C4). Fassung 72 hatte das nur **benannt**, nicht geklärt, weil Regel 4 reines Verschieben erlaubt, keine inhaltliche Entscheidung. Jetzt ist es entschieden und gebaut, und die beiden Aussagen sind in Einklang gebracht.
+>
+> **Was offen war und was es jetzt ist:** Am 30.8.2026 war nur die **eine** Hälfte gebaut — die Spielliste (`stufeHolen()`) schliesst Sonderformate aus. Offen blieb die Grundsatzfrage, was mit einem Sonderformat geschieht, das dort **durchrutscht** (der belegte Leeds-Fall) und erst beim Ergebnis-Prüfen auffällt. **Ondos Entscheidung vom 3.9.2026:** Der Schiedsrichter erkennt es selbst und der Eintrag wird geparkt.
+>
+> **🔴 ZWEITER TEIL GEBAUT am 3.9.2026, `beta.html` v19.8.12 — Sonderformat-Erkennung beim Schiedsrichter.** Der Schiedsrichter-Auftragstext in `rundeLaufen()` verlangt jetzt zusätzlich das tatsächlich gespielte Format als Pflichtfeld `format`: `"2x45"` für das Standardformat (ausdrücklich einschliesslich einer regulären Verlängerung von 2x15 und eines Elfmeterschiessens), sonst der abweichende Wert im Klartext (`"2x60"`, `"3x45"`). **Findet ein Lauf keine Formatangabe, bleibt das Feld leer — es wird nicht geraten.** `refLaufPruefen()` wertet das aus: Meldet **ein** Lauf ein Sonderformat, wird der Eintrag **sofort geparkt**, unabhängig von den anderen zwei Läufen der Mehrfachlauf-Absicherung (Punkt 68). **Es wird kein 90-Minuten-Wert erzwungen oder gerechnet** — genau der Punkt, an dem Leeds–RB Leipzig ein „1:0" bekam, das für ein 60/60-Format keine Bedeutung hat. Neuer eigener `parkGrund`-Wert `'sonderformat'` (nicht `'unstable_ref'` — ein Sonderformat ist etwas anderes als ein instabiler Schiedsrichter), sichtbar als Kennzeichen in der Karte und im Log-Text-Export, zusammen mit dem erkannten Format.
+> **Trockentest bestanden:** ein Lauf mit `"2x60"` parkt den Eintrag, obwohl die anderen zwei Läufe sich auf 1:0 einig waren · `"3x45"` wird erkannt · `"2x45 + 2x15"` bleibt gültig · ein leeres Formatfeld ist **kein** Sonderformat · kein Ergebnis wird eingetragen.
+> **Die Grenze der Wirkung bleibt bestehen und ist durch diesen Bau NICHT beseitigt:** Ein Modell, das das Format nicht kennt, meldet es auch nicht — es lässt das Feld leer, und der Lauf gilt weiter. Die Erkennung ist jetzt an **zwei** Stellen (Spielliste und Schiedsrichter) statt an einer; das senkt die Wahrscheinlichkeit, es schliesst nichts aus (Art. 14).
+> **Kein Schnitt in der Messreihe.** Keine neuen Sprachschlüssel für diesen Teil ausser `parkGrundFormat` (mitgezählt bei Punkt 68).
+
+> **🔴 GEBAUT am 30.8.2026:** Der Schiedsrichter-/Spielformat-Auftragstext in `stufeHolen()` (`beta.html`, v19.8.7) schliesst jetzt namentlich Sonderformate aus, statt nur verkürzte: „Nur Spiele im Standardformat (2x45 Minuten, bei Bedarf plus reguläre Verlängerung 2x15 Minuten) werden aufgenommen. Spiele mit abweichender Halbzeit- oder Periodenlänge (z. B. 2x60, 3x45) werden ausgeschlossen." Reguläre Verlängerung bleibt ausdrücklich eingeschlossen — anders als der ursprüngliche Vorschlag „genau 90 Minuten … weder verkürzt noch verlängert" weiter unten, der reguläre Verlängerung mit ausgeschlossen hätte (Ondos Entscheidung weicht davon ab). Gemessen wird weiterhin der Stand nach 90 Minuten plus Nachspielzeit — unverändert. Kein Schnitt in der Messreihe. Keine neuen Sprachschlüssel.
+> **Grenze der Wirkung bleibt bestehen** (siehe unten): Das schliesst nur aus, was die Spielliste als Sonderformat erkennt — ein Modell, das das Format nicht kennt, nimmt es trotzdem auf.
+
+Weg A (Beschluss Ondo 6.8.) schliesst aus der Spielliste **verkürzte** Formate aus: „Turniere mit verkuerzter Spielzeit (Vorbereitungsturniere mit 45- oder 60-Minuten-Partien)" und verlangt „Jedes aufgenommene Spiel muss ueber die vollen 90 Minuten gehen."
+
+**Verlängerte Formate fallen nicht darunter.** Leeds – RB Leipzig war am 8.8. auf **120 Minuten** angesetzt, zwei Hälften zu 60 Minuten. Der offizielle Endstand ist 2:0, das zweite Tor fiel in der 109. Minute. Die App misst den Stand nach 90 Minuten und meldete 1:0.
+
+→ **Nicht bestimmbar, ob der Schiedsrichter falsch gelesen hat** (Art. 11). Kein Anbieter veröffentlicht einen Zwischenstand bei Minute 90. Es ist wie beim Como Cup **keine Fehlerart des Schiedsrichters, sondern eine Lücke in der Spielliste**.
+→ **Erledigt für diesen Fall:** Beide Leeds-Einträge sind auf Ondos Entscheidung **geparkt**.
+→ **Vorschlag zur Vorlage:** Der Satz „Jedes aufgenommene Spiel muss ueber die vollen 90 Minuten gehen" wird zu „genau 90 Minuten plus Nachspielzeit — weder verkürzt noch verlängert". Eine Zeile, keine neuen Sprachschlüssel, kein Geld.
+→ **Grenze der Wirkung:** Das schliesst nur aus, was die Spielliste als solches erkennt. Ein Modell, das das Format nicht kennt, nimmt es trotzdem auf. Senkt die Wahrscheinlichkeit, schliesst nichts aus.
+→ **🔴 ZWEITER, STÄRKERER FALL (13.8.): 1. FC Union Berlin – Aris Limassol (9.8.), dreimal 45 Minuten.** Der Endstand 3:2 ist gesichert, der **Stand nach 90 Minuten nicht bestimmbar** — der Vereinsbericht legt alle fünf Tore in die ersten 90 Minuten (3:2 nach 90, Halbzeit 2:1), Flashscore nennt dieselben Torschützen mit 44./49./55./90./110. Minute (3:1 nach 90, Halbzeit 1:0). Beide Quellen widersprechen sich auch darin, wer zuerst traf. **Der Eintrag ist geparkt.**
+→ **Warum dieser Fall stärker ist als Leeds:** Bei Leeds fehlte nur die Angabe. Hier liegen **zwei gleichwertige Quellen mit unvereinbaren Angaben** vor. Das Spiel ist nicht falsch gefunden, es ist mit der Messregel **nicht messbar**.
+→ **Status jetzt: entscheidungsreif.** Es liegen zwei belegte Fälle in fünf Tagen vor.
+
+→ **🔴 Dritte Bestätigung des Leeds-Falls, 28.8.2026 (externe Gegenprüfung im Rahmen der Restarbeit zu Punkt 51, seit 30.8.2026 in `BACKLOG-ARCHIV.md`):** Drei unabhängige Primärquellen — Leeds United (offizielle Vereinsseite), Sportschau/ARD, Sky Sport — bestätigen übereinstimmend: **120 Minuten**, zwei Hälften zu je 60 Minuten, ausdrücklich zu diesem Zweck vereinbart. Endstand 2:0, **zweites Tor in der 109. Minute**, Halbzeit (bei Minute 60) 1:0. **Das ist dasselbe Spiel wie oben, kein dritter Fall** — die neuen Quellen bestätigen nur, was hier bereits seit dem 9.8. steht.
+→ **Wichtiger als die Bestätigung: Sie stellt eine Annahme aus Punkt 51 (27.8., seit 30.8.2026 in `BACKLOG-ARCHIV.md`) infrage.** Dort wurde die Paarung entparkt mit der Begründung „Stand nach 90 Minuten ist bekannt und gesichert: 1:0". Bei einem 60/60-Format gibt es aber **keinen regulären Stand nach 90 Minuten** — die Halbzeitmarke liegt bei Minute 60, nicht 45, und Minute 90 fällt mitten in die zweite Hälfte. Der Massstab „Stand nach 90 Minuten", den die App misst, ist auf dieses Format schlicht nicht anwendbar; „1:0" ist kein bewiesener Zwischenstand, sondern eine Momentaufnahme ohne besondere Bedeutung für dieses Format. Einzelheiten und die Berichtigung der Ausführung stehen bei Punkt 51 (seit 30.8.2026 in `BACKLOG-ARCHIV.md`, dort archiviert, Fassung 61).
+→ **Entschieden (Ondo, 28.8.2026): Leeds–Leipzig bleibt geparkt, keine Übernahme.** ~~Punkt 36 selbst bleibt weiterhin unentschieden — dieser Fund entscheidet nichts vor, er dokumentiert nur.~~ **🔴 ÜBERHOLT am 3.9.2026:** Dieser Satz stand im Widerspruch zur Kopfzeile „GEBAUT" desselben Punktes (Fehlerart C4, benannt in Fassung 72, geklärt in Fassung 73). Er galt für den Stand vom 28.8.2026, an dem nur die Spielliste geändert war. **Ondo hat den offenen Rest am 3.9.2026 entschieden und er ist gebaut** — siehe den Block „ZWEITER TEIL GEBAUT" am Kopf dieses Punktes. **Leeds–Leipzig selbst bleibt unverändert geparkt; rückwirkend wird nichts neu bewertet.**
+
+---
+
+---
+
+**43. Punkt 29 ist gebaut und nirgends ausgewertet** · *Fund 13.8., Chat 14 in der Abnahme · aufgenommen 14.8. · ausgeführt und beantwortet im Chat, nachgetragen 2.9.2026* · **Status: 🔴 BEANTWORTET / GEKLÄRT am 2.9.2026 — mit ausdrücklicher Grenze: interner Abgleich, keine erschöpfende externe Prüfung**
+
+> **🔴 NACHGETRAGEN am 2.9.2026 (Arbeitsregel F).** Die Antwort war im Chat bereits gegeben und **nie eingetragen** — genau der Fall, gegen den Arbeitsregel F gemacht wurde. Sie wird hier nachgeholt, nicht nachträglich behauptet.
+>
+> **Der Befund, in drei Teilen:**
+> 1. **Am 10.8. selbst gab es mehrere Fälle**, in denen Flash und Sonnet für dasselbe Spiel **unterschiedliche Wettbewerbe oder Anpfiffzeiten** zeigten. **Vor allem Sonnet war betroffen** — das ist genau der Positionsfehler aus Punkt 41 (Zuordnung über die Listenposition statt über den Spielnamen), an diesem Tag am Log bewiesen.
+> 2. **Ab dem 11.8. bis zum 30.8. wurde kein einziger Widerspruch mehr zwischen den beiden Gehirnen gefunden.** An drei Stellen extern gegengeprüft — unter anderem NK Celje–Ararat-Armenia (11.8.) und Bayern–Stuttgart (28.8.) — alle geprüften Angaben korrekt.
+> 3. **Das passt zeitlich zur eigenen Rolle für die Spielliste** (v19.8.1, geliefert 9.8.2026, 13:55 Uhr): Der Bruch im Fehlerbild liegt unmittelbar danach.
+>
+> **🔴 Grenze, ausdrücklich (Art. 14):** Das ist ein **interner Abgleich** — Flash gegen Sonnet im eigenen KI-Log —, **keine erschöpfende externe Prüfung**. Extern gegengeprüft wurden drei Stellen, nicht alle Tage. Stimmen beide Gehirne überein und sind trotzdem beide falsch, fällt das in diesem Abgleich nicht auf. **Genau dieser Fall ist am 8.8. belegt** (sieben von zehn Zeiten falsch, beide Gehirne übereinstimmend) und bleibt von diesem Befund unberührt.
+> **Was daraus NICHT folgt:** dass die zweite, unbekannte Ursache aus Punkt 41 („der 8. August") geklärt wäre. Sie bleibt unbekannt (Art. 11). Der Befund zeigt, dass die eine Ursache — die Positionsverschiebung — sichtbar zurückgegangen ist, nicht, dass die andere verschwunden ist.
+> **Was daraus auch nicht folgt:** dass die Änderung von v19.8.1 die Ursache beseitigt hat. Zeitliche Nähe ist kein Beweis (Arbeitsregel H). Punkt 41 selbst ist erst am 30.8.2026 gebaut worden, also nach dem hier ausgewerteten Zeitraum.
+> **Kosten:** keine — die Auswertung ist gelaufen, dieser Eintrag ist reine Buchführung.
+
+Die eigene Rolle für die Spielliste (`rolle:'liste'`, `gemini-flash-latest`) wurde am 9.8. **ausdrücklich als diagnostischer Test** gebaut, nicht als Abhilfe: Läuft die Liste auf dem grösseren Modell und werden die Zeiten richtig, war das Modell die Ursache; bleiben sie falsch, liegt sie woanders. **Beides wäre ein Ergebnis.**
+
+Seither sind mehrere Vorhersagetage vergangen. **Ob die Anpfiffzeiten seit dem 10. August besser geworden sind, steht in keinem Dokument.**
+
+→ **Warum es zählt:** Es ist der einzige noch offene Weg zur **zweiten, unbekannten** Ursache — der, die Punkt 41 ausdrücklich nicht löst.
+→ **Was gebraucht wird:** ein frischer KI-Log-Text ab dem 10. August. Claude gleicht die Anpfiffzeiten per Websuche gegen die Wettbewerbe ab, die im Log stehen.
+→ **Grenze, vorab benannt (Art. 14):** Ein einzelner sauberer Tag beweist nichts, ein einzelner falscher auch nicht. Es ist zu sagen, was gemessen wurde — und zu sagen, wenn es nicht reicht.
+→ **Zusätzliche Grenze:** Mit der Pause kommen keine neuen Tage mehr dazu. Was jetzt im Log steht, ist alles, was es je geben wird.
+→ **Kosten:** einige Websuchen, kein Geld, kein Eingriff in Code oder Messreihe.
+
+---
+
+---
+
+**58. Die Sammlung im Chat hat keinen Ablageort** · *Fund 16.8., Claude, auf Ondos Frage* · **Status: BEANTWORTET 23.8.2026 — Nein**
+
+Ondos Frage war, ob `pruefe.py` den Chat prüfen kann, damit Beschlossenes nicht verlorengeht. **Das kann es nicht** — es liest Dateien, nicht Gespräche.
+
+**Der eigentliche Fund liegt darunter:** Was Claude im Lauf eines Arbeitsblocks sammelt, liegt ausschliesslich im Gespräch. Es gibt keinen zweiten Ort. Geht der Speicher zur Neige oder kommt etwas dazwischen, ist alles weg, was nicht in einer Datei steht.
+
+→ **Das ist ein belegbarer Teil der Ursache** für die neunte Fehlerart und für vergessene Zusagen. **Nicht die ganze Ursache** — die ist weiterhin unbekannt (Art. 11).
+→ **Zur Entscheidung:** ein mitlaufender Merkzettel als Datei, in den jeder Beschluss sofort wandert? Das wäre wieder eine Lieferung je Beschluss — genau das, was Ondo am 16.8. beanstandet hat. **Der Widerspruch ist ungelöst; Claude legt ihn offen, statt ihn zu überspielen.**
+→ **🔴 Möglicher Ausweg, neu am 20.8. (Ondo):** Hat **Claude Code** einen internen Sammelspeicher, in dem anstehende Änderungen bis zum Nachtragen liegen, und kann er sie später auf Befehl oder zu fester Uhrzeit in die Dateien schreiben, dann läge der zweite Ort dort — **ohne Lieferung je Beschluss und ohne Handarbeit**. Das würde den Widerspruch auflösen, statt ihn nur zu benennen. **Ungeprüft.** Prüfung gehört zu Punkt 53.
+→ **🔴 WIDERLEGT am 21.8.2026 (Chat 20, Cloud-Sitzung):** Den vermuteten internen Sammelspeicher gibt es nicht — siehe Punkt 53, Frage 2. Eine Plandatei lag im Arbeitsverzeichnis der Sitzung, nicht im Repo, und verschwindet mit der Sitzung. **Der Widerspruch aus diesem Punkt bleibt damit ungelöst.** Der Wortlaut oben bleibt als alte Vermutung stehen.
+→ **🔴 Belegter Rückfall am 20.8.:** Chat 19 hat den Übergabebedarf **nicht von selbst gemeldet**, obwohl die Übergaberegel das verlangt — Ondo musste fragen. Derselbe Mechanismus: Was nur im Gespräch liegt, wird nicht ausgelöst.
+→ **🔴 Beantwortet (Ondo, 23.8.2026): Nein.** Eine geplante Aufgabe eignet sich nicht als verlässlicher automatischer Weg für die Projekt-Ablage (Belege siehe Punkt 53, neue Funde). Der manuelle Weg (Datei entfernen, über den GitHub-Dialog neu hinzufügen) bleibt der einzige zuverlässige.
+→ **Kosten:** keine, solange nicht entschieden wird.
+
+---
+
+---
+
+**69. `pruefListe`/`pruefBilanz` werden nie gespeichert — ein Neuladen verwirft ungeprüfte Vorschläge** · *Fund Ondo, 3.9.2026, nach v19.8.12 · untersucht und bestätigt 3.9.2026 · Auftrag Ondo 4.9.2026, gebaut am selben Tag* · **Status: 🔴 GEBAUT am 4.9.2026, `beta.html` v19.8.13**
+
+**Der Befund (Ondo):** Nach einem Neuladen der App waren die Vorschlagskarten aus „Ergebnisse prüfen" („9 von 30 gefunden", noch nicht übernommen) verschwunden. Stehen geblieben sind nur Einträge, die ohnehin schon dauerhaft markiert sind (z. B. die `refRohAbgleich()`-Widerspruchszeile an bestehenden KI-Log-Einträgen) — die sitzen in `state.kiProtokoll` und sind gespeichert.
+
+**Vermutung bestätigt, mit Codezitat (nicht vermutet — belegt):** `pruefListe` (Zeile 1961), `pruefBilanz` (Zeile 1962) und `pruefStark` (Zeile 1340) sind `var`-Deklarationen auf oberster Skript-Ebene, **ausserhalb** des `state`-Objekts (`state` beginnt Zeile 458). `save()` (Zeile 693–698) schreibt ausschliesslich `JSON.stringify(state)` in `localStorage` — keine der drei Variablen wird je in `state` geschrieben. Vollständiger Scan nach `localStorage.setItem`/`localStorage.getItem` (11 Fundstellen im ganzen Skript): genau ein Speicherschlüssel (`KEY = "ondo-control-v1"`), er transportiert ausschliesslich `state`. Kein `beforeunload`-Handler oder vergleichbarer Mechanismus fängt einen Verlust vor dem Neuladen ab.
+
+**Präzisierung, die zur Vermutung dazugehört:** Das Verhalten ist **nicht neu und nicht durch v19.8.12 verursacht.** Dieselbe Architektur bestand schon, als die v19.8.9-Notiz oben („`pruefListe` wird bei jedem Druck auf 'Ergebnisse prüfen' komplett neu aufgebaut") geschrieben wurde. Ein zweiter Tastendruck auf denselben Knopf und ein blosses Neuladen der Seite lösen exakt denselben Mechanismus aus — beides ist ein Neustart der laufenden JavaScript-Umgebung, bei dem die Zeile `var pruefListe = []` erneut ausgeführt wird. **Neu ist nur das Gewicht des Verlusts, nicht der Verlust selbst** — siehe Kostenabschnitt unten.
+
+**Nebenbefund, wie erbeten geprüft:** `state.vorschlaege` (Zeile 465, initialisiert als leeres Array) ist im ganzen übrigen Code nachweislich **tot** — kein einziger Schreib- oder Lesezugriff ausserhalb der Initialisierung (Suche nach `.vorschlaege` ohne den Zusatz `Info` findet nur diese eine Zeile; `state.vorschlaegeInfo`, ein anderes Feld mit ähnlichem Namen, ist dagegen aktiv in Gebrauch, Zeile 1749/2836, füllt den Hinweistext über den Vorhersage-Vorschlägen). **Woher es stammt, ist nicht belegbar:** `beta.html` selbst kam erst mit Commit `5bc5388` (Fassung 35, 21.8.2026) ins Repository und trug das Feld da bereits — frühere Geschichte liegt ausserhalb der Git-Historie dieses Repos. Die Vermutung, es sei ein Rest aus der v18-„Value-Rechnung"-Phase (Punkt 9/10), ist naheliegend, aber **nicht geprüft und deshalb nicht als Befund geführt** (Art. 11, Arbeitsregel H — belegen statt herleiten).
+
+**Einschätzung, ob eine Persistenz sinnvoll wäre:** Ja, nach Ondos eigener Kostenbegründung. Seit v19.8.12 hängt an jedem Prüflauf ein bezahlter Sonnet-Lauf mit Websuche (Backlog-Punkt 68); ein Verlust vor dem Übernehmen kostet jetzt echtes Geld je Wiederholung, nicht nur einen günstigen bzw. kostenlosen Gemini-Lauf wie zuvor.
+
+**Kosten/Komplexität einer Absicherung (Arbeitsregel G, grobe Richtung, kein Bau):**
+- **Kern:** `pruefListe`/`pruefBilanz` (sinnvollerweise auch `pruefStark`) aus globalen `var`s in `state.*`-Felder verschieben. Technisch unkompliziert — der Inhalt ist bereits reine, JSON-taugliche Daten (Zeichenketten, Zahlen, Arrays, flache Objekte), keine Funktionen, keine Zirkelbezüge.
+- **Ein Aufwand kommt geschenkt:** Der bestehende `save()`-Aufruf direkt nach `pruefAuswerten()` (eingeführt mit v19.8.12) würde neue Vorschläge automatisch mitsichern, ohne neue Aufrufstelle.
+- **Der eigentliche Aufwand und die eigentliche Fehlerquelle:** `pruefAnwenden()` ruft `save()` bisher nur im `art==='log'`-Zweig auf, nicht im `art==='bet'`-Zweig; `pruefIgnorieren()` ruft `save()` gar nicht auf — bisher folgenlos, weil `pruefListe` nie persistiert wurde. Würde `pruefListe` Teil von `state`, bräuchten **beide** Stellen zusätzlich einen `save()`-Aufruf, sonst taucht ein bereits übernommener oder bewusst ignorierter Vorschlag nach einem Neuladen wieder auf — eine neue, subtilere Variante desselben Problems. Zusätzlich müssten rund zehn Lese-/Schreibstellen (`pruefBlock()`, `pruefTextBauen()`, `pruefAnwenden()`, `pruefIgnorieren()`, `abschluss()`, `rundeLaufen()`, `verarbeite()`, `pruefAuswerten()`) konsequent auf `state.pruefListe`/`state.pruefBilanz` umgestellt werden — eine übersehene Stelle wäre der Fehler, den die Änderung gerade beheben soll.
+- **Offene Gestaltungsfrage, nicht Teil der Kostenschätzung, sondern zur Entscheidung Ondos:** Soll ein während des Neuladens noch laufender, unfertiger Prüfdurchgang absichtlich verloren bleiben? Der Fund selbst betrifft nur bereits abgeschlossene, aber noch nicht übernommene oder ignorierte Vorschläge — nicht einen mitten im Lauf unterbrochenen.
+- **Grobe Einordnung:** niedrig bis mittel. Kein neuer Modellaufruf, keine neue Abhängigkeit, kein Geld für die Änderung selbst — sie **spart** künftig Geld (weniger wiederholte, bezahlte Sonnet-Läufe). Das Risiko liegt ausschliesslich in der Vollständigkeit der Umstellung, nicht in ihrer Schwierigkeit.
+
+> **🔴 GEBAUT am 4.9.2026 (Auftrag Ondo, `beta.html` v19.8.13).** `pruefListe` und `pruefBilanz` sind Teil von `state` (`state.pruefListe`, `state.pruefBilanz`), initialisiert wie `vorschlaege: []` — **keine `seedV`-Migration nötig**, ein altes Save ohne diese Schlüssel behält einfach die frischen Defaults. `pruefStark` bleibt bewusst aussen vor, wie im Auftrag verlangt — sie beschreibt nur den laufenden Prüfdurchgang, keinen Vorschlag, der verloren gehen könnte.
+>
+> **Alle rund zehn Fundstellen umgestellt** (`state`-Objekt, der Reset in `ergebnissePruefen()`, `pruefAuswerten()`, `abschluss()`, `pruefAnwenden()`, `pruefIgnorieren()`, `pruefTextBauen()`, `pruefBlock()`) — vollständig geprüft mit `grep -n "pruefListe\|pruefBilanz"` gegen den fertigen Stand: keine unqualifizierte Fundstelle mehr übrig, `pruefStark` an allen fünf Stellen unverändert.
+>
+> **Die im Fund benannte eigentliche Fehlerquelle behoben:** `pruefAnwenden()` rief `save()` bisher nur im `art==='log'`-Zweig auf. Statt zwei separate Aufrufe zu pflegen, **ein** unconditional `save()` nach dem Entfernen aus der Liste — deckt beide Zweige ab. `pruefIgnorieren()` rief bisher **gar kein** `save()` auf, jetzt ergänzt. Zusätzlich ein `save()` am Ende von `abschluss()`: Das bestehende `save()` in `rundeLaufen()` läuft **vor** `abschluss()` im selben Tick und sichert deshalb nie die endgültige Bilanz (Fehlertext, `runden`, `dauerMs`, `einAnbieter` der letzten Runde) — ohne diesen Zusatz bliebe `state.pruefBilanz` nach einem Neuladen auf einem älteren Zwischenstand stehen.
+>
+> **Offene Gestaltungsfrage aus dem Fund, beantwortet:** Ein während des Neuladens noch laufender Durchgang bleibt bewusst **ohne** eigenes `save()` am Reset (`state.pruefListe=[]; state.pruefBilanz=null;`) — das löst sich von selbst. `pruefAuswerten()` trägt einen Eintrag erst **nach** Abschluss seiner Prüfung in `pruefListe` ein; ein mitten im Lauf unterbrochener Durchgang stand also ohnehin nie darin, nur in noch offenen Promises. Ein Reload mitten im Reset liefert dadurch den zuletzt **gesicherten**, älteren Stand zurück, statt ihn zu verlieren — durch Trockentest bestätigt (siehe unten).
+>
+> **Nachfrage Ondos beantwortet, mit Zeilenzitat (Belegen statt herleiten):** Ein übernommener Vorschlag wird **nicht** eigens chronologisch neu einsortiert — Ondos eigene Vermutung war richtig. `vorhersagen()` legt jeden neuen Eintrag per `state.kiProtokoll.unshift(eintrag)` an (Zeile 1744); die KI-Log-Anzeige (`wtab==='kilog'`) rendert `neu.map(...)` **ohne erneute Sortierung**, direkt in der Filter-Reihenfolge von `state.kiProtokoll`. `pruefAnwenden()` **verändert nur Felder** am gefundenen Eintrag über `.forEach` mit Id-Abgleich — kein `splice`/`push`/`unshift` auf `state.kiProtokoll`. Der Eintrag bleibt exakt an seiner ursprünglichen Array-Position; es gibt nichts, das ihn „wieder einsortieren" müsste, weil er nie entfernt wurde. **Ehrliche Einschränkung:** Das ist Einfüge-Reihenfolge, kein echter Sortierschlüssel über `e.datum` — fällt im normalen Tagesbetrieb zusammen, ist aber nicht dasselbe. Die Text-Exporte (`logTextBauen()`/`refRohTextBauen()`) sortieren dagegen ausdrücklich nach `datumZahl`, unabhängig von dieser Frage.
+>
+> **Verifiziert:** `node --check` bestanden. Trockentest bestanden — **19 neue Prüfungen**, an den echten, aus `beta.html` herausgeschnittenen Funktionen (`state`-Initialisierung, `load()`, `save()`, `pruefAnwenden()`, `pruefIgnorieren()`, die volle Referee-Entscheidungskette), mit einem In-Memory-`localStorage`-Stub und einem echt simulierten Neuladen (State zurückgesetzt, `load()` erneut gegen denselben Speicher ausgeführt): ein echter Prüfdurchgang landet in `state.pruefListe` und übersteht das simulierte Neuladen · Übernehmen (`art:'log'`) entfernt den Vorschlag, bewertet den Eintrag, schreibt `localStorage` neu · dasselbe für `art:'bet'` — der bisher fehlende `save()`-Aufruf greift jetzt nachweislich · Ignorieren entfernt und speichert ebenso · nach jedem Übernehmen/Ignorieren bleibt der Eintrag nach simuliertem Neuladen verschwunden · `pruefStark` fehlt im gespeicherten JSON vollständig · der Reset am Rundenanfang verliert bei einem Reload mitten im Lauf nichts. **Die bestehenden 57 Prüfungen aus Punkt 68 erneut ausgeführt, alle weiterhin bestanden** (keine Regression). `pruefe.py`: ALLES SAUBER.
+>
+> **Keine neuen Sprachschlüssel** (241 unverändert — keine neuen Anzeigetexte, selbst gezählt von `pruefe.py` Abschnitt 13). **Kein Schnitt in der Messreihe.**
+
+---
+
+---
+
+**70. Such- und Filterfunktion im KI-Log** · *Idee 4.9.2026, Ondo · Auftrag Ondo 4.9.2026, gebaut am selben Tag* · **Status: 🔴 GEBAUT am 4.9.2026, `beta.html` v19.8.14**
+
+Bei inzwischen über 400 Einträgen wird die KI-Log-Liste ohne Filter unübersichtlich.
+Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o. ä.).
+
+> **🔴 GEBAUT am 4.9.2026 (Auftrag Ondo, `beta.html` v19.8.14).** Drei kombinierbare Filter
+> (UND-Verknüpfung), rein im Browser, keine neuen Modellaufrufe, keine Kosten — Filter wirken
+> nur auf die Anzeige, `state.kiProtokoll` selbst bleibt unangetastet.
+>
+> **Die tatsächlichen Werte von `e.status`/`e.geparkt`/`e.parkGrund`, mit Codezitat (nicht
+> vermutet — belegt):** `e.status` hat im ganzen Skript nur zwei Ausprägungen, `'offen'`
+> (`vorhersagen()`) und `'bewertet'` (seedV-Migrationen und `pruefAnwenden()`) — **kein**
+> `'richtig'`/`'falsch'` auf Eintrag-Ebene, das gibt es nur pro Markt (`e.maerkte[i].status`).
+> `e.geparkt` (boolesch) wird sowohl manuell (`logParken()`/`logParkenTag()`) als auch
+> automatisch durch den Schiedsrichter (`parkeEintraege()`, Backlog-Punkt 68) gesetzt;
+> `e.parkGrund` (`'unstable_ref'`/`'sonderformat'`) nur beim automatischen Parken, beim
+> manuellen bleibt es unbesetzt. **Belegt:** `e.geparkt===true` und `e.status==='bewertet'`
+> kommen nie gemeinsam vor — `vorhersageKarte()` zeigt den Park-Knopf ausschliesslich bei
+> `e.status==='offen'`, ein bewerteter Eintrag kann über die Oberfläche gar nicht geparkt
+> werden. Daraus abgeleitet, fünf Filteroptionen: Alle · Offen (`status==='offen' &&
+> !geparkt`) · Geparkt (`geparkt===true`) · Bewertet — alle Märkte richtig · Bewertet —
+> mind. ein Markt falsch (die beiden letzten zusammen ergeben genau die "bewertet"-Menge,
+> ohne Überschneidung, weil jeder bewertete Eintrag drei entschiedene Märkte hat).
+>
+> **Umsetzung:** neue reine Funktion `kilogGefiltert(liste, von, bis, wettbewerb, status)` —
+> `.filter()` liefert immer ein neues Array, verändert die Eingabeliste nie. Datum nutzt die
+> bestehende `datumZahl()` (versteht `TT.MM.JJJJ` und ISO), Wettbewerb-Suche ist ein
+> Teilstring-Vergleich über `.toLowerCase()`. Filterzustand (`kilogVon`, `kilogBis`,
+> `kilogWettbewerb`, `kilogStatus`) liegt in vier plain globalen `var`s wie `wtab` — bewusst
+> **nicht** Teil von `state`, reine Anzeigeeinstellung, setzt sich bei jedem Neuladen zurück.
+> Neue Eingabefelder lösen `onchange`, nicht `oninput`, aus — `render()` ersetzt bei jedem
+> Aufruf das komplette `innerHTML`, ein `oninput`-Handler würde bei jedem Tastendruck den
+> Cursor verlieren. Neue Anzeigefunktion `kilogFilterBlock()` (Kartenstil wie
+> `logExportBlock()`) zeigt „`{gezeigt}` von `{gesamt}`" und einen Zurücksetzen-Knopf. Zwei
+> bewusste Abgrenzungen: die Tag-für-Tag-Park-Übersicht bleibt auf der ungefilterten Liste
+> berechnet (sonst könnte ein Tag nicht mehr vollständig geparkt werden, während gefiltert
+> wird), das v18-Archiv (andere Feldstruktur) bleibt vom Filter unberührt.
+>
+> **Verifiziert:** `node --check` bestanden. Trockentest bestanden — **19 neue Prüfungen** an
+> der echten, aus `beta.html` herausgeschnittenen Funktion `kilogGefiltert()` (kein Nachbau):
+> Datum von/bis grenzt in beide Richtungen korrekt ein, auch im ISO-Format · leeres Datum
+> zeigt alles · Wettbewerb-Suche findet Teiltreffer, ignoriert Gross-/Kleinschreibung · jede
+> der fünf Status-Optionen liefert genau die erwartete Teilmenge, "bewRichtig" und
+> "bewFalsch" zusammen ergeben ohne Überschneidung exakt die "bewertet"-Menge · alle drei
+> Filter gleichzeitig kombiniert korrekt (UND) · Zurücksetzen liefert die volle Liste ·
+> Eingabeliste vor/nach mehreren Filteraufrufen bytegleich (JSON-Vergleich) · Rückgabe ist ein
+> neues Array, nicht dieselbe Referenz. **Die bestehenden 57 Prüfungen aus Punkt 68 und 19
+> aus Punkt 69 erneut ausgeführt, alle weiterhin bestanden** (keine Regression). `pruefe.py`:
+> ALLES SAUBER.
+>
+> **10 neue Sprachschlüssel** (241 → 251, von `pruefe.py` Abschnitt 13 selbst nachgezählt):
+> `filterT`, `filterWettbewerbPh`, `filterStatusAlle`, `filterStatusOffen`,
+> `filterStatusGeparkt`, `filterStatusBewRichtig`, `filterStatusBewFalsch`, `filterReset`,
+> `filterCount`, `filterEmpty` — in DE/FR/EN. Die Datumslabel nutzen die bestehenden
+> `logExpFrom`/`logExpTo`, keine Dopplung.
+
+---
+
 ## ⚠ Was Fassung 59 ändert (30.8., drei Nachträge aus der Übergabe an Chat 27)
 
 **Anlass:** Teil E der Übergabemappe an Chat 27 (29.8.2026) nannte drei Berichtigungen als offen. Auf Ondos Auftrag „Nachtragen" jetzt nachgeholt — zwei vollständig, eine nur teilweise, mit offenem Vermerk statt stillschweigender Lücke.

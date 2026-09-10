@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.86
+**Version:** 0.87
 **Stand:** 10. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.87 ändert (10.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war Backlog Fassung 88, kein Verfassungs- oder Architekturaufwand. Zwei Teile: **Erstens**, Sabah/Celje erneut über den „Wieder prüfen"-Knopf geprüft, extern gegen je zwei unabhängige Quellen bestätigt und von Ondo übernommen — ausdrücklich nicht als „Schiedsrichter repariert" im Sinn von Ondos eigener strenger Definition gewertet, nur als Lösung dieser zwei konkreten, historisch instabilsten Fälle. Einzelheiten bei Backlog-Punkt 64. **Zweitens**, die stehende Regel „Backlog-Pflege ist Code-Aufgabe" (Regel 4) angewandt: fünf abgeschlossene Punkte (36, 43, 58, 69, 70) nach denselben Kriterien wie bei Fassung 61 nach `BACKLOG-ARCHIV.md` verschoben, wortgleich, nichts gekürzt — Begründung je Punkt und die bewusst nicht archivierten Grenzfälle stehen im Backlog selbst (Punkt 45). Kein Codeaufwand, `beta.html` bleibt v19.8.20. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.87 gehoben.
 
 > **Was Fassung 0.86 ändert (10.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war Ondos erste Bewährungsbeobachtung zu Backlog-Punkt 68 (Backlog Fassung 87), kein Codeaufwand. Eine Woche nach dem Bau der Mehrfachlauf-Absicherung (3.9.2026) meldet Ondo aus der App: seit dem 3.9. kein einziger instabilitätsbedingter Park, der einzige Park seither (5.9., Sligo Rovers – Galway United) war eine von Hand vorgenommene Parkung wegen einer extern belegten Spielverlegung, kein Instabilitätsfall. Ausdrücklich nicht behauptet: dass der Schiedsrichter „repariert" ist (Art. 14, Stabilitätsregel) — eine Woche ist eine kurze Beobachtung, ob übernommene Werte extern richtig waren ist ungeprüft. Sabah FC – Hapoel Beer-Sheva FC und NK Celje – Slovan Bratislava bleiben geparkt und warten auf Ondos eigenen erneuten Prüfversuch. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.86 gehoben.
 
