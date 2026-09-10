@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 10.9.2026, Fassung 88 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 10.9.2026, Fassung 89 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -15,6 +15,43 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 89 ändert (10.9., Backlog-Punkt 34 und 35 gebaut — Brier-Score und Streuung)
+
+**Anlass:** Auftrag Ondo — Punkt 34 (Brier-Score) und Punkt 35 (Streuungsangabe) bauen, beide
+seit 7.9.2026 entschieden und bereit.
+
+- **Backlog-Punkt 34 gebaut, `beta.html` v19.8.21:** Neue reine Funktion `calcBrierScore(quelle)`
+  — eigene, unveränderte Sammelschleife wie `calcKalibrierung()`, das selbst unangetastet
+  bleibt. Rechnet `(p/100 − Treffer)²` je bewerteter Aussage, gemittelt über alle Aussagen des
+  Gehirns. Anzeigeort entschieden: in der bestehenden Kalibrierungstabelle, nicht als eigene
+  Zeile. Rundung: vier Nachkommastellen, wie in den bisherigen Handrechnungen. Trockentest: 11
+  Prüfungen an der echten, herausgeschnittenen Funktion, alle bestanden — darunter ein von Hand
+  nachgerechnetes Beispiel und der Beleg, dass „immer 50 %, halb richtig" exakt den in den
+  Dokumenten seit Wochen genannten, aber nie gemessenen Vergleichswert 0,25 ergibt.
+- **Backlog-Punkt 35 gebaut, `beta.html` v19.8.21:** Offene Umsetzungsfrage entschieden —
+  Bootstrap, nicht Standardfehler, dasselbe Verfahren wie Chat 12s Nachrechnung vom 14.8.2026.
+  Neue reine Funktion `calcStreuung(quelle)`: 600 Ziehungen mit Zurücklegen, 90-%-Bereich als
+  5./95. Perzentil, eigene neue Hilfsfunktion `abwAusPunkten()` — auch hier bleibt
+  `calcKalibrierung()` unangetastet. **Ehrlich benannt:** einzige Rechenfunktion im Projekt mit
+  echtem Zufall — der Trockentest prüft deshalb Kennwerte (gültiger Bereich, Nähe zum
+  Punktschätzer), nicht exakte Zahlen, fünffach wiederholt gegen Flakiness geprüft. Trockentest:
+  9 weitere Prüfungen, alle fünf Wiederholungen ohne Fehlschlag.
+- **Volle Begründung und Verifikationsdetails stehen als angehängte Blöcke direkt bei Punkt 34
+  und 35** (nicht hier wiederholt — Punkt 45).
+- **`STAND.md` nachgeführt:** neuer Versionen-Eintrag, Sprachschlüsselzahl 254 → 256, und die
+  überholte Aussage „Brier-Score aus der Anzeige nicht ablesbar" im Messstand-Abschnitt
+  berichtigt (der nächste Messstand selbst ist noch nicht neu abgelesen — Fehlerart C1).
+- **Verifiziert:** `node --check` bestanden. `pruefe.py` ohne Argument — ALLES SAUBER.
+- **2 neue Sprachschlüssel** (`calibBrier`, `calibSpread`; 254 → 256). **Kein Schnitt in der
+  Messreihe.** `APP_VERSION` weiter 18.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 89 gehoben (Blueprint 0.88).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut weiterhin drei** — **3, 4, 0b** *(vorher fünf — 34 und 35 sind
+  jetzt gebaut, nicht mehr in dieser Liste.)*
 
 ---
 
@@ -1784,7 +1821,7 @@ den Rohdaten — Sonnet **0,2429**, Bereich 0,2350–0,2513 · Flash **0,2497**,
 0,2391–0,2603. **Beide Bereiche schliessen 0,2500 ein: kein Gehirn ist nachweislich besser als
 „immer 50 %".** Die Vorabrechnung von Chat 12 war brauchbar.)* · *Fund 8.8., frischer
 Claude-Chat (nicht Chat 12) · nachgerechnet und in einem Punkt berichtigt von Chat 12 · Bau
-ENTSCHIEDEN 7.9.2026, Ondo* · **Status: 🔴 BESCHLOSSEN UND NICHT GEBAUT — wird umgesetzt**
+ENTSCHIEDEN 7.9.2026, Ondo · gebaut 10.9.2026* · **Status: 🔴 GEBAUT am 10.9.2026, `beta.html` v19.8.21**
 
 *Wortgleich aus `BACKLOG-ARCHIV.md` hierher verschoben (7.9.2026, Fassung 84) — eine
 Bauaufgabe ist kein abgeschlossener Punkt im Sinn von Regel 4.*
@@ -1824,14 +1861,34 @@ gerechnet, heute stehen 501/504. Vor der Übernahme in die Dokumente neu gegen d
 > Rundung, ob als eigene Zeile oder in der bestehenden Kalibrierungstabelle) — das ist ein
 > eigener, noch nicht beauftragter Bauschritt.
 
+> **🔴 GEBAUT am 10.9.2026, `beta.html` v19.8.21.** Neue reine Funktion `calcBrierScore(quelle)`
+> — eigene, unveränderte Sammelschleife wie `calcKalibrierung()` (dieselbe Datengrundlage:
+> `m.p`, `m.status`), rechnet je bewerteter Aussage `(p/100 − Treffer)²` und mittelt über alle
+> Aussagen des Gehirns. `calcKalibrierung()` selbst bleibt unangetastet (Arbeitsregel H).
+> **Umsetzungsfragen aus dem Beschluss jetzt entschieden:** Anzeigeort — in der bestehenden
+> Kalibrierungstabelle (Finanzen-Tab), nicht als eigene Zeile, damit beide Kennzahlen an einem
+> Ort stehen (Punkt 45). Rundung — vier Nachkommastellen, wie in den bisherigen Handrechnungen
+> (0,2429 usw.), damit alte und neue Werte vergleichbar bleiben.
+> **Verifiziert:** `node --check` bestanden. Trockentest an der echten, aus `beta.html`
+> herausgeschnittenen Funktion (kein Nachbau), **11 Prüfungen**: von Hand nachgerechnetes
+> Beispiel trifft exakt · „immer 50 %, halb richtig" ergibt exakt den App-Vergleichswert 0,25 ·
+> hohe Zuversicht mit ausschliesslich richtig liegt nahe 0, mit ausschliesslich falsch nahe 1 ·
+> trennt nach Gehirn · zählt nur `status` richtig/falsch, nicht offen · zählt nur `aera==='v19'`,
+> nicht das v18-Archiv · fehlendes `p` fällt wie bei `calcKalibrierung()` auf 50 zurück · `p`
+> wird auf 1–99 geklemmt, nicht auf einen ausserhalb liegenden Wert gerechnet. `pruefe.py`
+> danach: ALLES SAUBER.
+> **2 neue Sprachschlüssel** (`calibBrier`, `calibSpread` — Letzterer für Punkt 35, in derselben
+> Lieferung mitgezählt, 254 → 256). **Kein Schnitt in der Messreihe** — reine Anzeigefunktion,
+> liest nur vorhandene Daten neu aus. `APP_VERSION` weiter 18.
+
 ---
 
 **35. Streuungsangabe für die Hauptkennzahl** *(🔴 NEU GERECHNET am 14.8. abends bei 330 und 327
 Aussagen: Sonnet **4,35 %**, Bereich **2,3–8,7 %** · Flash **7,72 %**, Bereich **4,7–12,4 %**.
 **Die Bereiche überlappen sich — Sonnets Vorsprung ist auch bei fast doppelter Datenmenge nicht
 bewiesen.** Enger geworden ist er.)* · *Fund 8.8., frischer Claude-Chat · nachgerechnet von
-Chat 12 · Bau ENTSCHIEDEN 7.9.2026, Ondo* · **Status: 🔴 BESCHLOSSEN UND NICHT GEBAUT — wird
-umgesetzt**
+Chat 12 · Bau ENTSCHIEDEN 7.9.2026, Ondo · gebaut 10.9.2026* · **Status: 🔴 GEBAUT am
+10.9.2026, `beta.html` v19.8.21**
 
 *Wortgleich aus `BACKLOG-ARCHIV.md` hierher verschoben (7.9.2026, Fassung 84) — eine
 Bauaufgabe ist kein abgeschlossener Punkt im Sinn von Regel 4.*
@@ -1857,6 +1914,33 @@ Codeänderung ohne Schnitt.
 > Umsetzungsfrage, heute nicht entschieden:** ob Bootstrap (wie Chat 12s Nachrechnung) oder ein
 > geschlossenes Rechenverfahren (Standardfehler) verwendet wird — das ist eine Detailfrage des
 > Bauschritts, nicht der Grundsatzentscheidung.
+
+> **🔴 GEBAUT am 10.9.2026, `beta.html` v19.8.21.** Offene Umsetzungsfrage entschieden:
+> **Bootstrap**, nicht Standardfehler — dasselbe Verfahren wie Chat 12s Nachrechnung vom
+> 14.8.2026, damit alte und neue Werte vergleichbar bleiben. Neue reine Funktion
+> `calcStreuung(quelle)`: 600 Ziehungen mit Zurücklegen aus den bewerteten Aussagen des
+> Gehirns, je Ziehung die Kalibrierungsabweichung neu gerechnet (neue, eigene Hilfsfunktion
+> `abwAusPunkten()` — `calcKalibrierung()` selbst bleibt unangetastet), 90-%-Bereich als
+> 5./95. Perzentil der 600 Werte. Weniger als zwei Punkte: kein Bootstrap möglich, `null` statt
+> geraten. Anzeigeort — in derselben Kalibrierungstabelle wie Punkt 34, direkt neben der
+> Abweichung.
+> **Ehrlich benannt:** Das ist die einzige Rechenfunktion im Projekt, die echten Zufall nutzt,
+> wie ein Bootstrap es verlangt — im Unterschied zu jeder anderen, deterministischen
+> Anzeigefunktion. Der Trockentest prüft deshalb Kennwerte (gültiger, geordneter Bereich, Nähe
+> zum Punktschätzer aus `calcKalibrierung()`), nicht exakte Zahlen — kein Schein-Determinismus
+> vorgetäuscht.
+> **Verifiziert:** `node --check` bestanden. Trockentest an der echten, aus `beta.html`
+> herausgeschnittenen Funktion (kein Nachbau), **9 Prüfungen**: `null` ohne Daten · `null` bei
+> nur einem Punkt · liefert ein Ergebnis bei genug Daten · Bereich geordnet (unten ≤ oben) ·
+> Bereich nicht negativ · Bereich liegt nah am Punktschätzer aus `calcKalibrierung()` · dieselbe
+> Punktzahl wie `calcKalibrierung()` · `calcKalibrierung()` liefert nach Aufruf der neuen
+> Funktionen weiterhin dasselbe (Regressionsbeweis, dass sie unangetastet bleibt) ·
+> `state.kiProtokoll` bleibt nach allen Aufrufen unverändert. **Fünf Wiederholungen des ganzen
+> Trockentests hintereinander, wegen des echten Zufalls in `calcStreuung()`** — alle fünf ohne
+> Fehlschlag. `pruefe.py` danach: ALLES SAUBER.
+> **Sprachschlüssel: 0 neue in dieser Lieferung** (beide für Punkt 34/35 nötigen Schlüssel
+> wurden bereits bei Punkt 34 mitgezählt). **Kein Schnitt in der Messreihe.** `APP_VERSION`
+> weiter 18.
 
 ---
 

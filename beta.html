@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.20';
+var CODE_VERSION = 'v19.8.21';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -176,6 +176,7 @@ var I18N = {
   gepaartMehrdeutig:'{a} Spiel(e) nicht eindeutig zuordenbar (mehrere gleich benannte Einträge desselben Gehirns am selben Tag) — nicht mitgezählt.',
   calibDev:'Abweichung', calibPts:'Bewertete Aussagen', calibNone:'Noch zu wenig Daten',
   calibBand:'Angabe', calibClaim:'behauptet', calibReal:'wirklich', calibN:'Anzahl',
+  calibBrier:'Brier-Score', calibSpread:'Streuung',
   archive:'Archiv v18', archiveD:'Alte Einträge aus der Value-Phase. Zählen nicht mehr in die Statistik, bleiben als Verhaltens-Archiv erhalten.',
   tip:'Tipp', odds:'Quote', stake:'Einsatz (€)',
   possWin:'Möglicher Gewinn', match:'Spiel', saveBet:'Wette speichern', fillAll:'Bitte Spiel, Quote und Einsatz ausfüllen',
@@ -281,6 +282,7 @@ var I18N = {
   gepaartMehrdeutig:'{a} match(s) non attribuable(s) sans ambiguïté (plusieurs entrées du même cerveau nommées pareil le même jour) — non comptabilisé(s).',
   calibDev:'Écart', calibPts:'Affirmations évaluées', calibNone:'Pas encore assez de données',
   calibBand:'Indiqué', calibClaim:'annoncé', calibReal:'réel', calibN:'Nombre',
+  calibBrier:'Score de Brier', calibSpread:'Dispersion',
   archive:'Archive v18', archiveD:'Anciennes entrées de la phase value. Ne comptent plus dans les stats, conservées comme archive.',
   tip:'Tip', odds:'Cote', stake:'Mise (€)',
   possWin:'Gain possible', match:'Match', saveBet:'Enregistrer le pari', fillAll:'Remplis match, cote et mise',
@@ -386,6 +388,7 @@ var I18N = {
   gepaartMehrdeutig:'{a} game(s) not uniquely assignable (multiple identically named entries from the same brain on the same day) — not counted.',
   calibDev:'Deviation', calibPts:'Rated statements', calibNone:'Not enough data yet',
   calibBand:'Stated', calibClaim:'claimed', calibReal:'actual', calibN:'Count',
+  calibBrier:'Brier score', calibSpread:'Spread',
   archive:'Archive v18', archiveD:'Old entries from the value phase. No longer counted in statistics, kept as a behaviour archive.',
   tip:'Tip', odds:'Odds', stake:'Stake (€)',
   possWin:'Possible win', match:'Match', saveBet:'Save bet', fillAll:'Please fill match, odds and stake',
@@ -1307,6 +1310,82 @@ function calcKalibrierung(quelle){
     summe += Math.abs(behauptet-echt)*g.length; n+=g.length;
   });
   return { zeilen:zeilen, gesamt:punkte.length, abw: n? Math.round(summe/n):null };
+}
+
+/* Backlog-Punkt 34 (Beschluss Ondo, 7.9.2026): Brier-Score als zweite Kennzahl neben der
+   Kalibrierungsabweichung. Verrechnet behauptete Zuversicht und tatsaechliches Eintreffen zu
+   einer Zahl je Aussage, gemittelt ueber alle bewerteten Aussagen des Gehirns -- laesst sich
+   nicht durch Ausweichen auf 50 % schoenen (0,25 = "immer 50 %", der in den Dokumenten
+   benannte, aber nie gemessene Vergleichswert). Dieselbe Datengrundlage wie calcKalibrierung
+   (m.p, m.status), eigene, unveraenderte Sammelschleife -- calcKalibrierung bleibt
+   unangetastet (Arbeitsregel H). */
+function calcBrierScore(quelle){
+  var punkte=[];
+  (state.kiProtokoll||[]).forEach(function(e){
+    if(e.aera!=='v19') return;
+    if(quelle && (e.herkunft||'sonnet')!==quelle) return;
+    (e.maerkte||[]).forEach(function(m){
+      if(m.status==='richtig'||m.status==='falsch'){
+        var p=Number(m.p); if(isNaN(p)) p=50;
+        punkte.push({ p:Math.max(1,Math.min(99,p))/100, ok:(m.status==='richtig'?1:0) });
+      }
+    });
+  });
+  if(!punkte.length) return null;
+  var summe=punkte.reduce(function(s,x){ return s+Math.pow(x.p-x.ok,2); },0);
+  return { wert: Math.round((summe/punkte.length)*10000)/10000, gesamt: punkte.length };
+}
+
+/* Backlog-Punkt 35 (Beschluss Ondo, 7.9.2026): Streuungsangabe fuer die
+   Kalibrierungsabweichung -- eine einzelne Prozentzahl ohne Streuung ist Scheinpraezision
+   (Art. 14), angewandt auf die eigenen Kennzahlen. Bootstrap ueber 600 Ziehungen (dasselbe
+   Verfahren wie die Nachrechnung vom 14.8.2026 in Backlog-Punkt 35), 90-%-Bereich als
+   5./95. Perzentil der resamplten Kalibrierungsabweichung. Eigene Sammelschleife und eigene,
+   neue Abweichungsrechnung (abwAusPunkten) -- calcKalibrierung bleibt unangetastet.
+   Ehrlich benannt: Dies ist die einzige Rechenfunktion im Projekt, die echten Zufall
+   (Math.random) nutzt, wie ein Bootstrap es verlangt. Der Trockentest prueft deshalb nur
+   Kennwerte (gueltiger Bereich, Bereich enthaelt den Punktschaetzer aus calcKalibrierung),
+   nicht exakte Zahlen -- kein Schein-Determinismus vorgetaeuscht. */
+function abwAusPunkten(punkte){
+  var baender=[[1,49],[50,59],[60,69],[70,79],[80,89],[90,99]];
+  var summe=0, n=0;
+  baender.forEach(function(b){
+    var g=punkte.filter(function(x){ return x.p>=b[0] && x.p<=b[1]; });
+    if(!g.length) return;
+    var behauptet=g.reduce(function(s,x){return s+x.p;},0)/g.length;
+    var echt=g.filter(function(x){return x.ok;}).length/g.length*100;
+    summe += Math.abs(behauptet-echt)*g.length; n+=g.length;
+  });
+  return n? summe/n : null;
+}
+function calcStreuung(quelle){
+  var punkte=[];
+  (state.kiProtokoll||[]).forEach(function(e){
+    if(e.aera!=='v19') return;
+    if(quelle && (e.herkunft||'sonnet')!==quelle) return;
+    (e.maerkte||[]).forEach(function(m){
+      if(m.status==='richtig'||m.status==='falsch'){
+        var p=Number(m.p); if(isNaN(p)) p=50;
+        punkte.push({ p:Math.max(1,Math.min(99,p)), ok:(m.status==='richtig') });
+      }
+    });
+  });
+  if(punkte.length<2) return null;
+  var ZIEHUNGEN=600, werte=[];
+  for(var i=0;i<ZIEHUNGEN;i++){
+    var stich=[];
+    for(var j=0;j<punkte.length;j++) stich.push(punkte[Math.floor(Math.random()*punkte.length)]);
+    var a=abwAusPunkten(stich);
+    if(a!==null) werte.push(a);
+  }
+  if(!werte.length) return null;
+  werte.sort(function(a,b){return a-b;});
+  function perz(p){ var idx=Math.min(werte.length-1,Math.max(0,Math.round(p*(werte.length-1)))); return werte[idx]; }
+  return {
+    unten: Math.round(perz(0.05)*10)/10,
+    oben: Math.round(perz(0.95)*10)/10,
+    gesamt: punkte.length
+  };
 }
 
 /* Gepaarter Vergleich Sonnet gegen Flash (Backlog-Punkt 51, Beschluss Ondo/ChatGPT 15.8.,
@@ -3096,10 +3175,15 @@ function viewBets(c){
 
 /* ================= KALIBRIERUNGS-ANZEIGE ================= */
 function kalibBlock(){
-  function tabelle(k, titel){
+  function tabelle(k, titel, quelle){
     if(!k) return '<div class="muted">'+titel+': '+t('calibNone')+'</div>';
+    var brier=calcBrierScore(quelle);
+    var streu=calcStreuung(quelle);
+    var streuTxt = streu ? (' ('+String(streu.unten).replace('.',',')+'–'+String(streu.oben).replace('.',',')+' %)') : '';
+    var brierTxt = brier ? (' · '+t('calibBrier')+': '+String(brier.wert).replace('.',',')) : '';
     var kopf='<div style="margin-top:10px"><b>'+titel+'</b> · '+t('calibDev')+': '+
       '<span style="color:'+(k.abw<=10?'var(--win)':(k.abw<=20?'var(--accent)':'var(--loss)'))+';font-weight:700">'+k.abw+' %</span>'+
+      '<span class="muted">'+streuTxt+'</span>'+brierTxt+
       ' <span class="muted">('+k.gesamt+' '+t('calibPts')+')</span></div>';
     var rows=k.zeilen.map(function(z){
       return '<tr><td>'+z.von+'–'+z.bis+' %</td><td>'+z.behauptet+' %</td><td>'+z.echt+' %</td><td>'+z.n+'</td></tr>';
@@ -3116,8 +3200,8 @@ function kalibBlock(){
   return '<div class="card">'+
     '<div class="disp" style="font-size:20px;margin-bottom:6px">🎯 '+t('calib')+'</div>'+
     '<div class="muted">'+t('calibD')+'</div>'+
-    tabelle(calcKalibrierung('sonnet'),'🧠 Sonnet')+
-    tabelle(calcKalibrierung('flash'),'🌱 Flash')+
+    tabelle(calcKalibrierung('sonnet'),'🧠 Sonnet','sonnet')+
+    tabelle(calcKalibrierung('flash'),'🌱 Flash','flash')+
   '</div>'+
   '<div class="card">'+
     '<div class="disp" style="font-size:20px;margin-bottom:6px">🎚 '+t('decis')+'</div>'+

@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.87
+**Version:** 0.88
 **Stand:** 10. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.88 ändert (10.9.2026):** Backlog-Punkt 34 (Brier-Score) und 35 (Streuungsangabe) gebaut, `beta.html` v19.8.21 (Backlog Fassung 89). Zwei neue reine Funktionen, `calcBrierScore(quelle)` und `calcStreuung(quelle)` — eigene, unveränderte Sammelschleifen, `calcKalibrierung()` selbst bleibt unangetastet. Brier-Score verrechnet behauptete Zuversicht und Eintreffen je Aussage zu einer Zahl, lässt sich nicht durch Ausweichen auf 50 % schönen. Streuung per Bootstrap (600 Ziehungen, dasselbe Verfahren wie eine frühere Handrechnung), macht den wiederkehrenden handgeschriebenen Vorbehalt „auf mehrere Prozentpunkte genau, nicht auf einen" zu einer echten Zahl. Beide in der bestehenden Kalibrierungstabelle angezeigt. 20 Prüfungen am echten, herausgeschnittenen Code bestanden, davon 9 an einer Funktion mit echtem Zufall — deshalb auf Kennwerte statt exakte Zahlen geprüft, fünffach gegen Flakiness wiederholt. 2 neue Sprachschlüssel (254 → 256). Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.88 gehoben.
 
 > **Was Fassung 0.87 ändert (10.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war Backlog Fassung 88, kein Verfassungs- oder Architekturaufwand. Zwei Teile: **Erstens**, Sabah/Celje erneut über den „Wieder prüfen"-Knopf geprüft, extern gegen je zwei unabhängige Quellen bestätigt und von Ondo übernommen — ausdrücklich nicht als „Schiedsrichter repariert" im Sinn von Ondos eigener strenger Definition gewertet, nur als Lösung dieser zwei konkreten, historisch instabilsten Fälle. Einzelheiten bei Backlog-Punkt 64. **Zweitens**, die stehende Regel „Backlog-Pflege ist Code-Aufgabe" (Regel 4) angewandt: fünf abgeschlossene Punkte (36, 43, 58, 69, 70) nach denselben Kriterien wie bei Fassung 61 nach `BACKLOG-ARCHIV.md` verschoben, wortgleich, nichts gekürzt — Begründung je Punkt und die bewusst nicht archivierten Grenzfälle stehen im Backlog selbst (Punkt 45). Kein Codeaufwand, `beta.html` bleibt v19.8.20. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.87 gehoben.
 
