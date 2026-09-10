@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.22';
+var CODE_VERSION = 'v19.8.23';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -216,6 +216,10 @@ var I18N = {
   kilogTabBewertet:'Bewertet', kilogTabArchiv:'Archiv', kilogTabWerkzeuge:'Werkzeuge',
   logD:'Jede KI-Vorhersage wird hier bewertet. Aus einem Ergebnis-Tipp leitet die App drei Aussagen ab.',
   gKeyT:'🌱 Zweites Gehirn (Google Gemini)', gKeyD:'Schlüssel von aistudio.google.com — bleibt NUR auf diesem Gerät. Übernimmt Ergebnis-Prüfen & Foto-Lesen fast gratis.', gOn:'✅ Gemini-Schlüssel gespeichert', gOff:'❌ Kein Gemini-Schlüssel',
+  oddsKeyT:'🎲 Quoten-Schlüssel (The Odds API)', oddsKeyD:'Schlüssel von the-odds-api.com — bleibt NUR auf diesem Gerät. Kostenloses Kontingent begrenzt (rund 500 Abrufe/Monat).', oddsOn:'✅ Quoten-Schlüssel gespeichert', oddsOff:'❌ Kein Quoten-Schlüssel',
+  oddsLigaLabel:'Liga', oddsLigenLadenBtn:'Ligen laden', oddsAbrufenBtn:'Quoten abrufen',
+  oddsKeineLiga:'Bitte zuerst eine Liga wählen', oddsKeinTreffer:'Keine bevorstehenden Spiele gefunden',
+  oddsFehler:'Abruf fehlgeschlagen', oddsQuelle:'Quelle',
   duellT:'Duell-Modus', duellD:'Beide Gehirne bekommen dieselbe Spielliste und sagen dieselben Spiele vorher. Ohne Gemini-Schlüssel läuft nur Sonnet.',
   backupT:'💾 Datensicherung', backupD:'Alle Messdaten liegen sonst NUR im Speicher dieses Browsers. ACHTUNG: Auch das Löschen des Browserverlaufs löscht sie mit — Safari entfernt dabei den Websitespeicher. Regelmäßig sichern.',
   backupBtn:'💾 Daten sichern', restoreBtn:'📂 Sicherung laden',
@@ -322,6 +326,10 @@ var I18N = {
   kilogTabBewertet:'Évalué', kilogTabArchiv:'Archive', kilogTabWerkzeuge:'Outils',
   logD:'Chaque prédiction IA est évaluée ici. À partir d’un score prédit, l’app déduit trois affirmations.',
   gKeyT:'🌱 Second cerveau (Google Gemini)', gKeyD:'Clé de aistudio.google.com — reste UNIQUEMENT sur cet appareil. Prend en charge vérification & lecture photo presque gratuitement.', gOn:'✅ Clé Gemini enregistrée', gOff:'❌ Pas de clé Gemini',
+  oddsKeyT:'🎲 Clé de cotes (The Odds API)', oddsKeyD:'Clé de the-odds-api.com — reste UNIQUEMENT sur cet appareil. Quota gratuit limité (environ 500 appels/mois).', oddsOn:'✅ Clé de cotes enregistrée', oddsOff:'❌ Pas de clé de cotes',
+  oddsLigaLabel:'Championnat', oddsLigenLadenBtn:'Charger les championnats', oddsAbrufenBtn:'Récupérer les cotes',
+  oddsKeineLiga:'Veuillez d\'abord choisir un championnat', oddsKeinTreffer:'Aucun match à venir trouvé',
+  oddsFehler:'Échec de la récupération', oddsQuelle:'Source',
   duellT:'Mode duel', duellD:'Les deux cerveaux reçoivent la même liste de matchs. Sans clé Gemini, seul Sonnet fonctionne.',
   backupT:'💾 Sauvegarde des données', backupD:'Sinon toutes les données de mesure vivent UNIQUEMENT dans la mémoire de ce navigateur. ATTENTION : effacer l’historique les supprime aussi — Safari vide alors le stockage du site. Sauvegarde régulièrement.',
   backupBtn:'💾 Sauvegarder', restoreBtn:'📂 Charger une sauvegarde',
@@ -428,6 +436,10 @@ var I18N = {
   kilogTabBewertet:'Rated', kilogTabArchiv:'Archive', kilogTabWerkzeuge:'Tools',
   logD:'Every AI prediction is rated here. From one predicted score the app derives three statements.',
   gKeyT:'🌱 Second brain (Google Gemini)', gKeyD:'Key from aistudio.google.com — stays ONLY on this device. Handles result checking & photo reading almost free.', gOn:'✅ Gemini key saved', gOff:'❌ No Gemini key',
+  oddsKeyT:'🎲 Odds key (The Odds API)', oddsKeyD:'Key from the-odds-api.com — stays ONLY on this device. Free quota limited (around 500 calls/month).', oddsOn:'✅ Odds key saved', oddsOff:'❌ No odds key',
+  oddsLigaLabel:'League', oddsLigenLadenBtn:'Load leagues', oddsAbrufenBtn:'Fetch odds',
+  oddsKeineLiga:'Please choose a league first', oddsKeinTreffer:'No upcoming matches found',
+  oddsFehler:'Fetch failed', oddsQuelle:'Source',
   duellT:'Duel mode', duellD:'Both brains receive the same fixture list. Without a Gemini key only Sonnet runs.',
   backupT:'💾 Data backup', backupD:'Otherwise all measurement data lives ONLY in this browser’s storage. WARNING: clearing your browsing history deletes it too — Safari wipes the site storage along with it. Back up regularly.',
   backupBtn:'💾 Back up data', restoreBtn:'📂 Load backup',
@@ -1641,6 +1653,60 @@ function geminiCall(opts, modellIndex){
 }
 function hatGemini(){ return !!(state.geminiKey && state.geminiKey.length > 20); }
 function hatSonnet(){ return !!(state.apiKey && state.apiKey.indexOf('sk-ant-')===0); }
+function hatOdds(){ return !!(state.oddsKey && state.oddsKey.length > 10); }
+
+/* ================= QUOTEN-AUTOMATIK (Backlog-Punkt 9, Auftrag Ondo 10.9.2026) =================
+   The Odds API (the-odds-api.com), kostenloses Kontingent (rund 500 Abrufe/Monat), Ondos eigener
+   Schluessel wie bei apiKey/geminiKey NUR auf dem Geraet. Bewusst KEINE automatische Zuordnung
+   zu einem bestimmten Spiel oder Buchmacher -- Ondo sieht eine kurze Liste bevorstehender Spiele
+   der gewaehlten Liga und waehlt selbst (Arbeitsweise wie bei refRohAbgleich(): Auswaehlen ist
+   eine Entscheidung, Ablesen nicht). Ligenliste wird einmalig geladen und in state.oddsLigen
+   aufgehoben, um das knappe Kontingent zu schonen — kein automatischer erneuter Abruf. */
+function oddsLigenLaden(){
+  return fetch('https://api.the-odds-api.com/v4/sports/?apiKey='+encodeURIComponent(state.oddsKey))
+    .then(function(r){ return r.json().then(function(j){ j._status=r.status; return j; }); })
+    .then(function(liste){
+      if(!Array.isArray(liste)) throw new Error((liste&&liste.message)||('HTTP '+liste._status));
+      state.oddsLigen = liste.filter(function(s){ return s.group==='Soccer' && s.active; })
+        .map(function(s){ return { key:s.key, titel:s.title }; });
+      save();
+      return state.oddsLigen;
+    });
+}
+/* Reine Funktion -- bereitet die von The Odds API gelieferten Ereignisse (Format:
+   {home_team, away_team, commence_time, bookmakers:[{title,markets:[{key,outcomes:[{name,price}]}]}]})
+   zu einer kurzen, anklickbaren Liste auf. Nimmt bewusst NUR den ersten gelieferten Buchmacher
+   mit einem h2h-Markt -- keine Mittelung, keine eigene Auswahl "des besten" Werts, die Quelle
+   wird sichtbar mitgegeben, damit Ondo weiss, worauf sich der Wert stuetzt. Kein Netzwerkzugriff,
+   testbar mit erfundenen, aber formatgleichen Daten. */
+function oddsListeAufbereiten(events){
+  return (events||[]).map(function(e){
+    var bm=(e.bookmakers||[]).filter(function(b){
+      return (b.markets||[]).some(function(m){ return m.key==='h2h'; });
+    })[0];
+    var markt = bm ? (bm.markets||[]).filter(function(m){return m.key==='h2h';})[0] : null;
+    var aus = markt ? (markt.outcomes||[]) : [];
+    function preis(name){
+      var f=aus.filter(function(o){return o.name===name;})[0];
+      return f ? f.price : null;
+    }
+    return {
+      heim: e.home_team||'', gast: e.away_team||'', datum: e.commence_time||'',
+      quelle: bm ? (bm.title||bm.key||'') : '',
+      qHeim: preis(e.home_team), qUnentschieden: preis('Draw'), qGast: preis(e.away_team),
+      keineQuote: !markt || !aus.length
+    };
+  });
+}
+function oddsAbrufen(ligaKey){
+  return fetch('https://api.the-odds-api.com/v4/sports/'+encodeURIComponent(ligaKey)+
+      '/odds/?apiKey='+encodeURIComponent(state.oddsKey)+'&regions=eu&markets=h2h&oddsFormat=decimal')
+    .then(function(r){ return r.json().then(function(j){ j._status=r.status; return j; }); })
+    .then(function(events){
+      if(!Array.isArray(events)) throw new Error((events&&events.message)||('HTTP '+events._status));
+      return oddsListeAufbereiten(events);
+    });
+}
 
 /* ================= API-HELFER (Anthropic) ================= */
 function apiCall(body){
@@ -1977,6 +2043,58 @@ function fotoLesen(input){
     img.src=reader.result;
   };
   reader.readAsDataURL(input.files[0]);
+}
+
+/* ================= QUOTEN-AUTOMATIK, ANZEIGE (Backlog-Punkt 9) =================
+   Direkte DOM-Aenderung wie bei fotoStatus oben, bewusst KEIN render() -- ein render()
+   wuerde das komplette Wette-Formular neu aufbauen und dabei bereits Getipptes in
+   f_match/f_tipp/f_einsatz verwerfen (dieselbe Ueberlegung wie beim KI-Log-Filter,
+   Backlog-Punkt 70: onchange statt oninput, hier: gezieltes innerHTML statt render()). */
+function oddsAuswahlBlock(){
+  var opts = (state.oddsLigen||[]).map(function(l){
+    return '<option value="'+esc(l.key)+'">'+esc(l.titel)+'</option>';
+  }).join('');
+  return '<div id="oddsAuswahl">'+
+    (opts
+      ? '<select id="f_liga">'+opts+'</select> '+
+        '<button class="btn-sm" onclick="oddsUiAbrufen()">'+t('oddsAbrufenBtn')+'</button>'
+      : '<button class="btn-sm" onclick="oddsUiLigenLaden()">'+t('oddsLigenLadenBtn')+'</button>')+
+    '<div id="oddsErgebnis" class="muted" style="margin-top:8px"></div>'+
+  '</div>';
+}
+function oddsUiLigenLaden(){
+  var karte=document.getElementById('oddsAuswahl');
+  oddsLigenLaden().then(function(){
+    if(karte) karte.outerHTML = oddsAuswahlBlock();
+  }).catch(function(e){
+    var st=document.getElementById('oddsErgebnis');
+    if(st) st.textContent=t('oddsFehler')+': '+(e&&e.message?e.message:'?');
+  });
+}
+function oddsUiAbrufen(){
+  var sel=document.getElementById('f_liga');
+  var st=document.getElementById('oddsErgebnis');
+  if(!sel || !sel.value){ if(st) st.textContent=t('oddsKeineLiga'); return; }
+  if(st) st.textContent='…';
+  oddsAbrufen(sel.value).then(function(liste){
+    if(!liste.length){ if(st) st.textContent=t('oddsKeinTreffer'); return; }
+    if(!st) return;
+    st.innerHTML = liste.map(function(e, idx){
+      if(e.keineQuote) return '';
+      return '<div style="margin-top:6px">'+
+        esc(e.heim)+' – '+esc(e.gast)+' <span class="muted">('+t('oddsQuelle')+': '+esc(e.quelle)+')</span><br>'+
+        '<button class="btn-sm" onclick="oddsUiUebernehmen('+e.qHeim+')">'+esc(e.heim)+' '+e.qHeim+'</button> '+
+        (e.qUnentschieden!=null ? '<button class="btn-sm" onclick="oddsUiUebernehmen('+e.qUnentschieden+')">X '+e.qUnentschieden+'</button> ' : '')+
+        '<button class="btn-sm" onclick="oddsUiUebernehmen('+e.qGast+')">'+esc(e.gast)+' '+e.qGast+'</button>'+
+      '</div>';
+    }).join('') || t('oddsKeinTreffer');
+  }).catch(function(e){
+    if(st) st.textContent=t('oddsFehler')+': '+(e&&e.message?e.message:'?');
+  });
+}
+function oddsUiUebernehmen(preis){
+  var f=document.getElementById('f_quote');
+  if(f && preis!=null) f.value=String(preis).replace('.',',');
 }
 
 /* ================= SCHIEDSRICHTER — FESTE PRUEFUNGEN OHNE MODELL (v19.8.12) =================
@@ -3063,6 +3181,7 @@ function viewBets(c){
       '<div class="card"><div class="grid">'+
       '<div><label>'+t('match')+'</label><input id="f_match" placeholder="Bayern – Dortmund"/></div>'+
       '<div><label>'+t('tip')+'</label><input id="f_tipp"/></div>'+
+      (hatOdds() ? oddsAuswahlBlock() : '')+
       '<div style="display:flex;gap:10px">'+
         '<div style="flex:1"><label>'+t('odds')+'</label><input id="f_quote" inputmode="decimal" placeholder="1,85"/></div>'+
         '<div style="flex:1"><label>'+t('stake')+'</label><input id="f_einsatz" inputmode="decimal" placeholder="10"/></div>'+
@@ -3334,6 +3453,11 @@ function viewMore(){
     '<div class="muted" style="margin-bottom:12px">'+t('gKeyD')+'</div>'+
     '<input type="password" placeholder="AIza..." value="'+(state.geminiKey||'')+'" oninput="state.geminiKey=this.value.trim();save()"/>'+
     '<div class="muted" style="margin-top:8px">'+(hatGemini()?t('gOn'):t('gOff'))+'</div>'+
+  '</div>'+
+  '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">'+t('oddsKeyT')+'</div>'+
+    '<div class="muted" style="margin-bottom:12px">'+t('oddsKeyD')+'</div>'+
+    '<input type="password" placeholder="the-odds-api..." value="'+(state.oddsKey||'')+'" oninput="state.oddsKey=this.value.trim();save()"/>'+
+    '<div class="muted" style="margin-top:8px">'+(hatOdds()?t('oddsOn'):t('oddsOff'))+'</div>'+
   '</div>'+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">⚔️ '+t('duellT')+'</div>'+
     '<div class="muted">'+t('duellD')+'</div>'+

@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 10.9.2026, Fassung 90 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 10.9.2026, Fassung 91 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -15,6 +15,37 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 91 ändert (10.9., Backlog-Punkt 9 — Quoten-Automatik, Knopfdruck-Teil gebaut)
+
+**Anlass:** Auftrag Ondo — Quoten-Abruf bauen, „beides", Knopfdruck-Variante und Zeitsteuerung.
+Knopfdruck-Teil zuerst umgesetzt, wie mit Ondo abgestimmt.
+
+- **Backlog-Punkt 9 nachgeführt, `beta.html` v19.8.23:** Vorfrage zur Quotenabdeckung per
+  Websuche geprüft (nicht nur behauptet) — „The Odds API" deckt League of Ireland und
+  Allsvenskan nachweislich ab, 500 kostenlose Abrufe/Monat. Technisch geklärt: der
+  Knopfdruck-Teil braucht kein GitHub Actions, nur einen reinen Browser-Abruf, wie bei
+  Gemini/Anthropic bereits üblich. Neues Schlüsselfeld `state.oddsKey`. Im Wette-Formular:
+  Liga wählen, Quoten abrufen, aus einer kurzen Liste bevorstehender Spiele die passende
+  Zeile anklicken — füllt das Quote-Feld. **Bewusst keine automatische Zuordnung** zu einem
+  bestimmten Spiel oder Buchmacher — Ondo sieht die Liste und wählt selbst.
+  **Bewusst nicht gebaut:** die Zeitsteuerung — eigener, noch nicht beauftragter Bauschritt,
+  braucht GitHub Actions und einen dort abzusichernden Zugriffsschlüssel.
+- **Volle Begründung und Verifikationsdetails stehen als angehängter Block direkt bei
+  Punkt 9** (nicht hier wiederholt — Punkt 45).
+- **`STAND.md` nachgeführt:** neuer Versionen-Eintrag, Sprachschlüsselzahl 256 → 267, die
+  GitHub-Actions-Zeile in der Entscheidungstabelle präzisiert.
+- **Verifiziert:** `node --check` bestanden. Trockentest mit 13 Prüfungen an der echten,
+  herausgeschnittenen Funktion `oddsListeAufbereiten()`. `pruefe.py` ohne Argument —
+  ALLES SAUBER.
+- **11 neue Sprachschlüssel** (`oddsKeyT` bis `oddsQuelle`; 256 → 267). **Kein Schnitt in der
+  Messreihe.** `APP_VERSION` weiter 18.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 91 gehoben (Blueprint 0.90).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut weiterhin drei** — **3, 4, 0b** *(unverändert.)*
 
 ---
 
@@ -2030,8 +2061,57 @@ Codeänderung ohne Schnitt.
 15 Bewertungen sind statistisch zu wenig, 100 dauern Monate. Vorschlag Claude: Beförderung nach Stabilität und Fehlerfreiheit entscheiden, die Messung läuft danach weiter. **Inhalt gehört in den Blueprint.**
 → *Vermerk 31.7.: Die Beförderung ist derzeit ohnehin gesperrt — Kriterium (f) verlangt Null-Fehler-Toleranz beim Schiedsrichter. Einzelheiten in `PROJEKT-STATUS.md`.*
 
-**9. Echte Quoten automatisch (GitHub Actions + Quotendienst)** · *Idee 23.7., Claude · Verfassungsfrage teilweise geklärt 7.9.2026* · **Status: Idee — Vorfrage weiterhin unbeantwortet**
+**9. Echte Quoten automatisch (Knopfdruck gebaut, Zeitsteuerung offen)** · *Idee 23.7., Claude · Verfassungsfrage teilweise geklärt 7.9.2026 · Knopfdruck-Teil Auftrag Ondo und gebaut 10.9.2026* · **Status: 🔴 Knopfdruck-Teil GEBAUT am 10.9.2026, `beta.html` v19.8.23 — Zeitsteuerung weiterhin offen**
 Offene Vorfrage (Gemini, weiterhin unbeantwortet): Deckt ein kostenloser Dienst überhaupt Ondos Spiele ab? **🔴 Verfassungsfrage teilweise geklärt (Ondo, 7.9.2026, Blueprint 0.83, Abschnitt 10):** Eine durch Knopfdruck in der App ausgelöste Aktualisierung verletzt „kein Server" nicht — ein Knopfdruck ist die von der Regel verlangte Aufforderung. Eine zeitgesteuerte, unbeaufsichtigte Ausführung bleibt weiterhin offen und ist eine andere Variante. **Ungeprüft, technische Einordnung:** Ob dafür überhaupt GitHub Actions nötig wäre (ein reiner Abruf im Browser bei Knopfdruck bräuchte gar keine Actions-Infrastruktur, wie die bestehenden Knöpfe es schon vormachen) oder ob ein dauerhaft im Repo gespeichertes Ergebnis einen manuell auslösbaren `workflow_dispatch` mit einem neuen, eigens abzusicherndem GitHub-Zugriffsschlüssel bräuchte, ist nicht untersucht.
+
+> **🔴 Vorfrage zur Quotenabdeckung teilweise beantwortet, 10.9.2026 (per Websuche geprüft, nicht
+> nur behauptet):** „The Odds API" (the-odds-api.com) deckt nachweislich League of Ireland und
+> Allsvenskan namentlich ab — genau die Ligen, die zuletzt in Ondos eigenen Spielen vorkamen.
+> Kostenloses Kontingent: 500 Abrufe/Monat. **Nicht vollständig geprüft:** ob jede einzelne
+> Liga, die Ondo je verfolgt, abgedeckt ist — nur eine Stichprobe, keine erschöpfende Liste.
+>
+> **🔴 Technische Einordnung aufgelöst, mit Beleg statt Vermutung:** Der Knopfdruck-Teil
+> braucht KEIN GitHub Actions — ein reiner Browser-Abruf reicht, genau wie die bestehenden
+> Gemini-/Anthropic-Aufrufe. GitHub Actions bliebe nur für die Zeitsteuerung nötig, weil die
+> auch laufen muss, wenn Ondos Handy aus ist.
+>
+> **🔴 GEBAUT am 10.9.2026 (Auftrag Ondo), `beta.html` v19.8.23 — nur der Knopfdruck-Teil.**
+> Neues Schlüsselfeld `state.oddsKey` (gleiches Muster wie `apiKey`/`geminiKey`, bleibt NUR
+> auf dem Gerät). Neue Funktion `oddsLigenLaden()` — lädt die Ligenliste einmalig und hebt sie
+> in `state.oddsLigen` auf, um das knappe Kontingent zu schonen, kein automatischer erneuter
+> Abruf. Neue reine Funktion `oddsListeAufbereiten(events)` — bereitet die von der API
+> gelieferten Ereignisse zu einer kurzen Liste auf, **bewusst ohne automatische Auswahl** eines
+> Spiels oder Buchmachers (Ondo sieht die Liste und wählt selbst, dieselbe Arbeitsweise wie bei
+> `refRohAbgleich()` — Auswählen ist eine Entscheidung, Ablesen nicht). Neue Funktion
+> `oddsAbrufen(ligaKey)` — ruft die Quoten der gewählten Liga ab. Im Wette-Formular: ein
+> Liga-Auswahlfeld und ein „Quoten abrufen"-Knopf (nur sichtbar, wenn ein Schlüssel gespeichert
+> ist); anklickbare Ergebnisse füllen das Quote-Feld, ohne das restliche, bereits Getippte im
+> Formular zu verwerfen (gezielte `innerHTML`-Änderung statt `render()`, dieselbe Überlegung
+> wie bei Backlog-Punkt 70).
+> **Verifiziert:** `node --check` bestanden. Trockentest an der echten, herausgeschnittenen
+> `oddsListeAufbereiten()` (kein Nachbau), **13 Prüfungen**: Quoten korrekt den drei
+> Ausgängen zugeordnet · Quelle sichtbar mitgegeben · kein h2h-Markt beim einzigen Buchmacher
+> erkannt, kein Absturz · Buchmacher ganz ohne Markt-Daten erkannt · ein Buchmacher ohne
+> h2h-Markt wird übersprungen, der nächste mit h2h genommen · fehlende Quote wird als `null`
+> geführt, nicht erfunden · reine Funktion, Eingabe bleibt unverändert. **Ausdrücklich nicht
+> testbar von hier aus:** der echte Netzwerkabruf selbst — dieselbe Grenze wie bei
+> `geminiCall()`/`sonnetSuche()`, kein Zugriff auf einen echten Schlüssel oder Netz in dieser
+> Umgebung. `pruefe.py` danach: ALLES SAUBER.
+> **11 neue Sprachschlüssel** (`oddsKeyT` bis `oddsQuelle`; 256 → 267). **Kein Schnitt in der
+> Messreihe** — reine Werkzeugfunktion, ändert nichts an Auftragstexten oder Bewertung.
+> `APP_VERSION` weiter 18.
+> **Bewusst nicht gebaut, eigener Schritt:** die Zeitsteuerung (mit einstellbarer Häufigkeit
+> und Ausschalter, wie von Ondo verlangt) — die braucht GitHub Actions und einen dort
+> abzusichernden Zugriffsschlüssel, nicht Teil dieser Lieferung.
+> **🔴 `pruefe.py` selbst angepasst, mit Begründung, nicht stillschweigend (Arbeitsregel M):**
+> Punkt 12 des Prüfers vergleicht die erkannten geheimen Eingabefelder gegen eine feste Liste
+> — `state.oddsKey` ist ein echtes viertes Schlüsselfeld (`type="password"`, bleibt NUR auf
+> dem Gerät, wie die bestehenden drei) und war dort nicht eingetragen, der erste Lauf meldete
+> deshalb zu Recht FEHL. **Keine Lockerung der Prüfung** — die eigentliche Schutzlogik (kein
+> geheimes Feld in `MESS_FELDER`, zweite Prüfstufe `messGeheimFund()` im Code vorhanden) blieb
+> unverändert scharf und wurde für alle vier Felder neu bestanden. Nur die feste Liste der
+> *erwarteten* geheimen Felder wurde um `oddsKey` ergänzt — dieselbe Art Nachführung wie bei
+> der Sprachschlüsselzahl, keine inhaltliche Aufweichung.
 
 **10. Value-Rechnung zurückholen** · *Idee 22.7., Gemini* · **Status: Idee** · hängt an Punkt 9
 
