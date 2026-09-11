@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.24';
+var CODE_VERSION = 'v19.8.25';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -176,7 +176,7 @@ var I18N = {
   gepaartMehrdeutig:'{a} Spiel(e) nicht eindeutig zuordenbar (mehrere gleich benannte Einträge desselben Gehirns am selben Tag) — nicht mitgezählt.',
   calibDev:'Abweichung', calibPts:'Bewertete Aussagen', calibNone:'Noch zu wenig Daten',
   calibBand:'Angabe', calibClaim:'behauptet', calibReal:'wirklich', calibN:'Anzahl',
-  calibBrier:'Brier-Score', calibSpread:'Streuung',
+  calibBrier:'Brier-Score', calibSpread:'Streuung', widersprT:'Widerspruchsquote',
   archive:'Archiv v18', archiveD:'Alte Einträge aus der Value-Phase. Zählen nicht mehr in die Statistik, bleiben als Verhaltens-Archiv erhalten.',
   tip:'Tipp', odds:'Quote', stake:'Einsatz (€)',
   possWin:'Möglicher Gewinn', match:'Spiel', saveBet:'Wette speichern', fillAll:'Bitte Spiel, Quote und Einsatz ausfüllen',
@@ -288,7 +288,7 @@ var I18N = {
   gepaartMehrdeutig:'{a} match(s) non attribuable(s) sans ambiguïté (plusieurs entrées du même cerveau nommées pareil le même jour) — non comptabilisé(s).',
   calibDev:'Écart', calibPts:'Affirmations évaluées', calibNone:'Pas encore assez de données',
   calibBand:'Indiqué', calibClaim:'annoncé', calibReal:'réel', calibN:'Nombre',
-  calibBrier:'Score de Brier', calibSpread:'Dispersion',
+  calibBrier:'Score de Brier', calibSpread:'Dispersion', widersprT:'Taux de contradiction',
   archive:'Archive v18', archiveD:'Anciennes entrées de la phase value. Ne comptent plus dans les stats, conservées comme archive.',
   tip:'Tip', odds:'Cote', stake:'Mise (€)',
   possWin:'Gain possible', match:'Match', saveBet:'Enregistrer le pari', fillAll:'Remplis match, cote et mise',
@@ -400,7 +400,7 @@ var I18N = {
   gepaartMehrdeutig:'{a} game(s) not uniquely assignable (multiple identically named entries from the same brain on the same day) — not counted.',
   calibDev:'Deviation', calibPts:'Rated statements', calibNone:'Not enough data yet',
   calibBand:'Stated', calibClaim:'claimed', calibReal:'actual', calibN:'Count',
-  calibBrier:'Brier score', calibSpread:'Spread',
+  calibBrier:'Brier score', calibSpread:'Spread', widersprT:'Contradiction rate',
   archive:'Archive v18', archiveD:'Old entries from the value phase. No longer counted in statistics, kept as a behaviour archive.',
   tip:'Tip', odds:'Odds', stake:'Stake (€)',
   possWin:'Possible win', match:'Match', saveBet:'Save bet', fillAll:'Please fill match, odds and stake',
@@ -1404,6 +1404,42 @@ function calcStreuung(quelle){
     oben: Math.round(perz(0.95)*10)/10,
     gesamt: punkte.length
   };
+}
+
+/* Backlog-Punkt 0b (Wiederaufnahme ENTSCHIEDEN 7.9.2026, Umsetzungsfrage ENTSCHIEDEN
+   11.9.2026, beides Ondo): Widerspruchsquote JE MARKT, nicht als eine Zahl ueber alle drei
+   Maerkte. Grund: Der Markt "1x2" (Sieger) wird in maerkteBauen() immer direkt aus dem Tipp
+   abgeleitet (heim>gast?...), nie eigens gefragt -- dort kann es strukturell nie einen
+   Widerspruch geben. Eine gemeinsame Zahl wuerde durch diesen immer widerspruchsfreien Markt
+   verwaessert und echte Widersprueche bei "tore"/"btts" kleiner aussehen lassen, als sie sind
+   -- selbst eine Art Scheinpraezision (Art. 14). Deshalb hier nur die zwei Maerkte, die
+   eigens gefragt werden.
+   RUECKWIRKEND AUSLESBAR, KEINE NEUE MESSUNG (wie im Punkt vermerkt): jaNein() in
+   maerkteBauen() setzt m.gedreht=true genau dann, wenn die eigens gefragte Prozentzahl unter
+   50 lag, bezogen auf die vom Tipp implizierte Seite -- das IST der Widerspruch zwischen Tipp
+   und Marktaussage, schon in jeder historischen Aussage vermerkt.
+   BEWUSST OHNE status-Filter (anders als calcKalibrierung/calcBrierScore/calcStreuung): Der
+   Widerspruch entsteht beim Vorhersagen selbst, nicht erst beim spaeteren Pruefen des
+   Ergebnisses -- ein noch offener oder geparkter Eintrag ist trotzdem schon widerspruechlich
+   oder nicht. Eine Einschraenkung auf bewertete Aussagen wuerde hier nur die Stichprobe ohne
+   inhaltlichen Grund verkleinern. */
+function calcWiderspruch(quelle){
+  var typen=['tore','btts'];
+  var ergebnis={};
+  typen.forEach(function(typ){
+    var n=0, wid=0;
+    (state.kiProtokoll||[]).forEach(function(e){
+      if(e.aera!=='v19') return;
+      if(quelle && (e.herkunft||'sonnet')!==quelle) return;
+      (e.maerkte||[]).forEach(function(m){
+        if(m.typ!==typ) return;
+        n++;
+        if(m.gedreht) wid++;
+      });
+    });
+    ergebnis[typ] = n ? { quote:Math.round((wid/n)*1000)/10, n:n, widerspruech:wid } : null;
+  });
+  return ergebnis;
 }
 
 /* Gepaarter Vergleich Sonnet gegen Flash (Backlog-Punkt 51, Beschluss Ondo/ChatGPT 15.8.,
@@ -3438,6 +3474,19 @@ function viewBets(c){
 
 /* ================= KALIBRIERUNGS-ANZEIGE ================= */
 function kalibBlock(){
+  /* Backlog-Punkt 0b: Anzeigezeile aus calcWiderspruch() -- je Markt getrennt, siehe
+     Begruendung dort. Fehlen beide Maerkte (keine bewerteten Aussagen dieser Art), erscheint
+     gar keine Zeile statt einer leeren. */
+  function widerspruchZeile(quelle){
+    var w=calcWiderspruch(quelle);
+    var teile=[];
+    ['tore','btts'].forEach(function(typ){
+      var z=w[typ];
+      if(z) teile.push(t('mkt'+(typ==='tore'?'Tore':'Btts'))+' '+String(z.quote).replace('.',',')+' % (n='+z.n+')');
+    });
+    if(!teile.length) return '';
+    return '<div class="muted" style="margin-top:2px">'+t('widersprT')+': '+teile.join(' · ')+'</div>';
+  }
   function tabelle(k, titel, quelle){
     if(!k) return '<div class="muted">'+titel+': '+t('calibNone')+'</div>';
     var brier=calcBrierScore(quelle);
@@ -3447,7 +3496,8 @@ function kalibBlock(){
     var kopf='<div style="margin-top:10px"><b>'+titel+'</b> · '+t('calibDev')+': '+
       '<span style="color:'+(k.abw<=10?'var(--win)':(k.abw<=20?'var(--accent)':'var(--loss)'))+';font-weight:700">'+k.abw+' %</span>'+
       '<span class="muted">'+streuTxt+'</span>'+brierTxt+
-      ' <span class="muted">('+k.gesamt+' '+t('calibPts')+')</span></div>';
+      ' <span class="muted">('+k.gesamt+' '+t('calibPts')+')</span></div>'+
+      widerspruchZeile(quelle);
     var rows=k.zeilen.map(function(z){
       return '<tr><td>'+z.von+'–'+z.bis+' %</td><td>'+z.behauptet+' %</td><td>'+z.echt+' %</td><td>'+z.n+'</td></tr>';
     }).join('');

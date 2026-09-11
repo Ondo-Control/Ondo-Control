@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.94
+**Version:** 0.95
 **Stand:** 11. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.95 ändert (11.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war Backlog-Punkt 0b, `beta.html` v19.8.25 (Backlog Fassung 96), kein Verfassungs- oder Architekturaufwand. Die seit 7.9.2026 offene Umsetzungsfrage entschieden und gebaut: Widerspruchsquote getrennt je Markt statt einer gemeinsamen Zahl, weil der Markt „Sieger" strukturell nie einen Widerspruch zeigen kann (immer aus dem Tipp abgeleitet) und eine gemeinsame Zahl echte Widersprüche bei den anderen zwei Märkten verwässert hätte. Neue reine Funktion `calcWiderspruch(quelle)`, rückwirkend aus dem seit jeher gesetzten Kennzeichen `m.gedreht` — keine neue Messung nötig. 12 Prüfungen an der echten, herausgeschnittenen Funktion bestanden. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.95 gehoben.
 
 > **Was Fassung 0.94 ändert (11.9.2026):** Backlog-Punkt 9, weiterer Ausbau gebaut, `beta.html` v19.8.24 (Backlog Fassung 95) — Ondos eigener Vorschlag, nachdem API-Football die GitHub-Automatik aus Fassung 0.93 wegen geteilter Cloud-Adresse gesperrt hatte: API-Football und football-data.org jetzt zusätzlich per Knopfdruck direkt aus der App, vom eigenen Gerät Ondos aus (keine geteilte Adresse, kein Sperr-Risiko), gekoppelt an den bestehenden „Ergebnisse prüfen"-Lauf. Beide strukturierten Quellen gehen dort künftig den KI-Läufen voran; die bestehende Einigkeitsregel (Backlog-Punkt 68) bleibt technisch unverändert, sie bekommt nur teils andere Zulieferer für ihre drei Läufe. Zwei neue, auf dem Gerät bleibende Schlüsselfelder. 18 plus 7 Prüfungen an der echten, herausgeschnittenen Logik bestanden, darunter der Beleg, dass sich ohne die neuen Schlüssel exakt das bisherige Verhalten ergibt. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.94 gehoben.
 

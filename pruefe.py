@@ -111,7 +111,7 @@ pruef(not _fehlt, f"alle genannten Dateien vorhanden {_fehlt if _fehlt else ''}"
 print("3) Querverweise auf Backlog-Punkte sind aufloesbar")
 _alleP = set(re.findall(r'^\*\*([0-9A-F]+[a-c]?)\. ', B, re.M)) | \
          set(re.findall(r'^\*\*([0-9A-F]+[a-c]?)\. ', ARCHIV.get('BACKLOG-ARCHIV.md') or '', re.M))
-_verweise = set(re.findall(r'Backlog-Punkt (\d+)', ALLE)) | set(re.findall(r'Punkt (\d+)(?![\da-c])', ALLE))
+_verweise = set(re.findall(r'Backlog-Punkt (\d+)(?![\da-c])', ALLE)) | set(re.findall(r'Punkt (\d+)(?![\da-c])', ALLE))
 _miss = sorted(p for p in _verweise if p not in _alleP)
 pruef(not _miss, f"alle Punktverweise existieren {('fehlt: ' + str(_miss)) if _miss else ''}")
 

@@ -410,6 +410,37 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 91 ändert (10.9., Backlog-Punkt 9 — Quoten-Automatik, Knopfdruck-Teil gebaut)
+
+**Anlass:** Auftrag Ondo — Quoten-Abruf bauen, „beides", Knopfdruck-Variante und Zeitsteuerung.
+Knopfdruck-Teil zuerst umgesetzt, wie mit Ondo abgestimmt.
+
+- **Backlog-Punkt 9 nachgeführt, `beta.html` v19.8.23:** Vorfrage zur Quotenabdeckung per
+  Websuche geprüft (nicht nur behauptet) — „The Odds API" deckt League of Ireland und
+  Allsvenskan nachweislich ab, 500 kostenlose Abrufe/Monat. Technisch geklärt: der
+  Knopfdruck-Teil braucht kein GitHub Actions, nur einen reinen Browser-Abruf, wie bei
+  Gemini/Anthropic bereits üblich. Neues Schlüsselfeld `state.oddsKey`. Im Wette-Formular:
+  Liga wählen, Quoten abrufen, aus einer kurzen Liste bevorstehender Spiele die passende
+  Zeile anklicken — füllt das Quote-Feld. **Bewusst keine automatische Zuordnung** zu einem
+  bestimmten Spiel oder Buchmacher — Ondo sieht die Liste und wählt selbst.
+  **Bewusst nicht gebaut:** die Zeitsteuerung — eigener, noch nicht beauftragter Bauschritt,
+  braucht GitHub Actions und einen dort abzusichernden Zugriffsschlüssel.
+- **Volle Begründung und Verifikationsdetails stehen als angehängter Block direkt bei
+  Punkt 9** (nicht hier wiederholt — Punkt 45).
+- **`STAND.md` nachgeführt:** neuer Versionen-Eintrag, Sprachschlüsselzahl 256 → 267, die
+  GitHub-Actions-Zeile in der Entscheidungstabelle präzisiert.
+- **Verifiziert:** `node --check` bestanden. Trockentest mit 13 Prüfungen an der echten,
+  herausgeschnittenen Funktion `oddsListeAufbereiten()`. `pruefe.py` ohne Argument —
+  ALLES SAUBER.
+- **11 neue Sprachschlüssel** (`oddsKeyT` bis `oddsQuelle`; 256 → 267). **Kein Schnitt in der
+  Messreihe.** `APP_VERSION` weiter 18.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 91 gehoben (Blueprint 0.90).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut weiterhin drei** — **3, 4, 0b** *(unverändert.)*
+
+---
+
 ## ⚠ Was Fassung 90 ändert (10.9., neuer Arbeitsweg mit ChatGPT — Punkt 74 gebaut, erste Anwendung bei Punkt 68)
 
 **Anlass:** Ondos Auftrag — ChatGPT soll versuchen, eine klein umrissene Codeänderung selbst zu

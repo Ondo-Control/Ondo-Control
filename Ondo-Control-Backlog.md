@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 11.9.2026, Fassung 95 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 11.9.2026, Fassung 96 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,42 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 96 ändert (11.9., Backlog-Punkt 0b gebaut — Widerspruchsquote je Markt)
+
+**Anlass:** Auftrag Ondo — die seit 7.9.2026 offene Umsetzungsfrage bei Punkt 0b entscheiden
+und bauen: eine gemeinsame Widerspruchsquote über alle drei Märkte, oder je Markt getrennt?
+
+- **Entschieden: getrennt.** Der Markt „Sieger" wird in `maerkteBauen()` immer aus dem Tipp
+  abgeleitet, nie eigens gefragt — dort kann es strukturell nie einen Widerspruch geben. Eine
+  gemeinsame Zahl hätte echte Widersprüche bei „Tore" und „beide treffen" künstlich verwässert.
+- **`beta.html` v19.8.25:** Neue reine Funktion `calcWiderspruch(quelle)` — rückwirkend aus
+  vorhandenen Daten, keine neue Messung: zählt das seit jeher gesetzte Kennzeichen `m.gedreht`,
+  das bereits genau den Fall markiert, dass die eigens gefragte Prozentzahl der vom Tipp
+  implizierten Seite widerspricht. Bewusst kein Status-Filter — der Widerspruch entsteht beim
+  Vorhersagen selbst, nicht erst beim späteren Prüfen. Anzeige in der bestehenden
+  Kalibrierungstabelle, je Gehirn.
+- **Verifiziert:** `node --check` bestanden. Trockentest mit 12 Prüfungen an der echten,
+  herausgeschnittenen `calcWiderspruch()`. `pruefe.py` ohne Argument — ALLES SAUBER.
+- **🔴 `pruefe.py` selbst angepasst, mit Begründung, nicht stillschweigend (Arbeitsregel M):**
+  Abschnitt 3 (Querverweise) las bei „Backlog-Punkt 0b" fälschlich nur die Ziffer ohne den
+  Buchstaben und hielt das Ergebnis für einen nicht existierenden Verweis — die Regel für
+  `Backlog-Punkt N` hatte, anders als die für das blosse `Punkt N`, keine Ausnahme für
+  Buchstaben-Suffixe wie 0b/0c. **Keine Lockerung der
+  Prüfung**, im Gegenteil: die Ausnahme existierte bereits für den zweiten Regel-Zweig, hier
+  wurde nur dieselbe Ausnahme ergänzt, die dort schon galt. Ohne diese Berichtigung hätte jeder
+  künftige Verweis auf Punkt 0b/0c denselben Fehlalarm ausgelöst.
+- **Volle Begründung steht als angehängter Block direkt bei Punkt 0b** (nicht hier wiederholt
+  — Punkt 45).
+- **1 neuer Sprachschlüssel** (`widersprT`; 275 → 276). **Kein Schnitt in der Messreihe.**
+  `APP_VERSION` weiter 18.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 96 gehoben (Blueprint 0.95).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4** *(vorher drei — 0b ist jetzt gebaut, nicht
+  mehr in dieser Liste.)*
 
 ---
 
@@ -146,37 +182,6 @@ kein Codeaufwand.
 - **Kein Codeaufwand**, `beta.html` bleibt v19.8.23. **Keine neuen Sprachschlüssel.**
 - **Fassungszahl:** alle drei aktiven Dokumente auf 92 gehoben (Blueprint 0.91).
   Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
-- **Beschlossen und nicht gebaut weiterhin drei** — **3, 4, 0b** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 91 ändert (10.9., Backlog-Punkt 9 — Quoten-Automatik, Knopfdruck-Teil gebaut)
-
-**Anlass:** Auftrag Ondo — Quoten-Abruf bauen, „beides", Knopfdruck-Variante und Zeitsteuerung.
-Knopfdruck-Teil zuerst umgesetzt, wie mit Ondo abgestimmt.
-
-- **Backlog-Punkt 9 nachgeführt, `beta.html` v19.8.23:** Vorfrage zur Quotenabdeckung per
-  Websuche geprüft (nicht nur behauptet) — „The Odds API" deckt League of Ireland und
-  Allsvenskan nachweislich ab, 500 kostenlose Abrufe/Monat. Technisch geklärt: der
-  Knopfdruck-Teil braucht kein GitHub Actions, nur einen reinen Browser-Abruf, wie bei
-  Gemini/Anthropic bereits üblich. Neues Schlüsselfeld `state.oddsKey`. Im Wette-Formular:
-  Liga wählen, Quoten abrufen, aus einer kurzen Liste bevorstehender Spiele die passende
-  Zeile anklicken — füllt das Quote-Feld. **Bewusst keine automatische Zuordnung** zu einem
-  bestimmten Spiel oder Buchmacher — Ondo sieht die Liste und wählt selbst.
-  **Bewusst nicht gebaut:** die Zeitsteuerung — eigener, noch nicht beauftragter Bauschritt,
-  braucht GitHub Actions und einen dort abzusichernden Zugriffsschlüssel.
-- **Volle Begründung und Verifikationsdetails stehen als angehängter Block direkt bei
-  Punkt 9** (nicht hier wiederholt — Punkt 45).
-- **`STAND.md` nachgeführt:** neuer Versionen-Eintrag, Sprachschlüsselzahl 256 → 267, die
-  GitHub-Actions-Zeile in der Entscheidungstabelle präzisiert.
-- **Verifiziert:** `node --check` bestanden. Trockentest mit 13 Prüfungen an der echten,
-  herausgeschnittenen Funktion `oddsListeAufbereiten()`. `pruefe.py` ohne Argument —
-  ALLES SAUBER.
-- **11 neue Sprachschlüssel** (`oddsKeyT` bis `oddsQuelle`; 256 → 267). **Kein Schnitt in der
-  Messreihe.** `APP_VERSION` weiter 18.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 91 gehoben (Blueprint 0.90).
-  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
-  Arbeitsregel.
 - **Beschlossen und nicht gebaut weiterhin drei** — **3, 4, 0b** *(unverändert.)*
 
 ---
@@ -1105,7 +1110,7 @@ ChatGPTs Umformulierung, im Blueprint unter dem 25.7. protokolliert: **Der Schie
 
 ---
 
-**0b. Widersprüche messen statt korrigieren** · *Idee 29.7., Ondo · Wiederaufnahme ENTSCHIEDEN 7.9.2026, Ondo* · **Status: 🔴 WIEDERAUFNAHME BESCHLOSSEN, NICHT GEBAUT — eine Detailfrage vor dem Bau noch offen**
+**0b. Widersprüche messen statt korrigieren** · *Idee 29.7., Ondo · Wiederaufnahme ENTSCHIEDEN 7.9.2026, Ondo · Umsetzungsfrage ENTSCHIEDEN und GEBAUT 11.9.2026, Ondo* · **Status: 🔴 GEBAUT am 11.9.2026, `beta.html` v19.8.25 — Widerspruchsquote je Markt (Sieger bewusst ausgenommen)**
 
 Ursprünglich: Widersprüche zwischen Ergebnis-Tipp und Marktaussage bekommen eine eigene Kennzahl je Gehirn.
 
@@ -1141,6 +1146,27 @@ Ursprünglich: Widersprüche zwischen Ergebnis-Tipp und Marktaussage bekommen ei
 > drei Märkte — sonst würde ein sauberer Markt („beide treffen") mit einem womöglich noch
 > unsauberen vermischt. Das ist eine Umsetzungsfrage, keine Grundsatzfrage, und heute nicht
 > entschieden.
+
+> **🔴 Umsetzungsfrage entschieden und gebaut, 11.9.2026 (Ondo: „ja bau das so").** Getrennt je
+> Markt, nicht als eine gemeinsame Zahl — Begründung: Der Markt „Sieger" wird in
+> `maerkteBauen()` immer direkt aus dem Tipp abgeleitet, nie eigens gefragt, kann also
+> strukturell nie einen Widerspruch zeigen. Eine gemeinsame Zahl hätte echte Widersprüche bei
+> „Tore" und „beide treffen" künstlich verwässert — selbst eine Art Scheinpräzision (Art. 14).
+> **Rückwirkend aus vorhandenen Daten, keine neue Messung** (wie ursprünglich vorgesehen): Neue
+> reine Funktion `calcWiderspruch(quelle)` zählt das seit jeher gesetzte Kennzeichen
+> `m.gedreht` — es markiert bereits genau den Fall, dass die eigens gefragte Prozentzahl der
+> vom Tipp implizierten Seite widerspricht (unter 50 %, bezogen auf die Tipp-Seite).
+> **Bewusst kein Status-Filter**, anders als bei Kalibrierung/Brier/Streuung: Der Widerspruch
+> entsteht beim Vorhersagen selbst, nicht erst beim späteren Prüfen des Ergebnisses — auch
+> offene oder geparkte Aussagen zählen mit, eine Einschränkung auf bewertete Aussagen hätte die
+> Stichprobe nur ohne inhaltlichen Grund verkleinert. Anzeige in der bestehenden
+> Kalibrierungstabelle, je Gehirn.
+> **Verifiziert:** `node --check` bestanden. Trockentest mit **12 Prüfungen** an der echten,
+> herausgeschnittenen `calcWiderspruch()` — unter anderem der Beleg, dass der Markt „Sieger"
+> selbst bei irrtümlich gesetztem `gedreht` nicht mitgezählt wird, und dass Einträge von vor
+> der v19-Grenze aussen vor bleiben. `pruefe.py` danach: ALLES SAUBER.
+> **1 neuer Sprachschlüssel** (`widersprT`; 275 → 276). **Kein Schnitt in der Messreihe.**
+> `APP_VERSION` weiter 18.
 
 ---
 
