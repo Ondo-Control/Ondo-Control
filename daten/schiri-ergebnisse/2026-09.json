@@ -1,0 +1,89 @@
+{
+ "hinweis": "Automatisch erzeugt, Backlog-Punkt 9. Nicht von Hand bearbeiten.",
+ "spiele": [
+  {
+   "datum": "2026-09-10",
+   "anpfiff": "19:15",
+   "wettbewerb": "Primeira Liga",
+   "heim": "CF Estrela da Amadora",
+   "gast": "Sporting Clube de Braga",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "1:1"
+  },
+  {
+   "datum": "2026-09-10",
+   "anpfiff": "19:00",
+   "wettbewerb": "UEFA Champions League",
+   "heim": "Como 1907",
+   "gast": "RB Leipzig",
+   "status": "FT",
+   "torHeim": 4,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "2:0"
+  },
+  {
+   "datum": "2026-09-10",
+   "anpfiff": "19:00",
+   "wettbewerb": "UEFA Champions League",
+   "heim": "FC Bayern München",
+   "gast": "FK Bodø/Glimt",
+   "status": "FT",
+   "torHeim": 5,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-09-10",
+   "anpfiff": "16:45",
+   "wettbewerb": "UEFA Champions League",
+   "heim": "Fenerbahçe SK",
+   "gast": "AS Roma",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:1"
+  },
+  {
+   "datum": "2026-09-10",
+   "anpfiff": "19:00",
+   "wettbewerb": "UEFA Champions League",
+   "heim": "Manchester United FC",
+   "gast": "Sabah FK",
+   "status": "FT",
+   "torHeim": 4,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "3:0"
+  },
+  {
+   "datum": "2026-09-10",
+   "anpfiff": "16:45",
+   "wettbewerb": "UEFA Champions League",
+   "heim": "PSV",
+   "gast": "FK Shakhtar Donetsk",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:1"
+  },
+  {
+   "datum": "2026-09-10",
+   "anpfiff": "19:00",
+   "wettbewerb": "UEFA Champions League",
+   "heim": "SK Slavia Praha",
+   "gast": "Racing Club de Lens",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 3,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  }
+ ]
+}
