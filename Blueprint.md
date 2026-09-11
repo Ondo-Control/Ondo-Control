@@ -3,9 +3,22 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.100
-**Stand:** 11. September 2026
+**Version:** 0.101
+**Stand:** 12. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.101 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass
+> war Ondos Rückmeldung „Browser voll" zur neuen Speicheranzeige aus v19.8.28 (Backlog Fassung
+> 102). **Was daran verfassungsnah ist:** Die Warngrenze von v19.8.28 war ausdrücklich als
+> ungeprüfte, vorsichtige Schätzung benannt (Art. 11) — Ondo hat jetzt den echten Beleg
+> geliefert: Sein Browser lehnte das Speichern bei 2,7 MB ab, unter der geschätzten 3-MB-Grenze.
+> Arbeitsregel H verlangt Belegen statt Herleiten; mit dem Beleg in der Hand war die alte Zahl
+> zu berichtigen, nicht beizubehalten — jetzt 2 MB mit echtem Sicherheitsabstand darunter.
+> **Ein Fund am eigenen Testaufbau dabei, offen benannt:** Derselbe Trockentest hatte die
+> Warngrenze in der Testumgebung selbst hartcodiert dupliziert statt aus `beta.html` zu ziehen —
+> die Prüfungen liefen unbemerkt gegen einen Test-Zwilling. Behoben, dieselbe Fehlerklasse wie
+> der fehlende `KEY` einen Tag zuvor. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+> Blueprint auf 0.101 gehoben.
 
 > **Was Fassung 0.100 ändert (11.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Auftrag Ondo: „mach bei allen Punkten was nötig ist damit es sauber läuft, bau einfach weiter". Die drei Funde der vollständigen Prüfung sind behoben und **die Lernkette ist fertig**: Backlog-Punkt 75, Teil 3 (Observation Layer) gebaut, `beta.html` v19.8.28 (Backlog Fassung 101). **Was daran verfassungsnah ist und deshalb hier steht:** Der Observation Layer ist die erste Stelle im Projekt, die aus den eigenen Messdaten eine **Aussage** ableitet statt einer Zahl. Damit daraus keine Vermutung mit Lehrsatz-Anstrich wird (Art. 14), trägt jede Beobachtung ihre Stichprobengrösse, und unterhalb von zehn bewerteten Aussagen wird nichts behauptet — „zu wenig Daten" wird angezeigt, nicht verschwiegen (Art. 11). Die Auflage aus `Ondo-Core-Architektur.md` 1c ist eingelöst und maschinell belegt: kein Lernen aus geparkten Einträgen und keines aus solchen, bei denen der Schiedsrichter sich nur mit 2 von 3 Läufen einig war. **Art. 9 bleibt unangetastet:** Der Observation Layer zeigt, er entscheidet nichts — jede Lehre braucht weiterhin Ondos Bestätigung. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Die Versionsform bleibt `0.NN`, wie Arbeitsregel M sie prüft; für Fassung 101 ist das `0.100` — ungewohnt zu lesen, aber die Form, die der Prüfer vorgibt, und den Prüfer dafür aufzuweichen wäre Fehlerart C6. Blueprint auf 0.100 gehoben.
 

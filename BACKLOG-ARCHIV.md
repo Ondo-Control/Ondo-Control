@@ -410,6 +410,35 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 97 ändert (11.9., Backlog-Punkt 75 — Lernkette: Evidence Ledger formell festgelegt)
+
+**Anlass:** Ondo hat der Lernkette nach einer langen Diskussion um Beförderungskriterien und
+Reihenfolge ausdrücklich Vorrang gegeben und die Startentscheidung an Claude delegiert.
+
+- **Entschieden: jetzt anfangen, nicht auf die Beförderung warten.** Die sieben
+  Beförderungskriterien (BLUEPRINT-PROTOKOLL.md) sind Bedingungen für die Beförderung, keine
+  Bedingung für den Bau der Lernkette in der Beta — diese Vermischung war ein eigener Fehler,
+  richtiggestellt im Gespräch.
+- **Neuer Backlog-Punkt 75, Teil 1 (Evidence Ledger) formell festgelegt, nicht neu gebaut:**
+  `state.kiProtokoll` ist seit v19.0 der faktische Evidence Ledger — kein Parallelbau. Neuer
+  Abschnitt 1c in `Ondo-Core-Architektur.md` (Fassung 0.5) legt Schema und Ebenen-Zuordnung
+  formell fest, mit einer Auflage für die noch nicht gebauten nächsten Stufen: Der Observation
+  Layer darf keine Lehre aus einem unsicher bewerteten Eintrag ziehen.
+- **Echter Fund dabei:** `state.bets` hat keine belegte Verknüpfung zu einer `kiProtokoll`-
+  Empfehlung — `addBet()` setzt `fromKI`/`herkunft` bei jeder neuen Wette fest auf
+  `false`/`null`. Genau diese Lücke muss Teil 2 (Decision Ledger) schliessen.
+- **Volle Begründung steht als angehängter Block direkt bei Punkt 75** (nicht hier wiederholt
+  — Punkt 45).
+- **Kein Codeaufwand.** `beta.html` bleibt v19.8.25, `APP_VERSION` weiter 18. Keine neuen
+  Sprachschlüssel.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 97 gehoben (Blueprint 0.96).
+  `Ondo-Core-Architektur.md` auf Fassung 0.5 gehoben (eigene Zählung, siehe Punkt 45).
+  Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert — Punkt 75 zählt nicht mit,
+  Teil 1 ist erledigt, Teil 2/3 sind neue, noch unbeschlossene Bauaufgaben.)*
+
+---
+
 ## ⚠ Was Fassung 96 ändert (11.9., Backlog-Punkt 0b gebaut — Widerspruchsquote je Markt)
 
 **Anlass:** Auftrag Ondo — die seit 7.9.2026 offene Umsetzungsfrage bei Punkt 0b entscheiden

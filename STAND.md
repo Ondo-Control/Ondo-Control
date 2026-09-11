@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 11.9.2026, Fassung 101, v19.8.28*
+*Die aktuelle Wahrheit. Stand: 12.9.2026, Fassung 102, v19.8.29*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -175,7 +175,24 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 ## Versionen
 
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.8.28** (`beta.html`, geliefert 11.9.2026) — **die drei Funde der Prüfung behoben
+- **Beta: v19.8.29** (`beta.html`, geliefert 12.9.2026) — **🔴 echter Beleg statt Schätzung: die
+  Speicher-Warngrenze war zu hoch.** Ondo hat die neue Speicheranzeige aus v19.8.28 in echtem
+  Einsatz getroffen — sein Browser lehnte das Speichern bereits bei **2.726 KB (2,7 MB)**
+  ab (Bildschirmfoto, 12.9.2026, der rote Warnbalken stand bereits, „Belegter Speicher" zeigte
+  genau diesen Wert im selben Moment). Die alte Warngrenze von 3 MB (v19.8.28, ausdrücklich als
+  ungeprüfte, vorsichtige Schätzung benannt) lag damit **über** der echten Wand — die
+  Frühwarnung „wird eng" wäre nie gekommen, der Balken erschien erst, als das Speichern
+  bereits scheiterte. **Jetzt 2 MB**, mit echtem Sicherheitsabstand unter dem belegten
+  Fehlschlag, nicht nur knapp darunter (Arbeitsregel H: jetzt mit Beleg statt Herleitung).
+  **Ein Fund am eigenen Testaufbau dabei:** Der Trockentest zu v19.8.28 hatte
+  `SPEICHER_WARNGRENZE` in der Testumgebung selbst hartcodiert auf 3 MB gesetzt, statt die
+  echte Konstante aus `beta.html` zu übernehmen — die 55 Prüfungen liefen also unbemerkt gegen
+  einen Test-Zwilling, nicht gegen den echten Wert. Behoben: Die Konstante wird jetzt wörtlich
+  aus `beta.html` gezogen, wie der übrige Testcode auch. **Zwei neue Prüfungen bilden Ondos
+  echten Fall nach** (2.726 KB, `eng` muss jetzt `true` sein — mit der alten 3-MB-Schätzung
+  wäre das falsch gewesen). **Kein neuer Sprachschlüssel, kein Schnitt in der Messreihe.**
+  `APP_VERSION` weiter 18.
+- **Beta zuvor: v19.8.28** (`beta.html`, geliefert 11.9.2026) — **die drei Funde der Prüfung behoben
   und die Lernkette fertiggebaut: Backlog-Punkt 75, Teil 3, Observation Layer.**
   Auftrag Ondo: „mach bei allen Punkten was nötig ist damit es sauber läuft, bau einfach weiter".
   **Erstens, Backlog-Punkt 64 geschlossen (zweiter und dritter Fund, dieselbe Stelle):**
@@ -475,6 +492,14 @@ Dateiname beginnt mit Datum und Uhrzeit: `2026-07-31_1430_Ondo-Control_Thema.md`
 **Nie empfehlen, Ergebnisse von Hand nachzuschlagen.** Seit dem 25.7. abgelehnt. Die Zuverlässigkeit des Schiedsrichters gehört zum Test, nicht in Ondos Freizeit. Zwei Claude-Instanzen sind trotzdem darauf zurückgefallen.
 
 **Datensicherung:** Ondo regelmäßig daran erinnern.
+**🔴 Echter Speicher-Fehlschlag, 12.9.2026 (belegt, kein Verdacht):** Ondos Browser lehnte das
+Speichern bei **2.726 KB (2,7 MB)** Belegung ab — Bildschirmfoto zeigt den roten Warnbalken aus
+v19.8.28 bereits aktiv, „Belegter Speicher" nennt genau diesen Wert im selben Moment. **Die
+wahre Speichergrenze liegt damit nachweislich unter 2.726 KB.** Behoben in v19.8.29: Die
+Warngrenze im Code (`SPEICHER_WARNGRENZE`) stand auf einer ungeprüften 3-MB-Schätzung, jetzt
+auf 2 MB mit echtem Sicherheitsabstand darunter. **Noch offen, Ondos eigene Entscheidung:**
+Sichern (funktioniert weiterhin, unabhängig vom `localStorage`-Fehlschlag) und danach nicht
+mehr benötigte Einträge löschen — die App nennt das seit v19.8.28 selbst im Warnbalken.
 **Letzte bestätigte Sicherung: 4.9.2026, 09:33 Uhr** — 403 Vorhersagen, 6 Wetten. Davor: 2.9., 17:33 Uhr (403 Vorhersagen, 6 Wetten, im Bildschirmfoto der App sichtbar) · 16.8., 10:47 Uhr (293 Vorhersagen) · 14.8., 22:53 Uhr (nach dem Einbau von v19.8.2) · 14.8., 22:22 Uhr (vor der Lieferung) · 14.8., 07:14 Uhr (nach der Uebernahme der zehn Endstaende) · 13.8., 18:38 Uhr (nach der Berichtigung), 16:28 Uhr (293 Vorhersagen) und 09:17 Uhr. Früher: 8.8., 07:54 Uhr (210 Vorhersagen) · 7.8., 08:00 Uhr · 6.8., 08:28 Uhr (170 Vorhersagen) · 5.8., 13:06 Uhr · 4.8., 17:58 Uhr (138 Vorhersagen) · 3.8. · 2.8. · 31.7., 07:49 Uhr. ⚠ **Vor jeder Codelieferung ist eine frische Sicherung zu verlangen.**
 
 *Diese Zeile ist eine **Standsangabe**, keine Verlaufsangabe. Sie stand vom 7. bis zum 14. August auf dem 7.8. und war damit sechs Tage falsch, während zwei andere Stellen des Dokuments den richtigen Wert trugen. Seit dem 14.8. prüft `pruefe.py` sie gegen die jüngste Sicherungsangabe im Dokument.*

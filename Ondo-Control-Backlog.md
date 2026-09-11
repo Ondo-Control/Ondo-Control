@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 11.9.2026, Fassung 101 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 102 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,38 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 102 ändert (12.9., echter Speicher-Beleg statt Schätzung — `beta.html` v19.8.29)
+
+**Anlass:** Ondo hat die neue Speicheranzeige aus v19.8.28 in echtem Einsatz getroffen. Drei
+Meldungen in einer Nachricht: „Browser voll", die API-Football-Sperre wird erst Montag
+behandelt, `CLAUDE.md` soll erneuert werden. Diese Fassung deckt den ersten Punkt.
+
+- **✅ Speicher-Warngrenze mit echtem Beleg korrigiert.** Ondos Browser lehnte das Speichern
+  bei **2.726 KB (2,7 MB)** Belegung ab — Bildschirmfoto zeigt den roten Warnbalken bereits
+  aktiv, „Belegter Speicher" nennt genau diesen Wert im selben Moment. **Die wahre Grenze liegt
+  damit nachweislich unter 2.726 KB.** Die alte 3-MB-Schätzung aus v19.8.28 lag darüber — die
+  Frühwarnung „wird eng" wäre nie gekommen, bevor das Speichern tatsächlich scheitert. Jetzt
+  **2 MB**, mit echtem Sicherheitsabstand unter dem belegten Fehlschlag statt nur knapp darunter
+  (Arbeitsregel H: jetzt mit Beleg statt Herleitung, wie schon bei v19.8.28 selbst angekündigt).
+- **🔴 Fund am eigenen Testaufbau, dabei aufgefallen:** Der Trockentest zu v19.8.28 hatte
+  `SPEICHER_WARNGRENZE` in der Testumgebung selbst hartcodiert auf 3 MB, statt die echte
+  Konstante aus `beta.html` zu übernehmen — die 55 Prüfungen aus Fassung 101 liefen damit
+  unbemerkt gegen einen Test-Zwilling, nicht gegen den echten Wert. Dieselbe Fehlerklasse wie
+  der fehlende `KEY` in derselben Testdatei, einen Tag zuvor. Behoben: Die Konstante wird jetzt
+  wörtlich aus `beta.html` gezogen, ändert sie sich künftig im Code, ändert sie sich automatisch
+  im Test mit. **Zwei neue Prüfungen** bilden Ondos echten Fall nach (2.726 KB → `eng` muss
+  `true` sein — mit der alten 3-MB-Schätzung wäre das falsch gewesen). Alle **57 Prüfungen**
+  erneut gelaufen, alle bestanden.
+- **API-Football-Sperre:** Ondo behandelt sie mit dem Support erst am Montag — nur bei
+  Backlog-Punkt 9 vermerkt, keine Codeänderung, nichts zu tun von dieser Seite bis dahin.
+- **Verifiziert:** `node --check` bestanden · `pruefe.py`: ALLES SAUBER. Kein neuer
+  Sprachschlüssel, kein Schnitt in der Messreihe. `APP_VERSION` weiter 18.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 97 ändert" wortgleich nach `BACKLOG-ARCHIV.md`
+  verschoben.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
 
 ---
 
@@ -204,35 +236,6 @@ sein, war es aber nie.
   `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
   Arbeitsregel.
 - **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 97 ändert (11.9., Backlog-Punkt 75 — Lernkette: Evidence Ledger formell festgelegt)
-
-**Anlass:** Ondo hat der Lernkette nach einer langen Diskussion um Beförderungskriterien und
-Reihenfolge ausdrücklich Vorrang gegeben und die Startentscheidung an Claude delegiert.
-
-- **Entschieden: jetzt anfangen, nicht auf die Beförderung warten.** Die sieben
-  Beförderungskriterien (BLUEPRINT-PROTOKOLL.md) sind Bedingungen für die Beförderung, keine
-  Bedingung für den Bau der Lernkette in der Beta — diese Vermischung war ein eigener Fehler,
-  richtiggestellt im Gespräch.
-- **Neuer Backlog-Punkt 75, Teil 1 (Evidence Ledger) formell festgelegt, nicht neu gebaut:**
-  `state.kiProtokoll` ist seit v19.0 der faktische Evidence Ledger — kein Parallelbau. Neuer
-  Abschnitt 1c in `Ondo-Core-Architektur.md` (Fassung 0.5) legt Schema und Ebenen-Zuordnung
-  formell fest, mit einer Auflage für die noch nicht gebauten nächsten Stufen: Der Observation
-  Layer darf keine Lehre aus einem unsicher bewerteten Eintrag ziehen.
-- **Echter Fund dabei:** `state.bets` hat keine belegte Verknüpfung zu einer `kiProtokoll`-
-  Empfehlung — `addBet()` setzt `fromKI`/`herkunft` bei jeder neuen Wette fest auf
-  `false`/`null`. Genau diese Lücke muss Teil 2 (Decision Ledger) schliessen.
-- **Volle Begründung steht als angehängter Block direkt bei Punkt 75** (nicht hier wiederholt
-  — Punkt 45).
-- **Kein Codeaufwand.** `beta.html` bleibt v19.8.25, `APP_VERSION` weiter 18. Keine neuen
-  Sprachschlüssel.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 97 gehoben (Blueprint 0.96).
-  `Ondo-Core-Architektur.md` auf Fassung 0.5 gehoben (eigene Zählung, siehe Punkt 45).
-  Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert — Punkt 75 zählt nicht mit,
-  Teil 1 ist erledigt, Teil 2/3 sind neue, noch unbeschlossene Bauaufgaben.)*
 
 ---
 
@@ -1658,6 +1661,12 @@ Offene Vorfrage (Gemini, weiterhin unbeantwortet): Deckt ein kostenloser Dienst 
 > tägliche Automatik nur die 12 football-data.org-Wettbewerbe** — sichtbar an `quelle` in jedem
 > Eintrag, kein stiller Ausfall. Sobald API-Football wieder läuft, ergänzt der nächste Lauf die
 > restlichen Ligen von selbst nach.
+> **🔴 Terminierung, Ondo, 12.9.2026:** Die Sperre „kann erst am Montag behandelt werden" — Ondo
+> steht in Kontakt mit dem API-Football-Support, Einzelheiten im dortigen Gesprächsverlauf, nicht
+> hier wiederholt (Punkt 45). Bis dahin bleibt der oben beschriebene Zustand unverändert: Der
+> Knopfdruck-Ergebnisabgleich und die tägliche Automatik laufen ausschliesslich mit
+> football-data.org. Keine Codeänderung nötig — nichts zu tun von dieser Seite, bis Ondo sich
+> meldet.
 > **Bekannte, offen benannte Wartungslücke:** Die Liga-ID-Liste im Skript ist von Hand aus
 > STUFEN (`beta.html`) abgeleitet, nicht automatisch verknüpft — ändert sich STUFEN künftig,
 > muss die Liste im Skript von Hand nachgezogen werden, sonst laufen beide still auseinander.

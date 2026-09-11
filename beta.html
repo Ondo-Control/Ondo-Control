@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.28';
+var CODE_VERSION = 'v19.8.29';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -811,11 +811,16 @@ function save(){
 }
 /* Wie viel Platz die gespeicherten Daten belegen. Gemessen, nicht geschaetzt: die Laenge
    genau der Zeichenkette, die save() schreibt.
-   Die Warngrenze ist AUSDRUECKLICH selbst gesetzt, keine Browser-Tatsache: Wie viel Safari auf
-   Ondos iPhone wirklich zulaesst, kann eine Code-Sitzung ohne dieses Geraet nicht feststellen
-   (Art. 11). 3 MB sind bewusst vorsichtig gewaehlt, damit der Hinweis kommt, bevor etwas
-   scheitert — nicht erst danach. */
-var SPEICHER_WARNGRENZE=3*1024*1024;
+   v19.8.28 hatte hier noch eine ungeprüfte Schaetzung von 3 MB (Art. 11: kann eine Code-
+   Sitzung ohne Ondos Geraet nicht feststellen). v19.8.29 (12.9.2026): Ondo hat den echten
+   Fehlschlag mitgeschickt — sein Browser lehnte das Speichern bei 2.726 KB Belegung ab
+   (Bildschirmfoto, „Belegter Speicher" zeigte diesen Wert genau in dem Moment, in dem
+   speichern-schlaegt-fehl bereits stand). Die wahre Grenze liegt damit NACHWEISLICH UNTER
+   2.726 KB — die alte 3-MB-Schaetzung lag also ueber der echten Wand, der fruehe Hinweis waere
+   nie gekommen. Jetzt 2 MB: mit echtem Sicherheitsabstand UNTER dem belegten Fehlschlag,
+   nicht nur knapp darunter, damit Ondo Zeit zum Sichern und Aufraeumen bleibt, bevor die
+   Grenze wirklich erreicht wird (Arbeitsregel H: belegen statt herleiten, jetzt mit Beleg). */
+var SPEICHER_WARNGRENZE=2*1024*1024;
 function speicherStand(){
   var zeichen=0;
   try{ zeichen=JSON.stringify(state).length; }catch(e){ return null; }
