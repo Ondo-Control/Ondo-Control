@@ -410,6 +410,46 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 93 ändert (11.9., Backlog-Punkt 65 — stehende Kürzungsregel statt Einmalaktion)
+
+**Anlass:** Auftrag Ondo — die Datei kleiner halten, dauerhaft statt einmalig, nachdem Weg C
+aus Punkt 65 (einmaliges Kürzen, 30.8.2026) wieder auf über 269.000 Zeichen zugewachsen war.
+
+- **Neue Regel 5 im Abschnitt „Regeln für dieses Dokument":** Nur die letzten fünf
+  Fassungsabschnitte bleiben im Hauptdokument. Jede künftige Lieferung verschiebt den
+  sechstältesten Abschnitt automatisch ins Archiv, wortgleich, nichts gekürzt.
+- **Sofort angewendet:** 28 Fassungsabschnitte (87 bis 60, 78.845 Zeichen) nach
+  `BACKLOG-ARCHIV.md` verschoben, an der chronologisch richtigen Stelle direkt vor den dort
+  bereits stehenden älteren Fassungsnotizen (59 abwärts) — durchgehende absteigende
+  Reihenfolge, kein Bruch. Nur die Änderungsnotizen sind betroffen, keine offenen Punkte.
+- **Backlog-Punkt 65 nachgeführt:** Weg C ist jetzt eine stehende Regel, nicht mehr nur ein
+  Vorschlag — die zwei ursprünglich genannten Haken (Archiv selbst über der Grenze, fehlender
+  automatischer Verlustbeweis) bleiben unverändert bestehen und sind hier nicht neu gelöst.
+- **Grösse:** Backlog vorher 269.086 Zeichen, nachher 192.220 Zeichen — noch über der
+  120.000-Zeichen-Grenze aus Punkt 65, aber die Regel wirkt jetzt bei jeder künftigen
+  Lieferung weiter, statt nur einmal.
+- **Kein Codeaufwand, keine neuen Sprachschlüssel, kein Schnitt in der Messreihe.**
+- **Fassungszahl:** alle drei aktiven Dokumente auf 93 gehoben (Blueprint 0.92).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel — Regel 5 ist eine Dokumentregel (Abgrenzung, Regel 1), keine Arbeitsregel im
+  Sinn von Blueprint Abschnitt 2c.
+- **Beschlossen und nicht gebaut: drei** — **3, 4, 0b.** *(unverändert — jetzt im genauen
+  Wortlaut, den `pruefe.py` Abschnitt 5 maschinell nachrechnet; ein Fund dabei, siehe unten.)*
+- **🔴 Fund und Berichtigung an `pruefe.py` selbst, mit Begründung (Arbeitsregel M):** Weil die
+  gestapelten alten Fassungsabschnitte jetzt fehlen, konnte Abschnitt 5 seine Vergleichszeile
+  nicht mehr finden und schlug erstmals wirklich fehl — vorher hatte er sich still auf eine
+  veraltete, zufällig noch passende Zeile weiter unten im Dokument gestützt, ohne dass es
+  auffiel. **Zwei echte Fehler dabei gefunden, nicht nur der fehlende Treffer:** Erstens hatte
+  keine der zuletzt geschriebenen Zeilen je das genaue, von Abschnitt 5 verlangte Wortmuster
+  getroffen (fehlender Doppelpunkt) — dieser Punkt ist jetzt korrigiert (siehe Zeile oben).
+  Zweitens zählte Abschnitt 5 Punkt 0b bisher fälschlich als „erledigt", weil sein Status den
+  Text „NICHT GEBAUT" enthält und die Prüfung nur nach der Zeichenkette „GEBAUT" ohne Rücksicht
+  auf die Verneinung gesucht hat. **Keine Lockerung** — `pruefe.py` unterscheidet jetzt „GEBAUT"
+  von „NICHT GEBAUT" und prüft dadurch genauer, nicht großzügiger; alle anderen Kriterien
+  unverändert scharf.
+
+---
+
 ## ⚠ Was Fassung 92 ändert (11.9., Fund: Gemini erfand scheinbar echte Quoten, Backlog-Punkt 9)
 
 **Anlass:** Ondos eigener Test des in Punkt 9 vorgeschlagenen Vergleichs — reine Buchführung,

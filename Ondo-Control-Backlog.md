@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 11.9.2026, Fassung 97 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 11.9.2026, Fassung 98 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,34 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 98 ändert (11.9., Backlog-Punkt 75, Teil 2 — Decision Ledger gebaut)
+
+**Anlass:** Auftrag Ondo, direkt im Anschluss an Teil 1 — den bei der Festlegung des Evidence
+Ledgers gefundenen toten Code beheben: `state.bets` sollte längst mit `kiProtokoll` verknüpft
+sein, war es aber nie.
+
+- **`beta.html` v19.8.26:** Neues Auswahlfeld im Wette-Formular „Aus einer Vorhersage
+  übernehmen" (`kiWahlBlock()`), listet offene, nicht geparkte `kiProtokoll`-Einträge.
+  Bewusst keine automatische Zuordnung über den Spielnamen — Ondo wählt selbst, dieselbe
+  Arbeitsweise wie beim Quoten-Knopf. Verknüpfung über die feste `id`, neues Feld
+  `kiProtokollId`. `fromKI`/`herkunft` werden jetzt tatsächlich befüllt, statt immer
+  `false`/`null` zu sein. Kleine Anzeige in der Wette-Historie bei verknüpften Wetten.
+- **Verifiziert:** `node --check` bestanden. Trockentest an der echten `addBet()`: 13
+  Prüfungen. Trockentest an `kiWahlBlock()`: 7 Prüfungen. `pruefe.py` ohne Argument —
+  ALLES SAUBER.
+- **Offen benannte Grenze:** Ältere, bereits gespeicherte Wetten lassen sich nicht
+  nachträglich verknüpfen, nur neue ab dieser Version.
+- **Volle Begründung steht als angehängter Block direkt bei Punkt 75** (nicht hier
+  wiederholt — Punkt 45).
+- **3 neue Sprachschlüssel** (`kiWahlLabel`, `kiWahlKeine`, `vonKi`; 276 → 279). **Kein
+  Schnitt in der Messreihe.** `APP_VERSION` weiter 18.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 98 gehoben (Blueprint 0.97).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
 
 ---
 
@@ -155,46 +183,6 @@ angewiesen zu sein.
   `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
   Arbeitsregel.
 - **Beschlossen und nicht gebaut weiterhin drei** — **3, 4, 0b** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 93 ändert (11.9., Backlog-Punkt 65 — stehende Kürzungsregel statt Einmalaktion)
-
-**Anlass:** Auftrag Ondo — die Datei kleiner halten, dauerhaft statt einmalig, nachdem Weg C
-aus Punkt 65 (einmaliges Kürzen, 30.8.2026) wieder auf über 269.000 Zeichen zugewachsen war.
-
-- **Neue Regel 5 im Abschnitt „Regeln für dieses Dokument":** Nur die letzten fünf
-  Fassungsabschnitte bleiben im Hauptdokument. Jede künftige Lieferung verschiebt den
-  sechstältesten Abschnitt automatisch ins Archiv, wortgleich, nichts gekürzt.
-- **Sofort angewendet:** 28 Fassungsabschnitte (87 bis 60, 78.845 Zeichen) nach
-  `BACKLOG-ARCHIV.md` verschoben, an der chronologisch richtigen Stelle direkt vor den dort
-  bereits stehenden älteren Fassungsnotizen (59 abwärts) — durchgehende absteigende
-  Reihenfolge, kein Bruch. Nur die Änderungsnotizen sind betroffen, keine offenen Punkte.
-- **Backlog-Punkt 65 nachgeführt:** Weg C ist jetzt eine stehende Regel, nicht mehr nur ein
-  Vorschlag — die zwei ursprünglich genannten Haken (Archiv selbst über der Grenze, fehlender
-  automatischer Verlustbeweis) bleiben unverändert bestehen und sind hier nicht neu gelöst.
-- **Grösse:** Backlog vorher 269.086 Zeichen, nachher 192.220 Zeichen — noch über der
-  120.000-Zeichen-Grenze aus Punkt 65, aber die Regel wirkt jetzt bei jeder künftigen
-  Lieferung weiter, statt nur einmal.
-- **Kein Codeaufwand, keine neuen Sprachschlüssel, kein Schnitt in der Messreihe.**
-- **Fassungszahl:** alle drei aktiven Dokumente auf 93 gehoben (Blueprint 0.92).
-  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
-  Arbeitsregel — Regel 5 ist eine Dokumentregel (Abgrenzung, Regel 1), keine Arbeitsregel im
-  Sinn von Blueprint Abschnitt 2c.
-- **Beschlossen und nicht gebaut: drei** — **3, 4, 0b.** *(unverändert — jetzt im genauen
-  Wortlaut, den `pruefe.py` Abschnitt 5 maschinell nachrechnet; ein Fund dabei, siehe unten.)*
-- **🔴 Fund und Berichtigung an `pruefe.py` selbst, mit Begründung (Arbeitsregel M):** Weil die
-  gestapelten alten Fassungsabschnitte jetzt fehlen, konnte Abschnitt 5 seine Vergleichszeile
-  nicht mehr finden und schlug erstmals wirklich fehl — vorher hatte er sich still auf eine
-  veraltete, zufällig noch passende Zeile weiter unten im Dokument gestützt, ohne dass es
-  auffiel. **Zwei echte Fehler dabei gefunden, nicht nur der fehlende Treffer:** Erstens hatte
-  keine der zuletzt geschriebenen Zeilen je das genaue, von Abschnitt 5 verlangte Wortmuster
-  getroffen (fehlender Doppelpunkt) — dieser Punkt ist jetzt korrigiert (siehe Zeile oben).
-  Zweitens zählte Abschnitt 5 Punkt 0b bisher fälschlich als „erledigt", weil sein Status den
-  Text „NICHT GEBAUT" enthält und die Prüfung nur nach der Zeichenkette „GEBAUT" ohne Rücksicht
-  auf die Verneinung gesucht hat. **Keine Lockerung** — `pruefe.py` unterscheidet jetzt „GEBAUT"
-  von „NICHT GEBAUT" und prüft dadurch genauer, nicht großzügiger; alle anderen Kriterien
-  unverändert scharf.
 
 ---
 
@@ -527,7 +515,7 @@ wird, lässt sich erst über mehrere Anwendungen hinweg beurteilen, nicht nach d
 
 ---
 
-**75. Lernkette bauen — Evidence Ledger, Decision Ledger, Observation Layer** · *Beschlossen 6.7.2026, Reihenfolge fixiert · Auftrag Ondo, Teil 1 (Evidence Ledger) 11.9.2026* · **Status: 🔴 TEIL 1 (Evidence Ledger) FORMELL FESTGELEGT am 11.9.2026 — Teil 2 (Decision Ledger) und Teil 3 (Observation Layer) offen**
+**75. Lernkette bauen — Evidence Ledger, Decision Ledger, Observation Layer** · *Beschlossen 6.7.2026, Reihenfolge fixiert · Auftrag Ondo, Teil 1 (Evidence Ledger) und Teil 2 (Decision Ledger) 11.9.2026* · **Status: 🔴 TEIL 1 FORMELL FESTGELEGT, TEIL 2 GEBAUT — beide am 11.9.2026, `beta.html` v19.8.26 — Teil 3 (Observation Layer) offen**
 
 **Anlass:** Ondo hat der Lernkette am Ende einer langen Diskussion um Beförderungskriterien
 und Reihenfolge ausdrücklich Vorrang gegeben und die Entscheidung, wann angefangen wird,
@@ -550,13 +538,29 @@ Lernkette in der Beta enthalten, nur für die **Beförderung** selbst.
 > **Kein Codeaufwand für Teil 1** — `beta.html` bleibt v19.8.25, keine neuen Sprachschlüssel.
 > `STAND.md`, Abschnitt „Lernkette", entsprechend nachgeführt.
 
-> **Teil 2, Decision Ledger — noch offen, konkreter Befund dazu:** `state.bets` (Feld
-> `fromKI`/`herkunft`) sollte eigentlich schon eine Verknüpfung zu einer Empfehlung tragen,
-> tut es aber nicht — `addBet()` setzt beide Felder bei jeder neuen Wette fest auf
-> `false`/`null`, unabhängig davon, ob die Wette auf eine `kiProtokoll`-Empfehlung zurückgeht.
-> Genau diese Lücke muss Teil 2 schliessen: eine belegte Verknüpfung Wette ↔ Vorhersage, damit
-> sich später auswerten lässt, was Ondo aus einer Empfehlung gemacht hat. Eigener, noch nicht
-> spezifizierter Bauschritt.
+> **🔴 Teil 2, Decision Ledger, GEBAUT am 11.9.2026, `beta.html` v19.8.26.** Der Befund von
+> Teil 1 behoben: `addBet()` setzte `fromKI`/`herkunft` bei jeder neuen Wette fest auf
+> `false`/`null`, unabhängig davon, ob eine `kiProtokoll`-Empfehlung dahinterstand.
+> **Bauweise:** Neues Auswahlfeld im Wette-Formular „Aus einer Vorhersage übernehmen"
+> (`kiWahlBlock()`), listet offene, nicht geparkte `kiProtokoll`-Einträge auf. **Bewusst keine
+> automatische Text-Zuordnung über den Spielnamen** — dieselbe Arbeitsweise wie beim
+> Quoten-Knopf (Backlog-Punkt 9) und `refRohAbgleich()`: Auswählen ist eine Entscheidung,
+> Ablesen nicht. Die Verknüpfung läuft über die feste `id` des Eintrags, nicht über den
+> Namenstext — Namensvarianten hätten sonst dieselbe Fehlerquelle wie bei Backlog-Punkt 41
+> geschaffen. Neues Feld `kiProtokollId` an jeder Wette, `fromKI`/`herkunft` werden jetzt
+> tatsächlich befüllt. Kleine Anzeige in der Wette-Historie, wenn eine Wette so verknüpft ist.
+> **Verifiziert:** `node --check` bestanden. Trockentest an der echten, herausgeschnittenen
+> `addBet()`: **13 Prüfungen**, darunter der Beleg, dass eine unbekannte/veraltete Auswahl
+> sicher auf „manuell" zurückfällt statt abzustürzen, und dass die bestehende
+> Einsatz-Deckelung unverändert bleibt. Trockentest an `kiWahlBlock()`: **7 Prüfungen**,
+> darunter, dass geparkte und nicht-`v19`-Einträge korrekt ausgeschlossen werden.
+> `pruefe.py` danach: ALLES SAUBER.
+> **3 neue Sprachschlüssel** (`kiWahlLabel`, `kiWahlKeine`, `vonKi`; 276 → 279). **Kein Schnitt
+> in der Messreihe.** `APP_VERSION` weiter 18.
+> **Offen benannte Grenze:** Bereits gespeicherte, ältere Wetten lassen sich nicht nachträglich
+> verknüpfen — nur neue Wetten ab dieser Version. Eine rückwirkende Verknüpfung über
+> Spielname+Datum wäre möglich, ist aber bewusst nicht gebaut (dieselbe Text-Matching-Unsicherheit,
+> die oben vermieden wurde) — nicht Teil dieses Auftrags.
 
 > **Teil 3, Observation Layer — noch offen, keine Spezifikation vorhanden.**
 

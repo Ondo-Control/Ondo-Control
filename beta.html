@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.25';
+var CODE_VERSION = 'v19.8.26';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -180,6 +180,7 @@ var I18N = {
   archive:'Archiv v18', archiveD:'Alte Einträge aus der Value-Phase. Zählen nicht mehr in die Statistik, bleiben als Verhaltens-Archiv erhalten.',
   tip:'Tipp', odds:'Quote', stake:'Einsatz (€)',
   possWin:'Möglicher Gewinn', match:'Spiel', saveBet:'Wette speichern', fillAll:'Bitte Spiel, Quote und Einsatz ausfüllen',
+  kiWahlLabel:'Aus einer Vorhersage übernehmen', kiWahlKeine:'— keine, von Hand —', vonKi:'Aus KI-Vorhersage von',
   noBets:'Noch keine Wetten erfasst.', won:'GEWONNEN', lost:'VERLOREN', openB:'OFFEN',
   bWon:'✓ Gewonnen', bLost:'✗ Verloren', reset:'Zurücksetzen', del:'Löschen',
   aiRight:'KI richtig', aiWrong:'KI falsch', ai:'KI',
@@ -292,6 +293,7 @@ var I18N = {
   archive:'Archive v18', archiveD:'Anciennes entrées de la phase value. Ne comptent plus dans les stats, conservées comme archive.',
   tip:'Tip', odds:'Cote', stake:'Mise (€)',
   possWin:'Gain possible', match:'Match', saveBet:'Enregistrer le pari', fillAll:'Remplis match, cote et mise',
+  kiWahlLabel:'Reprendre depuis une prédiction', kiWahlKeine:'— aucune, manuel —', vonKi:'Prédiction IA de',
   noBets:'Aucun pari enregistré.', won:'GAGNÉ', lost:'PERDU', openB:'OUVERT',
   bWon:'✓ Gagné', bLost:'✗ Perdu', reset:'Réinitialiser', del:'Supprimer',
   aiRight:'IA correcte', aiWrong:'IA fausse', ai:'IA',
@@ -404,6 +406,7 @@ var I18N = {
   archive:'Archive v18', archiveD:'Old entries from the value phase. No longer counted in statistics, kept as a behaviour archive.',
   tip:'Tip', odds:'Odds', stake:'Stake (€)',
   possWin:'Possible win', match:'Match', saveBet:'Save bet', fillAll:'Please fill match, odds and stake',
+  kiWahlLabel:'Take over from a prediction', kiWahlKeine:'— none, manual —', vonKi:'From AI prediction by',
   noBets:'No bets recorded yet.', won:'WON', lost:'LOST', openB:'OPEN',
   bWon:'✓ Won', bLost:'✗ Lost', reset:'Reset', del:'Delete',
   aiRight:'AI right', aiWrong:'AI wrong', ai:'AI',
@@ -2998,13 +3001,50 @@ function pruefBlock(){
   return html;
 }
 
+/* ================= LERNKETTE, TEIL 2: DECISION LEDGER (Backlog-Punkt 75, 11.9.2026) =================
+   Fund beim Festlegen des Evidence Ledgers (Teil 1): state.bets trug die Felder fromKI/herkunft
+   schon lange, addBet() setzte sie aber immer auf false/null - keine echte Verknuepfung zu der
+   Empfehlung, aus der eine Wette entstand. Ondos Auftrag: das beheben.
+   Bewusst KEINE automatische Text-Zuordnung ueber den Spielnamen (Arbeitsweise-Grundsatz
+   "Auswaehlen ist eine Entscheidung, Ablesen nicht") - dieselbe Ueberlegung wie bei
+   oddsAuswahlBlock() und refRohAbgleich(). Ondo waehlt selbst aus einer kurzen Liste offener
+   Empfehlungen; die Verknuepfung geht ueber die feste id, nicht ueber den Spielnamen (der bei
+   Namensvarianten nicht stabil genug waere, siehe Backlog-Punkt 41). */
+function kiWahlBlock(){
+  var offene = (state.kiProtokoll||[]).filter(function(e){
+    return e.aera==='v19' && e.status==='offen' && !e.geparkt;
+  });
+  if(!offene.length) return '';
+  var opts = '<option value="">'+esc(t('kiWahlKeine'))+'</option>'+
+    offene.map(function(e){
+      return '<option value="'+esc(e.id)+'">'+
+        esc(e.datum+' · '+e.match+' ('+(e.herkunft==='flash'?'🌱':'🧠')+' '+e.heim+':'+e.gast+')')+
+        '</option>';
+    }).join('');
+  return '<div><label>'+t('kiWahlLabel')+'</label>'+
+    '<select id="f_kiWahl" onchange="kiWahlUebernehmen(this.value)">'+opts+'</select></div>';
+}
+/* Auswaehlen fuellt die Textfelder nur ab - reines Ablesen einer bereits getroffenen Wahl,
+   kein weiterer Automatismus. Ondo kann Match/Tipp danach weiterhin von Hand aendern. */
+function kiWahlUebernehmen(id){
+  if(!id) return;
+  var e=(state.kiProtokoll||[]).find(function(x){ return x.id===id; });
+  if(!e) return;
+  var fm=document.getElementById('f_match'), ft=document.getElementById('f_tipp');
+  if(fm) fm.value=e.match;
+  if(ft) ft.value=e.heim+':'+e.gast;
+}
+
 /* ================= AKTIONEN ================= */
 function addBet(v, einsatzVal){
   var einsatz = Math.min(parseFloat(String(einsatzVal).replace(",","."))||0, state.regeln.maxEinsatz);
+  var quelle = v.kiId ? (state.kiProtokoll||[]).find(function(e){ return e.id===v.kiId; }) : null;
   state.bets.unshift({
     id:Date.now(), datum:new Date().toLocaleDateString("de-DE"),
     match:v.match, tipp:v.tipp||"", quote:parseFloat(String(v.quote).replace(",","."))||0,
-    einsatz:einsatz, status:"offen", claudeRichtig:null, fromKI:false, herkunft:null
+    einsatz:einsatz, status:"offen", claudeRichtig:null,
+    fromKI:!!quelle, herkunft:quelle?quelle.herkunft:null,
+    kiProtokollId:quelle?quelle.id:null
   });
   save(); go("wetten","historie");
 }
@@ -3359,6 +3399,7 @@ function viewBets(c){
         '<div id="fotoStatus" class="muted" style="margin-top:10px"></div>'+
       '</div>'+
       '<div class="card"><div class="grid">'+
+      kiWahlBlock()+
       '<div><label>'+t('match')+'</label><input id="f_match" placeholder="Bayern – Dortmund"/></div>'+
       '<div><label>'+t('tip')+'</label><input id="f_tipp"/></div>'+
       (hatOdds() ? oddsAuswahlBlock() : '')+
@@ -3366,7 +3407,7 @@ function viewBets(c){
         '<div style="flex:1"><label>'+t('odds')+'</label><input id="f_quote" inputmode="decimal" placeholder="1,85"/></div>'+
         '<div style="flex:1"><label>'+t('stake')+'</label><input id="f_einsatz" inputmode="decimal" placeholder="10"/></div>'+
       '</div>'+
-      '<button class="btn" onclick="var m=f_match.value,q=f_quote.value,e=f_einsatz.value; if(m&&q&&e){addBet({match:m,tipp:f_tipp.value,quote:q},e);}else{alert(\''+t('fillAll')+'\');}">'+t('saveBet')+'</button>'+
+      '<button class="btn" onclick="var m=f_match.value,q=f_quote.value,e=f_einsatz.value,kw=document.getElementById(\'f_kiWahl\'),k=kw?kw.value:\'\'; if(m&&q&&e){addBet({match:m,tipp:f_tipp.value,quote:q,kiId:k},e);}else{alert(\''+t('fillAll')+'\');}">'+t('saveBet')+'</button>'+
     '</div></div>';
   }
 
@@ -3464,7 +3505,8 @@ function viewBets(c){
     return '<div class="card">'+
       '<div class="flex"><div><div class="disp" style="font-size:19px">'+esc(b.match)+'</div>'+
       '<div class="muted">'+b.datum+' · '+t('odds')+' '+b.quote.toLocaleString("de-DE")+' · '+t('stake').replace(' (€)','')+' '+eur(b.einsatz)+'</div></div>'+badge+'</div>'+
-      (b.tipp?'<div style="font-size:13px;margin-top:8px">'+t('tip')+': '+esc(b.tipp)+'</div>':'')+pnl+
+      (b.tipp?'<div style="font-size:13px;margin-top:8px">'+t('tip')+': '+esc(b.tipp)+'</div>':'')+
+      (b.fromKI?'<div class="muted" style="font-size:12px;margin-top:4px">'+t('vonKi')+' '+(b.herkunft==='flash'?'🌱':'🧠')+'</div>':'')+pnl+
       '<div style="margin-top:12px">'+akt+
       ' <button class="btn-sm" style="float:right" onclick="delBet('+b.id+')">'+t('del')+'</button></div>'+
     '</div>';
