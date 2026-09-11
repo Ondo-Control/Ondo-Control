@@ -3,6 +3,7 @@
 *Fassung 0.4 — 13.8.2026, 16:32 Uhr: Abschnitt 1b „Drei-Ebenen-Trennung" ergänzt (Backlog-Punkt 6, beschlossen am 23.7., 21 Tage offen).*
 *Fassung 0.5 — 11.9.2026: Abschnitt 1c „Lernkette: der Evidence Ledger" ergänzt (Backlog-Punkt 75, Auftrag Ondo 11.9.2026).*
 *Fassung 0.6 — 11.9.2026: Schema in Abschnitt 1c vervollständigt und die Auflage an den Observation Layer auf die zwei tatsächlichen Felder festgenagelt — bei Ondos Nachprüfung fiel auf, dass die als „Schema" bezeichnete Tabelle in Fassung 0.5 mehrere real vorhandene Felder nicht nannte (`ergebnisHalbzeit`, `ergebnisVerl`, `ergebnisQuelle`, `bttsWort`, `refLaeufe`, `refQuellen`, `parkFormat`, `maerkte[].fAlt`/`fKorr`). Jetzt maschinell aus `beta.html` ausgezählt statt aus dem Gedächtnis geschrieben.*
+*Fassung 0.7 — 11.9.2026: Berichtigung in derselben Tabelle. Fassung 0.6 zählte zwar die Feldnamen maschinell aus, beschrieb aber weiterhin aus der Annahme heraus, **wer** sie schreibt — und behauptete für `ergebnisHalbzeit`/`ergebnisVerl` „vom Schiedsrichter nachgetragen". Der Code widerlegt das: `pruefAnwenden()` schreibt ausschliesslich `ergebnisHeim`/`ergebnisGast`. Der Backlog führte diesen Befund bereits (Punkt 64, zweiter Fund) — die Tabelle widersprach damit dem Backlog (Fehlerart C4). Zeile berichtigt, Fund bei Punkt 64 verlinkt.*
 *(Name: Der Besitzer hat "Ondo Control" festgelegt; ChatGPT nutzt "ORION". Technisch irrelevant — hier "Ondo Core" für den Kern.)*
 
 ---
@@ -87,8 +88,9 @@ Modul-Vertrag (ChatGPTs Forderung, übernommen): **Modul → Core → Brain → 
 | `match`, `wettbewerb`, `anpfiff`, `stufe` | 1 (Daten) | Was angesetzt war, aus der Spielliste |
 | `herkunft`, `modell` | — | Welches Gehirn, unter welcher tatsächlichen Modellversion geantwortet hat |
 | `heim`, `gast` (Tipp), `maerkte[].p`, `maerkte[].code`/`label`/`typ`, `maerkte[].gedreht`, `bttsWort`, `begruendung` | 2 (Denken) | Was das Gehirn für wahrscheinlich hielt und warum — die eigentliche „Evidence". `gedreht` hält fest, dass die eigens gefragte Prozentzahl der vom Tipp implizierten Seite widersprach (Backlog-Punkt 0b) |
-| `ergebnisHeim`, `ergebnisGast`, `ergebnisHalbzeit`, `ergebnisVerl` | 1 (Daten) | Was wirklich geschah, vom Schiedsrichter nachgetragen |
-| `ergebnisQuelle` | 1 (Daten) | Herkunft des Ergebnisses, wenn es **nicht** vom Schiedsrichter kam (`'extern_manuell'` bei Eintrag von Hand, Art. 14) |
+| `ergebnisHeim`, `ergebnisGast` | 1 (Daten) | Der 90-Minuten-Stand. Das Einzige, was `pruefAnwenden()` beim Übernehmen an den Eintrag schreibt — und das Einzige, woran `marktUrteil()` die Märkte misst |
+| `ergebnisHalbzeit`, `ergebnisVerl` | 1 (Daten) | Halbzeit- und Verlängerungsstand. **Werden vom Schiedsrichter geliefert, geprüft und vor dem Übernehmen angezeigt, beim Übernehmen aber verworfen** — `pruefAnwenden()` schreibt sie nicht. Dauerhaft gesetzt hat sie bisher allein die Migration `seedV<6`/`seedV<7`, und `seedV<8` hat auch die wieder entfernt. Sie überleben nur in `e.refRoh[…].geparst`. Offener Befund, siehe Backlog-Punkt 64, zweiter Fund |
+| `ergebnisQuelle` | 1 (Daten) | Herkunft des Ergebnisses, wenn es **nicht** vom Schiedsrichter kam (`'extern_manuell'` bei Eintrag von Hand, Art. 14). Trägt zurzeit kein Eintrag mehr — `seedV<8` hat die zwei einzigen entfernt |
 | `status`, `maerkte[].status` | 3 (Bewertung) | Traf die Behauptung zu — `offen` / `richtig` / `falsch`, am Eintrag `offen` / `bewertet` |
 | `refRoh[]`, `refLaeufe`, `refQuellen`, `refEinigkeit` | 3 (Bewertung) | Wie sicher die Bewertung selbst ist: rohe Schiedsrichter-Antworten, Zahl der brauchbaren Läufe, Zahl **verschiedener** Quellen, und die Markierung „nicht einstimmig" (gesetzt nur bei 2-von-3, siehe `pruefAnwenden()`) |
 | `geparkt`, `parkGrund`, `parkFormat` | 3 (Bewertung) | Bewertung bewusst ausgesetzt — kein Ergebnis übernommen, nichts bewertet |

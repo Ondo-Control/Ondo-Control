@@ -410,6 +410,35 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 95 ändert (11.9., Backlog-Punkt 9 — API-Football/football-data.org per Knopfdruck an den Prüflauf gekoppelt)
+
+**Anlass:** API-Football sperrte die GitHub-Automatik aus Fassung 94 wegen geteilter
+Cloud-Adresse, vom Support schriftlich als strukturelles Problem bestätigt. Ondos Vorschlag:
+beide Quellen zusätzlich per Knopfdruck vom eigenen Gerät aus abrufen, gekoppelt an den
+bestehenden Prüflauf.
+
+- **`beta.html` v19.8.24:** Zwei neue Schlüsselfelder `state.apiFootballKey`/
+  `state.footballDataKey`. Im „Ergebnisse prüfen"-Lauf gehen beide strukturierten Quellen den
+  KI-Läufen jetzt voran, wenn ein Schlüssel gespeichert ist — die bestehende Einigkeitsregel
+  (Backlog-Punkt 68) bleibt unverändert, sie bekommt nur teils andere Zulieferer.
+- **Neue reine Funktionen:** `datumIso()`, `strukturAbgleich()` (Team- und Datumsabgleich,
+  bewusst ohne Heim/Gast-Vertauschung), dazu `apiFootballLauf()`/`footballDataLauf()` für den
+  Abruf. football-data.org mit demselben 12-Wettbewerbe-Filter wie bei der GitHub-Automatik.
+- **Verifiziert:** `node --check` bestanden. Trockentest an der echten `strukturAbgleich()`/
+  `datumIso()`: 18 Prüfungen. Trockentest an der echten `wege`-Aufbaulogik: 7 Prüfungen,
+  darunter der Beleg, dass ohne die neuen Schlüssel exakt das bisherige Verhalten gilt.
+  `pruefe.py` ohne Argument — ALLES SAUBER.
+- **Volle Begründung, Bauweise und die offen benannte Grenze stehen als angehängter Block
+  direkt bei Punkt 9** (nicht hier wiederholt — Punkt 45).
+- **8 neue Sprachschlüssel** (`afKeyT` bis `fdOff`; 267 → 275). **Kein Schnitt in der
+  Messreihe.** `APP_VERSION` weiter 18.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 95 gehoben (Blueprint 0.94).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut weiterhin drei** — **3, 4, 0b** *(unverändert.)*
+
+---
+
 ## ⚠ Was Fassung 94 ändert (11.9., Backlog-Punkt 9 — eigene Ergebnis-Datenquelle für den Schiedsrichter, Ausbau)
 
 **Anlass:** Auftrag Ondo, als Antwort auf den Quoten-Fabrikationsfund (Fassung 92) — der

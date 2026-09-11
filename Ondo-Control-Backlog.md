@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 11.9.2026, Fassung 99 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 11.9.2026, Fassung 100 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,67 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 100 ändert (11.9., vollständige Prüfung von `beta.html` auf Ondos Verlangen)
+
+**Anlass:** „Beta vollständig und gründlich auf Fehler /Lücken komplett prüfen, wenn alles
+perfekt ist, dann weiter bauen." Geprüft wurde die ganze Datei, nicht nur das zuletzt Gebaute:
+3764 Zeilen, 139 Funktionen, 279 Sprachschlüssel je Sprache.
+
+- **🔴 Widerspruch im eigenen Architektur-Eintrag gefunden und berichtigt (Fehlerart C4),
+  `Ondo-Core-Architektur.md` Fassung 0.7:** Die Schema-Tabelle in Abschnitt 1c beschrieb
+  `ergebnisHalbzeit`/`ergebnisVerl` als „vom Schiedsrichter nachgetragen". Der Code widerlegt
+  das — `pruefAnwenden()` schreibt ausschliesslich `ergebnisHeim`/`ergebnisGast`. **Der Backlog
+  führte diesen Befund bereits** (Punkt 64, zweiter Fund, „NICHT behoben … nur benannt"); die
+  Tabelle widersprach also dem eigenen Backlog. Fassung 0.6 hatte zwar die *Feldnamen*
+  maschinell ausgezählt, die *Beschreibung*, wer sie schreibt, aber weiter aus der Annahme
+  geschrieben — derselbe Fehler eine Ebene tiefer (Arbeitsregel H).
+- **🔴 Neuer Befund, nicht behoben (Art. 8), gehört zu Punkt 64:** `pruefAnwenden()` räumt beim
+  Überschreiben eines Ergebnisses `ergebnisQuelle`, `ergebnisHalbzeit` und `ergebnisVerl` nicht
+  weg. Wird ein von Hand eingetragener Eintrag über einen einzelnen Markt zurückgesetzt
+  (`logMarktSet` setzt `status` wieder auf `offen`), fragt ihn der nächste Prüflauf erneut ab
+  und trägt das neue Ergebnis ein — die rote Zeile „von Hand eingetragen" bliebe daneben
+  stehen. **Zurzeit nicht erreichbar**, weil `seedV<8` die zwei einzigen Einträge mit
+  `ergebnisQuelle` bereinigt hat; es ist eine schlafende Lücke, keine wirkende. Genau die
+  Falschangabe, gegen die Art. 14 dieses Feld eingeführt hat.
+- **🔴 Zwei Löschungen ohne Rückfrage, neu benannt, nicht behoben (Art. 8):** `delBet()` und
+  `logLoeschen()` löschen sofort und endgültig. Die zwei anderen unumkehrbaren Schritte der App
+  fragen vorher (`korrFAnwenden()`, `datenLaden()` über `confirm()`). Auf dem iPhone genügt ein
+  Fehltipp. Seit Fassung 97 ist `state.kiProtokoll` der **Evidence Ledger** — ein Fehltipp
+  löscht damit einen Beleg, auf dem das Lernen aufsetzen soll. Vorschlag: dieselbe
+  `confirm()`-Rückfrage wie an den zwei vorhandenen Stellen. Kosten: kein Geld, keine Laufzeit,
+  zwei Sprachschlüssel. Entscheidung liegt bei Ondo.
+- **🔴 Speichergrenze wird nirgends sichtbar, neu benannt, nicht behoben (Art. 8):** Scheitert
+  `localStorage.setItem`, zeigt `save()` 1,5 Sekunden lang „nicht gespeichert" und sonst nichts;
+  die App nennt nie, wie voll der Speicher ist. `kiProtokoll` wächst mit jeder Vorhersage,
+  `refRoh` dreimal so schnell (schon bei Punkt 64 vermerkt). Es gibt **keinen Beleg**, dass die
+  Grenze je erreicht wurde — Ondos Browserspeicher ist von hier aus nicht einsehbar. Benannt
+  wird der Mechanismus, nicht ein Vorfall.
+- **Geprüft und ohne Befund, maschinell statt angenommen:** `node --check` bestanden ·
+  **279 Sprachschlüssel in allen drei Sprachen, keiner doppelt, keine Lücke zwischen de/fr/en**
+  (echtes Klammer-Zählen, siehe Berichtigung unten) · kein `t('…')` auf einen fehlenden
+  Schlüssel · jedes `getElementById` trifft ein wirklich vergebenes `id` · jede aus einem
+  `onclick`/`onchange` gerufene Funktion ist definiert · jedes gelesene `state`-Feld wird
+  irgendwo geschrieben, die 13 Standardwerte sind vollständig · Geldrechnung stimmt
+  (`profit`/`calc`/`depAdd`/`wdAdd`) · `marktUrteil()` ist bei ganzzahligen Toren lückenlos
+  („über 2,5" und „unter 2,5" schliessen einander exakt aus) · alle Ergebniszahlen werden vor
+  dem Vergleich in echte Zahlen umgewandelt, nie als Text verglichen · jeder von einem Gehirn
+  gelieferte Text wird vor dem Anzeigen mit `esc()` entschärft.
+- **Berichtigung am eigenen Prüfwerkzeug, offen benannt:** Die ersten drei Fassungen des
+  Werkzeugs meldeten ausschliesslich Fehlalarme — zuerst hielt es deutsche Wörter in den
+  Anzeigetexten für Funktionsaufrufe, dann verlor es bei regulären Ausdrücken mit
+  Anführungszeichen die Spur, zuletzt fand es das Ende eines Sprachblocks nicht und zählte
+  alle drei Sprachen zusammen (daher „steht 3-mal"). Erst die vierte Fassung zählte richtig.
+  **Kein Befund dieser Prüfung stammt aus einem ungeprüften Werkzeug-Treffer** — jeder oben
+  genannte Punkt ist an der Codestelle selbst nachgelesen.
+- **Keine Codeänderung in dieser Lieferung.** `beta.html` bleibt v19.8.27, `APP_VERSION` 18,
+  Sprachschlüssel 279. Geändert wurden nur `Ondo-Core-Architektur.md` (Berichtigung) und die
+  Buchführung. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 95 ändert" wortgleich nach `BACKLOG-ARCHIV.md`
+  verschoben.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
 
 ---
 
@@ -142,35 +203,6 @@ und bauen: eine gemeinsame Widerspruchsquote über alle drei Märkte, oder je Ma
   Arbeitsregel.
 - **Beschlossen und nicht gebaut: zwei** — **3, 4** *(vorher drei — 0b ist jetzt gebaut, nicht
   mehr in dieser Liste.)*
-
----
-
-## ⚠ Was Fassung 95 ändert (11.9., Backlog-Punkt 9 — API-Football/football-data.org per Knopfdruck an den Prüflauf gekoppelt)
-
-**Anlass:** API-Football sperrte die GitHub-Automatik aus Fassung 94 wegen geteilter
-Cloud-Adresse, vom Support schriftlich als strukturelles Problem bestätigt. Ondos Vorschlag:
-beide Quellen zusätzlich per Knopfdruck vom eigenen Gerät aus abrufen, gekoppelt an den
-bestehenden Prüflauf.
-
-- **`beta.html` v19.8.24:** Zwei neue Schlüsselfelder `state.apiFootballKey`/
-  `state.footballDataKey`. Im „Ergebnisse prüfen"-Lauf gehen beide strukturierten Quellen den
-  KI-Läufen jetzt voran, wenn ein Schlüssel gespeichert ist — die bestehende Einigkeitsregel
-  (Backlog-Punkt 68) bleibt unverändert, sie bekommt nur teils andere Zulieferer.
-- **Neue reine Funktionen:** `datumIso()`, `strukturAbgleich()` (Team- und Datumsabgleich,
-  bewusst ohne Heim/Gast-Vertauschung), dazu `apiFootballLauf()`/`footballDataLauf()` für den
-  Abruf. football-data.org mit demselben 12-Wettbewerbe-Filter wie bei der GitHub-Automatik.
-- **Verifiziert:** `node --check` bestanden. Trockentest an der echten `strukturAbgleich()`/
-  `datumIso()`: 18 Prüfungen. Trockentest an der echten `wege`-Aufbaulogik: 7 Prüfungen,
-  darunter der Beleg, dass ohne die neuen Schlüssel exakt das bisherige Verhalten gilt.
-  `pruefe.py` ohne Argument — ALLES SAUBER.
-- **Volle Begründung, Bauweise und die offen benannte Grenze stehen als angehängter Block
-  direkt bei Punkt 9** (nicht hier wiederholt — Punkt 45).
-- **8 neue Sprachschlüssel** (`afKeyT` bis `fdOff`; 267 → 275). **Kein Schnitt in der
-  Messreihe.** `APP_VERSION` weiter 18.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 95 gehoben (Blueprint 0.94).
-  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
-  Arbeitsregel.
-- **Beschlossen und nicht gebaut weiterhin drei** — **3, 4, 0b** *(unverändert.)*
 
 ---
 
@@ -428,6 +460,8 @@ Bei NK Celje–Slovan Bratislava und Sabah FC–Hapoel Beer-Sheva FC lieferte de
 → **Keine rückwirkende Neubewertung.** Sabah und Celje bleiben geparkt, unabhängig vom Ausgang dieses Umbaus (ausdrückliche Auflage des Auftrags, und die Bedingung aus Punkt 64 gilt unverändert weiter).
 → **🔴 Ondos Rückfrage bei der Planfreigabe, hier beantwortet: Können die neue Markierung `2von3` und die bestehende Warnung aus `refRohAbgleich()` beim selben Eintrag gleichzeitig erscheinen?** **Ja, und das ist der Regelfall bei 2 von 3 — es ist kein Widerspruch.** Die beiden Zeilen sagen Verschiedenes und stehen untereinander: Die obere („nicht einstimmig — 2 von 3 Läufen") sagt, **dass** ein Wert übernommen wurde und wie knapp. Die untere („Schiedsrichter-Läufe widersprechen sich: 2 von 3 Läufen: 2:1 · 1 von 3 Läufen: 3:1") zeigt die **einzelnen** Stände, die dahinterstehen. In den drei Lagen sieht das so aus: **3/3 einstimmig** → keine der beiden Zeilen. **2/3** → beide Zeilen, obere zuerst. **Drei verschiedene Werte** → nur die untere, weil nichts übernommen wurde und es keine Markierung an einem übernommenen Wert geben kann; der Eintrag trägt statt dessen das Kennzeichen „geparkt". `refRohAbgleich()` ist dabei unverändert geblieben (ausdrückliche Auflage) — sie wirkt nur jetzt öfter, weil es je Runde drei geparste Läufe gibt statt einem.
 → **🔴 Zweiter Fund, dabei aufgefallen, NICHT behoben und nicht Gegenstand dieses Auftrags:** `pruefAnwenden()` schreibt beim Übernehmen **nur** `ergebnisHeim`/`ergebnisGast` an den Eintrag. **Halbzeitstand und Verlängerungsstand werden verworfen**, obwohl der Schiedsrichter sie liefert und die App sie sogar prüft — sie überleben nur in `e.refRoh[...].geparst`. Die Karte kann `ergebnisHalbzeit`/`ergebnisVerl` anzeigen, bekommt sie aber ausschliesslich aus der von Hand eingetragenen Migration. Bewusst nicht mitgeändert: Es ändert, was dauerhaft gespeichert wird, und war nicht beauftragt (Art. 8). Nur benannt.
+
+→ **🔴 Dritter Fund, 11.9.2026, bei der vollständigen Prüfung von `beta.html` (Fassung 100), NICHT behoben (Art. 8):** Dieselbe Stelle räumt beim Überschreiben eines Ergebnisses auch nicht auf. `pruefAnwenden()` setzt `ergebnisHeim`/`ergebnisGast` neu, lässt `ergebnisQuelle`, `ergebnisHalbzeit` und `ergebnisVerl` aber unverändert stehen. **Der Weg dorthin:** `logMarktSet()` setzt `status` wieder auf `offen`, sobald Ondo einen einzelnen Markt zurücksetzt; `ergebnissePruefen()` nimmt jeden offenen, nicht geparkten Eintrag wieder mit; `pruefAnwenden()` trägt danach das neue, vom Schiedsrichter gefundene Ergebnis ein — und die rote Zeile „von Hand eingetragen" stünde weiterhin daneben. Das ist **genau die Falschangabe, gegen die Art. 14 dieses Feld eingeführt hat**. **Zurzeit nicht erreichbar:** `seedV<8` hat `ergebnisQuelle` bei den zwei einzigen Einträgen entfernt, die es je trugen; kein Eintrag trägt es heute. Eine schlafende Lücke, keine wirkende — sie wacht auf, sobald das Feld wieder gesetzt wird. **Gehört zusammen mit dem zweiten Fund behoben** (beides derselbe Satz Zeilen in `pruefAnwenden()`), wenn Ondo es beauftragt.
 
 > **🔴 Erste Bewährungsbeobachtung, 10.9.2026 (Ondo, direkte Aussage aus der App, eine Woche
 > nach dem Bau).** Ondos Wortlaut: „Seit dem 3.9. wurden keine Spiele geparkt außer das Spiel
@@ -1719,6 +1753,8 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 | **Kein automatischer Test** | Jede Änderung wird nur von Hand geprüft | mittel → Punkt B wäre der erste Schritt |
 | **Gemini-Kaskade komplex** | Funktioniert, aber schwer zu durchschauen bei Fehlern | niedrig |
 | **Die Dokumente selbst** | Das Einlesen kostet einen neuen Chat etwa die Hälfte seines Arbeitsspeichers | **NEU 31.7.** → Punkt 18 |
+| **Löschen ohne Rückfrage** — `delBet()` und `logLoeschen()` löschen sofort und endgültig, während die zwei anderen unumkehrbaren Schritte der App vorher fragen (`korrFAnwenden()`, `datenLaden()` über `confirm()`) | Auf dem iPhone genügt ein Fehltipp. Seit Fassung 97 ist `state.kiProtokoll` der **Evidence Ledger** — ein Fehltipp löscht einen Beleg, auf dem das Lernen aufsetzen soll. Behebung: dieselbe `confirm()`-Rückfrage wie an den zwei vorhandenen Stellen; Kosten kein Geld, keine Laufzeit, zwei Sprachschlüssel | **NEU 11.9.** (Fassung 100) — **mittel**, Entscheidung liegt bei Ondo |
+| **Speichergrenze wird nirgends sichtbar** — scheitert `localStorage.setItem`, zeigt `save()` 1,5 Sekunden „nicht gespeichert" und sonst nichts; wie voll der Speicher ist, nennt die App nie | `kiProtokoll` wächst mit jeder Vorhersage, `refRoh` dreimal so schnell (schon bei Punkt 64 vermerkt). **Kein Beleg, dass die Grenze je erreicht wurde** — Ondos Browserspeicher ist von einer Code-Sitzung aus nicht einsehbar; benannt ist der Mechanismus, nicht ein Vorfall | **NEU 11.9.** (Fassung 100) — niedrig heute, steigend |
 
 ---
 

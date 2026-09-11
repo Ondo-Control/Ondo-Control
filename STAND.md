@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 11.9.2026, Fassung 99, v19.8.27*
+*Die aktuelle Wahrheit. Stand: 11.9.2026, Fassung 100, v19.8.27*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -175,6 +175,29 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 ## Versionen
 
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
+- **🔴 Vollständige Prüfung von `beta.html`, 11.9.2026 (Fassung 100) — keine Codeänderung.**
+  Ondos Auftrag: „Beta vollständig und gründlich auf Fehler /Lücken komplett prüfen, wenn alles
+  perfekt ist, dann weiter bauen." Geprüft wurde die ganze Datei (3764 Zeilen, 139 Funktionen,
+  279 Sprachschlüssel je Sprache), nicht nur das zuletzt Gebaute. **Kein Codefehler gefunden.**
+  Gefunden wurde ein **Widerspruch in der eigenen Buchführung** (Fehlerart C4): Die Schema-Tabelle
+  in `Ondo-Core-Architektur.md` 1c beschrieb `ergebnisHalbzeit`/`ergebnisVerl` als „vom
+  Schiedsrichter nachgetragen"; `pruefAnwenden()` schreibt aber ausschliesslich
+  `ergebnisHeim`/`ergebnisGast`, und der Backlog führt genau das seit Punkt 64 als offenen
+  Befund. Berichtigt in `Ondo-Core-Architektur.md` Fassung 0.7. **Drei Lücken benannt, keine
+  behoben** (Art. 8 — Behebung braucht Ondos Auftrag): `pruefAnwenden()` räumt beim Überschreiben
+  `ergebnisQuelle`/`ergebnisHalbzeit`/`ergebnisVerl` nicht weg (zurzeit nicht erreichbar, siehe
+  Backlog-Punkt 64, dritter Fund) · `delBet()` und `logLoeschen()` löschen ohne Rückfrage,
+  während die zwei anderen unumkehrbaren Schritte der App vorher fragen · die Speichergrenze des
+  Browsers wird nirgends sichtbar. Beide letzten stehen jetzt unter „Technische Schuld".
+  **Ohne Befund geprüft, maschinell statt angenommen:** `node --check` · 279 Sprachschlüssel in
+  allen drei Sprachen, keiner doppelt, keine Lücke · kein `t('…')` ins Leere · jedes
+  `getElementById` trifft ein vergebenes `id` · jede aus `onclick`/`onchange` gerufene Funktion
+  existiert · jedes gelesene `state`-Feld wird geschrieben · Geldrechnung stimmt ·
+  `marktUrteil()` bei ganzzahligen Toren lückenlos · Ergebniszahlen werden nie als Text
+  verglichen · jeder von einem Gehirn gelieferte Text wird vor dem Anzeigen mit `esc()`
+  entschärft. **Offen benannt:** Die ersten drei Fassungen des Prüfwerkzeugs meldeten nur
+  Fehlalarme; kein Befund oben stammt aus einem ungeprüften Werkzeug-Treffer — jeder ist an der
+  Codestelle selbst nachgelesen.
 - **Beta: v19.8.27** (`beta.html`, geliefert 11.9.2026) — **Nachprüfung auf Ondos Verlangen,
   ein eigener Fehler gefunden und behoben.** Vor dem Weiterbauen am Observation Layer wurde der
   ganze Bau seit dem Evidence Ledger geprüft. Gefunden: `kiWahlUebernehmen()` aus v19.8.26 schrieb
