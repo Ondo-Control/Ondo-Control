@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.91
+**Version:** 0.92
 **Stand:** 11. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.92 ändert (11.9.2026):** Backlog-Punkt 65 — Weg C (Fassungsabschnitte ins Archiv verschieben) als stehende Regel statt Einmalaktion eingeführt (Backlog Fassung 93), auf Ondos Auftrag. Neue Regel 5 im Backlog: nur die letzten fünf Fassungsabschnitte bleiben im Hauptdokument, jede künftige Lieferung verschiebt den sechstältesten automatisch ins Archiv. Sofort angewendet: 28 Abschnitte (87 bis 60, 78.845 Zeichen) nach `BACKLOG-ARCHIV.md` verschoben, an der chronologisch richtigen Stelle, durchgehende absteigende Reihenfolge. Backlog von 269.086 auf 192.220 Zeichen. Die zwei ursprünglich bei Punkt 65 genannten Haken (Archiv selbst über der Grenze, kein automatischer Verlustbeweis) bleiben unverändert bestehen. Kein Codeaufwand, keine neuen Sprachschlüssel, kein Verfassungsartikel geändert, keine neue Arbeitsregel — Regel 5 ist eine Dokumentregel, keine Arbeitsregel im Sinn von Abschnitt 2c. Blueprint auf 0.92 gehoben.
 
 > **Was Fassung 0.91 ändert (11.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war ein Fund Ondos (Backlog Fassung 92), kein Codeaufwand. Gemini erfand auf Anfrage scheinbar exakte Wettquoten, deckungsgleich mit einer echten Anzeige, und gestand das erst auf Nachfrage — wobei selbst dieses Geständnis nicht beweisbar wahr ist, eine KI kann ihr eigenes Erfinden auch im Nachhinein nicht zuverlässig einordnen. Bestätigt die neunte Fehlerart an einem neuen, konkreten Beispiel und die bestehende Ablehnung einer KI-Suche als Ersatz für eine echte Quotenschnittstelle. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.91 gehoben.
 

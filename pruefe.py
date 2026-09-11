@@ -131,8 +131,22 @@ ERLEDIGT = ('GEBAUT', 'ERLEDIGT', 'ÜBERHOLT', 'GESCHEITERT', 'ZURÜCKGENOMMEN',
 _status = {}
 for m in re.finditer(r'^\*\*([0-9A-F]+[a-c]?)\..*?\*\*Status: (.+?)\*\*', B, re.M):
     _status[m.group(1)] = m.group(2)
+def _erledigt(st):
+    # "NICHT GEBAUT" heisst gerade nicht erledigt — ein blosses Enthaltensein von
+    # "GEBAUT" reicht hier nicht, sonst zaehlt eine Verneinung faelschlich als Erledigung
+    # (gefunden 11.9.2026, an Punkt 0b: "... BESCHLOSSEN, NICHT GEBAUT ...").
+    for w in ERLEDIGT:
+        if w != 'GEBAUT':
+            if w in st:
+                return True
+            continue
+        for m in re.finditer(re.escape(w), st):
+            davor = st[max(0, m.start() - 6):m.start()]
+            if davor.upper() != 'NICHT ':
+                return True
+    return False
 _soll = sorted(p for p, st in _status.items()
-               if re.search(r'beschlossen', st, re.I) and not any(w in st for w in ERLEDIGT))
+               if re.search(r'beschlossen', st, re.I) and not _erledigt(st))
 _liste = re.search(r'Beschlossen und nicht gebaut: \w+\*\* — \*\*([^*]+)\*\*', B)
 if _liste:
     _ist = sorted(x.strip() for x in _liste.group(1).replace('.', '').split(','))

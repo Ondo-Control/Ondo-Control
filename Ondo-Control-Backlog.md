@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 11.9.2026, Fassung 92 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 11.9.2026, Fassung 93 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -8,6 +8,7 @@
 2. Claude schlägt Punkte von sich aus zum passenden Zeitpunkt vor. Ondo entscheidet, was und wann gebaut wird (Art. 8).
 3. Nichts wird gelöscht. Abgelehnt und überholt bleiben sichtbar.
 4. **Backlog-Pflege ist Code-Aufgabe (Ondo, 30.8.2026):** Code prüft und archiviert den Backlog künftig selbstständig, ohne Anstoss durch Chat — reines Verschieben eindeutig Erledigten nach `BACKLOG-ARCHIV.md`, nach denselben Kriterien wie bei der Archivierung vom 30.8.2026 (Fassung 61): Ein Punkt mit Status GEBAUT/GEKLÄRT/ENTSCHIEDEN/BEANTWORTET/GESCHLOSSEN zählt nur als erledigt, wenn im Punkt selbst **keine** Bewährungs-Einschränkung mehr steht ("Bewährung steht aus", "noch nicht bewährt" oder sinngemäss Gleiches) und er an keine noch offene Untersuchung gebunden bleibt — im Zweifel bleibt er stehen. Nichts wird gelöscht, keine inhaltliche Entscheidung über offene Punkte wird davon berührt — Art. 8 gilt für alles andere unverändert.
+5. **Nur die letzten fünf Fassungsabschnitte bleiben im Hauptdokument (Ondo, 11.9.2026, Backlog-Punkt 65 — stehende Regel statt Einmalaktion).** Jede Lieferung, die einen neuen Abschnitt „Was Fassung N ändert" anlegt, verschiebt im selben Zug den jetzt sechstältesten Abschnitt (und ältere, falls noch welche fehlen) wortgleich nach `BACKLOG-ARCHIV.md`, an der chronologisch richtigen Stelle. Grund: Weg C aus Punkt 65 (einmaliges Kürzen) hatte nur vorübergehend geholfen und war bis Fassung 88 wieder auf über 269.000 Zeichen zugewachsen — mehr als das Doppelte der 120.000-Zeichen-Grenze aus Punkt 65. Eine Einmalaktion behebt die Ursache nicht, eine stehende Regel schon. Nichts wird gelöscht, nur verschoben — Regel 3 gilt unverändert.
 
 **Status-Werte:** `Idee` · `beschlossen` · `gebaut` · `bewährt` (im Alltag getestet) · `überholt` · `abgelehnt`
 
@@ -15,6 +16,46 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 93 ändert (11.9., Backlog-Punkt 65 — stehende Kürzungsregel statt Einmalaktion)
+
+**Anlass:** Auftrag Ondo — die Datei kleiner halten, dauerhaft statt einmalig, nachdem Weg C
+aus Punkt 65 (einmaliges Kürzen, 30.8.2026) wieder auf über 269.000 Zeichen zugewachsen war.
+
+- **Neue Regel 5 im Abschnitt „Regeln für dieses Dokument":** Nur die letzten fünf
+  Fassungsabschnitte bleiben im Hauptdokument. Jede künftige Lieferung verschiebt den
+  sechstältesten Abschnitt automatisch ins Archiv, wortgleich, nichts gekürzt.
+- **Sofort angewendet:** 28 Fassungsabschnitte (87 bis 60, 78.845 Zeichen) nach
+  `BACKLOG-ARCHIV.md` verschoben, an der chronologisch richtigen Stelle direkt vor den dort
+  bereits stehenden älteren Fassungsnotizen (59 abwärts) — durchgehende absteigende
+  Reihenfolge, kein Bruch. Nur die Änderungsnotizen sind betroffen, keine offenen Punkte.
+- **Backlog-Punkt 65 nachgeführt:** Weg C ist jetzt eine stehende Regel, nicht mehr nur ein
+  Vorschlag — die zwei ursprünglich genannten Haken (Archiv selbst über der Grenze, fehlender
+  automatischer Verlustbeweis) bleiben unverändert bestehen und sind hier nicht neu gelöst.
+- **Grösse:** Backlog vorher 269.086 Zeichen, nachher 192.220 Zeichen — noch über der
+  120.000-Zeichen-Grenze aus Punkt 65, aber die Regel wirkt jetzt bei jeder künftigen
+  Lieferung weiter, statt nur einmal.
+- **Kein Codeaufwand, keine neuen Sprachschlüssel, kein Schnitt in der Messreihe.**
+- **Fassungszahl:** alle drei aktiven Dokumente auf 93 gehoben (Blueprint 0.92).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel — Regel 5 ist eine Dokumentregel (Abgrenzung, Regel 1), keine Arbeitsregel im
+  Sinn von Blueprint Abschnitt 2c.
+- **Beschlossen und nicht gebaut: drei** — **3, 4, 0b.** *(unverändert — jetzt im genauen
+  Wortlaut, den `pruefe.py` Abschnitt 5 maschinell nachrechnet; ein Fund dabei, siehe unten.)*
+- **🔴 Fund und Berichtigung an `pruefe.py` selbst, mit Begründung (Arbeitsregel M):** Weil die
+  gestapelten alten Fassungsabschnitte jetzt fehlen, konnte Abschnitt 5 seine Vergleichszeile
+  nicht mehr finden und schlug erstmals wirklich fehl — vorher hatte er sich still auf eine
+  veraltete, zufällig noch passende Zeile weiter unten im Dokument gestützt, ohne dass es
+  auffiel. **Zwei echte Fehler dabei gefunden, nicht nur der fehlende Treffer:** Erstens hatte
+  keine der zuletzt geschriebenen Zeilen je das genaue, von Abschnitt 5 verlangte Wortmuster
+  getroffen (fehlender Doppelpunkt) — dieser Punkt ist jetzt korrigiert (siehe Zeile oben).
+  Zweitens zählte Abschnitt 5 Punkt 0b bisher fälschlich als „erledigt", weil sein Status den
+  Text „NICHT GEBAUT" enthält und die Prüfung nur nach der Zeichenkette „GEBAUT" ohne Rücksicht
+  auf die Verneinung gesucht hat. **Keine Lockerung** — `pruefe.py` unterscheidet jetzt „GEBAUT"
+  von „NICHT GEBAUT" und prüft dadurch genauer, nicht großzügiger; alle anderen Kriterien
+  unverändert scharf.
 
 ---
 
@@ -170,768 +211,6 @@ Code-Aufgabe" (Regel 4) angewandt.
   `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
   Arbeitsregel.
 - **Beschlossen und nicht gebaut weiterhin fünf** — **3, 4, 0b, 34, 35** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 87 ändert (10.9., erste Bewährungsbeobachtung zu Backlog-Punkt 68)
-
-**Anlass:** Ondo, eine Woche nach dem Bau der Mehrfachlauf-Absicherung (3.9.2026), direkte
-Aussage aus der App: „Seit dem 3.9. wurden keine Spiele geparkt außer das Spiel am 5.9. was
-verschoben ist."
-
-- **Backlog-Punkt 68 nachgeführt, kein Codeaufwand.** Der 5.9.-Fall (Sligo Rovers – Galway
-  United) ist keine Instabilität im Sinn dieses Punktes, sondern eine von Ondo von Hand
-  vorgenommene Parkung wegen einer extern belegten Spielverlegung (14.9.2026, per WebSearch
-  gegengeprüft, mit Einschränkung wegen blockierter Sport-Datenseiten). Damit hat die
-  automatische Uneinigkeitsregel (`parkeEintraege()`, `parkGrund:'unstable_ref'`) in der
-  ersten vollen Betriebswoche seit dem 3.9.2026 kein einziges Mal ausgelöst — ein echter,
-  positiver erster Datenpunkt.
-- **Ehrlich eingeschränkt (Art. 14, Stabilitätsregel):** Das beweist nicht, dass der
-  Schiedsrichter „repariert" ist — eine Woche ist eine kurze Beobachtung, und ob die in
-  dieser Woche übernommenen 3/3- und 2/3-Werte extern nachgeprüft richtig waren, ist nicht
-  untersucht und hier nicht behauptet. Sabah FC – Hapoel Beer-Sheva FC und NK Celje – Slovan
-  Bratislava bleiben unverändert geparkt (beide vor Punkt 68) und warten weiter auf Ondos
-  eigenen erneuten Prüfversuch — kein Code nötig.
-- **Anlass für die Nachfrage:** Ondo hatte Rohdaten des Schiedsrichters zur Durchsicht
-  angeboten; eine erste Auswertung war fehlerhaft (Zuordnung von Ergebnissen ohne
-  Mannschaftsnamen auf falsche Einträge), selbst korrigiert vor der Vorlage. Die Rohdaten
-  taugen für eine vollständige Liste „welche Spiele wegen Instabilität geparkt waren" nicht
-  zuverlässig — nur Wettbewerb+Datum-Kombinationen ohne weiteres Spiel am selben Tag sind
-  daraus verlässlich lesbar. Reiner Chat-Befund, nicht als eigener Punkt aufgenommen.
-- **Beschlossen und nicht gebaut weiterhin fünf** — **3, 4, 0b, 34, 35** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 86 ändert (7.9., Backlog-Punkt 73 zurückgesetzt — vierter Fehlschlag in Folge)
-
-**Anlass:** Kandidat 4 (`min-width:0` direkt am Input, v19.8.19) wurde am echten iPhone geprüft
-und widerlegt. Ondos Auftrag, unmittelbar und ohne weitere Rückfrage: „Zurücksetzen."
-
-- **`beta.html` v19.8.20 — `kilogFilterBlock()`s Datumsfeld-Reihe vollständig auf den Stand vor
-  Backlog-Punkt 73 zurückgesetzt**, nach der am selben Tag vorab vereinbarten Rücksetz-Regel.
-  `display:flex;gap:10px` am Container, `flex:1;min-width:0` an beiden Feld-Divs,
-  `min-width:0;text-align:center` an beiden Inputs — **byte-für-byte derselbe Aufbau wie
-  `logExportBlock()`s seit v19.8.14 unveränderte Datumsreihe**, mit Trockentest belegt (25
-  Prüfungen, darunter ein Normalisierungs-Vergleich, der exakte Übereinstimmung zeigt). Alle
-  vier Kandidaten sind damit rückgängig gemacht. Die harmlose Zentrierungsregel aus Kandidat 1
-  bleibt bewusst stehen — sie war nie Teil des Problems.
-- **Ehrlich benannt: Der ursprüngliche Überlauf-Fehler besteht damit wieder** — keine neue
-  Regression, sondern die bewusste Rückkehr zum Ausgangspunkt, nachdem vier unabhängig
-  begründete CSS-Ansätze (Zentrierung, Grid, Felder untereinander, `min-width:0` am Input) am
-  echten Gerät alle gescheitert sind. Volle Begründung steht als angehängter Block direkt bei
-  Punkt 73 (nicht hier wiederholt — Punkt 45).
-- **Kein fünfter CSS-Versuch ohne neuen Auftrag.** Zwei Wege bleiben unverbraucht, falls Ondo
-  das Thema wieder aufnimmt: `overflow:hidden` an den Feld-Containern (nie ausprobiert) oder
-  der native Datumspicker ganz ersetzt (grösserer Eingriff, ändert Bedienung, nicht nur Layout).
-- **Verifikation:** `node --check` bestanden · Trockentest 25 Prüfungen, alle bestanden ·
-  `pruefe.py` ohne Argument — ALLES SAUBER.
-- **Keine neuen Sprachschlüssel** (254 unverändert). **Kein Schnitt in der Messreihe.**
-  `APP_VERSION` weiter 18.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 86 gehoben (Blueprint 0.85).
-  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
-  Arbeitsregel.
-- **Beschlossen und nicht gebaut weiterhin fünf** — **3, 4, 0b, 34, 35** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 85 ändert (7.9., drei weitere Entscheidungen, Punkt 73 Kandidat 4 gebaut)
-
-**Anlass:** Ondo hat im selben Chat drei weitere offene Punkte entschieden und für Punkt 73
-den vorgeschlagenen Kandidaten 4 in Auftrag gegeben, mit einer vorab vereinbarten
-Rücksetz-Regel für den Fall eines weiteren Fehlschlags.
-
-- **Backlog-Punkt 73, Kandidat 4 gebaut, `beta.html` v19.8.19** — `min-width:0` jetzt direkt
-  an beiden `<input type="date">`-Elementen, auf Ondos eigenen Vorschlag. Der entscheidende
-  Fund kam von Ondo selbst: Die Textfelder Wettbewerb/Mannschaft in derselben Karte, mit
-  identischer CSS-Behandlung, laufen nicht über — nur `type="date"` ist betroffen. Volle
-  Begründung und Verifikation stehen als angehängter Block direkt bei Punkt 73 (nicht hier
-  wiederholt — Punkt 45). **Rücksetz-Regel vorab vereinbart:** Wirkt auch das nicht, wird die
-  Datumsfeld-Reihe vollständig auf die Flexbox-Struktur zurückgesetzt, die sie vor Punkt 73
-  hatte — kein fünfter CSS-Versuch, kein weiterer Rückfrage-Zyklus. Trockentest: **29
-  Prüfungen**, alle bestanden.
-- **„Fail Safe" ENTSCHIEDEN: ja, ein Satz im Blueprint.** Eingetragen als **Arbeitsregel N**
-  (Blueprint 0.83, Abschnitt 2c), mit dem realen Anlass vom 3./4.8.2026 (14 Flash-Modelle
-  automatisch durchprobiert, weil ein erschöpftes Kontingent fälschlich als „unbekannter
-  Fehler" behandelt wurde) und dem geprüften Befund, dass die blinde Wechsel-Logik im
-  heutigen Code nicht mehr existiert — die Regel gilt vorsorglich für die Zukunft.
-- **Rollenmodell ENTSCHIEDEN: „wenn du das für richtig hältst, dann ja nach deiner
-  Empfehlung".** Eingetragen als **Blueprint, Abschnitt 2e** — bewusst minimal, wie empfohlen:
-  nur die bereits in `STAND.md` stehenden Rollen plus die eine noch wirksame Konfliktregel
-  (Architekt ≠ unabhängiger Prüfer, betrifft ChatGPT), keine neue Hierarchie, keine weiteren
-  Unterregeln. Backlog-Punkt 11 als gebaut vermerkt.
-- **GitHub Actions TEILWEISE GEKLÄRT.** Ondos gezielte Nachfrage — verletzt eine durch
-  Knopfdruck ausgelöste Aktualisierung die „kein Server"-Regel? — mit Nein beantwortet: Ein
-  Knopfdruck ist die von Grenze 1 verlangte Aufforderung, keine Umgehung davon. Eine
-  zeitgesteuerte, unbeaufsichtigte Ausführung bleibt davon ausdrücklich ausgenommen und
-  weiterhin offen. Eingetragen in Blueprint, Abschnitt 10, mit einer ungeprüften technischen
-  Einordnung (ob dafür überhaupt GitHub Actions nötig wäre, oder ein reiner Browser-Abruf bei
-  Knopfdruck genügt). Backlog-Punkt 9 entsprechend ergänzt, bleibt offen — die Vorfrage
-  „deckt ein kostenloser Quotendienst Ondos Spiele ab?" ist weiterhin unbeantwortet.
-- **`STAND.md`, Entscheidungstabelle bereinigt:** „Fail Safe" und „Rollenmodell" entfernt
-  (keine offenen Entscheidungen mehr), „GitHub Actions" umformuliert (teilweise geklärt,
-  zeitgesteuerte Variante bleibt offen).
-- **Keine neuen Sprachschlüssel** (254 unverändert). **Kein Schnitt in der Messreihe.**
-- **Verifikation:** `node --check` bestanden · `pruefe.py` ohne Argument — ALLES SAUBER.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 85 gehoben (Blueprint 0.84).
-  `Ondo-Core-Architektur.md` unverändert. **Eine neue Arbeitsregel (N), ein neuer
-  Blueprint-Abschnitt (2e) — beide auf Ondos ausdrückliche Entscheidung, kein
-  Verfassungsartikel geändert.**
-- **Beschlossen und nicht gebaut weiterhin fünf** — **3, 4, 0b, 34, 35** *(unverändert;
-  Punkt 73 zählt nicht mit, da fortlaufend in Bearbeitung, nicht „beschlossen und liegen
-  gelassen").*
-
----
-
-## ⚠ Was Fassung 84 ändert (7.9., vier offene Entscheidungen geklärt, kein Codeaufwand)
-
-**Anlass:** Ondo hat vier der in `STAND.md`s Entscheidungstabelle offen geführten Punkte
-entschieden (30, 34, 35, 0b), im selben Zug wie die Rückmeldung, dass auch Kandidat 3 zu
-Punkt 73 nicht wirkt (siehe eigener, gesonderter Punkt 73 unten — hier nur Buchführung, kein
-Code).
-
-- **Punkt 30 (Freundschaftsspiele) ENTSCHIEDEN: bleiben drin, kein Ausschluss.** Ondos
-  Begründung im Wortlaut: „Die Gehirne sollen in der Lage sein, mit solchen Variablen zu
-  rechnen." Punkt liegt vollständig geschlossen in `BACKLOG-ARCHIV.md` (dort schon vorher,
-  jetzt mit Abschlussvermerk).
-- **Punkt 34 (Brier-Score) und Punkt 35 (Streuungsangabe) ENTSCHIEDEN: werden gebaut** — Ondo
-  hatte die Nützlichkeitsfrage an Claude delegiert; Claudes Einschätzung ist „ja" zu beiden,
-  mit Begründung bei den Punkten selbst. **Beide von `BACKLOG-ARCHIV.md` nach hier
-  verschoben, wortgleich** — eine Bauaufgabe ist kein abgeschlossener Punkt im Sinn von
-  Regel 4, sie gehört in den aktiven Bestand, nicht ins Archiv. Die konkrete Umsetzung
-  (Anzeigeort, Rechenverfahren) ist ein eigener, noch nicht beauftragter Bauschritt.
-- **Punkt 0b (Widersprüche messen) ENTSCHIEDEN: Wiederaufnahme ja.** Dabei ein Widerspruch im
-  Punkt selbst gefunden und behoben (Kopfzeile „zurückgestellt" gegen Schlusssatz
-  „Entscheidung Ondos steht aus" — `STAND.md`s Tabelle hatte genau das schon als offen
-  benannt). **Neuer Fund vor dem Bau:** Der ursprüngliche Zurückstellungsgrund (Punkt A,
-  Ambiguität bei „beide treffen") ist für diesen einen Markt seit v19.8.0 behoben — das
-  Gehirn wird dort direkt gefragt, nicht mehr aus dem Tipp abgeleitet. Ob dieselbe Ambiguität
-  beim Markt „Über/Unter 2,5 Tore" nie bestand oder weiterhin besteht, ist **nicht geprüft** —
-  offen als Umsetzungsfrage (vermutlich Widerspruchsquote je Markt getrennt, nicht als eine
-  gemeinsame Zahl), nicht als Grundsatzfrage.
-- **`STAND.md`, Tabelle „Entscheidungen, die bei Ondo liegen" bereinigt:** Die vier Zeilen (30,
-  34, 35, 0b) entfernt — keine offenen Entscheidungen an Ondo mehr. Verbleibend: 3 (Such-
-  Experiment, ruht weiterhin auf eigenen Wunsch), Befund A, „Fail Safe", GitHub Actions,
-  Schiedsrichter-Grundsatzfrage, Kriterium (c), Rollenmodell — zu den letzten drei hat Claude
-  im selben Chat erklärende Antworten gegeben, ohne dass Ondo bereits entschieden hätte.
-- **Beschlossen und nicht gebaut jetzt fünf** — **3, 4, 0b, 34, 35** *(vorher zwei: 3, 4)*.
-- **Kein Codeaufwand**, `beta.html` bleibt v19.8.18 (Punkt 73 wartet auf Ondos Entscheidung
-  zu Kandidat 4, siehe eigener Punkt). `node --check` nicht nötig.
-- **Verifikation:** `pruefe.py` ohne Argument — ALLES SAUBER.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 84 gehoben (Blueprint 0.83).
-  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
-  Arbeitsregel.
-
----
-
-## ⚠ Was Fassung 83 ändert (7.9., Backlog-Punkt 73 — Kandidat 3, Ondos eigene Wahl)
-
-**Anlass:** Ondo hat am echten iPhone bestätigt: Kandidat 2 (CSS-Grid, v19.8.17) hat weder das
-Herausragen noch ein zusätzlich beobachtetes Überlappen der beiden Datumsfelder behoben — der
-zweite Fehlschlag in Folge. Zur Wahl gestellt: eine kleine Zusatzänderung (`overflow:hidden`)
-oder eine sichtbar grössere, strukturell sicherere Änderung (Felder untereinander statt
-nebeneinander). **Ondo hat sich für Letzteres entschieden.**
-
-- **Kandidat 3 gebaut, `beta.html` v19.8.18:** Die Datumsfeld-Reihe in `kilogFilterBlock()`
-  steht jetzt untereinander statt nebeneinander — dasselbe Muster wie die Felder
-  Wettbewerb/Mannschaft in derselben Karte. Kein eigenes `width` mehr am Input nötig
-  (`input,select{width:100%}` gilt bereits global), `min-width:0` an den Containern entfällt
-  (ausserhalb eines Flex-/Grid-Kontexts wirkungslos). Volle Begründung, warum das strukturell
-  sicherer ist als beide vorigen Kandidaten (kein Nachbar mehr, mit dem ein Feld um Breite
-  konkurrieren müsste), steht als angehängter Block direkt bei Punkt 73 (nicht hier
-  wiederholt — Punkt 45).
-- **`logExportBlock()` weiterhin bewusst nicht mitgeändert** — bleibt die einzige seit v19.8.14
-  unveränderte Vergleichsgrundlage für Ondos nächste Prüfung am Gerät.
-- **Sichtbare Folge, nicht verschwiegen:** Die Filterkarte wird zwei Zeilen höher. Ondo hat
-  diesen Weg in Kenntnis dieser Folge gewählt.
-- **Verifikation:** `node --check` bestanden · Trockentest mit **32 Prüfungen** an der echten,
-  im Wortlaut aus `beta.html` herausgeschnittenen `kilogFilterBlock()`, mit `logExportBlock()`
-  weiterhin als Kontrollwert — alle bestanden · `pruefe.py` ohne Argument — ALLES SAUBER.
-- **Nebenbei, auf Ondos Angebot, exploratorisch geprüft, nicht Teil dieser Codelieferung:** Ein
-  von Ondo hochgeladener Rohtext-Export des Schiedsrichters (122 KI-Log-Einträge, 30.8.–
-  7.9.2026) wurde ausgewertet, um die wachsende Liste unbewerteter Vorhersagen einzuordnen.
-  **Befund, mit Zahlen belegt:** Nach Bereinigung der im Export mehrfach angehängten
-  Wiederholungen (derselbe Prüflauf wird an jedem betroffenen Eintrag gespeichert) bleiben 24
-  echte, unterschiedliche Prüfläufe mit 120 Einzelergebnissen — davon 109 gefunden und
-  ausgewertet (91 %), 6 nicht gefunden (5 %, alle an derselben Listenposition „S12", darunter
-  belegt Sligo Rovers–Galway United, 5.9.2026, League of Ireland), 5 noch laufend. **Kein
-  einziger Widerspruch zu einem bereits übernommenen Ergebnis gefunden** — deckt sich mit
-  Ondos eigener Beobachtung (36 geprüfte Spiele über zwei Läufe, alle richtig). **Ausdrücklich
-  nicht erklärt:** Warum die „Ergebnisse prüfen"-Ansicht in einem einzelnen Lauf nur 13 von 40
-  gefunden hat. Der Rohtext-Export deckt nur den Zeitraum 30.8.–7.9.2026 ab; die
-  Park-Übersicht zeigt aber unbewertete Einträge bis zurück zum 28.7.2026 — deutlich ausserhalb
-  dieses Fensters. **Als Vermutung gekennzeichnet, nicht als Befund:** Die schlechte Trefferquote
-  des einzelnen grossen Prüflaufs dürfte eher am Alter/an der Kleinheit der Wettbewerbe der
-  seit Wochen unbewerteten Altbestände liegen als an einem neuen Fehler in der aktuellen
-  Tagesprüfung — nicht geprüft, nur naheliegend. **Nicht ins Backlog oder in `STAND.md`
-  übernommen** — reiner Chat-Befund auf Zuruf, kein Bau, keine Entscheidung; wird nachgetragen,
-  falls Ondo das wünscht.
-- **Keine neuen Sprachschlüssel** (254 unverändert). **Kein Schnitt in der Messreihe.**
-- **Fassungszahl:** alle drei aktiven Dokumente auf 83 gehoben (Blueprint 0.82).
-  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
-  Arbeitsregel.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 82 ändert (6.9., main nachgezogen — Vorfall zu Punkt 67 festgehalten, kein Codeaufwand)
-
-**Anlass:** Auftrag Ondo. Die Lieferung zu Punkt 73 (Fassung 81, `beta.html` v19.8.17) lag auf
-dem Branch `claude/kilog-date-fields-overflow-1lc1vx` statt auf `main`. **Ondo hat das nicht
-erlaubt und wusste nichts von einem neuen Branch.** Backlog-Punkt 67 (seit 2.9.2026 in
-`BACKLOG-ARCHIV.md`) verlangt direkt auf `main`, `--ff-only`, einzige Ausnahme `mistral`.
-
-- **`main` per `--ff-only` nachgezogen, ohne Konflikt.** `main` stand unverändert auf
-  `f1ec414`, der Branch genau einen Commit darüber (`0b66be0`) — der Schnellvorlauf war
-  möglich, es war kein Merge-Commit und kein Rebase nötig. **Die Anweisung für den Fehlerfall
-  („anhalten, nicht automatisch mergen oder rebasen") kam nicht zum Tragen**, weil sich `main`
-  seit der Lieferung nicht bewegt hatte.
-- **`STAND.md` ergänzt, neuer Abschnitt „Push ausschliesslich auf `main` — Vorfall vom
-  6.9.2026"** im Bereich zur Cloud-/Code-Arbeitsweise. **Abweichung vom Wortlaut des Auftrags,
-  ausdrücklich gemeldet statt stillschweigend gelöst:** Der Auftrag nennt „den Abschnitt zu
-  Backlog-Punkt 67 (main-Push-Regel)" in `STAND.md` — **einen solchen Abschnitt gibt es dort
-  nicht.** Punkt 67 ist am 2.9.2026 (Fassung 72) vollständig nach `BACKLOG-ARCHIV.md`
-  gewandert und war in `STAND.md` nie eigens abgebildet. Statt zu raten oder die Ergänzung
-  wegzulassen, steht sie am sachlich nächstliegenden Ort, mit einem Verweis auf den Fundort
-  des Punktes selbst (Punkt 45, ein Ort je Tatsache).
-- **Drei Dinge festgehalten, wie beauftragt:** der Vorfall selbst · dass eine Sitzung Zweige
-  anlegen, aber nicht löschen kann (HTTP 403, Rechte-Grenze, Löschen bleibt Ondos Handarbeit
-  auf github.com) · **dass GitHub Pages ausschliesslich `main` liest** — eine Lieferung auf
-  einem anderen Branch erreicht Ondos Browser nicht, unabhängig vom Ergebnis jeder Prüfung.
-  Das ist der eigentliche Grund, warum der Vorfall kein Formfehler ist: Eine geprüfte Datei,
-  die niemand laden kann, ist keine Lieferung.
-- **Ursache benannt, ohne Ausrede (Art. 14):** Die Sitzung war von aussen auf diesen Branch
-  festgelegt worden und durfte nach dieser Vorgabe auf keinen anderen pushen. **Das hebt Punkt
-  67 nicht auf** — nach Artikel 8 kommen Aufträge ausschliesslich von Ondo. Richtig wäre
-  gewesen, **vor** dem Push anzuhalten und zu fragen. Dass die Sitzung den abweichenden Branch
-  im Antworttext gemeldet und um Entscheidung gebeten hat, ist kein Ersatz dafür: gemeldet ist
-  nicht genehmigt.
-- **Stehende Regel aufgenommen (Ondo, 6.9.2026), in `STAND.md` im Wortlaut:** Push
-  ausschliesslich auf `main`, `--ff-only`. Kein neuer Branch, ausser `mistral`. Bei einem
-  Konflikt anhalten und fragen, nicht selbst entscheiden. **Keine neue Arbeitsregel im Sinn
-  von Blueprint-Abschnitt 2c** — Punkt 67 ändert sich inhaltlich nicht, es wird nur ein
-  Vorfall festgehalten und die bestehende Regel geschärft.
-- **Kein Codeaufwand**, `beta.html` bleibt unverändert bei v19.8.17, kein `node --check` nötig.
-  Sprachschlüssel unverändert bei 254. Kein Schnitt in der Messreihe.
-- **Offen geblieben, nicht in diesem Auftrag enthalten:** Der Branch
-  `claude/kilog-date-fields-overflow-1lc1vx` bleibt auf GitHub stehen, bis Ondo ihn von Hand
-  löscht — inhaltlich unbedenklich, weil sein einziger Commit jetzt vollständig in `main`
-  enthalten ist. Er ist damit der **vierte** verwaiste Zweig neben den drei aus Fassung 69.
-- **Verifikation:** `git log` auf `main` zeigt den Schnellvorlauf · `pruefe.py` ohne Argument —
-  ALLES SAUBER.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 82 gehoben (Blueprint 0.81).
-  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
-  Arbeitsregel.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 81 ändert (6.9., Backlog-Punkt 73 — Kandidat 2 für die Datumsfelder im KI-Log-Filter)
-
-**Anlass:** Auftrag Ondo — der tatsächliche Fehler ist ein anderer als der bis zum 5.9.2026
-verfolgte. Nicht die Zentrierung ist das Problem, sondern die Breite: In `kilogFilterBlock()`
-ragt das rechte Datumsfeld („bis") über den Kartenrand hinaus, bei **leeren** Feldern, am
-echten iPhone beobachtet und mit Bildschirmfoto belegt. Der Auftrag verlangte in fester
-Reihenfolge: erst vollständig lesen, dann nach einem strukturellen Unterschied zwischen
-Filter- und Exportkarte suchen, und nur bei ausbleibendem spezifischerem Fund umbauen.
-
-- **Zwei Funde aus Schritt 2, beide mit Codezitat belegt — die volle Begründung steht als
-  angehängter Block direkt bei Punkt 73, nicht hier wiederholt (Punkt 45).** Kurz: **(A)** Die
-  im Auftrag erwogene „abweichende Kartenbreite zwischen Wetten- und Mehr-Tab" scheidet aus —
-  `logExportBlock()` steht seit v19.8.15 (Punkt 71) nicht mehr im Mehr-Tab, sondern im
-  KI-Log-Reiter „Werkzeuge"; der Mehr-Tab zeigt `messExportBlock()`, das gar keine
-  Datumsfelder hat. Beide Reihen liegen im selben Container, in derselben `.wrap`, in
-  derselben `.card` — es gibt keinen Breitenunterschied. **(B)** Der einzige inhaltliche
-  Unterschied ist der Feldwert: `logExportBlock()` belegt beide Felder fest mit `heute`,
-  `kilogFilterBlock()` liest `kilogVon`/`kilogBis`, die als leerer String initialisiert sind.
-  Das deckt sich genau mit Ondos „beobachtet bei LEEREN Feldern". **Als Vermutung
-  gekennzeichnet, nicht als Befund** (Art. 11) — dass ein leeres Datumsfeld auf iOS durch
-  seinen Platzhalter breiter wird, ist von hier aus nicht messbar.
-- **Schritt 3 trotzdem wie beauftragt ausgeführt, mit Begründung:** Fund B ist spezifischer
-  als die erwogene Kartenbreite, **führt aber zu keiner anderen Abhilfe** — gegen eine zu
-  grosse intrinsische Mindestbreite ist `minmax(0,1fr)` der Riegel, gleich woher sie kommt.
-  Die Datumsfeld-Reihe in `kilogFilterBlock()` ist von Flexbox auf CSS-Grid umgestellt
-  (`beta.html` v19.8.17). `min-width:0` bleibt an den Container-Divs stehen, weil ein
-  Grid-Item von sich aus `min-width:auto` hat.
-- **`logExportBlock()` bewusst NICHT mitgeändert** (Auftrag Schritt 4): Dieselbe Ursache liegt
-  dort nach Fund B nicht belegt vor (die Felder sind nie leer), und eine unveränderte Stelle
-  ist die **Vergleichsgrundlage** für Ondos Prüfung am Gerät.
-- **Keine ungefragte Zusatzänderung (Art. 8):** Kein Eingriff an `kilogGefiltert()`, an `state`
-  oder an der Datenhaltung. Auch die naheliegende Vorbelegung der Filterfelder ist
-  **unterlassen** — sie würde das Verhalten des Filters ändern und ist nicht beauftragt.
-- **Verifikation:** `node --check` bestanden · Trockentest **30 Prüfungen, alle bestanden**, an
-  der echten, im Wortlaut aus `beta.html` herausgeschnittenen `kilogFilterBlock()`, mit
-  `logExportBlock()` als Kontrollwert · `pruefe.py` ohne Argument — ALLES SAUBER. **Ein
-  Fehlschlag im ersten Trockentestlauf war ein Messfehler der Prüfung selbst** — vor der
-  Änderung an der Prüfung die tatsächliche Ausgabe belegt, die Prüfung präziser gemacht statt
-  gelockert (Fehlerart C6 vermieden).
-- **Trockentest-Bericht, wie im Auftrag verlangt: Keine bestehende Prüfung berührt diese
-  Anzeigefunktion.** Auf `main` liegt keine committete Trockentest-Datei; `selbsttest.py`
-  (Punkt 47) liegt nur auf `mistral` und prüft keine Anzeigefunktion. Trotzdem ausgeführt:
-  Syntax und Rechenproben bestanden, **Sprachschlüssel-Abgleich fehlgeschlagen — vorbestehend,
-  durch Gegenprobe gegen den unveränderten `origin/main`-Stand als Nicht-Regression belegt**.
-  Sein Regex erkennt in der heutigen `beta.html` nur 67 statt 254 Schlüssel je Sprache.
-  Dieselbe Art Werkzeuglücke wie in Punkt 66. **Nur festgehalten, nichts geändert** — die
-  Datei liegt auf `mistral`, ohne Auftrag nicht anzufassen.
-- **Sprachschlüssel:** unverändert bei 254 — reine Anzeigeänderung ohne neue Beschriftung.
-  **Kein Schnitt in der Messreihe.** `APP_VERSION` weiter 18.
-- **🔴 Punkt 73 bleibt 🔴 OFFEN**, Vermerk „Kandidat Nr. 2 ausgeliefert, Bestätigung am echten
-  Gerät steht aus" — **ausdrücklich nicht auf behoben gesetzt**, obwohl alle Prüfungen sauber
-  durchlaufen. Diese Umgebung hat keinen Safari-/WebKit-Renderer und kann die sichtbare
-  Wirkung nicht selbst beobachten (Art. 14).
-- **Fassungszahl:** alle drei aktiven Dokumente auf 81 gehoben (Blueprint 0.80).
-  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
-  Arbeitsregel.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 80 ändert (5.9., Dokumente pflegen und Übergabe — reine Buchführung, kein Codeaufwand)
-
-**Anlass:** Auftrag Ondo — vollständiger Durchgang durch Backlog und `STAND.md` nach
-offenen, unbeantworteten oder vergessenen Punkten, Punkt 73 erneut geöffnet (Ondo hat am
-echten iPhone keine sichtbare Wirkung bestätigt), Dokumente pflegen, Übergabe an den
-Nachfolgechat vorbereiten. **Ausdrücklich keine inhaltliche Klärung der gefundenen offenen
-Fragen in dieser Sitzung** — sie gehen als Auftrag an den Nachfolgechat, nicht als gelöste
-Sache. Die vollständige Fundliste steht in der Übergabemappe, nicht hier wiederholt
-(Punkt 45).
-
-- **Backlog-Punkt 73 erneut geöffnet:** Ondo bestätigt, die iOS-Zentrierungsregel zeigt auf
-  seinem echten iPhone keine sichtbare Wirkung, trotz syntaktisch korrektem Code. Nicht in
-  dieser Sitzung untersucht oder neu gebaut — als offene Fehlerstelle mit unbearbeiteten
-  Vorschlägen für die nächsten Schritte festgehalten.
-- **Backlog-Punkt 41 archiviert** (`BACKLOG-ARCHIV.md`, neue Sammlung vom 5.9.2026):
-  GEBAUT am 30.8.2026, keine Bewährungs-Einschränkung im eigenen Text, kein offener
-  Verweis mehr aus einer aktiven Überschrift — nach Regel 4 archivierbar. Wortgleich
-  verschoben, nichts gekürzt.
-- **`STAND.md`, Tabelle „Entscheidungen, die bei Ondo liegen" berichtigt:** Die Zeilen zu
-  Punkt 36 und Punkt 37 sind entfernt — beide sind längst gebaut (37 seit 30.8.2026 sogar
-  bereits archiviert), keine offenen Entscheidungen mehr. Die Fundstelle bei Punkt 3
-  („Backlog, Prio 1") ist auf „Backlog" berichtigt — die Überschrift „Prio 1" existiert seit
-  Fassung 77 nicht mehr; der Verweis zeigte seither ins Leere.
-- **Zwei gezielt geprüfte Fragen, keine davon hier geklärt:** (a) Ob `refEinigkeit`- und
-  `refRohAbgleich()`-Warnzeile an derselben Karte gleichzeitig erscheinen können, ist
-  bereits beantwortet — im Code-Kommentar von `vorhersageKarte()` selbst (`beta.html`):
-  „Beide koennen beim selben Eintrag gleichzeitig erscheinen und widersprechen sich nicht."
-  Keine offene Frage. (b) Backlog-Punkt 65 trägt weiterhin die widersprüchlichen Zahlen
-  „12.289" gegenüber „12.299" für dieselbe fehlende Zeichenmenge — obwohl die Fassung-71-
-  Änderungsnotiz behauptet, das sei bereits „mit Streichung und Vermerk berichtigt"
-  worden. Diese Berichtigung wurde nie tatsächlich in Punkt 65 selbst eingetragen. Nicht
-  hier entschieden, welche Zahl stimmt — als offene Korrektur an den Nachfolgechat
-  gegeben.
-- **Alle vier Pflichtdokumente sowie `CLAUDE.md` gegen die Punkt-65-Grenze geprüft** (`wc
-  -c`, Stand dieser Lieferung): `STAND.md` 98.708 Byte, `Blueprint.md` 65.027 Byte,
-  `Ondo-Core-Architektur.md` 12.088 Byte, `CLAUDE.md` 9.806 Byte — alle vier unter der
-  120.000-Grenze. **Dieses Dokument selbst liegt bei rund 203.000 Byte, deutlich über der
-  Grenze**, trotz der Archivierung von Punkt 41 — Punkt 65 bleibt unentschieden (Weg A/B/C),
-  wird durch das Wachstum aber dringlicher.
-- **`CLAUDE.md` (Backlog-Punkt 54) erneut erneuert**, weil sich Backlog und `STAND.md` seit
-  der letzten Erzeugung geändert haben — Hash-Tabelle auf den tatsächlich committeten Stand
-  dieser Lieferung berechnet.
-- **Sprachschlüssel:** unverändert bei 254 — reine Dokumentpflege, kein Codeaufwand ausser
-  der bereits beschriebenen Buchführung.
-- **Verifikation:** `pruefe.py` ohne Argument — ALLES SAUBER. Kein `node --check` nötig,
-  `beta.html` unverändert.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 80 gehoben (Blueprint 0.79).
-  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
-  Arbeitsregel.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 79 ändert (4.9., Karten einklappen — Punkt 72 Schritt 2 —, iOS-Datumsfelder, CLAUDE.md erneuert)
-
-**Anlass:** Auftrag Ondo, drei Teile in einer Lieferung, jeder einzeln verifiziert: Karten
-einklappen (Backlog-Punkt 72, Schritt 2 des KI-Log-Redesigns), die iOS-Zentrierung der
-Datumsfelder, und die fällige Auffrischung von CLAUDE.md.
-
-- **Backlog-Punkt 72, Schritt 2 gebaut, `beta.html` v19.8.16:** Karten in den drei
-  KI-Log-Reitern Offen/Bewertet/Archiv starten eingeklappt, zeigen dabei weiterhin Spielname,
-  Datum, Gehirn-Symbol, Ergebnis-Tipp und alle Warn-Markierungen; antippen zeigt den vollen
-  Inhalt. Volle Begründung und Verifikationsergebnis stehen als angehängter Block direkt bei
-  Punkt 72 (nicht hier wiederholt — Punkt 45).
-- **Neuer Backlog-Punkt 73 gebaut:** die iOS-Zentrierung der Datumsfelder, mit einer eigenen,
-  nebenwirkungsfreien CSS-Regel behoben — sichtbare Wirkung auf echtem iOS von Ondo zu
-  bestätigen, da diese Umgebung keinen WebKit-Renderer hat.
-- **`CLAUDE.md` (Backlog-Punkt 54) erneuert:** aus den vier vollständig gelesenen
-  Pflichtdokumenten neu geschrieben, zwei Abschnitte gestrafft, jetzt 185 statt 209 Zeilen,
-  Hash-Tabelle auf den tatsächlich committeten Stand dieser Lieferung berechnet.
-- **Sprachschlüssel:** unverändert bei 254 — keiner der drei Teile fügt neue Anzeigetexte
-  hinzu, von `pruefe.py` Abschnitt 13 selbst nachgezählt.
-- **Verifikation:** `node --check` bestanden · Trockentest: 20 neue Prüfungen an
-  `vorhersageKarte()`, plus die bestehenden 57 (Punkt 68), 19 (Punkt 69), 19 (Punkt 70) und
-  19 (Punkt 71) erneut ausgeführt, alle weiterhin bestanden · `pruefe.py` ohne Argument —
-  ALLES SAUBER.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 79 gehoben (Blueprint 0.78).
-  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
-  Arbeitsregel.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 78 ändert (4.9., Backlog-Punkt 71 gebaut — KI-Log in vier Reiter, Schritt 1 von 3)
-
-**Anlass:** Auftrag Ondo — Backlog-Punkt 71 umsetzen: KI-Log in vier Reiter (Offen/
-Bewertet/Archiv/Werkzeuge), Schritt 1 eines mehrteiligen Redesigns, nur Struktur, keine
-Optik-Änderung.
-
-- **Backlog-Punkt 71 gebaut, `beta.html` v19.8.15:** vier Reiter statt einer langen Seite.
-  Volle Begründung, die belegte Vierteilung der Einträge und das Verifikationsergebnis
-  stehen als angehängter Block direkt bei Punkt 71 (nicht hier wiederholt — Punkt 45).
-- **Neuer Backlog-Punkt 72** angelegt: hält das dreiteilige Redesign-Vorhaben fest (1.
-  Struktur — Punkt 71, gebaut · 2. Karten einklappen — offen · 3. Optik/Logo — offen),
-  Schritt 2/3 ohne Bauauftrag.
-- **Sprachschlüssel:** 4 neu, 1 entfernt (nachweislich ungenutztes `logEmpty`, ersetzt durch
-  die vereinfachte, einheitliche Leermeldung `filterEmpty`), 2 bestehende Schlüssel mit
-  gekürztem Wert bei gleichem Namen — macht 251 − 1 + 4 = 254, selbst gezählt von `pruefe.py`
-  Abschnitt 13.
-- **Verifikation:** `node --check` bestanden · Trockentest: 19 neue Prüfungen an
-  `kilogGefiltert()`/der Vier-Wege-Zerlegung, plus die bestehenden 57 (Punkt 68), 19 (Punkt
-  69) und 19 (Punkt 70) erneut ausgeführt, alle weiterhin bestanden · `pruefe.py` ohne
-  Argument — ALLES SAUBER.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 78 gehoben (Blueprint 0.77).
-  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
-  Arbeitsregel.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 77 ändert (4.9., Backlog-Punkt 70 gebaut — Filter im KI-Log, Punkt 41 umgeordnet)
-
-**Anlass:** Auftrag Ondo — Backlog-Punkt 70 (Such- und Filterfunktion im KI-Log) umsetzen,
-dazu reine Buchführung zu Punkt 41.
-
-- **Backlog-Punkt 70 gebaut, `beta.html` v19.8.14:** Drei kombinierbare Filter (Datum
-  von/bis, Wettbewerb-Teilstring case-insensitiv, Status aus fünf aus den tatsächlichen
-  Codewerten abgeleiteten Optionen), rein im Browser, wirken nur auf die Anzeige. Volle
-  Begründung, Codezitat der tatsächlichen `e.status`/`e.geparkt`/`e.parkGrund`-Werte und
-  Verifikationsergebnis stehen als angehängter Block direkt bei Punkt 70 (nicht hier
-  wiederholt — Punkt 45).
-- **Buchführung Backlog-Punkt 41 (reine Einordnung, kein Bau):** Die Überschrift
-  „🔴 Prio 1 — als Nächstes dran" ist entfernt — Punkt 41 war seit 30.8.2026 gebaut, ihr
-  einziger Inhalt, die Einordnung war seither nicht mitgewandert. Punkt 41s Inhalt bleibt
-  unverändert stehen, nur ohne diese Überschrift darüber.
-- **`STAND.md`:** Zeile zu Punkt 41 aus der Tabelle „Entscheidungen, die bei Ondo liegen"
-  entfernt (keine offene Entscheidung mehr) · neuer Eintrag `v19.8.14` unter „Versionen" ·
-  Sprachschlüsselzahl von 241 auf 251 nachgeführt (10 neue Schlüssel, von `pruefe.py`
-  Abschnitt 13 selbst nachgezählt).
-- **Verifikation:** `node --check` bestanden · Trockentest: 19 neue Prüfungen an
-  `kilogGefiltert()`, plus die bestehenden 57 (Punkt 68) und 19 (Punkt 69) erneut
-  ausgeführt, alle weiterhin bestanden · `pruefe.py` ohne Argument — ALLES SAUBER.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 77 gehoben (Blueprint 0.76).
-  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
-  Arbeitsregel.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 76 ändert (4.9., Messstand nachgeführt — reine Dokumentation)
-
-**Anlass:** Auftrag Ondo — Messstand in `STAND.md` mit den Zahlen vom 4.9.2026 nachführen.
-Kein Codeaufwand, keine Backlog-Punkte betroffen.
-
-- **`STAND.md`, Abschnitt „Aktueller Messstand" vollständig ersetzt** (Punkt 45 — ein Fakt,
-  ein Ort, nicht daneben stehen lassen): Sonnet 468 bewertete Aussagen bei 3 % Abweichung
-  und 54 % Trefferquote, Flash 465 bei 7 % und 50 %. Bestand unverändert 403
-  Vorhersagen/6 Wetten — von Ondo selbst erklärt: die seither übernommenen Spiele waren
-  bereits bestehende, offene Einträge, keine neuen. Gepaarter Vergleich jetzt 161 gepaarte
-  Spiele (154 je Markt, dieselbe unerklärte Lücke wie zuvor, in anderer Grösse). KI-Trefferquote
-  gesamt 52 % (486/933).
-- **Erst angehalten, dann nachgeliefert (Arbeitsregel M):** Der erste Versuch, die vom
-  Auftrag gelieferten Zahlen einzusetzen, liess `pruefe.py` FEHL melden — die
-  Stufen-Verteilung je Gehirn fehlte, `pruefe.py` Abschnitt 8 verlangt sie mit einer Summe,
-  die exakt die neue Kopfzahl ergibt. Nichts ausgeliefert, die Meldung im Wortlaut gezeigt,
-  angehalten. Ondo hat die fehlenden Stufen nachgereicht (sein eigener Auslassungsfehler,
-  nicht Claudes); beide Summen unabhängig nachgerechnet (Sonnet 78+295+61+32+0+2=468,
-  Flash 74+212+147+25+5+2=465), erst danach eingesetzt.
-- **Dabei zwei eigene Formulierungsfehler im ersten Versuch gefunden und behoben, ohne den
-  Prüfer aufzuweichen (Fehlerart C6 vermieden):** Alte Vergleichszahlen als `(402/399)` bzw.
-  „82 von 402" geschrieben — sieht für `pruefe.py`s Nenner-Heuristik wie eine neue,
-  unpassende Bruchzahl aus. Umformuliert, nicht die Prüfung gelockert.
-- **Neuer Befund, festgehalten:** Sonnet hat zum ersten Mal eine bewertete Aussage ab 80 %
-  (zwei Aussagen, Stufe 90–99 %, beide eingetroffen) — löst die in mehreren vorigen
-  Messständen stehende Aussage „Sonnet hat weiterhin KEINE bewertete Aussage ab 80 %" ab.
-  Bei nur zwei Aussagen ausdrücklich **keine** Schlussfolgerung daraus gezogen (zu kleine
-  Stichprobe).
-- **`STAND.md`:** Fassungszahl allein geändert bei Datensicherung — Zeile zur letzten
-  bestätigten Sicherung (4.9.2026, 09:33 Uhr) nachgeführt.
-- **Verifikation:** `pruefe.py` ohne Argument — ALLES SAUBER. Kein Code betroffen, kein
-  `node --check` nötig.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 76 gehoben (Blueprint 0.75).
-  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
-  Arbeitsregel.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 75 ändert (4.9., Backlog-Punkt 69 gebaut, Nachfrage beantwortet, zwei Idee-Punkte)
-
-**Anlass:** Auftrag Ondo — Backlog-Punkt 69 umsetzen (`pruefListe`/`pruefBilanz` speichern),
-dazu eine Nachfrage zur chronologischen Einsortierung und zwei neue Idee-Punkte, nicht gebaut.
-
-- **Punkt 69 gebaut, `beta.html` v19.8.13.** `pruefListe`/`pruefBilanz` sind Teil von `state`,
-  keine `seedV`-Migration nötig. `pruefStark` bewusst aussen vor (Ondos Vorgabe). Alle rund
-  zehn Fundstellen umgestellt, erschöpfend geprüft. Zwei bisher fehlende `save()`-Aufrufe
-  ergänzt (`pruefAnwenden()`s `bet`-Zweig, `pruefIgnorieren()` vollständig), dazu ein
-  `save()` am Ende von `abschluss()` für die endgültige Bilanz. Der Reset am Rundenanfang
-  bekommt bewusst **kein** eigenes `save()` — löst sich von selbst, siehe Punkt 69.
-- **Nachfrage beantwortet, mit Zeilenzitat:** Ein übernommener Vorschlag braucht keine
-  gesonderte chronologische Einsortierung — er wird nie aus `state.kiProtokoll` entfernt,
-  nur an Ort und Stelle verändert. Einzelheiten bei Punkt 69.
-- **Zwei neue Punkte, nur Idee, nicht gebaut:** **70** (Such- und Filterfunktion im KI-Log)
-  und **71** (eigener Reiter für offene Spiele, Rest als Archiv — ausdrücklich mit eigenem
-  Plan und eigener Freigabe, nicht neben Punkt 69 gebaut).
-- **Verifikation:** `node --check` bestanden. Trockentest: 19 neue Prüfungen plus die
-  bestehenden 57 aus Punkt 68 erneut bestanden (keine Regression), alle an den echten,
-  aus `beta.html` herausgeschnittenen Funktionen. `pruefe.py`: ALLES SAUBER.
-- **Keine neuen Sprachschlüssel** (241 unverändert). **Kein Schnitt in der Messreihe.**
-- **Fassungszahl:** alle drei aktiven Dokumente auf 75 gehoben (Blueprint 0.74).
-  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
-  Arbeitsregel.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 74 ändert (3.9., Fund gemeldet und geprüft — `pruefListe` wird nie gespeichert, kein Bau)
-
-**Anlass:** Chat 28 leitete Ondos Meldung weiter — nach einem Neuladen der App waren gefundene, noch nicht übernommene Schiedsrichter-Vorschläge verschwunden. Ausdrückliche Auflage: nur untersuchen und berichten, nichts an `beta.html` bauen.
-
-- **Vermutung geprüft und bestätigt, mit Codezitat:** `pruefListe`/`pruefBilanz`/`pruefStark` sind `var`-Deklarationen ausserhalb von `state`; `save()` schreibt ausschliesslich `state` in `localStorage`. Ein Neuladen und ein zweiter Tastendruck lösen denselben, bereits seit der v19.8.9-Notiz dokumentierten Mechanismus aus — **neu ist nur das Gewicht des Verlusts** (seit v19.8.12 hängt an jedem Prüflauf ein bezahlter Sonnet-Lauf), nicht der Verlust selbst.
-- **Nebenbefund geprüft:** `state.vorschlaege` ist nachweislich totes Feld (kein Zugriff ausserhalb der Initialisierung). Herkunft (vermutlich v18-„Value-Rechnung"-Rest) **nicht belegbar** — `beta.html` kam erst mit Fassung 35 (21.8.2026) in dieses Repo, frühere Geschichte fehlt. Als Vermutung gekennzeichnet, nicht als Befund.
-- **Neuer Backlog-Punkt 69** mit vollständiger Kosten-/Komplexitätseinschätzung einer möglichen Absicherung angelegt — Status „Fund — Ondo vorzulegen, NICHT gebaut". **Kein Codeaufwand**, `beta.html` bleibt v19.8.12.
-- **Regel-4-Prüfung durchgeführt (Backlog-Pflege ohne Chat-Anstoss):** Die seit Fassung 73 neu hinzugekommenen Punkte gegen die zwei Archivierungs-Kriterien geprüft. **Keiner qualifiziert:** Punkt 68 trägt wörtlich „Bewährung steht aus" · Punkt 0c ist nur teilweise gebaut, die ursprüngliche Idee bleibt ausdrücklich offen · Punkt 36 ist zwar in sich abgeschlossen, bleibt aber eng an die weiterhin ungeklärte elfte Fehlerart gebunden (dieselbe Behandlung wie bei Punkt 64) — im Zweifel stehen gelassen. **Kein Punkt archiviert.**
-- **Grösse zur Kenntnis genommen, nicht behoben:** `Ondo-Control-Backlog.md` liegt bei rund 160.000 Zeichen, weiterhin über der 120.000-Zeichen-Grenze aus Punkt 65 — ein Abruf im Chat-Bereich bricht weiterhin vorzeitig ab. Ursache unverändert: viele abgeschlossene Punkte stehen mit voller Begründung im Haupttext, nicht die gestapelten Fassungsnotizen (die wurden mit Weg C schon einmal verschoben). Die Wahl zwischen den in Punkt 65 genannten Wegen bleibt Ondos Entscheidung.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 74 gehoben (Blueprint 0.73). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 73 ändert (3.9., Schiedsrichter robuster — Punkt 36 abgeschlossen, neuer Punkt 68, Zeitmessung)
-
-**Anlass:** Ondos Auftrag vom 3.9.2026 in vier Teilen. Der Schiedsrichter entschied bis heute mit **einem** Lauf allein; ein Gedächtnis für frühere Läufe gibt es nicht (belegt: `pruefListe=[]` bei jedem Tastendruck). Gegen die Fehlerarten 7 bis 11 war nichts gebaut.
-
-- **Teil 1 gebaut, `beta.html` v19.8.12 — Punkt 36 abgeschlossen.** Der **Schiedsrichter**-Auftragstext bekommt die Pflicht, das tatsächlich gespielte Format zu melden (Pflichtfeld `format`). Meldet **ein** Lauf ein Sonderformat, wird der Eintrag **sofort geparkt** — kein 90-Minuten-Wert wird erzwungen oder gerechnet, unabhängig von den anderen zwei Läufen. Neuer `parkGrund`-Wert `'sonderformat'`, sichtbar in Karte und Log-Text-Export. `stufeHolen()` bleibt unverändert; dies ergänzt die dortige Erkennung und fängt auf, was durchrutscht (Leeds-Leipzig).
-- **Teil 2 gebaut — neuer Punkt 68, Mehrfachlauf-Absicherung.** Statt einem Lauf je Runde **drei, gleichzeitig abgeschickt** (`Promise.all`), damit sich die Wartezeit nicht verdreifacht. Zwei über Gemini, einer über den bestehenden Sonnet-Rückfallpfad (`claude-sonnet-4-6`) — mindestens einer also auf einem anderen Modell. Einigkeitsregel: 3/3 übernehmen ohne Markierung · genau zwei gleich übernehmen **mit** sichtbarer Markierung `e.refEinigkeit='2von3'` · alle drei verschieden **parken** (`parkGrund:'unstable_ref'`). Dazu vier feste Prüfungen im Code, ohne Modell.
-- **Teil 3 gebaut — Quellenprüfung als NEGATIVliste** (Ergänzung zu Punkt 0c, jetzt gebaut statt nur Idee). Ausdrücklich **keine** Positivliste und keine Rangfolge unter den übrigen Quellen.
-- **Teil 4 (Diagnose, kein Backlog-Punkt): Zeitmessung eingebaut, aber nur die Nachher-Zahl.** Eine Code-Sitzung hat keine API-Schlüssel und keinen Browser mit Ondos Daten — sie kann keinen echten Prüflauf messen und hat deshalb **keine Vorher-Zahl geschätzt** (Art. 11/14, Entscheidung Ondos vom 3.9.2026). Die App misst ab jetzt selbst und zeigt die Dauer eines Prüflaufs (in der Bilanz) und eines Vorhersage-Laufs an. **Beide Zahlen entstehen erst in Ondos App und sind noch nicht abgelesen.**
-- **Vier Entscheidungen Ondos vom 3.9.2026 vorab eingeholt**, statt sie zu raten: (1) nur die Nachher-Zahl · (2) ein Lauf mit einer Quelle von der Negativliste bleibt sichtbar, zählt aber **nicht** als Beleg · (3) weniger als drei brauchbare Läufe → nichts übernehmen, erneut fragen, **nicht** parken · (4) drei einige Läufe mit nur einer Quelle → übernehmen und als „3 Läufe, 1 Quelle" markieren.
-- **Verifikation:** `node --check` bestanden. Trockentest bestanden — **57 Prüfungen, alle bestanden**, und zwar an den **echten, aus `beta.html` herausgeschnittenen Funktionen**, nicht an einem Nachbau. `pruefe.py`: ALLES SAUBER.
-- **7 neue Sprachschlüssel** (`refEinig2von3`, `refQuellenZahl`, `refVerworfen`, `parkGrundFormat`, `refEinAnbieter`, `refDauer`, `balGeparkt`) — Sprachschlüsselzahl 234 → **241**, von `pruefe.py` Abschnitt 13 selbst gezählt.
-- **Kein Schnitt in der Messreihe** — der Schiedsrichter ist Messwerkzeug, nicht Messgegenstand (dieselbe Begründung wie bei Punkt 26 und 64).
-- **Nicht angetastet, wie im Auftrag verlangt:** `state.seedV<7`, `state.seedV<8`, der `refRoh`-Export, `refRohAbgleich()`, die Vorhersage-Läufe der Gehirne, `bttsWort`/`bttsMismatch`, `stufeHolen()`. Keine rückwirkende Neubewertung von Sabah oder Celje — beide bleiben geparkt.
-- **🔴 Fund am Prüfwerkzeug, dabei aufgefallen, NICHT behoben:** `pruefe.py` Abschnitt 3 sucht Querverweise mit **zwei** Mustern — `Punkt (\d+)(?![\da-c])` und `Backlog-Punkt (\d+)`. **Nur das erste hat den Zusatz, der einen Buchstaben nach der Ziffer ausschliesst.** Steht im Text das Wort „Backlog-Punkt" unmittelbar vor einer der Buchstaben-Nummern (0a, 0b, 0c), liest der Prüfer daraus einen Verweis auf eine **nackte Null als Punktnummer**, die es nicht gibt, und meldet FEHL — obwohl der Punkt existiert. Genau das ist beim Schreiben dieser Fassung **dreimal** passiert: erst in der Blueprint-Zeile, dann zweimal **in diesem Fundvermerk selbst** — einmal, weil er die kurze Schreibweise als Beispiel zitierte, und einmal, weil er die falsch gelesene Nummer in Anführungszeichen wiedergab. Ein Fundvermerk, der seinen eigenen Fund auslöst, ist selbst der beste Beleg dafür, wie leicht die Lücke zu treffen ist. **Der Prüfer wurde bewusst nicht entschärft** (eine Prüfung zu lockern, damit der eigene Text durchgeht, wäre Fehlerart C6); statt dessen sind beide Stellen umformuliert — im Blueprint auf „Punkt 0c des Backlogs". **Die Lücke bleibt und kehrt wieder**, sobald jemand die kurze Schreibweise wieder benutzt. Dieselbe Art Werkzeuglücke wie in Punkt 66 und wie die Funde in Fassung 69 und 70: der Prüfer prüft eine Schreibweise, nicht eine Tatsache. Nur festgehalten, kein Vorschlag, keine Entscheidung.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 73 gehoben (Blueprint 0.72). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 72 ändert (2.9., Regel 4 nachgeholt — Backlog-Pflege ohne Chat-Anstoss, auf Ondos Nachfrage)
-
-**Anlass:** Ondo hat gefragt, ob die stehende Regel 4 („Code prüft und archiviert den Backlog künftig selbstständig, ohne Anstoss durch Chat") in dieser Sitzung angewandt wurde. **Antwort, ehrlich zuerst gegeben: Nein, nicht laufend** — obwohl in dieser Sitzung selbst mehrere Punkte mit genau den relevanten Status-Wörtern (GEBAUT, BEANTWORTET/GEKLÄRT) bearbeitet wurden. Nachgeholt, statt offen gelassen.
-
-- **Alle Punkte mit Status GEBAUT/GEKLÄRT/ENTSCHIEDEN/BEANTWORTET/GESCHLOSSEN systematisch gegen die zwei Kriterien aus Regel 4 geprüft** (keine Bewährungs-Einschränkung im eigenen Text · an keine offene Untersuchung gebunden): 46, 54, 58, 63, 64, 67, 41, 36, 37, E, 43, 50.
-- **Zwei Punkte archiviert, nach `BACKLOG-ARCHIV.md` verschoben:**
-  - **37** (Kein Schutz gegen einen zweiten Vorhersagelauf am selben Tag) — GEBAUT 30.8.2026, die im Text offen gebliebene Frage („Zu klären, bevor gebaut wird…") ist im selben Punkt durch den GEBAUT-Block ausdrücklich beantwortet, kein Bewährungsvorbehalt, keine offene Untersuchung.
-  - **67** (Kein eigener Branch mehr, direkt auf `main`) — ENTSCHIEDEN UND EINGEFÜHRT 30.8.2026, reine Ablaufregel ohne jeden Vorbehalt.
-- **Zehn Punkte bewusst NICHT verschoben, mit Begründung:**
-  - **46, 54** — tragen wörtlich „Bewährung steht aus".
-  - **E** — trägt „mit Rückfall-Zusage" (Ondos Auflage „Funktioniert es nicht, wird eine andere Lösung gesucht oder der Schritt rückgängig gemacht") — sinngemäss dieselbe Einschränkung wie „Bewährung steht aus".
-  - **58** — der eigentliche Fund („Der Widerspruch ist ungelöst") bleibt im selben Punkt ausdrücklich offen. Dieselbe Begründung wie schon bei der Archivierung vom 30.8.2026 (Fassung 61); nichts hat sich daran geändert.
-  - **64** — die Celje/Sabah-Fälle warten ausdrücklich weiter auf die Reparatur des Schiedsrichters (siehe Rücknahme vom 2.9.2026) — direkt an eine offene Untersuchung (elfte Fehlerart) gebunden.
-  - **41** — der Punkt selbst benennt „es sind zwei Probleme", die zweite Ursache der falschen Anpfiffzeiten bleibt unbekannt (Art. 11) und ist an die noch nicht abschliessend geklärte Untersuchung aus Punkt 43 gebunden.
-  - **36** — der Punkt selbst sagt im letzten Satz „Punkt 36 selbst bleibt weiterhin unentschieden": Nur die Auftragstext-Änderung ist gebaut, die Grundsatzfrage nicht. **Nur festgehalten, nicht verändert** (Regel 4 erlaubt reines Verschieben, keine inhaltliche Klärung): Ein Punkt, dessen Kopfzeile „GEBAUT" sagt und dessen Schlusszeile „bleibt unentschieden" — das ist für einen künftigen Leser leicht misszuverstehen. Keine Entscheidung dazu getroffen, nur benannt.
-  - **63** — Status ist „Idee — noch nicht gebaut", keine Erledigt-Kategorie, zählt nicht.
-  - **43** — heute erst in dieser Sitzung angelegt (Fassung 69). Kein Bewährungsvorbehalt im Wortlaut, aber der Punkt bindet sich selbst an die noch unbeantwortete zweite Ursache aus Punkt 41 (Art. 11) — und ein am selben Tag anlegter Punkt sofort wieder zu archivieren, widerspricht dem Zweck der Regel (Bewährung im Sichtbaren). **Im Zweifel stehen gelassen.**
-  - **50** — Ondos ausdrückliche Ausnahme („bleibt sichtbar"), unverändert seit Fassung 61.
-- **Verlustbeweis von Hand geführt** (dieselbe Methode wie bei Punkt 65/Weg C, kein automatischer `pruefe.py`-Abschnitt dafür): Länge, Enthaltensein und Zeilen-Multimenge von (gekürzter Backlog + beide verschobenen Blöcke) gegen den Originaltext geprüft — identisch.
-- **Querverweise geprüft:** Alle gefundenen Erwähnungen von „Punkt 37" und „Punkt 67" ausserhalb ihrer eigenen Einträge sind reine Nennungen ohne „siehe dort für Details" — bleiben unverändert, lösen sich über `pruefe.py` Abschnitt 3 weiterhin auf (Backlog und Archiv werden gemeinsam durchsucht), dieselbe Konvention wie bei Fassung 61.
-- **Kein Codeaufwand**, `beta.html` bleibt v19.8.11. `pruefe.py`: ALLES SAUBER.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 72 gehoben (Blueprint 0.71). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. **Reine Anwendung der bereits am 30.8.2026 beschlossenen Regel 4** — keine neue inhaltliche Entscheidung über offene Punkte (Art. 8 unberührt, wie Regel 4 selbst festhält).
-- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 71 ändert (2.9., Rechenfehler in Fassung 70 selbst berichtigt — vom Nachfolgechat gefunden)
-
-**Anlass:** Der Nachfolgechat (Chat 28) hat beim Gegenlesen der Nachlieferung einen Widerspruch im selben Absatz von Fassung 70 gemeldet: „132.289 Zeichen, 12.289 über der Grenze" stand neben „nachgeliefert worden (12.299 Zeichen)" — zwei verschiedene Zahlen für dieselbe Sache. Chat 28 hat sich zurecht geweigert, selbst zu entscheiden, welche richtig ist, und die Prüfung an eine Code-Sitzung verwiesen (Art. 11, keine Rategenauigkeit).
-
-- **Nachgerechnet gegen den historischen Commit (`2ae6682`, der Stand zum Zeitpunkt der Meldung):** Der wahre Bruchpunkt liegt bei Zeichen 120.000, mitten im Wort „Wie un". **Richtig ist 12.289** (132.289 − 120.000) — dieselbe Zahl, die im selben Absatz bereits einmal richtig stand. Die 12.299 waren ein eigener Messfehler dieser Sitzung: gezählt ab dem **Anfang der Anker-Zeile** (Zeichen 119.990), nicht ab dem **wahren Bruchpunkt** — zehn Zeichen Differenz, genau die Länge von `| **Wie un`, die der Nachfolger durch die Überlappungszeile ohnehin schon hatte.
-- **Fassung 70s Absatz mit Streichung und Vermerk berichtigt, nicht stillschweigend überschrieben** (Arbeitsregel „Berichtigen statt danebenstellen") — die falsche Zahl bleibt sichtbar durchgestrichen, mit Erklärung der Ursache.
-- **Zweite, kleinere Klärung im selben Zug (von Chat 28 als Randbemerkung genannt, nicht als Fehler):** „rund ein Zehntel der Pflichtlektüre fehlte" bezog sich auf den Backlog allein, nicht auf alle vier Dokumente zusammen — wie bereits beim ersten Beleg von Punkt 65 („rund ein Fünftel fehlt"). Wortlaut ergänzt, damit das nicht missverständlich bleibt.
-- **Bestätigt, nicht verändert:** Chat 28s Einschätzung „Weg C wirkt, hält aber nicht" ist richtig und durch die Fassungen 61–69 selbst belegt — keine Korrektur nötig.
-- **Kein Codeaufwand**, `beta.html` bleibt v19.8.11. `pruefe.py`: ALLES SAUBER.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 71 gehoben (Blueprint 0.70). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 70 ändert (2.9., Leselängen-Grenze ein drittes Mal belegt, veraltete Sprachschlüsselzahl berichtigt)
-
-**Anlass:** Der Nachfolgechat hat bei der Übergabe von selbst gemeldet, dass sein Backlog-Abruf mitten im Wort abbricht — genau der Fall aus Punkt 65. Beim Nachliefern des fehlenden Teils ist eine veraltete Zahl darin aufgefallen.
-
-- **Punkt 65 ergänzt, dritte unabhängige Bestätigung — diesmal von aussen gemeldet und im Repo nachgerechnet.** Der Nachfolger nannte den letzten empfangenen Text im Wortlaut (`| **Wie un`); nachgemessen liegt diese Stelle bei **exakt Zeichen 120.000**. Der Backlog stand bei **132.289 Zeichen**, **12.289 über der Grenze** — rund ein Zehntel des Backlogs fehlte (Bezug auf diese eine Datei, nicht auf alle vier Pflichtdokumente zusammen — wie schon bei der ersten Bestätigung von Punkt 65, „rund ein Fünftel fehlt"). **Rückfall gegenüber Fassung 60:** Weg C hatte auf 108.699 Zeichen gekürzt, die Fassungen 61 bis 69 sind wieder darüber gewachsen. Weg C wirkt, hält aber nicht. ~~Der fehlende Rest ist nach Weg B nachgeliefert worden (12.299 Zeichen mit überlappender Nahtstelle).~~ **🔴 BERICHTIGT (Fassung 71, 2.9.2026, gefunden vom Nachfolgechat):** Die 12.299 waren falsch gerechnet — nicht vom wahren Bruchpunkt (Zeichen 120.000, mitten im Wort „Wie un") aus gezählt, sondern vom Anfang der Anker-Zeile (Zeichen 119.990), die der Nachfolger durch die Überlappung ohnehin schon hatte. Richtig ist **12.289 Zeichen** — dieselbe Zahl wie oben (132.289 − 120.000), kein zweiter, abweichender Wert. Der fehlende Rest ist nach Weg B nachgeliefert worden, mit einer zusätzlichen Zeile Überlappung zur Nahtprüfung. **Keine Entscheidung getroffen** — die Wahl zwischen A, B und C liegt weiterhin bei Ondo.
-- **🔴 Veraltete Zahl im fehlenden Teil berichtigt (Fehlerart C3 — Folgewirkung woanders nicht geprüft):** Die Tabelle „Technische Schuld" nannte **229 Sprachschlüssel, Stand 28.8.2026**; richtig sind seit v19.8.9 **234**. Die Zahl ist **nicht** auf den neuen Wert gesetzt, sondern durch einen Verweis auf `STAND.md` ersetzt worden — sie war hier ein zweiter Ort für dieselbe Tatsache (Punkt 45) und wäre sonst erneut unbemerkt gealtert. **Gefunden, weil der fehlende Teil vor dem Nachliefern durchgesehen wurde**, nicht durch den Prüflauf.
-- **Zweiter Fund am Prüfwerkzeug, nicht behoben:** `pruefe.py` Abschnitt 6 hat die falsche Zahl nicht gefangen. Er prüft das Muster `**Sprachschlüssel: N**`; die Tabellenzelle schrieb die Zahl anders (`(229 Schlüssel × 3 Sprachen …)`). **Der Prüfer prüft eine Schreibweise, nicht eine Tatsache** — dieselbe Art Lücke wie in Punkt 66 und wie der Fund zur festen Bestandszahlen-Liste in Fassung 69. Nur festgehalten, kein Vorschlag, keine Entscheidung.
-- **Kein Codeaufwand** (kein neuer `beta.html`-Stand, `beta.html` bleibt v19.8.11). `pruefe.py`: ALLES SAUBER.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 70 gehoben (Blueprint 0.69). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 69 ändert (2.9., Sabah/Celje-Rücknahme, neuer Messstand, Punkt 43 nachgetragen, Aufräumen)
-
-**Anlass:** Diese Chat-Sitzung endet. Ondo hat vor der Übergabe an einen neuen Chat fünf Teile beauftragt — der dringlichste ist die Rücknahme einer verfrühten Eintragung.
-
-- **Teil 1 gebaut, `beta.html` v19.8.11 — Rücknahme.** Ondos Klarstellung: „Der Schiedsrichter ist repariert" heisst, **er liefert ab sofort nur noch richtige, zuverlässige Ergebnisse für alle künftigen Spiele, ohne Gegenprüfung im Chat.** Diese Bedingung ist nicht erfüllt, die elfte Fehlerart besteht unverändert — die manuelle Eintragung vom 30.8.2026 (Punkt 64, Nachfrage Teil 3) war verfrüht und übergeht die eigene Auflage aus Punkt 64. Neue Migration `state.seedV<8` setzt beide Spiele vollständig zurück (Endstand, Halbzeit, Verlängerung und `ergebnisQuelle` entfernt, Märkte und Eintrag wieder `offen`, `geparkt` wieder `true`, `parkGrund` wieder `'unstable_ref'`). Anker ist `e.ergebnisQuelle==='extern_manuell'` statt eines Datums — die Datumsfrage, die diesen Punkt zweimal in die Irre geführt hat, ist damit für die Rücknahme gegenstandslos. `state.seedV<7`, `refRohAbgleich()` und der `refRoh`-Export **nicht angetastet**; `e.refRoh` bleibt vollständig erhalten.
-- **🔴 Abweichung vom Wortlaut des Auftrags, per Rückfrage geklärt (Art. 11):** Der Auftrag nannte nur Sabah und hielt NK Celje–Slovan Bratislava für „bereits geparkt". Der Code belegt das Gegenteil — `seedV<7` entparkt und bewertet **beide**. Vor der Änderung rückgefragt statt geraten; **Ondo hat am 2.9.2026 entschieden, beide zurückzunehmen.** Punkt 64 und `STAND.md` sind entsprechend berichtigt, mit Streichung und Vermerk, nicht stillschweigend.
-- **Teil 2 gebaut:** Der Abschnitt „Aktueller Messstand" in `STAND.md` ist **vollständig ersetzt** durch die Ablesung vom 2.9.2026 (403 Vorhersagen, Sonnet 402 bei 6 %, Flash 399 bei 5 %, gepaarter Vergleich, Wett-Saldo). Der nie eingetragene Zwischenstand vom 30.8.2026 (399/396) ist zusammen mit dem alten 14.8.-Stand (330/327) in die Zeile „Vorherige Stände" gewandert. **Ausdrücklich vermerkt:** Diese Zahlen enthalten die beiden zurückgenommenen Spiele noch — sie fallen erst heraus, wenn Ondo v19.8.11 lädt.
-- **Teil 3 nachgetragen:** Punkt 43 (Auswertung der Anpfiffzeiten seit dem 10.8.) ist als **beantwortet/geklärt** eingetragen, mit der ausdrücklichen Grenze „interner Abgleich, keine erschöpfende externe Prüfung". Die Antwort war im Chat gegeben und nie eingetragen — Arbeitsregel F.
-- **Teil 4, Aufräumen:** **PR #1 war bereits geschlossen** (nicht gemergt, Stand 31.8.2026) — nichts zu tun, nur festgestellt. **Drei** verwaiste Branches statt der zwei genannten (`claude/ondo-control-chat-handover-o4v9vz` kommt hinzu, die Spitze von PR #1), alle drei per `git merge-base --is-ancestor` als vollständig in `main` enthalten belegt; Löschung **nicht erneut versucht** (Rechte-Grenze HTTP 403, bereits zweifach belegt). **Muster-Korrektur ausgeführt:** zwei eindeutige, kleine Stellen in `MUSTER_Ondo-Control_Uebergabe.md` berichtigt (veraltete `pruefe.py`-Zeile, fehlender `archiv/`-Pfad).
-- **Teil 5:** Übergabemappe und Abnahme für einen **neuen Chat** erstellt — volle Übergaberegel mit Kontrollfragen, **nicht** die abgeschwächte Code-Fassung aus Punkt 61. Beide ausdrücklich **nicht** ins Repo, nur als Text in der Antwort.
-- **Verifikation:** `node --check` bestanden. Trockentest der neuen Migration, 16 Prüfungen, alle bestanden. `pruefe.py`: ALLES SAUBER (76 Einzelprüfungen).
-- **🔴 Fund am Prüfwerkzeug, dabei aufgefallen, nicht behoben:** `pruefe.py` Abschnitt 8 führt eine feste Liste überholter Bestandszahlen (180, 207, 135, 87, 224, 204, 190, 414) und meldet FEHL, sobald eine davon im Messstand-Abschnitt auftaucht. Beim neuen Messstand hat er die **135** beanstandet — das ist hier aber Flashs Anzahl in der Stufe 60–69 %, ein gültiger aktueller Wert, nicht der alte Bestand vom 6.8. **Der Prüfer wurde bewusst NICHT entschärft** (das wäre Fehlerart C6, ein Prüfer, der seinen Sollwert vom Geprüften bekommt); statt dessen ist die doppelte Zahl aus der Einordnungszeile entfernt worden — sie steht ohnehin schon in der Verteilungszeile (Punkt 45). **Die Kollision kehrt wieder**, sobald ein anderer gültiger Wert zufällig einer alten Bestandszahl gleicht. Nur festgehalten, kein Vorschlag, keine Entscheidung — dieselbe Art Werkzeuglücke wie in Punkt 66.
-- **Keine neuen Sprachschlüssel** (Sprachschlüsselzahl unverändert 234, von `pruefe.py` Abschnitt 13 selbst gezählt). **Kein Schnitt in der Messreihe**, aber ein Sprung in den Kennzahlen, sobald v19.8.11 geladen wird.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 69 gehoben (Blueprint 0.68). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 68 ändert (30.8., main auf vollständigen Stand gebracht, zwei Branches geklärt, neue Arbeitsweise)
-
-**Anlass:** Ondo will keine Branches mehr für laufende Arbeit — nur `main`, direkt (Ausnahme: `mistral`, Punkt 62).
-
-- **Teil 1 gebaut:** `main` stand seit dem ersten Merge (`f795796`) zurück, während der Arbeitsbranch bei `4506cd0` (Fassung 67, v19.8.10) stand — drei Lieferungen (36/37/41/64-Nachfrage, refRoh-Export, Celje/Sabah-Berichtigung) hatten `main` nie erreicht. Jetzt per `--ff-only` nachgezogen, ohne Konflikt. `main` geprüft: Fassung 67, v19.8.10, `pruefe.py`: ALLES SAUBER.
-- **Teil 2 geklärt:** `claude/backlog-stand-update-wgp612` und `claude/ergebnisse-pruefen-28-8-mnq1au` waren unerklärt. Beleg (`git merge-base --is-ancestor`): beide vollständig in `main` enthalten, keine fehlende Arbeit, kein Konflikt. Löschung versucht, wie erwartet an der bekannten Rechte-Grenze gescheitert (HTTP 403, siehe Punkt 53) — beide Branches bleiben stehen, Ondo müsste sie von Hand löschen.
-- **Teil 3 entschieden und festgehalten:** Neuer Backlog-Punkt 67 — ab sofort direkt auf `main`, kein eigener Branch mehr je Lieferung. `--ff-only` bleibt, kein Force, kein Rebase.
-- **Kein Codeaufwand** (kein neuer `beta.html`-Stand), `node --check` trotzdem bestanden (nichts geändert). `pruefe.py`: ALLES SAUBER.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 68 gehoben (Blueprint 0.67). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel (reine Ablaufentscheidung, wie schon bei Backlog-Regel 4).
-- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 67 ändert (30.8., Berichtigung: Celje/Sabah-Daten waren vertauscht)
-
-**Anlass:** Ondo hat die Klarstellung nachgereicht — bei der Rückfrage in Fassung 66 ist ihm selbst ein Fehler unterlaufen, keine Falschmeldung dieser Sitzung. Mehrfach extern gegengeprüft (ESPN, UEFA.com, Sofascore, TNT Sports, Flashscore, plus das KI-Log selbst): **Sabah FC–Hapoel Beer-Sheva FC = 25.8.2026, NK Celje–Slovan Bratislava = 26.8.2026** — seit v19.8.5 (28.8.2026) durchgehend umgekehrt dokumentiert und kodiert.
-
-- **Dringlichste Frage beantwortet, mit Codezitat:** In der `seedV<6`-Migration (`beta.html`, Zeile 548–550) müssen Datum UND beide Stichwörter gleichzeitig zutreffen; Celjes Stichwörter (`celje`,`bratislava`) können nie mit Sabahs (`sabah`,`beer`) kollidieren. Eine **Vertauschung zwischen den zwei Spielen war strukturell ausgeschlossen** — die einzig mögliche Fehlwirkung eines falschen Datums war **Nicht-Zuordnung** (kein Datenschaden, die Zuweisung lief ins Leere). Diese Code-Sitzung hat keinen Zugriff auf Ondos Browser-`localStorage` und kann daher kein „vorher/nachher" an den echten Daten belegen.
-- **Berichtigung gebaut, `beta.html` v19.8.10:** Neue, robustere Migration `state.seedV<7` — neue Gate-Nummer statt Änderung an `seedV<6` (die könnte bei Ondo schon gelaufen sein; eine Änderung an derselben Nummer würde dort nie mehr ausgeführt). Akzeptiert für beide Spiele sowohl 25. als auch 26.8.2026, verlangt zusätzlich `e.geparkt===true` (nur ein von Ondo selbst geparktes Spiel kommt infrage), Stichwörter bleiben die eindeutige Unterscheidung. Alter `seedV<6`-Block bleibt unverändert stehen (Codehistorie), nur mit Berichtigungsvermerk versehen.
-- **STAND.md korrigiert:** Fehlerart-11-Zeile und die „Versionen"-Einträge zu v19.8.5 und v19.8.9 — Daten mit Streichung und Vermerk berichtigt, nicht stillschweigend überschrieben.
-- **Verifikation:** `node --check` bestanden. Trockentest bestanden: echte Daten (Sabah 25.8./Celje 26.8.) korrekt zugeordnet · bereits bewerteter Eintrag nicht überschrieben · nicht geparktes Spiel nicht angefasst · unbeteiligtes geparktes Spiel an drittem Datum unberührt · unbeteiligtes Spiel mit anderen Stichwörtern am selben Datum unberührt · Sabah und Celje vertauschen sich nie, auch bei gleichem Datum. `pruefe.py`: ALLES SAUBER.
-- **Keine neuen Sprachschlüssel.** Kein Schnitt in der Messreihe.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 67 gehoben (Blueprint 0.66). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 66 ändert (30.8., Nachfrage zu Punkt 64, drei weitere Teile)
-
-**Anlass:** Ondo hat über den neuen `refRoh`-Export die Celje/Sabah-Läufe ausgewertet und extern nachgeprüft — Sabahs Endstand nach 90 Minuten war falsch. Drei Teile: Auswahlmechanismus klären (Codezitat), Widersprüche sichtbar machen statt unkommentiert einen Wert zu zeigen, die zwei Spiele mit verifiziertem Stand eintragen.
-
-- **Teil 1 beantwortet:** Kein Auswahlmechanismus — `pruefListe` wird bei jedem Tastendruck neu aufgebaut, frühere Läufe werden ersatzlos verworfen, nicht verglichen (Codezitat in Punkt 64).
-- **Teil 2 gebaut:** Neues Feld `geparst` an `refRoh`-Läufen mit bestätigtem Ergebnis, neue Funktion `refRohAbgleich(e)`, Warnzeile in der KI-Log-Karte bei widersprechenden Läufen (90-Minuten-Stand oder Verlängerung). Grenze: ältere Läufe ohne `geparst` zählen nicht mit.
-- **Teil 3 gebaut:** Celje (~~25.8.~~ **richtig: 26.8., siehe Fassung 67**, 1:1) und Sabah (~~26.8.~~ **richtig: 25.8., siehe Fassung 67**, 3:2) extern verifiziert und per einmaliger Migration (`state.seedV<6`) eingetragen, Herkunft ehrlich gekennzeichnet (`ergebnisQuelle:'extern_manuell'`), `parkGrund` entfernt, fliessen normal in die Kalibrierung ein.
-- **Dabei selbst gefunden und im selben Zug berichtigt:** ein Widerspruch in `STAND.md`s Fehlerart-11-Zeile (die zuvor genannten „extern belegten Werte" waren tatsächlich zwei der App-eigenen, unzuverlässigen Läufe).
-- **Zweiter Widerspruch per Rückfrage geklärt, nicht selbst aufgelöst:** Die Anfrage nannte Celje/Sabah-Daten umgekehrt zur bisherigen Dokumentation — vor der Codeänderung rückgefragt (Art. 11), Ondo hat die bisherige Dokumentation bestätigt. **🔴 Berichtigung, selber Tag (Fassung 67):** Diese Bestätigung war selbst ein Irrtum, kein Falschbericht dieser Sitzung — die bisherige Dokumentation war die ganze Zeit vertauscht (seit v19.8.5), siehe Fassung 67.
-- **Verifikation:** `node --check` bestanden. Trockentest bestanden (widersprechende Läufe, übereinstimmende Läufe, zu wenig Vergleichsbasis, Verlängerungs-Widerspruch, Migration trifft genau die richtigen zwei Spiele, überschreibt nichts bereits Bewertetes). `pruefe.py`: ALLES SAUBER.
-- **3 neue Sprachschlüssel** (`refWiderspruch`, `refRunsVon`, `ergebnisManuell`). Kein Schnitt in der Messreihe. Sprachschlüsselzahl 231 → 234.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 66 gehoben (Blueprint 0.65). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 65 ändert (30.8., Nachfrage zu Punkt 64 — refRoh lesbar gemacht)
-
-**Anlass:** Seit v19.8.5 (Punkt 64) speichert die App den rohen Schiedsrichter-Antworttext (`e.refRoh`), aber ohne Ansicht oder Export — Ondo bat um eine kleine, zusätzliche Ausgabe dafür.
-
-- **Punkt 64 ergänzt (nicht neu angelegt), `beta.html` v19.8.8:** Neuer Knopf im selben Kartenbereich wie „Log als Text", nutzt denselben Zeitraum. Gibt zu den ausgewählten Einträgen zusätzlich `e.refRoh` aus, falls vorhanden — sonst „kein refRoh gespeichert" statt leerem Text. Kein Zugriff auf Schlüsselfelder.
-- **2 neue Sprachschlüssel** (`refRohBtn`, `refRohEmpty`) — mehr als die angefragte „evtl. eine Knopfbeschriftung", ausdrücklich gemeldet: ein zweiter Schlüssel für die übersetzbare Fallback-Meldung.
-- **Verifikation:** `node --check` bestanden. Trockentest bestanden (Eintrag mit `refRoh`, Eintrag ohne, leerer Zeitraum). `pruefe.py`: ALLES SAUBER.
-- **Kein Schnitt in der Messreihe.** Sprachschlüsselzahl 229 → 231.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 65 gehoben (Blueprint 0.64). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 64 ändert (30.8., drei Backlog-Punkte gebaut — Auftrag Ondo)
-
-**Anlass:** Ondo hat Backlog-Punkte 36, 37 und 41 entschieden und in einer Lieferung in Auftrag gegeben.
-
-- **Punkt 36 gebaut:** Schiedsrichter-/Spielformat-Auftragstext schliesst jetzt namentlich Sonderformate aus (2x60, 3x45 u. ä.) statt nur verkürzte Formate; reguläre Verlängerung (2x15) bleibt ausdrücklich erlaubt. Gemessen wird weiterhin Stand nach 90 Minuten plus Nachspielzeit.
-- **Punkt 37 gebaut:** `vorhersagen()` überspringt einen Eintrag, wenn dasselbe Gehirn für dasselbe Spiel (Namensvarianten wie bei S1) am selben Tag bereits einen Eintrag hat. Keine Begrenzung der Läufe pro Tag, nur Duplikate werden übersprungen.
-- **Punkt 41 gebaut:** `wettbewerb`/`anpfiff`/`stufe` werden über den Spielnamen aus der Liste nachgeschlagen statt über `paket.liste[idx]`. Kein Treffer: Felder bleiben leer/`null`.
-- **Neue gemeinsame Funktion `normName()`** in `beta.html` (v19.8.7): fasst die bisher in `spielListeHolen` lokale Namensnormalisierung (S1) an einer Stelle zusammen, jetzt auch von Punkt 37 und Punkt 41 verwendet. Kein Verhaltensunterschied gegenüber der bisherigen `schluessel()`-Funktion in `spielListeHolen`.
-- **Bekannte, unveränderte Grenze bei allen drei Namensvergleichen (S1, Punkt 37, Punkt 41):** `normName()` gleicht Gross-/Kleinschreibung, Satzzeichen und Strichvarianten aus, entfernt aber keine Wörter wie „FC" — der historische Fall „Red Bull Salzburg" gegen „FC Red Bull Salzburg" (Punkt 37) bleibt damit ein nicht erkanntes Duplikat. Durch Trockentest bestätigt, nicht neu — unverändert durch diese Lieferung.
-- **Verifikation:** `node --check` auf dem extrahierten Skript bestanden. Trockentest bestanden: Punkt 37 (zwei Läufe desselben Spiels/Tages/Gehirns → zweiter übersprungen; anderes Spiel/Tag/Gehirn → nicht übersprungen) und Punkt 41 (Antwort in anderer Reihenfolge als die Liste → richtiges Spiel gefunden; kein Treffer → Felder leer/`null`). `pruefe.py`: ALLES SAUBER.
-- **Kein Schnitt in der Messreihe bei allen dreien.** Keine neuen Sprachschlüssel (Sprachschlüsselzahl unverändert 229, gegen die Änderung geprüft).
-- **Fassungszahl:** alle drei aktiven Dokumente auf 64 gehoben (Blueprint 0.63). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 63 ändert (30.8., 31. Fundstelle nachgetragen — Ondos eigenes Gegenlesen)
-
-**Anlass:** Ondo hat Commit `a939a86` selbst über die vollen Commit-Hash-Links gegengelesen (zweites, echt unabhängiges Gegenlesen nach ChatGPT) und eine weitere Stelle gefunden, die die als „vollständig" bezeichnete Nachsuche zu Fassung 62 übersehen hatte.
-
-- **`STAND.md`, Abschnitt „Versionen", „Beta zuvor: v19.8.3":** „Backlog-Punkte E und 2 gebaut." — Punkt 2 ist archiviert, Punkt E nicht. Berichtigt auf „Backlog-Punkte E und 2 gebaut (Punkt 2 seit 30.8.2026 in `BACKLOG-ARCHIV.md`, Punkt E unverändert im Backlog)" — **bewusst nicht Ondos vorgeschlagener Wortlaut „E und 2 (seit 30.8.2026 in BACKLOG-ARCHIV.md) gebaut"**, weil der die Klammer über beide Punkte spannt und damit fälschlich nahelegen würde, auch Punkt E sei archiviert. Abweichung vom vorgeschlagenen Wortlaut, mit Begründung, nicht stillschweigend.
-- **`Blueprint.md` unabhängig neu abgesucht, wie aufgetragen** — nicht die eigene Fundliste von Fassung 62 bestätigt, sondern neu gesucht. Dabei ein eigener Methodenfehler gefunden: Das erste Suchmuster erkannte Genitiv-Formen wie „Punkt 51s" nicht (keine Wortgrenze zwischen Ziffer und folgendem Buchstaben). Mit korrigiertem Muster erneut über alle drei Dokumente gesucht — **keine weitere, bisher unentdeckte Lücke gefunden**, alle Genitiv-Stellen lagen zufällig im selben Satz wie eine bereits korrekte Angabe.
-- **Backlog-Punkt 66 ergänzt** (nicht neu angelegt): Der eigene Methodenfehler ist ein zweiter, unabhängiger Beleg dafür, dass manuelle bzw. ad-hoc-skriptgestützte Nachsuche bei drei Dokumenten und zehn Nummern an Grenzen stösst — Mensch (Ondo, `STAND.md`) und Skript (diese Sitzung, `Blueprint.md`) übersahen je eine andere Art von Lücke. Stützt den in Punkt 66 stehenden, nicht gebauten Vorschlag stärker, ändert aber nichts an der Kostenentscheidung.
-
-- **Fassungszahl:** alle drei aktiven Dokumente auf 63 gehoben (Blueprint 0.62). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 62 ändert (30.8., Fundort-Angaben nachgetragen — ChatGPTs Gegenlesen zu PR #1)
-
-**Anlass:** ChatGPTs Gegenlesen zu PR #1 (Fassung 58–61) ergab „Freigabe — nein": Mehrere Querverweise auf die zehn in Fassung 61 archivierten Punkte nannten die Punktnummer, ohne zu sagen, dass der Punkt jetzt in `BACKLOG-ARCHIV.md` steht. `pruefe.py` Abschnitt 3 fängt das nicht — es prüft nur, OB die Nummer irgendwo existiert, nicht OB die Fundstelle mitgenannt wird.
-
-- **Vier von ChatGPT konkret zitierte Stellen korrigiert** (alle in `Ondo-Control-Backlog.md`): „Was der ausgefallene Lauf gekostet hat, steht bei Punkt 52" · „Hängt zusammen mit Punkt 55" · „dieselbe Grenze wie bei Punkt 51" · der übersprungene Verlustbeweis „(Punkt 52)".
-- **Vollständig neu abgesucht, wie aufgetragen** — nicht nur der Backlog, auch `STAND.md` und `Blueprint.md`, jede Erwähnung der zehn Nummern (2, 47, 48, 49, 51, 52, 55, 56, 59, 60), auch beiläufige. **26 weitere Stellen gefunden**, darunter fünf allein zu Punkt 47 — beim ersten Durchgang komplett übersehen. Alle 30 (4 + 26) tragen jetzt eine Fundort-Angabe. Aufteilung: Backlog 13 Zeilen, `STAND.md` 5 Zeilen, `Blueprint.md` 12 Zeilen (drei Zeilen mit zwei Nummern in einem Satz tragen die Angabe zweimal).
-- **Bewusst einbezogen: auch Blueprints datierte Änderungsnotizen** (z. B. „Was Fassung 0.24 ändert (15.8.2026)"), nicht nur laufender Text. Begründung: Ein Leser, der einer Punktnummer folgt, trifft dasselbe Auffindbarkeitsproblem unabhängig davon, wie alt der Satz ist, in dem sie steht — das Datum der Aussage ändert nichts daran, wo der Punkt heute steht.
-- **Neuer Backlog-Punkt 66 aufgenommen** (Fund, nicht zu bauen): `pruefe.py` prüft Existenz, nicht Fundort-Angabe — echte Werkzeuglücke, mit einem nicht umgesetzten Vorschlag und offen benannten Schwierigkeiten.
-- **Kein Inhalt sonst geändert.** Keine weitere inhaltliche Korrektur, reine Fundort-Ergänzung.
-
-- **Fassungszahl:** alle drei aktiven Dokumente auf 62 gehoben (Blueprint 0.61). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert — Punkt 66 ist Fund, keine Entscheidung.)*
-
----
-
-## ⚠ Was Fassung 61 ändert (30.8., Backlog archiviert — Teil 2 von Chat 27s Auftrag)
-
-**Anlass:** Chat 27 hat einen Auftrag zur Backlog-Pflege übermittelt (Teil 1: PR statt direktem Vorwärtsschieben nach `main` — Teil 2 dieser Fassung; Teil 3: Backlog-Pflege wird dauerhafte Code-Aufgabe, siehe Regel 4 oben).
-
-**Zehn erledigte Punkte nach `BACKLOG-ARCHIV.md` verschoben** (23.995 Zeichen), nach Ondos Kriterium: Status GEBAUT/GEKLÄRT/ENTSCHIEDEN/BEANTWORTET/GESCHLOSSEN **und keine Bewährungs-Einschränkung im Punkt selbst**. Verschoben: **2** (Erster Lernschritt) · **47** (Selbsttest für die App) · **48** (Struktur- und Reihenfolgebeweis) · **49** (Messmethodik und Interpretationsgrenzen) · **51** (Gepaarter Vergleich Sonnet gegen Flash) · **52** (Der Verlustbeweis braucht ein Ende) · **55** (Arbeitsteilung Chat/Code/Cowork) · **56** (Nutzungsgrenzen) · **59** (`pruefe.py`-Zeitstempel-FEHL geklärt) · **60** (Sprachschlüsselzahl geklärt).
-
-**Nicht verschoben, mit Begründung:**
-- **46, 54** — Status trägt wörtlich „Bewährung steht aus".
-- **61** — „noch nicht bewährt".
-- **E** — „Ob es wirkt, zeigt erst der nächste Prüflauf", dazu Ondos Rückfall-Auflage; ausserdem eine noch offene Teil-Entscheidung (Geminis Antwort übernehmen oder nicht).
-- **64** — GEBAUT, aber die Celje/Sabah-Markierung bleibt ausdrücklich an die Reparatur des Schiedsrichters (elfte Fehlerart) gebunden — im Zweifel nicht verschoben, wie aufgetragen.
-- **58** — BEANTWORTET, aber der eigentliche Fund („Der Widerspruch ist ungelöst") bleibt im selben Punkt ausdrücklich offen.
-- **50, 62** — Ondos ausdrückliche Ausnahmen (bleibt sichtbar · auf dem Prüfstand).
-
-**Ein Querverweis berichtigt:** Punkt 36 (bleibt offen, Prio 1) verwies mit „Einzelheiten … stehen bei Punkt 51" auf einen jetzt archivierten Punkt — Verweis um den Fundort ergänzt, damit er nicht ins Leere zeigt. Alle anderen gefundenen Verweise auf verschobene Punkte sind reine Erwähnungen ohne „siehe dort für Details" und bleiben unverändert; sie lösen sich über `pruefe.py` Abschnitt 3 weiterhin auf, weil dessen Punktprüfung Backlog und Archiv gemeinsam durchsucht.
-
-**Verlustbeweis von Hand geführt:** Jeder verschobene Block wurde wortgleich im vorherigen Commit-Stand nachgewiesen; Backlog minus verschobene Blöcke ergibt exakt den neuen Dateikörper (byte-genau geprüft). Kein neuer `pruefe.py`-Abschnitt dafür — dieselbe, bereits in Punkt 65 und Fassung 60 offen benannte Lücke.
-
-**Grösse:** Backlog vorher 108.699 Zeichen (Fassung 60), nachher **88.442** Zeichen.
-
-- **Fassungszahl:** alle drei aktiven Dokumente auf 61 gehoben (Blueprint 0.60). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert. **Eine neue, dauerhafte Zuständigkeitsregel** (Regel 4 oben) — keine Arbeitsregel im Sinn von Abschnitt 2c des Blueprints, sondern eine Pflegeregel dieses Dokuments.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 60 ändert (30.8., Backlog gekürzt — Weg C, Punkt 65)
-
-**Anlass:** Backlog-Punkt 65 (die 120.000-Zeichen-Grenze im Chat-Bereich) nannte drei Wege. Ondo hat **Weg C** beauftragt: die gestapelten Abschnitte „Was Fassung N ändert" ins Archiv verschieben, nach dem Vorbild von Punkt 18.
-
-- **Verschoben:** Die Fassungsabschnitte 24 bis 59 (36 Abschnitte, 50.570 Zeichen) stehen jetzt in `BACKLOG-ARCHIV.md`, oberhalb von Fassung 23 — die Reihenfolge bleibt absteigend durchgehend erhalten, kein Bruch zwischen Fassung 59 und Fassung 23.
-- **Verlustbeweis, von Hand geführt, nicht durch einen neuen `pruefe.py`-Abschnitt:** Der ursprüngliche Backlog-Text (Commit `35ad71f`) wurde aus `Kopf + verschobener Block + Rest` byte-genau rekonstruiert und gegen das Original verglichen — identisch bis auf diesen einen neuen Absatz. **Offen, wie schon beim ursprünglichen Split von Punkt 18:** `pruefe.py` prüft diese zweite Trennung nicht automatisch nach, dieselbe Lücke wie bei `PROJEKT-STATUS.md` (Punkt 52, seit 30.8.2026 in `BACKLOG-ARCHIV.md`) und bereits in Punkt 65 selbst als Haken benannt. Ein dauerhafter, automatischer Beweis wäre eine eigene Codeänderung an `pruefe.py` und ist hier bewusst **nicht** mitgeliefert — Weg C hat nur die Kürzung verlangt.
-- **Nur Änderungsnotizen sind verschoben, keine offenen Punkte.** Punkt 1 bis 65 stehen unverändert im Backlog — „Nur offene Punkte" gilt weiterhin für den eigentlichen Inhalt dieser Datei.
-- **Grösse:** Backlog vorher 156.999 Zeichen (Fassung 59), nachher 108.699 Zeichen.
-- **🔴 Neuer Fund, nicht Teil von Weg C, nur dabei aufgefallen:** Selbst ganz ohne Änderungsnotizen wiegt der Backlog rund 106.400 Zeichen — vor allem, weil abgeschlossene Punkte (GEBAUT/GEKLÄRT/ENTSCHIEDEN, z. B. 47, 48, 49, 51, 52, 58, 59, 60, 64, E, 2) mit ihrer vollen Begründung im Haupttext stehen bleiben, statt wie „Nur offene Punkte" es nahelegt ins Archiv zu wandern. **Kein Vorschlag, keine Entscheidung — nur benannt, damit der jetzt gewonnene Spielraum nicht als dauerhafte Lösung missverstanden wird.**
-
-- **Fassungszahl:** alle drei aktiven Dokumente auf 60 gehoben (Blueprint 0.59). `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4.** *(unverändert.)*
 
 ---
 
@@ -1783,7 +1062,7 @@ Die von/bis-Datumsfelder (`logExportBlock()`, `kilogFilterBlock()` aus Punkt 70/
 
 ---
 
-**65. Harte Leselängen-Grenze im Chat-Bereich bei rund 120.000 Zeichen** · *Fund 29.8.2026, Claude, bei der Übergabe an Chat 27* · **Status: Fund — Ondo vorzulegen, drei Wege genannt, keiner gewählt**
+**65. Harte Leselängen-Grenze im Chat-Bereich bei rund 120.000 Zeichen** · *Fund 29.8.2026, Claude, bei der Übergabe an Chat 27 · Weg C als Dauerregel gewählt 11.9.2026, Ondo* · **Status: 🔴 Weg C als STEHENDE REGEL eingeführt am 11.9.2026 — Grenze weiterhin überschritten, wirkt aber jetzt dauerhaft statt einmalig**
 
 Ein Raw-Link-Abruf im Chat-Bereich liefert nicht die ganze Datei, sondern bricht **exakt bei 120.000 Zeichen** ab — kein ungefährer Rand, eine feste Grenze. Zweifach geprüft: derselbe Abbruch an derselben Stelle, mit zwei verschieden angehängten Zahlen zum Umgehen der Zwischenspeicherung (Backlog-Punkt 53, Fund vom 22.8.).
 
@@ -1802,6 +1081,19 @@ Auch betroffen, ausserhalb der Pflichtlektüre: `CHRONIK-2026-08.md` (164.036 Ze
 → **🔴 DRITTE BESTÄTIGUNG UND RÜCKFALL, 2.9.2026 — die Grenze ist wieder überschritten.** Bei der Übergabe an den Nachfolgechat brach der Backlog-Abruf erneut ab. **Der Nachfolger hat es von selbst gemeldet**, ohne danach gefragt worden zu sein, und den letzten empfangenen Text im Wortlaut genannt: `| **Wie un` — die Zeile nach dem „Fail Safe"-Eintrag in der Tabelle „Für Blueprint und Ondo-Core vorgemerkt". **Nachgemessen in der Code-Sitzung, nicht geschätzt:** Diese Stelle liegt bei **exakt Zeichen 120.000**. Damit ist die feste Grenze zum dritten Mal unabhängig belegt, diesmal mit einer von aussen gemeldeten und im Repo nachgerechneten Bruchstelle. **Der Backlog stand zu diesem Zeitpunkt bei 132.289 Zeichen — 12.289 darüber, rund ein Zehntel fehlte.** Ursache des Rückfalls: Weg C (Fassung 60) hatte den Backlog auf 108.699 Zeichen gebracht; die Fassungen 61 bis 69 haben ihn wieder darüber wachsen lassen, vor allem durch ausführliche Punkte, die im Haupttext stehen bleiben (genau der Fund, der in Fassung 60 schon benannt und nicht behoben wurde). **Weg C wirkt also, hält aber nicht** — er verschafft Luft, ohne die Ursache zu beseitigen. Der fehlende Rest ist nach Weg B nachgeliefert worden (12.299 Zeichen mit überlappender Nahtstelle). **Keine Entscheidung, kein neuer Weg** — nur der Beleg, dass die Wahl zwischen A, B und C ansteht, und dass B bei jeder Übergabe erneut Handarbeit kostet.
 → **Empfehlung Claude: B für die jeweils nächste anstehende Übergabe, C als spätere, von Ondo zu entscheidende Strukturfrage.** B behebt nichts dauerhaft, ist aber sofort verfügbar und günstig. C behebt die Ursache, ist aber nicht so dringend, dass sie vorgezogen werden müsste.
 → **Kein Schnitt in der Messreihe, kein Eingriff in `beta.html`.** Reine Dokument- und Arbeitsablauffrage.
+
+> **🔴 ENTSCHIEDEN am 11.9.2026 (Ondo): Weg C, aber als stehende Regel statt Einmalaktion.**
+> Genau der 2.9.2026 belegte Rückfall („Weg C wirkt, hält aber nicht") ist damit ausdrücklich
+> adressiert — eine Regel im Dokument selbst (Regel 5, Abschnitt „Regeln für dieses
+> Dokument") verschiebt jetzt bei jeder künftigen Lieferung automatisch den sechstältesten
+> Fassungsabschnitt ins Archiv, ohne dass jemand erneut daran denken muss. Sofort angewendet:
+> 28 Abschnitte (87 bis 60) verschoben, Backlog von 269.086 auf 192.220 Zeichen.
+> **Die zwei ursprünglich genannten Haken bleiben unverändert bestehen, hier nicht gelöst:**
+> `BACKLOG-ARCHIV.md` liegt selbst über der Grenze (jetzt noch weiter darüber), und ein
+> automatischer Verlustbeweis für die Verschiebung fehlt weiterhin — beides wie beim
+> ursprünglichen Weg C am 30.8.2026. **Wege A und B bleiben für den Chat-Bereich weiterhin
+> nötig**, solange der Backlog selbst über der 120.000-Zeichen-Grenze liegt — Regel 5 senkt
+> das Wachstum, behebt die Grenze selbst nicht.
 
 ---
 
