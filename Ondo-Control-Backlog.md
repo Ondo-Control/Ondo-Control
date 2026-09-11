@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 11.9.2026, Fassung 94 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 11.9.2026, Fassung 95 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,35 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 95 ändert (11.9., Backlog-Punkt 9 — API-Football/football-data.org per Knopfdruck an den Prüflauf gekoppelt)
+
+**Anlass:** API-Football sperrte die GitHub-Automatik aus Fassung 94 wegen geteilter
+Cloud-Adresse, vom Support schriftlich als strukturelles Problem bestätigt. Ondos Vorschlag:
+beide Quellen zusätzlich per Knopfdruck vom eigenen Gerät aus abrufen, gekoppelt an den
+bestehenden Prüflauf.
+
+- **`beta.html` v19.8.24:** Zwei neue Schlüsselfelder `state.apiFootballKey`/
+  `state.footballDataKey`. Im „Ergebnisse prüfen"-Lauf gehen beide strukturierten Quellen den
+  KI-Läufen jetzt voran, wenn ein Schlüssel gespeichert ist — die bestehende Einigkeitsregel
+  (Backlog-Punkt 68) bleibt unverändert, sie bekommt nur teils andere Zulieferer.
+- **Neue reine Funktionen:** `datumIso()`, `strukturAbgleich()` (Team- und Datumsabgleich,
+  bewusst ohne Heim/Gast-Vertauschung), dazu `apiFootballLauf()`/`footballDataLauf()` für den
+  Abruf. football-data.org mit demselben 12-Wettbewerbe-Filter wie bei der GitHub-Automatik.
+- **Verifiziert:** `node --check` bestanden. Trockentest an der echten `strukturAbgleich()`/
+  `datumIso()`: 18 Prüfungen. Trockentest an der echten `wege`-Aufbaulogik: 7 Prüfungen,
+  darunter der Beleg, dass ohne die neuen Schlüssel exakt das bisherige Verhalten gilt.
+  `pruefe.py` ohne Argument — ALLES SAUBER.
+- **Volle Begründung, Bauweise und die offen benannte Grenze stehen als angehängter Block
+  direkt bei Punkt 9** (nicht hier wiederholt — Punkt 45).
+- **8 neue Sprachschlüssel** (`afKeyT` bis `fdOff`; 267 → 275). **Kein Schnitt in der
+  Messreihe.** `APP_VERSION` weiter 18.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 95 gehoben (Blueprint 0.94).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut weiterhin drei** — **3, 4, 0b** *(unverändert.)*
 
 ---
 
@@ -146,41 +175,6 @@ Knopfdruck-Teil zuerst umgesetzt, wie mit Ondo abgestimmt.
 - **11 neue Sprachschlüssel** (`oddsKeyT` bis `oddsQuelle`; 256 → 267). **Kein Schnitt in der
   Messreihe.** `APP_VERSION` weiter 18.
 - **Fassungszahl:** alle drei aktiven Dokumente auf 91 gehoben (Blueprint 0.90).
-  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
-  Arbeitsregel.
-- **Beschlossen und nicht gebaut weiterhin drei** — **3, 4, 0b** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 90 ändert (10.9., neuer Arbeitsweg mit ChatGPT — Punkt 74 gebaut, erste Anwendung bei Punkt 68)
-
-**Anlass:** Ondos Auftrag — ChatGPT soll versuchen, eine klein umrissene Codeänderung selbst zu
-schreiben (Kostensenkung beim Schiedsrichter), Claude prüft nachträglich, um Nutzung zu sparen.
-
-- **Neuer Backlog-Punkt 74 angelegt und im selben Zug angewendet:** Der Arbeitsweg selbst
-  (Claude schreibt eine geschlossene Spezifikation, ChatGPT liefert Code, Claude prüft
-  byte-für-byte, Syntax und per Trockentest, bevor committet wird) und seine erste Anwendung.
-  **Geprüft und verworfen:** ChatGPT liest `beta.html` selbst über einen Link — GitHub Pages
-  zeigt nur die laufende Anzeige, der Rohtext-Link bricht bei dieser Dateigrösse vor der
-  gesuchten Stelle ab (dieselbe Grössenordnung wie Backlog-Punkt 65). **Kein eigener Branch**,
-  entgegen der ursprünglichen Ankündigung — mit Begründung: die stehende „kein neuer Branch"-
-  Regel entstand nach einem echten Vorfall (nicht löschbare Zweige), ein Branch hätte daran
-  nichts geändert, die Prüfung selbst geschieht ohnehin vor dem Commit.
-- **Backlog-Punkt 68 nachgeführt, `beta.html` v19.8.22:** Dritter Lauf des Schiedsrichters auf
-  `claude-sonnet-5` umgestellt (rund ein Drittel weniger pro Token), Websuche auf
-  `web_search_20260209` gehoben, `output_config:{effort:'low'}` ergänzt. Dabei gefunden und
-  berichtigt: das Modell-Label `modellGenutzt` (Backlog-Punkt 64) war nach der Umstellung
-  veraltet — nicht Teil des ChatGPT-Auftrags, sondern ein Fund bei der Prüfung.
-- **Volle Begründung, Grenzen der Prüfung und Verifikationsdetails stehen als angehängte
-  Blöcke direkt bei Punkt 74 und Punkt 68** (nicht hier wiederholt — Punkt 45).
-- **Verifiziert:** `node --check` bestanden. Trockentest mit 15 Prüfungen an der echten,
-  eingesetzten Funktion (gestubbter `apiCall()`, kein echter Netzwerkaufruf, keine echten
-  Kosten). `pruefe.py` ohne Argument — ALLES SAUBER.
-- **Ausdrücklich nicht geprüft:** ob Sonnet 5 tatsächlich weniger kostet oder genauso gut
-  funktioniert — das zeigt erst Ondos eigener Betrieb.
-- **Keine neuen Sprachschlüssel** (256 unverändert). **Kein Schnitt in der Messreihe.**
-  `APP_VERSION` weiter 18.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 90 gehoben (Blueprint 0.89).
   `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
   Arbeitsregel.
 - **Beschlossen und nicht gebaut weiterhin drei** — **3, 4, 0b** *(unverändert.)*
@@ -1343,7 +1337,7 @@ Codeänderung ohne Schnitt.
 15 Bewertungen sind statistisch zu wenig, 100 dauern Monate. Vorschlag Claude: Beförderung nach Stabilität und Fehlerfreiheit entscheiden, die Messung läuft danach weiter. **Inhalt gehört in den Blueprint.**
 → *Vermerk 31.7.: Die Beförderung ist derzeit ohnehin gesperrt — Kriterium (f) verlangt Null-Fehler-Toleranz beim Schiedsrichter. Einzelheiten in `PROJEKT-STATUS.md`.*
 
-**9. Echte Quoten automatisch (Knopfdruck gebaut, Zeitsteuerung teilweise gebaut) — Ausbau: eigene Ergebnis-Datenquelle für den Schiedsrichter** · *Idee 23.7., Claude · Verfassungsfrage teilweise geklärt 7.9.2026 · Knopfdruck-Teil Auftrag Ondo und gebaut 10.9.2026 · Zeitsteuerung/Ergebnis-Automatik Auftrag Ondo 11.9.2026* · **Status: 🔴 Knopfdruck-Teil GEBAUT 10.9.2026 — Ergebnis-Automatik (Zeitsteuerung) GEBAUT und geprüft 11.9.2026, noch nicht scharf wegen offener Störung bei API-Football**
+**9. Echte Quoten automatisch (Knopfdruck gebaut, Zeitsteuerung teilweise gebaut) — Ausbau: eigene Ergebnis-Datenquelle für den Schiedsrichter** · *Idee 23.7., Claude · Verfassungsfrage teilweise geklärt 7.9.2026 · Knopfdruck-Teil Auftrag Ondo und gebaut 10.9.2026 · Zeitsteuerung/Ergebnis-Automatik Auftrag Ondo 11.9.2026 · Knopfdruck-Kopplung Auftrag Ondo und gebaut 11.9.2026* · **Status: 🔴 Knopfdruck-Teil (Quoten) GEBAUT 10.9.2026 — Zeitgesteuerte Ergebnis-Automatik GEBAUT 11.9.2026, wegen API-Football-Sperre nur mit football-data.org scharf — Knopfdruck-Ergebnisabgleich (API-Football + football-data.org, gekoppelt an den Prüflauf) GEBAUT und geprüft 11.9.2026**
 Offene Vorfrage (Gemini, weiterhin unbeantwortet): Deckt ein kostenloser Dienst überhaupt Ondos Spiele ab? **🔴 Verfassungsfrage teilweise geklärt (Ondo, 7.9.2026, Blueprint 0.83, Abschnitt 10):** Eine durch Knopfdruck in der App ausgelöste Aktualisierung verletzt „kein Server" nicht — ein Knopfdruck ist die von der Regel verlangte Aufforderung. Eine zeitgesteuerte, unbeaufsichtigte Ausführung bleibt weiterhin offen und ist eine andere Variante. **Ungeprüft, technische Einordnung:** Ob dafür überhaupt GitHub Actions nötig wäre (ein reiner Abruf im Browser bei Knopfdruck bräuchte gar keine Actions-Infrastruktur, wie die bestehenden Knöpfe es schon vormachen) oder ob ein dauerhaft im Repo gespeichertes Ergebnis einen manuell auslösbaren `workflow_dispatch` mit einem neuen, eigens abzusicherndem GitHub-Zugriffsschlüssel bräuchte, ist nicht untersucht.
 
 > **🔴 Vorfrage zur Quotenabdeckung teilweise beantwortet, 10.9.2026 (per Websuche geprüft, nicht
@@ -1465,9 +1459,44 @@ Offene Vorfrage (Gemini, weiterhin unbeantwortet): Deckt ein kostenloser Dienst 
 > **Bekannte, offen benannte Wartungslücke:** Die Liga-ID-Liste im Skript ist von Hand aus
 > STUFEN (`beta.html`) abgeleitet, nicht automatisch verknüpft — ändert sich STUFEN künftig,
 > muss die Liste im Skript von Hand nachgezogen werden, sonst laufen beide still auseinander.
-> **Noch nicht gebaut, eigener nächster Schritt:** die Lese-Funktion im Schiedsrichter selbst,
-> die diese Monatsdateien als einen der bis zu drei unabhängigen Läufe in die bestehende
-> Einigkeitsregel (Backlog-Punkt 68) einspeist.
+> **Noch nicht gebaut:** die Lese-Funktion für die Monatsdateien selbst (eigener, andersartiger
+> Weg, siehe unten — durch die Knopfdruck-Kopplung weniger dringend geworden).
+
+> **🔴 Ausbau, Auftrag Ondo 11.9.2026, `beta.html` v19.8.24: API-Football und football-data.org
+> per Knopfdruck mit dem bestehenden Prüflauf gekoppelt.** Anlass: API-Football sperrte die
+> GitHub-Automatik wegen geteilter Cloud-Adresse (siehe oben); der Support bestätigte
+> schriftlich, dass das strukturell an GitHub Actions selbst liegt, nicht an der Menge. Ondos
+> Idee: vom eigenen Gerät aus abrufen, wie beim Quoten-Knopf — dort ist es keine geteilte
+> Adresse, also kein Sperr-Risiko.
+>
+> **Bauweise:** Zwei neue Schlüsselfelder `state.apiFootballKey`/`state.footballDataKey`,
+> gleiches Muster wie die bestehenden vier. Im „Ergebnisse prüfen"-Lauf (Backlog-Punkt 68,
+> `wege`-Liste) gehen beide strukturierten Quellen jetzt den KI-Läufen voran, wenn ein
+> Schlüssel gespeichert ist — fehlt ein Spiel bei beiden (falscher Wettbewerb, keine Angabe),
+> füllt die bestehende KI-Suche den verbleibenden Platz, genau wie bisher.
+> **`refLaufPruefen()` und `refEinigkeit()` (Backlog-Punkt 68) bleiben unverändert** — neue
+> Funktion `strukturAbgleich()` liefert Ergebnisse in exakt demselben Format, das die
+> Einigkeitsregel von einem KI-Lauf erwartet; sie sieht keinen Unterschied. Neue reine
+> Funktionen `datumIso()` (Datumsformat wandeln) und `strukturAbgleich()` (Team- und
+> Datumsabgleich, bewusst ohne Heim/Gast-Vertauschung — das wäre ein Fehler in der Spielliste
+> selbst, nicht hier zu heilen), dazu `apiFootballLauf()`/`footballDataLauf()` für den
+> eigentlichen Abruf. football-data.org mit demselben Filter auf die 12 zugesicherten
+> Wettbewerbe wie bei der GitHub-Automatik (derselbe Fund: die Schnittstelle liefert auch
+> Spiele ausserhalb der Liste).
+> **Verifiziert:** `node --check` bestanden. Trockentest an der echten, herausgeschnittenen
+> `strukturAbgleich()`/`datumIso()`: **18 Prüfungen**, darunter ein echtes 0:0 (wird als
+> bestätigt markiert, kein Rateverdacht), ein Spiel drei Tage neben dem Zieldatum (wird NICHT
+> als Treffer gewertet), eine echte Verlängerung. Zusätzlicher Trockentest an der echten
+> `wege`-Aufbaulogik: **7 Prüfungen**, darunter der Beleg, dass sich ohne die zwei neuen
+> Schlüssel **exakt das bisherige Verhalten** ergibt (drei gleiche oder gemischte KI-Läufe,
+> `einAnbieter` unverändert). `pruefe.py` danach: ALLES SAUBER.
+> **8 neue Sprachschlüssel** (`afKeyT` bis `fdOff`; 267 → 275). **Kein Schnitt in der
+> Messreihe.** `APP_VERSION` weiter 18.
+> **Bekannte, offen benannte Grenze:** Solange nur ein oder gar kein strukturierter Schlüssel
+> gespeichert ist, bleibt die vorherige, reine KI-Lösung unverändert aktiv — kein Rückschritt.
+> Solange API-Football gesperrt bleibt, liefert dieser Weg ebenfalls nur football-data.org
+> zuverlässig; die KI-Suche bleibt dann öfter der entscheidende dritte Lauf, mit entsprechend
+> mehr KI-Aufrufen als im Idealfall.
 
 **10. Value-Rechnung zurückholen** · *Idee 22.7., Gemini* · **Status: Idee** · hängt an Punkt 9
 

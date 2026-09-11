@@ -410,6 +410,41 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 90 ändert (10.9., neuer Arbeitsweg mit ChatGPT — Punkt 74 gebaut, erste Anwendung bei Punkt 68)
+
+**Anlass:** Ondos Auftrag — ChatGPT soll versuchen, eine klein umrissene Codeänderung selbst zu
+schreiben (Kostensenkung beim Schiedsrichter), Claude prüft nachträglich, um Nutzung zu sparen.
+
+- **Neuer Backlog-Punkt 74 angelegt und im selben Zug angewendet:** Der Arbeitsweg selbst
+  (Claude schreibt eine geschlossene Spezifikation, ChatGPT liefert Code, Claude prüft
+  byte-für-byte, Syntax und per Trockentest, bevor committet wird) und seine erste Anwendung.
+  **Geprüft und verworfen:** ChatGPT liest `beta.html` selbst über einen Link — GitHub Pages
+  zeigt nur die laufende Anzeige, der Rohtext-Link bricht bei dieser Dateigrösse vor der
+  gesuchten Stelle ab (dieselbe Grössenordnung wie Backlog-Punkt 65). **Kein eigener Branch**,
+  entgegen der ursprünglichen Ankündigung — mit Begründung: die stehende „kein neuer Branch"-
+  Regel entstand nach einem echten Vorfall (nicht löschbare Zweige), ein Branch hätte daran
+  nichts geändert, die Prüfung selbst geschieht ohnehin vor dem Commit.
+- **Backlog-Punkt 68 nachgeführt, `beta.html` v19.8.22:** Dritter Lauf des Schiedsrichters auf
+  `claude-sonnet-5` umgestellt (rund ein Drittel weniger pro Token), Websuche auf
+  `web_search_20260209` gehoben, `output_config:{effort:'low'}` ergänzt. Dabei gefunden und
+  berichtigt: das Modell-Label `modellGenutzt` (Backlog-Punkt 64) war nach der Umstellung
+  veraltet — nicht Teil des ChatGPT-Auftrags, sondern ein Fund bei der Prüfung.
+- **Volle Begründung, Grenzen der Prüfung und Verifikationsdetails stehen als angehängte
+  Blöcke direkt bei Punkt 74 und Punkt 68** (nicht hier wiederholt — Punkt 45).
+- **Verifiziert:** `node --check` bestanden. Trockentest mit 15 Prüfungen an der echten,
+  eingesetzten Funktion (gestubbter `apiCall()`, kein echter Netzwerkaufruf, keine echten
+  Kosten). `pruefe.py` ohne Argument — ALLES SAUBER.
+- **Ausdrücklich nicht geprüft:** ob Sonnet 5 tatsächlich weniger kostet oder genauso gut
+  funktioniert — das zeigt erst Ondos eigener Betrieb.
+- **Keine neuen Sprachschlüssel** (256 unverändert). **Kein Schnitt in der Messreihe.**
+  `APP_VERSION` weiter 18.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 90 gehoben (Blueprint 0.89).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut weiterhin drei** — **3, 4, 0b** *(unverändert.)*
+
+---
+
 ## ⚠ Was Fassung 89 ändert (10.9., Backlog-Punkt 34 und 35 gebaut — Brier-Score und Streuung)
 
 **Anlass:** Auftrag Ondo — Punkt 34 (Brier-Score) und Punkt 35 (Streuungsangabe) bauen, beide

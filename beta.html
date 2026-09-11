@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.23';
+var CODE_VERSION = 'v19.8.24';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -217,6 +217,8 @@ var I18N = {
   logD:'Jede KI-Vorhersage wird hier bewertet. Aus einem Ergebnis-Tipp leitet die App drei Aussagen ab.',
   gKeyT:'🌱 Zweites Gehirn (Google Gemini)', gKeyD:'Schlüssel von aistudio.google.com — bleibt NUR auf diesem Gerät. Übernimmt Ergebnis-Prüfen & Foto-Lesen fast gratis.', gOn:'✅ Gemini-Schlüssel gespeichert', gOff:'❌ Kein Gemini-Schlüssel',
   oddsKeyT:'🎲 Quoten-Schlüssel (The Odds API)', oddsKeyD:'Schlüssel von the-odds-api.com — bleibt NUR auf diesem Gerät. Kostenloses Kontingent begrenzt (rund 500 Abrufe/Monat).', oddsOn:'✅ Quoten-Schlüssel gespeichert', oddsOff:'❌ Kein Quoten-Schlüssel',
+  afKeyT:'⚽ Ergebnis-Schlüssel (API-Football)', afKeyD:'Schlüssel von api-football.com — bleibt NUR auf diesem Gerät. Wird beim Prüfen zuerst gefragt, vor der KI-Suche.', afOn:'✅ API-Football-Schlüssel gespeichert', afOff:'❌ Kein API-Football-Schlüssel',
+  fdKeyT:'⚽ Ergebnis-Schlüssel (football-data.org)', fdKeyD:'Schlüssel von football-data.org — bleibt NUR auf diesem Gerät. Deckt 12 grosse Wettbewerbe ab, als zweite unabhängige Quelle.', fdOn:'✅ football-data.org-Schlüssel gespeichert', fdOff:'❌ Kein football-data.org-Schlüssel',
   oddsLigaLabel:'Liga', oddsLigenLadenBtn:'Ligen laden', oddsAbrufenBtn:'Quoten abrufen',
   oddsKeineLiga:'Bitte zuerst eine Liga wählen', oddsKeinTreffer:'Keine bevorstehenden Spiele gefunden',
   oddsFehler:'Abruf fehlgeschlagen', oddsQuelle:'Quelle',
@@ -327,6 +329,8 @@ var I18N = {
   logD:'Chaque prédiction IA est évaluée ici. À partir d’un score prédit, l’app déduit trois affirmations.',
   gKeyT:'🌱 Second cerveau (Google Gemini)', gKeyD:'Clé de aistudio.google.com — reste UNIQUEMENT sur cet appareil. Prend en charge vérification & lecture photo presque gratuitement.', gOn:'✅ Clé Gemini enregistrée', gOff:'❌ Pas de clé Gemini',
   oddsKeyT:'🎲 Clé de cotes (The Odds API)', oddsKeyD:'Clé de the-odds-api.com — reste UNIQUEMENT sur cet appareil. Quota gratuit limité (environ 500 appels/mois).', oddsOn:'✅ Clé de cotes enregistrée', oddsOff:'❌ Pas de clé de cotes',
+  afKeyT:'⚽ Clé de résultats (API-Football)', afKeyD:'Clé de api-football.com — reste UNIQUEMENT sur cet appareil. Interrogée en premier lors de la vérification, avant la recherche IA.', afOn:'✅ Clé API-Football enregistrée', afOff:'❌ Pas de clé API-Football',
+  fdKeyT:'⚽ Clé de résultats (football-data.org)', fdKeyD:'Clé de football-data.org — reste UNIQUEMENT sur cet appareil. Couvre 12 grandes compétitions, comme seconde source indépendante.', fdOn:'✅ Clé football-data.org enregistrée', fdOff:'❌ Pas de clé football-data.org',
   oddsLigaLabel:'Championnat', oddsLigenLadenBtn:'Charger les championnats', oddsAbrufenBtn:'Récupérer les cotes',
   oddsKeineLiga:'Veuillez d\'abord choisir un championnat', oddsKeinTreffer:'Aucun match à venir trouvé',
   oddsFehler:'Échec de la récupération', oddsQuelle:'Source',
@@ -437,6 +441,8 @@ var I18N = {
   logD:'Every AI prediction is rated here. From one predicted score the app derives three statements.',
   gKeyT:'🌱 Second brain (Google Gemini)', gKeyD:'Key from aistudio.google.com — stays ONLY on this device. Handles result checking & photo reading almost free.', gOn:'✅ Gemini key saved', gOff:'❌ No Gemini key',
   oddsKeyT:'🎲 Odds key (The Odds API)', oddsKeyD:'Key from the-odds-api.com — stays ONLY on this device. Free quota limited (around 500 calls/month).', oddsOn:'✅ Odds key saved', oddsOff:'❌ No odds key',
+  afKeyT:'⚽ Results key (API-Football)', afKeyD:'Key from api-football.com — stays ONLY on this device. Queried first when checking results, before the AI search.', afOn:'✅ API-Football key saved', afOff:'❌ No API-Football key',
+  fdKeyT:'⚽ Results key (football-data.org)', fdKeyD:'Key from football-data.org — stays ONLY on this device. Covers 12 major competitions, as a second independent source.', fdOn:'✅ football-data.org key saved', fdOff:'❌ No football-data.org key',
   oddsLigaLabel:'League', oddsLigenLadenBtn:'Load leagues', oddsAbrufenBtn:'Fetch odds',
   oddsKeineLiga:'Please choose a league first', oddsKeinTreffer:'No upcoming matches found',
   oddsFehler:'Fetch failed', oddsQuelle:'Source',
@@ -1654,6 +1660,120 @@ function geminiCall(opts, modellIndex){
 function hatGemini(){ return !!(state.geminiKey && state.geminiKey.length > 20); }
 function hatSonnet(){ return !!(state.apiKey && state.apiKey.indexOf('sk-ant-')===0); }
 function hatOdds(){ return !!(state.oddsKey && state.oddsKey.length > 10); }
+function hatApiFootball(){ return !!(state.apiFootballKey && state.apiFootballKey.length > 10); }
+function hatFootballData(){ return !!(state.footballDataKey && state.footballDataKey.length > 10); }
+
+/* ================= STRUKTURIERTE ERGEBNIS-QUELLEN (v19.8.24, Ausbau Backlog-Punkt 9) =================
+   Ondos Vorschlag 11.9.2026: API-Football und football-data.org per Knopfdruck direkt aus der
+   App abrufen (eigenes Geraet, keine geteilte Cloud-Adresse - siehe API-Football-Sperre bei der
+   GitHub-Actions-Automatik am selben Tag) und mit dem bestehenden Prueflauf koppeln. Beide
+   Quellen liefern je einen der drei Laeufe aus Backlog-Punkt 68, im selben Format wie ein
+   KI-Lauf (r.heim, r.gast, r.halbzeit, ...) - refLaufPruefen() und refEinigkeit() bleiben
+   UNVERAENDERT, sie sehen keinen Unterschied zu einem KI-Lauf.
+   Negativlisten-Geist (Ondo, 11.9.2026): keine Quelle behauptet Vollstaendigkeit, ein nicht
+   gefundenes Spiel liefert einfach keinen Treffer - der dritte, verbleibende Lauf bleibt die
+   KI-Suche. */
+
+/* Reine Funktion: "24.07.2026" -> "2026-07-24". Leerer String bei unlesbarem Format. */
+function datumIso(dmj){
+  var m=String(dmj||'').match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);
+  if(!m) return '';
+  return m[3]+'-'+('0'+m[2]).slice(-2)+'-'+('0'+m[1]).slice(-2);
+}
+
+/* Reine Funktion, kein Netzaufruf - eigens testbar. Gleicht die offenen Posten (ziel) gegen
+   eine bereits vereinheitlichte Liste roher Spiele (fixtures) ab und liefert Ergebnisse in
+   genau der Form, die verarbeite()/refLaufPruefen() von einem KI-Lauf erwarten.
+   Bewusst KEIN Abgleich bei vertauschter Heim/Gast-Reihenfolge (Vereinfachung): beide Seiten -
+   Spielliste und strukturierte Quelle - nennen dieselbe echte Heimmannschaft, ein Tausch waere
+   ein Fehler in der Spielliste selbst, nicht hier zu heilen. */
+function strukturAbgleich(ziel, fixtures, quelleUrl){
+  function teamPasstZu(a,b){
+    var na=normName(a), nb=normName(b);
+    if(!na || !nb) return false;
+    return na===nb || na.indexOf(nb)>=0 || nb.indexOf(na)>=0;
+  }
+  function tagesAbstand(a,b){
+    return Math.abs(new Date(a+'T00:00:00Z').getTime()-new Date(b+'T00:00:00Z').getTime())/86400000;
+  }
+  var ergebnisse=[];
+  (ziel||[]).forEach(function(p){
+    var teams=teamsAus(p.match), pIso=datumIso(p.datum);
+    if(!pIso) return;
+    var f=null;
+    for(var i=0;i<fixtures.length;i++){
+      var x=fixtures[i];
+      if(x.status!=='FT') continue;
+      if(tagesAbstand(pIso,x.datum)>1) continue;
+      if(teamPasstZu(teams.heim,x.heim) && teamPasstZu(teams.gast,x.gast)){ f=x; break; }
+    }
+    if(!f) return;
+    var heim=f.torHeim, gast=f.torGast;
+    var r={ id:p.id, status:'fertig', heim:heim, gast:gast, datum:p.datum,
+      wettbewerb:f.wettbewerb||p.wettbewerb||'', quelle:quelleUrl,
+      verlaengerungGespielt:f.verlaengerung?'ja':'nein', verlaengerung:f.verlaengerung||'',
+      torlos:(heim===0&&gast===0)?'bestaetigt':'nein' };
+    if(f.halbzeit) r.halbzeit=f.halbzeit;
+    ergebnisse.push(r);
+  });
+  return ergebnisse;
+}
+
+/* Holt Endstaende von API-Football fuer die in ziel vorkommenden Tage (kostenlose Stufe:
+   ein Datum je Abruf, schmales Zeitfenster um "heute" - siehe Backlog-Punkt 9). Liefert nie
+   einen Fehler nach aussen: eine gesperrte oder erschoepfte Quelle ergibt einfach keine
+   Treffer, der dritte Lauf (KI-Suche) bleibt der Rueckfallweg. */
+function apiFootballLauf(ziel){
+  if(!hatApiFootball() || !(ziel&&ziel.length)) return Promise.resolve([]);
+  var tage=[];
+  ziel.forEach(function(p){ var d=datumIso(p.datum); if(d && tage.indexOf(d)<0) tage.push(d); });
+  return Promise.all(tage.map(function(datum){
+    return fetch('https://v3.football.api-sports.io/fixtures?date='+datum, {
+      headers: { 'x-apisports-key': state.apiFootballKey }
+    }).then(function(res){ return res.json(); }).then(function(d){
+      if(d.errors && Object.keys(d.errors).length) return [];
+      return (d.response||[]).map(function(m){
+        var sc=m.score||{};
+        return { datum:String(m.fixture.date).slice(0,10), heim:m.teams.home.name, gast:m.teams.away.name,
+          torHeim:m.goals.home, torGast:m.goals.away,
+          halbzeit:(sc.halftime && sc.halftime.home!=null) ? (sc.halftime.home+':'+sc.halftime.away) : '',
+          verlaengerung:(sc.extratime && sc.extratime.home!=null) ? (sc.extratime.home+':'+sc.extratime.away) : '',
+          status:String(m.fixture.status.short), wettbewerb:m.league.name };
+      });
+    }).catch(function(){ return []; });
+  })).then(function(listen){
+    var fixtures=[].concat.apply([], listen);
+    return strukturAbgleich(ziel, fixtures, 'https://www.api-football.com');
+  });
+}
+
+/* Holt Endstaende von football-data.org. Deckt laut Konto (11.9.2026) 12 grosse Wettbewerbe
+   ab - eigener Filter auf genau diese Kuerzel, weil die Schnittstelle beim echten Test auch
+   Spiele ausserhalb der zugesicherten Liste lieferte (Copa Libertadores, Fund 11.9.2026). */
+var FOOTBALL_DATA_CODES=['WC','CL','BL1','DED','BSA','PD','FL1','ELC','PPL','EC','SA','PL'];
+function footballDataLauf(ziel){
+  if(!hatFootballData() || !(ziel&&ziel.length)) return Promise.resolve([]);
+  var tage=[];
+  ziel.forEach(function(p){ var d=datumIso(p.datum); if(d) tage.push(d); });
+  if(!tage.length) return Promise.resolve([]);
+  tage.sort();
+  var von=tage[0], bis=tage[tage.length-1];
+  return fetch('https://api.football-data.org/v4/matches?dateFrom='+von+'&dateTo='+bis, {
+    headers: { 'X-Auth-Token': state.footballDataKey }
+  }).then(function(res){ return res.json(); }).then(function(d){
+    if(d.message) return [];
+    var fixtures=(d.matches||[])
+      .filter(function(m){ return m.status==='FINISHED' && FOOTBALL_DATA_CODES.indexOf(m.competition.code)>=0; })
+      .map(function(m){
+        var ft=m.score.fullTime, ht=m.score.halfTime;
+        return { datum:String(m.utcDate).slice(0,10), heim:m.homeTeam.name, gast:m.awayTeam.name,
+          torHeim:ft.home, torGast:ft.away,
+          halbzeit:(ht && ht.home!=null) ? (ht.home+':'+ht.away) : '', verlaengerung:'',
+          status:'FT', wettbewerb:m.competition.name };
+      });
+    return strukturAbgleich(ziel, fixtures, 'https://www.football-data.org');
+  }).catch(function(){ return []; });
+}
 
 /* ================= QUOTEN-AUTOMATIK (Backlog-Punkt 9, Auftrag Ondo 10.9.2026) =================
    The Odds API (the-odds-api.com), kostenloses Kontingent (rund 500 Abrufe/Monat), Ondos eigener
@@ -2528,11 +2648,20 @@ function ergebnissePruefen(btn){
        Mindestens einer laeuft auf einem anderen Modell — dafuer wird der bestehende
        Sonnet-Rueckfallpfad benutzt (claude-sonnet-4-6 mit Websuche) statt eines dritten
        Gemini-Laufs. Steht nur ein Anbieter zur Verfuegung, laufen alle drei dort; das wird
-       in der Bilanz sichtbar gemeldet, nicht stillschweigend hingenommen (Art. 14). */
+       in der Bilanz sichtbar gemeldet, nicht stillschweigend hingenommen (Art. 14).
+       v19.8.24 (Ausbau Backlog-Punkt 9, Ondo 11.9.2026): Die beiden strukturierten Quellen
+       gehen den KI-Laeufen voran, wenn ein Schluessel gespeichert ist — sie kosten nichts,
+       kein Halluzinations-Risiko, und vom eigenen Geraet aus keine geteilte Cloud-Adresse
+       (siehe die Sperre bei der GitHub-Automatik, dort war genau das das Problem). Erst was
+       danach an freien Plaetzen bis drei fehlt, geht an die bestehende KI-Suche. */
     var wege=[];
-    if(hatGemini()){ wege.push('gemini'); wege.push('gemini'); }   /* 0a zurueckgenommen in v19.7.3, siehe Backlog */
-    if(hatSonnet()){ wege.push('sonnet'); }
-    while(wege.length<3) wege.push(wege[0]);
+    if(hatApiFootball()) wege.push('api-football');
+    if(hatFootballData()) wege.push('football-data');
+    var kiWege=[];
+    if(hatGemini()){ kiWege.push('gemini'); kiWege.push('gemini'); }   /* 0a zurueckgenommen in v19.7.3, siehe Backlog */
+    if(hatSonnet()){ kiWege.push('sonnet'); }
+    while(wege.length<3 && kiWege.length) wege.push(kiWege.shift());
+    while(wege.length<3) wege.push(wege[wege.length-1]);
     wege=wege.slice(0,3);
     einAnbieter = (wege[0]===wege[1] && wege[1]===wege[2]);
 
@@ -2540,6 +2669,11 @@ function ergebnissePruefen(btn){
        einzeln abgefangen und zaehlt dann als "kein Ergebnis". Bis v19.8.11 beendete ein
        einziger Fehlschlag den gesamten Prueflauf. */
     function einLauf(weg){
+      if(weg==='api-football' || weg==='football-data'){
+        var strukturLauf = (weg==='api-football') ? apiFootballLauf(ziel) : footballDataLauf(ziel);
+        return strukturLauf.then(function(ergebnisse){ return { weg:weg, ergebnisse:ergebnisse||[] }; })
+                            .catch(function(){ return { weg:weg, ergebnisse:[] }; });
+      }
       var call = (weg==='gemini')
         ? geminiCall({ prompt: prompt, useSearch: true, rolle:'ref' })
         : sonnetSuche(prompt, 5, 1500);
@@ -2550,6 +2684,16 @@ function ergebnissePruefen(btn){
     Promise.all(wege.map(einLauf)).then(function(antworten){
       var fehlerTexte=[];
       antworten.forEach(function(a){
+        /* Strukturierte Quelle: kein Text zu parsen, direkt verarbeiten. Ein rohText wird
+           trotzdem erzeugt, damit refRoh dieselbe Transparenz behaelt wie bei einem KI-Lauf -
+           auch "kein Treffer" bleibt sichtbar, nicht stillschweigend leer. */
+        if(a.ergebnisse){
+          var rohText = a.ergebnisse.length
+            ? a.ergebnisse.map(function(r){ return r.id+': '+r.heim+':'+r.gast; }).join(' | ')
+            : '(kein Treffer bei '+a.weg+')';
+          a.ergebnisse.forEach(function(r){ verarbeite(r, ziel, rohText, a.weg); });
+          return;
+        }
         var res=a.res||{};
         if(res.error){ fehlerTexte.push(res.error.message||('HTTP '+res._status)); return; }
         /* Backlog-Punkt 64: die volle rohe Antwort dieses Laufs, unabhaengig vom Parsen —
@@ -3458,6 +3602,16 @@ function viewMore(){
     '<div class="muted" style="margin-bottom:12px">'+t('oddsKeyD')+'</div>'+
     '<input type="password" placeholder="the-odds-api..." value="'+(state.oddsKey||'')+'" oninput="state.oddsKey=this.value.trim();save()"/>'+
     '<div class="muted" style="margin-top:8px">'+(hatOdds()?t('oddsOn'):t('oddsOff'))+'</div>'+
+  '</div>'+
+  '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">'+t('afKeyT')+'</div>'+
+    '<div class="muted" style="margin-bottom:12px">'+t('afKeyD')+'</div>'+
+    '<input type="password" placeholder="api-football..." value="'+(state.apiFootballKey||'')+'" oninput="state.apiFootballKey=this.value.trim();save()"/>'+
+    '<div class="muted" style="margin-top:8px">'+(hatApiFootball()?t('afOn'):t('afOff'))+'</div>'+
+  '</div>'+
+  '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">'+t('fdKeyT')+'</div>'+
+    '<div class="muted" style="margin-bottom:12px">'+t('fdKeyD')+'</div>'+
+    '<input type="password" placeholder="football-data.org..." value="'+(state.footballDataKey||'')+'" oninput="state.footballDataKey=this.value.trim();save()"/>'+
+    '<div class="muted" style="margin-top:8px">'+(hatFootballData()?t('fdOn'):t('fdOff'))+'</div>'+
   '</div>'+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">⚔️ '+t('duellT')+'</div>'+
     '<div class="muted">'+t('duellD')+'</div>'+

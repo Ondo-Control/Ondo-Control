@@ -409,7 +409,7 @@ if _BH is None:
 else:
     _geheim = set(re.findall(r'oninput="state\.([A-Za-z0-9_]+)=this\.value\.trim\(\)', _BH))
     _geheim = {g for g in _geheim if re.search(r'key|pin|token|secret|passw', g, re.I)}
-    pruef(_geheim == {'apiKey', 'geminiKey', 'oddsKey', 'pin'},
+    pruef(_geheim == {'apiKey', 'geminiKey', 'oddsKey', 'apiFootballKey', 'footballDataKey', 'pin'},
           f"geheime Felder aus den Eingabefeldern erkannt: {sorted(_geheim)}")
     _m = re.search(r'var MESS_FELDER = \[(.*?)\];', _BH, re.S)
     pruef(_m is not None, "MESS_FELDER existiert")
