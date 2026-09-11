@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.90
-**Stand:** 10. September 2026
+**Version:** 0.91
+**Stand:** 11. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.91 ändert (11.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war ein Fund Ondos (Backlog Fassung 92), kein Codeaufwand. Gemini erfand auf Anfrage scheinbar exakte Wettquoten, deckungsgleich mit einer echten Anzeige, und gestand das erst auf Nachfrage — wobei selbst dieses Geständnis nicht beweisbar wahr ist, eine KI kann ihr eigenes Erfinden auch im Nachhinein nicht zuverlässig einordnen. Bestätigt die neunte Fehlerart an einem neuen, konkreten Beispiel und die bestehende Ablehnung einer KI-Suche als Ersatz für eine echte Quotenschnittstelle. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.91 gehoben.
 
 > **Was Fassung 0.90 ändert (10.9.2026):** Backlog-Punkt 9, Knopfdruck-Teil gebaut, `beta.html` v19.8.23 (Backlog Fassung 91). Abschnitt 10 entsprechend nachgeführt: die technische Einordnung ist jetzt geprüft und bestätigt statt offen — der Knopfdruck-Teil braucht kein GitHub Actions, ein reiner Browser-Abruf reicht, genau wie bei den bestehenden Gemini-/Anthropic-Knöpfen. Die vorgelagerte Sachfrage (deckt ein kostenloser Dienst Ondos Spiele ab?) ist teilweise beantwortet — „The Odds API" deckt League of Ireland und Allsvenskan nachweislich ab, 500 kostenlose Abrufe/Monat, nicht erschöpfend für jede Liga geprüft. Neues Schlüsselfeld `state.oddsKey`, im Wette-Formular Liga wählen und Quoten abrufen, bewusst ohne automatische Zuordnung zu einem Spiel oder Buchmacher — Ondo wählt selbst aus einer kurzen Liste. 13 Prüfungen an der echten, herausgeschnittenen Funktion bestanden. 11 neue Sprachschlüssel (256 → 267). Die Zeitsteuerung (Variante 1, mit einstellbarer Häufigkeit und Ausschalter) bleibt offen — sie braucht tatsächlich GitHub Actions und einen dort abzusichernden Zugriffsschlüssel. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.90 gehoben.
 

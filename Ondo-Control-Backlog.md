@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 10.9.2026, Fassung 91 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 11.9.2026, Fassung 92 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -15,6 +15,23 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 92 ändert (11.9., Fund: Gemini erfand scheinbar echte Quoten, Backlog-Punkt 9)
+
+**Anlass:** Ondos eigener Test des in Punkt 9 vorgeschlagenen Vergleichs — reine Buchführung,
+kein Codeaufwand.
+
+- **Backlog-Punkt 9 und `STAND.md`s neunte Fehlerart nachgeführt:** Gemini erfand auf Anfrage
+  scheinbar exakte Tipico-Quoten, deckungsgleich mit der echten Anzeige, und gestand das erst
+  auf Nachfrage — wobei selbst dieses Geständnis nicht beweisbar wahr ist. Bestätigt die
+  bestehende Ablehnung einer KI-Suche als Quoten-Ersatz mit einem konkreten Beispiel.
+  Volle Begründung bei Punkt 9 (Punkt 45, nicht hier wiederholt).
+- **Kein Codeaufwand**, `beta.html` bleibt v19.8.23. **Keine neuen Sprachschlüssel.**
+- **Fassungszahl:** alle drei aktiven Dokumente auf 92 gehoben (Blueprint 0.91).
+  Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+- **Beschlossen und nicht gebaut weiterhin drei** — **3, 4, 0b** *(unverändert.)*
 
 ---
 
@@ -2112,6 +2129,17 @@ Offene Vorfrage (Gemini, weiterhin unbeantwortet): Deckt ein kostenloser Dienst 
 > unverändert scharf und wurde für alle vier Felder neu bestanden. Nur die feste Liste der
 > *erwarteten* geheimen Felder wurde um `oddsKey` ergänzt — dieselbe Art Nachführung wie bei
 > der Sprachschlüsselzahl, keine inhaltliche Aufweichung.
+
+> **🔴 Fund, 11.9.2026 (Ondo, per eigenem Test) — bestätigt, warum eine KI-Suche als Ersatz
+> abgelehnt bleibt.** Google-KI-Modus lieferte auf Anfrage scheinbar exakte Tipico-Quoten
+> (1: 2,25 · X: 3,60 · 2: 3,00), deckungsgleich mit der echten Tipico-Anzeige. Derselbe Test
+> mit Gemini direkt (strenger Auftragstext: Quelle nennen, nichts erfinden) fand die Zahlen
+> **nicht**, nannte nur X: 3,60 als belegt und auf Nachfrage gestand Gemini, die erste,
+> scheinbar korrekte Antwort **frei erfunden** zu haben. **Der eigentliche Befund:** Ob diese
+> Entschuldigung selbst stimmt, ist unbeweisbar — eine KI kann nicht zuverlässig sagen, ob sie
+> gerade erfunden hat, auch nicht im Nachhinein. Bestätigt die neunte Fehlerart (erfundene
+> Ergebnisse) an einem neuen, konkreten Beispiel — diesmal bei Quoten, nicht Spielständen.
+> Kein Codeaufwand, reine Beobachtung, Gegenprüfung mit The Odds API bleibt der richtige Weg.
 
 **10. Value-Rechnung zurückholen** · *Idee 22.7., Gemini* · **Status: Idee** · hängt an Punkt 9
 
