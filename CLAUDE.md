@@ -1,7 +1,7 @@
 # ONDO CONTROL — Kurzanleitung für den Code-Bereich
 
-*Erneuert am 5.9.2026 aus den vier vollständig gelesenen Pflichtdokumenten (Backlog-Punkt
-54, Fassung 80). **Diese Datei ist Kontext, keine erzwungene Einstellung** — sie ersetzt
+*Erneuert am 12.9.2026 aus den vier vollständig gelesenen Pflichtdokumenten (Backlog-Punkt
+54, Fassung 102). **Diese Datei ist Kontext, keine erzwungene Einstellung** — sie ersetzt
 die Pflichtlektüre nicht, sie sagt, was vor der ersten Änderung zu tun ist.*
 
 **Erneuern, nicht fortschreiben:** Ändert sich eines der vier Dokumente, wird diese Datei
@@ -23,6 +23,14 @@ git fetch origin main && git checkout main && git merge --ff-only origin/main
 Gearbeitet wird auf `main`, sofern der Auftrag nichts anderes sagt. **Kein Pull Request
 ohne ausdrückliche Bitte.**
 
+**Push ausschliesslich auf `main`, `--ff-only` (stehende Regel, ab 6.9.2026 in jedem
+Auftrag zu wiederholen).** Kein neuer Branch je Lieferung. **Bei einem Konflikt: anhalten
+und fragen, nicht selbst entscheiden** — kein automatischer Merge, kein Rebase, kein Force.
+*Anlass: Eine Sitzung legte am 6.9.2026 einen neuen Branch an, ohne Ondos Erlaubnis und ohne
+vorher zu fragen. GitHub Pages liefert `beta.html` ausschliesslich vom `main`-Branch — eine
+Lieferung auf einem anderen Branch erreicht Ondos Browser nicht, unabhängig davon, wie sauber
+sie geprüft wurde.*
+
 **Zweiter Branch `mistral` (Backlog-Punkt 62):** trägt eigene Commits für eine beaufsichtigte
 zweite KI. Dort gilt **kein** `--ff-only`, sondern ein normaler Merge. Nur anfassen, wenn
 der Auftrag das ausdrücklich verlangt.
@@ -35,7 +43,7 @@ Vier Dokumente, jedes **vollständig**, bevor etwas beurteilt oder geändert wir
    auf dem Tablet" und „Entscheidungen, die bei Ondo liegen".
 2. `Ondo-Control-Backlog.md` — nur offene Punkte, mit Status.
 3. `Blueprint.md` — Verfassung, Charta, Arbeitsregeln (Abschnitt 2c).
-4. `Ondo-Core-Architektur.md` — Schichten und Drei-Ebenen-Trennung.
+4. `Ondo-Core-Architektur.md` — Schichten, Drei-Ebenen-Trennung (1b) und die Lernkette (1c).
 
 **Archiv, nur auf Zuruf:** `CHRONIK-2026-08.md`, `CHRONIK-2026-07.md`, `BACKLOG-ARCHIV.md`,
 `BLUEPRINT-PROTOKOLL.md`, `archiv/PROJEKT-STATUS.md`.
@@ -74,8 +82,9 @@ daneben); eine solche Zeit kommt von Ondo oder aus einer verifizierbaren Quelle
 
 **Arbeitsregel L — Bauen vor Aufnehmen.** Jede Sitzung arbeitet mindestens einen bereits
 **beschlossenen** Punkt ab, bevor neue Ideen aufgenommen werden. Die Gruppe „Chats und
-Arbeitsstruktur" (Punkte 54, 53, 55, 56, 58, 57) ist im Kern abgeschlossen — **Prio 1
-(App-Arbeit) hat Vorrang**, auf Ondos Entscheidung.
+Arbeitsstruktur" ist im Kern abgeschlossen oder zurückgestellt — **Prio 1 (App-Arbeit) hat
+Vorrang**, auf Ondos Entscheidung. Das zeigt sich seit Wochen daran, dass jede Lieferung
+tatsächlich App-Arbeit ist (zuletzt: die Lernkette, Backlog-Punkt 75, komplett gebaut).
 
 ## 4. Wie geändert wird
 
@@ -112,10 +121,11 @@ Diese Datei wiederholt keine Kennzahl. Sie nennt den Fundort:
 | **Beschlossen und nicht gebaut** (Zahl und Liste) | `Ondo-Control-Backlog.md`, **neuester Fassungsabschnitt ganz oben** |
 | Messstand, Kalibrierung, Trefferquoten | `STAND.md`, „Aktueller Messstand" |
 | Versionen, Beta, Sprachschlüsselzahl | `STAND.md`, „Versionen" |
-| Letzte bestätigte Sicherung, Nutzungslimit-Schätzung | `STAND.md`, unter „Datensicherung" |
+| Letzte bestätigte Sicherung, Speicherstand, Nutzungslimit-Schätzung | `STAND.md`, unter „Datensicherung" |
 | Status eines Backlog-Punktes | Kopfzeile des Punktes im Backlog |
 | Arbeitsregeln im Wortlaut | `Blueprint.md`, Abschnitt 2c |
 | Die acht Fehlerarten | `STAND.md`, eigener Abschnitt |
+| Schema und Ebenen-Zuordnung des Evidence Ledger | `Ondo-Core-Architektur.md`, Abschnitt 1c |
 
 Eine Zahl, die hier stünde, würde altern, ohne dass es jemand merkt.
 
@@ -123,7 +133,10 @@ Eine Zahl, die hier stünde, würde altern, ohne dass es jemand merkt.
 
 - Ausgefüllte Übergabemappen (`JJJJ-MM-TT_HHMM_Ondo-Control_Uebergabe.md`) und Abnahmen
   (`JJJJ-MM-TT_Ondo-Control_Abnahme.md`) — sie enthalten den Antwortschlüssel.
-- Sicherungsdateien der App: sie enthalten `apiKey`, `geminiKey` und `pin` im Klartext.
+- Sicherungsdateien der App: sie enthalten sechs geheime Felder im Klartext —
+  `apiKey`, `geminiKey`, `oddsKey`, `apiFootballKey`, `footballDataKey`, `pin`
+  (maschinell geprüft von `pruefe.py`, Punkt 44 — jedes neue Schlüsselfeld muss dort
+  eingetragen werden, sonst löst die Geheimfeld-Sperre nicht aus).
 
 **Was hineingehört:** die leeren Muster `MUSTER_Ondo-Control_Uebergabe.md` und
 `MUSTER_Ondo-Control_Abnahme.md`. Am Aufbau der Mappe wird ohne Ondos Erlaubnis nichts
@@ -162,15 +175,18 @@ auch für ein bereits angehängtes, längst funktionierendes Repository. Kein Pr
 Zielrepositories oder seiner GitHub-Rechte. Nicht behebbar von der Sitzung aus; melden und
 nicht wiederholt versuchen.
 
-**iOS/WebKit-Eigenheiten (Backlog-Punkt 73, 🔴 OFFEN, erneut geöffnet am 5.9.2026):**
-`input[type="date"]` rendert seinen Inhalt über ein eigenes, internes Element, auf das
-gewöhnliches CSS am Eingabefeld selbst nicht wirkt (z. B. `text-align`). Der dafür
-vorgesehene Weg ist eine eigene Regel auf `::-webkit-date-and-time-value`. Diese Umgebung
-hat keinen Safari-/WebKit-Renderer — eine solche Regel lässt sich hier nur syntaktisch
-prüfen, ihre sichtbare Wirkung nicht selbst beobachten. Ondo hat inzwischen am echten
-iPhone geprüft und bestätigt: **keine sichtbare Wirkung**, trotz syntaktisch korrektem
-Code. Ursache ungeklärt — Einzelheiten und mögliche nächste Schritte stehen im Backlog
-bei Punkt 73, nicht hier wiederholt (Punkt 45).
+**iOS/WebKit-Eigenheiten (Backlog-Punkt 73, 🔴 OFFEN, ZURÜCKGESETZT am 7.9.2026 — kein
+fünfter Versuch ohne neuen Auftrag):** `input[type="date"]` rendert seinen Inhalt über ein
+eigenes, internes Element, auf das gewöhnliches CSS am Eingabefeld selbst nicht wirkt
+(z. B. `text-align`). Diese Umgebung hat keinen Safari-/WebKit-Renderer — eine CSS-Regel
+lässt sich hier nur syntaktisch prüfen, ihre sichtbare Wirkung nicht selbst beobachten.
+**Vier verschiedene Kandidaten** (`::-webkit-date-and-time-value`, CSS-Grid, Felder
+untereinander, `min-width:0`) sind nacheinander gebaut und von Ondo am echten iPhone
+geprüft worden — **alle vier wirkungslos oder haben das Problem verschoben, nicht
+gelöst.** Der Code steht seit dem 7.9.2026 bewusst wieder auf dem Stand vor Punkt 73: der
+ursprüngliche Überlauf-Fehler besteht wieder, statt eines fünften ungeprüften Versuchs.
+Ursache ungeklärt — Einzelheiten und mögliche nächste Schritte stehen im Backlog bei
+Punkt 73, nicht hier wiederholt (Punkt 45).
 
 ---
 
@@ -180,9 +196,9 @@ bei Punkt 73, nicht hier wiederholt (Punkt 45).
 `.claude/hooks/claude_md_frisch.py` vergleicht sie bei jedem Sitzungsstart und erinnert an
 eine Erneuerung, sobald einer abweicht. Er erneuert nichts von selbst.*
 
-- STAND.md — `d46ad39183c950c8e4134bd66a2257dd941d506b`
-- Ondo-Control-Backlog.md — `37abd6f50d251d71159ba71fb477b0e7b3ca937c`
-- Blueprint.md — `6ca0f1bd04b0f00168fec71c06093a514531e23e`
-- Ondo-Core-Architektur.md — `fed67804d793df1ee868fcb67e047f9bcef57e9a`
+- STAND.md — `9f37d52380e84288cf426154ffdec9e12b834408`
+- Ondo-Control-Backlog.md — `4ccdecc5cba37d7bdf4f6d4608addeda1481eff6`
+- Blueprint.md — `cbe09695b6fdfaeb336918d33acc74130f9b065d`
+- Ondo-Core-Architektur.md — `b727083b13dbfccf60e3edb0967936521c2bb2f0`
 
-*Erzeugt aus dem Stand von `main` am 5.9.2026.*
+*Erzeugt aus dem Stand von `main` am 12.9.2026.*
