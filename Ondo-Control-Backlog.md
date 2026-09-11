@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 11.9.2026, Fassung 93 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 11.9.2026, Fassung 94 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,51 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 94 ändert (11.9., Backlog-Punkt 9 — eigene Ergebnis-Datenquelle für den Schiedsrichter, Ausbau)
+
+**Anlass:** Auftrag Ondo, als Antwort auf den Quoten-Fabrikationsfund (Fassung 92) — der
+Schiedsrichter soll eine eigene, strukturierte Datenquelle bekommen, statt allein auf KI-Suche
+angewiesen zu sein.
+
+- **Geprüft, mit echtem Schlüssel:** `openfootball/football.json` scheidet aus (Ergebnisse für
+  Irland/Schweden/Island seit Mai 2025 tot). API-Football (kostenlos) deckt dagegen nachweislich
+  alle 16 Stufe-1-Länder, alle Stufe-2-Ligen und Länderspiele weltweit ohne Kontinent-Einschränkung
+  ab — mit der Einschränkung, dass die kostenlose Stufe Datums-Abfragen nur in einem schmalen
+  Fenster (gestern/heute/morgen) erlaubt. football-data.org deckt zusätzlich 12 grosse
+  Wettbewerbe als zweite, unabhängige Quelle ab.
+- **Entscheidung zur Bauweise:** Negativlisten-Geist wie beim Schiedsrichter selbst — keine
+  Vollständigkeit behauptet, ein nicht gelisteter Wettbewerb fällt auf die bestehende KI-Suche
+  zurück. Tägliche Automatik statt Live-Abruf im Browser (das schmale Zeitfenster reicht dafür
+  nicht), Monatsdateien statt einer ewig wachsenden Datei (rund 300.000 Zeichen/Monat, weit
+  unter jeder GitHub-Grenze).
+- **Gebaut:** `skripte/schiri-ergebnisse-holen.js` (Node, läuft nur in der Automatik) und
+  `.github/workflows/schiri-ergebnisse.yml` (täglich 08:00 Uhr UTC, holt „gestern" und „heute",
+  `workflow_dispatch` für Bedarfsläufe). Zwei echte, beim Testabruf gefundene Fehler vor der
+  Auslieferung behoben: ein fertiges Ergebnis wird nicht mehr durch einen späteren unfertigen
+  Treffer überschrieben; ein Copa-Libertadores-Fund von football-data.org (ausserhalb der 12
+  zugesicherten Wettbewerbe UND ausserhalb Stufe 1/2) wird jetzt durch einen eigenen
+  Wettbewerbs-Filter ausgeschlossen.
+- **Verifiziert:** `node --check` bestanden, echter Testlauf mit beiden echten Schlüsseln
+  durchgeführt, echte Datei geschrieben und geprüft, danach als Testartefakt entfernt.
+  `pruefe.py` danach: ALLES SAUBER.
+- **🔴 Offene Störung:** API-Football meldete beim Testlauf „Your account is suspended" — Ursache
+  ungeklärt, nur Ondo kann das Konto einsehen. Bis geklärt liefert die Automatik nur die 12
+  football-data.org-Wettbewerbe, sichtbar an `quelle` je Eintrag, kein stiller Ausfall.
+- **Volle Begründung, Grössen-Rechnung und Zeitpunkt-Herleitung stehen als angehängter Block
+  direkt bei Punkt 9** (nicht hier wiederholt — Punkt 45).
+- **`Blueprint.md` nachgeführt:** Abschnitt 10, GitHub-Actions-Frage jetzt vollständig geklärt
+  statt teilweise (Ondos Auftrag löst die bisher offene Zeitsteuerungs-Frage aus Grenze 1 für
+  diesen Fall auf). Blueprint auf 0.93 gehoben.
+- **Kein neuer Sprachschlüssel** (Automatik betrifft nicht `beta.html` selbst — die Lese-Anbindung
+  im Schiedsrichter ist ein eigener, noch nicht gebauter nächster Schritt). `beta.html` bleibt
+  v19.8.23, `APP_VERSION` weiter 18.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 94 gehoben (Blueprint 0.93).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut weiterhin drei** — **3, 4, 0b** *(unverändert.)*
 
 ---
 
@@ -139,78 +184,6 @@ schreiben (Kostensenkung beim Schiedsrichter), Claude prüft nachträglich, um N
   `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
   Arbeitsregel.
 - **Beschlossen und nicht gebaut weiterhin drei** — **3, 4, 0b** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 89 ändert (10.9., Backlog-Punkt 34 und 35 gebaut — Brier-Score und Streuung)
-
-**Anlass:** Auftrag Ondo — Punkt 34 (Brier-Score) und Punkt 35 (Streuungsangabe) bauen, beide
-seit 7.9.2026 entschieden und bereit.
-
-- **Backlog-Punkt 34 gebaut, `beta.html` v19.8.21:** Neue reine Funktion `calcBrierScore(quelle)`
-  — eigene, unveränderte Sammelschleife wie `calcKalibrierung()`, das selbst unangetastet
-  bleibt. Rechnet `(p/100 − Treffer)²` je bewerteter Aussage, gemittelt über alle Aussagen des
-  Gehirns. Anzeigeort entschieden: in der bestehenden Kalibrierungstabelle, nicht als eigene
-  Zeile. Rundung: vier Nachkommastellen, wie in den bisherigen Handrechnungen. Trockentest: 11
-  Prüfungen an der echten, herausgeschnittenen Funktion, alle bestanden — darunter ein von Hand
-  nachgerechnetes Beispiel und der Beleg, dass „immer 50 %, halb richtig" exakt den in den
-  Dokumenten seit Wochen genannten, aber nie gemessenen Vergleichswert 0,25 ergibt.
-- **Backlog-Punkt 35 gebaut, `beta.html` v19.8.21:** Offene Umsetzungsfrage entschieden —
-  Bootstrap, nicht Standardfehler, dasselbe Verfahren wie Chat 12s Nachrechnung vom 14.8.2026.
-  Neue reine Funktion `calcStreuung(quelle)`: 600 Ziehungen mit Zurücklegen, 90-%-Bereich als
-  5./95. Perzentil, eigene neue Hilfsfunktion `abwAusPunkten()` — auch hier bleibt
-  `calcKalibrierung()` unangetastet. **Ehrlich benannt:** einzige Rechenfunktion im Projekt mit
-  echtem Zufall — der Trockentest prüft deshalb Kennwerte (gültiger Bereich, Nähe zum
-  Punktschätzer), nicht exakte Zahlen, fünffach wiederholt gegen Flakiness geprüft. Trockentest:
-  9 weitere Prüfungen, alle fünf Wiederholungen ohne Fehlschlag.
-- **Volle Begründung und Verifikationsdetails stehen als angehängte Blöcke direkt bei Punkt 34
-  und 35** (nicht hier wiederholt — Punkt 45).
-- **`STAND.md` nachgeführt:** neuer Versionen-Eintrag, Sprachschlüsselzahl 254 → 256, und die
-  überholte Aussage „Brier-Score aus der Anzeige nicht ablesbar" im Messstand-Abschnitt
-  berichtigt (der nächste Messstand selbst ist noch nicht neu abgelesen — Fehlerart C1).
-- **Verifiziert:** `node --check` bestanden. `pruefe.py` ohne Argument — ALLES SAUBER.
-- **2 neue Sprachschlüssel** (`calibBrier`, `calibSpread`; 254 → 256). **Kein Schnitt in der
-  Messreihe.** `APP_VERSION` weiter 18.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 89 gehoben (Blueprint 0.88).
-  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
-  Arbeitsregel.
-- **Beschlossen und nicht gebaut weiterhin drei** — **3, 4, 0b** *(vorher fünf — 34 und 35 sind
-  jetzt gebaut, nicht mehr in dieser Liste.)*
-
----
-
-## ⚠ Was Fassung 88 ändert (10.9., Sabah/Celje erneut geprüft und übernommen, fünf Punkte archiviert)
-
-**Anlass:** Ondo hat die beiden historisch instabilsten Schiedsrichter-Fälle über den „Wieder
-prüfen"-Knopf erneut laufen lassen, die Vorschläge vorgelegt und um eine externe Gegenprüfung
-gebeten. Im selben Zug, ohne gesonderten Anstoss: die stehende Regel „Backlog-Pflege ist
-Code-Aufgabe" (Regel 4) angewandt.
-
-- **Backlog-Punkt 64 nachgeführt.** NK Celje–Slovan Bratislava (1:1, HZ 1:1, n.Verl. 1:2) und
-  Sabah FC–Hapoel Beer-Sheva FC (3:2, HZ 1:1, n.Verl. 5:2) lieferten beim erneuten Prüflauf je
-  einen einzigen, nicht widersprüchlichen Vorschlag. Zusätzlich zur internen Stimmigkeit (Punkt
-  68) per Websuche gegen je zwei unabhängige Quellen extern gegengeprüft — beide Ergebnisse
-  bestätigt, Halbzeit- und Verlängerungsstand eingeschlossen. Ondo hat beide übernommen.
-  Ausdrücklich **nicht** behauptet: dass der Schiedsrichter im Sinn von Ondos eigener strenger
-  Definition „repariert" ist — nur, dass diese zwei konkreten Fälle jetzt einzeln gelöst sind.
-  Unterschied zur verfrühten Rücknahme vom 2.9.2026 benannt: diesmal ein frischer Prüflauf mit
-  externer Gegenprüfung, keine Rekonstruktion. Volle Begründung steht als angehängter Block
-  direkt bei Punkt 64 (nicht hier wiederholt — Punkt 45).
-- **Backlog-Punkt 68 nachgeführt:** die jetzt überholte Aussage „Sabah und Celje bleiben
-  unverändert geparkt" durch einen Verweis auf Punkt 64 ersetzt.
-- **Fünf Punkte nach Regel 4 archiviert** (`BACKLOG-ARCHIV.md`, aufsteigende Nummer: 36, 43,
-  58, 69, 70) — alle mit Status GEBAUT/BEANTWORTET/GEKLÄRT, ohne Bewährungs-Einschränkung im
-  eigenen Text und ohne Bindung an eine noch offene Untersuchung. Wortgleich verschoben, nichts
-  gekürzt. **Bewusst nicht archiviert, im Zweifel stehen gelassen:** 46/54/61 (Bewährung steht
-  ausdrücklich aus) · 68 (Bewährung läuft) · 71/72 (Schritt 3 von Punkt 72 offen) · 11 (eine
-  Konfliktregel bleibt ausdrücklich unaufgelöst) · E (Wirkung „zeigt erst der nächste
-  Prüflauf") · 64 selbst (zentrale, weiterhin gelesene Fundstelle zur elften Fehlerart) · 50
-  (ausdrückliche Auflage „bleibt sichtbar, nicht gestrichen").
-- **Kein Codeaufwand.** `beta.html` bleibt v19.8.20.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 88 gehoben (Blueprint 0.87).
-  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
-  Arbeitsregel.
-- **Beschlossen und nicht gebaut weiterhin fünf** — **3, 4, 0b, 34, 35** *(unverändert.)*
 
 ---
 
@@ -1370,7 +1343,7 @@ Codeänderung ohne Schnitt.
 15 Bewertungen sind statistisch zu wenig, 100 dauern Monate. Vorschlag Claude: Beförderung nach Stabilität und Fehlerfreiheit entscheiden, die Messung läuft danach weiter. **Inhalt gehört in den Blueprint.**
 → *Vermerk 31.7.: Die Beförderung ist derzeit ohnehin gesperrt — Kriterium (f) verlangt Null-Fehler-Toleranz beim Schiedsrichter. Einzelheiten in `PROJEKT-STATUS.md`.*
 
-**9. Echte Quoten automatisch (Knopfdruck gebaut, Zeitsteuerung offen)** · *Idee 23.7., Claude · Verfassungsfrage teilweise geklärt 7.9.2026 · Knopfdruck-Teil Auftrag Ondo und gebaut 10.9.2026* · **Status: 🔴 Knopfdruck-Teil GEBAUT am 10.9.2026, `beta.html` v19.8.23 — Zeitsteuerung weiterhin offen**
+**9. Echte Quoten automatisch (Knopfdruck gebaut, Zeitsteuerung teilweise gebaut) — Ausbau: eigene Ergebnis-Datenquelle für den Schiedsrichter** · *Idee 23.7., Claude · Verfassungsfrage teilweise geklärt 7.9.2026 · Knopfdruck-Teil Auftrag Ondo und gebaut 10.9.2026 · Zeitsteuerung/Ergebnis-Automatik Auftrag Ondo 11.9.2026* · **Status: 🔴 Knopfdruck-Teil GEBAUT 10.9.2026 — Ergebnis-Automatik (Zeitsteuerung) GEBAUT und geprüft 11.9.2026, noch nicht scharf wegen offener Störung bei API-Football**
 Offene Vorfrage (Gemini, weiterhin unbeantwortet): Deckt ein kostenloser Dienst überhaupt Ondos Spiele ab? **🔴 Verfassungsfrage teilweise geklärt (Ondo, 7.9.2026, Blueprint 0.83, Abschnitt 10):** Eine durch Knopfdruck in der App ausgelöste Aktualisierung verletzt „kein Server" nicht — ein Knopfdruck ist die von der Regel verlangte Aufforderung. Eine zeitgesteuerte, unbeaufsichtigte Ausführung bleibt weiterhin offen und ist eine andere Variante. **Ungeprüft, technische Einordnung:** Ob dafür überhaupt GitHub Actions nötig wäre (ein reiner Abruf im Browser bei Knopfdruck bräuchte gar keine Actions-Infrastruktur, wie die bestehenden Knöpfe es schon vormachen) oder ob ein dauerhaft im Repo gespeichertes Ergebnis einen manuell auslösbaren `workflow_dispatch` mit einem neuen, eigens abzusicherndem GitHub-Zugriffsschlüssel bräuchte, ist nicht untersucht.
 
 > **🔴 Vorfrage zur Quotenabdeckung teilweise beantwortet, 10.9.2026 (per Websuche geprüft, nicht
@@ -1432,6 +1405,69 @@ Offene Vorfrage (Gemini, weiterhin unbeantwortet): Deckt ein kostenloser Dienst 
 > gerade erfunden hat, auch nicht im Nachhinein. Bestätigt die neunte Fehlerart (erfundene
 > Ergebnisse) an einem neuen, konkreten Beispiel — diesmal bei Quoten, nicht Spielständen.
 > Kein Codeaufwand, reine Beobachtung, Gegenprüfung mit The Odds API bleibt der richtige Weg.
+
+> **🔴 Ausbau, Auftrag Ondo 11.9.2026: eigene, unabhängige Ergebnis-Datenquelle statt reiner
+> KI-Suche, als Antwort auf den Quoten-Fabrikations-Fund oben.** Erst geprüft, dann gebaut,
+> in dieser Reihenfolge:
+>
+> **Geprüft, mit echtem Schlüssel, nicht geraten:** `openfootball/football.json` (Github,
+> kostenlos) scheidet aus — Ergebnis-Nachführung für Irland/Schweden/Island seit Mai 2025 tot,
+> keine 2026er-Datei. API-Football (kostenlos, 100 Abrufe/Tag) deckt dagegen nachweislich alle
+> 16 Stufe-1-Länder (erste/zweite Liga, Pokal), alle Stufe-2-Ligen (League of Ireland,
+> Allsvenskan, Úrvalsdeild eingeschlossen), UEFA-Wettbewerbe und Länderspiele **weltweit ohne
+> Kontinent-Einschränkung** ab (WM, alle Qualifikationszonen, Afrika-Cup-Qualifikation usw. —
+> das deckt den früher diskutierten Gabun-Fall). **Einschränkung, erst beim echten Abruf
+> gefunden, nicht in der Beschreibung:** Saison-basierte Abfragen nur für 2022–2024 erlaubt,
+> `last`-Parameter gesperrt, Datums-Abfragen nur in einem schmalen Fenster (bestätigt:
+> gestern/heute/morgen) — für den eigentlichen Zweck (heutige/nahe Ergebnisse) ausreichend.
+> football-data.org (kostenlos, 10 Abrufe/Minute) deckt nur 12 grosse Wettbewerbe ab (WM, CL,
+> Bundesliga, Eredivisie, Campeonato Brasileiro Série A, Primera División, Ligue 1,
+> Championship, Primeira Liga, EM, Serie A, Premier League) — als zweite, unabhängige
+> Gegenprobe für genau diese 12 sinnvoll, kein Ersatz für die kleineren Ligen.
+>
+> **Entscheidung zur Bauweise (Ondo, 11.9.2026):** Negativlisten-Geist wie beim Schiedsrichter
+> selbst — die Liga-Auswahl behauptet keine Vollständigkeit, ein nicht gelisteter Wettbewerb
+> fällt einfach auf die bestehende KI-Suche zurück, wird nicht stillschweigend übersprungen.
+> Ergebnisse werden **nicht live** im Browser abgerufen (das schmale Zeitfenster reicht dafür
+> nicht zuverlässig), sondern **täglich um 08:00 Uhr UTC** durch eine GitHub-Actions-Automatik
+> geholt und in eine **Monatsdatei** unter `daten/schiri-ergebnisse/JJJJ-MM.json` geschrieben,
+> die der Schiedsrichner künftig direkt liest (dieser Lese-Anschluss ist ein eigener, noch
+> nicht gebauter Schritt, bewusst getrennt von dieser Lieferung). Größe geprüft, nicht
+> geschätzt: rund 65 Spiele/Tag im Stufen-Bereich, rund 10.000 Zeichen/Tag, rund 300.000
+> Zeichen/Monat — GitHub warnt erst ab 50 Millionen, blockiert erst ab 100 Millionen Zeichen je
+> Datei. Monatsaufteilung statt einer ewig wachsenden Datei, wie von Ondo vorgeschlagen. Jeder
+> Lauf holt „gestern" (jetzt sicher vollständig, auch für die spätesten Spiele an der
+> US-Westküste) und „heute" (so weit gespielt) — ein verspätetes Spiel wird am Folgetag
+> automatisch nachgetragen, kein Datenverlust.
+>
+> **Gebaut:** `skripte/schiri-ergebnisse-holen.js` (Node, läuft nur in der Automatik, nie im
+> Browser — die Schlüssel bleiben serverseitig) und `.github/workflows/schiri-ergebnisse.yml`
+> (täglicher Cron-Lauf, `workflow_dispatch` für Bedarfsläufe). Zwei echte, per Testabruf
+> gefundene Fehler noch vor der Auslieferung selbst behoben: (1) ein bereits fertiges
+> Spielergebnis wird durch einen späteren, noch unfertigen Treffer aus derselben Quelle nicht
+> mehr überschrieben. (2) football-data.org lieferte im echten Test ein Copa-Libertadores-Spiel
+> — **weder in den 12 zugesicherten Wettbewerben noch in Stufe 1/2 enthalten.** Eigener Filter
+> auf genau die 12 Wettbewerbs-Kürzel ergänzt, damit der Zugang nicht stillschweigend über den
+> vereinbarten Bereich hinauswächst.
+> **Verifiziert:** `node --check` bestanden, echter Testlauf mit beiden echten Schlüsseln
+> durchgeführt (nicht nur Syntax) — football-data.org lieferte echte, korrekt aufbereitete
+> Ergebnisse, Datei wurde real geschrieben und geprüft, danach als Testartefakt wieder entfernt
+> (die erste echte Datei soll die Automatik selbst erzeugen, belegbar über den Lauf-Verlauf).
+> `pruefe.py` danach: ALLES SAUBER.
+>
+> **🔴 Offene Störung, ungeklärt, nicht von hier aus behebbar:** Während des Testlaufs meldete
+> API-Football „Your account is suspended" — bei rund 9 von 100 Tagesabrufen, weit unter jedem
+> Kontingent. Ursache unbekannt, das Konto zeigt vermutlich einen Grund
+> (dashboard.api-football.com), das kann nur Ondo einsehen. **Bis das geklärt ist, liefert die
+> tägliche Automatik nur die 12 football-data.org-Wettbewerbe** — sichtbar an `quelle` in jedem
+> Eintrag, kein stiller Ausfall. Sobald API-Football wieder läuft, ergänzt der nächste Lauf die
+> restlichen Ligen von selbst nach.
+> **Bekannte, offen benannte Wartungslücke:** Die Liga-ID-Liste im Skript ist von Hand aus
+> STUFEN (`beta.html`) abgeleitet, nicht automatisch verknüpft — ändert sich STUFEN künftig,
+> muss die Liste im Skript von Hand nachgezogen werden, sonst laufen beide still auseinander.
+> **Noch nicht gebaut, eigener nächster Schritt:** die Lese-Funktion im Schiedsrichter selbst,
+> die diese Monatsdateien als einen der bis zu drei unabhängigen Läufe in die bestehende
+> Einigkeitsregel (Backlog-Punkt 68) einspeist.
 
 **10. Value-Rechnung zurückholen** · *Idee 22.7., Gemini* · **Status: Idee** · hängt an Punkt 9
 

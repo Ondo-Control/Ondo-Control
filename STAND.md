@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 11.9.2026, Fassung 93, v19.8.23*
+*Die aktuelle Wahrheit. Stand: 11.9.2026, Fassung 94, v19.8.23*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -510,7 +510,7 @@ Die Tabelle aller bisherigen Chat-Uebergaben ist nach `CHRONIK-2026-08.md` gewan
 |---|---|---|
 | **3** | Such-Experiment — beschlossen, **ruht auf Ondos Wunsch (27.8.), nicht mehr blockiert**. *Der 20. August ist **keine Frist** (Ondo, 15.8.): eine Zeitspanne sagt nicht, wie viele Messungen noetig sind.* Empfehlung Claude: ruhen lassen | Backlog |
 | **Befund A** | Als nicht auswertbar fuehren? **Womoeglich durch die Auszaehlung vom 8.8. erledigt** — zu klaeren, nicht zu behaupten | Chronik August, „Der 8. August" |
-| **GitHub Actions** | Verfassungsfrage teilweise geklärt (7.9.2026): eine durch Knopfdruck ausgeloeste Aktualisierung verletzt „kein Server" nicht. **Knopfdruck-Teil braucht gar kein GitHub Actions und ist am 10.9.2026 gebaut** (Backlog-Punkt 9). Nur die Zeitsteuerung (mit einstellbarer Haeufigkeit und Ausschalter) bleibt offen, braucht Actions und einen dort abzusichernden Zugriffsschluessel | Blueprint, Abschnitt 10 |
+| **GitHub Actions** | Verfassungsfrage vollstaendig geklärt (11.9.2026): Knopfdruck-Teil braucht kein GitHub Actions, gebaut 10.9.2026. Die Zeitsteuerung (taegliche Ergebnis-Automatik fuer den Schiedsrichter) braucht tatsaechlich Actions und ist am 11.9.2026 gebaut und geprueft — Ondo hat sie in Kenntnis der Zeitsteuerungs-Frage in Auftrag gegeben, das gilt als Entscheidung. Offene Stoerung bei API-Football (Konto meldet „suspended"), nur von Ondo pruefbar | Blueprint, Abschnitt 10; Backlog-Punkt 9 |
 | **Schiedsrichter** | Darf er ueberhaupt selbst Ergebnisse lesen, oder nur verifizierte Fakten bewerten? | Blueprint, Abschnitt 10 |
 | **Kriterium (c)** | Befoerderungskriterium neu fassen — 15 bewertete Tipps sind zu wenig | Blueprint, Abschnitt 10 |
 

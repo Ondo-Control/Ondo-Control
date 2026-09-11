@@ -410,6 +410,78 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 89 ändert (10.9., Backlog-Punkt 34 und 35 gebaut — Brier-Score und Streuung)
+
+**Anlass:** Auftrag Ondo — Punkt 34 (Brier-Score) und Punkt 35 (Streuungsangabe) bauen, beide
+seit 7.9.2026 entschieden und bereit.
+
+- **Backlog-Punkt 34 gebaut, `beta.html` v19.8.21:** Neue reine Funktion `calcBrierScore(quelle)`
+  — eigene, unveränderte Sammelschleife wie `calcKalibrierung()`, das selbst unangetastet
+  bleibt. Rechnet `(p/100 − Treffer)²` je bewerteter Aussage, gemittelt über alle Aussagen des
+  Gehirns. Anzeigeort entschieden: in der bestehenden Kalibrierungstabelle, nicht als eigene
+  Zeile. Rundung: vier Nachkommastellen, wie in den bisherigen Handrechnungen. Trockentest: 11
+  Prüfungen an der echten, herausgeschnittenen Funktion, alle bestanden — darunter ein von Hand
+  nachgerechnetes Beispiel und der Beleg, dass „immer 50 %, halb richtig" exakt den in den
+  Dokumenten seit Wochen genannten, aber nie gemessenen Vergleichswert 0,25 ergibt.
+- **Backlog-Punkt 35 gebaut, `beta.html` v19.8.21:** Offene Umsetzungsfrage entschieden —
+  Bootstrap, nicht Standardfehler, dasselbe Verfahren wie Chat 12s Nachrechnung vom 14.8.2026.
+  Neue reine Funktion `calcStreuung(quelle)`: 600 Ziehungen mit Zurücklegen, 90-%-Bereich als
+  5./95. Perzentil, eigene neue Hilfsfunktion `abwAusPunkten()` — auch hier bleibt
+  `calcKalibrierung()` unangetastet. **Ehrlich benannt:** einzige Rechenfunktion im Projekt mit
+  echtem Zufall — der Trockentest prüft deshalb Kennwerte (gültiger Bereich, Nähe zum
+  Punktschätzer), nicht exakte Zahlen, fünffach wiederholt gegen Flakiness geprüft. Trockentest:
+  9 weitere Prüfungen, alle fünf Wiederholungen ohne Fehlschlag.
+- **Volle Begründung und Verifikationsdetails stehen als angehängte Blöcke direkt bei Punkt 34
+  und 35** (nicht hier wiederholt — Punkt 45).
+- **`STAND.md` nachgeführt:** neuer Versionen-Eintrag, Sprachschlüsselzahl 254 → 256, und die
+  überholte Aussage „Brier-Score aus der Anzeige nicht ablesbar" im Messstand-Abschnitt
+  berichtigt (der nächste Messstand selbst ist noch nicht neu abgelesen — Fehlerart C1).
+- **Verifiziert:** `node --check` bestanden. `pruefe.py` ohne Argument — ALLES SAUBER.
+- **2 neue Sprachschlüssel** (`calibBrier`, `calibSpread`; 254 → 256). **Kein Schnitt in der
+  Messreihe.** `APP_VERSION` weiter 18.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 89 gehoben (Blueprint 0.88).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut weiterhin drei** — **3, 4, 0b** *(vorher fünf — 34 und 35 sind
+  jetzt gebaut, nicht mehr in dieser Liste.)*
+
+---
+
+## ⚠ Was Fassung 88 ändert (10.9., Sabah/Celje erneut geprüft und übernommen, fünf Punkte archiviert)
+
+**Anlass:** Ondo hat die beiden historisch instabilsten Schiedsrichter-Fälle über den „Wieder
+prüfen"-Knopf erneut laufen lassen, die Vorschläge vorgelegt und um eine externe Gegenprüfung
+gebeten. Im selben Zug, ohne gesonderten Anstoss: die stehende Regel „Backlog-Pflege ist
+Code-Aufgabe" (Regel 4) angewandt.
+
+- **Backlog-Punkt 64 nachgeführt.** NK Celje–Slovan Bratislava (1:1, HZ 1:1, n.Verl. 1:2) und
+  Sabah FC–Hapoel Beer-Sheva FC (3:2, HZ 1:1, n.Verl. 5:2) lieferten beim erneuten Prüflauf je
+  einen einzigen, nicht widersprüchlichen Vorschlag. Zusätzlich zur internen Stimmigkeit (Punkt
+  68) per Websuche gegen je zwei unabhängige Quellen extern gegengeprüft — beide Ergebnisse
+  bestätigt, Halbzeit- und Verlängerungsstand eingeschlossen. Ondo hat beide übernommen.
+  Ausdrücklich **nicht** behauptet: dass der Schiedsrichter im Sinn von Ondos eigener strenger
+  Definition „repariert" ist — nur, dass diese zwei konkreten Fälle jetzt einzeln gelöst sind.
+  Unterschied zur verfrühten Rücknahme vom 2.9.2026 benannt: diesmal ein frischer Prüflauf mit
+  externer Gegenprüfung, keine Rekonstruktion. Volle Begründung steht als angehängter Block
+  direkt bei Punkt 64 (nicht hier wiederholt — Punkt 45).
+- **Backlog-Punkt 68 nachgeführt:** die jetzt überholte Aussage „Sabah und Celje bleiben
+  unverändert geparkt" durch einen Verweis auf Punkt 64 ersetzt.
+- **Fünf Punkte nach Regel 4 archiviert** (`BACKLOG-ARCHIV.md`, aufsteigende Nummer: 36, 43,
+  58, 69, 70) — alle mit Status GEBAUT/BEANTWORTET/GEKLÄRT, ohne Bewährungs-Einschränkung im
+  eigenen Text und ohne Bindung an eine noch offene Untersuchung. Wortgleich verschoben, nichts
+  gekürzt. **Bewusst nicht archiviert, im Zweifel stehen gelassen:** 46/54/61 (Bewährung steht
+  ausdrücklich aus) · 68 (Bewährung läuft) · 71/72 (Schritt 3 von Punkt 72 offen) · 11 (eine
+  Konfliktregel bleibt ausdrücklich unaufgelöst) · E (Wirkung „zeigt erst der nächste
+  Prüflauf") · 64 selbst (zentrale, weiterhin gelesene Fundstelle zur elften Fehlerart) · 50
+  (ausdrückliche Auflage „bleibt sichtbar, nicht gestrichen").
+- **Kein Codeaufwand.** `beta.html` bleibt v19.8.20.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 88 gehoben (Blueprint 0.87).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut weiterhin fünf** — **3, 4, 0b, 34, 35** *(unverändert.)*
+
+---
+
 ## ⚠ Was Fassung 87 ändert (10.9., erste Bewährungsbeobachtung zu Backlog-Punkt 68)
 
 **Anlass:** Ondo, eine Woche nach dem Bau der Mehrfachlauf-Absicherung (3.9.2026), direkte

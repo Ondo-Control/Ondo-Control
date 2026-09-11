@@ -1,0 +1,41 @@
+name: Schiri-Ergebnisse holen
+
+# Backlog-Punkt 9, Ausbau 11.9.2026. Taeglich um 08:00 Uhr UTC - spaet genug, dass auch die
+# spaetesten Spiele im Stufen-Bereich (US-Westkueste, MLS) vom Vortag sicher abgepfiffen sind.
+# Holt "gestern" und "heute" (Fenster-Grenze der kostenlosen API-Football-Stufe, siehe
+# skripte/schiri-ergebnisse-holen.js) und schreibt in die Monatsdatei unter daten/schiri-ergebnisse/.
+on:
+  schedule:
+    - cron: '0 8 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  holen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Ergebnisse abrufen
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          FOOTBALL_DATA_ORG_KEY: ${{ secrets.FOOTBALL_DATA_ORG_KEY }}
+        run: node skripte/schiri-ergebnisse-holen.js
+
+      - name: Aenderung committen, falls vorhanden
+        run: |
+          git config user.name "Ondo-Control-Automatik"
+          git config user.email "actions@users.noreply.github.com"
+          git add daten/schiri-ergebnisse/
+          if git diff --cached --quiet; then
+            echo "Keine Aenderung - nichts zu committen."
+          else
+            git commit -m "Schiri-Ergebnisse: taeglicher automatischer Abruf"
+            git push
+          fi
