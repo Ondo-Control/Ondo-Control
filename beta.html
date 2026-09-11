@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.27';
+var CODE_VERSION = 'v19.8.28';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -181,6 +181,25 @@ var I18N = {
   tip:'Tipp', odds:'Quote', stake:'Einsatz (€)',
   possWin:'Möglicher Gewinn', match:'Spiel', saveBet:'Wette speichern', fillAll:'Bitte Spiel, Quote und Einsatz ausfüllen',
   kiWahlLabel:'Aus einer Vorhersage übernehmen', kiWahlKeine:'— keine, von Hand —', vonKi:'Aus KI-Vorhersage von',
+  delBetAsk:'Diese Wette endgültig löschen?\n\n{a}\n\nDas lässt sich nicht rückgängig machen.',
+  delLogAsk:'Diesen Eintrag endgültig aus dem KI-Log löschen?\n\n{a}\n\nEr ist ein Beleg, auf dem die Auswertung aufbaut. Das lässt sich nicht rückgängig machen.',
+  saveFailAlert:'Die Daten konnten NICHT gespeichert werden. Der Speicher dieses Browsers ist vermutlich voll. Sichere die Daten jetzt über „Daten sichern" und lösche danach nicht mehr benötigte Einträge — sonst geht alles Neue verloren.',
+  speicherT:'Belegter Speicher', speicherEng:'wird eng — jetzt sichern',
+  beobT:'Was die Daten sagen', beobD:'Nur aus sicher bewerteten Einträgen: geparkte und solche, bei denen der Schiedsrichter sich nur mit 2 von 3 Läufen einig war, bleiben aussen vor.',
+  beobKeine:'Noch keine sicher bewertete Aussage — sobald Ergebnisse einstimmig übernommen sind, steht hier etwas.',
+  beobBelegt:'belegt', beobHinweis:'Hinweis', beobZuwenig:'zu wenig',
+  beobFehlt:'noch {a} bis zu einem Hinweis',
+  beobSelbstHoch:'schätzt sich zu hoch ein: behauptet im Schnitt {a} %, eingetroffen sind {b} % — {c} Punkte zu selbstsicher.',
+  beobSelbstNiedrig:'schätzt sich zu niedrig ein: behauptet im Schnitt {a} %, eingetroffen sind {b} % — {c} Punkte zu vorsichtig.',
+  beobSelbstPasst:'schätzt sich richtig ein: behauptet im Schnitt {a} %, eingetroffen sind {b} %.',
+  beobMarkt:'grösste Abweichung beim Markt {a} — {b} Punkte daneben.',
+  beobZuvJa:'Zuversicht trägt: sichere Aussagen (ab 70 %) treffen zu {a} % zu, unsichere nur zu {b} %.',
+  beobZuvNein:'Zuversicht trägt NICHT: sichere Aussagen (ab 70 %) treffen zu {a} % zu, unsichere zu {b} % — die Prozentzahl sagt hier nichts.',
+  beobWettenT:'Wetten aus einer Vorhersage gegen von Hand gesetzte',
+  beobWettenKi:'Aus einer Vorhersage: {a} abgerechnet, {b} % getroffen, {c}',
+  beobWettenHand:'Von Hand: {a} abgerechnet, {b} % getroffen, {c}',
+  beobWettenVerwaist:'{a} Wetten zeigen auf einen Eintrag, den es nicht mehr gibt — sie zählen in keiner der beiden Gruppen mit.',
+  beobGrundlage:'Ab 20 bewerteten Aussagen gilt eine Beobachtung als belegt, ab 10 als Hinweis. Darunter wird nichts behauptet.',
   noBets:'Noch keine Wetten erfasst.', won:'GEWONNEN', lost:'VERLOREN', openB:'OFFEN',
   bWon:'✓ Gewonnen', bLost:'✗ Verloren', reset:'Zurücksetzen', del:'Löschen',
   aiRight:'KI richtig', aiWrong:'KI falsch', ai:'KI',
@@ -294,6 +313,25 @@ var I18N = {
   tip:'Tip', odds:'Cote', stake:'Mise (€)',
   possWin:'Gain possible', match:'Match', saveBet:'Enregistrer le pari', fillAll:'Remplis match, cote et mise',
   kiWahlLabel:'Reprendre depuis une prédiction', kiWahlKeine:'— aucune, manuel —', vonKi:'Prédiction IA de',
+  delBetAsk:'Supprimer définitivement ce pari ?\n\n{a}\n\nCette action est irréversible.',
+  delLogAsk:'Supprimer définitivement cette entrée du journal IA ?\n\n{a}\n\nElle sert de preuve à l’évaluation. Cette action est irréversible.',
+  saveFailAlert:'Les données n’ont PAS pu être enregistrées. La mémoire de ce navigateur est probablement pleine. Sauvegarde tout de suite via « Sauvegarder les données », puis supprime les entrées devenues inutiles — sinon tout le nouveau sera perdu.',
+  speicherT:'Mémoire occupée', speicherEng:'ça devient juste — sauvegarde maintenant',
+  beobT:'Ce que disent les données', beobD:'Uniquement à partir d’entrées évaluées de façon sûre : les entrées mises de côté et celles où l’arbitre n’était d’accord que sur 2 passages sur 3 restent exclues.',
+  beobKeine:'Aucune affirmation évaluée de façon sûre pour l’instant — dès que des résultats sont repris à l’unanimité, quelque chose apparaîtra ici.',
+  beobBelegt:'établi', beobHinweis:'indice', beobZuwenig:'trop peu',
+  beobFehlt:'encore {a} avant un indice',
+  beobSelbstHoch:'se surestime : annonce {a} % en moyenne, {b} % se sont réalisés — {c} points de trop d’assurance.',
+  beobSelbstNiedrig:'se sous-estime : annonce {a} % en moyenne, {b} % se sont réalisés — {c} points de trop de prudence.',
+  beobSelbstPasst:'s’estime correctement : annonce {a} % en moyenne, {b} % se sont réalisés.',
+  beobMarkt:'plus grand écart sur le marché {a} — {b} points à côté.',
+  beobZuvJa:'L’assurance compte : les affirmations sûres (à partir de 70 %) se réalisent à {a} %, les incertaines seulement à {b} %.',
+  beobZuvNein:'L’assurance ne compte PAS : les affirmations sûres (à partir de 70 %) se réalisent à {a} %, les incertaines à {b} % — le pourcentage ne dit rien ici.',
+  beobWettenT:'Paris issus d’une prédiction contre paris saisis à la main',
+  beobWettenKi:'Issus d’une prédiction : {a} réglés, {b} % réussis, {c}',
+  beobWettenHand:'À la main : {a} réglés, {b} % réussis, {c}',
+  beobWettenVerwaist:'{a} paris renvoient à une entrée qui n’existe plus — ils ne comptent dans aucun des deux groupes.',
+  beobGrundlage:'À partir de 20 affirmations évaluées, une observation est dite établie ; à partir de 10, c’est un indice. En dessous, rien n’est affirmé.',
   noBets:'Aucun pari enregistré.', won:'GAGNÉ', lost:'PERDU', openB:'OUVERT',
   bWon:'✓ Gagné', bLost:'✗ Perdu', reset:'Réinitialiser', del:'Supprimer',
   aiRight:'IA correcte', aiWrong:'IA fausse', ai:'IA',
@@ -407,6 +445,25 @@ var I18N = {
   tip:'Tip', odds:'Odds', stake:'Stake (€)',
   possWin:'Possible win', match:'Match', saveBet:'Save bet', fillAll:'Please fill match, odds and stake',
   kiWahlLabel:'Take over from a prediction', kiWahlKeine:'— none, manual —', vonKi:'From AI prediction by',
+  delBetAsk:'Delete this bet for good?\n\n{a}\n\nThis cannot be undone.',
+  delLogAsk:'Delete this entry from the AI log for good?\n\n{a}\n\nIt is evidence the evaluation builds on. This cannot be undone.',
+  saveFailAlert:'The data could NOT be saved. This browser’s storage is probably full. Back up now via “Back up data”, then delete entries you no longer need — otherwise everything new will be lost.',
+  speicherT:'Storage used', speicherEng:'getting tight — back up now',
+  beobT:'What the data says', beobD:'Only from securely rated entries: parked ones, and those where the referee agreed on just 2 of 3 runs, stay out.',
+  beobKeine:'No securely rated statement yet — once results are taken over unanimously, something will appear here.',
+  beobBelegt:'established', beobHinweis:'indication', beobZuwenig:'too few',
+  beobFehlt:'{a} more until an indication',
+  beobSelbstHoch:'overrates itself: claims {a} % on average, {b} % came true — {c} points too confident.',
+  beobSelbstNiedrig:'underrates itself: claims {a} % on average, {b} % came true — {c} points too cautious.',
+  beobSelbstPasst:'rates itself correctly: claims {a} % on average, {b} % came true.',
+  beobMarkt:'largest deviation on market {a} — {b} points off.',
+  beobZuvJa:'Confidence holds: confident statements (70 % and up) come true {a} % of the time, uncertain ones only {b} %.',
+  beobZuvNein:'Confidence does NOT hold: confident statements (70 % and up) come true {a} % of the time, uncertain ones {b} % — the percentage says nothing here.',
+  beobWettenT:'Bets from a prediction versus bets entered by hand',
+  beobWettenKi:'From a prediction: {a} settled, {b} % hit, {c}',
+  beobWettenHand:'By hand: {a} settled, {b} % hit, {c}',
+  beobWettenVerwaist:'{a} bets point to an entry that no longer exists — they count in neither group.',
+  beobGrundlage:'From 20 rated statements an observation counts as established, from 10 as an indication. Below that, nothing is claimed.',
   noBets:'No bets recorded yet.', won:'WON', lost:'LOST', openB:'OPEN',
   bWon:'✓ Won', bLost:'✗ Lost', reset:'Reset', del:'Delete',
   aiRight:'AI right', aiWrong:'AI wrong', ai:'AI',
@@ -732,11 +789,42 @@ function load(){
     try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
   }
 }
+/* v19.8.28 (Fund der vollstaendigen Pruefung vom 11.9.2026, Auftrag Ondo): Ein gescheitertes
+   Speichern verschwand bisher nach 1,5 Sekunden zusammen mit dem Hinweistext — danach sah die
+   App aus wie immer, obwohl ab da nichts mehr gesichert wurde. Jetzt bleibt der Alarm stehen,
+   bis ein Speichern wieder gelingt: speicherAlarm setzt einen roten Balken ueber jede Ansicht
+   (render) und meldet sich EINMAL mit einem Hinweisfenster. Nur einmal, weil sonst jeder
+   weitere Klick ein neues Fenster oeffnen wuerde.
+   speicherAlarm ist bewusst KEIN Teil von state: Er beschreibt den Zustand dieses Browsers in
+   dieser Sitzung, nicht die Daten — und ein Zustand, der sich nicht speichern laesst, kann
+   sich schlecht selbst mitspeichern. */
+var speicherAlarm=false;
 function save(){
   try{
     localStorage.setItem(KEY, JSON.stringify(state));
+    if(speicherAlarm){ speicherAlarm=false; }
     note(t('saved'));
-  }catch(e){ note(t('saveFail')); }
+  }catch(e){
+    note(t('saveFail'));
+    if(!speicherAlarm){ speicherAlarm=true; alert(t('saveFailAlert')); }
+  }
+}
+/* Wie viel Platz die gespeicherten Daten belegen. Gemessen, nicht geschaetzt: die Laenge
+   genau der Zeichenkette, die save() schreibt.
+   Die Warngrenze ist AUSDRUECKLICH selbst gesetzt, keine Browser-Tatsache: Wie viel Safari auf
+   Ondos iPhone wirklich zulaesst, kann eine Code-Sitzung ohne dieses Geraet nicht feststellen
+   (Art. 11). 3 MB sind bewusst vorsichtig gewaehlt, damit der Hinweis kommt, bevor etwas
+   scheitert — nicht erst danach. */
+var SPEICHER_WARNGRENZE=3*1024*1024;
+function speicherStand(){
+  var zeichen=0;
+  try{ zeichen=JSON.stringify(state).length; }catch(e){ return null; }
+  return { zeichen:zeichen, kb:Math.round(zeichen/1024), eng:(zeichen>SPEICHER_WARNGRENZE) };
+}
+function speicherWarnBlock(){
+  if(!speicherAlarm) return '';
+  return '<div class="card" style="border-color:var(--loss)">'+
+    '<b style="color:var(--loss)">'+t('saveFailAlert')+'</b></div>';
 }
 function note(x){
   var n=document.getElementById("saveNote"); n.textContent=x;
@@ -1511,6 +1599,123 @@ function calcEntschlossenheit(quelle){
   var abstand = ps.reduce(function(s,p){ return s+Math.abs(p-50); },0)/ps.length;
   var ueber = ps.filter(function(p){ return p>=60; }).length;
   return { n:ps.length, abstand:Math.round(abstand*10)/10, ueber:Math.round(ueber/ps.length*100), ueberN:ueber };
+}
+
+/* ================= OBSERVATION LAYER (Backlog-Punkt 75, Teil 3) =================
+   Die dritte und letzte Stufe der Lernkette, beschlossen am 6.7.2026, Auftrag Ondo 11.9.2026.
+   Ebene 3 im Sinne von Ondo-Core 1b: Er bewertet, was die Ebenen 1 (Daten) und 2 (Denken)
+   getrennt erhoben haben — er erhebt selbst nichts und leitet keine Ebene aus einer anderen ab.
+
+   WAS ER TUT: Er beantwortet die einzige Frage, die beim naechsten Tipp wirklich hilft —
+   "Was hat sich bisher als wahr herausgestellt?" — und sagt ausdruecklich "zu wenig Daten",
+   wo die Grundlage zu duenn ist. Eine Zahl ohne Stichprobengroesse waere Scheinpraezision
+   (Art. 14); deshalb traegt JEDE Beobachtung ihre Stichprobengroesse und ihre Staerke mit.
+
+   AUFLAGE AUS ONDO-CORE 1c, HIER EINGELOEST: Keine Lehre aus einem unsicher bewerteten
+   Eintrag. lernGrundlage() schliesst zwei Arten aus, und genau diese zwei Felder sind es,
+   auf die die Auflage am 11.9.2026 festgenagelt wurde:
+     - e.geparkt        — die Bewertung wurde bewusst ausgesetzt, es wurde nie ein Ergebnis
+                          uebernommen; ein solcher Eintrag hat gar kein Urteil, aus dem man
+                          lernen koennte.
+     - e.refEinigkeit   — gesetzt genau dann, wenn nur zwei von drei Schiedsrichter-Laeufen
+                          uebereinstimmten (pruefAnwenden loescht das Feld bei Einstimmigkeit).
+                          Das Ergebnis wurde uebernommen, ist aber selbst nur wahrscheinlich.
+                          Eine Lehre daraus waere eine Vermutung mit Lehrsatz-Anstrich.
+   Folge, offen benannt: Der Observation Layer rechnet auf einer KLEINEREN Grundlage als die
+   Kalibrierungsanzeige darueber (calcKalibrierung kennt diese zwei Ausschluesse nicht). Das
+   ist gewollt und kein Widerspruch — dort wird gemessen, hier wird gelernt, und Lernen
+   verlangt die haerteren Belege. Die Zahlen der zwei Bereiche duerfen deshalb abweichen. */
+var LERN_BELEGT=20, LERN_HINWEIS=10;
+function lernGrundlage(quelle, typ){
+  var punkte=[];
+  (state.kiProtokoll||[]).forEach(function(e){
+    if(e.aera!=='v19') return;
+    if(e.geparkt) return;          /* Auflage Ondo-Core 1c */
+    if(e.refEinigkeit) return;     /* Auflage Ondo-Core 1c */
+    if(quelle && (e.herkunft||'sonnet')!==quelle) return;
+    (e.maerkte||[]).forEach(function(m){
+      if(m.status!=='richtig' && m.status!=='falsch') return;
+      if(typ && m.typ!==typ) return;
+      var p=Number(m.p); if(isNaN(p)) p=50;
+      punkte.push({ p:Math.max(1,Math.min(99,p)), ok:(m.status==='richtig'), typ:m.typ||'' });
+    });
+  });
+  return punkte;
+}
+function lernStaerke(n){ return n>=LERN_BELEGT ? 'belegt' : (n>=LERN_HINWEIS ? 'hinweis' : 'zuwenig'); }
+/* Behauptet gegen eingetroffen. Positiver Wert = das Gehirn war zuversichtlicher, als die
+   Wirklichkeit hergab (Ueberschaetzung); negativer Wert = es hat sich unterschaetzt. */
+function lernAbweichung(punkte){
+  if(!punkte.length) return null;
+  var beh=punkte.reduce(function(s,x){ return s+x.p; },0)/punkte.length;
+  var echt=punkte.filter(function(x){ return x.ok; }).length/punkte.length*100;
+  return { beh:Math.round(beh), echt:Math.round(echt), diff:Math.round(beh-echt), n:punkte.length };
+}
+
+/* Die Bruecke vom Decision Ledger (Teil 2) zurueck in die Beobachtung: Haben die Wetten, die
+   aus einer Vorhersage entstanden sind, besser abgeschnitten als die von Hand gesetzten?
+   FAENGT DIE BEI TEIL 2 BENANNTE STELLE AB: Wird eine Sicherung eingespielt, in der ein
+   verknuepfter kiProtokoll-Eintrag fehlt, zeigt kiProtokollId ins Leere. Eine solche Wette
+   wird EIGENS GEZAEHLT und in keine der beiden Gruppen geschoben — sie stillschweigend als
+   "von Hand" zu zaehlen waere eine erfundene Zuordnung. */
+function lernWetten(){
+  var ausKi={ n:0, wins:0, saldo:0 }, vonHand={ n:0, wins:0, saldo:0 }, verwaist=0;
+  (state.bets||[]).forEach(function(b){
+    if(b.status==='offen') return;
+    var e=null;
+    if(b.kiProtokollId) e=(state.kiProtokoll||[]).filter(function(x){ return x.id===b.kiProtokollId; })[0]||null;
+    if(b.kiProtokollId && !e){ verwaist++; return; }
+    var ziel = e ? ausKi : vonHand;
+    ziel.n++;
+    if(b.status==='gewonnen') ziel.wins++;
+    ziel.saldo += profit(b);
+  });
+  function fertig(g){ return { n:g.n, wins:g.wins, saldo:Math.round(g.saldo*100)/100,
+                               quote: g.n ? Math.round(g.wins/g.n*100) : null, staerke:lernStaerke(g.n) }; }
+  return { ausKi:fertig(ausKi), vonHand:fertig(vonHand), verwaist:verwaist };
+}
+
+/* Die Beobachtungen selbst. Jede ist ein Datensatz, kein fertiger Satz — die Sprache entsteht
+   erst in beobachtungenBlock(), damit dieselbe Beobachtung in allen drei Sprachen dieselbe
+   Aussage traegt. */
+function beobachtungen(){
+  var liste=[];
+  ['sonnet','flash'].forEach(function(q){
+    var alle=lernGrundlage(q);
+    if(!alle.length) return;
+    /* 1. Schaetzt sich dieses Gehirn richtig ein? */
+    var a=lernAbweichung(alle);
+    liste.push({ art:'selbst', quelle:q, n:a.n, staerke:lernStaerke(a.n),
+                 beh:a.beh, echt:a.echt, diff:a.diff });
+    /* 2. Welcher Markt traegt die Abweichung? Nur Maerkte mit eigener Grundlage nennen —
+       ein Markt mit drei Aussagen darf das Urteil nicht bestimmen. */
+    var schwach=null;
+    ['1x2','tore','btts'].forEach(function(ty){
+      var pk=lernGrundlage(q,ty);
+      if(pk.length<LERN_HINWEIS) return;
+      var ab=lernAbweichung(pk);
+      if(!schwach || Math.abs(ab.diff)>Math.abs(schwach.diff)) schwach={ typ:ty, diff:ab.diff, n:ab.n };
+    });
+    if(schwach) liste.push({ art:'markt', quelle:q, typ:schwach.typ, diff:schwach.diff,
+                             n:schwach.n, staerke:lernStaerke(schwach.n) });
+    /* 3. Traegt hohe Zuversicht? Wenn eine als sicher ausgegebene Aussage nicht oefter
+       zutrifft als eine unsichere, ist die Prozentzahl selbst wertlos — das ist die
+       praktisch wichtigste Beobachtung, die sich aus diesen Daten ziehen laesst. */
+    var hoch=alle.filter(function(x){ return x.p>=70; });
+    var tief=alle.filter(function(x){ return x.p<70; });
+    if(hoch.length>=LERN_HINWEIS && tief.length>=LERN_HINWEIS){
+      var qh=Math.round(hoch.filter(function(x){return x.ok;}).length/hoch.length*100);
+      var qt=Math.round(tief.filter(function(x){return x.ok;}).length/tief.length*100);
+      liste.push({ art:'zuversicht', quelle:q, hochQ:qh, tiefQ:qt, hochN:hoch.length, tiefN:tief.length,
+                   traegt:(qh>qt), n:Math.min(hoch.length,tief.length),
+                   staerke:lernStaerke(Math.min(hoch.length,tief.length)) });
+    }
+  });
+  /* 4. Der Decision Ledger: hat das Uebernehmen einer Vorhersage etwas gebracht? */
+  var w=lernWetten();
+  if(w.ausKi.n || w.vonHand.n || w.verwaist) liste.push({ art:'wetten', w:w,
+      n:Math.min(w.ausKi.n, w.vonHand.n), staerke:lernStaerke(Math.min(w.ausKi.n, w.vonHand.n)) });
+  return liste;
 }
 
 /* ================= BRAIN-ADAPTER (Ondo Core Architektur Punkt 0) ================= */
@@ -2809,6 +3014,24 @@ function pruefAnwenden(pid){
     (state.kiProtokoll||[]).forEach(function(e){
       if(p.eintraege.indexOf(e.id)<0) return;
       e.ergebnisHeim=p.heim; e.ergebnisGast=p.gast;
+      /* v19.8.28 (Backlog-Punkt 64, zweiter und dritter Fund, Auftrag Ondo 11.9.2026):
+         ZWEITER FUND behoben — Halbzeit- und Verlaengerungsstand werden jetzt mit
+         uebernommen statt verworfen. Der Schiedsrichter liefert beide (pruefAuswerten legt
+         sie als p.halbzeit/p.verl in die pruefListe), refLaufPruefen() rechnet sie sogar
+         gegen den Endstand, und pruefBlock() zeigt sie Ondo vor dem Uebernehmen — bis
+         hierher gingen sie danach verloren. Die Karte konnte ergebnisHalbzeit/ergebnisVerl
+         zwar anzeigen, bekam sie aber nie aus einem Prueflauf.
+         Eine LEERE Angabe entfernt das Feld, statt einen leeren Text zu speichern: Sonst
+         stuende in der Karte eine leere Phasenzeile, wo vorher gar keine war.
+         DRITTER FUND behoben — ergebnisQuelle wird entfernt statt stehen gelassen. Das
+         Ergebnis kommt ab hier vom Schiedsrichter-Lauf dieser App. Bliebe die Kennzeichnung
+         'extern_manuell' daneben stehen, behauptete die Karte eine Herkunft, die nicht mehr
+         stimmt — genau die Falschangabe, gegen die Art. 14 dieses Feld eingefuehrt hat.
+         Der Weg dorthin war belegt: logMarktSet() setzt status wieder auf 'offen', danach
+         nimmt ergebnissePruefen() den Eintrag erneut mit. */
+      if(p.halbzeit) e.ergebnisHalbzeit=p.halbzeit; else delete e.ergebnisHalbzeit;
+      if(p.verl) e.ergebnisVerl=p.verl; else delete e.ergebnisVerl;
+      delete e.ergebnisQuelle;
       /* v19.8.12 (Backlog-Punkt 68): Die Markierung "nicht einstimmig" ist Pflichtbestandteil
          der Einigkeitsregel, kein optionales Extra — ohne sie duerfte eine Zwei-gegen-eins-Lage
          gar nicht uebernommen werden. Bei Einstimmigkeit bleibt das Feld leer (keine Markierung
@@ -2870,7 +3093,16 @@ function logParkenTag(datum, wert){
   });
   if(n){ save(); render(); }
 }
+/* v19.8.28 (Fund der vollstaendigen Pruefung vom 11.9.2026, Auftrag Ondo): Rueckfrage vor dem
+   Loeschen. Bis hierher loeschte ein einziger Tipper endgueltig — waehrend die zwei anderen
+   unumkehrbaren Schritte der App (korrFAnwenden, datenLaden) laengst vorher fragen. Auf dem
+   iPhone genuegt ein Fehltipp. Seit Backlog-Punkt 75, Teil 1 ist state.kiProtokoll der
+   Evidence Ledger: Hier faellt kein Listeneintrag weg, sondern ein Beleg, auf dem der
+   Observation Layer aufsetzt. Der Spielname steht in der Frage, damit sichtbar ist, WAS
+   geloescht wird — nicht nur, DASS geloescht wird. */
 function logLoeschen(eid){
+  var e=(state.kiProtokoll||[]).filter(function(x){ return x.id===eid; })[0];
+  if(!confirm(t('delLogAsk').replace('{a}', (e&&e.match)||'?'))) return;
   state.kiProtokoll=(state.kiProtokoll||[]).filter(function(e){return e.id!==eid;});
   save(); render();
 }
@@ -3057,7 +3289,14 @@ function setStatus(id,s){
   state.bets.forEach(function(b){ if(b.id===id){ b.status=s; } });
   save(); render();
 }
-function delBet(id){ state.bets=state.bets.filter(function(b){return b.id!==id;}); save(); render(); }
+/* v19.8.28: dieselbe Rueckfrage wie bei logLoeschen(), aus demselben Grund. Eine geloeschte
+   Wette nimmt auch ihre Verknuepfung zum kiProtokoll-Eintrag mit (Backlog-Punkt 75, Teil 2)
+   und faellt damit aus dem Vergleich "aus einer Vorhersage" gegen "von Hand" heraus. */
+function delBet(id){
+  var w=(state.bets||[]).filter(function(x){ return x.id===id; })[0];
+  if(!confirm(t('delBetAsk').replace('{a}', (w&&w.match)||'?'))) return;
+  state.bets=state.bets.filter(function(b){return b.id!==id;}); save(); render();
+}
 /* ================= DATENSICHERUNG (v19.1) =================
    Alle Messdaten liegen sonst nur im Browser-Speicher dieses Geraetes. */
 function dateiHerunterladen(blob, name){
@@ -3180,10 +3419,15 @@ function render(){
   }
   document.getElementById("topSaldo").textContent=fmt(c.gesamt);
   document.getElementById("topSaldo").style.color = c.gesamt>0?"var(--win)":c.gesamt<0?"var(--loss)":"var(--text)";
-  if(tab==="home") v.innerHTML=viewHome(c);
-  else if(tab==="wetten") v.innerHTML=viewBets(c);
-  else if(tab==="finanzen") v.innerHTML=viewFinance(c);
-  else v.innerHTML=viewMore();
+  /* v19.8.28: Der Speicher-Alarm steht ueber JEDER Ansicht, nicht nur auf einer — ein
+     gescheitertes Speichern betrifft alles, was Ondo danach tut. Deshalb hier einmal
+     vorangestellt statt in jeder der vier Ansichten eingebaut. */
+  var koerper;
+  if(tab==="home") koerper=viewHome(c);
+  else if(tab==="wetten") koerper=viewBets(c);
+  else if(tab==="finanzen") koerper=viewFinance(c);
+  else koerper=viewMore();
+  v.innerHTML=speicherWarnBlock()+koerper;
 }
 
 /* ================= HOME ================= */
@@ -3597,6 +3841,57 @@ function gepaartBlock(){
   '</div>';
 }
 
+/* Anzeige des Observation Layer (Backlog-Punkt 75, Teil 3). Jede Zeile nennt ihre
+   Stichprobengroesse und ihre Staerke — ohne beides waere es eine Behauptung statt einer
+   Beobachtung (Art. 14). "zu wenig" ist eine vollstaendige Aussage und wird als solche
+   angezeigt, nicht weggelassen (Art. 11). */
+function beobachtungenBlock(){
+  var liste=beobachtungen();
+  var GEHIRN={ sonnet:'🧠 Sonnet', flash:'🌱 Flash' };
+  function staerkeChip(s, n){
+    var farbe = s==='belegt' ? 'var(--win)' : (s==='hinweis' ? 'var(--accent)' : 'var(--dim)');
+    var wort  = s==='belegt' ? t('beobBelegt') : (s==='hinweis' ? t('beobHinweis') : t('beobZuwenig'));
+    var fehlt = (s==='zuwenig') ? (' · '+t('beobFehlt').replace('{a}', Math.max(0,LERN_HINWEIS-n))) : '';
+    return '<span class="muted" style="color:'+farbe+'">'+wort+' (n='+n+fehlt+')</span>';
+  }
+  function satz(b){
+    if(b.art==='selbst'){
+      var kern = b.diff>=5  ? t('beobSelbstHoch').replace('{a}',b.beh).replace('{b}',b.echt).replace('{c}',b.diff)
+               : b.diff<=-5 ? t('beobSelbstNiedrig').replace('{a}',b.beh).replace('{b}',b.echt).replace('{c}',Math.abs(b.diff))
+               :              t('beobSelbstPasst').replace('{a}',b.beh).replace('{b}',b.echt);
+      return '<b>'+GEHIRN[b.quelle]+'</b> — '+kern;
+    }
+    if(b.art==='markt'){
+      var mk = t('mkt'+(b.typ==='tore'?'Tore':(b.typ==='btts'?'Btts':'1x2')));
+      return '<b>'+GEHIRN[b.quelle]+'</b> — '+t('beobMarkt').replace('{a}',mk).replace('{b}',Math.abs(b.diff));
+    }
+    if(b.art==='zuversicht'){
+      var k2 = b.traegt ? t('beobZuvJa') : t('beobZuvNein');
+      return '<b>'+GEHIRN[b.quelle]+'</b> — '+k2.replace('{a}',b.hochQ).replace('{b}',b.tiefQ);
+    }
+    if(b.art==='wetten'){
+      var w=b.w, teile=[];
+      teile.push(t('beobWettenKi').replace('{a}',w.ausKi.n)
+        .replace('{b}', w.ausKi.quote===null?'–':w.ausKi.quote).replace('{c}', fmt(w.ausKi.saldo)));
+      teile.push(t('beobWettenHand').replace('{a}',w.vonHand.n)
+        .replace('{b}', w.vonHand.quote===null?'–':w.vonHand.quote).replace('{c}', fmt(w.vonHand.saldo)));
+      if(w.verwaist) teile.push('<span style="color:var(--loss)">'+t('beobWettenVerwaist').replace('{a}',w.verwaist)+'</span>');
+      return '<b>'+t('beobWettenT')+'</b><br>'+teile.join('<br>');
+    }
+    return '';
+  }
+  var zeilen = liste.map(function(b){
+    return '<div class="mkt"><div>'+satz(b)+'</div>'+
+      '<div style="white-space:nowrap">'+staerkeChip(b.staerke, b.n)+'</div></div>';
+  }).join('');
+  return '<div class="card">'+
+    '<div class="disp" style="font-size:20px;margin-bottom:6px">👁 '+t('beobT')+'</div>'+
+    '<div class="muted">'+t('beobD')+'</div>'+
+    (zeilen || '<div class="muted" style="margin-top:8px">'+t('beobKeine')+'</div>')+
+    '<div class="muted" style="margin-top:10px;font-size:11px">'+t('beobGrundlage')+'</div>'+
+  '</div>';
+}
+
 /* ================= FINANZEN ================= */
 function viewFinance(c){
   var ai=calcAI();
@@ -3609,6 +3904,7 @@ function viewFinance(c){
       '<div class="stat-sub">'+t('tipicoSub')+'</div></div>'+
   '</div>'+
   kalibBlock()+
+  beobachtungenBlock()+
   gepaartBlock()+
   '<div class="row">'+
     '<div class="card"><div class="stat-label">'+t('betBal')+'</div>'+
@@ -3732,6 +4028,15 @@ function viewMore(){
       t('backupInfo').replace('{a}',(state.kiProtokoll||[]).length).replace('{b}',(state.bets||[]).length)+
       '<br>'+t('backupLast')+': <b style="color:'+(state.letzteSicherung?'var(--text)':'var(--loss)')+'">'+
       (state.letzteSicherung||t('backupNever'))+'</b>'+
+      /* v19.8.28: Wie voll der Browserspeicher ist, stand bisher nirgends — scheiterte das
+         Speichern, sah man es 1,5 Sekunden lang und nie wieder. */
+      (function(){
+        var sp=speicherStand();
+        if(!sp) return '';
+        return '<br>'+t('speicherT')+': <b style="color:'+(sp.eng?'var(--loss)':'var(--text)')+'">'+
+          sp.kb.toLocaleString('de-DE')+' KB</b>'+
+          (sp.eng?(' — '+t('speicherEng')):'');
+      })()+
     '</div>'+
     '<button class="btn" onclick="datenSichern()">'+t('backupBtn')+'</button>'+
     '<div style="height:8px"></div>'+

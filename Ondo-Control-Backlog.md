@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 11.9.2026, Fassung 100 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 11.9.2026, Fassung 101 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,72 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 101 ändert (11.9., die drei Funde behoben und die Lernkette fertiggebaut — `beta.html` v19.8.28)
+
+**Anlass:** „mach bei allen Punkten was nötig ist damit es sauber läuft, bau einfach weiter."
+Das ist die Freigabe nach Art. 8 für die drei Lücken aus Fassung 100 und für Teil 3.
+
+- **✅ Backlog-Punkt 64 geschlossen — zweiter UND dritter Fund, dieselbe Stelle in
+  `pruefAnwenden()`.** Halbzeit- und Verlängerungsstand werden jetzt **übernommen** statt
+  verworfen; der Schiedsrichter lieferte sie, `refLaufPruefen()` rechnete sie gegen den
+  Endstand, `pruefBlock()` zeigte sie Ondo vor dem Übernehmen — und danach gingen sie
+  verloren. Eine **leere** Angabe entfernt das Feld, statt einen leeren Text zu speichern
+  (sonst stünde eine leere Phasenzeile in der Karte, wo vorher keine war). `ergebnisQuelle`
+  wird beim Überschreiben **entfernt**: Das Ergebnis kommt ab dann vom Lauf dieser App, die
+  Kennzeichnung „von Hand eingetragen" wäre genau die Falschangabe, gegen die Art. 14 dieses
+  Feld eingeführt hat.
+- **✅ Löschen ohne Rückfrage behoben.** `delBet()` und `logLoeschen()` fragen jetzt, mit dem
+  **Spielnamen in der Frage** — sichtbar ist damit, *was* gelöscht wird, nicht nur *dass*.
+  Ein „Nein" löst nachweislich auch kein `render()` aus, hat also keine stille Nebenwirkung.
+- **✅ Speichergrenze sichtbar gemacht.** Ein gescheitertes Speichern verschwand nach 1,5
+  Sekunden; jetzt bleibt ein roter Balken über **jeder** Ansicht stehen, bis ein Speichern
+  wieder gelingt, und meldet sich **einmal** mit einem Hinweisfenster — nicht bei jedem
+  weiteren Klick, sonst wäre es eine Fensterflut. Die Sicherungskarte nennt den belegten
+  Speicher in KB, **gemessen** an genau der Zeichenkette, die `save()` schreibt.
+  **Die Warngrenze von 3 MB ist ausdrücklich selbst gesetzt, keine Browser-Tatsache** — was
+  Safari auf Ondos iPhone wirklich zulässt, kann eine Code-Sitzung ohne dieses Gerät nicht
+  feststellen (Art. 11). Vorsichtig gewählt, damit der Hinweis kommt, **bevor** etwas
+  scheitert.
+- **🔴 Backlog-Punkt 75, Teil 3 GEBAUT — der Observation Layer. Die Lernkette steht damit
+  vollständig.** Neuer Block „Was die Daten sagen" in den Finanzen, unter der Kalibrierung.
+  Vier Beobachtungen: **Selbsteinschätzung je Gehirn** (behauptet gegen eingetroffen, mit
+  Vorzeichen — überschätzt oder unterschätzt sich) · **schwächster Markt** (ein Markt mit
+  weniger als zehn Aussagen bestimmt das Urteil ausdrücklich **nicht**) · **trägt hohe
+  Zuversicht?** (treffen Aussagen ab 70 % öfter zu als unsichere — wenn nicht, ist die
+  Prozentzahl selbst wertlos, und das ist die praktisch wichtigste Aussage, die sich aus
+  diesen Daten ziehen lässt) · **Wetten aus einer Vorhersage gegen von Hand gesetzte**.
+  **Die Auflage aus `Ondo-Core-Architektur.md` 1c ist eingelöst und maschinell belegt:**
+  `lernGrundlage()` schliesst geparkte Einträge und solche mit `refEinigkeit` aus — genau die
+  zwei Felder, auf die die Auflage in Fassung 99 festgenagelt wurde. Ein eigener Trockentest
+  belegt, dass solche Einträge die Beobachtung nachweislich nicht verschieben.
+  **Offen benannt, kein Widerspruch:** Der Observation Layer rechnet dadurch auf einer
+  **kleineren** Grundlage als die Kalibrierungsanzeige darüber (`calcKalibrierung` kennt diese
+  zwei Ausschlüsse nicht). Die Zahlen der zwei Bereiche dürfen abweichen — dort wird gemessen,
+  hier wird gelernt, und Lernen verlangt die härteren Belege.
+  **Die bei Teil 2 benannte Stelle ist abgefangen:** Eine Wette, deren `kiProtokollId` nach
+  dem Einspielen einer Sicherung ins Leere zeigt, wird **eigens gezählt** und in keine der
+  beiden Gruppen geschoben — sie stillschweigend als „von Hand" zu zählen wäre eine erfundene
+  Zuordnung.
+  **Schwellen:** ab 20 bewerteten Aussagen „belegt", ab 10 „Hinweis", darunter wird nichts
+  behauptet und „zu wenig" angezeigt (Art. 11/14).
+- **Verifiziert:** `node --check` bestanden · **66 neue Prüfungen** an den echten, aus
+  `beta.html` herausgeschnittenen Funktionen (nicht an Nachbauten): 55 an der Rechenlogik,
+  11 als Rauchtest am neuen Anzeigeblock — er belegt unter anderem, dass ein Eintrag ohne
+  `maerkte`-Feld aus einem alten Save nicht abstürzt und nirgends „undefined" erscheint · die bestehenden **64**
+  erneut gelaufen, alle weiterhin bestanden · `pruefe.py`: ALLES SAUBER.
+- **🔴 Ein Fehlschlag im Prüfstand selbst, offen benannt:** Vier Prüfungen scheiterten zunächst,
+  weil in der Testumgebung der Speicherschlüssel `KEY` fehlte — dadurch scheiterte auch das
+  *gelingende* Speichern und der Alarm blieb zu Recht stehen. Ein Fehler des Prüfstands, nicht
+  des Codes. Eine zusätzliche Prüfung nagelt jetzt fest, dass das gelungene Speichern wirklich
+  ankommt, damit derselbe stille Fehlschlag nicht irgendwann als Codefehler gelesen wird.
+- **23 neue Sprachschlüssel** (279 → 302). **Kein Schnitt in der Messreihe** — die
+  Kalibrierungsrechnung ist unangetastet. `APP_VERSION` weiter 18.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 96 ändert" wortgleich nach `BACKLOG-ARCHIV.md`
+  verschoben.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
 
 ---
 
@@ -167,42 +233,6 @@ Reihenfolge ausdrücklich Vorrang gegeben und die Startentscheidung an Claude de
   Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
 - **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert — Punkt 75 zählt nicht mit,
   Teil 1 ist erledigt, Teil 2/3 sind neue, noch unbeschlossene Bauaufgaben.)*
-
----
-
-## ⚠ Was Fassung 96 ändert (11.9., Backlog-Punkt 0b gebaut — Widerspruchsquote je Markt)
-
-**Anlass:** Auftrag Ondo — die seit 7.9.2026 offene Umsetzungsfrage bei Punkt 0b entscheiden
-und bauen: eine gemeinsame Widerspruchsquote über alle drei Märkte, oder je Markt getrennt?
-
-- **Entschieden: getrennt.** Der Markt „Sieger" wird in `maerkteBauen()` immer aus dem Tipp
-  abgeleitet, nie eigens gefragt — dort kann es strukturell nie einen Widerspruch geben. Eine
-  gemeinsame Zahl hätte echte Widersprüche bei „Tore" und „beide treffen" künstlich verwässert.
-- **`beta.html` v19.8.25:** Neue reine Funktion `calcWiderspruch(quelle)` — rückwirkend aus
-  vorhandenen Daten, keine neue Messung: zählt das seit jeher gesetzte Kennzeichen `m.gedreht`,
-  das bereits genau den Fall markiert, dass die eigens gefragte Prozentzahl der vom Tipp
-  implizierten Seite widerspricht. Bewusst kein Status-Filter — der Widerspruch entsteht beim
-  Vorhersagen selbst, nicht erst beim späteren Prüfen. Anzeige in der bestehenden
-  Kalibrierungstabelle, je Gehirn.
-- **Verifiziert:** `node --check` bestanden. Trockentest mit 12 Prüfungen an der echten,
-  herausgeschnittenen `calcWiderspruch()`. `pruefe.py` ohne Argument — ALLES SAUBER.
-- **🔴 `pruefe.py` selbst angepasst, mit Begründung, nicht stillschweigend (Arbeitsregel M):**
-  Abschnitt 3 (Querverweise) las bei „Backlog-Punkt 0b" fälschlich nur die Ziffer ohne den
-  Buchstaben und hielt das Ergebnis für einen nicht existierenden Verweis — die Regel für
-  `Backlog-Punkt N` hatte, anders als die für das blosse `Punkt N`, keine Ausnahme für
-  Buchstaben-Suffixe wie 0b/0c. **Keine Lockerung der
-  Prüfung**, im Gegenteil: die Ausnahme existierte bereits für den zweiten Regel-Zweig, hier
-  wurde nur dieselbe Ausnahme ergänzt, die dort schon galt. Ohne diese Berichtigung hätte jeder
-  künftige Verweis auf Punkt 0b/0c denselben Fehlalarm ausgelöst.
-- **Volle Begründung steht als angehängter Block direkt bei Punkt 0b** (nicht hier wiederholt
-  — Punkt 45).
-- **1 neuer Sprachschlüssel** (`widersprT`; 275 → 276). **Kein Schnitt in der Messreihe.**
-  `APP_VERSION` weiter 18.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 96 gehoben (Blueprint 0.95).
-  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
-  Arbeitsregel.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4** *(vorher drei — 0b ist jetzt gebaut, nicht
-  mehr in dieser Liste.)*
 
 ---
 
@@ -459,9 +489,9 @@ Bei NK Celje–Slovan Bratislava und Sabah FC–Hapoel Beer-Sheva FC lieferte de
 → **🔴 Was dieser Punkt NICHT leistet:** Er behebt die elfte Fehlerart nicht. Drei Läufe auf zwei Modellen sind **keine** drei unabhängigen Quellen, und drei einige Läufe können gemeinsam falsch liegen — genau das ist am 8.8.2026 bei den Anpfiffzeiten belegt (sieben von zehn falsch, **beide** Gehirne übereinstimmend). Ob die Absicherung wirkt, zeigt erst der Betrieb (Stabilitätsregel). **Nach Ondos eigener Definition** — der Schiedsrichter liefert zuverlässige Ergebnisse für alle künftigen Spiele **ohne Gegenprüfung im Chat** — ist er weiterhin **nicht repariert.**
 → **Keine rückwirkende Neubewertung.** Sabah und Celje bleiben geparkt, unabhängig vom Ausgang dieses Umbaus (ausdrückliche Auflage des Auftrags, und die Bedingung aus Punkt 64 gilt unverändert weiter).
 → **🔴 Ondos Rückfrage bei der Planfreigabe, hier beantwortet: Können die neue Markierung `2von3` und die bestehende Warnung aus `refRohAbgleich()` beim selben Eintrag gleichzeitig erscheinen?** **Ja, und das ist der Regelfall bei 2 von 3 — es ist kein Widerspruch.** Die beiden Zeilen sagen Verschiedenes und stehen untereinander: Die obere („nicht einstimmig — 2 von 3 Läufen") sagt, **dass** ein Wert übernommen wurde und wie knapp. Die untere („Schiedsrichter-Läufe widersprechen sich: 2 von 3 Läufen: 2:1 · 1 von 3 Läufen: 3:1") zeigt die **einzelnen** Stände, die dahinterstehen. In den drei Lagen sieht das so aus: **3/3 einstimmig** → keine der beiden Zeilen. **2/3** → beide Zeilen, obere zuerst. **Drei verschiedene Werte** → nur die untere, weil nichts übernommen wurde und es keine Markierung an einem übernommenen Wert geben kann; der Eintrag trägt statt dessen das Kennzeichen „geparkt". `refRohAbgleich()` ist dabei unverändert geblieben (ausdrückliche Auflage) — sie wirkt nur jetzt öfter, weil es je Runde drei geparste Läufe gibt statt einem.
-→ **🔴 Zweiter Fund, dabei aufgefallen, NICHT behoben und nicht Gegenstand dieses Auftrags:** `pruefAnwenden()` schreibt beim Übernehmen **nur** `ergebnisHeim`/`ergebnisGast` an den Eintrag. **Halbzeitstand und Verlängerungsstand werden verworfen**, obwohl der Schiedsrichter sie liefert und die App sie sogar prüft — sie überleben nur in `e.refRoh[...].geparst`. Die Karte kann `ergebnisHalbzeit`/`ergebnisVerl` anzeigen, bekommt sie aber ausschliesslich aus der von Hand eingetragenen Migration. Bewusst nicht mitgeändert: Es ändert, was dauerhaft gespeichert wird, und war nicht beauftragt (Art. 8). Nur benannt.
+→ **🔴 Zweiter Fund, dabei aufgefallen, NICHT behoben und nicht Gegenstand dieses Auftrags:** `pruefAnwenden()` schreibt beim Übernehmen **nur** `ergebnisHeim`/`ergebnisGast` an den Eintrag. **Halbzeitstand und Verlängerungsstand werden verworfen**, obwohl der Schiedsrichter sie liefert und die App sie sogar prüft — sie überleben nur in `e.refRoh[...].geparst`. Die Karte kann `ergebnisHalbzeit`/`ergebnisVerl` anzeigen, bekommt sie aber ausschliesslich aus der von Hand eingetragenen Migration. Bewusst nicht mitgeändert: Es ändert, was dauerhaft gespeichert wird, und war nicht beauftragt (Art. 8). Nur benannt. — **✅ BEHOBEN am 11.9.2026 in `beta.html` v19.8.28 (Fassung 101), nach Ondos Freigabe:** `pruefAnwenden()` übernimmt beide Werte jetzt; eine leere Angabe entfernt das Feld, statt einen leeren Text zu speichern.
 
-→ **🔴 Dritter Fund, 11.9.2026, bei der vollständigen Prüfung von `beta.html` (Fassung 100), NICHT behoben (Art. 8):** Dieselbe Stelle räumt beim Überschreiben eines Ergebnisses auch nicht auf. `pruefAnwenden()` setzt `ergebnisHeim`/`ergebnisGast` neu, lässt `ergebnisQuelle`, `ergebnisHalbzeit` und `ergebnisVerl` aber unverändert stehen. **Der Weg dorthin:** `logMarktSet()` setzt `status` wieder auf `offen`, sobald Ondo einen einzelnen Markt zurücksetzt; `ergebnissePruefen()` nimmt jeden offenen, nicht geparkten Eintrag wieder mit; `pruefAnwenden()` trägt danach das neue, vom Schiedsrichter gefundene Ergebnis ein — und die rote Zeile „von Hand eingetragen" stünde weiterhin daneben. Das ist **genau die Falschangabe, gegen die Art. 14 dieses Feld eingeführt hat**. **Zurzeit nicht erreichbar:** `seedV<8` hat `ergebnisQuelle` bei den zwei einzigen Einträgen entfernt, die es je trugen; kein Eintrag trägt es heute. Eine schlafende Lücke, keine wirkende — sie wacht auf, sobald das Feld wieder gesetzt wird. **Gehört zusammen mit dem zweiten Fund behoben** (beides derselbe Satz Zeilen in `pruefAnwenden()`), wenn Ondo es beauftragt.
+→ **🔴 Dritter Fund, 11.9.2026, bei der vollständigen Prüfung von `beta.html` (Fassung 100), NICHT behoben (Art. 8):** Dieselbe Stelle räumt beim Überschreiben eines Ergebnisses auch nicht auf. `pruefAnwenden()` setzt `ergebnisHeim`/`ergebnisGast` neu, lässt `ergebnisQuelle`, `ergebnisHalbzeit` und `ergebnisVerl` aber unverändert stehen. **Der Weg dorthin:** `logMarktSet()` setzt `status` wieder auf `offen`, sobald Ondo einen einzelnen Markt zurücksetzt; `ergebnissePruefen()` nimmt jeden offenen, nicht geparkten Eintrag wieder mit; `pruefAnwenden()` trägt danach das neue, vom Schiedsrichter gefundene Ergebnis ein — und die rote Zeile „von Hand eingetragen" stünde weiterhin daneben. Das ist **genau die Falschangabe, gegen die Art. 14 dieses Feld eingeführt hat**. **Zurzeit nicht erreichbar:** `seedV<8` hat `ergebnisQuelle` bei den zwei einzigen Einträgen entfernt, die es je trugen; kein Eintrag trägt es heute. Eine schlafende Lücke, keine wirkende — sie wacht auf, sobald das Feld wieder gesetzt wird. **Gehört zusammen mit dem zweiten Fund behoben** (beides derselbe Satz Zeilen in `pruefAnwenden()`), wenn Ondo es beauftragt. — **✅ BEHOBEN am 11.9.2026 in `beta.html` v19.8.28 (Fassung 101), zusammen mit dem zweiten Fund:** `ergebnisQuelle` wird beim Übernehmen entfernt. Damit ist Backlog-Punkt 64 in allen drei Funden abgearbeitet.
 
 > **🔴 Erste Bewährungsbeobachtung, 10.9.2026 (Ondo, direkte Aussage aus der App, eine Woche
 > nach dem Bau).** Ondos Wortlaut: „Seit dem 3.9. wurden keine Spiele geparkt außer das Spiel
@@ -537,7 +567,7 @@ wird, lässt sich erst über mehrere Anwendungen hinweg beurteilen, nicht nach d
 
 ---
 
-**75. Lernkette bauen — Evidence Ledger, Decision Ledger, Observation Layer** · *Beschlossen 6.7.2026, Reihenfolge fixiert · Auftrag Ondo, Teil 1 (Evidence Ledger) und Teil 2 (Decision Ledger) 11.9.2026* · **Status: 🔴 TEIL 1 FORMELL FESTGELEGT, TEIL 2 GEBAUT und am selben Tag nachgeprüft und berichtigt — `beta.html` v19.8.27 — Teil 3 (Observation Layer) offen**
+**75. Lernkette bauen — Evidence Ledger, Decision Ledger, Observation Layer** · *Beschlossen 6.7.2026, Reihenfolge fixiert · Auftrag Ondo, Teil 1 (Evidence Ledger) und Teil 2 (Decision Ledger) 11.9.2026* · **Status: ✅ ALLE DREI TEILE GEBAUT am 11.9.2026 — `beta.html` v19.8.28. Bewährung steht aus: Ob die vorhandenen Daten für belegte Beobachtungen reichen, zeigt erst der Blick in Ondos laufende App**
 
 **Anlass:** Ondo hat der Lernkette am Ende einer langen Diskussion um Beförderungskriterien
 und Reihenfolge ausdrücklich Vorrang gegeben und die Entscheidung, wann angefangen wird,
@@ -615,7 +645,43 @@ Lernkette in der Beta enthalten, nur für die **Beförderung** selbst.
 >   verknüpfter `kiProtokoll`-Eintrag fehlt, zeigt `kiProtokollId` ins Leere. Heute folgenlos
 >   (nichts liest das Feld), der Observation Layer muss das aber abfangen.
 
-> **Teil 3, Observation Layer — noch offen, keine Spezifikation vorhanden.**
+> **🔴 Teil 3, Observation Layer, GEBAUT am 11.9.2026, `beta.html` v19.8.28 (Auftrag Ondo:
+> „mach bei allen Punkten was nötig ist damit es sauber läuft, bau einfach weiter").**
+> Eine Spezifikation gab es bis dahin nicht; sie ist mit dem Bau entstanden und steht im Code
+> als Kommentarblock über `lernGrundlage()`.
+> **Was er ist:** Ebene 3 im Sinne von Ondo-Core 1b — er bewertet, was die Ebenen 1 und 2
+> getrennt erhoben haben, erhebt selbst nichts und leitet keine Ebene aus einer anderen ab.
+> **Was er beantwortet:** die einzige Frage, die beim nächsten Tipp wirklich hilft — was sich
+> bisher als wahr herausgestellt hat.
+> **Vier Beobachtungen:** Selbsteinschätzung je Gehirn (behauptet gegen eingetroffen, mit
+> Vorzeichen) · schwächster Markt · trägt hohe Zuversicht · Wetten aus einer Vorhersage gegen
+> von Hand gesetzte.
+> **Warum die dritte die wichtigste ist:** Trifft eine als sicher ausgegebene Aussage nicht
+> öfter zu als eine unsichere, ist die Prozentzahl selbst wertlos — dann nützt auch die beste
+> Kalibrierungsrechnung nichts. Das lässt sich aus diesen Daten ablesen, und bis jetzt las es
+> niemand ab.
+> **Auflage aus Ondo-Core 1c eingelöst und maschinell belegt:** `lernGrundlage()` schliesst
+> `e.geparkt` und `e.refEinigkeit` aus — geparkte Einträge haben gar kein Urteil, aus dem man
+> lernen könnte, und ein nur mit 2 von 3 Läufen übernommenes Ergebnis ist selbst bloss
+> wahrscheinlich. Eine Lehre daraus wäre eine Vermutung mit Lehrsatz-Anstrich (Art. 14).
+> **Offen benannt, ausdrücklich kein Widerspruch:** Der Observation Layer rechnet dadurch auf
+> einer kleineren Grundlage als `calcKalibrierung()` darüber. Die Zahlen dürfen abweichen —
+> dort wird gemessen, hier wird gelernt.
+> **Die bei Teil 2 benannte Stelle ist abgefangen:** Zeigt `kiProtokollId` nach dem Einspielen
+> einer Sicherung ins Leere, wird die Wette eigens gezählt und in keine der beiden Gruppen
+> geschoben.
+> **Schwellen:** ab 20 bewerteten Aussagen „belegt", ab 10 „Hinweis", darunter wird nichts
+> behauptet (Art. 11/14).
+> **Verifiziert:** `node --check` bestanden · **66 neue Prüfungen** an den echten,
+> herausgeschnittenen Funktionen, darunter der Beleg, dass geparkte und 2-von-3-Einträge die
+> Beobachtung nachweislich nicht verschieben, und dass ein Markt mit nur einer Aussage das
+> Urteil nicht an sich reisst · die bestehenden 64 erneut gelaufen · `pruefe.py`: ALLES SAUBER.
+> **18 neue Sprachschlüssel** für diesen Teil (`beobT` bis `beobGrundlage`).
+> **Was er ausdrücklich NICHT tut:** Er entscheidet nichts und verändert keine Vorhersage.
+> Art. 9 bleibt unangetastet — jede Lehre braucht Ondos Bestätigung.
+> **Grenze, ehrlich benannt:** Ob die heute vorhandenen Aussagen für auch nur eine als „belegt"
+> ausgewiesene Beobachtung reichen, kann diese Sitzung nicht sagen — sie sieht Ondos Daten
+> nicht (Art. 11). Der Block zeigt es beim ersten Öffnen selbst.
 
 **Zusammenhang mit der Beförderungsfrage (Backlog-Punkt 5):** ChatGPT wurde am 11.9.2026 um
 eine zweite Einschätzung zur Beförderungsreife gebeten und empfahl, die Lernkette **nach**
@@ -1753,8 +1819,8 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 | **Kein automatischer Test** | Jede Änderung wird nur von Hand geprüft | mittel → Punkt B wäre der erste Schritt |
 | **Gemini-Kaskade komplex** | Funktioniert, aber schwer zu durchschauen bei Fehlern | niedrig |
 | **Die Dokumente selbst** | Das Einlesen kostet einen neuen Chat etwa die Hälfte seines Arbeitsspeichers | **NEU 31.7.** → Punkt 18 |
-| **Löschen ohne Rückfrage** — `delBet()` und `logLoeschen()` löschen sofort und endgültig, während die zwei anderen unumkehrbaren Schritte der App vorher fragen (`korrFAnwenden()`, `datenLaden()` über `confirm()`) | Auf dem iPhone genügt ein Fehltipp. Seit Fassung 97 ist `state.kiProtokoll` der **Evidence Ledger** — ein Fehltipp löscht einen Beleg, auf dem das Lernen aufsetzen soll. Behebung: dieselbe `confirm()`-Rückfrage wie an den zwei vorhandenen Stellen; Kosten kein Geld, keine Laufzeit, zwei Sprachschlüssel | **NEU 11.9.** (Fassung 100) — **mittel**, Entscheidung liegt bei Ondo |
-| **Speichergrenze wird nirgends sichtbar** — scheitert `localStorage.setItem`, zeigt `save()` 1,5 Sekunden „nicht gespeichert" und sonst nichts; wie voll der Speicher ist, nennt die App nie | `kiProtokoll` wächst mit jeder Vorhersage, `refRoh` dreimal so schnell (schon bei Punkt 64 vermerkt). **Kein Beleg, dass die Grenze je erreicht wurde** — Ondos Browserspeicher ist von einer Code-Sitzung aus nicht einsehbar; benannt ist der Mechanismus, nicht ein Vorfall | **NEU 11.9.** (Fassung 100) — niedrig heute, steigend |
+| **Löschen ohne Rückfrage** — `delBet()` und `logLoeschen()` löschen sofort und endgültig, während die zwei anderen unumkehrbaren Schritte der App vorher fragen (`korrFAnwenden()`, `datenLaden()` über `confirm()`) | Auf dem iPhone genügt ein Fehltipp. Seit Fassung 97 ist `state.kiProtokoll` der **Evidence Ledger** — ein Fehltipp löscht einen Beleg, auf dem das Lernen aufsetzen soll. Behebung: dieselbe `confirm()`-Rückfrage wie an den zwei vorhandenen Stellen; Kosten kein Geld, keine Laufzeit, zwei Sprachschlüssel | **✅ BEHOBEN 11.9.** in v19.8.28 (Fassung 101) — beide fragen jetzt, mit dem Spielnamen in der Frage |
+| **Speichergrenze wird nirgends sichtbar** — scheitert `localStorage.setItem`, zeigt `save()` 1,5 Sekunden „nicht gespeichert" und sonst nichts; wie voll der Speicher ist, nennt die App nie | `kiProtokoll` wächst mit jeder Vorhersage, `refRoh` dreimal so schnell (schon bei Punkt 64 vermerkt). **Kein Beleg, dass die Grenze je erreicht wurde** — Ondos Browserspeicher ist von einer Code-Sitzung aus nicht einsehbar; benannt ist der Mechanismus, nicht ein Vorfall | **✅ BEHOBEN 11.9.** in v19.8.28 (Fassung 101) — belegter Speicher steht in der Sicherungskarte, ein gescheitertes Speichern lässt einen roten Balken stehen statt ihn nach 1,5 Sekunden zu verlieren |
 
 ---
 

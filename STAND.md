@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 11.9.2026, Fassung 100, v19.8.27*
+*Die aktuelle Wahrheit. Stand: 11.9.2026, Fassung 101, v19.8.28*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -175,6 +175,52 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 ## Versionen
 
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
+- **Beta: v19.8.28** (`beta.html`, geliefert 11.9.2026) — **die drei Funde der Prüfung behoben
+  und die Lernkette fertiggebaut: Backlog-Punkt 75, Teil 3, Observation Layer.**
+  Auftrag Ondo: „mach bei allen Punkten was nötig ist damit es sauber läuft, bau einfach weiter".
+  **Erstens, Backlog-Punkt 64 geschlossen (zweiter und dritter Fund, dieselbe Stelle):**
+  `pruefAnwenden()` übernimmt jetzt **Halbzeit- und Verlängerungsstand** statt sie zu verwerfen —
+  der Schiedsrichter lieferte sie, `refLaufPruefen()` rechnete sie gegen den Endstand,
+  `pruefBlock()` zeigte sie Ondo vor dem Übernehmen, und dann gingen sie verloren. Eine **leere**
+  Angabe entfernt das Feld, statt einen leeren Text zu speichern. Ausserdem wird
+  `ergebnisQuelle` beim Überschreiben **entfernt**: Das Ergebnis kommt ab dann vom Lauf dieser
+  App, die Kennzeichnung „von Hand eingetragen" wäre eine Falschangabe (Art. 14).
+  **Zweitens, Rückfrage vor dem Löschen** in `delBet()` und `logLoeschen()` — mit dem Spielnamen
+  in der Frage, damit sichtbar ist, **was** gelöscht wird, nicht nur **dass**.
+  **Drittens, der Speicher wird sichtbar:** Ein gescheitertes Speichern verschwand bisher nach
+  1,5 Sekunden; jetzt bleibt ein roter Balken über jeder Ansicht stehen, bis ein Speichern wieder
+  gelingt, und meldet sich **einmal** mit einem Hinweisfenster (nicht bei jedem weiteren Klick).
+  Die Sicherungskarte nennt den belegten Speicher in KB, **gemessen** an genau der Zeichenkette,
+  die `save()` schreibt. **Die Warngrenze von 3 MB ist ausdrücklich selbst gesetzt, keine
+  Browser-Tatsache** — was Safari auf Ondos iPhone wirklich zulässt, kann eine Code-Sitzung ohne
+  dieses Gerät nicht feststellen (Art. 11).
+  **Viertens, der Observation Layer (Lernkette Teil 3, Backlog-Punkt 75).** Neuer Block „Was die
+  Daten sagen" in den Finanzen, unter der Kalibrierung. Er beantwortet die einzige Frage, die
+  beim nächsten Tipp hilft — was sich bisher als wahr herausgestellt hat — und sagt ausdrücklich
+  „zu wenig Daten", wo die Grundlage zu dünn ist. **Die Auflage aus `Ondo-Core-Architektur.md` 1c
+  ist eingelöst und maschinell belegt:** `lernGrundlage()` schliesst geparkte Einträge und solche
+  mit `refEinigkeit` (nur „2 von 3") aus — genau die zwei Felder, auf die die Auflage am
+  11.9.2026 festgenagelt wurde. **Offen benannt:** Der Observation Layer rechnet dadurch auf
+  einer **kleineren** Grundlage als die Kalibrierungsanzeige darüber; die Zahlen der zwei
+  Bereiche dürfen abweichen, und das ist gewollt — dort wird gemessen, hier wird gelernt.
+  Vier Beobachtungen: Selbsteinschätzung je Gehirn · schwächster Markt (ein Markt unter zehn
+  Aussagen bestimmt das Urteil nicht) · **trägt hohe Zuversicht?** · Wetten aus einer Vorhersage
+  gegen von Hand gesetzte. Die letzte schliesst den Bogen zum Decision Ledger und **fängt die bei
+  Teil 2 benannte Stelle ab**: Eine Wette, deren `kiProtokollId` ins Leere zeigt, wird eigens
+  gezählt und in **keine** der beiden Gruppen geschoben. Schwellen: ab 20 bewerteten Aussagen
+  „belegt", ab 10 „Hinweis", darunter wird nichts behauptet.
+  **Verifiziert:** `node --check` bestanden · Trockentest mit **66 neuen Prüfungen** an den
+  echten, aus `beta.html` herausgeschnittenen Funktionen (55 an der Rechenlogik, 11 als
+  Rauchtest am neuen Anzeigeblock — reiner Anzeigecode war bisher von keinem Test gedeckt), darunter der Beleg, dass geparkte und
+  2-von-3-Einträge die Beobachtung nachweislich **nicht** verschieben, und dass ein zweites
+  Scheitern beim Speichern kein zweites Fenster öffnet · die bestehenden **64** Prüfungen erneut
+  gelaufen, alle weiterhin bestanden · `pruefe.py`: ALLES SAUBER. **Ein Fehlschlag im
+  Prüfstand selbst offen benannt:** Vier Prüfungen scheiterten zunächst, weil in der
+  Testumgebung der Speicherschlüssel `KEY` fehlte — ein Fehler des Prüfstands, nicht des Codes;
+  eine zusätzliche Prüfung nagelt das jetzt fest, damit derselbe stille Fehlschlag nicht
+  irgendwann als Codefehler gelesen wird. **23 neue Sprachschlüssel** (279 → 302).
+  **Kein Schnitt in der Messreihe** — die Kalibrierungsrechnung ist unangetastet.
+  `APP_VERSION` weiter 18.
 - **🔴 Vollständige Prüfung von `beta.html`, 11.9.2026 (Fassung 100) — keine Codeänderung.**
   Ondos Auftrag: „Beta vollständig und gründlich auf Fehler /Lücken komplett prüfen, wenn alles
   perfekt ist, dann weiter bauen." Geprüft wurde die ganze Datei (3764 Zeilen, 139 Funktionen,
@@ -198,7 +244,7 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   entschärft. **Offen benannt:** Die ersten drei Fassungen des Prüfwerkzeugs meldeten nur
   Fehlalarme; kein Befund oben stammt aus einem ungeprüften Werkzeug-Treffer — jeder ist an der
   Codestelle selbst nachgelesen.
-- **Beta: v19.8.27** (`beta.html`, geliefert 11.9.2026) — **Nachprüfung auf Ondos Verlangen,
+- **Beta zuvor: v19.8.27** (`beta.html`, geliefert 11.9.2026) — **Nachprüfung auf Ondos Verlangen,
   ein eigener Fehler gefunden und behoben.** Vor dem Weiterbauen am Observation Layer wurde der
   ganze Bau seit dem Evidence Ledger geprüft. Gefunden: `kiWahlUebernehmen()` aus v19.8.26 schrieb
   beim Übernehmen einer Vorhersage den getippten **Spielstand** in das **Tipp-Feld** der Wette —
@@ -326,7 +372,7 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 - **Beta zuvor: v19.8.1** (`beta.html`, geliefert 9.8.2026, 13:55 Uhr) — **die Spielliste hat eine eigene Rolle und läuft auf `gemini-flash-latest`.** Jeder neue Eintrag trägt zusätzlich die **Stufe**. Kein Schnitt in der Messreihe. `APP_VERSION` weiter 18.
 - **Beta zuvor: v19.8.0** (`beta.html`, geliefert 9.8.2026, 04:15 Uhr) — **Schnitt in der Messreihe bei „beide treffen", Punkt F gebaut.** Werte vor und ab dieser Version sind bei diesem Markt nicht vergleichbar. Jeder neue Log-Eintrag trägt das Feld `codeVersion`. `APP_VERSION` weiter 18.
 - **Beta zuvor: v19.7.8** (`beta.html`, geliefert 7.8.2026) — getrennter Speicher, aktive Messphase. Vier Nachbesserungen am 3. und 4. August, alle ausgelöst durch Punkt 0a; Einzelheiten im Backlog. Im Code steht weiterhin `APP_VERSION = 18` (technische Schuld, bewusst nicht nebenbei geändert, vor der Beförderung zu klären)
-- **Sprachschlüssel: 279** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 11.9.2026**). *Verlauf: die früher dokumentierten 184 waren nie geprüft; nachgezählt waren es 185, dann 193, dann 199, dann 201 (v19.7.8), dann 203 (v19.8.1). Die acht Schlüssel des Berichtigungsknopfes vom 13.8. (`korrT` bis `korrOk`) waren nirgends nachgetragen — 203 + 8 = 211. Punkt 44 bringt sechs weitere (`messT` bis `messBlock`) — 211 + 6 = 217. Backlog-Punkt 51 (gepaarter Vergleich, seit 30.8.2026 in `BACKLOG-ARCHIV.md`) bringt elf weitere (`gepaart` bis `gepaartMehrdeutig`) — 217 + 11 = 228. Backlog-Punkt 64 bringt einen weiteren (`parkGrundInstabil`) — 228 + 1 = 229. Nachfrage zu Punkt 64 (refRoh lesbar gemacht, v19.8.8) bringt zwei weitere (`refRohBtn`, `refRohEmpty`) — 229 + 2 = 231. Nachfrage zu Punkt 64, Teil 2/3 (v19.8.9) bringt drei weitere (`refWiderspruch`, `refRunsVon`, `ergebnisManuell`) — 231 + 3 = 234. Backlog-Punkt 68 und Punkt 36, zweiter Teil (Mehrfachlauf-Absicherung, v19.8.12), bringen sieben weitere (`refEinig2von3`, `refQuellenZahl`, `refVerworfen`, `parkGrundFormat`, `refEinAnbieter`, `refDauer`, `balGeparkt`) — 234 + 7 = 241. Backlog-Punkt 70 (Filter im KI-Log, v19.8.14) bringt zehn weitere (`filterT` bis `filterEmpty`) — 241 + 10 = 251. Backlog-Punkt 71 (KI-Log in vier Reiter, v19.8.15) bringt vier weitere (`kilogTabBewertet`, `kilogTabArchiv`, `kilogTabWerkzeuge`, `filterMannschaftPh`) und entfernt einen, ungenutzt gewordenen (`logEmpty`) — 251 + 4 − 1 = 254. Backlog-Punkt 34/35 (Brier-Score, Streuung, v19.8.21) bringen zwei weitere (`calibBrier`, `calibSpread`) — 254 + 2 = 256. Backlog-Punkt 9, Knopfdruck-Teil (Quoten-Automatik, v19.8.23) bringt elf weitere (`oddsKeyT` bis `oddsQuelle`) — 256 + 11 = 267. Backlog-Punkt 9, Ausbau (API-Football/football-data.org per Knopfdruck, v19.8.24) bringt acht weitere (`afKeyT` bis `fdOff`) — 267 + 8 = 275. Backlog-Punkt 0b (Widerspruchsquote je Markt, v19.8.25) bringt einen weiteren (`widersprT`) — 275 + 1 = 276. Backlog-Punkt 75, Teil 2 (Decision Ledger, v19.8.26) bringt drei weitere (`kiWahlLabel`, `kiWahlKeine`, `vonKi`) — 276 + 3 = 279.* **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
+- **Sprachschlüssel: 302** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 11.9.2026**). *Verlauf: die früher dokumentierten 184 waren nie geprüft; nachgezählt waren es 185, dann 193, dann 199, dann 201 (v19.7.8), dann 203 (v19.8.1). Die acht Schlüssel des Berichtigungsknopfes vom 13.8. (`korrT` bis `korrOk`) waren nirgends nachgetragen — 203 + 8 = 211. Punkt 44 bringt sechs weitere (`messT` bis `messBlock`) — 211 + 6 = 217. Backlog-Punkt 51 (gepaarter Vergleich, seit 30.8.2026 in `BACKLOG-ARCHIV.md`) bringt elf weitere (`gepaart` bis `gepaartMehrdeutig`) — 217 + 11 = 228. Backlog-Punkt 64 bringt einen weiteren (`parkGrundInstabil`) — 228 + 1 = 229. Nachfrage zu Punkt 64 (refRoh lesbar gemacht, v19.8.8) bringt zwei weitere (`refRohBtn`, `refRohEmpty`) — 229 + 2 = 231. Nachfrage zu Punkt 64, Teil 2/3 (v19.8.9) bringt drei weitere (`refWiderspruch`, `refRunsVon`, `ergebnisManuell`) — 231 + 3 = 234. Backlog-Punkt 68 und Punkt 36, zweiter Teil (Mehrfachlauf-Absicherung, v19.8.12), bringen sieben weitere (`refEinig2von3`, `refQuellenZahl`, `refVerworfen`, `parkGrundFormat`, `refEinAnbieter`, `refDauer`, `balGeparkt`) — 234 + 7 = 241. Backlog-Punkt 70 (Filter im KI-Log, v19.8.14) bringt zehn weitere (`filterT` bis `filterEmpty`) — 241 + 10 = 251. Backlog-Punkt 71 (KI-Log in vier Reiter, v19.8.15) bringt vier weitere (`kilogTabBewertet`, `kilogTabArchiv`, `kilogTabWerkzeuge`, `filterMannschaftPh`) und entfernt einen, ungenutzt gewordenen (`logEmpty`) — 251 + 4 − 1 = 254. Backlog-Punkt 34/35 (Brier-Score, Streuung, v19.8.21) bringen zwei weitere (`calibBrier`, `calibSpread`) — 254 + 2 = 256. Backlog-Punkt 9, Knopfdruck-Teil (Quoten-Automatik, v19.8.23) bringt elf weitere (`oddsKeyT` bis `oddsQuelle`) — 256 + 11 = 267. Backlog-Punkt 9, Ausbau (API-Football/football-data.org per Knopfdruck, v19.8.24) bringt acht weitere (`afKeyT` bis `fdOff`) — 267 + 8 = 275. Backlog-Punkt 0b (Widerspruchsquote je Markt, v19.8.25) bringt einen weiteren (`widersprT`) — 275 + 1 = 276. Backlog-Punkt 75, Teil 2 (Decision Ledger, v19.8.26) bringt drei weitere (`kiWahlLabel`, `kiWahlKeine`, `vonKi`) — 276 + 3 = 279. Die drei Behebungen und der Observation Layer (v19.8.28) bringen 23 weitere: zwei Rückfragen vor dem Löschen (`delBetAsk`, `delLogAsk`), drei für den Speicher (`saveFailAlert`, `speicherT`, `speicherEng`) und achtzehn für den Observation Layer (`beobT` bis `beobGrundlage`) — 279 + 23 = 302.* **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
 
 ---
 
@@ -553,7 +599,7 @@ Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp 
 
 ---
 
-## Lernkette (beschlossen 6.7., Reihenfolge fixiert — Evidence und Decision Ledger gebaut, 11.9.2026)
+## Lernkette (beschlossen 6.7., Reihenfolge fixiert — alle drei Stufen gebaut, 11.9.2026)
 
 > **Evidence Ledger** (warum wurde empfohlen) → **Decision Ledger** (was machte Ondo daraus) → **Observation Layer** (Muster erkennen)
 
@@ -563,7 +609,9 @@ Jede Lehre braucht Ondos Bestätigung (Art. 9).
 
 **🔴 Decision Ledger, 11.9.2026 (Backlog-Punkt 75, Teil 2, `beta.html` v19.8.26, nachgeprüft und berichtigt in v19.8.27):** Gebaut — im Wette-Formular kann eine Wette jetzt bewusst mit der Empfehlung verknüpft werden, aus der sie entstand (Auswahl, keine automatische Zuordnung). Neues Feld `kiProtokollId`, `fromKI`/`herkunft` werden jetzt tatsächlich gesetzt.
 
-**Aktueller Wahrheitsstand: Observation Layer fehlt weiterhin** — das System hat Erinnerung mit benanntem Schema und eine belegte Verknüpfung Wette↔Empfehlung, noch keine erkannten Muster. Eine bereits gespeicherte alte Wette lässt sich nicht nachträglich verknüpfen — nur neue Wetten ab v19.8.26.
+**🔴 Observation Layer, 11.9.2026 (Backlog-Punkt 75, Teil 3, `beta.html` v19.8.28, Auftrag Ondo):** Gebaut — Block „Was die Daten sagen" in den Finanzen. Vier Beobachtungen: Selbsteinschätzung je Gehirn (behauptet gegen eingetroffen) · schwächster Markt · **trägt hohe Zuversicht?** · Wetten aus einer Vorhersage gegen von Hand gesetzte. **Die Auflage aus `Ondo-Core-Architektur.md` 1c ist eingelöst:** Es wird nicht aus geparkten Einträgen gelernt und nicht aus solchen, bei denen der Schiedsrichter sich nur mit 2 von 3 Läufen einig war. Schwellen: ab 20 bewerteten Aussagen „belegt", ab 10 „Hinweis", darunter wird nichts behauptet — „zu wenig Daten" wird angezeigt, nicht verschwiegen (Art. 11/14).
+
+**Aktueller Wahrheitsstand: die Kette steht, die Lehren stehen noch aus.** Das System hat Erinnerung mit benanntem Schema, eine belegte Verknüpfung Wette↔Empfehlung und eine Stelle, an der Muster sichtbar werden. **Was es noch nicht hat, sind die Muster selbst** — dafür braucht es genug sicher bewertete Aussagen, und ob die vorhandenen dafür reichen, zeigt erst der Blick in die laufende App; eine Code-Sitzung sieht Ondos Daten nicht (Art. 11). **Zwei benannte Grenzen bleiben:** Eine bereits gespeicherte alte Wette lässt sich nicht nachträglich verknüpfen (nur neue ab v19.8.26). Und jede Lehre braucht weiterhin Ondos Bestätigung (Art. 9) — der Observation Layer zeigt, er entscheidet nichts.
 
 ---
 

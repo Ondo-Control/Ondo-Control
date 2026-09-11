@@ -410,6 +410,42 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 96 ändert (11.9., Backlog-Punkt 0b gebaut — Widerspruchsquote je Markt)
+
+**Anlass:** Auftrag Ondo — die seit 7.9.2026 offene Umsetzungsfrage bei Punkt 0b entscheiden
+und bauen: eine gemeinsame Widerspruchsquote über alle drei Märkte, oder je Markt getrennt?
+
+- **Entschieden: getrennt.** Der Markt „Sieger" wird in `maerkteBauen()` immer aus dem Tipp
+  abgeleitet, nie eigens gefragt — dort kann es strukturell nie einen Widerspruch geben. Eine
+  gemeinsame Zahl hätte echte Widersprüche bei „Tore" und „beide treffen" künstlich verwässert.
+- **`beta.html` v19.8.25:** Neue reine Funktion `calcWiderspruch(quelle)` — rückwirkend aus
+  vorhandenen Daten, keine neue Messung: zählt das seit jeher gesetzte Kennzeichen `m.gedreht`,
+  das bereits genau den Fall markiert, dass die eigens gefragte Prozentzahl der vom Tipp
+  implizierten Seite widerspricht. Bewusst kein Status-Filter — der Widerspruch entsteht beim
+  Vorhersagen selbst, nicht erst beim späteren Prüfen. Anzeige in der bestehenden
+  Kalibrierungstabelle, je Gehirn.
+- **Verifiziert:** `node --check` bestanden. Trockentest mit 12 Prüfungen an der echten,
+  herausgeschnittenen `calcWiderspruch()`. `pruefe.py` ohne Argument — ALLES SAUBER.
+- **🔴 `pruefe.py` selbst angepasst, mit Begründung, nicht stillschweigend (Arbeitsregel M):**
+  Abschnitt 3 (Querverweise) las bei „Backlog-Punkt 0b" fälschlich nur die Ziffer ohne den
+  Buchstaben und hielt das Ergebnis für einen nicht existierenden Verweis — die Regel für
+  `Backlog-Punkt N` hatte, anders als die für das blosse `Punkt N`, keine Ausnahme für
+  Buchstaben-Suffixe wie 0b/0c. **Keine Lockerung der
+  Prüfung**, im Gegenteil: die Ausnahme existierte bereits für den zweiten Regel-Zweig, hier
+  wurde nur dieselbe Ausnahme ergänzt, die dort schon galt. Ohne diese Berichtigung hätte jeder
+  künftige Verweis auf Punkt 0b/0c denselben Fehlalarm ausgelöst.
+- **Volle Begründung steht als angehängter Block direkt bei Punkt 0b** (nicht hier wiederholt
+  — Punkt 45).
+- **1 neuer Sprachschlüssel** (`widersprT`; 275 → 276). **Kein Schnitt in der Messreihe.**
+  `APP_VERSION` weiter 18.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 96 gehoben (Blueprint 0.95).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4** *(vorher drei — 0b ist jetzt gebaut, nicht
+  mehr in dieser Liste.)*
+
+---
+
 ## ⚠ Was Fassung 95 ändert (11.9., Backlog-Punkt 9 — API-Football/football-data.org per Knopfdruck an den Prüflauf gekoppelt)
 
 **Anlass:** API-Football sperrte die GitHub-Automatik aus Fassung 94 wegen geteilter
