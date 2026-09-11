@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 11.9.2026, Fassung 98, v19.8.26*
+*Die aktuelle Wahrheit. Stand: 11.9.2026, Fassung 99, v19.8.27*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -175,7 +175,19 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 ## Versionen
 
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.8.26** (`beta.html`, geliefert 11.9.2026) — **Backlog-Punkt 75, Teil 2:
+- **Beta: v19.8.27** (`beta.html`, geliefert 11.9.2026) — **Nachprüfung auf Ondos Verlangen,
+  ein eigener Fehler gefunden und behoben.** Vor dem Weiterbauen am Observation Layer wurde der
+  ganze Bau seit dem Evidence Ledger geprüft. Gefunden: `kiWahlUebernehmen()` aus v19.8.26 schrieb
+  beim Übernehmen einer Vorhersage den getippten **Spielstand** in das **Tipp-Feld** der Wette —
+  falsche Bedeutung, denn `tipp` hält fest, welche Wette gesetzt wurde, und wird dem
+  Schiedsrichter beim Prüfen einer Wette vorgelegt. Das Feld bleibt jetzt unberührt, nur der
+  Spielname wird übernommen. **Verifiziert:** `node --check` bestanden · **64 Trockentest-
+  Prüfungen** über sechs Reihen, alle bestanden, darunter eine neue Reihe mit 7 Prüfungen an
+  `kiWahlUebernehmen()` mit gestubbtem DOM · maschinell geprüft, dass der neue Feldname
+  `kiProtokollId` die Geheimfeld-Sperre aus Backlog-Punkt 44 nicht auslöst und `b.fromKI`
+  nirgends sonst gelesen wird · `pruefe.py`: ALLES SAUBER. **Keine neuen Sprachschlüssel**
+  (279 unverändert). **Kein Schnitt in der Messreihe.** `APP_VERSION` weiter 18.
+- **Beta zuvor: v19.8.26** (`beta.html`, geliefert 11.9.2026) — **Backlog-Punkt 75, Teil 2:
   Decision Ledger gebaut.** Fund beim Festlegen des Evidence Ledgers (Teil 1, v19.8.25):
   `state.bets` trug die Felder `fromKI`/`herkunft` seit jeher, `addBet()` setzte sie aber
   immer auf `false`/`null` — keine echte Verknüpfung zu einer Empfehlung. Neues Auswahlfeld im
@@ -526,7 +538,7 @@ Jede Lehre braucht Ondos Bestätigung (Art. 9).
 
 **🔴 Evidence Ledger, 11.9.2026 (Backlog-Punkt 75, Teil 1, Auftrag Ondo):** Formell festgelegt, nicht neu gebaut — `state.kiProtokoll` (seit v19.0 faktisch gefüllt) IST der Evidence Ledger, mit Schema und Ebenen-Zuordnung in `Ondo-Core-Architektur.md`, Abschnitt 1c.
 
-**🔴 Decision Ledger, 11.9.2026 (Backlog-Punkt 75, Teil 2, `beta.html` v19.8.26):** Gebaut — im Wette-Formular kann eine Wette jetzt bewusst mit der Empfehlung verknüpft werden, aus der sie entstand (Auswahl, keine automatische Zuordnung). Neues Feld `kiProtokollId`, `fromKI`/`herkunft` werden jetzt tatsächlich gesetzt.
+**🔴 Decision Ledger, 11.9.2026 (Backlog-Punkt 75, Teil 2, `beta.html` v19.8.26, nachgeprüft und berichtigt in v19.8.27):** Gebaut — im Wette-Formular kann eine Wette jetzt bewusst mit der Empfehlung verknüpft werden, aus der sie entstand (Auswahl, keine automatische Zuordnung). Neues Feld `kiProtokollId`, `fromKI`/`herkunft` werden jetzt tatsächlich gesetzt.
 
 **Aktueller Wahrheitsstand: Observation Layer fehlt weiterhin** — das System hat Erinnerung mit benanntem Schema und eine belegte Verknüpfung Wette↔Empfehlung, noch keine erkannten Muster. Eine bereits gespeicherte alte Wette lässt sich nicht nachträglich verknüpfen — nur neue Wetten ab v19.8.26.
 

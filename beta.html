@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.26';
+var CODE_VERSION = 'v19.8.27';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -3024,15 +3024,20 @@ function kiWahlBlock(){
   return '<div><label>'+t('kiWahlLabel')+'</label>'+
     '<select id="f_kiWahl" onchange="kiWahlUebernehmen(this.value)">'+opts+'</select></div>';
 }
-/* Auswaehlen fuellt die Textfelder nur ab - reines Ablesen einer bereits getroffenen Wahl,
-   kein weiterer Automatismus. Ondo kann Match/Tipp danach weiterhin von Hand aendern. */
+/* Auswaehlen fuellt NUR den Spielnamen ab - reines Ablesen einer bereits getroffenen Wahl,
+   kein weiterer Automatismus. Ondo kann ihn danach weiterhin von Hand aendern.
+   v19.8.27, eigener Fund bei der Nachpruefung von v19.8.26: Hier wurde zusaetzlich der
+   getippte Spielstand ("2:1") in das Tipp-Feld geschrieben. Das ist die falsche Bedeutung —
+   "tipp" haelt bei einer Wette fest, WELCHE Wette gesetzt wurde ("Beide Teams treffen (Ja)",
+   "Frankreich ueber 2,5 Tore", siehe die Bestandsdaten), nicht den erwarteten Endstand. Der
+   Text wird ausserdem dem Schiedsrichter beim Pruefen einer Wette vorgelegt (art:'bet'),
+   haette dort also eine falsche Angabe gezeigt. Das Feld bleibt jetzt unberuehrt. */
 function kiWahlUebernehmen(id){
   if(!id) return;
   var e=(state.kiProtokoll||[]).find(function(x){ return x.id===id; });
   if(!e) return;
-  var fm=document.getElementById('f_match'), ft=document.getElementById('f_tipp');
+  var fm=document.getElementById('f_match');
   if(fm) fm.value=e.match;
-  if(ft) ft.value=e.heim+':'+e.gast;
 }
 
 /* ================= AKTIONEN ================= */

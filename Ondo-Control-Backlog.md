@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 11.9.2026, Fassung 98 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 11.9.2026, Fassung 99 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,39 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 99 ändert (11.9., Nachprüfung auf Ondos Verlangen — ein eigener Fehler gefunden und behoben)
+
+**Anlass:** Ondo hat vor dem Weiterbauen am Observation Layer eine gründliche Prüfung des
+gesamten Baus seit dem Evidence Ledger verlangt: „wenn alles perfekt ist, dann weiter bauen".
+
+- **🔴 Echter Fehler gefunden und behoben, `beta.html` v19.8.27:** `kiWahlUebernehmen()` aus
+  v19.8.26 schrieb beim Übernehmen einer Vorhersage den getippten **Spielstand** in das
+  **Tipp-Feld** der Wette. Falsche Bedeutung — `tipp` hält fest, **welche Wette** gesetzt
+  wurde (belegt an den Bestandsdaten), und wird dem Schiedsrichter beim Prüfen einer Wette
+  vorgelegt. Das Feld bleibt jetzt unberührt, nur der Spielname wird übernommen.
+- **Unvollständigkeit im eigenen Architektur-Eintrag behoben:** Die als „Schema" bezeichnete
+  Tabelle in `Ondo-Core-Architektur.md` 1c nannte acht real vorhandene Felder nicht. Jetzt
+  maschinell aus `beta.html` ausgezählt statt aus dem Gedächtnis geschrieben (Fassung 0.6),
+  und die Auflage an den Observation Layer auf die zwei tatsächlichen Felder festgenagelt
+  (`geparkt`, `refEinigkeit`).
+- **Geprüft und in Ordnung, maschinell statt angenommen:** neuer Feldname `kiProtokollId` löst
+  die Geheimfeld-Sperre aus Backlog-Punkt 44 nicht aus · `b.fromKI`/`b.herkunft` werden
+  nirgends sonst gelesen · Bestandswetten zeigen korrekt keine Markierung · das neue
+  Auswahlfeld erbt die vorhandene Gestaltung · die Zusage „kein Codeaufwand" bei Teil 1 stimmt.
+- **Verifiziert:** `node --check` bestanden. **64 Trockentest-Prüfungen** über sechs Reihen,
+  alle bestanden — darunter eine **neue Reihe mit 7 Prüfungen** an `kiWahlUebernehmen()`, die
+  den behobenen Fehler festnagelt. `pruefe.py` ohne Argument — ALLES SAUBER.
+- **Volle Begründung steht als angehängter Block direkt bei Punkt 75** (nicht hier wiederholt
+  — Punkt 45).
+- **Keine neuen Sprachschlüssel** (279 unverändert). **Kein Schnitt in der Messreihe.**
+  `APP_VERSION` weiter 18.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 99 gehoben (Blueprint 0.98).
+  `Ondo-Core-Architektur.md` auf Fassung 0.6. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
 
 ---
 
@@ -135,51 +168,6 @@ bestehenden Prüflauf.
 - **8 neue Sprachschlüssel** (`afKeyT` bis `fdOff`; 267 → 275). **Kein Schnitt in der
   Messreihe.** `APP_VERSION` weiter 18.
 - **Fassungszahl:** alle drei aktiven Dokumente auf 95 gehoben (Blueprint 0.94).
-  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
-  Arbeitsregel.
-- **Beschlossen und nicht gebaut weiterhin drei** — **3, 4, 0b** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 94 ändert (11.9., Backlog-Punkt 9 — eigene Ergebnis-Datenquelle für den Schiedsrichter, Ausbau)
-
-**Anlass:** Auftrag Ondo, als Antwort auf den Quoten-Fabrikationsfund (Fassung 92) — der
-Schiedsrichter soll eine eigene, strukturierte Datenquelle bekommen, statt allein auf KI-Suche
-angewiesen zu sein.
-
-- **Geprüft, mit echtem Schlüssel:** `openfootball/football.json` scheidet aus (Ergebnisse für
-  Irland/Schweden/Island seit Mai 2025 tot). API-Football (kostenlos) deckt dagegen nachweislich
-  alle 16 Stufe-1-Länder, alle Stufe-2-Ligen und Länderspiele weltweit ohne Kontinent-Einschränkung
-  ab — mit der Einschränkung, dass die kostenlose Stufe Datums-Abfragen nur in einem schmalen
-  Fenster (gestern/heute/morgen) erlaubt. football-data.org deckt zusätzlich 12 grosse
-  Wettbewerbe als zweite, unabhängige Quelle ab.
-- **Entscheidung zur Bauweise:** Negativlisten-Geist wie beim Schiedsrichter selbst — keine
-  Vollständigkeit behauptet, ein nicht gelisteter Wettbewerb fällt auf die bestehende KI-Suche
-  zurück. Tägliche Automatik statt Live-Abruf im Browser (das schmale Zeitfenster reicht dafür
-  nicht), Monatsdateien statt einer ewig wachsenden Datei (rund 300.000 Zeichen/Monat, weit
-  unter jeder GitHub-Grenze).
-- **Gebaut:** `skripte/schiri-ergebnisse-holen.js` (Node, läuft nur in der Automatik) und
-  `.github/workflows/schiri-ergebnisse.yml` (täglich 08:00 Uhr UTC, holt „gestern" und „heute",
-  `workflow_dispatch` für Bedarfsläufe). Zwei echte, beim Testabruf gefundene Fehler vor der
-  Auslieferung behoben: ein fertiges Ergebnis wird nicht mehr durch einen späteren unfertigen
-  Treffer überschrieben; ein Copa-Libertadores-Fund von football-data.org (ausserhalb der 12
-  zugesicherten Wettbewerbe UND ausserhalb Stufe 1/2) wird jetzt durch einen eigenen
-  Wettbewerbs-Filter ausgeschlossen.
-- **Verifiziert:** `node --check` bestanden, echter Testlauf mit beiden echten Schlüsseln
-  durchgeführt, echte Datei geschrieben und geprüft, danach als Testartefakt entfernt.
-  `pruefe.py` danach: ALLES SAUBER.
-- **🔴 Offene Störung:** API-Football meldete beim Testlauf „Your account is suspended" — Ursache
-  ungeklärt, nur Ondo kann das Konto einsehen. Bis geklärt liefert die Automatik nur die 12
-  football-data.org-Wettbewerbe, sichtbar an `quelle` je Eintrag, kein stiller Ausfall.
-- **Volle Begründung, Grössen-Rechnung und Zeitpunkt-Herleitung stehen als angehängter Block
-  direkt bei Punkt 9** (nicht hier wiederholt — Punkt 45).
-- **`Blueprint.md` nachgeführt:** Abschnitt 10, GitHub-Actions-Frage jetzt vollständig geklärt
-  statt teilweise (Ondos Auftrag löst die bisher offene Zeitsteuerungs-Frage aus Grenze 1 für
-  diesen Fall auf). Blueprint auf 0.93 gehoben.
-- **Kein neuer Sprachschlüssel** (Automatik betrifft nicht `beta.html` selbst — die Lese-Anbindung
-  im Schiedsrichter ist ein eigener, noch nicht gebauter nächster Schritt). `beta.html` bleibt
-  v19.8.23, `APP_VERSION` weiter 18.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 94 gehoben (Blueprint 0.93).
   `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
   Arbeitsregel.
 - **Beschlossen und nicht gebaut weiterhin drei** — **3, 4, 0b** *(unverändert.)*
@@ -515,7 +503,7 @@ wird, lässt sich erst über mehrere Anwendungen hinweg beurteilen, nicht nach d
 
 ---
 
-**75. Lernkette bauen — Evidence Ledger, Decision Ledger, Observation Layer** · *Beschlossen 6.7.2026, Reihenfolge fixiert · Auftrag Ondo, Teil 1 (Evidence Ledger) und Teil 2 (Decision Ledger) 11.9.2026* · **Status: 🔴 TEIL 1 FORMELL FESTGELEGT, TEIL 2 GEBAUT — beide am 11.9.2026, `beta.html` v19.8.26 — Teil 3 (Observation Layer) offen**
+**75. Lernkette bauen — Evidence Ledger, Decision Ledger, Observation Layer** · *Beschlossen 6.7.2026, Reihenfolge fixiert · Auftrag Ondo, Teil 1 (Evidence Ledger) und Teil 2 (Decision Ledger) 11.9.2026* · **Status: 🔴 TEIL 1 FORMELL FESTGELEGT, TEIL 2 GEBAUT und am selben Tag nachgeprüft und berichtigt — `beta.html` v19.8.27 — Teil 3 (Observation Layer) offen**
 
 **Anlass:** Ondo hat der Lernkette am Ende einer langen Diskussion um Beförderungskriterien
 und Reihenfolge ausdrücklich Vorrang gegeben und die Entscheidung, wann angefangen wird,
@@ -561,6 +549,37 @@ Lernkette in der Beta enthalten, nur für die **Beförderung** selbst.
 > verknüpfen — nur neue Wetten ab dieser Version. Eine rückwirkende Verknüpfung über
 > Spielname+Datum wäre möglich, ist aber bewusst nicht gebaut (dieselbe Text-Matching-Unsicherheit,
 > die oben vermieden wurde) — nicht Teil dieses Auftrags.
+
+> **🔴 NACHPRÜFUNG auf Ondos Verlangen, 11.9.2026 — ein eigener Fehler gefunden und behoben,
+> `beta.html` v19.8.27.** Ondo hat vor dem Weiterbauen eine gründliche Prüfung des gesamten
+> Baus seit dem Evidence Ledger verlangt. Ergebnis:
+> - **Echter Fehler in `kiWahlUebernehmen()` (v19.8.26), behoben:** Die Funktion schrieb beim
+>   Übernehmen einer Vorhersage zusätzlich den getippten **Spielstand** („2:1") in das
+>   **Tipp-Feld** der Wette. Das ist die falsche Bedeutung — `tipp` hält bei einer Wette fest,
+>   **welche Wette** gesetzt wurde; die Bestandsdaten belegen das („Beide Teams treffen (Ja)",
+>   „Frankreich über 2,5 Tore"). Verschärfend: Dieser Text wird dem Schiedsrichter beim Prüfen
+>   einer Wette vorgelegt (`art:'bet'`), hätte dort also eine falsche Angabe gezeigt. Das Feld
+>   bleibt jetzt unberührt, nur der Spielname wird übernommen. **Neuer Trockentest mit 7
+>   Prüfungen** an der echten Funktion mit gestubbtem DOM, der genau das festnagelt.
+> - **Unvollständigkeit im eigenen Architektur-Eintrag behoben:** Die als „Schema" bezeichnete
+>   Tabelle in `Ondo-Core-Architektur.md` 1c (Fassung 0.5) nannte mehrere real vorhandene
+>   Felder nicht (`ergebnisHalbzeit`, `ergebnisVerl`, `ergebnisQuelle`, `bttsWort`, `refLaeufe`,
+>   `refQuellen`, `parkFormat`, `maerkte[].fAlt`/`fKorr`). Jetzt maschinell ausgezählt statt aus
+>   dem Gedächtnis geschrieben (Fassung 0.6). Die Auflage an den Observation Layer ist
+>   ausserdem auf die zwei tatsächlichen Felder festgenagelt: `geparkt` und `refEinigkeit`.
+> - **Geprüft und in Ordnung, nicht nur angenommen:** Der neue Feldname `kiProtokollId` löst die
+>   Geheimfeld-Sperre der Messdaten-Ausgabe (Backlog-Punkt 44) **nicht** aus — maschinell gegen
+>   `MESS_VERBOTEN` getestet. `b.fromKI`/`b.herkunft` werden ausser an der neuen Anzeigezeile
+>   **nirgends** gelesen, die Änderung kann also nichts anderes verschieben. Bestandswetten
+>   ohne `fromKI` zeigen korrekt keine Markierung. Das `<select>` erbt die vorhandene
+>   `input,select`-Gestaltung. Die Zusage „kein Codeaufwand" bei Teil 1 stimmt (Commit enthält
+>   `beta.html` nicht).
+> - **Alle Trockentests erneut gelaufen:** 13 (`addBet`) + 7 (`kiWahlBlock`) + 7 (neu,
+>   `kiWahlUebernehmen`) + 12 (`calcWiderspruch`) + 18 (`strukturAbgleich`/`datumIso`) + 7
+>   (`wege`-Aufbau) = **64 Prüfungen, alle bestanden.** `pruefe.py`: ALLES SAUBER.
+> - **Bekannte Stelle für Teil 3, jetzt benannt:** Wird eine Sicherung eingespielt, in der ein
+>   verknüpfter `kiProtokoll`-Eintrag fehlt, zeigt `kiProtokollId` ins Leere. Heute folgenlos
+>   (nichts liest das Feld), der Observation Layer muss das aber abfangen.
 
 > **Teil 3, Observation Layer — noch offen, keine Spezifikation vorhanden.**
 

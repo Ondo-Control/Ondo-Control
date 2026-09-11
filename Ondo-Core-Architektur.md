@@ -2,6 +2,7 @@
 *Antwort auf die Architektur-Anfrage von ChatGPT (5.7.2026). Autor: Claude. Status: Entwurf zur gemeinsamen Prüfung.*
 *Fassung 0.4 — 13.8.2026, 16:32 Uhr: Abschnitt 1b „Drei-Ebenen-Trennung" ergänzt (Backlog-Punkt 6, beschlossen am 23.7., 21 Tage offen).*
 *Fassung 0.5 — 11.9.2026: Abschnitt 1c „Lernkette: der Evidence Ledger" ergänzt (Backlog-Punkt 75, Auftrag Ondo 11.9.2026).*
+*Fassung 0.6 — 11.9.2026: Schema in Abschnitt 1c vervollständigt und die Auflage an den Observation Layer auf die zwei tatsächlichen Felder festgenagelt — bei Ondos Nachprüfung fiel auf, dass die als „Schema" bezeichnete Tabelle in Fassung 0.5 mehrere real vorhandene Felder nicht nannte (`ergebnisHalbzeit`, `ergebnisVerl`, `ergebnisQuelle`, `bttsWort`, `refLaeufe`, `refQuellen`, `parkFormat`, `maerkte[].fAlt`/`fKorr`). Jetzt maschinell aus `beta.html` ausgezählt statt aus dem Gedächtnis geschrieben.*
 *(Name: Der Besitzer hat "Ondo Control" festgelegt; ChatGPT nutzt "ORION". Technisch irrelevant — hier "Ondo Core" für den Kern.)*
 
 ---
@@ -78,20 +79,24 @@ Modul-Vertrag (ChatGPTs Forderung, übernommen): **Modul → Core → Brain → 
 
 **Der Evidence Ledger IST `state.kiProtokoll` (Einträge mit `aera:'v19'`).** Kein Parallelbau, keine zweite Struktur — Zwei-Probleme-Regel und Arbeitsregel „kein Schnitt in der Messreihe" verlangen, die bestehende, seit v19.0 laufende Sammlung zu benennen und zu vervollständigen, nicht zu verdoppeln.
 
-**Schema, mit Zuordnung zu den drei Ebenen aus Abschnitt 1b** (`vorhersageGehirn()`, `beta.html`):
+**Schema, mit Zuordnung zu den drei Ebenen aus Abschnitt 1b.** Vollständig, nicht nur die wichtigsten Felder — die Liste ist am 11.9.2026 **maschinell aus `beta.html` ausgezählt** (alle Zuweisungen an einen Eintrag, nicht aus dem Gedächtnis zusammengestellt):
 
 | Feld | Ebene | Bedeutung |
 |---|---|---|
-| `id`, `datum`, `codeVersion` | — | Unveränderliche Kennung, wann und unter welchem Codestand die Aussage entstand |
+| `id`, `datum`, `codeVersion`, `aera` | — | Unveränderliche Kennung, wann und unter welchem Codestand die Aussage entstand |
 | `match`, `wettbewerb`, `anpfiff`, `stufe` | 1 (Daten) | Was angesetzt war, aus der Spielliste |
 | `herkunft`, `modell` | — | Welches Gehirn, unter welcher tatsächlichen Modellversion geantwortet hat |
-| `heim`, `gast` (Tipp), `maerkte[].p`, `begruendung` | 2 (Denken) | Was das Gehirn für wahrscheinlich hielt und warum — die eigentliche „Evidence" |
-| `ergebnisHeim`, `ergebnisGast` | 1 (Daten) | Was wirklich geschah, vom Schiedsrichter nachgetragen |
-| `maerkte[].status`, `refRoh`, `geparkt`/`parkGrund`, `refEinigkeit` | 3 (Bewertung) | Traf die Behauptung zu, und wie sicher ist diese Bewertung selbst |
+| `heim`, `gast` (Tipp), `maerkte[].p`, `maerkte[].code`/`label`/`typ`, `maerkte[].gedreht`, `bttsWort`, `begruendung` | 2 (Denken) | Was das Gehirn für wahrscheinlich hielt und warum — die eigentliche „Evidence". `gedreht` hält fest, dass die eigens gefragte Prozentzahl der vom Tipp implizierten Seite widersprach (Backlog-Punkt 0b) |
+| `ergebnisHeim`, `ergebnisGast`, `ergebnisHalbzeit`, `ergebnisVerl` | 1 (Daten) | Was wirklich geschah, vom Schiedsrichter nachgetragen |
+| `ergebnisQuelle` | 1 (Daten) | Herkunft des Ergebnisses, wenn es **nicht** vom Schiedsrichter kam (`'extern_manuell'` bei Eintrag von Hand, Art. 14) |
+| `status`, `maerkte[].status` | 3 (Bewertung) | Traf die Behauptung zu — `offen` / `richtig` / `falsch`, am Eintrag `offen` / `bewertet` |
+| `refRoh[]`, `refLaeufe`, `refQuellen`, `refEinigkeit` | 3 (Bewertung) | Wie sicher die Bewertung selbst ist: rohe Schiedsrichter-Antworten, Zahl der brauchbaren Läufe, Zahl **verschiedener** Quellen, und die Markierung „nicht einstimmig" (gesetzt nur bei 2-von-3, siehe `pruefAnwenden()`) |
+| `geparkt`, `parkGrund`, `parkFormat` | 3 (Bewertung) | Bewertung bewusst ausgesetzt — kein Ergebnis übernommen, nichts bewertet |
+| `maerkte[].fAlt`, `maerkte[].fKorr` | — | Ursprungswerte der einmaligen Berichtigung aus Backlog-Punkt F, damit sie umkehrbar bleibt |
 
 **Warum diese Vermischung aller drei Ebenen in einem Datensatz Abschnitt 1b nicht widerspricht:** Die Regel dort verbietet, **eine Ebene aus einer anderen abzuleiten** (z. B. Ebene 2 aus Ebene 1 zu erschliessen, wie beim Punkt-F-Fehler). Sie verbietet nicht, alle drei **getrennt erhobenen** Werte im selben Protokolleintrag zu **speichern** — im Gegenteil, ein Ledger-Eintrag ist genau deshalb nützlich, weil er Behauptung, Tatsache und Bewertung nebeneinanderstellt, ohne sie zu vermengen. Jedes Feld bleibt einzeln seiner Quelle zurechenbar.
 
-**Auflage für die beiden noch nicht gebauten Stufen, festgehalten jetzt statt erst beim Bauen:** Der spätere **Observation Layer** darf keine Lehre aus einem Eintrag ziehen, dessen Bewertung selbst unsicher ist — `geparkt:true`, `parkGrund` gesetzt, oder ein Ergebnis, das nur „2 von 3" statt einstimmig zustande kam. Ein Muster, das aus einer unsicheren Bewertung gelernt würde, wäre selbst nur eine Vermutung mit Lehrsatz-Anstrich (Art. 14). Diese Auflage ist keine neue Wartezeit — sie gilt dem Bau der nächsten Stufe, nicht dieser.
+**Auflage für den noch nicht gebauten Observation Layer, festgehalten jetzt statt erst beim Bauen:** Er darf keine Lehre aus einem Eintrag ziehen, dessen Bewertung selbst unsicher ist. **Maschinell prüfbar an genau zwei bestehenden Feldern**, am 11.9.2026 am Code nachgesehen, nicht angenommen: `geparkt:true` (Bewertung bewusst ausgesetzt) und `refEinigkeit` gesetzt (`pruefAnwenden()` schreibt dieses Feld **nur** bei „2 von 3", bei Einstimmigkeit wird es gelöscht). Ein Muster, das aus einer unsicheren Bewertung gelernt würde, wäre selbst nur eine Vermutung mit Lehrsatz-Anstrich (Art. 14). Diese Auflage ist keine neue Wartezeit — sie gilt dem Bau der nächsten Stufe, nicht dieser.
 
 **Was als Nächstes fehlt, nicht Teil dieser Festlegung:** Der **Decision Ledger** — was Ondo aus einer Empfehlung tatsächlich gemacht hat (Wette platziert, Höhe, Zeitpunkt) — existiert bisher nur lose über `state.bets`, ohne belegte Verknüpfung zu einem `kiProtokoll`-Eintrag. Der **Observation Layer** existiert noch gar nicht. Beide sind eigene, künftige Bauaufgaben (Backlog-Punkt 75, Teil 2 und 3), nicht durch diesen Abschnitt vorweggenommen.
 

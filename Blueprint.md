@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.97
+**Version:** 0.98
 **Stand:** 11. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.98 ändert (11.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war Ondos Verlangen, den ganzen Bau seit dem Evidence Ledger vor dem Weiterbauen gründlich zu prüfen (Backlog Fassung 99), `beta.html` v19.8.27. Dabei ein **echter eigener Fehler** gefunden und behoben: Die Übernahme einer Vorhersage ins Wette-Formular schrieb den getippten Spielstand in das Tipp-Feld, das aber festhält, **welche Wette** gesetzt wurde — und das dem Schiedsrichter beim Prüfen vorgelegt wird. Ausserdem war die als „Schema" bezeichnete Tabelle in `Ondo-Core-Architektur.md` 1c unvollständig; sie ist jetzt maschinell ausgezählt (Fassung 0.6). Bestätigung der Stabilitätsregel in eigener Sache: Eine Lieferung gilt erst nach einer solchen Nachprüfung als sauber, nicht schon nach bestandenem Trockentest. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.98 gehoben.
 
 > **Was Fassung 0.97 ändert (11.9.2026):** Backlog-Punkt 75, Teil 2 (Decision Ledger) gebaut, `beta.html` v19.8.26 (Backlog Fassung 98) — direkt im Anschluss an Teil 1: der dort gefundene tote Code (`state.bets` ohne echte Verknüpfung zu einer Empfehlung) ist behoben. Neues Auswahlfeld im Wette-Formular, das eine Wette bewusst — nicht automatisch über Textabgleich — mit dem `kiProtokoll`-Eintrag verknüpft, aus dem sie entstand; Verknüpfung über die feste `id`. 13 plus 7 Prüfungen an der echten, herausgeschnittenen Logik bestanden. Offen benannte Grenze: ältere, bereits gespeicherte Wetten bleiben unverknüpft. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.97 gehoben.
 

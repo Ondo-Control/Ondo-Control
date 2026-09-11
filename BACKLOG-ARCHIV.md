@@ -410,6 +410,51 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 94 ändert (11.9., Backlog-Punkt 9 — eigene Ergebnis-Datenquelle für den Schiedsrichter, Ausbau)
+
+**Anlass:** Auftrag Ondo, als Antwort auf den Quoten-Fabrikationsfund (Fassung 92) — der
+Schiedsrichter soll eine eigene, strukturierte Datenquelle bekommen, statt allein auf KI-Suche
+angewiesen zu sein.
+
+- **Geprüft, mit echtem Schlüssel:** `openfootball/football.json` scheidet aus (Ergebnisse für
+  Irland/Schweden/Island seit Mai 2025 tot). API-Football (kostenlos) deckt dagegen nachweislich
+  alle 16 Stufe-1-Länder, alle Stufe-2-Ligen und Länderspiele weltweit ohne Kontinent-Einschränkung
+  ab — mit der Einschränkung, dass die kostenlose Stufe Datums-Abfragen nur in einem schmalen
+  Fenster (gestern/heute/morgen) erlaubt. football-data.org deckt zusätzlich 12 grosse
+  Wettbewerbe als zweite, unabhängige Quelle ab.
+- **Entscheidung zur Bauweise:** Negativlisten-Geist wie beim Schiedsrichter selbst — keine
+  Vollständigkeit behauptet, ein nicht gelisteter Wettbewerb fällt auf die bestehende KI-Suche
+  zurück. Tägliche Automatik statt Live-Abruf im Browser (das schmale Zeitfenster reicht dafür
+  nicht), Monatsdateien statt einer ewig wachsenden Datei (rund 300.000 Zeichen/Monat, weit
+  unter jeder GitHub-Grenze).
+- **Gebaut:** `skripte/schiri-ergebnisse-holen.js` (Node, läuft nur in der Automatik) und
+  `.github/workflows/schiri-ergebnisse.yml` (täglich 08:00 Uhr UTC, holt „gestern" und „heute",
+  `workflow_dispatch` für Bedarfsläufe). Zwei echte, beim Testabruf gefundene Fehler vor der
+  Auslieferung behoben: ein fertiges Ergebnis wird nicht mehr durch einen späteren unfertigen
+  Treffer überschrieben; ein Copa-Libertadores-Fund von football-data.org (ausserhalb der 12
+  zugesicherten Wettbewerbe UND ausserhalb Stufe 1/2) wird jetzt durch einen eigenen
+  Wettbewerbs-Filter ausgeschlossen.
+- **Verifiziert:** `node --check` bestanden, echter Testlauf mit beiden echten Schlüsseln
+  durchgeführt, echte Datei geschrieben und geprüft, danach als Testartefakt entfernt.
+  `pruefe.py` danach: ALLES SAUBER.
+- **🔴 Offene Störung:** API-Football meldete beim Testlauf „Your account is suspended" — Ursache
+  ungeklärt, nur Ondo kann das Konto einsehen. Bis geklärt liefert die Automatik nur die 12
+  football-data.org-Wettbewerbe, sichtbar an `quelle` je Eintrag, kein stiller Ausfall.
+- **Volle Begründung, Grössen-Rechnung und Zeitpunkt-Herleitung stehen als angehängter Block
+  direkt bei Punkt 9** (nicht hier wiederholt — Punkt 45).
+- **`Blueprint.md` nachgeführt:** Abschnitt 10, GitHub-Actions-Frage jetzt vollständig geklärt
+  statt teilweise (Ondos Auftrag löst die bisher offene Zeitsteuerungs-Frage aus Grenze 1 für
+  diesen Fall auf). Blueprint auf 0.93 gehoben.
+- **Kein neuer Sprachschlüssel** (Automatik betrifft nicht `beta.html` selbst — die Lese-Anbindung
+  im Schiedsrichter ist ein eigener, noch nicht gebauter nächster Schritt). `beta.html` bleibt
+  v19.8.23, `APP_VERSION` weiter 18.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 94 gehoben (Blueprint 0.93).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut weiterhin drei** — **3, 4, 0b** *(unverändert.)*
+
+---
+
 ## ⚠ Was Fassung 93 ändert (11.9., Backlog-Punkt 65 — stehende Kürzungsregel statt Einmalaktion)
 
 **Anlass:** Auftrag Ondo — die Datei kleiner halten, dauerhaft statt einmalig, nachdem Weg C
