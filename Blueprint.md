@@ -3,9 +3,11 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.95
+**Version:** 0.96
 **Stand:** 11. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.96 ändert (11.9.2026):** Backlog-Punkt 75, Teil 1 (Evidence Ledger) formell festgelegt (Backlog Fassung 97) — Ondo hat der am 6.7.2026 beschlossenen Lernkette Vorrang vor der Beförderungsfrage gegeben und die Startentscheidung an Claude delegiert: jetzt anfangen, da die sieben Beförderungskriterien den Bau der Lernkette in der Beta nicht voraussetzen, nur die Beförderung selbst — eine zuvor selbst hergestellte, falsche Verknüpfung, im Gespräch richtiggestellt. Kein Parallelbau: `state.kiProtokoll` füllt den Evidence Ledger bereits seit v19.0 faktisch, `Ondo-Core-Architektur.md` bekommt dafür einen neuen Abschnitt 1c (Fassung 0.5) mit vollständigem Schema, Ebenen-Zuordnung nach Abschnitt 1b und einer Auflage für die künftigen Stufen: Der Observation Layer darf aus keinem unsicher bewerteten Eintrag lernen. Dabei ein echter Fund: `state.bets` trägt trotz vorhandener Felder (`fromKI`/`herkunft`) keine belegte Verknüpfung zu einer Empfehlung — die Lücke, die Teil 2 (Decision Ledger) schliessen muss. Kein Codeaufwand an `beta.html`. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.96 gehoben.
 
 > **Was Fassung 0.95 ändert (11.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war Backlog-Punkt 0b, `beta.html` v19.8.25 (Backlog Fassung 96), kein Verfassungs- oder Architekturaufwand. Die seit 7.9.2026 offene Umsetzungsfrage entschieden und gebaut: Widerspruchsquote getrennt je Markt statt einer gemeinsamen Zahl, weil der Markt „Sieger" strukturell nie einen Widerspruch zeigen kann (immer aus dem Tipp abgeleitet) und eine gemeinsame Zahl echte Widersprüche bei den anderen zwei Märkten verwässert hätte. Neue reine Funktion `calcWiderspruch(quelle)`, rückwirkend aus dem seit jeher gesetzten Kennzeichen `m.gedreht` — keine neue Messung nötig. 12 Prüfungen an der echten, herausgeschnittenen Funktion bestanden. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.95 gehoben.
 

@@ -410,6 +410,23 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 92 ändert (11.9., Fund: Gemini erfand scheinbar echte Quoten, Backlog-Punkt 9)
+
+**Anlass:** Ondos eigener Test des in Punkt 9 vorgeschlagenen Vergleichs — reine Buchführung,
+kein Codeaufwand.
+
+- **Backlog-Punkt 9 und `STAND.md`s neunte Fehlerart nachgeführt:** Gemini erfand auf Anfrage
+  scheinbar exakte Tipico-Quoten, deckungsgleich mit der echten Anzeige, und gestand das erst
+  auf Nachfrage — wobei selbst dieses Geständnis nicht beweisbar wahr ist. Bestätigt die
+  bestehende Ablehnung einer KI-Suche als Quoten-Ersatz mit einem konkreten Beispiel.
+  Volle Begründung bei Punkt 9 (Punkt 45, nicht hier wiederholt).
+- **Kein Codeaufwand**, `beta.html` bleibt v19.8.23. **Keine neuen Sprachschlüssel.**
+- **Fassungszahl:** alle drei aktiven Dokumente auf 92 gehoben (Blueprint 0.91).
+  Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+- **Beschlossen und nicht gebaut weiterhin drei** — **3, 4, 0b** *(unverändert.)*
+
+---
+
 ## ⚠ Was Fassung 91 ändert (10.9., Backlog-Punkt 9 — Quoten-Automatik, Knopfdruck-Teil gebaut)
 
 **Anlass:** Auftrag Ondo — Quoten-Abruf bauen, „beides", Knopfdruck-Variante und Zeitsteuerung.

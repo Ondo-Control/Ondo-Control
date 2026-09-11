@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 11.9.2026, Fassung 96, v19.8.25*
+*Die aktuelle Wahrheit. Stand: 11.9.2026, Fassung 97, v19.8.25*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -504,13 +504,15 @@ Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp 
 
 ---
 
-## Lernkette (beschlossen 6.7., Reihenfolge fixiert, noch nicht gebaut)
+## Lernkette (beschlossen 6.7., Reihenfolge fixiert — Evidence Ledger formell festgelegt 11.9.2026)
 
 > **Evidence Ledger** (warum wurde empfohlen) → **Decision Ledger** (was machte Ondo daraus) → **Observation Layer** (Muster erkennen)
 
-Jede Lehre braucht Ondos Bestätigung (Art. 9). Der Evidence Ledger wird seit v19.0 faktisch gefüllt.
+Jede Lehre braucht Ondos Bestätigung (Art. 9).
 
-**Aktueller Wahrheitsstand: Das System lernt noch nicht.** Es hat Erinnerung, kein Lernen. Das ist Absicht.
+**🔴 Evidence Ledger, 11.9.2026 (Backlog-Punkt 75, Auftrag Ondo):** Formell festgelegt, nicht neu gebaut — `state.kiProtokoll` (seit v19.0 faktisch gefüllt) IST der Evidence Ledger, mit Schema und Ebenen-Zuordnung in `Ondo-Core-Architektur.md`, Abschnitt 1c. Kein Codeaufwand, `beta.html` bleibt v19.8.25.
+
+**Aktueller Wahrheitsstand: Decision Ledger und Observation Layer fehlen weiterhin** — das System hat Erinnerung mit benanntem Schema, noch kein Lernen. `state.bets` verweist bisher nicht belegt auf einen `kiProtokoll`-Eintrag (`fromKI`/`herkunft` stehen bei jeder neuen Wette fest auf `false`/`null`) — genau die Lücke, die der Decision Ledger schliessen muss.
 
 ---
 

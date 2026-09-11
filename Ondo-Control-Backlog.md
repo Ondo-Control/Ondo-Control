@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 11.9.2026, Fassung 96 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 11.9.2026, Fassung 97 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,35 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 97 ändert (11.9., Backlog-Punkt 75 — Lernkette: Evidence Ledger formell festgelegt)
+
+**Anlass:** Ondo hat der Lernkette nach einer langen Diskussion um Beförderungskriterien und
+Reihenfolge ausdrücklich Vorrang gegeben und die Startentscheidung an Claude delegiert.
+
+- **Entschieden: jetzt anfangen, nicht auf die Beförderung warten.** Die sieben
+  Beförderungskriterien (BLUEPRINT-PROTOKOLL.md) sind Bedingungen für die Beförderung, keine
+  Bedingung für den Bau der Lernkette in der Beta — diese Vermischung war ein eigener Fehler,
+  richtiggestellt im Gespräch.
+- **Neuer Backlog-Punkt 75, Teil 1 (Evidence Ledger) formell festgelegt, nicht neu gebaut:**
+  `state.kiProtokoll` ist seit v19.0 der faktische Evidence Ledger — kein Parallelbau. Neuer
+  Abschnitt 1c in `Ondo-Core-Architektur.md` (Fassung 0.5) legt Schema und Ebenen-Zuordnung
+  formell fest, mit einer Auflage für die noch nicht gebauten nächsten Stufen: Der Observation
+  Layer darf keine Lehre aus einem unsicher bewerteten Eintrag ziehen.
+- **Echter Fund dabei:** `state.bets` hat keine belegte Verknüpfung zu einer `kiProtokoll`-
+  Empfehlung — `addBet()` setzt `fromKI`/`herkunft` bei jeder neuen Wette fest auf
+  `false`/`null`. Genau diese Lücke muss Teil 2 (Decision Ledger) schliessen.
+- **Volle Begründung steht als angehängter Block direkt bei Punkt 75** (nicht hier wiederholt
+  — Punkt 45).
+- **Kein Codeaufwand.** `beta.html` bleibt v19.8.25, `APP_VERSION` weiter 18. Keine neuen
+  Sprachschlüssel.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 97 gehoben (Blueprint 0.96).
+  `Ondo-Core-Architektur.md` auf Fassung 0.5 gehoben (eigene Zählung, siehe Punkt 45).
+  Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert — Punkt 75 zählt nicht mit,
+  Teil 1 ist erledigt, Teil 2/3 sind neue, noch unbeschlossene Bauaufgaben.)*
 
 ---
 
@@ -166,23 +195,6 @@ aus Punkt 65 (einmaliges Kürzen, 30.8.2026) wieder auf über 269.000 Zeichen zu
   auf die Verneinung gesucht hat. **Keine Lockerung** — `pruefe.py` unterscheidet jetzt „GEBAUT"
   von „NICHT GEBAUT" und prüft dadurch genauer, nicht großzügiger; alle anderen Kriterien
   unverändert scharf.
-
----
-
-## ⚠ Was Fassung 92 ändert (11.9., Fund: Gemini erfand scheinbar echte Quoten, Backlog-Punkt 9)
-
-**Anlass:** Ondos eigener Test des in Punkt 9 vorgeschlagenen Vergleichs — reine Buchführung,
-kein Codeaufwand.
-
-- **Backlog-Punkt 9 und `STAND.md`s neunte Fehlerart nachgeführt:** Gemini erfand auf Anfrage
-  scheinbar exakte Tipico-Quoten, deckungsgleich mit der echten Anzeige, und gestand das erst
-  auf Nachfrage — wobei selbst dieses Geständnis nicht beweisbar wahr ist. Bestätigt die
-  bestehende Ablehnung einer KI-Suche als Quoten-Ersatz mit einem konkreten Beispiel.
-  Volle Begründung bei Punkt 9 (Punkt 45, nicht hier wiederholt).
-- **Kein Codeaufwand**, `beta.html` bleibt v19.8.23. **Keine neuen Sprachschlüssel.**
-- **Fassungszahl:** alle drei aktiven Dokumente auf 92 gehoben (Blueprint 0.91).
-  Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
-- **Beschlossen und nicht gebaut weiterhin drei** — **3, 4, 0b** *(unverändert.)*
 
 ---
 
@@ -512,6 +524,47 @@ nicht, ob der Arbeitsweg bei einer grösseren, weniger klar umrissenen Aufgabe e
 trägt — bewusst mit einer kleinen, mechanischen Änderung begonnen.
 → **Kosten:** kein Geld für diese Lieferung selbst. Ob künftig tatsächlich Nutzung gespart
 wird, lässt sich erst über mehrere Anwendungen hinweg beurteilen, nicht nach der ersten.
+
+---
+
+**75. Lernkette bauen — Evidence Ledger, Decision Ledger, Observation Layer** · *Beschlossen 6.7.2026, Reihenfolge fixiert · Auftrag Ondo, Teil 1 (Evidence Ledger) 11.9.2026* · **Status: 🔴 TEIL 1 (Evidence Ledger) FORMELL FESTGELEGT am 11.9.2026 — Teil 2 (Decision Ledger) und Teil 3 (Observation Layer) offen**
+
+**Anlass:** Ondo hat der Lernkette am Ende einer langen Diskussion um Beförderungskriterien
+und Reihenfolge ausdrücklich Vorrang gegeben und die Entscheidung, wann angefangen wird,
+an Claude delegiert — Antwort: jetzt, ohne auf eine Beförderung zu warten, da die sieben
+Beförderungskriterien (BLUEPRINT-PROTOKOLL.md, 10.7.2026) keine Bedingung für den **Bau** der
+Lernkette in der Beta enthalten, nur für die **Beförderung** selbst.
+
+> **🔴 Teil 1, Evidence Ledger, GEBAUT/FORMALISIERT am 11.9.2026.** Kein Parallelbau: Ondo-Core-
+> Architektur.md hält seit v19.0 fest, dass `state.kiProtokoll` den Evidence Ledger **faktisch**
+> schon füllt — Zwei-Probleme-Regel und „kein Schnitt in der Messreihe" verbieten eine zweite,
+> parallele Struktur. Neuer Abschnitt 1c in `Ondo-Core-Architektur.md` (Fassung 0.5) legt das
+> formell fest: vollständiges Schema mit Zuordnung jedes Feldes zu einer der drei Ebenen aus
+> Abschnitt 1b, und die Begründung, warum das Nebeneinanderstehen aller drei Ebenen in einem
+> Datensatz die Trennungsregel nicht verletzt (verboten ist Ableiten, nicht gemeinsames
+> Speichern getrennt erhobener Werte).
+> **Auflage für die nächsten zwei Stufen, jetzt festgehalten:** Der Observation Layer darf
+> keine Lehre aus einem unsicher bewerteten Eintrag ziehen (`geparkt`, `parkGrund` gesetzt,
+> oder nur „2 von 3" statt einstimmig) — sonst wäre die Lehre selbst nur eine Vermutung mit
+> Lehrsatz-Anstrich (Art. 14).
+> **Kein Codeaufwand für Teil 1** — `beta.html` bleibt v19.8.25, keine neuen Sprachschlüssel.
+> `STAND.md`, Abschnitt „Lernkette", entsprechend nachgeführt.
+
+> **Teil 2, Decision Ledger — noch offen, konkreter Befund dazu:** `state.bets` (Feld
+> `fromKI`/`herkunft`) sollte eigentlich schon eine Verknüpfung zu einer Empfehlung tragen,
+> tut es aber nicht — `addBet()` setzt beide Felder bei jeder neuen Wette fest auf
+> `false`/`null`, unabhängig davon, ob die Wette auf eine `kiProtokoll`-Empfehlung zurückgeht.
+> Genau diese Lücke muss Teil 2 schliessen: eine belegte Verknüpfung Wette ↔ Vorhersage, damit
+> sich später auswerten lässt, was Ondo aus einer Empfehlung gemacht hat. Eigener, noch nicht
+> spezifizierter Bauschritt.
+
+> **Teil 3, Observation Layer — noch offen, keine Spezifikation vorhanden.**
+
+**Zusammenhang mit der Beförderungsfrage (Backlog-Punkt 5):** ChatGPT wurde am 11.9.2026 um
+eine zweite Einschätzung zur Beförderungsreife gebeten und empfahl, die Lernkette **nach**
+der Beförderung als eigenen nächsten Entwicklungsschritt zu bauen. Ondo hat sich dagegen
+entschieden — die Lernkette geht jetzt vor, unabhängig vom Stand der Beförderung. Einzelheiten
+und ChatGPTs vollständige, geprüfte Antwort stehen im Gesprächsverlauf, nicht hier wiederholt.
 
 ---
 

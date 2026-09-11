@@ -1,6 +1,7 @@
 # ONDO CORE v1 — Architektur-Entwurf
 *Antwort auf die Architektur-Anfrage von ChatGPT (5.7.2026). Autor: Claude. Status: Entwurf zur gemeinsamen Prüfung.*
 *Fassung 0.4 — 13.8.2026, 16:32 Uhr: Abschnitt 1b „Drei-Ebenen-Trennung" ergänzt (Backlog-Punkt 6, beschlossen am 23.7., 21 Tage offen).*
+*Fassung 0.5 — 11.9.2026: Abschnitt 1c „Lernkette: der Evidence Ledger" ergänzt (Backlog-Punkt 75, Auftrag Ondo 11.9.2026).*
 *(Name: Der Besitzer hat "Ondo Control" festgelegt; ChatGPT nutzt "ORION". Technisch irrelevant — hier "Ondo Core" für den Kern.)*
 
 ---
@@ -68,6 +69,31 @@ Modul-Vertrag (ChatGPTs Forderung, übernommen): **Modul → Core → Brain → 
 2. **Die Positionsverschiebung (belegt am 13.8.).** Anpfiffzeit und Wettbewerb aus Ebene 1 wurden über die laufende Nummer an einen Spielnamen aus Ebene 2 geheftet. Weichen beide in Zahl oder Reihenfolge ab, hängt eine Ebene-1-Angabe am falschen Ebene-2-Eintrag.
 
 **Was die Trennung leistet und was nicht (Art. 14):** Sie ordnet Fehler zu und macht sichtbar, welche Messung ein Fehler berührt und welche nicht — bei der Positionsverschiebung blieb Ebene 2 unversehrt, deshalb ist die Kalibrierungsmessung unversehrt. **Sie verhindert keinen Fehler.** Sie ist ein Prüfraster, kein Bauteil.
+
+---
+
+## 1c. Lernkette: der Evidence Ledger (Backlog-Punkt 75, Auftrag Ondo 11.9.2026)
+
+*Die Lernkette ist am 6.7.2026 beschlossen, ihre Reihenfolge festgelegt: **Evidence Ledger** (warum wurde empfohlen) → **Decision Ledger** (was machte Ondo daraus) → **Observation Layer** (Muster erkennen). `STAND.md` hält seit v19.0 fest: „Der Evidence Ledger wird faktisch gefüllt." Dieser Abschnitt macht daraus eine formale Festlegung, statt es bei einer beiläufigen Tatsache zu belassen — kein neuer Code für die Sammlung selbst, die läuft bereits.*
+
+**Der Evidence Ledger IST `state.kiProtokoll` (Einträge mit `aera:'v19'`).** Kein Parallelbau, keine zweite Struktur — Zwei-Probleme-Regel und Arbeitsregel „kein Schnitt in der Messreihe" verlangen, die bestehende, seit v19.0 laufende Sammlung zu benennen und zu vervollständigen, nicht zu verdoppeln.
+
+**Schema, mit Zuordnung zu den drei Ebenen aus Abschnitt 1b** (`vorhersageGehirn()`, `beta.html`):
+
+| Feld | Ebene | Bedeutung |
+|---|---|---|
+| `id`, `datum`, `codeVersion` | — | Unveränderliche Kennung, wann und unter welchem Codestand die Aussage entstand |
+| `match`, `wettbewerb`, `anpfiff`, `stufe` | 1 (Daten) | Was angesetzt war, aus der Spielliste |
+| `herkunft`, `modell` | — | Welches Gehirn, unter welcher tatsächlichen Modellversion geantwortet hat |
+| `heim`, `gast` (Tipp), `maerkte[].p`, `begruendung` | 2 (Denken) | Was das Gehirn für wahrscheinlich hielt und warum — die eigentliche „Evidence" |
+| `ergebnisHeim`, `ergebnisGast` | 1 (Daten) | Was wirklich geschah, vom Schiedsrichter nachgetragen |
+| `maerkte[].status`, `refRoh`, `geparkt`/`parkGrund`, `refEinigkeit` | 3 (Bewertung) | Traf die Behauptung zu, und wie sicher ist diese Bewertung selbst |
+
+**Warum diese Vermischung aller drei Ebenen in einem Datensatz Abschnitt 1b nicht widerspricht:** Die Regel dort verbietet, **eine Ebene aus einer anderen abzuleiten** (z. B. Ebene 2 aus Ebene 1 zu erschliessen, wie beim Punkt-F-Fehler). Sie verbietet nicht, alle drei **getrennt erhobenen** Werte im selben Protokolleintrag zu **speichern** — im Gegenteil, ein Ledger-Eintrag ist genau deshalb nützlich, weil er Behauptung, Tatsache und Bewertung nebeneinanderstellt, ohne sie zu vermengen. Jedes Feld bleibt einzeln seiner Quelle zurechenbar.
+
+**Auflage für die beiden noch nicht gebauten Stufen, festgehalten jetzt statt erst beim Bauen:** Der spätere **Observation Layer** darf keine Lehre aus einem Eintrag ziehen, dessen Bewertung selbst unsicher ist — `geparkt:true`, `parkGrund` gesetzt, oder ein Ergebnis, das nur „2 von 3" statt einstimmig zustande kam. Ein Muster, das aus einer unsicheren Bewertung gelernt würde, wäre selbst nur eine Vermutung mit Lehrsatz-Anstrich (Art. 14). Diese Auflage ist keine neue Wartezeit — sie gilt dem Bau der nächsten Stufe, nicht dieser.
+
+**Was als Nächstes fehlt, nicht Teil dieser Festlegung:** Der **Decision Ledger** — was Ondo aus einer Empfehlung tatsächlich gemacht hat (Wette platziert, Höhe, Zeitpunkt) — existiert bisher nur lose über `state.bets`, ohne belegte Verknüpfung zu einem `kiProtokoll`-Eintrag. Der **Observation Layer** existiert noch gar nicht. Beide sind eigene, künftige Bauaufgaben (Backlog-Punkt 75, Teil 2 und 3), nicht durch diesen Abschnitt vorweggenommen.
 
 ---
 
