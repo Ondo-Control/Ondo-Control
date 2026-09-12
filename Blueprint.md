@@ -3,9 +3,26 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.101
+**Version:** 0.102
 **Stand:** 12. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.102 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Ondos
+> Auftrag „Ich will eine dauerhafte Lösung, keine Dateien Löschen!!" ist umgesetzt (Backlog
+> Fassung 103, neuer Backlog-Punkt 76): Die Speicherung ist von `localStorage` auf `IndexedDB`
+> umgestellt, `beta.html` v19.8.30. **Was daran verfassungsnah ist:** Dies ist die erste
+> Stelle, an der die App ihre Kernfunktion — Messdaten dauerhaft festhalten — nicht mehr auf
+> dem kleinsten gemeinsamen Nenner der Browser-Speicherorte betreibt, sondern auf dem dafür
+> vorgesehenen; Ondo-Core, Abschnitt 4 (Memory), nennt „Stufe 1: localStorage" bereits als
+> ausdrücklich vorläufig. **Ohne die Migrationslogik selbst anzufassen:** Alle acht
+> `seedV`-Migrationen in `load()` bleiben inhaltlich wortgleich — nur ihr Speicherzugriff
+> läuft jetzt über ein neues Paar Funktionen, das bei jedem Fehler auf das alte `localStorage`
+> zurückfällt, sodass das bestehende Sicherheitsnetz (roter Dauerbalken bei einem echten
+> Fehlschlag, seit v19.8.28) unverändert erhalten bleibt. **Ein einmaliger, unvermeidbarer
+> Schritt bleibt bei Ondo:** Da der zuletzt sichtbare Stand nur im Arbeitsspeicher seines
+> Browsers lebte, muss er nach dem Update einmal seine jüngste Sicherungsdatei einspielen —
+> ein Codeupdate kann ein bereits laufendes Browserfenster nicht rückwirkend erreichen.
+> Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.102 gehoben.
 
 > **Was Fassung 0.101 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass
 > war Ondos Rückmeldung „Browser voll" zur neuen Speicheranzeige aus v19.8.28 (Backlog Fassung

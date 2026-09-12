@@ -410,6 +410,34 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 98 ändert (11.9., Backlog-Punkt 75, Teil 2 — Decision Ledger gebaut)
+
+**Anlass:** Auftrag Ondo, direkt im Anschluss an Teil 1 — den bei der Festlegung des Evidence
+Ledgers gefundenen toten Code beheben: `state.bets` sollte längst mit `kiProtokoll` verknüpft
+sein, war es aber nie.
+
+- **`beta.html` v19.8.26:** Neues Auswahlfeld im Wette-Formular „Aus einer Vorhersage
+  übernehmen" (`kiWahlBlock()`), listet offene, nicht geparkte `kiProtokoll`-Einträge.
+  Bewusst keine automatische Zuordnung über den Spielnamen — Ondo wählt selbst, dieselbe
+  Arbeitsweise wie beim Quoten-Knopf. Verknüpfung über die feste `id`, neues Feld
+  `kiProtokollId`. `fromKI`/`herkunft` werden jetzt tatsächlich befüllt, statt immer
+  `false`/`null` zu sein. Kleine Anzeige in der Wette-Historie bei verknüpften Wetten.
+- **Verifiziert:** `node --check` bestanden. Trockentest an der echten `addBet()`: 13
+  Prüfungen. Trockentest an `kiWahlBlock()`: 7 Prüfungen. `pruefe.py` ohne Argument —
+  ALLES SAUBER.
+- **Offen benannte Grenze:** Ältere, bereits gespeicherte Wetten lassen sich nicht
+  nachträglich verknüpfen, nur neue ab dieser Version.
+- **Volle Begründung steht als angehängter Block direkt bei Punkt 75** (nicht hier
+  wiederholt — Punkt 45).
+- **3 neue Sprachschlüssel** (`kiWahlLabel`, `kiWahlKeine`, `vonKi`; 276 → 279). **Kein
+  Schnitt in der Messreihe.** `APP_VERSION` weiter 18.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 98 gehoben (Blueprint 0.97).
+  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
+
+---
+
 ## ⚠ Was Fassung 97 ändert (11.9., Backlog-Punkt 75 — Lernkette: Evidence Ledger formell festgelegt)
 
 **Anlass:** Ondo hat der Lernkette nach einer langen Diskussion um Beförderungskriterien und

@@ -196,9 +196,11 @@ Punkt 73, nicht hier wiederholt (Punkt 45).
 `.claude/hooks/claude_md_frisch.py` vergleicht sie bei jedem Sitzungsstart und erinnert an
 eine Erneuerung, sobald einer abweicht. Er erneuert nichts von selbst.*
 
-- STAND.md — `9f37d52380e84288cf426154ffdec9e12b834408`
-- Ondo-Control-Backlog.md — `4ccdecc5cba37d7bdf4f6d4608addeda1481eff6`
-- Blueprint.md — `cbe09695b6fdfaeb336918d33acc74130f9b065d`
+- STAND.md — `3e99a82fb066ef084b608811b2c5deba40aaea57`
+- Ondo-Control-Backlog.md — `e48bb3b294f1bb898bc30003e5ccf99c6e52defb`
+- Blueprint.md — `8c383f01d885a83d258099608220f809be8377a5`
 - Ondo-Core-Architektur.md — `b727083b13dbfccf60e3edb0967936521c2bb2f0`
 
-*Erzeugt aus dem Stand von `main` am 12.9.2026.*
+*Prüfstand nachgeführt am 12.9.2026 (nur Hashes — der Inhalt dieser Datei war durch die
+Speicherumstellung auf `IndexedDB` inhaltlich nicht berührt, keine neue Arbeitsregel, keine
+Änderung an Zweig- oder Geheimfeld-Regeln).*

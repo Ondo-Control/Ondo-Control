@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.29';
+var CODE_VERSION = 'v19.8.30';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -185,6 +185,7 @@ var I18N = {
   delLogAsk:'Diesen Eintrag endgültig aus dem KI-Log löschen?\n\n{a}\n\nEr ist ein Beleg, auf dem die Auswertung aufbaut. Das lässt sich nicht rückgängig machen.',
   saveFailAlert:'Die Daten konnten NICHT gespeichert werden. Der Speicher dieses Browsers ist vermutlich voll. Sichere die Daten jetzt über „Daten sichern" und lösche danach nicht mehr benötigte Einträge — sonst geht alles Neue verloren.',
   speicherT:'Belegter Speicher', speicherEng:'wird eng — jetzt sichern',
+  speicherVon:'von {a} MB, die dieser Browser auf diesem Gerät zulässt ({b} %)',
   beobT:'Was die Daten sagen', beobD:'Nur aus sicher bewerteten Einträgen: geparkte und solche, bei denen der Schiedsrichter sich nur mit 2 von 3 Läufen einig war, bleiben aussen vor.',
   beobKeine:'Noch keine sicher bewertete Aussage — sobald Ergebnisse einstimmig übernommen sind, steht hier etwas.',
   beobBelegt:'belegt', beobHinweis:'Hinweis', beobZuwenig:'zu wenig',
@@ -317,6 +318,7 @@ var I18N = {
   delLogAsk:'Supprimer définitivement cette entrée du journal IA ?\n\n{a}\n\nElle sert de preuve à l’évaluation. Cette action est irréversible.',
   saveFailAlert:'Les données n’ont PAS pu être enregistrées. La mémoire de ce navigateur est probablement pleine. Sauvegarde tout de suite via « Sauvegarder les données », puis supprime les entrées devenues inutiles — sinon tout le nouveau sera perdu.',
   speicherT:'Mémoire occupée', speicherEng:'ça devient juste — sauvegarde maintenant',
+  speicherVon:'sur {a} Mo autorisés par ce navigateur sur cet appareil ({b} %)',
   beobT:'Ce que disent les données', beobD:'Uniquement à partir d’entrées évaluées de façon sûre : les entrées mises de côté et celles où l’arbitre n’était d’accord que sur 2 passages sur 3 restent exclues.',
   beobKeine:'Aucune affirmation évaluée de façon sûre pour l’instant — dès que des résultats sont repris à l’unanimité, quelque chose apparaîtra ici.',
   beobBelegt:'établi', beobHinweis:'indice', beobZuwenig:'trop peu',
@@ -449,6 +451,7 @@ var I18N = {
   delLogAsk:'Delete this entry from the AI log for good?\n\n{a}\n\nIt is evidence the evaluation builds on. This cannot be undone.',
   saveFailAlert:'The data could NOT be saved. This browser’s storage is probably full. Back up now via “Back up data”, then delete entries you no longer need — otherwise everything new will be lost.',
   speicherT:'Storage used', speicherEng:'getting tight — back up now',
+  speicherVon:'of {a} MB this browser allows on this device ({b} %)',
   beobT:'What the data says', beobD:'Only from securely rated entries: parked ones, and those where the referee agreed on just 2 of 3 runs, stay out.',
   beobKeine:'No securely rated statement yet — once results are taken over unanimously, something will appear here.',
   beobBelegt:'established', beobHinweis:'indication', beobZuwenig:'too few',
@@ -549,6 +552,81 @@ var LANGNAME={de:'Deutsch',fr:'Français',en:'English'};
 
 /* ================= DATEN ================= */
 var KEY = "ondo-control-v1";
+/* v19.8.30 (12.9.2026, Auftrag Ondo: "Ich will eine dauerhafte Loesung, keine Dateien
+   Loeschen!!"): Umstieg von localStorage auf IndexedDB — einen zweiten, in jedem modernen
+   Browser eingebauten Speicherbereich, der um ein Vielfaches groesser ist als localStorage.
+   Anlass, mit Beleg: Ondos Browser lehnte das Speichern bei 2.726 KB ab (v19.8.29-Fund).
+   localStorage hat auf Safari/iOS eine feste, kleine Grenze in dieser Groessenordnung — das
+   ist keine Ondo-spezifische Stoerung, sondern die bekannte, enge Grenze DIESES
+   Speicherbereichs. IndexedDB bekommt vom Browser einen Anteil des freien Geraetespeichers
+   zugewiesen (Ondo bestaetigt: genug frei) und ist fuer genau diesen Fall gebaut.
+   WARUM DAS EINE ECHTE UMSTELLUNG IST, NICHT NUR EIN GROESSERER WERT: IndexedDB arbeitet
+   ausschliesslich asynchron (Zugriffe laufen ueber ein Promise, das Ergebnis kommt etwas
+   spaeter zurueck) — anders als localStorage, das synchron antwortet. load() liest deshalb
+   jetzt mit await, und der Programmstart am Dateiende wartet auf load(), bevor zum ersten
+   Mal gezeichnet wird. save() bleibt fuer alle rufenden Stellen unveraendert aufrufbar
+   (save(); render();) — render() haengt nie vom Ergebnis des Speicherns ab, nur note()/
+   alert() bei einem Fehlschlag kommen jetzt etwas spaeter.
+   ABSICHERUNG: Kein Browser, den Ondo benutzt, duerfte ohne IndexedDB dastehen (in Safari
+   seit iOS 8 eingebaut) — trotzdem faellt jede Funktion unten auf das alte, synchrone
+   localStorage automatisch zurueck, wenn IndexedDB fehlt oder scheitert (Art. 6: Sicherheit
+   vor Geschwindigkeit) — dieselbe Schutzwirkung wie bisher, nur ohne den grossen Vorteil. */
+var DB_NAME = 'ondo-control-db', DB_STORE = 'kv';
+var idbGeoeffnet = null;
+function idbOeffnen(){
+  if(idbGeoeffnet) return idbGeoeffnet;
+  idbGeoeffnet = new Promise(function(resolve, reject){
+    if(!window.indexedDB){ reject(new Error('kein indexedDB')); return; }
+    var req = indexedDB.open(DB_NAME, 1);
+    req.onupgradeneeded = function(){ req.result.createObjectStore(DB_STORE); };
+    req.onsuccess = function(){ resolve(req.result); };
+    req.onerror = function(){ reject(req.error||new Error('indexedDB.open fehlgeschlagen')); };
+  });
+  return idbGeoeffnet;
+}
+function idbLesen(schluessel){
+  return idbOeffnen().then(function(db){
+    return new Promise(function(resolve, reject){
+      var tx = db.transaction(DB_STORE, 'readonly');
+      var req = tx.objectStore(DB_STORE).get(schluessel);
+      req.onsuccess = function(){ resolve(req.result); };
+      req.onerror = function(){ reject(req.error||new Error('idb-Lesen fehlgeschlagen')); };
+    });
+  });
+}
+function idbSchreiben(schluessel, wert){
+  return idbOeffnen().then(function(db){
+    return new Promise(function(resolve, reject){
+      var tx = db.transaction(DB_STORE, 'readwrite');
+      tx.objectStore(DB_STORE).put(wert, schluessel);
+      tx.oncomplete = function(){ resolve(); };
+      tx.onerror = function(){ reject(tx.error||new Error('idb-Schreiben fehlgeschlagen')); };
+      tx.onabort = function(){ reject(tx.error||new Error('idb-Schreiben abgebrochen')); };
+    });
+  });
+}
+/* Speicher-Lesen mit Rueckfall: Erst IndexedDB versuchen, bei jedem Fehler (fehlt, blockiert,
+   noch nie benutzt) den Wert aus dem alten localStorage nehmen — das deckt sowohl "IndexedDB
+   nicht verfuegbar" als auch "erster Start nach der Umstellung, IndexedDB ist noch leer,
+   aber localStorage traegt den alten Stand" in einem Schritt ab, ohne zwei getrennte Pfade
+   im aufrufenden Code load() pflegen zu muessen. */
+function speicherLesen(schluessel){
+  return idbLesen(schluessel).then(function(wert){
+    if(wert!==undefined && wert!==null) return wert;
+    try{ var roh=localStorage.getItem(schluessel); return roh? JSON.parse(roh): null; }catch(e){ return null; }
+  }).catch(function(){
+    try{ var roh=localStorage.getItem(schluessel); return roh? JSON.parse(roh): null; }catch(e){ return null; }
+  });
+}
+/* Speicher-Schreiben: schreibt bevorzugt in IndexedDB. Schlaegt das fehl (IndexedDB fehlt),
+   wird versucht, wenigstens in localStorage zu schreiben — derselbe Rueckfall wie beim Lesen.
+   Schlaegt AUCH das fehl (z. B. weil localStorage inzwischen voll ist), wird der Fehler an
+   den Aufrufer weitergereicht, damit save() seinen Alarm auslösen kann wie bisher. */
+function speicherSchreiben(schluessel, wert){
+  return idbSchreiben(schluessel, wert).catch(function(idbFehler){
+    localStorage.setItem(schluessel, JSON.stringify(wert));
+  });
+}
 var state = {
   bets: [],
   regeln: { maxEinsatz: 20 },
@@ -567,10 +645,15 @@ var state = {
   pruefBilanz: null
 };
 
-function load(){
+/* v19.8.30: load() wird async, weil speicherLesen() ueber IndexedDB geht (siehe Kommentar
+   oben bei DB_NAME). Jede einzelne Migration darunter ist inhaltlich UNVERAENDERT — nur ihr
+   abschliessendes "jetzt sichern" wartet jetzt auf speicherSchreiben() statt eines direkten,
+   synchronen localStorage-Aufrufs. Der Aufbau am Dateiende (ganz unten im Skript) wartet
+   seinerseits auf load(), bevor zum ersten Mal gezeichnet wird. */
+async function load(){
   try{
-    var raw = localStorage.getItem(KEY);
-    if(raw){ var d = JSON.parse(raw); for(var k in d) state[k]=d[k];
+    var d = await speicherLesen(KEY);
+    if(d){ for(var k in d) state[k]=d[k];
       if(!state.regeln) state.regeln={maxEinsatz:20}; }
   }catch(e){}
   if(!state.seedV || state.seedV < 2){
@@ -588,7 +671,7 @@ function load(){
     }
     state.bets.sort(function(a,b){ return b.id-a.id; });
     state.seedV = 2;
-    try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+    await speicherSchreiben(KEY, state).catch(function(){});
   }
   if(state.seedV < 3){
     for(var m=0;m<state.bets.length;m++){
@@ -599,14 +682,14 @@ function load(){
       }
     }
     state.seedV = 3;
-    try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+    await speicherSchreiben(KEY, state).catch(function(){});
   }
   /* v19: alte Log-Eintraege als Archiv markieren — sie zaehlen nicht mehr in die neue Statistik,
      gehen aber auch nicht verloren (Verhaltens-Archiv der Value-Phase). */
   if(state.seedV < 4){
     (state.kiProtokoll||[]).forEach(function(e){ if(!e.aera) e.aera='v18'; });
     state.seedV = 4;
-    try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+    await speicherSchreiben(KEY, state).catch(function(){});
   }
   /* Backlog-Punkt 64 (28.8.2026): NK Celje-Slovan Bratislava (25.8.) und Sabah FC-Hapoel
      Beer-Sheva FC (26.8.) markieren — je drei widerspruechliche Schiedsrichter-Laeufe
@@ -633,7 +716,7 @@ function load(){
       });
     });
     state.seedV = 5;
-    try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+    await speicherSchreiben(KEY, state).catch(function(){});
   }
   /* v19.8.9 (Nachfrage zu Punkt 64, Teil 3, Ondo 30.8.2026): NK Celje-Slovan Bratislava (25.8.)
      und Sabah FC-Hapoel Beer-Sheva FC (26.8.) extern verifiziert (ESPN/Sky Sports/TNT bzw. drei
@@ -683,7 +766,7 @@ function load(){
       });
     });
     state.seedV = 6;
-    try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+    await speicherSchreiben(KEY, state).catch(function(){});
   }
   /* v19.8.10 (Nachfrage zu Punkt 64 Teil 3, Berichtigung, 30.8.2026): Ondo hat die Daten von
      NK Celje-Slovan Bratislava und Sabah FC-Hapoel Beer-Sheva FC nach mehrfacher externer
@@ -735,7 +818,7 @@ function load(){
       });
     });
     state.seedV = 7;
-    try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+    await speicherSchreiben(KEY, state).catch(function(){});
   }
   /* v19.8.11 (RUECKNAHME, Auftrag Ondo 2.9.2026): Die manuelle Eintragung der beiden Spiele
      (seedV<6 und seedV<7 oben) war verfrueht und wird zurueckgenommen. Ondos Klarstellung:
@@ -786,8 +869,20 @@ function load(){
       });
     });
     state.seedV = 8;
-    try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+    await speicherSchreiben(KEY, state).catch(function(){});
   }
+  /* v19.8.30: Ohne diese Zeile schriebe load() NUR dann in den Speicher, wenn eine der acht
+     Migrationen oben tatsaechlich etwas geaendert hat (state.seedV war schon vorher hoch
+     genug bei jedem, der die App laenger nutzt — also bei fast jedem). Genau das ist die
+     Situation, in der Ondo jetzt steckt: Sein Stand kommt beim naechsten Laden aus dem alten
+     localStorage (IndexedDB ist zu diesem Zeitpunkt noch leer), aber ohne diese Zeile bliebe
+     er dort nur im Arbeitsspeicher, bis irgendeine andere Aktion zufaellig ein save()
+     ausloest — die Umstellung in den groesseren Speicher wuerde unnoetig aufgeschoben.
+     Deshalb hier EIN unbedingtes, stilles Sichern nach jedem load() — unabhaengig davon, ob
+     eine Migration lief. Kein Schnitt in der Messreihe: state selbst wird dadurch nicht
+     veraendert, nur garantiert einmal mehr an denselben Ort geschrieben, an den es ohnehin
+     gehoert. */
+  await speicherSchreiben(KEY, state).catch(function(){});
 }
 /* v19.8.28 (Fund der vollstaendigen Pruefung vom 11.9.2026, Auftrag Ondo): Ein gescheitertes
    Speichern verschwand bisher nach 1,5 Sekunden zusammen mit dem Hinweistext — danach sah die
@@ -799,32 +894,44 @@ function load(){
    dieser Sitzung, nicht die Daten — und ein Zustand, der sich nicht speichern laesst, kann
    sich schlecht selbst mitspeichern. */
 var speicherAlarm=false;
+/* v19.8.30: save() bleibt fuer jede rufende Stelle unveraendert aufrufbar (save(); render();)
+   — render() liest den bereits im Speicher stehenden state, nicht das Ergebnis von save(),
+   und wartet deshalb nicht darauf. Nur note()/alert() bei Erfolg oder Fehlschlag kommen jetzt
+   etwas spaeter (nach dem asynchronen Schreiben), nicht mehr in derselben Millisekunde. */
 function save(){
-  try{
-    localStorage.setItem(KEY, JSON.stringify(state));
+  speicherSchreiben(KEY, state).then(function(){
     if(speicherAlarm){ speicherAlarm=false; }
     note(t('saved'));
-  }catch(e){
+  }).catch(function(e){
     note(t('saveFail'));
     if(!speicherAlarm){ speicherAlarm=true; alert(t('saveFailAlert')); }
-  }
+  });
 }
 /* Wie viel Platz die gespeicherten Daten belegen. Gemessen, nicht geschaetzt: die Laenge
    genau der Zeichenkette, die save() schreibt.
-   v19.8.28 hatte hier noch eine ungeprüfte Schaetzung von 3 MB (Art. 11: kann eine Code-
-   Sitzung ohne Ondos Geraet nicht feststellen). v19.8.29 (12.9.2026): Ondo hat den echten
-   Fehlschlag mitgeschickt — sein Browser lehnte das Speichern bei 2.726 KB Belegung ab
-   (Bildschirmfoto, „Belegter Speicher" zeigte diesen Wert genau in dem Moment, in dem
-   speichern-schlaegt-fehl bereits stand). Die wahre Grenze liegt damit NACHWEISLICH UNTER
-   2.726 KB — die alte 3-MB-Schaetzung lag also ueber der echten Wand, der fruehe Hinweis waere
-   nie gekommen. Jetzt 2 MB: mit echtem Sicherheitsabstand UNTER dem belegten Fehlschlag,
-   nicht nur knapp darunter, damit Ondo Zeit zum Sichern und Aufraeumen bleibt, bevor die
-   Grenze wirklich erreicht wird (Arbeitsregel H: belegen statt herleiten, jetzt mit Beleg). */
-var SPEICHER_WARNGRENZE=2*1024*1024;
+   v19.8.28/29 hatten hier noch eine SCHAETZUNG der Warngrenze (erst 3 MB, dann mit Ondos
+   echtem Fehlschlag bei 2.726 KB auf 2 MB berichtigt) — beide Zahlen galten nur fuer
+   localStorage. Seit v19.8.30 (Umstieg auf IndexedDB) gibt es keine feste, kleine Grenze
+   mehr zu schaetzen: Der Browser selbst kennt seine wahre Grenze auf DIESEM Geraet und
+   dieser Wert wird nicht mehr geraten (Art. 11), sondern erfragt — siehe speicherQuote(). */
 function speicherStand(){
   var zeichen=0;
   try{ zeichen=JSON.stringify(state).length; }catch(e){ return null; }
-  return { zeichen:zeichen, kb:Math.round(zeichen/1024), eng:(zeichen>SPEICHER_WARNGRENZE) };
+  return { zeichen:zeichen, kb:Math.round(zeichen/1024) };
+}
+/* Fragt den Browser nach seiner EIGENEN, wirklichen Speichergrenze auf diesem Geraet
+   (navigator.storage.estimate() — Teil der Storage-API, in Safari seit iOS 13 vorhanden).
+   Liefert {usage, quota, pct} in Byte bzw. Prozent, oder null, wenn der Browser das nicht
+   unterstuetzt — dann wird nirgends eine erfundene Prozentzahl angezeigt (Art. 14). Einmal
+   beim Programmstart abgefragt und in speicherQuoteCache gehalten (siehe Programmstart am
+   Dateiende) — kein wiederholtes Abfragen bei jedem render(). */
+var speicherQuoteCache = null;
+function speicherQuote(){
+  if(!(navigator.storage && navigator.storage.estimate)) return Promise.resolve(null);
+  return navigator.storage.estimate().then(function(s){
+    if(!s || !s.quota) return null;
+    return { usage:s.usage||0, quota:s.quota, pct:Math.round((s.usage||0)/s.quota*100) };
+  }).catch(function(){ return null; });
 }
 function speicherWarnBlock(){
   if(!speicherAlarm) return '';
@@ -3325,7 +3432,13 @@ function datenSichern(){
     ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);
   var daten = JSON.stringify(state);
   var blob = new Blob([daten], {type:'application/json'});
-  try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+  /* v19.8.30: Vorher ein direkter, synchroner localStorage-Aufruf — genau der, der bei vollem
+     localStorage scheiterte und dadurch "zuletzt gesichert" nach einem Neustart wieder auf
+     einen aelteren Stand zurueckfallen liess (Ondos Beobachtung 12.9.2026: "jetzt hochgeladen,
+     verschwindet beim Neustart"). Jetzt ueber speicherSchreiben() — landet in IndexedDB, mit
+     demselben stillen Rueckfall wie ueberall sonst. Bewusst ohne Erfolgsmeldung hier: Die
+     Datei ist in jedem Fall schon erzeugt, ein zusaetzliches "gespeichert" waere verwirrend. */
+  speicherSchreiben(KEY, state).catch(function(){});
   var datei = null;
   try{ datei = new File([blob], name, {type:'application/json'}); }catch(e){}
   if(datei && navigator.share && navigator.canShare && navigator.canShare({files:[datei]})){
@@ -4034,13 +4147,23 @@ function viewMore(){
       '<br>'+t('backupLast')+': <b style="color:'+(state.letzteSicherung?'var(--text)':'var(--loss)')+'">'+
       (state.letzteSicherung||t('backupNever'))+'</b>'+
       /* v19.8.28: Wie voll der Browserspeicher ist, stand bisher nirgends — scheiterte das
-         Speichern, sah man es 1,5 Sekunden lang und nie wieder. */
+         Speichern, sah man es 1,5 Sekunden lang und nie wieder.
+         v19.8.30: Die Prozentzahl kommt jetzt vom Browser selbst (speicherQuoteCache, echte
+         Grenze DIESES Geraets via navigator.storage.estimate() — einmal beim Programmstart
+         abgefragt), nicht mehr aus einer geschaetzten Bytegrenze. Kennt der Browser seine
+         eigene Grenze nicht, wird nur die reine Groesse gezeigt, keine erfundene Prozentzahl
+         (Art. 14). */
       (function(){
         var sp=speicherStand();
         if(!sp) return '';
-        return '<br>'+t('speicherT')+': <b style="color:'+(sp.eng?'var(--loss)':'var(--text)')+'">'+
-          sp.kb.toLocaleString('de-DE')+' KB</b>'+
-          (sp.eng?(' — '+t('speicherEng')):'');
+        var q=speicherQuoteCache, eng=(q && q.pct>=80);
+        var zeile='<br>'+t('speicherT')+': <b style="color:'+(eng?'var(--loss)':'var(--text)')+'">'+
+          sp.kb.toLocaleString('de-DE')+' KB</b>';
+        if(q){
+          zeile += ' '+t('speicherVon').replace('{a}', Math.round(q.quota/1024/1024)).replace('{b}', q.pct);
+          if(eng) zeile += ' — '+t('speicherEng');
+        }
+        return zeile;
       })()+
     '</div>'+
     '<button class="btn" onclick="datenSichern()">'+t('backupBtn')+'</button>'+
@@ -4066,9 +4189,12 @@ function viewMore(){
 document.querySelectorAll('.nav button').forEach(function(el){
   el.onclick=function(){ go(el.dataset.tab); };
 });
-load();
-render();
-checkUpdate();
+/* v19.8.30: load() ist jetzt async (IndexedDB-Umstieg, siehe Kommentar bei DB_NAME) — render()
+   und checkUpdate() warten deshalb auf ihr Ende, statt sich mit ihr zu ueberschneiden. Die
+   Speicher-Quote (echte Grenze dieses Geraets statt einer geschaetzten Zahl) wird einmal beim
+   Start abgefragt und fliesst in denselben ersten render() mit ein. */
+speicherQuote().then(function(q){ speicherQuoteCache = q; });
+load().then(function(){ render(); checkUpdate(); });
 </script>
 </body>
 </html>

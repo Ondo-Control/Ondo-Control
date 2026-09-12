@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 12.9.2026, Fassung 102, v19.8.29*
+*Die aktuelle Wahrheit. Stand: 12.9.2026, Fassung 103, v19.8.30*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -175,7 +175,62 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 ## Versionen
 
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.8.29** (`beta.html`, geliefert 12.9.2026) — **🔴 echter Beleg statt Schätzung: die
+- **Beta: v19.8.30** (`beta.html`, geliefert 12.9.2026) — **🔴 Umstieg von `localStorage` auf
+  `IndexedDB` — dauerhafte Lösung statt Warngrenze.** Auftrag Ondo, wörtlich: „Ich will eine
+  dauerhafte Lösung, keine Dateien Löschen!!" Anlass: Ondo bestätigt genug freien
+  iPhone-Speicherplatz — das Problem lag nicht am Gerät, sondern an der festen, kleinen Grenze,
+  die Safari `localStorage` je Webseite zuteilt (belegt: Fehlschlag bei 2.726 KB, v19.8.29).
+  **Was sich ändert:** Alle Lese-/Schreibzugriffe auf die Messdaten laufen jetzt über
+  `IndexedDB` — einen zweiten, in jedem modernen Browser eingebauten Speicherbereich, der
+  einen Anteil des freien Geräte­speichers bekommt, um Grössenordnungen mehr als
+  `localStorage`. **Kein Löschen nötig**, wie ausdrücklich verlangt.
+  **Wie das technisch geht, ohne die Migrationslogik in `load()` anzufassen:** Zwei neue
+  Helferpaare — `idbOeffnen()/idbLesen()/idbSchreiben()` sprechen direkt mit `IndexedDB`;
+  `speicherLesen()/speicherSchreiben()` legen sich davor und fallen bei jedem Fehler
+  (IndexedDB fehlt, ist blockiert, oder — beim allerersten Start nach diesem Update — noch
+  leer) auf das alte `localStorage` zurück. `load()` und `save()` rufen ab jetzt nur noch
+  diese zwei Funktionen auf; **jede der acht bestehenden `seedV`-Migrationen bleibt inhaltlich
+  wortgleich**, nur ihr abschliessendes Sichern wartet jetzt auf das neue Paar.
+  **`load()` musste async werden**, weil `IndexedDB` nur asynchron arbeitet (Ergebnis kommt
+  über ein sogenanntes Promise etwas später zurück, nicht sofort wie bei `localStorage`) — der
+  Programmstart am Dateiende wartet jetzt auf `load()`, bevor zum ersten Mal gezeichnet wird.
+  Für jede aufrufende Stelle im übrigen Code ändert sich nichts: `save(); render();` bleibt
+  überall unverändert aufrufbar, weil `render()` nie vom Ergebnis des Speicherns abhängt.
+  **Sicherheitsnetz bleibt vollständig erhalten:** Scheitert am Ende auch `IndexedDB`
+  *und* der `localStorage`-Rückfall (z. B. weil beide Speicher wirklich voll sind), erscheint
+  derselbe rote Dauerbalken wie in v19.8.28/29 — dieser Fall ist jetzt nur ungleich
+  unwahrscheinlicher geworden.
+  **Ein echter Fund im eigenen Testaufbau dabei, behoben:** Ohne eine zusätzliche Zeile hätte
+  `load()` nur dann in den neuen Speicher geschrieben, wenn eine der acht Migrationen
+  tatsächlich etwas ändert — bei praktisch jedem, der die App schon länger nutzt (`seedV`
+  bereits auf dem neuesten Stand), wäre das **nie** der Fall gewesen, und die Übernahme in den
+  grösseren Speicher hätte sich zufällig bis zur nächsten anderen Aktion verzögert. Jetzt
+  schreibt `load()` am Ende **immer einmal**, unabhängig davon, ob eine Migration lief.
+  **Die Speicheranzeige zeigt jetzt eine echte Zahl, keine Schätzung mehr:** Statt der
+  bisherigen, geratenen Bytegrenze fragt `speicherQuote()` den Browser selbst über
+  `navigator.storage.estimate()` — Teil der Storage-API, in Safari seit iOS 13 vorhanden —
+  nach seiner **wirklichen** Grenze auf **diesem** Gerät. Kennt der Browser sie nicht, wird
+  nur die reine Grösse angezeigt, keine erfundene Prozentzahl (Art. 14).
+  **🔴 Wichtiger, unvermeidbarer Schritt für Ondo, einmalig:** Diese Umstellung kann nicht
+  automatisch den Stand übernehmen, der jetzt nur im Arbeitsspeicher seines Browsers lebt und
+  nie erfolgreich in `localStorage` geschrieben wurde (das ist exakt das Problem, das zu dieser
+  Umstellung geführt hat) — ein Codeupdate erreicht kein laufendes Browserfenster rückwirkend.
+  Nach dem Laden der neuen Version zeigt die App deshalb zunächst wieder den letzten
+  **tatsächlich gespeicherten** (älteren) Stand. **Ondo muss danach einmalig seine zuletzt
+  exportierte Sicherungsdatei über „Sicherung laden" einspielen**, damit der aktuelle Stand in
+  den neuen, grossen Speicher gelangt — danach läuft alles automatisch weiter.
+  **Verifiziert:** `node --check` bestanden · **31 neue Prüfungen** an den echten,
+  herausgeschnittenen Funktionen gegen eine selbstgebaute, aber echt asynchrone
+  IndexedDB-Nachbildung (Node kennt kein natives IndexedDB) — darunter der Vorrang von
+  IndexedDB vor `localStorage`, der vollständige Rückfall bei fehlendem IndexedDB, der
+  Doppel-Fehlschlag-Fall (beide Speicherwege scheitern → Alarm wie bisher), und eine
+  Nachbildung von Ondos echtem 2.726-KB-Fall · die bestehenden **57** Prüfungen zu v19.8.28/29
+  erneut gelaufen, davon 2 (die alte, jetzt gegenstandslose `SPEICHER_WARNGRENZE`-Prüfung)
+  entfernt statt kaputt stehen gelassen, macht **121 Prüfungen insgesamt, alle bestanden** ·
+  `pruefe.py`: ALLES SAUBER.
+  **1 neuer Sprachschlüssel** (`speicherVon`; 302 → 303). **Kein Schnitt in der Messreihe** —
+  reine Speichertechnik, keine gemessene Grösse ist betroffen. `APP_VERSION` weiter 18.
+- **Beta zuvor: v19.8.29** (`beta.html`, geliefert 12.9.2026) — **🔴 echter Beleg statt Schätzung: die
   Speicher-Warngrenze war zu hoch.** Ondo hat die neue Speicheranzeige aus v19.8.28 in echtem
   Einsatz getroffen — sein Browser lehnte das Speichern bereits bei **2.726 KB (2,7 MB)**
   ab (Bildschirmfoto, 12.9.2026, der rote Warnbalken stand bereits, „Belegter Speicher" zeigte
@@ -389,7 +444,7 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 - **Beta zuvor: v19.8.1** (`beta.html`, geliefert 9.8.2026, 13:55 Uhr) — **die Spielliste hat eine eigene Rolle und läuft auf `gemini-flash-latest`.** Jeder neue Eintrag trägt zusätzlich die **Stufe**. Kein Schnitt in der Messreihe. `APP_VERSION` weiter 18.
 - **Beta zuvor: v19.8.0** (`beta.html`, geliefert 9.8.2026, 04:15 Uhr) — **Schnitt in der Messreihe bei „beide treffen", Punkt F gebaut.** Werte vor und ab dieser Version sind bei diesem Markt nicht vergleichbar. Jeder neue Log-Eintrag trägt das Feld `codeVersion`. `APP_VERSION` weiter 18.
 - **Beta zuvor: v19.7.8** (`beta.html`, geliefert 7.8.2026) — getrennter Speicher, aktive Messphase. Vier Nachbesserungen am 3. und 4. August, alle ausgelöst durch Punkt 0a; Einzelheiten im Backlog. Im Code steht weiterhin `APP_VERSION = 18` (technische Schuld, bewusst nicht nebenbei geändert, vor der Beförderung zu klären)
-- **Sprachschlüssel: 302** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 11.9.2026**). *Verlauf: die früher dokumentierten 184 waren nie geprüft; nachgezählt waren es 185, dann 193, dann 199, dann 201 (v19.7.8), dann 203 (v19.8.1). Die acht Schlüssel des Berichtigungsknopfes vom 13.8. (`korrT` bis `korrOk`) waren nirgends nachgetragen — 203 + 8 = 211. Punkt 44 bringt sechs weitere (`messT` bis `messBlock`) — 211 + 6 = 217. Backlog-Punkt 51 (gepaarter Vergleich, seit 30.8.2026 in `BACKLOG-ARCHIV.md`) bringt elf weitere (`gepaart` bis `gepaartMehrdeutig`) — 217 + 11 = 228. Backlog-Punkt 64 bringt einen weiteren (`parkGrundInstabil`) — 228 + 1 = 229. Nachfrage zu Punkt 64 (refRoh lesbar gemacht, v19.8.8) bringt zwei weitere (`refRohBtn`, `refRohEmpty`) — 229 + 2 = 231. Nachfrage zu Punkt 64, Teil 2/3 (v19.8.9) bringt drei weitere (`refWiderspruch`, `refRunsVon`, `ergebnisManuell`) — 231 + 3 = 234. Backlog-Punkt 68 und Punkt 36, zweiter Teil (Mehrfachlauf-Absicherung, v19.8.12), bringen sieben weitere (`refEinig2von3`, `refQuellenZahl`, `refVerworfen`, `parkGrundFormat`, `refEinAnbieter`, `refDauer`, `balGeparkt`) — 234 + 7 = 241. Backlog-Punkt 70 (Filter im KI-Log, v19.8.14) bringt zehn weitere (`filterT` bis `filterEmpty`) — 241 + 10 = 251. Backlog-Punkt 71 (KI-Log in vier Reiter, v19.8.15) bringt vier weitere (`kilogTabBewertet`, `kilogTabArchiv`, `kilogTabWerkzeuge`, `filterMannschaftPh`) und entfernt einen, ungenutzt gewordenen (`logEmpty`) — 251 + 4 − 1 = 254. Backlog-Punkt 34/35 (Brier-Score, Streuung, v19.8.21) bringen zwei weitere (`calibBrier`, `calibSpread`) — 254 + 2 = 256. Backlog-Punkt 9, Knopfdruck-Teil (Quoten-Automatik, v19.8.23) bringt elf weitere (`oddsKeyT` bis `oddsQuelle`) — 256 + 11 = 267. Backlog-Punkt 9, Ausbau (API-Football/football-data.org per Knopfdruck, v19.8.24) bringt acht weitere (`afKeyT` bis `fdOff`) — 267 + 8 = 275. Backlog-Punkt 0b (Widerspruchsquote je Markt, v19.8.25) bringt einen weiteren (`widersprT`) — 275 + 1 = 276. Backlog-Punkt 75, Teil 2 (Decision Ledger, v19.8.26) bringt drei weitere (`kiWahlLabel`, `kiWahlKeine`, `vonKi`) — 276 + 3 = 279. Die drei Behebungen und der Observation Layer (v19.8.28) bringen 23 weitere: zwei Rückfragen vor dem Löschen (`delBetAsk`, `delLogAsk`), drei für den Speicher (`saveFailAlert`, `speicherT`, `speicherEng`) und achtzehn für den Observation Layer (`beobT` bis `beobGrundlage`) — 279 + 23 = 302.* **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
+- **Sprachschlüssel: 303** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 12.9.2026**). *Verlauf: die früher dokumentierten 184 waren nie geprüft; nachgezählt waren es 185, dann 193, dann 199, dann 201 (v19.7.8), dann 203 (v19.8.1). Die acht Schlüssel des Berichtigungsknopfes vom 13.8. (`korrT` bis `korrOk`) waren nirgends nachgetragen — 203 + 8 = 211. Punkt 44 bringt sechs weitere (`messT` bis `messBlock`) — 211 + 6 = 217. Backlog-Punkt 51 (gepaarter Vergleich, seit 30.8.2026 in `BACKLOG-ARCHIV.md`) bringt elf weitere (`gepaart` bis `gepaartMehrdeutig`) — 217 + 11 = 228. Backlog-Punkt 64 bringt einen weiteren (`parkGrundInstabil`) — 228 + 1 = 229. Nachfrage zu Punkt 64 (refRoh lesbar gemacht, v19.8.8) bringt zwei weitere (`refRohBtn`, `refRohEmpty`) — 229 + 2 = 231. Nachfrage zu Punkt 64, Teil 2/3 (v19.8.9) bringt drei weitere (`refWiderspruch`, `refRunsVon`, `ergebnisManuell`) — 231 + 3 = 234. Backlog-Punkt 68 und Punkt 36, zweiter Teil (Mehrfachlauf-Absicherung, v19.8.12), bringen sieben weitere (`refEinig2von3`, `refQuellenZahl`, `refVerworfen`, `parkGrundFormat`, `refEinAnbieter`, `refDauer`, `balGeparkt`) — 234 + 7 = 241. Backlog-Punkt 70 (Filter im KI-Log, v19.8.14) bringt zehn weitere (`filterT` bis `filterEmpty`) — 241 + 10 = 251. Backlog-Punkt 71 (KI-Log in vier Reiter, v19.8.15) bringt vier weitere (`kilogTabBewertet`, `kilogTabArchiv`, `kilogTabWerkzeuge`, `filterMannschaftPh`) und entfernt einen, ungenutzt gewordenen (`logEmpty`) — 251 + 4 − 1 = 254. Backlog-Punkt 34/35 (Brier-Score, Streuung, v19.8.21) bringen zwei weitere (`calibBrier`, `calibSpread`) — 254 + 2 = 256. Backlog-Punkt 9, Knopfdruck-Teil (Quoten-Automatik, v19.8.23) bringt elf weitere (`oddsKeyT` bis `oddsQuelle`) — 256 + 11 = 267. Backlog-Punkt 9, Ausbau (API-Football/football-data.org per Knopfdruck, v19.8.24) bringt acht weitere (`afKeyT` bis `fdOff`) — 267 + 8 = 275. Backlog-Punkt 0b (Widerspruchsquote je Markt, v19.8.25) bringt einen weiteren (`widersprT`) — 275 + 1 = 276. Backlog-Punkt 75, Teil 2 (Decision Ledger, v19.8.26) bringt drei weitere (`kiWahlLabel`, `kiWahlKeine`, `vonKi`) — 276 + 3 = 279. Die drei Behebungen und der Observation Layer (v19.8.28) bringen 23 weitere: zwei Rückfragen vor dem Löschen (`delBetAsk`, `delLogAsk`), drei für den Speicher (`saveFailAlert`, `speicherT`, `speicherEng`) und achtzehn für den Observation Layer (`beobT` bis `beobGrundlage`) — 279 + 23 = 302. Der Umstieg auf IndexedDB (v19.8.30) bringt einen weiteren (`speicherVon`) — 302 + 1 = 303.* **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
 
 ---
 
@@ -492,14 +547,18 @@ Dateiname beginnt mit Datum und Uhrzeit: `2026-07-31_1430_Ondo-Control_Thema.md`
 **Nie empfehlen, Ergebnisse von Hand nachzuschlagen.** Seit dem 25.7. abgelehnt. Die Zuverlässigkeit des Schiedsrichters gehört zum Test, nicht in Ondos Freizeit. Zwei Claude-Instanzen sind trotzdem darauf zurückgefallen.
 
 **Datensicherung:** Ondo regelmäßig daran erinnern.
-**🔴 Echter Speicher-Fehlschlag, 12.9.2026 (belegt, kein Verdacht):** Ondos Browser lehnte das
-Speichern bei **2.726 KB (2,7 MB)** Belegung ab — Bildschirmfoto zeigt den roten Warnbalken aus
-v19.8.28 bereits aktiv, „Belegter Speicher" nennt genau diesen Wert im selben Moment. **Die
-wahre Speichergrenze liegt damit nachweislich unter 2.726 KB.** Behoben in v19.8.29: Die
-Warngrenze im Code (`SPEICHER_WARNGRENZE`) stand auf einer ungeprüften 3-MB-Schätzung, jetzt
-auf 2 MB mit echtem Sicherheitsabstand darunter. **Noch offen, Ondos eigene Entscheidung:**
-Sichern (funktioniert weiterhin, unabhängig vom `localStorage`-Fehlschlag) und danach nicht
-mehr benötigte Einträge löschen — die App nennt das seit v19.8.28 selbst im Warnbalken.
+**🔴 Speicherproblem GELÖST, 12.9.2026 (Ondo: „Ich will eine dauerhafte Lösung, keine Dateien
+Löschen!!"):** Ondos Browser hatte das Speichern bei **2.726 KB (2,7 MB)** Belegung
+abgelehnt — bestätigt: genug freier Speicherplatz auf dem iPhone selbst, das Problem lag an
+`localStorage`s fester, kleiner Grenze je Webseite, nicht am Gerät. **v19.8.30 stellt die
+gesamte Speicherung auf `IndexedDB` um** — einen zweiten, eingebauten Speicherbereich mit
+weit grösserer Grenze, ohne dass etwas gelöscht werden musste. Einzelheiten unter „Versionen".
+**🔴 Ondos einmaliger Schritt nach dem Update:** Da der aktuelle Stand nur im Arbeitsspeicher
+seines Browsers lebte (nie erfolgreich gespeichert), zeigt die App nach dem Laden von v19.8.30
+zunächst wieder einen älteren Stand. Ondo muss danach **einmal** seine zuletzt exportierte
+Sicherungsdatei über „Sicherung laden" einspielen — ab dann läuft alles im neuen, grossen
+Speicher automatisch weiter. **Noch zu bestätigen (Stabilitätsregel): ob das Speichern im
+echten Betrieb dauerhaft gelingt** — ein erfolgreicher Umbau ist keine Bewährung.
 **Letzte bestätigte Sicherung: 4.9.2026, 09:33 Uhr** — 403 Vorhersagen, 6 Wetten. Davor: 2.9., 17:33 Uhr (403 Vorhersagen, 6 Wetten, im Bildschirmfoto der App sichtbar) · 16.8., 10:47 Uhr (293 Vorhersagen) · 14.8., 22:53 Uhr (nach dem Einbau von v19.8.2) · 14.8., 22:22 Uhr (vor der Lieferung) · 14.8., 07:14 Uhr (nach der Uebernahme der zehn Endstaende) · 13.8., 18:38 Uhr (nach der Berichtigung), 16:28 Uhr (293 Vorhersagen) und 09:17 Uhr. Früher: 8.8., 07:54 Uhr (210 Vorhersagen) · 7.8., 08:00 Uhr · 6.8., 08:28 Uhr (170 Vorhersagen) · 5.8., 13:06 Uhr · 4.8., 17:58 Uhr (138 Vorhersagen) · 3.8. · 2.8. · 31.7., 07:49 Uhr. ⚠ **Vor jeder Codelieferung ist eine frische Sicherung zu verlangen.**
 
 *Diese Zeile ist eine **Standsangabe**, keine Verlaufsangabe. Sie stand vom 7. bis zum 14. August auf dem 7.8. und war damit sechs Tage falsch, während zwei andere Stellen des Dokuments den richtigen Wert trugen. Seit dem 14.8. prüft `pruefe.py` sie gegen die jüngste Sicherungsangabe im Dokument.*

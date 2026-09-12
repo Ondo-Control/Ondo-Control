@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 102 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 103 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,39 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 103 ändert (12.9., Speicherproblem dauerhaft gelöst — Umstieg auf IndexedDB, `beta.html` v19.8.30)
+
+**Anlass:** Auf die Rückmeldung „Browser voll" folgte Ondos klare Entscheidung: „Ich will eine
+dauerhafte Lösung, keine Dateien Löschen!!" Neuer Backlog-Punkt 76 (Einzelheiten dort).
+
+- **✅ Speicherung von `localStorage` auf `IndexedDB` umgestellt.** Ein Anteil des freien
+  Gerätespeichers statt einer festen, kleinen Websitegrenze — kein Löschen nötig.
+  `idbOeffnen()/idbLesen()/idbSchreiben()` sprechen mit IndexedDB, `speicherLesen()/
+  speicherSchreiben()` fallen bei jedem Fehler auf `localStorage` zurück. `load()`/`save()`
+  rufen nur noch diese zwei Funktionen auf — **alle acht `seedV`-Migrationen bleiben
+  inhaltlich wortgleich**. `load()` musste async werden; der Programmstart wartet jetzt darauf.
+- **Speicheranzeige zeigt jetzt eine echte, vom Browser selbst erfragte Grenze**
+  (`navigator.storage.estimate()`) statt einer geschätzten Bytezahl — Art. 14.
+- **🔴 Ein Fund am eigenen Testaufbau, behoben:** `load()` hätte ohne eine zusätzliche Zeile
+  nur bei einer tatsächlichen Migration in den neuen Speicher geschrieben — bei praktisch
+  jedem längeren Nutzer nie der Fall. Jetzt schreibt `load()` am Ende immer einmal.
+- **🔴 Einmaliger Schritt für Ondo, unvermeidbar und offen benannt:** Der aktuelle Stand lebte
+  nur im Arbeitsspeicher seines Browsers — ein Codeupdate erreicht das nicht rückwirkend. Nach
+  dem Update zeigt die App zunächst den letzten tatsächlich gespeicherten (älteren) Stand;
+  Ondo muss einmalig seine zuletzt exportierte Sicherungsdatei über „Sicherung laden"
+  einspielen.
+- **Verifiziert:** `node --check` bestanden · **31 neue Prüfungen** gegen eine selbstgebaute,
+  echt asynchrone IndexedDB-Nachbildung · die bestehenden 57 Prüfungen zu v19.8.28/29 erneut
+  gelaufen, 2 gegenstandslos gewordene entfernt statt kaputt stehen gelassen — **121 Prüfungen
+  insgesamt, alle bestanden.** `pruefe.py`: ALLES SAUBER.
+- **1 neuer Sprachschlüssel** (`speicherVon`; 302 → 303). Kein Schnitt in der Messreihe.
+  `APP_VERSION` weiter 18.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 98 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
 
 ---
 
@@ -206,34 +239,6 @@ gesamten Baus seit dem Evidence Ledger verlangt: „wenn alles perfekt ist, dann
   `APP_VERSION` weiter 18.
 - **Fassungszahl:** alle drei aktiven Dokumente auf 99 gehoben (Blueprint 0.98).
   `Ondo-Core-Architektur.md` auf Fassung 0.6. Kein Verfassungsartikel geändert, keine neue
-  Arbeitsregel.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 98 ändert (11.9., Backlog-Punkt 75, Teil 2 — Decision Ledger gebaut)
-
-**Anlass:** Auftrag Ondo, direkt im Anschluss an Teil 1 — den bei der Festlegung des Evidence
-Ledgers gefundenen toten Code beheben: `state.bets` sollte längst mit `kiProtokoll` verknüpft
-sein, war es aber nie.
-
-- **`beta.html` v19.8.26:** Neues Auswahlfeld im Wette-Formular „Aus einer Vorhersage
-  übernehmen" (`kiWahlBlock()`), listet offene, nicht geparkte `kiProtokoll`-Einträge.
-  Bewusst keine automatische Zuordnung über den Spielnamen — Ondo wählt selbst, dieselbe
-  Arbeitsweise wie beim Quoten-Knopf. Verknüpfung über die feste `id`, neues Feld
-  `kiProtokollId`. `fromKI`/`herkunft` werden jetzt tatsächlich befüllt, statt immer
-  `false`/`null` zu sein. Kleine Anzeige in der Wette-Historie bei verknüpften Wetten.
-- **Verifiziert:** `node --check` bestanden. Trockentest an der echten `addBet()`: 13
-  Prüfungen. Trockentest an `kiWahlBlock()`: 7 Prüfungen. `pruefe.py` ohne Argument —
-  ALLES SAUBER.
-- **Offen benannte Grenze:** Ältere, bereits gespeicherte Wetten lassen sich nicht
-  nachträglich verknüpfen, nur neue ab dieser Version.
-- **Volle Begründung steht als angehängter Block direkt bei Punkt 75** (nicht hier
-  wiederholt — Punkt 45).
-- **3 neue Sprachschlüssel** (`kiWahlLabel`, `kiWahlKeine`, `vonKi`; 276 → 279). **Kein
-  Schnitt in der Messreihe.** `APP_VERSION` weiter 18.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 98 gehoben (Blueprint 0.97).
-  `Ondo-Core-Architektur.md` unverändert. Kein Verfassungsartikel geändert, keine neue
   Arbeitsregel.
 - **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
 
@@ -691,6 +696,60 @@ eine zweite Einschätzung zur Beförderungsreife gebeten und empfahl, die Lernke
 der Beförderung als eigenen nächsten Entwicklungsschritt zu bauen. Ondo hat sich dagegen
 entschieden — die Lernkette geht jetzt vor, unabhängig vom Stand der Beförderung. Einzelheiten
 und ChatGPTs vollständige, geprüfte Antwort stehen im Gesprächsverlauf, nicht hier wiederholt.
+
+---
+
+**76. Speicherung von `localStorage` auf `IndexedDB` umgestellt** · *Fund Ondo 12.9.2026 („Browser
+voll") · Auftrag Ondo 12.9.2026, wörtlich: „Ich will eine dauerhafte Lösung, keine Dateien
+Löschen!!" · gebaut am selben Tag* · **Status: 🔴 GEBAUT 12.9.2026, `beta.html` v19.8.30 —
+Bewährung im echten Betrieb steht aus**
+
+**Anlass:** Ondos Browser lehnte das Speichern bei 2.726 KB ab (v19.8.29, siehe Punkt 64 in
+„Technische Schuld"). Ondo bestätigt: genug freier Speicherplatz auf dem iPhone selbst — das
+Problem lag an `localStorage`s fester, kleiner Grenze je Webseite, nicht am Gerät. Ondo hat
+eine dauerhafte Lösung verlangt und Löschen ausdrücklich ausgeschlossen.
+
+> **🔴 GEBAUT am 12.9.2026.** Umstieg auf `IndexedDB` — einen zweiten, in jedem modernen
+> Browser eingebauten Speicherbereich, der einen Anteil des freien Gerätespeichers bekommt,
+> um Grössenordnungen mehr als `localStorage`. Kein Löschen nötig.
+> **Bauweise:** Neue Helferpaare `idbOeffnen()/idbLesen()/idbSchreiben()` (sprechen direkt mit
+> IndexedDB) und `speicherLesen()/speicherSchreiben()` (fallen bei jedem Fehler — IndexedDB
+> fehlt, ist blockiert, oder ist beim allerersten Start nach diesem Update noch leer — auf das
+> alte `localStorage` zurück). `load()` und `save()` rufen ab jetzt nur noch diese zwei
+> Funktionen auf. **Jede der acht bestehenden `seedV`-Migrationen in `load()` bleibt
+> inhaltlich wortgleich** — nur ihr abschliessendes Sichern wartet jetzt auf das neue Paar.
+> `load()` musste async werden (IndexedDB arbeitet nur asynchron); der Programmstart am
+> Dateiende wartet jetzt auf `load()`, bevor zum ersten Mal gezeichnet wird. Für jede
+> aufrufende Stelle im übrigen Code ändert sich nichts — `save(); render();` bleibt überall
+> unverändert aufrufbar.
+> **Sicherheitsnetz bleibt:** Scheitern am Ende beide Speicherwege (IndexedDB und der
+> `localStorage`-Rückfall), erscheint derselbe rote Dauerbalken wie in v19.8.28/29 — nur
+> ungleich unwahrscheinlicher geworden.
+> **Speicheranzeige jetzt mit echter Zahl statt Schätzung:** `speicherQuote()` fragt den
+> Browser selbst über `navigator.storage.estimate()` (Safari seit iOS 13) nach seiner
+> wirklichen Grenze auf diesem Gerät. Kennt der Browser sie nicht, wird nur die reine Grösse
+> gezeigt, keine erfundene Prozentzahl (Art. 14).
+> **Ein Fund am eigenen Testaufbau, behoben:** Ohne eine zusätzliche Zeile hätte `load()` nur
+> geschrieben, wenn eine Migration tatsächlich etwas ändert — bei praktisch jedem, der die App
+> schon länger nutzt, wäre das nie der Fall, die Übernahme in den neuen Speicher hätte sich
+> zufällig verzögert. `load()` schreibt jetzt am Ende immer einmal.
+> **🔴 Einmaliger Schritt für Ondo, unvermeidbar:** Der aktuelle Stand lebte nur im
+> Arbeitsspeicher seines Browsers (nie erfolgreich gespeichert) — ein Codeupdate erreicht kein
+> laufendes Browserfenster rückwirkend. Nach dem Laden von v19.8.30 zeigt die App zunächst
+> wieder den letzten tatsächlich gespeicherten (älteren) Stand. Ondo muss danach **einmalig**
+> seine zuletzt exportierte Sicherungsdatei über „Sicherung laden" einspielen, damit der
+> aktuelle Stand in den neuen Speicher gelangt.
+> **Verifiziert:** `node --check` bestanden · **31 neue Prüfungen** gegen eine
+> selbstgebaute, aber echt asynchrone IndexedDB-Nachbildung (Node kennt kein natives
+> IndexedDB) — Vorrang von IndexedDB vor `localStorage`, vollständiger Rückfall bei
+> fehlendem IndexedDB, Doppel-Fehlschlag-Fall, Nachbildung von Ondos echtem 2.726-KB-Fall ·
+> die bestehenden 57 Prüfungen zu v19.8.28/29 erneut gelaufen, 2 davon (die jetzt
+> gegenstandslose `SPEICHER_WARNGRENZE`-Prüfung) entfernt statt kaputt stehen gelassen —
+> **121 Prüfungen insgesamt, alle bestanden.** `pruefe.py`: ALLES SAUBER.
+> **1 neuer Sprachschlüssel** (`speicherVon`; 302 → 303). Kein Schnitt in der Messreihe —
+> reine Speichertechnik.
+> **Noch nicht bewährt (Stabilitätsregel):** Ein erfolgreicher Umbau ist keine Bewährung im
+> echten Betrieb. Ob das Speichern auf Ondos Gerät dauerhaft gelingt, zeigt erst die Nutzung.
 
 ---
 
@@ -1829,7 +1888,7 @@ Ein getrenntes, kleines Skript — **nicht** im Hauptprogramm. Es nimmt einige b
 | **Gemini-Kaskade komplex** | Funktioniert, aber schwer zu durchschauen bei Fehlern | niedrig |
 | **Die Dokumente selbst** | Das Einlesen kostet einen neuen Chat etwa die Hälfte seines Arbeitsspeichers | **NEU 31.7.** → Punkt 18 |
 | **Löschen ohne Rückfrage** — `delBet()` und `logLoeschen()` löschen sofort und endgültig, während die zwei anderen unumkehrbaren Schritte der App vorher fragen (`korrFAnwenden()`, `datenLaden()` über `confirm()`) | Auf dem iPhone genügt ein Fehltipp. Seit Fassung 97 ist `state.kiProtokoll` der **Evidence Ledger** — ein Fehltipp löscht einen Beleg, auf dem das Lernen aufsetzen soll. Behebung: dieselbe `confirm()`-Rückfrage wie an den zwei vorhandenen Stellen; Kosten kein Geld, keine Laufzeit, zwei Sprachschlüssel | **✅ BEHOBEN 11.9.** in v19.8.28 (Fassung 101) — beide fragen jetzt, mit dem Spielnamen in der Frage |
-| **Speichergrenze wird nirgends sichtbar** — scheitert `localStorage.setItem`, zeigt `save()` 1,5 Sekunden „nicht gespeichert" und sonst nichts; wie voll der Speicher ist, nennt die App nie | `kiProtokoll` wächst mit jeder Vorhersage, `refRoh` dreimal so schnell (schon bei Punkt 64 vermerkt). **Kein Beleg, dass die Grenze je erreicht wurde** — Ondos Browserspeicher ist von einer Code-Sitzung aus nicht einsehbar; benannt ist der Mechanismus, nicht ein Vorfall | **✅ BEHOBEN 11.9.** in v19.8.28 (Fassung 101) — belegter Speicher steht in der Sicherungskarte, ein gescheitertes Speichern lässt einen roten Balken stehen statt ihn nach 1,5 Sekunden zu verlieren |
+| ~~**Speichergrenze wird nirgends sichtbar**~~ — scheitert `localStorage.setItem`, zeigt `save()` 1,5 Sekunden „nicht gespeichert" und sonst nichts; wie voll der Speicher ist, nennt die App nie | `kiProtokoll` wächst mit jeder Vorhersage, `refRoh` dreimal so schnell (schon bei Punkt 64 vermerkt). | **✅ BEHOBEN 11.9.** in v19.8.28 (Fassung 101) — belegter Speicher steht in der Sicherungskarte, ein gescheitertes Speichern lässt einen roten Balken stehen statt ihn nach 1,5 Sekunden zu verlieren. **Der Sichtbar-Fund führte 12.9.2026 direkt zum echten Beleg** (Fehlschlag bei 2.726 KB, v19.8.29) **und dann zur eigentlichen, dauerhaften Lösung: Umstieg auf `IndexedDB`, v19.8.30 (Fassung 103) — kein Löschen nötig, siehe Backlog-Punkt 76** | erledigt |
 
 ---
 
