@@ -3,9 +3,17 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.103
+**Version:** 0.104
 **Stand:** 12. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.104 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass
+> war eine Berichtigung Ondos, kein Codeaufwand (Backlog Fassung 105): Der Test zur ersten
+> Bewährungsbeobachtung des Speicherumstiegs war nicht nur ein Neuladen der Seite, sondern
+> das vollständige Schliessen und Neuöffnen der Safari-App selbst — der stärkere der beiden
+> möglichen Tests. In `STAND.md`, `Ondo-Control-Backlog.md` und `Ondo-Core-Architektur.md`
+> (Fassung 0.8) mit Streichung und Vermerk berichtigt, nicht überschrieben. Kein
+> Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.104 gehoben.
 
 > **Was Fassung 0.103 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass
 > war reine Buchführung, kein Codeaufwand (Backlog Fassung 104): erste Bewährungsbeobachtung

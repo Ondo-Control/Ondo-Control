@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 104 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 105 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -19,10 +19,21 @@
 
 ---
 
+## ⚠ Was Fassung 105 ändert (12.9., Berichtigung zu Fassung 104 — welcher Test wirklich gemacht wurde)
+
+**Anlass:** Ondo hat richtiggestellt: Er hatte nicht nur die Seite neu geladen, sondern **die
+Safari-App selbst vollständig geschlossen und neu geöffnet** — der stärkere der beiden
+möglichen Tests. Berichtigt in `STAND.md`, mit Streichung und Vermerk statt Überschreiben.
+Kein Codeaufwand. **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
+
+---
+
 ## ⚠ Was Fassung 104 ändert (12.9., erste Bewährungsbeobachtung zum Speicherumstieg — reine Buchführung)
 
 **Anlass:** Ondo hat den vorgeschlagenen Test gemacht — Eintrag im KI-Log geparkt/entparkt,
 Browser wirklich neu geladen — und bestätigt: „Hat funktioniert". Kein Codeaufwand.
+*(🔴 Berichtigt in Fassung 105: Es war nicht bloss ein Neuladen der Seite, sondern die
+Safari-App selbst wurde vollständig geschlossen und neu geöffnet — der stärkere Test.)*
 
 - **Backlog-Punkt 76 und `Ondo-Core-Architektur.md` (Fassung 0.8) um die erste
   Bewährungsbeobachtung ergänzt:** Bildschirmfotos zeigen 505 Vorhersagen, 6 Wetten weiterhin
@@ -167,67 +178,6 @@ Das ist die Freigabe nach Art. 8 für die drei Lücken aus Fassung 100 und für 
 - **23 neue Sprachschlüssel** (279 → 302). **Kein Schnitt in der Messreihe** — die
   Kalibrierungsrechnung ist unangetastet. `APP_VERSION` weiter 18.
 - **Regel 5 angewandt:** Abschnitt „Was Fassung 96 ändert" wortgleich nach `BACKLOG-ARCHIV.md`
-  verschoben.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 100 ändert (11.9., vollständige Prüfung von `beta.html` auf Ondos Verlangen)
-
-**Anlass:** „Beta vollständig und gründlich auf Fehler /Lücken komplett prüfen, wenn alles
-perfekt ist, dann weiter bauen." Geprüft wurde die ganze Datei, nicht nur das zuletzt Gebaute:
-3764 Zeilen, 139 Funktionen, 279 Sprachschlüssel je Sprache.
-
-- **🔴 Widerspruch im eigenen Architektur-Eintrag gefunden und berichtigt (Fehlerart C4),
-  `Ondo-Core-Architektur.md` Fassung 0.7:** Die Schema-Tabelle in Abschnitt 1c beschrieb
-  `ergebnisHalbzeit`/`ergebnisVerl` als „vom Schiedsrichter nachgetragen". Der Code widerlegt
-  das — `pruefAnwenden()` schreibt ausschliesslich `ergebnisHeim`/`ergebnisGast`. **Der Backlog
-  führte diesen Befund bereits** (Punkt 64, zweiter Fund, „NICHT behoben … nur benannt"); die
-  Tabelle widersprach also dem eigenen Backlog. Fassung 0.6 hatte zwar die *Feldnamen*
-  maschinell ausgezählt, die *Beschreibung*, wer sie schreibt, aber weiter aus der Annahme
-  geschrieben — derselbe Fehler eine Ebene tiefer (Arbeitsregel H).
-- **🔴 Neuer Befund, nicht behoben (Art. 8), gehört zu Punkt 64:** `pruefAnwenden()` räumt beim
-  Überschreiben eines Ergebnisses `ergebnisQuelle`, `ergebnisHalbzeit` und `ergebnisVerl` nicht
-  weg. Wird ein von Hand eingetragener Eintrag über einen einzelnen Markt zurückgesetzt
-  (`logMarktSet` setzt `status` wieder auf `offen`), fragt ihn der nächste Prüflauf erneut ab
-  und trägt das neue Ergebnis ein — die rote Zeile „von Hand eingetragen" bliebe daneben
-  stehen. **Zurzeit nicht erreichbar**, weil `seedV<8` die zwei einzigen Einträge mit
-  `ergebnisQuelle` bereinigt hat; es ist eine schlafende Lücke, keine wirkende. Genau die
-  Falschangabe, gegen die Art. 14 dieses Feld eingeführt hat.
-- **🔴 Zwei Löschungen ohne Rückfrage, neu benannt, nicht behoben (Art. 8):** `delBet()` und
-  `logLoeschen()` löschen sofort und endgültig. Die zwei anderen unumkehrbaren Schritte der App
-  fragen vorher (`korrFAnwenden()`, `datenLaden()` über `confirm()`). Auf dem iPhone genügt ein
-  Fehltipp. Seit Fassung 97 ist `state.kiProtokoll` der **Evidence Ledger** — ein Fehltipp
-  löscht damit einen Beleg, auf dem das Lernen aufsetzen soll. Vorschlag: dieselbe
-  `confirm()`-Rückfrage wie an den zwei vorhandenen Stellen. Kosten: kein Geld, keine Laufzeit,
-  zwei Sprachschlüssel. Entscheidung liegt bei Ondo.
-- **🔴 Speichergrenze wird nirgends sichtbar, neu benannt, nicht behoben (Art. 8):** Scheitert
-  `localStorage.setItem`, zeigt `save()` 1,5 Sekunden lang „nicht gespeichert" und sonst nichts;
-  die App nennt nie, wie voll der Speicher ist. `kiProtokoll` wächst mit jeder Vorhersage,
-  `refRoh` dreimal so schnell (schon bei Punkt 64 vermerkt). Es gibt **keinen Beleg**, dass die
-  Grenze je erreicht wurde — Ondos Browserspeicher ist von hier aus nicht einsehbar. Benannt
-  wird der Mechanismus, nicht ein Vorfall.
-- **Geprüft und ohne Befund, maschinell statt angenommen:** `node --check` bestanden ·
-  **279 Sprachschlüssel in allen drei Sprachen, keiner doppelt, keine Lücke zwischen de/fr/en**
-  (echtes Klammer-Zählen, siehe Berichtigung unten) · kein `t('…')` auf einen fehlenden
-  Schlüssel · jedes `getElementById` trifft ein wirklich vergebenes `id` · jede aus einem
-  `onclick`/`onchange` gerufene Funktion ist definiert · jedes gelesene `state`-Feld wird
-  irgendwo geschrieben, die 13 Standardwerte sind vollständig · Geldrechnung stimmt
-  (`profit`/`calc`/`depAdd`/`wdAdd`) · `marktUrteil()` ist bei ganzzahligen Toren lückenlos
-  („über 2,5" und „unter 2,5" schliessen einander exakt aus) · alle Ergebniszahlen werden vor
-  dem Vergleich in echte Zahlen umgewandelt, nie als Text verglichen · jeder von einem Gehirn
-  gelieferte Text wird vor dem Anzeigen mit `esc()` entschärft.
-- **Berichtigung am eigenen Prüfwerkzeug, offen benannt:** Die ersten drei Fassungen des
-  Werkzeugs meldeten ausschliesslich Fehlalarme — zuerst hielt es deutsche Wörter in den
-  Anzeigetexten für Funktionsaufrufe, dann verlor es bei regulären Ausdrücken mit
-  Anführungszeichen die Spur, zuletzt fand es das Ende eines Sprachblocks nicht und zählte
-  alle drei Sprachen zusammen (daher „steht 3-mal"). Erst die vierte Fassung zählte richtig.
-  **Kein Befund dieser Prüfung stammt aus einem ungeprüften Werkzeug-Treffer** — jeder oben
-  genannte Punkt ist an der Codestelle selbst nachgelesen.
-- **Keine Codeänderung in dieser Lieferung.** `beta.html` bleibt v19.8.27, `APP_VERSION` 18,
-  Sprachschlüssel 279. Geändert wurden nur `Ondo-Core-Architektur.md` (Berichtigung) und die
-  Buchführung. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
-- **Regel 5 angewandt:** Abschnitt „Was Fassung 95 ändert" wortgleich nach `BACKLOG-ARCHIV.md`
   verschoben.
 - **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
 
@@ -741,20 +691,20 @@ eine dauerhafte Lösung verlangt und Löschen ausdrücklich ausgeschlossen.
 > **Noch nicht bewährt (Stabilitätsregel):** Ein erfolgreicher Umbau ist keine Bewährung im
 > echten Betrieb. Ob das Speichern auf Ondos Gerät dauerhaft gelingt, zeigt erst die Nutzung.
 
-> **🔴 Erste Bewährungsbeobachtung, 12.9.2026 (Ondo, direkte Aussage aus der App):** Auf
-> Vorschlag geprüft — Ondo hat einen Eintrag im KI-Log geparkt/entparkt, den Browser danach
-> **wirklich neu geladen** (nicht nur den Tab gewechselt) und bestätigt: „Hat funktioniert".
-> Bildschirmfotos zeigen dabei zusätzlich: **505 Vorhersagen, 6 Wetten** weiterhin vollständig
-> im Speicher (Wachstum gegenüber den zuvor gemeldeten 485 — die App wurde in der Zwischenzeit
-> normal weiterbenutzt, u. a. mit neuen Vorhersagen und einem Prüflauf) und **„Belegter
-> Speicher: 2.740 KB von 39.332 MB (0 %)"** — die vom Gerät selbst gemeldete Grenze, nicht
-> geschätzt. **Was das belegt:** Genau der Fehler, der zur ganzen Umstellung geführt hat —
-> eine Änderung verschwindet beim Neuladen — ist in diesem einen, echten Test **nicht**
-> aufgetreten. **Was das nicht belegt (Art. 14, Stabilitätsregel):** Ein einzelner Test ist
-> keine abgeschlossene Bewährung — Fehlerart C8 (zu starke Verallgemeinerung aus wenigen
-> Fällen) gilt auch hier. Weiterhin sinnvoll: dass Ondo bei Gelegenheit auch ein echtes
-> Beenden und Neustarten der Safari-App selbst (nicht nur der Seite) beobachtet, weil das ein
-> strengerer Test ist als ein reines Neuladen der Seite.
+> **🔴 Erste Bewährungsbeobachtung, 12.9.2026 (Ondo, direkte Aussage aus der App, berichtigt
+> am selben Tag — Fassung 105):** Auf Vorschlag geprüft — Ondo hat einen Eintrag im KI-Log
+> geparkt/entparkt und danach **die Safari-App selbst vollständig geschlossen und neu
+> geöffnet** — der stärkere der beiden möglichen Tests, nicht nur ein Neuladen der Seite (so
+> stand es hier zunächst, von Ondo selbst richtiggestellt) — und bestätigt: „Hat
+> funktioniert". Bildschirmfotos zeigen dabei zusätzlich: **505 Vorhersagen, 6 Wetten**
+> weiterhin vollständig im Speicher (Wachstum gegenüber den zuvor gemeldeten 485 — die App
+> wurde in der Zwischenzeit normal weiterbenutzt, u. a. mit neuen Vorhersagen und einem
+> Prüflauf) und **„Belegter Speicher: 2.740 KB von 39.332 MB (0 %)"** — die vom Gerät selbst
+> gemeldete Grenze, nicht geschätzt. **Was das belegt:** Genau der Fehler, der zur ganzen
+> Umstellung geführt hat — eine Änderung verschwindet beim Neustart — ist in diesem einen,
+> echten Test mit der strengeren Prüfung **nicht** aufgetreten. **Was das nicht belegt (Art.
+> 14, Stabilitätsregel):** Ein einzelner Test ist keine abgeschlossene Bewährung — Fehlerart
+> C8 (zu starke Verallgemeinerung aus wenigen Fällen) gilt auch hier.
 
 ---
 

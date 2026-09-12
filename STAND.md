@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 12.9.2026, Fassung 104, v19.8.30*
+*Die aktuelle Wahrheit. Stand: 12.9.2026, Fassung 105, v19.8.30*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -558,11 +558,13 @@ seines Browsers lebte (nie erfolgreich gespeichert), zeigt die App nach dem Lade
 zunächst wieder einen älteren Stand. Ondo muss danach **einmal** seine zuletzt exportierte
 Sicherungsdatei über „Sicherung laden" einspielen — ab dann läuft alles im neuen, grossen
 Speicher automatisch weiter. **🔴 Erste Bewährungsbeobachtung, 12.9.2026 (Ondo, direkte
-Aussage aus der App):** Eintrag im KI-Log geparkt/entparkt, den Browser wirklich neu geladen
-(nicht nur den Tab gewechselt) — „Hat funktioniert". Bildschirmfotos zeigen dabei: 505
-Vorhersagen, 6 Wetten weiterhin vollständig im Speicher, „Belegter Speicher: 2.740 KB von
-39.332 MB (0 %)" — die vom Gerät selbst gemeldete Grenze. **Ein einzelner Test ist keine
-abgeschlossene Bewährung** (Stabilitätsregel, Art. 14) — Einzelheiten bei Backlog-Punkt 76.
+Aussage aus der App, berichtigt am selben Tag):** Eintrag im KI-Log geparkt/entparkt, **die
+Safari-App selbst vollständig geschlossen und neu geöffnet** (nicht nur die Seite neu
+geladen — Ondos eigene Berichtigung, das ist der stärkere der beiden möglichen Tests) —
+„Hat funktioniert". Bildschirmfotos zeigen dabei: 505 Vorhersagen, 6 Wetten weiterhin
+vollständig im Speicher, „Belegter Speicher: 2.740 KB von 39.332 MB (0 %)" — die vom Gerät
+selbst gemeldete Grenze. **Ein einzelner Test ist keine abgeschlossene Bewährung**
+(Stabilitätsregel, Art. 14) — Einzelheiten bei Backlog-Punkt 76.
 **Letzte bestätigte Sicherung: 4.9.2026, 09:33 Uhr** — 403 Vorhersagen, 6 Wetten. Davor: 2.9., 17:33 Uhr (403 Vorhersagen, 6 Wetten, im Bildschirmfoto der App sichtbar) · 16.8., 10:47 Uhr (293 Vorhersagen) · 14.8., 22:53 Uhr (nach dem Einbau von v19.8.2) · 14.8., 22:22 Uhr (vor der Lieferung) · 14.8., 07:14 Uhr (nach der Uebernahme der zehn Endstaende) · 13.8., 18:38 Uhr (nach der Berichtigung), 16:28 Uhr (293 Vorhersagen) und 09:17 Uhr. Früher: 8.8., 07:54 Uhr (210 Vorhersagen) · 7.8., 08:00 Uhr · 6.8., 08:28 Uhr (170 Vorhersagen) · 5.8., 13:06 Uhr · 4.8., 17:58 Uhr (138 Vorhersagen) · 3.8. · 2.8. · 31.7., 07:49 Uhr. ⚠ **Vor jeder Codelieferung ist eine frische Sicherung zu verlangen.**
 
 *Diese Zeile ist eine **Standsangabe**, keine Verlaufsangabe. Sie stand vom 7. bis zum 14. August auf dem 7.8. und war damit sechs Tage falsch, während zwei andere Stellen des Dokuments den richtigen Wert trugen. Seit dem 14.8. prüft `pruefe.py` sie gegen die jüngste Sicherungsangabe im Dokument.*
