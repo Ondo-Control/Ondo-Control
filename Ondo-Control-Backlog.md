@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 103 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 104 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,28 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 104 ändert (12.9., erste Bewährungsbeobachtung zum Speicherumstieg — reine Buchführung)
+
+**Anlass:** Ondo hat den vorgeschlagenen Test gemacht — Eintrag im KI-Log geparkt/entparkt,
+Browser wirklich neu geladen — und bestätigt: „Hat funktioniert". Kein Codeaufwand.
+
+- **Backlog-Punkt 76 und `Ondo-Core-Architektur.md` (Fassung 0.8) um die erste
+  Bewährungsbeobachtung ergänzt:** Bildschirmfotos zeigen 505 Vorhersagen, 6 Wetten weiterhin
+  vollständig im Speicher und „Belegter Speicher: 2.740 KB von 39.332 MB (0 %)" — die vom
+  Gerät selbst gemeldete Grenze, nicht geschätzt.
+- **Ondo-Core-Architektur.md Abschnitt 4 (Memory) korrigiert:** Stand dort noch mit
+  „Stufe 1 (jetzt): localStorage" — seit v19.8.30 ist das `IndexedDB`. Nachgetragen als
+  Fassung 0.8, mit Verweis auf den echten Fehlschlag bei 2.726 KB, der zur Umstellung führte.
+- **Ausdrücklich nicht behauptet:** dass der Speicherumstieg damit vollständig bewährt ist —
+  ein einzelner Test ist keine abgeschlossene Bewährung (Stabilitätsregel, Art. 14,
+  Fehlerart C8). Vorschlag an Ondo, bei Gelegenheit: auch ein echtes Beenden und Neustarten
+  der Safari-App selbst beobachten, nicht nur ein Neuladen der Seite — strengerer Test.
+- **Verifiziert:** `pruefe.py`: ALLES SAUBER. Kein Codeaufwand, `beta.html` bleibt v19.8.30,
+  keine neuen Sprachschlüssel, kein Schnitt in der Messreihe.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
 
 ---
 
@@ -207,39 +229,6 @@ perfekt ist, dann weiter bauen." Geprüft wurde die ganze Datei, nicht nur das z
   Buchführung. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
 - **Regel 5 angewandt:** Abschnitt „Was Fassung 95 ändert" wortgleich nach `BACKLOG-ARCHIV.md`
   verschoben.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 99 ändert (11.9., Nachprüfung auf Ondos Verlangen — ein eigener Fehler gefunden und behoben)
-
-**Anlass:** Ondo hat vor dem Weiterbauen am Observation Layer eine gründliche Prüfung des
-gesamten Baus seit dem Evidence Ledger verlangt: „wenn alles perfekt ist, dann weiter bauen".
-
-- **🔴 Echter Fehler gefunden und behoben, `beta.html` v19.8.27:** `kiWahlUebernehmen()` aus
-  v19.8.26 schrieb beim Übernehmen einer Vorhersage den getippten **Spielstand** in das
-  **Tipp-Feld** der Wette. Falsche Bedeutung — `tipp` hält fest, **welche Wette** gesetzt
-  wurde (belegt an den Bestandsdaten), und wird dem Schiedsrichter beim Prüfen einer Wette
-  vorgelegt. Das Feld bleibt jetzt unberührt, nur der Spielname wird übernommen.
-- **Unvollständigkeit im eigenen Architektur-Eintrag behoben:** Die als „Schema" bezeichnete
-  Tabelle in `Ondo-Core-Architektur.md` 1c nannte acht real vorhandene Felder nicht. Jetzt
-  maschinell aus `beta.html` ausgezählt statt aus dem Gedächtnis geschrieben (Fassung 0.6),
-  und die Auflage an den Observation Layer auf die zwei tatsächlichen Felder festgenagelt
-  (`geparkt`, `refEinigkeit`).
-- **Geprüft und in Ordnung, maschinell statt angenommen:** neuer Feldname `kiProtokollId` löst
-  die Geheimfeld-Sperre aus Backlog-Punkt 44 nicht aus · `b.fromKI`/`b.herkunft` werden
-  nirgends sonst gelesen · Bestandswetten zeigen korrekt keine Markierung · das neue
-  Auswahlfeld erbt die vorhandene Gestaltung · die Zusage „kein Codeaufwand" bei Teil 1 stimmt.
-- **Verifiziert:** `node --check` bestanden. **64 Trockentest-Prüfungen** über sechs Reihen,
-  alle bestanden — darunter eine **neue Reihe mit 7 Prüfungen** an `kiWahlUebernehmen()`, die
-  den behobenen Fehler festnagelt. `pruefe.py` ohne Argument — ALLES SAUBER.
-- **Volle Begründung steht als angehängter Block direkt bei Punkt 75** (nicht hier wiederholt
-  — Punkt 45).
-- **Keine neuen Sprachschlüssel** (279 unverändert). **Kein Schnitt in der Messreihe.**
-  `APP_VERSION` weiter 18.
-- **Fassungszahl:** alle drei aktiven Dokumente auf 99 gehoben (Blueprint 0.98).
-  `Ondo-Core-Architektur.md` auf Fassung 0.6. Kein Verfassungsartikel geändert, keine neue
-  Arbeitsregel.
 - **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
 
 ---
@@ -701,8 +690,9 @@ und ChatGPTs vollständige, geprüfte Antwort stehen im Gesprächsverlauf, nicht
 
 **76. Speicherung von `localStorage` auf `IndexedDB` umgestellt** · *Fund Ondo 12.9.2026 („Browser
 voll") · Auftrag Ondo 12.9.2026, wörtlich: „Ich will eine dauerhafte Lösung, keine Dateien
-Löschen!!" · gebaut am selben Tag* · **Status: 🔴 GEBAUT 12.9.2026, `beta.html` v19.8.30 —
-Bewährung im echten Betrieb steht aus**
+Löschen!!" · gebaut am selben Tag · erste Bewährungsbeobachtung 12.9.2026* · **Status: 🔴
+GEBAUT 12.9.2026, `beta.html` v19.8.30 — erste Bewährungsbeobachtung positiv, volle
+Bewährung im echten Betrieb steht weiterhin aus**
 
 **Anlass:** Ondos Browser lehnte das Speichern bei 2.726 KB ab (v19.8.29, siehe Punkt 64 in
 „Technische Schuld"). Ondo bestätigt: genug freier Speicherplatz auf dem iPhone selbst — das
@@ -750,6 +740,21 @@ eine dauerhafte Lösung verlangt und Löschen ausdrücklich ausgeschlossen.
 > reine Speichertechnik.
 > **Noch nicht bewährt (Stabilitätsregel):** Ein erfolgreicher Umbau ist keine Bewährung im
 > echten Betrieb. Ob das Speichern auf Ondos Gerät dauerhaft gelingt, zeigt erst die Nutzung.
+
+> **🔴 Erste Bewährungsbeobachtung, 12.9.2026 (Ondo, direkte Aussage aus der App):** Auf
+> Vorschlag geprüft — Ondo hat einen Eintrag im KI-Log geparkt/entparkt, den Browser danach
+> **wirklich neu geladen** (nicht nur den Tab gewechselt) und bestätigt: „Hat funktioniert".
+> Bildschirmfotos zeigen dabei zusätzlich: **505 Vorhersagen, 6 Wetten** weiterhin vollständig
+> im Speicher (Wachstum gegenüber den zuvor gemeldeten 485 — die App wurde in der Zwischenzeit
+> normal weiterbenutzt, u. a. mit neuen Vorhersagen und einem Prüflauf) und **„Belegter
+> Speicher: 2.740 KB von 39.332 MB (0 %)"** — die vom Gerät selbst gemeldete Grenze, nicht
+> geschätzt. **Was das belegt:** Genau der Fehler, der zur ganzen Umstellung geführt hat —
+> eine Änderung verschwindet beim Neuladen — ist in diesem einen, echten Test **nicht**
+> aufgetreten. **Was das nicht belegt (Art. 14, Stabilitätsregel):** Ein einzelner Test ist
+> keine abgeschlossene Bewährung — Fehlerart C8 (zu starke Verallgemeinerung aus wenigen
+> Fällen) gilt auch hier. Weiterhin sinnvoll: dass Ondo bei Gelegenheit auch ein echtes
+> Beenden und Neustarten der Safari-App selbst (nicht nur der Seite) beobachtet, weil das ein
+> strengerer Test ist als ein reines Neuladen der Seite.
 
 ---
 

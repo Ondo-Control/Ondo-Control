@@ -3,9 +3,18 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.102
+**Version:** 0.103
 **Stand:** 12. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.103 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass
+> war reine Buchführung, kein Codeaufwand (Backlog Fassung 104): erste Bewährungsbeobachtung
+> zum Speicherumstieg (Ondo: „Hat funktioniert", nach einem echten Neuladen der Seite) und
+> eine Berichtigung in `Ondo-Core-Architektur.md` — Abschnitt 4 nannte dort noch `localStorage`
+> als aktuellen Stand, seit v19.8.30 ist es `IndexedDB` (Fassung 0.8). Ausdrücklich nicht
+> behauptet: dass der Umstieg damit vollständig bewährt ist — ein einzelner Test ist keine
+> abgeschlossene Bewährung. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+> Blueprint auf 0.103 gehoben.
 
 > **Was Fassung 0.102 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Ondos
 > Auftrag „Ich will eine dauerhafte Lösung, keine Dateien Löschen!!" ist umgesetzt (Backlog

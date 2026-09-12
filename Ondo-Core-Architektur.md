@@ -4,6 +4,7 @@
 *Fassung 0.5 — 11.9.2026: Abschnitt 1c „Lernkette: der Evidence Ledger" ergänzt (Backlog-Punkt 75, Auftrag Ondo 11.9.2026).*
 *Fassung 0.6 — 11.9.2026: Schema in Abschnitt 1c vervollständigt und die Auflage an den Observation Layer auf die zwei tatsächlichen Felder festgenagelt — bei Ondos Nachprüfung fiel auf, dass die als „Schema" bezeichnete Tabelle in Fassung 0.5 mehrere real vorhandene Felder nicht nannte (`ergebnisHalbzeit`, `ergebnisVerl`, `ergebnisQuelle`, `bttsWort`, `refLaeufe`, `refQuellen`, `parkFormat`, `maerkte[].fAlt`/`fKorr`). Jetzt maschinell aus `beta.html` ausgezählt statt aus dem Gedächtnis geschrieben.*
 *Fassung 0.7 — 11.9.2026: Berichtigung in derselben Tabelle. Fassung 0.6 zählte zwar die Feldnamen maschinell aus, beschrieb aber weiterhin aus der Annahme heraus, **wer** sie schreibt — und behauptete für `ergebnisHalbzeit`/`ergebnisVerl` „vom Schiedsrichter nachgetragen". Der Code widerlegt das: `pruefAnwenden()` schreibt ausschliesslich `ergebnisHeim`/`ergebnisGast`. Der Backlog führte diesen Befund bereits (Punkt 64, zweiter Fund) — die Tabelle widersprach damit dem Backlog (Fehlerart C4). Zeile berichtigt, Fund bei Punkt 64 verlinkt.*
+*Fassung 0.8 — 12.9.2026: Abschnitt 4 „Memory" berichtigt (Backlog-Punkt 76, `beta.html` v19.8.30). Stufe 1 nannte weiterhin `localStorage` als aktuellen Stand — seit v19.8.30 ist das `IndexedDB` (die feste, kleine `localStorage`-Grenze hatte bei Ondo real bei 2.726 KB zugeschlagen, v19.8.29). Erste, positive Bewährungsbeobachtung ergänzt: Ondo hat eine Änderung im KI-Log gesetzt, den Browser wirklich neu geladen und bestätigt „Hat funktioniert" (12.9.2026) — ein Beleg, keine abgeschlossene Bewährung (Stabilitätsregel, Art. 14: ein einzelner Fall ist kein Beweis).*
 *(Name: Der Besitzer hat "Ondo Control" festgelegt; ChatGPT nutzt "ORION". Technisch irrelevant — hier "Ondo Core" für den Kern.)*
 
 ---
@@ -138,9 +139,17 @@ Das liefert denselben Nutzen ohne falsche Präzision. Diskussionspunkt für Chat
 
 ## 4. Memory
 
-Heute: localStorage (ein Gerät). Architekturziel: eine **Memory-Schnittstelle** mit drei Operationen (lesen / schreiben / auflisten), hinter der der Speicherort austauschbar ist:
+Heute: IndexedDB (ein Gerät) — *bis 12.9.2026 localStorage, siehe Berichtigung unten.*
+Architekturziel: eine **Memory-Schnittstelle** mit drei Operationen (lesen / schreiben /
+auflisten), hinter der der Speicherort austauschbar ist:
 
-- Stufe 1 (jetzt): localStorage
+- Stufe 1a (bis 12.9.2026): localStorage — feste, kleine Grenze je Browser/Website
+  (belegt: Fehlschlag bei 2.726 KB auf Ondos iPhone, v19.8.29).
+- **Stufe 1b (jetzt, v19.8.30, Backlog-Punkt 76):** IndexedDB — ein Anteil des freien
+  Gerätespeichers statt einer festen Website-Grenze (belegt: 39.332 MB Grenze bei 0 %
+  Belegung auf demselben Gerät). `speicherLesen()`/`speicherSchreiben()` fallen bei jedem
+  Fehler auf `localStorage` zurück, dieselbe Stufe bleibt also als Sicherheitsnetz bestehen.
+  Weiterhin ein einziges Gerät — Stufe 2/3 sind davon unberührt.
 - Stufe 2: Export/Import als Datei (Backup + Gerätewechsel; auch Lösung für das iOS-Problem "getrennte Speicher Safari vs. Homescreen")
 - Stufe 3 (bei Bedarf): Cloud-Sync (dann mit Verschlüsselung)
 

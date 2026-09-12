@@ -410,6 +410,39 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 99 ändert (11.9., Nachprüfung auf Ondos Verlangen — ein eigener Fehler gefunden und behoben)
+
+**Anlass:** Ondo hat vor dem Weiterbauen am Observation Layer eine gründliche Prüfung des
+gesamten Baus seit dem Evidence Ledger verlangt: „wenn alles perfekt ist, dann weiter bauen".
+
+- **🔴 Echter Fehler gefunden und behoben, `beta.html` v19.8.27:** `kiWahlUebernehmen()` aus
+  v19.8.26 schrieb beim Übernehmen einer Vorhersage den getippten **Spielstand** in das
+  **Tipp-Feld** der Wette. Falsche Bedeutung — `tipp` hält fest, **welche Wette** gesetzt
+  wurde (belegt an den Bestandsdaten), und wird dem Schiedsrichter beim Prüfen einer Wette
+  vorgelegt. Das Feld bleibt jetzt unberührt, nur der Spielname wird übernommen.
+- **Unvollständigkeit im eigenen Architektur-Eintrag behoben:** Die als „Schema" bezeichnete
+  Tabelle in `Ondo-Core-Architektur.md` 1c nannte acht real vorhandene Felder nicht. Jetzt
+  maschinell aus `beta.html` ausgezählt statt aus dem Gedächtnis geschrieben (Fassung 0.6),
+  und die Auflage an den Observation Layer auf die zwei tatsächlichen Felder festgenagelt
+  (`geparkt`, `refEinigkeit`).
+- **Geprüft und in Ordnung, maschinell statt angenommen:** neuer Feldname `kiProtokollId` löst
+  die Geheimfeld-Sperre aus Backlog-Punkt 44 nicht aus · `b.fromKI`/`b.herkunft` werden
+  nirgends sonst gelesen · Bestandswetten zeigen korrekt keine Markierung · das neue
+  Auswahlfeld erbt die vorhandene Gestaltung · die Zusage „kein Codeaufwand" bei Teil 1 stimmt.
+- **Verifiziert:** `node --check` bestanden. **64 Trockentest-Prüfungen** über sechs Reihen,
+  alle bestanden — darunter eine **neue Reihe mit 7 Prüfungen** an `kiWahlUebernehmen()`, die
+  den behobenen Fehler festnagelt. `pruefe.py` ohne Argument — ALLES SAUBER.
+- **Volle Begründung steht als angehängter Block direkt bei Punkt 75** (nicht hier wiederholt
+  — Punkt 45).
+- **Keine neuen Sprachschlüssel** (279 unverändert). **Kein Schnitt in der Messreihe.**
+  `APP_VERSION` weiter 18.
+- **Fassungszahl:** alle drei aktiven Dokumente auf 99 gehoben (Blueprint 0.98).
+  `Ondo-Core-Architektur.md` auf Fassung 0.6. Kein Verfassungsartikel geändert, keine neue
+  Arbeitsregel.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
+
+---
+
 ## ⚠ Was Fassung 98 ändert (11.9., Backlog-Punkt 75, Teil 2 — Decision Ledger gebaut)
 
 **Anlass:** Auftrag Ondo, direkt im Anschluss an Teil 1 — den bei der Festlegung des Evidence
