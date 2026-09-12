@@ -410,6 +410,42 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 108 ändert (12.9., Trainingsraum gebaut — Backlog-Punkt 77, `beta.html` v19.9.0)
+
+**Anlass:** Ondo hat den Trainingsraum-Plan freigegeben, mit dem ausdrücklichen Auftrag „nicht
+einfach Auftrag erledigen und fertig, sondern vorher wirklich durchdenken, absichern und
+zukunftsfähig konzipieren" — und dem Bau ohne weitere Rückfrage zugestimmt, wenn der Plan
+tragfähig ist.
+
+- **🔴 Backlog-Punkt 77 GEBAUT.** Vollständiger Plan, Selbstkritik und Architektur-Einordnung in
+  `Ondo-Core-Architektur.md`, Abschnitt 1d (neu, Fassung 0.9). Kurzfassung bei Punkt 77 selbst
+  (Punkt 45 — nicht doppelt geführt). Kern: `vorhersageGehirn()` unverändert wiederverwendet
+  (bereits ohne Websuche), Zulassungsregel nach Trainings-Stichtag gegen Trainingsdaten-
+  Kontamination (`TRAININGSRAUM_STICHTAG`, ohne geprüften Wert null zulässige Spiele — Art. 11),
+  sofortige Bewertung statt Schiedsrichter-Wartezeit, getrenntes Protokoll
+  (`state.trainingsraumProtokoll`) ohne Vermischung mit der echten Messreihe.
+- **Zwei echte Fehlerquellen selbst gefunden, vor der Auslieferung behoben** (keine von Ondo
+  genannt): `new Date()` auf einem deutschen Datumstext gelesen falsch (behoben durch feste
+  ISO-Daten) — und ein Wettlauf-Risiko in der geteilten Variable `zuletztModell.gehirn` bei zwei
+  potenziell gleichzeitigen Aufrufern, behoben über das schon vorhandene `modelVersion`-Feld
+  plus ein neues Sperr-Flag `kiAnfrageAktiv`.
+- **Ein Selbstkritik-Fund beim Bauen selbst, noch vor dem ersten Lauf korrigiert:** Die erste
+  Fassung der „schon gesehen"-Regel hätte den Weg-(a)-Vorrat für beide Gehirne fast leergeräumt.
+  Korrigiert auf die tatsächliche Leckquelle (nur die letzten sechs eigenen Vorhersagen im
+  `fruehere`-Kontext zählen als „schon gesehen", nicht jede je abgegebene).
+- **Verifiziert:** `node --check` bestanden · **40 neue Prüfungen** an den echten,
+  herausgeschnittenen Funktionen, darunter ein Regressionstest für den Wettlauf-Fund · die
+  bestehenden 121 (IndexedDB) und 45 (v19.8.28) Prüfungen erneut gelaufen, alle weiterhin
+  bestanden · `pruefe.py`: ALLES SAUBER.
+- **12 neue Sprachschlüssel** (306 → 318). Kein Schnitt in der Messreihe. `beta.html` jetzt
+  v19.9.0.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 103 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: eins** — **4** *(unverändert — Punkt 77 war „Idee", zählt
+  jetzt als gebaut, nicht als beschlossen-und-nicht-gebaut.)*
+
+---
+
 ## ⚠ Was Fassung 107 ändert (12.9., Trainingsraum-Lösung gefunden, Punkt 4 freigegeben, ChatGPT-Antworten eingetragen — kein Codeaufwand)
 
 **Anlass:** Ondo hat Punkt 77 (Trainingsraum) berichtigt — Weg (a) meint bereits ausgewertete

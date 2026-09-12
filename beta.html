@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.11.0';
+var CODE_VERSION = 'v19.12.0';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -195,6 +195,7 @@ var I18N = {
   tip:'Tipp', odds:'Quote', stake:'Einsatz (€)',
   possWin:'Möglicher Gewinn', match:'Spiel', saveBet:'Wette speichern', fillAll:'Bitte Spiel, Quote und Einsatz ausfüllen',
   kiWahlLabel:'Aus einer Vorhersage übernehmen', kiWahlKeine:'— keine, von Hand —', vonKi:'Aus KI-Vorhersage von',
+  kiKombiLabel:'Kombi: weitere Spiele mitverknüpfen', kombiN:'Kombi aus {a} Vorhersagen',
   delBetAsk:'Diese Wette endgültig löschen?\n\n{a}\n\nDas lässt sich nicht rückgängig machen.',
   delLogAsk:'Diesen Eintrag endgültig aus dem KI-Log löschen?\n\n{a}\n\nEr ist ein Beleg, auf dem die Auswertung aufbaut. Das lässt sich nicht rückgängig machen.',
   saveFailAlert:'Die Daten konnten NICHT gespeichert werden. Der Speicher dieses Browsers ist vermutlich voll. Sichere die Daten jetzt über „Daten sichern" und lösche danach nicht mehr benötigte Einträge — sonst geht alles Neue verloren.',
@@ -344,6 +345,7 @@ var I18N = {
   tip:'Tip', odds:'Cote', stake:'Mise (€)',
   possWin:'Gain possible', match:'Match', saveBet:'Enregistrer le pari', fillAll:'Remplis match, cote et mise',
   kiWahlLabel:'Reprendre depuis une prédiction', kiWahlKeine:'— aucune, manuel —', vonKi:'Prédiction IA de',
+  kiKombiLabel:'Combiné : lier d’autres matchs', kombiN:'Combiné de {a} prédictions',
   delBetAsk:'Supprimer définitivement ce pari ?\n\n{a}\n\nCette action est irréversible.',
   delLogAsk:'Supprimer définitivement cette entrée du journal IA ?\n\n{a}\n\nElle sert de preuve à l’évaluation. Cette action est irréversible.',
   saveFailAlert:'Les données n’ont PAS pu être enregistrées. La mémoire de ce navigateur est probablement pleine. Sauvegarde tout de suite via « Sauvegarder les données », puis supprime les entrées devenues inutiles — sinon tout le nouveau sera perdu.',
@@ -493,6 +495,7 @@ var I18N = {
   tip:'Tip', odds:'Odds', stake:'Stake (€)',
   possWin:'Possible win', match:'Match', saveBet:'Save bet', fillAll:'Please fill match, odds and stake',
   kiWahlLabel:'Take over from a prediction', kiWahlKeine:'— none, manual —', vonKi:'From AI prediction by',
+  kiKombiLabel:'Parlay: link more games', kombiN:'Parlay of {a} predictions',
   delBetAsk:'Delete this bet for good?\n\n{a}\n\nThis cannot be undone.',
   delLogAsk:'Delete this entry from the AI log for good?\n\n{a}\n\nIt is evidence the evaluation builds on. This cannot be undone.',
   saveFailAlert:'The data could NOT be saved. This browser’s storage is probably full. Back up now via “Back up data”, then delete entries you no longer need — otherwise everything new will be lost.',
@@ -1184,7 +1187,11 @@ function logTextKopieren(feldId){
    datenSichern und datenLaden sind unangetastet. KEIN Schnitt in der Messreihe.
    Kein Zeitraumfilter und kein Aera-Filter — eine Sicherung mit Datumsbereich waere
    keine Sicherung. Das v18-Archiv ist ausdruecklich enthalten (Entscheidung Ondo 14.8.). */
-var MESS_FELDER = ['kiProtokoll','bets','regeln','startSaldo','eingezahlt','ausgezahlt','korrekturF','letzteSicherung','trainingsraumProtokoll'];
+/* v19.11.0: trainingsraumSpiele ergaenzt. Fehlte bisher, weil das Feld bis zur Nachbesserung
+   (Backlog-Punkt 77) immer leer war - jetzt, wo Ondo Weg-(b)-Spiele selbst eintraegt, sind das
+   reine Messdaten (Team/Wettbewerb/Datum/Ergebnis, keine Geheimfelder) und gehoeren aus
+   demselben Grund in den Export wie trainingsraumProtokoll. */
+var MESS_FELDER = ['kiProtokoll','bets','regeln','startSaldo','eingezahlt','ausgezahlt','korrekturF','letzteSicherung','trainingsraumProtokoll','trainingsraumSpiele'];
 var MESS_VERBOTEN = /key|pin|token|secret|passw/i;
 
 function messGeheimFund(wert, pfad){
@@ -1827,17 +1834,21 @@ function lernAbweichung(punkte){
 /* Die Bruecke vom Decision Ledger (Teil 2) zurueck in die Beobachtung: Haben die Wetten, die
    aus einer Vorhersage entstanden sind, besser abgeschnitten als die von Hand gesetzten?
    FAENGT DIE BEI TEIL 2 BENANNTE STELLE AB: Wird eine Sicherung eingespielt, in der ein
-   verknuepfter kiProtokoll-Eintrag fehlt, zeigt kiProtokollId ins Leere. Eine solche Wette
+   verknuepfter kiProtokoll-Eintrag fehlt, zeigt die Verknuepfung ins Leere. Eine solche Wette
    wird EIGENS GEZAEHLT und in keine der beiden Gruppen geschoben — sie stillschweigend als
-   "von Hand" zu zaehlen waere eine erfundene Zuordnung. */
+   "von Hand" zu zaehlen waere eine erfundene Zuordnung.
+   v19.11.0 (Backlog-Punkt 78): betKiIds() liefert jetzt ggf. MEHRERE ids (Kombi-Wette). Zaehlt
+   als "ausKi", sobald WENIGSTENS EINE davon noch existiert - "verwaist" nur, wenn die Wette
+   ueberhaupt verknuepft war (ids.length>0) und KEINE davon mehr existiert. Bei genau einer id
+   (die weit ueberwiegende Mehrheit aller Wetten) ist das Verhalten identisch zum Stand davor. */
 function lernWetten(){
   var ausKi={ n:0, wins:0, saldo:0 }, vonHand={ n:0, wins:0, saldo:0 }, verwaist=0;
   (state.bets||[]).forEach(function(b){
     if(b.status==='offen') return;
-    var e=null;
-    if(b.kiProtokollId) e=(state.kiProtokoll||[]).filter(function(x){ return x.id===b.kiProtokollId; })[0]||null;
-    if(b.kiProtokollId && !e){ verwaist++; return; }
-    var ziel = e ? ausKi : vonHand;
+    var ids=betKiIds(b);
+    var treffer = ids.filter(function(id){ return (state.kiProtokoll||[]).some(function(x){ return x.id===id; }); });
+    if(ids.length && !treffer.length){ verwaist++; return; }
+    var ziel = treffer.length ? ausKi : vonHand;
     ziel.n++;
     if(b.status==='gewonnen') ziel.wins++;
     ziel.saldo += profit(b);
@@ -3861,18 +3872,73 @@ function kiWahlUebernehmen(id){
   if(fm) fm.value=e.match;
 }
 
+/* ================= DECISION LEDGER, KOMBI-WETTE (Backlog-Punkt 78, 12.9.2026) =================
+   Fund Ondo: eine per Foto oder von Hand erfasste Kombi-Wette (mehrere Spiele, ein Einsatz, ein
+   Ausgang) liess sich bisher an KEINER Stelle mit mehreren Vorhersagen verknuepfen -
+   kiWahlBlock()/kiWahlUebernehmen() kennen nur EINE Auswahl. Grundentscheidung, von Claude UND
+   ChatGPT unabhaengig getragen (kein Widerspruch, siehe Backlog Punkt 78): eine Wette bekommt
+   eine LISTE von kiProtokoll-Verknuepfungen (state.bets[].kiProtokollIds), keine Aufteilung in
+   Teil-Eintraege - Einsatz/Quote/Ausgang gehoeren zur gesamten Kombi, nicht zu einzelnen Legs.
+   Bewusst ADDITIV statt kiWahlBlock() umzubauen: die bestehende Einzelauswahl (samt ihrem
+   Trockentest) bleibt unveraendert die "erste" Verknuepfung; dieser Block bietet nur WEITERE
+   Spiele einer Kombi zusaetzlich an, ausgewaehlt per Kontrollkaestchen statt Dropdown (eine
+   Kombi hat mehr als eine, eine einzelne Auswahl reicht dafuer nicht). Braucht mindestens zwei
+   offene Vorhersagen, sonst gibt es nichts zum Verbinden - kein leerer, verwirrender Block. */
+function kiWahlKombiBlock(){
+  var offene = (state.kiProtokoll||[]).filter(function(e){
+    return e.aera==='v19' && e.status==='offen' && !e.geparkt;
+  });
+  if(offene.length<2) return '';
+  var zeilen = offene.map(function(e){
+    return '<label style="display:flex;align-items:center;gap:6px;margin-top:4px;font-size:13px">'+
+      '<input type="checkbox" class="f_kiKombi" value="'+esc(e.id)+'"/>'+
+      '<span>'+esc(e.datum+' · '+e.match+' ('+(e.herkunft==='flash'?'🌱':'🧠')+' '+e.heim+':'+e.gast+')')+'</span></label>';
+  }).join('');
+  return '<div style="margin-top:8px"><label>'+t('kiKombiLabel')+'</label>'+
+    '<div style="max-height:160px;overflow-y:auto">'+zeilen+'</div></div>';
+}
+
 /* ================= AKTIONEN ================= */
+/* v19.11.0 (Backlog-Punkt 78): v.kiId (einzeln, wie bisher) bleibt gueltig - v.kiIds (Liste,
+   neu, fuer eine Kombi mit mehreren verknuepften Vorhersagen) kommt zusaetzlich dazu, keines
+   ersetzt das andere. kiProtokollId (einzeln) wird weiterhin GENAU DANN gesetzt, wenn nur EINE
+   Vorhersage aufgeloest werden konnte - bestehender Code/Test, der nur dieses Feld liest, sieht
+   dadurch bei einer normalen Einzelwette keinen Unterschied. kiProtokollIds (Liste) traegt ab
+   sofort die vollstaendige, kanonische Verknuepfung, auch bei genau einer Vorhersage. */
 function addBet(v, einsatzVal){
   var einsatz = Math.min(parseFloat(String(einsatzVal).replace(",","."))||0, state.regeln.maxEinsatz);
-  var quelle = v.kiId ? (state.kiProtokoll||[]).find(function(e){ return e.id===v.kiId; }) : null;
+  var ids = Array.isArray(v.kiIds) ? v.kiIds.filter(Boolean) : (v.kiId ? [v.kiId] : []);
+  var quellen = ids.map(function(id){ return (state.kiProtokoll||[]).find(function(e){ return e.id===id; }); }).filter(Boolean);
+  var herkuenfte = quellen.map(function(e){ return e.herkunft; });
+  var herkunftEinheitlich = herkuenfte.length
+    ? (herkuenfte.every(function(h){ return h===herkuenfte[0]; }) ? herkuenfte[0] : 'gemischt')
+    : null;
   state.bets.unshift({
     id:Date.now(), datum:new Date().toLocaleDateString("de-DE"),
     match:v.match, tipp:v.tipp||"", quote:parseFloat(String(v.quote).replace(",","."))||0,
     einsatz:einsatz, status:"offen", claudeRichtig:null,
-    fromKI:!!quelle, herkunft:quelle?quelle.herkunft:null,
-    kiProtokollId:quelle?quelle.id:null
+    fromKI:!!quellen.length, herkunft:herkunftEinheitlich,
+    kiProtokollId: quellen.length===1 ? quellen[0].id : null,
+    kiProtokollIds: quellen.length ? quellen.map(function(e){ return e.id; }) : null
   });
   save(); go("wetten","historie");
+}
+function addBetKlick(){
+  var m=document.getElementById('f_match').value, q=document.getElementById('f_quote').value,
+      e=document.getElementById('f_einsatz').value, tipp=document.getElementById('f_tipp').value;
+  var kw=document.getElementById('f_kiWahl'), ids=[];
+  if(kw && kw.value) ids.push(kw.value);
+  var boxen=document.querySelectorAll('.f_kiKombi:checked');
+  boxen.forEach(function(cb){ if(ids.indexOf(cb.value)<0) ids.push(cb.value); });
+  if(m&&q&&e){ addBet({match:m,tipp:tipp,quote:q,kiIds:ids},e); } else { alert(t('fillAll')); }
+}
+/* Betrachtet dieselbe Verknuepfung wie addBet() ablegt (kiProtokollIds bevorzugt, kiProtokollId
+   als Rueckfallebene fuer aeltere Wetten vor v19.11.0) - EIN Ort, der beide Felder kennt, statt
+   an jeder lesenden Stelle dieselbe Fallunterscheidung zu wiederholen. */
+function betKiIds(b){
+  if(b.kiProtokollIds && b.kiProtokollIds.length) return b.kiProtokollIds;
+  if(b.kiProtokollId) return [b.kiProtokollId];
+  return [];
 }
 function setStatus(id,s){
   state.bets.forEach(function(b){ if(b.id===id){ b.status=s; } });
@@ -4244,6 +4310,7 @@ function viewBets(c){
       '</div>'+
       '<div class="card"><div class="grid">'+
       kiWahlBlock()+
+      kiWahlKombiBlock()+
       '<div><label>'+t('match')+'</label><input id="f_match" placeholder="Bayern – Dortmund"/></div>'+
       '<div><label>'+t('tip')+'</label><input id="f_tipp"/></div>'+
       (hatOdds() ? oddsAuswahlBlock() : '')+
@@ -4251,7 +4318,7 @@ function viewBets(c){
         '<div style="flex:1"><label>'+t('odds')+'</label><input id="f_quote" inputmode="decimal" placeholder="1,85"/></div>'+
         '<div style="flex:1"><label>'+t('stake')+'</label><input id="f_einsatz" inputmode="decimal" placeholder="10"/></div>'+
       '</div>'+
-      '<button class="btn" onclick="var m=f_match.value,q=f_quote.value,e=f_einsatz.value,kw=document.getElementById(\'f_kiWahl\'),k=kw?kw.value:\'\'; if(m&&q&&e){addBet({match:m,tipp:f_tipp.value,quote:q,kiId:k},e);}else{alert(\''+t('fillAll')+'\');}">'+t('saveBet')+'</button>'+
+      '<button class="btn" onclick="addBetKlick()">'+t('saveBet')+'</button>'+
     '</div></div>';
   }
 
@@ -4364,7 +4431,10 @@ function viewBets(c){
       '<div class="flex"><div><div class="disp" style="font-size:19px">'+esc(b.match)+'</div>'+
       '<div class="muted">'+b.datum+' · '+t('odds')+' '+b.quote.toLocaleString("de-DE")+' · '+t('stake').replace(' (€)','')+' '+eur(b.einsatz)+'</div></div>'+badge+'</div>'+
       (b.tipp?'<div style="font-size:13px;margin-top:8px">'+t('tip')+': '+esc(b.tipp)+'</div>':'')+
-      (b.fromKI?'<div class="muted" style="font-size:12px;margin-top:4px">'+t('vonKi')+' '+(b.herkunft==='flash'?'🌱':'🧠')+'</div>':'')+pnl+
+      (b.fromKI?'<div class="muted" style="font-size:12px;margin-top:4px">'+t('vonKi')+' '+
+        (b.herkunft==='flash'?'🌱':b.herkunft==='gemischt'?'🧠🌱':'🧠')+
+        ((b.kiProtokollIds&&b.kiProtokollIds.length>1)?' · '+t('kombiN').replace('{a}',b.kiProtokollIds.length):'')+
+      '</div>':'')+pnl+
       '<div style="margin-top:12px">'+akt+
       ' <button class="btn-sm" style="float:right" onclick="delBet('+b.id+')">'+t('del')+'</button></div>'+
     '</div>';

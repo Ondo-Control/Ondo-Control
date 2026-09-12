@@ -3,9 +3,15 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.111
+**Version:** 0.112
 **Stand:** 12. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.112 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> der gebaute Backlog-Punkt 78 (`beta.html` v19.12.0): Kombi-Wetten können jetzt mit mehreren
+> KI-Vorhersagen verknüpft werden (`state.bets[].kiProtokollIds` als Liste), additiv zur
+> bestehenden Einzelauswahl gebaut, rückwärtskompatibel zum alten Einzelfeld. Kein
+> Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.112 gehoben.
 
 > **Was Fassung 0.111 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
 > die gebaute Trainingsraum-Nachbesserung (Backlog-Punkt 77, `beta.html` v19.11.0): KI-Daten von

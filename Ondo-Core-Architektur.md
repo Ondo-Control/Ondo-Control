@@ -24,6 +24,11 @@ Verfassungsartikel geändert, keine neue Arbeitsregel.*
 (`trainingsraumSpielHinzufuegen()`/`trainingsraumSpielLoeschen()`) statt der zuvor dauerhaft
 leeren Liste — beide mit „Berichtigt"-Vermerk an den betroffenen Stellen, nicht überschrieben.
 Kein Verfassungsartikel geändert, keine neue Arbeitsregel.*
+*Fassung 0.13 — 12.9.2026: Abschnitt 1c berichtigt/ergänzt (Backlog-Punkt 78, `beta.html`
+v19.12.0): Der Decision Ledger verknüpft eine Wette jetzt optional mit mehreren
+`kiProtokoll`-Einträgen (`kiProtokollIds`-Liste, additiv zum alten Einzelfeld) statt nur einem
+— für Kombi-Wetten. Ebenen-Trennung (1b) unberührt, reine Referenzliste. Kein
+Verfassungsartikel geändert, keine neue Arbeitsregel.*
 *(Name: Der Besitzer hat "Ondo Control" festgelegt; ChatGPT nutzt "ORION". Technisch irrelevant — hier "Ondo Core" für den Kern.)*
 
 ---
@@ -122,6 +127,14 @@ Modul-Vertrag (ChatGPTs Forderung, übernommen): **Modul → Core → Brain → 
 **Auflage für den noch nicht gebauten Observation Layer, festgehalten jetzt statt erst beim Bauen:** Er darf keine Lehre aus einem Eintrag ziehen, dessen Bewertung selbst unsicher ist. **Maschinell prüfbar an genau zwei bestehenden Feldern**, am 11.9.2026 am Code nachgesehen, nicht angenommen: `geparkt:true` (Bewertung bewusst ausgesetzt) und `refEinigkeit` gesetzt (`pruefAnwenden()` schreibt dieses Feld **nur** bei „2 von 3", bei Einstimmigkeit wird es gelöscht). Ein Muster, das aus einer unsicheren Bewertung gelernt würde, wäre selbst nur eine Vermutung mit Lehrsatz-Anstrich (Art. 14). Diese Auflage ist keine neue Wartezeit — sie gilt dem Bau der nächsten Stufe, nicht dieser.
 
 **Was als Nächstes fehlt, nicht Teil dieser Festlegung:** Der **Decision Ledger** — was Ondo aus einer Empfehlung tatsächlich gemacht hat (Wette platziert, Höhe, Zeitpunkt) — existiert bisher nur lose über `state.bets`, ohne belegte Verknüpfung zu einem `kiProtokoll`-Eintrag. Der **Observation Layer** existiert noch gar nicht. Beide sind eigene, künftige Bauaufgaben (Backlog-Punkt 75, Teil 2 und 3), nicht durch diesen Abschnitt vorweggenommen.
+*Berichtigt/ergänzt v19.11.0/v19.12.0: Beide inzwischen gebaut — Decision Ledger Fassung 98
+(11.9.2026), Observation Layer Fassung 101 (11.9.2026). Ergänzung Backlog-Punkt 78, 12.9.2026:
+Der Decision Ledger verknüpft eine Wette seither nicht mehr nur mit EINER, sondern optional
+mit MEHREREN `kiProtokoll`-Empfehlungen (`state.bets[].kiProtokollIds` als Liste, additiv zum
+alten Einzelfeld `kiProtokollId`) — für Kombi-Wetten, deren Einsatz und Ausgang sich auf
+mehrere Spiele gleichzeitig beziehen. Die Ebenen-Trennung selbst bleibt unberührt: weiterhin
+eine reine Referenzliste auf bereits erhobene Evidence-Ledger-Einträge, keine Ableitung einer
+Ebene aus einer anderen.*
 
 ---
 

@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 112 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 113 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,34 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 113 ändert (12.9., Kombi-Wette-Verknüpfung gebaut — Backlog-Punkt 78, `beta.html` v19.12.0)
+
+**Anlass:** Ondo hat Punkt 78 freigegeben („Punkt 78 freigegeben, bauen"), als zweiten von drei
+Punkten seiner festgelegten Reihenfolge für diese Sitzung (nach der Trainingsraum-
+Nachbesserung, vor Punkt 4).
+
+- **🔴 Backlog-Punkt 78 GEBAUT.** `state.bets[].kiProtokollIds` als Liste — Grundentscheidung,
+  von Claude und ChatGPT unabhängig getragen (Fassung 107). Additiv gebaut: die bestehende
+  Einzelauswahl (`kiWahlBlock()`) bleibt unverändert, ein neuer Block (`kiWahlKombiBlock()`,
+  Kontrollkästchen statt Dropdown) bietet weitere Spiele einer Kombi zusätzlich an, sichtbar
+  erst ab zwei offenen Vorhersagen. `addBet()` schreibt das alte Einzelfeld `kiProtokollId`
+  weiterhin bei genau einer Verknüpfung (Rückwärtskompatibilität mit bestehendem Code/Test),
+  das neue `kiProtokollIds` trägt ab sofort die vollständige Verknüpfung. `lernWetten()`
+  zählt eine Kombi als „aus KI", sobald mindestens ein Leg noch existiert.
+- **Kleine Nachtrag-Korrektur in derselben Lieferung:** `state.trainingsraumSpiele` (Weg b,
+  Backlog-Punkt 77) fehlte in `MESS_FELDER` (Punkt 44) — war bis zur Nachbesserung immer leer,
+  trägt jetzt echte Messdaten. Ergänzt.
+- **Verifiziert:** `node --check` bestanden · **22 neue Prüfungen** an den echten,
+  herausgeschnittenen Funktionen · alle bestehenden Suiten erneut gelaufen, alle weiterhin
+  bestanden · `pruefe.py`: ALLES SAUBER.
+- **2 neue Sprachschlüssel** (337 → 339). Kein Schnitt in der Messreihe. `beta.html` jetzt
+  v19.12.0.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 108 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: eins** — **4** *(78 ist jetzt gebaut, zählt nicht mehr mit.)*
 
 ---
 
@@ -142,42 +170,6 @@ weitergebaut wird — ausdrücklich VOR jedem weiteren Schritt zu klären.
 - **Regel 5 angewandt:** Abschnitt „Was Fassung 104 ändert" wortgleich nach
   `BACKLOG-ARCHIV.md` verschoben.
 - **Beschlossen und nicht gebaut: eins** — **4** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 108 ändert (12.9., Trainingsraum gebaut — Backlog-Punkt 77, `beta.html` v19.9.0)
-
-**Anlass:** Ondo hat den Trainingsraum-Plan freigegeben, mit dem ausdrücklichen Auftrag „nicht
-einfach Auftrag erledigen und fertig, sondern vorher wirklich durchdenken, absichern und
-zukunftsfähig konzipieren" — und dem Bau ohne weitere Rückfrage zugestimmt, wenn der Plan
-tragfähig ist.
-
-- **🔴 Backlog-Punkt 77 GEBAUT.** Vollständiger Plan, Selbstkritik und Architektur-Einordnung in
-  `Ondo-Core-Architektur.md`, Abschnitt 1d (neu, Fassung 0.9). Kurzfassung bei Punkt 77 selbst
-  (Punkt 45 — nicht doppelt geführt). Kern: `vorhersageGehirn()` unverändert wiederverwendet
-  (bereits ohne Websuche), Zulassungsregel nach Trainings-Stichtag gegen Trainingsdaten-
-  Kontamination (`TRAININGSRAUM_STICHTAG`, ohne geprüften Wert null zulässige Spiele — Art. 11),
-  sofortige Bewertung statt Schiedsrichter-Wartezeit, getrenntes Protokoll
-  (`state.trainingsraumProtokoll`) ohne Vermischung mit der echten Messreihe.
-- **Zwei echte Fehlerquellen selbst gefunden, vor der Auslieferung behoben** (keine von Ondo
-  genannt): `new Date()` auf einem deutschen Datumstext gelesen falsch (behoben durch feste
-  ISO-Daten) — und ein Wettlauf-Risiko in der geteilten Variable `zuletztModell.gehirn` bei zwei
-  potenziell gleichzeitigen Aufrufern, behoben über das schon vorhandene `modelVersion`-Feld
-  plus ein neues Sperr-Flag `kiAnfrageAktiv`.
-- **Ein Selbstkritik-Fund beim Bauen selbst, noch vor dem ersten Lauf korrigiert:** Die erste
-  Fassung der „schon gesehen"-Regel hätte den Weg-(a)-Vorrat für beide Gehirne fast leergeräumt.
-  Korrigiert auf die tatsächliche Leckquelle (nur die letzten sechs eigenen Vorhersagen im
-  `fruehere`-Kontext zählen als „schon gesehen", nicht jede je abgegebene).
-- **Verifiziert:** `node --check` bestanden · **40 neue Prüfungen** an den echten,
-  herausgeschnittenen Funktionen, darunter ein Regressionstest für den Wettlauf-Fund · die
-  bestehenden 121 (IndexedDB) und 45 (v19.8.28) Prüfungen erneut gelaufen, alle weiterhin
-  bestanden · `pruefe.py`: ALLES SAUBER.
-- **12 neue Sprachschlüssel** (306 → 318). Kein Schnitt in der Messreihe. `beta.html` jetzt
-  v19.9.0.
-- **Regel 5 angewandt:** Abschnitt „Was Fassung 103 ändert" wortgleich nach
-  `BACKLOG-ARCHIV.md` verschoben.
-- **Beschlossen und nicht gebaut: eins** — **4** *(unverändert — Punkt 77 war „Idee", zählt
-  jetzt als gebaut, nicht als beschlossen-und-nicht-gebaut.)*
 
 ---
 
@@ -1450,7 +1442,7 @@ Ondo wörtlich (Grundidee): „Es gibt die Möglichkeit einen Trainingsraum zu b
 
 ---
 
-**78. Kombi-Wette mit mehreren Vorhersagen verbinden** · *Fund Ondo, 12.9.2026 (Wetten per Foto hochgeladen, „Ich habe Kombi gespielt. Wie lässt sich das mit den aktuellen Vorhersagen verbinden?")* · **Status: beschlossen — 🔴 von Ondo freigegeben (12.9.2026): „Punkt 78 freigegeben, bauen" — als nächstes dran, nach der Trainingsraum-Nachbesserung**
+**78. Kombi-Wette mit mehreren Vorhersagen verbinden** · *Fund Ondo, 12.9.2026 (Wetten per Foto hochgeladen, „Ich habe Kombi gespielt. Wie lässt sich das mit den aktuellen Vorhersagen verbinden?")* · **Status: ✅ GEBAUT 12.9.2026, `beta.html` v19.12.0**
 
 → **Beleg aus dem Code (Art. H, belegt statt hergeleitet):** `fotoLesen()` legt für eine Kombi ausdrücklich **einen einzigen** Eintrag an (Gesamtquote = möglicher Gewinn ÷ Einsatz, so im eigenen KI-Prompt der Funktion verlangt) — und setzt dabei **weder `fromKI` noch `herkunft` noch `kiProtokollId`**. Eine per Foto eingelesene Kombi-Wette landet damit komplett ausserhalb der Lernkette (Decision Ledger, Backlog-Punkt 75 Teil 2), unabhängig davon, ob es sich um eine Kombi oder eine Einzelwette handelt. Auch der manuelle Weg (`kiWahlBlock()`/`kiWahlUebernehmen()`) kennt nur **eine** verknüpfte `kiProtokoll`-Vorhersage je Wette — eine Kombi aus mehreren Spielen, von denen jedes eine eigene Vorhersage hat, lässt sich damit an keiner Stelle im heutigen Code abbilden.
 → **Warum das schwieriger ist als eine Einzelwette:** Eine Kombi-Wette hat einen Einsatz und einen Ausgang (gewonnen/verloren), aber mehrere zugrundeliegende Spiele mit je eigener Vorhersage und je eigenem Ausgang. Die Lernkette rechnet heute in „eine Wette = eine Vorhersage" — eine Kombi bräuchte entweder „eine Wette = mehrere Vorhersagen" (neues Datenfeld, `state.bets[].kiProtokollIds` als Liste statt `kiProtokollId` als einzelner Wert) oder eine Aufteilung in mehrere Teil-Einträge (verändert aber Einsatz/Quote-Rechnung, die heute je Wette gilt).
@@ -1458,6 +1450,21 @@ Ondo wörtlich (Grundidee): „Es gibt die Möglichkeit einen Trainingsraum zu b
 → **Kosten:** noch nicht bezifferbar, hängt von der gewählten Datenform ab.
 → **🔴 ChatGPT-Rückfrage beantwortet (12.9.2026):** „Eine Kombi sollte eine einzige Wette bleiben und mehrere kiProtokollId-Verknüpfungen speichern. Sie in Teilwetten aufzuteilen wäre sachlich falsch: Einsatz, Gesamtquote, Gewinn/Verlust und Abrechnung gehören zur gesamten Kombi, nicht zu den einzelnen Legs. […] Technisch würde ich später eher eine strukturierte Liste der Legs vorsehen als nur nackte IDs, aber die Grundentscheidung lautet eindeutig: eine Wette → mehrere KI-Protokoll-Verknüpfungen." **Deckt sich mit Claudes Einschätzung (Liste statt Aufteilung) — kein Widerspruch.** Die von ChatGPT vorgeschlagene Verfeinerung (strukturierte Liste der Legs statt nackter IDs — z. B. je Leg auch Einsatz-Anteil oder Quote separat) ist eine spätere Ausbaustufe, nicht Teil der Grundentscheidung.
 → **🔴 Freigegeben (Ondo, 12.9.2026): „Punkt 78 freigegeben, bauen."** Grundentscheidung von beiden Prüfern getragen — `state.bets[].kiProtokollIds` als Liste. Reihenfolge laut Ondo: nach der Trainingsraum-Nachbesserung, vor Punkt 4.
+→ **✅ GEBAUT (12.9.2026, `beta.html` v19.12.0).** `state.bets[].kiProtokollIds` wie freigegeben.
+Additiv gebaut, statt `kiWahlBlock()` umzubauen: die bestehende Einzelauswahl bleibt
+unverändert die erste Verknüpfung; ein neuer Block `kiWahlKombiBlock()` (Kontrollkästchen,
+sichtbar erst ab zwei offenen Vorhersagen) bietet weitere Spiele zusätzlich an. `addBet()`
+schreibt das alte Einzelfeld `kiProtokollId` weiterhin genau dann, wenn nur eine Vorhersage
+verknüpft wurde (Rückwärtskompatibilität mit bestehendem Code und Test) — `kiProtokollIds`
+trägt ab sofort die vollständige, kanonische Verknüpfung. `lernWetten()` zählt eine Kombi als
+„aus KI", sobald mindestens ein Leg noch existiert, als „verwaist" nur, wenn keines mehr
+existiert. Anzeige: 🧠🌱 bei gemischter Herkunft, plus Anzahl verknüpfter Vorhersagen ab zwei
+Legs. **Nebenbei korrigiert:** `state.trainingsraumSpiele` (Weg b, Punkt 77) fehlte in
+`MESS_FELDER` (Punkt 44) — ergänzt, da es seit der Nachbesserung echte Messdaten trägt.
+**Verifiziert:** `node --check` bestanden · **22 neue Prüfungen** an den echten,
+herausgeschnittenen Funktionen · alle bestehenden Suiten erneut gelaufen, alle weiterhin
+bestanden · `pruefe.py`: ALLES SAUBER. **2 neue Sprachschlüssel** (337 → 339). Kein Schnitt in
+der Messreihe.
 
 ---
 
