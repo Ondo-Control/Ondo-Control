@@ -3,9 +3,18 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.104
+**Version:** 0.105
 **Stand:** 12. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.105 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> Ondos Entscheidungen zu Historie/Konto, Finanzen-Platzierung und Punkt 3 (Backlog Fassung
+> 106): Korrigieren-Felder für Konto/Tipico-Stand gebaut, Kalibrierung/Observation
+> Layer/gepaarter Vergleich von „Finanzen" nach „Mehr" verschoben (`beta.html` v19.8.31),
+> Backlog-Punkt 3 auf Ondos Entscheidung überholt, zwei neue Backlog-Punkte (77 „Trainingsraum",
+> 78 „Kombi-Wette-Verknüpfung") angelegt. Kein Verfassungsartikel geändert, keine neue
+> Arbeitsregel — alles Einzelheiten stehen im Backlog, nicht hier (Punkt 45). Blueprint auf
+> 0.105 gehoben.
 
 > **Was Fassung 0.104 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass
 > war eine Berichtigung Ondos, kein Codeaufwand (Backlog Fassung 105): Der Test zur ersten

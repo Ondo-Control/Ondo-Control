@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.30';
+var CODE_VERSION = 'v19.8.31';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -210,6 +210,8 @@ var I18N = {
   finT:'Geldbewegungen', depNew:'Neue Einzahlung erfassen (€)', add:'+ Hinzufügen',
   depTotal:'Eingezahlt gesamt', autoAdd:'wird automatisch addiert',
   wdNew:'Auszahlung erfassen (€) — Geld aufs Konto geholt', wdTotal:'Ausgezahlt gesamt', realized:'(realisierter Gewinn)',
+  depKorrLabel:'Eingezahlt gesamt korrigieren (€)', wdKorrLabel:'Ausgezahlt gesamt korrigieren (€)',
+  korrHinweis:'Nur anpassen, wenn die Zahlen nicht mehr stimmen — z. B. nach dem Löschen der Wetten-Historie.',
   startBal:'Startbilanz vor Ondo Control (€)', startBalD:'Nur anpassen, falls der Tipico-Stand nicht exakt stimmt.',
   lang:'Sprache', pinT:'🔒 PIN-Sperre', pinD:'Sichtschutz auf diesem Gerät — keine Banken-Verschlüsselung.',
   pinLabel:'PIN (4-8 Ziffern, leer = keine Sperre)', pinOn:'✅ Sperre aktiv (ab nächstem Öffnen)', pinOff:'Keine Sperre',
@@ -343,6 +345,8 @@ var I18N = {
   finT:'Mouvements d’argent', depNew:'Nouveau dépôt (€)', add:'+ Ajouter',
   depTotal:'Total déposé', autoAdd:'addition automatique',
   wdNew:'Retrait (€) — argent viré sur ton compte', wdTotal:'Total retiré', realized:'(gain réalisé)',
+  depKorrLabel:'Corriger le total déposé (€)', wdKorrLabel:'Corriger le total retiré (€)',
+  korrHinweis:'À corriger seulement si les chiffres ne sont plus justes — par ex. après avoir supprimé l’historique des paris.',
   startBal:'Bilan de départ avant Ondo Control (€)', startBalD:'À ajuster seulement si le solde Tipico ne colle pas.',
   lang:'Langue', pinT:'🔒 Verrou PIN', pinD:'Protection visuelle sur cet appareil — pas un coffre bancaire.',
   pinLabel:'PIN (4-8 chiffres, vide = pas de verrou)', pinOn:'✅ Verrou actif (à la prochaine ouverture)', pinOff:'Pas de verrou',
@@ -476,6 +480,8 @@ var I18N = {
   finT:'Money movements', depNew:'Record new deposit (€)', add:'+ Add',
   depTotal:'Total deposited', autoAdd:'added automatically',
   wdNew:'Record withdrawal (€) — money moved to your bank', wdTotal:'Total withdrawn', realized:'(realised profit)',
+  depKorrLabel:'Correct total deposited (€)', wdKorrLabel:'Correct total withdrawn (€)',
+  korrHinweis:'Adjust only if the numbers are no longer right — e.g. after deleting the bet history.',
   startBal:'Starting balance before Ondo Control (€)', startBalD:'Adjust only if the Tipico balance does not match.',
   lang:'Language', pinT:'🔒 PIN lock', pinD:'Privacy screen on this device — not bank-grade encryption.',
   pinLabel:'PIN (4-8 digits, empty = no lock)', pinOn:'✅ Lock active (from next open)', pinOff:'No lock',
@@ -4021,9 +4027,6 @@ function viewFinance(c){
       '<div class="stat-val">'+eur(c.tipico)+'</div>'+
       '<div class="stat-sub">'+t('tipicoSub')+'</div></div>'+
   '</div>'+
-  kalibBlock()+
-  beobachtungenBlock()+
-  gepaartBlock()+
   '<div class="row">'+
     '<div class="card"><div class="stat-label">'+t('betBal')+'</div>'+
       '<div class="stat-val" style="color:'+(c.wettSaldo>0?"var(--win)":c.wettSaldo<0?"var(--loss)":"var(--text)")+'">'+fmt(c.wettSaldo)+'</div>'+
@@ -4044,6 +4047,14 @@ function viewFinance(c){
       '<button class="btn" style="width:auto;padding:11px 16px;font-size:15px" onclick="depAdd()">'+t('add')+'</button>'+
     '</div>'+
     '<div class="muted" style="margin-top:8px">'+t('depTotal')+': <b>'+eur(state.eingezahlt)+'</b> — '+t('autoAdd')+'.</div>'+
+    /* v19.8.31 (Auftrag Ondo 12.9.2026, "Korrigieren-Feld bauen"): Der +HINZUFUEGEN-Knopf
+       addiert nur, es gab bisher keinen Weg, state.eingezahlt/state.ausgezahlt auf einen
+       bestimmten Wert (z. B. 0, fuer einen Neustart der Historie) zu setzen — anders als bei
+       der Startbilanz, die schon ein direktes Eingabefeld hat. Gleiches Muster jetzt hier:
+       ein Zahlenfeld mit dem aktuellen Wert, oninput setzt state.eingezahlt direkt. Ersetzt
+       den Additions-Weg nicht, ergaenzt ihn nur. */
+    '<label style="margin-top:10px;display:block">'+t('depKorrLabel')+'</label>'+
+    '<input style="max-width:160px" inputmode="decimal" value="'+state.eingezahlt+'" oninput="var v=parseFloat(String(this.value).replace(\',\',\'.\'));if(!isNaN(v)){state.eingezahlt=v;save();}"/>'+
     '<div style="height:12px"></div>'+
     '<label>'+t('wdNew')+'</label>'+
     '<div style="display:flex;gap:8px;align-items:center">'+
@@ -4051,6 +4062,9 @@ function viewFinance(c){
       '<button class="btn" style="width:auto;padding:11px 16px;font-size:15px" onclick="wdAdd()">'+t('add')+'</button>'+
     '</div>'+
     '<div class="muted" style="margin-top:8px">'+t('wdTotal')+': <b>'+eur(state.ausgezahlt||0)+'</b> 💰 '+t('realized')+'</div>'+
+    '<label style="margin-top:10px;display:block">'+t('wdKorrLabel')+'</label>'+
+    '<input style="max-width:160px" inputmode="decimal" value="'+(state.ausgezahlt||0)+'" oninput="var v=parseFloat(String(this.value).replace(\',\',\'.\'));if(!isNaN(v)){state.ausgezahlt=v;save();}"/>'+
+    '<div class="muted" style="margin-top:8px">'+t('korrHinweis')+'</div>'+
   '</div>'+
   '<div class="card"><label>'+t('startBal')+'</label>'+
     '<input style="max-width:160px" inputmode="text" value="'+state.startSaldo+'" oninput="var v=parseFloat(String(this.value).replace(\',\',\'.\'));if(!isNaN(v)){state.startSaldo=v;save();}"/>'+
@@ -4127,6 +4141,13 @@ function viewMore(){
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">⚔️ '+t('duellT')+'</div>'+
     '<div class="muted">'+t('duellD')+'</div>'+
   '</div>'+
+  /* v19.8.31 (Auftrag Ondo 12.9.2026, "Wenn es geht dann unter mehr"): Kalibrierung,
+     Beobachtungen und gepaarter Vergleich gehoeren zu den KI-Modulen (Wetten und
+     zukuenftig weitere), nicht zu den persoenlichen Finanzen von Ondo — von dort
+     hierher verschoben. */
+  kalibBlock()+
+  beobachtungenBlock()+
+  gepaartBlock()+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">🎛 '+t('mdlT')+'</div>'+
     '<div class="muted" style="margin-bottom:12px">'+t('mdlD')+'</div>'+
     modellFeld('gehirn')+

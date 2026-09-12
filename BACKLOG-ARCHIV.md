@@ -410,6 +410,72 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 101 ändert (11.9., die drei Funde behoben und die Lernkette fertiggebaut — `beta.html` v19.8.28)
+
+**Anlass:** „mach bei allen Punkten was nötig ist damit es sauber läuft, bau einfach weiter."
+Das ist die Freigabe nach Art. 8 für die drei Lücken aus Fassung 100 und für Teil 3.
+
+- **✅ Backlog-Punkt 64 geschlossen — zweiter UND dritter Fund, dieselbe Stelle in
+  `pruefAnwenden()`.** Halbzeit- und Verlängerungsstand werden jetzt **übernommen** statt
+  verworfen; der Schiedsrichter lieferte sie, `refLaufPruefen()` rechnete sie gegen den
+  Endstand, `pruefBlock()` zeigte sie Ondo vor dem Übernehmen — und danach gingen sie
+  verloren. Eine **leere** Angabe entfernt das Feld, statt einen leeren Text zu speichern
+  (sonst stünde eine leere Phasenzeile in der Karte, wo vorher keine war). `ergebnisQuelle`
+  wird beim Überschreiben **entfernt**: Das Ergebnis kommt ab dann vom Lauf dieser App, die
+  Kennzeichnung „von Hand eingetragen" wäre genau die Falschangabe, gegen die Art. 14 dieses
+  Feld eingeführt hat.
+- **✅ Löschen ohne Rückfrage behoben.** `delBet()` und `logLoeschen()` fragen jetzt, mit dem
+  **Spielnamen in der Frage** — sichtbar ist damit, *was* gelöscht wird, nicht nur *dass*.
+  Ein „Nein" löst nachweislich auch kein `render()` aus, hat also keine stille Nebenwirkung.
+- **✅ Speichergrenze sichtbar gemacht.** Ein gescheitertes Speichern verschwand nach 1,5
+  Sekunden; jetzt bleibt ein roter Balken über **jeder** Ansicht stehen, bis ein Speichern
+  wieder gelingt, und meldet sich **einmal** mit einem Hinweisfenster — nicht bei jedem
+  weiteren Klick, sonst wäre es eine Fensterflut. Die Sicherungskarte nennt den belegten
+  Speicher in KB, **gemessen** an genau der Zeichenkette, die `save()` schreibt.
+  **Die Warngrenze von 3 MB ist ausdrücklich selbst gesetzt, keine Browser-Tatsache** — was
+  Safari auf Ondos iPhone wirklich zulässt, kann eine Code-Sitzung ohne dieses Gerät nicht
+  feststellen (Art. 11). Vorsichtig gewählt, damit der Hinweis kommt, **bevor** etwas
+  scheitert.
+- **🔴 Backlog-Punkt 75, Teil 3 GEBAUT — der Observation Layer. Die Lernkette steht damit
+  vollständig.** Neuer Block „Was die Daten sagen" in den Finanzen, unter der Kalibrierung.
+  Vier Beobachtungen: **Selbsteinschätzung je Gehirn** (behauptet gegen eingetroffen, mit
+  Vorzeichen — überschätzt oder unterschätzt sich) · **schwächster Markt** (ein Markt mit
+  weniger als zehn Aussagen bestimmt das Urteil ausdrücklich **nicht**) · **trägt hohe
+  Zuversicht?** (treffen Aussagen ab 70 % öfter zu als unsichere — wenn nicht, ist die
+  Prozentzahl selbst wertlos, und das ist die praktisch wichtigste Aussage, die sich aus
+  diesen Daten ziehen lässt) · **Wetten aus einer Vorhersage gegen von Hand gesetzte**.
+  **Die Auflage aus `Ondo-Core-Architektur.md` 1c ist eingelöst und maschinell belegt:**
+  `lernGrundlage()` schliesst geparkte Einträge und solche mit `refEinigkeit` aus — genau die
+  zwei Felder, auf die die Auflage in Fassung 99 festgenagelt wurde. Ein eigener Trockentest
+  belegt, dass solche Einträge die Beobachtung nachweislich nicht verschieben.
+  **Offen benannt, kein Widerspruch:** Der Observation Layer rechnet dadurch auf einer
+  **kleineren** Grundlage als die Kalibrierungsanzeige darüber (`calcKalibrierung` kennt diese
+  zwei Ausschlüsse nicht). Die Zahlen der zwei Bereiche dürfen abweichen — dort wird gemessen,
+  hier wird gelernt, und Lernen verlangt die härteren Belege.
+  **Die bei Teil 2 benannte Stelle ist abgefangen:** Eine Wette, deren `kiProtokollId` nach
+  dem Einspielen einer Sicherung ins Leere zeigt, wird **eigens gezählt** und in keine der
+  beiden Gruppen geschoben — sie stillschweigend als „von Hand" zu zählen wäre eine erfundene
+  Zuordnung.
+  **Schwellen:** ab 20 bewerteten Aussagen „belegt", ab 10 „Hinweis", darunter wird nichts
+  behauptet und „zu wenig" angezeigt (Art. 11/14).
+- **Verifiziert:** `node --check` bestanden · **66 neue Prüfungen** an den echten, aus
+  `beta.html` herausgeschnittenen Funktionen (nicht an Nachbauten): 55 an der Rechenlogik,
+  11 als Rauchtest am neuen Anzeigeblock — er belegt unter anderem, dass ein Eintrag ohne
+  `maerkte`-Feld aus einem alten Save nicht abstürzt und nirgends „undefined" erscheint · die bestehenden **64**
+  erneut gelaufen, alle weiterhin bestanden · `pruefe.py`: ALLES SAUBER.
+- **🔴 Ein Fehlschlag im Prüfstand selbst, offen benannt:** Vier Prüfungen scheiterten zunächst,
+  weil in der Testumgebung der Speicherschlüssel `KEY` fehlte — dadurch scheiterte auch das
+  *gelingende* Speichern und der Alarm blieb zu Recht stehen. Ein Fehler des Prüfstands, nicht
+  des Codes. Eine zusätzliche Prüfung nagelt jetzt fest, dass das gelungene Speichern wirklich
+  ankommt, damit derselbe stille Fehlschlag nicht irgendwann als Codefehler gelesen wird.
+- **23 neue Sprachschlüssel** (279 → 302). **Kein Schnitt in der Messreihe** — die
+  Kalibrierungsrechnung ist unangetastet. `APP_VERSION` weiter 18.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 96 ändert" wortgleich nach `BACKLOG-ARCHIV.md`
+  verschoben.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
+
+---
+
 ## ⚠ Was Fassung 100 ändert (11.9., vollständige Prüfung von `beta.html` auf Ondos Verlangen)
 
 **Anlass:** „Beta vollständig und gründlich auf Fehler /Lücken komplett prüfen, wenn alles

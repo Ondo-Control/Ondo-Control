@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 105 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 106 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,23 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 106 ändert (12.9., Ondos Entscheidungen zu Historie/Konto, Finanzen-Platzierung, Punkt 3 — `beta.html` v19.8.31)
+
+**Anlass:** Ondo hat vier Punkte aus der letzten Übergabe entschieden: Historie gelöscht → Korrigieren-Feld für Konto/Tipico-Stand; KI-Zahlen sollen nicht unter „Finanzen" stehen, sondern unter „Mehr"; Punkt 3 (Such-Experiment) hat für ihn keinen Mehrwert mehr, dafür ein neuer Vorschlag „Trainingsraum"; die Kombi-Wette-Verknüpfung ist als offene Design-Frage an Claude delegiert.
+
+- **🔴 Korrigieren-Feld gebaut (Auftrag Ondo: „Korrigieren-Feld bauen").** Unter Finanzen stehen jetzt zwei zusätzliche Zahlenfelder — „Eingezahlt gesamt korrigieren" und „Ausgezahlt gesamt korrigieren" — nach demselben Muster wie das bestehende Startbilanz-Feld: Zahl eintragen, `oninput` setzt `state.eingezahlt`/`state.ausgezahlt` direkt, sofort gespeichert. Der bestehende „+HINZUFÜGEN"-Weg (`depAdd()`/`wdAdd()`, addiert nur) bleibt unverändert bestehen, wird durch das neue Feld nur ergänzt, nicht ersetzt. Damit kann Ondo nach dem Löschen der Historie Konto- und Tipico-Stand wieder auf 0 (oder jeden anderen Wert) setzen.
+- **🔴 KI-Module von „Finanzen" nach „Mehr" verschoben (Auftrag Ondo: „Wenn es geht dann unter mehr. Diese KI Daten gelten nur zu diesem Modul Wetten und noch für alles").** `kalibBlock()` (Kalibrierung), `beobachtungenBlock()` (Observation Layer, Backlog-Punkt 75 Teil 3) und `gepaartBlock()` (gepaarter Vergleich) standen bisher in `viewFinance()`, direkt unter Ondos persönlichen Zahlen. Jetzt in `viewMore()`, zwischen der Duell-Modus-Karte und der Modellwahl — bei den anderen KI-/Modelleinstellungen, nicht bei den Finanzen. Reine Verschiebung der Anzeige, keine Funktion und keine Rechnung geändert.
+- **🔴 Backlog-Punkt 3 (Such-Experiment) auf Ondos Entscheidung überholt.** Ondo: „Wir würden weiterhin eine Endlose Schleife drehen." Im selben Zug neuer **Backlog-Punkt 77 „Trainingsraum"** angelegt (Status: Idee) — Ondos Ersatzvorschlag, Gehirne an bereits ausgewerteten oder vergangenen Spielen ohne Erinnerung/Websuche zu testen. Claudes eigener methodischer Einwand (Risiko, dass ein Modell vergangene Ergebnisse aus Trainingsdaten „kennt" statt blind vorherzusagen) ist beim Punkt vermerkt, noch nicht mit Ondo besprochen — daher hier festgehalten, nicht verschwiegen.
+- **🔴 Neuer Backlog-Punkt 78 „Kombi-Wette mit mehreren Vorhersagen verbinden"** (Status: Idee, offene Design-Frage) — Ondo hat die Lösung ausdrücklich an Claude delegiert. Im Code belegt (Art. H): Weder der Foto-Weg (`fotoLesen()`) noch der manuelle Weg (`kiWahlBlock()`) verknüpfen eine Kombi-Wette mit mehr als einer Vorhersage; eine per Foto erfasste Kombi landet sogar komplett ausserhalb der Lernkette. Noch nicht entworfen — eine Lösung braucht zuerst eine Entscheidung über die Datenform (Liste von Vorhersage-IDs je Wette vs. Aufteilung in mehrere Teil-Einträge), das ist eine Architekturfrage, kein reines Anzeigefeld.
+- **ChatGPT-Rückfrage vorbereitet** (Auftrag Ondo: „Zu allen oder einige diese Punkte könntest du eine Nachricht für Chatgpt verfassen und deine Meinung einholen") — Punkt 77 (Trainingsraum) und Punkt 78 (Kombi-Verknüpfung) sind die zwei Punkte mit offenem Architektur-Charakter; Nachricht Ondo direkt im Chat mitgegeben, nicht Teil dieses Dokuments.
+- **Verifiziert:** `node --check` auf der aus `beta.html` herausgeschnittenen Script-Datei bestanden. Keine neue Rechenlogik (reine Anzeige-Verschiebung und Zahlenfelder nach bestehendem Muster) — deshalb keine neuen automatisierten Prüfungen, dafür Lesekontrolle gegen das bereits geprüfte Startbilanz-Vorbild.
+- **3 neue Sprachschlüssel** (`depKorrLabel`, `wdKorrLabel`, `korrHinweis`) in DE/FR/EN.
+- **`beta.html` jetzt v19.8.31.**
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 101 ändert" wortgleich nach `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: eins** — **4** *(Punkt 3 ist auf Ondos Entscheidung überholt, zählt nicht mehr mit; 77 und 78 sind Ideen, nicht beschlossen.)*
 
 ---
 
@@ -112,72 +129,6 @@ behandelt, `CLAUDE.md` soll erneuert werden. Diese Fassung deckt den ersten Punk
 - **Verifiziert:** `node --check` bestanden · `pruefe.py`: ALLES SAUBER. Kein neuer
   Sprachschlüssel, kein Schnitt in der Messreihe. `APP_VERSION` weiter 18.
 - **Regel 5 angewandt:** Abschnitt „Was Fassung 97 ändert" wortgleich nach `BACKLOG-ARCHIV.md`
-  verschoben.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 101 ändert (11.9., die drei Funde behoben und die Lernkette fertiggebaut — `beta.html` v19.8.28)
-
-**Anlass:** „mach bei allen Punkten was nötig ist damit es sauber läuft, bau einfach weiter."
-Das ist die Freigabe nach Art. 8 für die drei Lücken aus Fassung 100 und für Teil 3.
-
-- **✅ Backlog-Punkt 64 geschlossen — zweiter UND dritter Fund, dieselbe Stelle in
-  `pruefAnwenden()`.** Halbzeit- und Verlängerungsstand werden jetzt **übernommen** statt
-  verworfen; der Schiedsrichter lieferte sie, `refLaufPruefen()` rechnete sie gegen den
-  Endstand, `pruefBlock()` zeigte sie Ondo vor dem Übernehmen — und danach gingen sie
-  verloren. Eine **leere** Angabe entfernt das Feld, statt einen leeren Text zu speichern
-  (sonst stünde eine leere Phasenzeile in der Karte, wo vorher keine war). `ergebnisQuelle`
-  wird beim Überschreiben **entfernt**: Das Ergebnis kommt ab dann vom Lauf dieser App, die
-  Kennzeichnung „von Hand eingetragen" wäre genau die Falschangabe, gegen die Art. 14 dieses
-  Feld eingeführt hat.
-- **✅ Löschen ohne Rückfrage behoben.** `delBet()` und `logLoeschen()` fragen jetzt, mit dem
-  **Spielnamen in der Frage** — sichtbar ist damit, *was* gelöscht wird, nicht nur *dass*.
-  Ein „Nein" löst nachweislich auch kein `render()` aus, hat also keine stille Nebenwirkung.
-- **✅ Speichergrenze sichtbar gemacht.** Ein gescheitertes Speichern verschwand nach 1,5
-  Sekunden; jetzt bleibt ein roter Balken über **jeder** Ansicht stehen, bis ein Speichern
-  wieder gelingt, und meldet sich **einmal** mit einem Hinweisfenster — nicht bei jedem
-  weiteren Klick, sonst wäre es eine Fensterflut. Die Sicherungskarte nennt den belegten
-  Speicher in KB, **gemessen** an genau der Zeichenkette, die `save()` schreibt.
-  **Die Warngrenze von 3 MB ist ausdrücklich selbst gesetzt, keine Browser-Tatsache** — was
-  Safari auf Ondos iPhone wirklich zulässt, kann eine Code-Sitzung ohne dieses Gerät nicht
-  feststellen (Art. 11). Vorsichtig gewählt, damit der Hinweis kommt, **bevor** etwas
-  scheitert.
-- **🔴 Backlog-Punkt 75, Teil 3 GEBAUT — der Observation Layer. Die Lernkette steht damit
-  vollständig.** Neuer Block „Was die Daten sagen" in den Finanzen, unter der Kalibrierung.
-  Vier Beobachtungen: **Selbsteinschätzung je Gehirn** (behauptet gegen eingetroffen, mit
-  Vorzeichen — überschätzt oder unterschätzt sich) · **schwächster Markt** (ein Markt mit
-  weniger als zehn Aussagen bestimmt das Urteil ausdrücklich **nicht**) · **trägt hohe
-  Zuversicht?** (treffen Aussagen ab 70 % öfter zu als unsichere — wenn nicht, ist die
-  Prozentzahl selbst wertlos, und das ist die praktisch wichtigste Aussage, die sich aus
-  diesen Daten ziehen lässt) · **Wetten aus einer Vorhersage gegen von Hand gesetzte**.
-  **Die Auflage aus `Ondo-Core-Architektur.md` 1c ist eingelöst und maschinell belegt:**
-  `lernGrundlage()` schliesst geparkte Einträge und solche mit `refEinigkeit` aus — genau die
-  zwei Felder, auf die die Auflage in Fassung 99 festgenagelt wurde. Ein eigener Trockentest
-  belegt, dass solche Einträge die Beobachtung nachweislich nicht verschieben.
-  **Offen benannt, kein Widerspruch:** Der Observation Layer rechnet dadurch auf einer
-  **kleineren** Grundlage als die Kalibrierungsanzeige darüber (`calcKalibrierung` kennt diese
-  zwei Ausschlüsse nicht). Die Zahlen der zwei Bereiche dürfen abweichen — dort wird gemessen,
-  hier wird gelernt, und Lernen verlangt die härteren Belege.
-  **Die bei Teil 2 benannte Stelle ist abgefangen:** Eine Wette, deren `kiProtokollId` nach
-  dem Einspielen einer Sicherung ins Leere zeigt, wird **eigens gezählt** und in keine der
-  beiden Gruppen geschoben — sie stillschweigend als „von Hand" zu zählen wäre eine erfundene
-  Zuordnung.
-  **Schwellen:** ab 20 bewerteten Aussagen „belegt", ab 10 „Hinweis", darunter wird nichts
-  behauptet und „zu wenig" angezeigt (Art. 11/14).
-- **Verifiziert:** `node --check` bestanden · **66 neue Prüfungen** an den echten, aus
-  `beta.html` herausgeschnittenen Funktionen (nicht an Nachbauten): 55 an der Rechenlogik,
-  11 als Rauchtest am neuen Anzeigeblock — er belegt unter anderem, dass ein Eintrag ohne
-  `maerkte`-Feld aus einem alten Save nicht abstürzt und nirgends „undefined" erscheint · die bestehenden **64**
-  erneut gelaufen, alle weiterhin bestanden · `pruefe.py`: ALLES SAUBER.
-- **🔴 Ein Fehlschlag im Prüfstand selbst, offen benannt:** Vier Prüfungen scheiterten zunächst,
-  weil in der Testumgebung der Speicherschlüssel `KEY` fehlte — dadurch scheiterte auch das
-  *gelingende* Speichern und der Alarm blieb zu Recht stehen. Ein Fehler des Prüfstands, nicht
-  des Codes. Eine zusätzliche Prüfung nagelt jetzt fest, dass das gelungene Speichern wirklich
-  ankommt, damit derselbe stille Fehlschlag nicht irgendwann als Codefehler gelesen wird.
-- **23 neue Sprachschlüssel** (279 → 302). **Kein Schnitt in der Messreihe** — die
-  Kalibrierungsrechnung ist unangetastet. `APP_VERSION` weiter 18.
-- **Regel 5 angewandt:** Abschnitt „Was Fassung 96 ändert" wortgleich nach `BACKLOG-ARCHIV.md`
   verschoben.
 - **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
 
@@ -1407,14 +1358,36 @@ Kern von ChatGPTs Architekturantwort: **Formvalidierung statt Inhaltsvalidierung
 
 ---
 
-**3. Such-Experiment** · *Idee 23.7., Claude* · **Status: beschlossen — ruht auf Ondos Wunsch (27.8.), nicht mehr blockiert**
+**3. Such-Experiment** · *Idee 23.7., Claude* · **Status: 🔴 überholt (Ondo, 12.9.2026)**
 
 Vier Wochen ohne Websuche messen, dann Suche zuschalten, Kalibrierung vergleichen. Die Messung ohne Suche läuft seit dem 23. Juli — **vier Wochen sind am 20. August um.**
 
 → **🔴 Berichtigt (27.8.):** Hier stand „die Pause bricht den zweiten Teil", weil ein Vergleich mit Suche neue Vorhersagen brauche und die Pause seit 14.8. keine liefere. **Das war ab dem 25.8. nicht mehr richtig** — laut KI-Log gibt es am 25.8. (24 offene) und 26.8. (10 offene) neue Vorhersagen. Der zweite Teil ist also technisch wieder möglich, eine kleine Messreihe könnte jederzeit gestartet werden.
 → **Ondos Entscheidung (27.8.): trotzdem vorerst ruhen lassen.** Keiner der drei Wege ist damit ausgeschlossen, nur bewusst noch nicht gewählt.
 → **Kosten:** Ruhenlassen und Streichen kosten nichts. Zusätzliche Läufe kosten Modellaufrufe in unbekannter Höhe, weil die Zahl der nötigen Läufe nicht feststeht.
-→ **Empfehlung Claude weiterhin: ruhen lassen.** Der Punkt ist nicht verdorben, nur vertagt — die Messreihe ohne Suche bleibt vollständig erhalten und wäre jederzeit die Vergleichsgrundlage.
+→ *Hier stand bis heute „Empfehlung Claude weiterhin: ruhen lassen" — vorherige Einschätzung, durch Ondos Entscheidung vom 12.9.2026 ersetzt, nicht stillschweigend überschrieben.*
+→ **🔴 Ondos Entscheidung (12.9.2026): kein Mehrwert, endgültig nicht weiterverfolgt.** Wörtlich: „Wir würden weiterhin eine Endlose Schleife drehen." Ondo hat im selben Zug einen Ersatzvorschlag gemacht — siehe Punkt 77 (Trainingsraum), der dasselbe Ziel (mehr Messdaten für Kalibrierung/Entschlossenheit) auf einem anderen Weg verfolgt.
+
+---
+
+**77. Trainingsraum — Gehirne an bereits ausgewerteten Spielen testen, ohne Erinnerung/Websuche** · *Idee Ondo, 12.9.2026 (Ersatzvorschlag für Punkt 3)* · **Status: Idee**
+
+Ondo wörtlich: „Es gibt die Möglichkeit einen Trainingsraum zu bauen (in der App oder außerhalb im Repo) mit den bereits ausgewerteten Spielen, wo die Gehirne diese Tests durchlaufen könnten ohne Zugriff auf Erinnerung und Websuche. Dieser Trainingsraum könnte später etwas nützlich sein, falls wir andere Modelle einsetzen wollen oder andere Module entwickeln wollen, oder andere KIs. Dieser Raum könnte entweder die gesammelten Spiele nutzen oder Spiele in der Vergangenheit einbauen, wo man schon die Ergebnisse kennt. Das könnte man auch nutzen für den Punkt Entschlossenheit, z. B. wo wir viele Daten benötigen. Das würde uns viel Zeit sparen."
+
+→ **Zwei mögliche Datenquellen, von Ondo selbst genannt:** (a) die bereits in der App gesammelten, schon ausgewerteten Spiele — die Ergebnisse liegen vor, aber die Gehirne haben dazu noch keine Vorhersage abgegeben; (b) Spiele weiter in der Vergangenheit, deren Ergebnis öffentlich bekannt ist.
+→ **🔴 Eigener methodischer Einwand, Claude (12.9.2026), noch nicht mit Ondo besprochen:** Bei Weg (b) besteht das Risiko, dass ein Sprachmodell das Ergebnis eines vergangenen, bekannten Spiels aus seinen Trainingsdaten „kennt", statt wirklich blind vorherzusagen — das würde die Messung wertlos machen, ohne dass es auffällt (ein Gehirn, das zufällig oder aus Gedächtnis richtig liegt, sieht in der Kalibrierung genauso aus wie eines, das wirklich gut vorhersagt). Weg (a) hat dieses Risiko nicht, weil diese Spiele aus laufendem Betrieb stammen und kein trainiertes Modell sie vorab „kennen" kann. **Das ist keine Ablehnung des Vorschlags**, nur ein offener Punkt, der vor dem Bau zu klären ist — am ehesten durch Ausschluss von Weg (b) oder durch eine Gegenprobe (z. B. Vorhersage ohne Datum/Liga-Kontext, der auf ein bestimmtes Spiel schliessen liesse).
+→ **Kosten:** Vom Umfang abhängig — ein Trainingsraum, der auf bereits vorhandene Daten zugreift, kostet vor allem Bauzeit, keine neuen API-Kosten über das Übliche hinaus (jeder Testlauf ruft weiterhin ein Modell auf, wie eine normale Vorhersage). Eine Schätzung in Modellaufrufen oder Bauzeit steht noch aus — dafür fehlt ein fixierter Umfang.
+→ **Nächster Schritt (Art. 8, nichts gebaut ohne Ondos Entscheidung):** siehe „Zu allen oder einige dieser Punkte könntest du eine Nachricht für ChatGPT verfassen" — ChatGPT-Rückfrage vorbereitet, unten in diesem Dokument referenziert (Fassung-106-Abschnitt), Antwort steht aus.
+
+---
+
+**78. Kombi-Wette mit mehreren Vorhersagen verbinden** · *Fund Ondo, 12.9.2026 (Wetten per Foto hochgeladen, „Ich habe Kombi gespielt. Wie lässt sich das mit den aktuellen Vorhersagen verbinden?")* · **Status: Idee — offene Design-Frage, an Claude delegiert („da musst du dir was einfallen lassen")**
+
+→ **Beleg aus dem Code (Art. H, belegt statt hergeleitet):** `fotoLesen()` legt für eine Kombi ausdrücklich **einen einzigen** Eintrag an (Gesamtquote = möglicher Gewinn ÷ Einsatz, so im eigenen KI-Prompt der Funktion verlangt) — und setzt dabei **weder `fromKI` noch `herkunft` noch `kiProtokollId`**. Eine per Foto eingelesene Kombi-Wette landet damit komplett ausserhalb der Lernkette (Decision Ledger, Backlog-Punkt 75 Teil 2), unabhängig davon, ob es sich um eine Kombi oder eine Einzelwette handelt. Auch der manuelle Weg (`kiWahlBlock()`/`kiWahlUebernehmen()`) kennt nur **eine** verknüpfte `kiProtokoll`-Vorhersage je Wette — eine Kombi aus mehreren Spielen, von denen jedes eine eigene Vorhersage hat, lässt sich damit an keiner Stelle im heutigen Code abbilden.
+→ **Warum das schwieriger ist als eine Einzelwette:** Eine Kombi-Wette hat einen Einsatz und einen Ausgang (gewonnen/verloren), aber mehrere zugrundeliegende Spiele mit je eigener Vorhersage und je eigenem Ausgang. Die Lernkette rechnet heute in „eine Wette = eine Vorhersage" — eine Kombi bräuchte entweder „eine Wette = mehrere Vorhersagen" (neues Datenfeld, `state.bets[].kiProtokollIds` als Liste statt `kiProtokollId` als einzelner Wert) oder eine Aufteilung in mehrere Teil-Einträge (verändert aber Einsatz/Quote-Rechnung, die heute je Wette gilt).
+→ **Noch nicht entworfen, nur die Lücke belegt.** Eine Lösung braucht eine Entscheidung über die Datenform (Liste vs. Aufteilung) — das ist eine Architekturfrage (Ondo-Core-Architektur.md, Ebenen-Trennung 1b), nicht nur ein Anzeigefeld, deshalb hier als offene Design-Frage vermerkt statt sofort gebaut.
+→ **Kosten:** noch nicht bezifferbar, hängt von der gewählten Datenform ab.
+→ **Nächster Schritt:** ebenfalls Teil der ChatGPT-Rückfrage unten — zwei Meinungen vor einer Architekturentscheidung sind hier sinnvoller als eine.
 
 ---
 
