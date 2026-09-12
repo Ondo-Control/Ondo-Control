@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 109 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 110 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,37 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 110 ändert (12.9., echte Vorhersagen hatten nie Websuche — Fund, Berichtigung, neuer Punkt 79)
+
+**Anlass:** Im Gespräch über den Trainingsraum kam heraus, dass Ondo davon ausging, die echten
+Vorhersagen würden per Websuche recherchieren (Kader, Verletzte, Formstärke). Am Code geprüft:
+**das stimmt nicht, seit v19.0 nie.** Ondo hat das zu Recht als echte Lücke in der bisherigen
+Dokumentation kritisiert.
+
+- **🔴 STAND.md ergänzt:** „Was aus diesem Messstand NICHT geschlossen werden darf" trägt jetzt
+  den Satz, der von Anfang an dort hätte stehen müssen — keine Vorhersage beruht auf Recherche,
+  nur auf trainiertem Wissen des Modells.
+- **🔴 Ondo-Core-Architektur.md, Abschnitt 2 und 3 berichtigt** (Fassung 0.10): Beide beschrieben
+  seit ihrer ersten Fassung ein nie gebautes Ziel (Pflichtprozess mit Quellenprüfung,
+  Vertrauensstufen mit Begründungszeilen) als wäre es der aktuelle Stand. Mit Streichung und
+  Vermerk richtiggestellt, nicht überschrieben.
+- **🔴 Neuer Backlog-Punkt 79 „Websuche für echte Vorhersagen".** Ondos Entscheidung auf zwei
+  Fragen: „Ja für beides" — echte Vorhersagen bekommen künftig Websuche, der Trainingsraum
+  bleibt ausdrücklich ohne Suche. Noch nicht entworfen (Umfang, Kosten, ob ein Schnitt in der
+  Messreihe entsteht) — Claude legt vor dem Bau einen Entwurf vor.
+- **Backlog-Punkt 3 (Such-Experiment) ergänzt:** Seine Grundfrage war nie hypothetisch, sondern
+  eine reale, unbenannte Lücke — lebt jetzt in Punkt 79 weiter, mit den bisherigen rund 500
+  Vorhersagen ohne Suche als „Vorher"-Vergleichsbasis, ohne die in Punkt 3 vorgesehene
+  zusätzliche Wartezeit.
+- **Kein Codeaufwand in dieser Fassung** — reine Buchführung und Berichtigung. `beta.html`
+  bleibt v19.9.0. `pruefe.py`: ALLES SAUBER.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 105 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: zwei** — **4, 79** *(79 neu: „im Grundsatz beschlossen,
+  noch nicht entworfen" zählt als beschlossen und nicht gebaut, auch ohne fertigen Entwurf.)*
 
 ---
 
@@ -143,15 +174,6 @@ jetzt vollen Repo-Zugriff hat statt nur GitHub-Pages-Links.
 - **`beta.html` jetzt v19.8.31.**
 - **Regel 5 angewandt:** Abschnitt „Was Fassung 101 ändert" wortgleich nach `BACKLOG-ARCHIV.md` verschoben.
 - **Beschlossen und nicht gebaut: eins** — **4** *(Punkt 3 ist auf Ondos Entscheidung überholt, zählt nicht mehr mit; 77 und 78 sind Ideen, nicht beschlossen.)*
-
----
-
-## ⚠ Was Fassung 105 ändert (12.9., Berichtigung zu Fassung 104 — welcher Test wirklich gemacht wurde)
-
-**Anlass:** Ondo hat richtiggestellt: Er hatte nicht nur die Seite neu geladen, sondern **die
-Safari-App selbst vollständig geschlossen und neu geöffnet** — der stärkere der beiden
-möglichen Tests. Berichtigt in `STAND.md`, mit Streichung und Vermerk statt Überschreiben.
-Kein Codeaufwand. **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
 
 ---
 
@@ -1388,6 +1410,7 @@ Vier Wochen ohne Websuche messen, dann Suche zuschalten, Kalibrierung vergleiche
 → **Kosten:** Ruhenlassen und Streichen kosten nichts. Zusätzliche Läufe kosten Modellaufrufe in unbekannter Höhe, weil die Zahl der nötigen Läufe nicht feststeht.
 → *Hier stand bis heute „Empfehlung Claude weiterhin: ruhen lassen" — vorherige Einschätzung, durch Ondos Entscheidung vom 12.9.2026 ersetzt, nicht stillschweigend überschrieben.*
 → **🔴 Ondos Entscheidung (12.9.2026): kein Mehrwert, endgültig nicht weiterverfolgt.** Wörtlich: „Wir würden weiterhin eine Endlose Schleife drehen." Ondo hat im selben Zug einen Ersatzvorschlag gemacht — siehe Punkt 77 (Trainingsraum), der dasselbe Ziel (mehr Messdaten für Kalibrierung/Entschlossenheit) auf einem anderen Weg verfolgt.
+→ **🔴 Nachtrag, selber Tag, im Gespräch über den Trainingsraum aufgedeckt:** Die Grundfrage von Punkt 3 — was ändert Websuche an der Vorhersagequalität — war nie ein hypothetisches Experiment, sondern eine reale Lücke: **die echten Vorhersagen hatten noch NIE Websuche**, seit v19.0. Ondo hat daraufhin entschieden, das nicht mehr als vier-Wochen-Experiment zu behandeln, sondern Websuche dauerhaft einzubauen — siehe neuer Punkt 79. Punkt 3 selbst bleibt überholt (die Form „erst messen, dann vergleichen" ist nicht mehr das Vorgehen), aber seine Grundfrage lebt in Punkt 79 weiter.
 
 ---
 
@@ -1424,6 +1447,19 @@ Ondo wörtlich (Grundidee): „Es gibt die Möglichkeit einen Trainingsraum zu b
 → **Kosten:** noch nicht bezifferbar, hängt von der gewählten Datenform ab.
 → **🔴 ChatGPT-Rückfrage beantwortet (12.9.2026):** „Eine Kombi sollte eine einzige Wette bleiben und mehrere kiProtokollId-Verknüpfungen speichern. Sie in Teilwetten aufzuteilen wäre sachlich falsch: Einsatz, Gesamtquote, Gewinn/Verlust und Abrechnung gehören zur gesamten Kombi, nicht zu den einzelnen Legs. […] Technisch würde ich später eher eine strukturierte Liste der Legs vorsehen als nur nackte IDs, aber die Grundentscheidung lautet eindeutig: eine Wette → mehrere KI-Protokoll-Verknüpfungen." **Deckt sich mit Claudes Einschätzung (Liste statt Aufteilung) — kein Widerspruch.** Die von ChatGPT vorgeschlagene Verfeinerung (strukturierte Liste der Legs statt nackter IDs — z. B. je Leg auch Einsatz-Anteil oder Quote separat) ist eine spätere Ausbaustufe, nicht Teil der Grundentscheidung.
 → **Nächster Schritt (Art. 8):** Grundentscheidung von beiden Prüfern getragen — `state.bets[].kiProtokollIds` als Liste. Soll das jetzt gebaut werden?
+
+---
+
+**79. Websuche für echte Vorhersagen** · *Fund + Auftrag Ondo, 12.9.2026 (im Gespräch über den Trainingsraum aufgedeckt)* · **Status: 🔴 im Grundsatz beschlossen („Ja für beides"), noch nicht entworfen**
+
+**Der Fund, der zu diesem Punkt führte:** Ondo ging davon aus, dass die Gehirne für ihre echten Vorhersagen bereits per Websuche recherchieren — Kader, Verletzte, Formstärke, Tabellenstand. **Das stimmt nicht, seit v19.0 nie.** `vorhersageGehirn()` bekommt nur Spielname, Wettbewerb und Anpfiffzeit; weder `apiCall()` (Sonnet) noch `geminiCall({rolle:'gehirn'})` (Flash) hängen ein Suchwerkzeug an. Jede Prozentzahl und jede Begründungszeile stammt allein aus dem trainierten Wissen des Modells. Websuche gibt es im Code nur beim Schiedsrichter (Ergebnis-Prüfung), nie bei der Vorhersage selbst. **Dieselbe Lücke steht jetzt auch in `Ondo-Core-Architektur.md`, Abschnitt 2 und 3, mit Vermerk berichtigt** — beide Abschnitte beschrieben seit ihrer ersten Fassung ein nie gebautes Ziel (Quellenprüfung, Vertrauensstufen mit Begründung) als wäre es der aktuelle Stand.
+
+→ **Ondos Reaktion, wörtlich:** „Also hast Du die ganzen Woche meine Zeit verschwendet und wofür? Messungen die Einfach geraten wurden, sogar mit Prozentzahlen." Berechtigte Kritik an einer echten Lücke — die fehlende Recherchegrundlage der Vorhersagen hätte von Anfang an unter „Was aus diesem Messstand NICHT geschlossen werden darf" stehen müssen (jetzt nachgetragen, STAND.md).
+→ **Warum die bisherige Messreihe trotzdem nicht wertlos ist:** Die Kalibrierung misst, ob eine genannte Prozentzahl mit der Wirklichkeit übereinstimmt — das ist unabhängig davon, ob die Zahl aus Recherche oder aus trainiertem Wissen stammt. Eine niedrige Abweichung (Sonnet zuletzt 3 %) zeigt, dass die Prozentzahlen bisher grob stimmen, selbst ohne Recherche — eine echte, nützliche Erkenntnis, keine wertlose. Was die Messreihe NICHT zeigt: ob Websuche die Vorhersagen noch besser machen würde. Genau das war die eigentliche Frage von Punkt 3 (Such-Experiment), und genau darauf gibt jetzt jede kommende Vorhersage mit Websuche eine echte Antwort — **die bisherigen rund 500 Vorhersagen ohne Suche werden dadurch zur „Vorher"-Vergleichsbasis**, ohne dass extra vier Wochen wie in Punkt 3 vorgesehen abgewartet werden müssen.
+→ **Ondos Entscheidung (12.9.2026), auf zwei Fragen: „Ja für beides".** (1) Echte Vorhersagen sollen künftig Websuche bekommen. (2) Der Trainingsraum bleibt ausdrücklich ohne Suche — dort ist das Ergebnis ja schon bekannt, Suche würde nur das echte Ergebnis nachschlagen lassen statt eine Einschätzung zu prüfen.
+→ **Noch nicht entworfen, absichtlich — Art. 8 verlangt Abstimmung vor dem Bau bei einer Änderung dieser Grösse:** Genauer Umfang (nur Sonnet über `web_search_20260209`, wie beim Schiedsrichter, oder auch Flash über `geminiCall`s `useSearch`?), wie viele Suchen je Spiel sinnvoll sind, ob ein Schnitt in der Messreihe entsteht (vergleichbar mit dem BTTS-Schnitt bei v19.8.0) — vermutlich ja, weil sich die Grundlage der Vorhersage ändert.
+→ **Kosten, so weit bekannt:** Websuche kostet je Aufruf echtes Geld — wie viel genau, ist noch nicht geprüft, wird vor einer Umsetzung nachgesehen statt geraten (Art. 11). Bei aktuell mehreren offenen Spielen je Lauf und ein bis mehreren Suchen je Spiel ist mit einem spürbaren Anstieg der laufenden Kosten zu rechnen, ähnlich wie beim Schiedsrichter (dort bereits als „neu echtes Geld bei Anthropic" vermerkt, Fassung 91).
+→ **Nächster Schritt:** Claude legt einen Entwurf vor (Umfang, Kostenrechnung, Schnitt-Frage), bevor gebaut wird — noch nicht geschehen.
 
 ---
 

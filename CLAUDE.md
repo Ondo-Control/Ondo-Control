@@ -196,11 +196,12 @@ Punkt 73, nicht hier wiederholt (Punkt 45).
 `.claude/hooks/claude_md_frisch.py` vergleicht sie bei jedem Sitzungsstart und erinnert an
 eine Erneuerung, sobald einer abweicht. Er erneuert nichts von selbst.*
 
-- STAND.md — `894a33287c5dfa07549539c818d42a97965e3a00`
-- Ondo-Control-Backlog.md — `dd8ae002398793e98b21d093d84c07ca8d992d70`
-- Blueprint.md — `fb46a68a989b158438f2915dbe1b6e1cf2ee885f`
-- Ondo-Core-Architektur.md — `d253d6357dad3879e1c13bd772a24c1388436867`
+- STAND.md — `2cba64412ec11c07e38c5d041bcb1d470ccc1522`
+- Ondo-Control-Backlog.md — `4bd6a0810492b443f3a960698e6f4500426c20b7`
+- Blueprint.md — `8215675ec62ea7248bd99ba7bc2484670fd21f6b`
+- Ondo-Core-Architektur.md — `33733d7b4ecd19651cd5a4bcc4aba6e9cbb00d47`
 
-*Prüfstand nachgeführt am 12.9.2026 (nur Hashes — Anlass war Ondos Nachbesserung zum
-Trainingsraum (Backlog-Punkt 77) und der festgehaltene Rücksetzpunkt; inhaltlich für diese
-Datei nicht berührt, keine neue Arbeitsregel, keine Änderung an Zweig- oder Geheimfeld-Regeln).*
+*Prüfstand nachgeführt am 12.9.2026 (nur Hashes — Anlass war der Fund, dass echte Vorhersagen
+nie Websuche hatten, und die daraus folgende Berichtigung von STAND.md und Ondo-Core-
+Architektur.md; inhaltlich für diese Datei nicht berührt, keine neue Arbeitsregel, keine
+Änderung an Zweig- oder Geheimfeld-Regeln).*

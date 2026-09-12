@@ -6,6 +6,13 @@
 *Fassung 0.7 — 11.9.2026: Berichtigung in derselben Tabelle. Fassung 0.6 zählte zwar die Feldnamen maschinell aus, beschrieb aber weiterhin aus der Annahme heraus, **wer** sie schreibt — und behauptete für `ergebnisHalbzeit`/`ergebnisVerl` „vom Schiedsrichter nachgetragen". Der Code widerlegt das: `pruefAnwenden()` schreibt ausschliesslich `ergebnisHeim`/`ergebnisGast`. Der Backlog führte diesen Befund bereits (Punkt 64, zweiter Fund) — die Tabelle widersprach damit dem Backlog (Fehlerart C4). Zeile berichtigt, Fund bei Punkt 64 verlinkt.*
 *Fassung 0.8 — 12.9.2026: Abschnitt 4 „Memory" berichtigt (Backlog-Punkt 76, `beta.html` v19.8.30). Stufe 1 nannte weiterhin `localStorage` als aktuellen Stand — seit v19.8.30 ist das `IndexedDB` (die feste, kleine `localStorage`-Grenze hatte bei Ondo real bei 2.726 KB zugeschlagen, v19.8.29). Erste, positive Bewährungsbeobachtung ergänzt: Ondo hat eine Änderung im KI-Log gesetzt, die Safari-App selbst vollständig geschlossen und neu geöffnet (nicht nur die Seite neu geladen — von Ondo selbst am 12.9.2026 richtiggestellt) und bestätigt „Hat funktioniert" — ein Beleg, keine abgeschlossene Bewährung (Stabilitätsregel, Art. 14: ein einzelner Fall ist kein Beweis).*
 *Fassung 0.9 — 12.9.2026: Neuer Abschnitt 1d „Trainingsraum — isolierte Testumgebung" (Backlog-Punkt 77, Auftrag Ondo 12.9.2026). Plan vor dem Bau festgehalten, wie vom Auftrag verlangt: Wiederverwendung von `vorhersageGehirn()` (bereits ohne Websuche), Zulassungsregel nach Trainings-Stichtag statt Raten, ein zusätzlich gefundenes Wettlauf-Risiko in `zuletztModell` und dessen Behebung über das bereits vorhandene `modelVersion`-Feld, getrennte Ablage vom Evidence Ledger. Kein Verfassungsartikel geändert.*
+*Fassung 0.10 — 12.9.2026: Abschnitt 2 und 3 berichtigt. Beide beschrieben seit ihrer ersten
+Fassung ein Ziel (Pflichtprozess mit Quellenprüfung, Vertrauensanzeige HOCH/MITTEL/NIEDRIG mit
+Begründungszeilen) als wäre es der aktuelle Stand — die tatsächlich gebaute `vorhersageGehirn()`
+erreicht das bis heute nicht: keine Websuche, keine Quellenprüfung, nur rohe Prozentzahlen.
+Fund Ondo, 12.9.2026, im Gespräch über den Trainingsraum aufgedeckt — nicht vorher gemeldet.
+Kein Verfassungsartikel geändert, keine neue Arbeitsregel; die Lücke selbst ist keine
+Architekturentscheidung, nur ein bisher unbenannter Abstand zwischen Plan und Bau.*
 *(Name: Der Besitzer hat "Ondo Control" festgelegt; ChatGPT nutzt "ORION". Technisch irrelevant — hier "Ondo Core" für den Kern.)*
 
 ---
@@ -278,6 +285,14 @@ Ehrliche Architektenaussage: Die Denkarbeit (verstehen, analysieren, Gegenargume
 
 Damit gehört der Denkprozess Ondo Control — egal welches Modell dahinter arbeitet. Ein neues Modell erbt den Prozess automatisch, weil der Vertrag ihn erzwingt.
 
+**🔴 Berichtigt 12.9.2026 (Fund Ondo, im Gespräch aufgedeckt):** Dieser Vertrag — Pflichtprozess,
+JSON-Schema mit fakten/annahmen/gegenargumente/risiken/vertrauen/empfehlung — ist eine
+**Zielbeschreibung, keine Beschreibung des Gebauten.** Die tatsächlich seit v19.0 laufende
+`vorhersageGehirn()` fragt nur eine Ergebniszahl und drei einzelne Prozentwerte ab, dazu eine
+Begründung in maximal 15 Wörtern — kein erzwungenes Schema, kein interner Kritiker, keine
+geprüften Fakten, keine Websuche. Diese Lücke stand hier nie ausdrücklich benannt; sie ist erst
+am 12.9.2026 im Gespräch mit Ondo aufgefallen, nicht vorher gemeldet worden.
+
 **Denkmodi:** ChatGPT schlägt fünf vor (Schnell/Präzise/Wissenschaftlich/Kritisch/Kreativ). Empfehlung: **zwei zum Start** — "Schnell" und "Tiefenanalyse". Begründung: Jeder Modus ist ein eigener Prompt-Vertrag, der gepflegt und getestet werden muss; fünf ungetestete Modi sind schlechter als zwei bewiesene. Weitere Modi (inkl. ChatGPTs "Perspektiven"-Idee: finanziell/statistisch/strategisch/langfristig) sind im Design vorgesehen und werden nach Bewährung ergänzt. Perspektiven passen als Bestandteil der Tiefenanalyse.
 
 ---
@@ -297,6 +312,13 @@ Vertrauen: MITTEL
 ```
 
 Das liefert denselben Nutzen ohne falsche Präzision. Diskussionspunkt für ChatGPT.
+
+**🔴 Berichtigt 12.9.2026 (Fund Ondo):** Diese Vertrauensanzeige — mit den Begründungszeilen
+„Aufstellung noch nicht bestätigt", „nur 1 Quelle zur Verletzung" — ist **nie gebaut worden.**
+Die App zeigt bis heute rohe Prozentzahlen je Markt, keine HOCH/MITTEL/NIEDRIG-Stufe, keine
+Begründungszeilen mit Quellenbezug. Das Beispiel oben beschreibt weiterhin nur die ursprüngliche
+Idee aus ChatGPTs Vorschlag (5.7.2026) — der Abstand zwischen dieser Zeile und der echten App
+war bisher an keiner Stelle offen benannt.
 
 ---
 

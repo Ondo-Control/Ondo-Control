@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 12.9.2026, Fassung 109, v19.9.0*
+*Die aktuelle Wahrheit. Stand: 12.9.2026, Fassung 110, v19.9.0*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -95,6 +95,16 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 **Anpfiffzeiten:** waren an mehreren Tagen nachweislich falsch protokolliert (siehe „Die Spielliste — drei Fehlerarten", S2).
 
 **Was aus diesem Messstand NICHT geschlossen werden darf:**
+- **🔴 Ergänzt 12.9.2026 (Fund Ondo, im Gespräch aufgedeckt, nicht vorher hier festgehalten):
+  Keine dieser Vorhersagen beruht auf echter Recherche.** `vorhersageGehirn()` — die Funktion,
+  die jede Aussage erzeugt — bekommt nur Spielname, Wettbewerb und Anpfiffzeit. Keine
+  Aufstellung, keine Verletztenliste, keine aktuelle Formkurve, kein Tabellenstand, keine
+  Websuche. Jede Prozentzahl UND jede Begründungszeile (z. B. „Team X auf einem anderen
+  Niveau") stammt allein aus dem, was das Modell aus seinem Training über die beteiligten
+  Teams mitbringt — nicht aus einer geprüften, aktuellen Quelle. Das galt die ganze bisherige
+  Messreihe hindurch und wurde in diesem Abschnitt bisher nicht ausdrücklich genannt, obwohl es
+  genau hierher gehört — eine echte Lücke, keine Kleinigkeit. Ondos Entscheidung dazu und die
+  Folgen: Backlog, neuester Fassungsabschnitt.
 - Kein Brier-Score — weder abgelesen noch selbst gerechnet, in keiner Zahl dieses Dokuments enthalten.
 - Eine niedrige Abweichung heisst nicht „öfter richtig" — das ist die Trefferquote, eine andere Zahl.
 - Bänder mit wenigen Aussagen (z. B. Flashs 80–99 %) sind statistisch bedeutungslos.

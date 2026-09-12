@@ -3,9 +3,17 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.108
+**Version:** 0.109
 **Stand:** 12. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.109 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> ein echter Fund: Ondo ging davon aus, echte Vorhersagen würden per Websuche recherchieren —
+> das stimmt seit v19.0 nie. `STAND.md` um den fehlenden Hinweis ergänzt, `Ondo-Core-
+> Architektur.md` Abschnitt 2 und 3 berichtigt (beschrieben seit jeher ein nie gebautes Ziel als
+> aktuellen Stand), neuer Backlog-Punkt 79: Websuche für echte Vorhersagen im Grundsatz
+> beschlossen („Ja für beides"), Trainingsraum bleibt ohne Suche. Kein Codeaufwand, kein
+> Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.109 gehoben.
 
 > **Was Fassung 0.108 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
 > Ondos Nachbesserung zum Trainingsraum (Backlog Fassung 109): KI-Daten sollen von „Mehr" zurück

@@ -410,6 +410,15 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 105 ändert (12.9., Berichtigung zu Fassung 104 — welcher Test wirklich gemacht wurde)
+
+**Anlass:** Ondo hat richtiggestellt: Er hatte nicht nur die Seite neu geladen, sondern **die
+Safari-App selbst vollständig geschlossen und neu geöffnet** — der stärkere der beiden
+möglichen Tests. Berichtigt in `STAND.md`, mit Streichung und Vermerk statt Überschreiben.
+Kein Codeaufwand. **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
+
+---
+
 ## ⚠ Was Fassung 104 ändert (12.9., erste Bewährungsbeobachtung zum Speicherumstieg — reine Buchführung)
 
 **Anlass:** Ondo hat den vorgeschlagenen Test gemacht — Eintrag im KI-Log geparkt/entparkt,
