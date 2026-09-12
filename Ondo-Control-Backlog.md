@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 113 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 114 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,36 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 114 ändert (12.9., Punkt 4 auf „wartet auf Beförderung" gesetzt, Beförderungs-Wartezeit für Ondo erklärt — kein Codeaufwand)
+
+**Anlass:** Nach der Erklärung der beiden Wege für Punkt 4 (Zielbild Beta-Format vs. sofortiger,
+verlustbehafteter Export in die alte Form) hat Ondo Weg (A) gewählt: „Du kannst es auf ‚wartet
+auf Beförderung' setzen." Direkt danach die berechtigte Nachfrage: „Und jetzt musst du mir ganz
+klar sagen worauf wir warten und wann genau endet die Wartezeit mit klar definierten Zielen und
+Zeiten."
+
+- **🔴 Punkt 4 Status geändert:** von „freigegeben, unabhängig von der Beförderung" auf
+  „wartet auf die Beförderung" — kein eigener Bauaufwand mehr, da Weg (A) bedeutet: die
+  stabile Version übernimmt bei der Beförderung den Code der Beta unverändert, die
+  Messdaten wandern automatisch mit.
+- **Ehrliche Antwort auf „worauf warten wir, wann endet es" (Art. 11, kein Rateversuch):**
+  Kein Kalendertermin, weil keiner bekannt ist. Zwei konkrete offene Sachen statt einer
+  Wartezeit: **Kriterium (c)** (Trefferquoten-Schwelle) ist eine seit 23.7.2026 unentschiedene
+  Frage, kein Datensammelproblem — sofort klärbar, keine Bauzeit. **Kriterium (f)**
+  (Schiedsrichter-Fehlerquote) ist eine Messfrage, deren letzter echter Test sechs Wochen alt
+  ist (30./31.7.2026) — von VOR mehreren seitherigen Schiedsrichter-Verbesserungen. Der
+  heutige Fehlerstand ist unbekannt, bis frisch nachgeprüft wird. Fünf weitere Kriterien
+  ((a),(b),(d),(e),(g)) wurden seit dem 31.7. ebenfalls nicht neu geprüft — ihr heutiger Stand
+  ist ebenso unbekannt, nicht als „erfüllt" angenommen. Einzelheiten bei Punkt 5.
+- **Kein Codeaufwand in dieser Fassung** — reine Abstimmung und Buchführung. `beta.html`
+  bleibt v19.12.0. `pruefe.py`: ALLES SAUBER.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 109 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: eins** — **4** *(unverändert in der Zahl, Status-Text
+  geändert.)*
 
 ---
 
@@ -142,34 +172,6 @@ Dokumentation kritisiert.
   `BACKLOG-ARCHIV.md` verschoben.
 - **Beschlossen und nicht gebaut: zwei** — **4, 79** *(79 neu: „im Grundsatz beschlossen,
   noch nicht entworfen" zählt als beschlossen und nicht gebaut, auch ohne fertigen Entwurf.)*
-
----
-
-## ⚠ Was Fassung 109 ändert (12.9., Ondos Nachbesserung zu Punkt 77 — Rücksetzpunkt, kein Codeaufwand)
-
-**Anlass:** Ondo hat den Trainingsraum-Bau geprüft und Nachbesserungen verlangt, bevor
-weitergebaut wird — ausdrücklich VOR jedem weiteren Schritt zu klären.
-
-- **🔴 Fund von Ondo bestätigt:** Unter „Finanzen" steht weiterhin `hitAI` („KI-Trefferquote"),
-  weil diese Karte nie Teil der drei nach „Mehr" verschobenen Blöcke war. Am Code bestätigt:
-  jede KI-Kennzahl gehört ausschliesslich zum Modul Wetten.
-- **Platzierung erneut geändert:** nicht „Mehr", sondern Wettmodul → KI-Log → neuer
-  Unter-Reiter. Fassung 106/107 damit rückgängig zu machen, sobald geklärt.
-- **Weg (a) beim Trainingsraum nochmals bestätigt** (bereits ausgewertete Spiele aus
-  KI-Log/„Bewertet", keine neuen Vorhersagen) — keine Kursänderung am bereits gebauten Code.
-- **Neu verlangt:** eine Auswahl-Möglichkeit (Zeitraum/Wettbewerb) für Weg (a), und eine
-  echte Eintragemöglichkeit für Weg (b) statt einer leeren Datenstruktur. Noch nicht
-  entworfen.
-- **Offene Frage von Ondo:** Trainingsraum als eigenständiges Werkzeug im Repo statt in der
-  App? Antwort steht im Chat, nicht hier dokumentiert (keine Entscheidung bisher).
-- **🔴 Rücksetzpunkt festgehalten:** Commit `ed14eb7`, `beta.html` v19.9.0, 12.9.2026,
-  16:17 Uhr UTC — der Stand vor dieser Nachbesserung. Einzelheiten bei Punkt 77 und in
-  `STAND.md`, „Versionen".
-- **Kein Codeaufwand in dieser Fassung** — reine Abstimmung und Buchführung, `beta.html`
-  bleibt v19.9.0. `pruefe.py`: ALLES SAUBER.
-- **Regel 5 angewandt:** Abschnitt „Was Fassung 104 ändert" wortgleich nach
-  `BACKLOG-ARCHIV.md` verschoben.
-- **Beschlossen und nicht gebaut: eins** — **4** *(unverändert.)*
 
 ---
 
@@ -1486,11 +1488,12 @@ der Messreihe.
 
 ## 🟡 Prio 2 — wichtig, aber später
 
-**4. Daten-Export in die stabile Version** · *Idee Chat 1, erneut 28.7.* · **Status: beschlossen — 🔴 von Ondo freigegeben (12.9.2026), unabhängig vom Stand der Beförderung**
+**4. Daten-Export in die stabile Version** · *Idee Chat 1, erneut 28.7.* · **Status: beschlossen — 🔴 wartet auf die Beförderung Beta→Stabil (Ondo, 12.9.2026) — kein eigener Bauaufwand mehr, siehe Vermerk unten**
 **Nicht zu verwechseln mit „Datensicherung" (gebaut in v19.1).** Die Sicherung schützt vor Datenverlust; dieser Punkt überträgt die Messdaten aus der Beta in die stabile Version. Ohne ihn geht bei der Beförderung alles Gesammelte verloren.
 → *Hier stand bis heute „Unmittelbar vor der Beförderung" — eine reine Reihenfolge-Festlegung, kein technischer Blocker (siehe Antwort an Ondo, 12.9.2026: die Beförderung selbst ist laut letztem Stand vom 31.7. weiterhin gesperrt, Kriterium (f) und (c) offen, siehe Punkt 5).*
 → **🔴 Ondos Entscheidung (12.9.2026):** „Wenn du jetzt Punkt 3 gelöst hast mit dem Trainingsraum, ist für mich Punkt 4 freigeschaltet." Mit der Trainingsraum-Lösung bei Punkt 77 (Zulassungsregel nach Datum, Wiederverwendung von `vorhersageGehirn()`) ist diese Bedingung erfüllt — **Punkt 4 ist damit unabhängig vom Stand der Beförderung freigegeben**, kann jederzeit gebaut werden.
-→ **Noch offen, vor dem Bau zu klären:** Genauer Umfang (welche Daten wohin — `state.kiProtokoll`, `state.bets`, oder beides; wie mit den unterschiedlichen Datenformen von Beta und `OndoControl.html` umgegangen wird, falls diese abweichen). Das ist bisher nicht entworfen, nur der Grundsatz freigegeben.
+→ **Vor dem Bau geklärt (12.9.2026), Ergebnis: Zielbild statt sofortigem Bau.** Vergleich der beiden Dateien ergab: `OndoControl.html` (Stabil, v17) speichert Vorhersagen/Wetten in einer deutlich einfacheren Form als `beta.html` heute — ohne Markt-Aufschlüsselung, ohne Angabe welches Gehirn geantwortet hat, ohne Trainingsraum, ohne Kombi-Verknüpfung — und enthält aktuell keine echten Daten von Ondo, nur Test-Platzhalter. Zwei Wege zur Wahl: (A) Bei der Beförderung übernimmt die stabile Version den heutigen Code der Beta vollständig — der Export ist dann nur eine Datei-Übergabe, kein Informationsverlust, aber gebunden an den Stand der Beförderung. (B) Ein Export in die heutige, einfachere Stabil-Form, unabhängig von der Beförderung sofort baubar, aber mit echtem Verlust (Märkte, Gehirn-Herkunft, Trainingsraum, Kombi-Verknüpfung gingen verloren). **Ondo hat sich für (A) entschieden** und Punkt 4 auf „wartet auf Beförderung" gesetzt — kein Bauaufwand jetzt, kein Aufwand, der bei einer Beförderung nach Weg (A) zur Wegwerfarbeit würde.
+→ **🔴 Ondos Nachfrage (12.9.2026): worauf genau wird gewartet, und wann endet die Wartezeit?** Ehrliche Antwort, siehe Punkt 5 für die Einzelheiten zu (c) und (f): Es sind zwei konkrete, aber unterschiedliche offene Sachen, kein Kalendertermin. **Kriterium (c)** ist keine Wartezeit, sondern eine bislang nicht getroffene Entscheidung (seit 23.7.2026 unentschieden) — kann sofort geklärt werden, sobald Ondo will, ohne Bauaufwand. **Kriterium (f)** ist eine Messfrage (Fehlerquote des Schiedsrichters bei der Ergebnisprüfung), deren letzter echter Test vom 30./31.7.2026 stammt — sechs Wochen alt, vor mehreren seitherigen Verbesserungen am Schiedsrichter (u. a. die 2-von-3-Einigkeitsregel, Backlog-Punkt 68). **Der heutige tatsächliche Fehlerstand ist nicht bekannt, ohne ihn neu zu prüfen — geraten wird hier nicht (Art. 11).** Kein Datum wird genannt, weil keins bekannt ist; stattdessen zwei konkrete, sofort angehbare nächste Schritte, siehe Punkt 5.
 
 **34. Brier-Score als zweite Kennzahl neben der Kalibrierung** *(🔴 GERECHNET am 14.8. abends aus
 den Rohdaten — Sonnet **0,2429**, Bereich 0,2350–0,2513 · Flash **0,2497**, Bereich
@@ -1623,6 +1626,25 @@ Codeänderung ohne Schnitt.
 **5. Beförderungskriterium (c) neu fassen** · *Idee 23.7., ChatGPT* · **Status: Idee**
 15 Bewertungen sind statistisch zu wenig, 100 dauern Monate. Vorschlag Claude: Beförderung nach Stabilität und Fehlerfreiheit entscheiden, die Messung läuft danach weiter. **Inhalt gehört in den Blueprint.**
 → *Vermerk 31.7.: Die Beförderung ist derzeit ohnehin gesperrt — Kriterium (f) verlangt Null-Fehler-Toleranz beim Schiedsrichter. Einzelheiten in `PROJEKT-STATUS.md`.*
+→ **🔴 Ondos Nachfrage zu Punkt 4 beantwortet (12.9.2026): Was fehlt konkret bis zur Beförderung?**
+Sieben Kriterien wurden am 10.7.2026 festgelegt (`BLUEPRINT-PROTOKOLL.md`): (a) Kosten pro
+Analyse, (b) technische Fehlerrate, (c) Trefferquoten-Differenz bei ≥15 bewerteten Tipps pro
+Gehirn, (d) Datenintegrität, (e) Kaskaden-Stabilität, (f) Schiedsrichter-Validierung mit
+Null-Fehler-Toleranz, (g) Antwortkonsistenz durch Wiederholungsläufe. **Nur (c) und (f) sind
+im aktuellen Stand als offen vermerkt** — (a),(b),(d),(e),(g) wurden seit dem 31.7. nicht neu
+geprüft, ihr heutiger Stand ist nicht bekannt (Art. 11, kein Rateversuch).
+**(c) ist keine Wartezeit, sondern eine offene Entscheidung** — dieser Punkt selbst, seit
+23.7.2026 unentschieden. Kein Datensammeln nötig, keine Bauzeit — kann sofort geklärt werden,
+sobald Ondo eine Richtung vorgibt (Claudes Vorschlag oben: nach Stabilität/Fehlerfreiheit
+entscheiden, Messung läuft weiter statt eine Mindestzahl abzuwarten).
+**(f) ist eine Messfrage, keine Entscheidung** — der letzte echte Test ist sechs Wochen alt
+(30./31.7.2026, zwei von sieben falsch plus erfundene Ergebnisse), von VOR mehreren seitherigen
+Schiedsrichter-Verbesserungen (u. a. Backlog-Punkt 68, 2-von-3-Einigkeitsregel). Der heutige
+Fehlerstand ist unbekannt, bis er neu geprüft wird — dafür bräuchte es einen frischen,
+auswertbaren Testlauf mit bekannten Ergebnissen, keinen geschätzten Wert.
+**Kein Kalenderdatum wird genannt, weil keins bekannt ist.** Zwei sofort angehbare nächste
+Schritte statt eines Termins: Ondo entscheidet (c), und/oder Claude prüft (f) frisch anhand
+echter, aktueller Daten nach.
 
 **9. Echte Quoten automatisch (Knopfdruck gebaut, Zeitsteuerung teilweise gebaut) — Ausbau: eigene Ergebnis-Datenquelle für den Schiedsrichter** · *Idee 23.7., Claude · Verfassungsfrage teilweise geklärt 7.9.2026 · Knopfdruck-Teil Auftrag Ondo und gebaut 10.9.2026 · Zeitsteuerung/Ergebnis-Automatik Auftrag Ondo 11.9.2026 · Knopfdruck-Kopplung Auftrag Ondo und gebaut 11.9.2026* · **Status: 🔴 Knopfdruck-Teil (Quoten) GEBAUT 10.9.2026 — Zeitgesteuerte Ergebnis-Automatik GEBAUT 11.9.2026, wegen API-Football-Sperre nur mit football-data.org scharf — Knopfdruck-Ergebnisabgleich (API-Football + football-data.org, gekoppelt an den Prüflauf) GEBAUT und geprüft 11.9.2026**
 Offene Vorfrage (Gemini, weiterhin unbeantwortet): Deckt ein kostenloser Dienst überhaupt Ondos Spiele ab? **🔴 Verfassungsfrage teilweise geklärt (Ondo, 7.9.2026, Blueprint 0.83, Abschnitt 10):** Eine durch Knopfdruck in der App ausgelöste Aktualisierung verletzt „kein Server" nicht — ein Knopfdruck ist die von der Regel verlangte Aufforderung. Eine zeitgesteuerte, unbeaufsichtigte Ausführung bleibt weiterhin offen und ist eine andere Variante. **Ungeprüft, technische Einordnung:** Ob dafür überhaupt GitHub Actions nötig wäre (ein reiner Abruf im Browser bei Knopfdruck bräuchte gar keine Actions-Infrastruktur, wie die bestehenden Knöpfe es schon vormachen) oder ob ein dauerhaft im Repo gespeichertes Ergebnis einen manuell auslösbaren `workflow_dispatch` mit einem neuen, eigens abzusicherndem GitHub-Zugriffsschlüssel bräuchte, ist nicht untersucht.

@@ -3,9 +3,17 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.112
+**Version:** 0.113
 **Stand:** 12. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.113 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> Punkt 4 (Daten-Export), von Ondo auf „wartet auf die Beförderung Beta→Stabil" gesetzt, nachdem
+> die beiden möglichen Wege (Beta-Format übernehmen vs. verlustbehafteter Export in die alte
+> Form) erklärt wurden. Auf Ondos Nachfrage, worauf genau gewartet wird, ehrlich beantwortet:
+> zwei konkrete offene Sachen (Kriterium (c), eine unentschiedene Frage seit 23.7.; Kriterium
+> (f), eine sechs Wochen alte, nicht erneuerte Messung), kein Kalendertermin. Kein
+> Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.113 gehoben.
 
 > **Was Fassung 0.112 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
 > der gebaute Backlog-Punkt 78 (`beta.html` v19.12.0): Kombi-Wetten können jetzt mit mehreren

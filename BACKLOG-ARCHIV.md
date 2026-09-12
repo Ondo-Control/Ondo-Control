@@ -410,6 +410,34 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 109 ändert (12.9., Ondos Nachbesserung zu Punkt 77 — Rücksetzpunkt, kein Codeaufwand)
+
+**Anlass:** Ondo hat den Trainingsraum-Bau geprüft und Nachbesserungen verlangt, bevor
+weitergebaut wird — ausdrücklich VOR jedem weiteren Schritt zu klären.
+
+- **🔴 Fund von Ondo bestätigt:** Unter „Finanzen" steht weiterhin `hitAI` („KI-Trefferquote"),
+  weil diese Karte nie Teil der drei nach „Mehr" verschobenen Blöcke war. Am Code bestätigt:
+  jede KI-Kennzahl gehört ausschliesslich zum Modul Wetten.
+- **Platzierung erneut geändert:** nicht „Mehr", sondern Wettmodul → KI-Log → neuer
+  Unter-Reiter. Fassung 106/107 damit rückgängig zu machen, sobald geklärt.
+- **Weg (a) beim Trainingsraum nochmals bestätigt** (bereits ausgewertete Spiele aus
+  KI-Log/„Bewertet", keine neuen Vorhersagen) — keine Kursänderung am bereits gebauten Code.
+- **Neu verlangt:** eine Auswahl-Möglichkeit (Zeitraum/Wettbewerb) für Weg (a), und eine
+  echte Eintragemöglichkeit für Weg (b) statt einer leeren Datenstruktur. Noch nicht
+  entworfen.
+- **Offene Frage von Ondo:** Trainingsraum als eigenständiges Werkzeug im Repo statt in der
+  App? Antwort steht im Chat, nicht hier dokumentiert (keine Entscheidung bisher).
+- **🔴 Rücksetzpunkt festgehalten:** Commit `ed14eb7`, `beta.html` v19.9.0, 12.9.2026,
+  16:17 Uhr UTC — der Stand vor dieser Nachbesserung. Einzelheiten bei Punkt 77 und in
+  `STAND.md`, „Versionen".
+- **Kein Codeaufwand in dieser Fassung** — reine Abstimmung und Buchführung, `beta.html`
+  bleibt v19.9.0. `pruefe.py`: ALLES SAUBER.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 104 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: eins** — **4** *(unverändert.)*
+
+---
+
 ## ⚠ Was Fassung 108 ändert (12.9., Trainingsraum gebaut — Backlog-Punkt 77, `beta.html` v19.9.0)
 
 **Anlass:** Ondo hat den Trainingsraum-Plan freigegeben, mit dem ausdrücklichen Auftrag „nicht
