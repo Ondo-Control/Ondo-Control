@@ -18,6 +18,12 @@ Architekturentscheidung, nur ein bisher unbenannter Abstand zwischen Plan und Ba
 2 um einen Verweis ergänzt: `marktlageHolen()` ist ein erster, kleiner Schritt in Richtung der
 dort beschriebenen Zielarchitektur, deckt sie aber weiterhin nicht annähernd ab. Kein
 Verfassungsartikel geändert, keine neue Arbeitsregel.*
+*Fassung 0.12 — 12.9.2026: Abschnitt 1d berichtigt/ergänzt (Backlog-Punkt 77, Nachbesserung,
+`beta.html` v19.11.0): Weg (a) trägt jetzt eine wählbare Zeitraum-Eingrenzung
+(`trainingsraumKandidaten(...,von,bis)`), Weg (b) eine echte Eintragemöglichkeit
+(`trainingsraumSpielHinzufuegen()`/`trainingsraumSpielLoeschen()`) statt der zuvor dauerhaft
+leeren Liste — beide mit „Berichtigt"-Vermerk an den betroffenen Stellen, nicht überschrieben.
+Kein Verfassungsartikel geändert, keine neue Arbeitsregel.*
 *(Name: Der Besitzer hat "Ondo Control" festgelegt; ChatGPT nutzt "ORION". Technisch irrelevant — hier "Ondo Core" für den Kern.)*
 
 ---
@@ -150,12 +156,22 @@ vorsehen").** Ein „Trainingsraum-Spiel" ist unabhängig vom Weg dieselbe Form:
   `status==='bewertet' && !geparkt && !refEinigkeit` — **dieselbe Auflage wie beim Observation
   Layer** (Abschnitt 1c, Absatz „Auflage") — plus `ergebnisHeim`/`ergebnisGast` gesetzt. Kein
   neuer Filter, nur eine zweite Anwendung eines bereits bestehenden, begründeten Massstabs.
+  **Ergänzt v19.11.0 (Nachbesserung):** Ondo wollte statt reiner Automatik einen wählbaren
+  Zeitraum — `trainingsraumKandidaten(gehirn, modellHinweis, von, bis)` filtert Weg (a) jetzt
+  zusätzlich optional auf `von`/`bis` (leer = weiterhin alle bewerteten Spiele, keine
+  Verhaltensänderung ohne Auswahl). Wirkt ausdrücklich nur auf Weg (a) — Weg (b) wählt Ondo
+  bereits einzeln beim Eintragen aus, ein zweiter Datumsfilter wäre dort doppelte Auswahl.
 - **Weg (b) `quelle:'extern'`:** öffentlich bekannte, historische Spiele, von Hand gepflegt
   (`state.trainingsraumSpiele`, analog zu den 13 gesperrten Referenz-Ergebnissen vom 29./30.7.,
   die als Muster für „von Hand gepflegte Prüfbibliothek" bereits existieren). **Kein
   automatischer Import, keine Websuche zum Sammeln** — das wäre selbst ein neuer Kostenpunkt
-  und ein neues Risiko (siehe Selbstkritik). In v1 bleibt die Liste **leer**; die Datenstruktur
-  steht, damit ein späteres Befüllen keine Schemaänderung braucht.
+  und ein neues Risiko (siehe Selbstkritik).
+  **Berichtigt v19.11.0 (Nachbesserung, Backlog-Punkt 77):** „In v1 bleibt die Liste leer" traf
+  nur den ersten Ausbau — Ondo verlangte in der Nachbesserung eine echte Eintragemöglichkeit
+  statt eines dauerhaft leeren Platzhalters. Gebaut: `trainingsraumSpielHinzufuegen()`/
+  `trainingsraumSpielLoeschen()`, ein Formular (Team/Wettbewerb/Datum/Ergebnis) in
+  `trainingsraumBlock()`. Die Schemaform selbst ist unverändert — genau die Vorsorge, die diese
+  Zeile ursprünglich beschrieb, hat sich ausgezahlt.
 
 **Zulassungsregel gegen Trainingsdaten-Kontamination (für BEIDE Wege gleichermassen — Ondos
 eigene Berichtigung: „Genauso wie bei Weg (b) musste das Gehirn hier nicht auf Erinnerung...
@@ -240,8 +256,9 @@ während eine echte Vorhersage läuft, und umgekehrt — spart nebenbei Budget, 
 Modell-Batches gleichzeitig nötig sind.
 
 **Kosten (Arbeitsregel G):** Kein neuer, laufender Kostentyp — jeder Testlauf verbraucht dieselbe
-Art Modellaufruf wie eine echte Vorhersage, aus demselben Budget. Weg (b) hat in v1 keine Kosten
-(leere Liste). Bauzeit real, aber kein Dauerkostenpunkt.
+Art Modellaufruf wie eine echte Vorhersage, aus demselben Budget. Weg (b) hat weiterhin keine
+eigenen Kosten — das Eintragen selbst ist reine Handarbeit ohne Modellaufruf, unabhängig davon,
+wie viele Einträge Ondo anlegt. Bauzeit real, aber kein Dauerkostenpunkt.
 
 **Erweiterbarkeit, wie von Ondo verlangt, ohne die aktuelle Lösung zu überkomplizieren:**
 - *Weitere Gehirne:* brauchen einen eigenen Aufrufpfad wie Sonnet/Flash heute — ein grösserer
@@ -276,8 +293,9 @@ Art Modellaufruf wie eine echte Vorhersage, aus demselben Budget. Weg (b) hat in
   — reine Messdaten ohne Geheimfelder, konsistent mit dem bestehenden Exportzweck.
 
 **Was dadurch NICHT entschieden ist:** Die genauen Trainings-Stichtage der eingesetzten Modelle
-(Tabelle bleibt bis zur Prüfung leer/gesperrt); ob und wann Weg (b) mit echten Einträgen befüllt
-wird; ob ein N-Gehirne-Umbau (`GEHIRNE`-Registry) je gebaut wird.
+(Tabelle bleibt bis zur Prüfung leer/gesperrt); ob ein N-Gehirne-Umbau (`GEHIRNE`-Registry) je
+gebaut wird. *Berichtigt v19.11.0: „ob und wann Weg (b) mit echten Einträgen befüllt wird" ist
+seit der Nachbesserung beantwortet — Ondo befüllt es selbst, über das neue Formular, wann er will.*
 
 ---
 

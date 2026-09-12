@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.10.0';
+var CODE_VERSION = 'v19.11.0';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -179,6 +179,11 @@ var I18N = {
   trainOf:'Trainingsraum vom', trainNeu:'neue Tests', trainVerworfen:'verworfen (Modell nicht zugelassen)',
   trainGesperrt:'Stichtag nicht geprüft — gesperrt', trainKeine:'Noch keine Tests.',
   trainAbw:'{a} % behauptet, {b} % eingetroffen (Abw. {c})', kiBusy:'Es läuft bereits eine KI-Anfrage — bitte warten.',
+  trainVonBisD:'Zeitraum für Weg (a) — leer lassen für alle bewerteten Spiele.',
+  trainSpT:'Weg (b): Spiel von Hand eintragen', trainSpD:'Ein Spiel aus der Vergangenheit mit bekanntem Ergebnis, das nicht im KI-Log steht.',
+  trainSpMatchPh:'Team A – Team B', trainSpDatumL:'Datum', trainSpHeimL:'Tore Heim', trainSpGastL:'Tore Gast',
+  trainSpBtn:'Hinzufügen', trainSpFehler:'Bitte Team, Datum und beide Ergebnisse ausfüllen.', trainSpLeer:'Noch keine Einträge.',
+  delTrainSpAsk:'Diesen Eintrag endgültig aus dem Trainingsraum (Weg b) löschen?\n\n{a}\n\nDas lässt sich nicht rückgängig machen.',
   predResearch:'Marktlage wird recherchiert…',
   marktlageT:'Aktuelle Lage per Websuche', marktlageD:'Vor jeder Vorhersage wird EINMAL für die ganze Spielliste recherchiert (Verletzte, Form, Tabellenstand) — beide Gehirne bekommen dieselbe Recherche. Kostet echtes Geld pro Lauf, begrenzt auf höchstens {a} Suchvorgänge.',
   marktlageAn:'An — ausschalten', marktlageAusBtn:'Aus — einschalten',
@@ -245,7 +250,7 @@ var I18N = {
   filterT:'🔎 Filter', filterWettbewerbPh:'Wettbewerb (Teiltext)', filterMannschaftPh:'Mannschaft (Teiltext)', filterStatusAlle:'Alle', filterStatusOffen:'Offen',
   filterStatusGeparkt:'Geparkt', filterStatusBewRichtig:'Richtig', filterStatusBewFalsch:'Falsch',
   filterReset:'Zurücksetzen', filterCount:'{a} von {b}', filterEmpty:'Kein Eintrag passt zum Filter.',
-  kilogTabBewertet:'Bewertet', kilogTabArchiv:'Archiv', kilogTabWerkzeuge:'Werkzeuge',
+  kilogTabBewertet:'Bewertet', kilogTabArchiv:'Archiv', kilogTabDaten:'Daten', kilogTabWerkzeuge:'Werkzeuge',
   logD:'Jede KI-Vorhersage wird hier bewertet. Aus einem Ergebnis-Tipp leitet die App drei Aussagen ab.',
   gKeyT:'🌱 Zweites Gehirn (Google Gemini)', gKeyD:'Schlüssel von aistudio.google.com — bleibt NUR auf diesem Gerät. Übernimmt Ergebnis-Prüfen & Foto-Lesen fast gratis.', gOn:'✅ Gemini-Schlüssel gespeichert', gOff:'❌ Kein Gemini-Schlüssel',
   oddsKeyT:'🎲 Quoten-Schlüssel (The Odds API)', oddsKeyD:'Schlüssel von the-odds-api.com — bleibt NUR auf diesem Gerät. Kostenloses Kontingent begrenzt (rund 500 Abrufe/Monat).', oddsOn:'✅ Quoten-Schlüssel gespeichert', oddsOff:'❌ Kein Quoten-Schlüssel',
@@ -323,6 +328,11 @@ var I18N = {
   trainOf:'Salle d’entraînement du', trainNeu:'nouveaux tests', trainVerworfen:'rejetés (modèle non autorisé)',
   trainGesperrt:'Date limite non vérifiée — verrouillé', trainKeine:'Aucun test pour le moment.',
   trainAbw:'{a} % annoncé, {b} % réel (écart {c})', kiBusy:'Une requête IA est déjà en cours — merci de patienter.',
+  trainVonBisD:'Période pour la voie (a) — laisser vide pour tous les matchs évalués.',
+  trainSpT:'Voie (b) : ajouter un match manuellement', trainSpD:'Un match passé au résultat connu, absent du journal IA.',
+  trainSpMatchPh:'Équipe A – Équipe B', trainSpDatumL:'Date', trainSpHeimL:'Buts domicile', trainSpGastL:'Buts extérieur',
+  trainSpBtn:'Ajouter', trainSpFehler:'Merci de remplir équipe, date et les deux résultats.', trainSpLeer:'Aucune entrée pour le moment.',
+  delTrainSpAsk:'Supprimer définitivement cette entrée de la salle d’entraînement (voie b) ?\n\n{a}\n\nIrréversible.',
   predResearch:'Recherche de la situation actuelle…',
   marktlageT:'Situation actuelle par recherche web', marktlageD:'Avant chaque prévision, UNE recherche pour toute la liste (blessés, forme, classement) — les deux cerveaux reçoivent la même recherche. Coûte de l’argent réel par lancement, limité à {a} recherches au maximum.',
   marktlageAn:'Activé — désactiver', marktlageAusBtn:'Désactivé — activer',
@@ -389,7 +399,7 @@ var I18N = {
   filterT:'🔎 Filtre', filterWettbewerbPh:'Compétition (texte partiel)', filterMannschaftPh:'Équipe (texte partiel)', filterStatusAlle:'Tous', filterStatusOffen:'Ouvert',
   filterStatusGeparkt:'En pause', filterStatusBewRichtig:'Correct', filterStatusBewFalsch:'Faux',
   filterReset:'Réinitialiser', filterCount:'{a} sur {b}', filterEmpty:'Aucune entrée ne correspond au filtre.',
-  kilogTabBewertet:'Évalué', kilogTabArchiv:'Archive', kilogTabWerkzeuge:'Outils',
+  kilogTabBewertet:'Évalué', kilogTabArchiv:'Archive', kilogTabDaten:'Données', kilogTabWerkzeuge:'Outils',
   logD:'Chaque prédiction IA est évaluée ici. À partir d’un score prédit, l’app déduit trois affirmations.',
   gKeyT:'🌱 Second cerveau (Google Gemini)', gKeyD:'Clé de aistudio.google.com — reste UNIQUEMENT sur cet appareil. Prend en charge vérification & lecture photo presque gratuitement.', gOn:'✅ Clé Gemini enregistrée', gOff:'❌ Pas de clé Gemini',
   oddsKeyT:'🎲 Clé de cotes (The Odds API)', oddsKeyD:'Clé de the-odds-api.com — reste UNIQUEMENT sur cet appareil. Quota gratuit limité (environ 500 appels/mois).', oddsOn:'✅ Clé de cotes enregistrée', oddsOff:'❌ Pas de clé de cotes',
@@ -467,6 +477,11 @@ var I18N = {
   trainOf:'Training room run of', trainNeu:'new tests', trainVerworfen:'discarded (model not cleared)',
   trainGesperrt:'Cutoff date not verified — locked', trainKeine:'No tests yet.',
   trainAbw:'{a}% claimed, {b}% actual (dev. {c})', kiBusy:'An AI request is already running — please wait.',
+  trainVonBisD:'Date range for path (a) — leave empty for all rated games.',
+  trainSpT:'Path (b): add a game by hand', trainSpD:'A past game with a known result that is not in the AI log.',
+  trainSpMatchPh:'Team A – Team B', trainSpDatumL:'Date', trainSpHeimL:'Goals home', trainSpGastL:'Goals away',
+  trainSpBtn:'Add', trainSpFehler:'Please fill in team, date, and both scores.', trainSpLeer:'No entries yet.',
+  delTrainSpAsk:'Permanently delete this entry from the training room (path b)?\n\n{a}\n\nThis cannot be undone.',
   predResearch:'Researching current situation…',
   marktlageT:'Current situation via web search', marktlageD:'Before each prediction, ONE search covers the whole fixture list (injuries, form, standings) — both brains get the same research. Costs real money per run, capped at {a} searches at most.',
   marktlageAn:'On — turn off', marktlageAusBtn:'Off — turn on',
@@ -533,7 +548,7 @@ var I18N = {
   filterT:'🔎 Filter', filterWettbewerbPh:'Competition (partial text)', filterMannschaftPh:'Team (partial text)', filterStatusAlle:'All', filterStatusOffen:'Open',
   filterStatusGeparkt:'Parked', filterStatusBewRichtig:'Correct', filterStatusBewFalsch:'Wrong',
   filterReset:'Reset', filterCount:'{a} of {b}', filterEmpty:'No entry matches the filter.',
-  kilogTabBewertet:'Rated', kilogTabArchiv:'Archive', kilogTabWerkzeuge:'Tools',
+  kilogTabBewertet:'Rated', kilogTabArchiv:'Archive', kilogTabDaten:'Data', kilogTabWerkzeuge:'Tools',
   logD:'Every AI prediction is rated here. From one predicted score the app derives three statements.',
   gKeyT:'🌱 Second brain (Google Gemini)', gKeyD:'Key from aistudio.google.com — stays ONLY on this device. Handles result checking & photo reading almost free.', gOn:'✅ Gemini key saved', gOff:'❌ No Gemini key',
   oddsKeyT:'🎲 Odds key (The Odds API)', oddsKeyD:'Key from the-odds-api.com — stays ONLY on this device. Free quota limited (around 500 calls/month).', oddsOn:'✅ Odds key saved', oddsOff:'❌ No odds key',
@@ -678,7 +693,11 @@ var state = {
   pruefBilanz: null,
   /* v19.9.0 (Backlog-Punkt 77): eigenes Protokoll fuer den Trainingsraum, getrennt vom
      Evidence Ledger (state.kiProtokoll) - Einzelheiten Ondo-Core-Architektur.md, 1d.
-     trainingsraumSpiele ist Weg (b), von Hand gepflegt, in v1 bewusst leer. */
+     trainingsraumSpiele ist Weg (b), von Hand gepflegt.
+     Berichtigt v19.11.0: "in v1 bewusst leer" traf nur den ersten Ausbau - Ondo verlangte in
+     der Nachbesserung eine Eintragsmoeglichkeit statt eines dauerhaft leeren Platzhalters, siehe
+     trainingsraumSpielHinzufuegen() in trainingsraumBlock(). Das Feld startet weiterhin leer,
+     bleibt es aber nur, bis Ondo etwas eintraegt. */
   trainingsraumProtokoll: [],
   trainingsraumSpiele: [],
   /* v19.10.0 (Backlog-Punkt 79, Ondo "Ja fuer beides"): Ausschalter fuer die laufenden Kosten
@@ -1927,6 +1946,10 @@ var zuletztModell = { gehirn:'', ref:'' };
    koennten zwei gleichzeitige Gemini-Aufrufe (einer live, einer im Trainingsraum) das
    'modell'-Feld am jeweils falschen Protokoll ablegen, siehe Fund bei TRAININGSRAUM_STICHTAG. */
 var kiAnfrageAktiv = false;
+/* v19.11.0, Nachbesserung zu Punkt 77 (Ondo: "Auswahl-Moeglichkeit statt reiner Automatik" fuer
+   Weg (a)) - gleiches Muster wie kilogVon/kilogBis, nur fuer den Trainingsraum. Nur fuer Weg (a)
+   wirksam, siehe trainingsraumKandidaten(). */
+var trainVon='', trainBis='';
 /* v19.9.0 (Backlog-Punkt 77): Zulassungsregel gegen Trainingsdaten-Kontamination. Ein Sprachmodell
    kann ein Ergebnis nur "kennen", wenn das Spiel vor seinem Trainings-Stichtag lag. Der genaue
    Stichtag jeder eingesetzten Modellversion ist nicht bekannt und wird hier nicht geraten
@@ -2644,7 +2667,15 @@ function vorhersagen(btn){
    (siehe trainingsraumLauf). Ein Spiel, das dieses Gehirn schon einmal gesehen hat - live
    ODER im Trainingsraum -, ist ausgeschlossen (Datenleck ueber "fruehere" in
    vorhersageGehirn, siehe 1d). */
-function trainingsraumKandidaten(gehirn, modellHinweis){
+/* v19.11.0 (Backlog-Punkt 77, Nachbesserung Ondo: "fuer Weg (a) einen Zeitraum/Datumsbereich
+   waehlen koennen"). von/bis sind optionale ISO-Daten (wie kilogVon/kilogBis, dasselbe Feld
+   <input type="date"> liefert), gelten NUR fuer Weg (a) - Ondo hat ausdruecklich nur Weg (a)
+   genannt, Weg (b) ist ohnehin von Hand kuratiert (jeder Eintrag eine bewusste Entscheidung,
+   kein automatischer Vorrat, den man eingrenzen muesste). datumZahl() unveraendert
+   wiederverwendet - dieselbe Funktion, die kilogGefiltert() schon fuers KI-Log nutzt. */
+function trainingsraumKandidaten(gehirn, modellHinweis, von, bis){
+  var vonZ = von ? datumZahl(von) : null;
+  var bisZ = bis ? datumZahl(bis) : null;
   /* v19.9.0, Fund bei der Selbstkritik (Ondos Auftrag: "pruefe... ob meine bisherige Idee
      irgendwo problematisch ist"): Eine erste Fassung schloss JEDES Spiel aus, zu dem dieses
      Gehirn JEMALS einen Eintrag hat - live oder im Trainingsraum. Da vorhersagen() beide
@@ -2678,6 +2709,16 @@ function trainingsraumKandidaten(gehirn, modellHinweis){
   return pool.filter(function(sp){
     if(!trainingsraumZugelassen(modellHinweis, sp.datum)) return false;
     if(kuerzlich.indexOf(normName(sp.match))>=0) return false;
+    /* v19.11.0, Nachbesserung zu Punkt 77 (Ondo: "fuer Weg (a) einen Zeitraum/Datumsbereich
+       waehlen koennen"): der Zeitraum gilt nur fuer Weg (a) (quelle==='app', bereits bewertete
+       Spiele aus dem KI-Log). Weg (b) (quelle==='extern', von Ondo von Hand eingetragen) bleibt
+       unberuehrt - dort waehlt Ondo die Spiele bereits einzeln beim Eintragen aus, ein weiterer
+       Datumsfilter waere doppelte Auswahl fuer dieselbe Sache. */
+    if(sp.quelle==='app' && (vonZ!==null || bisZ!==null)){
+      var dz = datumZahl(sp.datum);
+      if(vonZ!==null && (dz===null || dz<vonZ)) return false;
+      if(bisZ!==null && (dz===null || dz>bisZ)) return false;
+    }
     var schonGetestet = (state.trainingsraumProtokoll||[]).some(function(e){
       return e.herkunft===gehirn && normName(e.match)===normName(sp.match);
     });
@@ -2715,12 +2756,12 @@ function trainingsraumLauf(btn){
 
   var jobs=[], namen=[], kandJeGehirn={};
   if(hatSonnet()){
-    var kS=trainingsraumKandidaten('sonnet','claude-sonnet-4-6');
+    var kS=trainingsraumKandidaten('sonnet','claude-sonnet-4-6',trainVon,trainBis);
     if(kS.length){ kandJeGehirn.sonnet=kS; jobs.push(vorhersageGehirn('sonnet',kS)); namen.push('sonnet'); }
   }
   if(hatGemini()){
     var hinweisFlash = state.gModellGehirn||state.geminiModel||'';
-    var kF=trainingsraumKandidaten('flash',hinweisFlash);
+    var kF=trainingsraumKandidaten('flash',hinweisFlash,trainVon,trainBis);
     if(kF.length){ kandJeGehirn.flash=kF; jobs.push(vorhersageGehirn('flash',kF)); namen.push('flash'); }
   }
   if(!jobs.length){
@@ -2808,6 +2849,15 @@ function trainingsraumBlock(){
       '<div><span style="color:'+farbe+'">'+t('trainAbw').replace('{a}',a.beh).replace('{b}',a.echt).replace('{c}',a.diff)+
       '</span> <span class="muted">(n='+a.n+')</span></div></div>';
   }
+  /* v19.11.0, Nachbesserung zu Punkt 77 (Ondo: "Auswahl-Moeglichkeit statt reiner Automatik" fuer
+     Weg (a), + Eintragsmoeglichkeit fuer Weg (b) statt einer immer leeren Liste). Dieselbe
+     Flexbox-Datumsreihe wie kilogFilterBlock()/logExportBlock() (siehe dortiger Kommentar,
+     Backlog-Punkt 73 zurueckgesetzt) — kein neuer, ungeprueft CSS-Versuch an dieser Stelle. */
+  var wegBListe = (state.trainingsraumSpiele||[]).map(function(s,idx){
+    return '<div class="mkt"><div>'+esc(s.match)+(s.wettbewerb?' · '+esc(s.wettbewerb):'')+' · '+esc(s.datum)+
+      ' · '+s.ergebnisHeim+':'+s.ergebnisGast+'</div>'+
+      '<button class="btn-sm" onclick="trainingsraumSpielLoeschen('+idx+')">'+t('del')+'</button></div>';
+  }).join('');
   return '<div class="card">'+
     '<div class="disp" style="font-size:20px;margin-bottom:6px">🧪 '+t('trainT')+'</div>'+
     '<div class="muted">'+t('trainD')+'</div>'+
@@ -2815,10 +2865,78 @@ function trainingsraumBlock(){
       zeile('sonnet','claude-sonnet-4-6')+
       zeile('flash', state.gModellGehirn||state.geminiModel||'')+
     '</div>'+
+    '<div class="muted" style="margin-top:10px;font-size:13px">'+t('trainVonBisD')+'</div>'+
+    '<div style="display:flex;gap:10px;margin-top:6px">'+
+      '<div style="flex:1;min-width:0"><label>'+t('logExpFrom')+'</label>'+
+        '<input type="date" id="trainVon" style="min-width:0;text-align:center" value="'+esc(trainVon)+'" '+
+        'onchange="trainVon=this.value;render()"/></div>'+
+      '<div style="flex:1;min-width:0"><label>'+t('logExpTo')+'</label>'+
+        '<input type="date" id="trainBis" style="min-width:0;text-align:center" value="'+esc(trainBis)+'" '+
+        'onchange="trainBis=this.value;render()"/></div>'+
+    '</div>'+
     '<button class="btn" style="margin-top:10px" onclick="trainingsraumLauf(this)">'+t('trainBtn')+'</button>'+
     '<div id="trainErr" style="color:var(--loss);margin-top:8px;font-size:13px"></div>'+
     (state.trainingsraumInfo ? '<div class="muted" style="margin-top:8px">'+esc(state.trainingsraumInfo)+'</div>' : '')+
+    '<div style="margin-top:16px;border-top:1px solid var(--edge);padding-top:12px">'+
+      '<div class="disp" style="font-size:16px;margin-bottom:6px">'+t('trainSpT')+'</div>'+
+      '<div class="muted" style="margin-bottom:8px">'+t('trainSpD')+'</div>'+
+      '<input id="trainSpMatch" placeholder="'+esc(t('trainSpMatchPh'))+'" style="margin-bottom:8px;width:100%"/>'+
+      '<input id="trainSpWettbewerb" placeholder="'+esc(t('filterWettbewerbPh'))+'" style="margin-bottom:8px;width:100%"/>'+
+      '<div style="display:flex;gap:10px;margin-bottom:8px">'+
+        '<div style="flex:1;min-width:0"><label>'+t('trainSpDatumL')+'</label>'+
+          '<input type="date" id="trainSpDatum" style="min-width:0;text-align:center"/></div>'+
+      '</div>'+
+      '<div style="display:flex;gap:10px;margin-bottom:8px">'+
+        '<div style="flex:1;min-width:0"><label>'+t('trainSpHeimL')+'</label>'+
+          '<input type="number" id="trainSpHeim" min="0" style="min-width:0;text-align:center"/></div>'+
+        '<div style="flex:1;min-width:0"><label>'+t('trainSpGastL')+'</label>'+
+          '<input type="number" id="trainSpGast" min="0" style="min-width:0;text-align:center"/></div>'+
+      '</div>'+
+      '<button class="btn" onclick="trainingsraumSpielHinzufuegen()">'+t('trainSpBtn')+'</button>'+
+      '<div id="trainSpErr" style="color:var(--loss);margin-top:8px;font-size:13px"></div>'+
+      '<div style="margin-top:10px">'+(wegBListe || '<div class="muted">'+t('trainSpLeer')+'</div>')+'</div>'+
+    '</div>'+
   '</div>';
+}
+function trainingsraumSpielHinzufuegen(){
+  var m=document.getElementById('trainSpMatch');
+  var w=document.getElementById('trainSpWettbewerb');
+  var d=document.getElementById('trainSpDatum');
+  var h=document.getElementById('trainSpHeim');
+  var g=document.getElementById('trainSpGast');
+  var fehler=document.getElementById('trainSpErr');
+  var matchTxt=String(m.value||'').trim();
+  var iso=String(d.value||'').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  var hZ=Number(h.value), gZ=Number(g.value);
+  if(!matchTxt || !iso || h.value==='' || g.value==='' || isNaN(hZ) || isNaN(gZ)){
+    if(fehler) fehler.textContent=t('trainSpFehler');
+    return;
+  }
+  /* sp.datum muss wie ueberall sonst deutsches d.m.yyyy sein - trainingsraumZugelassen()
+     akzeptiert nur dieses Format (siehe dort, Fund beim Trockentest), das Datumsfeld liefert
+     aber ISO (JJJJ-MM-TT). Deshalb hier umgewandelt, statt das Format an dieser einen Stelle
+     abweichen zu lassen. */
+  var datumDe = Number(iso[3])+'.'+Number(iso[2])+'.'+iso[1];
+  if(!state.trainingsraumSpiele) state.trainingsraumSpiele=[];
+  state.trainingsraumSpiele.push({
+    match:matchTxt,
+    wettbewerb:String(w.value||'').trim(),
+    datum:datumDe,
+    ergebnisHeim:Math.max(0,Math.round(hZ)),
+    ergebnisGast:Math.max(0,Math.round(gZ))
+  });
+  m.value=''; w.value=''; d.value=''; h.value=''; g.value='';
+  fehler.textContent='';
+  save();
+  render();
+}
+function trainingsraumSpielLoeschen(idx){
+  var s=(state.trainingsraumSpiele||[])[idx];
+  if(!s) return;
+  if(!confirm(t('delTrainSpAsk').replace('{a}', s.match||'?'))) return;
+  state.trainingsraumSpiele.splice(idx,1);
+  save();
+  render();
 }
 
 /* ================= SCHEIN-FOTO ================= */
@@ -4152,11 +4270,25 @@ function viewBets(c){
       '<button class="subtab '+(kilogTab==="offen"?"on":"")+'" onclick="kilogTab=\'offen\';render()">'+t('filterStatusOffen')+'</button>'+
       '<button class="subtab '+(kilogTab==="bewertet"?"on":"")+'" onclick="kilogTab=\'bewertet\';render()">'+t('kilogTabBewertet')+'</button>'+
       '<button class="subtab '+(kilogTab==="archiv"?"on":"")+'" onclick="kilogTab=\'archiv\';render()">'+t('kilogTabArchiv')+'</button>'+
+      '<button class="subtab '+(kilogTab==="daten"?"on":"")+'" onclick="kilogTab=\'daten\';render()">'+t('kilogTabDaten')+'</button>'+
       '<button class="subtab '+(kilogTab==="werkzeuge"?"on":"")+'" onclick="kilogTab=\'werkzeuge\';render()">'+t('kilogTabWerkzeuge')+'</button>'+
     '</div>';
 
     var body='';
-    if(kilogTab==='bewertet'){
+    /* v19.11.0 (Backlog-Punkt 77, Nachbesserung Ondo 12.9.2026): "KI-Daten gelten nur fuer
+       Wetten, gehoeren also ins Wettmodul, nicht unter 'Mehr' (das ist fuer alle Module)."
+       Kalibrierung, Beobachtungen, gepaarter Vergleich und der Trainingsraum stehen deshalb
+       ab hier unter KI-Log/Daten statt unter "Mehr" (Fassung 106/107 damit rueckgaengig
+       gemacht) - dieselbe Karte, dieselben Funktionen, nur der Ort hat sich geaendert. */
+    if(kilogTab==='daten'){
+      var aiZahl = calcAI();
+      body = '<div class="card"><div class="stat-label">'+t('hitAI')+'</div>'+
+        '<div class="stat-val">'+(aiZahl.q===null?"–":aiZahl.q+" %")+'</div>'+
+        '<div class="stat-sub">'+(aiZahl.n?aiZahl.tr+" "+t('of')+" "+aiZahl.n:t('notRated'))+
+        (aiZahl.n?'<br>Sonnet: '+(aiZahl.sonnet.q===null?'–':aiZahl.sonnet.q+' % ('+aiZahl.sonnet.tr+'/'+aiZahl.sonnet.n+')')+' · Flash: '+(aiZahl.flash.q===null?'–':aiZahl.flash.q+' % ('+aiZahl.flash.tr+'/'+aiZahl.flash.n+')'):'')+
+        '</div></div>'+
+        kalibBlock()+beobachtungenBlock()+gepaartBlock()+trainingsraumBlock();
+    } else if(kilogTab==='bewertet'){
       var g = kilogGefiltert(bewertetListe, kilogVon, kilogBis, kilogWettbewerb, kilogStatus, kilogMannschaft);
       body = kilogFilterBlock(bewertetListe.length, g.length, 'bewertet')+
         (g.length ? g.map(function(e){ return vorhersageKarte(e,true,true); }).join('') : '<div class="card empty">'+t('filterEmpty')+'</div>');
@@ -4371,7 +4503,6 @@ function beobachtungenBlock(){
 
 /* ================= FINANZEN ================= */
 function viewFinance(c){
-  var ai=calcAI();
   return ''+
   '<div class="row">'+
     '<div class="card"><div class="stat-label">'+t('totalBal')+'</div>'+
@@ -4384,14 +4515,15 @@ function viewFinance(c){
     '<div class="card"><div class="stat-label">'+t('betBal')+'</div>'+
       '<div class="stat-val" style="color:'+(c.wettSaldo>0?"var(--win)":c.wettSaldo<0?"var(--loss)":"var(--text)")+'">'+fmt(c.wettSaldo)+'</div>'+
       '<div class="stat-sub">'+c.done+' '+t('closed')+' · '+eur(c.offen)+' '+t('open_')+'</div></div>'+
+    /* v19.11.0 (Backlog-Punkt 77, Nachbesserung): "KI-Trefferquote" ist eine KI-Kennzahl
+       (calcAI() liest ausschliesslich state.kiProtokoll) und gehoert deshalb nicht zu Ondos
+       persoenlichen Finanzen - verschoben nach Wettmodul/KI-Log/Daten, zusammen mit
+       Kalibrierung, Beobachtungen, gepaartem Vergleich und dem Trainingsraum. Dies war der
+       von Ondo belegte Fund: diese Karte war nie Teil der drei bereits verschobenen Bloecke
+       und wurde beim ersten Umzug (Fassung 106) uebersehen. */
     '<div class="card"><div class="stat-label">'+t('hitYou')+'</div>'+
       '<div class="stat-val">'+(c.quoteIch===null?"–":c.quoteIch+" %")+'</div>'+
       '<div class="stat-sub">'+(c.done?c.wins+" "+t('of')+" "+c.done:t('noBetYet'))+'</div></div>'+
-    '<div class="card"><div class="stat-label">'+t('hitAI')+'</div>'+
-      '<div class="stat-val">'+(ai.q===null?"–":ai.q+" %")+'</div>'+
-      '<div class="stat-sub">'+(ai.n?ai.tr+" "+t('of')+" "+ai.n:t('notRated'))+
-      (ai.n?'<br>Sonnet: '+(ai.sonnet.q===null?'–':ai.sonnet.q+' % ('+ai.sonnet.tr+'/'+ai.sonnet.n+')')+' · Flash: '+(ai.flash.q===null?'–':ai.flash.q+' % ('+ai.flash.tr+'/'+ai.flash.n+')'):'')+
-      '</div></div>'+
   '</div>'+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:10px">'+t('finT')+'</div>'+
     '<label>'+t('depNew')+'</label>'+
@@ -4503,14 +4635,12 @@ function viewMore(){
       (state.marktlageAktiv!==false ? t('marktlageAn') : t('marktlageAusBtn'))+
     '</button>'+
   '</div>'+
-  /* v19.8.31 (Auftrag Ondo 12.9.2026, "Wenn es geht dann unter mehr"): Kalibrierung,
-     Beobachtungen und gepaarter Vergleich gehoeren zu den KI-Modulen (Wetten und
-     zukuenftig weitere), nicht zu den persoenlichen Finanzen von Ondo — von dort
-     hierher verschoben. */
-  kalibBlock()+
-  beobachtungenBlock()+
-  gepaartBlock()+
-  trainingsraumBlock()+
+  /* v19.11.0 (Backlog-Punkt 77, Nachbesserung Ondo 12.9.2026): Hier stand bis v19.10.0
+     kalibBlock()+beobachtungenBlock()+gepaartBlock()+trainingsraumBlock() (verschoben von
+     Finanzen in Fassung 106) - Ondo hat richtiggestellt, dass "Mehr" fuer ALLE Module gilt,
+     waehrend diese vier Bloecke ausschliesslich zum Modul Wetten gehoeren (belegt: sie lesen
+     nur aus state.kiProtokoll/state.trainingsraumProtokoll). Jetzt unter Wettmodul -> KI-Log
+     -> Daten, siehe viewBets(). */
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">🎛 '+t('mdlT')+'</div>'+
     '<div class="muted" style="margin-bottom:12px">'+t('mdlD')+'</div>'+
     modellFeld('gehirn')+

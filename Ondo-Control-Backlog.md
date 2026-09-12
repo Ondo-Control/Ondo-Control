@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 111 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 112 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,41 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 112 ändert (12.9., Trainingsraum-Nachbesserung gebaut — Backlog-Punkt 77, `beta.html` v19.11.0)
+
+**Anlass:** Ondo hat die Screenshots des Trainingsraum-Baus (Fassung 108) geprüft und fünf
+Nachbesserungen verlangt (Fassung 109), bevor weitergebaut wird. Reihenfolge für diese
+Sitzung, von Ondo festgelegt: „Punkt 4 zum Schluss bauen / Punkt 78 freigegeben, bauen / mit
+der Trainingsraum-Nachbesserung (die fünf Punkte oben) weitermachen."
+
+- **🔴 Backlog-Punkt 77, Nachbesserung GEBAUT.** Alle fünf Punkte abgearbeitet:
+  1. **Fund behoben:** `hitAI` steht nicht mehr unter „Finanzen".
+  2. **Platzierung erneut geändert (Fassung 106/107 zurückgenommen):** `hitAI` und die vier
+     Blöcke (Kalibrierung/Beobachtungen/gepaarter Vergleich/Trainingsraum) stehen jetzt unter
+     Wettmodul → KI-Log → neuem Unter-Reiter „Daten", nicht mehr unter „Mehr" (das gilt für alle
+     Module, nicht nur Wetten — Ondos Richtigstellung).
+  3. Weg (a) bestätigt — kein Codebedarf.
+  4. **Auswahl statt Automatik gebaut:** `trainingsraumKandidaten()` filtert Weg (a) jetzt
+     optional auf einen Zeitraum (`trainVon`/`trainBis`, gleiches Muster wie der KI-Log-Filter);
+     Weg (b) hat eine echte Eintragemöglichkeit (`trainingsraumSpielHinzufuegen()`/
+     `trainingsraumSpielLoeschen()`) statt der leeren Platzhalter-Datenstruktur. Der Zeitraum
+     wirkt ausdrücklich nur auf Weg (a).
+  5. **Beantwortet, kein Code:** ein eigenständiges Werkzeug ausserhalb der App wäre nicht
+     einfacher — dieselbe Logik müsste dort ohne `state.kiProtokoll` neu gebaut werden.
+- **Verifiziert:** `node --check` bestanden · Trainingsraum-Trockentest von 40 auf **59
+  Prüfungen** erweitert · alle bestehenden Suiten erneut gelaufen, alle weiterhin bestanden ·
+  `pruefe.py`: ALLES SAUBER.
+- **12 neue Sprachschlüssel** (325 → 337). Kein Schnitt in der Messreihe. `beta.html` jetzt
+  v19.11.0.
+- **🔴 Backlog-Punkt 78 von Ondo freigegeben:** „Punkt 78 freigegeben, bauen" — als nächstes
+  dran (vor Punkt 4, laut Ondos Reihenfolge).
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 107 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: zwei** — **4, 78** *(78 neu dazu: von Ondo freigegeben, noch
+  nicht gebaut.)*
 
 ---
 
@@ -143,52 +178,6 @@ tragfähig ist.
   `BACKLOG-ARCHIV.md` verschoben.
 - **Beschlossen und nicht gebaut: eins** — **4** *(unverändert — Punkt 77 war „Idee", zählt
   jetzt als gebaut, nicht als beschlossen-und-nicht-gebaut.)*
-
----
-
-## ⚠ Was Fassung 107 ändert (12.9., Trainingsraum-Lösung gefunden, Punkt 4 freigegeben, ChatGPT-Antworten eingetragen — kein Codeaufwand)
-
-**Anlass:** Ondo hat Punkt 77 (Trainingsraum) berichtigt — Weg (a) meint bereits ausgewertete
-Spiele, nicht offene — und verlangt eine Lösung für das dadurch schärfere Problem: beide Wege
-brauchen Isolation von Erinnerung UND Websuche, „aufgeben ist keine Option". Ausserdem hat er
-ChatGPTs Antworten zu den zwei Rückfragen (Punkt 77, 78) mitgeteilt und erklärt, dass ChatGPT
-jetzt vollen Repo-Zugriff hat statt nur GitHub-Pages-Links.
-
-- **🔴 Trainingsraum-Lösung gefunden und im Code belegt (Punkt 77).** Zwei Funde: **Erstens**,
-  die heutigen echten Vorhersagen (`vorhersageGehirn()`) laufen bereits ohne Websuche — weder
-  der Sonnet- noch der Flash-Aufruf hängt das Suchwerkzeug an (`geminiCall()` tut das nur bei
-  `useSearch`, laut eigenem Kommentar „NUR fuer den Schiedsrichter", Zeile 1944). Ein
-  Trainingsraum, der dieselbe Funktion wiederverwendet, erbt diese Isolation automatisch — dafür
-  muss nichts Neues gebaut werden. **Zweitens**, das Risiko, dass ein Modell ein Ergebnis aus
-  seinen Trainingsdaten „kennt", lässt sich durch eine Zulassungsregel nach Datum eingrenzen: nur
-  Spiele, deren Datum nachweislich nach dem Trainings-Stichtag der eingesetzten Modellversion
-  liegt (bei Spielen aus dem eigenen laufenden Betrieb der App voraussichtlich immer der Fall,
-  aber vor dem ersten scharfen Lauf an der offiziellen Modell-Dokumentation zu prüfen, nicht
-  geraten — Art. 11). Damit entfällt die von Ondo befürchtete 4-Wochen-Wartezeit vollständig: Der
-  Trainingsraum kann auf bereits ausgewertete `kiProtokoll`-Einträge zurückgreifen, deren
-  Ergebnis sofort verfügbar ist. Einzelheiten, Bauskizze und offene Punkte (Kader/Verletzte noch
-  keine Datenquelle) stehen bei Punkt 77 selbst.
-- **🔴 Backlog-Punkt 4 (Daten-Export) von Ondo freigegeben, unabhängig vom Stand der
-  Beförderung.** Ondo wörtlich: „Wenn du jetzt Punkt 3 gelöst hast mit dem Trainingsraum, ist
-  für mich Punkt 4 freigeschaltet." Mit der Trainingsraum-Lösung oben ist diese Bedingung
-  erfüllt. Die bisherige Terminierung „unmittelbar vor der Beförderung" war ohnehin nur eine
-  Reihenfolge-Festlegung, kein technischer Blocker — das wurde Ondo in derselben Sitzung erklärt,
-  nachdem er gefragt hatte, was Punkt 4 bisher aufhält. Genauer Umfang des Exports noch offen.
-- **ChatGPT-Antworten zu Punkt 77 und 78 eingetragen — beide ohne Widerspruch zu Claudes
-  Einschätzung.** Zu Punkt 77: ChatGPT bestätigt die Datums-Zulassungsregel unabhängig
-  vorgeschlagen. Zu Punkt 78 (Kombi-Wette): ChatGPT bestätigt Claudes Empfehlung (Liste von
-  `kiProtokollId`-Werten an einer Wette statt Aufteilung in Teil-Einträge) und schlägt als
-  spätere Ausbaustufe eine strukturierte Leg-Liste statt nackter IDs vor.
-- **Offene Frage an Ondo, noch nicht entschieden:** Ondo berichtet, ChatGPT habe jetzt vollen
-  Repo-Zugriff und lese nicht mehr nur über GitHub-Pages-Links in einem frischen Chat ausserhalb
-  des Projektordners — das war der Grund für die heutige Übergaberegel in Blueprint, Abschnitt
-  2d. Ob Abschnitt 2d deshalb geändert werden soll, ist eine Verfassungsfrage (Art. 8) und wird
-  Ondo direkt vorgelegt, nicht von Claude aus eigener Vermutung entschieden — **Blueprint an
-  dieser Stelle unverändert.**
-- **Kein Codeaufwand, keine Prüfungen betroffen.** `pruefe.py`: ALLES SAUBER.
-- **Regel 5 angewandt:** Abschnitt „Was Fassung 102 ändert" wortgleich nach
-  `BACKLOG-ARCHIV.md` verschoben.
-- **Beschlossen und nicht gebaut: eins** — **4** *(Status geändert: von Ondo freigegeben statt an die Beförderung gebunden — siehe oben. Punkt 77/78 bleiben „Idee" bis Ondo den Bau ausdrücklich freigibt.)*
 
 ---
 
@@ -1429,7 +1418,7 @@ Vier Wochen ohne Websuche messen, dann Suche zuschalten, Kalibrierung vergleiche
 
 ---
 
-**77. Trainingsraum — Gehirne an bereits ausgewerteten Spielen testen, ohne Erinnerung/Websuche** · *Idee Ondo, 12.9.2026 (Ersatzvorschlag für Punkt 3) · Auftrag Ondo 12.9.2026: „nicht einfach Auftrag erledigen und fertig, sondern vorher wirklich durchdenken, absichern und zukunftsfähig konzipieren" · Plan geprüft und für tragfähig befunden, Bau ohne weitere Rückfrage ausdrücklich freigegeben* · **Status: 🔴 GEBAUT 12.9.2026 (`beta.html` v19.9.0), Nachbesserung angefordert — nichts Weiteres gebaut, bis geklärt**
+**77. Trainingsraum — Gehirne an bereits ausgewerteten Spielen testen, ohne Erinnerung/Websuche** · *Idee Ondo, 12.9.2026 (Ersatzvorschlag für Punkt 3) · Auftrag Ondo 12.9.2026: „nicht einfach Auftrag erledigen und fertig, sondern vorher wirklich durchdenken, absichern und zukunftsfähig konzipieren" · Plan geprüft und für tragfähig befunden, Bau ohne weitere Rückfrage ausdrücklich freigegeben* · **Status: ✅ GEBAUT 12.9.2026 (`beta.html` v19.9.0), Nachbesserung GEBAUT 12.9.2026 (`beta.html` v19.11.0)**
 
 Ondo wörtlich (Grundidee): „Es gibt die Möglichkeit einen Trainingsraum zu bauen … mit den bereits ausgewerteten Spielen, wo die Gehirne diese Tests durchlaufen könnten ohne Zugriff auf Erinnerung und Websuche … Das würde uns viel Zeit sparen." Beide Wege sollen von Anfang an vorgesehen sein: **Weg (a)** bereits ausgewertete App-Spiele (aktiv genutzt), **Weg (b)** öffentlich bekannte historische Spiele (Datenstruktur steht, „müssen wir jetzt noch nicht aktiv nutzen").
 
@@ -1451,17 +1440,24 @@ Ondo wörtlich (Grundidee): „Es gibt die Möglichkeit einen Trainingsraum zu b
 4. **Neu verlangt: Auswahl-Möglichkeit statt reiner Automatik.** Ondo will für Weg (a) einen Zeitraum/Datumsbereich wählen können (ähnlich dem bestehenden von/bis-Filter im KI-Log), und für Weg (b) tatsächlich historische Spiele/Wettbewerbe **auswählen oder eintragen** können — nicht nur eine leere, für später vorgesehene Datenstruktur. Noch nicht gebaut, noch keine Entwurfsentscheidung getroffen (siehe Rückfragen im Chat).
 5. **Offene Frage von Ondo:** Wäre ein eigenständiges Werkzeug **im Repo, ausserhalb der App** (z. B. ein Node-Skript, direkt auf den bereits vorhandenen Funktionen aufgesetzt) einfacher als eine Erweiterung der Telefon-Oberfläche? Antwort noch nicht gegeben, siehe Chat.
 → **🔴 Rücksetzpunkt festgehalten (Ondos Wunsch, Sicherheit vor dem nächsten Umbau):** Commit `ed14eb7`, `beta.html` v19.9.0, 12.9.2026, 16:17 Uhr UTC (Commit-Zeitstempel, nicht Container-Systemzeit — Art. „echte Uhrzeiten"). Das ist der Stand **vor** der Verschiebung von KI-Log-Daten und vor jeder Auswahl-UI für den Trainingsraum. Einzelheiten auch in `STAND.md`, „Versionen".
+→ **✅ Nachbesserung GEBAUT (12.9.2026, `beta.html` v19.11.0):**
+1. **Behoben:** `hitAI` steht nicht mehr in `viewFinance()`.
+2. **Verschoben:** `hitAI` und die vier Blöcke (Kalibrierung/Beobachtungen/gepaarter Vergleich/Trainingsraum) stehen jetzt unter Wettmodul → KI-Log → neuem Unter-Reiter „Daten" (`kilogTab==='daten'`), nicht mehr unter „Mehr" — Fassung 106/107 damit zurückgenommen.
+3. Unverändert, wie bestätigt — kein Codebedarf.
+4. **Gebaut:** `trainingsraumKandidaten(gehirn, modellHinweis, von, bis)` filtert Weg (a) optional auf einen Zeitraum (`trainVon`/`trainBis`, gleiches Muster wie `kilogVon`/`kilogBis`) — leer heisst weiterhin „alle bewerteten Spiele". Weg (b) hat jetzt eine echte Eintragemöglichkeit (`trainingsraumSpielHinzufuegen()`/`trainingsraumSpielLoeschen()`, Formular für Team/Wettbewerb/Datum/Ergebnis, Liste mit Löschen-Bestätigung) statt der leeren Platzhalter-Datenstruktur. Der Zeitraum wirkt ausdrücklich **nur auf Weg (a)** — Weg (b) wählt Ondo bereits einzeln beim Eintragen aus.
+5. **Beantwortet, kein Code:** Ein eigenständiges Werkzeug ausserhalb der App wäre nicht einfacher — dieselbe Zulassungs- und Ausschlusslogik (Stichtag, letzte sechs eigene Vorhersagen) müsste dort ohne Zugriff auf `state.kiProtokoll` neu gebaut werden. Bleibt in der App.
+→ **Verifiziert:** `node --check` bestanden · Trockentest von 40 auf **59 Prüfungen** erweitert (Zeitraum wirkt nur auf Weg (a); Weg-(b)-Formular inkl. ISO→deutsch-Datumswandlung, Leerfeld-Fehler, Lösch-Bestätigung) · alle bestehenden Suiten erneut gelaufen, alle weiterhin bestanden · `pruefe.py`: ALLES SAUBER. **12 neue Sprachschlüssel** (325 → 337). Kein Schnitt in der Messreihe.
 
 ---
 
-**78. Kombi-Wette mit mehreren Vorhersagen verbinden** · *Fund Ondo, 12.9.2026 (Wetten per Foto hochgeladen, „Ich habe Kombi gespielt. Wie lässt sich das mit den aktuellen Vorhersagen verbinden?")* · **Status: Idee — offene Design-Frage, an Claude delegiert („da musst du dir was einfallen lassen")**
+**78. Kombi-Wette mit mehreren Vorhersagen verbinden** · *Fund Ondo, 12.9.2026 (Wetten per Foto hochgeladen, „Ich habe Kombi gespielt. Wie lässt sich das mit den aktuellen Vorhersagen verbinden?")* · **Status: beschlossen — 🔴 von Ondo freigegeben (12.9.2026): „Punkt 78 freigegeben, bauen" — als nächstes dran, nach der Trainingsraum-Nachbesserung**
 
 → **Beleg aus dem Code (Art. H, belegt statt hergeleitet):** `fotoLesen()` legt für eine Kombi ausdrücklich **einen einzigen** Eintrag an (Gesamtquote = möglicher Gewinn ÷ Einsatz, so im eigenen KI-Prompt der Funktion verlangt) — und setzt dabei **weder `fromKI` noch `herkunft` noch `kiProtokollId`**. Eine per Foto eingelesene Kombi-Wette landet damit komplett ausserhalb der Lernkette (Decision Ledger, Backlog-Punkt 75 Teil 2), unabhängig davon, ob es sich um eine Kombi oder eine Einzelwette handelt. Auch der manuelle Weg (`kiWahlBlock()`/`kiWahlUebernehmen()`) kennt nur **eine** verknüpfte `kiProtokoll`-Vorhersage je Wette — eine Kombi aus mehreren Spielen, von denen jedes eine eigene Vorhersage hat, lässt sich damit an keiner Stelle im heutigen Code abbilden.
 → **Warum das schwieriger ist als eine Einzelwette:** Eine Kombi-Wette hat einen Einsatz und einen Ausgang (gewonnen/verloren), aber mehrere zugrundeliegende Spiele mit je eigener Vorhersage und je eigenem Ausgang. Die Lernkette rechnet heute in „eine Wette = eine Vorhersage" — eine Kombi bräuchte entweder „eine Wette = mehrere Vorhersagen" (neues Datenfeld, `state.bets[].kiProtokollIds` als Liste statt `kiProtokollId` als einzelner Wert) oder eine Aufteilung in mehrere Teil-Einträge (verändert aber Einsatz/Quote-Rechnung, die heute je Wette gilt).
 → **Noch nicht entworfen, nur die Lücke belegt.** Eine Lösung braucht eine Entscheidung über die Datenform (Liste vs. Aufteilung) — das ist eine Architekturfrage (Ondo-Core-Architektur.md, Ebenen-Trennung 1b), nicht nur ein Anzeigefeld, deshalb hier als offene Design-Frage vermerkt statt sofort gebaut.
 → **Kosten:** noch nicht bezifferbar, hängt von der gewählten Datenform ab.
 → **🔴 ChatGPT-Rückfrage beantwortet (12.9.2026):** „Eine Kombi sollte eine einzige Wette bleiben und mehrere kiProtokollId-Verknüpfungen speichern. Sie in Teilwetten aufzuteilen wäre sachlich falsch: Einsatz, Gesamtquote, Gewinn/Verlust und Abrechnung gehören zur gesamten Kombi, nicht zu den einzelnen Legs. […] Technisch würde ich später eher eine strukturierte Liste der Legs vorsehen als nur nackte IDs, aber die Grundentscheidung lautet eindeutig: eine Wette → mehrere KI-Protokoll-Verknüpfungen." **Deckt sich mit Claudes Einschätzung (Liste statt Aufteilung) — kein Widerspruch.** Die von ChatGPT vorgeschlagene Verfeinerung (strukturierte Liste der Legs statt nackter IDs — z. B. je Leg auch Einsatz-Anteil oder Quote separat) ist eine spätere Ausbaustufe, nicht Teil der Grundentscheidung.
-→ **Nächster Schritt (Art. 8):** Grundentscheidung von beiden Prüfern getragen — `state.bets[].kiProtokollIds` als Liste. Soll das jetzt gebaut werden?
+→ **🔴 Freigegeben (Ondo, 12.9.2026): „Punkt 78 freigegeben, bauen."** Grundentscheidung von beiden Prüfern getragen — `state.bets[].kiProtokollIds` als Liste. Reihenfolge laut Ondo: nach der Trainingsraum-Nachbesserung, vor Punkt 4.
 
 ---
 

@@ -410,6 +410,52 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 107 ändert (12.9., Trainingsraum-Lösung gefunden, Punkt 4 freigegeben, ChatGPT-Antworten eingetragen — kein Codeaufwand)
+
+**Anlass:** Ondo hat Punkt 77 (Trainingsraum) berichtigt — Weg (a) meint bereits ausgewertete
+Spiele, nicht offene — und verlangt eine Lösung für das dadurch schärfere Problem: beide Wege
+brauchen Isolation von Erinnerung UND Websuche, „aufgeben ist keine Option". Ausserdem hat er
+ChatGPTs Antworten zu den zwei Rückfragen (Punkt 77, 78) mitgeteilt und erklärt, dass ChatGPT
+jetzt vollen Repo-Zugriff hat statt nur GitHub-Pages-Links.
+
+- **🔴 Trainingsraum-Lösung gefunden und im Code belegt (Punkt 77).** Zwei Funde: **Erstens**,
+  die heutigen echten Vorhersagen (`vorhersageGehirn()`) laufen bereits ohne Websuche — weder
+  der Sonnet- noch der Flash-Aufruf hängt das Suchwerkzeug an (`geminiCall()` tut das nur bei
+  `useSearch`, laut eigenem Kommentar „NUR fuer den Schiedsrichter", Zeile 1944). Ein
+  Trainingsraum, der dieselbe Funktion wiederverwendet, erbt diese Isolation automatisch — dafür
+  muss nichts Neues gebaut werden. **Zweitens**, das Risiko, dass ein Modell ein Ergebnis aus
+  seinen Trainingsdaten „kennt", lässt sich durch eine Zulassungsregel nach Datum eingrenzen: nur
+  Spiele, deren Datum nachweislich nach dem Trainings-Stichtag der eingesetzten Modellversion
+  liegt (bei Spielen aus dem eigenen laufenden Betrieb der App voraussichtlich immer der Fall,
+  aber vor dem ersten scharfen Lauf an der offiziellen Modell-Dokumentation zu prüfen, nicht
+  geraten — Art. 11). Damit entfällt die von Ondo befürchtete 4-Wochen-Wartezeit vollständig: Der
+  Trainingsraum kann auf bereits ausgewertete `kiProtokoll`-Einträge zurückgreifen, deren
+  Ergebnis sofort verfügbar ist. Einzelheiten, Bauskizze und offene Punkte (Kader/Verletzte noch
+  keine Datenquelle) stehen bei Punkt 77 selbst.
+- **🔴 Backlog-Punkt 4 (Daten-Export) von Ondo freigegeben, unabhängig vom Stand der
+  Beförderung.** Ondo wörtlich: „Wenn du jetzt Punkt 3 gelöst hast mit dem Trainingsraum, ist
+  für mich Punkt 4 freigeschaltet." Mit der Trainingsraum-Lösung oben ist diese Bedingung
+  erfüllt. Die bisherige Terminierung „unmittelbar vor der Beförderung" war ohnehin nur eine
+  Reihenfolge-Festlegung, kein technischer Blocker — das wurde Ondo in derselben Sitzung erklärt,
+  nachdem er gefragt hatte, was Punkt 4 bisher aufhält. Genauer Umfang des Exports noch offen.
+- **ChatGPT-Antworten zu Punkt 77 und 78 eingetragen — beide ohne Widerspruch zu Claudes
+  Einschätzung.** Zu Punkt 77: ChatGPT bestätigt die Datums-Zulassungsregel unabhängig
+  vorgeschlagen. Zu Punkt 78 (Kombi-Wette): ChatGPT bestätigt Claudes Empfehlung (Liste von
+  `kiProtokollId`-Werten an einer Wette statt Aufteilung in Teil-Einträge) und schlägt als
+  spätere Ausbaustufe eine strukturierte Leg-Liste statt nackter IDs vor.
+- **Offene Frage an Ondo, noch nicht entschieden:** Ondo berichtet, ChatGPT habe jetzt vollen
+  Repo-Zugriff und lese nicht mehr nur über GitHub-Pages-Links in einem frischen Chat ausserhalb
+  des Projektordners — das war der Grund für die heutige Übergaberegel in Blueprint, Abschnitt
+  2d. Ob Abschnitt 2d deshalb geändert werden soll, ist eine Verfassungsfrage (Art. 8) und wird
+  Ondo direkt vorgelegt, nicht von Claude aus eigener Vermutung entschieden — **Blueprint an
+  dieser Stelle unverändert.**
+- **Kein Codeaufwand, keine Prüfungen betroffen.** `pruefe.py`: ALLES SAUBER.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 102 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: eins** — **4** *(Status geändert: von Ondo freigegeben statt an die Beförderung gebunden — siehe oben. Punkt 77/78 bleiben „Idee" bis Ondo den Bau ausdrücklich freigibt.)*
+
+---
+
 ## ⚠ Was Fassung 106 ändert (12.9., Ondos Entscheidungen zu Historie/Konto, Finanzen-Platzierung, Punkt 3 — `beta.html` v19.8.31)
 
 **Anlass:** Ondo hat vier Punkte aus der letzten Übergabe entschieden: Historie gelöscht → Korrigieren-Feld für Konto/Tipico-Stand; KI-Zahlen sollen nicht unter „Finanzen" stehen, sondern unter „Mehr"; Punkt 3 (Such-Experiment) hat für ihn keinen Mehrwert mehr, dafür ein neuer Vorschlag „Trainingsraum"; die Kombi-Wette-Verknüpfung ist als offene Design-Frage an Claude delegiert.
