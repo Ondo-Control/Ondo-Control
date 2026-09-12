@@ -410,6 +410,37 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 110 ändert (12.9., echte Vorhersagen hatten nie Websuche — Fund, Berichtigung, neuer Punkt 79)
+
+**Anlass:** Im Gespräch über den Trainingsraum kam heraus, dass Ondo davon ausging, die echten
+Vorhersagen würden per Websuche recherchieren (Kader, Verletzte, Formstärke). Am Code geprüft:
+**das stimmt nicht, seit v19.0 nie.** Ondo hat das zu Recht als echte Lücke in der bisherigen
+Dokumentation kritisiert.
+
+- **🔴 STAND.md ergänzt:** „Was aus diesem Messstand NICHT geschlossen werden darf" trägt jetzt
+  den Satz, der von Anfang an dort hätte stehen müssen — keine Vorhersage beruht auf Recherche,
+  nur auf trainiertem Wissen des Modells.
+- **🔴 Ondo-Core-Architektur.md, Abschnitt 2 und 3 berichtigt** (Fassung 0.10): Beide beschrieben
+  seit ihrer ersten Fassung ein nie gebautes Ziel (Pflichtprozess mit Quellenprüfung,
+  Vertrauensstufen mit Begründungszeilen) als wäre es der aktuelle Stand. Mit Streichung und
+  Vermerk richtiggestellt, nicht überschrieben.
+- **🔴 Neuer Backlog-Punkt 79 „Websuche für echte Vorhersagen".** Ondos Entscheidung auf zwei
+  Fragen: „Ja für beides" — echte Vorhersagen bekommen künftig Websuche, der Trainingsraum
+  bleibt ausdrücklich ohne Suche. Noch nicht entworfen (Umfang, Kosten, ob ein Schnitt in der
+  Messreihe entsteht) — Claude legt vor dem Bau einen Entwurf vor.
+- **Backlog-Punkt 3 (Such-Experiment) ergänzt:** Seine Grundfrage war nie hypothetisch, sondern
+  eine reale, unbenannte Lücke — lebt jetzt in Punkt 79 weiter, mit den bisherigen rund 500
+  Vorhersagen ohne Suche als „Vorher"-Vergleichsbasis, ohne die in Punkt 3 vorgesehene
+  zusätzliche Wartezeit.
+- **Kein Codeaufwand in dieser Fassung** — reine Buchführung und Berichtigung. `beta.html`
+  bleibt v19.9.0. `pruefe.py`: ALLES SAUBER.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 105 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: zwei** — **4, 79** *(79 neu: „im Grundsatz beschlossen,
+  noch nicht entworfen" zählt als beschlossen und nicht gebaut, auch ohne fertigen Entwurf.)*
+
+---
+
 ## ⚠ Was Fassung 109 ändert (12.9., Ondos Nachbesserung zu Punkt 77 — Rücksetzpunkt, kein Codeaufwand)
 
 **Anlass:** Ondo hat den Trainingsraum-Bau geprüft und Nachbesserungen verlangt, bevor

@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 114 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 115 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,38 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 115 ändert (12.9., Berichtigung: Kriterium (f) war schon aufgehoben — Fehlerart C4/fehlende Buchführung, kein Codeaufwand)
+
+**Anlass:** Ondo, berechtigt: „Warum kommen immer wieder dieselben Punkte die wir schon
+tausendmal in dieser Sitzung diskutiert haben, gelöst haben und wo du jedes Mal sagst es ist
+noch nicht entschieden. […] Soll ich vielleicht die Sitzung wechseln?" — direkt im eigenen
+Sitzungsverlauf nachgesehen statt vermutet (Arbeitsregel H).
+
+- **🔴 Fund, mit Zitat belegt:** Ondo hat Kriterium (f) (Schiedsrichter-Null-Fehler-Toleranz)
+  bereits früher in dieser Sitzung ausdrücklich aufgehoben — Claude hat das damals zweimal
+  bestätigt. **Diese Aufhebung wurde nie in ein Dokument geschrieben.** Fassung 114 (und schon
+  einmal davor, mitten in dieser Sitzung, unbelegt in einem Dokument) hat (f) deshalb erneut
+  als offene Messfrage behandelt — eine echte, jetzt zweimal belegte Wiederholung eines
+  bereits Entschiedenen. **Ursache: fehlende Buchführung (Arbeitsregel F), nicht Ondos
+  Erinnerung, und keine Verwechslung durch „zu volle Sitzung"** — die fehlende Zeile im
+  Dokument ist konkret benennbar und jetzt behoben, siehe Punkt 4 und Punkt 5.
+- **🔴 Berichtigt, nicht überschrieben (Fehlerart C4):** Punkt 4 und Punkt 5 tragen jetzt beide
+  den korrigierten Stand — (f) aufgehoben, kein Blocker mehr; (c) echt offen, aber eine
+  Entscheidung, keine Wartezeit; (g) echt offen, ein eigenständiges, nie getestetes Kriterium,
+  am 6.8. von ChatGPT UND Gemini gemeinsam zurückgestellt; (a)/(b)/(d)/(e) seit 31.7. nicht neu
+  geprüft, Stand unbekannt.
+- **Zusätzlich ehrlich nachgetragen:** Der Schiedsrichter gilt nach Ondos eigener, strengerer
+  Definition vom 2.9.2026 weiterhin als nicht repariert (3-von-3-Regel ist Absicherung, keine
+  Reparatur), die siebte Fehlerart „Heim/Gast vertauscht" bleibt ungesichert — beides betrifft
+  die Beförderung insgesamt, unabhängig von (c)/(f)/(g).
+- **Kein Codeaufwand in dieser Fassung** — reine Berichtigung und Buchführung. `beta.html`
+  bleibt v19.12.0. `pruefe.py`: ALLES SAUBER.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 110 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: eins** — **4** *(unverändert in der Zahl.)*
 
 ---
 
@@ -141,37 +173,6 @@ sollen oder eine gemeinsame.
 - **Regel 5 angewandt:** Abschnitt „Was Fassung 106 ändert" wortgleich nach
   `BACKLOG-ARCHIV.md` verschoben.
 - **Beschlossen und nicht gebaut: eins** — **4** *(79 ist jetzt gebaut, zählt nicht mehr mit.)*
-
----
-
-## ⚠ Was Fassung 110 ändert (12.9., echte Vorhersagen hatten nie Websuche — Fund, Berichtigung, neuer Punkt 79)
-
-**Anlass:** Im Gespräch über den Trainingsraum kam heraus, dass Ondo davon ausging, die echten
-Vorhersagen würden per Websuche recherchieren (Kader, Verletzte, Formstärke). Am Code geprüft:
-**das stimmt nicht, seit v19.0 nie.** Ondo hat das zu Recht als echte Lücke in der bisherigen
-Dokumentation kritisiert.
-
-- **🔴 STAND.md ergänzt:** „Was aus diesem Messstand NICHT geschlossen werden darf" trägt jetzt
-  den Satz, der von Anfang an dort hätte stehen müssen — keine Vorhersage beruht auf Recherche,
-  nur auf trainiertem Wissen des Modells.
-- **🔴 Ondo-Core-Architektur.md, Abschnitt 2 und 3 berichtigt** (Fassung 0.10): Beide beschrieben
-  seit ihrer ersten Fassung ein nie gebautes Ziel (Pflichtprozess mit Quellenprüfung,
-  Vertrauensstufen mit Begründungszeilen) als wäre es der aktuelle Stand. Mit Streichung und
-  Vermerk richtiggestellt, nicht überschrieben.
-- **🔴 Neuer Backlog-Punkt 79 „Websuche für echte Vorhersagen".** Ondos Entscheidung auf zwei
-  Fragen: „Ja für beides" — echte Vorhersagen bekommen künftig Websuche, der Trainingsraum
-  bleibt ausdrücklich ohne Suche. Noch nicht entworfen (Umfang, Kosten, ob ein Schnitt in der
-  Messreihe entsteht) — Claude legt vor dem Bau einen Entwurf vor.
-- **Backlog-Punkt 3 (Such-Experiment) ergänzt:** Seine Grundfrage war nie hypothetisch, sondern
-  eine reale, unbenannte Lücke — lebt jetzt in Punkt 79 weiter, mit den bisherigen rund 500
-  Vorhersagen ohne Suche als „Vorher"-Vergleichsbasis, ohne die in Punkt 3 vorgesehene
-  zusätzliche Wartezeit.
-- **Kein Codeaufwand in dieser Fassung** — reine Buchführung und Berichtigung. `beta.html`
-  bleibt v19.9.0. `pruefe.py`: ALLES SAUBER.
-- **Regel 5 angewandt:** Abschnitt „Was Fassung 105 ändert" wortgleich nach
-  `BACKLOG-ARCHIV.md` verschoben.
-- **Beschlossen und nicht gebaut: zwei** — **4, 79** *(79 neu: „im Grundsatz beschlossen,
-  noch nicht entworfen" zählt als beschlossen und nicht gebaut, auch ohne fertigen Entwurf.)*
 
 ---
 
@@ -1493,7 +1494,33 @@ der Messreihe.
 → *Hier stand bis heute „Unmittelbar vor der Beförderung" — eine reine Reihenfolge-Festlegung, kein technischer Blocker (siehe Antwort an Ondo, 12.9.2026: die Beförderung selbst ist laut letztem Stand vom 31.7. weiterhin gesperrt, Kriterium (f) und (c) offen, siehe Punkt 5).*
 → **🔴 Ondos Entscheidung (12.9.2026):** „Wenn du jetzt Punkt 3 gelöst hast mit dem Trainingsraum, ist für mich Punkt 4 freigeschaltet." Mit der Trainingsraum-Lösung bei Punkt 77 (Zulassungsregel nach Datum, Wiederverwendung von `vorhersageGehirn()`) ist diese Bedingung erfüllt — **Punkt 4 ist damit unabhängig vom Stand der Beförderung freigegeben**, kann jederzeit gebaut werden.
 → **Vor dem Bau geklärt (12.9.2026), Ergebnis: Zielbild statt sofortigem Bau.** Vergleich der beiden Dateien ergab: `OndoControl.html` (Stabil, v17) speichert Vorhersagen/Wetten in einer deutlich einfacheren Form als `beta.html` heute — ohne Markt-Aufschlüsselung, ohne Angabe welches Gehirn geantwortet hat, ohne Trainingsraum, ohne Kombi-Verknüpfung — und enthält aktuell keine echten Daten von Ondo, nur Test-Platzhalter. Zwei Wege zur Wahl: (A) Bei der Beförderung übernimmt die stabile Version den heutigen Code der Beta vollständig — der Export ist dann nur eine Datei-Übergabe, kein Informationsverlust, aber gebunden an den Stand der Beförderung. (B) Ein Export in die heutige, einfachere Stabil-Form, unabhängig von der Beförderung sofort baubar, aber mit echtem Verlust (Märkte, Gehirn-Herkunft, Trainingsraum, Kombi-Verknüpfung gingen verloren). **Ondo hat sich für (A) entschieden** und Punkt 4 auf „wartet auf Beförderung" gesetzt — kein Bauaufwand jetzt, kein Aufwand, der bei einer Beförderung nach Weg (A) zur Wegwerfarbeit würde.
-→ **🔴 Ondos Nachfrage (12.9.2026): worauf genau wird gewartet, und wann endet die Wartezeit?** Ehrliche Antwort, siehe Punkt 5 für die Einzelheiten zu (c) und (f): Es sind zwei konkrete, aber unterschiedliche offene Sachen, kein Kalendertermin. **Kriterium (c)** ist keine Wartezeit, sondern eine bislang nicht getroffene Entscheidung (seit 23.7.2026 unentschieden) — kann sofort geklärt werden, sobald Ondo will, ohne Bauaufwand. **Kriterium (f)** ist eine Messfrage (Fehlerquote des Schiedsrichters bei der Ergebnisprüfung), deren letzter echter Test vom 30./31.7.2026 stammt — sechs Wochen alt, vor mehreren seitherigen Verbesserungen am Schiedsrichter (u. a. die 2-von-3-Einigkeitsregel, Backlog-Punkt 68). **Der heutige tatsächliche Fehlerstand ist nicht bekannt, ohne ihn neu zu prüfen — geraten wird hier nicht (Art. 11).** Kein Datum wird genannt, weil keins bekannt ist; stattdessen zwei konkrete, sofort angehbare nächste Schritte, siehe Punkt 5.
+→ **🔴 Ondos Nachfrage (12.9.2026): worauf genau wird gewartet, und wann endet die Wartezeit?**
+~~Erste Antwort (12.9.2026, in derselben Sitzung): Kriterium (c) und (f) seien beide offen,
+(f) eine ungeprüfte Messfrage.~~ **🔴 BERICHTIGT, noch am selben Tag, nach Ondos berechtigter
+Nachfrage, warum derselbe Punkt „tausendmal" wiederkehrt:** Das war falsch. Im Sitzungsverlauf
+selbst nachgesehen (nicht aus dem Gedächtnis behauptet — Arbeitsregel H), gefunden: **Ondo hat
+Kriterium (f) in dieser selben Sitzung bereits ausdrücklich aufgehoben**, wörtlich: „ich habe
+dir schon mal gesagt, dass ich die Regel ‚Kriterium (f)' … wiederaufheben oder umgehen kann,
+wie es mir passt und es passt mir jetzt!" — von Claude damals bestätigt: „Kriterium (f) ist
+deine eigene Regel, du hebst sie auf" und später nochmals „Kriterium (f): Ist erledigt, du
+hast es aufgehoben." **Diese Aufhebung wurde nie in dieses Dokument geschrieben** — deshalb ist
+sie beim nächsten Mal (und jetzt ein zweites Mal) aus dem alten, schriftlichen 31.7.-Stand neu
+„aufgelebt", obwohl sie im Gespräch längst entschieden war. Das ist der eigentliche Fehler,
+nicht Ondos Erinnerung. **Berichtigter Stand: Kriterium (f) gilt als von Ondo aufgehoben, kein
+Blocker mehr.** **Kriterium (c)** ist tatsächlich anders gelagert: Claude hat schon einmal
+eingeschätzt „die Datenmenge reicht heute für eine Beförderungsentscheidung", ChatGPT stimmte
+zu — aber Ondo hat dazu nie ein ausdrückliches „ja, entschieden" gesagt wie bei (f). Bleibt
+deshalb ehrlich offen, bis er das tut (kann er jederzeit, ohne Bauaufwand). **Kriterium (g)**
+(Antwortkonsistenz durch Wiederholungsläufe) ist ein drittes, eigenes Kriterium, mit (f) NICHT
+identisch — am 6.8.2026 von ChatGPT UND Gemini gemeinsam zur Zurückstellung empfohlen, bis
+heute nicht getestet, echt offen, nicht von irgendjemandem übergangen. **Ausserdem, ehrlich
+nachgetragen statt verschwiegen:** Der Schiedsrichter gilt nach Ondos eigener, strenger
+Definition vom 2.9.2026 („zuverlässige Ergebnisse für alle künftigen Spiele, ohne Gegenprüfung
+im Chat") weiterhin als NICHT repariert, trotz der 3-von-3-Einigkeitsregel (Backlog-Punkt 68) —
+und die siebte Fehlerart („Heim und Gast vertauscht", 29.7.) hat weiterhin keine eigene
+Absicherung. Einzelheiten und der volle Fehlerarten-Katalog: `STAND.md`, „Der Schiedsrichter —
+elf Fehlerarten". Das betrifft die Beförderung insgesamt, unabhängig von (c)/(f)/(g) — nicht
+neu erfunden, nur hier zum ersten Mal an dieser Stelle mit den anderen zusammengeführt.
 
 **34. Brier-Score als zweite Kennzahl neben der Kalibrierung** *(🔴 GERECHNET am 14.8. abends aus
 den Rohdaten — Sonnet **0,2429**, Bereich 0,2350–0,2513 · Flash **0,2497**, Bereich
@@ -1625,26 +1652,43 @@ Codeänderung ohne Schnitt.
 
 **5. Beförderungskriterium (c) neu fassen** · *Idee 23.7., ChatGPT* · **Status: Idee**
 15 Bewertungen sind statistisch zu wenig, 100 dauern Monate. Vorschlag Claude: Beförderung nach Stabilität und Fehlerfreiheit entscheiden, die Messung läuft danach weiter. **Inhalt gehört in den Blueprint.**
-→ *Vermerk 31.7.: Die Beförderung ist derzeit ohnehin gesperrt — Kriterium (f) verlangt Null-Fehler-Toleranz beim Schiedsrichter. Einzelheiten in `PROJEKT-STATUS.md`.*
-→ **🔴 Ondos Nachfrage zu Punkt 4 beantwortet (12.9.2026): Was fehlt konkret bis zur Beförderung?**
-Sieben Kriterien wurden am 10.7.2026 festgelegt (`BLUEPRINT-PROTOKOLL.md`): (a) Kosten pro
-Analyse, (b) technische Fehlerrate, (c) Trefferquoten-Differenz bei ≥15 bewerteten Tipps pro
-Gehirn, (d) Datenintegrität, (e) Kaskaden-Stabilität, (f) Schiedsrichter-Validierung mit
-Null-Fehler-Toleranz, (g) Antwortkonsistenz durch Wiederholungsläufe. **Nur (c) und (f) sind
-im aktuellen Stand als offen vermerkt** — (a),(b),(d),(e),(g) wurden seit dem 31.7. nicht neu
-geprüft, ihr heutiger Stand ist nicht bekannt (Art. 11, kein Rateversuch).
-**(c) ist keine Wartezeit, sondern eine offene Entscheidung** — dieser Punkt selbst, seit
-23.7.2026 unentschieden. Kein Datensammeln nötig, keine Bauzeit — kann sofort geklärt werden,
-sobald Ondo eine Richtung vorgibt (Claudes Vorschlag oben: nach Stabilität/Fehlerfreiheit
-entscheiden, Messung läuft weiter statt eine Mindestzahl abzuwarten).
-**(f) ist eine Messfrage, keine Entscheidung** — der letzte echte Test ist sechs Wochen alt
-(30./31.7.2026, zwei von sieben falsch plus erfundene Ergebnisse), von VOR mehreren seitherigen
-Schiedsrichter-Verbesserungen (u. a. Backlog-Punkt 68, 2-von-3-Einigkeitsregel). Der heutige
-Fehlerstand ist unbekannt, bis er neu geprüft wird — dafür bräuchte es einen frischen,
-auswertbaren Testlauf mit bekannten Ergebnissen, keinen geschätzten Wert.
-**Kein Kalenderdatum wird genannt, weil keins bekannt ist.** Zwei sofort angehbare nächste
-Schritte statt eines Termins: Ondo entscheidet (c), und/oder Claude prüft (f) frisch anhand
-echter, aktueller Daten nach.
+→ *Vermerk 31.7.: Die Beförderung ist derzeit ohnehin gesperrt — Kriterium (f) verlangt Null-Fehler-Toleranz beim Schiedsrichter. Einzelheiten in `PROJEKT-STATUS.md`.* **🔴 BERICHTIGT
+12.9.2026: Kriterium (f) wurde noch in derselben Sitzung von Ondo ausdrücklich aufgehoben,
+siehe unten — dieser Vermerk vom 31.7. ist seither überholt, stand aber nirgends berichtigt.*
+→ ~~Ondos Nachfrage zu Punkt 4 beantwortet (12.9.2026): Was fehlt konkret bis zur
+Beförderung? … Nur (c) und (f) sind im aktuellen Stand als offen vermerkt … (f) ist eine
+Messfrage, keine Entscheidung … der heutige Fehlerstand ist unbekannt, bis er neu geprüft
+wird.~~ **🔴 BERICHTIGT, noch am selben Tag (12.9.2026):** Diese Antwort war falsch. Ondo
+fragte zu Recht, warum derselbe Punkt in dieser Sitzung immer wieder als ungeklärt auftaucht.
+Im tatsächlichen Sitzungsverlauf nachgesehen (Arbeitsregel H, nicht behauptet): **Ondo hat
+Kriterium (f) bereits früher in dieser Sitzung ausdrücklich aufgehoben** — wörtlich: „ich habe
+dir schon mal gesagt, dass ich die Regel ‚Kriterium (f)' … wiederaufheben oder umgehen kann,
+wie es mir passt und es passt mir jetzt!" Claude bestätigte das damals zweimal: „Kriterium (f)
+ist deine eigene Regel, du hebst sie auf" und später „Kriterium (f): Ist erledigt, du hast es
+aufgehoben." **Diese Aufhebung wurde nie in ein Dokument geschrieben** — genau deshalb ist sie
+beim nächsten Anlauf aus dem alten 31.7.-Schriftstand neu „aufgelebt", ein zweites Mal jetzt.
+Fehler lag in der fehlenden Buchführung (Arbeitsregel F), nicht in Ondos Erinnerung.
+**Richtiger, aktueller Stand der sieben Kriterien (10.7.2026, `BLUEPRINT-PROTOKOLL.md`):**
+- **(f) Schiedsrichter-Validierung, Null-Fehler-Toleranz — von Ondo aufgehoben, kein
+  Blocker mehr.**
+- **(c) Trefferquoten-Differenz bei ≥15 bewerteten Tipps — echt offen, aber keine Wartezeit,
+  sondern eine Entscheidung.** Claude hat schon eingeschätzt „die Datenmenge reicht heute",
+  ChatGPT stimmte zu — Ondo hat dazu aber nie ausdrücklich „ja" gesagt wie bei (f). Kann er
+  jederzeit tun, ohne Bauaufwand.
+- **(g) Antwortkonsistenz durch Wiederholungsläufe — echt offen, eigenständig, nicht mit (f)
+  verwechseln.** Am 6.8.2026 von ChatGPT UND Gemini gemeinsam zur Zurückstellung empfohlen
+  (nicht von Claude erfunden), bis heute nicht getestet.
+- **(a), (b), (d), (e)** wurden seit dem 31.7. nicht neu geprüft — Stand unbekannt, nicht als
+  erfüllt angenommen (Art. 11).
+**Zusätzlich, ehrlich dazugehörig, nicht Teil der sieben Kriterien selbst:** Der Schiedsrichter
+gilt nach Ondos eigener, strengerer Definition vom 2.9.2026 („zuverlässige Ergebnisse für alle
+künftigen Spiele, ohne Gegenprüfung im Chat") weiterhin als NICHT repariert — die 3-von-3-
+Einigkeitsregel (Backlog-Punkt 68) ist eine echte Absicherung, aber keine Reparatur nach diesem
+Massstab. Die siebte Fehlerart „Heim und Gast vertauscht" (29.7.) hat weiterhin keine eigene
+Absicherung. Einzelheiten: `STAND.md`, „Der Schiedsrichter — elf Fehlerarten".
+**Kein Kalenderdatum wird genannt, weil keins bekannt ist.** Was die Beförderung nach heutigem
+Stand tatsächlich noch offen hält: (c) als Entscheidung, (g) als echter Test, sowie der
+Schiedsrichter- und Fehlerarten-Stand oben — nicht mehr (f).
 
 **9. Echte Quoten automatisch (Knopfdruck gebaut, Zeitsteuerung teilweise gebaut) — Ausbau: eigene Ergebnis-Datenquelle für den Schiedsrichter** · *Idee 23.7., Claude · Verfassungsfrage teilweise geklärt 7.9.2026 · Knopfdruck-Teil Auftrag Ondo und gebaut 10.9.2026 · Zeitsteuerung/Ergebnis-Automatik Auftrag Ondo 11.9.2026 · Knopfdruck-Kopplung Auftrag Ondo und gebaut 11.9.2026* · **Status: 🔴 Knopfdruck-Teil (Quoten) GEBAUT 10.9.2026 — Zeitgesteuerte Ergebnis-Automatik GEBAUT 11.9.2026, wegen API-Football-Sperre nur mit football-data.org scharf — Knopfdruck-Ergebnisabgleich (API-Football + football-data.org, gekoppelt an den Prüflauf) GEBAUT und geprüft 11.9.2026**
 Offene Vorfrage (Gemini, weiterhin unbeantwortet): Deckt ein kostenloser Dienst überhaupt Ondos Spiele ab? **🔴 Verfassungsfrage teilweise geklärt (Ondo, 7.9.2026, Blueprint 0.83, Abschnitt 10):** Eine durch Knopfdruck in der App ausgelöste Aktualisierung verletzt „kein Server" nicht — ein Knopfdruck ist die von der Regel verlangte Aufforderung. Eine zeitgesteuerte, unbeaufsichtigte Ausführung bleibt weiterhin offen und ist eine andere Variante. **Ungeprüft, technische Einordnung:** Ob dafür überhaupt GitHub Actions nötig wäre (ein reiner Abruf im Browser bei Knopfdruck bräuchte gar keine Actions-Infrastruktur, wie die bestehenden Knöpfe es schon vormachen) oder ob ein dauerhaft im Repo gespeichertes Ergebnis einen manuell auslösbaren `workflow_dispatch` mit einem neuen, eigens abzusicherndem GitHub-Zugriffsschlüssel bräuchte, ist nicht untersucht.

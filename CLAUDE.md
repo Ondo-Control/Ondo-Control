@@ -196,12 +196,12 @@ Punkt 73, nicht hier wiederholt (Punkt 45).
 `.claude/hooks/claude_md_frisch.py` vergleicht sie bei jedem Sitzungsstart und erinnert an
 eine Erneuerung, sobald einer abweicht. Er erneuert nichts von selbst.*
 
-- STAND.md — `96369abc77b16286093f34934d5e3e34ccf7702f`
-- Ondo-Control-Backlog.md — `25c61e447e690d90cccd5babdad6530c81231107`
-- Blueprint.md — `1588bc78e3df2bbdbb95ce0d1628db47f2f0b9ea`
+- STAND.md — `cd39f69af1d62f8285d73a1589ea679ef9a759e6`
+- Ondo-Control-Backlog.md — `9392c93b696db6c1bbb4209b16ba1958df57bd63`
+- Blueprint.md — `58d81f4da6bbd60e4b21eb0a183fa150510777f5`
 - Ondo-Core-Architektur.md — `2923c6d2f1cf152a67522bd0ddafc42d6c196b40`
 
-*Prüfstand nachgeführt am 12.9.2026 (nur Hashes — Anlass war Punkt 4, von Ondo auf „wartet auf
-die Beförderung" gesetzt, plus die ehrliche Erklärung der Wartezeit ohne Kalenderdatum;
-inhaltlich für diese Datei nicht berührt, keine neue Arbeitsregel, keine Änderung an Zweig- oder
+*Prüfstand nachgeführt am 12.9.2026 (nur Hashes — Anlass war die Berichtigung, dass Kriterium
+(f) bereits von Ondo aufgehoben war, aber nie ins Dokument geschrieben wurde; inhaltlich für
+diese Datei nicht berührt, keine neue Arbeitsregel, keine Änderung an Zweig- oder
 Geheimfeld-Regeln).*

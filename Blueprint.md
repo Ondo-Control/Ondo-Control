@@ -3,9 +3,17 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.113
+**Version:** 0.114
 **Stand:** 12. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.114 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> eine Berichtigung im Backlog (Punkt 4/5): Kriterium (f) der Beförderungskriterien war von
+> Ondo bereits früher in dieser Sitzung ausdrücklich aufgehoben worden, aber nie in ein
+> Dokument geschrieben — deshalb tauchte es später fälschlich wieder als offen auf. Ondos
+> berechtigte Nachfrage, warum derselbe Punkt wiederholt als ungeklärt erscheint, hat das
+> aufgedeckt. Ursache: fehlende Buchführung (Arbeitsregel F), nicht falsche Erinnerung. Kein
+> Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.114 gehoben.
 
 > **Was Fassung 0.113 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
 > Punkt 4 (Daten-Export), von Ondo auf „wartet auf die Beförderung Beta→Stabil" gesetzt, nachdem
