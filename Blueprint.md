@@ -3,9 +3,20 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.105
+**Version:** 0.106
 **Stand:** 12. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.106 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass
+> war die Trainingsraum-Lösung (Backlog Fassung 107): Backlog-Punkt 77 berichtigt und mit
+> einer im Code belegten Lösung versehen (die echten Vorhersagen laufen bereits ohne
+> Websuche; eine Zulassungsregel nach Datum grenzt das Trainingsdaten-Risiko ein), Punkt 4
+> von Ondo freigegeben unabhängig vom Stand der Beförderung, ChatGPT-Antworten zu Punkt
+> 77/78 eingetragen. Eine Verfassungsfrage aufgeworfen, aber bewusst NICHT entschieden: ob
+> Blueprint Abschnitt 2d (Übergaberegel für ChatGPT) geändert werden soll, jetzt wo ChatGPT
+> vollen Repo-Zugriff hat statt nur GitHub-Pages-Links — liegt bei Ondo, Abschnitt 2d bleibt
+> unverändert, bis er entscheidet. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+> Blueprint auf 0.106 gehoben.
 
 > **Was Fassung 0.105 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
 > Ondos Entscheidungen zu Historie/Konto, Finanzen-Platzierung und Punkt 3 (Backlog Fassung

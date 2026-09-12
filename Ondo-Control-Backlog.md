@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 106 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 107 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,52 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 107 ändert (12.9., Trainingsraum-Lösung gefunden, Punkt 4 freigegeben, ChatGPT-Antworten eingetragen — kein Codeaufwand)
+
+**Anlass:** Ondo hat Punkt 77 (Trainingsraum) berichtigt — Weg (a) meint bereits ausgewertete
+Spiele, nicht offene — und verlangt eine Lösung für das dadurch schärfere Problem: beide Wege
+brauchen Isolation von Erinnerung UND Websuche, „aufgeben ist keine Option". Ausserdem hat er
+ChatGPTs Antworten zu den zwei Rückfragen (Punkt 77, 78) mitgeteilt und erklärt, dass ChatGPT
+jetzt vollen Repo-Zugriff hat statt nur GitHub-Pages-Links.
+
+- **🔴 Trainingsraum-Lösung gefunden und im Code belegt (Punkt 77).** Zwei Funde: **Erstens**,
+  die heutigen echten Vorhersagen (`vorhersageGehirn()`) laufen bereits ohne Websuche — weder
+  der Sonnet- noch der Flash-Aufruf hängt das Suchwerkzeug an (`geminiCall()` tut das nur bei
+  `useSearch`, laut eigenem Kommentar „NUR fuer den Schiedsrichter", Zeile 1944). Ein
+  Trainingsraum, der dieselbe Funktion wiederverwendet, erbt diese Isolation automatisch — dafür
+  muss nichts Neues gebaut werden. **Zweitens**, das Risiko, dass ein Modell ein Ergebnis aus
+  seinen Trainingsdaten „kennt", lässt sich durch eine Zulassungsregel nach Datum eingrenzen: nur
+  Spiele, deren Datum nachweislich nach dem Trainings-Stichtag der eingesetzten Modellversion
+  liegt (bei Spielen aus dem eigenen laufenden Betrieb der App voraussichtlich immer der Fall,
+  aber vor dem ersten scharfen Lauf an der offiziellen Modell-Dokumentation zu prüfen, nicht
+  geraten — Art. 11). Damit entfällt die von Ondo befürchtete 4-Wochen-Wartezeit vollständig: Der
+  Trainingsraum kann auf bereits ausgewertete `kiProtokoll`-Einträge zurückgreifen, deren
+  Ergebnis sofort verfügbar ist. Einzelheiten, Bauskizze und offene Punkte (Kader/Verletzte noch
+  keine Datenquelle) stehen bei Punkt 77 selbst.
+- **🔴 Backlog-Punkt 4 (Daten-Export) von Ondo freigegeben, unabhängig vom Stand der
+  Beförderung.** Ondo wörtlich: „Wenn du jetzt Punkt 3 gelöst hast mit dem Trainingsraum, ist
+  für mich Punkt 4 freigeschaltet." Mit der Trainingsraum-Lösung oben ist diese Bedingung
+  erfüllt. Die bisherige Terminierung „unmittelbar vor der Beförderung" war ohnehin nur eine
+  Reihenfolge-Festlegung, kein technischer Blocker — das wurde Ondo in derselben Sitzung erklärt,
+  nachdem er gefragt hatte, was Punkt 4 bisher aufhält. Genauer Umfang des Exports noch offen.
+- **ChatGPT-Antworten zu Punkt 77 und 78 eingetragen — beide ohne Widerspruch zu Claudes
+  Einschätzung.** Zu Punkt 77: ChatGPT bestätigt die Datums-Zulassungsregel unabhängig
+  vorgeschlagen. Zu Punkt 78 (Kombi-Wette): ChatGPT bestätigt Claudes Empfehlung (Liste von
+  `kiProtokollId`-Werten an einer Wette statt Aufteilung in Teil-Einträge) und schlägt als
+  spätere Ausbaustufe eine strukturierte Leg-Liste statt nackter IDs vor.
+- **Offene Frage an Ondo, noch nicht entschieden:** Ondo berichtet, ChatGPT habe jetzt vollen
+  Repo-Zugriff und lese nicht mehr nur über GitHub-Pages-Links in einem frischen Chat ausserhalb
+  des Projektordners — das war der Grund für die heutige Übergaberegel in Blueprint, Abschnitt
+  2d. Ob Abschnitt 2d deshalb geändert werden soll, ist eine Verfassungsfrage (Art. 8) und wird
+  Ondo direkt vorgelegt, nicht von Claude aus eigener Vermutung entschieden — **Blueprint an
+  dieser Stelle unverändert.**
+- **Kein Codeaufwand, keine Prüfungen betroffen.** `pruefe.py`: ALLES SAUBER.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 102 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: eins** — **4** *(Status geändert: von Ondo freigegeben statt an die Beförderung gebunden — siehe oben. Punkt 77/78 bleiben „Idee" bis Ondo den Bau ausdrücklich freigibt.)*
 
 ---
 
@@ -98,38 +144,6 @@ dauerhafte Lösung, keine Dateien Löschen!!" Neuer Backlog-Punkt 76 (Einzelheit
   `APP_VERSION` weiter 18.
 - **Regel 5 angewandt:** Abschnitt „Was Fassung 98 ändert" wortgleich nach
   `BACKLOG-ARCHIV.md` verschoben.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 102 ändert (12.9., echter Speicher-Beleg statt Schätzung — `beta.html` v19.8.29)
-
-**Anlass:** Ondo hat die neue Speicheranzeige aus v19.8.28 in echtem Einsatz getroffen. Drei
-Meldungen in einer Nachricht: „Browser voll", die API-Football-Sperre wird erst Montag
-behandelt, `CLAUDE.md` soll erneuert werden. Diese Fassung deckt den ersten Punkt.
-
-- **✅ Speicher-Warngrenze mit echtem Beleg korrigiert.** Ondos Browser lehnte das Speichern
-  bei **2.726 KB (2,7 MB)** Belegung ab — Bildschirmfoto zeigt den roten Warnbalken bereits
-  aktiv, „Belegter Speicher" nennt genau diesen Wert im selben Moment. **Die wahre Grenze liegt
-  damit nachweislich unter 2.726 KB.** Die alte 3-MB-Schätzung aus v19.8.28 lag darüber — die
-  Frühwarnung „wird eng" wäre nie gekommen, bevor das Speichern tatsächlich scheitert. Jetzt
-  **2 MB**, mit echtem Sicherheitsabstand unter dem belegten Fehlschlag statt nur knapp darunter
-  (Arbeitsregel H: jetzt mit Beleg statt Herleitung, wie schon bei v19.8.28 selbst angekündigt).
-- **🔴 Fund am eigenen Testaufbau, dabei aufgefallen:** Der Trockentest zu v19.8.28 hatte
-  `SPEICHER_WARNGRENZE` in der Testumgebung selbst hartcodiert auf 3 MB, statt die echte
-  Konstante aus `beta.html` zu übernehmen — die 55 Prüfungen aus Fassung 101 liefen damit
-  unbemerkt gegen einen Test-Zwilling, nicht gegen den echten Wert. Dieselbe Fehlerklasse wie
-  der fehlende `KEY` in derselben Testdatei, einen Tag zuvor. Behoben: Die Konstante wird jetzt
-  wörtlich aus `beta.html` gezogen, ändert sie sich künftig im Code, ändert sie sich automatisch
-  im Test mit. **Zwei neue Prüfungen** bilden Ondos echten Fall nach (2.726 KB → `eng` muss
-  `true` sein — mit der alten 3-MB-Schätzung wäre das falsch gewesen). Alle **57 Prüfungen**
-  erneut gelaufen, alle bestanden.
-- **API-Football-Sperre:** Ondo behandelt sie mit dem Support erst am Montag — nur bei
-  Backlog-Punkt 9 vermerkt, keine Codeänderung, nichts zu tun von dieser Seite bis dahin.
-- **Verifiziert:** `node --check` bestanden · `pruefe.py`: ALLES SAUBER. Kein neuer
-  Sprachschlüssel, kein Schnitt in der Messreihe. `APP_VERSION` weiter 18.
-- **Regel 5 angewandt:** Abschnitt „Was Fassung 97 ändert" wortgleich nach `BACKLOG-ARCHIV.md`
-  verschoben.
 - **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
 
 ---
@@ -1374,10 +1388,17 @@ Vier Wochen ohne Websuche messen, dann Suche zuschalten, Kalibrierung vergleiche
 
 Ondo wörtlich: „Es gibt die Möglichkeit einen Trainingsraum zu bauen (in der App oder außerhalb im Repo) mit den bereits ausgewerteten Spielen, wo die Gehirne diese Tests durchlaufen könnten ohne Zugriff auf Erinnerung und Websuche. Dieser Trainingsraum könnte später etwas nützlich sein, falls wir andere Modelle einsetzen wollen oder andere Module entwickeln wollen, oder andere KIs. Dieser Raum könnte entweder die gesammelten Spiele nutzen oder Spiele in der Vergangenheit einbauen, wo man schon die Ergebnisse kennt. Das könnte man auch nutzen für den Punkt Entschlossenheit, z. B. wo wir viele Daten benötigen. Das würde uns viel Zeit sparen."
 
-→ **Zwei mögliche Datenquellen, von Ondo selbst genannt:** (a) die bereits in der App gesammelten, schon ausgewerteten Spiele — die Ergebnisse liegen vor, aber die Gehirne haben dazu noch keine Vorhersage abgegeben; (b) Spiele weiter in der Vergangenheit, deren Ergebnis öffentlich bekannt ist.
-→ **🔴 Eigener methodischer Einwand, Claude (12.9.2026), noch nicht mit Ondo besprochen:** Bei Weg (b) besteht das Risiko, dass ein Sprachmodell das Ergebnis eines vergangenen, bekannten Spiels aus seinen Trainingsdaten „kennt", statt wirklich blind vorherzusagen — das würde die Messung wertlos machen, ohne dass es auffällt (ein Gehirn, das zufällig oder aus Gedächtnis richtig liegt, sieht in der Kalibrierung genauso aus wie eines, das wirklich gut vorhersagt). Weg (a) hat dieses Risiko nicht, weil diese Spiele aus laufendem Betrieb stammen und kein trainiertes Modell sie vorab „kennen" kann. **Das ist keine Ablehnung des Vorschlags**, nur ein offener Punkt, der vor dem Bau zu klären ist — am ehesten durch Ausschluss von Weg (b) oder durch eine Gegenprobe (z. B. Vorhersage ohne Datum/Liga-Kontext, der auf ein bestimmtes Spiel schliessen liesse).
-→ **Kosten:** Vom Umfang abhängig — ein Trainingsraum, der auf bereits vorhandene Daten zugreift, kostet vor allem Bauzeit, keine neuen API-Kosten über das Übliche hinaus (jeder Testlauf ruft weiterhin ein Modell auf, wie eine normale Vorhersage). Eine Schätzung in Modellaufrufen oder Bauzeit steht noch aus — dafür fehlt ein fixierter Umfang.
-→ **Nächster Schritt (Art. 8, nichts gebaut ohne Ondos Entscheidung):** siehe „Zu allen oder einige dieser Punkte könntest du eine Nachricht für ChatGPT verfassen" — ChatGPT-Rückfrage vorbereitet, unten in diesem Dokument referenziert (Fassung-106-Abschnitt), Antwort steht aus.
+→ **🔴 Berichtigt (12.9.2026, Ondo):** Hier stand bei Weg (a) „die Gehirne haben dazu noch keine Vorhersage abgegeben" — **das war falsch.** Ondo wörtlich: „Ich habe gesagt Weg (a) bereits gesammelte Spiele aus der App, die schon ausgewertet wurden. Genauso wie bei Weg (b) musste das Gehirn hier nicht auf Erinnerung und Websuche zurückgreifen können." Weg (a) meint also **Spiele mit bereits bekanntem Ergebnis**, nicht offene. Der Sinn des Trainingsraums: die Gehirne isolieren, ihnen nur die nötigen Informationen zur Entscheidung geben (z. B. Spiel, Wettbewerb, Wettbewerb-Phase, Datum, Heim, Auswärts, Kader, Verletzte), und die Probezeit verkürzen.
+→ **Einwand von vorhin dadurch nicht erledigt, sondern schärfer:** Wenn beide Wege bereits bekannte Ergebnisse nutzen, gilt das Risiko aus dem Trainingsdaten-„Wissen" eines Modells für **beide** Wege gleichermassen, nicht nur für Weg (b). Ondo: „Aufgeben ist keine Option, finde den richtigen Weg."
+→ **🔴 Lösung gefunden, im Code belegt (Arbeitsregel H — nicht hergeleitet, nachgelesen):**
+→ **1. Die „Websuche"-Isolation ist bereits gebaut, für nichts Neues nötig.** `vorhersageGehirn()` — die Funktion, die die Gehirne heute für echte Vorhersagen aufruft — übergibt beiden Modellen **kein** Websuche-Werkzeug: Der Sonnet-Aufruf (`apiCall({model:'claude-sonnet-4-6', ...})`) trägt kein `tools`-Feld; der Flash-Aufruf (`geminiCall({prompt:prompt, rolle:'gehirn'})`) setzt `useSearch` nicht, und nur dann hängt `geminiCall()` das Google-Suche-Werkzeug an (`if(opts.useSearch) body.tools=[{google_search:{}}]`, Zeile 1944) — laut eigenem Code-Kommentar dort „NUR fuer den Schiedsrichter". **Jede heutige, echte Vorhersage ist also schon blind, ohne Websuche.** Ein Trainingsraum, der dieselbe Funktion mit anderen Spielen aufruft, erbt diese Isolation automatisch.
+→ **2. Das „Erinnerung"-Risiko (Trainingsdaten-Wissen) lässt sich nicht wegprogrammieren, aber eingrenzen: eine Zulassungsregel nach Datum.** Ein Modell kann ein Ergebnis nur „kennen", wenn das Spiel vor seinem Trainings-Stichtag stattfand. Die App sammelt eigene Spiele erst seit Mitte 2026 — Spiele aus dem laufenden Betrieb der App selbst liegen damit mit hoher Wahrscheinlichkeit **nach** dem Trainings-Stichtag der eingesetzten Modellversionen (`claude-sonnet-4-6`, das jeweils gewählte Gemini-Flash-Modell). **Das ist aber eine Vermutung, kein Beleg — den genauen Trainings-Stichtag jeder eingesetzten Modellversion kenne ich nicht auswendig und werde ihn nicht raten (Art. 11).** Vor dem ersten scharfen Lauf muss das anhand der offiziellen Modell-Dokumentation geprüft werden. Als Zulassungsregel: **ein Spiel kommt nur in den Trainingsraum-Vorrat, wenn sein Datum nachweislich nach diesem Stichtag liegt** — automatisch bei Spielen aus dem eigenen laufenden Betrieb der App, mit Vorbehalt bei jeder anderen Quelle.
+→ **3. Damit entfällt die 4-Wochen-Wartezeit vollständig.** Der Trainingsraum braucht keine neuen, noch offenen Spiele — er greift auf Spiele zurück, die die App bereits gesammelt UND ausgewertet hat (`state.kiProtokoll`-Einträge mit bekanntem `ergebnisHeim`/`ergebnisGast`). Deren Ergebnis ist sofort da, kein Warten auf ein neues Spiel nötig — genau der Zeitgewinn, den Ondo wollte.
+→ **Bauskizze:** Dieselbe Prompt-Bauweise wie `vorhersageGehirn()` wiederverwenden (Match, Wettbewerb, Anpfiff — das Ergebnis wird dabei nie mitgeschickt, wie heute schon), aber auf ausgewertete statt offene Spiele angewandt; Ergebnis der Blindvorhersage sofort gegen das bereits bekannte, echte Ergebnis vergleichen; Ablage **getrennt** von `state.kiProtokoll`, damit die laufende, echte Kalibrierungsmessung nicht mit Testläufen vermischt wird.
+→ **Offen, nicht Teil von v1:** „Kader, Verletzte" — solche Felder sammelt die App heute **nicht**, weder für echte Vorhersagen noch für den Trainingsraum. Das wäre eine eigene neue Datenquelle mit eigenen Kosten (z. B. eine Kader-/Verletzten-API), hier nur als spätere Erweiterung vorgemerkt, nicht als Voraussetzung für den ersten Bau.
+→ **Kosten:** Keine neuen API-Kosten über das Übliche hinaus — jeder Testlauf verbraucht dieselbe Art Modellaufruf wie eine echte Vorhersage, aus demselben Budget. Bauzeit real, noch nicht beziffert (kein fixierter Umfang). Die Kader-/Verletzten-Erweiterung hätte eigene, noch unbekannte Kosten und ist nicht Teil dieser Schätzung.
+→ **🔴 ChatGPT-Rückfrage beantwortet (12.9.2026, in einem Chat mit vollem Repo-Zugriff, nicht mehr über GitHub-Pages-Links):** „Der Trainingsraum sollte auf Weg (a) beschränkt bleiben: nur Spiele, deren Ausgang das jeweilige Modell zum relevanten Trainings-/Wissensstand noch nicht kennen konnte. Sonst lässt sich nicht unterscheiden, ob es prognostiziert oder einen bekannten Ausgang reproduziert." **Deckt sich mit der Zulassungsregel nach Datum oben** — kein Widerspruch zwischen Claude und ChatGPT.
+→ **Nächster Schritt (Art. 8, nichts gebaut ohne Ondos ausdrücklichem Ja):** Design steht. Soll das jetzt gebaut werden?
 
 ---
 
@@ -1387,15 +1408,18 @@ Ondo wörtlich: „Es gibt die Möglichkeit einen Trainingsraum zu bauen (in der
 → **Warum das schwieriger ist als eine Einzelwette:** Eine Kombi-Wette hat einen Einsatz und einen Ausgang (gewonnen/verloren), aber mehrere zugrundeliegende Spiele mit je eigener Vorhersage und je eigenem Ausgang. Die Lernkette rechnet heute in „eine Wette = eine Vorhersage" — eine Kombi bräuchte entweder „eine Wette = mehrere Vorhersagen" (neues Datenfeld, `state.bets[].kiProtokollIds` als Liste statt `kiProtokollId` als einzelner Wert) oder eine Aufteilung in mehrere Teil-Einträge (verändert aber Einsatz/Quote-Rechnung, die heute je Wette gilt).
 → **Noch nicht entworfen, nur die Lücke belegt.** Eine Lösung braucht eine Entscheidung über die Datenform (Liste vs. Aufteilung) — das ist eine Architekturfrage (Ondo-Core-Architektur.md, Ebenen-Trennung 1b), nicht nur ein Anzeigefeld, deshalb hier als offene Design-Frage vermerkt statt sofort gebaut.
 → **Kosten:** noch nicht bezifferbar, hängt von der gewählten Datenform ab.
-→ **Nächster Schritt:** ebenfalls Teil der ChatGPT-Rückfrage unten — zwei Meinungen vor einer Architekturentscheidung sind hier sinnvoller als eine.
+→ **🔴 ChatGPT-Rückfrage beantwortet (12.9.2026):** „Eine Kombi sollte eine einzige Wette bleiben und mehrere kiProtokollId-Verknüpfungen speichern. Sie in Teilwetten aufzuteilen wäre sachlich falsch: Einsatz, Gesamtquote, Gewinn/Verlust und Abrechnung gehören zur gesamten Kombi, nicht zu den einzelnen Legs. […] Technisch würde ich später eher eine strukturierte Liste der Legs vorsehen als nur nackte IDs, aber die Grundentscheidung lautet eindeutig: eine Wette → mehrere KI-Protokoll-Verknüpfungen." **Deckt sich mit Claudes Einschätzung (Liste statt Aufteilung) — kein Widerspruch.** Die von ChatGPT vorgeschlagene Verfeinerung (strukturierte Liste der Legs statt nackter IDs — z. B. je Leg auch Einsatz-Anteil oder Quote separat) ist eine spätere Ausbaustufe, nicht Teil der Grundentscheidung.
+→ **Nächster Schritt (Art. 8):** Grundentscheidung von beiden Prüfern getragen — `state.bets[].kiProtokollIds` als Liste. Soll das jetzt gebaut werden?
 
 ---
 
 ## 🟡 Prio 2 — wichtig, aber später
 
-**4. Daten-Export in die stabile Version** · *Idee Chat 1, erneut 28.7.* · **Status: beschlossen**
+**4. Daten-Export in die stabile Version** · *Idee Chat 1, erneut 28.7.* · **Status: beschlossen — 🔴 von Ondo freigegeben (12.9.2026), unabhängig vom Stand der Beförderung**
 **Nicht zu verwechseln mit „Datensicherung" (gebaut in v19.1).** Die Sicherung schützt vor Datenverlust; dieser Punkt überträgt die Messdaten aus der Beta in die stabile Version. Ohne ihn geht bei der Beförderung alles Gesammelte verloren.
-→ *Unmittelbar vor der Beförderung.*
+→ *Hier stand bis heute „Unmittelbar vor der Beförderung" — eine reine Reihenfolge-Festlegung, kein technischer Blocker (siehe Antwort an Ondo, 12.9.2026: die Beförderung selbst ist laut letztem Stand vom 31.7. weiterhin gesperrt, Kriterium (f) und (c) offen, siehe Punkt 5).*
+→ **🔴 Ondos Entscheidung (12.9.2026):** „Wenn du jetzt Punkt 3 gelöst hast mit dem Trainingsraum, ist für mich Punkt 4 freigeschaltet." Mit der Trainingsraum-Lösung bei Punkt 77 (Zulassungsregel nach Datum, Wiederverwendung von `vorhersageGehirn()`) ist diese Bedingung erfüllt — **Punkt 4 ist damit unabhängig vom Stand der Beförderung freigegeben**, kann jederzeit gebaut werden.
+→ **Noch offen, vor dem Bau zu klären:** Genauer Umfang (welche Daten wohin — `state.kiProtokoll`, `state.bets`, oder beides; wie mit den unterschiedlichen Datenformen von Beta und `OndoControl.html` umgegangen wird, falls diese abweichen). Das ist bisher nicht entworfen, nur der Grundsatz freigegeben.
 
 **34. Brier-Score als zweite Kennzahl neben der Kalibrierung** *(🔴 GERECHNET am 14.8. abends aus
 den Rohdaten — Sonnet **0,2429**, Bereich 0,2350–0,2513 · Flash **0,2497**, Bereich

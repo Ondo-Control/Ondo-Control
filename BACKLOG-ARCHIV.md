@@ -410,6 +410,38 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 102 ändert (12.9., echter Speicher-Beleg statt Schätzung — `beta.html` v19.8.29)
+
+**Anlass:** Ondo hat die neue Speicheranzeige aus v19.8.28 in echtem Einsatz getroffen. Drei
+Meldungen in einer Nachricht: „Browser voll", die API-Football-Sperre wird erst Montag
+behandelt, `CLAUDE.md` soll erneuert werden. Diese Fassung deckt den ersten Punkt.
+
+- **✅ Speicher-Warngrenze mit echtem Beleg korrigiert.** Ondos Browser lehnte das Speichern
+  bei **2.726 KB (2,7 MB)** Belegung ab — Bildschirmfoto zeigt den roten Warnbalken bereits
+  aktiv, „Belegter Speicher" nennt genau diesen Wert im selben Moment. **Die wahre Grenze liegt
+  damit nachweislich unter 2.726 KB.** Die alte 3-MB-Schätzung aus v19.8.28 lag darüber — die
+  Frühwarnung „wird eng" wäre nie gekommen, bevor das Speichern tatsächlich scheitert. Jetzt
+  **2 MB**, mit echtem Sicherheitsabstand unter dem belegten Fehlschlag statt nur knapp darunter
+  (Arbeitsregel H: jetzt mit Beleg statt Herleitung, wie schon bei v19.8.28 selbst angekündigt).
+- **🔴 Fund am eigenen Testaufbau, dabei aufgefallen:** Der Trockentest zu v19.8.28 hatte
+  `SPEICHER_WARNGRENZE` in der Testumgebung selbst hartcodiert auf 3 MB, statt die echte
+  Konstante aus `beta.html` zu übernehmen — die 55 Prüfungen aus Fassung 101 liefen damit
+  unbemerkt gegen einen Test-Zwilling, nicht gegen den echten Wert. Dieselbe Fehlerklasse wie
+  der fehlende `KEY` in derselben Testdatei, einen Tag zuvor. Behoben: Die Konstante wird jetzt
+  wörtlich aus `beta.html` gezogen, ändert sie sich künftig im Code, ändert sie sich automatisch
+  im Test mit. **Zwei neue Prüfungen** bilden Ondos echten Fall nach (2.726 KB → `eng` muss
+  `true` sein — mit der alten 3-MB-Schätzung wäre das falsch gewesen). Alle **57 Prüfungen**
+  erneut gelaufen, alle bestanden.
+- **API-Football-Sperre:** Ondo behandelt sie mit dem Support erst am Montag — nur bei
+  Backlog-Punkt 9 vermerkt, keine Codeänderung, nichts zu tun von dieser Seite bis dahin.
+- **Verifiziert:** `node --check` bestanden · `pruefe.py`: ALLES SAUBER. Kein neuer
+  Sprachschlüssel, kein Schnitt in der Messreihe. `APP_VERSION` weiter 18.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 97 ändert" wortgleich nach `BACKLOG-ARCHIV.md`
+  verschoben.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
+
+---
+
 ## ⚠ Was Fassung 101 ändert (11.9., die drei Funde behoben und die Lernkette fertiggebaut — `beta.html` v19.8.28)
 
 **Anlass:** „mach bei allen Punkten was nötig ist damit es sauber läuft, bau einfach weiter."
