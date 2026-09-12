@@ -3,9 +3,16 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.107
+**Version:** 0.108
 **Stand:** 12. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.108 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> Ondos Nachbesserung zum Trainingsraum (Backlog Fassung 109): KI-Daten sollen von „Mehr" zurück
+> ins Wettmodul (KI-Log, neuer Unter-Reiter), Auswahl-UI für Weg (a)/(b) verlangt, Rücksetzpunkt
+> (Commit `ed14eb7`, v19.9.0) festgehalten. Kein Codeaufwand, keine Entscheidung in dieser
+> Fassung getroffen — reine Buchführung. Kein Verfassungsartikel geändert, keine neue
+> Arbeitsregel. Blueprint auf 0.108 gehoben.
 
 > **Was Fassung 0.107 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
 > der gebaute Trainingsraum (Backlog Fassung 108, `beta.html` v19.9.0): Backlog-Punkt 77 auf

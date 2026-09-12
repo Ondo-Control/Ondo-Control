@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 12.9.2026, Fassung 108, v19.9.0*
+*Die aktuelle Wahrheit. Stand: 12.9.2026, Fassung 109, v19.9.0*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -176,6 +176,11 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 
 ## Versionen
 
+- **🔴 Rücksetzpunkt vor dem KI-Log-Umbau (Ondos Wunsch, 12.9.2026):** Commit `ed14eb7`,
+  `beta.html` v19.9.0, 12.9.2026, 16:17 Uhr UTC (Commit-Zeitstempel). Ondo hat nach dem Trainingsraum-Bau
+  Nachbesserungen verlangt (KI-Daten von „Mehr" nach Wettmodul/KI-Log verschieben, Auswahl-UI für
+  den Trainingsraum) — dieser Commit ist der Stand **davor**, falls zurückgesetzt werden muss.
+  Einzelheiten Backlog-Punkt 77.
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
 - **Beta: v19.9.0** (`beta.html`, geliefert 12.9.2026) — **🔴 Trainingsraum gebaut (Backlog-Punkt
   77).** Auftrag Ondo: Gehirne an Spielen mit bereits bekanntem Ergebnis blind testen, ohne

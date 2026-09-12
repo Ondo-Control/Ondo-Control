@@ -196,11 +196,11 @@ Punkt 73, nicht hier wiederholt (Punkt 45).
 `.claude/hooks/claude_md_frisch.py` vergleicht sie bei jedem Sitzungsstart und erinnert an
 eine Erneuerung, sobald einer abweicht. Er erneuert nichts von selbst.*
 
-- STAND.md — `6d7e6ebab5438587e174eeaadfdfa52b951b1c1c`
-- Ondo-Control-Backlog.md — `0ec5d1dabbaa012cb83d067ad89d76aa38279e1d`
-- Blueprint.md — `c4207f554a8c7811e33a739da50602df64ccc7ef`
+- STAND.md — `894a33287c5dfa07549539c818d42a97965e3a00`
+- Ondo-Control-Backlog.md — `dd8ae002398793e98b21d093d84c07ca8d992d70`
+- Blueprint.md — `fb46a68a989b158438f2915dbe1b6e1cf2ee885f`
 - Ondo-Core-Architektur.md — `d253d6357dad3879e1c13bd772a24c1388436867`
 
-*Prüfstand nachgeführt am 12.9.2026 (nur Hashes — Anlass war der gebaute Trainingsraum
-(Backlog-Punkt 77, `beta.html` v19.9.0); inhaltlich für diese Datei nicht berührt, keine neue
-Arbeitsregel, keine Änderung an Zweig- oder Geheimfeld-Regeln).*
+*Prüfstand nachgeführt am 12.9.2026 (nur Hashes — Anlass war Ondos Nachbesserung zum
+Trainingsraum (Backlog-Punkt 77) und der festgehaltene Rücksetzpunkt; inhaltlich für diese
+Datei nicht berührt, keine neue Arbeitsregel, keine Änderung an Zweig- oder Geheimfeld-Regeln).*

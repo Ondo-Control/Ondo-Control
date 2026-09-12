@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 108 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 109 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,34 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 109 ändert (12.9., Ondos Nachbesserung zu Punkt 77 — Rücksetzpunkt, kein Codeaufwand)
+
+**Anlass:** Ondo hat den Trainingsraum-Bau geprüft und Nachbesserungen verlangt, bevor
+weitergebaut wird — ausdrücklich VOR jedem weiteren Schritt zu klären.
+
+- **🔴 Fund von Ondo bestätigt:** Unter „Finanzen" steht weiterhin `hitAI` („KI-Trefferquote"),
+  weil diese Karte nie Teil der drei nach „Mehr" verschobenen Blöcke war. Am Code bestätigt:
+  jede KI-Kennzahl gehört ausschliesslich zum Modul Wetten.
+- **Platzierung erneut geändert:** nicht „Mehr", sondern Wettmodul → KI-Log → neuer
+  Unter-Reiter. Fassung 106/107 damit rückgängig zu machen, sobald geklärt.
+- **Weg (a) beim Trainingsraum nochmals bestätigt** (bereits ausgewertete Spiele aus
+  KI-Log/„Bewertet", keine neuen Vorhersagen) — keine Kursänderung am bereits gebauten Code.
+- **Neu verlangt:** eine Auswahl-Möglichkeit (Zeitraum/Wettbewerb) für Weg (a), und eine
+  echte Eintragemöglichkeit für Weg (b) statt einer leeren Datenstruktur. Noch nicht
+  entworfen.
+- **Offene Frage von Ondo:** Trainingsraum als eigenständiges Werkzeug im Repo statt in der
+  App? Antwort steht im Chat, nicht hier dokumentiert (keine Entscheidung bisher).
+- **🔴 Rücksetzpunkt festgehalten:** Commit `ed14eb7`, `beta.html` v19.9.0, 12.9.2026,
+  16:17 Uhr UTC — der Stand vor dieser Nachbesserung. Einzelheiten bei Punkt 77 und in
+  `STAND.md`, „Versionen".
+- **Kein Codeaufwand in dieser Fassung** — reine Abstimmung und Buchführung, `beta.html`
+  bleibt v19.9.0. `pruefe.py`: ALLES SAUBER.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 104 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: eins** — **4** *(unverändert.)*
 
 ---
 
@@ -124,30 +152,6 @@ jetzt vollen Repo-Zugriff hat statt nur GitHub-Pages-Links.
 Safari-App selbst vollständig geschlossen und neu geöffnet** — der stärkere der beiden
 möglichen Tests. Berichtigt in `STAND.md`, mit Streichung und Vermerk statt Überschreiben.
 Kein Codeaufwand. **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 104 ändert (12.9., erste Bewährungsbeobachtung zum Speicherumstieg — reine Buchführung)
-
-**Anlass:** Ondo hat den vorgeschlagenen Test gemacht — Eintrag im KI-Log geparkt/entparkt,
-Browser wirklich neu geladen — und bestätigt: „Hat funktioniert". Kein Codeaufwand.
-*(🔴 Berichtigt in Fassung 105: Es war nicht bloss ein Neuladen der Seite, sondern die
-Safari-App selbst wurde vollständig geschlossen und neu geöffnet — der stärkere Test.)*
-
-- **Backlog-Punkt 76 und `Ondo-Core-Architektur.md` (Fassung 0.8) um die erste
-  Bewährungsbeobachtung ergänzt:** Bildschirmfotos zeigen 505 Vorhersagen, 6 Wetten weiterhin
-  vollständig im Speicher und „Belegter Speicher: 2.740 KB von 39.332 MB (0 %)" — die vom
-  Gerät selbst gemeldete Grenze, nicht geschätzt.
-- **Ondo-Core-Architektur.md Abschnitt 4 (Memory) korrigiert:** Stand dort noch mit
-  „Stufe 1 (jetzt): localStorage" — seit v19.8.30 ist das `IndexedDB`. Nachgetragen als
-  Fassung 0.8, mit Verweis auf den echten Fehlschlag bei 2.726 KB, der zur Umstellung führte.
-- **Ausdrücklich nicht behauptet:** dass der Speicherumstieg damit vollständig bewährt ist —
-  ein einzelner Test ist keine abgeschlossene Bewährung (Stabilitätsregel, Art. 14,
-  Fehlerart C8). Vorschlag an Ondo, bei Gelegenheit: auch ein echtes Beenden und Neustarten
-  der Safari-App selbst beobachten, nicht nur ein Neuladen der Seite — strengerer Test.
-- **Verifiziert:** `pruefe.py`: ALLES SAUBER. Kein Codeaufwand, `beta.html` bleibt v19.8.30,
-  keine neuen Sprachschlüssel, kein Schnitt in der Messreihe.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
 
 ---
 
@@ -1387,7 +1391,7 @@ Vier Wochen ohne Websuche messen, dann Suche zuschalten, Kalibrierung vergleiche
 
 ---
 
-**77. Trainingsraum — Gehirne an bereits ausgewerteten Spielen testen, ohne Erinnerung/Websuche** · *Idee Ondo, 12.9.2026 (Ersatzvorschlag für Punkt 3) · Auftrag Ondo 12.9.2026: „nicht einfach Auftrag erledigen und fertig, sondern vorher wirklich durchdenken, absichern und zukunftsfähig konzipieren" · Plan geprüft und für tragfähig befunden, Bau ohne weitere Rückfrage ausdrücklich freigegeben* · **Status: ✅ GEBAUT 12.9.2026, `beta.html` v19.9.0**
+**77. Trainingsraum — Gehirne an bereits ausgewerteten Spielen testen, ohne Erinnerung/Websuche** · *Idee Ondo, 12.9.2026 (Ersatzvorschlag für Punkt 3) · Auftrag Ondo 12.9.2026: „nicht einfach Auftrag erledigen und fertig, sondern vorher wirklich durchdenken, absichern und zukunftsfähig konzipieren" · Plan geprüft und für tragfähig befunden, Bau ohne weitere Rückfrage ausdrücklich freigegeben* · **Status: 🔴 GEBAUT 12.9.2026 (`beta.html` v19.9.0), Nachbesserung angefordert — nichts Weiteres gebaut, bis geklärt**
 
 Ondo wörtlich (Grundidee): „Es gibt die Möglichkeit einen Trainingsraum zu bauen … mit den bereits ausgewerteten Spielen, wo die Gehirne diese Tests durchlaufen könnten ohne Zugriff auf Erinnerung und Websuche … Das würde uns viel Zeit sparen." Beide Wege sollen von Anfang an vorgesehen sein: **Weg (a)** bereits ausgewertete App-Spiele (aktiv genutzt), **Weg (b)** öffentlich bekannte historische Spiele (Datenstruktur steht, „müssen wir jetzt noch nicht aktiv nutzen").
 
@@ -1402,6 +1406,13 @@ Ondo wörtlich (Grundidee): „Es gibt die Möglichkeit einen Trainingsraum zu b
 
 → **ChatGPT-Rückfrage vom 12.9.2026 bestätigt den gewählten Weg** (Zulassung nach Trainings-/Wissensstand des Modells) — kein Widerspruch zwischen Claude und ChatGPT, beide Prüfer trugen zur endgültigen Lösung bei.
 → **Bewährung steht aus:** Der Trainingsraum ist gebaut und geprüft, aber solange `TRAININGSRAUM_STICHTAG` für kein Modell-Literal einen geprüften Wert trägt, liefert er **null zulässige Spiele** — er läuft erst scharf, sobald ein echter Stichtag nachgetragen ist. Das ist Absicht (Art. 11), nicht ein offener Fehler.
+→ **🔴 Ondos Nachbesserung (12.9.2026), vor jedem weiteren Bau zu klären:**
+1. **Fund, von Ondo belegt:** Unter „Finanzen" steht weiterhin die Karte „KI-Trefferquote" (`hitAI`, gespeist von `calcAI()` direkt in `viewFinance()`, Zeile 4307) — diese Karte war nie Teil von `kalibBlock()/beobachtungenBlock()/gepaartBlock()/trainingsraumBlock()` und wurde deshalb beim Umzug nach „Mehr" (Fassung 106) übersehen. Ondos Grundannahme bestätigt sich am Code: **jede KI-Kennzahl (`calcAI()`, `calcKalibrierung()`, alle vier Blöcke) liest ausschliesslich aus `state.kiProtokoll`/`state.trainingsraumProtokoll` — beides gehört ausschliesslich zum Modul Wetten**, nirgends sonst verwendet.
+2. **Platzierung erneut geändert:** Nicht „Mehr" (das ist für alle Module), sondern **Wettmodul → Reiter „KI-Log" → neuer Unter-Reiter** (heute dort: Offen/Bewertet/Archiv/Werkzeuge). `hitAI` sowie die vier Blöcke sollen dorthin, nicht nach „Mehr" — Fassung 106/107 damit rückgängig zu machen, sobald geklärt.
+3. **Weg (a) nochmals bestätigt, nicht geändert:** Bereits ausgewertete Spiele = die unter KI-Log/„Bewertet" stehenden Einträge, **keine neuen Vorhersagen auf offene Spiele**. Das entspricht dem bereits Gebauten (`trainingsraumKandidaten()` liest nur `status==='bewertet'`); Ondo hat das nochmals ausdrücklich bestätigt, keine Kursänderung am Code nötig.
+4. **Neu verlangt: Auswahl-Möglichkeit statt reiner Automatik.** Ondo will für Weg (a) einen Zeitraum/Datumsbereich wählen können (ähnlich dem bestehenden von/bis-Filter im KI-Log), und für Weg (b) tatsächlich historische Spiele/Wettbewerbe **auswählen oder eintragen** können — nicht nur eine leere, für später vorgesehene Datenstruktur. Noch nicht gebaut, noch keine Entwurfsentscheidung getroffen (siehe Rückfragen im Chat).
+5. **Offene Frage von Ondo:** Wäre ein eigenständiges Werkzeug **im Repo, ausserhalb der App** (z. B. ein Node-Skript, direkt auf den bereits vorhandenen Funktionen aufgesetzt) einfacher als eine Erweiterung der Telefon-Oberfläche? Antwort noch nicht gegeben, siehe Chat.
+→ **🔴 Rücksetzpunkt festgehalten (Ondos Wunsch, Sicherheit vor dem nächsten Umbau):** Commit `ed14eb7`, `beta.html` v19.9.0, 12.9.2026, 16:17 Uhr UTC (Commit-Zeitstempel, nicht Container-Systemzeit — Art. „echte Uhrzeiten"). Das ist der Stand **vor** der Verschiebung von KI-Log-Daten und vor jeder Auswahl-UI für den Trainingsraum. Einzelheiten auch in `STAND.md`, „Versionen".
 
 ---
 

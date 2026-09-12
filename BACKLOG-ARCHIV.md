@@ -410,6 +410,30 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 104 ändert (12.9., erste Bewährungsbeobachtung zum Speicherumstieg — reine Buchführung)
+
+**Anlass:** Ondo hat den vorgeschlagenen Test gemacht — Eintrag im KI-Log geparkt/entparkt,
+Browser wirklich neu geladen — und bestätigt: „Hat funktioniert". Kein Codeaufwand.
+*(🔴 Berichtigt in Fassung 105: Es war nicht bloss ein Neuladen der Seite, sondern die
+Safari-App selbst wurde vollständig geschlossen und neu geöffnet — der stärkere Test.)*
+
+- **Backlog-Punkt 76 und `Ondo-Core-Architektur.md` (Fassung 0.8) um die erste
+  Bewährungsbeobachtung ergänzt:** Bildschirmfotos zeigen 505 Vorhersagen, 6 Wetten weiterhin
+  vollständig im Speicher und „Belegter Speicher: 2.740 KB von 39.332 MB (0 %)" — die vom
+  Gerät selbst gemeldete Grenze, nicht geschätzt.
+- **Ondo-Core-Architektur.md Abschnitt 4 (Memory) korrigiert:** Stand dort noch mit
+  „Stufe 1 (jetzt): localStorage" — seit v19.8.30 ist das `IndexedDB`. Nachgetragen als
+  Fassung 0.8, mit Verweis auf den echten Fehlschlag bei 2.726 KB, der zur Umstellung führte.
+- **Ausdrücklich nicht behauptet:** dass der Speicherumstieg damit vollständig bewährt ist —
+  ein einzelner Test ist keine abgeschlossene Bewährung (Stabilitätsregel, Art. 14,
+  Fehlerart C8). Vorschlag an Ondo, bei Gelegenheit: auch ein echtes Beenden und Neustarten
+  der Safari-App selbst beobachten, nicht nur ein Neuladen der Seite — strengerer Test.
+- **Verifiziert:** `pruefe.py`: ALLES SAUBER. Kein Codeaufwand, `beta.html` bleibt v19.8.30,
+  keine neuen Sprachschlüssel, kein Schnitt in der Messreihe.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
+
+---
+
 ## ⚠ Was Fassung 103 ändert (12.9., Speicherproblem dauerhaft gelöst — Umstieg auf IndexedDB, `beta.html` v19.8.30)
 
 **Anlass:** Auf die Rückmeldung „Browser voll" folgte Ondos klare Entscheidung: „Ich will eine
