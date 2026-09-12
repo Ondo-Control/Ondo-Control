@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.9.0';
+var CODE_VERSION = 'v19.10.0';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -179,6 +179,10 @@ var I18N = {
   trainOf:'Trainingsraum vom', trainNeu:'neue Tests', trainVerworfen:'verworfen (Modell nicht zugelassen)',
   trainGesperrt:'Stichtag nicht geprüft — gesperrt', trainKeine:'Noch keine Tests.',
   trainAbw:'{a} % behauptet, {b} % eingetroffen (Abw. {c})', kiBusy:'Es läuft bereits eine KI-Anfrage — bitte warten.',
+  predResearch:'Marktlage wird recherchiert…',
+  marktlageT:'Aktuelle Lage per Websuche', marktlageD:'Vor jeder Vorhersage wird EINMAL für die ganze Spielliste recherchiert (Verletzte, Form, Tabellenstand) — beide Gehirne bekommen dieselbe Recherche. Kostet echtes Geld pro Lauf, begrenzt auf höchstens {a} Suchvorgänge.',
+  marktlageAn:'An — ausschalten', marktlageAusBtn:'Aus — einschalten',
+  marktlageInfo:'{a} von {b} Spielen recherchiert', marktlageAus:'Recherche ausgeschaltet',
   calibDev:'Abweichung', calibPts:'Bewertete Aussagen', calibNone:'Noch zu wenig Daten',
   calibBand:'Angabe', calibClaim:'behauptet', calibReal:'wirklich', calibN:'Anzahl',
   calibBrier:'Brier-Score', calibSpread:'Streuung', widersprT:'Widerspruchsquote',
@@ -319,6 +323,10 @@ var I18N = {
   trainOf:'Salle d’entraînement du', trainNeu:'nouveaux tests', trainVerworfen:'rejetés (modèle non autorisé)',
   trainGesperrt:'Date limite non vérifiée — verrouillé', trainKeine:'Aucun test pour le moment.',
   trainAbw:'{a} % annoncé, {b} % réel (écart {c})', kiBusy:'Une requête IA est déjà en cours — merci de patienter.',
+  predResearch:'Recherche de la situation actuelle…',
+  marktlageT:'Situation actuelle par recherche web', marktlageD:'Avant chaque prévision, UNE recherche pour toute la liste (blessés, forme, classement) — les deux cerveaux reçoivent la même recherche. Coûte de l’argent réel par lancement, limité à {a} recherches au maximum.',
+  marktlageAn:'Activé — désactiver', marktlageAusBtn:'Désactivé — activer',
+  marktlageInfo:'{a} match(s) sur {b} recherché(s)', marktlageAus:'Recherche désactivée',
   calibDev:'Écart', calibPts:'Affirmations évaluées', calibNone:'Pas encore assez de données',
   calibBand:'Indiqué', calibClaim:'annoncé', calibReal:'réel', calibN:'Nombre',
   calibBrier:'Score de Brier', calibSpread:'Dispersion', widersprT:'Taux de contradiction',
@@ -459,6 +467,10 @@ var I18N = {
   trainOf:'Training room run of', trainNeu:'new tests', trainVerworfen:'discarded (model not cleared)',
   trainGesperrt:'Cutoff date not verified — locked', trainKeine:'No tests yet.',
   trainAbw:'{a}% claimed, {b}% actual (dev. {c})', kiBusy:'An AI request is already running — please wait.',
+  predResearch:'Researching current situation…',
+  marktlageT:'Current situation via web search', marktlageD:'Before each prediction, ONE search covers the whole fixture list (injuries, form, standings) — both brains get the same research. Costs real money per run, capped at {a} searches at most.',
+  marktlageAn:'On — turn off', marktlageAusBtn:'Off — turn on',
+  marktlageInfo:'{a} of {b} games researched', marktlageAus:'Research turned off',
   calibDev:'Deviation', calibPts:'Rated statements', calibNone:'Not enough data yet',
   calibBand:'Stated', calibClaim:'claimed', calibReal:'actual', calibN:'Count',
   calibBrier:'Brier score', calibSpread:'Spread', widersprT:'Contradiction rate',
@@ -668,7 +680,10 @@ var state = {
      Evidence Ledger (state.kiProtokoll) - Einzelheiten Ondo-Core-Architektur.md, 1d.
      trainingsraumSpiele ist Weg (b), von Hand gepflegt, in v1 bewusst leer. */
   trainingsraumProtokoll: [],
-  trainingsraumSpiele: []
+  trainingsraumSpiele: [],
+  /* v19.10.0 (Backlog-Punkt 79, Ondo "Ja fuer beides"): Ausschalter fuer die laufenden Kosten
+     der Marktlage-Recherche - Standard an, weil Ondo dem Grundsatz zugestimmt hat. */
+  marktlageAktiv: true
 };
 
 /* v19.8.30: load() wird async, weil speicherLesen() ueber IndexedDB geht (siehe Kommentar
@@ -2364,8 +2379,49 @@ function spielListeHolen(){
   });
 }
 
+/* ================= SCHRITT 1b: AKTUELLE LAGE (Backlog-Punkt 79, Auftrag Ondo 12.9.2026) =====
+   "Ja fuer beides" (echte Vorhersagen bekommen Websuche, der Trainingsraum bleibt ohne) plus
+   "Bau eine Obergrenze fuer die Suchvorgaenge je Lauf ein". Ondos offene Frage dazu: 3 Suchen
+   (Spielliste/Sonnet/Flash) oder 1 gesamte Suche? Entscheidung Claude: EINE gemeinsame
+   Recherche fuer die ganze Spielliste, beiden Gehirnen GLEICH mitgegeben.
+   Begruendung: Die Kalibrierung vergleicht, wie gut Sonnet und Flash ihre eigene Zuversicht
+   einschaetzen - das soll auf derselben Tatsachengrundlage gemessen werden. Bekaeme jedes
+   Gehirn eine EIGENE, unabhaengige Suche, waere ein Teil des Unterschieds zwischen beiden nur
+   Zufall (was jedes zufaellig gefunden hat), nicht ihre eigene Einschaetzung - genau das
+   wuerde die Messung verfaelschen, die dieses Projekt seit Wochen aufbaut. Zweiter Grund:
+   guenstiger (eine Suche statt zwei) und nutzt sonnetSuche() unveraendert wieder, die beim
+   Schiedsrichter schon erprobt ist, statt eine zweite, ungeprüfte Absicherung fuer Gemini zu
+   bauen. Bekannte Grenze, offen benannt statt verschwiegen: Ohne Sonnet-Schluessel gibt es
+   auch fuer Flash keine Recherche - dieselbe Bauweise wie beim Schiedsrichter, der ebenfalls
+   nur ueber Sonnet laeuft. */
+var MARKTLAGE_MAX_SUCHEN = 20;
+function marktlageHolen(liste){
+  if(!hatSonnet() || !liste.length) return Promise.resolve(null);
+  var spieleTxt = liste.map(function(s,i){
+    return (i+1)+'. '+s.match+(s.wettbewerb?(' ['+s.wettbewerb+']'):'');
+  }).join('\n');
+  var prompt = 'Heute ist '+heuteStr()+'. Recherchiere per Websuche fuer JEDES der folgenden '+
+    'Fussballspiele knapp den aktuellen Stand: bekannte Verletzte oder gesperrte Stammspieler, '+
+    'die jeweils letzten Ergebnisse (Form), und falls bekannt der Tabellenstand.\n'+
+    'Maximal 2 Saetze je Spiel, nur was du wirklich per Suche findest - nichts erfinden. '+
+    'Fehlt eine verlaessliche Angabe zu einem Spiel, schreibe dort "keine verlaessliche Information gefunden".\n\n'+
+    'SPIELE:\n'+spieleTxt+'\n\n'+
+    'Letzte Nachricht: NUR kompaktes JSON:\n'+
+    '{"lage":[{"match":"Team A - Team B","hinweis":"..."}]}';
+  return sonnetSuche(prompt, MARKTLAGE_MAX_SUCHEN, 3000).then(function(res){
+    if(res._status===401 || res.error) return null;
+    var parsed = parseJsonBlock(res);
+    if(!parsed || !parsed.lage) return null;
+    return parsed.lage;
+  }).catch(function(){ return null; });
+}
+
 /* ================= SCHRITT 2: VORHERSAGE JE GEHIRN ================= */
-function vorhersageGehirn(gehirn, liste){
+/* v19.10.0 (Backlog-Punkt 79): dritter Parameter marktlage, OPTIONAL. Wird er nicht mitgegeben
+   (wie bisher jeder Aufruf, und wie JEDER Trainingsraum-Aufruf weiterhin), aendert sich am
+   Prompt nichts - genau das haelt den Trainingsraum ohne Suche/Erinnerung, wie Ondo verlangt,
+   ohne dass dort etwas eigens abgeschaltet werden muss. */
+function vorhersageGehirn(gehirn, liste, marktlage){
   var fruehere = (state.kiProtokoll||[])
     .filter(function(e){ return e.aera==='v19' && (e.herkunft||'sonnet')===gehirn; })
     .slice(0,6)
@@ -2383,6 +2439,17 @@ function vorhersageGehirn(gehirn, liste){
   var spieleTxt = liste.map(function(s,i){
     return (i+1)+'. '+s.match+(s.wettbewerb?(' ['+s.wettbewerb+']'):'')+(s.anpfiff?(' '+s.anpfiff):'');
   }).join('\n');
+
+  /* v19.10.0 (Backlog-Punkt 79): marktlage kommt, wenn ueberhaupt, EINMAL fuer die ganze Liste
+     von marktlageHolen() - hier nur nach Spielname zugeordnet, keine eigene Suche. */
+  var lageTxt = '';
+  if(marktlage && marktlage.length){
+    var zeilen = liste.map(function(s){
+      var f = marktlage.find(function(m){ return normName(m.match)===normName(s.match); });
+      return f ? (s.match+': '+f.hinweis) : null;
+    }).filter(function(z){ return z; });
+    if(zeilen.length) lageTxt = 'AKTUELLE LAGE (per Websuche recherchiert, '+heuteStr()+'):\n'+zeilen.join('\n')+'\n\n';
+  }
 
   var prompt='Heute ist '+heuteStr()+'. Du bist Fussball-Prognostiker fuer Ondo Control. '+
     'Deine Aufgabe ist NICHT, Wetten zu empfehlen, sondern ehrlich einzuschaetzen.\n\n'+
@@ -2402,6 +2469,7 @@ function vorhersageGehirn(gehirn, liste){
       'Du ueberschaetzt deine eigene Zuversicht im Bereich 60-69 Prozent deutlich: von 49 Aussagen mit im Schnitt behaupteten 63 Prozent trafen nur 49 Prozent ein. '+
       'Dasselbe Muster zeigt sich darunter. Nimm diese Abweichung als festen Erfahrungswert in deine eigene Einschaetzung auf.\n\n') : '')+
     (fruehere?('Deine letzten eigenen Vorhersagen: '+fruehere+'\n\n'):'')+
+    lageTxt+
     'SPIELE:\n'+spieleTxt+'\n\n'+
     'Letzte Nachricht: NUR kompaktes JSON:\n'+
     '{"vorhersagen":[{"match":"Team A - Team B","heim":2,"gast":1,"p1x2":58,"pTore":62,"pBtts":55,"bttsWort":"ja","begruendung":"..."}]}';
@@ -2455,11 +2523,19 @@ function vorhersagen(btn){
 
   spielListeHolen().then(function(liste){
     if(!liste.length) throw new Error(t('loadFail'));
-    btn.textContent=t('predBrain');
-    var jobs=[], namen=[];
-    if(hatSonnet()){ jobs.push(vorhersageGehirn('sonnet', liste)); namen.push('sonnet'); }
-    if(hatGemini()){ jobs.push(vorhersageGehirn('flash', liste));  namen.push('flash'); }
-    return Promise.all(jobs).then(function(res){ return { liste:liste, res:res, namen:namen }; });
+    /* v19.10.0 (Backlog-Punkt 79): EINE gemeinsame Recherche fuer die ganze Liste, beiden
+       Gehirnen gleich mitgegeben - Begruendung bei marktlageHolen(). state.marktlageAktiv
+       ist Ondos Ausschalter fuer die laufenden Kosten, Standard an (seine Entscheidung
+       "Ja fuer beides"). */
+    btn.textContent=t('predResearch');
+    var lageAnfrage = (state.marktlageAktiv!==false) ? marktlageHolen(liste) : Promise.resolve(null);
+    return lageAnfrage.then(function(marktlage){
+      btn.textContent=t('predBrain');
+      var jobs=[], namen=[];
+      if(hatSonnet()){ jobs.push(vorhersageGehirn('sonnet', liste, marktlage)); namen.push('sonnet'); }
+      if(hatGemini()){ jobs.push(vorhersageGehirn('flash', liste, marktlage));  namen.push('flash'); }
+      return Promise.all(jobs).then(function(res){ return { liste:liste, res:res, namen:namen, marktlage:marktlage }; });
+    });
   }).then(function(paket){
     if(!state.kiProtokoll) state.kiProtokoll=[];
     var heuteD=new Date().toLocaleDateString('de-DE');
@@ -2524,7 +2600,13 @@ function vorhersagen(btn){
           begruendung:String(v.begruendung||''),
           maerkte:maerkteBauen(match,h,g,pz(v.p1x2),pz(v.pTore),pz(v.pBtts)),
           ergebnisHeim:null, ergebnisGast:null,
-          status:'offen'
+          status:'offen',
+          /* v19.10.0 (Backlog-Punkt 79): Ob genau DIESES Spiel eine recherchierte Lage bekommen
+             hat - nicht nur, ob die Recherche insgesamt lief. Ein Schnitt in der Messreihe
+             beginnt hier: Eintraege ohne dieses Feld (vor v19.10.0) hatten nie die Moeglichkeit
+             einer Recherche; Eintraege MIT diesem Feld auf false hatten sie versucht, aber ohne
+             Treffer fuer dieses Spiel oder ganz ohne Sonnet-Schluessel. */
+          recherchiert: !!(paket.marktlage && paket.marktlage.some(function(m){ return normName(m.match)===normName(match); }))
         };
         state.kiProtokoll.unshift(eintrag);
         neu.push(eintrag);
@@ -2533,6 +2615,7 @@ function vorhersagen(btn){
     state.vorhersagen = { datum:heuteStr(), ids:neu.map(function(e){return e.id;}) };
     state.vorschlaegeInfo = t('kiOf')+': '+heuteStr()+
       ' · '+t('refDauer')+' '+Math.round((Date.now()-startZeitV)/1000)+' s'+
+      ' · '+(paket.marktlage ? t('marktlageInfo').replace('{a}',paket.marktlage.length).replace('{b}',paket.liste.length) : t('marktlageAus'))+
       (fehler.length?(' · ⚠ '+fehler.join(' · ')):'');
     save();
     kiAnfrageAktiv = false;
@@ -4410,6 +4493,15 @@ function viewMore(){
   '</div>'+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">⚔️ '+t('duellT')+'</div>'+
     '<div class="muted">'+t('duellD')+'</div>'+
+  '</div>'+
+  /* v19.10.0 (Backlog-Punkt 79, Ondo "Ja fuer beides" + Kostenkontrolle): Aus-Schalter fuer
+     die Marktlage-Recherche, damit Ondo die laufenden Suchkosten selbst steuern kann, ohne
+     dafuer eine neue Codeaenderung zu brauchen. */
+  '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">🔎 '+t('marktlageT')+'</div>'+
+    '<div class="muted">'+t('marktlageD').replace('{a}',MARKTLAGE_MAX_SUCHEN)+'</div>'+
+    '<button class="btn'+(state.marktlageAktiv!==false?'':' btn-ghost')+'" style="margin-top:10px" onclick="state.marktlageAktiv=!(state.marktlageAktiv!==false);save();render()">'+
+      (state.marktlageAktiv!==false ? t('marktlageAn') : t('marktlageAusBtn'))+
+    '</button>'+
   '</div>'+
   /* v19.8.31 (Auftrag Ondo 12.9.2026, "Wenn es geht dann unter mehr"): Kalibrierung,
      Beobachtungen und gepaarter Vergleich gehoeren zu den KI-Modulen (Wetten und

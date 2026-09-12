@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 12.9.2026, Fassung 110, v19.9.0*
+*Die aktuelle Wahrheit. Stand: 12.9.2026, Fassung 111, v19.10.0*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -91,6 +91,8 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 **Rohdatenstand:** Die Zahlen im Abschnitt „Aktueller Messstand" stammen aus den Bildschirmfotos vom 2.9.2026 (siehe „Zur Datierung" oben). *(Bis zum 2.9.2026 stand hier der 14.8.2026 — berichtigt, weil der Messstand ersetzt wurde.)*
 
 **Der Schnitt bei „beide treffen":** Werte vor und ab v19.8.0 sind bei diesem Markt nicht vergleichbar (siehe „Versionen").
+
+**Der Schnitt bei Websuche (v19.10.0, Backlog-Punkt 79):** Ab dieser Version tragen neue Einträge `recherchiert:true/false` — vorher gab es diese Möglichkeit gar nicht. Werte vor und ab v19.10.0 sind entsprechend nicht direkt vergleichbar (siehe „Versionen").
 
 **Anpfiffzeiten:** waren an mehreren Tagen nachweislich falsch protokolliert (siehe „Die Spielliste — drei Fehlerarten", S2).
 
@@ -192,7 +194,40 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   den Trainingsraum) — dieser Commit ist der Stand **davor**, falls zurückgesetzt werden muss.
   Einzelheiten Backlog-Punkt 77.
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.9.0** (`beta.html`, geliefert 12.9.2026) — **🔴 Trainingsraum gebaut (Backlog-Punkt
+- **Beta: v19.10.0** (`beta.html`, geliefert 12.9.2026) — **🔴 Websuche für echte Vorhersagen
+  gebaut (Backlog-Punkt 79) — SCHNITT IN DER MESSREIHE.** Auftrag Ondo, nachdem klar wurde,
+  dass Vorhersagen bis dahin nie recherchierten: „Ja für beides" (Websuche für echte
+  Vorhersagen, keine für den Trainingsraum) plus „Bau eine Obergrenze für die Suchvorgänge je
+  Lauf ein".
+  **Strategie-Entscheidung (Ondos offene Frage: 3 Suchen je Gehirn und Spielliste, oder 1
+  gesamte Suche?):** Claude empfiehlt und baut **eine gemeinsame Recherche** (`marktlageHolen()`)
+  für die ganze Spielliste, beiden Gehirnen identisch mitgegeben — nicht je Gehirn getrennt.
+  Begründung: Die Kalibrierung vergleicht, wie gut Sonnet und Flash ihre eigene Zuversicht
+  einschätzen; das muss auf derselben Tatsachengrundlage gemessen werden, sonst käme ein Teil
+  des Unterschieds nur aus Zufall (was jedes Gehirn zufällig gefunden hat), nicht aus eigener
+  Einschätzung. Zusätzlich günstiger (eine Suche statt zwei) und nutzt `sonnetSuche()`
+  unverändert wieder, die beim Schiedsrichter schon erprobt ist.
+  **Obergrenze:** `MARKTLAGE_MAX_SUCHEN = 20` — als `max_uses` an das bestehende
+  Anthropic-Websuche-Werkzeug durchgereicht, für die GANZE Liste (bis zu 10 Spiele), nicht je
+  Spiel. Bei realen, nachgeprüften 10 US-Dollar je 1.000 Suchvorgänge (Anthropic) kostet ein
+  Lauf dadurch höchstens rund 0,20 US-Dollar für die Recherche, unabhängig davon, wie viele
+  Gehirne aktiv sind — echtes Geld, aber eine feste, bekannte Grenze statt einer offenen.
+  **Ondo kann die Recherche jederzeit selbst abschalten** (`state.marktlageAktiv`, neuer
+  Schalter unter „Mehr") — Standard an, seiner Entscheidung entsprechend.
+  **Bekannte Grenze, offen benannt:** Ohne Sonnet-Schlüssel gibt es auch für Flash keine
+  Recherche (dieselbe Bauweise wie beim Schiedsrichter).
+  **Schnitt in der Messreihe, wie beim BTTS-Schnitt (v19.8.0):** Jeder neue `kiProtokoll`-
+  Eintrag trägt jetzt `recherchiert:true/false` — echt, je Spiel einzeln, nicht nur ob die
+  Recherche insgesamt lief. Einträge ohne dieses Feld (vor v19.10.0) hatten nie die Möglichkeit
+  einer Recherche. Werte vor und ab dieser Version sind entsprechend nicht direkt vergleichbar.
+  **Verifiziert:** `node --check` bestanden · **15 neue Prüfungen** an den echten,
+  herausgeschnittenen Funktionen, darunter ein Regressionstest, der belegt: Ein Aufruf mit nur
+  zwei Argumenten (wie jeder Trainingsraum-Aufruf) bleibt byte-identisch zum Stand davor — der
+  Trainingsraum bleibt dadurch garantiert ohne Recherche, ohne dass dort etwas eigens
+  abgeschaltet werden musste · die bestehenden 121 (IndexedDB), 45 (v19.8.28) und 40
+  (Trainingsraum) Prüfungen erneut gelaufen, alle weiterhin bestanden · `pruefe.py`: ALLES
+  SAUBER. **7 neue Sprachschlüssel** (318 → 325). `APP_VERSION` weiter 18.
+- **Beta zuvor: v19.9.0** (`beta.html`, geliefert 12.9.2026) — **🔴 Trainingsraum gebaut (Backlog-Punkt
   77).** Auftrag Ondo: Gehirne an Spielen mit bereits bekanntem Ergebnis blind testen, ohne
   Erinnerung oder Websuche, mit einem sofort durchdachten Plan statt einer mechanischen Umsetzung
   seiner Vorgabe. **Wiederverwendung statt Neubau:** `vorhersageGehirn()` unverändert
@@ -507,7 +542,7 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 - **Beta zuvor: v19.8.1** (`beta.html`, geliefert 9.8.2026, 13:55 Uhr) — **die Spielliste hat eine eigene Rolle und läuft auf `gemini-flash-latest`.** Jeder neue Eintrag trägt zusätzlich die **Stufe**. Kein Schnitt in der Messreihe. `APP_VERSION` weiter 18.
 - **Beta zuvor: v19.8.0** (`beta.html`, geliefert 9.8.2026, 04:15 Uhr) — **Schnitt in der Messreihe bei „beide treffen", Punkt F gebaut.** Werte vor und ab dieser Version sind bei diesem Markt nicht vergleichbar. Jeder neue Log-Eintrag trägt das Feld `codeVersion`. `APP_VERSION` weiter 18.
 - **Beta zuvor: v19.7.8** (`beta.html`, geliefert 7.8.2026) — getrennter Speicher, aktive Messphase. Vier Nachbesserungen am 3. und 4. August, alle ausgelöst durch Punkt 0a; Einzelheiten im Backlog. Im Code steht weiterhin `APP_VERSION = 18` (technische Schuld, bewusst nicht nebenbei geändert, vor der Beförderung zu klären)
-- **Sprachschlüssel: 318** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 12.9.2026**). *Verlauf: die früher dokumentierten 184 waren nie geprüft; nachgezählt waren es 185, dann 193, dann 199, dann 201 (v19.7.8), dann 203 (v19.8.1). Die acht Schlüssel des Berichtigungsknopfes vom 13.8. (`korrT` bis `korrOk`) waren nirgends nachgetragen — 203 + 8 = 211. Punkt 44 bringt sechs weitere (`messT` bis `messBlock`) — 211 + 6 = 217. Backlog-Punkt 51 (gepaarter Vergleich, seit 30.8.2026 in `BACKLOG-ARCHIV.md`) bringt elf weitere (`gepaart` bis `gepaartMehrdeutig`) — 217 + 11 = 228. Backlog-Punkt 64 bringt einen weiteren (`parkGrundInstabil`) — 228 + 1 = 229. Nachfrage zu Punkt 64 (refRoh lesbar gemacht, v19.8.8) bringt zwei weitere (`refRohBtn`, `refRohEmpty`) — 229 + 2 = 231. Nachfrage zu Punkt 64, Teil 2/3 (v19.8.9) bringt drei weitere (`refWiderspruch`, `refRunsVon`, `ergebnisManuell`) — 231 + 3 = 234. Backlog-Punkt 68 und Punkt 36, zweiter Teil (Mehrfachlauf-Absicherung, v19.8.12), bringen sieben weitere (`refEinig2von3`, `refQuellenZahl`, `refVerworfen`, `parkGrundFormat`, `refEinAnbieter`, `refDauer`, `balGeparkt`) — 234 + 7 = 241. Backlog-Punkt 70 (Filter im KI-Log, v19.8.14) bringt zehn weitere (`filterT` bis `filterEmpty`) — 241 + 10 = 251. Backlog-Punkt 71 (KI-Log in vier Reiter, v19.8.15) bringt vier weitere (`kilogTabBewertet`, `kilogTabArchiv`, `kilogTabWerkzeuge`, `filterMannschaftPh`) und entfernt einen, ungenutzt gewordenen (`logEmpty`) — 251 + 4 − 1 = 254. Backlog-Punkt 34/35 (Brier-Score, Streuung, v19.8.21) bringen zwei weitere (`calibBrier`, `calibSpread`) — 254 + 2 = 256. Backlog-Punkt 9, Knopfdruck-Teil (Quoten-Automatik, v19.8.23) bringt elf weitere (`oddsKeyT` bis `oddsQuelle`) — 256 + 11 = 267. Backlog-Punkt 9, Ausbau (API-Football/football-data.org per Knopfdruck, v19.8.24) bringt acht weitere (`afKeyT` bis `fdOff`) — 267 + 8 = 275. Backlog-Punkt 0b (Widerspruchsquote je Markt, v19.8.25) bringt einen weiteren (`widersprT`) — 275 + 1 = 276. Backlog-Punkt 75, Teil 2 (Decision Ledger, v19.8.26) bringt drei weitere (`kiWahlLabel`, `kiWahlKeine`, `vonKi`) — 276 + 3 = 279. Die drei Behebungen und der Observation Layer (v19.8.28) bringen 23 weitere: zwei Rückfragen vor dem Löschen (`delBetAsk`, `delLogAsk`), drei für den Speicher (`saveFailAlert`, `speicherT`, `speicherEng`) und achtzehn für den Observation Layer (`beobT` bis `beobGrundlage`) — 279 + 23 = 302. Der Umstieg auf IndexedDB (v19.8.30) bringt einen weiteren (`speicherVon`) — 302 + 1 = 303. Die Korrigieren-Felder (v19.8.31) bringen drei weitere (`depKorrLabel`, `wdKorrLabel`, `korrHinweis`) — 303 + 3 = 306. Der Trainingsraum (v19.9.0) bringt zwölf weitere (`trainT` bis `kiBusy`) — 306 + 12 = 318.* **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
+- **Sprachschlüssel: 325** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 12.9.2026**). *Verlauf: die früher dokumentierten 184 waren nie geprüft; nachgezählt waren es 185, dann 193, dann 199, dann 201 (v19.7.8), dann 203 (v19.8.1). Die acht Schlüssel des Berichtigungsknopfes vom 13.8. (`korrT` bis `korrOk`) waren nirgends nachgetragen — 203 + 8 = 211. Punkt 44 bringt sechs weitere (`messT` bis `messBlock`) — 211 + 6 = 217. Backlog-Punkt 51 (gepaarter Vergleich, seit 30.8.2026 in `BACKLOG-ARCHIV.md`) bringt elf weitere (`gepaart` bis `gepaartMehrdeutig`) — 217 + 11 = 228. Backlog-Punkt 64 bringt einen weiteren (`parkGrundInstabil`) — 228 + 1 = 229. Nachfrage zu Punkt 64 (refRoh lesbar gemacht, v19.8.8) bringt zwei weitere (`refRohBtn`, `refRohEmpty`) — 229 + 2 = 231. Nachfrage zu Punkt 64, Teil 2/3 (v19.8.9) bringt drei weitere (`refWiderspruch`, `refRunsVon`, `ergebnisManuell`) — 231 + 3 = 234. Backlog-Punkt 68 und Punkt 36, zweiter Teil (Mehrfachlauf-Absicherung, v19.8.12), bringen sieben weitere (`refEinig2von3`, `refQuellenZahl`, `refVerworfen`, `parkGrundFormat`, `refEinAnbieter`, `refDauer`, `balGeparkt`) — 234 + 7 = 241. Backlog-Punkt 70 (Filter im KI-Log, v19.8.14) bringt zehn weitere (`filterT` bis `filterEmpty`) — 241 + 10 = 251. Backlog-Punkt 71 (KI-Log in vier Reiter, v19.8.15) bringt vier weitere (`kilogTabBewertet`, `kilogTabArchiv`, `kilogTabWerkzeuge`, `filterMannschaftPh`) und entfernt einen, ungenutzt gewordenen (`logEmpty`) — 251 + 4 − 1 = 254. Backlog-Punkt 34/35 (Brier-Score, Streuung, v19.8.21) bringen zwei weitere (`calibBrier`, `calibSpread`) — 254 + 2 = 256. Backlog-Punkt 9, Knopfdruck-Teil (Quoten-Automatik, v19.8.23) bringt elf weitere (`oddsKeyT` bis `oddsQuelle`) — 256 + 11 = 267. Backlog-Punkt 9, Ausbau (API-Football/football-data.org per Knopfdruck, v19.8.24) bringt acht weitere (`afKeyT` bis `fdOff`) — 267 + 8 = 275. Backlog-Punkt 0b (Widerspruchsquote je Markt, v19.8.25) bringt einen weiteren (`widersprT`) — 275 + 1 = 276. Backlog-Punkt 75, Teil 2 (Decision Ledger, v19.8.26) bringt drei weitere (`kiWahlLabel`, `kiWahlKeine`, `vonKi`) — 276 + 3 = 279. Die drei Behebungen und der Observation Layer (v19.8.28) bringen 23 weitere: zwei Rückfragen vor dem Löschen (`delBetAsk`, `delLogAsk`), drei für den Speicher (`saveFailAlert`, `speicherT`, `speicherEng`) und achtzehn für den Observation Layer (`beobT` bis `beobGrundlage`) — 279 + 23 = 302. Der Umstieg auf IndexedDB (v19.8.30) bringt einen weiteren (`speicherVon`) — 302 + 1 = 303. Die Korrigieren-Felder (v19.8.31) bringen drei weitere (`depKorrLabel`, `wdKorrLabel`, `korrHinweis`) — 303 + 3 = 306. Der Trainingsraum (v19.9.0) bringt zwölf weitere (`trainT` bis `kiBusy`) — 306 + 12 = 318. Die Marktlage-Recherche (v19.10.0) bringt sieben weitere (`predResearch` bis `marktlageAus`) — 318 + 7 = 325.* **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
 
 ---
 

@@ -410,6 +410,23 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 106 ändert (12.9., Ondos Entscheidungen zu Historie/Konto, Finanzen-Platzierung, Punkt 3 — `beta.html` v19.8.31)
+
+**Anlass:** Ondo hat vier Punkte aus der letzten Übergabe entschieden: Historie gelöscht → Korrigieren-Feld für Konto/Tipico-Stand; KI-Zahlen sollen nicht unter „Finanzen" stehen, sondern unter „Mehr"; Punkt 3 (Such-Experiment) hat für ihn keinen Mehrwert mehr, dafür ein neuer Vorschlag „Trainingsraum"; die Kombi-Wette-Verknüpfung ist als offene Design-Frage an Claude delegiert.
+
+- **🔴 Korrigieren-Feld gebaut (Auftrag Ondo: „Korrigieren-Feld bauen").** Unter Finanzen stehen jetzt zwei zusätzliche Zahlenfelder — „Eingezahlt gesamt korrigieren" und „Ausgezahlt gesamt korrigieren" — nach demselben Muster wie das bestehende Startbilanz-Feld: Zahl eintragen, `oninput` setzt `state.eingezahlt`/`state.ausgezahlt` direkt, sofort gespeichert. Der bestehende „+HINZUFÜGEN"-Weg (`depAdd()`/`wdAdd()`, addiert nur) bleibt unverändert bestehen, wird durch das neue Feld nur ergänzt, nicht ersetzt. Damit kann Ondo nach dem Löschen der Historie Konto- und Tipico-Stand wieder auf 0 (oder jeden anderen Wert) setzen.
+- **🔴 KI-Module von „Finanzen" nach „Mehr" verschoben (Auftrag Ondo: „Wenn es geht dann unter mehr. Diese KI Daten gelten nur zu diesem Modul Wetten und noch für alles").** `kalibBlock()` (Kalibrierung), `beobachtungenBlock()` (Observation Layer, Backlog-Punkt 75 Teil 3) und `gepaartBlock()` (gepaarter Vergleich) standen bisher in `viewFinance()`, direkt unter Ondos persönlichen Zahlen. Jetzt in `viewMore()`, zwischen der Duell-Modus-Karte und der Modellwahl — bei den anderen KI-/Modelleinstellungen, nicht bei den Finanzen. Reine Verschiebung der Anzeige, keine Funktion und keine Rechnung geändert.
+- **🔴 Backlog-Punkt 3 (Such-Experiment) auf Ondos Entscheidung überholt.** Ondo: „Wir würden weiterhin eine Endlose Schleife drehen." Im selben Zug neuer **Backlog-Punkt 77 „Trainingsraum"** angelegt (Status: Idee) — Ondos Ersatzvorschlag, Gehirne an bereits ausgewerteten oder vergangenen Spielen ohne Erinnerung/Websuche zu testen. Claudes eigener methodischer Einwand (Risiko, dass ein Modell vergangene Ergebnisse aus Trainingsdaten „kennt" statt blind vorherzusagen) ist beim Punkt vermerkt, noch nicht mit Ondo besprochen — daher hier festgehalten, nicht verschwiegen.
+- **🔴 Neuer Backlog-Punkt 78 „Kombi-Wette mit mehreren Vorhersagen verbinden"** (Status: Idee, offene Design-Frage) — Ondo hat die Lösung ausdrücklich an Claude delegiert. Im Code belegt (Art. H): Weder der Foto-Weg (`fotoLesen()`) noch der manuelle Weg (`kiWahlBlock()`) verknüpfen eine Kombi-Wette mit mehr als einer Vorhersage; eine per Foto erfasste Kombi landet sogar komplett ausserhalb der Lernkette. Noch nicht entworfen — eine Lösung braucht zuerst eine Entscheidung über die Datenform (Liste von Vorhersage-IDs je Wette vs. Aufteilung in mehrere Teil-Einträge), das ist eine Architekturfrage, kein reines Anzeigefeld.
+- **ChatGPT-Rückfrage vorbereitet** (Auftrag Ondo: „Zu allen oder einige diese Punkte könntest du eine Nachricht für Chatgpt verfassen und deine Meinung einholen") — Punkt 77 (Trainingsraum) und Punkt 78 (Kombi-Verknüpfung) sind die zwei Punkte mit offenem Architektur-Charakter; Nachricht Ondo direkt im Chat mitgegeben, nicht Teil dieses Dokuments.
+- **Verifiziert:** `node --check` auf der aus `beta.html` herausgeschnittenen Script-Datei bestanden. Keine neue Rechenlogik (reine Anzeige-Verschiebung und Zahlenfelder nach bestehendem Muster) — deshalb keine neuen automatisierten Prüfungen, dafür Lesekontrolle gegen das bereits geprüfte Startbilanz-Vorbild.
+- **3 neue Sprachschlüssel** (`depKorrLabel`, `wdKorrLabel`, `korrHinweis`) in DE/FR/EN.
+- **`beta.html` jetzt v19.8.31.**
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 101 ändert" wortgleich nach `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: eins** — **4** *(Punkt 3 ist auf Ondos Entscheidung überholt, zählt nicht mehr mit; 77 und 78 sind Ideen, nicht beschlossen.)*
+
+---
+
 ## ⚠ Was Fassung 105 ändert (12.9., Berichtigung zu Fassung 104 — welcher Test wirklich gemacht wurde)
 
 **Anlass:** Ondo hat richtiggestellt: Er hatte nicht nur die Seite neu geladen, sondern **die

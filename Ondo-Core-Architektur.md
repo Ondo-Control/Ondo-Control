@@ -13,6 +13,11 @@ erreicht das bis heute nicht: keine Websuche, keine Quellenprüfung, nur rohe Pr
 Fund Ondo, 12.9.2026, im Gespräch über den Trainingsraum aufgedeckt — nicht vorher gemeldet.
 Kein Verfassungsartikel geändert, keine neue Arbeitsregel; die Lücke selbst ist keine
 Architekturentscheidung, nur ein bisher unbenannter Abstand zwischen Plan und Bau.*
+*Fassung 0.11 — 12.9.2026: Backlog-Punkt 79 gebaut (`beta.html` v19.10.0). Abschnitt 1c
+(Evidence Ledger) um das neue Feld `recherchiert` ergänzt (Schnitt in der Messreihe). Abschnitt
+2 um einen Verweis ergänzt: `marktlageHolen()` ist ein erster, kleiner Schritt in Richtung der
+dort beschriebenen Zielarchitektur, deckt sie aber weiterhin nicht annähernd ab. Kein
+Verfassungsartikel geändert, keine neue Arbeitsregel.*
 *(Name: Der Besitzer hat "Ondo Control" festgelegt; ChatGPT nutzt "ORION". Technisch irrelevant — hier "Ondo Core" für den Kern.)*
 
 ---
@@ -95,6 +100,7 @@ Modul-Vertrag (ChatGPTs Forderung, übernommen): **Modul → Core → Brain → 
 |---|---|---|
 | `id`, `datum`, `codeVersion`, `aera` | — | Unveränderliche Kennung, wann und unter welchem Codestand die Aussage entstand |
 | `match`, `wettbewerb`, `anpfiff`, `stufe` | 1 (Daten) | Was angesetzt war, aus der Spielliste |
+| `recherchiert` | 1 (Daten) | **Neu seit v19.10.0 (Backlog-Punkt 79).** Ob GENAU DIESES Spiel eine per Websuche recherchierte Zusatzinfo (Verletzte, Form, Tabellenstand) bekam, bevor das Gehirn tippte — je Spiel einzeln, nicht nur ob die Recherche insgesamt lief. Fehlt das Feld, stammt der Eintrag von vor v19.10.0 und hatte diese Möglichkeit nie (Schnitt in der Messreihe, siehe STAND.md) |
 | `herkunft`, `modell` | — | Welches Gehirn, unter welcher tatsächlichen Modellversion geantwortet hat |
 | `heim`, `gast` (Tipp), `maerkte[].p`, `maerkte[].code`/`label`/`typ`, `maerkte[].gedreht`, `bttsWort`, `begruendung` | 2 (Denken) | Was das Gehirn für wahrscheinlich hielt und warum — die eigentliche „Evidence". `gedreht` hält fest, dass die eigens gefragte Prozentzahl der vom Tipp implizierten Seite widersprach (Backlog-Punkt 0b) |
 | `ergebnisHeim`, `ergebnisGast` | 1 (Daten) | Der 90-Minuten-Stand. Das Einzige, was `pruefAnwenden()` beim Übernehmen an den Eintrag schreibt — und das Einzige, woran `marktUrteil()` die Märkte misst |
@@ -292,6 +298,14 @@ JSON-Schema mit fakten/annahmen/gegenargumente/risiken/vertrauen/empfehlung — 
 Begründung in maximal 15 Wörtern — kein erzwungenes Schema, kein interner Kritiker, keine
 geprüften Fakten, keine Websuche. Diese Lücke stand hier nie ausdrücklich benannt; sie ist erst
 am 12.9.2026 im Gespräch mit Ondo aufgefallen, nicht vorher gemeldet worden.
+
+**Ein erster, kleiner Schritt in Richtung dieses Ziels, noch am selben Tag (v19.10.0, Backlog-
+Punkt 79):** `marktlageHolen()` recherchiert jetzt EINMAL je Lauf, für die ganze Spielliste,
+über eine echte Websuche. Das ist weit von diesem Abschnitt entfernt — ein einzelner
+Recherche-Text, kein erzwungenes Schema, kein interner Kritiker, keine geprüfte Quellenliste
+je Fakt — aber der erste Punkt, an dem eine reale, aktuelle Information (statt nur trainiertem
+Wissen) überhaupt in eine Vorhersage einfliesst. Der Abstand zwischen diesem Abschnitt und dem
+tatsächlich Gebauten bleibt gross, nur nicht mehr ganz so gross wie vorher.
 
 **Denkmodi:** ChatGPT schlägt fünf vor (Schnell/Präzise/Wissenschaftlich/Kritisch/Kreativ). Empfehlung: **zwei zum Start** — "Schnell" und "Tiefenanalyse". Begründung: Jeder Modus ist ein eigener Prompt-Vertrag, der gepflegt und getestet werden muss; fünf ungetestete Modi sind schlechter als zwei bewiesene. Weitere Modi (inkl. ChatGPTs "Perspektiven"-Idee: finanziell/statistisch/strategisch/langfristig) sind im Design vorgesehen und werden nach Bewährung ergänzt. Perspektiven passen als Bestandteil der Tiefenanalyse.
 

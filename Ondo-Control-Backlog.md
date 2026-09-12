@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 110 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 111 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,38 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 111 ändert (12.9., Websuche für echte Vorhersagen gebaut — Backlog-Punkt 79, `beta.html` v19.10.0)
+
+**Anlass:** Ondo hat den Bauauftrag erteilt: „Bau eine Obergrenze für die Suchvorgänge je Lauf
+ein" und die offene Strategiefrage gestellt, ob Sonnet und Flash je eigene Suchen bekommen
+sollen oder eine gemeinsame.
+
+- **🔴 Backlog-Punkt 79 GEBAUT.** `marktlageHolen()`: EINE gemeinsame Websuche-Recherche für
+  die ganze Spielliste, beiden Gehirnen identisch mitgegeben — nicht je Gehirn getrennt.
+  Begründung: fairer Vergleich zwischen Sonnet und Flash auf derselben Tatsachengrundlage,
+  günstiger als zwei getrennte Suchen, nutzt `sonnetSuche()` unverändert wieder (beim
+  Schiedsrichter schon erprobt).
+- **Obergrenze `MARKTLAGE_MAX_SUCHEN = 20`** — als `max_uses` an das Anthropic-Websuche-
+  Werkzeug durchgereicht, für die ganze Liste, nicht je Spiel. Bei real nachgeprüften 10
+  US-Dollar je 1.000 Suchvorgängen (Anthropic) kostet ein Lauf dadurch höchstens rund 0,20
+  US-Dollar für die Recherche.
+- **Neuer Schalter `state.marktlageAktiv`** unter „Mehr" — Ondo kann die Recherche jederzeit
+  selbst abschalten, Standard an.
+- **Schnitt in der Messreihe:** Jeder neue `kiProtokoll`-Eintrag trägt `recherchiert:true/false`,
+  je Spiel einzeln. `Ondo-Core-Architektur.md`, Abschnitt 1c ergänzt (Fassung 0.11).
+- **Regressionsgesichert:** Ein Aufruf von `vorhersageGehirn()` mit nur zwei Argumenten (wie
+  jeder Trainingsraum-Aufruf) bleibt byte-identisch zum Stand davor — der Trainingsraum bleibt
+  garantiert ohne Recherche, ohne dass dort etwas eigens abgeschaltet werden musste.
+- **Verifiziert:** `node --check` bestanden · **15 neue Prüfungen** an den echten,
+  herausgeschnittenen Funktionen · die bestehenden 121, 45 und 40 Prüfungen erneut gelaufen,
+  alle weiterhin bestanden · `pruefe.py`: ALLES SAUBER.
+- **7 neue Sprachschlüssel** (318 → 325). `beta.html` jetzt v19.10.0.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 106 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: eins** — **4** *(79 ist jetzt gebaut, zählt nicht mehr mit.)*
 
 ---
 
@@ -157,23 +189,6 @@ jetzt vollen Repo-Zugriff hat statt nur GitHub-Pages-Links.
 - **Regel 5 angewandt:** Abschnitt „Was Fassung 102 ändert" wortgleich nach
   `BACKLOG-ARCHIV.md` verschoben.
 - **Beschlossen und nicht gebaut: eins** — **4** *(Status geändert: von Ondo freigegeben statt an die Beförderung gebunden — siehe oben. Punkt 77/78 bleiben „Idee" bis Ondo den Bau ausdrücklich freigibt.)*
-
----
-
-## ⚠ Was Fassung 106 ändert (12.9., Ondos Entscheidungen zu Historie/Konto, Finanzen-Platzierung, Punkt 3 — `beta.html` v19.8.31)
-
-**Anlass:** Ondo hat vier Punkte aus der letzten Übergabe entschieden: Historie gelöscht → Korrigieren-Feld für Konto/Tipico-Stand; KI-Zahlen sollen nicht unter „Finanzen" stehen, sondern unter „Mehr"; Punkt 3 (Such-Experiment) hat für ihn keinen Mehrwert mehr, dafür ein neuer Vorschlag „Trainingsraum"; die Kombi-Wette-Verknüpfung ist als offene Design-Frage an Claude delegiert.
-
-- **🔴 Korrigieren-Feld gebaut (Auftrag Ondo: „Korrigieren-Feld bauen").** Unter Finanzen stehen jetzt zwei zusätzliche Zahlenfelder — „Eingezahlt gesamt korrigieren" und „Ausgezahlt gesamt korrigieren" — nach demselben Muster wie das bestehende Startbilanz-Feld: Zahl eintragen, `oninput` setzt `state.eingezahlt`/`state.ausgezahlt` direkt, sofort gespeichert. Der bestehende „+HINZUFÜGEN"-Weg (`depAdd()`/`wdAdd()`, addiert nur) bleibt unverändert bestehen, wird durch das neue Feld nur ergänzt, nicht ersetzt. Damit kann Ondo nach dem Löschen der Historie Konto- und Tipico-Stand wieder auf 0 (oder jeden anderen Wert) setzen.
-- **🔴 KI-Module von „Finanzen" nach „Mehr" verschoben (Auftrag Ondo: „Wenn es geht dann unter mehr. Diese KI Daten gelten nur zu diesem Modul Wetten und noch für alles").** `kalibBlock()` (Kalibrierung), `beobachtungenBlock()` (Observation Layer, Backlog-Punkt 75 Teil 3) und `gepaartBlock()` (gepaarter Vergleich) standen bisher in `viewFinance()`, direkt unter Ondos persönlichen Zahlen. Jetzt in `viewMore()`, zwischen der Duell-Modus-Karte und der Modellwahl — bei den anderen KI-/Modelleinstellungen, nicht bei den Finanzen. Reine Verschiebung der Anzeige, keine Funktion und keine Rechnung geändert.
-- **🔴 Backlog-Punkt 3 (Such-Experiment) auf Ondos Entscheidung überholt.** Ondo: „Wir würden weiterhin eine Endlose Schleife drehen." Im selben Zug neuer **Backlog-Punkt 77 „Trainingsraum"** angelegt (Status: Idee) — Ondos Ersatzvorschlag, Gehirne an bereits ausgewerteten oder vergangenen Spielen ohne Erinnerung/Websuche zu testen. Claudes eigener methodischer Einwand (Risiko, dass ein Modell vergangene Ergebnisse aus Trainingsdaten „kennt" statt blind vorherzusagen) ist beim Punkt vermerkt, noch nicht mit Ondo besprochen — daher hier festgehalten, nicht verschwiegen.
-- **🔴 Neuer Backlog-Punkt 78 „Kombi-Wette mit mehreren Vorhersagen verbinden"** (Status: Idee, offene Design-Frage) — Ondo hat die Lösung ausdrücklich an Claude delegiert. Im Code belegt (Art. H): Weder der Foto-Weg (`fotoLesen()`) noch der manuelle Weg (`kiWahlBlock()`) verknüpfen eine Kombi-Wette mit mehr als einer Vorhersage; eine per Foto erfasste Kombi landet sogar komplett ausserhalb der Lernkette. Noch nicht entworfen — eine Lösung braucht zuerst eine Entscheidung über die Datenform (Liste von Vorhersage-IDs je Wette vs. Aufteilung in mehrere Teil-Einträge), das ist eine Architekturfrage, kein reines Anzeigefeld.
-- **ChatGPT-Rückfrage vorbereitet** (Auftrag Ondo: „Zu allen oder einige diese Punkte könntest du eine Nachricht für Chatgpt verfassen und deine Meinung einholen") — Punkt 77 (Trainingsraum) und Punkt 78 (Kombi-Verknüpfung) sind die zwei Punkte mit offenem Architektur-Charakter; Nachricht Ondo direkt im Chat mitgegeben, nicht Teil dieses Dokuments.
-- **Verifiziert:** `node --check` auf der aus `beta.html` herausgeschnittenen Script-Datei bestanden. Keine neue Rechenlogik (reine Anzeige-Verschiebung und Zahlenfelder nach bestehendem Muster) — deshalb keine neuen automatisierten Prüfungen, dafür Lesekontrolle gegen das bereits geprüfte Startbilanz-Vorbild.
-- **3 neue Sprachschlüssel** (`depKorrLabel`, `wdKorrLabel`, `korrHinweis`) in DE/FR/EN.
-- **`beta.html` jetzt v19.8.31.**
-- **Regel 5 angewandt:** Abschnitt „Was Fassung 101 ändert" wortgleich nach `BACKLOG-ARCHIV.md` verschoben.
-- **Beschlossen und nicht gebaut: eins** — **4** *(Punkt 3 ist auf Ondos Entscheidung überholt, zählt nicht mehr mit; 77 und 78 sind Ideen, nicht beschlossen.)*
 
 ---
 
@@ -1450,16 +1465,19 @@ Ondo wörtlich (Grundidee): „Es gibt die Möglichkeit einen Trainingsraum zu b
 
 ---
 
-**79. Websuche für echte Vorhersagen** · *Fund + Auftrag Ondo, 12.9.2026 (im Gespräch über den Trainingsraum aufgedeckt)* · **Status: 🔴 im Grundsatz beschlossen („Ja für beides"), noch nicht entworfen**
+**79. Websuche für echte Vorhersagen** · *Fund + Auftrag Ondo, 12.9.2026 (im Gespräch über den Trainingsraum aufgedeckt) · Auftrag Ondo: „Bau eine Obergrenze für die Suchvorgänge je Lauf ein"* · **Status: ✅ GEBAUT 12.9.2026, `beta.html` v19.10.0**
 
 **Der Fund, der zu diesem Punkt führte:** Ondo ging davon aus, dass die Gehirne für ihre echten Vorhersagen bereits per Websuche recherchieren — Kader, Verletzte, Formstärke, Tabellenstand. **Das stimmt nicht, seit v19.0 nie.** `vorhersageGehirn()` bekommt nur Spielname, Wettbewerb und Anpfiffzeit; weder `apiCall()` (Sonnet) noch `geminiCall({rolle:'gehirn'})` (Flash) hängen ein Suchwerkzeug an. Jede Prozentzahl und jede Begründungszeile stammt allein aus dem trainierten Wissen des Modells. Websuche gibt es im Code nur beim Schiedsrichter (Ergebnis-Prüfung), nie bei der Vorhersage selbst. **Dieselbe Lücke steht jetzt auch in `Ondo-Core-Architektur.md`, Abschnitt 2 und 3, mit Vermerk berichtigt** — beide Abschnitte beschrieben seit ihrer ersten Fassung ein nie gebautes Ziel (Quellenprüfung, Vertrauensstufen mit Begründung) als wäre es der aktuelle Stand.
 
 → **Ondos Reaktion, wörtlich:** „Also hast Du die ganzen Woche meine Zeit verschwendet und wofür? Messungen die Einfach geraten wurden, sogar mit Prozentzahlen." Berechtigte Kritik an einer echten Lücke — die fehlende Recherchegrundlage der Vorhersagen hätte von Anfang an unter „Was aus diesem Messstand NICHT geschlossen werden darf" stehen müssen (jetzt nachgetragen, STAND.md).
 → **Warum die bisherige Messreihe trotzdem nicht wertlos ist:** Die Kalibrierung misst, ob eine genannte Prozentzahl mit der Wirklichkeit übereinstimmt — das ist unabhängig davon, ob die Zahl aus Recherche oder aus trainiertem Wissen stammt. Eine niedrige Abweichung (Sonnet zuletzt 3 %) zeigt, dass die Prozentzahlen bisher grob stimmen, selbst ohne Recherche — eine echte, nützliche Erkenntnis, keine wertlose. Was die Messreihe NICHT zeigt: ob Websuche die Vorhersagen noch besser machen würde. Genau das war die eigentliche Frage von Punkt 3 (Such-Experiment), und genau darauf gibt jetzt jede kommende Vorhersage mit Websuche eine echte Antwort — **die bisherigen rund 500 Vorhersagen ohne Suche werden dadurch zur „Vorher"-Vergleichsbasis**, ohne dass extra vier Wochen wie in Punkt 3 vorgesehen abgewartet werden müssen.
 → **Ondos Entscheidung (12.9.2026), auf zwei Fragen: „Ja für beides".** (1) Echte Vorhersagen sollen künftig Websuche bekommen. (2) Der Trainingsraum bleibt ausdrücklich ohne Suche — dort ist das Ergebnis ja schon bekannt, Suche würde nur das echte Ergebnis nachschlagen lassen statt eine Einschätzung zu prüfen.
-→ **Noch nicht entworfen, absichtlich — Art. 8 verlangt Abstimmung vor dem Bau bei einer Änderung dieser Grösse:** Genauer Umfang (nur Sonnet über `web_search_20260209`, wie beim Schiedsrichter, oder auch Flash über `geminiCall`s `useSearch`?), wie viele Suchen je Spiel sinnvoll sind, ob ein Schnitt in der Messreihe entsteht (vergleichbar mit dem BTTS-Schnitt bei v19.8.0) — vermutlich ja, weil sich die Grundlage der Vorhersage ändert.
-→ **Kosten, so weit bekannt:** Websuche kostet je Aufruf echtes Geld — wie viel genau, ist noch nicht geprüft, wird vor einer Umsetzung nachgesehen statt geraten (Art. 11). Bei aktuell mehreren offenen Spielen je Lauf und ein bis mehreren Suchen je Spiel ist mit einem spürbaren Anstieg der laufenden Kosten zu rechnen, ähnlich wie beim Schiedsrichter (dort bereits als „neu echtes Geld bei Anthropic" vermerkt, Fassung 91).
-→ **Nächster Schritt:** Claude legt einen Entwurf vor (Umfang, Kostenrechnung, Schnitt-Frage), bevor gebaut wird — noch nicht geschehen.
+→ **Umfang, wie gebaut — Ondos offene Frage beantwortet: 3 Suchen (Spielliste/Sonnet/Flash) oder 1 gesamte Suche?** Claude empfiehlt und baut **1 gemeinsame Recherche** (`marktlageHolen()`) für die ganze Spielliste, beiden Gehirnen identisch mitgegeben. Begründung: Die Kalibrierung vergleicht, wie gut Sonnet und Flash die eigene Zuversicht einschätzen — das muss auf derselben Tatsachengrundlage gemessen werden, sonst käme ein Teil des Unterschieds nur aus Zufall (was jedes Gehirn zufällig gefunden hat), nicht aus eigener Einschätzung. Zusätzlich günstiger (eine Suche statt zwei) und nutzt `sonnetSuche()` unverändert wieder (beim Schiedsrichter schon erprobt) statt eine zweite, ungeprüfte Absicherung für Gemini zu bauen. Bekannte Grenze: ohne Sonnet-Schlüssel gibt es auch für Flash keine Recherche, dieselbe Bauweise wie beim Schiedsrichter.
+→ **🔴 Obergrenze gebaut, wie von Ondo verlangt:** `MARKTLAGE_MAX_SUCHEN = 20`, als `max_uses` an das bestehende Anthropic-Websuche-Werkzeug durchgereicht — für die GANZE Liste (bis zu 10 Spiele), nicht je Spiel.
+→ **Kosten, jetzt mit echten, nachgeprüften Zahlen statt Schätzung (Art. 11):** Anthropic-Websuche kostet 10 US-Dollar je 1.000 Suchvorgänge ([claude.com/blog/web-search-api](https://claude.com/blog/web-search-api)). Bei der Obergrenze von 20 kostet ein Lauf dadurch höchstens rund 0,20 US-Dollar für die Recherche — unabhängig davon, wie viele Gehirne aktiv sind, weil die Recherche geteilt wird. **Ondo kann die Recherche jederzeit selbst abschalten** (`state.marktlageAktiv`, Schalter unter „Mehr") — Standard an.
+→ **Schnitt in der Messreihe, wie beim BTTS-Schnitt (v19.8.0):** Jeder neue `kiProtokoll`-Eintrag trägt `recherchiert:true/false`, je Spiel einzeln. Einträge ohne dieses Feld (vor v19.10.0) hatten die Möglichkeit nie. Details: `Ondo-Core-Architektur.md`, Abschnitt 1c.
+→ **Verifiziert:** `node --check` bestanden · **15 neue Prüfungen** an den echten, herausgeschnittenen Funktionen, darunter ein Regressionstest, der belegt: Ein Aufruf mit nur zwei Argumenten (wie jeder Trainingsraum-Aufruf) bleibt byte-identisch zum Stand davor — der Trainingsraum bleibt garantiert ohne Recherche · die bestehenden 121, 45 und 40 Prüfungen erneut gelaufen, alle weiterhin bestanden · `pruefe.py`: ALLES SAUBER.
+→ **7 neue Sprachschlüssel** (318 → 325). `beta.html` jetzt v19.10.0.
 
 ---
 
