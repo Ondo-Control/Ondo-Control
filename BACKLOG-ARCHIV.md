@@ -410,6 +410,39 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 103 ändert (12.9., Speicherproblem dauerhaft gelöst — Umstieg auf IndexedDB, `beta.html` v19.8.30)
+
+**Anlass:** Auf die Rückmeldung „Browser voll" folgte Ondos klare Entscheidung: „Ich will eine
+dauerhafte Lösung, keine Dateien Löschen!!" Neuer Backlog-Punkt 76 (Einzelheiten dort).
+
+- **✅ Speicherung von `localStorage` auf `IndexedDB` umgestellt.** Ein Anteil des freien
+  Gerätespeichers statt einer festen, kleinen Websitegrenze — kein Löschen nötig.
+  `idbOeffnen()/idbLesen()/idbSchreiben()` sprechen mit IndexedDB, `speicherLesen()/
+  speicherSchreiben()` fallen bei jedem Fehler auf `localStorage` zurück. `load()`/`save()`
+  rufen nur noch diese zwei Funktionen auf — **alle acht `seedV`-Migrationen bleiben
+  inhaltlich wortgleich**. `load()` musste async werden; der Programmstart wartet jetzt darauf.
+- **Speicheranzeige zeigt jetzt eine echte, vom Browser selbst erfragte Grenze**
+  (`navigator.storage.estimate()`) statt einer geschätzten Bytezahl — Art. 14.
+- **🔴 Ein Fund am eigenen Testaufbau, behoben:** `load()` hätte ohne eine zusätzliche Zeile
+  nur bei einer tatsächlichen Migration in den neuen Speicher geschrieben — bei praktisch
+  jedem längeren Nutzer nie der Fall. Jetzt schreibt `load()` am Ende immer einmal.
+- **🔴 Einmaliger Schritt für Ondo, unvermeidbar und offen benannt:** Der aktuelle Stand lebte
+  nur im Arbeitsspeicher seines Browsers — ein Codeupdate erreicht das nicht rückwirkend. Nach
+  dem Update zeigt die App zunächst den letzten tatsächlich gespeicherten (älteren) Stand;
+  Ondo muss einmalig seine zuletzt exportierte Sicherungsdatei über „Sicherung laden"
+  einspielen.
+- **Verifiziert:** `node --check` bestanden · **31 neue Prüfungen** gegen eine selbstgebaute,
+  echt asynchrone IndexedDB-Nachbildung · die bestehenden 57 Prüfungen zu v19.8.28/29 erneut
+  gelaufen, 2 gegenstandslos gewordene entfernt statt kaputt stehen gelassen — **121 Prüfungen
+  insgesamt, alle bestanden.** `pruefe.py`: ALLES SAUBER.
+- **1 neuer Sprachschlüssel** (`speicherVon`; 302 → 303). Kein Schnitt in der Messreihe.
+  `APP_VERSION` weiter 18.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 98 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
+
+---
+
 ## ⚠ Was Fassung 102 ändert (12.9., echter Speicher-Beleg statt Schätzung — `beta.html` v19.8.29)
 
 **Anlass:** Ondo hat die neue Speicheranzeige aus v19.8.28 in echtem Einsatz getroffen. Drei

@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 107 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 108 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,42 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 108 ändert (12.9., Trainingsraum gebaut — Backlog-Punkt 77, `beta.html` v19.9.0)
+
+**Anlass:** Ondo hat den Trainingsraum-Plan freigegeben, mit dem ausdrücklichen Auftrag „nicht
+einfach Auftrag erledigen und fertig, sondern vorher wirklich durchdenken, absichern und
+zukunftsfähig konzipieren" — und dem Bau ohne weitere Rückfrage zugestimmt, wenn der Plan
+tragfähig ist.
+
+- **🔴 Backlog-Punkt 77 GEBAUT.** Vollständiger Plan, Selbstkritik und Architektur-Einordnung in
+  `Ondo-Core-Architektur.md`, Abschnitt 1d (neu, Fassung 0.9). Kurzfassung bei Punkt 77 selbst
+  (Punkt 45 — nicht doppelt geführt). Kern: `vorhersageGehirn()` unverändert wiederverwendet
+  (bereits ohne Websuche), Zulassungsregel nach Trainings-Stichtag gegen Trainingsdaten-
+  Kontamination (`TRAININGSRAUM_STICHTAG`, ohne geprüften Wert null zulässige Spiele — Art. 11),
+  sofortige Bewertung statt Schiedsrichter-Wartezeit, getrenntes Protokoll
+  (`state.trainingsraumProtokoll`) ohne Vermischung mit der echten Messreihe.
+- **Zwei echte Fehlerquellen selbst gefunden, vor der Auslieferung behoben** (keine von Ondo
+  genannt): `new Date()` auf einem deutschen Datumstext gelesen falsch (behoben durch feste
+  ISO-Daten) — und ein Wettlauf-Risiko in der geteilten Variable `zuletztModell.gehirn` bei zwei
+  potenziell gleichzeitigen Aufrufern, behoben über das schon vorhandene `modelVersion`-Feld
+  plus ein neues Sperr-Flag `kiAnfrageAktiv`.
+- **Ein Selbstkritik-Fund beim Bauen selbst, noch vor dem ersten Lauf korrigiert:** Die erste
+  Fassung der „schon gesehen"-Regel hätte den Weg-(a)-Vorrat für beide Gehirne fast leergeräumt.
+  Korrigiert auf die tatsächliche Leckquelle (nur die letzten sechs eigenen Vorhersagen im
+  `fruehere`-Kontext zählen als „schon gesehen", nicht jede je abgegebene).
+- **Verifiziert:** `node --check` bestanden · **40 neue Prüfungen** an den echten,
+  herausgeschnittenen Funktionen, darunter ein Regressionstest für den Wettlauf-Fund · die
+  bestehenden 121 (IndexedDB) und 45 (v19.8.28) Prüfungen erneut gelaufen, alle weiterhin
+  bestanden · `pruefe.py`: ALLES SAUBER.
+- **12 neue Sprachschlüssel** (306 → 318). Kein Schnitt in der Messreihe. `beta.html` jetzt
+  v19.9.0.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 103 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: eins** — **4** *(unverändert — Punkt 77 war „Idee", zählt
+  jetzt als gebaut, nicht als beschlossen-und-nicht-gebaut.)*
 
 ---
 
@@ -111,39 +147,6 @@ Safari-App selbst wurde vollständig geschlossen und neu geöffnet — der stär
   der Safari-App selbst beobachten, nicht nur ein Neuladen der Seite — strengerer Test.
 - **Verifiziert:** `pruefe.py`: ALLES SAUBER. Kein Codeaufwand, `beta.html` bleibt v19.8.30,
   keine neuen Sprachschlüssel, kein Schnitt in der Messreihe.
-- **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
-
----
-
-## ⚠ Was Fassung 103 ändert (12.9., Speicherproblem dauerhaft gelöst — Umstieg auf IndexedDB, `beta.html` v19.8.30)
-
-**Anlass:** Auf die Rückmeldung „Browser voll" folgte Ondos klare Entscheidung: „Ich will eine
-dauerhafte Lösung, keine Dateien Löschen!!" Neuer Backlog-Punkt 76 (Einzelheiten dort).
-
-- **✅ Speicherung von `localStorage` auf `IndexedDB` umgestellt.** Ein Anteil des freien
-  Gerätespeichers statt einer festen, kleinen Websitegrenze — kein Löschen nötig.
-  `idbOeffnen()/idbLesen()/idbSchreiben()` sprechen mit IndexedDB, `speicherLesen()/
-  speicherSchreiben()` fallen bei jedem Fehler auf `localStorage` zurück. `load()`/`save()`
-  rufen nur noch diese zwei Funktionen auf — **alle acht `seedV`-Migrationen bleiben
-  inhaltlich wortgleich**. `load()` musste async werden; der Programmstart wartet jetzt darauf.
-- **Speicheranzeige zeigt jetzt eine echte, vom Browser selbst erfragte Grenze**
-  (`navigator.storage.estimate()`) statt einer geschätzten Bytezahl — Art. 14.
-- **🔴 Ein Fund am eigenen Testaufbau, behoben:** `load()` hätte ohne eine zusätzliche Zeile
-  nur bei einer tatsächlichen Migration in den neuen Speicher geschrieben — bei praktisch
-  jedem längeren Nutzer nie der Fall. Jetzt schreibt `load()` am Ende immer einmal.
-- **🔴 Einmaliger Schritt für Ondo, unvermeidbar und offen benannt:** Der aktuelle Stand lebte
-  nur im Arbeitsspeicher seines Browsers — ein Codeupdate erreicht das nicht rückwirkend. Nach
-  dem Update zeigt die App zunächst den letzten tatsächlich gespeicherten (älteren) Stand;
-  Ondo muss einmalig seine zuletzt exportierte Sicherungsdatei über „Sicherung laden"
-  einspielen.
-- **Verifiziert:** `node --check` bestanden · **31 neue Prüfungen** gegen eine selbstgebaute,
-  echt asynchrone IndexedDB-Nachbildung · die bestehenden 57 Prüfungen zu v19.8.28/29 erneut
-  gelaufen, 2 gegenstandslos gewordene entfernt statt kaputt stehen gelassen — **121 Prüfungen
-  insgesamt, alle bestanden.** `pruefe.py`: ALLES SAUBER.
-- **1 neuer Sprachschlüssel** (`speicherVon`; 302 → 303). Kein Schnitt in der Messreihe.
-  `APP_VERSION` weiter 18.
-- **Regel 5 angewandt:** Abschnitt „Was Fassung 98 ändert" wortgleich nach
-  `BACKLOG-ARCHIV.md` verschoben.
 - **Beschlossen und nicht gebaut: zwei** — **3, 4** *(unverändert.)*
 
 ---
@@ -1384,21 +1387,21 @@ Vier Wochen ohne Websuche messen, dann Suche zuschalten, Kalibrierung vergleiche
 
 ---
 
-**77. Trainingsraum — Gehirne an bereits ausgewerteten Spielen testen, ohne Erinnerung/Websuche** · *Idee Ondo, 12.9.2026 (Ersatzvorschlag für Punkt 3)* · **Status: Idee**
+**77. Trainingsraum — Gehirne an bereits ausgewerteten Spielen testen, ohne Erinnerung/Websuche** · *Idee Ondo, 12.9.2026 (Ersatzvorschlag für Punkt 3) · Auftrag Ondo 12.9.2026: „nicht einfach Auftrag erledigen und fertig, sondern vorher wirklich durchdenken, absichern und zukunftsfähig konzipieren" · Plan geprüft und für tragfähig befunden, Bau ohne weitere Rückfrage ausdrücklich freigegeben* · **Status: ✅ GEBAUT 12.9.2026, `beta.html` v19.9.0**
 
-Ondo wörtlich: „Es gibt die Möglichkeit einen Trainingsraum zu bauen (in der App oder außerhalb im Repo) mit den bereits ausgewerteten Spielen, wo die Gehirne diese Tests durchlaufen könnten ohne Zugriff auf Erinnerung und Websuche. Dieser Trainingsraum könnte später etwas nützlich sein, falls wir andere Modelle einsetzen wollen oder andere Module entwickeln wollen, oder andere KIs. Dieser Raum könnte entweder die gesammelten Spiele nutzen oder Spiele in der Vergangenheit einbauen, wo man schon die Ergebnisse kennt. Das könnte man auch nutzen für den Punkt Entschlossenheit, z. B. wo wir viele Daten benötigen. Das würde uns viel Zeit sparen."
+Ondo wörtlich (Grundidee): „Es gibt die Möglichkeit einen Trainingsraum zu bauen … mit den bereits ausgewerteten Spielen, wo die Gehirne diese Tests durchlaufen könnten ohne Zugriff auf Erinnerung und Websuche … Das würde uns viel Zeit sparen." Beide Wege sollen von Anfang an vorgesehen sein: **Weg (a)** bereits ausgewertete App-Spiele (aktiv genutzt), **Weg (b)** öffentlich bekannte historische Spiele (Datenstruktur steht, „müssen wir jetzt noch nicht aktiv nutzen").
 
-→ **🔴 Berichtigt (12.9.2026, Ondo):** Hier stand bei Weg (a) „die Gehirne haben dazu noch keine Vorhersage abgegeben" — **das war falsch.** Ondo wörtlich: „Ich habe gesagt Weg (a) bereits gesammelte Spiele aus der App, die schon ausgewertet wurden. Genauso wie bei Weg (b) musste das Gehirn hier nicht auf Erinnerung und Websuche zurückgreifen können." Weg (a) meint also **Spiele mit bereits bekanntem Ergebnis**, nicht offene. Der Sinn des Trainingsraums: die Gehirne isolieren, ihnen nur die nötigen Informationen zur Entscheidung geben (z. B. Spiel, Wettbewerb, Wettbewerb-Phase, Datum, Heim, Auswärts, Kader, Verletzte), und die Probezeit verkürzen.
-→ **Einwand von vorhin dadurch nicht erledigt, sondern schärfer:** Wenn beide Wege bereits bekannte Ergebnisse nutzen, gilt das Risiko aus dem Trainingsdaten-„Wissen" eines Modells für **beide** Wege gleichermassen, nicht nur für Weg (b). Ondo: „Aufgeben ist keine Option, finde den richtigen Weg."
-→ **🔴 Lösung gefunden, im Code belegt (Arbeitsregel H — nicht hergeleitet, nachgelesen):**
-→ **1. Die „Websuche"-Isolation ist bereits gebaut, für nichts Neues nötig.** `vorhersageGehirn()` — die Funktion, die die Gehirne heute für echte Vorhersagen aufruft — übergibt beiden Modellen **kein** Websuche-Werkzeug: Der Sonnet-Aufruf (`apiCall({model:'claude-sonnet-4-6', ...})`) trägt kein `tools`-Feld; der Flash-Aufruf (`geminiCall({prompt:prompt, rolle:'gehirn'})`) setzt `useSearch` nicht, und nur dann hängt `geminiCall()` das Google-Suche-Werkzeug an (`if(opts.useSearch) body.tools=[{google_search:{}}]`, Zeile 1944) — laut eigenem Code-Kommentar dort „NUR fuer den Schiedsrichter". **Jede heutige, echte Vorhersage ist also schon blind, ohne Websuche.** Ein Trainingsraum, der dieselbe Funktion mit anderen Spielen aufruft, erbt diese Isolation automatisch.
-→ **2. Das „Erinnerung"-Risiko (Trainingsdaten-Wissen) lässt sich nicht wegprogrammieren, aber eingrenzen: eine Zulassungsregel nach Datum.** Ein Modell kann ein Ergebnis nur „kennen", wenn das Spiel vor seinem Trainings-Stichtag stattfand. Die App sammelt eigene Spiele erst seit Mitte 2026 — Spiele aus dem laufenden Betrieb der App selbst liegen damit mit hoher Wahrscheinlichkeit **nach** dem Trainings-Stichtag der eingesetzten Modellversionen (`claude-sonnet-4-6`, das jeweils gewählte Gemini-Flash-Modell). **Das ist aber eine Vermutung, kein Beleg — den genauen Trainings-Stichtag jeder eingesetzten Modellversion kenne ich nicht auswendig und werde ihn nicht raten (Art. 11).** Vor dem ersten scharfen Lauf muss das anhand der offiziellen Modell-Dokumentation geprüft werden. Als Zulassungsregel: **ein Spiel kommt nur in den Trainingsraum-Vorrat, wenn sein Datum nachweislich nach diesem Stichtag liegt** — automatisch bei Spielen aus dem eigenen laufenden Betrieb der App, mit Vorbehalt bei jeder anderen Quelle.
-→ **3. Damit entfällt die 4-Wochen-Wartezeit vollständig.** Der Trainingsraum braucht keine neuen, noch offenen Spiele — er greift auf Spiele zurück, die die App bereits gesammelt UND ausgewertet hat (`state.kiProtokoll`-Einträge mit bekanntem `ergebnisHeim`/`ergebnisGast`). Deren Ergebnis ist sofort da, kein Warten auf ein neues Spiel nötig — genau der Zeitgewinn, den Ondo wollte.
-→ **Bauskizze:** Dieselbe Prompt-Bauweise wie `vorhersageGehirn()` wiederverwenden (Match, Wettbewerb, Anpfiff — das Ergebnis wird dabei nie mitgeschickt, wie heute schon), aber auf ausgewertete statt offene Spiele angewandt; Ergebnis der Blindvorhersage sofort gegen das bereits bekannte, echte Ergebnis vergleichen; Ablage **getrennt** von `state.kiProtokoll`, damit die laufende, echte Kalibrierungsmessung nicht mit Testläufen vermischt wird.
-→ **Offen, nicht Teil von v1:** „Kader, Verletzte" — solche Felder sammelt die App heute **nicht**, weder für echte Vorhersagen noch für den Trainingsraum. Das wäre eine eigene neue Datenquelle mit eigenen Kosten (z. B. eine Kader-/Verletzten-API), hier nur als spätere Erweiterung vorgemerkt, nicht als Voraussetzung für den ersten Bau.
-→ **Kosten:** Keine neuen API-Kosten über das Übliche hinaus — jeder Testlauf verbraucht dieselbe Art Modellaufruf wie eine echte Vorhersage, aus demselben Budget. Bauzeit real, noch nicht beziffert (kein fixierter Umfang). Die Kader-/Verletzten-Erweiterung hätte eigene, noch unbekannte Kosten und ist nicht Teil dieser Schätzung.
-→ **🔴 ChatGPT-Rückfrage beantwortet (12.9.2026, in einem Chat mit vollem Repo-Zugriff, nicht mehr über GitHub-Pages-Links):** „Der Trainingsraum sollte auf Weg (a) beschränkt bleiben: nur Spiele, deren Ausgang das jeweilige Modell zum relevanten Trainings-/Wissensstand noch nicht kennen konnte. Sonst lässt sich nicht unterscheiden, ob es prognostiziert oder einen bekannten Ausgang reproduziert." **Deckt sich mit der Zulassungsregel nach Datum oben** — kein Widerspruch zwischen Claude und ChatGPT.
-→ **Nächster Schritt (Art. 8, nichts gebaut ohne Ondos ausdrücklichem Ja):** Design steht. Soll das jetzt gebaut werden?
+**Vollständiger Plan, Selbstkritik und Architektur-Einordnung: `Ondo-Core-Architektur.md`, Abschnitt 1d** (Punkt 45 — hier nur die Kurzfassung, nicht doppelt geführt).
+
+> **Kern der Lösung:** `vorhersageGehirn()` unverändert wiederverwendet — sie ruft beide Gehirne bereits **ohne Websuche** auf, dafür musste nichts Neues gebaut werden. Eine **Zulassungsregel nach Trainings-Stichtag** (`TRAININGSRAUM_STICHTAG`, von Claude gepflegt, Werte im ISO-Format) verhindert, dass ein Modell ein Ergebnis aus seinen Trainingsdaten „kennt" — ohne geprüftes Datum **null zulässige Spiele**, keine geratene Grenze (Art. 11). Da das Ergebnis bei Weg (a)/(b) immer schon bekannt ist, liegt die Bewertung **sofort** vor — kein Schiedsrichter-Schritt, kein Warten. Eigenes Protokoll `state.trainingsraumProtokoll`, streng getrennt vom Evidence Ledger (`state.kiProtokoll`).
+> **Zwei echte Fehlerquellen selbst gefunden und vor der Auslieferung behoben** (keine von Ondo genannt): (1) `new Date()` auf einem deutschen Datumstext ist unzuverlässig — beim eigenen Trockentest aufgefallen, behoben durch feste ISO-Daten. (2) Ein Wettlauf-Risiko in der geteilten Variable `zuletztModell.gehirn` bei zwei potenziell gleichzeitigen Aufrufern (Live-Vorhersage und Trainingsraum) — behoben durch das ohnehin vorhandene, je Aufruf eigene Antwortfeld `modelVersion` statt der geteilten Variable; ein Sperr-Flag `kiAnfrageAktiv` verhindert zusätzlich überlappende Läufe.
+> **Ein Fund bei der Selbstkritik, noch vor dem ersten Lauf korrigiert:** Die erste Fassung der „schon gesehen"-Regel hätte den Weg-(a)-Vorrat für beide Gehirne fast leergeräumt (weil `vorhersagen()` beide Gehirne meist gemeinsam auf dieselbe Liste ansetzt). Korrigiert auf die tatsächliche Leckquelle: nur die letzten sechs eigenen Vorhersagen erscheinen im `fruehere`-Kontext — nur die zählen als „schon gesehen", nicht jede Vorhersage, die dieses Gehirn je abgegeben hat.
+> **„Kader, Verletzte" (Ondos Beispiel für nötige Informationen) sind NICHT Teil von v1** — die App sammelt diese Felder heute für keine Vorhersage, weder live noch im Trainingsraum. Eine eigene, neue Datenquelle mit eigenen Kosten, offen als spätere Erweiterung vermerkt.
+> **Verifiziert:** `node --check` bestanden · **40 neue Prüfungen** an den echten, herausgeschnittenen Funktionen, darunter ein Regressionstest für den Wettlauf-Fund (zwei „gleichzeitige" Aufrufe mit unterschiedlicher Auflösungsreihenfolge) · die bestehenden 121 (IndexedDB) und 45 (v19.8.28) Prüfungen erneut gelaufen, alle weiterhin bestanden · `pruefe.py`: ALLES SAUBER.
+> **12 neue Sprachschlüssel** (306 → 318). Kein Schnitt in der Messreihe. `APP_VERSION` weiter 18.
+
+→ **ChatGPT-Rückfrage vom 12.9.2026 bestätigt den gewählten Weg** (Zulassung nach Trainings-/Wissensstand des Modells) — kein Widerspruch zwischen Claude und ChatGPT, beide Prüfer trugen zur endgültigen Lösung bei.
+→ **Bewährung steht aus:** Der Trainingsraum ist gebaut und geprüft, aber solange `TRAININGSRAUM_STICHTAG` für kein Modell-Literal einen geprüften Wert trägt, liefert er **null zulässige Spiele** — er läuft erst scharf, sobald ein echter Stichtag nachgetragen ist. Das ist Absicht (Art. 11), nicht ein offener Fehler.
 
 ---
 

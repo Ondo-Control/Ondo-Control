@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 12.9.2026, Fassung 107, v19.8.31*
+*Die aktuelle Wahrheit. Stand: 12.9.2026, Fassung 108, v19.9.0*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -177,7 +177,42 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 ## Versionen
 
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.8.31** (`beta.html`, geliefert 12.9.2026) — **🔴 Korrigieren-Felder für Konto/Tipico-Stand
+- **Beta: v19.9.0** (`beta.html`, geliefert 12.9.2026) — **🔴 Trainingsraum gebaut (Backlog-Punkt
+  77).** Auftrag Ondo: Gehirne an Spielen mit bereits bekanntem Ergebnis blind testen, ohne
+  Erinnerung oder Websuche, mit einem sofort durchdachten Plan statt einer mechanischen Umsetzung
+  seiner Vorgabe. **Wiederverwendung statt Neubau:** `vorhersageGehirn()` unverändert
+  wiederverwendet — sie ruft beide Gehirne bereits ohne Websuche auf. Zwei Wege vorgesehen: Weg
+  (a) bereits ausgewertete App-Spiele (aktiv), Weg (b) öffentlich bekannte historische Spiele
+  (Datenstruktur `state.trainingsraumSpiele` steht, in v1 bewusst leer — Ondo: „müssen wir jetzt
+  noch nicht aktiv nutzen"). **Zulassungsregel gegen Trainingsdaten-Kontamination:** eine von
+  Claude gepflegte Tabelle `TRAININGSRAUM_STICHTAG` je Modell-Literal — ohne geprüften Stichtag
+  null zulässige Spiele, keine geratene Grenze (Art. 11). **Ergebnis liegt sofort vor** (kein
+  Schiedsrichter-Schritt nötig, das Ergebnis ist ja schon bekannt) — genau der Zeitgewinn, den
+  Ondo wollte. Eigenes Protokoll `state.trainingsraumProtokoll`, streng getrennt vom Evidence
+  Ledger, damit die echte Messreihe unberührt bleibt.
+  **Zwei echte Fehlerquellen selbst gefunden, nicht von Ondo genannt — vor dem Bau behoben:**
+  (1) `new Date(stichtag)` auf einem Datumstext ist unzuverlässig (`new Date('1.9.2026')` wird
+  als 9. Januar gelesen) — beim eigenen Trockentest gefunden, behoben durch feste ISO-Daten
+  (JJJJ-MM-TT) statt der Bibliotheksfunktion auf einem Text. (2) Ein Wettlauf-Risiko in der
+  geteilten Variable `zuletztModell.gehirn`, die bei zwei potenziell gleichzeitigen Aufrufern
+  (Live-Vorhersage und Trainingsraum) das `modell`-Feld am falschen Protokoll hätte ablegen
+  können — behoben durch das ohnehin schon vorhandene, je Aufruf eigene Antwortfeld
+  `modelVersion`, das jetzt genutzt wird statt der geteilten Variable (macht nebenbei auch
+  Live-Einträge genauer). Zusätzlich ein geteiltes Sperr-Flag `kiAnfrageAktiv` gegen
+  überlappende Läufe.
+  **Selbstkritik-Fund während des Bauens:** Eine erste Fassung der „schon gesehen"-Regel schloss
+  jedes Spiel aus, zu dem ein Gehirn *jemals* einen Eintrag hat — dadurch wäre der Weg-(a)-Vorrat
+  fast leer gewesen, weil beide Gehirne meist gemeinsam dieselbe Spielliste beantworten. Korrigiert
+  auf die tatsächliche Leckquelle: nur die letzten sechs eigenen Vorhersagen erscheinen im
+  `fruehere`-Kontext von `vorhersageGehirn()` — ein Spiel ausserhalb dieses Fensters ist sicher.
+  **Verifiziert:** `node --check` bestanden · **40 neue Prüfungen** an den echten, aus `beta.html`
+  herausgeschnittenen Funktionen — darunter ein Regressionstest, der zwei „gleichzeitige"
+  Gemini-Aufrufe mit unterschiedlicher Auflösungsreihenfolge nachbildet und belegt, dass jeder
+  Aufruf sein eigenes Modell trägt · die bestehenden **121** Prüfungen (IndexedDB) und **45**
+  (v19.8.28) erneut gelaufen, alle weiterhin bestanden · `pruefe.py`: ALLES SAUBER.
+  **12 neue Sprachschlüssel** (306 → 318). Kein Schnitt in der Messreihe — das Trainingsraum-
+  Protokoll ist von der echten Kalibrierung strikt getrennt. `APP_VERSION` weiter 18.
+- **Beta zuvor: v19.8.31** (`beta.html`, geliefert 12.9.2026) — **🔴 Korrigieren-Felder für Konto/Tipico-Stand
   gebaut, KI-Module von „Finanzen" nach „Mehr" verschoben.** Auftrag Ondo, nachdem er die
   gesamte Wetten-Historie gelöscht hat: „Korrigieren-Feld bauen" (für `state.eingezahlt` und
   `state.ausgezahlt`, nach demselben Muster wie das bestehende Startbilanz-Feld — Zahl
@@ -457,7 +492,7 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 - **Beta zuvor: v19.8.1** (`beta.html`, geliefert 9.8.2026, 13:55 Uhr) — **die Spielliste hat eine eigene Rolle und läuft auf `gemini-flash-latest`.** Jeder neue Eintrag trägt zusätzlich die **Stufe**. Kein Schnitt in der Messreihe. `APP_VERSION` weiter 18.
 - **Beta zuvor: v19.8.0** (`beta.html`, geliefert 9.8.2026, 04:15 Uhr) — **Schnitt in der Messreihe bei „beide treffen", Punkt F gebaut.** Werte vor und ab dieser Version sind bei diesem Markt nicht vergleichbar. Jeder neue Log-Eintrag trägt das Feld `codeVersion`. `APP_VERSION` weiter 18.
 - **Beta zuvor: v19.7.8** (`beta.html`, geliefert 7.8.2026) — getrennter Speicher, aktive Messphase. Vier Nachbesserungen am 3. und 4. August, alle ausgelöst durch Punkt 0a; Einzelheiten im Backlog. Im Code steht weiterhin `APP_VERSION = 18` (technische Schuld, bewusst nicht nebenbei geändert, vor der Beförderung zu klären)
-- **Sprachschlüssel: 306** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 12.9.2026**). *Verlauf: die früher dokumentierten 184 waren nie geprüft; nachgezählt waren es 185, dann 193, dann 199, dann 201 (v19.7.8), dann 203 (v19.8.1). Die acht Schlüssel des Berichtigungsknopfes vom 13.8. (`korrT` bis `korrOk`) waren nirgends nachgetragen — 203 + 8 = 211. Punkt 44 bringt sechs weitere (`messT` bis `messBlock`) — 211 + 6 = 217. Backlog-Punkt 51 (gepaarter Vergleich, seit 30.8.2026 in `BACKLOG-ARCHIV.md`) bringt elf weitere (`gepaart` bis `gepaartMehrdeutig`) — 217 + 11 = 228. Backlog-Punkt 64 bringt einen weiteren (`parkGrundInstabil`) — 228 + 1 = 229. Nachfrage zu Punkt 64 (refRoh lesbar gemacht, v19.8.8) bringt zwei weitere (`refRohBtn`, `refRohEmpty`) — 229 + 2 = 231. Nachfrage zu Punkt 64, Teil 2/3 (v19.8.9) bringt drei weitere (`refWiderspruch`, `refRunsVon`, `ergebnisManuell`) — 231 + 3 = 234. Backlog-Punkt 68 und Punkt 36, zweiter Teil (Mehrfachlauf-Absicherung, v19.8.12), bringen sieben weitere (`refEinig2von3`, `refQuellenZahl`, `refVerworfen`, `parkGrundFormat`, `refEinAnbieter`, `refDauer`, `balGeparkt`) — 234 + 7 = 241. Backlog-Punkt 70 (Filter im KI-Log, v19.8.14) bringt zehn weitere (`filterT` bis `filterEmpty`) — 241 + 10 = 251. Backlog-Punkt 71 (KI-Log in vier Reiter, v19.8.15) bringt vier weitere (`kilogTabBewertet`, `kilogTabArchiv`, `kilogTabWerkzeuge`, `filterMannschaftPh`) und entfernt einen, ungenutzt gewordenen (`logEmpty`) — 251 + 4 − 1 = 254. Backlog-Punkt 34/35 (Brier-Score, Streuung, v19.8.21) bringen zwei weitere (`calibBrier`, `calibSpread`) — 254 + 2 = 256. Backlog-Punkt 9, Knopfdruck-Teil (Quoten-Automatik, v19.8.23) bringt elf weitere (`oddsKeyT` bis `oddsQuelle`) — 256 + 11 = 267. Backlog-Punkt 9, Ausbau (API-Football/football-data.org per Knopfdruck, v19.8.24) bringt acht weitere (`afKeyT` bis `fdOff`) — 267 + 8 = 275. Backlog-Punkt 0b (Widerspruchsquote je Markt, v19.8.25) bringt einen weiteren (`widersprT`) — 275 + 1 = 276. Backlog-Punkt 75, Teil 2 (Decision Ledger, v19.8.26) bringt drei weitere (`kiWahlLabel`, `kiWahlKeine`, `vonKi`) — 276 + 3 = 279. Die drei Behebungen und der Observation Layer (v19.8.28) bringen 23 weitere: zwei Rückfragen vor dem Löschen (`delBetAsk`, `delLogAsk`), drei für den Speicher (`saveFailAlert`, `speicherT`, `speicherEng`) und achtzehn für den Observation Layer (`beobT` bis `beobGrundlage`) — 279 + 23 = 302. Der Umstieg auf IndexedDB (v19.8.30) bringt einen weiteren (`speicherVon`) — 302 + 1 = 303. Die Korrigieren-Felder (v19.8.31) bringen drei weitere (`depKorrLabel`, `wdKorrLabel`, `korrHinweis`) — 303 + 3 = 306.* **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
+- **Sprachschlüssel: 318** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 12.9.2026**). *Verlauf: die früher dokumentierten 184 waren nie geprüft; nachgezählt waren es 185, dann 193, dann 199, dann 201 (v19.7.8), dann 203 (v19.8.1). Die acht Schlüssel des Berichtigungsknopfes vom 13.8. (`korrT` bis `korrOk`) waren nirgends nachgetragen — 203 + 8 = 211. Punkt 44 bringt sechs weitere (`messT` bis `messBlock`) — 211 + 6 = 217. Backlog-Punkt 51 (gepaarter Vergleich, seit 30.8.2026 in `BACKLOG-ARCHIV.md`) bringt elf weitere (`gepaart` bis `gepaartMehrdeutig`) — 217 + 11 = 228. Backlog-Punkt 64 bringt einen weiteren (`parkGrundInstabil`) — 228 + 1 = 229. Nachfrage zu Punkt 64 (refRoh lesbar gemacht, v19.8.8) bringt zwei weitere (`refRohBtn`, `refRohEmpty`) — 229 + 2 = 231. Nachfrage zu Punkt 64, Teil 2/3 (v19.8.9) bringt drei weitere (`refWiderspruch`, `refRunsVon`, `ergebnisManuell`) — 231 + 3 = 234. Backlog-Punkt 68 und Punkt 36, zweiter Teil (Mehrfachlauf-Absicherung, v19.8.12), bringen sieben weitere (`refEinig2von3`, `refQuellenZahl`, `refVerworfen`, `parkGrundFormat`, `refEinAnbieter`, `refDauer`, `balGeparkt`) — 234 + 7 = 241. Backlog-Punkt 70 (Filter im KI-Log, v19.8.14) bringt zehn weitere (`filterT` bis `filterEmpty`) — 241 + 10 = 251. Backlog-Punkt 71 (KI-Log in vier Reiter, v19.8.15) bringt vier weitere (`kilogTabBewertet`, `kilogTabArchiv`, `kilogTabWerkzeuge`, `filterMannschaftPh`) und entfernt einen, ungenutzt gewordenen (`logEmpty`) — 251 + 4 − 1 = 254. Backlog-Punkt 34/35 (Brier-Score, Streuung, v19.8.21) bringen zwei weitere (`calibBrier`, `calibSpread`) — 254 + 2 = 256. Backlog-Punkt 9, Knopfdruck-Teil (Quoten-Automatik, v19.8.23) bringt elf weitere (`oddsKeyT` bis `oddsQuelle`) — 256 + 11 = 267. Backlog-Punkt 9, Ausbau (API-Football/football-data.org per Knopfdruck, v19.8.24) bringt acht weitere (`afKeyT` bis `fdOff`) — 267 + 8 = 275. Backlog-Punkt 0b (Widerspruchsquote je Markt, v19.8.25) bringt einen weiteren (`widersprT`) — 275 + 1 = 276. Backlog-Punkt 75, Teil 2 (Decision Ledger, v19.8.26) bringt drei weitere (`kiWahlLabel`, `kiWahlKeine`, `vonKi`) — 276 + 3 = 279. Die drei Behebungen und der Observation Layer (v19.8.28) bringen 23 weitere: zwei Rückfragen vor dem Löschen (`delBetAsk`, `delLogAsk`), drei für den Speicher (`saveFailAlert`, `speicherT`, `speicherEng`) und achtzehn für den Observation Layer (`beobT` bis `beobGrundlage`) — 279 + 23 = 302. Der Umstieg auf IndexedDB (v19.8.30) bringt einen weiteren (`speicherVon`) — 302 + 1 = 303. Die Korrigieren-Felder (v19.8.31) bringen drei weitere (`depKorrLabel`, `wdKorrLabel`, `korrHinweis`) — 303 + 3 = 306. Der Trainingsraum (v19.9.0) bringt zwölf weitere (`trainT` bis `kiBusy`) — 306 + 12 = 318.* **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
 
 ---
 

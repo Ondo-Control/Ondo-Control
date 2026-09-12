@@ -3,9 +3,16 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.106
+**Version:** 0.107
 **Stand:** 12. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.107 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> der gebaute Trainingsraum (Backlog Fassung 108, `beta.html` v19.9.0): Backlog-Punkt 77 auf
+> GEBAUT gesetzt, neuer Abschnitt `Ondo-Core-Architektur.md` 1d (Fassung 0.9) mit vollständigem
+> Plan und Selbstkritik, zwei beim Bauen selbst gefundene Fehlerquellen vor der Auslieferung
+> behoben (Datumsparsing, Wettlauf-Risiko in einer geteilten Variable). Kein Verfassungsartikel
+> geändert, keine neue Arbeitsregel. Blueprint auf 0.107 gehoben.
 
 > **Was Fassung 0.106 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass
 > war die Trainingsraum-Lösung (Backlog Fassung 107): Backlog-Punkt 77 berichtigt und mit

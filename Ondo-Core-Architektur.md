@@ -5,6 +5,7 @@
 *Fassung 0.6 — 11.9.2026: Schema in Abschnitt 1c vervollständigt und die Auflage an den Observation Layer auf die zwei tatsächlichen Felder festgenagelt — bei Ondos Nachprüfung fiel auf, dass die als „Schema" bezeichnete Tabelle in Fassung 0.5 mehrere real vorhandene Felder nicht nannte (`ergebnisHalbzeit`, `ergebnisVerl`, `ergebnisQuelle`, `bttsWort`, `refLaeufe`, `refQuellen`, `parkFormat`, `maerkte[].fAlt`/`fKorr`). Jetzt maschinell aus `beta.html` ausgezählt statt aus dem Gedächtnis geschrieben.*
 *Fassung 0.7 — 11.9.2026: Berichtigung in derselben Tabelle. Fassung 0.6 zählte zwar die Feldnamen maschinell aus, beschrieb aber weiterhin aus der Annahme heraus, **wer** sie schreibt — und behauptete für `ergebnisHalbzeit`/`ergebnisVerl` „vom Schiedsrichter nachgetragen". Der Code widerlegt das: `pruefAnwenden()` schreibt ausschliesslich `ergebnisHeim`/`ergebnisGast`. Der Backlog führte diesen Befund bereits (Punkt 64, zweiter Fund) — die Tabelle widersprach damit dem Backlog (Fehlerart C4). Zeile berichtigt, Fund bei Punkt 64 verlinkt.*
 *Fassung 0.8 — 12.9.2026: Abschnitt 4 „Memory" berichtigt (Backlog-Punkt 76, `beta.html` v19.8.30). Stufe 1 nannte weiterhin `localStorage` als aktuellen Stand — seit v19.8.30 ist das `IndexedDB` (die feste, kleine `localStorage`-Grenze hatte bei Ondo real bei 2.726 KB zugeschlagen, v19.8.29). Erste, positive Bewährungsbeobachtung ergänzt: Ondo hat eine Änderung im KI-Log gesetzt, die Safari-App selbst vollständig geschlossen und neu geöffnet (nicht nur die Seite neu geladen — von Ondo selbst am 12.9.2026 richtiggestellt) und bestätigt „Hat funktioniert" — ein Beleg, keine abgeschlossene Bewährung (Stabilitätsregel, Art. 14: ein einzelner Fall ist kein Beweis).*
+*Fassung 0.9 — 12.9.2026: Neuer Abschnitt 1d „Trainingsraum — isolierte Testumgebung" (Backlog-Punkt 77, Auftrag Ondo 12.9.2026). Plan vor dem Bau festgehalten, wie vom Auftrag verlangt: Wiederverwendung von `vorhersageGehirn()` (bereits ohne Websuche), Zulassungsregel nach Trainings-Stichtag statt Raten, ein zusätzlich gefundenes Wettlauf-Risiko in `zuletztModell` und dessen Behebung über das bereits vorhandene `modelVersion`-Feld, getrennte Ablage vom Evidence Ledger. Kein Verfassungsartikel geändert.*
 *(Name: Der Besitzer hat "Ondo Control" festgelegt; ChatGPT nutzt "ORION". Technisch irrelevant — hier "Ondo Core" für den Kern.)*
 
 ---
@@ -102,6 +103,168 @@ Modul-Vertrag (ChatGPTs Forderung, übernommen): **Modul → Core → Brain → 
 **Auflage für den noch nicht gebauten Observation Layer, festgehalten jetzt statt erst beim Bauen:** Er darf keine Lehre aus einem Eintrag ziehen, dessen Bewertung selbst unsicher ist. **Maschinell prüfbar an genau zwei bestehenden Feldern**, am 11.9.2026 am Code nachgesehen, nicht angenommen: `geparkt:true` (Bewertung bewusst ausgesetzt) und `refEinigkeit` gesetzt (`pruefAnwenden()` schreibt dieses Feld **nur** bei „2 von 3", bei Einstimmigkeit wird es gelöscht). Ein Muster, das aus einer unsicheren Bewertung gelernt würde, wäre selbst nur eine Vermutung mit Lehrsatz-Anstrich (Art. 14). Diese Auflage ist keine neue Wartezeit — sie gilt dem Bau der nächsten Stufe, nicht dieser.
 
 **Was als Nächstes fehlt, nicht Teil dieser Festlegung:** Der **Decision Ledger** — was Ondo aus einer Empfehlung tatsächlich gemacht hat (Wette platziert, Höhe, Zeitpunkt) — existiert bisher nur lose über `state.bets`, ohne belegte Verknüpfung zu einem `kiProtokoll`-Eintrag. Der **Observation Layer** existiert noch gar nicht. Beide sind eigene, künftige Bauaufgaben (Backlog-Punkt 75, Teil 2 und 3), nicht durch diesen Abschnitt vorweggenommen.
+
+---
+
+## 1d. Trainingsraum — isolierte Testumgebung (Backlog-Punkt 77, Auftrag Ondo 12.9.2026)
+
+*Ersatzvorschlag für das ruhende „Such-Experiment" (Punkt 3): Statt vier Wochen auf neue,
+offene Spiele zu warten, testet der Trainingsraum die Gehirne an Spielen, deren Ergebnis
+bereits bekannt ist — ohne dass sie darauf zugreifen können. Auftrag Ondo, wörtlich: „nicht
+einfach Auftrag erledigen und fertig, sondern vorher wirklich durchdenken, absichern und
+zukunftsfähig konzipieren." Dieser Abschnitt ist der durchdachte Plan; die Selbstkritik dazu
+steht am Ende. Eine eigene Freigabe nach dem Plan ist laut Auftrag nicht mehr nötig.*
+
+**Zweck:** Ein vom Live-Betrieb getrennter Testraum, in dem Sonnet, Flash und künftig weitere
+Gehirne Spiele mit bereits bekanntem Ergebnis blind vorhersagen. Ergebnis liegt sofort vor
+(kein Warten auf den Schiedsrichter) — mehr Kalibrierungs-/Entschlossenheits-Datenpunkte in
+kürzerer Zeit, ohne die echte, laufende Messreihe (Abschnitt 1c) zu verändern.
+
+**Grundprinzip: Wiederverwendung statt Parallelbau, wie schon in Abschnitt 1c.**
+`vorhersageGehirn()` wird **unverändert** wiederverwendet — sie ruft heute schon beide Gehirne
+**ohne Websuche** auf (belegt: `apiCall()` für Sonnet trägt kein `tools`-Feld; `geminiCall()`
+hängt das Google-Suche-Werkzeug nur bei `opts.useSearch===true` an, laut eigenem Code-Kommentar
+„NUR fuer den Schiedsrichter"). Der Trainingsraum ist damit ab dem ersten Tag genauso isoliert
+wie eine echte Vorhersage — dafür musste nichts Neues gebaut werden. Nur die **Eingabe**
+(welche Spiele) und die **Ablage** (wohin mit dem Ergebnis) sind neu.
+
+**Zwei Wege zu einer gemeinsamen Struktur, beide von Anfang an vorgesehen (Ondo: „Weg (b)
+müssen wir jetzt noch nicht aktiv nutzen, aber die Architektur soll ihn von Anfang an sauber
+vorsehen").** Ein „Trainingsraum-Spiel" ist unabhängig vom Weg dieselbe Form:
+`{quelle:'app'|'extern', match, wettbewerb, anpfiff, ergebnisHeim, ergebnisGast}`.
+
+- **Weg (a) `quelle:'app'`:** Spiele aus `state.kiProtokoll`, gefiltert auf
+  `status==='bewertet' && !geparkt && !refEinigkeit` — **dieselbe Auflage wie beim Observation
+  Layer** (Abschnitt 1c, Absatz „Auflage") — plus `ergebnisHeim`/`ergebnisGast` gesetzt. Kein
+  neuer Filter, nur eine zweite Anwendung eines bereits bestehenden, begründeten Massstabs.
+- **Weg (b) `quelle:'extern'`:** öffentlich bekannte, historische Spiele, von Hand gepflegt
+  (`state.trainingsraumSpiele`, analog zu den 13 gesperrten Referenz-Ergebnissen vom 29./30.7.,
+  die als Muster für „von Hand gepflegte Prüfbibliothek" bereits existieren). **Kein
+  automatischer Import, keine Websuche zum Sammeln** — das wäre selbst ein neuer Kostenpunkt
+  und ein neues Risiko (siehe Selbstkritik). In v1 bleibt die Liste **leer**; die Datenstruktur
+  steht, damit ein späteres Befüllen keine Schemaänderung braucht.
+
+**Zulassungsregel gegen Trainingsdaten-Kontamination (für BEIDE Wege gleichermassen — Ondos
+eigene Berichtigung: „Genauso wie bei Weg (b) musste das Gehirn hier nicht auf Erinnerung...
+zurückgreifen können").** Ein Sprachmodell kann ein Ergebnis nur „kennen", wenn das Spiel vor
+seinem Trainings-Stichtag lag. Der genaue Stichtag jeder eingesetzten Modellversion ist nicht
+bekannt und wird nicht geraten (Art. 11) — stattdessen eine explizite, von Claude gepflegte
+Zulassungstabelle:
+
+```js
+var TRAININGSRAUM_STICHTAG = {
+  'claude-sonnet-4-6': null   // noch nicht geprueft -> gesperrt, siehe unten
+  // Gemini-Modell-Literale wechseln haeufiger; hier je nach beobachtetem modelVersion ergaenzen
+  // Werte im Format JJJJ-MM-TT (ISO) -- new Date() liest ein deutsches d.m.yyyy falsch
+  // (new Date('1.9.2026') wird als 9. Januar gelesen, new Date('20.8.2026') als "Invalid
+  // Date"), Fund beim Trockentest zu trainingsraumZugelassen(), noch vor der Auslieferung behoben.
+};
+```
+
+Ein Modell-Literal ohne geprüftes Datum liefert **null zulässige Spiele** — sichtbar als „Stichtag
+nicht geprüft" in der Anzeige, nicht als stillschweigend geratene Grenze. Das Nachtragen eines
+echten Datums ist eine bewusste, belegte Handlung, kein Automatismus.
+
+**Zweite Isolationsbedingung, aus Ondos eigener Formulierung abgeleitet und beim Selbstkritik-Schritt
+präzisiert:** „Spiele … die noch nicht von den jeweiligen Gehirnen vorhergesagt wurden" gilt **je
+Gehirn getrennt**. Grund, selbst gefunden, nicht von Ondo genannt: `vorhersageGehirn()` gibt jedem
+Gehirn seine **letzten sechs eigenen Vorhersagen** als Kontext mit (`fruehere`, Filter
+`aera==='v19' && herkunft===gehirn`, `.slice(0,6)`). Hätte dasselbe Gehirn das Testspiel bereits
+beantwortet und stünde dieser Eintrag noch in diesem Fenster, könnte genau diese frühere Antwort
+in `fruehere` auftauchen — ein konkretes Datenleck, kein theoretisches.
+**🔴 Beim Trockentest korrigiert:** Eine erste Fassung schloss dafür **jedes** Spiel aus, zu dem
+das Gehirn *jemals* einen Eintrag hat — live oder im Trainingsraum. Da `vorhersagen()` beide
+Gehirne routinemässig gemeinsam auf dieselbe Spielliste ansetzt, wäre der Weg-(a)-Vorrat damit für
+beide Gehirne fast immer leer gewesen — die von Ondo verlangte Zeitersparnis wäre grösstenteils
+verpufft. Der eigentliche Leckweg ist enger: Nur die **exakt selben letzten sechs** Einträge
+können über­haupt in `fruehere` auftauchen. Die Regel prüft deshalb **dasselbe Fenster** (dieselbe
+Filterung, dieselbe Fensterbreite `.slice(0,6)`) statt „jemals" — ein Spiel ausserhalb dieses
+Fensters kann über `fruehere` nicht mehr durchsickern, gleich ob es irgendwann live beantwortet
+wurde. Zusätzlich bleibt ausgeschlossen, was für dieses Gehirn bereits **im Trainingsraum selbst**
+getestet wurde (`trainingsraumProtokoll`), um keinen doppelten, nicht unabhängigen Testpunkt zu
+zählen.
+
+**Bewusst NICHT verändert, mit Begründung:** `fruehere` bleibt für Trainingsraum-Aufrufe
+unverändert aktiv (die letzten sechs Vorhersagen **anderer** Spiele desselben Gehirns), ebenso
+die Flash-spezifische Kalibrierungs-Koaching-Zeile. Beide verraten nichts über das Ergebnis des
+Testspiels selbst — sie zu entfernen würde den Trainingsraum von der Live-Methodik entfernen und
+die Vergleichbarkeit verschlechtern, die Ondo ausdrücklich verlangt („vergleichbar,
+reproduzierbar"). Ein methodischer Kompromiss bleibt: Bei Weg (b) zeigt `fruehere` Einträge, die
+zeitlich **nach** dem Testspiel liegen (Anachronismus, kein Ergebnis-Leck) — offen benannt in der
+Selbstkritik, nicht verschwiegen.
+
+**Ablage: eigenes Protokoll, keine Vermischung mit dem Evidence Ledger.**
+`state.trainingsraumProtokoll` — ausdrücklich **nicht** `state.kiProtokoll`. Grund: `kiProtokoll`
+speist `fruehere` (Kontext künftiger **echter** Vorhersagen), `calcKalibrierung()`,
+`lernGrundlage()`, `beobachtungenBlock()`, `gepaartBlock()` — jede Vermischung würde die reale
+Messreihe verändern, ohne dass Ondo das entschieden hätte (Arbeitsregel „kein Schnitt in der
+Messreihe" gilt sinngemäss). Ein Trainingsraum-Eintrag ist strukturell einem
+`kiProtokoll`-Eintrag nachgebildet (`match, wettbewerb, anpfiff, herkunft, heim, gast, modell,
+maerkte, ergebnisHeim, ergebnisGast, status`), ergänzt um `quelle` und `getestetAm`. Da das
+Ergebnis schon feststeht, wird `status` **sofort** auf `'bewertet'` gesetzt (`maerkteBauen()` und
+`marktUrteil()` unverändert wiederverwendet) — kein Schiedsrichter-Schritt, das ist der
+Zeitgewinn, den Ondo wollte.
+
+**Auswertung, ebenfalls durch Wiederverwendung:** `trainingsraumGrundlage(quelle, typ)` ist die
+Filterlogik von `lernGrundlage()`, angewandt auf `state.trainingsraumProtokoll` statt
+`kiProtokoll`. Ihr Ergebnis läuft durch die **unveränderte** `lernAbweichung()` — dieselbe
+Kennzahl (behauptet/echt/diff/n) wie die Live-Kalibrierung, direkt vergleichbar, weil aus
+derselben Rechenfunktion.
+
+**Ein zusätzlicher Fund beim Bauen, unabhängig von Ondos Auftrag: ein Wettlauf-Risiko in
+`zuletztModell`.** `zuletztModell.gehirn` ist eine geteilte Variable, die `geminiCall()` bei
+jeder Antwort überschreibt; bisher gibt es nur einen Aufrufer (`vorhersagen()`), daher folgenlos.
+Mit dem Trainingsraum als zweitem, potenziell gleichzeitig laufendem Aufrufer wird daraus ein
+echtes Risiko: Liefe ein Trainingsraum-Lauf parallel zu einer echten Vorhersage, könnte das
+`modell`-Feld am falschen Protokoll landen. **Behoben, ohne die geteilte Variable anzufassen:**
+`geminiCall()` liefert bereits `modelVersion` — ein von Google dokumentiertes, **je Aufruf
+eigenes** Antwortfeld (seit der Nachfrage zu Punkt 64, 28.8.2026) — im Rückgabewert selbst.
+`vorhersageGehirn()` liest ab jetzt dieses Feld statt der geteilten Variable; das behebt das
+Risiko an der Wurzel und macht nebenbei auch die **echten** Live-Einträge genauer (die
+tatsächlich aufgelöste Modellversion statt nur des zuletzt gewählten Alias). Zusätzlich verhindert
+ein einfaches, geteiltes Sperr-Flag (`kiAnfrageAktiv`), dass ein Trainingsraum-Lauf startet,
+während eine echte Vorhersage läuft, und umgekehrt — spart nebenbei Budget, weil nie zwei
+Modell-Batches gleichzeitig nötig sind.
+
+**Kosten (Arbeitsregel G):** Kein neuer, laufender Kostentyp — jeder Testlauf verbraucht dieselbe
+Art Modellaufruf wie eine echte Vorhersage, aus demselben Budget. Weg (b) hat in v1 keine Kosten
+(leere Liste). Bauzeit real, aber kein Dauerkostenpunkt.
+
+**Erweiterbarkeit, wie von Ondo verlangt, ohne die aktuelle Lösung zu überkomplizieren:**
+- *Weitere Gehirne:* brauchen einen eigenen Aufrufpfad wie Sonnet/Flash heute — ein grösserer
+  Umbau (`GEHIRNE`-Registry statt fester `if(gehirn==='flash')`-Verzweigungen), **nicht Teil
+  dieser Lieferung**. Die Trainingsraum-Datenstruktur selbst ist bereits Gehirn-agnostisch
+  (`herkunft`-String + `modell`-Literal, keine feste Liste).
+- *Weitere Datenquellen:* `quelle` ist ein offener String — ein dritter Wert braucht nur einen
+  neuen Eintragstyp, keine Strukturänderung.
+- *Weitere Messgrössen:* `trainingsraumGrundlage()`/`lernAbweichung()` sind bereits generisch
+  über `typ` (Markttyp) parametrisiert — ein neuer Markt braucht keine neue Funktion.
+
+**Selbstkritik (Schritt 3 des Auftrags, vor dem Bauen durchdacht):**
+- *Liefert die Zulassungstabelle mit `null` nicht einfach „kein Trainingsraum"?* Ja, das ist
+  beabsichtigt: lieber sichtbar null zulässige Spiele als eine geratene, möglicherweise falsche
+  Grenze. Der Preis von Art. 11. Die echten Stichtage nachzutragen ist eine eigene, spätere,
+  belegte Handlung.
+- *Ist `state.trainingsraumProtokoll` Datenverdopplung?* Nein — es referenziert keine
+  `kiProtokoll`-Einträge, sondern ist eine eigene Messreihe mit eigenem Zweck (Test statt
+  Live-Betrieb). Die Trennung selbst ist das Sicherheitsmerkmal, keine Redundanz.
+- *Wächst `state.trainingsraumProtokoll` unbegrenzt?* Ja, prinzipiell — aber IndexedDB
+  (Backlog-Punkt 76) hat seit v19.8.30 grosszügigen Spielraum, und ein Trainingsraum-Eintrag ist
+  kleiner als ein Live-Eintrag (kein `refRoh`, keine mehrfachen Schiedsrichter-Läufe). Kein
+  Blocker für v1, als Beobachtungspunkt vermerkt.
+- *Ist die „kein Eintrag dieses Gehirns zu diesem Spiel"-Regel zu streng und erschöpft den
+  Weg-(a)-Vorrat zu schnell?* Möglich. Sicherer als das Alternativrisiko (Selbst-Erinnerung über
+  `fruehere`). Kann später gelockert werden, falls der Vorrat zu klein wird — bewusste Wahl,
+  nicht in Stein gemeisselt.
+- *Warum kein automatischer Import für Weg (b)?* Ein automatischer Import bräuchte entweder
+  Websuche (widerspricht der Isolation direkt) oder eine bezahlte externe Quelle (neuer,
+  unbezifferter Kostenpunkt) — beides vermeidet die von Hand gepflegte Liste.
+- *Soll `trainingsraumProtokoll` in den Messdaten-Export (`MESS_FELDER`, Backlog-Punkt 44)?* Ja
+  — reine Messdaten ohne Geheimfelder, konsistent mit dem bestehenden Exportzweck.
+
+**Was dadurch NICHT entschieden ist:** Die genauen Trainings-Stichtage der eingesetzten Modelle
+(Tabelle bleibt bis zur Prüfung leer/gesperrt); ob und wann Weg (b) mit echten Einträgen befüllt
+wird; ob ein N-Gehirne-Umbau (`GEHIRNE`-Registry) je gebaut wird.
 
 ---
 

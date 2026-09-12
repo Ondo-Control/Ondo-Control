@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.8.31';
+var CODE_VERSION = 'v19.9.0';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -174,6 +174,11 @@ var I18N = {
   gepaartNurS:'Nur Sonnet', gepaartNurF:'Nur Flash', gepaartBeideR:'Beide richtig', gepaartBeideF:'Beide falsch',
   gepaartNone:'Noch keine gepaarten Spiele.',
   gepaartMehrdeutig:'{a} Spiel(e) nicht eindeutig zuordenbar (mehrere gleich benannte Einträge desselben Gehirns am selben Tag) — nicht mitgezählt.',
+  trainT:'Trainingsraum', trainD:'Isolierte Tests an Spielen mit bereits bekanntem Ergebnis — ohne Websuche, ohne Erinnerung an dieses Spiel. Zählt NICHT in die echte Kalibrierung oben.',
+  trainBtn:'Lauf starten', trainRunning:'Läuft…', trainNone:'Keine zulässigen Spiele gefunden.',
+  trainOf:'Trainingsraum vom', trainNeu:'neue Tests', trainVerworfen:'verworfen (Modell nicht zugelassen)',
+  trainGesperrt:'Stichtag nicht geprüft — gesperrt', trainKeine:'Noch keine Tests.',
+  trainAbw:'{a} % behauptet, {b} % eingetroffen (Abw. {c})', kiBusy:'Es läuft bereits eine KI-Anfrage — bitte warten.',
   calibDev:'Abweichung', calibPts:'Bewertete Aussagen', calibNone:'Noch zu wenig Daten',
   calibBand:'Angabe', calibClaim:'behauptet', calibReal:'wirklich', calibN:'Anzahl',
   calibBrier:'Brier-Score', calibSpread:'Streuung', widersprT:'Widerspruchsquote',
@@ -309,6 +314,11 @@ var I18N = {
   gepaartNurS:'Seulement Sonnet', gepaartNurF:'Seulement Flash', gepaartBeideR:'Les deux corrects', gepaartBeideF:'Les deux faux',
   gepaartNone:'Aucun match apparié pour le moment.',
   gepaartMehrdeutig:'{a} match(s) non attribuable(s) sans ambiguïté (plusieurs entrées du même cerveau nommées pareil le même jour) — non comptabilisé(s).',
+  trainT:'Salle d’entraînement', trainD:'Tests isolés sur des matchs au résultat déjà connu — sans recherche web, sans mémoire de ce match précis. Ne compte PAS dans la vraie calibration ci-dessus.',
+  trainBtn:'Lancer', trainRunning:'En cours…', trainNone:'Aucun match éligible trouvé.',
+  trainOf:'Salle d’entraînement du', trainNeu:'nouveaux tests', trainVerworfen:'rejetés (modèle non autorisé)',
+  trainGesperrt:'Date limite non vérifiée — verrouillé', trainKeine:'Aucun test pour le moment.',
+  trainAbw:'{a} % annoncé, {b} % réel (écart {c})', kiBusy:'Une requête IA est déjà en cours — merci de patienter.',
   calibDev:'Écart', calibPts:'Affirmations évaluées', calibNone:'Pas encore assez de données',
   calibBand:'Indiqué', calibClaim:'annoncé', calibReal:'réel', calibN:'Nombre',
   calibBrier:'Score de Brier', calibSpread:'Dispersion', widersprT:'Taux de contradiction',
@@ -444,6 +454,11 @@ var I18N = {
   gepaartNurS:'Only Sonnet', gepaartNurF:'Only Flash', gepaartBeideR:'Both correct', gepaartBeideF:'Both wrong',
   gepaartNone:'No paired games yet.',
   gepaartMehrdeutig:'{a} game(s) not uniquely assignable (multiple identically named entries from the same brain on the same day) — not counted.',
+  trainT:'Training Room', trainD:'Isolated tests on games with an already-known result — no web search, no memory of this specific game. Does NOT count into the real calibration above.',
+  trainBtn:'Start run', trainRunning:'Running…', trainNone:'No eligible games found.',
+  trainOf:'Training room run of', trainNeu:'new tests', trainVerworfen:'discarded (model not cleared)',
+  trainGesperrt:'Cutoff date not verified — locked', trainKeine:'No tests yet.',
+  trainAbw:'{a}% claimed, {b}% actual (dev. {c})', kiBusy:'An AI request is already running — please wait.',
   calibDev:'Deviation', calibPts:'Rated statements', calibNone:'Not enough data yet',
   calibBand:'Stated', calibClaim:'claimed', calibReal:'actual', calibN:'Count',
   calibBrier:'Brier score', calibSpread:'Spread', widersprT:'Contradiction rate',
@@ -648,7 +663,12 @@ var state = {
      keine seedV-Migration noetig — load() uebernimmt nur Schluessel, die im gespeicherten
      JSON stehen, ein altes Save ohne diese Schluessel behaelt einfach diese Defaults. */
   pruefListe: [],
-  pruefBilanz: null
+  pruefBilanz: null,
+  /* v19.9.0 (Backlog-Punkt 77): eigenes Protokoll fuer den Trainingsraum, getrennt vom
+     Evidence Ledger (state.kiProtokoll) - Einzelheiten Ondo-Core-Architektur.md, 1d.
+     trainingsraumSpiele ist Weg (b), von Hand gepflegt, in v1 bewusst leer. */
+  trainingsraumProtokoll: [],
+  trainingsraumSpiele: []
 };
 
 /* v19.8.30: load() wird async, weil speicherLesen() ueber IndexedDB geht (siehe Kommentar
@@ -1130,7 +1150,7 @@ function logTextKopieren(feldId){
    datenSichern und datenLaden sind unangetastet. KEIN Schnitt in der Messreihe.
    Kein Zeitraumfilter und kein Aera-Filter — eine Sicherung mit Datumsbereich waere
    keine Sicherung. Das v18-Archiv ist ausdruecklich enthalten (Entscheidung Ondo 14.8.). */
-var MESS_FELDER = ['kiProtokoll','bets','regeln','startSaldo','eingezahlt','ausgezahlt','korrekturF','letzteSicherung'];
+var MESS_FELDER = ['kiProtokoll','bets','regeln','startSaldo','eingezahlt','ausgezahlt','korrekturF','letzteSicherung','trainingsraumProtokoll'];
 var MESS_VERBOTEN = /key|pin|token|secret|passw/i;
 
 function messGeheimFund(wert, pfad){
@@ -1886,6 +1906,40 @@ var pruefStark = { anfragen:0, modell:'', fallback:false, grund:'' };
    konnte ihn sogar der Schiedsrichter setzen. Arbeitsregel J haengt an dieser Angabe:
    Ein Korrekturfaktor ist nur so verlaesslich wie das Modell, dem er zugeordnet ist. */
 var zuletztModell = { gehirn:'', ref:'' };
+/* v19.9.0 (Backlog-Punkt 77, Auftrag Ondo 12.9.2026): Verhindert, dass ein Trainingsraum-Lauf
+   und eine echte Vorhersage gleichzeitig laufen. Zwei Gruende: Erstens Budget — zwei
+   Modell-Batches gleichzeitig sind nie noetig. Zweitens Datensicherheit — ohne diese Sperre
+   koennten zwei gleichzeitige Gemini-Aufrufe (einer live, einer im Trainingsraum) das
+   'modell'-Feld am jeweils falschen Protokoll ablegen, siehe Fund bei TRAININGSRAUM_STICHTAG. */
+var kiAnfrageAktiv = false;
+/* v19.9.0 (Backlog-Punkt 77): Zulassungsregel gegen Trainingsdaten-Kontamination. Ein Sprachmodell
+   kann ein Ergebnis nur "kennen", wenn das Spiel vor seinem Trainings-Stichtag lag. Der genaue
+   Stichtag jeder eingesetzten Modellversion ist nicht bekannt und wird hier nicht geraten
+   (Art. 11) - ein Modell-Literal ohne EIGENS GEPRUEFTES Datum liefert null zulaessige Spiele,
+   statt mit einer erfundenen Grenze zu laufen. Einzelheiten: Ondo-Core-Architektur.md, 1d.
+   WERTE IM FORMAT JJJJ-MM-TT (ISO), NICHT deutsches d.m.yyyy — new Date() liest ein deutsches
+   Datum falsch (Fund beim Trockentest, siehe trainingsraumZugelassen). */
+var TRAININGSRAUM_STICHTAG = {
+  'claude-sonnet-4-6': null   /* noch nicht geprueft -> gesperrt */
+  /* Gemini-Modell-Literale (aus res.modelVersion) hier ergaenzen, sobald geprueft, Format JJJJ-MM-TT */
+};
+/* v19.9.0, Fund beim Trockentest: new Date(stichtag) direkt auf einem Text anzuwenden ist genau
+   die Unsicherheit, die der uebrige Code an jeder anderen Stelle bewusst vermeidet (siehe die
+   handgeschriebenen d.m.yyyy-Regex ueberall sonst in dieser Datei) - new Date('1.9.2026') liest
+   Node/der Browser als 9. Januar, new Date('20.8.2026') sogar als "Invalid Date". Deshalb: Beide
+   Seiten werden aus fest geprueften Zahlen gebaut, keine an Datumstexte geratene Bibliotheksfunktion.
+   TRAININGSRAUM_STICHTAG traegt deshalb ISO-Daten (JJJJ-MM-TT), nicht die deutsche Schreibweise. */
+function trainingsraumZugelassen(modellLiteral, datumStr){
+  var stichtag = TRAININGSRAUM_STICHTAG[modellLiteral];
+  if(!stichtag) return false;
+  var d = String(datumStr||'').match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);
+  if(!d) return false;
+  var s = String(stichtag).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if(!s) return false;
+  var spielMs = Date.UTC(Number(d[3]), Number(d[2])-1, Number(d[1]));
+  var stichtagMs = Date.UTC(Number(s[1]), Number(s[2])-1, Number(s[3]));
+  return spielMs > stichtagMs;
+}
 function gLadeModelle(stark){
   return fetch('https://generativelanguage.googleapis.com/v1beta/models?key='+encodeURIComponent(state.geminiKey))
     .then(function(r){ return r.json(); })
@@ -2361,6 +2415,19 @@ function vorhersageGehirn(gehirn, liste){
     if(res.error) throw new Error(res.error.message||('HTTP '+res._status));
     var parsed=parseJsonBlock(res);
     if(!parsed || !parsed.vorhersagen) throw new Error(t('noJson'));
+    /* v19.9.0 (Backlog-Punkt 77): Fund beim Bauen des Trainingsraums, unabhaengig vom
+       eigentlichen Auftrag. Bisher stand das 'modell'-Feld eines Eintrags in vorhersagen()
+       ueber die GETEILTE Variable zuletztModell.gehirn, die geminiCall() bei jeder Antwort
+       ueberschreibt. Solange es nur einen Aufrufer gab (vorhersagen()), war das folgenlos. Mit
+       dem Trainingsraum als zweitem, potenziell GLEICHZEITIGEN Aufrufer waere das ein echtes
+       Wettlauf-Risiko: Ein parallel laufender Aufruf koennte die geteilte Variable ueberschreiben,
+       bevor dieser Aufruf sie liest. Behoben ohne die geteilte Variable anzufassen: res.modelVersion
+       ist ein von Google dokumentiertes, JE AUFRUF EIGENES Antwortfeld (bereits seit der
+       Nachfrage zu Punkt 64, 28.8.2026, in geminiCall() vorhanden, bisher nur nicht hier genutzt).
+       Es wird HIER, direkt bei der Ankunft der eigenen Antwort, gelesen - race-frei. Macht
+       nebenbei auch echte Live-Eintraege genauer (die tatsaechlich aufgeloeste Modellversion
+       statt nur des zuletzt gewaehlten Alias). */
+    parsed.vorhersagen._modell = (gehirn==='flash') ? (res.modelVersion||'') : 'claude-sonnet-4-6';
     return parsed.vorhersagen;
   }).catch(function(e){
     return { _fehler: (e && e.message) ? e.message : '?' };
@@ -2372,6 +2439,12 @@ function vorhersagen(btn){
   if(!hatSonnet() && !hatGemini()){
     var f0=document.getElementById('ladeFehler'); if(f0) f0.textContent=t('noKey'); return;
   }
+  /* v19.9.0 (Backlog-Punkt 77): Sperre gegen Ueberschneidung mit einem laufenden
+     Trainingsraum-Lauf, siehe kiAnfrageAktiv oben. */
+  if(kiAnfrageAktiv){
+    var fB=document.getElementById('ladeFehler'); if(fB) fB.textContent=t('kiBusy'); return;
+  }
+  kiAnfrageAktiv = true;
   var f=document.getElementById('ladeFehler'); if(f) f.textContent='';
   btn.disabled=true; btn.textContent=t('predListing');
   /* Teil 4 des Auftrags vom 3.9.2026 (reine Diagnose): die tatsaechliche Dauer eines
@@ -2443,8 +2516,11 @@ function vorhersagen(btn){
           herkunft:gehirn,
           heim:h, gast:g,
           bttsWort:jaNeinWort(v.bttsWort),
-          /* v19.7.6: das Modell, das wirklich geantwortet hat — nicht mehr state.geminiModel */
-          modell:(gehirn==='flash' ? (zuletztModell.gehirn||state.gModellGehirn||state.geminiModel||'') : 'claude-sonnet-4-6'),
+          /* v19.7.6: das Modell, das wirklich geantwortet hat — nicht mehr state.geminiModel.
+             v19.9.0: bevorzugt vorher._modell (race-frei aus res.modelVersion, siehe
+             vorhersageGehirn) - der alte Weg ueber die geteilte Variable bleibt nur als
+             Rueckfallebene, falls modelVersion einmal fehlen sollte. */
+          modell:(vorher._modell || (gehirn==='flash' ? (zuletztModell.gehirn||state.gModellGehirn||state.geminiModel||'') : 'claude-sonnet-4-6')),
           begruendung:String(v.begruendung||''),
           maerkte:maerkteBauen(match,h,g,pz(v.p1x2),pz(v.pTore),pz(v.pBtts)),
           ergebnisHeim:null, ergebnisGast:null,
@@ -2459,13 +2535,207 @@ function vorhersagen(btn){
       ' · '+t('refDauer')+' '+Math.round((Date.now()-startZeitV)/1000)+' s'+
       (fehler.length?(' · ⚠ '+fehler.join(' · ')):'');
     save();
+    kiAnfrageAktiv = false;
     btn.disabled=false; btn.textContent=t('predBtn');
     render();
   }).catch(function(e){
+    kiAnfrageAktiv = false;
     btn.disabled=false; btn.textContent=t('predBtn');
     var el=document.getElementById('ladeFehler');
     if(el) el.textContent=(e&&e.message?e.message:'?');
   });
+}
+
+/* ================= TRAININGSRAUM (Backlog-Punkt 77, Auftrag Ondo 12.9.2026) =================
+   Isolierte Testumgebung: Gehirne sagen Spiele mit bereits bekanntem Ergebnis blind voraus.
+   Plan und Selbstkritik: Ondo-Core-Architektur.md, Abschnitt 1d. Wiederverwendet bewusst
+   vorhersageGehirn() (bereits ohne Websuche), maerkteBauen() und marktUrteil() unveraendert -
+   nur Eingabe (welche Spiele) und Ablage (state.trainingsraumProtokoll, GETRENNT vom Evidence
+   Ledger) sind neu. */
+
+/* Kandidaten fuer EIN Gehirn: Weg (a) aus state.kiProtokoll (dieselbe Auflage wie beim
+   Observation Layer, Ondo-Core 1c), Weg (b) aus state.trainingsraumSpiele (in v1 leer).
+   modellHinweis ist die beste heute bekannte Vermutung, welches Modell antworten wird -
+   fuer Sonnet immer exakt (fester String), fuer Flash eine Vermutung, die NACH dem
+   eigentlichen Aufruf gegen das tatsaechlich aufgeloeste Modell nachgeprueft wird
+   (siehe trainingsraumLauf). Ein Spiel, das dieses Gehirn schon einmal gesehen hat - live
+   ODER im Trainingsraum -, ist ausgeschlossen (Datenleck ueber "fruehere" in
+   vorhersageGehirn, siehe 1d). */
+function trainingsraumKandidaten(gehirn, modellHinweis){
+  /* v19.9.0, Fund bei der Selbstkritik (Ondos Auftrag: "pruefe... ob meine bisherige Idee
+     irgendwo problematisch ist"): Eine erste Fassung schloss JEDES Spiel aus, zu dem dieses
+     Gehirn JEMALS einen Eintrag hat - live oder im Trainingsraum. Da vorhersagen() beide
+     Gehirne normalerweise gemeinsam auf dieselbe Spielliste ansetzt, waere der Weg-(a)-Vorrat
+     damit fuer beide Gehirne fast immer leer gewesen - genau die Zeitersparnis, die der ganze
+     Trainingsraum bringen sollte, waere verpufft. Der eigentliche Leckweg ist enger: Nur die
+     LETZTEN SECHS eigenen Vorhersagen desselben Gehirns koennen ueberhaupt in "fruehere"
+     auftauchen (siehe vorhersageGehirn: .slice(0,6) auf denselben Filter aera==='v19' &&
+     herkunft===gehirn). Ein Spiel ausserhalb dieses Fensters kann ueber "fruehere" gar nicht
+     mehr durchsickern, unabhaengig davon, ob dieses Gehirn es irgendwann live beantwortet hat.
+     Deshalb: derselbe Filter, dieselbe Fensterbreite wie in vorhersageGehirn - kein geratener,
+     eigener Wert (Konsistenz-Pflicht, nicht nur Bequemlichkeit: aendert sich die Fensterbreite
+     dort je, muss sie hier mitgezogen werden). */
+  var kuerzlich = (state.kiProtokoll||[])
+    .filter(function(e){ return e.aera==='v19' && (e.herkunft||'sonnet')===gehirn; })
+    .slice(0,6)
+    .map(function(e){ return normName(e.match); });
+  var pool=[];
+  (state.kiProtokoll||[]).forEach(function(e){
+    if(e.status!=='bewertet' || e.geparkt || e.refEinigkeit) return;
+    if(e.ergebnisHeim===null || e.ergebnisHeim===undefined) return;
+    if(e.ergebnisGast===null || e.ergebnisGast===undefined) return;
+    pool.push({ quelle:'app', match:e.match, wettbewerb:e.wettbewerb||'', anpfiff:e.anpfiff||'',
+      datum:e.datum, ergebnisHeim:e.ergebnisHeim, ergebnisGast:e.ergebnisGast });
+  });
+  (state.trainingsraumSpiele||[]).forEach(function(s){
+    if(s.ergebnisHeim===null||s.ergebnisHeim===undefined||s.ergebnisGast===null||s.ergebnisGast===undefined) return;
+    pool.push({ quelle:'extern', match:s.match, wettbewerb:s.wettbewerb||'', anpfiff:s.anpfiff||'',
+      datum:s.datum, ergebnisHeim:s.ergebnisHeim, ergebnisGast:s.ergebnisGast });
+  });
+  return pool.filter(function(sp){
+    if(!trainingsraumZugelassen(modellHinweis, sp.datum)) return false;
+    if(kuerzlich.indexOf(normName(sp.match))>=0) return false;
+    var schonGetestet = (state.trainingsraumProtokoll||[]).some(function(e){
+      return e.herkunft===gehirn && normName(e.match)===normName(sp.match);
+    });
+    return !schonGetestet;
+  });
+}
+
+/* Nur die Filterlogik von lernGrundlage(), angewandt auf das getrennte Trainingsraum-Protokoll
+   statt auf den Evidence Ledger - das Ergebnis passt unveraendert in lernAbweichung(), damit
+   dieselbe Kennzahl entsteht wie bei der echten Kalibrierung, direkt vergleichbar. */
+function trainingsraumGrundlage(quelle, typ){
+  var punkte=[];
+  (state.trainingsraumProtokoll||[]).forEach(function(e){
+    if(quelle && (e.herkunft||'')!==quelle) return;
+    (e.maerkte||[]).forEach(function(m){
+      if(m.status!=='richtig' && m.status!=='falsch') return;
+      if(typ && m.typ!==typ) return;
+      var p=Number(m.p); if(isNaN(p)) p=50;
+      punkte.push({ p:Math.max(1,Math.min(99,p)), ok:(m.status==='richtig'), typ:m.typ||'' });
+    });
+  });
+  return punkte;
+}
+
+function trainingsraumLauf(btn){
+  if(!hatSonnet() && !hatGemini()){
+    var f0=document.getElementById('trainErr'); if(f0) f0.textContent=t('noKey'); return;
+  }
+  if(kiAnfrageAktiv){
+    var fB=document.getElementById('trainErr'); if(fB) fB.textContent=t('kiBusy'); return;
+  }
+  kiAnfrageAktiv=true;
+  var f=document.getElementById('trainErr'); if(f) f.textContent='';
+  btn.disabled=true; btn.textContent=t('trainRunning');
+
+  var jobs=[], namen=[], kandJeGehirn={};
+  if(hatSonnet()){
+    var kS=trainingsraumKandidaten('sonnet','claude-sonnet-4-6');
+    if(kS.length){ kandJeGehirn.sonnet=kS; jobs.push(vorhersageGehirn('sonnet',kS)); namen.push('sonnet'); }
+  }
+  if(hatGemini()){
+    var hinweisFlash = state.gModellGehirn||state.geminiModel||'';
+    var kF=trainingsraumKandidaten('flash',hinweisFlash);
+    if(kF.length){ kandJeGehirn.flash=kF; jobs.push(vorhersageGehirn('flash',kF)); namen.push('flash'); }
+  }
+  if(!jobs.length){
+    kiAnfrageAktiv=false; btn.disabled=false; btn.textContent=t('trainBtn');
+    var fE=document.getElementById('trainErr'); if(fE) fE.textContent=t('trainNone');
+    return;
+  }
+
+  Promise.all(jobs).then(function(res){
+    if(!state.trainingsraumProtokoll) state.trainingsraumProtokoll=[];
+    var heuteD=new Date().toLocaleDateString('de-DE');
+    var neu=0, verworfen=0, fehler=[];
+    res.forEach(function(vorher, i){
+      var gehirn=namen[i];
+      if(!vorher || vorher._fehler){ fehler.push(gehirn+': '+((vorher&&vorher._fehler)||'?')); return; }
+      var kandidaten=kandJeGehirn[gehirn];
+      var modellEcht=vorher._modell||'';
+      vorher.forEach(function(v, idx){
+        var h=Math.max(0,Math.round(Number(v.heim))), g=Math.max(0,Math.round(Number(v.gast)));
+        if(isNaN(h)||isNaN(g)) return;
+        function pz(x){ var n=Math.round(Number(x)); if(isNaN(n)) n=50; return Math.max(1,Math.min(99,n)); }
+        function jaNeinWort(x){
+          var w=String(x||'').trim().toLowerCase();
+          if(/^(ja|yes|oui|j|y)\b/.test(w)) return 'ja';
+          if(/^(nein|no|non|n)\b/.test(w)) return 'nein';
+          return '';
+        }
+        var match=String(v.match||'');
+        var sp=kandidaten.find(function(k){ return normName(k.match)===normName(match); });
+        if(!sp) return;
+        /* Authoritative Nachpruefung mit dem TATSAECHLICH aufgeloesten Modell (modellEcht),
+           nicht mehr mit der Vorab-Vermutung aus trainingsraumKandidaten - siehe 1d,
+           Nebenlaeufigkeits-Fund. Ein Wechsel zwischen Vermutung und echtem Modell verwirft das
+           Ergebnis, statt es unsicher zuzulassen. */
+        if(!trainingsraumZugelassen(modellEcht, sp.datum)){ verworfen++; return; }
+        var eintrag={
+          id:'t'+Date.now()+'_'+gehirn+'_'+idx,
+          getestetAm:heuteD,
+          quelle:sp.quelle,
+          match:sp.match, wettbewerb:sp.wettbewerb, anpfiff:sp.anpfiff,
+          herkunft:gehirn, modell:modellEcht,
+          heim:h, gast:g,
+          bttsWort:jaNeinWort(v.bttsWort),
+          begruendung:String(v.begruendung||''),
+          maerkte:maerkteBauen(match,h,g,pz(v.p1x2),pz(v.pTore),pz(v.pBtts)),
+          ergebnisHeim:sp.ergebnisHeim, ergebnisGast:sp.ergebnisGast,
+          status:'bewertet'
+        };
+        eintrag.maerkte.forEach(function(m){
+          var ok=marktUrteil(m.code, sp.ergebnisHeim, sp.ergebnisGast);
+          if(ok!==null) m.status = ok?'richtig':'falsch';
+        });
+        state.trainingsraumProtokoll.unshift(eintrag);
+        neu++;
+      });
+    });
+    state.trainingsraumInfo = t('trainOf')+': '+heuteStr()+' · '+neu+' '+t('trainNeu')+
+      (verworfen?(' · '+verworfen+' '+t('trainVerworfen')):'')+
+      (fehler.length?(' · ⚠ '+fehler.join(' · ')):'');
+    save();
+    kiAnfrageAktiv=false;
+    btn.disabled=false; btn.textContent=t('trainBtn');
+    render();
+  }).catch(function(e){
+    kiAnfrageAktiv=false;
+    btn.disabled=false; btn.textContent=t('trainBtn');
+    var el=document.getElementById('trainErr');
+    if(el) el.textContent=(e&&e.message?e.message:'?');
+  });
+}
+
+function trainingsraumBlock(){
+  var GEHIRN={ sonnet:'🧠 Sonnet', flash:'🌱 Flash' };
+  function zeile(gehirn, modellLiteral){
+    var stichtag=TRAININGSRAUM_STICHTAG[modellLiteral];
+    if(!stichtag){
+      return '<div class="mkt"><div>'+GEHIRN[gehirn]+'</div><div class="muted">'+t('trainGesperrt')+'</div></div>';
+    }
+    var n=trainingsraumGrundlage(gehirn).length;
+    if(!n) return '<div class="mkt"><div>'+GEHIRN[gehirn]+'</div><div class="muted">'+t('trainKeine')+'</div></div>';
+    var a=lernAbweichung(trainingsraumGrundlage(gehirn));
+    var s=lernStaerke(a.n);
+    var farbe = s==='belegt' ? 'var(--win)' : (s==='hinweis' ? 'var(--accent)' : 'var(--dim)');
+    return '<div class="mkt"><div>'+GEHIRN[gehirn]+'</div>'+
+      '<div><span style="color:'+farbe+'">'+t('trainAbw').replace('{a}',a.beh).replace('{b}',a.echt).replace('{c}',a.diff)+
+      '</span> <span class="muted">(n='+a.n+')</span></div></div>';
+  }
+  return '<div class="card">'+
+    '<div class="disp" style="font-size:20px;margin-bottom:6px">🧪 '+t('trainT')+'</div>'+
+    '<div class="muted">'+t('trainD')+'</div>'+
+    '<div style="margin-top:10px">'+
+      zeile('sonnet','claude-sonnet-4-6')+
+      zeile('flash', state.gModellGehirn||state.geminiModel||'')+
+    '</div>'+
+    '<button class="btn" style="margin-top:10px" onclick="trainingsraumLauf(this)">'+t('trainBtn')+'</button>'+
+    '<div id="trainErr" style="color:var(--loss);margin-top:8px;font-size:13px"></div>'+
+    (state.trainingsraumInfo ? '<div class="muted" style="margin-top:8px">'+esc(state.trainingsraumInfo)+'</div>' : '')+
+  '</div>';
 }
 
 /* ================= SCHEIN-FOTO ================= */
@@ -4148,6 +4418,7 @@ function viewMore(){
   kalibBlock()+
   beobachtungenBlock()+
   gepaartBlock()+
+  trainingsraumBlock()+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">🎛 '+t('mdlT')+'</div>'+
     '<div class="muted" style="margin-bottom:12px">'+t('mdlD')+'</div>'+
     modellFeld('gehirn')+
