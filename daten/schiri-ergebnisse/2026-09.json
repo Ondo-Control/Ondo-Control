@@ -84,6 +84,90 @@
    "torGast": 3,
    "quelle": "football-data.org",
    "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-09-11",
+   "anpfiff": "18:30",
+   "wettbewerb": "Bundesliga",
+   "heim": "1. FC Union Berlin",
+   "gast": "FC Schalke 04",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 3,
+   "quelle": "football-data.org",
+   "halbzeit": "0:1"
+  },
+  {
+   "datum": "2026-09-11",
+   "anpfiff": "18:00",
+   "wettbewerb": "Eredivisie",
+   "heim": "AZ",
+   "gast": "Willem II Tilburg",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-09-11",
+   "anpfiff": "19:00",
+   "wettbewerb": "Primera Division",
+   "heim": "Sevilla FC",
+   "gast": "Valencia CF",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-09-11",
+   "anpfiff": "18:45",
+   "wettbewerb": "Ligue 1",
+   "heim": "Stade Rennais FC 1901",
+   "gast": "Olympique de Marseille",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-09-11",
+   "anpfiff": "18:45",
+   "wettbewerb": "Serie A",
+   "heim": "Venezia FC",
+   "gast": "ACF Fiorentina",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 4,
+   "quelle": "football-data.org",
+   "halbzeit": "1:2"
+  },
+  {
+   "datum": "2026-09-11",
+   "anpfiff": "19:00",
+   "wettbewerb": "Championship",
+   "heim": "West Ham United FC",
+   "gast": "Wrexham AFC",
+   "status": "FT",
+   "torHeim": 6,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "2:0"
+  },
+  {
+   "datum": "2026-09-12",
+   "anpfiff": "00:00",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "Coritiba FBC",
+   "gast": "CA Paranaense",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 3,
+   "quelle": "football-data.org",
+   "halbzeit": "1:2"
   }
  ]
 }
