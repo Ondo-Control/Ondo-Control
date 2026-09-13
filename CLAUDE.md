@@ -196,16 +196,15 @@ Punkt 73, nicht hier wiederholt (Punkt 45).
 `.claude/hooks/claude_md_frisch.py` vergleicht sie bei jedem Sitzungsstart und erinnert an
 eine Erneuerung, sobald einer abweicht. Er erneuert nichts von selbst.*
 
-- STAND.md — `cfaa220849328f04f4ca96ecc10d79474504351c`
-- Ondo-Control-Backlog.md — `72edfd48cb4f7bf2b4ea22ab32d503bdc667d428`
-- Blueprint.md — `dd0b2aa16ddacf3ac384b202dca6c53fa6124e0f`
+- STAND.md — `5a320fe33b4654f61a8834da38b21565cfd076dd`
+- Ondo-Control-Backlog.md — `25adc6048a4853c4c4ca39e50ac3f7c20501c9a6`
+- Blueprint.md — `9047a6d9c0ab2703359df54b3984983eba340729`
 - Ondo-Core-Architektur.md — `2923c6d2f1cf152a67522bd0ddafc42d6c196b40`
 
-*Prüfstand nachgeführt am 13.9.2026 (nur Hashes — Anlass war Ondos Auftrag, die
-Schiedsrichter-Wege neu zusammenzusetzen (Backlog-Punkt 81, `beta.html` v19.13.2): API-Football
-und football-data.org belegten zwei von drei festen Plätzen je Prüfrunde, unabhängig vom
-Treffer, wodurch die Drei-Läufe-Schwelle strukturell nie erreichbar war. Ondo hat sich gegen
-ein automatisches Rückschreiben der App ins Repo entschieden (Schreibzugriffs-Risiko), gelöst
-stattdessen über eine zweiphasige Wege-Zusammensetzung. `pruefAuswerten()`/`refEinigkeit()`
-unverändert; inhaltlich für diese Datei nicht berührt, keine neue Arbeitsregel, keine Änderung
-an Zweig- oder Geheimfeld-Regeln).*
+*Prüfstand nachgeführt am 13.9.2026 (nur Hashes — Anlass war eine reine Diagnose (Backlog-Punkt
+81, kein Codeaufwand): echte Testabrufe belegen, dass football-data.org Browser-Zugriffe
+(CORS) nur von `http://localhost` erlaubt, nicht von Ondos echter Adresse — das erklärt, warum
+diese Quelle nie als Treffer erscheint. API-Football erlaubt dagegen jeden Ursprung (`*`), dort
+bleibt die bekannte Kontosperre die Ursache. Kein Fix, kein Vorschlag zum Bau; inhaltlich für
+diese Datei nicht berührt, keine neue Arbeitsregel, keine Änderung an Zweig- oder
+Geheimfeld-Regeln).*

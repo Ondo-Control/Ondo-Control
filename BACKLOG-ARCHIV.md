@@ -410,6 +410,38 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 120 ändert (13.9., zweiter strukturierter Datenweg gefunden — läuft real, wird von `beta.html` nie gelesen — Backlog-Punkt 81, kein Codeaufwand)
+
+**Anlass:** Ondo: „Du hast doch eine Datei angelegt im Repo für Ergebnisabfrage an API
+Datenbanken was steht dadrin" — direkt am Repo nachgesehen, nicht aus dem Gedächtnis
+beantwortet (Arbeitsregel H).
+
+- **🔴 Fund:** Neben dem im Browser eingebauten, nie genutzten Weg (Fassung 119) gibt es einen
+  zweiten, unabhängigen: ein täglich automatisch laufendes GitHub-Actions-Programm
+  (`.github/workflows/schiri-ergebnisse.yml` + `skripte/schiri-ergebnisse-holen.js`, seit
+  Backlog-Punkt 9) fragt dieselben zwei echten Datenbanken ab und legt Treffer in
+  `daten/schiri-ergebnisse/JJJJ-MM.json` ab. Läuft nachweislich — zwei echte Commits
+  (11./12.9.2026), 14 echte Spiele im September aus u. a. Champions League, Bundesliga,
+  La Liga, Ligue 1, Serie A, Championship, Eredivisie, Brasileirão.
+- **🔴 `beta.html` liest diese Datei nirgends** (`grep` auf „schiri-ergebnisse"/„daten/schiri":
+  null Treffer) — echte, richtige Ergebnisse werden gesammelt und vom Schiedsrichter nie
+  benutzt. Die frühere Aussage „strukturierte Quelle nie genutzt" (Fassung 119) berichtigt,
+  nicht überschrieben: sie war nur für den Browser-Weg richtig, nicht vollständig.
+- **Vorschlag, nicht Baubeginn (Art. 8):** Diese Daten in `beta.html` einzulesen und mit
+  `kiProtokoll` abzugleichen wäre ein echter nächster Schritt für Fehlerart 7/8 bei den
+  abgedeckten Wettbewerben. Kosten grob eingeschätzt (Arbeitsregel G): kein neuer Schlüssel,
+  aber echter Programmieraufwand für die Zuordnung von Mannschaftsnamen — Ondos Entscheidung,
+  ob das gebaut werden soll.
+- **Kein Codeaufwand in dieser Fassung** — reine Berichtigung und Buchführung. `beta.html`
+  bleibt v19.13.1. `pruefe.py`: ALLES SAUBER.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 115 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl.)*
+
+---
+
+---
+
 ## ⚠ Was Fassung 119 ändert (13.9., echter Schiedsrichter-Bug gefunden und behoben — Backlog-Punkt 81, `beta.html` v19.13.1)
 
 **Anlass:** Ondo, mit Screenshot und drei Datendateien (Schiedsrichter-Rohantworten,

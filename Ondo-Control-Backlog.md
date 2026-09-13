@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 13.9.2026, Fassung 124 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 13.9.2026, Fassung 125 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,34 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 125 ändert (13.9., Diagnose: CORS erklärt, warum football-data.org nie als Quelle erscheint — Backlog-Punkt 81, kein Codeaufwand)
+
+**Anlass:** Ondos Auftrag „Diagnose: Warum liefert football-data.org nie ein Ergebnis?
+(erweitert um CORS)" — reine Untersuchung, ausdrücklich kein Fix in dieser Fassung.
+
+- **🔴 CORS-Vermutung geprüft und bestätigt, mit echten Testabrufen, nicht nur behauptet.**
+  Der OPTIONS-Preflight, den ein echter Browser vor jeder Anfrage mit dem Kopf-Feld
+  `X-Auth-Token` automatisch verschickt, zeigt bei football-data.org
+  `Access-Control-Allow-Origin: http://localhost` — **fest, unabhängig vom gesendeten
+  Origin** (dreifach geprüft: Ondos echte Adresse, eine fremde Testadresse, ganz ohne
+  Origin-Kopf, immer derselbe Wert). Browser-Zugriffe sind damit nachweislich nur von
+  `localhost` erlaubt, nicht von Ondos echter Adresse `https://ondo-control.github.io` — ein
+  echter Browser schickt die eigentliche Anfrage deshalb nie ab, `fetch()` scheitert mit einem
+  generischen Netzwerkfehler, das bestehende `.catch(){ return []; }` fängt das still ab.
+  **Das erklärt, warum football-data.org nie als Quelle erscheint — unabhängig von
+  Kontogültigkeit oder Ligen-Abdeckung**, beides vorher fälschlich als alleinige Erklärung
+  behandelt.
+- **Zum Vergleich, API-Football:** `Access-Control-Allow-Origin: *` — uneingeschränkt, CORS
+  ist dort NICHT die Ursache. Der Fehlschlag dort bleibt die bereits bekannte Kontosperre.
+- **Grenze offen benannt:** Diese Sitzung hat keinen Zugriff auf Ondos echten Schlüssel,
+  Schritt 2 des Auftrags war damit wörtlich nicht ausführbar — die CORS-Frage selbst ist
+  davon unberührt, weil CORS-Kopfzeilen unabhängig von der Tokengültigkeit gesetzt werden.
+- **Kein Codeaufwand, kein Vorschlag zum Bau** — wie beauftragt (Art. 8). Volle Kopfzeilen und
+  Belege bei Backlog-Punkt 81 nachgetragen, nicht hier wiederholt (Punkt 45).
+- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl.)*
 
 ---
 
@@ -154,36 +182,6 @@ Widerspruch, am GitHub-Lauf-Verlauf und an Backlog-Punkt 9 selbst nachgeprüft, 
   Abschnitt „Was Fassung 115 ändert" blieb versehentlich zusätzlich zur Archiv-Kopie im
   Hauptdokument stehen. Jetzt entfernt (Archiv-Kopie war bereits korrekt). Mit dieser Fassung
   zusätzlich turnusgemäss verschoben: „Was Fassung 116 ändert".
-- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl.)*
-
----
-
-## ⚠ Was Fassung 120 ändert (13.9., zweiter strukturierter Datenweg gefunden — läuft real, wird von `beta.html` nie gelesen — Backlog-Punkt 81, kein Codeaufwand)
-
-**Anlass:** Ondo: „Du hast doch eine Datei angelegt im Repo für Ergebnisabfrage an API
-Datenbanken was steht dadrin" — direkt am Repo nachgesehen, nicht aus dem Gedächtnis
-beantwortet (Arbeitsregel H).
-
-- **🔴 Fund:** Neben dem im Browser eingebauten, nie genutzten Weg (Fassung 119) gibt es einen
-  zweiten, unabhängigen: ein täglich automatisch laufendes GitHub-Actions-Programm
-  (`.github/workflows/schiri-ergebnisse.yml` + `skripte/schiri-ergebnisse-holen.js`, seit
-  Backlog-Punkt 9) fragt dieselben zwei echten Datenbanken ab und legt Treffer in
-  `daten/schiri-ergebnisse/JJJJ-MM.json` ab. Läuft nachweislich — zwei echte Commits
-  (11./12.9.2026), 14 echte Spiele im September aus u. a. Champions League, Bundesliga,
-  La Liga, Ligue 1, Serie A, Championship, Eredivisie, Brasileirão.
-- **🔴 `beta.html` liest diese Datei nirgends** (`grep` auf „schiri-ergebnisse"/„daten/schiri":
-  null Treffer) — echte, richtige Ergebnisse werden gesammelt und vom Schiedsrichter nie
-  benutzt. Die frühere Aussage „strukturierte Quelle nie genutzt" (Fassung 119) berichtigt,
-  nicht überschrieben: sie war nur für den Browser-Weg richtig, nicht vollständig.
-- **Vorschlag, nicht Baubeginn (Art. 8):** Diese Daten in `beta.html` einzulesen und mit
-  `kiProtokoll` abzugleichen wäre ein echter nächster Schritt für Fehlerart 7/8 bei den
-  abgedeckten Wettbewerben. Kosten grob eingeschätzt (Arbeitsregel G): kein neuer Schlüssel,
-  aber echter Programmieraufwand für die Zuordnung von Mannschaftsnamen — Ondos Entscheidung,
-  ob das gebaut werden soll.
-- **Kein Codeaufwand in dieser Fassung** — reine Berichtigung und Buchführung. `beta.html`
-  bleibt v19.13.1. `pruefe.py`: ALLES SAUBER.
-- **Regel 5 angewandt:** Abschnitt „Was Fassung 115 ändert" wortgleich nach
-  `BACKLOG-ARCHIV.md` verschoben.
 - **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl.)*
 
 ---
@@ -1799,6 +1797,77 @@ Neuzusammensetzung ausgeliefert, Bestätigung durch einen echten Prüfzyklus am 
 Erst wenn Ondo „Ergebnisse prüfen" tatsächlich laufen lässt und bisher hängengebliebene Spiele
 jetzt ein Ergebnis bekommen, gilt dieser Teil des Punktes als bestätigt — die zweite,
 unbewiesene Vermutung zu stillen Teilfehlschlägen (oben) bleibt davon unabhängig offen.
+
+→ **🔴 Diagnose, 13.9.2026 (Ondos Auftrag, reine Untersuchung, kein Codeaufwand): warum
+football-data.org nie als Quelle in `beta.html` erscheint — CORS-Vermutung GEPRÜFT UND
+BESTÄTIGT, mit echten Testabrufen, nicht nur behauptet.**
+
+**Grenze zuerst genannt, nicht verschwiegen (Art. 11):** Diese Sitzung hat keinen Zugriff auf
+Ondos gespeicherten `footballDataKey`/`apiFootballKey` — Schritt 2 des Auftrags („mit Ondos
+gespeichertem Schlüssel") war damit wörtlich nicht ausführbar. Ersatzweise mit einem
+Platzhalter-Token getestet, der ausdrücklich als ungültig erkannt wird (siehe unten) — die
+CORS-Frage selbst ist davon unberührt: CORS-Kopfzeilen werden vom Server unabhängig davon
+gesetzt, ob ein Token gültig ist, weil die Ablehnung eines Tokens serverseitig erst NACH einer
+erfolgreichen CORS-Prüfung passiert.
+
+**Echter Testabruf, football-data.org, `GET https://api.football-data.org/v4/matches?dateFrom=2026-09-12&dateTo=2026-09-12`:**
+- Ohne jeden Header: `HTTP 200`, Antwort `{"filters":{"dateFrom":"2026-09-12","dateTo":"2026-09-12","permission":null},"resultSet":{"count":0},"matches":[]}` — anonymer Zugriff liefert leere Treffer, keine Fehlermeldung.
+- Mit `Origin: https://ondo-control.github.io` und einem ungültigen Platzhalter-Token: `HTTP 400`, `{"message":"Your API token is invalid.","errorCode":400}` — die Serverantwort selbst bestätigt, dass ein echtes Token die Anfrage weiterbringen würde; das ist keine grundsätzliche Sperre.
+- **Der entscheidende Befund liegt in der OPTIONS-Preflight-Antwort**, die ein echter Browser bei jeder Anfrage mit einem eigenen Kopf-Feld wie `X-Auth-Token` automatisch zuerst verschickt:
+  ```
+  OPTIONS https://api.football-data.org/v4/matches?...
+  Origin: https://ondo-control.github.io
+  Access-Control-Request-Headers: X-Auth-Token
+
+  HTTP/1.1 204 No Content
+  Access-Control-Allow-Methods: GET,OPTIONS
+  Access-Control-Allow-Origin: http://localhost
+  Access-Control-Allow-Headers: X-Auth-Token, X-Response-Control, X-Authenticated-Client
+  ```
+  **`Access-Control-Allow-Origin` ist gesetzt, aber fest auf `http://localhost`** — geprüft mit
+  drei verschiedenen `Origin`-Werten (Ondos echte Adresse, `https://example.com`, ganz ohne
+  Origin-Kopf): **in allen drei Fällen exakt derselbe, unveränderte Wert `http://localhost`**,
+  keine Spiegelung des gesendeten Origins. football-data.org lässt Browser-Zugriffe (CORS)
+  nachweislich nur von `localhost` zu, also nur für lokale Entwicklung — nicht von Ondos echter
+  Adresse `https://ondo-control.github.io`.
+- **Fall (a) trifft zu, wortgleich wie im Auftrag umrissen:** Ein echter Browser an Ondos
+  Adresse würde diese Preflight-Antwort sehen, den fehlenden Match zwischen gesendetem und
+  erlaubtem Origin erkennen und die eigentliche GET-Anfrage **gar nicht erst abschicken** — der
+  `fetch()`-Aufruf in `footballDataLauf()` scheitert dadurch mit einem generischen Netzwerkfehler
+  (in Chrome/Safari typischerweise „Failed to fetch"), das bestehende `.catch(function(){ return
+  []; })` fängt das still ab. **Genau das erklärt, warum football-data.org nie als Quelle
+  erscheint, unabhängig von Kontogültigkeit oder Ligen-Abdeckung** — beides wurde in dieser
+  Diagnose vorher fälschlich als alleinige Erklärung behandelt (siehe die berichtigten Absätze
+  weiter oben in diesem Punkt).
+
+**Zum Vergleich, API-Football, `OPTIONS https://v3.football.api-sports.io/fixtures?date=2026-09-12`:**
+  ```
+  HTTP/2 204
+  access-control-allow-methods: GET, POST, OPTIONS
+  access-control-allow-origin: *
+  access-control-allow-headers: x-rapidapi-key, x-apisports-key, x-rapidapi-host, content-type, authorization, x-requested-with
+  ```
+  **`Access-Control-Allow-Origin: *`** — uneingeschränkt, jeder Browser-Ursprung ist erlaubt.
+  **Fall (d) getrennt vermerkt: Bei API-Football liegt die Ursache NICHT bei CORS.** Der
+  normale `GET`-Testabruf (Platzhalter-Token) liefert `HTTP 403`,
+  `{"errors":{"token":"Invalid API key, please check your request and credentials."}}` — ein
+  inhaltlicher Fehler (ungültiges Token, deckt sich mit der bei Punkt 9 bereits dokumentierten
+  Kontosperre „Your account is suspended"), keine Browser-Blockade. Ohne echten, gültigen
+  Schlüssel dieser Sitzung nicht abschliessend von der Kontosperre zu unterscheiden — beide
+  Ursachen sind hier ohnehin bereits bekannt und unabhängig von CORS.
+
+**Was diese Diagnose NICHT zeigt, ehrlich benannt (Art. 11):** Ob football-data.org diese
+`localhost`-Beschränkung generell für alle Konten setzt oder nur für die kostenlose Stufe —
+nicht geprüft, weil dafür ein echtes Konto nötig wäre. Ob ein Wechsel auf einen serverseitigen
+Weg (z. B. über die bereits bestehende GitHub-Actions-Automatik, die dieselbe Quelle täglich
+erfolgreich abruft, weil sie nicht im Browser läuft und daher nicht der CORS-Regel unterliegt)
+gewünscht ist — reine Diagnose, kein Vorschlag zum Bau (Art. 8, ausdrücklicher Auftrag „KEIN
+Fix ohne separaten Auftrag").
+
+**Kein Codeaufwand, kein Eingriff an `state`, an der Speicherung, an
+`schiri-ergebnisse-holen.js` oder an der GitHub-Actions-Datei** — wie beauftragt. Kosten:
+sechs echte, minimale Testabrufe innerhalb des kostenlosen Kontingents, kein Modellaufruf
+ausser diesem Bericht selbst.
 
 ---
 

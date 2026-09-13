@@ -3,9 +3,17 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.123
+**Version:** 0.124
 **Stand:** 13. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.124 ändert (13.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> eine reine Diagnose (Backlog-Punkt 81, kein Codeaufwand): Echte Testabrufe belegen, dass
+> football-data.org Browser-Zugriffe (CORS) nur von `http://localhost` erlaubt, nicht von
+> Ondos echter Adresse — das erklärt, warum diese Quelle nie als Treffer erscheint, unabhängig
+> von Kontogültigkeit oder Ligen-Abdeckung. API-Football erlaubt dagegen jeden Ursprung (`*`),
+> dort bleibt die bekannte Kontosperre die Ursache. Kein Fix, kein Vorschlag zum Bau (Art. 8).
+> Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.124 gehoben.
 
 > **Was Fassung 0.123 ändert (13.9.2026):** Abschnitt 10 ergänzt — Ondo hat entschieden, dass
 > die App keinen Schreibzugriff aufs Repo bekommt (Backlog-Punkt 81, Wege-Neuzusammensetzung

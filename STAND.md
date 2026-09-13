@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 13.9.2026, Fassung 124, v19.13.2*
+*Die aktuelle Wahrheit. Stand: 13.9.2026, Fassung 125, v19.13.2*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -767,6 +767,21 @@ bisher aber **keine einzige Auswirkung gehabt**. Einzelheiten Backlog-Punkt 81.
 Anfrage-Auswahl (`rundeLaufen()` wählte immer dieselben ersten fünf Spiele, weitere kamen nie
 an die Reihe) erklärt Ondos „0 von 10 gefunden" vom 13.9.2026 — behoben, `beta.html` v19.13.1.
 Einzelheiten Backlog-Punkt 81.
+
+**🔴 Diagnose fertig, 13.9.2026 (Ondos Auftrag, reine Untersuchung, kein Codeaufwand): Warum
+football-data.org „kein einziges Mal als tatsächlich genutzte Quelle" vorkommt, ist jetzt
+geklärt, nicht mehr nur die Ligen-Abdeckung.** Echte Testabrufe (OPTIONS-Preflight, wie ihn
+ein Browser bei jeder Anfrage mit dem Kopf-Feld `X-Auth-Token` automatisch verschickt) zeigen:
+`Access-Control-Allow-Origin: http://localhost` — fest, dreifach mit verschiedenen
+Origin-Werten geprüft, nie Ondos echte Adresse. **Browser-Zugriffe auf football-data.org sind
+nachweislich nur von `localhost` erlaubt, nicht von `https://ondo-control.github.io`** — ein
+echter Browser schickt die eigentliche Anfrage deshalb nie ab, `fetch()` scheitert mit einem
+generischen Netzwerkfehler, das bestehende `.catch(){ return []; }` fängt das still ab. Zum
+Vergleich: API-Football liefert `Access-Control-Allow-Origin: *` (uneingeschränkt) — dort
+bleibt die bereits bekannte Kontosperre die Ursache, nicht CORS. **Grenze:** Diese Sitzung
+hat keinen Zugriff auf Ondos echten Schlüssel, die CORS-Kopfzeile ist davon aber unabhängig,
+weil sie unabhängig von der Tokengültigkeit gesetzt wird. Kein Fix in dieser Fassung, wie
+beauftragt. Volle Kopfzeilen und Einzelheiten: Backlog-Punkt 81.
 
 ---
 
