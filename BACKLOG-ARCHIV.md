@@ -410,6 +410,39 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 117 ändert (13.9., Kriterium-(g)-Test gebaut — Backlog-Punkt 80, `beta.html` v19.13.0)
+
+**Anlass:** Ondo, direkt im Anschluss an die Klärung von (c): „Antwortkonsistenz (g): Teste.
+Aber Du musst klar definieren wann es fertig ist. Dann Schiedsrichter reparieren. Das ist
+dein Job." Neue Backlog-Punkte 80 (Kriterium g) und 81 (Schiedsrichter) angelegt.
+
+- **🔴 Backlog-Punkt 80: Definition VOR dem Bau festgehalten, dann gebaut.** Bis zu 8 offene
+  Spiele, 3 Wiederholungen je Gehirn, ohne Marktlage (reine Antwort-Schwankung, nicht mit
+  Recherche-Schwankung vermengt). Bestanden ab 90 % gleichbleibendem Tipp UND höchstens 10
+  Prozentpunkten Spanne im Schnitt — Massstab vor dem ersten Lauf fixiert, damit er nicht
+  nachträglich ans Ergebnis angepasst werden kann.
+- **`antwortkonsistenzLauf()` gebaut**, wiederverwendet `vorhersageGehirn()` unverändert (wie
+  der Trainingsraum) — neuer Knopf unter Wettmodul → KI-Log → Daten.
+- **Ehrliche Grenze, sofort benannt:** Diese Code-Sitzung hat keinen Zugriff auf Ondos
+  API-Schlüssel und kann den Lauf nicht selbst ausführen — er läuft über Ondos eigenes Gerät,
+  wie jede andere echte Vorhersage. Gebaut ist der Knopf, nicht ein fertiges Ergebnis.
+- **`state.antwortkonsistenzBericht` in `MESS_FELDER` ergänzt** (Punkt 44) — reine Messdaten.
+- **🔴 Backlog-Punkt 81 angelegt: Schiedsrichter reparieren, nach Ondos Auftrag „das ist dein
+  Job".** Diagnose läuft, noch kein Codeaufwand in dieser Fassung — Einzelheiten bei Punkt 81.
+- **Verifiziert:** `node --check` bestanden · **23 neue Prüfungen** an den echten,
+  herausgeschnittenen Funktionen · alle bestehenden Suiten erneut gelaufen, alle weiterhin
+  bestanden · `pruefe.py`: ALLES SAUBER.
+- **10 neue Sprachschlüssel** (339 → 349). Kein Schnitt in der Messreihe. `beta.html` jetzt
+  v19.13.0.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 112 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(80 zählt nicht mehr mit: das Werkzeug
+  ist gebaut, nur der echte Lauf durch Ondo steht noch aus — dieselbe Lage wie beim
+  Trainingsraum, dessen Bewährung ebenfalls aussteht. 81 neu: von Ondo in Auftrag gegeben,
+  Diagnose läuft, noch nicht gebaut.)*
+
+---
+
 ## ⚠ Was Fassung 116 ändert (13.9., Kriterium (c) von Ondo entschieden — kein Codeaufwand)
 
 **Anlass:** Direkt im Anschluss an die Berichtigung zu Kriterium (f) (Fassung 115) hat Ondo

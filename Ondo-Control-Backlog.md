@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 13.9.2026, Fassung 121 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 13.9.2026, Fassung 122 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,46 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 122 ändert (13.9., frischer Messstand von Ondo mitgeschickt — echter Fund zu Celje/Sabah UND zu Backlog-Punkt 81, kein Codeaufwand)
+
+**Anlass:** Ondo schickte zwei Bildschirmfotos der App (KI-Log → Daten, und Mehr), seinen
+Messdaten-Export (`ondo-control-messdaten-2026-09-13.json`, erzeugt 13.9.2026 08:28 Uhr laut
+eigenem Kopf) und einen Rohdaten-Export des Schiedsrichters, mit dem Auftrag „Aktueller Stand".
+
+- **`STAND.md`, Abschnitt „Aktueller Messstand", vollständig neu abgelesen (Fehlerart C1
+  vermieden — keine Zahl hergeleitet):** 505 Vorhersagen (403 → 505), Sonnet 609 bewertete
+  Aussagen bei 4 % Abweichung/55 % Trefferquote, Flash 606 bei 3 %/53 %. **Erstmals ein echter
+  Messstand statt einer Vorabrechnung** für Brier-Score (Sonnet 0,2418, Flash 0,2452),
+  Widerspruchsquote je Markt (Backlog-Punkt 0b) und den Observation Layer (Backlog-Punkt 75
+  Teil 3, alle sechs Beobachtungen jetzt „belegt"). Einzelheiten in `STAND.md`.
+- **🔴 Echter Fund, am mitgeschickten Export selbst belegt, nicht vermutet: Celje und Sabah
+  sind wieder ungelöst — die Aussage „seit 10.9.2026 nicht mehr geparkt" stimmt nicht mehr.**
+  Im Export stehen beide Einträge wieder mit `geparkt:true`; Celjes `ergebnisHeim`/`gast` sind
+  zwar gesetzt (1:1), aber `status` bleibt „offen" statt „bewertet"; Sabah trägt
+  `parkGrund:"unstable_ref"` und gar keinen Endstand. Die `refRoh`-Historie beider Einträge im
+  selben Export **endet am 31.8.2026** — kein Lauf vom 10.9.2026 ist darin zu finden, obwohl
+  `STAND.md` genau den behauptet. **Ob die Übernahme vom 10.9.2026 nie gespeichert wurde oder
+  später rückgängig gemacht wurde, ist nicht bekannt (Art. 11) — beides bleibt offen.**
+  `STAND.md`, Fehlerart-11-Zeile, korrigiert mit Durchstreichung, nicht überschrieben.
+- **🔴 Zweiter Fund, für Backlog-Punkt 81 relevant: eine der zwei offenen Vermutungen ist jetzt
+  widerlegt, die andere bleibt bestehen.** Das mitgeschickte Bildschirmfoto (Mehr-Tab) zeigt
+  beide strukturierten Schlüssel als gespeichert: „API-Football-Schlüssel gespeichert" und
+  „football-data.org-Schlüssel gespeichert". **Vermutung (1) aus Punkt 81 — die Schlüssel
+  könnten nie gespeichert worden sein — ist damit widerlegt.** Trotzdem kommt weder
+  „api-football.com" noch „football-data.org" im gesamten Messdaten-Export (505 Einträge) noch
+  im Rohdaten-Export als `quelle` vor — maschinell nachgezählt (`grep`), **null Treffer** in
+  beiden Dateien. **Vermutung (2) — die geringe Abdeckung bei Ondos tatsächlichen 58
+  Wettbewerben — bleibt damit die plausiblere Erklärung, weiterhin nicht abschliessend
+  bewiesen.** Einzelheiten bei Punkt 81 nachgetragen.
+- **Kein Codeaufwand in dieser Fassung** — reine Buchführung anhand von Ondo selbst
+  mitgeschickter, echter Daten. `beta.html` bleibt v19.13.1. `pruefe.py`: ALLES SAUBER.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 117 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl — bei 81 ist
+  jetzt ein Teilbefund zur offenen Frage nachgetragen, der Punkt selbst bleibt offen.)*
 
 ---
 
@@ -138,39 +178,6 @@ angekündigt.
 - **Regel 5 angewandt:** Abschnitt „Was Fassung 113 ändert" wortgleich nach
   `BACKLOG-ARCHIV.md` verschoben.
 - **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl.)*
-
----
-
-## ⚠ Was Fassung 117 ändert (13.9., Kriterium-(g)-Test gebaut — Backlog-Punkt 80, `beta.html` v19.13.0)
-
-**Anlass:** Ondo, direkt im Anschluss an die Klärung von (c): „Antwortkonsistenz (g): Teste.
-Aber Du musst klar definieren wann es fertig ist. Dann Schiedsrichter reparieren. Das ist
-dein Job." Neue Backlog-Punkte 80 (Kriterium g) und 81 (Schiedsrichter) angelegt.
-
-- **🔴 Backlog-Punkt 80: Definition VOR dem Bau festgehalten, dann gebaut.** Bis zu 8 offene
-  Spiele, 3 Wiederholungen je Gehirn, ohne Marktlage (reine Antwort-Schwankung, nicht mit
-  Recherche-Schwankung vermengt). Bestanden ab 90 % gleichbleibendem Tipp UND höchstens 10
-  Prozentpunkten Spanne im Schnitt — Massstab vor dem ersten Lauf fixiert, damit er nicht
-  nachträglich ans Ergebnis angepasst werden kann.
-- **`antwortkonsistenzLauf()` gebaut**, wiederverwendet `vorhersageGehirn()` unverändert (wie
-  der Trainingsraum) — neuer Knopf unter Wettmodul → KI-Log → Daten.
-- **Ehrliche Grenze, sofort benannt:** Diese Code-Sitzung hat keinen Zugriff auf Ondos
-  API-Schlüssel und kann den Lauf nicht selbst ausführen — er läuft über Ondos eigenes Gerät,
-  wie jede andere echte Vorhersage. Gebaut ist der Knopf, nicht ein fertiges Ergebnis.
-- **`state.antwortkonsistenzBericht` in `MESS_FELDER` ergänzt** (Punkt 44) — reine Messdaten.
-- **🔴 Backlog-Punkt 81 angelegt: Schiedsrichter reparieren, nach Ondos Auftrag „das ist dein
-  Job".** Diagnose läuft, noch kein Codeaufwand in dieser Fassung — Einzelheiten bei Punkt 81.
-- **Verifiziert:** `node --check` bestanden · **23 neue Prüfungen** an den echten,
-  herausgeschnittenen Funktionen · alle bestehenden Suiten erneut gelaufen, alle weiterhin
-  bestanden · `pruefe.py`: ALLES SAUBER.
-- **10 neue Sprachschlüssel** (339 → 349). Kein Schnitt in der Messreihe. `beta.html` jetzt
-  v19.13.0.
-- **Regel 5 angewandt:** Abschnitt „Was Fassung 112 ändert" wortgleich nach
-  `BACKLOG-ARCHIV.md` verschoben.
-- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(80 zählt nicht mehr mit: das Werkzeug
-  ist gebaut, nur der echte Lauf durch Ondo steht noch aus — dieselbe Lage wie beim
-  Trainingsraum, dessen Bewährung ebenfalls aussteht. 81 neu: von Ondo in Auftrag gegeben,
-  Diagnose läuft, noch nicht gebaut.)*
 
 ---
 
@@ -337,7 +344,7 @@ Ein zweiter Arbeits-Branch `mistral` existiert seit vor dem 24.8.2026 (aktuell f
 
 ---
 
-**64. Rohe Schiedsrichter-Antwort mitschreiben** · *Vorschlag Claude, 28.8.2026, aus der Restarbeit zu Punkt 51 (seit 30.8.2026 in `BACKLOG-ARCHIV.md`) · von Ondo in Chat 25 entschieden, „wenn alles passt" · nachgetragen und gebaut 28.8.2026 · Teil 3 am 2.9.2026 zurückgenommen · Celje/Sabah erneut geprüft und übernommen 10.9.2026, Ondo* · **Status: 🔴 Mitschreiben GEBAUT am 28.8.2026 (`beta.html` v19.8.5) — die zwei Celje/Sabah-Fälle am 10.9.2026 erneut geprüft, extern bestätigt und von Ondo übernommen, siehe Block unten**
+**64. Rohe Schiedsrichter-Antwort mitschreiben** · *Vorschlag Claude, 28.8.2026, aus der Restarbeit zu Punkt 51 (seit 30.8.2026 in `BACKLOG-ARCHIV.md`) · von Ondo in Chat 25 entschieden, „wenn alles passt" · nachgetragen und gebaut 28.8.2026 · Teil 3 am 2.9.2026 zurückgenommen · Celje/Sabah erneut geprüft und übernommen 10.9.2026, Ondo · 🔴 laut Ondos Messdaten-Export vom 13.9.2026 wieder ungelöst, Ursache unbekannt* · **Status: 🔴 Mitschreiben GEBAUT am 28.8.2026 (`beta.html` v19.8.5) — die zwei Celje/Sabah-Fälle waren am 10.9.2026 kurzzeitig übernommen (siehe Block unten), laut dem Export vom 13.9.2026 aber wieder geparkt bzw. ohne Endstand, Einzelheiten bei Fassung 122 oben und in `STAND.md`**
 
 > **🔴 ZURÜCKGENOMMEN am 2.9.2026 (Entscheidung Ondos), `beta.html` v19.8.11.** Die manuelle Eintragung der beiden Spiele (unten, „Nachfrage 30.8.2026, Teil 3", berichtigt in v19.8.10) **war verfrüht** und ist zurückgesetzt. **Ondos Klarstellung, die den Ausschlag gab:** „Der Schiedsrichter ist repariert" heisst — **er liefert ab sofort nur noch richtige, zuverlässige Ergebnisse für alle künftigen Spiele, ohne Gegenprüfung im Chat.** Diese Bedingung ist nicht erfüllt; die elfte Fehlerart besteht unverändert. Damit galt die Auflage aus diesem Punkt („Neubewertung dieser beiden Spiele erst, sobald die Ursache der elften Fehlerart geklärt und der Schiedsrichter entsprechend repariert ist") am 30.8.2026 unverändert weiter — sie ist übergangen worden.
 >
@@ -1629,6 +1636,19 @@ mitgeschickt):**
     verschiedenen Wettbewerben in Ondos echten Spielen bliebe ein „kein Treffer" für die
     meisten davon auch bei funktionierenden Schlüsseln zu erwarten. Nur Ondo kann (1)
     beantworten; diese Sitzung kann sein eigenes Gerät nicht einsehen.
+  - **🔴 (1) BEANTWORTET, 13.9.2026 — an einem von Ondo mitgeschickten Bildschirmfoto der
+    App belegt, nicht vermutet: Beide Schlüssel SIND im Handy gespeichert.** Der Mehr-Tab
+    zeigt „API-Football-Schlüssel gespeichert" und „football-data.org-Schlüssel gespeichert".
+    **Vermutung (1) ist damit widerlegt** — fehlende Schlüssel sind nicht die Ursache.
+    Zusätzlich am selben Tag geprüft: Weder „api-football.com" noch „football-data.org"
+    kommt im vollständigen Messdaten-Export (505 Einträge, Ondo mitgeschickt) oder im
+    Rohdaten-Export des Schiedsrichters als `quelle` vor — maschinell nachgezählt (`grep`),
+    **null Treffer** in beiden Dateien, derselbe Befund wie zuvor, jetzt aber mit
+    ausgeschlossener Schlüssel-Ursache. **Vermutung (2) — Abdeckungslücke bei Ondos 58
+    tatsächlichen Wettbewerben — ist damit die deutlich wahrscheinlichere Erklärung**, aber
+    weiterhin nicht abschliessend bewiesen: Es könnte auch ein Bug in der Aufruf-Logik selbst
+    sein (`apiFootballLauf()`/`footballDataLauf()` werden nie erreicht), das ist von hier aus
+    ohne Zugriff auf Ondos laufende App nicht zu unterscheiden (Art. 11).
 - **🔴 Zweiter, unabhängiger Fund beim Nachsehen — ein echter, im Code belegter Bug, nicht nur
   eine Ligen-Lücke:** Ondos heutiger Prüflauf zeigte „0 von 10 gefunden" nach 144 Sekunden.
   Am Rohdaten-Export nachvollzogen: `rundeLaufen()` wählt pro Anfrage „höchstens 5 Spiele"

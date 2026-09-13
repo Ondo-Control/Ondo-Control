@@ -196,13 +196,14 @@ Punkt 73, nicht hier wiederholt (Punkt 45).
 `.claude/hooks/claude_md_frisch.py` vergleicht sie bei jedem Sitzungsstart und erinnert an
 eine Erneuerung, sobald einer abweicht. Er erneuert nichts von selbst.*
 
-- STAND.md — `e2222119e87ba30bc3ae22d1f433b29807be9e44`
-- Ondo-Control-Backlog.md — `c309f99d454858a013580a570db14ef1987c4222`
-- Blueprint.md — `c8d5ce0ef3ca9b8ef121faa2c09913b207765ae6`
+- STAND.md — `526dc0728f11a1bfefeb47180c4913c4aa815dc8`
+- Ondo-Control-Backlog.md — `3474d89c41b757849891f515622f4da7e8e890f9`
+- Blueprint.md — `77f28ca0b80f700c9253705e504fb2b1e55f9f41`
 - Ondo-Core-Architektur.md — `2923c6d2f1cf152a67522bd0ddafc42d6c196b40`
 
-*Prüfstand nachgeführt am 13.9.2026 (nur Hashes — Anlass war die Berichtigung der eigenen,
-wenige Minuten alten Fassung 120: die dort als „übersehene zweite Quelle" beschriebene
-Knopfdruck-Kopplung war bei Backlog-Punkt 9 bereits seit 11.9.2026 gebaut und dokumentiert;
-inhaltlich für diese Datei nicht berührt, keine neue Arbeitsregel, keine Änderung an Zweig-
-oder Geheimfeld-Regeln).*
+*Prüfstand nachgeführt am 13.9.2026 (nur Hashes — Anlass war ein frischer, von Ondo
+mitgeschickter Messstand: `STAND.md`s Abschnitt „Aktueller Messstand" vollständig neu abgelesen,
+dazu zwei echte Funde in Backlog-Punkt 64 und 81 (Celje/Sabah wieder ungelöst · beide
+strukturierten Schlüssel sind gespeichert, erscheinen aber weiterhin nirgends als Quelle) mit
+Durchstreichung nachgetragen; inhaltlich für diese Datei nicht berührt, keine neue Arbeitsregel,
+keine Änderung an Zweig- oder Geheimfeld-Regeln).*

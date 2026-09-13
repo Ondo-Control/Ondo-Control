@@ -3,9 +3,23 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.120
+**Version:** 0.121
 **Stand:** 13. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.121 ändert (13.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> ein frischer Messstand, von Ondo mitgeschickt (zwei Bildschirmfotos, Messdaten-Export,
+> Schiedsrichter-Rohdaten-Export). `STAND.md`, Abschnitt „Aktueller Messstand", vollständig neu
+> abgelesen (505 Vorhersagen, Sonnet 609 bei 4 %/55 %, Flash 606 bei 3 %/53 %) — erstmals mit
+> echten Zahlen statt Vorabrechnungen für Brier-Score, Widerspruchsquote und Observation Layer.
+> **Zwei echte Funde am mitgeschickten Datenmaterial, nicht vermutet:** Celje und Sabah sind laut
+> dem Export wieder ungelöst (`geparkt:true`, keine `refRoh`-Läufe nach dem 31.8.2026) —
+> widerspricht der bisherigen Doku „seit 10.9.2026 nicht mehr geparkt"; Ursache unbekannt (Art.
+> 11), `STAND.md` mit Durchstreichung berichtigt. Bei Backlog-Punkt 81: Beide strukturierten
+> Schlüssel (API-Football, football-data.org) sind laut Bildschirmfoto im Handy gespeichert —
+> widerlegt die erste von zwei offenen Vermutungen, warum diese Quellen nie erscheinen; die
+> zweite (Ligen-Abdeckung) bleibt die wahrscheinlichere, weiterhin unbewiesen. Kein
+> Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.121 gehoben.
 
 > **Was Fassung 0.120 ändert (13.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
 > die eigene Berichtigung von Fassung 0.119: die dort als „übersehene zweite Quelle"
