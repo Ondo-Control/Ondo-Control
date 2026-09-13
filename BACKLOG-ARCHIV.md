@@ -410,6 +410,34 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 113 ändert (12.9., Kombi-Wette-Verknüpfung gebaut — Backlog-Punkt 78, `beta.html` v19.12.0)
+
+**Anlass:** Ondo hat Punkt 78 freigegeben („Punkt 78 freigegeben, bauen"), als zweiten von drei
+Punkten seiner festgelegten Reihenfolge für diese Sitzung (nach der Trainingsraum-
+Nachbesserung, vor Punkt 4).
+
+- **🔴 Backlog-Punkt 78 GEBAUT.** `state.bets[].kiProtokollIds` als Liste — Grundentscheidung,
+  von Claude und ChatGPT unabhängig getragen (Fassung 107). Additiv gebaut: die bestehende
+  Einzelauswahl (`kiWahlBlock()`) bleibt unverändert, ein neuer Block (`kiWahlKombiBlock()`,
+  Kontrollkästchen statt Dropdown) bietet weitere Spiele einer Kombi zusätzlich an, sichtbar
+  erst ab zwei offenen Vorhersagen. `addBet()` schreibt das alte Einzelfeld `kiProtokollId`
+  weiterhin bei genau einer Verknüpfung (Rückwärtskompatibilität mit bestehendem Code/Test),
+  das neue `kiProtokollIds` trägt ab sofort die vollständige Verknüpfung. `lernWetten()`
+  zählt eine Kombi als „aus KI", sobald mindestens ein Leg noch existiert.
+- **Kleine Nachtrag-Korrektur in derselben Lieferung:** `state.trainingsraumSpiele` (Weg b,
+  Backlog-Punkt 77) fehlte in `MESS_FELDER` (Punkt 44) — war bis zur Nachbesserung immer leer,
+  trägt jetzt echte Messdaten. Ergänzt.
+- **Verifiziert:** `node --check` bestanden · **22 neue Prüfungen** an den echten,
+  herausgeschnittenen Funktionen · alle bestehenden Suiten erneut gelaufen, alle weiterhin
+  bestanden · `pruefe.py`: ALLES SAUBER.
+- **2 neue Sprachschlüssel** (337 → 339). Kein Schnitt in der Messreihe. `beta.html` jetzt
+  v19.12.0.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 108 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: eins** — **4** *(78 ist jetzt gebaut, zählt nicht mehr mit.)*
+
+---
+
 ## ⚠ Was Fassung 112 ändert (12.9., Trainingsraum-Nachbesserung gebaut — Backlog-Punkt 77, `beta.html` v19.11.0)
 
 **Anlass:** Ondo hat die Screenshots des Trainingsraum-Baus (Fassung 108) geprüft und fünf

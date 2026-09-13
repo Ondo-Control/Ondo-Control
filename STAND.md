@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 13.9.2026, Fassung 117, v19.13.0*
+*Die aktuelle Wahrheit. Stand: 13.9.2026, Fassung 118, v19.13.0*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -650,6 +650,8 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 **Was weiterhin gilt:** Ondos manuelle Kontrolle hat **jeden** Fehler gefangen, den die Automatik durchgelassen hat.
 
 **Bekannte Lücke:** Die Wiederholung greift nur bei „nicht gefunden". Ein einmal als *fertig* gemeldetes Ergebnis wird nie wieder hinterfragt.
+
+**🔴 Ergänzt 13.9.2026 (Diagnose zu Backlog-Punkt 81, Ondos Auftrag „Schiedsrichter reparieren"):** Fehlerart 7 und 8 gelten weiterhin als ungesichert — mit einer wichtigen Einschränkung, die hier nirgends stand: Seit Backlog-Punkt 9 (11.9.2026) fragt der Schiedsrichter für jedes Spiel zuerst API-Football und football-data.org ab, bevor er auf KI-Lesen zurückfällt. Eine echte Sportdatenbank kann Heim/Gast nicht verwechseln und keinen Endstand erfinden — für die rund 12 grossen Wettbewerbe, die football-data.org abdeckt, sind Fehlerart 7 und 8 damit strukturell entschärft. Für alle anderen Ligen (nach bisheriger Beobachtung ein grosser Teil von Ondos eigenen Spielen) bleibt der Schiedsrichter vollständig auf KI-Lesen angewiesen, mit demselben Risiko wie am 22.7.2026. Wie gross diese Lücke bei Ondos tatsächlichen Ligen ist, ist noch nicht geprüft — Einzelheiten Backlog-Punkt 81.
 
 ---
 

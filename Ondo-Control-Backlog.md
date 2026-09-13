@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 13.9.2026, Fassung 117 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 13.9.2026, Fassung 118 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,33 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 118 ändert (13.9., Schiedsrichter-Diagnose abgeschlossen — Backlog-Punkt 81, kein Codeaufwand)
+
+**Anlass:** Direkt im Anschluss an das Kriterium-(g)-Werkzeug: Ondos Auftrag „Dann
+Schiedsrichter reparieren. Das ist dein Job" — Diagnose als erster Schritt, wie bei Punkt 81
+angekündigt.
+
+- **🔴 Diagnose durchgeführt, am Code belegt.** Fehlerart 1–6 strukturell entschärft; 9/10/11
+  nur teilabgesichert (prüfen Form, nicht Wahrheit); 7/8 weiterhin ganz ohne Absicherung.
+- **Wichtigster, bisher nirgends so benannter Fund:** Seit Backlog-Punkt 9 fragt der
+  Schiedsrichter echte, strukturierte Datenquellen (API-Football, football-data.org) zuerst ab,
+  vor jedem KI-Lesen — das trifft Fehlerart 7 und 8 strukturell, nicht nur formal, aber NUR für
+  die rund 12 grossen Wettbewerbe, die football-data.org abdeckt. Für alle anderen Ligen bleibt
+  der Schiedsrichter vollständig auf KI-Lesen angewiesen.
+- **Ehrliche Schlussfolgerung (Art. 11):** „Repariert" ist für abgedeckte Ligen technisch
+  erreichbar, für nicht abgedeckte nach heutigem Wissen nicht, ohne eine weitere Datenquelle zu
+  finden oder zu bezahlen — ein Sprachmodell, das einen Text liest, bleibt ein
+  Wahrscheinlichkeitsvorgang, unabhängig von der Zahl der Formprüfungen darum herum.
+- **Konkreter nächster Schritt, noch nicht ausgeführt:** prüfen, wie gross die Lücke bei Ondos
+  tatsächlichen Ligen wirklich ist — Einzelheiten bei Punkt 81.
+- **Kein Codeaufwand in dieser Fassung** — reine Diagnose und Buchführung. `beta.html` bleibt
+  v19.13.0. `pruefe.py`: ALLES SAUBER.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 113 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl.)*
 
 ---
 
@@ -135,34 +162,6 @@ Zeiten."
   `BACKLOG-ARCHIV.md` verschoben.
 - **Beschlossen und nicht gebaut: eins** — **4** *(unverändert in der Zahl, Status-Text
   geändert.)*
-
----
-
-## ⚠ Was Fassung 113 ändert (12.9., Kombi-Wette-Verknüpfung gebaut — Backlog-Punkt 78, `beta.html` v19.12.0)
-
-**Anlass:** Ondo hat Punkt 78 freigegeben („Punkt 78 freigegeben, bauen"), als zweiten von drei
-Punkten seiner festgelegten Reihenfolge für diese Sitzung (nach der Trainingsraum-
-Nachbesserung, vor Punkt 4).
-
-- **🔴 Backlog-Punkt 78 GEBAUT.** `state.bets[].kiProtokollIds` als Liste — Grundentscheidung,
-  von Claude und ChatGPT unabhängig getragen (Fassung 107). Additiv gebaut: die bestehende
-  Einzelauswahl (`kiWahlBlock()`) bleibt unverändert, ein neuer Block (`kiWahlKombiBlock()`,
-  Kontrollkästchen statt Dropdown) bietet weitere Spiele einer Kombi zusätzlich an, sichtbar
-  erst ab zwei offenen Vorhersagen. `addBet()` schreibt das alte Einzelfeld `kiProtokollId`
-  weiterhin bei genau einer Verknüpfung (Rückwärtskompatibilität mit bestehendem Code/Test),
-  das neue `kiProtokollIds` trägt ab sofort die vollständige Verknüpfung. `lernWetten()`
-  zählt eine Kombi als „aus KI", sobald mindestens ein Leg noch existiert.
-- **Kleine Nachtrag-Korrektur in derselben Lieferung:** `state.trainingsraumSpiele` (Weg b,
-  Backlog-Punkt 77) fehlte in `MESS_FELDER` (Punkt 44) — war bis zur Nachbesserung immer leer,
-  trägt jetzt echte Messdaten. Ergänzt.
-- **Verifiziert:** `node --check` bestanden · **22 neue Prüfungen** an den echten,
-  herausgeschnittenen Funktionen · alle bestehenden Suiten erneut gelaufen, alle weiterhin
-  bestanden · `pruefe.py`: ALLES SAUBER.
-- **2 neue Sprachschlüssel** (337 → 339). Kein Schnitt in der Messreihe. `beta.html` jetzt
-  v19.12.0.
-- **Regel 5 angewandt:** Abschnitt „Was Fassung 108 ändert" wortgleich nach
-  `BACKLOG-ARCHIV.md` verschoben.
-- **Beschlossen und nicht gebaut: eins** — **4** *(78 ist jetzt gebaut, zählt nicht mehr mit.)*
 
 ---
 
@@ -1500,6 +1499,38 @@ der Messreihe.
 **Ondos Definition von „repariert" (2.9.2026, bereits im Backlog bei Punkt 64 festgehalten, hier nur referenziert — Punkt 45):** zuverlässige Ergebnisse für alle künftigen Spiele, ohne Gegenprüfung im Chat.
 **Ehrlicher Ausgangspunkt, nicht beschönigt:** Der Schiedsrichter hat elf dokumentierte Fehlerarten (`STAND.md`, „Der Schiedsrichter — elf Fehlerarten"). Die 3-von-3-Einigkeitsregel (Backlog-Punkt 68, v19.8.12) ist eine echte, geprüfte Absicherung gegen Fehlerart 11 (schwankende Antworten) — aber nach Ondos eigenem Massstab weiterhin keine Reparatur, weil sie unsichere Fälle parkt statt sie zuverlässig richtig zu lösen. Fehlerart 7 (Heim und Gast vertauscht) hat bis heute keine eigene Absicherung.
 **Nächster Schritt, bevor irgendwas gebaut wird:** Vollständige Diagnose — welche der elf Fehlerarten sind durch bestehende Absicherungen tatsächlich entschärft, welche nicht, und was würde jede der noch offenen wirklich brauchen. Kein Versprechen einer schnellen Lösung ohne diese Diagnose (Art. 11) — aber auch keine Weigerung, den Auftrag anzunehmen.
+
+→ **✅ Diagnose durchgeführt (13.9.2026), am Code belegt, nicht vermutet:**
+- **Strukturell entschärft, echte Absicherung, kein Formatproblem:** Fehlerart 1–6 (unveränderte,
+  bewährte Absicherungen seit v19.0–v19.6).
+- **Teilabsicherung, ausdrücklich keine Reparatur:** Fehlerart 9 (erfundene 0:0), 10
+  (Verlängerung), 11 (Schwankung) — alle drei prüfen nur, ob eine Antwort in sich stimmig ist
+  (Form), nie, ob sie wahr ist (Wahrheit).
+- **Weiterhin ganz ohne Absicherung:** Fehlerart 7 (Heim/Gast vertauscht), Fehlerart 8
+  (falscher Endstand trotz aller Prüfungen) — nach eigener Aussage im Katalog, weil „alle
+  Absicherungen die Form prüfen, nicht die Wahrheit".
+- **Wichtigster Fund dieser Diagnose, bisher nirgends so benannt:** Seit Backlog-Punkt 9
+  (11.9.2026) fragt der Schiedsrichter **zuerst echte, strukturierte Datenquellen**
+  (API-Football, football-data.org) ab, bevor er auf KI-Lesen zurückfällt — Beleg im Code
+  (`beta.html`, Kommentar bei der Weg-Auswahl): „kein Halluzinations-Risiko". Eine echte
+  Sportdatenbank kann Heim/Gast nicht verwechseln und keinen Endstand erfinden — das trifft
+  Fehlerart 7 und 8 strukturell, nicht nur formal. **Die Grenze:** football-data.org deckt nur
+  12 grosse Wettbewerbe ab; für alle anderen Ligen (nach bisheriger Beobachtung ein grosser Teil
+  von Ondos eigenen Spielen — kleinere/regionale Ligen) bleibt der Schiedsrichter vollständig
+  auf KI-Lesen angewiesen, mit demselben Halluzinationsrisiko wie am 22.7.2026.
+- **Ehrliche Schlussfolgerung, keine Beschönigung:** „Repariert" nach Ondos eigener Definition
+  ist für Spiele **mit** echter Datenquellen-Abdeckung technisch erreichbar (echte Quelle ersetzt
+  KI-Raten vollständig). Für Spiele **ohne** Abdeckung ist es nach heutigem Wissen nicht
+  erreichbar, ohne eine weitere, echte Datenquelle zu bezahlen oder zu finden — ein Sprachmodell,
+  das einen Text über ein Ergebnis liest, bleibt ein Wahrscheinlichkeitsvorgang, egal wie viele
+  Regeln die Form dieser Antwort prüfen (Art. 11, keine Grenze wegargumentiert).
+- **Konkreter nächster Schritt, noch nicht ausgeführt:** Wie gross ist die Lücke wirklich? Dafür
+  müsste geprüft werden, wie viele von Ondos tatsächlichen, zuletzt gespielten Ligen/Wettbewerben
+  von API-Football bzw. football-data.org abgedeckt sind. Ist die Lücke klein, wäre eine engere
+  Kopplung (z. B. ein KI-Treffer, dem eine der beiden echten Quellen widerspricht, sofort parken
+  statt übernehmen) ein greifbarer, echter Fortschritt. Ist sie gross, bleibt nur eine ehrliche
+  Grenze zu benennen oder eine weitere, kostenpflichtige Datenquelle zu suchen (Arbeitsregel G:
+  Kosten dafür noch nicht ermittelt).
 
 ---
 

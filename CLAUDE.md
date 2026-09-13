@@ -196,11 +196,11 @@ Punkt 73, nicht hier wiederholt (Punkt 45).
 `.claude/hooks/claude_md_frisch.py` vergleicht sie bei jedem Sitzungsstart und erinnert an
 eine Erneuerung, sobald einer abweicht. Er erneuert nichts von selbst.*
 
-- STAND.md — `f6968f1e56385739f18e6205cc36658faec4f02c`
-- Ondo-Control-Backlog.md — `80f4b594f429ed896e47fab65c3dde327810485b`
-- Blueprint.md — `b04a8b6764ee8798a4febcda80c9572319f91871`
+- STAND.md — `5cb32704d88fc2a34228075f01cc24fb3667762e`
+- Ondo-Control-Backlog.md — `afc305c7dfba10c228cbeb2670932837f603ab60`
+- Blueprint.md — `f88ee70ae88b71042ce2704264080828c6742d9b`
 - Ondo-Core-Architektur.md — `2923c6d2f1cf152a67522bd0ddafc42d6c196b40`
 
-*Prüfstand nachgeführt am 13.9.2026 (nur Hashes — Anlass war das gebaute Kriterium-(g)-
-Testwerkzeug, Backlog-Punkt 80, `beta.html` v19.13.0; inhaltlich für diese Datei nicht berührt,
-keine neue Arbeitsregel, keine Änderung an Zweig- oder Geheimfeld-Regeln).*
+*Prüfstand nachgeführt am 13.9.2026 (nur Hashes — Anlass war die abgeschlossene
+Schiedsrichter-Diagnose, Backlog-Punkt 81; inhaltlich für diese Datei nicht berührt, keine neue
+Arbeitsregel, keine Änderung an Zweig- oder Geheimfeld-Regeln).*

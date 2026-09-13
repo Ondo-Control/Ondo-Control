@@ -3,9 +3,16 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.116
+**Version:** 0.117
 **Stand:** 13. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.117 ändert (13.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> die abgeschlossene Diagnose zu Backlog-Punkt 81 (Schiedsrichter reparieren, Ondos Auftrag
+> „das ist dein Job"): API-Football/football-data.org werden bereits vor jedem KI-Lesen
+> abgefragt und entschärfen Fehlerart 7/8 strukturell, aber nur für rund 12 grosse Wettbewerbe —
+> für alle anderen Ligen bleibt der Schiedsrichter auf KI-Lesen angewiesen. Kein
+> Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.117 gehoben.
 
 > **Was Fassung 0.116 ändert (13.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
 > der gebaute Backlog-Punkt 80 (`beta.html` v19.13.0): Testwerkzeug für Beförderungskriterium
