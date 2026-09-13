@@ -3,9 +3,18 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.121
+**Version:** 0.122
 **Stand:** 13. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.122 ändert (13.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> Ondos eigene Erklärung zum Celje/Sabah-Fund aus Fassung 0.121: Die Übernahme vom 10.9.2026
+> scheiterte am damaligen Speicherproblem (Sicherungen liessen sich nicht vernünftig speichern
+> oder hochladen), das Problem ist seit dem Umstieg auf `IndexedDB` (Backlog-Punkt 76) gelöst,
+> beide Spiele werden im nächsten Prüflauf automatisch erneut ausgewertet. Passt lückenlos zur
+> bereits dokumentierten Zeitlinie des Speicherumstiegs, nicht am Code nachgeprüft — als Ondos
+> eigene Aussage gekennzeichnet. `STAND.md` und Backlog-Punkt 64 ergänzt, nichts überschrieben.
+> Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.122 gehoben.
 
 > **Was Fassung 0.121 ändert (13.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
 > ein frischer Messstand, von Ondo mitgeschickt (zwei Bildschirmfotos, Messdaten-Export,

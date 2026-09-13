@@ -410,6 +410,33 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 118 ändert (13.9., Schiedsrichter-Diagnose abgeschlossen — Backlog-Punkt 81, kein Codeaufwand)
+
+**Anlass:** Direkt im Anschluss an das Kriterium-(g)-Werkzeug: Ondos Auftrag „Dann
+Schiedsrichter reparieren. Das ist dein Job" — Diagnose als erster Schritt, wie bei Punkt 81
+angekündigt.
+
+- **🔴 Diagnose durchgeführt, am Code belegt.** Fehlerart 1–6 strukturell entschärft; 9/10/11
+  nur teilabgesichert (prüfen Form, nicht Wahrheit); 7/8 weiterhin ganz ohne Absicherung.
+- **Wichtigster, bisher nirgends so benannter Fund:** Seit Backlog-Punkt 9 fragt der
+  Schiedsrichter echte, strukturierte Datenquellen (API-Football, football-data.org) zuerst ab,
+  vor jedem KI-Lesen — das trifft Fehlerart 7 und 8 strukturell, nicht nur formal, aber NUR für
+  die rund 12 grossen Wettbewerbe, die football-data.org abdeckt. Für alle anderen Ligen bleibt
+  der Schiedsrichter vollständig auf KI-Lesen angewiesen.
+- **Ehrliche Schlussfolgerung (Art. 11):** „Repariert" ist für abgedeckte Ligen technisch
+  erreichbar, für nicht abgedeckte nach heutigem Wissen nicht, ohne eine weitere Datenquelle zu
+  finden oder zu bezahlen — ein Sprachmodell, das einen Text liest, bleibt ein
+  Wahrscheinlichkeitsvorgang, unabhängig von der Zahl der Formprüfungen darum herum.
+- **Konkreter nächster Schritt, noch nicht ausgeführt:** prüfen, wie gross die Lücke bei Ondos
+  tatsächlichen Ligen wirklich ist — Einzelheiten bei Punkt 81.
+- **Kein Codeaufwand in dieser Fassung** — reine Diagnose und Buchführung. `beta.html` bleibt
+  v19.13.0. `pruefe.py`: ALLES SAUBER.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 113 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl.)*
+
+---
+
 ## ⚠ Was Fassung 117 ändert (13.9., Kriterium-(g)-Test gebaut — Backlog-Punkt 80, `beta.html` v19.13.0)
 
 **Anlass:** Ondo, direkt im Anschluss an die Klärung von (c): „Antwortkonsistenz (g): Teste.

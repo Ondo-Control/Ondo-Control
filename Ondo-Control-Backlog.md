@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 13.9.2026, Fassung 122 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 13.9.2026, Fassung 123 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,31 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 123 ändert (13.9., Ursache für Celje/Sabah von Ondo benannt — Backlog-Punkt 64, kein Codeaufwand)
+
+**Anlass:** Ondo, direkt auf die Fassung-122-Berichtigung: „Celje/Sabah ist wieder geparkt,
+weil es Probleme mit dem Speicher gab. Dadurch konnte der ausgewertete Stand nicht gespeichert
+werden und Sicherungskopien nicht vernünftig abgespeichert werden / hochgeladen werden. Jetzt
+ist das Problem mit dem Speicher gelöst und die Spiele werden im nächsten Prüflauf wieder
+ausgewertet."
+
+- **Ursache eingetragen, als Ondos eigene Aussage gekennzeichnet, nicht am Code
+  nachgeprüft** (diese Sitzung hat keinen Zugriff auf sein Gerät) — **passt aber lückenlos zur
+  bereits dokumentierten Zeitlinie:** `localStorage` lehnte das Speichern bei Ondo nachweislich
+  ab (2.726 KB, `beta.html` v19.8.29, im Fenster um den 12.9.2026), der Umstieg auf `IndexedDB`
+  (v19.8.30, Backlog-Punkt 76) verlangte danach ausdrücklich das einmalige Einspielen der
+  **zuletzt erfolgreich gespeicherten** Sicherung — die die Celje/Sabah-Übernahme vom
+  10.9.2026 vermutlich noch nicht enthielt.
+- **`STAND.md`, Fehlerart-11-Zeile, und Backlog-Punkt 64 mit der Ursache ergänzt**, ohne den
+  bereits stehenden Befund (Export vom 13.9., beide Spiele wieder geparkt) zu löschen —
+  Berichtigen statt danebenstellen.
+- **Kein Codeaufwand nötig.** Ondo: Beide Spiele werden im nächsten Prüflauf automatisch
+  erneut ausgewertet, ohne weiteres Zutun. Nichts an dieser Stelle offen, ausser der
+  Bestätigung durch den nächsten Prüflauf selbst.
+- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl.)*
 
 ---
 
@@ -151,33 +176,6 @@ funktioniert beim ersten Mal." Screenshot zeigte „0 von 10 gefunden" nach 144 
   `BACKLOG-ARCHIV.md` verschoben.
 - **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl — 81 bleibt
   offen, die Teilfehlschlag-Vermutung ist noch nicht geklärt.)*
-
----
-
-## ⚠ Was Fassung 118 ändert (13.9., Schiedsrichter-Diagnose abgeschlossen — Backlog-Punkt 81, kein Codeaufwand)
-
-**Anlass:** Direkt im Anschluss an das Kriterium-(g)-Werkzeug: Ondos Auftrag „Dann
-Schiedsrichter reparieren. Das ist dein Job" — Diagnose als erster Schritt, wie bei Punkt 81
-angekündigt.
-
-- **🔴 Diagnose durchgeführt, am Code belegt.** Fehlerart 1–6 strukturell entschärft; 9/10/11
-  nur teilabgesichert (prüfen Form, nicht Wahrheit); 7/8 weiterhin ganz ohne Absicherung.
-- **Wichtigster, bisher nirgends so benannter Fund:** Seit Backlog-Punkt 9 fragt der
-  Schiedsrichter echte, strukturierte Datenquellen (API-Football, football-data.org) zuerst ab,
-  vor jedem KI-Lesen — das trifft Fehlerart 7 und 8 strukturell, nicht nur formal, aber NUR für
-  die rund 12 grossen Wettbewerbe, die football-data.org abdeckt. Für alle anderen Ligen bleibt
-  der Schiedsrichter vollständig auf KI-Lesen angewiesen.
-- **Ehrliche Schlussfolgerung (Art. 11):** „Repariert" ist für abgedeckte Ligen technisch
-  erreichbar, für nicht abgedeckte nach heutigem Wissen nicht, ohne eine weitere Datenquelle zu
-  finden oder zu bezahlen — ein Sprachmodell, das einen Text liest, bleibt ein
-  Wahrscheinlichkeitsvorgang, unabhängig von der Zahl der Formprüfungen darum herum.
-- **Konkreter nächster Schritt, noch nicht ausgeführt:** prüfen, wie gross die Lücke bei Ondos
-  tatsächlichen Ligen wirklich ist — Einzelheiten bei Punkt 81.
-- **Kein Codeaufwand in dieser Fassung** — reine Diagnose und Buchführung. `beta.html` bleibt
-  v19.13.0. `pruefe.py`: ALLES SAUBER.
-- **Regel 5 angewandt:** Abschnitt „Was Fassung 113 ändert" wortgleich nach
-  `BACKLOG-ARCHIV.md` verschoben.
-- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl.)*
 
 ---
 
@@ -344,7 +342,7 @@ Ein zweiter Arbeits-Branch `mistral` existiert seit vor dem 24.8.2026 (aktuell f
 
 ---
 
-**64. Rohe Schiedsrichter-Antwort mitschreiben** · *Vorschlag Claude, 28.8.2026, aus der Restarbeit zu Punkt 51 (seit 30.8.2026 in `BACKLOG-ARCHIV.md`) · von Ondo in Chat 25 entschieden, „wenn alles passt" · nachgetragen und gebaut 28.8.2026 · Teil 3 am 2.9.2026 zurückgenommen · Celje/Sabah erneut geprüft und übernommen 10.9.2026, Ondo · 🔴 laut Ondos Messdaten-Export vom 13.9.2026 wieder ungelöst, Ursache unbekannt* · **Status: 🔴 Mitschreiben GEBAUT am 28.8.2026 (`beta.html` v19.8.5) — die zwei Celje/Sabah-Fälle waren am 10.9.2026 kurzzeitig übernommen (siehe Block unten), laut dem Export vom 13.9.2026 aber wieder geparkt bzw. ohne Endstand, Einzelheiten bei Fassung 122 oben und in `STAND.md`**
+**64. Rohe Schiedsrichter-Antwort mitschreiben** · *Vorschlag Claude, 28.8.2026, aus der Restarbeit zu Punkt 51 (seit 30.8.2026 in `BACKLOG-ARCHIV.md`) · von Ondo in Chat 25 entschieden, „wenn alles passt" · nachgetragen und gebaut 28.8.2026 · Teil 3 am 2.9.2026 zurückgenommen · Celje/Sabah erneut geprüft und übernommen 10.9.2026, Ondo · 🔴 laut Ondos Messdaten-Export vom 13.9.2026 wieder ungelöst, Ursache von Ondo am 13.9.2026 benannt: damaliges Speicherproblem, jetzt gelöst* · **Status: 🔴 Mitschreiben GEBAUT am 28.8.2026 (`beta.html` v19.8.5) — die zwei Celje/Sabah-Fälle waren am 10.9.2026 kurzzeitig übernommen, konnten wegen des damaligen Speicherproblems (Backlog-Punkt 76) aber nicht gespeichert werden; Speicherproblem seit 12.9.2026 gelöst, beide Spiele werden laut Ondo im nächsten Prüflauf erneut ausgewertet, Einzelheiten bei Fassung 122/123 oben und in `STAND.md`**
 
 > **🔴 ZURÜCKGENOMMEN am 2.9.2026 (Entscheidung Ondos), `beta.html` v19.8.11.** Die manuelle Eintragung der beiden Spiele (unten, „Nachfrage 30.8.2026, Teil 3", berichtigt in v19.8.10) **war verfrüht** und ist zurückgesetzt. **Ondos Klarstellung, die den Ausschlag gab:** „Der Schiedsrichter ist repariert" heisst — **er liefert ab sofort nur noch richtige, zuverlässige Ergebnisse für alle künftigen Spiele, ohne Gegenprüfung im Chat.** Diese Bedingung ist nicht erfüllt; die elfte Fehlerart besteht unverändert. Damit galt die Auflage aus diesem Punkt („Neubewertung dieser beiden Spiele erst, sobald die Ursache der elften Fehlerart geklärt und der Schiedsrichter entsprechend repariert ist") am 30.8.2026 unverändert weiter — sie ist übergangen worden.
 >

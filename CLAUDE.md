@@ -196,14 +196,13 @@ Punkt 73, nicht hier wiederholt (Punkt 45).
 `.claude/hooks/claude_md_frisch.py` vergleicht sie bei jedem Sitzungsstart und erinnert an
 eine Erneuerung, sobald einer abweicht. Er erneuert nichts von selbst.*
 
-- STAND.md — `526dc0728f11a1bfefeb47180c4913c4aa815dc8`
-- Ondo-Control-Backlog.md — `3474d89c41b757849891f515622f4da7e8e890f9`
-- Blueprint.md — `77f28ca0b80f700c9253705e504fb2b1e55f9f41`
+- STAND.md — `1311d3c775ede6e98c4a1493bd7e57e65aedb83d`
+- Ondo-Control-Backlog.md — `8ad0d979366e3c0be6ffdf45e62db4b068156eaf`
+- Blueprint.md — `43d1560e359fbb02b6925fdd023c55901aaff4b3`
 - Ondo-Core-Architektur.md — `2923c6d2f1cf152a67522bd0ddafc42d6c196b40`
 
-*Prüfstand nachgeführt am 13.9.2026 (nur Hashes — Anlass war ein frischer, von Ondo
-mitgeschickter Messstand: `STAND.md`s Abschnitt „Aktueller Messstand" vollständig neu abgelesen,
-dazu zwei echte Funde in Backlog-Punkt 64 und 81 (Celje/Sabah wieder ungelöst · beide
-strukturierten Schlüssel sind gespeichert, erscheinen aber weiterhin nirgends als Quelle) mit
-Durchstreichung nachgetragen; inhaltlich für diese Datei nicht berührt, keine neue Arbeitsregel,
-keine Änderung an Zweig- oder Geheimfeld-Regeln).*
+*Prüfstand nachgeführt am 13.9.2026 (nur Hashes — Anlass war Ondos eigene Erklärung zum
+Celje/Sabah-Fund: Speicherproblem zum Zeitpunkt der Übernahme vom 10.9., seit dem Umstieg auf
+`IndexedDB` gelöst, beide Spiele werden im nächsten Prüflauf automatisch erneut ausgewertet.
+`STAND.md` und Backlog-Punkt 64 ergänzt, nichts überschrieben; inhaltlich für diese Datei nicht
+berührt, keine neue Arbeitsregel, keine Änderung an Zweig- oder Geheimfeld-Regeln).*
