@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 13.9.2026, Fassung 118, v19.13.0*
+*Die aktuelle Wahrheit. Stand: 13.9.2026, Fassung 119, v19.13.1*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -194,7 +194,34 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   den Trainingsraum) — dieser Commit ist der Stand **davor**, falls zurückgesetzt werden muss.
   Einzelheiten Backlog-Punkt 77.
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.13.0** (`beta.html`, geliefert 13.9.2026) — **Kriterium-(g)-Testwerkzeug gebaut
+- **Beta: v19.13.1** (`beta.html`, geliefert 13.9.2026) — **Echter Schiedsrichter-Bug behoben
+  (Backlog-Punkt 81).** Ondo, nach einem fehlgeschlagenen Prüflauf: „Heutiger Prüflauf hat
+  nicht funktioniert beim ersten Mal", mit Screenshot („0 von 10 gefunden", 144 s) plus
+  Rohdaten (Schiedsrichter-Rohantworten, Messdaten-Export, ChatGPTs Gegenprüfung) mitgeschickt.
+  **Fund, am Code UND an den echten Rohdaten belegt:** `rundeLaufen()` wählte pro Anfrage
+  immer dieselben ersten fünf offenen Spiele (`posten.filter(...).slice(0,5)`). Blieben diese
+  wiederholt ohne Ergebnis, kamen die übrigen Spiele in keiner der bis zu sechs Runden je an
+  die Reihe — in den Rohdaten sichtbar als „kein refRoh gespeichert" bei vier von zehn Spielen,
+  nicht erfolglos versucht, sondern nie versucht.
+  **Behoben:** Noch nie gefragte Spiele gehen jetzt vor Wiederholungen bereits gefragter — eine
+  Sortierzeile vor dem bestehenden `slice(0,5)`, keine Änderung an der 3-von-3-Regel oder
+  sonst einer inhaltlichen Entscheidung.
+  **Zweiter Fund beim selben Nachsehen, zur Liga-Abdeckung von API-Football/football-data.org
+  (Ondos Auftrag „Ja nachsehen" zur vorherigen Diagnose):** Die Abdeckungslücke ist gross (58
+  verschiedene Wettbewerbe in Ondos echten Messdaten, grösstenteils ausserhalb der rund 12
+  grossen Ligen) — UND diese strukturierten Quellen wurden in 505 Messdaten- und 401
+  Rohdaten-Einträgen (30.7.–13.9.2026) kein einziges Mal tatsächlich genutzt, maschinell
+  nachgezählt. Die frühere, optimistischere Einschätzung dazu ist berichtigt, nicht
+  überschrieben — Einzelheiten Backlog-Punkt 81.
+  **Noch offen, ehrlich als Vermutung markiert:** Auch die ersten fünf Spiele des Laufs kamen
+  trotz mehrfacher, inhaltlich übereinstimmender Wiederholungen nie zu einem Vorschlag — ein
+  Verdacht auf stille Teilfehlschläge bei drei gleichzeitigen Anfragen an denselben Anbieter,
+  nicht bewiesen, weil fehlgeschlagene Anfragen keine Spur hinterlassen.
+  **Verifiziert:** `node --check` bestanden · **10 neue Prüfungen** an der echten,
+  unveränderten `ergebnissePruefen()` sowie am wortgleichen Auswahl-Schnipsel · alle
+  bestehenden Suiten erneut gelaufen, alle weiterhin bestanden · `pruefe.py`: ALLES SAUBER.
+  **Keine neuen Sprachschlüssel.** Kein Schnitt in der Messreihe. `APP_VERSION` weiter 18.
+- **Beta zuvor: v19.13.0** (`beta.html`, geliefert 13.9.2026) — **Kriterium-(g)-Testwerkzeug gebaut
   (Backlog-Punkt 80).** Auftrag Ondo, direkt nach der Klärung von Kriterium (c): „Antwortkonsistenz
   (g): Teste. Aber Du musst klar definieren wann es fertig ist. Dann Schiedsrichter reparieren.
   Das ist dein Job."
@@ -651,7 +678,22 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 
 **Bekannte Lücke:** Die Wiederholung greift nur bei „nicht gefunden". Ein einmal als *fertig* gemeldetes Ergebnis wird nie wieder hinterfragt.
 
-**🔴 Ergänzt 13.9.2026 (Diagnose zu Backlog-Punkt 81, Ondos Auftrag „Schiedsrichter reparieren"):** Fehlerart 7 und 8 gelten weiterhin als ungesichert — mit einer wichtigen Einschränkung, die hier nirgends stand: Seit Backlog-Punkt 9 (11.9.2026) fragt der Schiedsrichter für jedes Spiel zuerst API-Football und football-data.org ab, bevor er auf KI-Lesen zurückfällt. Eine echte Sportdatenbank kann Heim/Gast nicht verwechseln und keinen Endstand erfinden — für die rund 12 grossen Wettbewerbe, die football-data.org abdeckt, sind Fehlerart 7 und 8 damit strukturell entschärft. Für alle anderen Ligen (nach bisheriger Beobachtung ein grosser Teil von Ondos eigenen Spielen) bleibt der Schiedsrichter vollständig auf KI-Lesen angewiesen, mit demselben Risiko wie am 22.7.2026. Wie gross diese Lücke bei Ondos tatsächlichen Ligen ist, ist noch nicht geprüft — Einzelheiten Backlog-Punkt 81.
+~~Ergänzt 13.9.2026 (Diagnose zu Backlog-Punkt 81): … für die rund 12 grossen Wettbewerbe, die
+football-data.org abdeckt, sind Fehlerart 7 und 8 damit strukturell entschärft. … Wie gross
+diese Lücke bei Ondos tatsächlichen Ligen ist, ist noch nicht geprüft.~~
+**🔴 BERICHTIGT, noch am selben Tag (13.9.2026), jetzt mit echten Daten statt nur mit dem
+Code-Kommentar geprüft:** Die Lücke wurde nachgezählt (505 `kiProtokoll`-Einträge, 58
+verschiedene Wettbewerbe) — sie ist **gross**, nicht klein: der grösste Teil von Ondos Spielen
+liegt in UEFA-Qualifikationsrunden, Pokal-Runden, Testspielen und kleinen/regionalen Ligen,
+klar ausserhalb der rund 12 grossen Wettbewerbe. **Wichtiger noch:** In 505 Messdaten-Einträgen
+und 401 Schiedsrichter-Rohantworten (30.7.–13.9.2026) kommt „api-football.com" oder
+„football-data.org" kein einziges Mal als tatsächlich genutzte Quelle vor — maschinell
+nachgezählt. Die strukturelle Absicherung ist im Code vorhanden, hat in der echten Nutzung
+bisher aber **keine einzige Auswirkung gehabt**. Einzelheiten Backlog-Punkt 81.
+**Zusätzlich, beim Nachsehen gefunden, unabhängig von der Ligen-Frage:** Ein echter Bug in der
+Anfrage-Auswahl (`rundeLaufen()` wählte immer dieselben ersten fünf Spiele, weitere kamen nie
+an die Reihe) erklärt Ondos „0 von 10 gefunden" vom 13.9.2026 — behoben, `beta.html` v19.13.1.
+Einzelheiten Backlog-Punkt 81.
 
 ---
 

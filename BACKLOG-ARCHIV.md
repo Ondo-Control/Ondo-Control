@@ -410,6 +410,36 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 114 ändert (12.9., Punkt 4 auf „wartet auf Beförderung" gesetzt, Beförderungs-Wartezeit für Ondo erklärt — kein Codeaufwand)
+
+**Anlass:** Nach der Erklärung der beiden Wege für Punkt 4 (Zielbild Beta-Format vs. sofortiger,
+verlustbehafteter Export in die alte Form) hat Ondo Weg (A) gewählt: „Du kannst es auf ‚wartet
+auf Beförderung' setzen." Direkt danach die berechtigte Nachfrage: „Und jetzt musst du mir ganz
+klar sagen worauf wir warten und wann genau endet die Wartezeit mit klar definierten Zielen und
+Zeiten."
+
+- **🔴 Punkt 4 Status geändert:** von „freigegeben, unabhängig von der Beförderung" auf
+  „wartet auf die Beförderung" — kein eigener Bauaufwand mehr, da Weg (A) bedeutet: die
+  stabile Version übernimmt bei der Beförderung den Code der Beta unverändert, die
+  Messdaten wandern automatisch mit.
+- **Ehrliche Antwort auf „worauf warten wir, wann endet es" (Art. 11, kein Rateversuch):**
+  Kein Kalendertermin, weil keiner bekannt ist. Zwei konkrete offene Sachen statt einer
+  Wartezeit: **Kriterium (c)** (Trefferquoten-Schwelle) ist eine seit 23.7.2026 unentschiedene
+  Frage, kein Datensammelproblem — sofort klärbar, keine Bauzeit. **Kriterium (f)**
+  (Schiedsrichter-Fehlerquote) ist eine Messfrage, deren letzter echter Test sechs Wochen alt
+  ist (30./31.7.2026) — von VOR mehreren seitherigen Schiedsrichter-Verbesserungen. Der
+  heutige Fehlerstand ist unbekannt, bis frisch nachgeprüft wird. Fünf weitere Kriterien
+  ((a),(b),(d),(e),(g)) wurden seit dem 31.7. ebenfalls nicht neu geprüft — ihr heutiger Stand
+  ist ebenso unbekannt, nicht als „erfüllt" angenommen. Einzelheiten bei Punkt 5.
+- **Kein Codeaufwand in dieser Fassung** — reine Abstimmung und Buchführung. `beta.html`
+  bleibt v19.12.0. `pruefe.py`: ALLES SAUBER.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 109 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: eins** — **4** *(unverändert in der Zahl, Status-Text
+  geändert.)*
+
+---
+
 ## ⚠ Was Fassung 113 ändert (12.9., Kombi-Wette-Verknüpfung gebaut — Backlog-Punkt 78, `beta.html` v19.12.0)
 
 **Anlass:** Ondo hat Punkt 78 freigegeben („Punkt 78 freigegeben, bauen"), als zweiten von drei

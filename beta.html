@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.13.0';
+var CODE_VERSION = 'v19.13.1';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -3586,7 +3586,19 @@ function ergebnissePruefen(btn){
 
   function rundeLaufen(){
     runde++;
-    var ziel = posten.filter(function(p){ return p.zustand==='offen'||p.zustand==='fehlt'; }).slice(0,5);
+    /* v19.13.1, Fund 13.9.2026 (Backlog-Punkt 81, Ondos Screenshot "0 von 10 gefunden"):
+       "hoechstens 5 Spiele pro Anfrage" nahm bisher IMMER die ersten fuenf von "offen"/"fehlt" -
+       blieben diese wiederholt ohne drei brauchbare Laeufe (Fehlerart, siehe unten), kamen die
+       Spiele ab Position 6 in KEINER der bis zu MAXR Runden je an die Reihe. Belegt an Ondos
+       Rohdaten (Schiri_Rohdaten.txt, 13.9.2026): vier von zehn Spielen trugen nach sechs
+       Runden "kein refRoh gespeichert" - nie versucht, nicht etwa erfolglos versucht.
+       Fix: noch nie gefragte Spiele (gefragt:false) gehen vor Wiederholungen bereits gefragter
+       - jedes Spiel bekommt zuerst EINEN Versuch, bevor eines einen zweiten bekommt. sort()
+       ist seit ES2019 spezifiziert stabil, die Reihenfolge innerhalb einer Gruppe bleibt damit
+       wie von posten vorgegeben. */
+    var ziel = posten.filter(function(p){ return p.zustand==='offen'||p.zustand==='fehlt'; });
+    ziel.sort(function(a,b){ return (a.gefragt?1:0) - (b.gefragt?1:0); });
+    ziel = ziel.slice(0,5);
     if(!ziel.length || runde>MAXR){ abschluss(); return; }
     btn.textContent = t('checkingRound').replace('{a}',runde).replace('{b}',MAXR);
     /* p.laeufe wird je Runde geleert: Die Einigkeitsregel darf nur die drei Laeufe DIESER

@@ -3,9 +3,16 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.117
+**Version:** 0.118
 **Stand:** 13. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.118 ändert (13.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> der gefundene und behobene Schiedsrichter-Bug (Backlog-Punkt 81, `beta.html` v19.13.1): eine
+> immer gleiche Fünfer-Auswahl liess übrige Spiele nie an die Reihe kommen, belegt an Ondos
+> Screenshot „0 von 10 gefunden" und den echten Rohdaten. Ausserdem die Liga-Abdeckung von
+> API-Football/football-data.org nachgezählt und als bisher ungenutzt korrigiert. Kein
+> Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.118 gehoben.
 
 > **Was Fassung 0.117 ändert (13.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
 > die abgeschlossene Diagnose zu Backlog-Punkt 81 (Schiedsrichter reparieren, Ondos Auftrag

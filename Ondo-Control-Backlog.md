@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 13.9.2026, Fassung 118 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 13.9.2026, Fassung 119 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,39 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 119 ändert (13.9., echter Schiedsrichter-Bug gefunden und behoben — Backlog-Punkt 81, `beta.html` v19.13.1)
+
+**Anlass:** Ondo, mit Screenshot und drei Datendateien (Schiedsrichter-Rohantworten,
+Messdaten-Export, ChatGPTs Gegenprüfung): „Ja nachsehen. Heutiger Prüflauf hat nicht
+funktioniert beim ersten Mal." Screenshot zeigte „0 von 10 gefunden" nach 144 Sekunden.
+
+- **🔴 Echter Bug gefunden, an den echten Rohdaten belegt, nicht vermutet:** `rundeLaufen()`
+  wählte pro Anfrage immer dieselben ersten fünf offenen Spiele. Blieben diese wiederholt
+  ohne Ergebnis, kamen die übrigen fünf in keiner der bis zu sechs Runden je an die Reihe —
+  vier Spiele trugen „kein refRoh gespeichert", nie versucht.
+- **✅ Behoben:** noch nie gefragte Spiele gehen vor Wiederholungen bereits gefragter (eine
+  Sortierzeile vor dem bestehenden `slice(0,5)`), keine Änderung an der 3-von-3-Regel.
+- **🔴 Ligen-Abdeckung nachgezählt (Ondos Auftrag „Ja nachsehen" zur letzten Diagnose):** groß,
+  nicht klein — 58 verschiedene Wettbewerbe in 505 echten Einträgen, grösstenteils ausserhalb
+  der rund 12 grossen Ligen. Zusätzlich: API-Football/football-data.org wurden in 505
+  Messdaten- und 401 Rohdaten-Einträgen kein einziges Mal tatsächlich als Quelle verwendet —
+  maschinell nachgezählt. Die frühere, optimistischere Einschätzung dazu berichtigt, nicht
+  überschrieben.
+- **Zweite Vermutung, ehrlich als offen markiert:** stille Teilfehlschläge bei drei
+  gleichzeitigen Anfragen an denselben Anbieter könnten erklären, warum selbst die ersten
+  fünf Spiele nie zu einem Vorschlag kamen — nicht bewiesen, da fehlgeschlagene Anfragen
+  keine Spur hinterlassen.
+- **Verifiziert:** `node --check` bestanden · **10 neue Prüfungen** an der echten,
+  unveränderten `ergebnissePruefen()` und am wortgleichen Auswahl-Schnipsel · alle
+  bestehenden Suiten erneut gelaufen, alle weiterhin bestanden · `pruefe.py`: ALLES SAUBER.
+- **Keine neuen Sprachschlüssel.** Kein Schnitt in der Messreihe. `beta.html` jetzt v19.13.1.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 114 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl — 81 bleibt
+  offen, die Teilfehlschlag-Vermutung ist noch nicht geklärt.)*
 
 ---
 
@@ -132,36 +165,6 @@ Sitzungsverlauf nachgesehen statt vermutet (Arbeitsregel H).
 - **Regel 5 angewandt:** Abschnitt „Was Fassung 110 ändert" wortgleich nach
   `BACKLOG-ARCHIV.md` verschoben.
 - **Beschlossen und nicht gebaut: eins** — **4** *(unverändert in der Zahl.)*
-
----
-
-## ⚠ Was Fassung 114 ändert (12.9., Punkt 4 auf „wartet auf Beförderung" gesetzt, Beförderungs-Wartezeit für Ondo erklärt — kein Codeaufwand)
-
-**Anlass:** Nach der Erklärung der beiden Wege für Punkt 4 (Zielbild Beta-Format vs. sofortiger,
-verlustbehafteter Export in die alte Form) hat Ondo Weg (A) gewählt: „Du kannst es auf ‚wartet
-auf Beförderung' setzen." Direkt danach die berechtigte Nachfrage: „Und jetzt musst du mir ganz
-klar sagen worauf wir warten und wann genau endet die Wartezeit mit klar definierten Zielen und
-Zeiten."
-
-- **🔴 Punkt 4 Status geändert:** von „freigegeben, unabhängig von der Beförderung" auf
-  „wartet auf die Beförderung" — kein eigener Bauaufwand mehr, da Weg (A) bedeutet: die
-  stabile Version übernimmt bei der Beförderung den Code der Beta unverändert, die
-  Messdaten wandern automatisch mit.
-- **Ehrliche Antwort auf „worauf warten wir, wann endet es" (Art. 11, kein Rateversuch):**
-  Kein Kalendertermin, weil keiner bekannt ist. Zwei konkrete offene Sachen statt einer
-  Wartezeit: **Kriterium (c)** (Trefferquoten-Schwelle) ist eine seit 23.7.2026 unentschiedene
-  Frage, kein Datensammelproblem — sofort klärbar, keine Bauzeit. **Kriterium (f)**
-  (Schiedsrichter-Fehlerquote) ist eine Messfrage, deren letzter echter Test sechs Wochen alt
-  ist (30./31.7.2026) — von VOR mehreren seitherigen Schiedsrichter-Verbesserungen. Der
-  heutige Fehlerstand ist unbekannt, bis frisch nachgeprüft wird. Fünf weitere Kriterien
-  ((a),(b),(d),(e),(g)) wurden seit dem 31.7. ebenfalls nicht neu geprüft — ihr heutiger Stand
-  ist ebenso unbekannt, nicht als „erfüllt" angenommen. Einzelheiten bei Punkt 5.
-- **Kein Codeaufwand in dieser Fassung** — reine Abstimmung und Buchführung. `beta.html`
-  bleibt v19.12.0. `pruefe.py`: ALLES SAUBER.
-- **Regel 5 angewandt:** Abschnitt „Was Fassung 109 ändert" wortgleich nach
-  `BACKLOG-ARCHIV.md` verschoben.
-- **Beschlossen und nicht gebaut: eins** — **4** *(unverändert in der Zahl, Status-Text
-  geändert.)*
 
 ---
 
@@ -1494,7 +1497,7 @@ der Messreihe.
 
 ---
 
-**81. Schiedsrichter reparieren — nach Ondos eigener, strenger Definition** · *Auftrag Ondo 13.9.2026, wörtlich: „Dann Schiedsrichter reparieren. Das ist dein Job."* · **Status: beschlossen — 🔴 Auftrag angenommen, Diagnose läuft**
+**81. Schiedsrichter reparieren — nach Ondos eigener, strenger Definition** · *Auftrag Ondo 13.9.2026, wörtlich: „Dann Schiedsrichter reparieren. Das ist dein Job."* · **Status: beschlossen — 🔴 ein echter Bug gefunden und behoben 13.9.2026 (`beta.html` v19.13.1, „0 von 10 gefunden"-Fund), zweite Vermutung noch offen, Ligen-Abdeckung ehrlich als gross-lückig belegt**
 
 **Ondos Definition von „repariert" (2.9.2026, bereits im Backlog bei Punkt 64 festgehalten, hier nur referenziert — Punkt 45):** zuverlässige Ergebnisse für alle künftigen Spiele, ohne Gegenprüfung im Chat.
 **Ehrlicher Ausgangspunkt, nicht beschönigt:** Der Schiedsrichter hat elf dokumentierte Fehlerarten (`STAND.md`, „Der Schiedsrichter — elf Fehlerarten"). Die 3-von-3-Einigkeitsregel (Backlog-Punkt 68, v19.8.12) ist eine echte, geprüfte Absicherung gegen Fehlerart 11 (schwankende Antworten) — aber nach Ondos eigenem Massstab weiterhin keine Reparatur, weil sie unsichere Fälle parkt statt sie zuverlässig richtig zu lösen. Fehlerart 7 (Heim und Gast vertauscht) hat bis heute keine eigene Absicherung.
@@ -1524,13 +1527,51 @@ der Messreihe.
   erreichbar, ohne eine weitere, echte Datenquelle zu bezahlen oder zu finden — ein Sprachmodell,
   das einen Text über ein Ergebnis liest, bleibt ein Wahrscheinlichkeitsvorgang, egal wie viele
   Regeln die Form dieser Antwort prüfen (Art. 11, keine Grenze wegargumentiert).
-- **Konkreter nächster Schritt, noch nicht ausgeführt:** Wie gross ist die Lücke wirklich? Dafür
-  müsste geprüft werden, wie viele von Ondos tatsächlichen, zuletzt gespielten Ligen/Wettbewerben
-  von API-Football bzw. football-data.org abgedeckt sind. Ist die Lücke klein, wäre eine engere
-  Kopplung (z. B. ein KI-Treffer, dem eine der beiden echten Quellen widerspricht, sofort parken
-  statt übernehmen) ein greifbarer, echter Fortschritt. Ist sie gross, bleibt nur eine ehrliche
-  Grenze zu benennen oder eine weitere, kostenpflichtige Datenquelle zu suchen (Arbeitsregel G:
-  Kosten dafür noch nicht ermittelt).
+~~Konkreter nächster Schritt, noch nicht ausgeführt: Wie gross ist die Lücke wirklich?~~
+**🔴 BERICHTIGT 13.9.2026, jetzt mit echten Daten geprüft statt nur geplant (Ondo: „Ja
+nachsehen", plus Messdaten-Export, Schiedsrichter-Rohdaten und ChatGPTs Gegenprüfung
+mitgeschickt):**
+- **Die Lücke ist gross, nicht klein.** Ausgezählt aus 505 echten `kiProtokoll`-Einträgen:
+  58 verschiedene Wettbewerbe, der grösste Teil UEFA-Qualifikationsrunden, EFL Cup,
+  Testspiele, Regionalliga Bayern, südamerikanische zweite Ligen, MLS Next Pro und weitere
+  kleine Ligen — klar ausserhalb der rund 12 grossen Wettbewerbe, die football-data.org
+  deckt. Nur ein kleinerer Teil (grob geschätzt ein Viertel bis ein Drittel: Premier League,
+  Bundesliga, 2. Bundesliga, Championship, La Liga, Serie A, Ligue 1, Eredivisie) liegt
+  überhaupt im möglichen Abdeckungsbereich.
+- **Noch wichtiger: Diese Abdeckung wurde bisher kein einziges Mal genutzt.** Weder in den
+  505 Messdaten-Einträgen noch in 401 Schiedsrichter-Rohantworten (30.7.–13.9.2026) kommt
+  „api-football.com" oder „football-data.org" auch nur ein einziges Mal als Quelle vor —
+  maschinell nachgezählt (`grep -c`), nicht überflogen. Der vorherige Satz „das trifft
+  Fehlerart 7 und 8 strukturell" war deshalb zu optimistisch: **technisch im Code vorhanden,
+  in der echten Nutzung bisher ohne jede Wirkung** — ob ein Schlüssel je hinterlegt war und
+  warum er nie griff, ist offen, nicht mehr Teil dieser Diagnose.
+- **🔴 Zweiter, unabhängiger Fund beim Nachsehen — ein echter, im Code belegter Bug, nicht nur
+  eine Ligen-Lücke:** Ondos heutiger Prüflauf zeigte „0 von 10 gefunden" nach 144 Sekunden.
+  Am Rohdaten-Export nachvollzogen: `rundeLaufen()` wählt pro Anfrage „höchstens 5 Spiele"
+  über `posten.filter(...).slice(0,5)` — **immer die ersten fünf** der Liste. Bleiben diese
+  wiederholt ohne Ergebnis, kommen die übrigen fünf in KEINER der bis zu sechs Runden je an
+  die Reihe. Genau das stand so in den Rohdaten: vier Spiele („1. FC Köln – SV Werder Bremen",
+  „Lazio Rom – AC Mailand", „RC Strasbourg – AS Monaco", „Tottenham Hotspur – FC Everton")
+  trugen „kein refRoh gespeichert" — nie versucht, nicht erfolglos versucht.
+- **✅ Behoben (13.9.2026, `beta.html` v19.13.1):** Noch nie gefragte Spiele (`gefragt:false`)
+  gehen jetzt vor Wiederholungen bereits gefragter — jedes Spiel bekommt zuerst einen Versuch,
+  bevor eines einen zweiten bekommt. Eine Zeile Code (`ziel.sort(...)` vor dem `slice(0,5)`),
+  keine Änderung an der 3-von-3-Regel oder an sonst einer inhaltlichen Entscheidung. **10 neue
+  Prüfungen** an der echten, unveränderten `ergebnissePruefen()` sowie am wortgleich
+  herausgeschnittenen Auswahl-Schnipsel, alle bestanden.
+- **Zweite, noch offene Vermutung zu „0 von 10" — nicht bewiesen, ehrlich als Vermutung
+  markiert (Art. 11):** Selbst die ersten fünf Spiele des heutigen Laufs bekamen trotz
+  mehrfacher Wiederholung (bis zu sechs Antworten mit übereinstimmenden Zahlen) keinen
+  Vorschlag. Die Einigkeitsregel verlangt mindestens drei brauchbare Läufe in DERSELBEN Runde
+  (`refEinigkeit()`, `gut.length<3` → „zuwenig", nichts übernehmen). Schlägt bei drei
+  gleichzeitig abgeschickten Anfragen an denselben Anbieter (hier: nur Gemini konfiguriert,
+  alle drei Wege dadurch identisch) auch nur eine fehl — etwa durch eine Anfragebegrenzung
+  bei gleichzeitigen Anfragen an denselben Schlüssel —, zählt die Runde als „zuwenig", ohne
+  dass Ondo davon etwas sieht: Ein Fehlertext wird nur gezeigt, wenn ALLE drei Wege in einer
+  Runde fehlschlagen (`fehlerTexte.length===antworten.length`), nicht wenn nur ein Teil
+  fehlschlägt. **Nicht bewiesen, weil fehlgeschlagene Anfragen keine Spur in den Rohdaten
+  hinterlassen** (nur erfolgreich geparste Antworten landen in `refRoh`) — ein plausibler,
+  im Code begründeter Verdacht, keine belegte Tatsache. Noch nicht behoben.
 
 ---
 
