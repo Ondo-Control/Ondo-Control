@@ -3,9 +3,22 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.122
+**Version:** 0.123
 **Stand:** 13. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.123 ändert (13.9.2026):** Abschnitt 10 ergänzt — Ondo hat entschieden, dass
+> die App keinen Schreibzugriff aufs Repo bekommt (Backlog-Punkt 81, Wege-Neuzusammensetzung
+> beim Schiedsrichter, `beta.html` v19.13.2): Die strukturell nie erreichbare Drei-Läufe-
+> Schwelle (API-Football und football-data.org belegten seit dem 11.9. zwei von drei Plätzen
+> in jeder Prüfrunde, unabhängig vom Treffer) wird stattdessen über eine zweiphasige
+> Wege-Zusammensetzung gelöst — erst beide Strukturquellen für den ganzen Spiele-Stapel
+> abwarten, dann je nach 0/1/2 Strukturtreffern so viele KI-Läufe zusätzlich starten, wie das
+> schlechteste Spiel im Stapel braucht. `pruefAuswerten()`/`refEinigkeit()` unverändert. Ein
+> im eigenen Trockentest gefundener und vor der Auslieferung behobener Fehler (Kappen statt
+> Auffüllen bei nur einem KI-Anbieter) offen benannt, nicht verschwiegen. Status bleibt
+> ausdrücklich OFFEN, Bestätigung durch einen echten Prüfzyklus am Gerät steht aus. Kein
+> Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.123 gehoben.
 
 > **Was Fassung 0.122 ändert (13.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
 > Ondos eigene Erklärung zum Celje/Sabah-Fund aus Fassung 0.121: Die Übernahme vom 10.9.2026
@@ -663,6 +676,8 @@ Für automatische, echte Quoten wäre ein Weg nötig, Quoten ohne Ondos Handarbe
    *Technische Einordnung, GEPRÜFT und BESTÄTIGT (10.9.2026):* Der Knopfdruck-Teil braucht **kein** GitHub Actions — ein reiner Abruf im Browser (wie die bestehenden Knöpfe „Vorhersagen"/„Ergebnisse prüfen" es schon tun) reicht, **gebaut in Backlog-Punkt 9**. Für Variante 1 (Zeitsteuerung) brauchte es tatsächlich einen eigens abzusichernden Zugriffsschlüssel — **gebaut, 11.9.2026:** zwei neue Repository-Geheimnisse, `API_FOOTBALL_KEY` und `FOOTBALL_DATA_ORG_KEY`, von Ondo selbst im GitHub-Repository angelegt, nie im Code oder im Browser.
 Vorgelagerte Sachfrage *(Gemini, 23.7.)*: Deckt ein kostenloser Quotendienst Ondos Spiele überhaupt ab? **🔴 Beantwortet, 11.9.2026 (per echtem Testabruf geprüft, nicht nur Websuche):** API-Football deckt nachweislich alle 16 Stufe-1-Länder, alle Stufe-2-Ligen und Länderspiele weltweit ohne Kontinent-Einschränkung ab; football-data.org zusätzlich 12 grosse Wettbewerbe als zweite, unabhängige Quelle. Einzelheiten und die kostenlose Stufe je Anbieter bei Backlog-Punkt 9.
 **Beleg (27.8.2026), aus einem Strukturvergleich mit dem Schwesterprojekt `ondo-jarvis`:** Dort läuft GitHub Actions bei jedem Push/Pull-Request und endet nach Sekunden — kein dauerhaft laufender Prozess. Erfahrungswert, kein Beschluss. Backlog-Punkt 9 hängt an dieser gesamten Frage.
+
+**✅ Geschlossen — kein Schreibzugriff der App aufs Repo** *(Frage aufgeworfen durch Backlog-Punkt 81, entschieden Ondo, 13.9.2026)*: Zur Behebung der strukturell nie erreichbaren Drei-Läufe-Schwelle beim Schiedsrichter (zwei von drei Plätzen gingen an oft leer ausgehende Strukturabfragen) stand ein automatisches Rückschreiben gefundener Ergebnisse in ein Archiv im Repo als möglicher Weg zur Debatte. **Ondos Entscheidung: nein — das Risiko eines Schreibzugriffs vom Browser aus wiegt schwerer als der Nutzen.** API-Football und football-data.org bleiben reine, lesende Live-Abfragen vom eigenen Gerät (`apiFootballLauf()`/`footballDataLauf()`), wie bisher. Die tägliche GitHub-Actions-Automatik bleibt als eigener, getrennter Weg bestehen und wird von `beta.html` weiterhin bewusst nicht gelesen — das galt bis heute als offener Punkt (Backlog-Punkt 81), gilt ab jetzt als bewusst getroffene, keine offene Entscheidung mehr. Gelöst wurde die eigentliche Schwelle stattdessen durch eine zweiphasige Wege-Zusammensetzung (`beta.html` v19.13.2) — Einzelheiten Backlog-Punkt 81.
 
 **✅ Geschlossen — „Fail Safe" als Arbeitsregel** *(ChatGPT, 4.8. · entschieden Ondo, 7.9.2026: „ja, für einen Satz im Blueprint")*: Eingetragen als **Arbeitsregel N**, Abschnitt 2c.
 

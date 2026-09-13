@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.13.1';
+var CODE_VERSION = 'v19.13.2';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -3652,89 +3652,132 @@ function ergebnissePruefen(btn){
       zeilen.join('\n')+
       '\n\nLetzte Nachricht: NUR kompaktes JSON:\n{"ergebnisse":[{"id":"S0","status":"fertig","format":"2x45","halbzeit":"1:0","heim":2,"gast":1,"verlaengerungGespielt":"nein","verlaengerung":"","torlos":"nein","datum":"24.07.2026","wettbewerb":"MLS","quelle":"https://..."}]}';
 
-    /* v19.8.12 (Backlog-Punkt 68, Entscheidung Ondo 3.9.2026): DREI Laeufe statt einem,
-       GLEICHZEITIG abgeschickt (Promise.all), damit sich die Wartezeit nicht verdreifacht.
-       Mindestens einer laeuft auf einem anderen Modell — dafuer wird der bestehende
-       Sonnet-Rueckfallpfad benutzt (claude-sonnet-4-6 mit Websuche) statt eines dritten
-       Gemini-Laufs. Steht nur ein Anbieter zur Verfuegung, laufen alle drei dort; das wird
-       in der Bilanz sichtbar gemeldet, nicht stillschweigend hingenommen (Art. 14).
-       v19.8.24 (Ausbau Backlog-Punkt 9, Ondo 11.9.2026): Die beiden strukturierten Quellen
-       gehen den KI-Laeufen voran, wenn ein Schluessel gespeichert ist — sie kosten nichts,
-       kein Halluzinations-Risiko, und vom eigenen Geraet aus keine geteilte Cloud-Adresse
-       (siehe die Sperre bei der GitHub-Automatik, dort war genau das das Problem). Erst was
-       danach an freien Plaetzen bis drei fehlt, geht an die bestehende KI-Suche. */
-    var wege=[];
-    if(hatApiFootball()) wege.push('api-football');
-    if(hatFootballData()) wege.push('football-data');
-    var kiWege=[];
-    if(hatGemini()){ kiWege.push('gemini'); kiWege.push('gemini'); }   /* 0a zurueckgenommen in v19.7.3, siehe Backlog */
-    if(hatSonnet()){ kiWege.push('sonnet'); }
-    while(wege.length<3 && kiWege.length) wege.push(kiWege.shift());
-    while(wege.length<3) wege.push(wege[wege.length-1]);
-    wege=wege.slice(0,3);
-    einAnbieter = (wege[0]===wege[1] && wege[1]===wege[2]);
+    /* v19.13.2, Fund 13.9.2026 (Backlog-Punkt 81, Wege-Neuzusammensetzung — Ondos Auftrag).
+       ZWEIPHASIG statt gleichzeitig, seit v19.8.24 (Ausbau Backlog-Punkt 9) noetig geworden:
+       Die zwei strukturierten Quellen belegten bis hier zwei der drei festen Plaetze in jeder
+       Runde, UNABHAENGIG davon, ob sie fuer die gerade geprueften Spiele tatsaechlich etwas
+       fanden. Liefern beide nichts (Regelfall: API-Football gesperrt, football-data.org deckt
+       nur 12 grosse Wettbewerbe ab), blieb pro Runde nur EIN echter Lauf uebrig —
+       pruefAuswerten()/refEinigkeit() verlangen aber mindestens drei brauchbare Laeufe
+       (gut.length<3 -> 'zuwenig', siehe dort, UNVERAENDERT), diese Schwelle war damit
+       strukturell nie erreichbar, gleich wie oft man es versuchte. Belegt im Rohtext vom
+       12.9.2026 (Schiri_Rohdaten.txt): Gemini fand in sieben von sieben Versuchen ein
+       stimmiges, belegtes Ergebnis fuer alle zehn geprueften Spiele — die App meldete
+       trotzdem durchgehend "nicht gefunden".
+       Phase 1: beide Strukturquellen fuer den GANZEN Stapel gleichzeitig abwarten (reine,
+       schnelle Datenabrufe, kein Halluzinations-Risiko, kosten nichts).
+       Phase 2: je Spiel zaehlen, wie viele der zwei Quellen etwas fanden (0/1/2). Das
+       SCHLECHTESTE Spiel im Stapel bestimmt, wie viele KI-Laeufe der GANZE Stapel zusaetzlich
+       braucht — nicht jedes Spiel einzeln, weil ein KI-Lauf ohnehin den ganzen Stapel in einem
+       einzigen Prompt beantwortet (zeilen oben): mindestens ein Spiel mit 0 Strukturtreffern
+       -> alle drei KI-Wege (2x Gemini, 1x Sonnet), wie vor dem 11.9.2026; kein Spiel mit 0,
+       aber mindestens eins mit genau 1 -> zwei KI-Wege (2x Gemini); alle Spiele mit 2 ->
+       ein KI-Weg (1x Gemini) reicht. Einzelne Spiele koennen dadurch mehr als drei Laeufe
+       insgesamt bekommen (z. B. 2 Struktur + 3 KI, wenn ein anderes Spiel im selben Stapel 0
+       Strukturtreffer hatte) — kein Fehler, refEinigkeit() wertet ohnehin alle vorhandenen
+       guten Laeufe aus, UNVERAENDERT.
+       Ausdruecklich NICHT Teil dieses Umbaus: schiri-ergebnisse-holen.js, die GitHub-Actions-
+       Datei und die Monatsdateien im Repo — reine Aenderung an beta.html (Ondos Auftrag,
+       13.9.2026). Keine neue Berechtigung, kein neuer Schluessel, kein Schreibzugriff auf das
+       Repo aus dem Browser. */
+    Promise.all([ apiFootballLauf(ziel), footballDataLauf(ziel) ]).then(function(struktur){
+      var afErg=struktur[0]||[], fdErg=struktur[1]||[];
+      function hat(liste, id){ return liste.some(function(r){ return r.id===id; }); }
+      /* Schlechtestes Spiel im Stapel (0/1/2 Strukturtreffer) bestimmt den KI-Bedarf des
+         GANZEN Stapels. Kein Spiel im Stapel (ziel.length===0 kommt hier nie vor, siehe
+         Abbruch oben) faellt durch fehlenden Treffer aus der Rechnung heraus. */
+      var minTreffer=2;
+      ziel.forEach(function(p){
+        var n=(hat(afErg,p.id)?1:0)+(hat(fdErg,p.id)?1:0);
+        if(n<minTreffer) minTreffer=n;
+      });
+      var kiZahl = (minTreffer===0) ? 3 : (minTreffer===1 ? 2 : 1);
 
-    /* Ein Fehler in einem Lauf wirft nicht mehr die ganze Runde weg: jeder Aufruf wird
-       einzeln abgefangen und zaehlt dann als "kein Ergebnis". Bis v19.8.11 beendete ein
-       einziger Fehlschlag den gesamten Prueflauf. */
-    function einLauf(weg){
-      if(weg==='api-football' || weg==='football-data'){
-        var strukturLauf = (weg==='api-football') ? apiFootballLauf(ziel) : footballDataLauf(ziel);
-        return strukturLauf.then(function(ergebnisse){ return { weg:weg, ergebnisse:ergebnisse||[] }; })
-                            .catch(function(){ return { weg:weg, ergebnisse:[] }; });
+      var kiWege=[];
+      if(hatGemini()){ kiWege.push('gemini'); kiWege.push('gemini'); }   /* 0a zurueckgenommen in v19.7.3, siehe Backlog */
+      if(hatSonnet()){ kiWege.push('sonnet'); }
+      /* kiZahl Plaetze auffuellen, notfalls durch Wiederholung (z. B. nur Gemini gespeichert,
+         kein Sonnet-Schluessel: kiWege hat dann nur 2 Eintraege, kiZahl kann aber 3 verlangen).
+         Bewusst NICHT gekappt (kiWege.slice(0,kiZahl) waere bei kiZahl>kiWege.length zu kurz
+         und liesse die Drei-Laeufe-Schwelle in refEinigkeit() nie erreichen) — dieselbe
+         Wiederhol-Logik wie vor diesem Umbau ("wege.push(wege[wege.length-1])"), nur ueber den
+         tatsaechlich benoetigten kiZahl statt einer festen Drei. */
+      var wege=[];
+      for(var wi=0; wi<kiZahl; wi++){ wege.push(kiWege[wi % kiWege.length]); }
+
+      /* einAnbieter (Anzeige refEinAnbieter, unveraenderter Sprachschluessel): "lief die ganze
+         Runde nur auf einem einzigen Anbieter?" Eine konfigurierte Strukturquelle zaehlt immer
+         als eigener Anbieter — sie ruft in Phase 1 tatsaechlich ab, unabhaengig vom Treffer.
+         Bleiben nur KI-Wege UND sind die alle gleich (z. B. nur Gemini gespeichert, kein
+         Sonnet-Schluessel), ist es weiterhin nur ein Anbieter — dieselbe Bedeutung wie vor
+         diesem Umbau, nur ohne die feste Drei-Wege-Zaehlung. */
+      var strukturAnbieter=[];
+      if(hatApiFootball()) strukturAnbieter.push('api-football');
+      if(hatFootballData()) strukturAnbieter.push('football-data');
+      var alleWege = strukturAnbieter.concat(wege);
+      einAnbieter = alleWege.length>0 && alleWege.every(function(w){ return w===alleWege[0]; });
+
+      /* Strukturtreffer sofort verarbeiten — identisches Format wie bisher, verarbeite()
+         UNVERAENDERT. rohText bleibt sichtbar auch bei null Treffern, wie vor diesem Umbau. */
+      var afRohText = afErg.length
+        ? afErg.map(function(r){ return r.id+': '+r.heim+':'+r.gast; }).join(' | ')
+        : '(kein Treffer bei api-football)';
+      afErg.forEach(function(r){ verarbeite(r, ziel, afRohText, 'api-football'); });
+      var fdRohText = fdErg.length
+        ? fdErg.map(function(r){ return r.id+': '+r.heim+':'+r.gast; }).join(' | ')
+        : '(kein Treffer bei football-data)';
+      fdErg.forEach(function(r){ verarbeite(r, ziel, fdRohText, 'football-data'); });
+
+      /* Ein Fehler in einem KI-Lauf wirft nicht mehr die ganze Runde weg: jeder Aufruf wird
+         einzeln abgefangen und zaehlt dann als "kein Ergebnis". Unveraendert seit v19.8.12. */
+      function einLauf(weg){
+        var call = (weg==='gemini')
+          ? geminiCall({ prompt: prompt, useSearch: true, rolle:'ref' })
+          : sonnetSuche(prompt, 5, 1500);
+        return call.then(function(res){ return { weg:weg, res:res||{} }; })
+                   .catch(function(e){ return { weg:weg, res:{ error:{ message:(e&&e.message)?e.message:'?' } } }; });
       }
-      var call = (weg==='gemini')
-        ? geminiCall({ prompt: prompt, useSearch: true, rolle:'ref' })
-        : sonnetSuche(prompt, 5, 1500);
-      return call.then(function(res){ return { weg:weg, res:res||{} }; })
-                 .catch(function(e){ return { weg:weg, res:{ error:{ message:(e&&e.message)?e.message:'?' } } }; });
-    }
 
-    Promise.all(wege.map(einLauf)).then(function(antworten){
-      var fehlerTexte=[];
-      antworten.forEach(function(a){
-        /* Strukturierte Quelle: kein Text zu parsen, direkt verarbeiten. Ein rohText wird
-           trotzdem erzeugt, damit refRoh dieselbe Transparenz behaelt wie bei einem KI-Lauf -
-           auch "kein Treffer" bleibt sichtbar, nicht stillschweigend leer. */
-        if(a.ergebnisse){
-          var rohText = a.ergebnisse.length
-            ? a.ergebnisse.map(function(r){ return r.id+': '+r.heim+':'+r.gast; }).join(' | ')
-            : '(kein Treffer bei '+a.weg+')';
-          a.ergebnisse.forEach(function(r){ verarbeite(r, ziel, rohText, a.weg); });
-          return;
-        }
-        var res=a.res||{};
-        if(res.error){ fehlerTexte.push(res.error.message||('HTTP '+res._status)); return; }
-        /* Backlog-Punkt 64: die volle rohe Antwort dieses Laufs, unabhaengig vom Parsen —
-           dieselbe Extraktion wie parseJsonBlock, nur ohne die JSON-Filterung. */
-        var rohText=(res.content||[]).filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join('\n');
-        /* Nachfrage 28.8.2026: welches Modell hat tatsaechlich geantwortet? Nicht ueber die
-           blosse Anwesenheit von modelVersion raten, sondern ueber den Weg, der lief. Fehlt
-           modelVersion trotz Gemini-Pfad ausnahmsweise: null, ausdruecklich unbekannt. */
-        var modellGenutzt = (a.weg==='gemini') ? (res.modelVersion||null) : 'claude-sonnet-5';
-        var parsed=parseJsonBlock(res);
-        if(parsed && parsed.ergebnisse){
-          parsed.ergebnisse.forEach(function(r){ verarbeite(r, ziel, rohText, modellGenutzt); });
-        }
+      return Promise.all(wege.map(einLauf)).then(function(antworten){
+        var fehlerTexte=[];
+        antworten.forEach(function(a){
+          var res=a.res||{};
+          if(res.error){ fehlerTexte.push(res.error.message||('HTTP '+res._status)); return; }
+          /* Backlog-Punkt 64: die volle rohe Antwort dieses Laufs, unabhaengig vom Parsen —
+             dieselbe Extraktion wie parseJsonBlock, nur ohne die JSON-Filterung. */
+          var rohText=(res.content||[]).filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join('\n');
+          /* Nachfrage 28.8.2026: welches Modell hat tatsaechlich geantwortet? Nicht ueber die
+             blosse Anwesenheit von modelVersion raten, sondern ueber den Weg, der lief. Fehlt
+             modelVersion trotz Gemini-Pfad ausnahmsweise: null, ausdruecklich unbekannt. */
+          var modellGenutzt = (a.weg==='gemini') ? (res.modelVersion||null) : 'claude-sonnet-5';
+          var parsed=parseJsonBlock(res);
+          if(parsed && parsed.ergebnisse){
+            parsed.ergebnisse.forEach(function(r){ verarbeite(r, ziel, rohText, modellGenutzt); });
+          }
+        });
+        /* Erst jetzt, mit Struktur- UND allen KI-Laeufen dieser Runde, wird je Spiel
+           entschieden — pruefAuswerten()/refEinigkeit() UNVERAENDERT. */
+        var neu=0;
+        ziel.forEach(function(p){ neu += pruefAuswerten(p); });
+        /* Gefragte ohne jede Antwort gelten als nicht gefunden */
+        ziel.forEach(function(p){ if(p.zustand==='offen') p.zustand='fehlt'; });
+        /* Sofort sichern: geht eine Runde nicht in eine Uebernahme (wie bei Celje/Sabah,
+           drei Laeufe, keiner uebernommen), waeren die rohen Antworten sonst verloren —
+           genau der Fall, den Punkt 64 beheben soll. Ab v19.8.12 sichert das ausserdem die
+           Parkungen aus pruefAuswerten(). */
+        save();
+        var nochWas = posten.some(function(p){
+          return p.zustand==='fehlt' || (p.zustand==='offen' && !p.gefragt);
+        });
+        var ungefragt = posten.some(function(p){ return p.zustand==='offen' && !p.gefragt; });
+        if(runde<MAXR && nochWas && (neu>0 || ungefragt)){ rundeLaufen(); }
+        /* Alle KI-Laeufe dieser Runde gescheitert und nichts erreicht (auch nicht per
+           Struktur): den Grund zeigen statt schweigen. antworten enthaelt seit diesem Umbau
+           nur noch KI-Laeufe — Strukturquellen scheitern nie mit einem Fehlertext, sie liefern
+           bei jedem Problem einfach null Treffer (siehe apiFootballLauf()/footballDataLauf()). */
+        else if(antworten.length && fehlerTexte.length===antworten.length && !neu){ abschluss(fehlerTexte[0]); }
+        else { abschluss(); }
       });
-      /* Erst jetzt, mit allen drei Laeufen, wird je Spiel entschieden. */
-      var neu=0;
-      ziel.forEach(function(p){ neu += pruefAuswerten(p); });
-      /* Gefragte ohne jede Antwort gelten als nicht gefunden */
-      ziel.forEach(function(p){ if(p.zustand==='offen') p.zustand='fehlt'; });
-      /* Sofort sichern: geht eine Runde nicht in eine Uebernahme (wie bei Celje/Sabah,
-         drei Laeufe, keiner uebernommen), waeren die rohen Antworten sonst verloren —
-         genau der Fall, den Punkt 64 beheben soll. Ab v19.8.12 sichert das ausserdem die
-         Parkungen aus pruefAuswerten(). */
-      save();
-      var nochWas = posten.some(function(p){
-        return p.zustand==='fehlt' || (p.zustand==='offen' && !p.gefragt);
-      });
-      var ungefragt = posten.some(function(p){ return p.zustand==='offen' && !p.gefragt; });
-      if(runde<MAXR && nochWas && (neu>0 || ungefragt)){ rundeLaufen(); }
-      /* Alle drei Laeufe gescheitert und nichts erreicht: den Grund zeigen statt schweigen. */
-      else if(fehlerTexte.length===antworten.length && !neu){ abschluss(fehlerTexte[0]); }
-      else { abschluss(); }
     })
     .catch(function(e){
       abschluss((e&&e.message)?e.message:'?');

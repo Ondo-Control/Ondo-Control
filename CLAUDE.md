@@ -196,13 +196,16 @@ Punkt 73, nicht hier wiederholt (Punkt 45).
 `.claude/hooks/claude_md_frisch.py` vergleicht sie bei jedem Sitzungsstart und erinnert an
 eine Erneuerung, sobald einer abweicht. Er erneuert nichts von selbst.*
 
-- STAND.md — `1311d3c775ede6e98c4a1493bd7e57e65aedb83d`
-- Ondo-Control-Backlog.md — `8ad0d979366e3c0be6ffdf45e62db4b068156eaf`
-- Blueprint.md — `43d1560e359fbb02b6925fdd023c55901aaff4b3`
+- STAND.md — `cfaa220849328f04f4ca96ecc10d79474504351c`
+- Ondo-Control-Backlog.md — `72edfd48cb4f7bf2b4ea22ab32d503bdc667d428`
+- Blueprint.md — `dd0b2aa16ddacf3ac384b202dca6c53fa6124e0f`
 - Ondo-Core-Architektur.md — `2923c6d2f1cf152a67522bd0ddafc42d6c196b40`
 
-*Prüfstand nachgeführt am 13.9.2026 (nur Hashes — Anlass war Ondos eigene Erklärung zum
-Celje/Sabah-Fund: Speicherproblem zum Zeitpunkt der Übernahme vom 10.9., seit dem Umstieg auf
-`IndexedDB` gelöst, beide Spiele werden im nächsten Prüflauf automatisch erneut ausgewertet.
-`STAND.md` und Backlog-Punkt 64 ergänzt, nichts überschrieben; inhaltlich für diese Datei nicht
-berührt, keine neue Arbeitsregel, keine Änderung an Zweig- oder Geheimfeld-Regeln).*
+*Prüfstand nachgeführt am 13.9.2026 (nur Hashes — Anlass war Ondos Auftrag, die
+Schiedsrichter-Wege neu zusammenzusetzen (Backlog-Punkt 81, `beta.html` v19.13.2): API-Football
+und football-data.org belegten zwei von drei festen Plätzen je Prüfrunde, unabhängig vom
+Treffer, wodurch die Drei-Läufe-Schwelle strukturell nie erreichbar war. Ondo hat sich gegen
+ein automatisches Rückschreiben der App ins Repo entschieden (Schreibzugriffs-Risiko), gelöst
+stattdessen über eine zweiphasige Wege-Zusammensetzung. `pruefAuswerten()`/`refEinigkeit()`
+unverändert; inhaltlich für diese Datei nicht berührt, keine neue Arbeitsregel, keine Änderung
+an Zweig- oder Geheimfeld-Regeln).*

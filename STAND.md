@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 13.9.2026, Fassung 123, v19.13.1*
+*Die aktuelle Wahrheit. Stand: 13.9.2026, Fassung 124, v19.13.2*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -204,7 +204,59 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   den Trainingsraum) — dieser Commit ist der Stand **davor**, falls zurückgesetzt werden muss.
   Einzelheiten Backlog-Punkt 77.
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.13.1** (`beta.html`, geliefert 13.9.2026) — **Echter Schiedsrichter-Bug behoben
+- **Beta: v19.13.2** (`beta.html`, geliefert 13.9.2026) — **Schiedsrichter-Wege neu
+  zusammengesetzt, zweiphasig statt gleichzeitig (Backlog-Punkt 81, Ondos Auftrag).**
+  **Ursache, mit Codezitat belegt:** Seit dem Ausbau von Punkt 9 (v19.8.24, 11.9.2026) belegten
+  API-Football und football-data.org zwei der drei festen Plätze in jeder Prüfrunde,
+  unabhängig davon, ob sie für die gerade geprüften Spiele tatsächlich etwas fanden. Lieferten
+  beide nichts (bestätigt: API-Football gesperrt, geteilte Cloud-Adresse; football-data.org
+  deckt nur 12 grosse Wettbewerbe ab), blieb pro Runde nur **ein** echter Lauf übrig —
+  `pruefAuswerten()` verlangt aber mindestens drei brauchbare Läufe, bevor überhaupt etwas
+  übernommen wird. Diese Schwelle war damit strukturell nie erreichbar. Belegt im Rohtext vom
+  12.9.2026: Gemini fand in sieben von sieben Versuchen ein stimmiges, belegtes Ergebnis für
+  alle zehn geprüften Spiele — die App meldete trotzdem durchgehend „nicht gefunden".
+  **Entschieden (Ondo, 13.9.2026):** kein automatisches Rückschreiben der App in ein Archiv im
+  Repo — das Risiko eines Schreibzugriffs vom Browser aus wiegt schwerer als der Nutzen. API-
+  Football und football-data.org bleiben reine Live-Abfragen vom eigenen Gerät, wie bisher. Die
+  tägliche GitHub-Actions-Automatik bleibt unverändert bestehen, wird von `beta.html` weiterhin
+  bewusst nicht gelesen — kein offener Punkt mehr, sondern eine getroffene Entscheidung.
+  **Gebaut:** `rundeLaufen()` fragt jetzt zweiphasig statt alle Wege gleichzeitig. Phase 1:
+  beide Strukturquellen laufen für den ganzen Spiele-Stapel gleichzeitig. Phase 2: je Spiel
+  wird gezählt, wie viele der zwei Quellen etwas fanden (0/1/2) — das **schlechteste** Spiel im
+  Stapel bestimmt, wie viele KI-Läufe der ganze Stapel zusätzlich braucht (0 Treffer bei
+  mindestens einem Spiel → alle drei KI-Wege wie vor dem 11.9. · kein Spiel mit 0, aber
+  mindestens eins mit 1 → zwei KI-Wege · alle Spiele mit 2 → ein KI-Weg reicht). Einzelne
+  Spiele können dadurch mehr als drei Läufe insgesamt bekommen — kein Fehler, `refEinigkeit()`
+  wertet ohnehin alle vorhandenen guten Läufe aus. **`pruefAuswerten()` und `refEinigkeit()`
+  ausdrücklich unverändert** — nur Zahl und Herkunft der Läufe je Spiel ändern sich, nicht die
+  Auswertung selbst. Volle Einzelheiten (Beispielrechnung, neun geprüfte Fälle): Backlog-
+  Punkt 81.
+  **Ausdrücklich NICHT Teil dieser Lieferung:** `schiri-ergebnisse-holen.js`, die GitHub-
+  Actions-Datei, die Monatsdateien im Repo — reine Änderung an `beta.html`. Keine neue
+  Berechtigung, kein neuer Schlüssel, kein Schreibzugriff auf das Repo aus dem Browser.
+  **🔴 Eigener Fehler im ersten Entwurf, noch vor der Auslieferung im eigenen Trockentest
+  gefunden und behoben:** Die erste Fassung befüllte die KI-Wege mit `kiWege.slice(0,kiZahl)`
+  — bei nur einem konfigurierten KI-Anbieter (z. B. Gemini ohne Sonnet-Schlüssel) hat `kiWege`
+  aber nur zwei Einträge, `kiZahl` kann drei verlangen. `slice()` kappt in diesem Fall auf zwei
+  Läufe, statt aufzufüllen — die Drei-Läufe-Schwelle in `refEinigkeit()` wäre dann in genau
+  dieser Konstellation **nie** erreichbar gewesen: derselbe Fehler, den dieser Auftrag beheben
+  soll, an neuer Stelle wieder eingebaut. Behoben durch Auffüllen mit Wiederholung
+  (`kiWege[wi % kiWege.length]`), wie es die alte, jetzt ersetzte Logik auch tat.
+  **Verifiziert:** `node --check` bestanden · **9 neue Prüfungen** an der echten, wortgleich
+  aus `beta.html` herausgeschnittenen Zwei-Phasen-Logik (kein Nachbau) — 0/1/0-gemischt/1/2
+  Strukturtreffer je Spiel, die Randfälle „keine Strukturquelle konfiguriert" (muss exakt das
+  alte Vor-11.9.-Verhalten ergeben) und „nur ein KI-Anbieter" bei kiZahl 2 UND 3 mit je nur
+  einem bzw. zwei verfügbaren KI-Wegen (der oben beschriebene Auffüll-Fall, `einAnbieter` muss
+  dabei weiterhin true bleiben, solange keine echte Strukturquelle mitläuft) — alle neun
+  bestanden. `pruefe.py`: ALLES SAUBER. **Keine neuen Sprachschlüssel** (349 unverändert —
+  reine Ablauflogik, keine neuen Texte). **Kein Schnitt in der Messreihe** — reine
+  Auswertungslogik des Schiedsrichters, nicht der Vorhersagen selbst. `APP_VERSION` weiter 18.
+  **🔴 Status ausdrücklich NICHT auf „behoben" gesetzt, auch wenn alle Prüfungen sauber sind
+  (Ondos ausdrückliche Auflage):** Backlog-Punkt 81 bleibt auf OFFEN, mit dem Vermerk „Wege-
+  Neuzusammensetzung ausgeliefert, Bestätigung durch einen echten Prüfzyklus am Gerät steht
+  aus". Erst wenn Ondo „Ergebnisse prüfen" tatsächlich laufen lässt und bisher
+  hängengebliebene Spiele jetzt ein Ergebnis bekommen, gilt der Punkt als bestätigt.
+- **Beta zuvor: v19.13.1** (`beta.html`, geliefert 13.9.2026) — **Echter Schiedsrichter-Bug behoben
   (Backlog-Punkt 81).** Ondo, nach einem fehlgeschlagenen Prüflauf: „Heutiger Prüflauf hat
   nicht funktioniert beim ersten Mal", mit Screenshot („0 von 10 gefunden", 144 s) plus
   Rohdaten (Schiedsrichter-Rohantworten, Messdaten-Export, ChatGPTs Gegenprüfung) mitgeschickt.

@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 13.9.2026, Fassung 123 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 13.9.2026, Fassung 124 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,48 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 124 ändert (13.9., Schiedsrichter-Wege neu zusammengesetzt — Backlog-Punkt 81, `beta.html` v19.13.2)
+
+**Anlass:** Ondos Auftrag „Backlog-Punkt 81, Schiedsrichter-Wege neu zusammensetzen (kein
+Archiv-Rückschreiben)" — Ursache und Entscheidung siehe unten, voller Hergang bei Punkt 81.
+
+- **🔴 Ursache gefunden, mit Codezitat belegt:** Seit dem Ausbau von Punkt 9 (v19.8.24,
+  11.9.2026) belegten API-Football und football-data.org zwei der drei festen Plätze in jeder
+  Prüfrunde, unabhängig vom Treffer. Fanden beide nichts (Regelfall: API-Football gesperrt,
+  football-data.org deckt nur 12 von Ondos 58 Wettbewerben ab), blieb pro Runde nur ein echter
+  Lauf übrig — `refEinigkeit()` verlangt aber mindestens drei, diese Schwelle war damit
+  strukturell nie erreichbar. Belegt im Rohtext vom 12.9.2026: Gemini fand in sieben von sieben
+  Versuchen ein stimmiges Ergebnis für alle zehn Spiele, die App meldete trotzdem „nicht
+  gefunden".
+- **Entschieden (Ondo, 13.9.2026):** kein automatisches Rückschreiben der App in ein Archiv im
+  Repo — Schreibzugriffs-Risiko wiegt schwerer als der Nutzen. Beide strukturierten Quellen
+  bleiben reine Live-Abfragen vom eigenen Gerät. Die tägliche GitHub-Actions-Automatik bleibt
+  unverändert bestehen, `beta.html` liest sie weiterhin bewusst nicht — kein offener Punkt
+  mehr, sondern eine getroffene Entscheidung.
+- **Gebaut:** `rundeLaufen()` zweiphasig statt gleichzeitig. Phase 1: beide Strukturquellen für
+  den ganzen Spiele-Stapel. Phase 2: je Spiel 0/1/2 Strukturtreffer zählen, das schlechteste
+  Spiel im Stapel bestimmt, wie viele KI-Läufe der ganze Stapel zusätzlich braucht (0 → drei
+  KI-Wege wie vor dem 11.9. · 1 → zwei · 2 → einer reicht). `pruefAuswerten()`/`refEinigkeit()`
+  ausdrücklich unverändert.
+- **🔴 Eigener Fehler im ersten Entwurf, im eigenen Trockentest gefunden und vor der
+  Auslieferung behoben:** Die erste Fassung kappte statt aufzufüllen, wenn nur ein KI-Anbieter
+  konfiguriert war (`kiWege.slice(0,kiZahl)` bei zu kurzem `kiWege`) — die Drei-Läufe-Schwelle
+  wäre in genau dieser Konstellation nie wieder erreichbar gewesen, derselbe Fehler an neuer
+  Stelle. Behoben durch Auffüllen mit Wiederholung.
+- **Verifiziert:** `node --check` bestanden · **9 neue Prüfungen** an der echten, wortgleich
+  herausgeschnittenen Zwei-Phasen-Logik, alle bestanden · `pruefe.py`: ALLES SAUBER.
+- **Keine neuen Sprachschlüssel** (349 unverändert). **Kein Schnitt in der Messreihe.**
+  `beta.html` jetzt v19.13.2.
+- **🔴 Status bleibt ausdrücklich OFFEN, nicht auf „behoben" gesetzt (Ondos Auflage):**
+  Vermerk „Wege-Neuzusammensetzung ausgeliefert, Bestätigung durch einen echten Prüfzyklus am
+  Gerät steht aus". Volle Einzelheiten (Beispielrechnung, alle neun geprüften Fälle): Punkt 81.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 119 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl — 81 bleibt
+  offen, jetzt mit ausgelieferter, aber unbestätigter Lösung.)*
 
 ---
 
@@ -143,39 +185,6 @@ beantwortet (Arbeitsregel H).
 - **Regel 5 angewandt:** Abschnitt „Was Fassung 115 ändert" wortgleich nach
   `BACKLOG-ARCHIV.md` verschoben.
 - **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl.)*
-
----
-
-## ⚠ Was Fassung 119 ändert (13.9., echter Schiedsrichter-Bug gefunden und behoben — Backlog-Punkt 81, `beta.html` v19.13.1)
-
-**Anlass:** Ondo, mit Screenshot und drei Datendateien (Schiedsrichter-Rohantworten,
-Messdaten-Export, ChatGPTs Gegenprüfung): „Ja nachsehen. Heutiger Prüflauf hat nicht
-funktioniert beim ersten Mal." Screenshot zeigte „0 von 10 gefunden" nach 144 Sekunden.
-
-- **🔴 Echter Bug gefunden, an den echten Rohdaten belegt, nicht vermutet:** `rundeLaufen()`
-  wählte pro Anfrage immer dieselben ersten fünf offenen Spiele. Blieben diese wiederholt
-  ohne Ergebnis, kamen die übrigen fünf in keiner der bis zu sechs Runden je an die Reihe —
-  vier Spiele trugen „kein refRoh gespeichert", nie versucht.
-- **✅ Behoben:** noch nie gefragte Spiele gehen vor Wiederholungen bereits gefragter (eine
-  Sortierzeile vor dem bestehenden `slice(0,5)`), keine Änderung an der 3-von-3-Regel.
-- **🔴 Ligen-Abdeckung nachgezählt (Ondos Auftrag „Ja nachsehen" zur letzten Diagnose):** groß,
-  nicht klein — 58 verschiedene Wettbewerbe in 505 echten Einträgen, grösstenteils ausserhalb
-  der rund 12 grossen Ligen. Zusätzlich: API-Football/football-data.org wurden in 505
-  Messdaten- und 401 Rohdaten-Einträgen kein einziges Mal tatsächlich als Quelle verwendet —
-  maschinell nachgezählt. Die frühere, optimistischere Einschätzung dazu berichtigt, nicht
-  überschrieben.
-- **Zweite Vermutung, ehrlich als offen markiert:** stille Teilfehlschläge bei drei
-  gleichzeitigen Anfragen an denselben Anbieter könnten erklären, warum selbst die ersten
-  fünf Spiele nie zu einem Vorschlag kamen — nicht bewiesen, da fehlgeschlagene Anfragen
-  keine Spur hinterlassen.
-- **Verifiziert:** `node --check` bestanden · **10 neue Prüfungen** an der echten,
-  unveränderten `ergebnissePruefen()` und am wortgleichen Auswahl-Schnipsel · alle
-  bestehenden Suiten erneut gelaufen, alle weiterhin bestanden · `pruefe.py`: ALLES SAUBER.
-- **Keine neuen Sprachschlüssel.** Kein Schnitt in der Messreihe. `beta.html` jetzt v19.13.1.
-- **Regel 5 angewandt:** Abschnitt „Was Fassung 114 ändert" wortgleich nach
-  `BACKLOG-ARCHIV.md` verschoben.
-- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl — 81 bleibt
-  offen, die Teilfehlschlag-Vermutung ist noch nicht geklärt.)*
 
 ---
 
@@ -1508,7 +1517,7 @@ der Messreihe.
 
 ---
 
-**81. Schiedsrichter reparieren — nach Ondos eigener, strenger Definition** · *Auftrag Ondo 13.9.2026, wörtlich: „Dann Schiedsrichter reparieren. Das ist dein Job."* · **Status: beschlossen — 🔴 ein echter Bug gefunden und behoben 13.9.2026 (`beta.html` v19.13.1, „0 von 10 gefunden"-Fund), zweite Vermutung noch offen. 🔴 Berichtigt 13.9.2026: die „zweite Datenquelle" war keine neue Entdeckung, sondern bereits bei Punkt 9 (11.9.2026) vollständig gebaut und dokumentiert — offen bleibt nur die empirische Frage, warum sie in echter Nutzung nie griff, nicht Ondos Sache zu klären.**
+**81. Schiedsrichter reparieren — nach Ondos eigener, strenger Definition** · *Auftrag Ondo 13.9.2026, wörtlich: „Dann Schiedsrichter reparieren. Das ist dein Job."* · **Status: beschlossen — 🔴 OFFEN. Ein echter Bug gefunden und behoben 13.9.2026 (`beta.html` v19.13.1, „0 von 10 gefunden"-Fund). Berichtigt 13.9.2026: die „zweite Datenquelle" war keine neue Entdeckung, sondern bereits bei Punkt 9 (11.9.2026) vollständig gebaut. 🔴 Wege-Neuzusammensetzung ausgeliefert 13.9.2026 (`beta.html` v19.13.2, Ondos Auftrag) — Bestätigung durch einen echten Prüfzyklus am Gerät steht aus, Status bleibt ausdrücklich OFFEN, nicht behoben.**
 
 **Ondos Definition von „repariert" (2.9.2026, bereits im Backlog bei Punkt 64 festgehalten, hier nur referenziert — Punkt 45):** zuverlässige Ergebnisse für alle künftigen Spiele, ohne Gegenprüfung im Chat.
 **Ehrlicher Ausgangspunkt, nicht beschönigt:** Der Schiedsrichter hat elf dokumentierte Fehlerarten (`STAND.md`, „Der Schiedsrichter — elf Fehlerarten"). Die 3-von-3-Einigkeitsregel (Backlog-Punkt 68, v19.8.12) ist eine echte, geprüfte Absicherung gegen Fehlerart 11 (schwankende Antworten) — aber nach Ondos eigenem Massstab weiterhin keine Reparatur, weil sie unsichere Fälle parkt statt sie zuverlässig richtig zu lösen. Fehlerart 7 (Heim und Gast vertauscht) hat bis heute keine eigene Absicherung.
@@ -1673,7 +1682,123 @@ mitgeschickt):**
   Runde fehlschlagen (`fehlerTexte.length===antworten.length`), nicht wenn nur ein Teil
   fehlschlägt. **Nicht bewiesen, weil fehlgeschlagene Anfragen keine Spur in den Rohdaten
   hinterlassen** (nur erfolgreich geparste Antworten landen in `refRoh`) — ein plausibler,
-  im Code begründeter Verdacht, keine belegte Tatsache. Noch nicht behoben.
+  im Code begründeter Verdacht, keine belegte Tatsache. **Von der Wege-Neuzusammensetzung
+  unten unberührt** — diese Vermutung betrifft einen möglichen Fehlschlag einzelner
+  KI-Anfragen, nicht die Zahl der abgeschickten Wege; bleibt eigenständig offen.
+
+→ **🔴 Wege-Neuzusammensetzung, 13.9.2026 (`beta.html` v19.13.2), Ondos ausdrücklicher
+Auftrag — voller Hergang, nicht nur eine Zeile:**
+
+**Die eigentliche Ursache des „0 von 10"-Musters, mit Codezitat belegt, nicht vermutet.** Seit
+dem Ausbau von Backlog-Punkt 9 (`beta.html` v19.8.24, 11.9.2026) baut `rundeLaufen()` die
+`wege`-Liste einer Prüfrunde so: zuerst `api-football` und `football-data` (wenn ein Schlüssel
+gespeichert ist), dann so viele KI-Wege wie noch fehlen, bis drei Plätze voll sind. Sind beide
+Strukturschlüssel gespeichert, belegen sie **immer** zwei der drei Plätze — unabhängig davon,
+ob sie für die gerade geprüften Spiele überhaupt etwas finden. Finden beide nichts (der
+Regelfall: API-Football ist seit dem 12.9.2026 wegen der geteilten Cloud-Adresse gesperrt,
+siehe Backlog-Punkt 9; football-data.org deckt nachweislich nur 12 grosse Wettbewerbe ab, bei
+58 verschiedenen Wettbewerben in Ondos echten Spielen trifft das die meisten nicht), bleibt pro
+Runde nur **ein einziger** echter Lauf übrig. `pruefAuswerten()` ruft `refEinigkeit(laeufe)`
+auf, und die verlangt `gut.length>=3`, bevor überhaupt etwas übernommen wird — bei nur einem
+brauchbaren Lauf gilt für jede Runde unweigerlich `basis.fall='zuwenig'`, `p.zustand='fehlt'`.
+**Diese Schwelle war damit seit dem 11.9.2026 strukturell nie erreichbar, gleich wie oft ein
+Prüflauf wiederholt wurde** — nicht Pech, nicht ein Einzelfall, sondern eine zwingende Folge
+der Wege-Zusammensetzung. Belegt an Ondos echten Rohdaten vom 12.9.2026 (mitgeschickter
+Rohtext-Export): Gemini fand in **sieben von sieben** Versuchen ein stimmiges, mit Quelle
+belegtes Ergebnis für alle zehn an diesem Tag geprüften Spiele — die App meldete trotzdem
+durchgehend „nicht gefunden", weil pro Runde eben nur dieser eine Gemini-Lauf zählte und zwei
+weitere Plätze an die (erfolglosen) Strukturabfragen gingen.
+
+**Ondos Entscheidung gegen ein automatisches Rückschreiben (13.9.2026), wörtlich sinngemäss:**
+Kein automatisches Rückschreiben der App in ein Archiv im Repo — das Risiko eines
+Schreibzugriffs vom Browser aus wiegt schwerer als der Nutzen. API-Football und
+football-data.org bleiben reine Live-Abfragen vom eigenen Gerät aus, wie heute schon in
+`apiFootballLauf()`/`footballDataLauf()`. Die tägliche GitHub-Actions-Automatik
+(`schiri-ergebnisse-holen.js`) bleibt unverändert bestehen, wird von `beta.html` weiterhin
+bewusst **nicht** gelesen — das war bis heute als offener Punkt geführt (siehe Fassung
+119/120 oben), gilt ab jetzt als **bewusste, getroffene Entscheidung**, kein offener Punkt
+mehr.
+
+**Die neue Zwei-Phasen-Logik, mit einer konkreten Beispielrechnung aus dem echten Code.**
+`rundeLaufen()` fragt nicht mehr alle Wege gleichzeitig ab, sondern in zwei Schritten:
+- **Phase 1:** `Promise.all([apiFootballLauf(ziel), footballDataLauf(ziel)])` — beide
+  Strukturquellen laufen gleichzeitig für den **ganzen** Spiele-Stapel (bis zu fünf Spiele je
+  Runde, unverändert).
+- **Phase 2:** Für jedes Spiel im Stapel wird gezählt, ob `api-football` und/oder
+  `football-data` dafür einen Treffer lieferten (0, 1 oder 2). Das **schlechteste** Spiel im
+  Stapel (`minTreffer`) bestimmt, wie viele KI-Läufe der **ganze** Stapel zusätzlich braucht —
+  nicht jedes Spiel einzeln, weil ein KI-Lauf ohnehin den ganzen Stapel in einem Prompt
+  beantwortet: `minTreffer===0` → alle drei KI-Wege (2× Gemini, 1× Sonnet), genau wie vor dem
+  11.9.2026 · kein Spiel mit 0, aber mindestens eins mit genau 1 → zwei KI-Wege (2× Gemini) ·
+  alle Spiele mit 2 → ein KI-Weg (1× Gemini) reicht.
+  **Beispiel, mit den drei Codezeilen belegt:**
+  ```
+  var minTreffer=2;
+  ziel.forEach(function(p){
+    var n=(hat(afErg,p.id)?1:0)+(hat(fdErg,p.id)?1:0);
+    if(n<minTreffer) minTreffer=n;
+  });
+  var kiZahl = (minTreffer===0) ? 3 : (minTreffer===1 ? 2 : 1);
+  ```
+  Angenommen ein Stapel mit drei Spielen S0/S1/S2: `football-data` findet S0 (1 Treffer),
+  `api-football` findet nichts, S1 wird von beiden gefunden (2 Treffer), S2 wird von keiner
+  Quelle gefunden (0 Treffer). Die Schleife läuft `n` für S0=1, S1=2, S2=0 durch;
+  `minTreffer` sinkt bei S0 von 2 auf 1, bleibt bei S1 unverändert bei 1 (2 ist nicht kleiner),
+  fällt bei S2 auf 0. Ergebnis: `minTreffer=0` → `kiZahl=3` → alle drei KI-Wege laufen für
+  den ganzen Stapel, **obwohl S0 und S1 schon Strukturtreffer hatten** — S2 allein zieht den
+  ganzen Stapel auf den höchsten Bedarf, kein Spiel wird zurückgelassen. S0 bekommt dadurch am
+  Ende 1 Struktur- plus 3 KI-Läufe (vier insgesamt), mehr als die früher feste Drei — **kein
+  Fehler**, `refEinigkeit()` wertet ohnehin alle vorhandenen guten Läufe aus, unverändert.
+- Ist dagegen jedes Spiel im Stapel von beiden Quellen gefunden (`minTreffer=2` für alle),
+  reicht ein einziger Gemini-Lauf — die Rechnung oben liefert dann direkt `kiZahl=1`.
+
+**`pruefAuswerten()` und `refEinigkeit()` ausdrücklich NICHT angefasst** (Ondos Auflage) — die
+Drei-Läufe-Schwelle und die Zwei-von-drei-Einigkeitsregel (Ondo, 3.9.2026) gelten exakt wie
+vorher. Nur Zahl und Herkunft der Läufe je Spiel ändern sich.
+
+**Eigener Fehler im ersten Entwurf, noch vor der Auslieferung im eigenen Trockentest gefunden
+und behoben, offen benannt statt verschwiegen:** Die erste Fassung befüllte die KI-Wege mit
+`kiWege.slice(0, kiZahl)`. Ist nur ein KI-Anbieter gespeichert (z. B. Gemini ohne
+Sonnet-Schlüssel), hat `kiWege` aber nur zwei Einträge — `slice(0,3)` liefert dann nur diese
+zwei, **kappt statt aufzufüllen**. In genau dieser, plausiblen Geräte-Konstellation (ein
+Gehirn konfiguriert, kein zweites) wäre die Drei-Läufe-Schwelle **nie wieder** erreichbar
+gewesen — derselbe strukturelle Fehler, den dieser Auftrag beheben soll, an neuer Stelle
+unabsichtlich neu eingebaut. Der eigene Trockentest (Fall 6, siehe unten) deckte das auf, bevor
+etwas ausgeliefert wurde. **Behoben:** Auffüllen mit Wiederholung
+(`wege.push(kiWege[wi % kiWege.length])`) — dieselbe Wirkung wie die alte,
+jetzt ersetzte `while(wege.length<3) wege.push(wege[wege.length-1])`-Zeile, nur über die
+tatsächlich benötigte `kiZahl` statt einer festen Drei.
+
+**Verifiziert:** `node --check` bestanden. **9 neue Prüfungen** an der echten, wortgleich aus
+`beta.html` herausgeschnittenen Zwei-Phasen-Logik (kein Nachbau, dieselbe Technik wie bei
+früheren Lieferungen — die Promise.all-Klammer wird durch einen synchronen Testaufruf mit
+vorgegebenen Struktur-Ergebnissen ersetzt, der restliche Code läuft wortgleich):
+1. 0/0/0-Strukturtreffer, beide KI-Anbieter → drei KI-Wege.
+2. gemischt 2/1/0 → schlechtestes Spiel (0) zieht den ganzen Stapel auf drei KI-Wege.
+3. 1/1/1 → zwei KI-Wege.
+4. 2/2/2 → ein KI-Weg.
+5. keine Strukturquelle konfiguriert → exakt das alte Vor-11.9.-Verhalten (drei KI-Wege).
+6. **nur Gemini, kein Sonnet, keine Strukturquelle** (der selbst gefundene Auffüll-Fall) →
+   exakt drei Läufe, alle auf Gemini, `einAnbieter=true`.
+6b. derselbe Auffüll-Fall bei `kiZahl=2` → exakt zwei Läufe, nicht einer.
+6c. nur Sonnet konfiguriert, keine Strukturquelle → exakt drei Läufe, alle auf Sonnet.
+7. beide Strukturquellen UND beide KI-Anbieter konfiguriert, `minTreffer=2` → `einAnbieter`
+   bleibt korrekt `false`, weil zwei echte Strukturquellen mitliefen, auch wenn nur ein
+   KI-Lauf nötig war.
+Alle neun bestanden. `pruefe.py`: ALLES SAUBER. **Keine neuen Sprachschlüssel** (349
+unverändert). **Kein Schnitt in der Messreihe** — reine Auswertungslogik, nicht die
+Vorhersagen selbst. `APP_VERSION` weiter 18.
+
+**Ausdrücklich NICHT Teil dieser Lieferung** (Ondos Auftrag, Punkt 4/5): `schiri-ergebnisse-holen.js`,
+die GitHub-Actions-Datei, die Monatsdateien im Repo — reine Änderung an `beta.html`. Keine neue
+Berechtigung, kein neuer Schlüssel, kein Schreibzugriff auf das Repo aus dem Browser.
+
+**🔴 Status ausdrücklich NICHT auf „behoben" gesetzt, auch wenn alle Prüfungen sauber sind
+(Ondos ausdrückliche Auflage):** Backlog-Punkt 81 bleibt auf **OFFEN**, mit dem Vermerk „Wege-
+Neuzusammensetzung ausgeliefert, Bestätigung durch einen echten Prüfzyklus am Gerät steht aus".
+Erst wenn Ondo „Ergebnisse prüfen" tatsächlich laufen lässt und bisher hängengebliebene Spiele
+jetzt ein Ergebnis bekommen, gilt dieser Teil des Punktes als bestätigt — die zweite,
+unbewiesene Vermutung zu stillen Teilfehlschlägen (oben) bleibt davon unabhängig offen.
 
 ---
 

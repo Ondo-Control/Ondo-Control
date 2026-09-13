@@ -410,6 +410,39 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 119 ändert (13.9., echter Schiedsrichter-Bug gefunden und behoben — Backlog-Punkt 81, `beta.html` v19.13.1)
+
+**Anlass:** Ondo, mit Screenshot und drei Datendateien (Schiedsrichter-Rohantworten,
+Messdaten-Export, ChatGPTs Gegenprüfung): „Ja nachsehen. Heutiger Prüflauf hat nicht
+funktioniert beim ersten Mal." Screenshot zeigte „0 von 10 gefunden" nach 144 Sekunden.
+
+- **🔴 Echter Bug gefunden, an den echten Rohdaten belegt, nicht vermutet:** `rundeLaufen()`
+  wählte pro Anfrage immer dieselben ersten fünf offenen Spiele. Blieben diese wiederholt
+  ohne Ergebnis, kamen die übrigen fünf in keiner der bis zu sechs Runden je an die Reihe —
+  vier Spiele trugen „kein refRoh gespeichert", nie versucht.
+- **✅ Behoben:** noch nie gefragte Spiele gehen vor Wiederholungen bereits gefragter (eine
+  Sortierzeile vor dem bestehenden `slice(0,5)`), keine Änderung an der 3-von-3-Regel.
+- **🔴 Ligen-Abdeckung nachgezählt (Ondos Auftrag „Ja nachsehen" zur letzten Diagnose):** groß,
+  nicht klein — 58 verschiedene Wettbewerbe in 505 echten Einträgen, grösstenteils ausserhalb
+  der rund 12 grossen Ligen. Zusätzlich: API-Football/football-data.org wurden in 505
+  Messdaten- und 401 Rohdaten-Einträgen kein einziges Mal tatsächlich als Quelle verwendet —
+  maschinell nachgezählt. Die frühere, optimistischere Einschätzung dazu berichtigt, nicht
+  überschrieben.
+- **Zweite Vermutung, ehrlich als offen markiert:** stille Teilfehlschläge bei drei
+  gleichzeitigen Anfragen an denselben Anbieter könnten erklären, warum selbst die ersten
+  fünf Spiele nie zu einem Vorschlag kamen — nicht bewiesen, da fehlgeschlagene Anfragen
+  keine Spur hinterlassen.
+- **Verifiziert:** `node --check` bestanden · **10 neue Prüfungen** an der echten,
+  unveränderten `ergebnissePruefen()` und am wortgleichen Auswahl-Schnipsel · alle
+  bestehenden Suiten erneut gelaufen, alle weiterhin bestanden · `pruefe.py`: ALLES SAUBER.
+- **Keine neuen Sprachschlüssel.** Kein Schnitt in der Messreihe. `beta.html` jetzt v19.13.1.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 114 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl — 81 bleibt
+  offen, die Teilfehlschlag-Vermutung ist noch nicht geklärt.)*
+
+---
+
 ## ⚠ Was Fassung 118 ändert (13.9., Schiedsrichter-Diagnose abgeschlossen — Backlog-Punkt 81, kein Codeaufwand)
 
 **Anlass:** Direkt im Anschluss an das Kriterium-(g)-Werkzeug: Ondos Auftrag „Dann
