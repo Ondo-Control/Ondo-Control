@@ -3,9 +3,16 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.119
+**Version:** 0.120
 **Stand:** 13. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.120 ändert (13.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> die eigene Berichtigung von Fassung 0.119: die dort als „übersehene zweite Quelle"
+> beschriebene Sache war bei Backlog-Punkt 9 (11.9.2026) bereits vollständig gebaut und
+> dokumentiert, keine neue Entdeckung. Ondos berechtigter Widerspruch („Ich dachte das wäre
+> schon klar und umgesetzt?") direkt am GitHub-Lauf-Verlauf geprüft, nicht vermutet. Kein
+> Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.120 gehoben.
 
 > **Was Fassung 0.119 ändert (13.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
 > Ondos Nachfrage „Du hast doch eine Datei angelegt im Repo für Ergebnisabfrage an API

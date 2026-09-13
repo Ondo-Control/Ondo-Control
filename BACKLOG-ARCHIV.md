@@ -410,6 +410,30 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 116 ändert (13.9., Kriterium (c) von Ondo entschieden — kein Codeaufwand)
+
+**Anlass:** Direkt im Anschluss an die Berichtigung zu Kriterium (f) (Fassung 115) hat Ondo
+auch Kriterium (c) sofort geklärt: „Kriterium (c) haben wir auch schon diskutiert und geklärt.
+Wir haben genug Spiele!!!!"
+
+- **🔴 Backlog-Punkt 5, Status geändert:** von „Idee" auf entschieden — Kriterium (c) ist kein
+  Blocker mehr für die Beförderung. Beleg zur Grössenordnung, nicht nur behauptet: 468
+  bewertete Aussagen bei Sonnet, 465 bei Flash (Stand 4.9.2026, `STAND.md`), beide weit über
+  der ursprünglichen 15-Tipps-Grenze — deckt sich mit Claudes früherer Einschätzung und
+  ChatGPTs Zustimmung dazu.
+- **Punkt 4 entsprechend nachgeführt:** Von den sieben Beförderungskriterien sind jetzt (f)
+  und (c) beide entschieden. Was tatsächlich noch offen hält: **nur noch (g)** (Antwortkonsistenz,
+  echt ungetestet, am 6.8. von ChatGPT und Gemini gemeinsam zurückgestellt) sowie der
+  Schiedsrichter-/Fehlerarten-Stand (Schiedsrichter nach Ondos eigener Definition weiterhin
+  nicht repariert, siebte Fehlerart ungesichert).
+- **Kein Codeaufwand in dieser Fassung** — reine Buchführung. `beta.html` bleibt v19.12.0.
+  `pruefe.py`: ALLES SAUBER.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 111 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: eins** — **4** *(unverändert in der Zahl.)*
+
+---
+
 ## ⚠ Was Fassung 115 ändert (12.9., Berichtigung: Kriterium (f) war schon aufgehoben — Fehlerart C4/fehlende Buchführung, kein Codeaufwand)
 
 **Anlass:** Ondo, berechtigt: „Warum kommen immer wieder dieselben Punkte die wir schon

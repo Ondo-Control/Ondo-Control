@@ -196,13 +196,13 @@ Punkt 73, nicht hier wiederholt (Punkt 45).
 `.claude/hooks/claude_md_frisch.py` vergleicht sie bei jedem Sitzungsstart und erinnert an
 eine Erneuerung, sobald einer abweicht. Er erneuert nichts von selbst.*
 
-- STAND.md — `c481e426b06662dfac92b5ca0d0f760898347c99`
-- Ondo-Control-Backlog.md — `77ebea5ca0175a5392752785b674bb7cf3e83ca1`
-- Blueprint.md — `4b179ab9b6ae9509874541d6acd905894e958b49`
+- STAND.md — `e2222119e87ba30bc3ae22d1f433b29807be9e44`
+- Ondo-Control-Backlog.md — `c309f99d454858a013580a570db14ef1987c4222`
+- Blueprint.md — `c8d5ce0ef3ca9b8ef121faa2c09913b207765ae6`
 - Ondo-Core-Architektur.md — `2923c6d2f1cf152a67522bd0ddafc42d6c196b40`
 
-*Prüfstand nachgeführt am 13.9.2026 (nur Hashes — Anlass war der zweite, bisher übersehene
-Datenweg für Schiedsrichter-Ergebnisse, gefunden auf Ondos Nachfrage „Du hast doch eine Datei
-angelegt im Repo für Ergebnisabfrage an API Datenbanken was steht dadrin"; inhaltlich für
-diese Datei nicht berührt, keine neue Arbeitsregel, keine Änderung an Zweig- oder
-Geheimfeld-Regeln).*
+*Prüfstand nachgeführt am 13.9.2026 (nur Hashes — Anlass war die Berichtigung der eigenen,
+wenige Minuten alten Fassung 120: die dort als „übersehene zweite Quelle" beschriebene
+Knopfdruck-Kopplung war bei Backlog-Punkt 9 bereits seit 11.9.2026 gebaut und dokumentiert;
+inhaltlich für diese Datei nicht berührt, keine neue Arbeitsregel, keine Änderung an Zweig-
+oder Geheimfeld-Regeln).*

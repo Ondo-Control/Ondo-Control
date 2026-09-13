@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 13.9.2026, Fassung 120, v19.13.1*
+*Die aktuelle Wahrheit. Stand: 13.9.2026, Fassung 121, v19.13.1*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -212,18 +212,18 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   grossen Ligen) — UND der Weg IM BROWSER (`apiFootballLauf()`/`footballDataLauf()`, vom
   Schiedsrichter selbst aufgerufen) wurde in 505 Messdaten- und 401 Rohdaten-Einträgen
   (30.7.–13.9.2026) kein einziges Mal tatsächlich genutzt, maschinell nachgezählt.
-  ~~Das war die ganze Wahrheit zur strukturierten Quelle.~~ **🔴 BERICHTIGT 13.9.2026, auf
-  Ondos Nachfrage „Du hast doch eine Datei angelegt im Repo für Ergebnisabfrage an API
-  Datenbanken was steht dadrin":** Es gibt eine ZWEITE, ganz andere Stelle, die dieselben zwei
-  Datenbanken abfragt — ein täglich automatisch laufendes GitHub-Actions-Programm
-  (`.github/workflows/schiri-ergebnisse.yml` + `skripte/schiri-ergebnisse-holen.js`, seit
-  Backlog-Punkt 9, Ausbau 11.9.2026), das echte Ergebnisse in `daten/schiri-ergebnisse/*.json`
-  ablegt. Diese läuft nachweislich (zwei echte Commits, 11. und 12.9.2026, 14 echte Spiele u. a.
-  aus Champions League, Bundesliga, La Liga, Ligue 1, Serie A, Championship, Eredivisie,
-  Brasileirão). Der Schiedsrichter in `beta.html` liest diese Datei aber nirgends
-  (`grep` auf „schiri-ergebnisse"/„daten/schiri": null Treffer) — echte, richtige Daten werden
-  täglich gesammelt und nie benutzt. Einzelheiten und die Frage, ob das ein sinnvoller nächster
-  Baustein ist, stehen bei Backlog-Punkt 81.
+  ~~Das war die ganze Wahrheit zur strukturierten Quelle.~~ ~~🔴 BERICHTIGT 13.9.2026 …
+  Es gibt eine ZWEITE, ganz andere Stelle … Der Schiedsrichter in `beta.html` liest diese
+  Datei aber nirgends … echte, richtige Daten werden täglich gesammelt und nie benutzt.~~
+  **🔴 ERNEUT BERICHTIGT, noch am selben Tag (Ondo: „Ich dachte das wäre schon klar und
+  umgesetzt?"):** Die vorige Berichtigung war selbst unvollständig. Neben der täglichen
+  Automatik gibt es eine DRITTE, bereits am 11.9.2026 gebaute Stelle — `apiFootballLauf()`/
+  `footballDataLauf()` in `beta.html` (v19.8.24) —, die beide Datenbanken **direkt aus der
+  App per Knopfdruck** abfragt und **bereits an den bestehenden „Ergebnisse prüfen"-Lauf
+  gekoppelt ist**, genau nach der in dieser Sitzung mit Ondo festgelegten Vorgehensweise.
+  Das war längst entschieden und gebaut (vollständig dokumentiert bei Backlog-Punkt 9,
+  11.9.2026), keine neue Frage. Offen bleibt nur, warum diese Kopplung in echter Nutzung nie
+  gegriffen hat — Einzelheiten und die zwei möglichen, unbewiesenen Gründe bei Backlog-Punkt 81.
   **Noch offen, ehrlich als Vermutung markiert:** Auch die ersten fünf Spiele des Laufs kamen
   trotz mehrfacher, inhaltlich übereinstimmender Wiederholungen nie zu einem Vorschlag — ein
   Verdacht auf stille Teilfehlschläge bei drei gleichzeitigen Anfragen an denselben Anbieter,

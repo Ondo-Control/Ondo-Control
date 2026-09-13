@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 13.9.2026, Fassung 120 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 13.9.2026, Fassung 121 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,38 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 121 ändert (13.9., Berichtigung der eigenen Fassung 120 — die „zweite Quelle" war bei Punkt 9 längst gebaut, kein Codeaufwand)
+
+**Anlass:** Ondo, direkt nach Fassung 120: „Waren die 14 Spiele nicht ein Testlauf von dir?
+Bitte in der Sitzung prüfen! […] Ich dachte das wäre schon klar und umgesetzt?" — berechtigter
+Widerspruch, am GitHub-Lauf-Verlauf und an Backlog-Punkt 9 selbst nachgeprüft, nicht vermutet.
+
+- **🔴 Eigener Fehler, offen benannt:** Fassung 120 (diese Sitzung, wenige Minuten zuvor)
+  präsentierte die tägliche GitHub-Automatik als „bisher übersehene zweite Quelle" und schlug
+  vor, eine Anbindung an `beta.html` zu **prüfen** — dabei war die eigentliche, wichtigere
+  Anbindung (Knopfdruck-Kopplung beider Quellen an den bestehenden Prüflauf) bereits am
+  **11.9.2026** unter **Backlog-Punkt 9** vollständig gebaut, getestet und dokumentiert.
+  **Ursache:** Bei der Schiedsrichter-Diagnose (Fassung 117–120) wurde Punkt 81 bearbeitet,
+  ohne Punkt 9 zum selben Code vollständig gegenzulesen — ein Verstoss gegen „Ein Ort je
+  Tatsache" (Punkt 45): dieselbe Tatsache stand an zwei Stellen, und die neuere widersprach
+  der älteren, statt sie zu prüfen.
+- **Per GitHub-Actions-Protokoll bestätigt, nicht geraten:** Der Testlauf vom 11.9.2026 (16:26
+  UTC) rief echte, live API-Antworten ab (API-Football: „account is suspended", Fehler echt;
+  football-data.org: 7 echte fertige Spiele) — kein Testlauf von Claude, kein erfundener
+  Inhalt. Zwei echte automatische Läufe insgesamt (11. und 12.9.2026), nicht „seit Wochen"
+  wie in Fassung 120 fälschlich behauptet.
+- **Volle Berichtigung mit allen Einzelheiten steht bei Backlog-Punkt 81**, dort mit
+  Durchstreichung der falschen Fassung-120-Aussagen, nicht überschrieben (Fehlerart C4).
+- **Kein Codeaufwand in dieser Fassung** — reine Berichtigung und Buchführung. `beta.html`
+  bleibt v19.13.1. `pruefe.py`: ALLES SAUBER.
+- **Regel-5-Nachtrag:** Beim Anlegen von Fassung 120 wurde Regel 5 nicht angewandt — der
+  Abschnitt „Was Fassung 115 ändert" blieb versehentlich zusätzlich zur Archiv-Kopie im
+  Hauptdokument stehen. Jetzt entfernt (Archiv-Kopie war bereits korrekt). Mit dieser Fassung
+  zusätzlich turnusgemäss verschoben: „Was Fassung 116 ändert".
+- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl.)*
 
 ---
 
@@ -139,62 +171,6 @@ dein Job." Neue Backlog-Punkte 80 (Kriterium g) und 81 (Schiedsrichter) angelegt
   ist gebaut, nur der echte Lauf durch Ondo steht noch aus — dieselbe Lage wie beim
   Trainingsraum, dessen Bewährung ebenfalls aussteht. 81 neu: von Ondo in Auftrag gegeben,
   Diagnose läuft, noch nicht gebaut.)*
-
----
-
-## ⚠ Was Fassung 116 ändert (13.9., Kriterium (c) von Ondo entschieden — kein Codeaufwand)
-
-**Anlass:** Direkt im Anschluss an die Berichtigung zu Kriterium (f) (Fassung 115) hat Ondo
-auch Kriterium (c) sofort geklärt: „Kriterium (c) haben wir auch schon diskutiert und geklärt.
-Wir haben genug Spiele!!!!"
-
-- **🔴 Backlog-Punkt 5, Status geändert:** von „Idee" auf entschieden — Kriterium (c) ist kein
-  Blocker mehr für die Beförderung. Beleg zur Grössenordnung, nicht nur behauptet: 468
-  bewertete Aussagen bei Sonnet, 465 bei Flash (Stand 4.9.2026, `STAND.md`), beide weit über
-  der ursprünglichen 15-Tipps-Grenze — deckt sich mit Claudes früherer Einschätzung und
-  ChatGPTs Zustimmung dazu.
-- **Punkt 4 entsprechend nachgeführt:** Von den sieben Beförderungskriterien sind jetzt (f)
-  und (c) beide entschieden. Was tatsächlich noch offen hält: **nur noch (g)** (Antwortkonsistenz,
-  echt ungetestet, am 6.8. von ChatGPT und Gemini gemeinsam zurückgestellt) sowie der
-  Schiedsrichter-/Fehlerarten-Stand (Schiedsrichter nach Ondos eigener Definition weiterhin
-  nicht repariert, siebte Fehlerart ungesichert).
-- **Kein Codeaufwand in dieser Fassung** — reine Buchführung. `beta.html` bleibt v19.12.0.
-  `pruefe.py`: ALLES SAUBER.
-- **Regel 5 angewandt:** Abschnitt „Was Fassung 111 ändert" wortgleich nach
-  `BACKLOG-ARCHIV.md` verschoben.
-- **Beschlossen und nicht gebaut: eins** — **4** *(unverändert in der Zahl.)*
-
----
-
-## ⚠ Was Fassung 115 ändert (12.9., Berichtigung: Kriterium (f) war schon aufgehoben — Fehlerart C4/fehlende Buchführung, kein Codeaufwand)
-
-**Anlass:** Ondo, berechtigt: „Warum kommen immer wieder dieselben Punkte die wir schon
-tausendmal in dieser Sitzung diskutiert haben, gelöst haben und wo du jedes Mal sagst es ist
-noch nicht entschieden. […] Soll ich vielleicht die Sitzung wechseln?" — direkt im eigenen
-Sitzungsverlauf nachgesehen statt vermutet (Arbeitsregel H).
-
-- **🔴 Fund, mit Zitat belegt:** Ondo hat Kriterium (f) (Schiedsrichter-Null-Fehler-Toleranz)
-  bereits früher in dieser Sitzung ausdrücklich aufgehoben — Claude hat das damals zweimal
-  bestätigt. **Diese Aufhebung wurde nie in ein Dokument geschrieben.** Fassung 114 (und schon
-  einmal davor, mitten in dieser Sitzung, unbelegt in einem Dokument) hat (f) deshalb erneut
-  als offene Messfrage behandelt — eine echte, jetzt zweimal belegte Wiederholung eines
-  bereits Entschiedenen. **Ursache: fehlende Buchführung (Arbeitsregel F), nicht Ondos
-  Erinnerung, und keine Verwechslung durch „zu volle Sitzung"** — die fehlende Zeile im
-  Dokument ist konkret benennbar und jetzt behoben, siehe Punkt 4 und Punkt 5.
-- **🔴 Berichtigt, nicht überschrieben (Fehlerart C4):** Punkt 4 und Punkt 5 tragen jetzt beide
-  den korrigierten Stand — (f) aufgehoben, kein Blocker mehr; (c) echt offen, aber eine
-  Entscheidung, keine Wartezeit; (g) echt offen, ein eigenständiges, nie getestetes Kriterium,
-  am 6.8. von ChatGPT UND Gemini gemeinsam zurückgestellt; (a)/(b)/(d)/(e) seit 31.7. nicht neu
-  geprüft, Stand unbekannt.
-- **Zusätzlich ehrlich nachgetragen:** Der Schiedsrichter gilt nach Ondos eigener, strengerer
-  Definition vom 2.9.2026 weiterhin als nicht repariert (3-von-3-Regel ist Absicherung, keine
-  Reparatur), die siebte Fehlerart „Heim/Gast vertauscht" bleibt ungesichert — beides betrifft
-  die Beförderung insgesamt, unabhängig von (c)/(f)/(g).
-- **Kein Codeaufwand in dieser Fassung** — reine Berichtigung und Buchführung. `beta.html`
-  bleibt v19.12.0. `pruefe.py`: ALLES SAUBER.
-- **Regel 5 angewandt:** Abschnitt „Was Fassung 110 ändert" wortgleich nach
-  `BACKLOG-ARCHIV.md` verschoben.
-- **Beschlossen und nicht gebaut: eins** — **4** *(unverändert in der Zahl.)*
 
 ---
 
@@ -1527,7 +1503,7 @@ der Messreihe.
 
 ---
 
-**81. Schiedsrichter reparieren — nach Ondos eigener, strenger Definition** · *Auftrag Ondo 13.9.2026, wörtlich: „Dann Schiedsrichter reparieren. Das ist dein Job."* · **Status: beschlossen — 🔴 ein echter Bug gefunden und behoben 13.9.2026 (`beta.html` v19.13.1, „0 von 10 gefunden"-Fund), zweite Vermutung noch offen, eine tägliche Daten-Sammlung gefunden, die real läuft aber nie gelesen wird — Anbindung als Vorschlag bei Ondo, noch nicht entschieden**
+**81. Schiedsrichter reparieren — nach Ondos eigener, strenger Definition** · *Auftrag Ondo 13.9.2026, wörtlich: „Dann Schiedsrichter reparieren. Das ist dein Job."* · **Status: beschlossen — 🔴 ein echter Bug gefunden und behoben 13.9.2026 (`beta.html` v19.13.1, „0 von 10 gefunden"-Fund), zweite Vermutung noch offen. 🔴 Berichtigt 13.9.2026: die „zweite Datenquelle" war keine neue Entdeckung, sondern bereits bei Punkt 9 (11.9.2026) vollständig gebaut und dokumentiert — offen bleibt nur die empirische Frage, warum sie in echter Nutzung nie griff, nicht Ondos Sache zu klären.**
 
 **Ondos Definition von „repariert" (2.9.2026, bereits im Backlog bei Punkt 64 festgehalten, hier nur referenziert — Punkt 45):** zuverlässige Ergebnisse für alle künftigen Spiele, ohne Gegenprüfung im Chat.
 **Ehrlicher Ausgangspunkt, nicht beschönigt:** Der Schiedsrichter hat elf dokumentierte Fehlerarten (`STAND.md`, „Der Schiedsrichter — elf Fehlerarten"). Die 3-von-3-Einigkeitsregel (Backlog-Punkt 68, v19.8.12) ist eine echte, geprüfte Absicherung gegen Fehlerart 11 (schwankende Antworten) — aber nach Ondos eigenem Massstab weiterhin keine Reparatur, weil sie unsichere Fälle parkt statt sie zuverlässig richtig zu lösen. Fehlerart 7 (Heim und Gast vertauscht) hat bis heute keine eigene Absicherung.
@@ -1599,17 +1575,60 @@ mitgeschickt):**
     am Code, nicht vermutet. Es werden also seit Wochen echte, richtige Ergebnisse für einen
     Teil von Ondos tatsächlichen Wettbewerben gesammelt, die der Schiedsrichter beim
     Prüfen nie zu Gesicht bekommt.
-  - **Kosten einer Anbindung, noch nicht gebaut, nur eingeschätzt (Arbeitsregel G):** kein
-    neuer Schlüssel, keine neuen laufenden Kosten — die Daten liegen schon im Repo und werden
-    schon über GitHub Pages ausgeliefert wie `beta.html` selbst. Aufwand wäre echter Code in
-    `beta.html`: die passende Monatsdatei laden, einen Eintrag über Mannschaftsnamen und
-    Datum dem richtigen `kiProtokoll`-Eintrag zuordnen (Namen sind in den Rohdaten nicht
-    immer gleich geschrieben — Zuordnung ist der schwierigere Teil, nicht der Abruf), und
-    entscheiden, was gilt, wenn diese Quelle etwas anderes sagt als die KI-Antworten. Kein
-    Versprechen einer Zeitschätzung ohne genauere Prüfung (Art. 11). **Vorschlag, nicht
-    Baubeginn (Art. 8):** Diese Anbindung wäre ein echter, im bestehenden Code bereits
-    vorbereiteter nächster Schritt für Fehlerart 7/8 bei genau den Wettbewerben, die Weg 2
-    abdeckt — Ondos Entscheidung, ob das jetzt gebaut werden soll.
+  ~~Kosten einer Anbindung, noch nicht gebaut, nur eingeschätzt … Vorschlag, nicht
+  Baubeginn (Art. 8): Diese Anbindung wäre ein echter, im bestehenden Code bereits
+  vorbereiteter nächster Schritt für Fehlerart 7/8 … Ondos Entscheidung, ob das jetzt gebaut
+  werden soll.~~
+  **🔴 BERICHTIGT 13.9.2026, noch am selben Tag — Ondo: „Was das zweite Programm angeht hatten
+  wir doch in dieser Sitzung folgende Vorgehensweise festgelegt" / „Ich dachte das wäre schon
+  klar und umgesetzt?"** Das oben als „neuer Vorschlag" formulierte Stück war **kein neuer
+  Fund** — es duplizierte, ohne es zu bemerken, eine bei **Punkt 9** (Ausbau-Absätze
+  11.9.2026) bereits **vollständig dokumentierte, bereits gebaute** Sache. Fehler lag bei
+  dieser Diagnose (Fassung 117–120), nicht bei Ondos Erinnerung — Beleg direkt am Code und an
+  Ondos eigenen GitHub-Protokollen nachgesehen, nicht vermutet:
+  - **Es gibt nicht nur die tägliche Automatik, sondern eine dritte, bereits gebaute Stelle:**
+    `apiFootballLauf()`/`footballDataLauf()`/`strukturAbgleich()` in `beta.html`
+    (`hatApiFootball()`/`hatFootballData()`, ab Zeile 2147) — **v19.8.24, gebaut und geprüft
+    am 11.9.2026**, genau nach der Vorgehensweise, die Ondo in dieser Sitzung mit Claude
+    festgelegt hatte: „per Knopfdruck direkt aus der App … mit dem bestehenden Prüflauf
+    koppeln … dann fällt das Sperr-Risiko der geteilten Cloud-Adresse weg." Im
+    Quellcode-Kommentar selbst wortgleich vermerkt: „Ondos Vorschlag 11.9.2026 … koppeln."
+    Diese Kopplung IST in die `wege`-Liste von „Ergebnisse prüfen" eingebaut (Backlog-Punkt
+    68) — beide strukturierten Quellen gehen den KI-Läufen automatisch voran, sobald ein
+    Schlüssel im eigenen Gerät gespeichert ist. **Das war also längst entschieden und
+    gebaut, nicht offen.**
+  - **„Seit Wochen" (Fassung 120) war falsch, jetzt am GitHub-Lauf-Verlauf nachgesehen:** Die
+    tägliche Automatik existiert seit **11.9.2026** (Workflow angelegt 16:26 UTC, sofort
+    per Hand ausgelöst — echter, erfolgreicher Testlauf mit echten, damals schon
+    hinterlegten Schlüsseln, Log zeigt reale API-Antworten: „API-Football Fehler … Your
+    account is suspended" und „football-data.org: 7 fertige Spiele"), dann ein einziger
+    echter Tages-Lauf am **12.9.2026** (planmässig ausgelöst, verspätet um rund 3¾ Stunden —
+    GitHub garantiert bei Cron-Läufen keine exakte Uhrzeit). **Zwei echte Tage, keine
+    Wochen.** Die 14 Spiele in der Datei sind kein Testlauf von Claude — die Protokolle
+    zeigen zwei reale, von GitHub selbst ausgelöste Automatik-Läufe mit echten
+    API-Antworten, nicht erfunden oder nachgestellt.
+  - **Zu Ondos Datumsfrage („die Datei und die Schlüssel haben wir doch gestern erst
+    angelegt"):** Nach den GitHub-Protokollen waren die beiden Schlüssel (`API_FOOTBALL_KEY`,
+    `FOOTBALL_DATA_ORG_KEY`, als GitHub-Geheimnis für die Automatik) bereits am **11.9.2026**
+    hinterlegt, nicht erst am 12.9. — ein Tag früher als Ondos Erinnerung. Ob an diesem
+    Punkt noch etwas Weiteres „gestern" (12.9.) hinzukam, das diesen Eindruck erklärt (z. B.
+    ein zweiter, ähnlicher Schritt), ist von hier aus nicht zu sehen — **das weiss ich nicht,
+    keine Vermutung (Art. 11).**
+  - **Die im letzten Wortlaut vorgeschlagene „Anbindung" (Monatsdatei einlesen) ist bei Punkt
+    9 bereits behandelt, nicht übersehen:** dort ausdrücklich als „eigener, andersartiger
+    Weg … durch die Knopfdruck-Kopplung weniger dringend geworden" zurückgestellt — eine
+    schon getroffene Entscheidung, keine neue offene Frage.
+  - **Was nach alldem tatsächlich noch unklar ist, ehrlich als Frage markiert, nicht
+    behauptet:** Warum die längst gebaute Knopfdruck-Kopplung in 505 echten
+    `kiProtokoll`-Einträgen und 401 echten Rohantworten (30.7.–13.9.) kein einziges Mal als
+    Quelle erscheint. Zwei mögliche, einander nicht ausschliessende Gründe, keiner bewiesen:
+    (1) die beiden Schlüsselfelder `state.apiFootballKey`/`state.footballDataKey` **im
+    Handy selbst** (getrennt von den GitHub-Geheimnissen der Automatik) könnten dort nie
+    gespeichert worden sein; (2) API-Football war laut Punkt 9 am 12.9.2026 weiterhin
+    gesperrt und football-data.org deckt nur 12 grosse Wettbewerbe ab — bei 58
+    verschiedenen Wettbewerben in Ondos echten Spielen bliebe ein „kein Treffer" für die
+    meisten davon auch bei funktionierenden Schlüsseln zu erwarten. Nur Ondo kann (1)
+    beantworten; diese Sitzung kann sein eigenes Gerät nicht einsehen.
 - **🔴 Zweiter, unabhängiger Fund beim Nachsehen — ein echter, im Code belegter Bug, nicht nur
   eine Ligen-Lücke:** Ondos heutiger Prüflauf zeigte „0 von 10 gefunden" nach 144 Sekunden.
   Am Rohdaten-Export nachvollzogen: `rundeLaufen()` wählt pro Anfrage „höchstens 5 Spiele"
