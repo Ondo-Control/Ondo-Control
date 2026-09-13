@@ -3,9 +3,17 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.118
+**Version:** 0.119
 **Stand:** 13. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.119 ändert (13.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> Ondos Nachfrage „Du hast doch eine Datei angelegt im Repo für Ergebnisabfrage an API
+> Datenbanken was steht dadrin": ein zweiter, bisher übersehener Datenweg gefunden
+> (`.github/workflows/schiri-ergebnisse.yml`, läuft täglich real, sammelt echte Ergebnisse in
+> `daten/schiri-ergebnisse/*.json`), der von `beta.html` nirgends gelesen wird — Backlog-Punkt
+> 81 berichtigt, nicht überschrieben. Kein Verfassungsartikel geändert, keine neue
+> Arbeitsregel. Blueprint auf 0.119 gehoben.
 
 > **Was Fassung 0.118 ändert (13.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
 > der gefundene und behobene Schiedsrichter-Bug (Backlog-Punkt 81, `beta.html` v19.13.1): eine

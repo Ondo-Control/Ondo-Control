@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 13.9.2026, Fassung 119, v19.13.1*
+*Die aktuelle Wahrheit. Stand: 13.9.2026, Fassung 120, v19.13.1*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -209,10 +209,21 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   **Zweiter Fund beim selben Nachsehen, zur Liga-Abdeckung von API-Football/football-data.org
   (Ondos Auftrag „Ja nachsehen" zur vorherigen Diagnose):** Die Abdeckungslücke ist gross (58
   verschiedene Wettbewerbe in Ondos echten Messdaten, grösstenteils ausserhalb der rund 12
-  grossen Ligen) — UND diese strukturierten Quellen wurden in 505 Messdaten- und 401
-  Rohdaten-Einträgen (30.7.–13.9.2026) kein einziges Mal tatsächlich genutzt, maschinell
-  nachgezählt. Die frühere, optimistischere Einschätzung dazu ist berichtigt, nicht
-  überschrieben — Einzelheiten Backlog-Punkt 81.
+  grossen Ligen) — UND der Weg IM BROWSER (`apiFootballLauf()`/`footballDataLauf()`, vom
+  Schiedsrichter selbst aufgerufen) wurde in 505 Messdaten- und 401 Rohdaten-Einträgen
+  (30.7.–13.9.2026) kein einziges Mal tatsächlich genutzt, maschinell nachgezählt.
+  ~~Das war die ganze Wahrheit zur strukturierten Quelle.~~ **🔴 BERICHTIGT 13.9.2026, auf
+  Ondos Nachfrage „Du hast doch eine Datei angelegt im Repo für Ergebnisabfrage an API
+  Datenbanken was steht dadrin":** Es gibt eine ZWEITE, ganz andere Stelle, die dieselben zwei
+  Datenbanken abfragt — ein täglich automatisch laufendes GitHub-Actions-Programm
+  (`.github/workflows/schiri-ergebnisse.yml` + `skripte/schiri-ergebnisse-holen.js`, seit
+  Backlog-Punkt 9, Ausbau 11.9.2026), das echte Ergebnisse in `daten/schiri-ergebnisse/*.json`
+  ablegt. Diese läuft nachweislich (zwei echte Commits, 11. und 12.9.2026, 14 echte Spiele u. a.
+  aus Champions League, Bundesliga, La Liga, Ligue 1, Serie A, Championship, Eredivisie,
+  Brasileirão). Der Schiedsrichter in `beta.html` liest diese Datei aber nirgends
+  (`grep` auf „schiri-ergebnisse"/„daten/schiri": null Treffer) — echte, richtige Daten werden
+  täglich gesammelt und nie benutzt. Einzelheiten und die Frage, ob das ein sinnvoller nächster
+  Baustein ist, stehen bei Backlog-Punkt 81.
   **Noch offen, ehrlich als Vermutung markiert:** Auch die ersten fünf Spiele des Laufs kamen
   trotz mehrfacher, inhaltlich übereinstimmender Wiederholungen nie zu einem Vorschlag — ein
   Verdacht auf stille Teilfehlschläge bei drei gleichzeitigen Anfragen an denselben Anbieter,

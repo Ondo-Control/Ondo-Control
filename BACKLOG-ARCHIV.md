@@ -410,6 +410,38 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 115 ändert (12.9., Berichtigung: Kriterium (f) war schon aufgehoben — Fehlerart C4/fehlende Buchführung, kein Codeaufwand)
+
+**Anlass:** Ondo, berechtigt: „Warum kommen immer wieder dieselben Punkte die wir schon
+tausendmal in dieser Sitzung diskutiert haben, gelöst haben und wo du jedes Mal sagst es ist
+noch nicht entschieden. […] Soll ich vielleicht die Sitzung wechseln?" — direkt im eigenen
+Sitzungsverlauf nachgesehen statt vermutet (Arbeitsregel H).
+
+- **🔴 Fund, mit Zitat belegt:** Ondo hat Kriterium (f) (Schiedsrichter-Null-Fehler-Toleranz)
+  bereits früher in dieser Sitzung ausdrücklich aufgehoben — Claude hat das damals zweimal
+  bestätigt. **Diese Aufhebung wurde nie in ein Dokument geschrieben.** Fassung 114 (und schon
+  einmal davor, mitten in dieser Sitzung, unbelegt in einem Dokument) hat (f) deshalb erneut
+  als offene Messfrage behandelt — eine echte, jetzt zweimal belegte Wiederholung eines
+  bereits Entschiedenen. **Ursache: fehlende Buchführung (Arbeitsregel F), nicht Ondos
+  Erinnerung, und keine Verwechslung durch „zu volle Sitzung"** — die fehlende Zeile im
+  Dokument ist konkret benennbar und jetzt behoben, siehe Punkt 4 und Punkt 5.
+- **🔴 Berichtigt, nicht überschrieben (Fehlerart C4):** Punkt 4 und Punkt 5 tragen jetzt beide
+  den korrigierten Stand — (f) aufgehoben, kein Blocker mehr; (c) echt offen, aber eine
+  Entscheidung, keine Wartezeit; (g) echt offen, ein eigenständiges, nie getestetes Kriterium,
+  am 6.8. von ChatGPT UND Gemini gemeinsam zurückgestellt; (a)/(b)/(d)/(e) seit 31.7. nicht neu
+  geprüft, Stand unbekannt.
+- **Zusätzlich ehrlich nachgetragen:** Der Schiedsrichter gilt nach Ondos eigener, strengerer
+  Definition vom 2.9.2026 weiterhin als nicht repariert (3-von-3-Regel ist Absicherung, keine
+  Reparatur), die siebte Fehlerart „Heim/Gast vertauscht" bleibt ungesichert — beides betrifft
+  die Beförderung insgesamt, unabhängig von (c)/(f)/(g).
+- **Kein Codeaufwand in dieser Fassung** — reine Berichtigung und Buchführung. `beta.html`
+  bleibt v19.12.0. `pruefe.py`: ALLES SAUBER.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 110 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: eins** — **4** *(unverändert in der Zahl.)*
+
+---
+
 ## ⚠ Was Fassung 114 ändert (12.9., Punkt 4 auf „wartet auf Beförderung" gesetzt, Beförderungs-Wartezeit für Ondo erklärt — kein Codeaufwand)
 
 **Anlass:** Nach der Erklärung der beiden Wege für Punkt 4 (Zielbild Beta-Format vs. sofortiger,

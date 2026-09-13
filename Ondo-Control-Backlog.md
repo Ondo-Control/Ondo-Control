@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 13.9.2026, Fassung 119 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 13.9.2026, Fassung 120 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,36 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 120 ändert (13.9., zweiter strukturierter Datenweg gefunden — läuft real, wird von `beta.html` nie gelesen — Backlog-Punkt 81, kein Codeaufwand)
+
+**Anlass:** Ondo: „Du hast doch eine Datei angelegt im Repo für Ergebnisabfrage an API
+Datenbanken was steht dadrin" — direkt am Repo nachgesehen, nicht aus dem Gedächtnis
+beantwortet (Arbeitsregel H).
+
+- **🔴 Fund:** Neben dem im Browser eingebauten, nie genutzten Weg (Fassung 119) gibt es einen
+  zweiten, unabhängigen: ein täglich automatisch laufendes GitHub-Actions-Programm
+  (`.github/workflows/schiri-ergebnisse.yml` + `skripte/schiri-ergebnisse-holen.js`, seit
+  Backlog-Punkt 9) fragt dieselben zwei echten Datenbanken ab und legt Treffer in
+  `daten/schiri-ergebnisse/JJJJ-MM.json` ab. Läuft nachweislich — zwei echte Commits
+  (11./12.9.2026), 14 echte Spiele im September aus u. a. Champions League, Bundesliga,
+  La Liga, Ligue 1, Serie A, Championship, Eredivisie, Brasileirão.
+- **🔴 `beta.html` liest diese Datei nirgends** (`grep` auf „schiri-ergebnisse"/„daten/schiri":
+  null Treffer) — echte, richtige Ergebnisse werden gesammelt und vom Schiedsrichter nie
+  benutzt. Die frühere Aussage „strukturierte Quelle nie genutzt" (Fassung 119) berichtigt,
+  nicht überschrieben: sie war nur für den Browser-Weg richtig, nicht vollständig.
+- **Vorschlag, nicht Baubeginn (Art. 8):** Diese Daten in `beta.html` einzulesen und mit
+  `kiProtokoll` abzugleichen wäre ein echter nächster Schritt für Fehlerart 7/8 bei den
+  abgedeckten Wettbewerben. Kosten grob eingeschätzt (Arbeitsregel G): kein neuer Schlüssel,
+  aber echter Programmieraufwand für die Zuordnung von Mannschaftsnamen — Ondos Entscheidung,
+  ob das gebaut werden soll.
+- **Kein Codeaufwand in dieser Fassung** — reine Berichtigung und Buchführung. `beta.html`
+  bleibt v19.13.1. `pruefe.py`: ALLES SAUBER.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 115 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl.)*
 
 ---
 
@@ -1497,7 +1527,7 @@ der Messreihe.
 
 ---
 
-**81. Schiedsrichter reparieren — nach Ondos eigener, strenger Definition** · *Auftrag Ondo 13.9.2026, wörtlich: „Dann Schiedsrichter reparieren. Das ist dein Job."* · **Status: beschlossen — 🔴 ein echter Bug gefunden und behoben 13.9.2026 (`beta.html` v19.13.1, „0 von 10 gefunden"-Fund), zweite Vermutung noch offen, Ligen-Abdeckung ehrlich als gross-lückig belegt**
+**81. Schiedsrichter reparieren — nach Ondos eigener, strenger Definition** · *Auftrag Ondo 13.9.2026, wörtlich: „Dann Schiedsrichter reparieren. Das ist dein Job."* · **Status: beschlossen — 🔴 ein echter Bug gefunden und behoben 13.9.2026 (`beta.html` v19.13.1, „0 von 10 gefunden"-Fund), zweite Vermutung noch offen, eine tägliche Daten-Sammlung gefunden, die real läuft aber nie gelesen wird — Anbindung als Vorschlag bei Ondo, noch nicht entschieden**
 
 **Ondos Definition von „repariert" (2.9.2026, bereits im Backlog bei Punkt 64 festgehalten, hier nur referenziert — Punkt 45):** zuverlässige Ergebnisse für alle künftigen Spiele, ohne Gegenprüfung im Chat.
 **Ehrlicher Ausgangspunkt, nicht beschönigt:** Der Schiedsrichter hat elf dokumentierte Fehlerarten (`STAND.md`, „Der Schiedsrichter — elf Fehlerarten"). Die 3-von-3-Einigkeitsregel (Backlog-Punkt 68, v19.8.12) ist eine echte, geprüfte Absicherung gegen Fehlerart 11 (schwankende Antworten) — aber nach Ondos eigenem Massstab weiterhin keine Reparatur, weil sie unsichere Fälle parkt statt sie zuverlässig richtig zu lösen. Fehlerart 7 (Heim und Gast vertauscht) hat bis heute keine eigene Absicherung.
@@ -1538,13 +1568,48 @@ mitgeschickt):**
   deckt. Nur ein kleinerer Teil (grob geschätzt ein Viertel bis ein Drittel: Premier League,
   Bundesliga, 2. Bundesliga, Championship, La Liga, Serie A, Ligue 1, Eredivisie) liegt
   überhaupt im möglichen Abdeckungsbereich.
-- **Noch wichtiger: Diese Abdeckung wurde bisher kein einziges Mal genutzt.** Weder in den
-  505 Messdaten-Einträgen noch in 401 Schiedsrichter-Rohantworten (30.7.–13.9.2026) kommt
-  „api-football.com" oder „football-data.org" auch nur ein einziges Mal als Quelle vor —
-  maschinell nachgezählt (`grep -c`), nicht überflogen. Der vorherige Satz „das trifft
-  Fehlerart 7 und 8 strukturell" war deshalb zu optimistisch: **technisch im Code vorhanden,
-  in der echten Nutzung bisher ohne jede Wirkung** — ob ein Schlüssel je hinterlegt war und
-  warum er nie griff, ist offen, nicht mehr Teil dieser Diagnose.
+- ~~Noch wichtiger: Diese Abdeckung wurde bisher kein einziges Mal genutzt.~~ **🔴 BERICHTIGT
+  13.9.2026, auf Ondos Nachfrage „Du hast doch eine Datei angelegt im Repo für
+  Ergebnisabfrage an API Datenbanken was steht dadrin" — das galt nur für EINEN von zwei
+  Wegen, nicht für beide:**
+  - **Weg 1, im Browser, vom Schiedsrichter selbst aufgerufen** (`apiFootballLauf()`,
+    `footballDataLauf()`, `hatApiFootball()`, `hatFootballData()`): Weder in den 505
+    Messdaten-Einträgen noch in 401 Schiedsrichter-Rohantworten (30.7.–13.9.2026) kommt
+    „api-football.com" oder „football-data.org" auch nur ein einziges Mal als Quelle vor —
+    maschinell nachgezählt (`grep -c`), nicht überflogen. Dieser Teil der ursprünglichen
+    Aussage bleibt richtig.
+  - **Weg 2, bisher übersehen, ganz ausserhalb von `beta.html`:** Ein täglich automatisch
+    laufendes GitHub-Actions-Programm — `.github/workflows/schiri-ergebnisse.yml` (Zeitplan
+    08:00 UTC, plus von Hand auslösbar) ruft `skripte/schiri-ergebnisse-holen.js` auf. Das
+    Programm fragt dieselben zwei echten Datenbanken ab (API-Football für rund 50
+    Wettbewerbe aus 16 Ländern plus Pokale/Qualifikationen, football-data.org für die
+    12 grossen Wettbewerbe) und speichert die Treffer in `daten/schiri-ergebnisse/JJJJ-MM.json`,
+    einer Datei je Monat, ohne einen bereits bekannten Endstand je zu verschlechtern. Dieser
+    Weg läuft nachweislich: zwei echte Commits im Repo (11.9. und 12.9.2026, Git-Nutzername
+    „Ondo-Control-Automatik"), Inhalt geprüft — 14 echte Spiele im September, u. a. Champions
+    League (Bayern–Bodø/Glimt 5:0, Como–RB Leipzig 4:1), Bundesliga (Union Berlin–Schalke 1:3),
+    La Liga (Sevilla–Valencia 1:0), Ligue 1 (Rennes–Marseille 1:0), Serie A
+    (Venezia–Fiorentina 2:4), Championship (West Ham–Wrexham 6:0), Eredivisie
+    (AZ–Willem II 1:1), Brasileirão (Coritiba–Paranaense 3:3). Aktuell ausschliesslich über
+    football-data.org befüllt, API-Football liefert derzeit nichts (dokumentierte Sperre im
+    Skript selbst).
+  - **Der eigentliche Fund: Weg 2 wird von `beta.html` nirgends gelesen.** Maschinell geprüft
+    (`grep -n "schiri-ergebnisse|daten/schiri" beta.html`): null Treffer. Das Skript selbst
+    behauptet im eigenen Kommentar, „die App liest diese Dateien" — das stimmt nicht, belegt
+    am Code, nicht vermutet. Es werden also seit Wochen echte, richtige Ergebnisse für einen
+    Teil von Ondos tatsächlichen Wettbewerben gesammelt, die der Schiedsrichter beim
+    Prüfen nie zu Gesicht bekommt.
+  - **Kosten einer Anbindung, noch nicht gebaut, nur eingeschätzt (Arbeitsregel G):** kein
+    neuer Schlüssel, keine neuen laufenden Kosten — die Daten liegen schon im Repo und werden
+    schon über GitHub Pages ausgeliefert wie `beta.html` selbst. Aufwand wäre echter Code in
+    `beta.html`: die passende Monatsdatei laden, einen Eintrag über Mannschaftsnamen und
+    Datum dem richtigen `kiProtokoll`-Eintrag zuordnen (Namen sind in den Rohdaten nicht
+    immer gleich geschrieben — Zuordnung ist der schwierigere Teil, nicht der Abruf), und
+    entscheiden, was gilt, wenn diese Quelle etwas anderes sagt als die KI-Antworten. Kein
+    Versprechen einer Zeitschätzung ohne genauere Prüfung (Art. 11). **Vorschlag, nicht
+    Baubeginn (Art. 8):** Diese Anbindung wäre ein echter, im bestehenden Code bereits
+    vorbereiteter nächster Schritt für Fehlerart 7/8 bei genau den Wettbewerben, die Weg 2
+    abdeckt — Ondos Entscheidung, ob das jetzt gebaut werden soll.
 - **🔴 Zweiter, unabhängiger Fund beim Nachsehen — ein echter, im Code belegter Bug, nicht nur
   eine Ligen-Lücke:** Ondos heutiger Prüflauf zeigte „0 von 10 gefunden" nach 144 Sekunden.
   Am Rohdaten-Export nachvollzogen: `rundeLaufen()` wählt pro Anfrage „höchstens 5 Spiele"

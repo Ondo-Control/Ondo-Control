@@ -196,11 +196,13 @@ Punkt 73, nicht hier wiederholt (Punkt 45).
 `.claude/hooks/claude_md_frisch.py` vergleicht sie bei jedem Sitzungsstart und erinnert an
 eine Erneuerung, sobald einer abweicht. Er erneuert nichts von selbst.*
 
-- STAND.md — `8024f2ad83e63908159b0ed743f29aea69d3fed1`
-- Ondo-Control-Backlog.md — `2cb5065c414debba9ba611eafafbbdce00264422`
-- Blueprint.md — `c3b8966c6bdc4ea076b3f3785ab6333a90157119`
+- STAND.md — `c481e426b06662dfac92b5ca0d0f760898347c99`
+- Ondo-Control-Backlog.md — `77ebea5ca0175a5392752785b674bb7cf3e83ca1`
+- Blueprint.md — `4b179ab9b6ae9509874541d6acd905894e958b49`
 - Ondo-Core-Architektur.md — `2923c6d2f1cf152a67522bd0ddafc42d6c196b40`
 
-*Prüfstand nachgeführt am 13.9.2026 (nur Hashes — Anlass war der gefundene und behobene
-Schiedsrichter-Bug, Backlog-Punkt 81, `beta.html` v19.13.1; inhaltlich für diese Datei nicht
-berührt, keine neue Arbeitsregel, keine Änderung an Zweig- oder Geheimfeld-Regeln).*
+*Prüfstand nachgeführt am 13.9.2026 (nur Hashes — Anlass war der zweite, bisher übersehene
+Datenweg für Schiedsrichter-Ergebnisse, gefunden auf Ondos Nachfrage „Du hast doch eine Datei
+angelegt im Repo für Ergebnisabfrage an API Datenbanken was steht dadrin"; inhaltlich für
+diese Datei nicht berührt, keine neue Arbeitsregel, keine Änderung an Zweig- oder
+Geheimfeld-Regeln).*
