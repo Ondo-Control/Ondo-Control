@@ -410,6 +410,38 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 111 ändert (12.9., Websuche für echte Vorhersagen gebaut — Backlog-Punkt 79, `beta.html` v19.10.0)
+
+**Anlass:** Ondo hat den Bauauftrag erteilt: „Bau eine Obergrenze für die Suchvorgänge je Lauf
+ein" und die offene Strategiefrage gestellt, ob Sonnet und Flash je eigene Suchen bekommen
+sollen oder eine gemeinsame.
+
+- **🔴 Backlog-Punkt 79 GEBAUT.** `marktlageHolen()`: EINE gemeinsame Websuche-Recherche für
+  die ganze Spielliste, beiden Gehirnen identisch mitgegeben — nicht je Gehirn getrennt.
+  Begründung: fairer Vergleich zwischen Sonnet und Flash auf derselben Tatsachengrundlage,
+  günstiger als zwei getrennte Suchen, nutzt `sonnetSuche()` unverändert wieder (beim
+  Schiedsrichter schon erprobt).
+- **Obergrenze `MARKTLAGE_MAX_SUCHEN = 20`** — als `max_uses` an das Anthropic-Websuche-
+  Werkzeug durchgereicht, für die ganze Liste, nicht je Spiel. Bei real nachgeprüften 10
+  US-Dollar je 1.000 Suchvorgängen (Anthropic) kostet ein Lauf dadurch höchstens rund 0,20
+  US-Dollar für die Recherche.
+- **Neuer Schalter `state.marktlageAktiv`** unter „Mehr" — Ondo kann die Recherche jederzeit
+  selbst abschalten, Standard an.
+- **Schnitt in der Messreihe:** Jeder neue `kiProtokoll`-Eintrag trägt `recherchiert:true/false`,
+  je Spiel einzeln. `Ondo-Core-Architektur.md`, Abschnitt 1c ergänzt (Fassung 0.11).
+- **Regressionsgesichert:** Ein Aufruf von `vorhersageGehirn()` mit nur zwei Argumenten (wie
+  jeder Trainingsraum-Aufruf) bleibt byte-identisch zum Stand davor — der Trainingsraum bleibt
+  garantiert ohne Recherche, ohne dass dort etwas eigens abgeschaltet werden musste.
+- **Verifiziert:** `node --check` bestanden · **15 neue Prüfungen** an den echten,
+  herausgeschnittenen Funktionen · die bestehenden 121, 45 und 40 Prüfungen erneut gelaufen,
+  alle weiterhin bestanden · `pruefe.py`: ALLES SAUBER.
+- **7 neue Sprachschlüssel** (318 → 325). `beta.html` jetzt v19.10.0.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 106 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: eins** — **4** *(79 ist jetzt gebaut, zählt nicht mehr mit.)*
+
+---
+
 ## ⚠ Was Fassung 110 ändert (12.9., echte Vorhersagen hatten nie Websuche — Fund, Berichtigung, neuer Punkt 79)
 
 **Anlass:** Im Gespräch über den Trainingsraum kam heraus, dass Ondo davon ausging, die echten

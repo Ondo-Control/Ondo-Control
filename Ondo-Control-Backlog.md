@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 12.9.2026, Fassung 115 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 13.9.2026, Fassung 116 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,30 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 116 ändert (13.9., Kriterium (c) von Ondo entschieden — kein Codeaufwand)
+
+**Anlass:** Direkt im Anschluss an die Berichtigung zu Kriterium (f) (Fassung 115) hat Ondo
+auch Kriterium (c) sofort geklärt: „Kriterium (c) haben wir auch schon diskutiert und geklärt.
+Wir haben genug Spiele!!!!"
+
+- **🔴 Backlog-Punkt 5, Status geändert:** von „Idee" auf entschieden — Kriterium (c) ist kein
+  Blocker mehr für die Beförderung. Beleg zur Grössenordnung, nicht nur behauptet: 468
+  bewertete Aussagen bei Sonnet, 465 bei Flash (Stand 4.9.2026, `STAND.md`), beide weit über
+  der ursprünglichen 15-Tipps-Grenze — deckt sich mit Claudes früherer Einschätzung und
+  ChatGPTs Zustimmung dazu.
+- **Punkt 4 entsprechend nachgeführt:** Von den sieben Beförderungskriterien sind jetzt (f)
+  und (c) beide entschieden. Was tatsächlich noch offen hält: **nur noch (g)** (Antwortkonsistenz,
+  echt ungetestet, am 6.8. von ChatGPT und Gemini gemeinsam zurückgestellt) sowie der
+  Schiedsrichter-/Fehlerarten-Stand (Schiedsrichter nach Ondos eigener Definition weiterhin
+  nicht repariert, siebte Fehlerart ungesichert).
+- **Kein Codeaufwand in dieser Fassung** — reine Buchführung. `beta.html` bleibt v19.12.0.
+  `pruefe.py`: ALLES SAUBER.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 111 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: eins** — **4** *(unverändert in der Zahl.)*
 
 ---
 
@@ -141,38 +165,6 @@ der Trainingsraum-Nachbesserung (die fünf Punkte oben) weitermachen."
   `BACKLOG-ARCHIV.md` verschoben.
 - **Beschlossen und nicht gebaut: zwei** — **4, 78** *(78 neu dazu: von Ondo freigegeben, noch
   nicht gebaut.)*
-
----
-
-## ⚠ Was Fassung 111 ändert (12.9., Websuche für echte Vorhersagen gebaut — Backlog-Punkt 79, `beta.html` v19.10.0)
-
-**Anlass:** Ondo hat den Bauauftrag erteilt: „Bau eine Obergrenze für die Suchvorgänge je Lauf
-ein" und die offene Strategiefrage gestellt, ob Sonnet und Flash je eigene Suchen bekommen
-sollen oder eine gemeinsame.
-
-- **🔴 Backlog-Punkt 79 GEBAUT.** `marktlageHolen()`: EINE gemeinsame Websuche-Recherche für
-  die ganze Spielliste, beiden Gehirnen identisch mitgegeben — nicht je Gehirn getrennt.
-  Begründung: fairer Vergleich zwischen Sonnet und Flash auf derselben Tatsachengrundlage,
-  günstiger als zwei getrennte Suchen, nutzt `sonnetSuche()` unverändert wieder (beim
-  Schiedsrichter schon erprobt).
-- **Obergrenze `MARKTLAGE_MAX_SUCHEN = 20`** — als `max_uses` an das Anthropic-Websuche-
-  Werkzeug durchgereicht, für die ganze Liste, nicht je Spiel. Bei real nachgeprüften 10
-  US-Dollar je 1.000 Suchvorgängen (Anthropic) kostet ein Lauf dadurch höchstens rund 0,20
-  US-Dollar für die Recherche.
-- **Neuer Schalter `state.marktlageAktiv`** unter „Mehr" — Ondo kann die Recherche jederzeit
-  selbst abschalten, Standard an.
-- **Schnitt in der Messreihe:** Jeder neue `kiProtokoll`-Eintrag trägt `recherchiert:true/false`,
-  je Spiel einzeln. `Ondo-Core-Architektur.md`, Abschnitt 1c ergänzt (Fassung 0.11).
-- **Regressionsgesichert:** Ein Aufruf von `vorhersageGehirn()` mit nur zwei Argumenten (wie
-  jeder Trainingsraum-Aufruf) bleibt byte-identisch zum Stand davor — der Trainingsraum bleibt
-  garantiert ohne Recherche, ohne dass dort etwas eigens abgeschaltet werden musste.
-- **Verifiziert:** `node --check` bestanden · **15 neue Prüfungen** an den echten,
-  herausgeschnittenen Funktionen · die bestehenden 121, 45 und 40 Prüfungen erneut gelaufen,
-  alle weiterhin bestanden · `pruefe.py`: ALLES SAUBER.
-- **7 neue Sprachschlüssel** (318 → 325). `beta.html` jetzt v19.10.0.
-- **Regel 5 angewandt:** Abschnitt „Was Fassung 106 ändert" wortgleich nach
-  `BACKLOG-ARCHIV.md` verschoben.
-- **Beschlossen und nicht gebaut: eins** — **4** *(79 ist jetzt gebaut, zählt nicht mehr mit.)*
 
 ---
 
@@ -1521,6 +1513,11 @@ und die siebte Fehlerart („Heim und Gast vertauscht", 29.7.) hat weiterhin kei
 Absicherung. Einzelheiten und der volle Fehlerarten-Katalog: `STAND.md`, „Der Schiedsrichter —
 elf Fehlerarten". Das betrifft die Beförderung insgesamt, unabhängig von (c)/(f)/(g) — nicht
 neu erfunden, nur hier zum ersten Mal an dieser Stelle mit den anderen zusammengeführt.
+→ **🔴 Nachtrag 13.9.2026: Auch Kriterium (c) jetzt entschieden.** Ondo: „Wir haben genug
+Spiele!!!!" Kein Blocker mehr, sofort geschrieben statt mündlich stehen gelassen. Einzelheiten
+und die Zahlen dazu (468 bewertete Aussagen Sonnet, 465 Flash, Stand 4.9.2026): Punkt 5. Was
+die Beförderung nach heutigem Stand noch offen hält: nur noch (g) und der Schiedsrichter-/
+Fehlerarten-Stand oben — nicht mehr (f), nicht mehr (c).
 
 **34. Brier-Score als zweite Kennzahl neben der Kalibrierung** *(🔴 GERECHNET am 14.8. abends aus
 den Rohdaten — Sonnet **0,2429**, Bereich 0,2350–0,2513 · Flash **0,2497**, Bereich
@@ -1650,7 +1647,7 @@ Codeänderung ohne Schnitt.
 
 ---
 
-**5. Beförderungskriterium (c) neu fassen** · *Idee 23.7., ChatGPT* · **Status: Idee**
+**5. Beförderungskriterium (c) neu fassen** · *Idee 23.7., ChatGPT* · **Status: ✅ ENTSCHIEDEN 13.9.2026 — Ondo: „Wir haben genug Spiele!!!!", kein Blocker mehr**
 15 Bewertungen sind statistisch zu wenig, 100 dauern Monate. Vorschlag Claude: Beförderung nach Stabilität und Fehlerfreiheit entscheiden, die Messung läuft danach weiter. **Inhalt gehört in den Blueprint.**
 → *Vermerk 31.7.: Die Beförderung ist derzeit ohnehin gesperrt — Kriterium (f) verlangt Null-Fehler-Toleranz beim Schiedsrichter. Einzelheiten in `PROJEKT-STATUS.md`.* **🔴 BERICHTIGT
 12.9.2026: Kriterium (f) wurde noch in derselben Sitzung von Ondo ausdrücklich aufgehoben,
@@ -1671,10 +1668,11 @@ Fehler lag in der fehlenden Buchführung (Arbeitsregel F), nicht in Ondos Erinne
 **Richtiger, aktueller Stand der sieben Kriterien (10.7.2026, `BLUEPRINT-PROTOKOLL.md`):**
 - **(f) Schiedsrichter-Validierung, Null-Fehler-Toleranz — von Ondo aufgehoben, kein
   Blocker mehr.**
-- **(c) Trefferquoten-Differenz bei ≥15 bewerteten Tipps — echt offen, aber keine Wartezeit,
-  sondern eine Entscheidung.** Claude hat schon eingeschätzt „die Datenmenge reicht heute",
-  ChatGPT stimmte zu — Ondo hat dazu aber nie ausdrücklich „ja" gesagt wie bei (f). Kann er
-  jederzeit tun, ohne Bauaufwand.
+- **(c) Trefferquoten-Differenz bei ≥15 bewerteten Tipps — 🔴 von Ondo entschieden (13.9.2026):
+  „Wir haben genug Spiele!!!!"** Kein Blocker mehr. Beleg zur Grössenordnung (Arbeitsregel H,
+  letzter abgelesener Stand 4.9.2026, `STAND.md`): 468 bewertete Aussagen bei Sonnet, 465 bei
+  Flash — beide weit über der ursprünglichen 15-Tipps-Grenze. Deckt sich mit Claudes früherer
+  Einschätzung „die Datenmenge reicht heute" und ChatGPTs Zustimmung dazu.
 - **(g) Antwortkonsistenz durch Wiederholungsläufe — echt offen, eigenständig, nicht mit (f)
   verwechseln.** Am 6.8.2026 von ChatGPT UND Gemini gemeinsam zur Zurückstellung empfohlen
   (nicht von Claude erfunden), bis heute nicht getestet.
@@ -1686,9 +1684,11 @@ künftigen Spiele, ohne Gegenprüfung im Chat") weiterhin als NICHT repariert �
 Einigkeitsregel (Backlog-Punkt 68) ist eine echte Absicherung, aber keine Reparatur nach diesem
 Massstab. Die siebte Fehlerart „Heim und Gast vertauscht" (29.7.) hat weiterhin keine eigene
 Absicherung. Einzelheiten: `STAND.md`, „Der Schiedsrichter — elf Fehlerarten".
+**🔴 Nachtrag 13.9.2026: Auch (c) ist jetzt entschieden** — Ondo: „Wir haben genug Spiele!!!!"
+Kein Blocker mehr, siehe oben.
 **Kein Kalenderdatum wird genannt, weil keins bekannt ist.** Was die Beförderung nach heutigem
-Stand tatsächlich noch offen hält: (c) als Entscheidung, (g) als echter Test, sowie der
-Schiedsrichter- und Fehlerarten-Stand oben — nicht mehr (f).
+Stand tatsächlich noch offen hält: **nur noch (g) als echter, ungetesteter Test**, sowie der
+Schiedsrichter- und Fehlerarten-Stand oben — nicht mehr (f) und nicht mehr (c).
 
 **9. Echte Quoten automatisch (Knopfdruck gebaut, Zeitsteuerung teilweise gebaut) — Ausbau: eigene Ergebnis-Datenquelle für den Schiedsrichter** · *Idee 23.7., Claude · Verfassungsfrage teilweise geklärt 7.9.2026 · Knopfdruck-Teil Auftrag Ondo und gebaut 10.9.2026 · Zeitsteuerung/Ergebnis-Automatik Auftrag Ondo 11.9.2026 · Knopfdruck-Kopplung Auftrag Ondo und gebaut 11.9.2026* · **Status: 🔴 Knopfdruck-Teil (Quoten) GEBAUT 10.9.2026 — Zeitgesteuerte Ergebnis-Automatik GEBAUT 11.9.2026, wegen API-Football-Sperre nur mit football-data.org scharf — Knopfdruck-Ergebnisabgleich (API-Football + football-data.org, gekoppelt an den Prüflauf) GEBAUT und geprüft 11.9.2026**
 Offene Vorfrage (Gemini, weiterhin unbeantwortet): Deckt ein kostenloser Dienst überhaupt Ondos Spiele ab? **🔴 Verfassungsfrage teilweise geklärt (Ondo, 7.9.2026, Blueprint 0.83, Abschnitt 10):** Eine durch Knopfdruck in der App ausgelöste Aktualisierung verletzt „kein Server" nicht — ein Knopfdruck ist die von der Regel verlangte Aufforderung. Eine zeitgesteuerte, unbeaufsichtigte Ausführung bleibt weiterhin offen und ist eine andere Variante. **Ungeprüft, technische Einordnung:** Ob dafür überhaupt GitHub Actions nötig wäre (ein reiner Abruf im Browser bei Knopfdruck bräuchte gar keine Actions-Infrastruktur, wie die bestehenden Knöpfe es schon vormachen) oder ob ein dauerhaft im Repo gespeichertes Ergebnis einen manuell auslösbaren `workflow_dispatch` mit einem neuen, eigens abzusicherndem GitHub-Zugriffsschlüssel bräuchte, ist nicht untersucht.

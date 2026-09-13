@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 12.9.2026, Fassung 115, v19.12.0*
+*Die aktuelle Wahrheit. Stand: 13.9.2026, Fassung 116, v19.12.0*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -899,11 +899,14 @@ Die Tabelle aller bisherigen Chat-Uebergaben ist nach `CHRONIK-2026-08.md` gewan
 | **Befund A** | Als nicht auswertbar fuehren? **Womoeglich durch die Auszaehlung vom 8.8. erledigt** — zu klaeren, nicht zu behaupten | Chronik August, „Der 8. August" |
 | **GitHub Actions** | Verfassungsfrage vollstaendig geklärt (11.9.2026). Zeitgesteuerte Ergebnis-Automatik gebaut 11.9.2026, aber von API-Football wegen geteilter Cloud-Adresse gesperrt (vom Support schriftlich als strukturelles Problem bestätigt, nicht nur ein Einzelfall) — laeuft seither nur mit football-data.org scharf. Als Antwort darauf, noch am selben Tag: beide Quellen zusaetzlich per Knopfdruck direkt aus der App (eigenes Geraet, keine geteilte Adresse), gekoppelt an den bestehenden Pruefe-Lauf — das ist vom Sperr-Problem nicht betroffen | Blueprint, Abschnitt 10; Backlog-Punkt 9 |
 | **Schiedsrichter** | Darf er ueberhaupt selbst Ergebnisse lesen, oder nur verifizierte Fakten bewerten? | Blueprint, Abschnitt 10 |
-| **Kriterium (c)** | Befoerderungskriterium neu fassen — 15 bewertete Tipps sind zu wenig | Blueprint, Abschnitt 10 |
 
 **Nicht offen, sondern entschieden — damit sie nicht wieder auf diese Liste geraten:**
 - **Punkt 38** (Sonnet als waehlbares Modell) — von Ondo am 9.8. zurueckgestellt, nicht verworfen.
 - **Die rueckwirkende Berichtigung** — am 13.8. beschlossen und ausgefuehrt.
+- **Befoerderungskriterium (f)** (Schiedsrichter-Null-Fehler-Toleranz) — von Ondo in dieser
+  Sitzung ausdruecklich aufgehoben (13.9.2026 berichtigt nachgetragen, Backlog-Punkt 5).
+- **Befoerderungskriterium (c)** (15 bewertete Tipps sind zu wenig) — von Ondo entschieden
+  (13.9.2026): „Wir haben genug Spiele!!!!" Einzelheiten Backlog-Punkt 5.
 - **`CODE_VERSION`** — am 14.8. entschieden, Lieferkennzeichen, ausnahmslos hochzaehlen.
 
 **Was hier NICHT steht:** die Zahl der beschlossenen, nicht gebauten Punkte. Sie steht ausschliesslich im Backlog (Punkt 45).
