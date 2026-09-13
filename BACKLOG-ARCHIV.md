@@ -410,6 +410,41 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 112 ändert (12.9., Trainingsraum-Nachbesserung gebaut — Backlog-Punkt 77, `beta.html` v19.11.0)
+
+**Anlass:** Ondo hat die Screenshots des Trainingsraum-Baus (Fassung 108) geprüft und fünf
+Nachbesserungen verlangt (Fassung 109), bevor weitergebaut wird. Reihenfolge für diese
+Sitzung, von Ondo festgelegt: „Punkt 4 zum Schluss bauen / Punkt 78 freigegeben, bauen / mit
+der Trainingsraum-Nachbesserung (die fünf Punkte oben) weitermachen."
+
+- **🔴 Backlog-Punkt 77, Nachbesserung GEBAUT.** Alle fünf Punkte abgearbeitet:
+  1. **Fund behoben:** `hitAI` steht nicht mehr unter „Finanzen".
+  2. **Platzierung erneut geändert (Fassung 106/107 zurückgenommen):** `hitAI` und die vier
+     Blöcke (Kalibrierung/Beobachtungen/gepaarter Vergleich/Trainingsraum) stehen jetzt unter
+     Wettmodul → KI-Log → neuem Unter-Reiter „Daten", nicht mehr unter „Mehr" (das gilt für alle
+     Module, nicht nur Wetten — Ondos Richtigstellung).
+  3. Weg (a) bestätigt — kein Codebedarf.
+  4. **Auswahl statt Automatik gebaut:** `trainingsraumKandidaten()` filtert Weg (a) jetzt
+     optional auf einen Zeitraum (`trainVon`/`trainBis`, gleiches Muster wie der KI-Log-Filter);
+     Weg (b) hat eine echte Eintragemöglichkeit (`trainingsraumSpielHinzufuegen()`/
+     `trainingsraumSpielLoeschen()`) statt der leeren Platzhalter-Datenstruktur. Der Zeitraum
+     wirkt ausdrücklich nur auf Weg (a).
+  5. **Beantwortet, kein Code:** ein eigenständiges Werkzeug ausserhalb der App wäre nicht
+     einfacher — dieselbe Logik müsste dort ohne `state.kiProtokoll` neu gebaut werden.
+- **Verifiziert:** `node --check` bestanden · Trainingsraum-Trockentest von 40 auf **59
+  Prüfungen** erweitert · alle bestehenden Suiten erneut gelaufen, alle weiterhin bestanden ·
+  `pruefe.py`: ALLES SAUBER.
+- **12 neue Sprachschlüssel** (325 → 337). Kein Schnitt in der Messreihe. `beta.html` jetzt
+  v19.11.0.
+- **🔴 Backlog-Punkt 78 von Ondo freigegeben:** „Punkt 78 freigegeben, bauen" — als nächstes
+  dran (vor Punkt 4, laut Ondos Reihenfolge).
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 107 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: zwei** — **4, 78** *(78 neu dazu: von Ondo freigegeben, noch
+  nicht gebaut.)*
+
+---
+
 ## ⚠ Was Fassung 111 ändert (12.9., Websuche für echte Vorhersagen gebaut — Backlog-Punkt 79, `beta.html` v19.10.0)
 
 **Anlass:** Ondo hat den Bauauftrag erteilt: „Bau eine Obergrenze für die Suchvorgänge je Lauf

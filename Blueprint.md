@@ -3,9 +3,16 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.115
+**Version:** 0.116
 **Stand:** 13. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.116 ändert (13.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> der gebaute Backlog-Punkt 80 (`beta.html` v19.13.0): Testwerkzeug für Beförderungskriterium
+> (g), Definition vor dem Bau festgelegt (8 Spiele, 3 Wiederholungen, 90 %/10-Punkte-Schwelle).
+> Neuer Backlog-Punkt 81 (Schiedsrichter reparieren, Ondos Auftrag „das ist dein Job") angelegt,
+> Diagnose begonnen. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf
+> 0.116 gehoben.
 
 > **Was Fassung 0.115 ändert (13.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
 > Ondos direkte Entscheidung zu Beförderungskriterium (c): „Wir haben genug Spiele!!!!" Damit

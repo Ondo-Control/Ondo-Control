@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.12.0';
+var CODE_VERSION = 'v19.13.0';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -184,6 +184,11 @@ var I18N = {
   trainSpMatchPh:'Team A – Team B', trainSpDatumL:'Datum', trainSpHeimL:'Tore Heim', trainSpGastL:'Tore Gast',
   trainSpBtn:'Hinzufügen', trainSpFehler:'Bitte Team, Datum und beide Ergebnisse ausfüllen.', trainSpLeer:'Noch keine Einträge.',
   delTrainSpAsk:'Diesen Eintrag endgültig aus dem Trainingsraum (Weg b) löschen?\n\n{a}\n\nDas lässt sich nicht rückgängig machen.',
+  konsT:'Antwortkonsistenz (Kriterium g)', konsD:'Bleibt die Vorhersage stabil, wenn man dieselben {a} offenen Spiele {b}× fragt? Bestanden bei mindestens {c} % gleichbleibendem Tipp und höchstens {d} Prozentpunkten Schwankung im Schnitt — Massstab vor dem Lauf festgelegt.',
+  konsBtn:'Test starten', konsRunning:'Läuft…', konsKeine:'Keine offenen Spiele für den Test gefunden.',
+  konsKeineDaten:'Noch kein Test gelaufen.', konsFertig:'Antwortkonsistenz-Test vom',
+  konsZeile:'{a} % gleicher Tipp · Ø {b} Punkte Spanne · n={c}',
+  konsBestanden:'✓ Kriterium (g) bestanden', konsNichtBestanden:'✗ Kriterium (g) nicht bestanden',
   predResearch:'Marktlage wird recherchiert…',
   marktlageT:'Aktuelle Lage per Websuche', marktlageD:'Vor jeder Vorhersage wird EINMAL für die ganze Spielliste recherchiert (Verletzte, Form, Tabellenstand) — beide Gehirne bekommen dieselbe Recherche. Kostet echtes Geld pro Lauf, begrenzt auf höchstens {a} Suchvorgänge.',
   marktlageAn:'An — ausschalten', marktlageAusBtn:'Aus — einschalten',
@@ -334,6 +339,11 @@ var I18N = {
   trainSpMatchPh:'Équipe A – Équipe B', trainSpDatumL:'Date', trainSpHeimL:'Buts domicile', trainSpGastL:'Buts extérieur',
   trainSpBtn:'Ajouter', trainSpFehler:'Merci de remplir équipe, date et les deux résultats.', trainSpLeer:'Aucune entrée pour le moment.',
   delTrainSpAsk:'Supprimer définitivement cette entrée de la salle d’entraînement (voie b) ?\n\n{a}\n\nIrréversible.',
+  konsT:'Cohérence des réponses (critère g)', konsD:'La prévision reste-t-elle stable si on pose {b}× la même question sur les {a} mêmes matchs ouverts ? Réussi si au moins {c} % de pronostics identiques et au plus {d} points de pourcentage d’écart en moyenne — seuil fixé avant le test.',
+  konsBtn:'Lancer le test', konsRunning:'En cours…', konsKeine:'Aucun match ouvert trouvé pour le test.',
+  konsKeineDaten:'Aucun test lancé pour le moment.', konsFertig:'Test de cohérence du',
+  konsZeile:'{a} % de pronostic identique · Ø {b} points d’écart · n={c}',
+  konsBestanden:'✓ Critère (g) réussi', konsNichtBestanden:'✗ Critère (g) non réussi',
   predResearch:'Recherche de la situation actuelle…',
   marktlageT:'Situation actuelle par recherche web', marktlageD:'Avant chaque prévision, UNE recherche pour toute la liste (blessés, forme, classement) — les deux cerveaux reçoivent la même recherche. Coûte de l’argent réel par lancement, limité à {a} recherches au maximum.',
   marktlageAn:'Activé — désactiver', marktlageAusBtn:'Désactivé — activer',
@@ -484,6 +494,11 @@ var I18N = {
   trainSpMatchPh:'Team A – Team B', trainSpDatumL:'Date', trainSpHeimL:'Goals home', trainSpGastL:'Goals away',
   trainSpBtn:'Add', trainSpFehler:'Please fill in team, date, and both scores.', trainSpLeer:'No entries yet.',
   delTrainSpAsk:'Permanently delete this entry from the training room (path b)?\n\n{a}\n\nThis cannot be undone.',
+  konsT:'Answer consistency (criterion g)', konsD:'Does the prediction stay stable when asked {b}× about the same {a} open games? Passes at at least {c}% matching tips and at most {d} percentage points of average spread — bar set before the run.',
+  konsBtn:'Start test', konsRunning:'Running…', konsKeine:'No open games found for the test.',
+  konsKeineDaten:'No test run yet.', konsFertig:'Answer consistency test of',
+  konsZeile:'{a}% matching tip · avg {b} points spread · n={c}',
+  konsBestanden:'✓ Criterion (g) passed', konsNichtBestanden:'✗ Criterion (g) not passed',
   predResearch:'Researching current situation…',
   marktlageT:'Current situation via web search', marktlageD:'Before each prediction, ONE search covers the whole fixture list (injuries, form, standings) — both brains get the same research. Costs real money per run, capped at {a} searches at most.',
   marktlageAn:'On — turn off', marktlageAusBtn:'Off — turn on',
@@ -1191,7 +1206,11 @@ function logTextKopieren(feldId){
    (Backlog-Punkt 77) immer leer war - jetzt, wo Ondo Weg-(b)-Spiele selbst eintraegt, sind das
    reine Messdaten (Team/Wettbewerb/Datum/Ergebnis, keine Geheimfelder) und gehoeren aus
    demselben Grund in den Export wie trainingsraumProtokoll. */
-var MESS_FELDER = ['kiProtokoll','bets','regeln','startSaldo','eingezahlt','ausgezahlt','korrekturF','letzteSicherung','trainingsraumProtokoll','trainingsraumSpiele'];
+/* v19.13.0: antwortkonsistenzBericht ergaenzt - das Ergebnis des Kriterium-(g)-Tests
+   (Backlog-Punkt 80) gehoert aus demselben Grund wie die Trainingsraum-Felder in den Export:
+   reine Messdaten (Prozentzahlen, keine Geheimfelder), die Ondo bei Bedarf einem Pruefer
+   zeigen koennen soll, ohne die ganze Sicherung weiterzugeben. */
+var MESS_FELDER = ['kiProtokoll','bets','regeln','startSaldo','eingezahlt','ausgezahlt','korrekturF','letzteSicherung','trainingsraumProtokoll','trainingsraumSpiele','antwortkonsistenzBericht'];
 var MESS_VERBOTEN = /key|pin|token|secret|passw/i;
 
 function messGeheimFund(wert, pfad){
@@ -2950,6 +2969,140 @@ function trainingsraumSpielLoeschen(idx){
   render();
 }
 
+/* ================= ANTWORTKONSISTENZ, KRITERIUM (g) (Backlog-Punkt 80, 13.9.2026) =================
+   Auftrag Ondo: "Antwortkonsistenz (g): Teste. Aber Du musst klar definieren wann es fertig
+   ist." Definition VOR dem ersten Lauf im Backlog festgehalten (Punkt 80), hier nur umgesetzt,
+   nicht neu erfunden. Nutzt vorhersageGehirn() unveraendert wieder, mit nur zwei Argumenten -
+   dieselbe Funktion, die auch der Trainingsraum verwendet, byte-identisch ohne Marktlage
+   (Regressionsgarantie aus Backlog-Punkt 79). Diese Code-Sitzung hat keinen Zugriff auf Ondos
+   API-Schluessel - der Lauf selbst geschieht ueber Ondos eigenes Geraet, wie jede andere echte
+   Vorhersage in dieser App. */
+var ANTWORTKONSISTENZ_SPIELE = 8;
+var ANTWORTKONSISTENZ_WIEDERHOLUNGEN = 3;
+var ANTWORTKONSISTENZ_TIPP_SCHWELLE = 90;   /* Prozent gleichbleibender Tipp */
+var ANTWORTKONSISTENZ_SPANNE_SCHWELLE = 10; /* Prozentpunkte, hoechstens im Schnitt */
+
+function antwortkonsistenzKandidaten(){
+  return (state.kiProtokoll||[])
+    .filter(function(e){ return e.aera==='v19' && e.status==='offen' && !e.geparkt; })
+    .slice(0, ANTWORTKONSISTENZ_SPIELE)
+    .map(function(e){ return { match:e.match, wettbewerb:e.wettbewerb||'', anpfiff:e.anpfiff||'' }; });
+}
+
+/* Reine Auswertung, kein Modellaufruf - getrennt von antwortkonsistenzLauf(), damit sie ohne
+   echte API-Antworten trocken getestet werden kann. laeufe: { gehirn: [ [vorhersagen], ... ] } */
+function antwortkonsistenzAuswerten(liste, laeufe){
+  var ergebnis={};
+  Object.keys(laeufe).forEach(function(gehirn){
+    var proSpiel=[];
+    liste.forEach(function(s){
+      var werte=[];
+      (laeufe[gehirn]||[]).forEach(function(lauf){
+        if(!lauf || lauf._fehler) return;
+        var f=lauf.find(function(v){ return normName(v.match)===normName(s.match); });
+        if(!f) return;
+        var h=Math.round(Number(f.heim)), g=Math.round(Number(f.gast));
+        var p=Number(f.p1x2);
+        if(isNaN(h)||isNaN(g)) return;
+        var code = h>g ? 'sieg_heim' : (h<g ? 'sieg_gast' : 'remis');
+        werte.push({ code:code, p1x2:isNaN(p)?null:p });
+      });
+      if(werte.length<2) return;
+      var codes=werte.map(function(w){ return w.code; });
+      var gleich=codes.every(function(c){ return c===codes[0]; });
+      var ps=werte.map(function(w){ return w.p1x2; }).filter(function(p){ return p!==null; });
+      var spanne = ps.length ? (Math.max.apply(null,ps)-Math.min.apply(null,ps)) : null;
+      proSpiel.push({ match:s.match, laeufe:werte.length, gleich:gleich, spanne:spanne });
+    });
+    var gleichN=proSpiel.filter(function(x){ return x.gleich; }).length;
+    var spannen=proSpiel.map(function(x){ return x.spanne; }).filter(function(x){ return x!==null; });
+    var avgSpanne = spannen.length ? (spannen.reduce(function(a,b){ return a+b; },0)/spannen.length) : null;
+    var maxSpanne = spannen.length ? Math.max.apply(null,spannen) : null;
+    var gleichAnteil = proSpiel.length ? Math.round(gleichN/proSpiel.length*100) : null;
+    ergebnis[gehirn] = {
+      spiele: proSpiel.length,
+      gleichAnteil: gleichAnteil,
+      avgSpanne: avgSpanne!==null ? Math.round(avgSpanne*10)/10 : null,
+      maxSpanne: maxSpanne,
+      bestanden: (gleichAnteil!==null && avgSpanne!==null)
+        ? (gleichAnteil>=ANTWORTKONSISTENZ_TIPP_SCHWELLE && avgSpanne<=ANTWORTKONSISTENZ_SPANNE_SCHWELLE)
+        : null,
+      proSpiel: proSpiel
+    };
+  });
+  return ergebnis;
+}
+
+function antwortkonsistenzLauf(btn){
+  if(!hatSonnet() && !hatGemini()){
+    var f0=document.getElementById('konsErr'); if(f0) f0.textContent=t('noKey'); return;
+  }
+  if(kiAnfrageAktiv){
+    var fB=document.getElementById('konsErr'); if(fB) fB.textContent=t('kiBusy'); return;
+  }
+  var liste=antwortkonsistenzKandidaten();
+  if(!liste.length){
+    var fL=document.getElementById('konsErr'); if(fL) fL.textContent=t('konsKeine');
+    return;
+  }
+  kiAnfrageAktiv=true;
+  var f=document.getElementById('konsErr'); if(f) f.textContent='';
+  btn.disabled=true; btn.textContent=t('konsRunning');
+
+  var gehirne=[]; if(hatSonnet()) gehirne.push('sonnet'); if(hatGemini()) gehirne.push('flash');
+  var laeufe={}; gehirne.forEach(function(g){ laeufe[g]=[]; });
+  var jobs=[];
+  gehirne.forEach(function(g){
+    for(var k=0;k<ANTWORTKONSISTENZ_WIEDERHOLUNGEN;k++){
+      jobs.push((function(gehirn){
+        return vorhersageGehirn(gehirn, liste).then(function(res){ laeufe[gehirn].push(res); });
+      })(g));
+    }
+  });
+
+  Promise.all(jobs).then(function(){
+    state.antwortkonsistenzBericht = antwortkonsistenzAuswerten(liste, laeufe);
+    state.antwortkonsistenzInfo = t('konsFertig')+': '+heuteStr();
+    save();
+    kiAnfrageAktiv=false;
+    btn.disabled=false; btn.textContent=t('konsBtn');
+    render();
+  }).catch(function(e){
+    kiAnfrageAktiv=false;
+    btn.disabled=false; btn.textContent=t('konsBtn');
+    var el=document.getElementById('konsErr');
+    if(el) el.textContent=(e&&e.message?e.message:'?');
+  });
+}
+
+function antwortkonsistenzBlock(){
+  var GEHIRN={ sonnet:'🧠 Sonnet', flash:'🌱 Flash' };
+  var b=state.antwortkonsistenzBericht;
+  function zeile(gehirn){
+    var erg = b && b[gehirn];
+    if(!erg) return '<div class="mkt"><div>'+GEHIRN[gehirn]+'</div><div class="muted">'+t('konsKeineDaten')+'</div></div>';
+    var farbe = erg.bestanden===true ? 'var(--win)' : (erg.bestanden===false ? 'var(--loss)' : 'var(--dim)');
+    var urteil = erg.bestanden===true ? t('konsBestanden') : (erg.bestanden===false ? t('konsNichtBestanden') : '–');
+    return '<div class="mkt"><div>'+GEHIRN[gehirn]+'</div>'+
+      '<div><span style="color:'+farbe+'">'+urteil+'</span> <span class="muted">('+
+      t('konsZeile').replace('{a}',erg.gleichAnteil===null?'–':erg.gleichAnteil)
+        .replace('{b}',erg.avgSpanne===null?'–':erg.avgSpanne)
+        .replace('{c}',erg.spiele)+
+      ')</span></div></div>';
+  }
+  return '<div class="card">'+
+    '<div class="disp" style="font-size:20px;margin-bottom:6px">🔁 '+t('konsT')+'</div>'+
+    '<div class="muted">'+t('konsD')
+      .replace('{a}',ANTWORTKONSISTENZ_SPIELE).replace('{b}',ANTWORTKONSISTENZ_WIEDERHOLUNGEN)
+      .replace('{c}',ANTWORTKONSISTENZ_TIPP_SCHWELLE).replace('{d}',ANTWORTKONSISTENZ_SPANNE_SCHWELLE)+
+    '</div>'+
+    '<div style="margin-top:10px">'+zeile('sonnet')+zeile('flash')+'</div>'+
+    '<button class="btn" style="margin-top:10px" onclick="antwortkonsistenzLauf(this)">'+t('konsBtn')+'</button>'+
+    '<div id="konsErr" style="color:var(--loss);margin-top:8px;font-size:13px"></div>'+
+    (state.antwortkonsistenzInfo ? '<div class="muted" style="margin-top:8px">'+esc(state.antwortkonsistenzInfo)+'</div>' : '')+
+  '</div>';
+}
+
 /* ================= SCHEIN-FOTO ================= */
 function fotoLesen(input){
   if(!input.files || !input.files[0]) return;
@@ -4354,7 +4507,7 @@ function viewBets(c){
         '<div class="stat-sub">'+(aiZahl.n?aiZahl.tr+" "+t('of')+" "+aiZahl.n:t('notRated'))+
         (aiZahl.n?'<br>Sonnet: '+(aiZahl.sonnet.q===null?'–':aiZahl.sonnet.q+' % ('+aiZahl.sonnet.tr+'/'+aiZahl.sonnet.n+')')+' · Flash: '+(aiZahl.flash.q===null?'–':aiZahl.flash.q+' % ('+aiZahl.flash.tr+'/'+aiZahl.flash.n+')'):'')+
         '</div></div>'+
-        kalibBlock()+beobachtungenBlock()+gepaartBlock()+trainingsraumBlock();
+        kalibBlock()+beobachtungenBlock()+gepaartBlock()+trainingsraumBlock()+antwortkonsistenzBlock();
     } else if(kilogTab==='bewertet'){
       var g = kilogGefiltert(bewertetListe, kilogVon, kilogBis, kilogWettbewerb, kilogStatus, kilogMannschaft);
       body = kilogFilterBlock(bewertetListe.length, g.length, 'bewertet')+

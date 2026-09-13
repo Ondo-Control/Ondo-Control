@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 13.9.2026, Fassung 116 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 13.9.2026, Fassung 117 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,39 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 117 ändert (13.9., Kriterium-(g)-Test gebaut — Backlog-Punkt 80, `beta.html` v19.13.0)
+
+**Anlass:** Ondo, direkt im Anschluss an die Klärung von (c): „Antwortkonsistenz (g): Teste.
+Aber Du musst klar definieren wann es fertig ist. Dann Schiedsrichter reparieren. Das ist
+dein Job." Neue Backlog-Punkte 80 (Kriterium g) und 81 (Schiedsrichter) angelegt.
+
+- **🔴 Backlog-Punkt 80: Definition VOR dem Bau festgehalten, dann gebaut.** Bis zu 8 offene
+  Spiele, 3 Wiederholungen je Gehirn, ohne Marktlage (reine Antwort-Schwankung, nicht mit
+  Recherche-Schwankung vermengt). Bestanden ab 90 % gleichbleibendem Tipp UND höchstens 10
+  Prozentpunkten Spanne im Schnitt — Massstab vor dem ersten Lauf fixiert, damit er nicht
+  nachträglich ans Ergebnis angepasst werden kann.
+- **`antwortkonsistenzLauf()` gebaut**, wiederverwendet `vorhersageGehirn()` unverändert (wie
+  der Trainingsraum) — neuer Knopf unter Wettmodul → KI-Log → Daten.
+- **Ehrliche Grenze, sofort benannt:** Diese Code-Sitzung hat keinen Zugriff auf Ondos
+  API-Schlüssel und kann den Lauf nicht selbst ausführen — er läuft über Ondos eigenes Gerät,
+  wie jede andere echte Vorhersage. Gebaut ist der Knopf, nicht ein fertiges Ergebnis.
+- **`state.antwortkonsistenzBericht` in `MESS_FELDER` ergänzt** (Punkt 44) — reine Messdaten.
+- **🔴 Backlog-Punkt 81 angelegt: Schiedsrichter reparieren, nach Ondos Auftrag „das ist dein
+  Job".** Diagnose läuft, noch kein Codeaufwand in dieser Fassung — Einzelheiten bei Punkt 81.
+- **Verifiziert:** `node --check` bestanden · **23 neue Prüfungen** an den echten,
+  herausgeschnittenen Funktionen · alle bestehenden Suiten erneut gelaufen, alle weiterhin
+  bestanden · `pruefe.py`: ALLES SAUBER.
+- **10 neue Sprachschlüssel** (339 → 349). Kein Schnitt in der Messreihe. `beta.html` jetzt
+  v19.13.0.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 112 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(80 zählt nicht mehr mit: das Werkzeug
+  ist gebaut, nur der echte Lauf durch Ondo steht noch aus — dieselbe Lage wie beim
+  Trainingsraum, dessen Bewährung ebenfalls aussteht. 81 neu: von Ondo in Auftrag gegeben,
+  Diagnose läuft, noch nicht gebaut.)*
 
 ---
 
@@ -130,41 +163,6 @@ Nachbesserung, vor Punkt 4).
 - **Regel 5 angewandt:** Abschnitt „Was Fassung 108 ändert" wortgleich nach
   `BACKLOG-ARCHIV.md` verschoben.
 - **Beschlossen und nicht gebaut: eins** — **4** *(78 ist jetzt gebaut, zählt nicht mehr mit.)*
-
----
-
-## ⚠ Was Fassung 112 ändert (12.9., Trainingsraum-Nachbesserung gebaut — Backlog-Punkt 77, `beta.html` v19.11.0)
-
-**Anlass:** Ondo hat die Screenshots des Trainingsraum-Baus (Fassung 108) geprüft und fünf
-Nachbesserungen verlangt (Fassung 109), bevor weitergebaut wird. Reihenfolge für diese
-Sitzung, von Ondo festgelegt: „Punkt 4 zum Schluss bauen / Punkt 78 freigegeben, bauen / mit
-der Trainingsraum-Nachbesserung (die fünf Punkte oben) weitermachen."
-
-- **🔴 Backlog-Punkt 77, Nachbesserung GEBAUT.** Alle fünf Punkte abgearbeitet:
-  1. **Fund behoben:** `hitAI` steht nicht mehr unter „Finanzen".
-  2. **Platzierung erneut geändert (Fassung 106/107 zurückgenommen):** `hitAI` und die vier
-     Blöcke (Kalibrierung/Beobachtungen/gepaarter Vergleich/Trainingsraum) stehen jetzt unter
-     Wettmodul → KI-Log → neuem Unter-Reiter „Daten", nicht mehr unter „Mehr" (das gilt für alle
-     Module, nicht nur Wetten — Ondos Richtigstellung).
-  3. Weg (a) bestätigt — kein Codebedarf.
-  4. **Auswahl statt Automatik gebaut:** `trainingsraumKandidaten()` filtert Weg (a) jetzt
-     optional auf einen Zeitraum (`trainVon`/`trainBis`, gleiches Muster wie der KI-Log-Filter);
-     Weg (b) hat eine echte Eintragemöglichkeit (`trainingsraumSpielHinzufuegen()`/
-     `trainingsraumSpielLoeschen()`) statt der leeren Platzhalter-Datenstruktur. Der Zeitraum
-     wirkt ausdrücklich nur auf Weg (a).
-  5. **Beantwortet, kein Code:** ein eigenständiges Werkzeug ausserhalb der App wäre nicht
-     einfacher — dieselbe Logik müsste dort ohne `state.kiProtokoll` neu gebaut werden.
-- **Verifiziert:** `node --check` bestanden · Trainingsraum-Trockentest von 40 auf **59
-  Prüfungen** erweitert · alle bestehenden Suiten erneut gelaufen, alle weiterhin bestanden ·
-  `pruefe.py`: ALLES SAUBER.
-- **12 neue Sprachschlüssel** (325 → 337). Kein Schnitt in der Messreihe. `beta.html` jetzt
-  v19.11.0.
-- **🔴 Backlog-Punkt 78 von Ondo freigegeben:** „Punkt 78 freigegeben, bauen" — als nächstes
-  dran (vor Punkt 4, laut Ondos Reihenfolge).
-- **Regel 5 angewandt:** Abschnitt „Was Fassung 107 ändert" wortgleich nach
-  `BACKLOG-ARCHIV.md` verschoben.
-- **Beschlossen und nicht gebaut: zwei** — **4, 78** *(78 neu dazu: von Ondo freigegeben, noch
-  nicht gebaut.)*
 
 ---
 
@@ -1476,6 +1474,32 @@ der Messreihe.
 → **Schnitt in der Messreihe, wie beim BTTS-Schnitt (v19.8.0):** Jeder neue `kiProtokoll`-Eintrag trägt `recherchiert:true/false`, je Spiel einzeln. Einträge ohne dieses Feld (vor v19.10.0) hatten die Möglichkeit nie. Details: `Ondo-Core-Architektur.md`, Abschnitt 1c.
 → **Verifiziert:** `node --check` bestanden · **15 neue Prüfungen** an den echten, herausgeschnittenen Funktionen, darunter ein Regressionstest, der belegt: Ein Aufruf mit nur zwei Argumenten (wie jeder Trainingsraum-Aufruf) bleibt byte-identisch zum Stand davor — der Trainingsraum bleibt garantiert ohne Recherche · die bestehenden 121, 45 und 40 Prüfungen erneut gelaufen, alle weiterhin bestanden · `pruefe.py`: ALLES SAUBER.
 → **7 neue Sprachschlüssel** (318 → 325). `beta.html` jetzt v19.10.0.
+
+---
+
+**80. Kriterium (g) — Antwortkonsistenz durch Wiederholungsläufe testen** · *Beförderungskriterium 10.7.2026 · von ChatGPT und Gemini gemeinsam am 6.8.2026 zurückgestellt · Auftrag Ondo 13.9.2026: „Antwortkonsistenz (g): Teste. Aber Du musst klar definieren wann es fertig ist."* · **Status: beschlossen — 🔴 Werkzeug GEBAUT 13.9.2026 (`beta.html` v19.13.0), echtes Ergebnis steht aus — Ondo muss den Lauf in der App auslösen, diese Sitzung hat keinen Zugriff auf seine API-Schlüssel**
+
+**Worum es geht, in einfachen Worten:** Wenn man dieselben Spiele zweimal fragt, sagt ein Gehirn (Sonnet oder Flash) dann etwa dasselbe, oder springt die Antwort hin und her? Wenn sie stark schwankt, sind die Prozentzahlen weniger wert, unabhängig davon, wie oft sie hinterher zutreffen.
+
+**Definition, VOR dem ersten Lauf festgelegt (Ondos Auflage — sonst könnte man den Massstab hinterher an das Ergebnis anpassen):**
+- **Stichprobe:** bis zu 8 aktuell offene Spiele aus `state.kiProtokoll` (`aera==='v19'`, `status==='offen'`, nicht geparkt) — echte, laufende Spiele, keine erfundenen Testfälle.
+- **Wiederholungen:** 3 Läufe je Gehirn, mit derselben Spielliste, ohne Marktlage/Websuche dazwischen (sonst würde Recherche-Schwankung mit Antwort-Schwankung vermengt — zwei verschiedene Dinge). Nutzt `vorhersageGehirn()` unverändert wieder, mit nur zwei Argumenten — dieselbe Funktion, die auch der Trainingsraum verwendet.
+- **Gemessen, je Spiel und Gehirn:** (1) bleibt der Tipp (Heimsieg/Unentschieden/Auswärtssieg) über alle drei Läufe gleich? (2) wie weit liegen die genannten Prozentzahlen (`p1x2`) auseinander (grösster minus kleinster Wert)?
+- **Zusammengefasst je Gehirn:** Anteil der Spiele mit gleichbleibendem Tipp (in Prozent), durchschnittliche und grösste Prozentpunkt-Spanne.
+- **Massstab, ob (g) damit als erfüllt gilt (Claudes Vorschlag, Ondo kann ihn ändern, aber VOR dem Lauf, nicht danach):** Tipp bleibt in mindestens 90 % der Fälle gleich, UND die durchschnittliche Spanne liegt bei höchstens 10 Prozentpunkten. Wird das nicht erreicht, gilt (g) als nicht bestanden — mit den echten Zahlen dazu, nicht nur „bestanden/nicht bestanden".
+- **„Fertig" heisst konkret:** Alle Läufe (bis zu 8 Spiele × 3 Wiederholungen × aktive Gehirne) sind ohne Fehler durchgelaufen, das Ergebnis liegt als Zahl vor (nicht als Eindruck), und es ist nach obigem Massstab bewertet.
+- **Kosten (Arbeitsregel G):** bis zu 48 echte Modellaufrufe (8 Spiele × 3 Läufe × 2 Gehirne), keine Websuche dabei — derselbe, günstige Aufruftyp wie ein normaler Vorhersagelauf, kein neuer Kostenblock wie bei der Websuche.
+- **Wer den Lauf tatsächlich auslöst:** Diese Code-Sitzung hat keinen Zugriff auf Ondos API-Schlüssel und kann den Lauf deshalb nicht selbst ausführen — genau wie jede andere echte Vorhersage in dieser App läuft er über Ondos eigenes Gerät. Gebaut wird ein Knopf („Antwortkonsistenz-Test" unter Wettmodul → KI-Log → Daten), Ondo drückt ihn, das Ergebnis erscheint in der App.
+
+→ **✅ Werkzeug GEBAUT (13.9.2026, `beta.html` v19.13.0), genau nach obiger Definition — nichts nachträglich angepasst.** `antwortkonsistenzKandidaten()`, `antwortkonsistenzAuswerten()`, `antwortkonsistenzLauf()`, Knopf `antwortkonsistenzBlock()` unter Wettmodul → KI-Log → Daten. **23 neue Prüfungen** an den echten, herausgeschnittenen Funktionen — Tipp-Ableitung, Spannenberechnung, die 90-%/10-Punkte-Schwelle, Umgang mit fehlgeschlagenen Läufen und zu wenigen Treffern, Sperre gegen Überschneidung mit einem anderen KI-Lauf. `pruefe.py`: ALLES SAUBER. **Noch offen: der echte Lauf selbst** — Ondo drückt den Knopf, das Ergebnis (bestanden/nicht bestanden je Gehirn, mit den echten Zahlen) erscheint danach in der App und wird hier nachgetragen, sobald es vorliegt.
+
+---
+
+**81. Schiedsrichter reparieren — nach Ondos eigener, strenger Definition** · *Auftrag Ondo 13.9.2026, wörtlich: „Dann Schiedsrichter reparieren. Das ist dein Job."* · **Status: beschlossen — 🔴 Auftrag angenommen, Diagnose läuft**
+
+**Ondos Definition von „repariert" (2.9.2026, bereits im Backlog bei Punkt 64 festgehalten, hier nur referenziert — Punkt 45):** zuverlässige Ergebnisse für alle künftigen Spiele, ohne Gegenprüfung im Chat.
+**Ehrlicher Ausgangspunkt, nicht beschönigt:** Der Schiedsrichter hat elf dokumentierte Fehlerarten (`STAND.md`, „Der Schiedsrichter — elf Fehlerarten"). Die 3-von-3-Einigkeitsregel (Backlog-Punkt 68, v19.8.12) ist eine echte, geprüfte Absicherung gegen Fehlerart 11 (schwankende Antworten) — aber nach Ondos eigenem Massstab weiterhin keine Reparatur, weil sie unsichere Fälle parkt statt sie zuverlässig richtig zu lösen. Fehlerart 7 (Heim und Gast vertauscht) hat bis heute keine eigene Absicherung.
+**Nächster Schritt, bevor irgendwas gebaut wird:** Vollständige Diagnose — welche der elf Fehlerarten sind durch bestehende Absicherungen tatsächlich entschärft, welche nicht, und was würde jede der noch offenen wirklich brauchen. Kein Versprechen einer schnellen Lösung ohne diese Diagnose (Art. 11) — aber auch keine Weigerung, den Auftrag anzunehmen.
 
 ---
 
