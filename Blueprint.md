@@ -3,9 +3,16 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.124
-**Stand:** 13. September 2026
+**Version:** 0.125
+**Stand:** 14. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.125 ändert (14.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> Ondos Auftrag „Tägliche Automatik auf zwei Läufe pro Tag umstellen" (Backlog-Punkt 9):
+> zweiter Cron-Eintrag (23:30 UTC neben 08:00 UTC) in `.github/workflows/schiri-ergebnisse.yml`,
+> `skripte/schiri-ergebnisse-holen.js` nur im Kopfkommentar berichtigt. `beta.html`
+> ausdrücklich nicht angefasst. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+> Blueprint auf 0.125 gehoben.
 
 > **Was Fassung 0.124 ändert (13.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
 > eine reine Diagnose (Backlog-Punkt 81, kein Codeaufwand): Echte Testabrufe belegen, dass

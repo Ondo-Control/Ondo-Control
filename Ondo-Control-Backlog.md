@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 13.9.2026, Fassung 125 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 14.9.2026, Fassung 126 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,37 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 126 ändert (14.9., Automatik auf zwei tägliche Läufe umgestellt — Backlog-Punkt 9, `.github/workflows/schiri-ergebnisse.yml` + `skripte/schiri-ergebnisse-holen.js`, `beta.html` NICHT angefasst)
+
+**Anlass:** Ondos Auftrag „Tägliche Automatik auf zwei Läufe pro Tag umstellen (Backlog-Punkt
+9)" — Champions-League-Spiele mit Verlängerung/Elfmeterschiessen und football-data.orgs
+unbelegte „scores delayed"-Verzögerung waren beim bisher einzigen Lauf um 08:00 Uhr UTC nicht
+sicher erfasst.
+
+- **🔴 Zweiter Cron-Eintrag ergänzt:** `.github/workflows/schiri-ergebnisse.yml` läuft jetzt um
+  08:00 UTC (unverändert) UND zusätzlich um 23:30 UTC. Beide rufen denselben, unveränderten
+  `skripte/schiri-ergebnisse-holen.js` auf — keine eigene Logik für den zweiten Zeitpunkt
+  nötig, `hauptlauf()` holt wie bisher „gestern"/„heute" relativ zur jeweiligen Laufzeit.
+- **🔴 Dritte Anforderung geprüft statt blind umgesetzt:** Ondos Auflage „committet nichts, wenn
+  eine Monatsdatei byte-identisch mit ihrem vorherigen Inhalt ist, `zusammenfuehren()` selbst
+  nicht ändern" war schon vor dieser Lieferung erfüllt — echt getestet an der unveränderten,
+  herausgeschnittenen `zusammenfuehren()`/`speichern()` (kein Nachbau): Bei inhaltlich
+  unverändertem Stand entstehen byte-identische Ausgaben, der bestehende Workflow-Schritt
+  (`git add` + `git diff --cached --quiet`) committet dann bereits nichts. **Kein Codeaufwand
+  dafür nötig** — bewusst keine redundante Prüfung ergänzt. Volle Einzelheiten bei
+  Backlog-Punkt 9.
+- **API-Football-Ligenliste, `FOOTBALL_DATA_ORG_CODES` und `beta.html` ausdrücklich
+  unverändert** — dieser Ausbau ändert nur, wann gelaufen wird, nicht was geholt wird.
+- **Verifiziert:** `node --check` bestanden, YAML-Gültigkeit geprüft (`python3 -c "import
+  yaml; …"`, beide Cron-Einträge korrekt erkannt). `pruefe.py`: ALLES SAUBER.
+- **Kein neuer Sprachschlüssel, kein Schnitt in der Messreihe.** `beta.html` unverändert,
+  bleibt v19.13.2.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 121 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl.)*
 
 ---
 
@@ -151,38 +182,6 @@ eigenem Kopf) und einen Rohdaten-Export des Schiedsrichters, mit dem Auftrag „
   `BACKLOG-ARCHIV.md` verschoben.
 - **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl — bei 81 ist
   jetzt ein Teilbefund zur offenen Frage nachgetragen, der Punkt selbst bleibt offen.)*
-
----
-
-## ⚠ Was Fassung 121 ändert (13.9., Berichtigung der eigenen Fassung 120 — die „zweite Quelle" war bei Punkt 9 längst gebaut, kein Codeaufwand)
-
-**Anlass:** Ondo, direkt nach Fassung 120: „Waren die 14 Spiele nicht ein Testlauf von dir?
-Bitte in der Sitzung prüfen! […] Ich dachte das wäre schon klar und umgesetzt?" — berechtigter
-Widerspruch, am GitHub-Lauf-Verlauf und an Backlog-Punkt 9 selbst nachgeprüft, nicht vermutet.
-
-- **🔴 Eigener Fehler, offen benannt:** Fassung 120 (diese Sitzung, wenige Minuten zuvor)
-  präsentierte die tägliche GitHub-Automatik als „bisher übersehene zweite Quelle" und schlug
-  vor, eine Anbindung an `beta.html` zu **prüfen** — dabei war die eigentliche, wichtigere
-  Anbindung (Knopfdruck-Kopplung beider Quellen an den bestehenden Prüflauf) bereits am
-  **11.9.2026** unter **Backlog-Punkt 9** vollständig gebaut, getestet und dokumentiert.
-  **Ursache:** Bei der Schiedsrichter-Diagnose (Fassung 117–120) wurde Punkt 81 bearbeitet,
-  ohne Punkt 9 zum selben Code vollständig gegenzulesen — ein Verstoss gegen „Ein Ort je
-  Tatsache" (Punkt 45): dieselbe Tatsache stand an zwei Stellen, und die neuere widersprach
-  der älteren, statt sie zu prüfen.
-- **Per GitHub-Actions-Protokoll bestätigt, nicht geraten:** Der Testlauf vom 11.9.2026 (16:26
-  UTC) rief echte, live API-Antworten ab (API-Football: „account is suspended", Fehler echt;
-  football-data.org: 7 echte fertige Spiele) — kein Testlauf von Claude, kein erfundener
-  Inhalt. Zwei echte automatische Läufe insgesamt (11. und 12.9.2026), nicht „seit Wochen"
-  wie in Fassung 120 fälschlich behauptet.
-- **Volle Berichtigung mit allen Einzelheiten steht bei Backlog-Punkt 81**, dort mit
-  Durchstreichung der falschen Fassung-120-Aussagen, nicht überschrieben (Fehlerart C4).
-- **Kein Codeaufwand in dieser Fassung** — reine Berichtigung und Buchführung. `beta.html`
-  bleibt v19.13.1. `pruefe.py`: ALLES SAUBER.
-- **Regel-5-Nachtrag:** Beim Anlegen von Fassung 120 wurde Regel 5 nicht angewandt — der
-  Abschnitt „Was Fassung 115 ändert" blieb versehentlich zusätzlich zur Archiv-Kopie im
-  Hauptdokument stehen. Jetzt entfernt (Archiv-Kopie war bereits korrekt). Mit dieser Fassung
-  zusätzlich turnusgemäss verschoben: „Was Fassung 116 ändert".
-- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl.)*
 
 ---
 
@@ -2082,7 +2081,7 @@ Kein Blocker mehr, siehe oben.
 Stand tatsächlich noch offen hält: **nur noch (g) als echter, ungetesteter Test**, sowie der
 Schiedsrichter- und Fehlerarten-Stand oben — nicht mehr (f) und nicht mehr (c).
 
-**9. Echte Quoten automatisch (Knopfdruck gebaut, Zeitsteuerung teilweise gebaut) — Ausbau: eigene Ergebnis-Datenquelle für den Schiedsrichter** · *Idee 23.7., Claude · Verfassungsfrage teilweise geklärt 7.9.2026 · Knopfdruck-Teil Auftrag Ondo und gebaut 10.9.2026 · Zeitsteuerung/Ergebnis-Automatik Auftrag Ondo 11.9.2026 · Knopfdruck-Kopplung Auftrag Ondo und gebaut 11.9.2026* · **Status: 🔴 Knopfdruck-Teil (Quoten) GEBAUT 10.9.2026 — Zeitgesteuerte Ergebnis-Automatik GEBAUT 11.9.2026, wegen API-Football-Sperre nur mit football-data.org scharf — Knopfdruck-Ergebnisabgleich (API-Football + football-data.org, gekoppelt an den Prüflauf) GEBAUT und geprüft 11.9.2026**
+**9. Echte Quoten automatisch (Knopfdruck gebaut, Zeitsteuerung teilweise gebaut) — Ausbau: eigene Ergebnis-Datenquelle für den Schiedsrichter** · *Idee 23.7., Claude · Verfassungsfrage teilweise geklärt 7.9.2026 · Knopfdruck-Teil Auftrag Ondo und gebaut 10.9.2026 · Zeitsteuerung/Ergebnis-Automatik Auftrag Ondo 11.9.2026 · Knopfdruck-Kopplung Auftrag Ondo und gebaut 11.9.2026 · Zwei-Läufe-Ausbau Auftrag Ondo und gebaut 14.9.2026* · **Status: 🔴 Knopfdruck-Teil (Quoten) GEBAUT 10.9.2026 — Zeitgesteuerte Ergebnis-Automatik GEBAUT 11.9.2026, wegen API-Football-Sperre nur mit football-data.org scharf — Knopfdruck-Ergebnisabgleich (API-Football + football-data.org, gekoppelt an den Prüflauf) GEBAUT und geprüft 11.9.2026 — Zeitgesteuerte Automatik auf zwei tägliche Läufe erweitert (08:00 + 23:30 UTC) GEBAUT 14.9.2026**
 Offene Vorfrage (Gemini, weiterhin unbeantwortet): Deckt ein kostenloser Dienst überhaupt Ondos Spiele ab? **🔴 Verfassungsfrage teilweise geklärt (Ondo, 7.9.2026, Blueprint 0.83, Abschnitt 10):** Eine durch Knopfdruck in der App ausgelöste Aktualisierung verletzt „kein Server" nicht — ein Knopfdruck ist die von der Regel verlangte Aufforderung. Eine zeitgesteuerte, unbeaufsichtigte Ausführung bleibt weiterhin offen und ist eine andere Variante. **Ungeprüft, technische Einordnung:** Ob dafür überhaupt GitHub Actions nötig wäre (ein reiner Abruf im Browser bei Knopfdruck bräuchte gar keine Actions-Infrastruktur, wie die bestehenden Knöpfe es schon vormachen) oder ob ein dauerhaft im Repo gespeichertes Ergebnis einen manuell auslösbaren `workflow_dispatch` mit einem neuen, eigens abzusicherndem GitHub-Zugriffsschlüssel bräuchte, ist nicht untersucht.
 
 > **🔴 Vorfrage zur Quotenabdeckung teilweise beantwortet, 10.9.2026 (per Websuche geprüft, nicht
@@ -2248,6 +2247,46 @@ Offene Vorfrage (Gemini, weiterhin unbeantwortet): Deckt ein kostenloser Dienst 
 > Solange API-Football gesperrt bleibt, liefert dieser Weg ebenfalls nur football-data.org
 > zuverlässig; die KI-Suche bleibt dann öfter der entscheidende dritte Lauf, mit entsprechend
 > mehr KI-Aufrufen als im Idealfall.
+
+> **🔴 Ausbau, Auftrag Ondo 14.9.2026: zeitgesteuerte Automatik von einem auf zwei tägliche
+> Läufe erweitert (`.github/workflows/schiri-ergebnisse.yml`,
+> `skripte/schiri-ergebnisse-holen.js`) — `beta.html` ausdrücklich NICHT angefasst.**
+> **Anlass, Ondos Einwand:** Der bisher einzige Lauf um 08:00 Uhr UTC erfasst zuverlässig nur
+> Spiele, die am Vortag (UTC) beendet waren. Zwei Lücken blieben dadurch unbeobachtet: (1)
+> Champions-League-Spiele mit Verlängerung/Elfmeterschiessen, deren echtes Ende je nach
+> Anstosszeit erst deutlich nach Mitternacht UTC liegen kann, und (2) eine bei football-data.org
+> nicht dokumentierte, aber beobachtete Verzögerung, mit der Endstände dort erscheinen
+> ("scores delayed").
+> **Bauweise:** Zweiter Cron-Eintrag `30 23 * * *` neben dem bestehenden `0 8 * * *` in
+> `.github/workflows/schiri-ergebnisse.yml` — beide rufen denselben, unveränderten
+> `skripte/schiri-ergebnisse-holen.js` auf (`hauptlauf()` holt wie bisher „gestern" und „heute"
+> relativ zur jeweiligen Laufzeit, keine eigene Logik für den zweiten Zeitpunkt nötig). Die
+> API-Football-Liga-Liste und `FOOTBALL_DATA_ORG_CODES` bleiben unverändert — dieser Ausbau
+> ändert nur, WANN gelaufen wird, nicht WAS geholt wird.
+> **Dritte Anforderung geprüft statt blind umgesetzt (Ondo: „committet nichts, wenn eine
+> Monatsdatei byte-identisch mit ihrem vorherigen Inhalt ist, `zusammenfuehren()` selbst nicht
+> ändern"):** Echter Trockentest an der aus dem Skript herausgeschnittenen, unveränderten
+> `zusammenfuehren()`/`speichern()` (kein Nachbau) ergab: Diese Anforderung ist bereits
+> erfüllt, **ohne jede Codeänderung nötig.** `zusammenfuehren()` sortiert die zusammengeführten
+> Einträge deterministisch nach Schlüssel, `speichern()` schreibt sie mit fester
+> Einrückung — bei inhaltlich unverändertem Stand entstehen exakt dieselben Bytes wie beim
+> vorherigen Lauf. Der bestehende Workflow-Schritt „Änderung committen, falls vorhanden"
+> (`git add` + `git diff --cached --quiet`) erkennt das bereits: Ohne Byte-Unterschied gibt es
+> keinen gestagten Diff, es wird nichts committet. Getestet: zweimal `speichern()` mit
+> inhaltlich identischen, aber neu zusammengeführten Daten aufgerufen — Ausgabedatei danach
+> byte-identisch (`Buffer.compare` gleich 0). **Bewusst keine zusätzliche, redundante
+> Diff-Prüfung im Skript ergänzt** — das wäre Code ohne Wirkung, nur die Kopf-Kommentare in
+> beiden Dateien wurden berichtigt (Arbeitsregel „Berichtigen statt danebenstellen": die alte
+> Aussage „läuft täglich um 08:00 Uhr UTC" im Skriptkopf wäre nach diesem Ausbau falsch
+> geworden).
+> **Verifiziert:** `node --check skripte/schiri-ergebnisse-holen.js` bestanden (Datei
+> inhaltlich nur im Kopfkommentar geändert). YAML mit `python3 -c "import yaml; ..."` geprüft,
+> `on.schedule` enthält beide Cron-Einträge korrekt. `pruefe.py` danach: ALLES SAUBER.
+> **Kein neuer Sprachschlüssel** (reine Workflow-/Skript-Änderung, kein UI-Text). **Kein
+> Schnitt in der Messreihe**, keine Änderung an `beta.html`.
+> **Kosten:** keine zusätzlichen API-Abrufe pro Tag über die bestehenden zwei (API-Football,
+> football-data.org) hinaus — nur ein zweiter Zeitpunkt für denselben täglichen Abruf-Umfang
+> („gestern"+„heute"), kein zusätzliches Kontingent-Risiko erkennbar.
 
 **10. Value-Rechnung zurückholen** · *Idee 22.7., Gemini* · **Status: Idee** · hängt an Punkt 9
 

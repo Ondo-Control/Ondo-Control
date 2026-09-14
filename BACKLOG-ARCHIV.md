@@ -410,6 +410,38 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 121 ändert (13.9., Berichtigung der eigenen Fassung 120 — die „zweite Quelle" war bei Punkt 9 längst gebaut, kein Codeaufwand)
+
+**Anlass:** Ondo, direkt nach Fassung 120: „Waren die 14 Spiele nicht ein Testlauf von dir?
+Bitte in der Sitzung prüfen! […] Ich dachte das wäre schon klar und umgesetzt?" — berechtigter
+Widerspruch, am GitHub-Lauf-Verlauf und an Backlog-Punkt 9 selbst nachgeprüft, nicht vermutet.
+
+- **🔴 Eigener Fehler, offen benannt:** Fassung 120 (diese Sitzung, wenige Minuten zuvor)
+  präsentierte die tägliche GitHub-Automatik als „bisher übersehene zweite Quelle" und schlug
+  vor, eine Anbindung an `beta.html` zu **prüfen** — dabei war die eigentliche, wichtigere
+  Anbindung (Knopfdruck-Kopplung beider Quellen an den bestehenden Prüflauf) bereits am
+  **11.9.2026** unter **Backlog-Punkt 9** vollständig gebaut, getestet und dokumentiert.
+  **Ursache:** Bei der Schiedsrichter-Diagnose (Fassung 117–120) wurde Punkt 81 bearbeitet,
+  ohne Punkt 9 zum selben Code vollständig gegenzulesen — ein Verstoss gegen „Ein Ort je
+  Tatsache" (Punkt 45): dieselbe Tatsache stand an zwei Stellen, und die neuere widersprach
+  der älteren, statt sie zu prüfen.
+- **Per GitHub-Actions-Protokoll bestätigt, nicht geraten:** Der Testlauf vom 11.9.2026 (16:26
+  UTC) rief echte, live API-Antworten ab (API-Football: „account is suspended", Fehler echt;
+  football-data.org: 7 echte fertige Spiele) — kein Testlauf von Claude, kein erfundener
+  Inhalt. Zwei echte automatische Läufe insgesamt (11. und 12.9.2026), nicht „seit Wochen"
+  wie in Fassung 120 fälschlich behauptet.
+- **Volle Berichtigung mit allen Einzelheiten steht bei Backlog-Punkt 81**, dort mit
+  Durchstreichung der falschen Fassung-120-Aussagen, nicht überschrieben (Fehlerart C4).
+- **Kein Codeaufwand in dieser Fassung** — reine Berichtigung und Buchführung. `beta.html`
+  bleibt v19.13.1. `pruefe.py`: ALLES SAUBER.
+- **Regel-5-Nachtrag:** Beim Anlegen von Fassung 120 wurde Regel 5 nicht angewandt — der
+  Abschnitt „Was Fassung 115 ändert" blieb versehentlich zusätzlich zur Archiv-Kopie im
+  Hauptdokument stehen. Jetzt entfernt (Archiv-Kopie war bereits korrekt). Mit dieser Fassung
+  zusätzlich turnusgemäss verschoben: „Was Fassung 116 ändert".
+- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl.)*
+
+---
+
 ## ⚠ Was Fassung 120 ändert (13.9., zweiter strukturierter Datenweg gefunden — läuft real, wird von `beta.html` nie gelesen — Backlog-Punkt 81, kein Codeaufwand)
 
 **Anlass:** Ondo: „Du hast doch eine Datei angelegt im Repo für Ergebnisabfrage an API

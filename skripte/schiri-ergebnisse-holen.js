@@ -1,5 +1,7 @@
-/* ================= SCHIRI-ERGEBNISSE HOLEN (Backlog-Punkt 9, Ausbau 11.9.2026) =================
-   Laeuft taeglich um 08:00 Uhr UTC ueber .github/workflows/schiri-ergebnisse.yml, ausserhalb
+/* ================= SCHIRI-ERGEBNISSE HOLEN (Backlog-Punkt 9, Ausbau 11.9.2026, zwei Laeufe
+   seit 14.9.2026) =================
+   Laeuft zweimal taeglich (08:00 und 23:30 Uhr UTC, Einzelheiten zur Begruendung im
+   Workflow-Kopf) ueber .github/workflows/schiri-ergebnisse.yml, ausserhalb
    der App. Holt Endstaende fuer den in STUFEN (beta.html, Zeile ~1762) festgelegten Bereich
    von zwei strukturierten Quellen (API-Football, football-data.org) und schreibt sie in eine
    Monatsdatei unter daten/schiri-ergebnisse/. Die App selbst liest diese Dateien nur, ruft

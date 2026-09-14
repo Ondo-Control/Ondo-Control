@@ -1,12 +1,26 @@
 name: Schiri-Ergebnisse holen
 
-# Backlog-Punkt 9, Ausbau 11.9.2026. Taeglich um 08:00 Uhr UTC - spaet genug, dass auch die
-# spaetesten Spiele im Stufen-Bereich (US-Westkueste, MLS) vom Vortag sicher abgepfiffen sind.
+# Backlog-Punkt 9, Ausbau 11.9.2026, erweitert 14.9.2026 auf zwei taegliche Laeufe (Ondos
+# Einwand: Champions-League-Spiele mit Verlaengerung/Elfmeterschiessen und football-data.org's
+# unbelegte "scores delayed"-Verzoegerung waren beim einzigen Lauf um 08:00 Uhr UTC nicht sicher
+# erfasst). Zwei Zeitpunkte:
+#   - 08:00 UTC (unveraendert): spaet genug, dass auch die spaetesten Spiele im Stufen-Bereich
+#     (US-Westkueste, MLS) vom Vortag sicher abgepfiffen sind - holt "gestern" vollstaendig nach.
+#   - 23:30 UTC (neu): faengt europaeische Abendspiele mit Verlaengerung/Elfmeterschiessen noch
+#     am selben Tag ab und gibt football-data.org zusaetzlichen Puffer fuer die undokumentierte
+#     Verzoegerung, mit der Endstaende dort erscheinen.
 # Holt "gestern" und "heute" (Fenster-Grenze der kostenlosen API-Football-Stufe, siehe
 # skripte/schiri-ergebnisse-holen.js) und schreibt in die Monatsdatei unter daten/schiri-ergebnisse/.
+# Committet nur, wenn sich die Monatsdatei tatsaechlich aendert (Schritt "Aenderung committen,
+# falls vorhanden" unten, git-eigener Diff auf den gestagten Dateiinhalt) - bei inhaltlich
+# gleichem Stand (z.B. ein Lauf ohne neue Ergebnisse) erzeugt
+# skripte/schiri-ergebnisse-holen.js byte-identische Ausgabe, git sieht keinen Diff, es wird
+# nichts committet. Echt getestet, kein zusaetzlicher Code dafuer noetig - siehe
+# Ondo-Control-Backlog.md, Punkt 9.
 on:
   schedule:
     - cron: '0 8 * * *'
+    - cron: '30 23 * * *'
   workflow_dispatch: {}
 
 permissions:

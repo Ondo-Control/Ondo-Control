@@ -196,15 +196,15 @@ Punkt 73, nicht hier wiederholt (Punkt 45).
 `.claude/hooks/claude_md_frisch.py` vergleicht sie bei jedem Sitzungsstart und erinnert an
 eine Erneuerung, sobald einer abweicht. Er erneuert nichts von selbst.*
 
-- STAND.md — `5a320fe33b4654f61a8834da38b21565cfd076dd`
-- Ondo-Control-Backlog.md — `25adc6048a4853c4c4ca39e50ac3f7c20501c9a6`
-- Blueprint.md — `9047a6d9c0ab2703359df54b3984983eba340729`
+- STAND.md — `fb1eb0ec67a0bcd8d00cae6c16f71464fd1e9491`
+- Ondo-Control-Backlog.md — `cf65e95e578f6ede27c9116fd8b9556f0fbcd0d9`
+- Blueprint.md — `de9fd2b2cd28eee0c6e221e8e8cf3223f0f68799`
 - Ondo-Core-Architektur.md — `2923c6d2f1cf152a67522bd0ddafc42d6c196b40`
 
-*Prüfstand nachgeführt am 13.9.2026 (nur Hashes — Anlass war eine reine Diagnose (Backlog-Punkt
-81, kein Codeaufwand): echte Testabrufe belegen, dass football-data.org Browser-Zugriffe
-(CORS) nur von `http://localhost` erlaubt, nicht von Ondos echter Adresse — das erklärt, warum
-diese Quelle nie als Treffer erscheint. API-Football erlaubt dagegen jeden Ursprung (`*`), dort
-bleibt die bekannte Kontosperre die Ursache. Kein Fix, kein Vorschlag zum Bau; inhaltlich für
-diese Datei nicht berührt, keine neue Arbeitsregel, keine Änderung an Zweig- oder
-Geheimfeld-Regeln).*
+*Prüfstand nachgeführt am 14.9.2026 (nur Hashes — Anlass war Ondos Auftrag „Tägliche Automatik
+auf zwei Läufe pro Tag umstellen" (Backlog-Punkt 9): zweiter Cron-Eintrag (23:30 UTC neben
+08:00 UTC) in `.github/workflows/schiri-ergebnisse.yml`, Kopfkommentar in
+`skripte/schiri-ergebnisse-holen.js` berichtigt. `beta.html` ausdrücklich nicht angefasst,
+CODE_VERSION bleibt v19.13.2. Die Anforderung „committet nichts bei byte-identischem Stand"
+war schon vorher erfüllt, echt getestet, kein Code dafür ergänzt. Inhaltlich für diese Datei
+nicht berührt, keine neue Arbeitsregel, keine Änderung an Zweig- oder Geheimfeld-Regeln).*
