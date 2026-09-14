@@ -410,6 +410,31 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 123 ändert (13.9., Ursache für Celje/Sabah von Ondo benannt — Backlog-Punkt 64, kein Codeaufwand)
+
+**Anlass:** Ondo, direkt auf die Fassung-122-Berichtigung: „Celje/Sabah ist wieder geparkt,
+weil es Probleme mit dem Speicher gab. Dadurch konnte der ausgewertete Stand nicht gespeichert
+werden und Sicherungskopien nicht vernünftig abgespeichert werden / hochgeladen werden. Jetzt
+ist das Problem mit dem Speicher gelöst und die Spiele werden im nächsten Prüflauf wieder
+ausgewertet."
+
+- **Ursache eingetragen, als Ondos eigene Aussage gekennzeichnet, nicht am Code
+  nachgeprüft** (diese Sitzung hat keinen Zugriff auf sein Gerät) — **passt aber lückenlos zur
+  bereits dokumentierten Zeitlinie:** `localStorage` lehnte das Speichern bei Ondo nachweislich
+  ab (2.726 KB, `beta.html` v19.8.29, im Fenster um den 12.9.2026), der Umstieg auf `IndexedDB`
+  (v19.8.30, Backlog-Punkt 76) verlangte danach ausdrücklich das einmalige Einspielen der
+  **zuletzt erfolgreich gespeicherten** Sicherung — die die Celje/Sabah-Übernahme vom
+  10.9.2026 vermutlich noch nicht enthielt.
+- **`STAND.md`, Fehlerart-11-Zeile, und Backlog-Punkt 64 mit der Ursache ergänzt**, ohne den
+  bereits stehenden Befund (Export vom 13.9., beide Spiele wieder geparkt) zu löschen —
+  Berichtigen statt danebenstellen.
+- **Kein Codeaufwand nötig.** Ondo: Beide Spiele werden im nächsten Prüflauf automatisch
+  erneut ausgewertet, ohne weiteres Zutun. Nichts an dieser Stelle offen, ausser der
+  Bestätigung durch den nächsten Prüflauf selbst.
+- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl.)*
+
+---
+
 ## ⚠ Was Fassung 122 ändert (13.9., frischer Messstand von Ondo mitgeschickt — echter Fund zu Celje/Sabah UND zu Backlog-Punkt 81, kein Codeaufwand)
 
 **Anlass:** Ondo schickte zwei Bildschirmfotos der App (KI-Log → Daten, und Mehr), seinen

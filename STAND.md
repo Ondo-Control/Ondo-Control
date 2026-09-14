@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 14.9.2026, Fassung 127, v19.13.2*
+*Die aktuelle Wahrheit. Stand: 14.9.2026, Fassung 128, v19.13.3*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
@@ -204,7 +204,39 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   den Trainingsraum) — dieser Commit ist der Stand **davor**, falls zurückgesetzt werden muss.
   Einzelheiten Backlog-Punkt 77.
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.13.2** (`beta.html`, geliefert 13.9.2026) — **Schiedsrichter-Wege neu
+- **Beta: v19.13.3** (`beta.html`, geliefert 14.9.2026) — **football-data.org von Live-Aufruf
+  auf Archivdatei-Lesen umgestellt (Backlog-Punkt 81, Ondos Auftrag).** Anlass: Die
+  CORS-Diagnose (13.9.2026) zeigt, dass football-data.org Browserzugriffe strukturell
+  blockiert; die tägliche GitHub-Actions-Automatik sammelt dieselbe Quelle aber bereits
+  erfolgreich in öffentlich lesbaren Monatsdateien unter `daten/schiri-ergebnisse/`.
+  **Gebaut:** Neue Funktion `footballDataArchivLesen(ziel)` ersetzt `footballDataLauf()` als
+  Strukturweg — liest die Monatsdateien per `fetch()` von `raw.githubusercontent.com` (kein
+  Schlüssel nötig), wendet die unveränderte `strukturAbgleich()` darauf an, setzt `quelle` je
+  Treffer auf die menschlich öffnbare GitHub-Seite der zuständigen Monatsdatei. Eine fehlende,
+  per Netzwerkfehler unerreichbare oder kaputte Monatsdatei ergibt für diesen Monat ein leeres
+  Ergebnis, kein Absturz. Weg-Bezeichner konsequent von `'football-data'` auf
+  `'football-data-archiv'` umbenannt. `apiFootballLauf()`, `pruefAuswerten()`,
+  `refEinigkeit()` unangetastet. `footballDataLauf()` (alter Live-Aufruf) bewusst NICHT
+  gelöscht, nur als „NICHT AUFGERUFEN" markiert.
+  **🔴 Eigener Fehler im ersten Entwurf, noch vor der Auslieferung im eigenen Trockentest
+  gefunden und behoben:** Ein unbedingter Push von `'football-data-archiv'` in
+  `strukturAnbieter` (Begründung im ersten Entwurf: der Archiv-Weg braucht keinen Schlüssel,
+  macht also immer einen echten Versuch) hätte die echte `einAnbieter`-Warnung („⚠ Nur ein
+  Anbieter verfügbar") **dauerhaft unerreichbar** gemacht, unabhängig von der Konfiguration.
+  Behoben: zählt jetzt nur als eigener Anbieter, wenn es in der jeweiligen Runde tatsächlich
+  einen Treffer geliefert hat (`fdErg.length`) — `api-football` bleibt unverändert am
+  gespeicherten Schlüssel.
+  **Verifiziert:** `node --check` bestanden · **18 neue Prüfungen** an den echten, wortgleich
+  herausgeschnittenen Funktionen (kein Nachbau) — 14 an `footballDataArchivLesen()` (Spiel in
+  der Archivdatei · Spiel nicht in der Archivdatei · Stapel über zwei Monate gleichzeitig ·
+  Datei noch nicht angelegt (404) · kaputtes JSON · Netzwerkfehler · leerer Stapel), 4 an der
+  `einAnbieter`-Logik nach dem Fix — alle bestanden. `pruefe.py`: ALLES SAUBER. **Keine neuen
+  Sprachschlüssel** (349 unverändert). **Kein Schnitt in der Messreihe.** `APP_VERSION`
+  weiter 18.
+  **🔴 Status ausdrücklich NICHT auf „behoben" gesetzt:** Backlog-Punkt 81 bleibt auf OFFEN,
+  Bestätigung durch einen echten Prüfzyklus am Gerät steht aus — wie schon bei der
+  Wege-Neuzusammensetzung (v19.13.2).
+- **Beta zuvor: v19.13.2** (`beta.html`, geliefert 13.9.2026) — **Schiedsrichter-Wege neu
   zusammengesetzt, zweiphasig statt gleichzeitig (Backlog-Punkt 81, Ondos Auftrag).**
   **Ursache, mit Codezitat belegt:** Seit dem Ausbau von Punkt 9 (v19.8.24, 11.9.2026) belegten
   API-Football und football-data.org zwei der drei festen Plätze in jeder Prüfrunde,

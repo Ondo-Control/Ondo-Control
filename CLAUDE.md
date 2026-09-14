@@ -196,16 +196,16 @@ Punkt 73, nicht hier wiederholt (Punkt 45).
 `.claude/hooks/claude_md_frisch.py` vergleicht sie bei jedem Sitzungsstart und erinnert an
 eine Erneuerung, sobald einer abweicht. Er erneuert nichts von selbst.*
 
-- STAND.md — `451a895cfb4dcafd7b264e42996ea4e3fef9dfc9`
-- Ondo-Control-Backlog.md — `1e814e596834df75519428e47fd93af3ccfea055`
-- Blueprint.md — `3fb4c0ae3fb421e8e8a97a25a0d0f5c8c50d5929`
+- STAND.md — `76683908ca976a33e4dcdf1d4f4d9ac6eae4b968`
+- Ondo-Control-Backlog.md — `b68c09f4f261976ca053d551f7e691231bf675d0`
+- Blueprint.md — `e987d0e3a8042b5c69118805cd440921f0e8eb0f`
 - Ondo-Core-Architektur.md — `2923c6d2f1cf152a67522bd0ddafc42d6c196b40`
 
-*Prüfstand nachgeführt am 14.9.2026 (nur Hashes — Anlass war Ondos dringender Auftrag
-„API-Football aus dem automatischen GitHub-Actions-Lauf entfernen" (Backlog-Punkt 9): Der
-Anbieter sperrt Anfragen über geteilte Cloud-Infrastruktur unabhängig vom Volumen
-(Support-Bestätigung vom selben Tag). `apiFootballHolen()`-Aufruf aus `hauptlauf()` in
-`skripte/schiri-ergebnisse-holen.js` entfernt, Funktion und Liga-Liste bewusst als „NICHT
-AUFGERUFEN" stehen gelassen. `beta.html` und der Workflow-Zeitplan ausdrücklich nicht
-angefasst, CODE_VERSION bleibt v19.13.2. Inhaltlich für diese Datei nicht berührt, keine
-neue Arbeitsregel, keine Änderung an Zweig- oder Geheimfeld-Regeln).*
+*Prüfstand nachgeführt am 14.9.2026 (nur Hashes — Anlass war Ondos Auftrag
+„football-data.org-Platz von Live-Aufruf auf Archivdatei-Lesen umstellen" (Backlog-Punkt 81,
+`beta.html` v19.13.3): Neue Funktion `footballDataArchivLesen(ziel)` ersetzt
+`footballDataLauf()` als Strukturweg, liest die vom täglichen GitHub-Actions-Lauf gesammelten
+Monatsdateien statt eines durch CORS blockierten Live-Aufrufs. Ein eigener Fehler im ersten
+Entwurf (unbedingter Push hätte die `einAnbieter`-Warnung dauerhaft unerreichbar gemacht) im
+eigenen Trockentest gefunden und vor der Auslieferung behoben. Inhaltlich für diese Datei
+nicht berührt, keine neue Arbeitsregel, keine Änderung an Zweig- oder Geheimfeld-Regeln).*

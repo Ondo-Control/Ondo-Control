@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.13.2';
+var CODE_VERSION = 'v19.13.3';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -2231,7 +2231,11 @@ function apiFootballLauf(ziel){
   });
 }
 
-/* Holt Endstaende von football-data.org. Deckt laut Konto (11.9.2026) 12 grosse Wettbewerbe
+/* NICHT AUFGERUFEN seit 14.9.2026, siehe footballDataArchivLesen() unten. Live-Aufruf
+   ersetzt, weil football-data.org Browserzugriffe strukturell blockiert (CORS-Befund
+   13.9.2026, Access-Control-Allow-Origin fest auf "http://localhost" - Backlog-Punkt 81).
+   Funktion bewusst NICHT geloescht, sofort wieder nutzbar, falls sich das je aendert.
+   Holt Endstaende von football-data.org. Deckt laut Konto (11.9.2026) 12 grosse Wettbewerbe
    ab - eigener Filter auf genau diese Kuerzel, weil die Schnittstelle beim echten Test auch
    Spiele ausserhalb der zugesicherten Liste lieferte (Copa Libertadores, Fund 11.9.2026). */
 var FOOTBALL_DATA_CODES=['WC','CL','BL1','DED','BSA','PD','FL1','ELC','PPL','EC','SA','PL'];
@@ -2257,6 +2261,56 @@ function footballDataLauf(ziel){
       });
     return strukturAbgleich(ziel, fixtures, 'https://www.football-data.org');
   }).catch(function(){ return []; });
+}
+
+/* Ersetzt footballDataLauf() als Strukturweg seit 14.9.2026 (Backlog-Punkt 81, Ondos Auftrag
+   "football-data.org-Platz von Live-Aufruf auf Archivdatei-Lesen umstellen"). Anlass: der
+   Browser erreicht football-data.org strukturell nie (CORS-Befund 13.9.2026, siehe oben) -
+   raw.githubusercontent.com erlaubt Browserabrufe dagegen ausdruecklich. Liest statt eines
+   Live-Aufrufs die vom taeglichen GitHub-Actions-Lauf (schiri-ergebnisse-holen.js) bereits
+   gesammelten Monatsdateien unter daten/schiri-ergebnisse/ - oeffentlich lesbar, kein
+   Schluessel noetig, deshalb ANDERS als apiFootballLauf()/das alte footballDataLauf() NICHT
+   hinter hatFootballData() gesperrt: Der Archiv-Weg macht immer einen echten Versuch, auch
+   ohne gespeicherten football-data.org-Schluessel.
+   Eine fehlende, noch nicht angelegte oder kaputte Monatsdatei ergibt fuer genau diesen Monat
+   ein leeres Ergebnis, nie einen Absturz - derselbe Negativlisten-Geist wie bei den anderen
+   Strukturquellen: ein nicht gefundenes Spiel bleibt einfach ein nicht gefundenes Spiel, die
+   KI-Suche bleibt der Rueckfallweg. strukturAbgleich() UNVERAENDERT wiederverwendet - das
+   Feldformat der Monatsdateien (datum, heim, gast, torHeim, torGast, status, ...) passt genau
+   auf die Form, die strukturAbgleich() als "fixtures" erwartet. */
+function footballDataArchivLesen(ziel){
+  if(!(ziel&&ziel.length)) return Promise.resolve([]);
+  var monate=[];
+  ziel.forEach(function(p){
+    var iso=datumIso(p.datum);
+    if(!iso) return;
+    var m=iso.slice(0,7);
+    if(monate.indexOf(m)<0) monate.push(m);
+  });
+  if(!monate.length) return Promise.resolve([]);
+  return Promise.all(monate.map(function(monat){
+    return fetch('https://raw.githubusercontent.com/Ondo-Control/Ondo-Control/main/daten/schiri-ergebnisse/'+monat+'.json')
+      .then(function(res){ return res.ok ? res.json() : { spiele:[] }; })
+      .then(function(d){ return Array.isArray(d.spiele) ? d.spiele : []; })
+      .catch(function(){ return []; });
+  })).then(function(listen){
+    var fixtures=[].concat.apply([], listen);
+    var ergebnisse = strukturAbgleich(ziel, fixtures, '');
+    /* strukturAbgleich() nimmt EINE feste quelleUrl fuer den ganzen Aufruf - die Monatsdatei
+       ist hier aber je nach Spiel unterschiedlich. Deshalb je Treffer im Nachhinein aus dem
+       eigenen Anpfiff-Datum (nicht dem Fund im fixtures-Array) auf die menschlich oeffnbare
+       GitHub-Seite der zustaendigen Monatsdatei gesetzt, wie beauftragt - nicht die rohe
+       raw.githubusercontent.com-Adresse. */
+    ergebnisse.forEach(function(r){
+      var p=null;
+      for(var i=0;i<ziel.length;i++){ if(ziel[i].id===r.id){ p=ziel[i]; break; } }
+      var iso = p ? datumIso(p.datum) : '';
+      r.quelle = iso
+        ? 'https://github.com/Ondo-Control/Ondo-Control/blob/main/daten/schiri-ergebnisse/'+iso.slice(0,7)+'.json'
+        : 'https://github.com/Ondo-Control/Ondo-Control/tree/main/daten/schiri-ergebnisse';
+    });
+    return ergebnisse;
+  });
 }
 
 /* ================= QUOTEN-AUTOMATIK (Backlog-Punkt 9, Auftrag Ondo 10.9.2026) =================
@@ -3680,7 +3734,13 @@ function ergebnissePruefen(btn){
        Datei und die Monatsdateien im Repo — reine Aenderung an beta.html (Ondos Auftrag,
        13.9.2026). Keine neue Berechtigung, kein neuer Schluessel, kein Schreibzugriff auf das
        Repo aus dem Browser. */
-    Promise.all([ apiFootballLauf(ziel), footballDataLauf(ziel) ]).then(function(struktur){
+    /* v19.13.3, 14.9.2026 (Backlog-Punkt 81, Ondos Auftrag): footballDataLauf() (Live-Aufruf,
+       durch CORS strukturell blockiert) hier durch footballDataArchivLesen() (liest die vom
+       taeglichen GitHub-Actions-Lauf gesammelten Monatsdateien) ersetzt. apiFootballLauf()
+       UNVERAENDERT. Die Zwei-Phasen-Logik selbst (minTreffer/kiZahl, unten) bleibt exakt wie
+       in v19.13.2 - sie sieht nur zwei Strukturquellen mit Treffer/kein Treffer, woher ein
+       Treffer stammt, ist ihr gleich. */
+    Promise.all([ apiFootballLauf(ziel), footballDataArchivLesen(ziel) ]).then(function(struktur){
       var afErg=struktur[0]||[], fdErg=struktur[1]||[];
       function hat(liste, id){ return liste.some(function(r){ return r.id===id; }); }
       /* Schlechtestes Spiel im Stapel (0/1/2 Strukturtreffer) bestimmt den KI-Bedarf des
@@ -3710,10 +3770,21 @@ function ergebnissePruefen(btn){
          als eigener Anbieter — sie ruft in Phase 1 tatsaechlich ab, unabhaengig vom Treffer.
          Bleiben nur KI-Wege UND sind die alle gleich (z. B. nur Gemini gespeichert, kein
          Sonnet-Schluessel), ist es weiterhin nur ein Anbieter — dieselbe Bedeutung wie vor
-         diesem Umbau, nur ohne die feste Drei-Wege-Zaehlung. */
+         diesem Umbau, nur ohne die feste Drei-Wege-Zaehlung.
+         🔴 Eigener Fehler im ersten Entwurf, im eigenen Trockentest gefunden und vor der
+         Auslieferung behoben (14.9.2026): football-data-archiv macht seit diesem Umbau IMMER
+         einen echten Versuch (Archiv-Lesen braucht keinen Schluessel) - ein Push OHNE
+         Bedingung haette strukturAnbieter ab jetzt bei JEDER Runde mindestens einen Eintrag
+         gegeben und einAnbieter damit DAUERHAFT unerreichbar gemacht (alleWege enthaelt dann
+         immer mindestens zwei verschiedene Werte: 'football-data-archiv' und ein KI-Weg),
+         obwohl `refEinAnbieter` eine echte, von Ondo genutzte Warnung ist. Statt hatXyz()
+         (kein Schluessel mehr noetig) zaehlt football-data-archiv deshalb nur dann als eigener
+         Anbieter, wenn es in DIESER Runde tatsaechlich einen Treffer geliefert hat
+         (fdErg.length) - api-football bleibt unveraendert am Schluessel (hatApiFootball()),
+         wie beauftragt (apiFootballLauf() nicht angefasst). */
       var strukturAnbieter=[];
       if(hatApiFootball()) strukturAnbieter.push('api-football');
-      if(hatFootballData()) strukturAnbieter.push('football-data');
+      if(fdErg.length) strukturAnbieter.push('football-data-archiv');
       var alleWege = strukturAnbieter.concat(wege);
       einAnbieter = alleWege.length>0 && alleWege.every(function(w){ return w===alleWege[0]; });
 
@@ -3725,8 +3796,8 @@ function ergebnissePruefen(btn){
       afErg.forEach(function(r){ verarbeite(r, ziel, afRohText, 'api-football'); });
       var fdRohText = fdErg.length
         ? fdErg.map(function(r){ return r.id+': '+r.heim+':'+r.gast; }).join(' | ')
-        : '(kein Treffer bei football-data)';
-      fdErg.forEach(function(r){ verarbeite(r, ziel, fdRohText, 'football-data'); });
+        : '(kein Treffer bei football-data-archiv)';
+      fdErg.forEach(function(r){ verarbeite(r, ziel, fdRohText, 'football-data-archiv'); });
 
       /* Ein Fehler in einem KI-Lauf wirft nicht mehr die ganze Runde weg: jeder Aufruf wird
          einzeln abgefangen und zaehlt dann als "kein Ergebnis". Unveraendert seit v19.8.12. */

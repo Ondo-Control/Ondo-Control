@@ -3,9 +3,18 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.126
+**Version:** 0.127
 **Stand:** 14. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+
+> **Was Fassung 0.127 ändert (14.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> Ondos Auftrag „football-data.org-Platz von Live-Aufruf auf Archivdatei-Lesen umstellen"
+> (Backlog-Punkt 81, `beta.html` v19.13.3): Neue Funktion `footballDataArchivLesen(ziel)`
+> ersetzt `footballDataLauf()` als Strukturweg, liest die vom täglichen GitHub-Actions-Lauf
+> gesammelten Monatsdateien statt eines durch CORS blockierten Live-Aufrufs. Ein eigener
+> Fehler im ersten Entwurf (unbedingter `einAnbieter`-Ausfall) im eigenen Trockentest
+> gefunden und vor der Auslieferung behoben. Kein Verfassungsartikel geändert, keine neue
+> Arbeitsregel. Blueprint auf 0.127 gehoben.
 
 > **Was Fassung 0.126 ändert (14.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
 > Ondos dringender Auftrag „API-Football aus dem automatischen GitHub-Actions-Lauf entfernen"

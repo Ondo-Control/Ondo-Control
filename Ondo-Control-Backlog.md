@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 14.9.2026, Fassung 127 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 14.9.2026, Fassung 128 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,44 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 128 ändert (14.9., football-data.org von Live-Aufruf auf Archivdatei-Lesen umgestellt — Backlog-Punkt 81, `beta.html` v19.13.3)
+
+**Anlass:** Ondos Auftrag „football-data.org-Platz von Live-Aufruf auf Archivdatei-Lesen
+umstellen (Backlog-Punkt 81, Weg 3 fertigstellen)" — die CORS-Diagnose (Fassung 125) zeigt,
+dass football-data.org Browserzugriffe strukturell blockiert; die tägliche GitHub-Actions-
+Automatik sammelt dieselbe Quelle aber bereits erfolgreich in öffentlich lesbaren
+Monatsdateien.
+
+- **🔴 Neue Funktion `footballDataArchivLesen(ziel)` ersetzt `footballDataLauf()`** als
+  Strukturweg in Phase 1 der Prüfrunde — liest die Monatsdateien unter
+  `daten/schiri-ergebnisse/` per `fetch()` von `raw.githubusercontent.com` (kein Schlüssel
+  nötig), wendet die unveränderte `strukturAbgleich()` darauf an, setzt `quelle` je Treffer
+  auf die menschlich öffnbare GitHub-Seite der zuständigen Monatsdatei. Fehlende, per
+  Netzwerkfehler unerreichbare oder kaputte Monatsdateien ergeben ein leeres Ergebnis für
+  diesen Monat, kein Absturz.
+- **Weg-Bezeichner konsequent umbenannt:** `'football-data'` → `'football-data-archiv'`, an
+  beiden Fundstellen (Anbieter-Zählung, Modell-Label). `apiFootballLauf()`,
+  `pruefAuswerten()`, `refEinigkeit()` unangetastet. `footballDataLauf()` bewusst NICHT
+  gelöscht, nur als „NICHT AUFGERUFEN" markiert.
+- **🔴 Eigener Fehler im ersten Entwurf, im eigenen Trockentest gefunden und vor der
+  Auslieferung behoben:** Ein unbedingter Push in `strukturAnbieter` hätte die echte
+  `einAnbieter`-Warnung dauerhaft unerreichbar gemacht (der Archiv-Weg braucht keinen
+  Schlüssel, macht also immer einen Versuch). Behoben: zählt nur bei einem echten Treffer in
+  der jeweiligen Runde.
+- **Verifiziert:** `node --check` bestanden · **18 neue Prüfungen** (14 an
+  `footballDataArchivLesen()`, 4 an der `einAnbieter`-Logik) an den echten, wortgleich
+  herausgeschnittenen Funktionen, alle bestanden · `pruefe.py`: ALLES SAUBER.
+- **Keine neuen Sprachschlüssel** (349 unverändert). **Kein Schnitt in der Messreihe.**
+  `beta.html` jetzt v19.13.3.
+- **🔴 Status bleibt ausdrücklich OFFEN:** Bestätigung durch einen echten Prüfzyklus am Gerät
+  steht aus. Volle Einzelheiten (Beispieldaten, alle 18 geprüften Fälle, der gefundene
+  eigene Fehler): Punkt 81.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 123 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl.)*
 
 ---
 
@@ -152,31 +190,6 @@ Archiv-Rückschreiben)" — Ursache und Entscheidung siehe unten, voller Hergang
   `BACKLOG-ARCHIV.md` verschoben.
 - **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl — 81 bleibt
   offen, jetzt mit ausgelieferter, aber unbestätigter Lösung.)*
-
----
-
-## ⚠ Was Fassung 123 ändert (13.9., Ursache für Celje/Sabah von Ondo benannt — Backlog-Punkt 64, kein Codeaufwand)
-
-**Anlass:** Ondo, direkt auf die Fassung-122-Berichtigung: „Celje/Sabah ist wieder geparkt,
-weil es Probleme mit dem Speicher gab. Dadurch konnte der ausgewertete Stand nicht gespeichert
-werden und Sicherungskopien nicht vernünftig abgespeichert werden / hochgeladen werden. Jetzt
-ist das Problem mit dem Speicher gelöst und die Spiele werden im nächsten Prüflauf wieder
-ausgewertet."
-
-- **Ursache eingetragen, als Ondos eigene Aussage gekennzeichnet, nicht am Code
-  nachgeprüft** (diese Sitzung hat keinen Zugriff auf sein Gerät) — **passt aber lückenlos zur
-  bereits dokumentierten Zeitlinie:** `localStorage` lehnte das Speichern bei Ondo nachweislich
-  ab (2.726 KB, `beta.html` v19.8.29, im Fenster um den 12.9.2026), der Umstieg auf `IndexedDB`
-  (v19.8.30, Backlog-Punkt 76) verlangte danach ausdrücklich das einmalige Einspielen der
-  **zuletzt erfolgreich gespeicherten** Sicherung — die die Celje/Sabah-Übernahme vom
-  10.9.2026 vermutlich noch nicht enthielt.
-- **`STAND.md`, Fehlerart-11-Zeile, und Backlog-Punkt 64 mit der Ursache ergänzt**, ohne den
-  bereits stehenden Befund (Export vom 13.9., beide Spiele wieder geparkt) zu löschen —
-  Berichtigen statt danebenstellen.
-- **Kein Codeaufwand nötig.** Ondo: Beide Spiele werden im nächsten Prüflauf automatisch
-  erneut ausgewertet, ohne weiteres Zutun. Nichts an dieser Stelle offen, ausser der
-  Bestätigung durch den nächsten Prüflauf selbst.
-- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl.)*
 
 ---
 
@@ -1509,7 +1522,7 @@ der Messreihe.
 
 ---
 
-**81. Schiedsrichter reparieren — nach Ondos eigener, strenger Definition** · *Auftrag Ondo 13.9.2026, wörtlich: „Dann Schiedsrichter reparieren. Das ist dein Job."* · **Status: beschlossen — 🔴 OFFEN. Ein echter Bug gefunden und behoben 13.9.2026 (`beta.html` v19.13.1, „0 von 10 gefunden"-Fund). Berichtigt 13.9.2026: die „zweite Datenquelle" war keine neue Entdeckung, sondern bereits bei Punkt 9 (11.9.2026) vollständig gebaut. 🔴 Wege-Neuzusammensetzung ausgeliefert 13.9.2026 (`beta.html` v19.13.2, Ondos Auftrag) — Bestätigung durch einen echten Prüfzyklus am Gerät steht aus, Status bleibt ausdrücklich OFFEN, nicht behoben.**
+**81. Schiedsrichter reparieren — nach Ondos eigener, strenger Definition** · *Auftrag Ondo 13.9.2026, wörtlich: „Dann Schiedsrichter reparieren. Das ist dein Job."* · **Status: beschlossen — 🔴 OFFEN. Ein echter Bug gefunden und behoben 13.9.2026 (`beta.html` v19.13.1, „0 von 10 gefunden"-Fund). Berichtigt 13.9.2026: die „zweite Datenquelle" war keine neue Entdeckung, sondern bereits bei Punkt 9 (11.9.2026) vollständig gebaut. 🔴 Wege-Neuzusammensetzung ausgeliefert 13.9.2026 (`beta.html` v19.13.2, Ondos Auftrag) — Bestätigung durch einen echten Prüfzyklus am Gerät steht aus, Status bleibt ausdrücklich OFFEN, nicht behoben. 🔴 football-data.org auf Archiv-Lesen umgestellt 14.9.2026 (`beta.html` v19.13.3, Ondos Auftrag) — Bestätigung durch einen echten Prüfzyklus am Gerät steht ebenfalls aus, Status bleibt OFFEN.**
 
 **Ondos Definition von „repariert" (2.9.2026, bereits im Backlog bei Punkt 64 festgehalten, hier nur referenziert — Punkt 45):** zuverlässige Ergebnisse für alle künftigen Spiele, ohne Gegenprüfung im Chat.
 **Ehrlicher Ausgangspunkt, nicht beschönigt:** Der Schiedsrichter hat elf dokumentierte Fehlerarten (`STAND.md`, „Der Schiedsrichter — elf Fehlerarten"). Die 3-von-3-Einigkeitsregel (Backlog-Punkt 68, v19.8.12) ist eine echte, geprüfte Absicherung gegen Fehlerart 11 (schwankende Antworten) — aber nach Ondos eigenem Massstab weiterhin keine Reparatur, weil sie unsichere Fälle parkt statt sie zuverlässig richtig zu lösen. Fehlerart 7 (Heim und Gast vertauscht) hat bis heute keine eigene Absicherung.
@@ -1862,6 +1875,74 @@ Fix ohne separaten Auftrag").
 `schiri-ergebnisse-holen.js` oder an der GitHub-Actions-Datei** — wie beauftragt. Kosten:
 sechs echte, minimale Testabrufe innerhalb des kostenlosen Kontingents, kein Modellaufruf
 ausser diesem Bericht selbst.
+
+> **🔴 football-data.org-Platz von Live-Aufruf auf Archivdatei-Lesen umgestellt, 14.9.2026
+> (`beta.html` v19.13.3), Ondos ausdrücklicher Auftrag — voller Hergang, nicht nur eine
+> Zeile:**
+>
+> **Anlass:** Die CORS-Diagnose oben zeigt, dass football-data.org Browserzugriffe
+> strukturell blockiert (`Access-Control-Allow-Origin: http://localhost`, fest, unabhängig
+> vom gesendeten Origin) — `footballDataLauf()` konnte deshalb nie einen echten Treffer
+> liefern, unabhängig von Konto oder Ligen-Abdeckung. Die tägliche GitHub-Actions-Automatik
+> (`schiri-ergebnisse-holen.js`) sammelt dieselbe Quelle aber bereits erfolgreich in
+> Monatsdateien unter `daten/schiri-ergebnisse/JJJJ-MM.json`, weil sie nicht im Browser
+> läuft und daher nicht der CORS-Regel unterliegt — genau der Weg, den die Diagnose oben
+> bereits als mögliche Richtung nannte, ohne ihn vorzuschlagen (Art. 8).
+> `raw.githubusercontent.com` erlaubt Browserabrufe auf öffentliche Repo-Dateien ausdrücklich,
+> anders als football-data.org selbst.
+>
+> **Bauweise:** Neue Funktion `footballDataArchivLesen(ziel)` (Ersatz für `footballDataLauf()`
+> als Strukturweg in Phase 1 der Prüfrunde, Zwei-Phasen-Logik aus v19.13.2 selbst
+> unangetastet): ermittelt aus `ziel` alle betroffenen Monate (auch bei einem Monatswechsel
+> innerhalb desselben Stapels), lädt jede betroffene Monatsdatei per `fetch()` von
+> `raw.githubusercontent.com` (kein Header, kein Schlüssel), führt die geladenen Spiele
+> zusammen und wendet die bestehende, **unveränderte** `strukturAbgleich()` darauf an — das
+> Feldformat der Monatsdateien passt genau auf die Form, die `strukturAbgleich()` als
+> „fixtures" erwartet, kein Nachbau der Abgleichlogik nötig. Je Treffer wird `quelle` im
+> Nachhinein auf die menschlich öffnbare GitHub-Seite der zuständigen Monatsdatei gesetzt
+> (`.../blob/main/daten/schiri-ergebnisse/JJJJ-MM.json`), nicht die rohe Adresse — wie
+> beauftragt. Eine fehlende (Datei noch nicht angelegt, HTTP 404), per Netzwerkfehler
+> unerreichbare oder kaputte Monatsdatei ergibt für genau diesen Monat ein leeres Ergebnis,
+> nie einen Absturz — derselbe Negativlisten-Geist wie bei den anderen Strukturquellen.
+> Der interne Weg-Bezeichner für diesen Platz ist von `'football-data'` auf
+> `'football-data-archiv'` umbenannt — geprüft und konsequent mitgezogen an beiden Stellen,
+> an denen er sonst noch vorkam (der `strukturAnbieter`-Zählung für `einAnbieter` und dem an
+> `verarbeite()` übergebenen Modell-Label für `refRoh`/KI-Log). `apiFootballLauf()`,
+> `pruefAuswerten()` und `refEinigkeit()` **ausdrücklich unangetastet**.
+> `footballDataLauf()` (der alte Live-Aufruf) **bewusst NICHT gelöscht** — als „NICHT
+> AUFGERUFEN seit 14.9.2026" markiert stehen gelassen, sofort wieder nutzbar, falls
+> football-data.org die CORS-Beschränkung je aufhebt.
+> **Ausdrücklich NICHT Teil dieser Lieferung:** `schiri-ergebnisse-holen.js`, die
+> GitHub-Actions-Datei, `apiFootballLauf()` — reine Änderung an `beta.html`, wie beauftragt.
+>
+> **🔴 Eigener Fehler im ersten Entwurf, im eigenen Trockentest gefunden und vor der
+> Auslieferung behoben:** Der erste Entwurf zählte `football-data-archiv` UNBEDINGT als
+> eigenen `strukturAnbieter` (Begründung: der Archiv-Weg braucht keinen Schlüssel, macht
+> also immer einen echten Versuch). Das hätte `einAnbieter` — die echte, von Ondo genutzte
+> Warnung „⚠ Nur ein Anbieter verfügbar" — **dauerhaft unerreichbar gemacht**: `alleWege`
+> hätte ab sofort bei jeder Runde mindestens zwei verschiedene Werte enthalten
+> (`'football-data-archiv'` plus ein KI-Weg), egal wie die App konfiguriert ist. Behoben:
+> `football-data-archiv` zählt jetzt nur dann als eigener Anbieter, wenn es in der jeweiligen
+> Runde tatsächlich einen Treffer geliefert hat (`fdErg.length`) — `api-football` bleibt
+> unverändert am gespeicherten Schlüssel (`hatApiFootball()`), wie beauftragt.
+> **Verifiziert:** `node --check` bestanden. Zwei echte Trockentests an den wortgleich
+> herausgeschnittenen Funktionen (kein Nachbau): **`footballDataArchivLesen()`, 14 Prüfungen**
+> — ein Spiel in der Archivdatei (Treffer, korrekte Tore, korrekte Monatsseite als Quelle) ·
+> ein Spiel nicht in der Archivdatei (kein Treffer) · ein Stapel über zwei Monate gleichzeitig
+> (beide Dateien abgerufen, je eigene Monatsseite als Quelle) · eine noch nicht angelegte
+> Monatsdatei (HTTP 404) · eine kaputte JSON-Datei · ein echter Netzwerkfehler · ein leerer
+> Stapel — alle ohne Absturz. **`einAnbieter`-Logik nach dem Fix, 4 Prüfungen** — nur Gemini
+> konfiguriert und football-data-archiv ohne Treffer ergibt weiterhin `einAnbieter=true` (die
+> Warnung funktioniert) · football-data-archiv MIT Treffer zählt korrekt als eigener Anbieter
+> (`einAnbieter=false`) · api-football zählt weiterhin per Konfiguration, auch ohne Treffer ·
+> gemischte KI-Wege ohne Strukturtreffer bleiben unverändert. `pruefe.py` danach: ALLES
+> SAUBER.
+> **Keine neuen Sprachschlüssel** (349 unverändert). **Kein Schnitt in der Messreihe.**
+> `beta.html` jetzt v19.13.3.
+> **🔴 Status bleibt ausdrücklich OFFEN, nicht auf „behoben" gesetzt:** Bestätigung durch
+> einen echten Prüfzyklus am Gerät steht aus, wie schon bei der Wege-Neuzusammensetzung
+> (v19.13.2). Erst wenn Ondo „Ergebnisse prüfen" laufen lässt und football-data.org dabei
+> tatsächlich Treffer liefert, gilt dieser Teil als bestätigt.
 
 ---
 
