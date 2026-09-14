@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 14.9.2026, Fassung 126, v19.13.2*
+*Die aktuelle Wahrheit. Stand: 14.9.2026, Fassung 127, v19.13.2*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18).** Dieses Dokument hiess bis heute `PROJEKT-STATUS.md` und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.

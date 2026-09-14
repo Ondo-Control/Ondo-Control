@@ -196,15 +196,16 @@ Punkt 73, nicht hier wiederholt (Punkt 45).
 `.claude/hooks/claude_md_frisch.py` vergleicht sie bei jedem Sitzungsstart und erinnert an
 eine Erneuerung, sobald einer abweicht. Er erneuert nichts von selbst.*
 
-- STAND.md — `fb1eb0ec67a0bcd8d00cae6c16f71464fd1e9491`
-- Ondo-Control-Backlog.md — `cf65e95e578f6ede27c9116fd8b9556f0fbcd0d9`
-- Blueprint.md — `de9fd2b2cd28eee0c6e221e8e8cf3223f0f68799`
+- STAND.md — `451a895cfb4dcafd7b264e42996ea4e3fef9dfc9`
+- Ondo-Control-Backlog.md — `1e814e596834df75519428e47fd93af3ccfea055`
+- Blueprint.md — `3fb4c0ae3fb421e8e8a97a25a0d0f5c8c50d5929`
 - Ondo-Core-Architektur.md — `2923c6d2f1cf152a67522bd0ddafc42d6c196b40`
 
-*Prüfstand nachgeführt am 14.9.2026 (nur Hashes — Anlass war Ondos Auftrag „Tägliche Automatik
-auf zwei Läufe pro Tag umstellen" (Backlog-Punkt 9): zweiter Cron-Eintrag (23:30 UTC neben
-08:00 UTC) in `.github/workflows/schiri-ergebnisse.yml`, Kopfkommentar in
-`skripte/schiri-ergebnisse-holen.js` berichtigt. `beta.html` ausdrücklich nicht angefasst,
-CODE_VERSION bleibt v19.13.2. Die Anforderung „committet nichts bei byte-identischem Stand"
-war schon vorher erfüllt, echt getestet, kein Code dafür ergänzt. Inhaltlich für diese Datei
-nicht berührt, keine neue Arbeitsregel, keine Änderung an Zweig- oder Geheimfeld-Regeln).*
+*Prüfstand nachgeführt am 14.9.2026 (nur Hashes — Anlass war Ondos dringender Auftrag
+„API-Football aus dem automatischen GitHub-Actions-Lauf entfernen" (Backlog-Punkt 9): Der
+Anbieter sperrt Anfragen über geteilte Cloud-Infrastruktur unabhängig vom Volumen
+(Support-Bestätigung vom selben Tag). `apiFootballHolen()`-Aufruf aus `hauptlauf()` in
+`skripte/schiri-ergebnisse-holen.js` entfernt, Funktion und Liga-Liste bewusst als „NICHT
+AUFGERUFEN" stehen gelassen. `beta.html` und der Workflow-Zeitplan ausdrücklich nicht
+angefasst, CODE_VERSION bleibt v19.13.2. Inhaltlich für diese Datei nicht berührt, keine
+neue Arbeitsregel, keine Änderung an Zweig- oder Geheimfeld-Regeln).*

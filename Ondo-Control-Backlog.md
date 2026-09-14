@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 14.9.2026, Fassung 126 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 14.9.2026, Fassung 127 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -16,6 +16,41 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
+
+---
+
+## ⚠ Was Fassung 127 ändert (14.9., API-Football aus der automatischen GitHub-Actions-Automatik entfernt — Backlog-Punkt 9, `skripte/schiri-ergebnisse-holen.js`, `beta.html` und Workflow-Zeitplan NICHT angefasst)
+
+**Anlass:** Ondos dringender Auftrag „API-Football aus dem automatischen GitHub-Actions-Lauf
+entfernen" — der Anbieter hat Ondos Konto wegen Anfragen über geteilte Cloud-Infrastruktur
+(GitHub Actions) gesperrt, vom Support-Chat am selben Tag (Montag) schriftlich bestätigt,
+ausdrücklich unabhängig vom Anfragevolumen. Ondo wollte dem Support noch am selben Tag
+zusichern können, dass API-Football künftig nur noch über sein eigenes Gerät läuft — das
+musste vorher wahr sein, nicht nur angekündigt.
+
+- **🔴 `apiFootballHolen()`-Aufruf aus `hauptlauf()` entfernt.** `afEintraege` bleibt bewusst
+  leer, nur noch `footballDataOrgHolen()` liefert Daten für die zeitgesteuerte Automatik.
+- **Funktion, Liga-Liste und Schlüssel-Zugriff bewusst NICHT gelöscht:**
+  `apiFootballHolen()`, `API_FOOTBALL_LIGEN` (78 recherchierte Liga-IDs) und der
+  `API_FOOTBALL_KEY`-Zugriff bleiben stehen, klar als „NICHT AUFGERUFEN seit 14.9.2026"
+  markiert — echte recherchierte Arbeit, sofort wieder nutzbar bei einem eigenen,
+  dedizierten Server-Zugang. Das Secret `API_FOOTBALL_KEY` im Workflow selbst bleibt
+  ebenfalls unverändert stehen (unbenutzt, kein Schaden) — kein Eingriff dort, wie
+  beauftragt.
+- **`beta.html` und der Workflow-Zeitplan (08:00 + 23:30 UTC, Fassung 126) ausdrücklich
+  unangetastet.** API-Football bleibt für den Schiedsrichter weiterhin über den
+  Knopfdruck-Weg am eigenen Gerät verfügbar (`apiFootballLauf()`, unverändert seit
+  11.9.2026) — nur die zeitgesteuerte, unbeaufsichtigte Automatik verliert diese Quelle.
+- **Verifiziert:** `node --check` bestanden. Echter Trockentest an der unveränderten, aus
+  dem Skript herausgeschnittenen `hauptlauf()` (kein Nachbau, `apiFootballHolen()` durch
+  einen Spion ersetzt): bestätigt, dass `apiFootballHolen()` nicht mehr aufgerufen wird und
+  die geschriebenen Spiele ausschliesslich von `football-data.org` stammen. `pruefe.py`:
+  ALLES SAUBER.
+- **Kein neuer Sprachschlüssel, kein Schnitt in der Messreihe.** `beta.html` unverändert,
+  bleibt v19.13.2.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 122 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl.)*
 
 ---
 
@@ -142,46 +177,6 @@ ausgewertet."
   erneut ausgewertet, ohne weiteres Zutun. Nichts an dieser Stelle offen, ausser der
   Bestätigung durch den nächsten Prüflauf selbst.
 - **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl.)*
-
----
-
-## ⚠ Was Fassung 122 ändert (13.9., frischer Messstand von Ondo mitgeschickt — echter Fund zu Celje/Sabah UND zu Backlog-Punkt 81, kein Codeaufwand)
-
-**Anlass:** Ondo schickte zwei Bildschirmfotos der App (KI-Log → Daten, und Mehr), seinen
-Messdaten-Export (`ondo-control-messdaten-2026-09-13.json`, erzeugt 13.9.2026 08:28 Uhr laut
-eigenem Kopf) und einen Rohdaten-Export des Schiedsrichters, mit dem Auftrag „Aktueller Stand".
-
-- **`STAND.md`, Abschnitt „Aktueller Messstand", vollständig neu abgelesen (Fehlerart C1
-  vermieden — keine Zahl hergeleitet):** 505 Vorhersagen (403 → 505), Sonnet 609 bewertete
-  Aussagen bei 4 % Abweichung/55 % Trefferquote, Flash 606 bei 3 %/53 %. **Erstmals ein echter
-  Messstand statt einer Vorabrechnung** für Brier-Score (Sonnet 0,2418, Flash 0,2452),
-  Widerspruchsquote je Markt (Backlog-Punkt 0b) und den Observation Layer (Backlog-Punkt 75
-  Teil 3, alle sechs Beobachtungen jetzt „belegt"). Einzelheiten in `STAND.md`.
-- **🔴 Echter Fund, am mitgeschickten Export selbst belegt, nicht vermutet: Celje und Sabah
-  sind wieder ungelöst — die Aussage „seit 10.9.2026 nicht mehr geparkt" stimmt nicht mehr.**
-  Im Export stehen beide Einträge wieder mit `geparkt:true`; Celjes `ergebnisHeim`/`gast` sind
-  zwar gesetzt (1:1), aber `status` bleibt „offen" statt „bewertet"; Sabah trägt
-  `parkGrund:"unstable_ref"` und gar keinen Endstand. Die `refRoh`-Historie beider Einträge im
-  selben Export **endet am 31.8.2026** — kein Lauf vom 10.9.2026 ist darin zu finden, obwohl
-  `STAND.md` genau den behauptet. **Ob die Übernahme vom 10.9.2026 nie gespeichert wurde oder
-  später rückgängig gemacht wurde, ist nicht bekannt (Art. 11) — beides bleibt offen.**
-  `STAND.md`, Fehlerart-11-Zeile, korrigiert mit Durchstreichung, nicht überschrieben.
-- **🔴 Zweiter Fund, für Backlog-Punkt 81 relevant: eine der zwei offenen Vermutungen ist jetzt
-  widerlegt, die andere bleibt bestehen.** Das mitgeschickte Bildschirmfoto (Mehr-Tab) zeigt
-  beide strukturierten Schlüssel als gespeichert: „API-Football-Schlüssel gespeichert" und
-  „football-data.org-Schlüssel gespeichert". **Vermutung (1) aus Punkt 81 — die Schlüssel
-  könnten nie gespeichert worden sein — ist damit widerlegt.** Trotzdem kommt weder
-  „api-football.com" noch „football-data.org" im gesamten Messdaten-Export (505 Einträge) noch
-  im Rohdaten-Export als `quelle` vor — maschinell nachgezählt (`grep`), **null Treffer** in
-  beiden Dateien. **Vermutung (2) — die geringe Abdeckung bei Ondos tatsächlichen 58
-  Wettbewerben — bleibt damit die plausiblere Erklärung, weiterhin nicht abschliessend
-  bewiesen.** Einzelheiten bei Punkt 81 nachgetragen.
-- **Kein Codeaufwand in dieser Fassung** — reine Buchführung anhand von Ondo selbst
-  mitgeschickter, echter Daten. `beta.html` bleibt v19.13.1. `pruefe.py`: ALLES SAUBER.
-- **Regel 5 angewandt:** Abschnitt „Was Fassung 117 ändert" wortgleich nach
-  `BACKLOG-ARCHIV.md` verschoben.
-- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl — bei 81 ist
-  jetzt ein Teilbefund zur offenen Frage nachgetragen, der Punkt selbst bleibt offen.)*
 
 ---
 
@@ -2081,7 +2076,7 @@ Kein Blocker mehr, siehe oben.
 Stand tatsächlich noch offen hält: **nur noch (g) als echter, ungetesteter Test**, sowie der
 Schiedsrichter- und Fehlerarten-Stand oben — nicht mehr (f) und nicht mehr (c).
 
-**9. Echte Quoten automatisch (Knopfdruck gebaut, Zeitsteuerung teilweise gebaut) — Ausbau: eigene Ergebnis-Datenquelle für den Schiedsrichter** · *Idee 23.7., Claude · Verfassungsfrage teilweise geklärt 7.9.2026 · Knopfdruck-Teil Auftrag Ondo und gebaut 10.9.2026 · Zeitsteuerung/Ergebnis-Automatik Auftrag Ondo 11.9.2026 · Knopfdruck-Kopplung Auftrag Ondo und gebaut 11.9.2026 · Zwei-Läufe-Ausbau Auftrag Ondo und gebaut 14.9.2026* · **Status: 🔴 Knopfdruck-Teil (Quoten) GEBAUT 10.9.2026 — Zeitgesteuerte Ergebnis-Automatik GEBAUT 11.9.2026, wegen API-Football-Sperre nur mit football-data.org scharf — Knopfdruck-Ergebnisabgleich (API-Football + football-data.org, gekoppelt an den Prüflauf) GEBAUT und geprüft 11.9.2026 — Zeitgesteuerte Automatik auf zwei tägliche Läufe erweitert (08:00 + 23:30 UTC) GEBAUT 14.9.2026**
+**9. Echte Quoten automatisch (Knopfdruck gebaut, Zeitsteuerung teilweise gebaut) — Ausbau: eigene Ergebnis-Datenquelle für den Schiedsrichter** · *Idee 23.7., Claude · Verfassungsfrage teilweise geklärt 7.9.2026 · Knopfdruck-Teil Auftrag Ondo und gebaut 10.9.2026 · Zeitsteuerung/Ergebnis-Automatik Auftrag Ondo 11.9.2026 · Knopfdruck-Kopplung Auftrag Ondo und gebaut 11.9.2026 · Zwei-Läufe-Ausbau Auftrag Ondo und gebaut 14.9.2026 · API-Football aus der Automatik entfernt, Auftrag Ondo und gebaut 14.9.2026* · **Status: 🔴 Knopfdruck-Teil (Quoten) GEBAUT 10.9.2026 — Zeitgesteuerte Ergebnis-Automatik GEBAUT 11.9.2026, wegen API-Football-Sperre nur mit football-data.org scharf — Knopfdruck-Ergebnisabgleich (API-Football + football-data.org, gekoppelt an den Prüflauf) GEBAUT und geprüft 11.9.2026 — Zeitgesteuerte Automatik auf zwei tägliche Läufe erweitert (08:00 + 23:30 UTC) GEBAUT 14.9.2026 — API-Football aus der zeitgesteuerten Automatik entfernt (Kontosperre wegen geteilter Cloud-Infrastruktur), läuft dort seither nur noch football-data.org, GEBAUT 14.9.2026**
 Offene Vorfrage (Gemini, weiterhin unbeantwortet): Deckt ein kostenloser Dienst überhaupt Ondos Spiele ab? **🔴 Verfassungsfrage teilweise geklärt (Ondo, 7.9.2026, Blueprint 0.83, Abschnitt 10):** Eine durch Knopfdruck in der App ausgelöste Aktualisierung verletzt „kein Server" nicht — ein Knopfdruck ist die von der Regel verlangte Aufforderung. Eine zeitgesteuerte, unbeaufsichtigte Ausführung bleibt weiterhin offen und ist eine andere Variante. **Ungeprüft, technische Einordnung:** Ob dafür überhaupt GitHub Actions nötig wäre (ein reiner Abruf im Browser bei Knopfdruck bräuchte gar keine Actions-Infrastruktur, wie die bestehenden Knöpfe es schon vormachen) oder ob ein dauerhaft im Repo gespeichertes Ergebnis einen manuell auslösbaren `workflow_dispatch` mit einem neuen, eigens abzusicherndem GitHub-Zugriffsschlüssel bräuchte, ist nicht untersucht.
 
 > **🔴 Vorfrage zur Quotenabdeckung teilweise beantwortet, 10.9.2026 (per Websuche geprüft, nicht
@@ -2287,6 +2282,37 @@ Offene Vorfrage (Gemini, weiterhin unbeantwortet): Deckt ein kostenloser Dienst 
 > **Kosten:** keine zusätzlichen API-Abrufe pro Tag über die bestehenden zwei (API-Football,
 > football-data.org) hinaus — nur ein zweiter Zeitpunkt für denselben täglichen Abruf-Umfang
 > („gestern"+„heute"), kein zusätzliches Kontingent-Risiko erkennbar.
+
+> **🔴 Dringender Ausbau, Auftrag Ondo 14.9.2026: API-Football aus dem automatischen
+> GitHub-Actions-Lauf entfernt** (`skripte/schiri-ergebnisse-holen.js`) — `beta.html` und der
+> Workflow-Zeitplan ausdrücklich unangetastet.
+> **Anlass:** API-Football hat Ondos Konto wegen Anfragen über geteilte Cloud-Infrastruktur
+> (GitHub Actions) gesperrt — vom Support-Chat am 14.9.2026 (Montag) schriftlich bestätigt,
+> ausdrücklich **unabhängig vom Anfragevolumen**, nicht bloss ein Einzelfall. Ondo will beim
+> Support um Entsperrung bitten und dabei zusichern, dass API-Football künftig nur noch über
+> sein eigenes Gerät läuft (Live-Aufruf in `beta.html`, `apiFootballLauf()`, bereits seit
+> 11.9.2026 gebaut) — das musste vor der Zusage wahr sein, nicht nur angekündigt.
+> **Bauweise:** `apiFootballHolen()`-Aufruf aus `hauptlauf()` entfernt, `afEintraege` bleibt
+> bewusst leer. Die Funktion `apiFootballHolen()` selbst, die Liga-Liste
+> `API_FOOTBALL_LIGEN` (78 recherchierte Liga-IDs) und der `API_FOOTBALL_KEY`-Zugriff
+> **bewusst NICHT gelöscht**, klar als „NICHT AUFGERUFEN seit 14.9.2026" markiert stehen
+> gelassen — echte recherchierte Arbeit, sofort wieder nutzbar bei einem eigenen,
+> dedizierten Server-Zugang. Im Workflow (`.github/workflows/schiri-ergebnisse.yml`) bleibt
+> das Secret `API_FOOTBALL_KEY` unverändert stehen (unbenutzt, kein Schaden) — kein Eingriff
+> dort nötig, wie beauftragt.
+> **Verifiziert:** `node --check` bestanden. Echter Trockentest an der unveränderten, aus dem
+> Skript herausgeschnittenen `hauptlauf()` (kein Nachbau, `apiFootballHolen()` durch einen
+> Spion ersetzt): bestätigt, dass `apiFootballHolen()` nicht mehr aufgerufen wird und die
+> geschriebenen Spiele ausschliesslich von `football-data.org` stammen. `pruefe.py` danach:
+> ALLES SAUBER.
+> **Kein neuer Sprachschlüssel** (reine Skript-Änderung). **Kein Schnitt in der Messreihe.**
+> `beta.html` unverändert, bleibt v19.13.2. Der Workflow-Zeitplan (08:00 + 23:30 UTC, siehe
+> Ausbau oben) bleibt unverändert — beide Läufe holen künftig nur noch football-data.org.
+> **Bekannte Folge, offen benannt:** Solange die Sperre nicht aufgehoben ist, liefert die
+> zeitgesteuerte Automatik nur die 12 football-data.org-Wettbewerbe; API-Football bleibt für
+> den Schiedsrichter ausschliesslich über den Knopfdruck-Weg am eigenen Gerät verfügbar
+> (unverändert seit 11.9.2026). Sobald Ondo vom Support eine Entsperrung erhält, ist dies ein
+> neuer, eigener Auftrag — kein automatisches Wiedereinschalten.
 
 **10. Value-Rechnung zurückholen** · *Idee 22.7., Gemini* · **Status: Idee** · hängt an Punkt 9
 

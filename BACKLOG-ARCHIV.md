@@ -410,6 +410,46 @@ Vorschlag Ondos: Filter nach Datum, Wettbewerb, Status (offen/geparkt/bewertet o
 
 ---
 
+## ⚠ Was Fassung 122 ändert (13.9., frischer Messstand von Ondo mitgeschickt — echter Fund zu Celje/Sabah UND zu Backlog-Punkt 81, kein Codeaufwand)
+
+**Anlass:** Ondo schickte zwei Bildschirmfotos der App (KI-Log → Daten, und Mehr), seinen
+Messdaten-Export (`ondo-control-messdaten-2026-09-13.json`, erzeugt 13.9.2026 08:28 Uhr laut
+eigenem Kopf) und einen Rohdaten-Export des Schiedsrichters, mit dem Auftrag „Aktueller Stand".
+
+- **`STAND.md`, Abschnitt „Aktueller Messstand", vollständig neu abgelesen (Fehlerart C1
+  vermieden — keine Zahl hergeleitet):** 505 Vorhersagen (403 → 505), Sonnet 609 bewertete
+  Aussagen bei 4 % Abweichung/55 % Trefferquote, Flash 606 bei 3 %/53 %. **Erstmals ein echter
+  Messstand statt einer Vorabrechnung** für Brier-Score (Sonnet 0,2418, Flash 0,2452),
+  Widerspruchsquote je Markt (Backlog-Punkt 0b) und den Observation Layer (Backlog-Punkt 75
+  Teil 3, alle sechs Beobachtungen jetzt „belegt"). Einzelheiten in `STAND.md`.
+- **🔴 Echter Fund, am mitgeschickten Export selbst belegt, nicht vermutet: Celje und Sabah
+  sind wieder ungelöst — die Aussage „seit 10.9.2026 nicht mehr geparkt" stimmt nicht mehr.**
+  Im Export stehen beide Einträge wieder mit `geparkt:true`; Celjes `ergebnisHeim`/`gast` sind
+  zwar gesetzt (1:1), aber `status` bleibt „offen" statt „bewertet"; Sabah trägt
+  `parkGrund:"unstable_ref"` und gar keinen Endstand. Die `refRoh`-Historie beider Einträge im
+  selben Export **endet am 31.8.2026** — kein Lauf vom 10.9.2026 ist darin zu finden, obwohl
+  `STAND.md` genau den behauptet. **Ob die Übernahme vom 10.9.2026 nie gespeichert wurde oder
+  später rückgängig gemacht wurde, ist nicht bekannt (Art. 11) — beides bleibt offen.**
+  `STAND.md`, Fehlerart-11-Zeile, korrigiert mit Durchstreichung, nicht überschrieben.
+- **🔴 Zweiter Fund, für Backlog-Punkt 81 relevant: eine der zwei offenen Vermutungen ist jetzt
+  widerlegt, die andere bleibt bestehen.** Das mitgeschickte Bildschirmfoto (Mehr-Tab) zeigt
+  beide strukturierten Schlüssel als gespeichert: „API-Football-Schlüssel gespeichert" und
+  „football-data.org-Schlüssel gespeichert". **Vermutung (1) aus Punkt 81 — die Schlüssel
+  könnten nie gespeichert worden sein — ist damit widerlegt.** Trotzdem kommt weder
+  „api-football.com" noch „football-data.org" im gesamten Messdaten-Export (505 Einträge) noch
+  im Rohdaten-Export als `quelle` vor — maschinell nachgezählt (`grep`), **null Treffer** in
+  beiden Dateien. **Vermutung (2) — die geringe Abdeckung bei Ondos tatsächlichen 58
+  Wettbewerben — bleibt damit die plausiblere Erklärung, weiterhin nicht abschliessend
+  bewiesen.** Einzelheiten bei Punkt 81 nachgetragen.
+- **Kein Codeaufwand in dieser Fassung** — reine Buchführung anhand von Ondo selbst
+  mitgeschickter, echter Daten. `beta.html` bleibt v19.13.1. `pruefe.py`: ALLES SAUBER.
+- **Regel 5 angewandt:** Abschnitt „Was Fassung 117 ändert" wortgleich nach
+  `BACKLOG-ARCHIV.md` verschoben.
+- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unverändert in der Zahl — bei 81 ist
+  jetzt ein Teilbefund zur offenen Frage nachgetragen, der Punkt selbst bleibt offen.)*
+
+---
+
 ## ⚠ Was Fassung 121 ändert (13.9., Berichtigung der eigenen Fassung 120 — die „zweite Quelle" war bei Punkt 9 längst gebaut, kein Codeaufwand)
 
 **Anlass:** Ondo, direkt nach Fassung 120: „Waren die 14 Spiele nicht ein Testlauf von dir?

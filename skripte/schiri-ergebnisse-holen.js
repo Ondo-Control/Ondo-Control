@@ -32,8 +32,11 @@ const API_FOOTBALL_KEY = process.env.API_FOOTBALL_KEY || '';
 const FOOTBALL_DATA_ORG_KEY = process.env.FOOTBALL_DATA_ORG_KEY || '';
 const ZIELORDNER = path.join(__dirname, '..', 'daten', 'schiri-ergebnisse');
 
-/* Liga-IDs bei API-Football, Stand 11.9.2026, echt geprueft (nicht geraten) - siehe Hinweis
-   oben. Je Land: erste Liga, zweite Liga (falls in STUFEN genannt), nationaler Pokal. */
+/* NICHT AUFGERUFEN seit 14.9.2026, siehe Grund unten bei hauptlauf(). Liga-IDs bei
+   API-Football, Stand 11.9.2026, echt geprueft (nicht geraten) - siehe Hinweis oben. Je
+   Land: erste Liga, zweite Liga (falls in STUFEN genannt), nationaler Pokal. Bewusst NICHT
+   geloescht - echte recherchierte Arbeit, sofort wieder nutzbar bei einem eigenen,
+   dedizierten Server-Zugang. */
 var API_FOOTBALL_LIGEN = [
   // Stufe 1: 16 Laender, erste/zweite Liga + Pokal
   39,40,45,          // England: Premier League, Championship, FA Cup
@@ -82,6 +85,9 @@ function heuteUtc(offsetTage){
   return d.toISOString().slice(0,10); // JJJJ-MM-TT
 }
 
+/* NICHT AUFGERUFEN seit 14.9.2026, siehe Grund unten bei hauptlauf(). Funktion selbst
+   bewusst NICHT geloescht - sofort wieder nutzbar bei einem eigenen, dedizierten
+   Server-Zugang. */
 function apiFootballHolen(datum){
   if(!API_FOOTBALL_KEY) return Promise.resolve([]);
   return fetch('https://v3.football.api-sports.io/fixtures?date=' + datum, {
@@ -209,18 +215,21 @@ function speichern(pfad, spiele){
   fs.writeFileSync(pfad, JSON.stringify(inhalt, null, 1));
 }
 
+/* API-Football wurde am 14.9.2026 aus diesem automatischen Lauf entfernt: Der Anbieter
+   sperrt Anfragen, die ueber geteilte Cloud-Infrastruktur (wie GitHub Actions) kommen -
+   ausdruecklich unabhaengig von der Anfragemenge, vom Support am selben Tag (Montag)
+   schriftlich bestaetigt. Laeuft seither ausschliesslich als Live-Aufruf in `beta.html`
+   (`apiFootballLauf()`), von Ondos eigenem Geraet aus - dort keine geteilte Adresse, kein
+   Sperr-Risiko. `apiFootballHolen()` und `API_FOOTBALL_LIGEN` bleiben oben stehen, bewusst
+   NICHT geloescht und NICHT AUFGERUFEN - siehe Markierung dort. */
 async function hauptlauf(){
   var tage = [heuteUtc(-1), heuteUtc(0)]; // gestern, heute
   var vonFdo = tage[0], bisFdo = tage[1];
 
-  var afEintraege = [];
-  for(var i=0;i<tage.length;i++){
-    var t = await apiFootballHolen(tage[i]);
-    afEintraege = afEintraege.concat(t);
-  }
+  var afEintraege = []; // API-Football entfernt, siehe Kommentar oben - bleibt bewusst leer
   var fdoEintraege = await footballDataOrgHolen(vonFdo, bisFdo);
 
-  console.log('API-Football:', afEintraege.length, 'Treffer im Stufen-Bereich');
+  console.log('API-Football: NICHT AUFGERUFEN seit 14.9.2026 (Kontosperre wegen geteilter Cloud-Infrastruktur, siehe Kommentar ueber hauptlauf())');
   console.log('football-data.org:', fdoEintraege.length, 'fertige Spiele (12-Wettbewerbe-Bereich)');
 
   /* Je betroffenem Monat (meist einer, an einem Monatswechsel zwei) einlesen, ergaenzen,
