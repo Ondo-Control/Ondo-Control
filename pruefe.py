@@ -46,8 +46,9 @@ def lies(name):
 AKTIV = {n: lies(n) for n in ('STAND.md', 'Ondo-Control-Backlog.md',
                               'Blueprint.md', 'Ondo-Core-Architektur.md')}
 # Archive — nur auf Zuruf, aber hier mitgeprueft
-ARCHIV = {n: lies(n) for n in ('CHRONIK-2026-08.md', 'CHRONIK-2026-07.md',
-                               'BACKLOG-ARCHIV.md', 'BLUEPRINT-PROTOKOLL.md')}
+ARCHIV = {n: lies(n) for n in ('CHRONIK-2026-08.md', 'CHRONIK-2026-07.md', 'CHRONIK-2026-09.md',
+                               'BACKLOG-ARCHIV.md', 'BLUEPRINT-PROTOKOLL.md',
+                               'ONDO-CORE-PROTOKOLL.md')}
 S  = AKTIV['STAND.md']
 B  = AKTIV['Ondo-Control-Backlog.md']
 BP = AKTIV['Blueprint.md']
@@ -87,7 +88,8 @@ if _fs_m and _fb_m and _fp_m:
 print("2) Erwaehnte Dateien existieren wirklich")
 PROJEKTDATEIEN = {'STAND.md','Ondo-Control-Backlog.md','Blueprint.md',
                   'Ondo-Core-Architektur.md','CHRONIK-2026-08.md','CHRONIK-2026-07.md',
-                  'BACKLOG-ARCHIV.md','BLUEPRINT-PROTOKOLL.md','pruefe.py'}
+                  'CHRONIK-2026-09.md','BACKLOG-ARCHIV.md','BLUEPRINT-PROTOKOLL.md',
+                  'ONDO-CORE-PROTOKOLL.md','pruefe.py'}
 _dateien = set(re.findall(r'`([A-Za-z0-9_\-]+\.(?:md|py|html|json))`', ALLE)) & PROJEKTDATEIEN
 # 16.8., Chat 18: pruefe.py liegt auf Ondos Tablet ABSICHTLICH ausserhalb des
 # Repo-Ordners, damit es nicht ins oeffentliche Verzeichnis geraet. Es wurde
@@ -455,5 +457,16 @@ else:
             if _bsv:
                 pruef(int(_bsv.group(1)) == _gezaehlt,
                       f"selbst gezaehlt {_gezaehlt} == STAND.md behauptet {_bsv.group(1)}")
+
+print("14) Punkt 82 — Aktueller-Stand-Groesse: jedes Pflichtdokument unter 80.000 Zeichen")
+# 14.9.2026, Phase 2 der Trennung von aktuellem Stand und Geschichte (Ondos Auftrag): Kein
+# Pflichtdokument soll mehr eingebettete Geschichte enthalten, deshalb gilt die Grenze auf die
+# ganze Datei, keine Marker-Zeile noetig.
+GRENZE_82 = 80000
+for _name, _text in AKTIV.items():
+    if _text is None:
+        continue
+    _n = len(_text)
+    pruef(_n <= GRENZE_82, f"{_name}: {_n} Zeichen (Grenze {GRENZE_82})")
 
 print("\nERGEBNIS:", "ALLES SAUBER" if not f else f"{len(f)} FEHLER: {f}")

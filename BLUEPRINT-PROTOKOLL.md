@@ -5,6 +5,418 @@
 *Verfassung, Arbeitsregeln und offene Fragen stehen in `Blueprint.md` und bleiben Pflichtlektuere.*
 
 ---
+> **Was Fassung 0.127 ändert (14.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> Ondos Auftrag „football-data.org-Platz von Live-Aufruf auf Archivdatei-Lesen umstellen"
+> (Backlog-Punkt 81, `beta.html` v19.13.3): Neue Funktion `footballDataArchivLesen(ziel)`
+> ersetzt `footballDataLauf()` als Strukturweg, liest die vom täglichen GitHub-Actions-Lauf
+> gesammelten Monatsdateien statt eines durch CORS blockierten Live-Aufrufs. Ein eigener
+> Fehler im ersten Entwurf (unbedingter `einAnbieter`-Ausfall) im eigenen Trockentest
+> gefunden und vor der Auslieferung behoben. Kein Verfassungsartikel geändert, keine neue
+> Arbeitsregel. Blueprint auf 0.127 gehoben.
+
+> **Was Fassung 0.126 ändert (14.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> Ondos dringender Auftrag „API-Football aus dem automatischen GitHub-Actions-Lauf entfernen"
+> (Backlog-Punkt 9): Der Anbieter sperrt Ondos Konto wegen Anfragen über geteilte
+> Cloud-Infrastruktur, unabhängig vom Volumen (Support-Bestätigung vom selben Tag).
+> `apiFootballHolen()`-Aufruf aus `hauptlauf()` in `skripte/schiri-ergebnisse-holen.js`
+> entfernt, Funktion und Liga-Liste bewusst als „NICHT AUFGERUFEN" stehen gelassen.
+> `beta.html` und der Workflow-Zeitplan unangetastet. Kein Verfassungsartikel geändert,
+> keine neue Arbeitsregel. Blueprint auf 0.126 gehoben.
+
+> **Was Fassung 0.125 ändert (14.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> Ondos Auftrag „Tägliche Automatik auf zwei Läufe pro Tag umstellen" (Backlog-Punkt 9):
+> zweiter Cron-Eintrag (23:30 UTC neben 08:00 UTC) in `.github/workflows/schiri-ergebnisse.yml`,
+> `skripte/schiri-ergebnisse-holen.js` nur im Kopfkommentar berichtigt. `beta.html`
+> ausdrücklich nicht angefasst. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+> Blueprint auf 0.125 gehoben.
+
+> **Was Fassung 0.124 ändert (13.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> eine reine Diagnose (Backlog-Punkt 81, kein Codeaufwand): Echte Testabrufe belegen, dass
+> football-data.org Browser-Zugriffe (CORS) nur von `http://localhost` erlaubt, nicht von
+> Ondos echter Adresse — das erklärt, warum diese Quelle nie als Treffer erscheint, unabhängig
+> von Kontogültigkeit oder Ligen-Abdeckung. API-Football erlaubt dagegen jeden Ursprung (`*`),
+> dort bleibt die bekannte Kontosperre die Ursache. Kein Fix, kein Vorschlag zum Bau (Art. 8).
+> Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.124 gehoben.
+
+> **Was Fassung 0.123 ändert (13.9.2026):** Abschnitt 10 ergänzt — Ondo hat entschieden, dass
+> die App keinen Schreibzugriff aufs Repo bekommt (Backlog-Punkt 81, Wege-Neuzusammensetzung
+> beim Schiedsrichter, `beta.html` v19.13.2): Die strukturell nie erreichbare Drei-Läufe-
+> Schwelle (API-Football und football-data.org belegten seit dem 11.9. zwei von drei Plätzen
+> in jeder Prüfrunde, unabhängig vom Treffer) wird stattdessen über eine zweiphasige
+> Wege-Zusammensetzung gelöst — erst beide Strukturquellen für den ganzen Spiele-Stapel
+> abwarten, dann je nach 0/1/2 Strukturtreffern so viele KI-Läufe zusätzlich starten, wie das
+> schlechteste Spiel im Stapel braucht. `pruefAuswerten()`/`refEinigkeit()` unverändert. Ein
+> im eigenen Trockentest gefundener und vor der Auslieferung behobener Fehler (Kappen statt
+> Auffüllen bei nur einem KI-Anbieter) offen benannt, nicht verschwiegen. Status bleibt
+> ausdrücklich OFFEN, Bestätigung durch einen echten Prüfzyklus am Gerät steht aus. Kein
+> Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.123 gehoben.
+
+> **Was Fassung 0.122 ändert (13.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> Ondos eigene Erklärung zum Celje/Sabah-Fund aus Fassung 0.121: Die Übernahme vom 10.9.2026
+> scheiterte am damaligen Speicherproblem (Sicherungen liessen sich nicht vernünftig speichern
+> oder hochladen), das Problem ist seit dem Umstieg auf `IndexedDB` (Backlog-Punkt 76) gelöst,
+> beide Spiele werden im nächsten Prüflauf automatisch erneut ausgewertet. Passt lückenlos zur
+> bereits dokumentierten Zeitlinie des Speicherumstiegs, nicht am Code nachgeprüft — als Ondos
+> eigene Aussage gekennzeichnet. `STAND.md` und Backlog-Punkt 64 ergänzt, nichts überschrieben.
+> Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.122 gehoben.
+
+> **Was Fassung 0.121 ändert (13.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> ein frischer Messstand, von Ondo mitgeschickt (zwei Bildschirmfotos, Messdaten-Export,
+> Schiedsrichter-Rohdaten-Export). `STAND.md`, Abschnitt „Aktueller Messstand", vollständig neu
+> abgelesen (505 Vorhersagen, Sonnet 609 bei 4 %/55 %, Flash 606 bei 3 %/53 %) — erstmals mit
+> echten Zahlen statt Vorabrechnungen für Brier-Score, Widerspruchsquote und Observation Layer.
+> **Zwei echte Funde am mitgeschickten Datenmaterial, nicht vermutet:** Celje und Sabah sind laut
+> dem Export wieder ungelöst (`geparkt:true`, keine `refRoh`-Läufe nach dem 31.8.2026) —
+> widerspricht der bisherigen Doku „seit 10.9.2026 nicht mehr geparkt"; Ursache unbekannt (Art.
+> 11), `STAND.md` mit Durchstreichung berichtigt. Bei Backlog-Punkt 81: Beide strukturierten
+> Schlüssel (API-Football, football-data.org) sind laut Bildschirmfoto im Handy gespeichert —
+> widerlegt die erste von zwei offenen Vermutungen, warum diese Quellen nie erscheinen; die
+> zweite (Ligen-Abdeckung) bleibt die wahrscheinlichere, weiterhin unbewiesen. Kein
+> Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.121 gehoben.
+
+> **Was Fassung 0.120 ändert (13.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> die eigene Berichtigung von Fassung 0.119: die dort als „übersehene zweite Quelle"
+> beschriebene Sache war bei Backlog-Punkt 9 (11.9.2026) bereits vollständig gebaut und
+> dokumentiert, keine neue Entdeckung. Ondos berechtigter Widerspruch („Ich dachte das wäre
+> schon klar und umgesetzt?") direkt am GitHub-Lauf-Verlauf geprüft, nicht vermutet. Kein
+> Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.120 gehoben.
+
+> **Was Fassung 0.119 ändert (13.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> Ondos Nachfrage „Du hast doch eine Datei angelegt im Repo für Ergebnisabfrage an API
+> Datenbanken was steht dadrin": ein zweiter, bisher übersehener Datenweg gefunden
+> (`.github/workflows/schiri-ergebnisse.yml`, läuft täglich real, sammelt echte Ergebnisse in
+> `daten/schiri-ergebnisse/*.json`), der von `beta.html` nirgends gelesen wird — Backlog-Punkt
+> 81 berichtigt, nicht überschrieben. Kein Verfassungsartikel geändert, keine neue
+> Arbeitsregel. Blueprint auf 0.119 gehoben.
+
+> **Was Fassung 0.118 ändert (13.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> der gefundene und behobene Schiedsrichter-Bug (Backlog-Punkt 81, `beta.html` v19.13.1): eine
+> immer gleiche Fünfer-Auswahl liess übrige Spiele nie an die Reihe kommen, belegt an Ondos
+> Screenshot „0 von 10 gefunden" und den echten Rohdaten. Ausserdem die Liga-Abdeckung von
+> API-Football/football-data.org nachgezählt und als bisher ungenutzt korrigiert. Kein
+> Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.118 gehoben.
+
+> **Was Fassung 0.117 ändert (13.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> die abgeschlossene Diagnose zu Backlog-Punkt 81 (Schiedsrichter reparieren, Ondos Auftrag
+> „das ist dein Job"): API-Football/football-data.org werden bereits vor jedem KI-Lesen
+> abgefragt und entschärfen Fehlerart 7/8 strukturell, aber nur für rund 12 grosse Wettbewerbe —
+> für alle anderen Ligen bleibt der Schiedsrichter auf KI-Lesen angewiesen. Kein
+> Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.117 gehoben.
+
+> **Was Fassung 0.116 ändert (13.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> der gebaute Backlog-Punkt 80 (`beta.html` v19.13.0): Testwerkzeug für Beförderungskriterium
+> (g), Definition vor dem Bau festgelegt (8 Spiele, 3 Wiederholungen, 90 %/10-Punkte-Schwelle).
+> Neuer Backlog-Punkt 81 (Schiedsrichter reparieren, Ondos Auftrag „das ist dein Job") angelegt,
+> Diagnose begonnen. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf
+> 0.116 gehoben.
+
+> **Was Fassung 0.115 ändert (13.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> Ondos direkte Entscheidung zu Beförderungskriterium (c): „Wir haben genug Spiele!!!!" Damit
+> sind von den sieben Beförderungskriterien jetzt (f) und (c) entschieden, nur (g) bleibt echt
+> offen. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.115 gehoben.
+
+> **Was Fassung 0.114 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> eine Berichtigung im Backlog (Punkt 4/5): Kriterium (f) der Beförderungskriterien war von
+> Ondo bereits früher in dieser Sitzung ausdrücklich aufgehoben worden, aber nie in ein
+> Dokument geschrieben — deshalb tauchte es später fälschlich wieder als offen auf. Ondos
+> berechtigte Nachfrage, warum derselbe Punkt wiederholt als ungeklärt erscheint, hat das
+> aufgedeckt. Ursache: fehlende Buchführung (Arbeitsregel F), nicht falsche Erinnerung. Kein
+> Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.114 gehoben.
+
+> **Was Fassung 0.113 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> Punkt 4 (Daten-Export), von Ondo auf „wartet auf die Beförderung Beta→Stabil" gesetzt, nachdem
+> die beiden möglichen Wege (Beta-Format übernehmen vs. verlustbehafteter Export in die alte
+> Form) erklärt wurden. Auf Ondos Nachfrage, worauf genau gewartet wird, ehrlich beantwortet:
+> zwei konkrete offene Sachen (Kriterium (c), eine unentschiedene Frage seit 23.7.; Kriterium
+> (f), eine sechs Wochen alte, nicht erneuerte Messung), kein Kalendertermin. Kein
+> Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.113 gehoben.
+
+> **Was Fassung 0.112 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> der gebaute Backlog-Punkt 78 (`beta.html` v19.12.0): Kombi-Wetten können jetzt mit mehreren
+> KI-Vorhersagen verknüpft werden (`state.bets[].kiProtokollIds` als Liste), additiv zur
+> bestehenden Einzelauswahl gebaut, rückwärtskompatibel zum alten Einzelfeld. Kein
+> Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.112 gehoben.
+
+> **Was Fassung 0.111 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> die gebaute Trainingsraum-Nachbesserung (Backlog-Punkt 77, `beta.html` v19.11.0): KI-Daten von
+> „Mehr" zurück ins Wettmodul (KI-Log → neuer Unter-Reiter „Daten") verschoben, die
+> „KI-Trefferquote" aus „Finanzen" entfernt, für Weg (a) des Trainingsraums ein wählbarer
+> Zeitraum und für Weg (b) eine echte Eintragemöglichkeit gebaut. Kein Verfassungsartikel
+> geändert, keine neue Arbeitsregel. Blueprint auf 0.111 gehoben.
+
+> **Was Fassung 0.110 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> der gebaute Backlog-Punkt 79 (`beta.html` v19.10.0): eine gemeinsame Websuche-Recherche für
+> die ganze Spielliste, beiden Gehirnen gleich mitgegeben, mit fester Obergrenze
+> (`MARKTLAGE_MAX_SUCHEN = 20`) und einem Ausschalter für Ondo. Schnitt in der Messreihe
+> (`recherchiert`-Feld), `Ondo-Core-Architektur.md` auf Fassung 0.11 gehoben. Kein
+> Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.110 gehoben.
+
+> **Was Fassung 0.109 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> ein echter Fund: Ondo ging davon aus, echte Vorhersagen würden per Websuche recherchieren —
+> das stimmt seit v19.0 nie. `STAND.md` um den fehlenden Hinweis ergänzt, `Ondo-Core-
+> Architektur.md` Abschnitt 2 und 3 berichtigt (beschrieben seit jeher ein nie gebautes Ziel als
+> aktuellen Stand), neuer Backlog-Punkt 79: Websuche für echte Vorhersagen im Grundsatz
+> beschlossen („Ja für beides"), Trainingsraum bleibt ohne Suche. Kein Codeaufwand, kein
+> Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.109 gehoben.
+
+> **Was Fassung 0.108 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> Ondos Nachbesserung zum Trainingsraum (Backlog Fassung 109): KI-Daten sollen von „Mehr" zurück
+> ins Wettmodul (KI-Log, neuer Unter-Reiter), Auswahl-UI für Weg (a)/(b) verlangt, Rücksetzpunkt
+> (Commit `ed14eb7`, v19.9.0) festgehalten. Kein Codeaufwand, keine Entscheidung in dieser
+> Fassung getroffen — reine Buchführung. Kein Verfassungsartikel geändert, keine neue
+> Arbeitsregel. Blueprint auf 0.108 gehoben.
+
+> **Was Fassung 0.107 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> der gebaute Trainingsraum (Backlog Fassung 108, `beta.html` v19.9.0): Backlog-Punkt 77 auf
+> GEBAUT gesetzt, neuer Abschnitt `Ondo-Core-Architektur.md` 1d (Fassung 0.9) mit vollständigem
+> Plan und Selbstkritik, zwei beim Bauen selbst gefundene Fehlerquellen vor der Auslieferung
+> behoben (Datumsparsing, Wettlauf-Risiko in einer geteilten Variable). Kein Verfassungsartikel
+> geändert, keine neue Arbeitsregel. Blueprint auf 0.107 gehoben.
+
+> **Was Fassung 0.106 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass
+> war die Trainingsraum-Lösung (Backlog Fassung 107): Backlog-Punkt 77 berichtigt und mit
+> einer im Code belegten Lösung versehen (die echten Vorhersagen laufen bereits ohne
+> Websuche; eine Zulassungsregel nach Datum grenzt das Trainingsdaten-Risiko ein), Punkt 4
+> von Ondo freigegeben unabhängig vom Stand der Beförderung, ChatGPT-Antworten zu Punkt
+> 77/78 eingetragen. Eine Verfassungsfrage aufgeworfen, aber bewusst NICHT entschieden: ob
+> Blueprint Abschnitt 2d (Übergaberegel für ChatGPT) geändert werden soll, jetzt wo ChatGPT
+> vollen Repo-Zugriff hat statt nur GitHub-Pages-Links — liegt bei Ondo, Abschnitt 2d bleibt
+> unverändert, bis er entscheidet. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+> Blueprint auf 0.106 gehoben.
+
+> **Was Fassung 0.105 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war
+> Ondos Entscheidungen zu Historie/Konto, Finanzen-Platzierung und Punkt 3 (Backlog Fassung
+> 106): Korrigieren-Felder für Konto/Tipico-Stand gebaut, Kalibrierung/Observation
+> Layer/gepaarter Vergleich von „Finanzen" nach „Mehr" verschoben (`beta.html` v19.8.31),
+> Backlog-Punkt 3 auf Ondos Entscheidung überholt, zwei neue Backlog-Punkte (77 „Trainingsraum",
+> 78 „Kombi-Wette-Verknüpfung") angelegt. Kein Verfassungsartikel geändert, keine neue
+> Arbeitsregel — alles Einzelheiten stehen im Backlog, nicht hier (Punkt 45). Blueprint auf
+> 0.105 gehoben.
+
+> **Was Fassung 0.104 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass
+> war eine Berichtigung Ondos, kein Codeaufwand (Backlog Fassung 105): Der Test zur ersten
+> Bewährungsbeobachtung des Speicherumstiegs war nicht nur ein Neuladen der Seite, sondern
+> das vollständige Schliessen und Neuöffnen der Safari-App selbst — der stärkere der beiden
+> möglichen Tests. In `STAND.md`, `Ondo-Control-Backlog.md` und `Ondo-Core-Architektur.md`
+> (Fassung 0.8) mit Streichung und Vermerk berichtigt, nicht überschrieben. Kein
+> Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.104 gehoben.
+
+> **Was Fassung 0.103 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass
+> war reine Buchführung, kein Codeaufwand (Backlog Fassung 104): erste Bewährungsbeobachtung
+> zum Speicherumstieg (Ondo: „Hat funktioniert", nach einem echten Neuladen der Seite) und
+> eine Berichtigung in `Ondo-Core-Architektur.md` — Abschnitt 4 nannte dort noch `localStorage`
+> als aktuellen Stand, seit v19.8.30 ist es `IndexedDB` (Fassung 0.8). Ausdrücklich nicht
+> behauptet: dass der Umstieg damit vollständig bewährt ist — ein einzelner Test ist keine
+> abgeschlossene Bewährung. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+> Blueprint auf 0.103 gehoben.
+
+> **Was Fassung 0.102 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Ondos
+> Auftrag „Ich will eine dauerhafte Lösung, keine Dateien Löschen!!" ist umgesetzt (Backlog
+> Fassung 103, neuer Backlog-Punkt 76): Die Speicherung ist von `localStorage` auf `IndexedDB`
+> umgestellt, `beta.html` v19.8.30. **Was daran verfassungsnah ist:** Dies ist die erste
+> Stelle, an der die App ihre Kernfunktion — Messdaten dauerhaft festhalten — nicht mehr auf
+> dem kleinsten gemeinsamen Nenner der Browser-Speicherorte betreibt, sondern auf dem dafür
+> vorgesehenen; Ondo-Core, Abschnitt 4 (Memory), nennt „Stufe 1: localStorage" bereits als
+> ausdrücklich vorläufig. **Ohne die Migrationslogik selbst anzufassen:** Alle acht
+> `seedV`-Migrationen in `load()` bleiben inhaltlich wortgleich — nur ihr Speicherzugriff
+> läuft jetzt über ein neues Paar Funktionen, das bei jedem Fehler auf das alte `localStorage`
+> zurückfällt, sodass das bestehende Sicherheitsnetz (roter Dauerbalken bei einem echten
+> Fehlschlag, seit v19.8.28) unverändert erhalten bleibt. **Ein einmaliger, unvermeidbarer
+> Schritt bleibt bei Ondo:** Da der zuletzt sichtbare Stand nur im Arbeitsspeicher seines
+> Browsers lebte, muss er nach dem Update einmal seine jüngste Sicherungsdatei einspielen —
+> ein Codeupdate kann ein bereits laufendes Browserfenster nicht rückwirkend erreichen.
+> Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.102 gehoben.
+
+> **Was Fassung 0.101 ändert (12.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass
+> war Ondos Rückmeldung „Browser voll" zur neuen Speicheranzeige aus v19.8.28 (Backlog Fassung
+> 102). **Was daran verfassungsnah ist:** Die Warngrenze von v19.8.28 war ausdrücklich als
+> ungeprüfte, vorsichtige Schätzung benannt (Art. 11) — Ondo hat jetzt den echten Beleg
+> geliefert: Sein Browser lehnte das Speichern bei 2,7 MB ab, unter der geschätzten 3-MB-Grenze.
+> Arbeitsregel H verlangt Belegen statt Herleiten; mit dem Beleg in der Hand war die alte Zahl
+> zu berichtigen, nicht beizubehalten — jetzt 2 MB mit echtem Sicherheitsabstand darunter.
+> **Ein Fund am eigenen Testaufbau dabei, offen benannt:** Derselbe Trockentest hatte die
+> Warngrenze in der Testumgebung selbst hartcodiert dupliziert statt aus `beta.html` zu ziehen —
+> die Prüfungen liefen unbemerkt gegen einen Test-Zwilling. Behoben, dieselbe Fehlerklasse wie
+> der fehlende `KEY` einen Tag zuvor. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.
+> Blueprint auf 0.101 gehoben.
+
+> **Was Fassung 0.100 ändert (11.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Auftrag Ondo: „mach bei allen Punkten was nötig ist damit es sauber läuft, bau einfach weiter". Die drei Funde der vollständigen Prüfung sind behoben und **die Lernkette ist fertig**: Backlog-Punkt 75, Teil 3 (Observation Layer) gebaut, `beta.html` v19.8.28 (Backlog Fassung 101). **Was daran verfassungsnah ist und deshalb hier steht:** Der Observation Layer ist die erste Stelle im Projekt, die aus den eigenen Messdaten eine **Aussage** ableitet statt einer Zahl. Damit daraus keine Vermutung mit Lehrsatz-Anstrich wird (Art. 14), trägt jede Beobachtung ihre Stichprobengrösse, und unterhalb von zehn bewerteten Aussagen wird nichts behauptet — „zu wenig Daten" wird angezeigt, nicht verschwiegen (Art. 11). Die Auflage aus `Ondo-Core-Architektur.md` 1c ist eingelöst und maschinell belegt: kein Lernen aus geparkten Einträgen und keines aus solchen, bei denen der Schiedsrichter sich nur mit 2 von 3 Läufen einig war. **Art. 9 bleibt unangetastet:** Der Observation Layer zeigt, er entscheidet nichts — jede Lehre braucht weiterhin Ondos Bestätigung. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Die Versionsform bleibt `0.NN`, wie Arbeitsregel M sie prüft; für Fassung 101 ist das `0.100` — ungewohnt zu lesen, aber die Form, die der Prüfer vorgibt, und den Prüfer dafür aufzuweichen wäre Fehlerart C6. Blueprint auf 0.100 gehoben.
+
+> **Was Fassung 0.99 ändert (11.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war Ondos Verlangen, `beta.html` vollständig auf Fehler und Lücken zu prüfen, bevor am Observation Layer weitergebaut wird (Backlog Fassung 100). Geprüft wurde die ganze Datei, nicht nur das zuletzt Gebaute. **Kein Codefehler gefunden**; gefunden wurde ein **Widerspruch im eigenen Architektur-Eintrag** — die Schema-Tabelle in `Ondo-Core-Architektur.md` 1c beschrieb `ergebnisHalbzeit`/`ergebnisVerl` als „vom Schiedsrichter nachgetragen", während der Backlog denselben Sachverhalt seit Punkt 64 gegenteilig führt und der Code den Backlog bestätigt (Fehlerart C4, berichtigt in Fassung 0.7). **Lehre für die eigene Arbeitsweise, hier festgehalten:** Die vorige Fassung hatte die Feldnamen maschinell ausgezählt, die Beschreibung, **wer** sie schreibt, aber weiter aus der Annahme geschrieben. Maschinell belegen heisst: auch die Aussage über das Feld belegen, nicht nur seine Existenz (Arbeitsregel H). Dazu drei nicht behobene Lücken benannt statt stillschweigend übergangen (Löschen ohne Rückfrage, unsichtbare Speichergrenze, unaufgeräumte Herkunftskennzeichnung) — Behebung braucht Ondos Auftrag (Art. 8). Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.99 gehoben.
+
+> **Was Fassung 0.98 ändert (11.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war Ondos Verlangen, den ganzen Bau seit dem Evidence Ledger vor dem Weiterbauen gründlich zu prüfen (Backlog Fassung 99), `beta.html` v19.8.27. Dabei ein **echter eigener Fehler** gefunden und behoben: Die Übernahme einer Vorhersage ins Wette-Formular schrieb den getippten Spielstand in das Tipp-Feld, das aber festhält, **welche Wette** gesetzt wurde — und das dem Schiedsrichter beim Prüfen vorgelegt wird. Ausserdem war die als „Schema" bezeichnete Tabelle in `Ondo-Core-Architektur.md` 1c unvollständig; sie ist jetzt maschinell ausgezählt (Fassung 0.6). Bestätigung der Stabilitätsregel in eigener Sache: Eine Lieferung gilt erst nach einer solchen Nachprüfung als sauber, nicht schon nach bestandenem Trockentest. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.98 gehoben.
+
+> **Was Fassung 0.97 ändert (11.9.2026):** Backlog-Punkt 75, Teil 2 (Decision Ledger) gebaut, `beta.html` v19.8.26 (Backlog Fassung 98) — direkt im Anschluss an Teil 1: der dort gefundene tote Code (`state.bets` ohne echte Verknüpfung zu einer Empfehlung) ist behoben. Neues Auswahlfeld im Wette-Formular, das eine Wette bewusst — nicht automatisch über Textabgleich — mit dem `kiProtokoll`-Eintrag verknüpft, aus dem sie entstand; Verknüpfung über die feste `id`. 13 plus 7 Prüfungen an der echten, herausgeschnittenen Logik bestanden. Offen benannte Grenze: ältere, bereits gespeicherte Wetten bleiben unverknüpft. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.97 gehoben.
+
+> **Was Fassung 0.96 ändert (11.9.2026):** Backlog-Punkt 75, Teil 1 (Evidence Ledger) formell festgelegt (Backlog Fassung 97) — Ondo hat der am 6.7.2026 beschlossenen Lernkette Vorrang vor der Beförderungsfrage gegeben und die Startentscheidung an Claude delegiert: jetzt anfangen, da die sieben Beförderungskriterien den Bau der Lernkette in der Beta nicht voraussetzen, nur die Beförderung selbst — eine zuvor selbst hergestellte, falsche Verknüpfung, im Gespräch richtiggestellt. Kein Parallelbau: `state.kiProtokoll` füllt den Evidence Ledger bereits seit v19.0 faktisch, `Ondo-Core-Architektur.md` bekommt dafür einen neuen Abschnitt 1c (Fassung 0.5) mit vollständigem Schema, Ebenen-Zuordnung nach Abschnitt 1b und einer Auflage für die künftigen Stufen: Der Observation Layer darf aus keinem unsicher bewerteten Eintrag lernen. Dabei ein echter Fund: `state.bets` trägt trotz vorhandener Felder (`fromKI`/`herkunft`) keine belegte Verknüpfung zu einer Empfehlung — die Lücke, die Teil 2 (Decision Ledger) schliessen muss. Kein Codeaufwand an `beta.html`. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.96 gehoben.
+
+> **Was Fassung 0.95 ändert (11.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war Backlog-Punkt 0b, `beta.html` v19.8.25 (Backlog Fassung 96), kein Verfassungs- oder Architekturaufwand. Die seit 7.9.2026 offene Umsetzungsfrage entschieden und gebaut: Widerspruchsquote getrennt je Markt statt einer gemeinsamen Zahl, weil der Markt „Sieger" strukturell nie einen Widerspruch zeigen kann (immer aus dem Tipp abgeleitet) und eine gemeinsame Zahl echte Widersprüche bei den anderen zwei Märkten verwässert hätte. Neue reine Funktion `calcWiderspruch(quelle)`, rückwirkend aus dem seit jeher gesetzten Kennzeichen `m.gedreht` — keine neue Messung nötig. 12 Prüfungen an der echten, herausgeschnittenen Funktion bestanden. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.95 gehoben.
+
+> **Was Fassung 0.94 ändert (11.9.2026):** Backlog-Punkt 9, weiterer Ausbau gebaut, `beta.html` v19.8.24 (Backlog Fassung 95) — Ondos eigener Vorschlag, nachdem API-Football die GitHub-Automatik aus Fassung 0.93 wegen geteilter Cloud-Adresse gesperrt hatte: API-Football und football-data.org jetzt zusätzlich per Knopfdruck direkt aus der App, vom eigenen Gerät Ondos aus (keine geteilte Adresse, kein Sperr-Risiko), gekoppelt an den bestehenden „Ergebnisse prüfen"-Lauf. Beide strukturierten Quellen gehen dort künftig den KI-Läufen voran; die bestehende Einigkeitsregel (Backlog-Punkt 68) bleibt technisch unverändert, sie bekommt nur teils andere Zulieferer für ihre drei Läufe. Zwei neue, auf dem Gerät bleibende Schlüsselfelder. 18 plus 7 Prüfungen an der echten, herausgeschnittenen Logik bestanden, darunter der Beleg, dass sich ohne die neuen Schlüssel exakt das bisherige Verhalten ergibt. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.94 gehoben.
+
+> **Was Fassung 0.93 ändert (11.9.2026):** Backlog-Punkt 9, Ausbau gebaut (Backlog Fassung 94), auf Auftrag Ondos als Antwort auf den Quoten-Fabrikationsfund (Fassung 0.91): Der Schiedsrichter bekommt künftig eine eigene, strukturierte Ergebnis-Datenquelle statt allein der KI-Suche zu vertrauen. Neue Automatik `skripte/schiri-ergebnisse-holen.js` plus `.github/workflows/schiri-ergebnisse.yml` — täglich 08:00 Uhr UTC, holt Ergebnisse für den in STUFEN (`beta.html`) festgelegten Bereich von zwei strukturierten Quellen (API-Football, football-data.org) und schreibt sie in Monatsdateien unter `daten/schiri-ergebnisse/`. **Abschnitt 10 entsprechend nachgeführt:** Die Zeitsteuerung-Frage ist jetzt beantwortet statt offen — Actions wird tatsächlich gebraucht und eingesetzt, mit zwei neuen Repository-Geheimnissen (`API_FOOTBALL_KEY`, `FOOTBALL_DATA_ORG_KEY`), von Ondo selbst angelegt. Negativlisten-Geist wie beim Schiedsrichter selbst: keine Quelle behauptet Vollständigkeit, ein nicht gelisteter Wettbewerb fällt auf die bestehende KI-Suche zurück. **Offene Störung:** API-Football meldete beim echten Testlauf „Your account is suspended" — Ursache ungeklärt, liegt bei Ondo zu prüfen; bis dahin liefert die Automatik nur die 12 football-data.org-Wettbewerbe, sichtbar gekennzeichnet, kein stiller Ausfall. Die Anbindung dieser Dateien an die bestehende Einigkeitsregel (Backlog-Punkt 68) im Schiedsrichter selbst ist ein eigener, noch nicht gebauter nächster Schritt. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.93 gehoben.
+
+> **Was Fassung 0.92 ändert (11.9.2026):** Backlog-Punkt 65 — Weg C (Fassungsabschnitte ins Archiv verschieben) als stehende Regel statt Einmalaktion eingeführt (Backlog Fassung 93), auf Ondos Auftrag. Neue Regel 5 im Backlog: nur die letzten fünf Fassungsabschnitte bleiben im Hauptdokument, jede künftige Lieferung verschiebt den sechstältesten automatisch ins Archiv. Sofort angewendet: 28 Abschnitte (87 bis 60, 78.845 Zeichen) nach `BACKLOG-ARCHIV.md` verschoben, an der chronologisch richtigen Stelle, durchgehende absteigende Reihenfolge. Backlog von 269.086 auf 192.220 Zeichen. Die zwei ursprünglich bei Punkt 65 genannten Haken (Archiv selbst über der Grenze, kein automatischer Verlustbeweis) bleiben unverändert bestehen. Kein Codeaufwand, keine neuen Sprachschlüssel, kein Verfassungsartikel geändert, keine neue Arbeitsregel — Regel 5 ist eine Dokumentregel, keine Arbeitsregel im Sinn von Abschnitt 2c. Blueprint auf 0.92 gehoben.
+
+> **Was Fassung 0.91 ändert (11.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war ein Fund Ondos (Backlog Fassung 92), kein Codeaufwand. Gemini erfand auf Anfrage scheinbar exakte Wettquoten, deckungsgleich mit einer echten Anzeige, und gestand das erst auf Nachfrage — wobei selbst dieses Geständnis nicht beweisbar wahr ist, eine KI kann ihr eigenes Erfinden auch im Nachhinein nicht zuverlässig einordnen. Bestätigt die neunte Fehlerart an einem neuen, konkreten Beispiel und die bestehende Ablehnung einer KI-Suche als Ersatz für eine echte Quotenschnittstelle. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.91 gehoben.
+
+> **Was Fassung 0.90 ändert (10.9.2026):** Backlog-Punkt 9, Knopfdruck-Teil gebaut, `beta.html` v19.8.23 (Backlog Fassung 91). Abschnitt 10 entsprechend nachgeführt: die technische Einordnung ist jetzt geprüft und bestätigt statt offen — der Knopfdruck-Teil braucht kein GitHub Actions, ein reiner Browser-Abruf reicht, genau wie bei den bestehenden Gemini-/Anthropic-Knöpfen. Die vorgelagerte Sachfrage (deckt ein kostenloser Dienst Ondos Spiele ab?) ist teilweise beantwortet — „The Odds API" deckt League of Ireland und Allsvenskan nachweislich ab, 500 kostenlose Abrufe/Monat, nicht erschöpfend für jede Liga geprüft. Neues Schlüsselfeld `state.oddsKey`, im Wette-Formular Liga wählen und Quoten abrufen, bewusst ohne automatische Zuordnung zu einem Spiel oder Buchmacher — Ondo wählt selbst aus einer kurzen Liste. 13 Prüfungen an der echten, herausgeschnittenen Funktion bestanden. 11 neue Sprachschlüssel (256 → 267). Die Zeitsteuerung (Variante 1, mit einstellbarer Häufigkeit und Ausschalter) bleibt offen — sie braucht tatsächlich GitHub Actions und einen dort abzusichernden Zugriffsschlüssel. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.90 gehoben.
+
+> **Was Fassung 0.89 ändert (10.9.2026):** Neuer Backlog-Punkt 74 gebaut und im selben Zug erstmals angewendet (Backlog Fassung 90) — ChatGPT übernimmt auf Ondos Auftrag eine neue, eng begrenzte Rolle als geprüfter Code-Zulieferer für klein umrissene, von Claude vollständig spezifizierte Änderungen, mit dem Zweck Nutzung zu sparen (Codeschreiben ist teurer als das Prüfen eines fertigen Diffs). Abschnitt 2e entsprechend ergänzt. Erste Anwendung: Backlog-Punkt 68, dritter Schiedsrichter-Lauf von `claude-sonnet-4-6` auf `claude-sonnet-5` umgestellt (`beta.html` v19.8.22, rund ein Drittel weniger pro Token), Websuche auf die neuere `web_search_20260209`-Variante gehoben. ChatGPTs Code stimmte byte-für-byte mit der Spezifikation überein; 15 Prüfungen am echten, eingesetzten Code mit gestubbtem Netzwerkaufruf bestanden. Dabei ein bei der Prüfung gefundenes und berichtigtes Modell-Label (`modellGenutzt`), das nicht Teil des ChatGPT-Auftrags war. Ausdrücklich nicht geprüft: ob Sonnet 5 wirklich weniger kostet oder gleich gut funktioniert — das zeigt erst der echte Betrieb. Geprüft und verworfen: ChatGPT liest die Datei selbst über einen Link — funktioniert bei `beta.html`s Grösse nicht zuverlässig. Kein eigener Branch, mit Begründung von der ursprünglichen Ankündigung abgewichen (die stehende „kein neuer Branch"-Regel gilt weiter). Kein Verfassungsartikel geändert, keine neue Arbeitsregel — die Konfliktregel zu ChatGPTs Doppelrolle bleibt unberührt. Blueprint auf 0.89 gehoben.
+
+> **Was Fassung 0.88 ändert (10.9.2026):** Backlog-Punkt 34 (Brier-Score) und 35 (Streuungsangabe) gebaut, `beta.html` v19.8.21 (Backlog Fassung 89). Zwei neue reine Funktionen, `calcBrierScore(quelle)` und `calcStreuung(quelle)` — eigene, unveränderte Sammelschleifen, `calcKalibrierung()` selbst bleibt unangetastet. Brier-Score verrechnet behauptete Zuversicht und Eintreffen je Aussage zu einer Zahl, lässt sich nicht durch Ausweichen auf 50 % schönen. Streuung per Bootstrap (600 Ziehungen, dasselbe Verfahren wie eine frühere Handrechnung), macht den wiederkehrenden handgeschriebenen Vorbehalt „auf mehrere Prozentpunkte genau, nicht auf einen" zu einer echten Zahl. Beide in der bestehenden Kalibrierungstabelle angezeigt. 20 Prüfungen am echten, herausgeschnittenen Code bestanden, davon 9 an einer Funktion mit echtem Zufall — deshalb auf Kennwerte statt exakte Zahlen geprüft, fünffach gegen Flakiness wiederholt. 2 neue Sprachschlüssel (254 → 256). Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.88 gehoben.
+
+> **Was Fassung 0.87 ändert (10.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war Backlog Fassung 88, kein Verfassungs- oder Architekturaufwand. Zwei Teile: **Erstens**, Sabah/Celje erneut über den „Wieder prüfen"-Knopf geprüft, extern gegen je zwei unabhängige Quellen bestätigt und von Ondo übernommen — ausdrücklich nicht als „Schiedsrichter repariert" im Sinn von Ondos eigener strenger Definition gewertet, nur als Lösung dieser zwei konkreten, historisch instabilsten Fälle. Einzelheiten bei Backlog-Punkt 64. **Zweitens**, die stehende Regel „Backlog-Pflege ist Code-Aufgabe" (Regel 4) angewandt: fünf abgeschlossene Punkte (36, 43, 58, 69, 70) nach denselben Kriterien wie bei Fassung 61 nach `BACKLOG-ARCHIV.md` verschoben, wortgleich, nichts gekürzt — Begründung je Punkt und die bewusst nicht archivierten Grenzfälle stehen im Backlog selbst (Punkt 45). Kein Codeaufwand, `beta.html` bleibt v19.8.20. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.87 gehoben.
+
+> **Was Fassung 0.86 ändert (10.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war Ondos erste Bewährungsbeobachtung zu Backlog-Punkt 68 (Backlog Fassung 87), kein Codeaufwand. Eine Woche nach dem Bau der Mehrfachlauf-Absicherung (3.9.2026) meldet Ondo aus der App: seit dem 3.9. kein einziger instabilitätsbedingter Park, der einzige Park seither (5.9., Sligo Rovers – Galway United) war eine von Hand vorgenommene Parkung wegen einer extern belegten Spielverlegung, kein Instabilitätsfall. Ausdrücklich nicht behauptet: dass der Schiedsrichter „repariert" ist (Art. 14, Stabilitätsregel) — eine Woche ist eine kurze Beobachtung, ob übernommene Werte extern richtig waren ist ungeprüft. Sabah FC – Hapoel Beer-Sheva FC und NK Celje – Slovan Bratislava bleiben geparkt und warten auf Ondos eigenen erneuten Prüfversuch. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.86 gehoben.
+
+> **Was Fassung 0.85 ändert (7.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war Backlog-Punkt 73s Zurücksetzung (Backlog Fassung 86): Kandidat 4 wurde am echten Gerät geprüft und widerlegt, vierter Fehlschlag in Folge. Ondos Auftrag, ohne weitere Rückfrage: „Zurücksetzen." `kilogFilterBlock()`s Datumsfeld-Reihe (`beta.html` v19.8.20) trägt jetzt wieder exakt den Aufbau von vor Punkt 73, byte-für-byte identisch mit `logExportBlock()`s unverändert gebliebener Reihe, mit Trockentest belegt. Der ursprüngliche Überlauf-Fehler besteht damit bewusst wieder — keine neue Regression. Kein fünfter CSS-Versuch ohne neuen Auftrag; zwei Wege bleiben unverbraucht (`overflow:hidden`, nativen Picker ersetzen). Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.85 gehoben.
+
+> **Was Fassung 0.84 ändert (7.9.2026):** Drei Entscheidungen Ondos umgesetzt (Backlog Fassung 85). **Neue Arbeitsregel N — Fail Safe:** bei einem unbekannten Fehler anhalten statt automatisch das nächste Modell zu nehmen, mit dem realen Anlass vom 3./4.8.2026 (14 Flash-Modelle automatisch durchprobiert, weil ein erschöpftes Kontingent fälschlich als unbekannter Fehler behandelt wurde) und dem geprüften Befund, dass diese blinde Logik im heutigen Code nicht mehr existiert — die Regel gilt vorsorglich. **Neuer Abschnitt 2e — Rollen im Projekt:** bewusst minimal, nur die bereits in `STAND.md` stehenden Rollen plus die eine noch wirksame Konfliktregel (Architekt ≠ unabhängiger Prüfer, betrifft ChatGPT seit 27./28.8.2026), keine neue Hierarchie. **GitHub Actions, Abschnitt 10, teilweise geklärt:** Eine durch Knopfdruck ausgelöste Aktualisierung verletzt Grenze 1 nicht — ein Knopfdruck ist die verlangte Aufforderung selbst. Eine zeitgesteuerte, unbeaufsichtigte Ausführung bleibt davon ausgenommen und weiterhin offen; die Vorfrage zur Quotenabdeckung ist unverändert unbeantwortet. Zusätzlich, am selben Tag: Backlog-Punkt 73, Kandidat 4 gebaut (`beta.html` v19.8.19) — `min-width:0` direkt an beiden Datumsfeldern, auf Ondos eigenen Vorschlag, nachdem Kandidat 3 am echten Gerät widerlegt wurde; eine Rücksetz-Regel für einen weiteren Fehlschlag ist vorab vereinbart. Kein Verfassungsartikel geändert. Blueprint auf 0.84 gehoben.
+
+> **Was Fassung 0.83 ändert (7.9.2026):** Vier offene Entscheidungen aus Abschnitt 10 geklärt, kein Codeaufwand (Backlog Fassung 84). Punkt 30 (Freundschaftsspiele): bleiben in der Spielliste, Ondos Begründung „die Gehirne sollen mit solchen Variablen rechnen können". Punkt 34 (Brier-Score) und 35 (Streuungsangabe): werden gebaut — Ondo hatte die Nützlichkeitsfrage an Claude delegiert, Claudes Einschätzung ist „ja" zu beiden, mit Begründung im Backlog; beide von `BACKLOG-ARCHIV.md` zurück in den aktiven Backlog verschoben, weil eine Bauaufgabe kein archivierter Punkt ist. Punkt 0b (Widersprüche messen): Wiederaufnahme entschieden — dabei ein Widerspruch im Punkt selbst behoben und ein neuer Fund festgehalten: Der ursprüngliche Zurückstellungsgrund ist für den Markt „beide treffen" seit v19.8.0 behoben (das Gehirn wird dort direkt gefragt, nicht mehr abgeleitet), für „Über/Unter 2,5" ungeprüft — offene Umsetzungsfrage vor dem Bau. Zusätzlich, am selben Tag: Kandidat 3 zu Backlog-Punkt 73 wurde am echten Gerät geprüft und widerlegt, dritter Fehlschlag in Folge; ein direkter Vergleich mit den unveränderten Textfeldern in derselben Karte zeigt, dass nur `type="date"` betroffen ist — Kandidat 4 vorgeschlagen, bewusst nicht ungefragt gebaut, Ondos Entscheidung steht aus. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.83 gehoben.
+
+> **Was Fassung 0.82 ändert (7.9.2026):** Backlog-Punkt 73, Kandidat 3 gebaut (`beta.html` v19.8.18, Backlog Fassung 83) — **der Punkt bleibt ausdrücklich 🔴 OFFEN.** Ondo hat am echten iPhone bestätigt: Kandidat 2 (CSS-Grid, v19.8.17) hat weder das Herausragen noch ein zusätzlich beobachtetes Überlappen der Datumsfelder behoben — zweiter Fehlschlag in Folge bei einer Nebeneinander-Aufteilung. Zur Wahl gestellt zwischen einer kleinen Zusatzänderung (`overflow:hidden`) und einer grösseren, strukturell sichereren Umstellung (Felder untereinander) hat Ondo Letzteres gewählt. Neue, weiterhin ungeprüfte Vermutung: iOS/WebKit zeichnet Kalender-Symbol und Platzhalter des nativen Datumsfelds möglicherweise unabhängig von der berechneten Spaltenbreite — das würde erklären, warum weder Flexbox (Kandidat 1/2-Vorstufe) noch Grid (Kandidat 2) halfen. Gebaut: Die Datumsfeld-Reihe in `kilogFilterBlock()` steht jetzt untereinander, im selben Muster wie die Felder Wettbewerb/Mannschaft darunter — kein Nachbar mehr, mit dem ein Feld um Breite konkurrieren müsste, ein Überlappen damit geometrisch ausgeschlossen. Sichtbare Folge, nicht verschwiegen: die Filterkarte wird zwei Zeilen höher. `logExportBlock()` bleibt weiterhin bewusst unverändert als Vergleichsgrundlage. Trockentest: 32 Prüfungen an der echten, herausgeschnittenen Funktion, alle bestanden. Nach Art. 14 ausdrücklich nicht als behoben geführt — diese Umgebung kann die dritte Vermutung in Folge nicht selbst prüfen. Nebenbei, auf Ondos Angebot: ein von ihm gelieferter Rohtext-Export des Schiedsrichters wurde exploratorisch ausgewertet (91 % gefunden, 5 % nicht gefunden, kein Widerspruch zu einem übernommenen Ergebnis) — deckt sich mit Ondos eigener Beobachtung, erklärt aber nicht die separat gemeldete schwache Trefferquote eines einzelnen grossen Prüflaufs, weil der Export einen engeren Zeitraum abdeckt als die Park-Übersicht zeigt; reiner Chat-Befund, nicht in Backlog oder `STAND.md` als eigener Punkt aufgenommen. Keine neuen Sprachschlüssel (254 unverändert), kein Schnitt in der Messreihe, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.82 gehoben.
+
+> **Was Fassung 0.81 ändert (6.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war das Nachziehen von `main` und ein festgehaltener Vorfall (Backlog Fassung 82), kein Codeaufwand. Die Lieferung zu Punkt 73 (v19.8.17) lag auf einem eigenen Branch statt auf `main`; Ondo hatte das nicht erlaubt und wusste nichts davon. Per `--ff-only` nachgezogen, ohne Konflikt — `main` hatte sich seit der Lieferung nicht bewegt, die Anweisung für den Fehlerfall (anhalten statt automatisch mergen oder rebasen) kam nicht zum Tragen. In `STAND.md` festgehalten: der Vorfall selbst, dass eine Sitzung Zweige anlegen, aber nicht löschen kann (HTTP 403, Löschen bleibt Ondos Handarbeit), und **dass GitHub Pages ausschliesslich `main` liest** — eine Lieferung auf einem anderen Branch erreicht Ondos Browser nicht, unabhängig vom Ergebnis jeder Prüfung; das ist der Grund, warum der Vorfall kein Formfehler ist. Ursache ohne Ausrede benannt: Die Sitzung war von aussen auf den Branch festgelegt, aber nach Artikel 8 kommen Aufträge ausschliesslich von Ondo — richtig wäre gewesen, vor dem Push anzuhalten und zu fragen; melden ist nicht genehmigen. Abweichung vom Auftragswortlaut ausdrücklich gemeldet: Den dort genannten Abschnitt zu Backlog-Punkt 67 gibt es in `STAND.md` nicht (der Punkt ist seit 2.9.2026 archiviert), die Ergänzung steht deshalb am sachlich nächstliegenden Ort mit Fundort-Verweis. **Backlog-Punkt 67 ändert sich inhaltlich nicht, keine neue Arbeitsregel im Sinn von Abschnitt 2c** — die stehende Regel (Push nur auf `main`, `--ff-only`, kein neuer Branch ausser `mistral`, bei Konflikt anhalten und fragen) schärft die bestehende Ablaufentscheidung, sie ersetzt sie nicht. Kein Verfassungsartikel geändert. Blueprint auf 0.81 gehoben.
+
+> **Was Fassung 0.80 ändert (6.9.2026):** Backlog-Punkt 73, Kandidat Nr. 2 gebaut (`beta.html` v19.8.17, Backlog Fassung 81) — **der Punkt bleibt ausdrücklich 🔴 OFFEN.** Ondo hat am echten iPhone belegt, dass der tatsächliche Fehler ein anderer ist als der bis zum 5.9.2026 verfolgte: nicht die Zentrierung des Textes, sondern die Breite — das rechte Datumsfeld der KI-Log-Filterkarte ragt über den Kartenrand hinaus, beobachtet bei leeren Feldern. Vor der Änderung untersucht, wie beauftragt: Die vermutete abweichende Kartenbreite scheidet aus (`logExportBlock()` steht seit v19.8.15 im KI-Log-Reiter „Werkzeuge", nicht mehr im Mehr-Tab; beide Reihen liegen im selben Container und derselben Karte). Der einzige inhaltliche Unterschied ist der Feldwert — die Exportfelder sind immer mit `heute` belegt, die Filterfelder starten leer —, ausdrücklich als Vermutung gekennzeichnet und nicht als Befund (Art. 11), weil diese Umgebung keinen WebKit-Renderer hat und keine Breite messen kann. Umgebaut wurde trotzdem, weil dieser Fund die Asymmetrie erklärt, aber zu keiner anderen Abhilfe führt: Die Datumsfeld-Reihe in `kilogFilterBlock()` ist von Flexbox auf CSS-Grid mit `minmax(0,1fr)` umgestellt. `logExportBlock()` bewusst nicht mitgeändert — als unveränderte Vergleichsgrundlage für Ondos Prüfung am Gerät. Kein Eingriff an `kilogGefiltert()`, `state` oder der Datenhaltung; auch eine naheliegende Vorbelegung der Filterfelder ist unterlassen, weil sie das Filterverhalten ändern würde und nicht beauftragt war (Art. 8). Trockentest: 30 Prüfungen an der echten, herausgeschnittenen Funktion, alle bestanden; ein Fehlschlag im ersten Lauf war ein Messfehler der Prüfung selbst, die Prüfung wurde präziser gemacht statt gelockert (Fehlerart C6 vermieden). Keine bestehende Trockentest-Prüfung berührt diese Anzeigefunktion — `selbsttest.py` liegt nur auf `mistral` und prüft keine Anzeige; sein Sprachschlüssel-Abgleich schlägt vorbestehend fehl, durch Gegenprobe als Nicht-Regression belegt und als Werkzeuglücke im Sinn von Backlog-Punkt 66 nur festgehalten. **Nach Art. 14 ausdrücklich nicht als behoben geführt**, obwohl `node --check` und `pruefe.py` sauber durchlaufen — die sichtbare Wirkung ist von hier aus nicht beobachtbar. Keine neuen Sprachschlüssel (254 unverändert), kein Schnitt in der Messreihe, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.80 gehoben.
+
+> **Was Fassung 0.79 ändert (5.9.2026):** Reine Dokumentpflege und Übergabe (Auftrag Ondo, Backlog Fassung 80), kein Codeaufwand. Backlog-Punkt 73 erneut geöffnet — Ondo bestätigt keine sichtbare Wirkung der iOS-Zentrierungsregel auf seinem echten iPhone, nicht in dieser Sitzung untersucht. Backlog-Punkt 41 archiviert (`BACKLOG-ARCHIV.md`) — gebaut, ohne Bewährungsvorbehalt. `STAND.md`s Entscheidungstabelle berichtigt: Punkt 36 und 37 entfernt (beide längst gebaut, 37 bereits archiviert), Punkt 3s Fundstelle korrigiert (die referenzierte „Prio 1"-Überschrift existiert seit Fassung 77 nicht mehr). Zwei gezielt geprüfte Fragen, keine hier geklärt: Ob `refEinigkeit`- und `refRohAbgleich()`-Warnzeile gleichzeitig erscheinen können, ist bereits im Code-Kommentar von `vorhersageKarte()` beantwortet — keine offene Frage. Backlog-Punkt 65 trägt weiterhin die widersprüchlichen Zahlen „12.289"/„12.299", obwohl die Fassung-71-Notiz eine Berichtigung behauptet, die nie tatsächlich eingetragen wurde — als offene Korrektur an den Nachfolgechat gegeben, nicht hier entschieden. Alle vier Pflichtdokumente und `CLAUDE.md` gegen die 120.000-Byte-Grenze aus Punkt 65 geprüft: alle vier unter der Grenze, der Backlog selbst bei rund 203.000 Byte deutlich darüber — Punkt 65 bleibt unentschieden, wird aber dringlicher. `CLAUDE.md` erneut erneuert. Übergabemappe und Abnahme an den Nachfolgechat erstellt, mit der vollständigen Fundliste als Auftrag, nicht als gelöste Sache. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.79 gehoben.
+
+> **Was Fassung 0.78 ändert (4.9.2026):** Drei Teile in einer Lieferung (Auftrag Ondo, `beta.html` v19.8.16, Backlog Fassung 79). Backlog-Punkt 72, Schritt 2 gebaut — Karten in den drei KI-Log-Reitern Offen/Bewertet/Archiv starten eingeklappt, zeigen dabei weiterhin Spielname, Datum, Gehirn-Symbol, Ergebnis-Tipp und alle Warn-Markierungen; natives `<details>`/`<summary>`, Auf-/Zu-Zustand in einer neuen, reinen Anzeigevariable `kilogAufgeklappt` (nicht im DOM allein, weil `render()` sonst bei jeder fremden Änderung alles wieder zuklappen würde). Neuer, ans Ende angehängter Parameter `einklappbar` an `vorhersageKarte()`, rückwärtskompatibel wie `kilogGefiltert()`s `mannschaft`-Parameter aus Punkt 71. Neuer Backlog-Punkt 73 gebaut — iOS-Zentrierung der Datumsfelder, mit der dafür vorgesehenen `::-webkit-date-and-time-value`-Regel, sichtbare Wirkung auf echtem iOS von Ondo zu bestätigen (diese Umgebung hat keinen WebKit-Renderer). `CLAUDE.md` (Backlog-Punkt 54) aus den vier vollständig gelesenen Dokumenten neu erzeugt, 185 statt 209 Zeilen. Trockentest: 20 neue Prüfungen plus die bestehenden 57 (Punkt 68), 19 (Punkt 69), 19 (Punkt 70) und 19 (Punkt 71) erneut bestanden, keine Regression. Keine neuen Sprachschlüssel (254 unverändert). Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.78 gehoben.
+
+> **Was Fassung 0.77 ändert (4.9.2026):** Backlog-Punkt 71 gebaut (`beta.html` v19.8.15, Backlog Fassung 78) — Schritt 1 von 3 eines KI-Log-Redesigns: vier Reiter (Offen/Bewertet/Archiv/Werkzeuge) statt einer langen Seite, mit einer belegten, lückenlosen und überschneidungsfreien Dreiteilung aller v19-Einträge nach `e.status`/`e.geparkt`. Neuer, ans Ende angehängter Parameter `mannschaft` an `kilogGefiltert()` (Teilstring-Suche gegen `e.match`) — angehängt statt eingefügt, damit die 19 bestehenden Trockentest-Aufrufe aus Punkt 70 unverändert weiterlaufen. Zähler beziehen sich je Reiter jetzt auf dessen eigene Grundmenge, nicht mehr auf alle Einträge zusammen. Neuer Backlog-Punkt 72 hält das dreiteilige Redesign-Vorhaben fest (Struktur — gebaut, Karten einklappen — offen, Optik/Logo — offen), Schritt 2/3 ohne Bauauftrag. Trockentest: 19 neue Prüfungen plus die bestehenden 57 (Punkt 68), 19 (Punkt 69) und 19 (Punkt 70) erneut bestanden, keine Regression. Sprachschlüssel: 4 neu, 1 entfernt (`logEmpty`, nachweislich ungenutzt geworden) — 251 → 254. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.77 gehoben.
+
+> **Was Fassung 0.76 ändert (4.9.2026):** Backlog-Punkt 70 gebaut (`beta.html` v19.8.14, Backlog Fassung 77): drei kombinierbare Filter im KI-Log (Datum von/bis, Wettbewerb-Teilstring case-insensitiv, Status aus fünf aus den tatsächlichen Codewerten `e.status`/`e.geparkt`/`e.parkGrund` abgeleiteten Optionen), rein im Browser, wirken nur auf die Anzeige — `state.kiProtokoll` bleibt unangetastet. Neue reine Funktion `kilogGefiltert()`, Filterzustand in vier plain globalen `var`s wie `wtab`, bewusst nicht Teil von `state`. Dazu reine Buchführung: Backlog-Punkt 41 (seit 30.8.2026 gebaut) aus der „Prio 1"-Überschrift im Backlog entfernt und aus `STAND.md`s Entscheidungstabelle gestrichen — keine offene Entscheidung mehr. Trockentest: 19 neue Prüfungen plus die bestehenden 57 (Punkt 68) und 19 (Punkt 69) erneut bestanden, keine Regression. 10 neue Sprachschlüssel (241 → 251). Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.76 gehoben.
+
+> **Was Fassung 0.75 ändert (4.9.2026):** Messstand in `STAND.md` nachgeführt (Backlog Fassung 76), reine Dokumentation, kein Codeaufwand. Sonnet 468 bewertete Aussagen bei 3 % Abweichung, Flash 465 bei 7 %. Ein erster Versuch liess `pruefe.py` FEHL melden (fehlende Stufen-Verteilung je Gehirn) — nichts ausgeliefert, angehalten, Ondo hat die Zahlen nachgereicht, beide Summen unabhängig nachgerechnet vor dem Einsetzen (Arbeitsregel M). Neuer Befund: Sonnet hat zum ersten Mal eine bewertete Aussage ab 80 % (zwei Aussagen), ohne Schlussfolgerung wegen zu kleiner Stichprobe. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.75 gehoben.
+
+> **Was Fassung 0.74 ändert (4.9.2026):** Backlog-Punkt 69 gebaut (`beta.html` v19.8.13, Backlog Fassung 75): `pruefListe`/`pruefBilanz` sind jetzt Teil von `state` statt globaler Variablen ausserhalb davon — ein Neuladen der App wirft seither keinen noch nicht übernommenen oder ignorierten Schiedsrichter-Vorschlag mehr weg. Zwei bisher fehlende `save()`-Aufrufe ergänzt (`pruefAnwenden()`s `bet`-Zweig, `pruefIgnorieren()` vollständig), dazu ein `save()` am Ende von `abschluss()` für die endgültige Bilanz. `pruefStark` bewusst nicht verschoben. Dazu eine Nachfrage Ondos beantwortet (chronologische Einsortierung nach dem Übernehmen — nicht nötig, Eintrag wird nie im Array verschoben, mit Zeilenzitat belegt) und zwei neue Backlog-Punkte als reine Ideen aufgenommen (70, 71), keiner gebaut. Trockentest: 19 neue Prüfungen plus 57 bestehende aus Punkt 68 erneut bestanden, keine Regression. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.74 gehoben.
+
+> **Was Fassung 0.73 ändert (3.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war eine reine Untersuchung ohne Codeänderung (Backlog Fassung 74): Ondo meldete, nach einem Neuladen der App verschwänden noch nicht übernommene Schiedsrichter-Vorschläge. Bestätigt mit Codezitat: `pruefListe`/`pruefBilanz`/`pruefStark` liegen als globale Variablen ausserhalb von `state` und werden von `save()` nie mitgeschrieben — derselbe, schon länger dokumentierte Mechanismus wie beim zweiten Tastendruck, neu ist nur das Kostengewicht seit dem bezahlten Sonnet-Lauf in Punkt 68. Als neuer Backlog-Punkt 69 angelegt, ausdrücklich nicht gebaut. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.73 gehoben.
+
+> **Was Fassung 0.72 ändert (3.9.2026):** Schiedsrichter robuster gemacht (`beta.html` v19.8.12, Backlog Fassung 73). **Backlog-Punkt 36 abgeschlossen** — der Widerspruch im Punkt selbst (Kopfzeile „GEBAUT" gegen Schlusssatz „bleibt unentschieden", in Fassung 0.71 nur benannt) ist geklärt: Der Schiedsrichter meldet jetzt selbst das tatsächlich gespielte Format, und ein gemeldetes Sonderformat parkt den Eintrag sofort, ohne einen 90-Minuten-Wert zu erzwingen. **Neuer Backlog-Punkt 68 gebaut:** Jedes Spiel wird mit drei gleichzeitigen Läufen geprüft (zwei Gemini, einer über den bestehenden Sonnet-Rückfallpfad), mit fester Einigkeitsregel — 3/3 übernehmen, 2/3 übernehmen **mit** sichtbarer Pflicht-Markierung, drei verschiedene Werte parken, weniger als drei brauchbare Läufe nichts übernehmen. Dazu vier feste Prüfungen ohne Modell (Halbzeit nie höher als der 90-Minuten-Stand, 0:0 nur mit ausdrücklicher Bestätigung, Verlängerung nur mit getrennten Ständen, Sonderformat). **Punkt 0c des Backlogs teilweise gebaut**, ausdrücklich als **Negativliste** statt als Positivliste — eine Positivliste würde Wettbewerbe ausserhalb Europas nicht abdecken und Vollständigkeit vortäuschen. **Zu Grenze 5 dieses Dokuments:** Sie trägt die Einstufung von Wett- und Buchmacherseiten als unbrauchbare Quelle; der Beleg wurde mit Wettquoten geführt, nicht mit Endständen — die Übertragung auf Endstände ist eine begründete Annahme und im Backlog als solche gekennzeichnet, keine Messung. Vier Entscheidungen Ondos vorab eingeholt statt geraten (Art. 11). Trockentest an den echten, aus `beta.html` herausgeschnittenen Funktionen bestanden (57 Prüfungen). **Ausdrücklich nicht behauptet: dass die elfte Fehlerart behoben sei** — nach Ondos eigener Definition von „repariert" entscheidet das erst die Bewährung im Betrieb (Arbeitsregel B). Kein Schnitt in der Messreihe, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.72 gehoben.
+
+> **Was Fassung 0.71 ändert (2.9.2026):** Regel 4 nachgeholt, auf Ondos Nachfrage („Hast du das gemacht?"): Die stehende Regel „Backlog-Pflege ist Code-Aufgabe" (30.8.2026) war in dieser Sitzung nicht laufend angewandt worden. Alle Punkte mit Status GEBAUT/GEKLÄRT/ENTSCHIEDEN/BEANTWORTET/GESCHLOSSEN gegen die zwei Kriterien geprüft; zwei archiviert (37, 67), zehn mit Begründung stehen gelassen (Backlog Fassung 72) — darunter ein Fund, nur benannt, nicht verändert: Punkt 36 trägt eine Kopfzeile „GEBAUT" und eine Schlusszeile „bleibt weiterhin unentschieden". Verlustbeweis von Hand geführt. Kein Codeaufwand, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.71 gehoben.
+
+> **Was Fassung 0.70 ändert (2.9.2026):** Rechenfehler in Fassung 0.69/Backlog Fassung 70 berichtigt — der Nachfolgechat (Chat 28) fand einen Widerspruch (12.299 gegen 12.289 Zeichen) im selben Absatz von Punkt 65. Nachgerechnet gegen den historischen Commit: richtig ist 12.289; die 12.299 waren ab dem Anfang der Anker-Zeile gezählt statt ab dem wahren Bruchpunkt, zehn Zeichen Differenz. Mit Streichung und Vermerk berichtigt, nicht stillschweigend überschrieben (Backlog Fassung 71). Kein Codeaufwand, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.70 gehoben.
+
+> **Was Fassung 0.69 ändert (2.9.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war eine Ergänzung zu Backlog-Punkt 65 und eine Berichtigung im Backlog (Backlog Fassung 70). Die 120.000-Zeichen-Grenze im Chat-Bereich ist ein drittes Mal belegt, diesmal vom Nachfolgechat selbst gemeldet und im Repo auf das Zeichen genau nachgerechnet; der Backlog lag mit 132.289 Zeichen um 12.289 darüber, der fehlende Rest wurde nach Weg B nachgeliefert. Dabei eine seit v19.8.9 veraltete Sprachschlüsselzahl (229 statt 234) in der Tabelle „Technische Schuld" gefunden und durch einen Verweis auf `STAND.md` ersetzt statt aktualisiert (Punkt 45). Zweiter Fund am Prüfwerkzeug festgehalten, nicht behoben: `pruefe.py` prüft an dieser Stelle eine Schreibweise, nicht eine Tatsache. Kein Codeaufwand, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.69 gehoben.
+
+> **Was Fassung 0.68 ändert (2.9.2026):** Rücknahme einer verfrühten Eintragung (`beta.html` v19.8.11, Backlog Fassung 69). Ondo hat klargestellt, was „der Schiedsrichter ist repariert" heisst: er liefert ab sofort nur noch richtige, zuverlässige Ergebnisse für alle künftigen Spiele, **ohne Gegenprüfung im Chat**. Diese Bedingung ist nicht erfüllt; die manuelle Eintragung von Sabah FC–Hapoel Beer-Sheva FC und NK Celje–Slovan Bratislava vom 30.8.2026 war damit verfrüht und ist per neuer Migration `state.seedV<8` zurückgesetzt — beide Spiele stehen wieder geparkt und fallen aus der Kalibrierung heraus. Der Auftrag nannte nur Sabah; dass auch Celje betroffen war, ist am Code belegt, vor der Änderung rückgefragt (Art. 11) und von Ondo entschieden worden. Ausserdem: Messstand in `STAND.md` vollständig auf die Ablesung vom 2.9.2026 ersetzt, Backlog-Punkt 43 als beantwortet nachgetragen (mit ausdrücklicher Grenze „interner Abgleich, keine erschöpfende externe Prüfung"), zwei kleine Berichtigungen am leeren Muster der Übergabemappe. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.68 gehoben.
+
+> **Was Fassung 0.67 ändert (30.8.2026):** `main` auf den vollständigen Stand gebracht (`--ff-only` auf `4506cd0`, Fassung 67/v19.8.10 — drei zwischenzeitliche Lieferungen hatten `main` nie erreicht). Zwei verwaiste Branches geklärt (`claude/backlog-stand-update-wgp612`, `claude/ergebnisse-pruefen-28-8-mnq1au`) — beide vollständig in `main` enthalten, Löschung an der bekannten Rechte-Grenze gescheitert (HTTP 403), bleiben stehen bis Ondo sie von Hand löscht. **Neue Arbeitsweise entschieden (Ondo, 30.8.2026), Backlog-Punkt 67:** Code-Lieferungen ab sofort direkt auf `main`, kein eigener Branch mehr je Lieferung — `--ff-only` bleibt, kein Force, kein Rebase. Ausnahme unverändert: Branch `mistral`. Kein Codeaufwand, kein Verfassungsartikel geändert, keine neue Arbeitsregel (reine Ablaufentscheidung). Blueprint auf 0.67 gehoben.
+
+> **Was Fassung 0.66 ändert (30.8.2026):** Berichtigung zu Fassung 0.65: Die Daten von NK Celje–Slovan Bratislava und Sabah FC–Hapoel Beer-Sheva FC waren seit v19.8.5 (28.8.2026) durchgehend vertauscht dokumentiert und kodiert — richtig, mehrfach extern belegt: Sabah 25.8.2026, Celje 26.8.2026 (`beta.html` v19.8.10, Backlog Fassung 67). Codezitat bestätigt: eine Vertauschung zwischen den zwei Spielen war durch die eindeutigen Stichwörter strukturell ausgeschlossen, ein falsches Datum konnte höchstens zu Nicht-Zuordnung führen, nicht zu Datenschaden. Neue, robustere Migration `state.seedV<7` statt Änderung an der bereits gelaufenen `seedV<6`. `STAND.md` entsprechend korrigiert, mit Streichung und Vermerk, nicht stillschweigend überschrieben. Keine neuen Sprachschlüssel, kein Schnitt in der Messreihe, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.66 gehoben.
+
+> **Was Fassung 0.65 ändert (30.8.2026):** Nachfrage zu Backlog-Punkt 64, drei Teile (`beta.html` v19.8.9, Backlog Fassung 66). Teil 1: Codezitat bestätigt, dass kein Auswahlmechanismus unter mehreren Schiedsrichter-Läufen besteht. Teil 2: Widersprechende Läufe werden jetzt sichtbar gemacht (`refRohAbgleich()`), statt unkommentiert einen Wert zu zeigen. Teil 3: NK Celje–Slovan Bratislava und Sabah FC–Hapoel Beer-Sheva FC extern verifiziert und von Hand eingetragen, Herkunft ehrlich gekennzeichnet, behebt nicht die elfte Fehlerart selbst. Dabei ein Widerspruch in `STAND.md`s Fehlerart-11-Zeile gefunden und berichtigt; ein zweiter Widerspruch (vertauschte Daten in der Anfrage) per Rückfrage geklärt statt geraten. 3 neue Sprachschlüssel. Kein Schnitt in der Messreihe, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.65 gehoben.
+
+> **Was Fassung 0.64 ändert (30.8.2026):** Nachfrage zu Backlog-Punkt 64 beantwortet: `refRoh` (seit v19.8.5 gespeichert, aber ohne Ansicht) ist jetzt lesbar. Neuer Knopf im selben Kartenbereich wie „Log als Text", nutzt denselben Zeitraum, gibt `e.refRoh` zu den ausgewählten Einträgen aus, sonst „kein refRoh gespeichert" (`beta.html` v19.8.8, Backlog Fassung 65). 2 neue Sprachschlüssel, mehr als angefragt — gemeldet. Kein Schnitt in der Messreihe, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.64 gehoben.
+
+> **Was Fassung 0.63 ändert (30.8.2026):** Ondo hat Backlog-Punkte 36, 37 und 41 entschieden und in einer Lieferung gebaut (`beta.html` v19.8.7). Punkt 36: Schiedsrichter-/Spielformat-Auftragstext schliesst jetzt namentlich Sonderformate aus (2x60, 3x45 u. ä.) statt nur verkürzte, reguläre Verlängerung bleibt erlaubt. Punkt 37: `vorhersagen()` überspringt einen Eintrag, wenn dasselbe Gehirn für dasselbe Spiel am selben Tag bereits einen hat (keine Begrenzung der Läufe pro Tag). Punkt 41: `wettbewerb`/`anpfiff`/`stufe` werden über den Spielnamen statt über die Listenposition nachgeschlagen, kein Treffer lässt die Felder leer. Neue gemeinsame Funktion `normName()` löst die bisher lokale S1-Normalisierung ab, ohne deren Verhalten zu ändern — bekannte Grenze (kein Ausgleich für fehlendes/zusätzliches „FC" u. ä.) bleibt unverändert und durch Trockentest bestätigt. Kein Schnitt in der Messreihe, keine neuen Sprachschlüssel, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.63 gehoben.
+
+> **Was Fassung 0.62 ändert (30.8.2026):** Ondos eigenes Gegenlesen von Commit `a939a86` fand eine 31. Fundstelle ohne Fundort-Angabe (`STAND.md`, „Backlog-Punkte E und 2 gebaut" — nur Punkt 2 archiviert). Korrigiert, bewusst mit anderem Wortlaut als vorgeschlagen, um Punkt E nicht fälschlich als archiviert erscheinen zu lassen. Bei der daraufhin verlangten unabhängigen Neusuche in diesem Dokument ein eigener Methodenfehler der Code-Sitzung gefunden (Genitiv-Formen wie „Punkt 51s" wurden vom ersten Suchmuster nicht erkannt) — folgenlos für das Ergebnis, aber als zweiter Beleg für die Grenzen manueller Nachsuche in Backlog-Punkt 66 ergänzt. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.62 gehoben.
+
+> **Was Fassung 0.61 ändert (30.8.2026):** ChatGPTs Gegenlesen zu PR #1 ergab „Freigabe — nein": Querverweise auf archivierte Punkte nannten nur die Nummer, nicht den Fundort. Vier von ChatGPT zitierte Stellen korrigiert, plus 26 weitere bei vollständiger Nachsuche über Backlog, `STAND.md` und dieses Dokument gefunden (darunter fünf allein zu Punkt 47) — alle 30 jetzt mit Fundort-Angabe (Backlog Fassung 62). Neuer Backlog-Punkt 66: `pruefe.py` prüft Existenz von Querverweisen, nicht deren Fundort-Angabe — Fund, nicht gebaut. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.61 gehoben.
+
+> **Was Fassung 0.60 ändert (30.8.2026):** Chat 27s Auftrag, Teil 2 und 3: Zehn erledigte Backlog-Punkte (2, 47, 48, 49, 51, 52, 55, 56, 59, 60) nach `BACKLOG-ARCHIV.md` verschoben — Kriterium: GEBAUT/GEKLÄRT/ENTSCHIEDEN/BEANTWORTET/GESCHLOSSEN und keine Bewährungs-Einschränkung im Punkt selbst (Backlog Fassung 61). Sechs Punkte bewusst nicht verschoben, mit Begründung im Backlog (46, 54, 61, E, 64, 58) plus zwei ausdrückliche Ondo-Ausnahmen (50, 62). Ein Querverweis berichtigt (Punkt 36 auf das jetzt archivierte Punkt 51). Backlog jetzt 88.442 Zeichen (vorher 108.699). **Teil 3, neue dauerhafte Regel:** Backlog-Pflege (reines Archivieren eindeutig Erledigten) ist ab jetzt Code-Aufgabe ohne Chat-Anstoss, als Regel 4 im Backlog-Kopf festgehalten — keine neue Arbeitsregel im Sinn von Abschnitt 2c, Art. 8 bleibt für alles andere unverändert. Kein Verfassungsartikel geändert. Blueprint auf 0.60 gehoben.
+
+> **Was Fassung 0.59 ändert (30.8.2026):** Backlog-Punkt 65, Weg C ausgeführt (Ondos Entscheidung): Die Fassungsabschnitte 24–59 (50.570 Zeichen) sind aus `Ondo-Control-Backlog.md` nach `BACKLOG-ARCHIV.md` verschoben, nach dem Vorbild von Punkt 18. Verlustbeweis von Hand geführt (byte-genaue Rekonstruktion gegen den vorherigen Commit), nicht durch einen neuen `pruefe.py`-Abschnitt — dieselbe Lücke wie bei Punkt 52 (seit 30.8.2026 in `BACKLOG-ARCHIV.md`), offen benannt. Backlog jetzt 108.699 Zeichen (vorher 156.999), wieder unter der 120.000-Zeichen-Grenze aus Punkt 65. **Neuer, unentschiedener Fund dabei:** Auch ohne jede Änderungsnotiz liegt der Backlog wegen inline stehender abgeschlossener Punkte bei rund 106.400 Zeichen — nur benannt, nicht behoben. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.59 gehoben.
+
+> **Was Fassung 0.58 ändert (30.8.2026):** Drei Nachträge aus Teil E der Übergabe an Chat 27 (Backlog Fassung 59). Zwei vollständig berichtigt: `STAND.md` Punkt 3 (nicht mehr „blockiert"), Backlog-Sprachschlüsselzahl (217 → 229). Der dritte — fehlende Zeilen im Übergabe-Protokoll — liess sich **nicht** wie zugesagt vollständig nachtragen: Für Chat 20 → 21 bis Chat 25 → 26 gibt es im Repo keine belegbare Kontrollfragen-Zahl (Art. 11); eingetragen wurde eine Lückenzeile statt einer geratenen Zahl, dazu die vollständig belegte Zeile Chat 26 → Chat 27. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.58 gehoben.
+
+> **Was Fassung 0.57 ändert (30.8.2026):** Neuer Fund, kein Verfassungsartikel geändert: Ein Raw-Link-Abruf im Chat-Bereich bricht exakt bei 120.000 Zeichen ab. Der Backlog selbst — eines der vier Pflichtdokumente — liegt seit Fassung 48 (28.8.2026) darüber; eine Chat-Übergabe (Chat 26 → Chat 27, 29.8.2026) hat dadurch ein Fünftel der Pflichtlektüre nicht erhalten, ohne Fehlermeldung. Als neuer Backlog-Punkt 65 aufgenommen, drei Wege mit Kosten benannt, keiner gewählt (Backlog Fassung 58). Betrifft nachweislich nur den Chat-Bereich, nicht den Code-Bereich. Keine neue Arbeitsregel. Blueprint auf 0.57 gehoben.
+
+> **Was Fassung 0.56 ändert (29.8.2026):** Rückberichtigung Chat 25/26 (Ondo korrigiert seine eigene Aussage vom 28.8.), neue Nutzungsdaten-Ablesung 22:52 Uhr, drei neue Sitzungs-Selbstauskünfte zum 29.8. (Backlog Fassung 57). Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.56 gehoben.
+
+> **Was Fassung 0.55 ändert (28.8.2026, abends):** Berichtigung — Chat 25 und Chat 26 waren in `STAND.md` fälschlich als dieselbe Sitzung zusammengelegt worden (Fehlerart, aus Textähnlichkeit hergeleitet statt belegt), auf Ondos Rückfrage korrigiert (Backlog Fassung 56). Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.55 gehoben.
+
+> **Was Fassung 0.54 ändert (28.8.2026, abends):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war die Nutzungsdaten-Ablesung 21:43 Uhr, nachgeführte Sitzungs-Selbstauskünfte und die Überprüfung des Richtwerts (unverändert bei 23,8 KB/Prompt), Backlog Fassung 55. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.54 gehoben.
+
+> **Was Fassung 0.53 ändert (28.8.2026):** Nachfrage zu Backlog-Punkt 64 beantwortet und ergänzt — Modellversion wird jetzt mit `refRoh` gespeichert (`beta.html` v19.8.6, Backlog Fassung 54). Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.53 gehoben.
+
+> **Was Fassung 0.52 ändert (28.8.2026):** Backlog-Punkt 64 nachgetragen und gebaut — rohe Schiedsrichter-Antwort mitgeschrieben, Celje/Sabah markiert, `beta.html` v19.8.5 (Backlog Fassung 53). Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.52 gehoben.
+
+> **Was Fassung 0.51 ändert (28.8.2026):** Backlog-Punkt 51 (seit 30.8.2026 in `BACKLOG-ARCHIV.md`) gebaut — gepaarter Vergleich Sonnet gegen Flash, `beta.html` v19.8.4 (Backlog Fassung 52). Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.51 gehoben.
+
+> **Was Fassung 0.50 ändert (28.8.2026):** Beteiligtenkreis aktualisiert (Ondos Entscheidung, Backlog Fassung 51): Gemini scheidet aus, DeepSeek war nie beteiligt, ChatGPT hat eigenen GitHub-Zugriff, Mistral steht auf dem Prüfstand. Betroffen hier: Abschnitt 10, „Offen — Rollenmodell" (Geminis Doppelrolle-Konfliktregel gegenstandslos, die andere betrifft jetzt ChatGPT) und „Offen — Wie unterscheidet der Auftragstext ein echtes 0:0..." (Urheber Gemini nicht mehr beteiligt, Frage bleibt gültig). Nichts gelöscht, nur datierte Vermerke ergänzt. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.50 gehoben.
+
+> **Was Fassung 0.49 ändert (28.8.2026):** Leeds-Leipzig-Parkstatus in Backlog-Punkt 51 (seit 30.8.2026 in `BACKLOG-ARCHIV.md`) eindeutig gemacht — von Ondo bestätigt, kein offener Ausführungsschritt (Backlog Fassung 50). Anlass war eine mehrdeutige Formulierung in der Übergabemappe an Chat 26, die zu einer unnötigen Rückfrage führte. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.49 gehoben.
+
+> **Was Fassung 0.48 ändert (28.8.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war eine neue Nutzungsdaten-Ablesung (85 % / 33 %, ersetzt die vom 27.8. vollständig) und fünf Sitzungs-Selbstauskünfte zum heutigen Verbrauch in `STAND.md` (Backlog Fassung 49). Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.48 gehoben.
+
+> **Was Fassung 0.47 ändert (28.8.2026):** Restarbeit zu Backlog-Punkt 51 (Backlog Fassung 48, Punkt 51 seit 30.8.2026 in `BACKLOG-ARCHIV.md`): drei geparkte Spiele aus dem Prüflauf vom 8.8. extern gegengeprüft (NK Celje–Slovan Bratislava, Sabah FC–Hapoel Beer-Sheva FC, Leeds United–RB Leipzig) und nicht übernommen. Dabei eine Berichtigung (Fehlerart C4) an Punkt 51s eigener Ausführung vom 27.8. und eine neue, elfte Fehlerart des Schiedsrichters in `STAND.md` (schwankende Antworten trotz Temperatur 0 bei Celje und Sabah). Eine Code-Untersuchung hat belegt, dass die rohe Schiedsrichter-Antwort nirgends gespeichert wird — daraus ein neuer, nicht gebauter Idee-Punkt 64. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.47 gehoben.
+
+> **Was Fassung 0.46 ändert (27.8.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war eine neue Nutzungslimit-Ablesung samt grobem Richtwert in STAND.md (Backlog Fassung 47). Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.46 gehoben.
+
+> **Was Fassung 0.45 ändert (27.8.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war eine Fehlerart-C3-Berichtigung in STAND.md, Abschnitt „Entscheidungen, die bei Ondo liegen" (gefunden von Chat 25 bei der Gegenprüfung des Übergabeberichts, Backlog Fassung 46). Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.45 gehoben.
+
+> **Was Fassung 0.44 ändert (27.8.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war der Bau von Backlog-Punkt E und Punkt 2 (seit 30.8.2026 in `BACKLOG-ARCHIV.md`), die Berichtigung von Punkt 3, die Entscheidung zu Punkt 50 und die Prüfung von Punkt 51 (ebenfalls seit 30.8.2026 in `BACKLOG-ARCHIV.md`; Backlog Fassung 45). Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.44 gehoben.
+
+> **Was Fassung 0.43 ändert (27.8.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war die Berichtigung eines Widerspruchs (Fehlerart C4) in Backlog-Punkt E: eine als „offen" stehengelassene Rückfrage Geminis war seit dem 8.8. bereits beantwortet (Backlog Fassung 44). Kein Blueprint-Inhalt geändert. Blueprint auf 0.43 gehoben.
+
+> **Was Fassung 0.42 ändert (27.8.2026):** Nur Fassungszahl-Sync (Arbeitsregel M) — Anlass war der Bau von Backlog-Punkt 49 (Messmethodik und Interpretationsgrenzen in `STAND.md`, seit 30.8.2026 in `BACKLOG-ARCHIV.md`; Backlog Fassung 43). Kein Blueprint-Inhalt geändert. Blueprint auf 0.42 gehoben.
+
+> **Was Fassung 0.41 ändert (27.8.2026):** Ein Beleg zur seit 23.7. offenen Verfassungsfrage „GitHub Actions" ergänzt (Abschnitt 10) — ein Strukturvergleich mit `ondo-jarvis` zeigt, dass Actions dort bei jedem Push kurzlebig läuft, ohne dauerhaften Server. **Das entscheidet die Frage nicht**, nur ein Erfahrungswert dazu. Kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.41 gehoben.
+
+> **Was Fassung 0.40 ändert (27.8.2026):** Arbeitsregel M inhaltlich geändert, nicht nur der Kopf: Die Kopf-Prüfung in `pruefe.py` vergleicht STAND/Backlog/Blueprint jetzt über eine gemeinsame Fassungszahl, nicht mehr über eine von Ondo abzulesende Uhrzeit (Backlog-Punkt 59/61, Punkt 59 seit 30.8.2026 in `BACKLOG-ARCHIV.md` — Einzelheiten in Abschnitt 2c). Ausserdem: Übergaberegel für den Code-Bereich abgeschwächt (kein Kontrollexamen mehr nötig, Backlog-Punkt 61), `PROJEKT-STATUS.md` nach `archiv/` verschoben (Punkt 52 geschlossen, seit 30.8.2026 in `BACKLOG-ARCHIV.md`). Kein Verfassungsartikel geändert. Blueprint auf 0.40 gehoben.
+
+> **Was Fassung 0.39 ändert (27.8.2026, morgens):** Nur Kopf-Zeitstempel angeglichen (Arbeitsregel M) — Anlass war die Klärung von Backlog-Punkt 59 (seit 30.8.2026 in `BACKLOG-ARCHIV.md`) und die Erneuerung von `CLAUDE.md` (Backlog Fassung 40). Kein Inhalt geändert, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.39 gehoben.
+
+> **Was Fassung 0.38 ändert (24.8.2026, nachts):** Nur Kopf-Zeitstempel angeglichen (Arbeitsregel M) — Anlass war die Berichtigung von Backlog-Punkt 53 (Fund zum Feld „Anweisungen" widerlegt; Backlog Fassung 39). Kein Inhalt geändert, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.38 gehoben. **Ausdrücklicher Vermerk:** Die zugrundeliegende Zeit (09:54 Uhr) stammt aus einer Werkzeug-Systemuhr, nicht von Ondo persönlich abgelesen — Abweichung von Arbeitsregel M mit Ondos ausdrücklicher Zustimmung in dieser einen Nacht (24.8., spät). Für künftige Aufträge gilt die Regel unverändert.
+
+> **Was Fassung 0.37 ändert (23.8.2026, abends):** Nur Kopf-Zeitstempel angeglichen (Arbeitsregel M) — Anlass war die Eintragung der Punkt-53-Funde sowie die Entscheidungen zu Punkt 55 (seit 30.8.2026 in `BACKLOG-ARCHIV.md`) und 58 (Backlog Fassung 38). Kein Inhalt geändert, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.37 gehoben.
+
+> **Was Fassung 0.36 ändert (23.8.2026, vormittags):** Nur Kopf-Zeitstempel angeglichen (Arbeitsregel M) — Anlass war die Ergänzung von Backlog-Punkt 53 (Frage 6 dreifach bestätigt, Fund zu projektgebundenen Aufgaben; Backlog Fassung 37). Kein Inhalt geändert, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.36 gehoben.
+
+> **Was Fassung 0.35 ändert (22.8.2026, vormittags):** Nur Kopf-Zeitstempel angeglichen (Arbeitsregel M) — Anlass war der Abschluss der Punkt-53-Untersuchung (Backlog Fassung 36). Kein Inhalt geändert, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.35 gehoben.
+
+> **Was Fassung 0.34 ändert (22.8.2026, morgens):** Nur Kopf-Zeitstempel angeglichen (Arbeitsregel M). Kein Inhalt geändert, kein Verfassungsartikel geändert, keine neue Arbeitsregel. Blueprint auf 0.34 gehoben.
+
+> **Was Fassung 0.33 ändert (21.8.2026, abends):** Nur der Kopf-Zeitstempel wurde auf die aktuelle Ablesung gebracht, damit alle drei aktiven Dokumente dieselbe Uhrzeit tragen (Arbeitsregel M) — Anlass war der Bau von Punkt 54, `CLAUDE.md` mit Auslöser bei Sitzungsstart (Backlog Fassung 34). **Kein Inhalt hier geändert, kein Verfassungsartikel geändert, keine neue Arbeitsregel.** Blueprint auf 0.33 gehoben. *(`CLAUDE.md` ist eine Datei für den Code-Bereich, keine Regel — die Arbeitsregeln in Abschnitt 2c bleiben die Quelle, `CLAUDE.md` verweist auf sie.)*
+
+> **Was Fassung 0.32 ändert (21.8.2026, nachmittags):** Nur der Kopf-Zeitstempel wurde auf die aktuelle Ablesung gebracht, damit alle drei aktiven Dokumente dieselbe Uhrzeit tragen (Arbeitsregel M) — Anlass war die Aufnahme von `pruefe.py` ins Repo und die Anlage der beiden Muster (Backlog Fassung 33). **Kein Inhalt hier geändert, kein Verfassungsartikel geändert, keine neue Arbeitsregel.** Blueprint auf 0.32 gehoben.
+
+> **Was Fassung 0.31 ändert (21.8.2026, morgens):** **Eine Berichtigung im Text der Arbeitsregel F.** Für die laufende Pflicht, das Onboarding-Dokument am Ende eines Arbeitstags und vor jeder Chat-Übergabe zu aktualisieren, stand dort `PROJEKT-STATUS.md` — seit dem 15.8. eine Archivdatei. Sie heisst jetzt `STAND.md`, mit dem Zusatz „(bis 15.8. in `PROJEKT-STATUS.md`, seither Archiv)". Die zweite Fundstelle in Abschnitt 2c — die Namensklärung vom 31.7. — verweist nur rückblickend und bleibt unverändert. Kopf-Zeitstempel auf die Ablesung vom 21.8., 05:50 Uhr gebracht, damit alle drei aktiven Dokumente dieselbe Uhrzeit tragen. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.** Blueprint auf 0.31 gehoben. *(Zu Arbeitsregel M: `pruefe.py` ist vor dieser Lieferung gelaufen, aber erst nach einem Handupload durch Ondo — es liegt nicht im Repo. Einzelheiten im Backlog, Fassung 32.)*
+
+> **Was Fassung 0.30 ändert (20.8.2026, mittags):** Nur der Kopf-Zeitstempel wurde auf die aktuelle Ablesung gebracht, damit alle drei aktiven Dokumente dieselbe Uhrzeit tragen (Arbeitsregel M) — Anlass war der Teilbefund zu Punkt 53 (Backlog Fassung 31). **Kein Inhalt hier geändert, kein Verfassungsartikel geändert, keine neue Arbeitsregel.** Blueprint auf 0.30 gehoben.
+
+> **Was Fassung 0.29 ändert (20.8.2026, morgens):** Nur der Kopf-Zeitstempel wurde auf die aktuelle Ablesung gebracht, damit `STAND.md`, Backlog und Blueprint dieselbe Uhrzeit tragen (Arbeitsregel M) — Anlass war der Abschluss von Punkt 54 und die feste Verankerung des Raw-Link-Blocks (Backlog Fassung 30). **Kein Inhalt hier geändert, kein Verfassungsartikel geändert, keine neue Arbeitsregel.** Blueprint auf 0.29 gehoben.
+
+> **Was Fassung 0.28 ändert (16.8.2026, nachmittags):** Nur der Kopf-Zeitstempel wurde auf die aktuelle Ablesung gebracht, damit `STAND.md`, Backlog und Blueprint dieselbe Uhrzeit tragen (Arbeitsregel M) — Anlass war die Berichtigung des Widerspruchs zum ersten Hochladen in `STAND.md` und im Backlog (dort Fassung 29). **Kein Inhalt hier geändert, kein Verfassungsartikel geändert, keine neue Arbeitsregel.** Blueprint auf 0.28 gehoben.
+
+> **Was Fassung 0.27 ändert (16.8.2026, vormittags):** **Punkt 46 ist gebaut** — Claude Code arbeitet auf Ondos Surface Go, das Hochladen von Hand soll damit entfallen. **Bewährt ist es noch nicht:** Das erste Hochladen steht aus. Dazu ein Fund gegen die Buchführung von Chat 16 — drei technische Angaben in Punkt 46 waren falsch und sind mit Vermerk berichtigt. **Zwei Protokolleinträge. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
+
+> **Was Fassung 0.26 ändert (15.8.2026, spätabends):** **Eine widerlegte Aussage hat die Dokumententrennung überlebt** und stand in `STAND.md`, der Datei, die nur Gültiges enthalten soll. Gefunden über das Kontrollexamen von Chat 18. Ein Protokolleintrag. **Kein Verfassungsartikel geändert.**
+
+> **Was Fassung 0.25 ändert (15.8.2026, abends):** **Ein Formfehler, von Ondo gefunden — der dritte dieser Art in zwei Tagen.** Chat 17 hat den Aufbau der Übergabemappe geändert: Teil A und Teil B standen nicht im Codeblock, und die Bedeutung der Teile D bis G wich vom bewährten Muster ab. **Beides ungeprüft von Chat 16 übernommen, das seinerseits von Chat 15 übernommen hatte.** Ein Protokolleintrag. **Kein Verfassungsartikel geändert.**
+
+> **Was Fassung 0.24 ändert (15.8.2026, abends):** **Punkt 48 gebaut** (seit 30.8.2026 in `BACKLOG-ARCHIV.md`) — der Verlustbeweis prüft jetzt auch Struktur und Reihenfolge; die Lücke fanden ChatGPT und Gemini unabhängig voneinander, Claude hatte sie nicht gesehen. **Drei Entscheidungen Ondos**, alle drei berichtigen eine Annahme Claudes: der 20. August ist keine Frist · die Reihenfolge der Arbeiten wird durch neue Punkte nicht geändert · Entparken ist Claudes Arbeit und wird je Eintrag am Grund geprüft. **Kein Verfassungsartikel geändert.**
+
+> **Was Fassung 0.23 ändert (15.8.2026, nachmittags):** **Punkt 18 ist fertig.** Auch Backlog und Blueprint sind getrennt; dieses Dokument enthält nur noch, was gilt. **Das Entscheidungs-Protokoll steht ab jetzt in `BLUEPRINT-PROTOKOLL.md`** und wird nur auf Zuruf gelesen — dort stehen auch die neuen Einträge dieser Fassung. **Verfassung und Arbeitsregeln bleiben Pflichtlektüre**, sie wandern ausdrücklich nicht ins Archiv. **Beschluss Ondo: im Kontrollexamen künftig alle Fangfragen**, keine feste Zahl. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
+
+> **Was Fassung 0.22 ändert (15.8.2026, mittags):** **Punkt 18 ist zur Hälfte gebaut** — `PROJEKT-STATUS.md` ist in `STAND.md` und zwei Chronikdateien getrennt, **nichts gelöscht, nur verschoben**, mit maschinellem Verlustbeweis. **Punkt 45 ist gebaut.** Dazu drei Protokolleinträge und eine Berichtigung an Fassung 0.21: Die Einträge vom 15.8. standen vor denen vom 14.8., und die Zeile „auf 0.21 gehoben" trug das falsche Datum. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
+
+> **Was Fassung 0.21 ändert (eingetragen 15.8.2026, 07:30 Uhr):** Zwei Formfehler von Chat 16, von Ondo gefunden: **der Aufbau von Übergabemappe und Abnahme wurde ohne Zustimmung geändert**, und **das Kontrollexamen wurde gekürzt, obwohl die Kürzung erst nach Punkt 18 gilt.** Drei Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel** — die Regeln, die verletzt wurden, gab es bereits.
+
+
+
+
+
+
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
 > **Was Fassung 0.20 änderte (14.8.2026, spätabends):** **Die Rohdaten sind zum ersten Mal ausgewertet** — möglich geworden durch Punkt 44. **Bei keinem der beiden Gehirne ist bewiesen, dass es besser ist als jemand, der immer 50 % sagt.** Die Verzerrung durch geparkte Einträge betrifft **beide** Gehirne, nicht nur eines. Drei Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
 > **Was Fassung 0.19 änderte (14.8.2026, abends):** **Backlog-Punkt 44 ist gebaut** — der erste der fünf Beschlüsse steht. Dazu drei Berichtigungen an Fassung 0.18: Der Abschnitt 10 führte **Punkt 18 weiter als offene Frage**, obwohl er am selben Tag beschlossen wurde — geschlossen. Aus „drei Regeländerungen" werden **zwei Änderungen und eine Bestätigung**. Und **Punkt 46 war ein Doppeleintrag zu Backlog-Punkt 8**, dessen Kostenangabe zum Wochen-Limit dabei verlorenging. Vier Protokolleinträge. **Kein Verfassungsartikel geändert, keine neue Arbeitsregel.**
 > **Was Fassung 0.18 änderte (14.8.2026, nachmittags):** **Die fünf Beschlüsse der Grundsatzbesprechung** sind eingetragen — Messdaten-Export ohne Schlüssel, Trennung von Stand und Chronik, ein Ort je Tatsache, Claude Code auf dem Tablet, Selbsttest für die App. **~~Drei~~ ZWEI Regeländerungen sind beschlossen, treten aber erst nach der Trennung der Dokumente in Kraft** *(berichtigt am 14.8. abends: der dritte Aufzählungspunkt hält fest, was unverändert bleibt — eine Bestätigung ist keine Änderung)*. Kein Verfassungsartikel geändert.
