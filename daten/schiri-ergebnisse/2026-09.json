@@ -1032,6 +1032,114 @@
    "torGast": 2,
    "quelle": "football-data.org",
    "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-09-14",
+   "anpfiff": "16:30",
+   "wettbewerb": "Serie A",
+   "heim": "Como 1907",
+   "gast": "Parma Calcio 1913",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-09-14",
+   "anpfiff": "23:00",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "EC Bahia",
+   "gast": "Clube do Remo",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-09-14",
+   "anpfiff": "18:45",
+   "wettbewerb": "Serie A",
+   "heim": "FC Internazionale Milano",
+   "gast": "Udinese Calcio",
+   "status": "FT",
+   "torHeim": 5,
+   "torGast": 3,
+   "quelle": "football-data.org",
+   "halbzeit": "2:2"
+  },
+  {
+   "datum": "2026-09-14",
+   "anpfiff": "19:00",
+   "wettbewerb": "Premier League",
+   "heim": "Leeds United FC",
+   "gast": "Newcastle United FC",
+   "status": "FT",
+   "torHeim": 4,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "3:0"
+  },
+  {
+   "datum": "2026-09-14",
+   "anpfiff": "19:15",
+   "wettbewerb": "Primeira Liga",
+   "heim": "Moreirense FC",
+   "gast": "CS Marítimo",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "2:0"
+  },
+  {
+   "datum": "2026-09-14",
+   "anpfiff": "17:45",
+   "wettbewerb": "Primeira Liga",
+   "heim": "Rio Ave FC",
+   "gast": "CF Estrela da Amadora",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 3,
+   "quelle": "football-data.org",
+   "halbzeit": "1:1"
+  },
+  {
+   "datum": "2026-09-14",
+   "anpfiff": "19:45",
+   "wettbewerb": "Primeira Liga",
+   "heim": "Sporting Clube de Braga",
+   "gast": "GD Estoril Praia",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-09-14",
+   "anpfiff": "16:30",
+   "wettbewerb": "Serie A",
+   "heim": "Torino FC",
+   "gast": "AS Roma",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "0:1"
+  },
+  {
+   "datum": "2026-09-14",
+   "anpfiff": "19:00",
+   "wettbewerb": "Primera Division",
+   "heim": "Villarreal CF",
+   "gast": "Real Betis Balompié",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "1:2"
   }
  ]
 }
