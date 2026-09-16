@@ -1140,6 +1140,78 @@
    "torGast": 2,
    "quelle": "football-data.org",
    "halbzeit": "1:2"
+  },
+  {
+   "datum": "2026-09-15",
+   "anpfiff": "18:00",
+   "wettbewerb": "Eredivisie",
+   "heim": "AFC Ajax",
+   "gast": "Willem II Tilburg",
+   "status": "FT",
+   "torHeim": 5,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "2:0"
+  },
+  {
+   "datum": "2026-09-15",
+   "anpfiff": "18:45",
+   "wettbewerb": "Championship",
+   "heim": "Bristol City FC",
+   "gast": "Lincoln City FC",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-09-15",
+   "anpfiff": "18:00",
+   "wettbewerb": "Primera Division",
+   "heim": "Deportivo Alavés",
+   "gast": "Valencia CF",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-09-15",
+   "anpfiff": "19:30",
+   "wettbewerb": "Primera Division",
+   "heim": "Elche CF",
+   "gast": "Real Madrid CF",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 3,
+   "quelle": "football-data.org",
+   "halbzeit": "0:2"
+  },
+  {
+   "datum": "2026-09-15",
+   "anpfiff": "18:45",
+   "wettbewerb": "Championship",
+   "heim": "Middlesbrough FC",
+   "gast": "Millwall FC",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "0:2"
+  },
+  {
+   "datum": "2026-09-15",
+   "anpfiff": "17:00",
+   "wettbewerb": "Primera Division",
+   "heim": "Rayo Vallecano de Madrid",
+   "gast": "RCD Espanyol de Barcelona",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "2:0"
   }
  ]
 }
