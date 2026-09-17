@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 17.9.2026, Fassung 130, v19.13.3*
+*Die aktuelle Wahrheit. Stand: 17.9.2026, Fassung 131, v19.13.3*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -436,6 +436,8 @@ selbst gemeldete Grenze. **Ein einzelner Test ist keine abgeschlossene Bewährun
 *Vorfall vollstaendig geschildert in `CHRONIK-2026-08.md`. Hier nur die daraus folgende, weiterhin gueltige Regel:*
 
 **Stehende Regel, ab sofort in jedem Auftrag zu wiederholen (Ondo, 6.9.2026):** Push ausschliesslich auf `main`, `--ff-only`. Kein neuer Branch, ausser `mistral`. **Bei einem Konflikt: anhalten und fragen, nicht selbst entscheiden** — kein automatischer Merge, kein Rebase, kein Force.
+
+**🔴 Klarstellung, 17.9.2026 (Ondo, Backlog-Punkt 83):** Für Backlog-Punkt 83 hatte die aufrufende Cloud-Sitzung von der Plattform selbst einen eigenen Feature-Branch (`claude/startprüfung-stand-md-fwfl3u`) zugewiesen bekommen — keine eigenmächtige Entscheidung wie am 6.9.2026, sondern eine Vorgabe der Sitzungsumgebung, im Widerspruch zur stehenden Regel oben. Ondo hat klargestellt: **Die Regel gilt für den Normalfall, nicht nur als Ziel eines nachträglichen Merges** — Code arbeitet direkt auf `main`, unabhängig davon, welchen Branch eine Sitzungsumgebung vorschlägt. Der Feature-Branch wurde nach Fertigstellung per `--ff-only` nach `main` gemerged und anschliessend gelöscht (lokal möglich, auf GitHub selbst an der bekannten 403-Grenze gescheitert, siehe „Bekannte Einschränkungen" — Ondo um manuelles Löschen gebeten). Ausnahme weiterhin ausschliesslich `mistral`.
 
 ---
 

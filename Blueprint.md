@@ -3,10 +3,12 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.129
+**Version:** 0.130
 **Stand:** 17. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
+
+> **Was Fassung 0.130 ändert (17.9.2026):** Reine Fassungszahl-Anpassung nach Arbeitsregel M — `STAND.md` wurde ergänzt (Klarstellung Ondos: die main-only-Push-Regel gilt auch gegenüber einer von der Sitzungsumgebung selbst zugewiesenen Branch-Vorgabe, Abschnitt „Push ausschliesslich auf main"). Blueprint selbst inhaltlich nicht geändert. Blueprint auf 0.130 gehoben.
 
 > **Was Fassung 0.129 ändert (17.9.2026):** Reine Fassungszahl-Anpassung nach Arbeitsregel M — `STAND.md` und der Backlog wurden für Backlog-Punkt 83 geändert (STARTPRÜFUNG als aktuelle Chat-Übergaberegel dokumentiert, Abschnitt 2d hier inhaltlich nicht berührt: ChatGPTs eigene Übergaberegel-Fassung läuft unverändert weiter). Blueprint selbst inhaltlich nicht geändert. Blueprint auf 0.129 gehoben.
 
