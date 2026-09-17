@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 17.9.2026, Fassung 133, v19.14.1*
+*Die aktuelle Wahrheit. Stand: 17.9.2026, Fassung 134, v19.14.2*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -206,33 +206,37 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   den Trainingsraum) — dieser Commit ist der Stand **davor**, falls zurückgesetzt werden muss.
   Einzelheiten Backlog-Punkt 77.
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.14.1** (`beta.html`, geliefert 17.9.2026) — **ESPN als primäre
-  Schiedsrichter-Ergebnisquelle bleibt, KI-Notnagel zurück auf drei Läufe (Backlog-Punkt 84,
-  Auftrag Ondo, noch am selben Tag wie v19.14.0).** An ESPN selbst, `espnLauf()`, den
-  Slug-Tabellen (Schritt 1) und der 90-Minuten-Formel (Schritt 3, `linescores[0]+[1]`,
-  elfmeter-/verlängerungssicher) ändert sich nichts — Einzelheiten dazu weiterhin bei
-  `CHRONIK-2026-09.md`, „Beta zuvor: v19.14.0", und in Backlog-Punkt 84.
-  **Geändert:** `REF_MIN_LAEUFE` ist jetzt keine globale Schwelle mehr, sondern
-  zusammengesetzt: Ein Strukturtreffer (ESPN, erkennbar an `ergebnisQuelleAus()!=='ki'`)
-  braucht weiterhin nur sich selbst (Schwelle 1) — er „rät" nicht. Bestehen die geprüften
-  Läufe eines Spiels dagegen ausschliesslich aus KI-Läufen (ESPN hat nichts gefunden), gilt
-  wieder `REF_MIN_LAEUFE=3`: zwei Gemini-Läufe plus ein Sonnet-Lauf, mit derselben
-  2-von-3-Übereinstimmungsregel wie vor v19.14.0 (die Mehrheits-Rechnung in `refEinigkeit()`
-  war nie geändert, nur die Eintrittsschwelle). `kiZahl` im Notnagel-Zweig entsprechend von
-  1 auf 3 zurückgesetzt. **Damit gilt die Drei-Läufe-Absicherung gegen einen einzelnen
-  halluzinierenden KI-Lauf (elfte Fehlerart) wieder — ausschliesslich für den Fall, dass ESPN
-  nichts liefert.** Ondos ausdrückliche Kostenentscheidung von v19.14.0 (ein Notnagel-Lauf
-  statt drei) ist damit zurückgenommen.
-  **Verifiziert:** `node --check` bestanden · **10 neue Prüfungen** an den echten, wortgleich
-  aus `beta.html` herausgeschnittenen Funktionen — ein ESPN-Lauf allein weiterhin
-  „einstimmig" · ein einzelner KI-Lauf allein jetzt wieder „zuwenig" · zwei KI-Läufe allein
-  weiterhin „zuwenig" · drei KI-Läufe mit 2-von-3-Übereinstimmung → „zweivondrei" mit
-  Mehrheitswert · drei verschiedene KI-Läufe → „uneinig" (Celje/Sabah-Schutz wiederhergestellt)
-  · ein gemischter Fall (ESPN + KI) bleibt bei Schwelle 1 · der volle ESPN-Weg (Celje/Slovan
-  und der Elfmeter-Fall) unverändert korrekt — alle bestanden, zusätzlich zu den 30
-  Prüfungen aus v19.14.0, erneut gegenkontrolliert. `pruefe.py`: ALLES SAUBER. **Keine neuen
-  Sprachschlüssel** (349 unverändert). **Kein Schnitt in der Messreihe.** `APP_VERSION`
-  weiter 18.
+- **Beta: v19.14.2** (`beta.html`, geliefert 17.9.2026) — **Rohe ESPN-Antwort mitgeschrieben
+  (Backlog-Punkt 84, Auftrag Ondo).** Vorgeschichte (Notnagel-Läufe, `REF_MIN_LAEUFE`,
+  90-Minuten-Formel): unverändert, `CHRONIK-2026-09.md`, „Beta zuvor: v19.14.1"/„v19.14.0",
+  und Backlog-Punkt 84.
+  **Gebaut:** Neue Funktion `espnRohSchreiben(r, ziel)`, aufgerufen direkt neben jedem
+  `verarbeite(r, ziel, espnRohText, 'espn')` in `rundeLaufen()`. Bei jedem ESPN-Treffer schreibt
+  sie an jeden betroffenen `kiProtokoll`-Eintrag ein neues Feld `e.espnRoh[]` — je Fund ein
+  Eintrag mit Datum, dem konkret gefundenen Scoreboard-Ereignis und der **vollständigen**
+  Summary-Antwort. Bewusst **getrennt von `e.refRoh[]`** (das über `verarbeite()` weiterhin nur
+  die knappe „id: heim:gast"-Zusammenfassung bekommt, unverändert) und bewusst **nicht die ganze
+  Scoreboard-Tagesliste**, nur das eine gefundene Ereignis daraus — die übrigen Spiele desselben
+  Tages gehören nicht zu diesem Fund und würden bei mehreren Treffern am selben Tag unnötig
+  dupliziert. Wie `e.refRoh[]` ein Array: nichts wird überschrieben, jeder Fund (auch nach
+  Ondos „Wieder prüfen"-Knopf) hängt sich an. Reines Mitschreiben — an `refLaufPruefen()`,
+  `refEinigkeit()`, der 90-Minuten-Formel oder `REF_MIN_LAEUFE` ändert sich nichts.
+  **Kostenpunkt ehrlich genannt (Art. 14):** Eine echte ESPN-Summary-Antwort ist **kein**
+  kleiner Datensatz — gemessen an den drei Testantworten aus Schritt 0: 47–404 KB je Spiel
+  (Mittelwert rund 250 KB), weil ESPN dort auch Kader, Wettquoten, News und Videos mitliefert,
+  die hier nie gelesen werden. Gegen die von Ondo selbst gemessene Geräte-Grenze (39.332 MB,
+  siehe „Datensicherung") bleibt das auch bei hunderten Treffern eine kleine einstellige
+  Prozentzahl — kein Blocker, aber keine vernachlässigbare Zahl, wie zugesagt ehrlich benannt,
+  nicht nur behauptet.
+  **Verifiziert:** `node --check` bestanden · **12 neue Prüfungen** an den echten, wortgleich
+  aus `beta.html` herausgeschnittenen Funktionen (kein Nachbau), mit derselben live abgerufenen
+  Celje/Slovan-Antwort wie beim Bau von `espnLauf()`: `_espnRoh` trägt das echte, konkret
+  gefundene Ereignis und die vollständige, unveränderte Summary-Antwort · beide beteiligten
+  `kiProtokoll`-Einträge (Sonnet und Flash) bekommen je einen `espnRoh`-Eintrag, ein
+  unbeteiligter dritter Eintrag bleibt unberührt · `e.refRoh` bleibt dabei unverändert (leer) ·
+  ein zweiter Fund hängt sich an, statt zu überschreiben · ein Wettschein-Posten (`art!=='log'`)
+  wird nie angefasst — alle bestanden. `pruefe.py`: ALLES SAUBER. **Keine neuen Sprachschlüssel**
+  (349 unverändert). **Kein Schnitt in der Messreihe.** `APP_VERSION` weiter 18.
   **🔴 Status ausdrücklich NICHT auf „behoben" gesetzt:** Bestätigung durch einen echten
   Prüfzyklus am Gerät steht aus, ebenso die Entscheidung, ob/wie die UEFA- und
   openfootball-Lücke geschlossen wird.

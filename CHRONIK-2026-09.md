@@ -27,6 +27,37 @@
 
 *Nachtrag 17.9.2026 (Backlog-Punkt 84, dieselbe Wegweiser-Regel wie am 14.9.2026 angewandt): Der v19.13.3-Eintrag stand bis heute noch als „Beta:"-Zeile in `STAND.md` selbst. Wortgleich hierher verschoben, weil `beta.html` inzwischen auf v19.14.0 weitergezogen ist — an der Reihenfolge (neueste zuerst) aendert sich dadurch nichts, der Eintrag steht jetzt an der Stelle, die ihm nach diesem Prinzip zusteht.*
 
+- **Beta zuvor: v19.14.1** (`beta.html`, geliefert 17.9.2026) — **ESPN als primäre
+  Schiedsrichter-Ergebnisquelle bleibt, KI-Notnagel zurück auf drei Läufe (Backlog-Punkt 84,
+  Auftrag Ondo, noch am selben Tag wie v19.14.0).** An ESPN selbst, `espnLauf()`, den
+  Slug-Tabellen (Schritt 1) und der 90-Minuten-Formel (Schritt 3, `linescores[0]+[1]`,
+  elfmeter-/verlängerungssicher) ändert sich nichts — Einzelheiten dazu weiterhin bei
+  „Beta zuvor: v19.14.0" unten, und in Backlog-Punkt 84.
+  **Geändert:** `REF_MIN_LAEUFE` ist jetzt keine globale Schwelle mehr, sondern
+  zusammengesetzt: Ein Strukturtreffer (ESPN, erkennbar an `ergebnisQuelleAus()!=='ki'`)
+  braucht weiterhin nur sich selbst (Schwelle 1) — er „rät" nicht. Bestehen die geprüften
+  Läufe eines Spiels dagegen ausschliesslich aus KI-Läufen (ESPN hat nichts gefunden), gilt
+  wieder `REF_MIN_LAEUFE=3`: zwei Gemini-Läufe plus ein Sonnet-Lauf, mit derselben
+  2-von-3-Übereinstimmungsregel wie vor v19.14.0 (die Mehrheits-Rechnung in `refEinigkeit()`
+  war nie geändert, nur die Eintrittsschwelle). `kiZahl` im Notnagel-Zweig entsprechend von
+  1 auf 3 zurückgesetzt. **Damit gilt die Drei-Läufe-Absicherung gegen einen einzelnen
+  halluzinierenden KI-Lauf (elfte Fehlerart) wieder — ausschliesslich für den Fall, dass ESPN
+  nichts liefert.** Ondos ausdrückliche Kostenentscheidung von v19.14.0 (ein Notnagel-Lauf
+  statt drei) ist damit zurückgenommen.
+  **Verifiziert:** `node --check` bestanden · **10 neue Prüfungen** an den echten, wortgleich
+  aus `beta.html` herausgeschnittenen Funktionen — ein ESPN-Lauf allein weiterhin
+  „einstimmig" · ein einzelner KI-Lauf allein jetzt wieder „zuwenig" · zwei KI-Läufe allein
+  weiterhin „zuwenig" · drei KI-Läufe mit 2-von-3-Übereinstimmung → „zweivondrei" mit
+  Mehrheitswert · drei verschiedene KI-Läufe → „uneinig" (Celje/Sabah-Schutz wiederhergestellt)
+  · ein gemischter Fall (ESPN + KI) bleibt bei Schwelle 1 · der volle ESPN-Weg (Celje/Slovan
+  und der Elfmeter-Fall) unverändert korrekt — alle bestanden, zusätzlich zu den 30
+  Prüfungen aus v19.14.0, erneut gegenkontrolliert. `pruefe.py`: ALLES SAUBER. **Keine neuen
+  Sprachschlüssel** (349 unverändert). **Kein Schnitt in der Messreihe.** `APP_VERSION`
+  weiter 18.
+  **🔴 Status ausdrücklich NICHT auf „behoben" gesetzt:** Bestätigung durch einen echten
+  Prüfzyklus am Gerät steht aus, ebenso die Entscheidung, ob/wie die UEFA- und
+  openfootball-Lücke geschlossen wird.
+
 - **Beta zuvor: v19.14.0** (`beta.html`, geliefert 17.9.2026) — **ESPN als primäre
   Schiedsrichter-Ergebnisquelle, KI-Schiedsrichter als Notnagel (Backlog-Punkt 84, Ondos
   Auftrag).** Vorausgegangen: eine echte Live-Verifikation (Schritt 0, Ondos eigene Auflage)

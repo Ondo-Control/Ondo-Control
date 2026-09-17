@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.14.1';
+var CODE_VERSION = 'v19.14.2';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -2456,7 +2456,7 @@ function espnLauf(ziel, cache){
           var t=teamsAus(p.match), nTH=normName(t.heim), nTG=normName(t.gast);
           var passtHeim = nTH && nH && (nH.indexOf(nTH)>=0 || nTH.indexOf(nH)>=0);
           var passtGast = nTG && nG && (nG.indexOf(nTG)>=0 || nTG.indexOf(nG)>=0);
-          if(passtHeim && passtGast){ schonGefunden[p.id]=true; kandidaten.push({ id:ev.id, p:p }); }
+          if(passtHeim && passtGast){ schonGefunden[p.id]=true; kandidaten.push({ id:ev.id, p:p, ev:ev }); }
         });
       });
       if(!kandidaten.length) return [];
@@ -2485,16 +2485,53 @@ function espnLauf(ziel, cache){
             /* Ausgabeform identisch zu strukturAbgleich()s Rueckgabe (Wiederverwendung von
                verarbeite()/refLaufPruefen() UNVERAENDERT) - kd.p.id/kd.p.datum sind bereits
                eindeutig zugeordnet, eine zweite Namens-/Datumspruefung ueber strukturAbgleich()
-               selbst waere hier nur doppelte Arbeit. */
+               selbst waere hier nur doppelte Arbeit.
+               _espnRoh (Backlog-Punkt 84, Nachtrag 17.9.2026, Ondos Auftrag "Rohe ESPN-Antwort
+               mitschreiben"): traegt die vollstaendige rohe Summary-Antwort UND das konkret
+               gefundene Scoreboard-Ereignis (nicht die ganze Tagesliste - die uebrigen Spiele
+               dieses Tages gehoeren nicht zu diesem Fund) bis zu espnRohSchreiben() unten durch.
+               Rein informationell, geht in kein Feld ein, das refLaufPruefen()/refEinigkeit()
+               lesen. */
             return { id:kd.p.id, status:'fertig', heim:torHeim, gast:torGast, datum:kd.p.datum,
               wettbewerb:kd.p.wettbewerb||'', quelle:'https://www.espn.com/soccer/match/_/gameId/'+kd.id,
               verlaengerungGespielt: verlaengerung?'ja':'nein', verlaengerung:verlaengerung,
-              halbzeit:halbzeit, torlos:(torHeim===0&&torGast===0)?'bestaetigt':'nein' };
+              halbzeit:halbzeit, torlos:(torHeim===0&&torGast===0)?'bestaetigt':'nein',
+              _espnRoh:{ scoreboardEvent:kd.ev, summary:sum } };
           }).catch(function(){ return null; });
       }));
     });
   })).then(function(listen){
     return [].concat.apply([],listen).filter(Boolean);
+  });
+}
+
+/* Backlog-Punkt 84, Nachtrag 17.9.2026 (Ondos Auftrag "Rohe ESPN-Antwort mitschreiben, analog
+   refRoh"). Eigenes Feld e.espnRoh[], bewusst GETRENNT von e.refRoh[] (das ueber verarbeite()
+   fuer jede Strukturquelle, ESPN eingeschlossen, weiterhin die knappe "id: heim:gast"-
+   Zusammenfassung bekommt - unveraendert, nicht Teil dieses Auftrags). Zweck wie bei
+   Backlog-Punkt 64: Stellt sich ein uebernommener ESPN-Wert spaeter als falsch heraus, bleibt
+   rekonstruierbar, woraus er entstand - nicht nur die bereits geparsten Felder
+   (ergebnisHeim/ergebnisGast). Wie e.refRoh[] ein Array, nichts wird ueberschrieben: Jeder Fund
+   haengt sich an, auch wenn dasselbe Spiel (z. B. nach Ondos "Wieder pruefen"-Knopf) ein
+   zweites Mal bei ESPN landet.
+   Bewusst NICHT die ganze Scoreboard-Tagesliste gespeichert, nur das konkret gefundene
+   Ereignis daraus (siehe _espnRoh.scoreboardEvent, gesetzt in espnLauf() oben) - die uebrigen
+   Spiele desselben Tages/Wettbewerbs gehoeren nicht zu diesem Fund und wuerden bei mehreren
+   Treffern am selben Tag mehrfach unveraendert dupliziert. Die Summary-Antwort dagegen ist
+   IMMER vollstaendig und ausschliesslich zu diesem einen Spiel - sie geht unveraendert hinein,
+   wie beauftragt ("vollstaendige rohe JSON-Antwort").
+   Reine Schreibfunktion, keine Rueckgabe, aendert nichts an refLaufPruefen()/refEinigkeit()/
+   der Uebernahme-Logik - genau wie beauftragt: "Betrifft ausschliesslich das Mitschreiben
+   selbst". */
+function espnRohSchreiben(r, ziel){
+  if(!r || !r._espnRoh) return;
+  var p=null;
+  for(var i=0;i<ziel.length;i++){ if(ziel[i].id===r.id){ p=ziel[i]; break; } }
+  if(!p || p.art!=='log') return;
+  (state.kiProtokoll||[]).forEach(function(e){
+    if(p.eintraege.indexOf(e.id)<0) return;
+    if(!e.espnRoh) e.espnRoh=[];
+    e.espnRoh.push({ datum:heuteStr(), scoreboardEvent:r._espnRoh.scoreboardEvent, summary:r._espnRoh.summary });
   });
 }
 
@@ -3962,7 +3999,7 @@ function ergebnissePruefen(btn){
       var espnRohText = espnErg.length
         ? espnErg.map(function(r){ return r.id+': '+r.heim+':'+r.gast; }).join(' | ')
         : '(kein Treffer bei ESPN)';
-      espnErg.forEach(function(r){ verarbeite(r, ziel, espnRohText, 'espn'); });
+      espnErg.forEach(function(r){ verarbeite(r, ziel, espnRohText, 'espn'); espnRohSchreiben(r, ziel); });
 
       /* Kaskade statt Abstimmung (Ondos Auftrag, Schritt 2): Nur die von ESPN NICHT geloesten
          Spiele bekommen ueberhaupt einen KI-Aufruf. Loest ESPN den ganzen Stapel, faellt kiZahl

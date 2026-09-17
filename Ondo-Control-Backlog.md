@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 17.9.2026, Fassung 133 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 17.9.2026, Fassung 134 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -285,10 +285,11 @@ geringer Zeitaufwand.
 *Auftrag Ondo, 17.9.2026, sechs Schritte, mit vorgeschalteter Live-Verifikation (Schritt 0)
 als Bedingung für den Bau · Schritt 0 zweimal live geprüft (vier Kategorien, dann zusätzlich
 ein Elfmeterschiessen-Fall) · Schritte 1, 2 (teilweise), 3, 5, 6 gebaut 17.9.2026 (`beta.html`
-v19.14.0) · KI-Notnagel noch am selben Tag auf Auftrag Ondo zurück auf drei Läufe (v19.14.1)* ·
-**Status: 🔴 TEILWEISE GEBAUT 17.9.2026, `beta.html` v19.14.1 — zwei der drei in Schritt 2
+v19.14.0) · KI-Notnagel noch am selben Tag auf Auftrag Ondo zurück auf drei Läufe (v19.14.1) ·
+rohe ESPN-Antwort mitgeschrieben, Auftrag Ondo (v19.14.2)* ·
+**Status: 🔴 TEILWEISE GEBAUT 17.9.2026, `beta.html` v19.14.2 — zwei der drei in Schritt 2
 verlangten Quellen NICHT gebaut, an eigener Zusatzverifikation gescheitert; KI-Notnagel-Teil
-von Schritt 2 nach v19.14.0 wieder auf drei Läufe zurückgesetzt**
+von Schritt 2 nach v19.14.0 wieder auf drei Läufe zurückgesetzt; `espnRoh` mitgeschrieben**
 
 **Schritt 0 (Live-Verifikation), Befund:** Von vier wörtlich formulierten Bedingungen haben
 zwei nicht bestanden — `linescores[]` existiert nicht auf `.../scoreboard`, erst auf einem
@@ -326,6 +327,23 @@ demselben Vorsichtsprinzip):**
   (`openfootball/national-teams`, offenes CORS über `raw.githubusercontent.com`), aber kein
   für 2026 aktuell gepflegter Datenpfad auffindbar (README generisch/veraltet, mehrere
   plausible Pfade → 404). Art. 11: nicht geraten, nicht gebaut.
+
+**Rohe ESPN-Antwort mitgeschrieben, `beta.html` v19.14.2 (Auftrag Ondo, 17.9.2026, analog
+Backlog-Punkt 64):** Neues Feld `e.espnRoh[]` je `kiProtokoll`-Eintrag, getrennt von
+`e.refRoh[]`. Je ESPN-Treffer ein Eintrag mit Datum, dem konkret gefundenen
+Scoreboard-Ereignis und der vollständigen Summary-Antwort — nicht überschrieben, sondern
+angehängt, wie bei `refRoh`. Bewusst nicht die ganze Scoreboard-Tagesliste gespeichert, nur
+das eine gefundene Ereignis (die übrigen Spiele desselben Tages gehören nicht zu diesem Fund).
+**Kostenpunkt ehrlich benannt (Art. 14):** Eine echte Summary-Antwort ist 47–404 KB gross
+(gemessen an den drei Testantworten aus Schritt 0), weil ESPN dort auch Kader, Wettquoten,
+News und Videos mitliefert — gegen die Geräte-Grenze (39.332 MB) bleibt das klein, aber nicht
+vernachlässigbar. Reines Mitschreiben, keine Änderung an `refLaufPruefen()`, `refEinigkeit()`,
+der 90-Minuten-Formel oder `REF_MIN_LAEUFE`. **Verifiziert:** `node --check` bestanden ·
+**12 neue Prüfungen** an den echten, wortgleich herausgeschnittenen Funktionen (kein Nachbau),
+gegen die live abgerufene Celje/Slovan-Antwort — beide beteiligten Einträge bekommen je einen
+`espnRoh`-Eintrag, ein unbeteiligter Eintrag bleibt unberührt, `e.refRoh` bleibt unverändert,
+ein zweiter Fund hängt sich an statt zu überschreiben, ein Wettschein-Posten wird nie
+angefasst — alle bestanden. `pruefe.py`: ALLES SAUBER. Keine neuen Sprachschlüssel.
 
 **Offene Entscheidung bei Ondo:** Beide Lücken bleiben Stufe „unbekannt/nicht angeschlossen"
 — jedes betroffene Spiel fällt direkt an den KI-Notnagel durch, ohne Zeitverlust. Ob dafür
