@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 17.9.2026, Fassung 134 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 17.9.2026, Fassung 135 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -286,10 +286,13 @@ geringer Zeitaufwand.
 als Bedingung für den Bau · Schritt 0 zweimal live geprüft (vier Kategorien, dann zusätzlich
 ein Elfmeterschiessen-Fall) · Schritte 1, 2 (teilweise), 3, 5, 6 gebaut 17.9.2026 (`beta.html`
 v19.14.0) · KI-Notnagel noch am selben Tag auf Auftrag Ondo zurück auf drei Läufe (v19.14.1) ·
-rohe ESPN-Antwort mitgeschrieben, Auftrag Ondo (v19.14.2)* ·
-**Status: 🔴 TEILWEISE GEBAUT 17.9.2026, `beta.html` v19.14.2 — zwei der drei in Schritt 2
-verlangten Quellen NICHT gebaut, an eigener Zusatzverifikation gescheitert; KI-Notnagel-Teil
-von Schritt 2 nach v19.14.0 wieder auf drei Läufe zurückgesetzt; `espnRoh` mitgeschrieben**
+rohe ESPN-Antwort mitgeschrieben, Auftrag Ondo (v19.14.2) · UEFA-/openfootball-Lücke
+weiterverfolgt, Auftrag Ondo: OpenLigaDB als zweite Strukturquelle live bestätigt und gebaut
+(v19.15.0)* ·
+**Status: 🔴 TEILWEISE GEBAUT 17.9.2026, `beta.html` v19.15.0 — match.uefa.com und openfootball
+weiterhin NICHT gebaut (Verifikation gescheitert); OpenLigaDB als Ersatz für 3. Liga und drei
+Regionalliga-Staffeln gebaut und verifiziert; KI-Notnagel-Teil von Schritt 2 nach v19.14.0
+wieder auf drei Läufe zurückgesetzt; `espnRoh` mitgeschrieben**
 
 **Schritt 0 (Live-Verifikation), Befund:** Von vier wörtlich formulierten Bedingungen haben
 zwei nicht bestanden — `linescores[]` existiert nicht auf `.../scoreboard`, erst auf einem
@@ -345,9 +348,36 @@ gegen die live abgerufene Celje/Slovan-Antwort — beide beteiligten Einträge b
 ein zweiter Fund hängt sich an statt zu überschreiben, ein Wettschein-Posten wird nie
 angefasst — alle bestanden. `pruefe.py`: ALLES SAUBER. Keine neuen Sprachschlüssel.
 
-**Offene Entscheidung bei Ondo:** Beide Lücken bleiben Stufe „unbekannt/nicht angeschlossen"
-— jedes betroffene Spiel fällt direkt an den KI-Notnagel durch, ohne Zeitverlust. Ob dafür
-alternative Endpunkte gesucht werden sollen, ist nicht Teil dieses Auftrags gewesen.
+**UEFA-/openfootball-Lücke weiterverfolgt, `beta.html` v19.15.0 (Auftrag Ondo, 17.9.2026):**
+Schritt 0 (Live-Recherche) hat bestätigt: ESPN kennt keine deutsche 3. Liga und keine
+Regionalliga (`ger.3`/`ger.regionalliga`-Slugs → HTTP 400, live geprüft) — genau die Lücke,
+die STAND.md als Grossteil von Ondos Spielen benennt (nicht die UEFA-Qualifikation selbst,
+die ESPN bereits abdeckt). Gefunden und live bestätigt: `api.openligadb.de` — offenes CORS
+(mit Origin-Header), kein Schlüssel, klares Fertig-Signal (`matchIsFinished`), Halbzeit-/
+90-Minuten-Stand sauber getrennt. Elfmeter-/Verlängerungs-Falle am selben Spiel wie bei ESPN
+geprüft (Eintracht Norderstedt–St. Pauli): beide Quellen liefern unabhängig denselben Stand
+(0:0/0:0/2:3) — echte Kreuzvalidierung. Aktualität bestätigt (Spiele vom Vortag). **Gebaut:**
+`openligaShortcutFuer()` (nur die vier live bestätigten Wettbewerbe: 3. Liga, Regionalliga
+Nordost/Bayern/Nord), `openligaSaison()`, `openligaErgebnisAus()` (liest OpenLigaDBs
+irreführend benanntes „Unknown"-Feld nur dann als echte Verlängerung, wenn es vom
+90-Minuten-Stand abweicht oder ein Elfmeterschiessen folgte — sonst als redundanten
+Doppeleintrag erkannt, belegt an einem echten Fall ohne Verlängerung), `openligaLauf(ziel,
+cache)` — **parallel** zu `espnLauf()`, disjunkte Wettbewerbe. `ergebnisQuelle` um
+`'openliga'` erweitert, zählt wie `'espn'` in `refEinigkeit()` (Schwelle 1). **Grenze, ehrlich
+benannt (Art. 11):** Regionalliga West und Südwest sind bei OpenLigaDB für die laufende Saison
+NICHT auffindbar (mehrere Kürzel probiert, 0 Spiele) — bleiben ausserhalb der Slug-Tabelle,
+kein Raten. match.uefa.com und openfootball „internationals" bleiben wie oben beschrieben
+ausgeschieden — für diese beiden konkreten Quellen wurde keine Ersatzquelle gesucht, da Ondos
+Auftrag auf die tatsächliche Wettbewerbslücke zielte, nicht auf einen Quelle-für-Quelle-Ersatz.
+**Verifiziert:** `node --check` bestanden · **22 neue Prüfungen** an den echten, wortgleich
+herausgeschnittenen Funktionen gegen live abgerufene OpenLigaDB-Antworten (Slug-Erkennung,
+Saisonrechnung, fünf echte DFB-Pokal-Elfmeterfälle, der volle `openligaLauf()`-Weg,
+`ergebnisQuelleAus`/`refEinigkeit` für `'openliga'`) — alle bestanden, die 44 bereits
+bestehenden ESPN-Prüfungen erneut gegenkontrolliert, unverändert korrekt. `pruefe.py`: ALLES
+SAUBER. Keine neuen Sprachschlüssel.
+
+**Weiterhin offen:** Regionalliga West/Südwest sowie alles, was weder ESPN noch OpenLigaDB
+kennen, fällt direkt an den KI-Notnagel durch, ohne Zeitverlust.
 
 **Verifiziert (v19.14.0):** `node --check` bestanden · **30 Prüfungen** an den echten,
 wortgleich aus `beta.html` herausgeschnittenen Funktionen (kein Nachbau), gegen fünf live

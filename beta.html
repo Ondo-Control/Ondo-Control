@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.14.2';
+var CODE_VERSION = 'v19.15.0';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -2535,6 +2535,141 @@ function espnRohSchreiben(r, ziel){
   });
 }
 
+/* ================= OPENLIGADB — ZWEITE STRUKTURIERTE QUELLE (Backlog-Punkt 84, Auftrag Ondo
+   17.9.2026 "UEFA-/openfootball-Luecke weiterverfolgen") =================
+   Schritt 0 (Live-Recherche, 17.9.2026, VOR dieser Funktion durchgefuehrt): match.uefa.com und
+   openfootball sind ausgeschieden (siehe Kopf-Kommentar bei espnLauf() oben). Gesucht wurde eine
+   Quelle fuer genau die Luecke, die weder ESPN noch die beiden ausgeschiedenen Kandidaten
+   abdecken: deutsche UNTERKLASSIGE Wettbewerbe (ESPN kennt laut espnSlugFuer() keine 3. Liga
+   und keine Regionalliga - live geprueft: die ESPN-Slugs "ger.3"/"ger.regionalliga" existieren
+   nicht, HTTP 400). Gefunden und live bestaetigt: api.openligadb.de (Community-Projekt,
+   KEIN Schluessel noetig).
+   - access-control-allow-origin: "*" - bestanden, ABER nur wenn die Anfrage einen Origin-Header
+     traegt (ein echter Browser tut das immer; ein Test ohne Origin-Header zeigt gar keinen
+     CORS-Header, kein Widerspruch, nur eine Eigenheit dieser Quelle beim Testen).
+   - Datenstruktur bestanden: `matchIsFinished` ist das "fertig"-Signal (klarer als ESPN),
+     `matchResults[]` traegt Halbzeit (`resultTypeKind:"HalfTime"`) und 90-Minuten-Stand
+     (`"After90Minutes"`) getrennt, `team1`/`team2` rotieren nachweislich (19x/19x ueber eine
+     volle 3.-Liga-Saison ausgezaehlt) - team1 = Heim, team2 = Gast, keine feste Zuordnung.
+   - Elfmeter-/Verlaengerungs-Falle live geprueft, GENAU am selben Spiel wie bei ESPN
+     (Eintracht Norderstedt - St. Pauli, DFB-Pokal 16.8.2025): OpenLigaDB nennt den
+     Verlaengerungsstand mit dem irrefuehrenden Namen "Unknown" (eigene Bezeichnung der Quelle,
+     nicht unsere), einen etwaigen Elfmeterstand getrennt als "AfterPenalties". Beide Quellen
+     liefern unabhaengig voneinander denselben Stand (90-Minuten 0:0, nach Verlaengerung 0:0,
+     Elfmeter 2:3) - eine echte Kreuzvalidierung, keine blosse Doku-Vermutung. "AfterPenalties"
+     wird hier NIE gelesen, exakt wie ESPNs shootoutScore.
+   - Aktualitaet bestanden: 3. Liga und Regionalliga Nordost/Bayern/Nord fuehren die laufende
+     Saison 2026/27 bereits mit Spielen vom Vortag (16.9.2026 beim Testabruf).
+   - GRENZE, ehrlich benannt (Art. 11): Regionalliga West und Suedwest sind fuer die laufende
+     Saison NICHT auffindbar (mehrere plausible Kuerzel probiert, je 0 Spiele zurueck) - beide
+     bleiben bewusst AUSSERHALB von OPENLIGA_SHORTCUT_REGELN unten, kein Raten auf Vorrat. */
+
+/* Wettbewerb-Freitext -> OpenLigaDB-Liga-Kuerzel. Nur Wettbewerbe, die Schritt 0 tatsaechlich
+   bestaetigt hat - dieselbe Negativlisten-Disziplin wie bei ESPN_SLUG_REGELN. */
+var OPENLIGA_SHORTCUT_REGELN = [
+  { m:/3\.\s*liga|dritte\s*liga/,        shortcut:'bl3' },
+  { m:/regionalliga.*nordost/,           shortcut:'rlno' },
+  { m:/regionalliga.*bayern/,            shortcut:'regio-bayern' },
+  { m:/regionalliga.*nord(?!ost)/,       shortcut:'rln' }
+];
+function openligaShortcutFuer(wettbewerb){
+  var w=wbNorm(wettbewerb);
+  if(!w) return '';
+  for(var i=0;i<OPENLIGA_SHORTCUT_REGELN.length;i++){
+    if(OPENLIGA_SHORTCUT_REGELN[i].m.test(w)) return OPENLIGA_SHORTCUT_REGELN[i].shortcut;
+  }
+  return '';
+}
+/* Reine Funktion: deutsche Fussball-Saisons laufen Juli-Juni. "2026-09-17" -> "2026" (laufende
+   Saison 2026/27), "2026-05-16" -> "2025" (Saison 2025/26, endet im Mai). An echten Randwerten
+   der bl3-Saison 2025/26 geprueft (erstes Spiel August 2025, letztes Spiel 16.5.2026 - beide
+   ergeben "2025", wie von OpenLigaDB selbst unter demselben Saisonwert gefuehrt). */
+function openligaSaison(datumIso){
+  var m=String(datumIso||'').match(/^(\d{4})-(\d{2})-/);
+  if(!m) return '';
+  var jahr=Number(m[1]), monat=Number(m[2]);
+  return String(monat>=7 ? jahr : jahr-1);
+}
+/* Reine Funktion: liest matchResults[] in ein {heim,gast,halbzeit,verlaengerung} um, oder null
+   wenn kein 90-Minuten-Stand vorhanden ist (in allen 141 live geprueften, beendeten Spielen aus
+   zwei Wettbewerben nie der Fall, aber kein Absturzrisiko eingehen).
+   "Unknown" wird NUR als Verlaengerungsstand gewertet, wenn er sich vom 90-Minuten-Stand
+   unterscheidet ODER ein Elfmeterschiessen folgte - sonst ist er nachweislich nur ein
+   redundanter Doppeleintrag ohne echte Verlaengerung (belegt: FK Pirmasens-Hamburger SV,
+   DFB-Pokal, 1:2 nach 90 Minuten UND "Unknown" 1:2, kein Elfmeterschiessen - hier wurde
+   keine Verlaengerung gespielt, ein blindes Uebernehmen haette das Gegenteil behauptet). */
+function openligaErgebnisAus(m){
+  var res={};
+  (m.matchResults||[]).forEach(function(r){ res[r.resultTypeKind]=[r.pointsTeam1,r.pointsTeam2]; });
+  var ft=res['After90Minutes'];
+  if(!ft) return null;
+  var out={ heim:ft[0], gast:ft[1], halbzeit:'', verlaengerung:'' };
+  if(res['HalfTime']) out.halbzeit=res['HalfTime'][0]+':'+res['HalfTime'][1];
+  var unk=res['Unknown'];
+  if(unk && (res['AfterPenalties'] || unk[0]!==ft[0] || unk[1]!==ft[1])){
+    out.verlaengerung = unk[0]+':'+unk[1];
+  }
+  return out;
+}
+/* Schritt 2+3, Kaskade zu espnLauf(): disjunkte Wettbewerbe (openligaShortcutFuer() deckt keine
+   der ESPN_SLUG_REGELN-Wettbewerbe ab und umgekehrt), deshalb parallel statt nacheinander
+   aufgerufen - kein Spiel kann beide Quellen gleichzeitig treffen. cache-Parameter wie bei
+   espnLauf(): ueber mehrere Runden desselben Prueflaufs weitergereicht (Schritt 6). */
+function openligaLauf(ziel, cache){
+  if(!(ziel&&ziel.length)) return Promise.resolve([]);
+  cache = cache || {};
+  var gruppen={};
+  ziel.forEach(function(p){
+    var shortcut=openligaShortcutFuer(p.wettbewerb), datum=datumIso(p.datum);
+    if(!shortcut || !datum) return;
+    var saison=openligaSaison(datum);
+    if(!saison) return;
+    var k=shortcut+'|'+saison;
+    if(!gruppen[k]) gruppen[k]=[];
+    gruppen[k].push(p);
+  });
+  var schluessel=Object.keys(gruppen);
+  if(!schluessel.length) return Promise.resolve([]);
+  return Promise.all(schluessel.map(function(k){
+    var teile=k.split('|'), shortcut=teile[0], saison=teile[1];
+    var matchesHolen = cache[k] ? Promise.resolve(cache[k]) :
+      fetch('https://api.openligadb.de/getmatchdata/'+shortcut+'/'+saison)
+        .then(function(res){ return res.ok ? res.json() : []; })
+        .then(function(d){ var arr=Array.isArray(d)?d:[]; cache[k]=arr; return arr; })
+        .catch(function(){ return []; });
+    return matchesHolen.then(function(matches){
+      var treffer=[];
+      (gruppen[k]||[]).forEach(function(p){
+        var t=teamsAus(p.match), nTH=normName(t.heim), nTG=normName(t.gast);
+        var pIso=datumIso(p.datum);
+        var fund=null;
+        for(var i=0;i<matches.length;i++){
+          var mt=matches[i];
+          if(!mt.matchIsFinished) continue;
+          var mDatum=String(mt.matchDateTimeUTC||'').slice(0,10);
+          if(!mDatum) continue;
+          var tage=Math.abs(new Date(pIso+'T00:00:00Z').getTime()-new Date(mDatum+'T00:00:00Z').getTime())/86400000;
+          if(tage>1) continue;
+          var nH=normName(mt.team1&&mt.team1.teamName), nG=normName(mt.team2&&mt.team2.teamName);
+          var passtHeim = nTH && nH && (nH.indexOf(nTH)>=0 || nTH.indexOf(nH)>=0);
+          var passtGast = nTG && nG && (nG.indexOf(nTG)>=0 || nTG.indexOf(nG)>=0);
+          if(passtHeim && passtGast){ fund=mt; break; }
+        }
+        if(!fund) return;
+        var erg=openligaErgebnisAus(fund);
+        if(!erg) return;
+        treffer.push({ id:p.id, status:'fertig', heim:erg.heim, gast:erg.gast, datum:p.datum,
+          wettbewerb:p.wettbewerb||'', quelle:'https://www.openligadb.de/',
+          verlaengerungGespielt: erg.verlaengerung?'ja':'nein', verlaengerung:erg.verlaengerung,
+          halbzeit:erg.halbzeit, torlos:(erg.heim===0&&erg.gast===0)?'bestaetigt':'nein' });
+      });
+      return treffer;
+    });
+  })).then(function(listen){
+    return [].concat.apply([],listen).filter(Boolean);
+  });
+}
+
 /* ================= QUOTEN-AUTOMATIK (Backlog-Punkt 9, Auftrag Ondo 10.9.2026) =================
    The Odds API (the-odds-api.com), kostenloses Kontingent (rund 500 Abrufe/Monat), Ondos eigener
    Schluessel wie bei apiKey/geminiKey NUR auf dem Geraet. Bewusst KEINE automatische Zuordnung
@@ -3719,6 +3854,9 @@ function ergebnissePruefen(btn){
      ESPN abgefragt wird. Lebt nur fuer die Dauer dieses einen Aufrufs (kein state-Feld, kein
      IndexedDB) - siehe Kopf-Kommentar bei espnLauf() fuer die Begruendung. */
   var espnCache = {};
+  /* Dasselbe Prinzip wie espnCache, fuer die zweite Strukturquelle (Backlog-Punkt 84,
+     "UEFA-/openfootball-Luecke weiterverfolgen", openligaLauf() oben). */
+  var openligaCache = {};
 
   function tageAbstand(a,b){
     function z(s){ var m=String(s||'').match(/(\d{1,2})\.(\d{1,2})\.(\d{4})/); if(!m) return null;
@@ -3992,7 +4130,8 @@ function ergebnissePruefen(btn){
        bestimmte den KI-Bedarf des GANZEN Stapels: 0 -> drei KI-Wege, 1 -> zwei, 2 -> einer."
        (v19.13.3, 14.9.2026, Backlog-Punkt 81: footballDataLauf() dort bereits durch
        footballDataArchivLesen() ersetzt, apiFootballLauf() unveraendert.) */
-    espnLauf(ziel, espnCache).then(function(espnErg){
+    Promise.all([ espnLauf(ziel, espnCache), openligaLauf(ziel, openligaCache) ]).then(function(struktur){
+      var espnErg=struktur[0]||[], openligaErg=struktur[1]||[];
       function hat(liste, id){ return liste.some(function(r){ return r.id===id; }); }
       /* Strukturtreffer sofort verarbeiten — identisches Format wie bisher, verarbeite()
          UNVERAENDERT. rohText bleibt sichtbar auch bei null Treffern, wie vor diesem Umbau. */
@@ -4000,15 +4139,23 @@ function ergebnissePruefen(btn){
         ? espnErg.map(function(r){ return r.id+': '+r.heim+':'+r.gast; }).join(' | ')
         : '(kein Treffer bei ESPN)';
       espnErg.forEach(function(r){ verarbeite(r, ziel, espnRohText, 'espn'); espnRohSchreiben(r, ziel); });
+      /* OpenLigaDB (Backlog-Punkt 84, "UEFA-/openfootball-Luecke weiterverfolgen", 17.9.2026):
+         disjunkte Wettbewerbe zu ESPN (siehe Kopf-Kommentar bei openligaLauf()) - beide Listen
+         koennen daher nie dieselbe p.id doppelt enthalten, ein Spiel wird nie zweimal
+         verarbeitet. Kein eigenes -RohSchreiben() (nicht Teil dieses Auftrags, siehe Backlog). */
+      var openligaRohText = openligaErg.length
+        ? openligaErg.map(function(r){ return r.id+': '+r.heim+':'+r.gast; }).join(' | ')
+        : '(kein Treffer bei OpenLigaDB)';
+      openligaErg.forEach(function(r){ verarbeite(r, ziel, openligaRohText, 'openliga'); });
 
-      /* Kaskade statt Abstimmung (Ondos Auftrag, Schritt 2): Nur die von ESPN NICHT geloesten
-         Spiele bekommen ueberhaupt einen KI-Aufruf. Loest ESPN den ganzen Stapel, faellt kiZahl
-         auf 0, es wird gar kein Modell aufgerufen.
+      /* Kaskade statt Abstimmung (Ondos Auftrag, Schritt 2): Nur die von KEINER Strukturquelle
+         geloesten Spiele bekommen ueberhaupt einen KI-Aufruf. Loesen ESPN+OpenLigaDB zusammen
+         den ganzen Stapel, faellt kiZahl auf 0, es wird gar kein Modell aufgerufen.
          🔴 kiZahl 1->3 ZURUECKGENOMMEN, 17.9.2026 (Auftrag Ondo "KI-Notnagel zurueck auf drei
-         Laeufe"): Bleiben nach ESPN Spiele uebrig, bekommen sie wieder zwei Gemini-Laeufe plus
-         einen Sonnet-Lauf (wie vor v19.14.0), nicht mehr nur einen - passend zur in
-         refEinigkeit() wiederhergestellten 2-von-3-Regel fuer reine KI-Laeufe. */
-      var zielFuerKI = ziel.filter(function(p){ return !hat(espnErg, p.id); });
+         Laeufe"): Bleiben nach den Strukturquellen Spiele uebrig, bekommen sie wieder zwei
+         Gemini-Laeufe plus einen Sonnet-Lauf (wie vor v19.14.0), nicht mehr nur einen - passend
+         zur in refEinigkeit() wiederhergestellten 2-von-3-Regel fuer reine KI-Laeufe. */
+      var zielFuerKI = ziel.filter(function(p){ return !hat(espnErg, p.id) && !hat(openligaErg, p.id); });
       var kiWege=[];
       if(hatGemini()){ kiWege.push('gemini'); kiWege.push('gemini'); }   /* 0a zurueckgenommen in v19.7.3, siehe Backlog */
       if(hatSonnet()){ kiWege.push('sonnet'); }
@@ -4018,14 +4165,15 @@ function ergebnissePruefen(btn){
       var prompt = zielFuerKI.length ? promptBauen(zielFuerKI) : '';
 
       /* einAnbieter (Anzeige refEinAnbieter, unveraenderter Sprachschluessel): "lief die ganze
-         Runde nur auf einem einzigen Anbieter?" ESPN zaehlt nur dann als eigener Anbieter, wenn
-         es in DIESER Runde tatsaechlich einen Treffer geliefert hat - dieselbe, am 14.9.2026 am
-         Beispiel football-data-archiv gefundene und behobene Falle (ein Push OHNE diese
-         Bedingung wuerde einAnbieter DAUERHAFT unerreichbar machen, weil ESPN wie footballData-
-         Archiv keinen Schluessel braucht und deshalb bei jedem Wettbewerb mit bekanntem Slug
+         Runde nur auf einem einzigen Anbieter?" Jede Strukturquelle zaehlt nur dann als eigener
+         Anbieter, wenn sie in DIESER Runde tatsaechlich einen Treffer geliefert hat - dieselbe,
+         am 14.9.2026 am Beispiel football-data-archiv gefundene und behobene Falle (ein Push
+         OHNE diese Bedingung wuerde einAnbieter DAUERHAFT unerreichbar machen, weil weder ESPN
+         noch OpenLigaDB einen Schluessel braucht und deshalb bei jedem passenden Wettbewerb
          IMMER einen echten Versuch macht, unabhaengig vom Treffer). */
       var strukturAnbieter=[];
       if(espnErg.length) strukturAnbieter.push('espn');
+      if(openligaErg.length) strukturAnbieter.push('openliga');
       var alleWege = strukturAnbieter.concat(wege);
       einAnbieter = alleWege.length>0 && alleWege.every(function(w){ return w===alleWege[0]; });
 
@@ -4121,12 +4269,15 @@ function ergebnissePruefen(btn){
    verarbeite()-Aufrufe bei espnLauf() oben, z. B. 'espn'), bei einem echten KI-Lauf die
    aufgeloeste Modellversion bzw. der feste Sonnet-Name. ergebnisQuelleAus() uebersetzt das in
    die von Ondo verlangte kurze, kategoriale Form. 'uefa'/'openfootball' sind hier bereits
-   vorgesehen, obwohl beide Quellen noch nicht angeschlossen sind (siehe Kopf-Kommentar bei
-   espnLauf()) - sobald sie es sind, muessen nur ihre verarbeite()-Aufrufe den passenden Namen
-   uebergeben, an dieser Stelle aendert sich nichts. */
+   vorgesehen, obwohl beide Quellen NICHT angeschlossen wurden (siehe Kopf-Kommentar bei
+   espnLauf()) - sobald doch, muessen nur ihre verarbeite()-Aufrufe den passenden Namen
+   uebergeben, an dieser Stelle aendert sich nichts. 'openliga' (17.9.2026, Backlog-Punkt 84,
+   "UEFA-/openfootball-Luecke weiterverfolgen") ist die zweite, tatsaechlich angeschlossene
+   Strukturquelle - zaehlt hier wie 'espn', NICHT wie 'ki': ein einzelner OpenLigaDB-Treffer
+   "raet" ebenfalls nicht und braucht deshalb in refEinigkeit() nur die Schwelle 1, nicht 3. */
 function ergebnisQuelleAus(modell){
   var m=String(modell||'');
-  if(m==='espn' || m==='uefa' || m==='openfootball') return m;
+  if(m==='espn' || m==='uefa' || m==='openfootball' || m==='openliga') return m;
   return 'ki';
 }
 function pruefAnwenden(pid){

@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 17.9.2026, Fassung 134, v19.14.2*
+*Die aktuelle Wahrheit. Stand: 17.9.2026, Fassung 135, v19.15.0*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -206,40 +206,47 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   den Trainingsraum) — dieser Commit ist der Stand **davor**, falls zurückgesetzt werden muss.
   Einzelheiten Backlog-Punkt 77.
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.14.2** (`beta.html`, geliefert 17.9.2026) — **Rohe ESPN-Antwort mitgeschrieben
-  (Backlog-Punkt 84, Auftrag Ondo).** Vorgeschichte (Notnagel-Läufe, `REF_MIN_LAEUFE`,
-  90-Minuten-Formel): unverändert, `CHRONIK-2026-09.md`, „Beta zuvor: v19.14.1"/„v19.14.0",
-  und Backlog-Punkt 84.
-  **Gebaut:** Neue Funktion `espnRohSchreiben(r, ziel)`, aufgerufen direkt neben jedem
-  `verarbeite(r, ziel, espnRohText, 'espn')` in `rundeLaufen()`. Bei jedem ESPN-Treffer schreibt
-  sie an jeden betroffenen `kiProtokoll`-Eintrag ein neues Feld `e.espnRoh[]` — je Fund ein
-  Eintrag mit Datum, dem konkret gefundenen Scoreboard-Ereignis und der **vollständigen**
-  Summary-Antwort. Bewusst **getrennt von `e.refRoh[]`** (das über `verarbeite()` weiterhin nur
-  die knappe „id: heim:gast"-Zusammenfassung bekommt, unverändert) und bewusst **nicht die ganze
-  Scoreboard-Tagesliste**, nur das eine gefundene Ereignis daraus — die übrigen Spiele desselben
-  Tages gehören nicht zu diesem Fund und würden bei mehreren Treffern am selben Tag unnötig
-  dupliziert. Wie `e.refRoh[]` ein Array: nichts wird überschrieben, jeder Fund (auch nach
-  Ondos „Wieder prüfen"-Knopf) hängt sich an. Reines Mitschreiben — an `refLaufPruefen()`,
-  `refEinigkeit()`, der 90-Minuten-Formel oder `REF_MIN_LAEUFE` ändert sich nichts.
-  **Kostenpunkt ehrlich genannt (Art. 14):** Eine echte ESPN-Summary-Antwort ist **kein**
-  kleiner Datensatz — gemessen an den drei Testantworten aus Schritt 0: 47–404 KB je Spiel
-  (Mittelwert rund 250 KB), weil ESPN dort auch Kader, Wettquoten, News und Videos mitliefert,
-  die hier nie gelesen werden. Gegen die von Ondo selbst gemessene Geräte-Grenze (39.332 MB,
-  siehe „Datensicherung") bleibt das auch bei hunderten Treffern eine kleine einstellige
-  Prozentzahl — kein Blocker, aber keine vernachlässigbare Zahl, wie zugesagt ehrlich benannt,
-  nicht nur behauptet.
-  **Verifiziert:** `node --check` bestanden · **12 neue Prüfungen** an den echten, wortgleich
-  aus `beta.html` herausgeschnittenen Funktionen (kein Nachbau), mit derselben live abgerufenen
-  Celje/Slovan-Antwort wie beim Bau von `espnLauf()`: `_espnRoh` trägt das echte, konkret
-  gefundene Ereignis und die vollständige, unveränderte Summary-Antwort · beide beteiligten
-  `kiProtokoll`-Einträge (Sonnet und Flash) bekommen je einen `espnRoh`-Eintrag, ein
-  unbeteiligter dritter Eintrag bleibt unberührt · `e.refRoh` bleibt dabei unverändert (leer) ·
-  ein zweiter Fund hängt sich an, statt zu überschreiben · ein Wettschein-Posten (`art!=='log'`)
-  wird nie angefasst — alle bestanden. `pruefe.py`: ALLES SAUBER. **Keine neuen Sprachschlüssel**
-  (349 unverändert). **Kein Schnitt in der Messreihe.** `APP_VERSION` weiter 18.
+- **Beta: v19.15.0** (`beta.html`, geliefert 17.9.2026) — **OpenLigaDB als zweite strukturierte
+  Schiedsrichter-Quelle, für die Wettbewerbe, die ESPN nicht kennt (Backlog-Punkt 84, Auftrag
+  Ondo „UEFA-/openfootball-Lücke weiterverfolgen").** Vorgeschichte (ESPN, Notnagel-Läufe,
+  `REF_MIN_LAEUFE`, `espnRoh`): unverändert, `CHRONIK-2026-09.md` und Backlog-Punkt 84.
+  **Schritt 0 (Live-Recherche), Befund:** ESPN kennt live geprüft keine deutsche 3. Liga und
+  keine Regionalliga (`ger.3`/`ger.regionalliga`-Slugs existieren nicht, HTTP 400) — genau die
+  Lücke, die STAND.md als Grossteil von Ondos Spielen benennt. Gefunden und live bestätigt:
+  `api.openligadb.de` — offenes CORS (mit Origin-Header, wie ein echter Browser ihn immer
+  sendet), kein Schlüssel nötig, `matchIsFinished` als klares Fertig-Signal, Halbzeit-/
+  90-Minuten-Stand sauber getrennt in `matchResults[]`. **Elfmeter-/Verlängerungs-Falle am
+  selben Spiel wie bei ESPN geprüft** (Eintracht Norderstedt–St. Pauli, DFB-Pokal 16.8.2025):
+  OpenLigaDB nennt den Verlängerungsstand mit dem irreführenden Namen „Unknown" (deren eigene
+  Bezeichnung) und den Elfmeterstand getrennt „AfterPenalties" — beide Quellen liefern
+  unabhängig voneinander denselben Stand (0:0 / 0:0 / 2:3), eine echte Kreuzvalidierung.
+  Aktualität bestätigt: 3. Liga und Regionalliga Nordost/Bayern/Nord führen die laufende Saison
+  2026/27 bereits mit Spielen vom Vortag. **Grenze, ehrlich benannt (Art. 11):** Regionalliga
+  West und Südwest sind für die laufende Saison bei OpenLigaDB NICHT auffindbar (mehrere
+  Kürzel probiert, 0 Spiele) — bleiben bewusst ausserhalb der Slug-Tabelle, kein Raten.
+  **Gebaut:** `openligaShortcutFuer()` (nur die vier live bestätigten Wettbewerbe: 3. Liga,
+  Regionalliga Nordost/Bayern/Nord) · `openligaSaison()` (reine Datumsrechnung, deutsche Saison
+  Juli–Juni) · `openligaErgebnisAus()` (90-Minuten-/Halbzeit-/Verlängerungsstand aus
+  `matchResults[]`, „Unknown" nur als echte Verlängerung gewertet, wenn er vom 90-Minuten-Stand
+  abweicht oder ein Elfmeterschiessen folgte — sonst als redundanter Doppeleintrag erkannt und
+  verworfen, belegt an einem echten Fall ohne Verlängerung) · `openligaLauf(ziel, cache)`,
+  **parallel** zu `espnLauf()` aufgerufen (disjunkte Wettbewerbe, kein Spiel kann beide Quellen
+  gleichzeitig treffen). `ergebnisQuelleAus()` um `'openliga'` erweitert — zählt wie `'espn'`,
+  braucht in `refEinigkeit()` nur Schwelle 1. Der KI-Notnagel bekommt jetzt nur noch die Spiele,
+  die **weder** ESPN **noch** OpenLigaDB lösen konnten. `espnRoh`-Äquivalent für OpenLigaDB
+  bewusst NICHT mitgebaut — nicht Teil dieses Auftrags, siehe Backlog-Punkt 84.
+  **Verifiziert:** `node --check` bestanden · **22 neue Prüfungen** an den echten, wortgleich
+  herausgeschnittenen Funktionen (kein Nachbau), gegen live abgerufene OpenLigaDB-Antworten —
+  Slug-Erkennung inkl. Negativfall · Saisonrechnung an echten Randdaten · fünf echte
+  DFB-Pokal-Elfmeterfälle korrekt ausgewertet (inkl. des Falls ohne echte Verlängerung) · der
+  volle Weg über `openligaLauf()` · `ergebnisQuelleAus`/`refEinigkeit` für `'openliga'` — alle
+  bestanden, die 44 bereits bestehenden ESPN-Prüfungen erneut gegenkontrolliert, unverändert
+  korrekt. `pruefe.py`: ALLES SAUBER. **Keine neuen Sprachschlüssel** (349 unverändert). **Kein
+  Schnitt in der Messreihe.** `APP_VERSION` weiter 18.
   **🔴 Status ausdrücklich NICHT auf „behoben" gesetzt:** Bestätigung durch einen echten
-  Prüfzyklus am Gerät steht aus, ebenso die Entscheidung, ob/wie die UEFA- und
-  openfootball-Lücke geschlossen wird.
+  Prüfzyklus am Gerät steht aus. match.uefa.com und openfootball „internationals" bleiben
+  ausgeschieden (CORS bzw. keine aktuellen Daten, siehe Backlog-Punkt 84) — Regionalliga
+  West/Südwest bleiben aus demselben Grund wie diese offen.
 - **Sprachschlüssel: 349** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 12.9.2026**). **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
 
 ---

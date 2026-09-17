@@ -3,10 +3,12 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.133
+**Version:** 0.134
 **Stand:** 17. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
+
+> **Was Fassung 0.134 ändert (17.9.2026):** Reine Fassungszahl-Anpassung nach Arbeitsregel M — `STAND.md` und der Backlog wurden für Backlog-Punkt 84 geändert (OpenLigaDB als zweite Strukturquelle, Auftrag Ondo — `beta.html` v19.15.0). Blueprint selbst inhaltlich nicht geändert. Blueprint auf 0.134 gehoben.
 
 > **Was Fassung 0.133 ändert (17.9.2026):** Reine Fassungszahl-Anpassung nach Arbeitsregel M — `STAND.md` und der Backlog wurden für Backlog-Punkt 84 geändert (rohe ESPN-Antwort mitgeschrieben, Auftrag Ondo — `beta.html` v19.14.2). Blueprint selbst inhaltlich nicht geändert. Blueprint auf 0.133 gehoben.
 
