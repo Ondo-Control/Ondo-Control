@@ -1,5 +1,11 @@
 # MUSTER — ABNAHME
 
+> **🔴 ÜBERHOLT (Ondo, 15.9.2026, Backlog-Punkt 83).** Gehört zur Übergabemappe mit
+> Kontrollfragen und Antwortschlüssel, die für den Chat-Bereich durch STARTPRÜFUNG ersetzt
+> ist (`STAND.md`, Abschnitt „Chat-Übergabe ist Claudes Pflicht, nicht Ondos"). Blueprint 2d
+> (ChatGPTs eigene Übergaberegel-Fassung) hat dieses Format nie benutzt. Die Datei bleibt als
+> Beleg im Repo stehen (Regel 3), nicht gelöscht, und wird nicht mehr ausgefüllt.
+
 > **Dies ist das leere Muster.** Es enthält keine Antworten und keine Bewertung,
 > nur die Form. Es liegt im Repo, damit es nicht altert.
 >

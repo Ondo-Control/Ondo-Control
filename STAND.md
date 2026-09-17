@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 14.9.2026, Fassung 129, v19.13.3*
+*Die aktuelle Wahrheit. Stand: 17.9.2026, Fassung 130, v19.13.3*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -449,7 +449,15 @@ Ondo schreibt „Ondo Control: [Anliegen]" und fügt Raw-Links ein, **immer mit 
 
 *Namensklärung erledigt (Ondo, 31.7., eingetragen 3.8.): Diese Vorschrift hieß bis dahin ebenfalls „Regel G" und ließ sich mit der Arbeitsregel G (Kostenregel) im Blueprint verwechseln. Sie heißt jetzt **Übergaberegel**.*
 
-Claude löst die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp wird. Sie besteht aus drei Teilen: aktualisierter PROJEKT-STATUS, aktualisierter Backlog, und einer **Übergabemappe** mit den Abschnitten: (A) Nachricht zum Einfügen, (B) Kontrollfragen, (C) Antwortschlüssel nur für Ondo, (D) was zu tun ist, wenn Antworten falsch sind, (E) erste Arbeit nach der Abnahme.
+**🔴 Abgelöst durch STARTPRÜFUNG (Ondo, 15.9.2026, Backlog-Punkt 83) — aktuelle Übergaberegel für den Chat-Bereich, analog zu Backlog-Punkt 61, das dieselbe Regel für den Code-Bereich abgeschwächt hat.** Das im Rest dieses Abschnitts beschriebene Verfahren — Claude löst von selbst aus, baut eine Übergabemappe mit Teil A–E, Kontrollfragen und einem geheim zu haltenden Antwortschlüssel — ist das **bisherige** Vorgehen. Es ist überholt, nicht gelöscht (Regel 3): Ondo benutzt seit einiger Zeit stattdessen ein eigenes STARTPRÜFUNG-Verfahren.
+
+**Wie STARTPRÜFUNG funktioniert:** Ondo schickt in die erste Nachricht eines neuen Chats das Stichwort STARTPRÜFUNG plus die Raw-Links zu den vier Pflichtdokumenten, mit angehängter Commit-Zahl statt `?v=Datum`. Der neue Chat ruft alle vier selbst ab, prüft dabei, ob `STAND.md` selbst eine Reihenfolge oder vorrangige Abschnitte nennt (z. B. „Acht Fehlerarten Claudes" oder „Entscheidungen, die bei Ondo liegen") und liest diese zuerst, liest zusätzlich Ondos Speicherdatei „Offene Fäden" (liegt in Claudes eigenem Memory-System, **nicht im Repo**), und meldet sich danach von selbst mit fünf Angaben: Fassungsabgleich aller synchron zu haltenden Dokumente (einschliesslich der Feststellung, ob sie wirklich übereinstimmen) · Bestätigung der vorrangig gelesenen Abschnitte · Inhalt der „Offenen Fäden" · einer kurzen Standzusammenfassung · und einer Liste dessen, was ausdrücklich nicht gelesen wurde (Archivdateien usw.).
+
+**Warum das die Kontrollfragen ersetzt:** Eine Sitzung, die das Lesen nur vortäuscht, kann diese fünf konkreten, überprüfbaren Angaben nicht liefern — dieselbe Wirkung wie eine richtig beantwortete Fangfrage, ohne einen separaten, geheim zu haltenden Antwortschlüssel zu brauchen. **Damit entfällt für den Chat-Bereich auch die Antwortschlüssel-Geheimhaltung** (Teil C weiter unten) — STARTPRÜFUNG hat keinen Antwortschlüssel, den es zu schützen gäbe.
+
+**Was das für den Rest dieses Abschnitts heisst:** Teil A–E, die Kontrollfragen-Mechanik und die Antwortschlüssel-Geheimhaltung sind ab hier **🔴 ÜBERHOLT** — als Beleg stehen gelassen (Regel 3), nicht mehr die geltende Praxis für den Chat-Bereich. Die beiden Muster-Dateien (`MUSTER_Ondo-Control_Uebergabe.md`, `MUSTER_Ondo-Control_Abnahme.md`, Abschnitt „Muster im Repo" weiter unten) sind aus demselben Grund ebenfalls überholt — Blueprint 2d (ChatGPTs eigene Übergaberegel-Fassung) hat nie dieses Mappen-Format benutzt, sondern von Anfang an eine einfache Chat-Nachricht ohne Kontrollfragen und Antwortschlüssel. Einzelheiten: Backlog-Punkt 83.
+
+**🔴 Ab hier: das überholte, bisherige Verfahren (Regel 3 — nicht gelöscht).** Claude löste die Übergabe **von selbst** aus, sobald der Arbeitsspeicher knapp wurde. Sie bestand aus drei Teilen: aktualisierter PROJEKT-STATUS, aktualisierter Backlog, und einer **Übergabemappe** mit den Abschnitten: (A) Nachricht zum Einfügen, (B) Kontrollfragen, (C) Antwortschlüssel nur für Ondo, (D) was zu tun ist, wenn Antworten falsch sind, (E) erste Arbeit nach der Abnahme.
 
 **Teil A enthält immer den Raw-Link-Block für alle vier Pflichtdokumente, mit tagesaktueller Zahl angehängt, direkt als Text in der Nachricht — nicht als Datei-Anhang.** Grund für den Zusatz „nicht als Datei-Anhang" (bestätigt 16.8.2026, Chat 19, per Testabruf): Ein Link, der nur im Text einer hochgeladenen Datei steht, ist für den Chat-Bereich nicht abrufbar. Nur ein Link, der als Text der Nachricht selbst dasteht, ist es. Dieser Block war zwischen dem 15.8. (Chat 16→17, noch vorhanden) und dem 16.8. (Chat 18→19, nicht mehr vorhanden) ohne Meldung weggefallen und damit vorübergehend unbrauchbar geworden.
 

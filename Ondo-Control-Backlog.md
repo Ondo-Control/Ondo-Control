@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 14.9.2026, Fassung 129 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 17.9.2026, Fassung 130 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -237,6 +237,47 @@ Ondo wörtlich (Grundidee): „Es gibt die Möglichkeit einen Trainingsraum zu b
 **80. Kriterium (g) — Antwortkonsistenz durch Wiederholungsläufe testen** · *Beförderungskriterium 10.7.2026 · von ChatGPT und Gemini gemeinsam am 6.8.2026 zurückgestellt · Auftrag Ondo 13.9.2026: „Antwortkonsistenz (g): Teste. Aber Du musst klar definieren wann es fertig ist."* · **Status: beschlossen — 🔴 Werkzeug GEBAUT 13.9.2026 (`beta.html` v19.13.0), echtes Ergebnis steht aus — Ondo muss den Lauf in der App auslösen, diese Sitzung hat keinen Zugriff auf seine API-Schlüssel**
 
 **81. Schiedsrichter reparieren — nach Ondos eigener, strenger Definition** · *Auftrag Ondo 13.9.2026, wörtlich: „Dann Schiedsrichter reparieren. Das ist dein Job."* · **Status: beschlossen — 🔴 OFFEN. Ein echter Bug gefunden und behoben 13.9.2026 (`beta.html` v19.13.1, „0 von 10 gefunden"-Fund). Berichtigt 13.9.2026: die „zweite Datenquelle" war keine neue Entdeckung, sondern bereits bei Punkt 9 (11.9.2026) vollständig gebaut. 🔴 Wege-Neuzusammensetzung ausgeliefert 13.9.2026 (`beta.html` v19.13.2, Ondos Auftrag) — Bestätigung durch einen echten Prüfzyklus am Gerät steht aus, Status bleibt ausdrücklich OFFEN, nicht behoben. 🔴 football-data.org auf Archiv-Lesen umgestellt 14.9.2026 (`beta.html` v19.13.3, Ondos Auftrag) — Bestätigung durch einen echten Prüfzyklus am Gerät steht ebenfalls aus, Status bleibt OFFEN.**
+
+---
+
+**83. STARTPRÜFUNG als aktuelle Chat-Übergaberegel dokumentiert** · *Idee/beschlossen 15.9.2026, Ondo · gebaut 17.9.2026* · **Status: 🔴 GEBAUT 17.9.2026**
+
+Ondo benutzt seit einiger Zeit statt der in `STAND.md` beschriebenen Übergabemappe (Teil A–E,
+Kontrollfragen, Antwortschlüssel) ein eigenes STARTPRÜFUNG-Verfahren: Das Stichwort
+STARTPRÜFUNG plus die Raw-Links zu den vier Pflichtdokumenten (Commit-Zahl statt
+`?v=Datum`) in der ersten Nachricht eines neuen Chats. Der neue Chat ruft alle vier selbst
+ab, prüft dabei, ob `STAND.md` selbst vorrangige Abschnitte nennt (z. B. „Acht Fehlerarten
+Claudes" oder „Entscheidungen, die bei Ondo liegen") und liest diese zuerst, liest
+zusätzlich Ondos Speicherdatei „Offene Fäden" (Claudes eigenes Memory-System, nicht im
+Repo), und meldet sich danach von selbst mit fünf Angaben: Fassungsabgleich aller
+synchron zu haltenden Dokumente (inkl. Feststellung, ob sie wirklich übereinstimmen) ·
+Bestätigung der vorrangig gelesenen Abschnitte · Inhalt der „Offenen Fäden" · einer kurzen
+Standzusammenfassung · einer Liste dessen, was ausdrücklich nicht gelesen wurde. **Das
+ersetzt die Kontrollfragen faktisch** — eine Sitzung, die das Lesen nur vortäuscht, kann
+diese konkreten, überprüfbaren Angaben nicht liefern.
+
+**Gebaut:** `STAND.md`, Abschnitt „Chat-Übergabe ist Claudes Pflicht, nicht Ondos" beschreibt
+STARTPRÜFUNG jetzt als aktuelle Regel für den Chat-Bereich, analog zu Backlog-Punkt 61 für
+den Code-Bereich. Teil A–E, Kontrollfragen-Mechanik und Antwortschlüssel-Geheimhaltung sind
+dort als 🔴 ÜBERHOLT markiert, nicht gelöscht (Regel 3). Die beiden Muster-Dateien
+(`MUSTER_Ondo-Control_Uebergabe.md`, `MUSTER_Ondo-Control_Abnahme.md`) tragen aus demselben
+Grund jetzt ebenfalls einen Überholt-Vermerk — sie gehörten nie zu Blueprint 2d (ChatGPTs
+eigener, einfacherer Übergaberegel-Fassung ohne Kontrollfragen und Antwortschlüssel), die
+unverändert weiterläuft.
+
+**🔴 Eigener Fund beim Pflicht-Prüflauf, noch vor der Auslieferung behoben:** `pruefe.py`
+Abschnitt 6 verglich den Backlog-Kopf bisher auf GLEICHHEIT mit dem jüngsten „## Was
+Fassung N ändert"-Abschnitt — einem Mechanismus, den die Backlog-eigene Regel 5 seit
+Fassung 129 (Phase 2, 14.9.2026) ausdrücklich abgeschafft hat: „danach entsteht kein neuer
+Fassungsabschnitt mehr im Hauptdokument". Der erste Fassungssprung nach Phase 2 (129→130,
+diese Lieferung) hätte die Prüfung damit dauerhaft und zu Unrecht als FEHL gemeldet.
+Behoben in `pruefe.py` (Fassung 4): Die Prüfung verlangt jetzt nur noch, dass der Kopf den
+letzten vorhandenen Abschnitt nicht unterschreitet, keine Gleichheit mehr. Die eigentliche
+Kopf-Synchronität zwischen `STAND.md`, Backlog und Blueprint bleibt vollständig über
+Abschnitt 1 abgesichert. `pruefe.py`: ALLES SAUBER.
+
+**Kosten (Arbeitsregel G):** Reine Dokumentpflege, kein App-Code betroffen, kein Geld,
+geringer Zeitaufwand.
 
 ## 🟡 Prio 2 — wichtig, aber später
 

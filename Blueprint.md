@@ -3,10 +3,12 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.128
-**Stand:** 14. September 2026
+**Version:** 0.129
+**Stand:** 17. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
+
+> **Was Fassung 0.129 ändert (17.9.2026):** Reine Fassungszahl-Anpassung nach Arbeitsregel M — `STAND.md` und der Backlog wurden für Backlog-Punkt 83 geändert (STARTPRÜFUNG als aktuelle Chat-Übergaberegel dokumentiert, Abschnitt 2d hier inhaltlich nicht berührt: ChatGPTs eigene Übergaberegel-Fassung läuft unverändert weiter). Blueprint selbst inhaltlich nicht geändert. Blueprint auf 0.129 gehoben.
 
 > **Was Fassung 0.128 ändert (14.9.2026):** Phase 2 der Trennung von aktuellem Stand und Geschichte (Ondos Auftrag, siehe Diagnose vom selben Tag): Alle 107 bisherigen „Was Fassung 0.NN ändert"-Notizen (0.1 bis 0.127) wortgleich nach `BLUEPRINT-PROTOKOLL.md` verschoben — dieses Dokument enthaelt ab jetzt nur noch, was heute gilt: alle zehn Abschnitte (Vision, Charta, Verfassung, Qualitaetsstandard, Arbeitsregeln, Uebergaberegel, Rollen, Charakter, Grenzen, Architektur, Roadmap, Wunsch-Funktionen-Grenzen, Admin-Regeln, Protokoll-Verweis, Verfassungsfragen) bleiben unveraendert stehen — **abweichend von der wörtlichen Auftragsformulierung** („nur Abschnitt 2c und 10"), die geloescht haette, was tatsaechlich weiterhin gilt und keine Geschichte ist; Einzelheiten im Antworttext derselben Lieferung. Entfernt wurden ausschliesslich die 107 Aenderungsvermerke, die verifizierte Wachstumsursache. **Stehende Regel ab sofort:** Kuenftige Aenderungen werden direkt an der betroffenen Stelle nachgefuehrt, die Begruendung wandert sofort in `BLUEPRINT-PROTOKOLL.md`, statt hier als Vermerk stehen zu bleiben — Einzelheiten `STAND.md`, Wegweiser. Kein Verfassungsartikel geaendert, keine neue Arbeitsregel im Sinn von Abschnitt 2c — diese Regel betrifft die Dokumentpflege, nicht die Verfassung selbst. Blueprint auf 0.128 gehoben.
 

@@ -1,6 +1,23 @@
 # -*- coding: utf-8 -*-
 """ONDO CONTROL — Vorabpruefung vor jeder Dateiausgabe (Arbeitsregel M).
 
+FASSUNG 4, 17.9.2026 (Backlog-Punkt 83). Eine Aenderung gegenueber Fassung 3:
+
+4. ABSCHNITT 6 VERLANGT NICHT MEHR GLEICHHEIT ZWISCHEN BACKLOG-KOPF UND DEM
+   JUENGSTEN "WAS FASSUNG N AENDERT"-ABSCHNITT, NUR NOCH KEINE REGRESSION.
+   Phase 2 (14.9.2026, Fassung 129) hat die Praxis, jede inhaltliche
+   Backlog-Aenderung mit einem eigenen "## Was Fassung N aendert"-Abschnitt
+   am Kopf zusammenzufassen, ausdruecklich beendet — im Backlog selbst
+   nachzulesen ("danach entsteht kein neuer Fassungsabschnitt mehr im
+   Hauptdokument"). Die alte Gleichheitspruefung war dadurch ab der naechsten
+   Fassung strukturell unerfuellbar geworden und haette jede kuenftige,
+   voellig korrekte Lieferung als FEHL gemeldet — gefunden beim ersten
+   Fassungssprung nach Phase 2 (Backlog-Kopf auf 130 gehoben, juengster
+   Abschnitt blieb bei 129 stehen, wie es die neue Regel ausdruecklich will).
+   Die Kopf-Synchronitaet zwischen STAND, Backlog und Blueprint bleibt
+   vollstaendig ueber Abschnitt 1 abgesichert; davon ist diese Aenderung
+   nicht betroffen.
+
 FASSUNG 3, 27.8.2026 (Backlog-Punkt 59/61). Eine Aenderung gegenueber Fassung 2:
 
 3. ABSCHNITT 1 PRUEFT EINE GANZZAHL, KEINE UHRZEIT MEHR. Fassung 2 verglich
@@ -168,9 +185,22 @@ _akt = [t for t in AKTIV.values() if t]
 einzig(r'\*\*Sprachschlüssel: (\d+)\*\*', "Sprachschluesselzahl", _akt)
 einzig(r'\*\*Beta: (v[\d.]+)\*\*', "Beta-Version", _akt)
 einzig(r'\*\*Letzte best(?:ä|ae)tigte Sicherung: (\d{1,2}\.\d{1,2}\.\d{4}, \d{1,2}:\d{2})', "letzte Sicherung", _akt)
-_fass = set(re.findall(r'Fassung (\d+) ·', B.split('\n')[1]))
-_neueste = {str(max(int(x) for x in re.findall(r'^## ⚠ Was Fassung (\d+) ändert', B, re.M) or ['0']))}
-pruef(_fass == _neueste, f"Backlog-Kopf {sorted(_fass)} == neuester Fassungsabschnitt {sorted(_neueste)}")
+# Bis Fassung 129 (13.9.2026) bekam jede inhaltliche Backlog-Aenderung einen eigenen
+# "## Was Fassung N aendert"-Abschnitt am Kopf, und die Kopf-Fassungszahl musste dann
+# GENAU dieser juengsten Abschnittszahl entsprechen. Phase 2 (14.9.2026, Fassung 129,
+# siehe Backlog-Abschnitt "Regeln fuer dieses Dokument", Regel 5) hat diese Abschnitte
+# ausdruecklich abgeschafft: "danach entsteht kein neuer Fassungsabschnitt mehr im
+# Hauptdokument (stehende Regel ab sofort)". Eine Gleichheitspruefung waere damit ab
+# Fassung 130 UNERFUELLBAR geworden und haette jede kuenftige Lieferung faelschlich als
+# FEHL gemeldet - gefunden beim ersten Fassungssprung nach Phase 2 (17.9.2026,
+# Backlog-Punkt 83). Neu: Die Pruefung verlangt nur noch, dass der Kopf nicht HINTER dem
+# letzten tatsaechlich noch vorhandenen Abschnitt zurueckbleibt (Regression), keine
+# Gleichheit mit einem Mechanismus, der bewusst nicht mehr bedient wird. Die eigentliche
+# Kopf-Synchronitaet zwischen STAND, Backlog und Blueprint bleibt vollstaendig in
+# Abschnitt 1 geprueft, davon ist dieser Abschnitt unberuehrt.
+_neueste_zahl = max((int(x) for x in re.findall(r'^## ⚠ Was Fassung (\d+) ändert', B, re.M)), default=0)
+pruef(_fb_m is not None and _neueste_zahl <= _fb,
+      f"Backlog-Kopf {_fb if _fb_m else '?'} >= letzter vorhandener Fassungsabschnitt {_neueste_zahl}")
 _bpv = re.search(r'\*\*Version:\*\* (0\.\d+)', BP)
 pruef(_bpv is not None, "Blueprint-Kopf nennt eine Fassungsnummer")
 if _bpv:
