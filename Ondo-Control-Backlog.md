@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 17.9.2026, Fassung 132 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 17.9.2026, Fassung 133 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -284,9 +284,11 @@ geringer Zeitaufwand.
 **84. ESPN als primäre Schiedsrichter-Ergebnisquelle, KI-Schiedsrichter als Notnagel** ·
 *Auftrag Ondo, 17.9.2026, sechs Schritte, mit vorgeschalteter Live-Verifikation (Schritt 0)
 als Bedingung für den Bau · Schritt 0 zweimal live geprüft (vier Kategorien, dann zusätzlich
-ein Elfmeterschiessen-Fall) · Schritte 1, 2 (teilweise), 3, 5, 6 gebaut 17.9.2026* ·
-**Status: 🔴 TEILWEISE GEBAUT 17.9.2026, `beta.html` v19.14.0 — zwei der drei in Schritt 2
-verlangten Quellen NICHT gebaut, an eigener Zusatzverifikation gescheitert**
+ein Elfmeterschiessen-Fall) · Schritte 1, 2 (teilweise), 3, 5, 6 gebaut 17.9.2026 (`beta.html`
+v19.14.0) · KI-Notnagel noch am selben Tag auf Auftrag Ondo zurück auf drei Läufe (v19.14.1)* ·
+**Status: 🔴 TEILWEISE GEBAUT 17.9.2026, `beta.html` v19.14.1 — zwei der drei in Schritt 2
+verlangten Quellen NICHT gebaut, an eigener Zusatzverifikation gescheitert; KI-Notnagel-Teil
+von Schritt 2 nach v19.14.0 wieder auf drei Läufe zurückgesetzt**
 
 **Schritt 0 (Live-Verifikation), Befund:** Von vier wörtlich formulierten Bedingungen haben
 zwei nicht bestanden — `linescores[]` existiert nicht auf `.../scoreboard`, erst auf einem
@@ -302,10 +304,17 @@ von der Gesamtlänge des Arrays (belegt an einem echten Fall, DFB-Pokal 16.8.202
 (Scoreboard + Summary, homeAway-basierte Zuordnung, 90-Minuten-Formel elfmeter-/
 verlängerungssicher) · `ergebnisQuelle` (`espn`/`uefa`/`openfootball`/`ki`) neu am
 `kiProtokoll`-Eintrag · `apiFootballLauf()`/`footballDataArchivLesen()` nicht mehr aktiv
-aufgerufen, nur noch „NICHT AUFGERUFEN" (Regel 3, Zugangsdaten unangetastet) ·
-`REF_MIN_LAEUFE` (Backlog-Punkt 68) auf 1 gesenkt, KI-Notnagel macht nur noch einen statt
-drei Läufe. Einzelheiten und die vollständige Architekturbegründung: `STAND.md`, Abschnitt
-„Versionen" (v19.14.0) und Kopf-Kommentar bei `espnLauf()` in `beta.html`.
+aufgerufen, nur noch „NICHT AUFGERUFEN" (Regel 3, Zugangsdaten unangetastet).
+**🔴 v19.14.0 hatte `REF_MIN_LAEUFE` (Backlog-Punkt 68) auf 1 gesenkt, KI-Notnagel machte nur
+einen statt drei Läufe — noch am selben Tag auf Auftrag Ondo („KI-Notnagel zurück auf drei
+Läufe") in v19.14.1 zurückgenommen:** `REF_MIN_LAEUFE` ist jetzt zusammengesetzt statt global —
+ein Strukturtreffer (ESPN, erkannt über `ergebnisQuelleAus()!=='ki'`) braucht weiterhin nur
+sich selbst (Schwelle 1), ausschliesslich reine KI-Läufe verlangen wieder `REF_MIN_LAEUFE=3`
+mit der vollen 2-von-3-Regel wie vor v19.14.0. Betrifft ausschliesslich den Fall, dass ESPN
+nichts liefert — an ESPN selbst, `espnLauf()`, den Slug-Tabellen und der 90-Minuten-Formel hat
+sich dabei nichts geändert, wie von Ondo ausdrücklich verlangt. Einzelheiten und die
+vollständige Architekturbegründung: `STAND.md`, Abschnitt „Versionen" (v19.14.0/v19.14.1) und
+Kopf-Kommentar bei `refEinigkeit()`/`espnLauf()` in `beta.html`.
 
 **NICHT gebaut, an eigener Zusatzverifikation gescheitert (über Ondos Schritt 0 hinaus, aus
 demselben Vorsichtsprinzip):**
@@ -322,12 +331,20 @@ demselben Vorsichtsprinzip):**
 — jedes betroffene Spiel fällt direkt an den KI-Notnagel durch, ohne Zeitverlust. Ob dafür
 alternative Endpunkte gesucht werden sollen, ist nicht Teil dieses Auftrags gewesen.
 
-**Verifiziert:** `node --check` bestanden · **30 Prüfungen** an den echten, wortgleich aus
-`beta.html` herausgeschnittenen Funktionen (kein Nachbau), gegen fünf live abgerufene ESPN-
-Antworten, inkl. Kreuzvalidierung gegen den bereits extern belegten Celje/Slovan-Fall
-(STAND.md, elfte Fehlerart) und den vollständigen Weg für den Elfmeter-Fall — alle bestanden.
-`pruefe.py`: ALLES SAUBER. Keine neuen Sprachschlüssel. Bewährung im echten Betrieb steht aus
-(Stabilitätsregel).
+**Verifiziert (v19.14.0):** `node --check` bestanden · **30 Prüfungen** an den echten,
+wortgleich aus `beta.html` herausgeschnittenen Funktionen (kein Nachbau), gegen fünf live
+abgerufene ESPN-Antworten, inkl. Kreuzvalidierung gegen den bereits extern belegten
+Celje/Slovan-Fall (STAND.md, elfte Fehlerart) und den vollständigen Weg für den Elfmeter-Fall
+— alle bestanden. `pruefe.py`: ALLES SAUBER.
+**Verifiziert (v19.14.1, Rücknahme):** `node --check` bestanden · **10 weitere Prüfungen** an
+`refEinigkeit()`/`ergebnisQuelleAus()` im Wortlaut — ein ESPN-Lauf allein weiterhin
+„einstimmig" · ein einzelner KI-Lauf allein jetzt wieder „zuwenig" · zwei KI-Läufe allein
+weiterhin „zuwenig" · drei KI-Läufe mit 2-von-3-Übereinstimmung → „zweivondrei" mit
+Mehrheitswert · drei verschiedene KI-Läufe → „uneinig" (Celje/Sabah-Schutz wiederhergestellt)
+· ein gemischter Fall (ESPN+KI) bleibt bei Schwelle 1 · der volle ESPN-Weg (Celje/Slovan,
+Elfmeter-Fall) erneut gegenkontrolliert, unverändert korrekt — alle bestanden, zusammen mit
+den 30 Prüfungen aus v19.14.0 erneut ausgeführt. `pruefe.py`: ALLES SAUBER. Keine neuen
+Sprachschlüssel. Bewährung im echten Betrieb steht aus (Stabilitätsregel).
 
 **Kosten (Arbeitsregel G):** Kein Geld (ESPN braucht keinen Schlüssel), ein zweiter
 HTTP-Aufruf je Spiel (Summary zusätzlich zu Scoreboard) statt bisher einem — weiterhin

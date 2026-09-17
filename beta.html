@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.14.0';
+var CODE_VERSION = 'v19.14.1';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -3581,14 +3581,31 @@ function refLaufPruefen(r, host){
    ohne Beschoenigung (Art. 14): Die Absicherung gegen einen einzelnen halluzinierenden KI-Lauf
    (genau der Celje/Sabah-Fall, STAND.md elfte Fehlerart) gilt fuer den KI-Notnagel NICHT MEHR -
    Ondos eigene, ausdrueckliche Kostenentscheidung, kein uebersehener Nebeneffekt. Einzige
-   Aufrufstelle im ganzen Code: pruefAuswerten() unten, unveraendert. */
-var REF_MIN_LAEUFE = 1;
+   Aufrufstelle im ganzen Code: pruefAuswerten() unten, unveraendert.
+   🔴 ZURUECKGENOMMEN, noch am selben Tag, 17.9.2026 (Auftrag Ondo "KI-Notnagel zurueck auf
+   drei Laeufe"): REF_MIN_LAEUFE zurueck auf 3 — ABER NICHT als globale Schwelle, sonst haette
+   ein einzelner ESPN-Treffer (immer genau EIN Lauf, siehe espnLauf()) danach selbst als
+   'zuwenig' gegolten und waere nie mehr uebernommen worden - ein Bruch von Ondos eigener
+   Auflage "an ESPN selbst ... aendert sich nichts". Deshalb jetzt ZUSAMMENGESETZT: Ein
+   Strukturtreffer (erkennbar daran, dass ergebnisQuelleAus() fuer ihn NICHT 'ki' liefert -
+   also 'espn', kuenftig auch 'uefa'/'openfootball') braucht weiterhin nur sich selbst, Schwelle
+   1. Ausschliesslich reine KI-Laeufe (kein einziger Strukturtreffer unter den gepruefen
+   Laeufen) verlangen wieder REF_MIN_LAEUFE=3 — der KI-Notnagel macht dafuer unten (kiZahl)
+   wieder zwei Gemini-Laeufe plus einen Sonnet-Lauf, mit genau derselben 2-von-3-Regel wie vor
+   v19.14.0 (die Mehrheits-Rechnung unten war nie geaendert, nur die Eintrittsschwelle). Betrifft
+   damit tatsaechlich ausschliesslich den Fall, dass espnLauf() nichts liefert - an ESPN selbst,
+   espnLauf(), den Slug-Tabellen und der 90-Minuten-Formel aendert sich nichts. */
+var REF_MIN_LAEUFE = 3;
 function refEinigkeit(gepruefte){
   var gut=(gepruefte||[]).filter(function(x){ return x && x.ok; });
   var quellen=[];
   gut.forEach(function(x){ if(x.host && quellen.indexOf(x.host)<0) quellen.push(x.host); });
   var basis={ gesamt:gut.length, quellen:quellen, quellenZahl:quellen.length };
-  if(gut.length<REF_MIN_LAEUFE){ basis.fall='zuwenig'; basis.wert=null; basis.mehrheit=0; return basis; }
+  /* Ein Strukturtreffer braucht nur sich selbst (Schwelle 1) - er "raet" nicht. Nur wenn
+     AUSSCHLIESSLICH KI-Laeufe vorliegen, gilt wieder die volle Drei-Laeufe-Schwelle. */
+  var hatStruktur = gut.some(function(x){ return ergebnisQuelleAus(x.modell)!=='ki'; });
+  var schwelle = hatStruktur ? 1 : REF_MIN_LAEUFE;
+  if(gut.length<schwelle){ basis.fall='zuwenig'; basis.wert=null; basis.mehrheit=0; return basis; }
   var reihen=[], zahl={}, muster={};
   gut.forEach(function(x){
     var k=x.heim+':'+x.gast+'|'+(x.verl||'');
@@ -3948,13 +3965,17 @@ function ergebnissePruefen(btn){
       espnErg.forEach(function(r){ verarbeite(r, ziel, espnRohText, 'espn'); });
 
       /* Kaskade statt Abstimmung (Ondos Auftrag, Schritt 2): Nur die von ESPN NICHT geloesten
-         Spiele bekommen ueberhaupt einen KI-Aufruf - genau EINEN, nicht mehr bis zu drei. Loest
-         ESPN den ganzen Stapel, faellt kiZahl auf 0, es wird gar kein Modell aufgerufen. */
+         Spiele bekommen ueberhaupt einen KI-Aufruf. Loest ESPN den ganzen Stapel, faellt kiZahl
+         auf 0, es wird gar kein Modell aufgerufen.
+         🔴 kiZahl 1->3 ZURUECKGENOMMEN, 17.9.2026 (Auftrag Ondo "KI-Notnagel zurueck auf drei
+         Laeufe"): Bleiben nach ESPN Spiele uebrig, bekommen sie wieder zwei Gemini-Laeufe plus
+         einen Sonnet-Lauf (wie vor v19.14.0), nicht mehr nur einen - passend zur in
+         refEinigkeit() wiederhergestellten 2-von-3-Regel fuer reine KI-Laeufe. */
       var zielFuerKI = ziel.filter(function(p){ return !hat(espnErg, p.id); });
       var kiWege=[];
       if(hatGemini()){ kiWege.push('gemini'); kiWege.push('gemini'); }   /* 0a zurueckgenommen in v19.7.3, siehe Backlog */
       if(hatSonnet()){ kiWege.push('sonnet'); }
-      var kiZahl = zielFuerKI.length ? 1 : 0;
+      var kiZahl = zielFuerKI.length ? 3 : 0;
       var wege=[];
       for(var wi=0; wi<kiZahl; wi++){ wege.push(kiWege[wi % kiWege.length]); }
       var prompt = zielFuerKI.length ? promptBauen(zielFuerKI) : '';

@@ -27,6 +27,49 @@
 
 *Nachtrag 17.9.2026 (Backlog-Punkt 84, dieselbe Wegweiser-Regel wie am 14.9.2026 angewandt): Der v19.13.3-Eintrag stand bis heute noch als „Beta:"-Zeile in `STAND.md` selbst. Wortgleich hierher verschoben, weil `beta.html` inzwischen auf v19.14.0 weitergezogen ist — an der Reihenfolge (neueste zuerst) aendert sich dadurch nichts, der Eintrag steht jetzt an der Stelle, die ihm nach diesem Prinzip zusteht.*
 
+- **Beta zuvor: v19.14.0** (`beta.html`, geliefert 17.9.2026) — **ESPN als primäre
+  Schiedsrichter-Ergebnisquelle, KI-Schiedsrichter als Notnagel (Backlog-Punkt 84, Ondos
+  Auftrag).** Vorausgegangen: eine echte Live-Verifikation (Schritt 0, Ondos eigene Auflage)
+  an fünf tatsächlich abgeschlossenen Spielen aus vier Kategorien plus einem
+  Elfmeterschiessen-Fall — zwei von vier Bedingungen stimmten in der ursprünglich angenommenen
+  Form nicht (`linescores[]` existiert erst auf einem zweiten Endpunkt, `.../summary?event=`,
+  nicht auf `.../scoreboard`; „fertig" zeigt sich nur über `status.type.completed===true`, nie
+  über einen festen Namen wie „STATUS_FINAL") — beide Korrekturen sind eingebaut, nicht nur
+  vermerkt. Einzelheiten, Belege und die zwei NICHT gebauten Quellen (match.uefa.com: CORS
+  fest auf `https://www.uefa.com`, genau das football-data.org-Muster · openfootball
+  „internationals": kein aktueller 2026-Datenpfad auffindbar, nicht geraten): Backlog-Punkt 84.
+  **Gebaut:** neue Funktion `espnLauf(ziel, cache)` ersetzt `apiFootballLauf()`/
+  `footballDataArchivLesen()` als aktiv aufgerufene Strukturquelle (beide Funktionen bleiben
+  im Code, nur „NICHT AUFGERUFEN" — Regel 3). `espnSlugFuer()` bildet Ondos Schritt-1-Tabelle
+  ab, ein unbekannter Wettbewerb bekommt gar keinen ESPN-Versuch. 90-Minuten-Stand ausschliesslich
+  aus `linescores[0]+linescores[1]` je Team (homeAway-basiert, nicht Reihenfolge) — bleibt
+  dieselbe Formel unabhängig davon, ob ein Spiel 2, 4 (Verlängerung) oder 5 (zusätzlich
+  Elfmeterschiessen) Einträge trägt; das separate Feld `shootoutScore` und ein fünfter
+  `linescores`-Eintrag werden nirgends gelesen. **Architekturänderung, offen benannt (Art. 14):**
+  Die Drei-Läufe-Absicherung aus Backlog-Punkt 68 (`refEinigkeit()`, bisher `gut.length<3`) ist
+  auf `REF_MIN_LAEUFE=1` gesenkt — ein einzelner Strukturtreffer gilt jetzt als ausreichend
+  (er „rät" nicht), und der KI-Notnagel macht nur noch **einen** Lauf statt drei, wenn ESPN
+  nichts findet. Die damit verbundene, bewusst in Kauf genommene Folge: Die Absicherung gegen
+  einen einzelnen halluzinierenden KI-Lauf (elfte Fehlerart) gilt für den Notnagel nicht mehr.
+  Neues Feld `ergebnisQuelle` (`espn`/`uefa`/`openfootball`/`ki`) an jedem bewerteten
+  `kiProtokoll`-Eintrag, analog zu `herkunft`. `api-football`-Zugangsdaten unangetastet, keine
+  aktive Nutzung (Ondos Auftrag).
+  **Verifiziert:** `node --check` bestanden · **30 Prüfungen** an den echten, wortgleich aus
+  `beta.html` herausgeschnittenen Funktionen (kein Nachbau), gegen fünf live abgerufene, echte
+  ESPN-Antworten (nicht erfundene Fixtures) — u. a. der Celje/Slovan-Fall aus der elften
+  Fehlerart (ESPN liefert unabhängig exakt den dort extern belegten Wert: HZ 1:1, 90-Min. 1:1,
+  n.Verl. 1:2) und der Elfmeter-Fall (0:0 nach 90 Minuten, 2:3 n.E. — die Formel liefert 0:0,
+  nie die Elfmeterzahlen) — alle bestanden. `pruefe.py`: ALLES SAUBER. **Keine neuen
+  Sprachschlüssel** (349 unverändert). **Kein Schnitt in der Messreihe.** `APP_VERSION`
+  weiter 18.
+  **🔴 Status ausdrücklich NICHT auf „behoben" gesetzt:** Bestätigung durch einen echten
+  Prüfzyklus am Gerät steht aus, ebenso die Entscheidung, ob/wie die UEFA- und
+  openfootball-Lücke geschlossen wird.
+  **🔴 Noch am selben Tag TEILWEISE ZURÜCKGENOMMEN (v19.14.1, Auftrag Ondo „KI-Notnagel zurück
+  auf drei Läufe"):** `REF_MIN_LAEUFE=1` galt nur eine Lieferung lang. Einzelheiten bei
+  „Beta: v19.14.1" in `STAND.md` — hier nur der Verweis, damit dieser Absatz nicht den falschen
+  Eindruck erweckt, der Notnagel liefe weiterhin mit einem einzigen Lauf.
+
 - **Beta zuvor: v19.13.3** (`beta.html`, geliefert 14.9.2026) — **football-data.org von Live-Aufruf
   auf Archivdatei-Lesen umgestellt (Backlog-Punkt 81, Ondos Auftrag).** Anlass: Die
   CORS-Diagnose (13.9.2026) zeigt, dass football-data.org Browserzugriffe strukturell
