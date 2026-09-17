@@ -1212,6 +1212,54 @@
    "torGast": 1,
    "quelle": "football-data.org",
    "halbzeit": "2:0"
+  },
+  {
+   "datum": "2026-09-16",
+   "anpfiff": "22:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "Botafogo FR",
+   "gast": "Grêmio FBPA",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "1:1"
+  },
+  {
+   "datum": "2026-09-16",
+   "anpfiff": "17:00",
+   "wettbewerb": "Primera Division",
+   "heim": "Club Atlético de Madrid",
+   "gast": "CA Osasuna",
+   "status": "FT",
+   "torHeim": 4,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-09-16",
+   "anpfiff": "19:30",
+   "wettbewerb": "Primera Division",
+   "heim": "FC Barcelona",
+   "gast": "Real Racing Club de Santander",
+   "status": "FT",
+   "torHeim": 7,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "4:1"
+  },
+  {
+   "datum": "2026-09-16",
+   "anpfiff": "17:00",
+   "wettbewerb": "Primera Division",
+   "heim": "RC Deportivo La Coruña",
+   "gast": "Sevilla FC",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
   }
  ]
 }
