@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 17.9.2026, Fassung 131 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 17.9.2026, Fassung 132 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -278,6 +278,61 @@ Abschnitt 1 abgesichert. `pruefe.py`: ALLES SAUBER.
 
 **Kosten (Arbeitsregel G):** Reine Dokumentpflege, kein App-Code betroffen, kein Geld,
 geringer Zeitaufwand.
+
+---
+
+**84. ESPN als primäre Schiedsrichter-Ergebnisquelle, KI-Schiedsrichter als Notnagel** ·
+*Auftrag Ondo, 17.9.2026, sechs Schritte, mit vorgeschalteter Live-Verifikation (Schritt 0)
+als Bedingung für den Bau · Schritt 0 zweimal live geprüft (vier Kategorien, dann zusätzlich
+ein Elfmeterschiessen-Fall) · Schritte 1, 2 (teilweise), 3, 5, 6 gebaut 17.9.2026* ·
+**Status: 🔴 TEILWEISE GEBAUT 17.9.2026, `beta.html` v19.14.0 — zwei der drei in Schritt 2
+verlangten Quellen NICHT gebaut, an eigener Zusatzverifikation gescheitert**
+
+**Schritt 0 (Live-Verifikation), Befund:** Von vier wörtlich formulierten Bedingungen haben
+zwei nicht bestanden — `linescores[]` existiert nicht auf `.../scoreboard`, erst auf einem
+zweiten Aufruf `.../summary?event=`; „fertig" zeigt sich nie über einen festen Namen wie
+„STATUS_FINAL", nur über `status.type.completed===true` (beobachtet: STATUS_FULL_TIME,
+STATUS_FINAL_AET, STATUS_FINAL_PEN). Ondos Nachtrag-Frage (Elfmeterschiessen) beantwortet: Das
+Elfmeterergebnis steht zusätzlich als fünfter `linescores`-Eintrag UND in einem eigenen Feld
+`shootoutScore` — die Formel `linescores[0]+linescores[1]` bleibt davon unberührt, unabhängig
+von der Gesamtlänge des Arrays (belegt an einem echten Fall, DFB-Pokal 16.8.2025).
+
+**Gebaut (Schritte 1, 3, 5, 6, Schritt 2 nur der ESPN-Teil):** `espnSlugFuer()`
+(Wettbewerb-Text → ESPN-Liga-Slug, unbekannt → direkt Stufe 4) · `espnLauf(ziel, cache)`
+(Scoreboard + Summary, homeAway-basierte Zuordnung, 90-Minuten-Formel elfmeter-/
+verlängerungssicher) · `ergebnisQuelle` (`espn`/`uefa`/`openfootball`/`ki`) neu am
+`kiProtokoll`-Eintrag · `apiFootballLauf()`/`footballDataArchivLesen()` nicht mehr aktiv
+aufgerufen, nur noch „NICHT AUFGERUFEN" (Regel 3, Zugangsdaten unangetastet) ·
+`REF_MIN_LAEUFE` (Backlog-Punkt 68) auf 1 gesenkt, KI-Notnagel macht nur noch einen statt
+drei Läufe. Einzelheiten und die vollständige Architekturbegründung: `STAND.md`, Abschnitt
+„Versionen" (v19.14.0) und Kopf-Kommentar bei `espnLauf()` in `beta.html`.
+
+**NICHT gebaut, an eigener Zusatzverifikation gescheitert (über Ondos Schritt 0 hinaus, aus
+demselben Vorsichtsprinzip):**
+- **match.uefa.com/v5/matches:** `access-control-allow-origin` steht fest auf
+  `https://www.uefa.com`, unabhängig vom gesendeten Origin — dasselbe CORS-Muster, das
+  football-data.org (Backlog-Punkt 81) schon einmal für Monate unbrauchbar gemacht hat. Ein
+  Browser von `ondo-control.github.io` aus würde diese Quelle nie erreichen.
+- **openfootball „internationals"-Rohdateien:** Repository gefunden
+  (`openfootball/national-teams`, offenes CORS über `raw.githubusercontent.com`), aber kein
+  für 2026 aktuell gepflegter Datenpfad auffindbar (README generisch/veraltet, mehrere
+  plausible Pfade → 404). Art. 11: nicht geraten, nicht gebaut.
+
+**Offene Entscheidung bei Ondo:** Beide Lücken bleiben Stufe „unbekannt/nicht angeschlossen"
+— jedes betroffene Spiel fällt direkt an den KI-Notnagel durch, ohne Zeitverlust. Ob dafür
+alternative Endpunkte gesucht werden sollen, ist nicht Teil dieses Auftrags gewesen.
+
+**Verifiziert:** `node --check` bestanden · **30 Prüfungen** an den echten, wortgleich aus
+`beta.html` herausgeschnittenen Funktionen (kein Nachbau), gegen fünf live abgerufene ESPN-
+Antworten, inkl. Kreuzvalidierung gegen den bereits extern belegten Celje/Slovan-Fall
+(STAND.md, elfte Fehlerart) und den vollständigen Weg für den Elfmeter-Fall — alle bestanden.
+`pruefe.py`: ALLES SAUBER. Keine neuen Sprachschlüssel. Bewährung im echten Betrieb steht aus
+(Stabilitätsregel).
+
+**Kosten (Arbeitsregel G):** Kein Geld (ESPN braucht keinen Schlüssel), ein zweiter
+HTTP-Aufruf je Spiel (Summary zusätzlich zu Scoreboard) statt bisher einem — weiterhin
+kostenlos. Der KI-Notnagel verbraucht jetzt SELTENER und GÜNSTIGER Modellaufrufe (ein Lauf
+statt bis zu drei), sobald ESPN einen Wettbewerb abdeckt.
 
 ## 🟡 Prio 2 — wichtig, aber später
 

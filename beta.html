@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.13.3';
+var CODE_VERSION = 'v19.14.0';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -2203,7 +2203,12 @@ function strukturAbgleich(ziel, fixtures, quelleUrl){
   return ergebnisse;
 }
 
-/* Holt Endstaende von API-Football fuer die in ziel vorkommenden Tage (kostenlose Stufe:
+/* NICHT AUFGERUFEN seit 17.9.2026 (Backlog-Punkt 84, Ondos Auftrag "ESPN als primaere
+   Schiedsrichter-Ergebnisquelle, KI-Schiedsrichter als Notnagel", Schritt 5: "API-Football-
+   Zugangsdaten unangetastet lassen, keine aktive Nutzung"). Funktion und Zugangsdaten bewusst
+   NICHT geloescht, sofort wieder nutzbar. Grund fuer die Abschaltung: ESPN deckt dieselben
+   Wettbewerbe ab, ohne Schluessel und ohne die bereits dokumentierte Kontosperre.
+   Holt Endstaende von API-Football fuer die in ziel vorkommenden Tage (kostenlose Stufe:
    ein Datum je Abruf, schmales Zeitfenster um "heute" - siehe Backlog-Punkt 9). Liefert nie
    einen Fehler nach aussen: eine gesperrte oder erschoepfte Quelle ergibt einfach keine
    Treffer, der dritte Lauf (KI-Suche) bleibt der Rueckfallweg. */
@@ -2263,7 +2268,13 @@ function footballDataLauf(ziel){
   }).catch(function(){ return []; });
 }
 
-/* Ersetzt footballDataLauf() als Strukturweg seit 14.9.2026 (Backlog-Punkt 81, Ondos Auftrag
+/* NICHT AUFGERUFEN seit 17.9.2026 (Backlog-Punkt 84, Schritt 5: "football-data.org als
+   Primaerquelle abschalten (505 von 505 Eintraegen ohne Treffer, belegt)"). Ersetzt durch
+   espnLauf() weiter unten. Funktion bewusst NICHT geloescht (Regel 3, dasselbe Vorgehen wie
+   bei footballDataLauf() selbst) - die Monatsdateien unter daten/schiri-ergebnisse/ werden von
+   der taeglichen GitHub-Actions-Automatik weiterhin gefuellt, dieser Lesepfad ist jederzeit
+   wieder anschliessbar.
+   Ersetzte footballDataLauf() als Strukturweg seit 14.9.2026 (Backlog-Punkt 81, Ondos Auftrag
    "football-data.org-Platz von Live-Aufruf auf Archivdatei-Lesen umstellen"). Anlass: der
    Browser erreicht football-data.org strukturell nie (CORS-Befund 13.9.2026, siehe oben) -
    raw.githubusercontent.com erlaubt Browserabrufe dagegen ausdruecklich. Liest statt eines
@@ -2310,6 +2321,180 @@ function footballDataArchivLesen(ziel){
         : 'https://github.com/Ondo-Control/Ondo-Control/tree/main/daten/schiri-ergebnisse';
     });
     return ergebnisse;
+  });
+}
+
+/* ================= ESPN — PRIMAERE SCHIEDSRICHTER-QUELLE (Backlog-Punkt 84, Auftrag Ondo
+   17.9.2026 "ESPN als primaere Schiedsrichter-Ergebnisquelle, KI-Schiedsrichter als Notnagel")
+   =================
+   Schritt 0 (Live-Verifikation, 17.9.2026, VOR dieser Funktion durchgefuehrt, nicht nur
+   behauptet) an vier echten, bereits abgeschlossenen Spielen aus vier Kategorien, PLUS einem
+   fuenften mit Elfmeterschiessen (Ondos Nachtrag zur selben Pruefung):
+   - access-control-allow-origin steht auf "*" - bestanden, an allen fuenf Spielen, auf
+     .../scoreboard UND auf .../summary.
+   - linescores[] existiert NICHT auf .../scoreboard (0 Treffer fuer den String im ganzen JSON,
+     nachgezaehlt) - erst auf einem ZWEITEN Aufruf, .../summary?event=<ID>. Deshalb ruft
+     espnLauf() unten IMMER zwei Endpunkte auf, nie nur einen.
+   - linescores[] hat NICHT immer zwei Eintraege: zwei bei einem Spiel ohne Verlaengerung, vier
+     bei einem Spiel MIT Verlaengerung (1./2. Halbzeit, 1./2. Verlaengerungshaelfte), FUENF bei
+     einem Elfmeterschiessen (die vier plus das Elfmeterergebnis als fuenfter Eintrag). Belegt an
+     einem echten Fall (17.9.2026, DFB-Pokal, FC Eintracht Norderstedt - St. Pauli, 16.8.2025):
+     linescores Norderstedt [0,0,0,0,2], St. Pauli [0,0,0,0,3] - St. Pauli gewann 3:2 nach
+     Elfmeterschiessen, aber der 90-Minuten-Stand war 0:0. Das Elfmeterergebnis steht ZUSAETZLICH
+     in einem eigenen Feld shootoutScore (hier 2 bzw. 3) - beide Fundorte werden hier bewusst NIE
+     gelesen. torHeim/torGast summieren ausschliesslich linescores[0]+linescores[1] - das bleibt
+     unabhaengig von der Gesamtlaenge des Arrays immer der 90-Minuten-Stand, auch bei vier oder
+     fuenf Eintraegen. verlaengerung (falls gespielt) addiert zusaetzlich linescores[2]+[3].
+   - homeAway korrekt gesetzt - bestanden, an allen fuenf Spielen.
+   - "fertig" MUSS ueber status.type.completed===true geprueft werden, NIE ueber einen festen
+     Namen: beobachtete Werte STATUS_FULL_TIME (regulaer), STATUS_FINAL_AET (nach Verlaengerung),
+     STATUS_FINAL_PEN (nach Elfmeterschiessen) - "STATUS_FINAL" kam in keinem einzigen Fall vor.
+   Kreuzvalidierung (nicht verlangt, aber belegt): Das erste Testspiel bei UEFA-Quali war exakt
+   der Celje-Slovan-Fall aus STAND.md, elfte Fehlerart (drei App-Laeufe, drei widersprechende
+   Staende). Der dort extern belegte Wert (HZ 1:1, 90-Min. 1:1, n.Verl. 1:2) stimmt mit den
+   ESPN-Daten exakt ueberein.
+   Zwei Quellen aus Ondos urspruenglichem Schritt 2 sind NICHT gebaut, beide an einer eigenen,
+   zusaetzlichen Verifikation gescheitert, die ueber das ausdruecklich verlangte Schritt-0-
+   Programm hinausging (dieselbe Vorsicht konsequent weitergefuehrt, nicht nur bei ESPN):
+   - match.uefa.com/v5/matches: access-control-allow-origin steht FEST auf
+     "https://www.uefa.com", unabhaengig vom gesendeten Origin-Header (mehrfach geprueft,
+     17.9.2026) - genau dasselbe CORS-Muster wie bei football-data.org (Backlog-Punkt 81).
+     Ein Browser von ondo-control.github.io aus wuerde diese Quelle nie erreichen.
+   - openfootball "internationals"-Rohdateien: Repository-Existenz gefunden
+     (openfootball/national-teams, ueber raw.githubusercontent.com erreichbar, offenes CORS),
+     aber KEIN aktueller, fuer 2026 gepflegter Datenpfad auffindbar (README generisch/veraltet,
+     mehrere plausible Dateipfade mit 404 beantwortet). Art. 11: nicht geraten, nicht gebaut.
+   Beide Luecken sind in Ondo-Control-Backlog.md, Punkt 84, offen vermerkt - espnSlugFuer()
+   liefert fuer einen (noch) nicht angeschlossenen Wettbewerb einfach '', das Spiel faellt ohne
+   Zeitverlust direkt an den KI-Schiedsrichter (Schritt 1, Ondos eigene Regel fuer einen
+   unbekannten Wettbewerb, hier auf "technisch noch nicht angeschlossen" erweitert). */
+
+/* Schritt 1: Wettbewerb-Freitext (vom Gehirn, das die Spielliste erstellt, nicht kontrolliert)
+   -> ESPN-Liga-Slug. Negativlisten-Geist wie bei REF_QUELLE_WETTE oben: eine Liste von Mustern,
+   kein Anspruch auf Vollstaendigkeit. Passt kein Muster, bleibt der Wettbewerb unbekannt und
+   espnLauf() versucht ihn gar nicht erst - "+ weitere Konfoederationen" (Ondos eigene Formulierung)
+   ist bewusst nicht vorweggenommen, sondern wird bei Bedarf ergaenzt, sobald ein echter Fall
+   auftritt (kein Raten auf Vorrat, Art. 11). */
+function wbNorm(s){
+  return String(s||'').toLowerCase()
+    .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss');
+}
+var ESPN_SLUG_REGELN = [
+  { m:/champions.*(quali|qualifik)/,               slug:'uefa.champions_qual' },
+  { m:/conf(erence)?.*(quali|qualifik)/,           slug:'uefa.europa.conf_qual' },
+  { m:/europa.*(quali|qualifik)/,                  slug:'uefa.europa_qual' },
+  { m:/(2\.\s*bundesliga|zweite\s*bundesliga)/,    slug:'ger.2' },
+  { m:/la\s*liga|primera\s*divisio/,               slug:'esp.1' },
+  { m:/premier\s*league/,                          slug:'eng.1' },
+  { m:/weltmeisterschaft.*quali|wm[- ]?quali.*europa|worldq.*uefa/, slug:'fifa.worldq.uefa' },
+  { m:/laenderspiel|nationalmannschaft|freundschaft.*(nation|laender)/, slug:'fifa.friendly' },
+  { m:/freundschaftsspiel|testspiel/,              slug:'club.friendly' }
+];
+function espnSlugFuer(wettbewerb){
+  var w=wbNorm(wettbewerb);
+  if(!w) return '';
+  for(var i=0;i<ESPN_SLUG_REGELN.length;i++){
+    if(ESPN_SLUG_REGELN[i].m.test(w)) return ESPN_SLUG_REGELN[i].slug;
+  }
+  return '';
+}
+
+/* Reine Funktion: liest einen linescores-Eintrag (displayValue, String) als Zahl, 0 wenn nicht
+   vorhanden. NIE ueber Index 1 hinaus fuer den 90-Minuten-Stand aufgerufen - siehe Kopf-Kommentar
+   oben (Elfmeter-/Verlaengerungs-Sicherheit). */
+function espnLinescoreZahl(ls, i){
+  var e=(ls||[])[i];
+  var n=e ? Number(e.displayValue) : NaN;
+  return isNaN(n) ? 0 : n;
+}
+
+/* Schritt 2+3. cache (optional) wird von rundeLaufen() ueber mehrere Runden desselben Prueflaufs
+   hinweg WEITERGEREICHT (Schritt 6: kein Spiel zweimal abfragen) - ohne uebergebenen cache
+   arbeitet die Funktion mit einem frischen, nur fuer diesen Aufruf gueltigen Objekt, bleibt also
+   auch einzeln testbar. Ein DAUERHAFTER (IndexedDB-)Cache eigens fuer ESPN wurde bewusst NICHT
+   gebaut: state.kiProtokoll traegt mit status/geparkt bereits die einzige Kennzeichnung, die
+   zaehlt ("schon ermittelt -> nie wieder gefragt", siehe offeneP-Filter oben in
+   ergebnissePruefen()) - ein zweiter, paralleler Cache-Speicher wuerde genau die Verdopplung
+   schaffen, die Abschnitt 1c fuer den Evidence Ledger ausdruecklich ablehnt. */
+function espnLauf(ziel, cache){
+  if(!(ziel&&ziel.length)) return Promise.resolve([]);
+  cache = cache || {};
+  var gruppen={};
+  ziel.forEach(function(p){
+    var slug=espnSlugFuer(p.wettbewerb), datum=datumIso(p.datum);
+    if(!slug || !datum) return;
+    var k=slug+'|'+datum;
+    if(!gruppen[k]) gruppen[k]=[];
+    gruppen[k].push(p);
+  });
+  var schluessel=Object.keys(gruppen);
+  if(!schluessel.length) return Promise.resolve([]);
+  return Promise.all(schluessel.map(function(k){
+    var teile=k.split('|'), slug=teile[0], datum=teile[1], ymd=datum.replace(/-/g,'');
+    var scoreboardHolen = cache[k] ? Promise.resolve(cache[k]) :
+      fetch('https://site.web.api.espn.com/apis/site/v2/sports/soccer/'+slug+'/scoreboard?dates='+ymd)
+        .then(function(res){ return res.ok ? res.json() : { events:[] }; })
+        .then(function(d){ var ev=Array.isArray(d.events)?d.events:[]; cache[k]=ev; return ev; })
+        .catch(function(){ return []; });
+    return scoreboardHolen.then(function(events){
+      /* Nur beendete Spiele (completed===true, siehe Kopf-Kommentar), die zu einem der hier
+         gesuchten Spiele passen - alles andere wuerde nur unnoetige /summary-Aufrufe ausloesen.
+         Je ziel-Eintrag hoechstens EIN Kandidat (erster Treffer zaehlt, dieselbe Vereinfachung
+         wie in strukturAbgleich() oben). */
+      var kandidaten=[], schonGefunden={};
+      events.forEach(function(ev){
+        var comp=(ev.competitions||[])[0]; if(!comp) return;
+        if(!comp.status || !comp.status.type || comp.status.type.completed!==true) return;
+        var cs=comp.competitors||[];
+        var heimC=cs.filter(function(c){return c.homeAway==='home';})[0];
+        var gastC=cs.filter(function(c){return c.homeAway==='away';})[0];
+        if(!heimC||!gastC) return;
+        var heimName=(heimC.team&&heimC.team.displayName)||'', gastName=(gastC.team&&gastC.team.displayName)||'';
+        var nH=normName(heimName), nG=normName(gastName);
+        (gruppen[k]||[]).forEach(function(p){
+          if(schonGefunden[p.id]) return;
+          var t=teamsAus(p.match), nTH=normName(t.heim), nTG=normName(t.gast);
+          var passtHeim = nTH && nH && (nH.indexOf(nTH)>=0 || nTH.indexOf(nH)>=0);
+          var passtGast = nTG && nG && (nG.indexOf(nTG)>=0 || nTG.indexOf(nG)>=0);
+          if(passtHeim && passtGast){ schonGefunden[p.id]=true; kandidaten.push({ id:ev.id, p:p }); }
+        });
+      });
+      if(!kandidaten.length) return [];
+      return Promise.all(kandidaten.map(function(kd){
+        return fetch('https://site.web.api.espn.com/apis/site/v2/sports/soccer/'+slug+'/summary?event='+kd.id)
+          .then(function(res){ return res.ok ? res.json() : null; })
+          .then(function(sum){
+            var comp = sum && sum.header && (sum.header.competitions||[])[0];
+            if(!comp) return null;
+            var cs=comp.competitors||[];
+            var heimC=cs.filter(function(c){return c.homeAway==='home';})[0];
+            var gastC=cs.filter(function(c){return c.homeAway==='away';})[0];
+            if(!heimC||!gastC) return null;
+            var lsH=heimC.linescores||[], lsG=gastC.linescores||[];
+            /* 90-Minuten-Stand: IMMER nur Index 0+1, unabhaengig von der Gesamtlaenge - siehe
+               Kopf-Kommentar (Elfmeter-/Verlaengerungs-Sicherheit, belegter Fall). */
+            var torHeim=espnLinescoreZahl(lsH,0)+espnLinescoreZahl(lsH,1);
+            var torGast=espnLinescoreZahl(lsG,0)+espnLinescoreZahl(lsG,1);
+            var halbzeit=espnLinescoreZahl(lsH,0)+':'+espnLinescoreZahl(lsG,0);
+            var verlaengerung='';
+            if(lsH.length>=4 || lsG.length>=4){
+              var vH=torHeim+espnLinescoreZahl(lsH,2)+espnLinescoreZahl(lsH,3);
+              var vG=torGast+espnLinescoreZahl(lsG,2)+espnLinescoreZahl(lsG,3);
+              verlaengerung=vH+':'+vG;
+            }
+            /* Ausgabeform identisch zu strukturAbgleich()s Rueckgabe (Wiederverwendung von
+               verarbeite()/refLaufPruefen() UNVERAENDERT) - kd.p.id/kd.p.datum sind bereits
+               eindeutig zugeordnet, eine zweite Namens-/Datumspruefung ueber strukturAbgleich()
+               selbst waere hier nur doppelte Arbeit. */
+            return { id:kd.p.id, status:'fertig', heim:torHeim, gast:torGast, datum:kd.p.datum,
+              wettbewerb:kd.p.wettbewerb||'', quelle:'https://www.espn.com/soccer/match/_/gameId/'+kd.id,
+              verlaengerungGespielt: verlaengerung?'ja':'nein', verlaengerung:verlaengerung,
+              halbzeit:halbzeit, torlos:(torHeim===0&&torGast===0)?'bestaetigt':'nein' };
+          }).catch(function(){ return null; });
+      }));
+    });
+  })).then(function(listen){
+    return [].concat.apply([],listen).filter(Boolean);
   });
 }
 
@@ -3381,13 +3566,29 @@ function refLaufPruefen(r, host){
    quellenZahl zaehlt die VERSCHIEDENEN Quellen der gueltigen Laeufe: Nennen alle drei Laeufe
    dieselbe Quelle, ist das EIN Beleg, nicht drei unabhaengige. Es gibt aber ausdruecklich
    keine Pflicht zu drei verschiedenen Quellen — bei unterklassigen Wettbewerben kann es nur
-   eine geben (Blueprint Grenze 6/7). */
+   eine geben (Blueprint Grenze 6/7).
+   🔴 REF_MIN_LAEUFE auf 1 gesenkt, 17.9.2026 (Backlog-Punkt 84, Ondos Auftrag "ESPN als
+   primaere Schiedsrichter-Ergebnisquelle, KI-Schiedsrichter als Notnagel", Schritt 2: "...
+   bestehender KI-Schiedsrichter, jetzt nur noch ein Lauf statt drei"). Die Drei-Laeufe-Schwelle
+   aus Backlog-Punkt 68 war eine Absicherung GEGEN DREI UNABHAENGIGE MODELL-RATEVERSUCHE
+   (Halluzinationsrisiko, elfte Fehlerart) - sie ergab nie Sinn fuer einen echten, strukturierten
+   Datensatz wie ESPNs Box-Score-Daten, der nicht "raet". Die neue Resolver-Kaskade (espnLauf()
+   oben, danach genau EIN KI-Lauf als Notnagel statt bisher bis zu drei) liefert je Spiel
+   praktisch nie mehr als einen gueltigen Lauf gleichzeitig. Ein einzelner gueltiger Lauf zaehlt
+   ab jetzt als 'einstimmig' - das ist keine Lockerung von refEinigkeit() selbst (die Mehrheits-
+   Rechnung unten bleibt UNVERAENDERT, gut.length===1 ergibt schon rein rechnerisch
+   zahl[best]===gut.length), nur eine gesenkte Eintrittsschwelle. Was sich dadurch AENDERT, ganz
+   ohne Beschoenigung (Art. 14): Die Absicherung gegen einen einzelnen halluzinierenden KI-Lauf
+   (genau der Celje/Sabah-Fall, STAND.md elfte Fehlerart) gilt fuer den KI-Notnagel NICHT MEHR -
+   Ondos eigene, ausdrueckliche Kostenentscheidung, kein uebersehener Nebeneffekt. Einzige
+   Aufrufstelle im ganzen Code: pruefAuswerten() unten, unveraendert. */
+var REF_MIN_LAEUFE = 1;
 function refEinigkeit(gepruefte){
   var gut=(gepruefte||[]).filter(function(x){ return x && x.ok; });
   var quellen=[];
   gut.forEach(function(x){ if(x.host && quellen.indexOf(x.host)<0) quellen.push(x.host); });
   var basis={ gesamt:gut.length, quellen:quellen, quellenZahl:quellen.length };
-  if(gut.length<3){ basis.fall='zuwenig'; basis.wert=null; basis.mehrheit=0; return basis; }
+  if(gut.length<REF_MIN_LAEUFE){ basis.fall='zuwenig'; basis.wert=null; basis.mehrheit=0; return basis; }
   var reihen=[], zahl={}, muster={};
   gut.forEach(function(x){
     var k=x.heim+':'+x.gast+'|'+(x.verl||'');
@@ -3459,6 +3660,11 @@ function ergebnissePruefen(btn){
      Ondos Daten und koennte sie nur raten (Art. 11/14, Entscheidung Ondo 3.9.2026). */
   var startZeit = Date.now();
   var einAnbieter = false;
+  /* Schritt 6 (Backlog-Punkt 84): ueber alle Runden DIESES Prueflaufs hinweg geteilt, damit
+     dieselbe Wettbewerb+Datum-Kombination nicht in jeder der bis zu MAXR Runden erneut bei
+     ESPN abgefragt wird. Lebt nur fuer die Dauer dieses einen Aufrufs (kein state-Feld, kein
+     IndexedDB) - siehe Kopf-Kommentar bei espnLauf() fuer die Begruendung. */
+  var espnCache = {};
 
   function tageAbstand(a,b){
     function z(s){ var m=String(s||'').match(/(\d{1,2})\.(\d{1,2})\.(\d{4})/); if(!m) return null;
@@ -3659,7 +3865,12 @@ function ergebnissePruefen(btn){
        Runde vergleichen, nicht Laeufe frueherer Runden mitzaehlen. */
     ziel.forEach(function(p){ p.gefragt=true; p.laeufe=[]; });
 
-    var zeilen = ziel.map(function(p){
+    /* 17.9.2026 (Backlog-Punkt 84): zeilen/prompt haengen jetzt von der Liste der NACH dem
+       ESPN-Versuch noch unerledigten Spiele ab (zielFuerKI, siehe unten), stehen deshalb erst
+       als Funktion hier, aufgerufen sobald diese Liste feststeht - NIE mehr fuer den ganzen
+       Stapel, wenn ESPN schon alles gefunden hat (dann gibt es gar keinen KI-Aufruf, kiZahl 0). */
+    function promptBauen(liste){
+    var zeilen = liste.map(function(p){
       return p.id+': '+p.match+(p.wettbewerb?(' ['+p.wettbewerb+']'):'')+' (angesetzt am '+p.datum+(p.anpfiff?(', Anpfiff '+p.anpfiff+' Uhr'):'')+')'+((p.art==='bet')?' — Wettschein':'');
     });
     var quellPflicht = (runde>=3)
@@ -3668,7 +3879,7 @@ function ergebnissePruefen(btn){
     /* Backlog-Punkt E (Beschluss Ondo 25.7., Zustand-vor-Ziffer-Ergaenzung Gemini/Ondo 27.8.):
        Wettbewerb, Datum und beide Teams stehen unten schon fest. Der Auftrag ist BESTAETIGEN,
        nicht frei suchen — ein bestaetigtes Ergebnis muss zu allen vier Angaben passen. */
-    var prompt='Heute ist '+heuteStr()+', es ist '+jetztUhr()+' Uhr (deutsche Zeit). '+
+    return 'Heute ist '+heuteStr()+', es ist '+jetztUhr()+' Uhr (deutsche Zeit). '+
       'Zu jedem Spiel unten stehen Wettbewerb, Datum und beide Teams bereits fest. Deine Aufgabe ist BESTAETIGEN, nicht frei suchen: '+
       'ermittle per Websuche den ENDSTAND NACH 90 MINUTEN inkl. Nachspielzeit — OHNE Verlaengerung, OHNE Elfmeterschiessen — und melde ihn nur, wenn Wettbewerb, Datum und beide Teams deiner Quelle zu den unten genannten Angaben passen. Weicht auch nur eine der vier Angaben ab, ist es das falsche Spiel: dann "nicht_gefunden".\n\n'+
       'Du sollst NICHT beurteilen, ob eine Wette gewonnen hat. Nenne ausschliesslich die Tore. '+
@@ -3705,99 +3916,60 @@ function ergebnissePruefen(btn){
       quellPflicht+
       zeilen.join('\n')+
       '\n\nLetzte Nachricht: NUR kompaktes JSON:\n{"ergebnisse":[{"id":"S0","status":"fertig","format":"2x45","halbzeit":"1:0","heim":2,"gast":1,"verlaengerungGespielt":"nein","verlaengerung":"","torlos":"nein","datum":"24.07.2026","wettbewerb":"MLS","quelle":"https://..."}]}';
+    }
 
-    /* v19.13.2, Fund 13.9.2026 (Backlog-Punkt 81, Wege-Neuzusammensetzung — Ondos Auftrag).
-       ZWEIPHASIG statt gleichzeitig, seit v19.8.24 (Ausbau Backlog-Punkt 9) noetig geworden:
-       Die zwei strukturierten Quellen belegten bis hier zwei der drei festen Plaetze in jeder
-       Runde, UNABHAENGIG davon, ob sie fuer die gerade geprueften Spiele tatsaechlich etwas
-       fanden. Liefern beide nichts (Regelfall: API-Football gesperrt, football-data.org deckt
-       nur 12 grosse Wettbewerbe ab), blieb pro Runde nur EIN echter Lauf uebrig —
-       pruefAuswerten()/refEinigkeit() verlangen aber mindestens drei brauchbare Laeufe
-       (gut.length<3 -> 'zuwenig', siehe dort, UNVERAENDERT), diese Schwelle war damit
-       strukturell nie erreichbar, gleich wie oft man es versuchte. Belegt im Rohtext vom
-       12.9.2026 (Schiri_Rohdaten.txt): Gemini fand in sieben von sieben Versuchen ein
-       stimmiges, belegtes Ergebnis fuer alle zehn geprueften Spiele — die App meldete
-       trotzdem durchgehend "nicht gefunden".
-       Phase 1: beide Strukturquellen fuer den GANZEN Stapel gleichzeitig abwarten (reine,
-       schnelle Datenabrufe, kein Halluzinations-Risiko, kosten nichts).
-       Phase 2: je Spiel zaehlen, wie viele der zwei Quellen etwas fanden (0/1/2). Das
-       SCHLECHTESTE Spiel im Stapel bestimmt, wie viele KI-Laeufe der GANZE Stapel zusaetzlich
-       braucht — nicht jedes Spiel einzeln, weil ein KI-Lauf ohnehin den ganzen Stapel in einem
-       einzigen Prompt beantwortet (zeilen oben): mindestens ein Spiel mit 0 Strukturtreffern
-       -> alle drei KI-Wege (2x Gemini, 1x Sonnet), wie vor dem 11.9.2026; kein Spiel mit 0,
-       aber mindestens eins mit genau 1 -> zwei KI-Wege (2x Gemini); alle Spiele mit 2 ->
-       ein KI-Weg (1x Gemini) reicht. Einzelne Spiele koennen dadurch mehr als drei Laeufe
-       insgesamt bekommen (z. B. 2 Struktur + 3 KI, wenn ein anderes Spiel im selben Stapel 0
-       Strukturtreffer hatte) — kein Fehler, refEinigkeit() wertet ohnehin alle vorhandenen
-       guten Laeufe aus, UNVERAENDERT.
-       Ausdruecklich NICHT Teil dieses Umbaus: schiri-ergebnisse-holen.js, die GitHub-Actions-
-       Datei und die Monatsdateien im Repo — reine Aenderung an beta.html (Ondos Auftrag,
-       13.9.2026). Keine neue Berechtigung, kein neuer Schluessel, kein Schreibzugriff auf das
-       Repo aus dem Browser. */
-    /* v19.13.3, 14.9.2026 (Backlog-Punkt 81, Ondos Auftrag): footballDataLauf() (Live-Aufruf,
-       durch CORS strukturell blockiert) hier durch footballDataArchivLesen() (liest die vom
-       taeglichen GitHub-Actions-Lauf gesammelten Monatsdateien) ersetzt. apiFootballLauf()
-       UNVERAENDERT. Die Zwei-Phasen-Logik selbst (minTreffer/kiZahl, unten) bleibt exakt wie
-       in v19.13.2 - sie sieht nur zwei Strukturquellen mit Treffer/kein Treffer, woher ein
-       Treffer stammt, ist ihr gleich. */
-    Promise.all([ apiFootballLauf(ziel), footballDataArchivLesen(ziel) ]).then(function(struktur){
-      var afErg=struktur[0]||[], fdErg=struktur[1]||[];
+    /* 🔴 ABGELOEST am 17.9.2026 (Backlog-Punkt 84, Ondos Auftrag "ESPN als primaere
+       Schiedsrichter-Ergebnisquelle, KI-Schiedsrichter als Notnagel"). Die Zwei-Struktur-
+       quellen-Rechnung (minTreffer/kiZahl 1-3) unten war die Antwort auf einen strukturell nie
+       erreichbaren Drei-Laeufe-Schwelle (siehe Fund 13.9.2026, unveraendert wahr fuer die
+       DAMALIGE Quellenlage). ESPN als einzige, verifizierte Strukturquelle (Kopf-Kommentar bei
+       espnLauf() oben) macht diese Rechnung nicht falsch, aber ueberholt: Ondo will jetzt
+       Kaskade statt Abstimmung - ESPN gefunden -> fertig, kein KI-Aufruf noetig; ESPN nicht
+       gefunden -> genau EIN KI-Lauf als Notnagel, nicht mehr bis zu drei. Historischer Text
+       (Regel 3, nicht geloescht): "ZWEIPHASIG statt gleichzeitig, seit v19.8.24 (Ausbau
+       Backlog-Punkt 9) noetig geworden: Die zwei strukturierten Quellen belegten bis hier zwei
+       der drei festen Plaetze in jeder Runde, UNABHAENGIG davon, ob sie fuer die gerade
+       geprueften Spiele tatsaechlich etwas fanden. Liefern beide nichts (Regelfall: API-Football
+       gesperrt, football-data.org deckt nur 12 grosse Wettbewerbe ab), blieb pro Runde nur EIN
+       echter Lauf uebrig - pruefAuswerten()/refEinigkeit() verlangten aber mindestens drei
+       brauchbare Laeufe, diese Schwelle war damit strukturell nie erreichbar. Phase 1: beide
+       Strukturquellen fuer den GANZEN Stapel gleichzeitig abwarten. Phase 2: je Spiel zaehlen,
+       wie viele der zwei Quellen etwas fanden (0/1/2), das SCHLECHTESTE Spiel im Stapel
+       bestimmte den KI-Bedarf des GANZEN Stapels: 0 -> drei KI-Wege, 1 -> zwei, 2 -> einer."
+       (v19.13.3, 14.9.2026, Backlog-Punkt 81: footballDataLauf() dort bereits durch
+       footballDataArchivLesen() ersetzt, apiFootballLauf() unveraendert.) */
+    espnLauf(ziel, espnCache).then(function(espnErg){
       function hat(liste, id){ return liste.some(function(r){ return r.id===id; }); }
-      /* Schlechtestes Spiel im Stapel (0/1/2 Strukturtreffer) bestimmt den KI-Bedarf des
-         GANZEN Stapels. Kein Spiel im Stapel (ziel.length===0 kommt hier nie vor, siehe
-         Abbruch oben) faellt durch fehlenden Treffer aus der Rechnung heraus. */
-      var minTreffer=2;
-      ziel.forEach(function(p){
-        var n=(hat(afErg,p.id)?1:0)+(hat(fdErg,p.id)?1:0);
-        if(n<minTreffer) minTreffer=n;
-      });
-      var kiZahl = (minTreffer===0) ? 3 : (minTreffer===1 ? 2 : 1);
+      /* Strukturtreffer sofort verarbeiten — identisches Format wie bisher, verarbeite()
+         UNVERAENDERT. rohText bleibt sichtbar auch bei null Treffern, wie vor diesem Umbau. */
+      var espnRohText = espnErg.length
+        ? espnErg.map(function(r){ return r.id+': '+r.heim+':'+r.gast; }).join(' | ')
+        : '(kein Treffer bei ESPN)';
+      espnErg.forEach(function(r){ verarbeite(r, ziel, espnRohText, 'espn'); });
 
+      /* Kaskade statt Abstimmung (Ondos Auftrag, Schritt 2): Nur die von ESPN NICHT geloesten
+         Spiele bekommen ueberhaupt einen KI-Aufruf - genau EINEN, nicht mehr bis zu drei. Loest
+         ESPN den ganzen Stapel, faellt kiZahl auf 0, es wird gar kein Modell aufgerufen. */
+      var zielFuerKI = ziel.filter(function(p){ return !hat(espnErg, p.id); });
       var kiWege=[];
       if(hatGemini()){ kiWege.push('gemini'); kiWege.push('gemini'); }   /* 0a zurueckgenommen in v19.7.3, siehe Backlog */
       if(hatSonnet()){ kiWege.push('sonnet'); }
-      /* kiZahl Plaetze auffuellen, notfalls durch Wiederholung (z. B. nur Gemini gespeichert,
-         kein Sonnet-Schluessel: kiWege hat dann nur 2 Eintraege, kiZahl kann aber 3 verlangen).
-         Bewusst NICHT gekappt (kiWege.slice(0,kiZahl) waere bei kiZahl>kiWege.length zu kurz
-         und liesse die Drei-Laeufe-Schwelle in refEinigkeit() nie erreichen) — dieselbe
-         Wiederhol-Logik wie vor diesem Umbau ("wege.push(wege[wege.length-1])"), nur ueber den
-         tatsaechlich benoetigten kiZahl statt einer festen Drei. */
+      var kiZahl = zielFuerKI.length ? 1 : 0;
       var wege=[];
       for(var wi=0; wi<kiZahl; wi++){ wege.push(kiWege[wi % kiWege.length]); }
+      var prompt = zielFuerKI.length ? promptBauen(zielFuerKI) : '';
 
       /* einAnbieter (Anzeige refEinAnbieter, unveraenderter Sprachschluessel): "lief die ganze
-         Runde nur auf einem einzigen Anbieter?" Eine konfigurierte Strukturquelle zaehlt immer
-         als eigener Anbieter — sie ruft in Phase 1 tatsaechlich ab, unabhaengig vom Treffer.
-         Bleiben nur KI-Wege UND sind die alle gleich (z. B. nur Gemini gespeichert, kein
-         Sonnet-Schluessel), ist es weiterhin nur ein Anbieter — dieselbe Bedeutung wie vor
-         diesem Umbau, nur ohne die feste Drei-Wege-Zaehlung.
-         🔴 Eigener Fehler im ersten Entwurf, im eigenen Trockentest gefunden und vor der
-         Auslieferung behoben (14.9.2026): football-data-archiv macht seit diesem Umbau IMMER
-         einen echten Versuch (Archiv-Lesen braucht keinen Schluessel) - ein Push OHNE
-         Bedingung haette strukturAnbieter ab jetzt bei JEDER Runde mindestens einen Eintrag
-         gegeben und einAnbieter damit DAUERHAFT unerreichbar gemacht (alleWege enthaelt dann
-         immer mindestens zwei verschiedene Werte: 'football-data-archiv' und ein KI-Weg),
-         obwohl `refEinAnbieter` eine echte, von Ondo genutzte Warnung ist. Statt hatXyz()
-         (kein Schluessel mehr noetig) zaehlt football-data-archiv deshalb nur dann als eigener
-         Anbieter, wenn es in DIESER Runde tatsaechlich einen Treffer geliefert hat
-         (fdErg.length) - api-football bleibt unveraendert am Schluessel (hatApiFootball()),
-         wie beauftragt (apiFootballLauf() nicht angefasst). */
+         Runde nur auf einem einzigen Anbieter?" ESPN zaehlt nur dann als eigener Anbieter, wenn
+         es in DIESER Runde tatsaechlich einen Treffer geliefert hat - dieselbe, am 14.9.2026 am
+         Beispiel football-data-archiv gefundene und behobene Falle (ein Push OHNE diese
+         Bedingung wuerde einAnbieter DAUERHAFT unerreichbar machen, weil ESPN wie footballData-
+         Archiv keinen Schluessel braucht und deshalb bei jedem Wettbewerb mit bekanntem Slug
+         IMMER einen echten Versuch macht, unabhaengig vom Treffer). */
       var strukturAnbieter=[];
-      if(hatApiFootball()) strukturAnbieter.push('api-football');
-      if(fdErg.length) strukturAnbieter.push('football-data-archiv');
+      if(espnErg.length) strukturAnbieter.push('espn');
       var alleWege = strukturAnbieter.concat(wege);
       einAnbieter = alleWege.length>0 && alleWege.every(function(w){ return w===alleWege[0]; });
-
-      /* Strukturtreffer sofort verarbeiten — identisches Format wie bisher, verarbeite()
-         UNVERAENDERT. rohText bleibt sichtbar auch bei null Treffern, wie vor diesem Umbau. */
-      var afRohText = afErg.length
-        ? afErg.map(function(r){ return r.id+': '+r.heim+':'+r.gast; }).join(' | ')
-        : '(kein Treffer bei api-football)';
-      afErg.forEach(function(r){ verarbeite(r, ziel, afRohText, 'api-football'); });
-      var fdRohText = fdErg.length
-        ? fdErg.map(function(r){ return r.id+': '+r.heim+':'+r.gast; }).join(' | ')
-        : '(kein Treffer bei football-data-archiv)';
-      fdErg.forEach(function(r){ verarbeite(r, ziel, fdRohText, 'football-data-archiv'); });
 
       /* Ein Fehler in einem KI-Lauf wirft nicht mehr die ganze Runde weg: jeder Aufruf wird
          einzeln abgefangen und zaehlt dann als "kein Ergebnis". Unveraendert seit v19.8.12. */
@@ -3845,7 +4017,7 @@ function ergebnissePruefen(btn){
         /* Alle KI-Laeufe dieser Runde gescheitert und nichts erreicht (auch nicht per
            Struktur): den Grund zeigen statt schweigen. antworten enthaelt seit diesem Umbau
            nur noch KI-Laeufe — Strukturquellen scheitern nie mit einem Fehlertext, sie liefern
-           bei jedem Problem einfach null Treffer (siehe apiFootballLauf()/footballDataLauf()). */
+           bei jedem Problem einfach null Treffer (siehe espnLauf()). */
         else if(antworten.length && fehlerTexte.length===antworten.length && !neu){ abschluss(fehlerTexte[0]); }
         else { abschluss(); }
       });
@@ -3886,6 +4058,19 @@ function ergebnissePruefen(btn){
 
   rundeLaufen();
 }
+/* Schritt 3 (Backlog-Punkt 84, Auftrag Ondo 17.9.2026): p.modell traegt seit jeher fest, WER
+   den uebernommenen Lauf geliefert hat - bei einer Strukturquelle deren eigener Name (siehe
+   verarbeite()-Aufrufe bei espnLauf() oben, z. B. 'espn'), bei einem echten KI-Lauf die
+   aufgeloeste Modellversion bzw. der feste Sonnet-Name. ergebnisQuelleAus() uebersetzt das in
+   die von Ondo verlangte kurze, kategoriale Form. 'uefa'/'openfootball' sind hier bereits
+   vorgesehen, obwohl beide Quellen noch nicht angeschlossen sind (siehe Kopf-Kommentar bei
+   espnLauf()) - sobald sie es sind, muessen nur ihre verarbeite()-Aufrufe den passenden Namen
+   uebergeben, an dieser Stelle aendert sich nichts. */
+function ergebnisQuelleAus(modell){
+  var m=String(modell||'');
+  if(m==='espn' || m==='uefa' || m==='openfootball') return m;
+  return 'ki';
+}
 function pruefAnwenden(pid){
   var p = state.pruefListe.filter(function(x){return x.id===pid;})[0];
   if(!p) return;
@@ -3902,15 +4087,17 @@ function pruefAnwenden(pid){
          zwar anzeigen, bekam sie aber nie aus einem Prueflauf.
          Eine LEERE Angabe entfernt das Feld, statt einen leeren Text zu speichern: Sonst
          stuende in der Karte eine leere Phasenzeile, wo vorher gar keine war.
-         DRITTER FUND behoben — ergebnisQuelle wird entfernt statt stehen gelassen. Das
-         Ergebnis kommt ab hier vom Schiedsrichter-Lauf dieser App. Bliebe die Kennzeichnung
-         'extern_manuell' daneben stehen, behauptete die Karte eine Herkunft, die nicht mehr
-         stimmt — genau die Falschangabe, gegen die Art. 14 dieses Feld eingefuehrt hat.
-         Der Weg dorthin war belegt: logMarktSet() setzt status wieder auf 'offen', danach
-         nimmt ergebnissePruefen() den Eintrag erneut mit. */
+         DRITTER FUND (11.9.2026) — ergebnisQuelle wurde entfernt statt stehen gelassen, weil
+         die einzige damals bekannte Bedeutung ('extern_manuell', Ondos Handeintrag) nach einem
+         automatischen Schiedsrichter-Lauf falsch geworden waere. 🔴 GEAENDERT 17.9.2026
+         (Backlog-Punkt 84, Schritt 3, Ondos Auftrag): ergebnisQuelle bekommt jetzt wieder einen
+         Wert - die neue, kategoriale Bedeutung ('espn'/'uefa'/'openfootball'/'ki', siehe
+         ergebnisQuelleAus() oben), analog zu herkunft bei den Vorhersagen. Kein Widerspruch zum
+         damaligen Fund: Die alte Bedeutung ('extern_manuell') ist damit endgueltig ueberholt,
+         nicht wiederbelebt - ergebnisQuelleAus() liefert dieses Wort nie. */
       if(p.halbzeit) e.ergebnisHalbzeit=p.halbzeit; else delete e.ergebnisHalbzeit;
       if(p.verl) e.ergebnisVerl=p.verl; else delete e.ergebnisVerl;
-      delete e.ergebnisQuelle;
+      e.ergebnisQuelle = ergebnisQuelleAus(p.modell);
       /* v19.8.12 (Backlog-Punkt 68): Die Markierung "nicht einstimmig" ist Pflichtbestandteil
          der Einigkeitsregel, kein optionales Extra — ohne sie duerfte eine Zwei-gegen-eins-Lage
          gar nicht uebernommen werden. Bei Einstimmigkeit bleibt das Feld leer (keine Markierung
