@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.15.0';
+var CODE_VERSION = 'v19.16.0';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -1213,6 +1213,106 @@ function logTextKopieren(feldId){
 var MESS_FELDER = ['kiProtokoll','bets','regeln','startSaldo','eingezahlt','ausgezahlt','korrekturF','letzteSicherung','trainingsraumProtokoll','trainingsraumSpiele','antwortkonsistenzBericht'];
 var MESS_VERBOTEN = /key|pin|token|secret|passw/i;
 
+/* ================= REKURSIVE POSITIVPROJEKTION (Backlog-Punkt 84/44, Auftrag Ondo 18.9.2026) ====
+   ANLASS: messDatenBauen() kopierte state[f] fuer jedes f aus MESS_FELDER bisher VOLLSTAENDIG,
+   ungeprueft in die Tiefe (raus[f]=state[f]). MESS_FELDER war damit nur ein Schutz auf der
+   OBERSTEN Ebene. Als espnRoh (17.9.2026, Backlog-Punkt 84) als neues Feld unter
+   kiProtokoll[].espnRoh[] entstand, lief genau dieser unveraenderte Kopiervorgang espnRoh
+   ungeprueft mit durch — ein spaeter hinzugefuegtes Feld INNERHALB eines schon erlaubten
+   Top-Level-Feldes, exakt der Fehlertyp, den die Positivliste auf oberster Ebene verhindern soll.
+   Auf einem echten Geraet traf messGeheimFund() dabei auf
+   kiProtokoll[0].espnRoh[0].summary.news.articles[0].contentKey und blockierte dadurch den
+   GESAMTEN Export, nicht nur das eine Feld.
+
+   LOESUNG: Jede Stelle, an der ein state-Feld ein Objekt oder ein Array von Objekten ist,
+   bekommt eine EIGENE, ausdrueckliche Feldliste. Ein Feld, das dort nicht steht, kommt nicht
+   durch — unabhaengig davon, ob es neu ist (wie espnRoh) oder alt (ein Feld aus der Zeit vor
+   v19, das die heutigen Funktionen nicht mehr lesen). Alle Listen sind aus dem tatsaechlichen
+   Code ausgezaehlt (Arbeitsregel H, Belegen statt herleiten) — jede Zuweisungs- und jede
+   Lesestelle an einem kiProtokoll-/bets-/trainingsraum-/antwortkonsistenz-Eintrag durchsucht,
+   nicht aus dem Gedaechtnis zusammengestellt.
+
+   refRoh UND espnRoh bleiben BEWUSST AUSSEN VOR — Ondos eigene, nicht delegierte Entscheidung
+   (18.9.2026): Beide bleiben vollstaendig in IndexedDB und in der normalen Sicherung erhalten,
+   der normale Sicherungsweg (datenSichern/datenLaden) wird davon NICHT beschnitten. Nur dieser
+   Messdaten-Export laesst sie aus. Keine Ausnahme fuer contentKey oder irgendein anderes
+   Einzelfeld in MESS_VERBOTEN eingetragen — MESS_VERBOTEN und messGeheimFund() bleiben
+   UNVERAENDERT als zweite, unabhaengige Stufe stehen (siehe unten). Diese Projektion ersetzt
+   die zweite Stufe nicht, sie sorgt nur dafuer, dass ein espnRoh-artiger Fall sie kuenftig gar
+   nicht erst erreicht. */
+var MESS_MARKT_FALT_FELDER = ['code','label','p','status'];
+var MESS_MARKT_FELDER = ['typ','code','label','p','status','gedreht','fAlt','fKorr'];
+var MESS_KI_FELDER = ['id','aera','codeVersion','datum','match','wettbewerb','anpfiff','stufe',
+  'herkunft','heim','gast','bttsWort','modell','begruendung','maerkte',
+  'ergebnisHeim','ergebnisGast','status','recherchiert',
+  'ergebnisHalbzeit','ergebnisVerl','ergebnisQuelle',
+  'refEinigkeit','refLaeufe','refQuellen','geparkt','parkGrund','parkFormat'];
+var MESS_BET_FELDER = ['id','datum','match','tipp','quote','einsatz','status','claudeRichtig',
+  'fromKI','herkunft','kiProtokollId','kiProtokollIds'];
+var MESS_REGELN_FELDER = ['maxEinsatz'];
+var MESS_KORREKTURF_FELDER = ['datum','anzahl','typA','typB'];
+var MESS_TRAIN_PROT_FELDER = ['id','getestetAm','quelle','match','wettbewerb','anpfiff',
+  'herkunft','modell','heim','gast','bttsWort','begruendung','maerkte',
+  'ergebnisHeim','ergebnisGast','status'];
+var MESS_TRAIN_SPIEL_FELDER = ['match','wettbewerb','datum','ergebnisHeim','ergebnisGast'];
+var MESS_KONS_SPIEL_FELDER = ['match','laeufe','gleich','spanne'];
+var MESS_KONS_GEHIRN_FELDER = ['spiele','gleichAnteil','avgSpanne','maxSpanne','bestanden','proSpiel'];
+
+/* Reine Hilfsfunktion: kopiert aus wert AUSSCHLIESSLICH die in felder genannten Eigenschaften.
+   Kein Objekt (null/undefined/Zahl/Text/Bool) -> unveraendert zurueckgegeben, das sind bereits
+   reine Messwerte ohne weitere Tiefe. */
+function messNurFelder(wert, felder){
+  if(wert===null || wert===undefined || typeof wert!=='object') return wert;
+  var raus={};
+  felder.forEach(function(f){ if(f in wert) raus[f]=wert[f]; });
+  return raus;
+}
+function messMarktProjekt(m){
+  var raus = messNurFelder(m, MESS_MARKT_FELDER);
+  if(raus && raus.fAlt) raus.fAlt = messNurFelder(raus.fAlt, MESS_MARKT_FALT_FELDER);
+  return raus;
+}
+function messKiEintragProjekt(e){
+  var raus = messNurFelder(e, MESS_KI_FELDER);
+  if(raus && Array.isArray(raus.maerkte)) raus.maerkte = raus.maerkte.map(messMarktProjekt);
+  return raus;
+}
+function messTrainProtEintragProjekt(e){
+  var raus = messNurFelder(e, MESS_TRAIN_PROT_FELDER);
+  if(raus && Array.isArray(raus.maerkte)) raus.maerkte = raus.maerkte.map(messMarktProjekt);
+  return raus;
+}
+function messAntwortkonsistenzProjekt(bericht){
+  if(!bericht || typeof bericht!=='object') return bericht;
+  var raus={};
+  Object.keys(bericht).forEach(function(gehirn){
+    var g = messNurFelder(bericht[gehirn], MESS_KONS_GEHIRN_FELDER);
+    if(g && Array.isArray(g.proSpiel)){
+      g.proSpiel = g.proSpiel.map(function(s){ return messNurFelder(s, MESS_KONS_SPIEL_FELDER); });
+    }
+    raus[gehirn]=g;
+  });
+  return raus;
+}
+/* Ein Projektor je MESS_FELDER-Eintrag — bewusst OHNE Rueckfallebene auf einen rohen Kopiervorgang
+   (kein "sonst raus[f]=state[f]"). Ein Feld ohne eigenen Projektor wird beim Bauen unten
+   uebersprungen statt roh durchgereicht — sicherer, fehlendes Feld im Export statt eines
+   unbemerkten zweiten espnRoh-Falls. startSaldo/eingezahlt/ausgezahlt/letzteSicherung sind reine
+   Skalare (Zahl/Text) und werden unveraendert weitergereicht. */
+var MESS_PROJEKTOREN = {
+  kiProtokoll: function(v){ return (v||[]).map(messKiEintragProjekt); },
+  bets: function(v){ return (v||[]).map(function(b){ return messNurFelder(b, MESS_BET_FELDER); }); },
+  regeln: function(v){ return messNurFelder(v, MESS_REGELN_FELDER); },
+  startSaldo: function(v){ return v; },
+  eingezahlt: function(v){ return v; },
+  ausgezahlt: function(v){ return v; },
+  korrekturF: function(v){ return messNurFelder(v, MESS_KORREKTURF_FELDER); },
+  letzteSicherung: function(v){ return v; },
+  trainingsraumProtokoll: function(v){ return (v||[]).map(messTrainProtEintragProjekt); },
+  trainingsraumSpiele: function(v){ return (v||[]).map(function(s){ return messNurFelder(s, MESS_TRAIN_SPIEL_FELDER); }); },
+  antwortkonsistenzBericht: function(v){ return messAntwortkonsistenzProjekt(v); }
+};
+
 function messGeheimFund(wert, pfad){
   if(wert===null || wert===undefined) return null;
   if(typeof wert === 'string'){
@@ -1249,7 +1349,12 @@ function messDatenBauen(){
     felder: MESS_FELDER.slice(),
     hinweis: 'Enthaelt KEINE API-Schluessel und KEINE PIN. Vollstaendig, ohne Zeitraum- und ohne Aera-Filter.'
   };
-  MESS_FELDER.forEach(function(f){ if(f in state) raus[f] = state[f]; });
+  MESS_FELDER.forEach(function(f){
+    if(!(f in state)) return;
+    var projektor = MESS_PROJEKTOREN[f];
+    if(!projektor) return;
+    raus[f] = projektor(state[f]);
+  });
   raus.ende = 'ENDE · '+eintraege+' Eintraege · '+wetten+' Wetten';
   return raus;
 }

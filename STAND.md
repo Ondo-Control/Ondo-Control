@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 17.9.2026, Fassung 135, v19.15.0*
+*Die aktuelle Wahrheit. Stand: 18.9.2026, Fassung 136, v19.16.0*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -206,47 +206,42 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   den Trainingsraum) — dieser Commit ist der Stand **davor**, falls zurückgesetzt werden muss.
   Einzelheiten Backlog-Punkt 77.
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.15.0** (`beta.html`, geliefert 17.9.2026) — **OpenLigaDB als zweite strukturierte
-  Schiedsrichter-Quelle, für die Wettbewerbe, die ESPN nicht kennt (Backlog-Punkt 84, Auftrag
-  Ondo „UEFA-/openfootball-Lücke weiterverfolgen").** Vorgeschichte (ESPN, Notnagel-Läufe,
-  `REF_MIN_LAEUFE`, `espnRoh`): unverändert, `CHRONIK-2026-09.md` und Backlog-Punkt 84.
-  **Schritt 0 (Live-Recherche), Befund:** ESPN kennt live geprüft keine deutsche 3. Liga und
-  keine Regionalliga (`ger.3`/`ger.regionalliga`-Slugs existieren nicht, HTTP 400) — genau die
-  Lücke, die STAND.md als Grossteil von Ondos Spielen benennt. Gefunden und live bestätigt:
-  `api.openligadb.de` — offenes CORS (mit Origin-Header, wie ein echter Browser ihn immer
-  sendet), kein Schlüssel nötig, `matchIsFinished` als klares Fertig-Signal, Halbzeit-/
-  90-Minuten-Stand sauber getrennt in `matchResults[]`. **Elfmeter-/Verlängerungs-Falle am
-  selben Spiel wie bei ESPN geprüft** (Eintracht Norderstedt–St. Pauli, DFB-Pokal 16.8.2025):
-  OpenLigaDB nennt den Verlängerungsstand mit dem irreführenden Namen „Unknown" (deren eigene
-  Bezeichnung) und den Elfmeterstand getrennt „AfterPenalties" — beide Quellen liefern
-  unabhängig voneinander denselben Stand (0:0 / 0:0 / 2:3), eine echte Kreuzvalidierung.
-  Aktualität bestätigt: 3. Liga und Regionalliga Nordost/Bayern/Nord führen die laufende Saison
-  2026/27 bereits mit Spielen vom Vortag. **Grenze, ehrlich benannt (Art. 11):** Regionalliga
-  West und Südwest sind für die laufende Saison bei OpenLigaDB NICHT auffindbar (mehrere
-  Kürzel probiert, 0 Spiele) — bleiben bewusst ausserhalb der Slug-Tabelle, kein Raten.
-  **Gebaut:** `openligaShortcutFuer()` (nur die vier live bestätigten Wettbewerbe: 3. Liga,
-  Regionalliga Nordost/Bayern/Nord) · `openligaSaison()` (reine Datumsrechnung, deutsche Saison
-  Juli–Juni) · `openligaErgebnisAus()` (90-Minuten-/Halbzeit-/Verlängerungsstand aus
-  `matchResults[]`, „Unknown" nur als echte Verlängerung gewertet, wenn er vom 90-Minuten-Stand
-  abweicht oder ein Elfmeterschiessen folgte — sonst als redundanter Doppeleintrag erkannt und
-  verworfen, belegt an einem echten Fall ohne Verlängerung) · `openligaLauf(ziel, cache)`,
-  **parallel** zu `espnLauf()` aufgerufen (disjunkte Wettbewerbe, kein Spiel kann beide Quellen
-  gleichzeitig treffen). `ergebnisQuelleAus()` um `'openliga'` erweitert — zählt wie `'espn'`,
-  braucht in `refEinigkeit()` nur Schwelle 1. Der KI-Notnagel bekommt jetzt nur noch die Spiele,
-  die **weder** ESPN **noch** OpenLigaDB lösen konnten. `espnRoh`-Äquivalent für OpenLigaDB
-  bewusst NICHT mitgebaut — nicht Teil dieses Auftrags, siehe Backlog-Punkt 84.
-  **Verifiziert:** `node --check` bestanden · **22 neue Prüfungen** an den echten, wortgleich
-  herausgeschnittenen Funktionen (kein Nachbau), gegen live abgerufene OpenLigaDB-Antworten —
-  Slug-Erkennung inkl. Negativfall · Saisonrechnung an echten Randdaten · fünf echte
-  DFB-Pokal-Elfmeterfälle korrekt ausgewertet (inkl. des Falls ohne echte Verlängerung) · der
-  volle Weg über `openligaLauf()` · `ergebnisQuelleAus`/`refEinigkeit` für `'openliga'` — alle
-  bestanden, die 44 bereits bestehenden ESPN-Prüfungen erneut gegenkontrolliert, unverändert
-  korrekt. `pruefe.py`: ALLES SAUBER. **Keine neuen Sprachschlüssel** (349 unverändert). **Kein
-  Schnitt in der Messreihe.** `APP_VERSION` weiter 18.
-  **🔴 Status ausdrücklich NICHT auf „behoben" gesetzt:** Bestätigung durch einen echten
-  Prüfzyklus am Gerät steht aus. match.uefa.com und openfootball „internationals" bleiben
-  ausgeschieden (CORS bzw. keine aktuellen Daten, siehe Backlog-Punkt 84) — Regionalliga
-  West/Südwest bleiben aus demselben Grund wie diese offen.
+- **Beta: v19.16.0** (`beta.html`, geliefert 18.9.2026) — **Messdaten-Export: rekursive,
+  schemabasierte Positivprojektion (Backlog-Punkt 85, Auftrag Ondo, Fund am eigenen `espnRoh`).**
+  Vorgeschichte (ESPN, OpenLigaDB, Notnagel-Läufe): unverändert, `CHRONIK-2026-09.md` und
+  Backlog-Punkt 84.
+  **Anlass:** `messDatenBauen()` kopierte je `MESS_FELDER`-Eintrag bisher `state[f]` vollständig,
+  ungeprüft in die Tiefe. `MESS_FELDER` war damit nur ein Schutz auf oberster Ebene. Als
+  `espnRoh` (v19.14.2) unter `kiProtokoll[].espnRoh[]` entstand, lief es über genau diesen
+  Kopiervorgang ungeprüft mit durch — auf einem echten Gerät traf `messGeheimFund()` dabei auf
+  `kiProtokoll[0].espnRoh[0].summary.news.articles[0].contentKey` und blockierte den **gesamten**
+  Export, nicht nur das eine Feld.
+  **Gebaut:** Jede Stelle, an der ein `state`-Feld ein Objekt oder ein Array von Objekten ist,
+  bekommt eine eigene, ausdrückliche Feldliste (`MESS_KI_FELDER`, `MESS_MARKT_FELDER`,
+  `MESS_MARKT_FALT_FELDER`, `MESS_BET_FELDER`, `MESS_REGELN_FELDER`, `MESS_KORREKTURF_FELDER`,
+  `MESS_TRAIN_PROT_FELDER`, `MESS_TRAIN_SPIEL_FELDER`, `MESS_KONS_SPIEL_FELDER`,
+  `MESS_KONS_GEHIRN_FELDER`) — aus dem tatsächlichen Code ausgezählt (Arbeitsregel H), nicht aus
+  dem Gedächtnis. `messNurFelder()` kopiert je Ebene ausschliesslich, was in ihrer Liste steht;
+  `MESS_PROJEKTOREN` ordnet jedem `MESS_FELDER`-Eintrag seinen Projektor zu, **ohne** Rückfall auf
+  einen rohen Kopiervorgang — ein Feld ohne Projektor wird übersprungen statt roh durchgereicht.
+  **`refRoh` und `espnRoh` bleiben bewusst aussen vor** — Ondos eigene, nicht delegierte
+  Entscheidung: beide bleiben vollständig in IndexedDB und in der normalen Sicherung erhalten,
+  der normale Sicherungsweg (`datenSichern`/`datenLaden`) ist unverändert. **Keine Ausnahme für
+  `contentKey` oder ein anderes Einzelfeld in `MESS_VERBOTEN` eingetragen** — `MESS_VERBOTEN` und
+  `messGeheimFund()` bleiben wortgleich unverändert als zweite, unabhängige Stufe stehen.
+  **Verifiziert:** `node --check` bestanden · **29 neue Prüfungen** an den echten, wortgleich
+  herausgeschnittenen Funktionen (kein Nachbau) — unbekanntes Feld auf jeder Ebene injiziert
+  (Top-Level, `kiProtokoll`-Eintrag, `maerkte[]`, `fAlt`, `bets`, `regeln`, `korrekturF`,
+  `trainingsraumProtokoll` inkl. dessen `maerkte[]`, `trainingsraumSpiele`,
+  `antwortkonsistenzBericht` inkl. `proSpiel[]`) → kein einziges kommt im Export an ·
+  der ursprüngliche Fehlerfall (`espnRoh` mit `contentKey`) exakt nachgebaut → `messGeheimFund()`
+  meldet jetzt nichts mehr, der Export gelingt · alle erlaubten Felder bleiben inhaltlich
+  unverändert erhalten (kein Datenverlust) · ein v18-Alteintrag ohne v19-Zusatzfelder läuft ohne
+  Absturz durch, fehlende Felder bleiben fehlend statt „undefined" · `datenSichern()`/
+  `datenLaden()` unverändert auf ganz `state` · `messGeheimFund()` erkennt weiterhin einen
+  echten Schlüsselwert (Stufe 2 unabhängig wirksam) — alle 29 bestanden. `pruefe.py`: ALLES
+  SAUBER. **Keine neuen Sprachschlüssel** (349 unverändert). **Kein Schnitt in der Messreihe** —
+  reine Exportlogik, `state` selbst unangetastet. `APP_VERSION` weiter 18.
 - **Sprachschlüssel: 349** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 12.9.2026**). **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
 
 ---

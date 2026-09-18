@@ -27,6 +27,48 @@
 
 *Nachtrag 17.9.2026 (Backlog-Punkt 84, dieselbe Wegweiser-Regel wie am 14.9.2026 angewandt): Der v19.13.3-Eintrag stand bis heute noch als „Beta:"-Zeile in `STAND.md` selbst. Wortgleich hierher verschoben, weil `beta.html` inzwischen auf v19.14.0 weitergezogen ist — an der Reihenfolge (neueste zuerst) aendert sich dadurch nichts, der Eintrag steht jetzt an der Stelle, die ihm nach diesem Prinzip zusteht.*
 
+- **Beta zuvor: v19.15.0** (`beta.html`, geliefert 17.9.2026) — **OpenLigaDB als zweite strukturierte
+  Schiedsrichter-Quelle, für die Wettbewerbe, die ESPN nicht kennt (Backlog-Punkt 84, Auftrag
+  Ondo „UEFA-/openfootball-Lücke weiterverfolgen").** Vorgeschichte (ESPN, Notnagel-Läufe,
+  `REF_MIN_LAEUFE`, `espnRoh`): unverändert, „Beta zuvor: v19.14.2" unten und Backlog-Punkt 84.
+  **Schritt 0 (Live-Recherche), Befund:** ESPN kennt live geprüft keine deutsche 3. Liga und
+  keine Regionalliga (`ger.3`/`ger.regionalliga`-Slugs existieren nicht, HTTP 400) — genau die
+  Lücke, die STAND.md als Grossteil von Ondos Spielen benennt. Gefunden und live bestätigt:
+  `api.openligadb.de` — offenes CORS (mit Origin-Header, wie ein echter Browser ihn immer
+  sendet), kein Schlüssel nötig, `matchIsFinished` als klares Fertig-Signal, Halbzeit-/
+  90-Minuten-Stand sauber getrennt in `matchResults[]`. **Elfmeter-/Verlängerungs-Falle am
+  selben Spiel wie bei ESPN geprüft** (Eintracht Norderstedt–St. Pauli, DFB-Pokal 16.8.2025):
+  OpenLigaDB nennt den Verlängerungsstand mit dem irreführenden Namen „Unknown" (deren eigene
+  Bezeichnung) und den Elfmeterstand getrennt „AfterPenalties" — beide Quellen liefern
+  unabhängig voneinander denselben Stand (0:0 / 0:0 / 2:3), eine echte Kreuzvalidierung.
+  Aktualität bestätigt: 3. Liga und Regionalliga Nordost/Bayern/Nord führen die laufende Saison
+  2026/27 bereits mit Spielen vom Vortag. **Grenze, ehrlich benannt (Art. 11):** Regionalliga
+  West und Südwest sind für die laufende Saison bei OpenLigaDB NICHT auffindbar (mehrere
+  Kürzel probiert, 0 Spiele) — bleiben bewusst ausserhalb der Slug-Tabelle, kein Raten.
+  **Gebaut:** `openligaShortcutFuer()` (nur die vier live bestätigten Wettbewerbe: 3. Liga,
+  Regionalliga Nordost/Bayern/Nord) · `openligaSaison()` (reine Datumsrechnung, deutsche Saison
+  Juli–Juni) · `openligaErgebnisAus()` (90-Minuten-/Halbzeit-/Verlängerungsstand aus
+  `matchResults[]`, „Unknown" nur als echte Verlängerung gewertet, wenn er vom 90-Minuten-Stand
+  abweicht oder ein Elfmeterschiessen folgte — sonst als redundanter Doppeleintrag erkannt und
+  verworfen, belegt an einem echten Fall ohne Verlängerung) · `openligaLauf(ziel, cache)`,
+  **parallel** zu `espnLauf()` aufgerufen (disjunkte Wettbewerbe, kein Spiel kann beide Quellen
+  gleichzeitig treffen). `ergebnisQuelleAus()` um `'openliga'` erweitert — zählt wie `'espn'`,
+  braucht in `refEinigkeit()` nur Schwelle 1. Der KI-Notnagel bekommt jetzt nur noch die Spiele,
+  die **weder** ESPN **noch** OpenLigaDB lösen konnten. `espnRoh`-Äquivalent für OpenLigaDB
+  bewusst NICHT mitgebaut — nicht Teil dieses Auftrags, siehe Backlog-Punkt 84.
+  **Verifiziert:** `node --check` bestanden · **22 neue Prüfungen** an den echten, wortgleich
+  herausgeschnittenen Funktionen (kein Nachbau), gegen live abgerufene OpenLigaDB-Antworten —
+  Slug-Erkennung inkl. Negativfall · Saisonrechnung an echten Randdaten · fünf echte
+  DFB-Pokal-Elfmeterfälle korrekt ausgewertet (inkl. des Falls ohne echte Verlängerung) · der
+  volle Weg über `openligaLauf()` · `ergebnisQuelleAus`/`refEinigkeit` für `'openliga'` — alle
+  bestanden, die 44 bereits bestehenden ESPN-Prüfungen erneut gegenkontrolliert, unverändert
+  korrekt. `pruefe.py`: ALLES SAUBER. **Keine neuen Sprachschlüssel** (349 unverändert). **Kein
+  Schnitt in der Messreihe.** `APP_VERSION` weiter 18.
+  **🔴 Status ausdrücklich NICHT auf „behoben" gesetzt:** Bestätigung durch einen echten
+  Prüfzyklus am Gerät steht aus. match.uefa.com und openfootball „internationals" bleiben
+  ausgeschieden (CORS bzw. keine aktuellen Daten, siehe Backlog-Punkt 84) — Regionalliga
+  West/Südwest bleiben aus demselben Grund wie diese offen.
+
 - **Beta zuvor: v19.14.2** (`beta.html`, geliefert 17.9.2026) — **Rohe ESPN-Antwort mitgeschrieben
   (Backlog-Punkt 84, Auftrag Ondo).** Vorgeschichte (Notnagel-Läufe, `REF_MIN_LAEUFE`,
   90-Minuten-Formel): unverändert, „Beta zuvor: v19.14.1"/„v19.14.0" unten, und Backlog-Punkt 84.
