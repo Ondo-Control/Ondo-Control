@@ -27,6 +27,43 @@
 
 *Nachtrag 17.9.2026 (Backlog-Punkt 84, dieselbe Wegweiser-Regel wie am 14.9.2026 angewandt): Der v19.13.3-Eintrag stand bis heute noch als „Beta:"-Zeile in `STAND.md` selbst. Wortgleich hierher verschoben, weil `beta.html` inzwischen auf v19.14.0 weitergezogen ist — an der Reihenfolge (neueste zuerst) aendert sich dadurch nichts, der Eintrag steht jetzt an der Stelle, die ihm nach diesem Prinzip zusteht.*
 
+- **Beta zuvor: v19.16.0** (`beta.html`, geliefert 18.9.2026) — **Messdaten-Export: rekursive,
+  schemabasierte Positivprojektion (Backlog-Punkt 85, Auftrag Ondo, Fund am eigenen `espnRoh`).**
+  Vorgeschichte (ESPN, OpenLigaDB, Notnagel-Läufe): unverändert, „Beta zuvor: v19.15.0" unten und
+  Backlog-Punkt 84.
+  **Anlass:** `messDatenBauen()` kopierte je `MESS_FELDER`-Eintrag bisher `state[f]` vollständig,
+  ungeprüft in die Tiefe. `MESS_FELDER` war damit nur ein Schutz auf oberster Ebene. Als
+  `espnRoh` (v19.14.2) unter `kiProtokoll[].espnRoh[]` entstand, lief es über genau diesen
+  Kopiervorgang ungeprüft mit durch — auf einem echten Gerät traf `messGeheimFund()` dabei auf
+  `kiProtokoll[0].espnRoh[0].summary.news.articles[0].contentKey` und blockierte den **gesamten**
+  Export, nicht nur das eine Feld.
+  **Gebaut:** Jede Stelle, an der ein `state`-Feld ein Objekt oder ein Array von Objekten ist,
+  bekommt eine eigene, ausdrückliche Feldliste (`MESS_KI_FELDER`, `MESS_MARKT_FELDER`,
+  `MESS_MARKT_FALT_FELDER`, `MESS_BET_FELDER`, `MESS_REGELN_FELDER`, `MESS_KORREKTURF_FELDER`,
+  `MESS_TRAIN_PROT_FELDER`, `MESS_TRAIN_SPIEL_FELDER`, `MESS_KONS_SPIEL_FELDER`,
+  `MESS_KONS_GEHIRN_FELDER`) — aus dem tatsächlichen Code ausgezählt (Arbeitsregel H), nicht aus
+  dem Gedächtnis. `messNurFelder()` kopiert je Ebene ausschliesslich, was in ihrer Liste steht;
+  `MESS_PROJEKTOREN` ordnet jedem `MESS_FELDER`-Eintrag seinen Projektor zu, **ohne** Rückfall auf
+  einen rohen Kopiervorgang — ein Feld ohne Projektor wird übersprungen statt roh durchgereicht.
+  **`refRoh` und `espnRoh` bleiben bewusst aussen vor** — Ondos eigene, nicht delegierte
+  Entscheidung: beide bleiben vollständig in IndexedDB und in der normalen Sicherung erhalten,
+  der normale Sicherungsweg (`datenSichern`/`datenLaden`) ist unverändert. **Keine Ausnahme für
+  `contentKey` oder ein anderes Einzelfeld in `MESS_VERBOTEN` eingetragen** — `MESS_VERBOTEN` und
+  `messGeheimFund()` bleiben wortgleich unverändert als zweite, unabhängige Stufe stehen.
+  **Verifiziert:** `node --check` bestanden · **29 neue Prüfungen** an den echten, wortgleich
+  herausgeschnittenen Funktionen (kein Nachbau) — unbekanntes Feld auf jeder Ebene injiziert
+  (Top-Level, `kiProtokoll`-Eintrag, `maerkte[]`, `fAlt`, `bets`, `regeln`, `korrekturF`,
+  `trainingsraumProtokoll` inkl. dessen `maerkte[]`, `trainingsraumSpiele`,
+  `antwortkonsistenzBericht` inkl. `proSpiel[]`) → kein einziges kommt im Export an ·
+  der ursprüngliche Fehlerfall (`espnRoh` mit `contentKey`) exakt nachgebaut → `messGeheimFund()`
+  meldet jetzt nichts mehr, der Export gelingt · alle erlaubten Felder bleiben inhaltlich
+  unverändert erhalten (kein Datenverlust) · ein v18-Alteintrag ohne v19-Zusatzfelder läuft ohne
+  Absturz durch, fehlende Felder bleiben fehlend statt „undefined" · `datenSichern()`/
+  `datenLaden()` unverändert auf ganz `state` · `messGeheimFund()` erkennt weiterhin einen
+  echten Schlüsselwert (Stufe 2 unabhängig wirksam) — alle 29 bestanden. `pruefe.py`: ALLES
+  SAUBER. **Keine neuen Sprachschlüssel** (349 unverändert). **Kein Schnitt in der Messreihe** —
+  reine Exportlogik, `state` selbst unangetastet. `APP_VERSION` weiter 18.
+
 - **Beta zuvor: v19.15.0** (`beta.html`, geliefert 17.9.2026) — **OpenLigaDB als zweite strukturierte
   Schiedsrichter-Quelle, für die Wettbewerbe, die ESPN nicht kennt (Backlog-Punkt 84, Auftrag
   Ondo „UEFA-/openfootball-Lücke weiterverfolgen").** Vorgeschichte (ESPN, Notnagel-Läufe,

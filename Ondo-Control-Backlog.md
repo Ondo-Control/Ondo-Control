@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 18.9.2026, Fassung 136 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 18.9.2026, Fassung 137 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -288,11 +288,13 @@ ein Elfmeterschiessen-Fall) · Schritte 1, 2 (teilweise), 3, 5, 6 gebaut 17.9.20
 v19.14.0) · KI-Notnagel noch am selben Tag auf Auftrag Ondo zurück auf drei Läufe (v19.14.1) ·
 rohe ESPN-Antwort mitgeschrieben, Auftrag Ondo (v19.14.2) · UEFA-/openfootball-Lücke
 weiterverfolgt, Auftrag Ondo: OpenLigaDB als zweite Strukturquelle live bestätigt und gebaut
-(v19.15.0)* ·
-**Status: 🔴 TEILWEISE GEBAUT 17.9.2026, `beta.html` v19.15.0 — match.uefa.com und openfootball
+(v19.15.0) · ESPN-Sammelautomatik + gehärtete Zuordnung, Auftrag Ondo 18.9.2026 (v19.17.0)* ·
+**Status: 🔴 TEILWEISE GEBAUT 18.9.2026, `beta.html` v19.17.0 — match.uefa.com und openfootball
 weiterhin NICHT gebaut (Verifikation gescheitert); OpenLigaDB als Ersatz für 3. Liga und drei
 Regionalliga-Staffeln gebaut und verifiziert; KI-Notnagel-Teil von Schritt 2 nach v19.14.0
-wieder auf drei Läufe zurückgesetzt; `espnRoh` mitgeschrieben**
+wieder auf drei Läufe zurückgesetzt; `espnRoh` mitgeschrieben; ESPN-Sammelautomatik +
+Archiv-Kaskade + gehärtete `strukturAbgleich()` gebaut und verifiziert, Bewährung im echten
+Betrieb steht aus**
 
 **Schritt 0 (Live-Verifikation), Befund:** Von vier wörtlich formulierten Bedingungen haben
 zwei nicht bestanden — `linescores[]` existiert nicht auf `.../scoreboard`, erst auf einem
@@ -398,6 +400,93 @@ Sprachschlüssel. Bewährung im echten Betrieb steht aus (Stabilitätsregel).
 HTTP-Aufruf je Spiel (Summary zusätzlich zu Scoreboard) statt bisher einem — weiterhin
 kostenlos. Der KI-Notnagel verbraucht jetzt SELTENER und GÜNSTIGER Modellaufrufe (ein Lauf
 statt bis zu drei), sobald ESPN einen Wettbewerb abdeckt.
+
+**ESPN-Sammelautomatik + gehärtete Zuordnung, `beta.html` v19.17.0 (Auftrag Ondo, 18.9.2026):**
+
+**Schritt 0 (Live-Verifikation, vor jedem Bau durchgeführt):**
+1. ESPN-Discovery-Endpunkt gefunden und live abgerufen: `sports.core.api.espn.com/v2/sports/
+   soccer/leagues?limit=1000` — 219 tatsächlich bei ESPN geführte Liga-Slugs, kein Raten auf
+   Vorrat.
+2. `soccer/all/scoreboard` live geprüft (mehrere Tage, u. a. 16.8.2025): liefert **kein**
+   vollständiges „alle Wettbewerbe"-Bild — harte Obergrenze von 100 Ereignissen ohne
+   Seitennummerierung, deutliche US-Schlagseite (MLS, Liga MX, US-Unterligen), deutsche
+   Bundesliga-Spiele desselben Tages fehlten komplett, obwohl sie stattfanden. **FALL B**: dieser
+   Sammelendpunkt ersetzt die Slug-für-Slug-Abfrage nicht.
+3. **59 Slugs** zusammengestellt: 16-Länder-STUFEN-Bereich gegen die Discovery-Liste geprüft,
+   UEFA-Hauptwettbewerbe + Qualifikation, „Länderspiele" aus `skripte/schiri-ergebnisse-holen.js`s
+   `API_FOOTBALL_LIGEN`-Kommentarblock abgeleitet (nicht neu erfunden, wie beauftragt), die 12
+   genannten Stufe-2-Wettbewerbe, Stufe-3-Vereinstestspiele. **Alle 59 live gegen echte
+   `scoreboard`-Antworten geprüft** (20250906 Länderspielfenster, 20250913 normales
+   Ligawochenende) — alle 59 lieferten HTTP 200.
+4. **Lücken, ehrlich benannt (Art. 11):** Schweiz, Tschechien, Polen, Kroatien komplett ohne
+   ESPN-Slug. Portugal/Belgien nur 1. Liga (kein `por.2`/`bel.2` im Discovery-Katalog).
+   Österreich/Türkei/Griechenland nur 1. Liga (keine 2. Liga, kein Pokal-Slug auffindbar).
+   Schottland ohne eindeutigen „Scottish Cup"-Slug (nur `sco.tennents`/`sco.cis`, historische
+   Sponsorennamen des Liga-Pokals). Keine eigene Asian-Cup-Qualifikation gefunden. Von den 12
+   Stufe-2-Wettbewerben fehlen Finnland, Irland, Island, Südkorea komplett. Ein nicht
+   abgedeckter Wettbewerb fällt wie bisher ohne Zeitverlust an den KI-Notnagel.
+
+**Gebaut:**
+- **`skripte/espn-ergebnisse-holen.js` + `.github/workflows/espn-ergebnisse.yml` +
+  `daten/espn-ergebnisse/`** — ganz getrennt von `schiri-ergebnisse`/`daten/schiri-ergebnisse/`
+  (Ondos ausdrückliche Vorgabe, nicht vermischen). Modelliert auf dem bestehenden Muster, aber
+  eigenständig: iteriert **sequenziell** (kein grosses `Promise.all` über Dutzende Abfragen, kein
+  Retry-Sturm) über die 59 verifizierten Slugs, holt „gestern"+„heute" (UTC). Rechnet den
+  90-Minuten-Stand exakt nach der in `espnLauf()` verifizierten Formel
+  (`linescores[0]+linescores[1]`, elfmeter-/verlängerungssicher) — **keine neuen Elfmeterfelder**
+  (`elfmeterGespielt`/`elfmeter`), wie ausdrücklich verlangt. Schema:
+  `providerEventId` (Primärschlüssel), `wettbewerbSlug`, `wettbewerb`, `datum`, `anpfiff`, `heim`,
+  `gast`, `torHeim`, `torGast`, `halbzeit`, `verlaengerung`, `status`, `quelle`, `fetchedAt`.
+  Merge-Regel: `fetchedAt` wird beim Erstfund gesetzt und danach **nie** verändert; ein
+  unvollständiger Folgefund überschreibt eine bestehende gute Zeile **nie**; eine echte Korrektur
+  (gleiche `providerEventId`, geänderter Stand) wird übernommen, `fetchedAt` bleibt dabei der
+  Erstfund-Zeitpunkt. Cron-Zeiten (08:00 + 23:30 UTC) bewusst identisch zur bestehenden
+  Schiri-Automatik übernommen — dieselbe, bereits begründete Zeitwahl, nicht neu erfunden.
+  Committet nur bei echtem Diff, wie beim Vorbild. Die App schreibt weiterhin **nicht** ins
+  Repository (Ondos Entscheidung vom 13.9.2026, Backlog-Punkt 81, unverändert gültig) — nur
+  GitHub Actions aktualisiert die Ergebnisdateien.
+- **`strukturAbgleich()` gehärtet:** sammelt jetzt **alle** passenden Kandidaten statt beim
+  ersten Treffer abzubrechen. Genau ein Kandidat → wie bisher übernommen. Mehr als einer → neuer
+  Zustand **„mehrdeutig"** — kein Raten, welcher Kandidat richtig ist, das Spiel bleibt ungelöst
+  und fällt normal an die nächste Quelle/den KI-Notnagel weiter. Bewusst unterschieden von
+  `refEinigkeit()`s „uneinig" (mehrere **widersprechende Schiedsrichter-Läufe** desselben Spiels
+  über mehrere Runden) — „mehrdeutig" sind mehrere **Kandidaten einer einzigen strukturierten
+  Quelle** für dasselbe Spiel in einem einzigen Abgleich. Rückwärtskompatibel: Rückgabe bleibt
+  ein Array, die Mehrdeutig-Liste hängt zusätzlich als `.mehrdeutig`-Eigenschaft daran — kein
+  bestehender Aufrufer muss sie lesen.
+- **`espnArchivLesen(ziel)`**, modelliert direkt auf `footballDataArchivLesen()`: liest
+  `daten/espn-ergebnisse/JJJJ-MM.json` über `raw.githubusercontent.com`, gleicht über die
+  gehärtete `strukturAbgleich()` ab, setzt die Fund-Quelle auf die menschlich öffnbare
+  GitHub-Seite der zuständigen Monatsdatei.
+- **Kaskade in `rundeLaufen()` erweitert:** ESPN-Archiv → Live-ESPN → OpenLigaDB → KI-Notnagel.
+  Ein eindeutiger Archivtreffer erspart für genau dieses Spiel die Live-ESPN-Abfrage
+  (`espnLauf()` bekommt nur noch die vom Archiv nicht gelösten Spiele) — kein Spiel wird doppelt
+  bei ESPN angefragt, keins geht verloren.
+
+**Unverändert, wie beauftragt:** `REF_MIN_LAEUFE`, `refEinigkeit()`, STUFEN selbst, die
+90-Minuten-plus-Nachspielzeit-Definition, die bestehende Verlängerungsbehandlung, der Ausschluss
+von Elfmeterschiessen aus dem Messwert, `espnLauf()`/`openligaLauf()`/`ergebnisQuelleAus()`.
+
+**Verifiziert:** `node --check` bestanden · **14 neue Prüfungen** an `strukturAbgleich()`/
+`espnArchivLesen()` (wortgleich herausgeschnitten, kein Nachbau) · **13 neue Prüfungen** an
+`skripte/espn-ergebnisse-holen.js` gegen eine live abgerufene, echte ESPN-Summary-Antwort
+(derselbe Norderstedt–St.-Pauli-Elfmeterfall wie in `STAND.md`, elfte Fehlerart) · **13 neue
+Prüfungen** an der vollständigen Kaskade (isoliert mit instrumentierten Ersatzfunktionen für
+Netz/KI, echter, wortgleich herausgeschnittener Orchestrierungscode) — Reihenfolge, Dedup gegen
+Doppelabfrage, kein Spielverlust bei gemischten Fällen, weiterhin drei KI-Läufe bei leerem
+Strukturtreffer — insgesamt 40 neue Prüfungen, alle bestanden. Die 74 bereits bestehenden
+ESPN-/OpenLigaDB-Prüfungen unverändert, da `espnLauf()`/`openligaLauf()`/`ergebnisQuelleAus()`/
+`refEinigkeit()` in dieser Lieferung nicht angefasst wurden. `pruefe.py`: ALLES SAUBER. Keine
+neuen Sprachschlüssel.
+
+**🔴 Status ausdrücklich NICHT auf „behoben"/„bewährt" gesetzt:** Der neue Workflow hat noch
+keinen echten Lauf in GitHub Actions hinter sich — Bewährung im echten Betrieb steht aus
+(Stabilitätsregel).
+
+**Kosten (Arbeitsregel G):** Kein Geld (ESPNs Site-API braucht auch hier keinen Schlüssel).
+Laufzeit: ein GitHub-Actions-Lauf pro Cron-Zeitpunkt, sequenziell über 59 Slugs × 2 Tage plus
+eine Summary-Abfrage je gefundenem, beendetem Spiel — im Rahmen der kostenlosen GitHub-Actions-
+Minuten, keine neue laufende Ausgabe.
 
 ---
 

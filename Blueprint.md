@@ -3,10 +3,12 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.135
+**Version:** 0.136
 **Stand:** 18. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
+
+> **Was Fassung 0.136 ändert (18.9.2026):** Reine Fassungszahl-Anpassung nach Arbeitsregel M — `STAND.md` und der Backlog wurden für Backlog-Punkt 84 geändert (ESPN-Sammelautomatik + gehärtete Zuordnung, Auftrag Ondo — `beta.html` v19.17.0, neue Dateien `skripte/espn-ergebnisse-holen.js`, `.github/workflows/espn-ergebnisse.yml`, `daten/espn-ergebnisse/`). Blueprint selbst inhaltlich nicht geändert. Blueprint auf 0.136 gehoben.
 
 > **Was Fassung 0.135 ändert (18.9.2026):** Reine Fassungszahl-Anpassung nach Arbeitsregel M — `STAND.md` und der Backlog wurden für Backlog-Punkt 85 geändert (Messdaten-Export: rekursive, schemabasierte Positivprojektion, Auftrag Ondo — `beta.html` v19.16.0). Blueprint selbst inhaltlich nicht geändert. Blueprint auf 0.135 gehoben.
 

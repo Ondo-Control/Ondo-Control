@@ -1,0 +1,50 @@
+name: ESPN-Ergebnisse holen
+
+# Backlog-Punkt 84, Auftrag Ondo 18.9.2026 ("ESPN-Sammelautomatik"). GANZ GETRENNT von
+# schiri-ergebnisse.yml/schiri-ergebnisse-holen.js/daten/schiri-ergebnisse/ (Ondos ausdrueckliche
+# Vorgabe: nicht vermischen) - eigener Workflow, eigenes Skript, eigener Zielordner.
+#
+# Cron-Zeiten bewusst identisch zur bestehenden Schiri-Automatik (dieselbe, bereits begruendete
+# Zeitwahl wiederverwendet, nicht neu erfunden - siehe skripte/espn-ergebnisse-holen.js, Kopf):
+#   - 08:00 UTC: spaet genug, dass auch die spaetesten Spiele im Stufen-Bereich (US-Westkueste,
+#     MLS) vom Vortag sicher abgepfiffen sind - holt "gestern" vollstaendig nach.
+#   - 23:30 UTC: faengt europaeische Abendspiele mit Verlaengerung/Elfmeterschiessen noch am
+#     selben Tag ab.
+# Kein Schluessel noetig (ESPNs Site-API verlangt keinen) - anders als bei schiri-ergebnisse.yml
+# gibt es hier keine secrets im env-Block.
+#
+# Committet nur, wenn sich eine Monatsdatei tatsaechlich aendert (git-eigener Diff auf den
+# gestagten Dateiinhalt) - derselbe, bereits bewaehrte Mechanismus wie bei schiri-ergebnisse.yml.
+on:
+  schedule:
+    - cron: '0 8 * * *'
+    - cron: '30 23 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  holen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: ESPN-Ergebnisse abrufen
+        run: node skripte/espn-ergebnisse-holen.js
+
+      - name: Aenderung committen, falls vorhanden
+        run: |
+          git config user.name "Ondo-Control-Automatik"
+          git config user.email "actions@users.noreply.github.com"
+          git add daten/espn-ergebnisse/
+          if git diff --cached --quiet; then
+            echo "Keine Aenderung - nichts zu committen."
+          else
+            git commit -m "ESPN-Ergebnisse: automatischer Abruf"
+            git push
+          fi
