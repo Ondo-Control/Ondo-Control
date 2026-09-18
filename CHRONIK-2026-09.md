@@ -763,3 +763,228 @@
 *Dieser Satz stand bis zum 14.9.2026 eingebettet in der „Sprachschluessel"-Zeile von `STAND.md`, Abschnitt „Versionen". Er beschreibt, wie die heute geltende Zahl (siehe `STAND.md`) ueber die gesamte Projektlaufzeit zustande kam, nicht nur den September-Anteil — deshalb hier ungeteilt, wortgleich, statt auf zwei Chronikdateien aufgesplittet.*
 
 *Verlauf: die früher dokumentierten 184 waren nie geprüft; nachgezählt waren es 185, dann 193, dann 199, dann 201 (v19.7.8), dann 203 (v19.8.1). Die acht Schlüssel des Berichtigungsknopfes vom 13.8. (`korrT` bis `korrOk`) waren nirgends nachgetragen — 203 + 8 = 211. Punkt 44 bringt sechs weitere (`messT` bis `messBlock`) — 211 + 6 = 217. Backlog-Punkt 51 (gepaarter Vergleich, seit 30.8.2026 in `BACKLOG-ARCHIV.md`) bringt elf weitere (`gepaart` bis `gepaartMehrdeutig`) — 217 + 11 = 228. Backlog-Punkt 64 bringt einen weiteren (`parkGrundInstabil`) — 228 + 1 = 229. Nachfrage zu Punkt 64 (refRoh lesbar gemacht, v19.8.8) bringt zwei weitere (`refRohBtn`, `refRohEmpty`) — 229 + 2 = 231. Nachfrage zu Punkt 64, Teil 2/3 (v19.8.9) bringt drei weitere (`refWiderspruch`, `refRunsVon`, `ergebnisManuell`) — 231 + 3 = 234. Backlog-Punkt 68 und Punkt 36, zweiter Teil (Mehrfachlauf-Absicherung, v19.8.12), bringen sieben weitere (`refEinig2von3`, `refQuellenZahl`, `refVerworfen`, `parkGrundFormat`, `refEinAnbieter`, `refDauer`, `balGeparkt`) — 234 + 7 = 241. Backlog-Punkt 70 (Filter im KI-Log, v19.8.14) bringt zehn weitere (`filterT` bis `filterEmpty`) — 241 + 10 = 251. Backlog-Punkt 71 (KI-Log in vier Reiter, v19.8.15) bringt vier weitere (`kilogTabBewertet`, `kilogTabArchiv`, `kilogTabWerkzeuge`, `filterMannschaftPh`) und entfernt einen, ungenutzt gewordenen (`logEmpty`) — 251 + 4 − 1 = 254. Backlog-Punkt 34/35 (Brier-Score, Streuung, v19.8.21) bringen zwei weitere (`calibBrier`, `calibSpread`) — 254 + 2 = 256. Backlog-Punkt 9, Knopfdruck-Teil (Quoten-Automatik, v19.8.23) bringt elf weitere (`oddsKeyT` bis `oddsQuelle`) — 256 + 11 = 267. Backlog-Punkt 9, Ausbau (API-Football/football-data.org per Knopfdruck, v19.8.24) bringt acht weitere (`afKeyT` bis `fdOff`) — 267 + 8 = 275. Backlog-Punkt 0b (Widerspruchsquote je Markt, v19.8.25) bringt einen weiteren (`widersprT`) — 275 + 1 = 276. Backlog-Punkt 75, Teil 2 (Decision Ledger, v19.8.26) bringt drei weitere (`kiWahlLabel`, `kiWahlKeine`, `vonKi`) — 276 + 3 = 279. Die drei Behebungen und der Observation Layer (v19.8.28) bringen 23 weitere: zwei Rückfragen vor dem Löschen (`delBetAsk`, `delLogAsk`), drei für den Speicher (`saveFailAlert`, `speicherT`, `speicherEng`) und achtzehn für den Observation Layer (`beobT` bis `beobGrundlage`) — 279 + 23 = 302. Der Umstieg auf IndexedDB (v19.8.30) bringt einen weiteren (`speicherVon`) — 302 + 1 = 303. Die Korrigieren-Felder (v19.8.31) bringen drei weitere (`depKorrLabel`, `wdKorrLabel`, `korrHinweis`) — 303 + 3 = 306. Der Trainingsraum (v19.9.0) bringt zwölf weitere (`trainT` bis `kiBusy`) — 306 + 12 = 318. Die Marktlage-Recherche (v19.10.0) bringt sieben weitere (`predResearch` bis `marktlageAus`) — 318 + 7 = 325. Die Trainingsraum-Nachbesserung (v19.11.0) bringt zwölf weitere (`kilogTabDaten`, `trainVonBisD`, `trainSpT`, `trainSpD`, `trainSpMatchPh`, `trainSpDatumL`, `trainSpHeimL`, `trainSpGastL`, `trainSpBtn`, `trainSpFehler`, `trainSpLeer`, `delTrainSpAsk`) — 325 + 12 = 337. Die Kombi-Wette-Verknüpfung (v19.12.0) bringt zwei weitere (`kiKombiLabel`, `kombiN`) — 337 + 2 = 339. Das Kriterium-(g)-Testwerkzeug (v19.13.0) bringt zehn weitere (`konsT`, `konsD`, `konsBtn`, `konsRunning`, `konsKeine`, `konsKeineDaten`, `konsFertig`, `konsZeile`, `konsBestanden`, `konsNichtBestanden`) — 339 + 10 = 349.*
+
+---
+
+## `beta.html` v19.17.0 — ESPN-Sammelautomatik + gehärtete Zuordnung, aus `STAND.md` „Versionen" verschoben (18.9.2026, Nachbesserung Backlog-Punkt 84/85, Fassung 138)
+
+*Dieser Block stand bis zur Nachbesserungslieferung vom 18.9.2026 (`beta.html` v19.18.0) als „was heute gilt" in `STAND.md`, Abschnitt „Versionen". Er beschreibt den Stand VOR der Nachbesserung — acht von ChatGPT gemeldete und von Claude am echten Code bestätigte Abweichungen vom ursprünglichen Auftrag. Wortgleich hierher verschoben, nicht verändert. Was jetzt gilt, steht in `STAND.md`.*
+
+- **Beta: v19.17.0** (`beta.html` + neue Dateien, geliefert 18.9.2026) — **ESPN-Sammelautomatik +
+  gehärtete Zuordnung (Backlog-Punkt 84, Auftrag Ondo).** Vorgeschichte (ESPN, OpenLigaDB,
+  Notnagel-Läufe, Messdaten-Export): unverändert, `CHRONIK-2026-09.md` und Backlog-Punkt 84/85.
+  **Schritt 0 (Live-Verifikation, VOR jedem Bau durchgeführt):**
+  1. ESPN-Discovery-Endpunkt gefunden und live abgerufen: `sports.core.api.espn.com/v2/sports/
+     soccer/leagues?limit=1000` — liefert 219 tatsächlich bei ESPN geführte Liga-Slugs.
+  2. `soccer/all/scoreboard` live geprüft (mehrere Tage): liefert **kein** vollständiges
+     „alle Wettbewerbe"-Bild — harte Obergrenze von 100 Ereignissen ohne Seitennummerierung, mit
+     erkennbarer US-Schlagseite (MLS, Liga MX, sogar US-Unterligen); deutsche Bundesliga-Spiele
+     desselben Tages fehlten komplett. **FALL B: dieser Sammelendpunkt ist NICHT ausreichend** —
+     die bereits verifizierte Slug-für-Slug-Abfrage bleibt der Weg, jetzt als tägliche Automatik.
+  3. **59 Slugs** gegen den Discovery-Katalog und `skripte/schiri-ergebnisse-holen.js`s
+     `API_FOOTBALL_LIGEN` (Grundlage für den „Länderspiele"-Bereich, nicht neu erfunden)
+     zusammengestellt und **live gegen echte `scoreboard`-Antworten geprüft** (zwei Testtage,
+     Ligawochenende + Länderspielfenster) — **alle 59 lieferten HTTP 200**.
+  4. **Lücken, ehrlich benannt (Art. 11, nichts geraten):** ESPN kennt **keinen** Slug für
+     Schweiz, Tschechien, Polen, Kroatien (komplett fehlend). Portugal/Belgien nur 1. Liga (kein
+     `por.2`/`bel.2`). Österreich/Türkei/Griechenland nur 1. Liga (keine 2. Liga, kein Pokal).
+     Schottland ohne eindeutigen „Scottish Cup"-Slug. Keine eigene Asian-Cup-Qualifikation
+     gefunden. Von den 12 genannten Stufe-2-Wettbewerben fehlen Finnland, Irland, Island,
+     Südkorea komplett. Ein nicht abgedeckter Wettbewerb fällt wie bisher ohne Zeitverlust an
+     den KI-Notnagel.
+  **Gebaut:**
+  - `skripte/espn-ergebnisse-holen.js` + `.github/workflows/espn-ergebnisse.yml` +
+    `daten/espn-ergebnisse/` — **ganz getrennt** von `schiri-ergebnisse`/`daten/schiri-ergebnisse/`
+    (Ondos Vorgabe). Iteriert sequenziell (keine grossen `Promise.all`-Stapel, kein Retry-Sturm)
+    über die 59 verifizierten Slugs, holt „gestern"+„heute" (UTC), rechnet den 90-Minuten-Stand
+    exakt wie `espnLauf()` (`linescores[0]+[1]`, Elfmeter-/Verlängerungssicher, **kein** eigenes
+    Elfmeter-Feld). `providerEventId` als Primärschlüssel, `fetchedAt` wird beim Erstfund gesetzt
+    und danach **nie** verändert; ein unvollständiger Folgefund überschreibt eine gute Zeile
+    **nie**, eine echte Korrektur (gleiche `providerEventId`, geänderter Stand) wird übernommen.
+    Cron-Zeiten (08:00 + 23:30 UTC) bewusst identisch zur bestehenden Schiri-Automatik
+    übernommen, nicht neu erfunden. Committet nur bei echtem Diff, wie beim Vorbild.
+  - `strukturAbgleich()` gehärtet: sammelt jetzt **alle** passenden Kandidaten statt beim ersten
+    abzubrechen — genau einer → wie bisher übernommen, mehr als einer → neuer Zustand
+    **„mehrdeutig"** (kein Raten, welcher Kandidat richtig ist; klar unterschieden von
+    `refEinigkeit()`s „uneinig" — dort mehrere widersprechende Schiedsrichter-**Läufe**, hier
+    mehrere Kandidaten **einer** Quelle für dasselbe Spiel). Rückwärtskompatibel: Rückgabe bleibt
+    ein Array, die Mehrdeutig-Liste hängt zusätzlich als `.mehrdeutig`-Eigenschaft daran.
+  - `espnArchivLesen(ziel)`, modelliert auf `footballDataArchivLesen()`: liest
+    `daten/espn-ergebnisse/JJJJ-MM.json`, nutzt die gehärtete `strukturAbgleich()` unverändert.
+  - Kaskade in `rundeLaufen()` erweitert: **ESPN-Archiv → Live-ESPN → OpenLigaDB → KI-Notnagel.**
+    Ein eindeutiger Archivtreffer erspart für genau dieses Spiel die Live-ESPN-Abfrage
+    (`espnLauf()` bekommt nur noch die vom Archiv nicht gelösten Spiele) — kein Spiel wird
+    doppelt bei ESPN angefragt, keins geht verloren.
+  **Unverändert, wie beauftragt:** `REF_MIN_LAEUFE`, `refEinigkeit()`, STUFEN selbst, die
+  90-Minuten-plus-Nachspielzeit-Definition, die bestehende Verlängerungsbehandlung, der
+  Ausschluss von Elfmeterschiessen aus dem Messwert. Die App schreibt weiterhin **nicht** ins
+  Repository — nur GitHub Actions aktualisiert die neuen Ergebnisdateien.
+  **Verifiziert:** `node --check` bestanden · **14 neue Prüfungen** an `strukturAbgleich()`/
+  `espnArchivLesen()` (wortgleich herausgeschnitten) — unveränderter Fall bei genau einem
+  Kandidaten, „mehrdeutig" bei mehreren, gemischter Fall, kein Kandidat weiterhin ohne Ergebnis,
+  echter Archivtreffer (DFB-Pokal-Elfmeterfall) liefert den 90-Minuten-Stand ohne Elfmeterstand,
+  fehlende Monatsdatei ergibt leeres Ergebnis · **13 neue Prüfungen** an
+  `skripte/espn-ergebnisse-holen.js` (`datensatzBauen`/`einfuegenOderAktualisieren`/
+  `laden`/`speichern`) gegen eine live abgerufene, echte ESPN-Summary-Antwort (derselbe
+  Norderstedt–St.-Pauli-Elfmeterfall wie in `STAND.md`, elfte Fehlerart) — kein Elfmeterfeld im
+  Datensatz, `fetchedAt` bleibt bei erneutem und bei korrigiertem Fund unverändert, ein
+  unvollständiger Fund überschreibt nie, Datei-Rundlauf deterministisch sortiert, eine kaputte
+  Bestandsdatei bricht den Lauf ab statt still zu überschreiben · **13 neue Prüfungen** an der
+  vollständigen Kaskade (isoliert mit instrumentierten Ersatzfunktionen für Netz/KI, echter,
+  wortgleich herausgeschnittener Orchestrierungscode) — Reihenfolge ESPN-Archiv→Live-ESPN→
+  OpenLigaDB→KI-Notnagel bestätigt, ein eindeutiger Archivtreffer verhindert nachweislich die
+  doppelte Live-ESPN-Abfrage für dasselbe Spiel, ein gemischter Fall verliert kein Spiel, findet
+  keine Strukturquelle etwas bekommt der KI-Notnagel weiterhin drei Läufe (zwei Gemini, ein
+  Sonnet) — alle 40 neuen Prüfungen dieser Lieferung bestanden, die 74 bereits bestehenden
+  ESPN-/OpenLigaDB-Prüfungen unverändert (an den unveränderten Funktionen `espnLauf()`/
+  `openligaLauf()`/`ergebnisQuelleAus()`/`refEinigkeit()` wurde in dieser Lieferung nichts
+  geändert). `pruefe.py`: ALLES SAUBER. **Keine neuen Sprachschlüssel** (349 unverändert).
+  **🔴 Status ausdrücklich NICHT auf „behoben"/„bewährt" gesetzt:** Der neue Workflow hat noch
+  keinen echten Lauf in GitHub Actions hinter sich (erst nach dem ersten Cron-Zeitpunkt bzw.
+  einem manuellen `workflow_dispatch` sichtbar) — Bewährung steht aus (Stabilitätsregel).
+
+**🔴 Nachbesserung 18.9.2026 (Backlog-Punkt 84/85, `beta.html` v19.18.0):** Acht von ChatGPT
+gemeldete Abweichungen vom Auftrag wurden am echten Code des Commits `1ef0e91` bestätigt und
+behoben — Kurzfassung in `STAND.md`, Abschnitt „Versionen". Vollständige Begründung, Bauweise
+und Verifikation, wortgleich aus der Lieferung übernommen:
+
+**Anlass:** ChatGPT hat acht Abweichungen vom ursprünglichen Auftrag gemeldet; Claude hat alle
+acht am echten Code des Commits `1ef0e91` nachgeprüft und bestätigt. Grösste Einzellücke,
+maschinell an Ondos echtem Export gemessen: Von 56 verschiedenen Wettbewerbsnamen in seinen
+505 `kiProtokoll`-Einträgen bekamen nur 12 einen ESPN-Slug.
+
+**Teil A (Messdaten-Export, Backlog-Punkt 85):**
+- **A1:** Vollständigkeits-Audit der Positivlisten gegen die Vereinigungsmenge aller
+  tatsächlich vorkommenden Feldnamen in Ondos echtem Export
+  (`ondo-control-messdaten-2026-09-17.json`, 505 `kiProtokoll`-Einträge, davon 20 `aera:'v18'`)
+  fand genau eine Lücke: `tipp` und `quote` fehlten in `MESS_KI_FELDER` — alle 20 v18-Einträge
+  tragen ausschliesslich `id/datum/match/tipp/quote/status/herkunft/aera`, ohne die Ergänzung
+  verlor ein v18-Eintrag seinen gesamten inhaltlichen Kern. Beide ergänzt. Jede andere Liste
+  (`MESS_MARKT_FELDER`, `MESS_MARKT_FALT_FELDER`, `MESS_BET_FELDER`, `MESS_REGELN_FELDER`,
+  `MESS_KORREKTURF_FELDER`, `MESS_TRAIN_PROT_FELDER`, `MESS_TRAIN_SPIEL_FELDER`,
+  `MESS_KONS_SPIEL_FELDER`, `MESS_KONS_GEHIRN_FELDER`) deckte beim Audit bereits alle real
+  vorkommenden Felder ab. `state.bets`, `trainingsraumProtokoll`, `trainingsraumSpiele` und
+  `antwortkonsistenzBericht` sind in Ondos Export leer bzw. nicht vorhanden — für diese vier
+  Bereiche stützt sich das Audit ersatzweise auf die Zuweisungsstellen im Code, eine schwächere
+  Beleglage als bei `kiProtokoll`, ehrlich benannt.
+- **A2:** `messAntwortkonsistenzProjekt()` iterierte bisher über `Object.keys(bericht)` — ein
+  unbekannter Kopf-Schlüssel kam dadurch durch, ein primitiver Wert sogar unverändert. Neue
+  Positivliste `MESS_KONS_KOPF_FELDER = ['sonnet','flash']` (belegt: `antwortkonsistenzLauf()`
+  befüllt `gehirne` ausschliesslich über `hatSonnet()`/`hatGemini()` mit genau diesen zwei
+  Literalen) ersetzt die offene Iteration. Ein unbekannter Kopf-Eintrag wird jetzt übersprungen,
+  ob Objekt oder primitiver Wert.
+- **Verifiziert (Teil A):** `node --check` bestanden · **17 Prüfungen** an den wortgleich aus
+  `beta.html` herausgeschnittenen Funktionen gegen die echten 20 v18-Einträge (feldweiser
+  Vergleich, nicht nur „kein Absturz") und alle 505 echten `kiProtokoll`-Einträge (kein
+  legitimes Feld fällt weg, weder `refRoh` noch `espnRoh` erscheint im Ergebnis) · unbekannter
+  Kopf-Schlüssel (Objekt- und primitiver Fall, getrennt geprüft) erscheint nicht im Ergebnis ·
+  der ursprüngliche `espnRoh`-`contentKey`-Fall: `messGeheimFund()` meldet weiterhin nichts ·
+  ein echter Schlüsselwert (`sk-ant-…`) wird weiterhin erkannt · `MESS_VERBOTEN`/
+  `messGeheimFund()` laut `git diff` byte-identisch unverändert — alle 17 bestanden.
+
+**Teil B (ESPN-Sammelautomatik, Backlog-Punkt 84):**
+- **B0 (Scope-Abgleich):** `usa.open` (US Open Cup) aus der 59-Slug-Liste entfernt — STUFEN
+  nennt für die USA in Stufe 2 ausschliesslich MLS, ein offener Vereinspokal über alle
+  US-Ligaebenen ist keine „oberste Liga". Alle übrigen 58 Slugs liegen im STUFEN-Scope.
+  STUFEN-Bereiche ohne Slug (bereits im Code als Lücke dokumentiert, hier bestätigt): Schweiz/
+  Tschechien/Polen/Kroatien komplett, Portugal/Belgien nur 1. Liga, Österreich/Türkei/
+  Griechenland nur 1. Liga ohne Pokal, Schottland ohne Pokal-Slug, Finnland/Irland/Island/
+  Südkorea (Stufe 2) komplett.
+- **B1 (Live-Verifikation mit echtem Spiel):** Alle 58 verbliebenen Slugs einzeln über ESPNs
+  Core-API (`/events?dates=<Jahr>`, dann `/summary?event=<id>`) mit mindestens einem echten,
+  **abgeschlossenen** Spiel bestätigt (`status.type.completed===true`) und Team-/
+  Wettbewerbsnamen auf Plausibilität geprüft — **58 von 58 bestätigt**, keiner entfernt.
+  Fünf Slugs (`uefa.euro`, `uefa.euroq`, `conmebol.america`, `afc.asian.cup`,
+  `caf.nations_qual`) brauchten dafür ein älteres Kalenderjahr (Turniere ohne Spiele im
+  unmittelbaren Testfenster) — belegt u. a. Deutschland–Schottland (Euro 2024), Argentinien–
+  Kanada (Copa América 2024), Katar–Libanon (Asian Cup 2024). Kommentarfehler in
+  `skripte/espn-ergebnisse-holen.js` (Prosa „6.9.2026/13.9.2026" neben den Datumswerten
+  20250906/20250913) auf 2025 berichtigt, konsistent mit `STAND.md`/Backlog.
+- **B2 (`ESPN_SLUG_REGELN` erweitert/korrigiert):** Von **12 auf 31 von 56** echten
+  Wettbewerbsnamen mit Slug. **Behobener Fehlmatch:** `/la\s*liga|primera\s*divisio/ → esp.1`
+  fing auch „Primera División" ab — in Ondos Daten ausschliesslich argentinische Spiele.
+  `primera divisio` aus der Regel entfernt (die spanischen „La Liga"/„LaLiga"-Treffer bleiben
+  erhalten); **keine** Ersatzregel „Primera División" → `arg.1` gebaut, weil der Name selbst
+  generisch ist (auch Uruguay, Bolivien, Paraguay u. a. nennen ihre oberste Liga so) und damit
+  nicht dauerhaft eindeutig — derselbe Massstab wie unten. **Bewusst unaufgelöst, generisch:**
+  „Bundesliga" (DE/AT), „Superliga" (u. a. DK/TR/RS/RO/GR), „1. Liga" (u. a. CH-Stufe-3),
+  „Super League" (u. a. CH/GR/CN), „Premiership" (schott./engl. historisch), zusätzlich selbst
+  gefunden: bare „Championship" (engl. UND schott. zweite Liga) und „Primera División" (s.o.).
+  **Ausdrücklich klargestellt:** Aus dem historischen Västerås-SK-Fall vom 10.8.2026 (bereits
+  als Metadaten-/Positionsverschiebungsfehler dokumentiert) wurde **keine** Aussage über die
+  Bedeutung von „Superliga" abgeleitet. Neue, unzweideutige Regeln unter anderem für
+  Brasilien Serie A/B, Argentinien Liga Profesional, Ligue 1, Eredivisie, Jupiler Pro League,
+  Primeira Liga, Allsvenskan, Eliteserien, MLS (mit Ausschluss von „MLS Next Pro"), DFB-Pokal,
+  bare Champions/Europa/Conference League (mit Ausschluss von „Women's …", live an Ondos
+  Daten belegt für Champions League). Vier Negativfälle geprüft: „2. Bundesliga"→`ger.2`
+  (nicht `ger.1`) · „UEFA Champions League Qualifikation"→`uefa.champions_qual` (nicht
+  `uefa.champions`) · „UEFA Conference League Qualifikation"→`uefa.europa.conf_qual` ·
+  „Primera División"→kein Slug.
+- **B3 (Beweiskette bei Archivtreffern):** `espnRohSchreiben()` verlangte bisher
+  `r._espnRoh.scoreboardEvent/.summary` — ein Archivtreffer aus `espnArchivLesen()` bekam
+  dadurch NIE eine Evidence, obwohl das Archiv in der neuen Kaskade zuerst läuft. Jeder
+  Datensatz in `skripte/espn-ergebnisse-holen.js` trägt jetzt ein kompaktes `beleg`-Objekt
+  (rohe Competitor-Daten: `completed`, `statusTyp`, je Team `teamId`/`teamDisplayName`/
+  `homeAway`/`linescores[]`, unverändert und in ESPN-Originalreihenfolge — **kein**
+  Elfmeterfeld). `strukturAbgleich()` reicht den passenden Rohkandidaten intern als
+  `r._fixture` durch, `espnArchivLesen()` setzt darüber `r._espnRoh` (Herkunft „archiv", URL
+  der Monatsdatei, `beleg`). `espnRohSchreiben()` unterscheidet Live-/Archivfall und schreibt
+  beiden ein `herkunft`-Feld (`'live'`/`'archiv'`) — bestehende Live-Einträge bleiben
+  unverändert lesbar, `espnLauf()` selbst nicht angefasst. Gemessen an einem echten Datensatz
+  (Norderstedt–St. Pauli, DFB-Pokal-Elfmeterfall): **340 Byte ohne, 631 Byte mit `beleg`**
+  (+~85 %). Hochrechnung Monatsdatei bei realistischem Spielaufkommen (Vergleichswert:
+  `daten/schiri-ergebnisse/2026-09.json`, ~12 grosse Wettbewerbe, 107 Spiele in 18 Tagen ≈
+  5,9 Spiele/Tag — ESPNs 58 Slugs decken deutlich mehr Wettbewerbe ab, aber Qualifikations-/
+  Pokalrunden laufen nicht wöchentlich): grob geschätzt 600–900 Spiele/Monat, damit **rund
+  230–270 KB ohne, 380–570 KB mit `beleg`** — ausdrücklich eine Schätzung, keine Messung an
+  einem echten vollen ESPN-Monat (den gibt es noch nicht).
+- **B4 (Schema umgestellt):** `quelle`→`provider` (fest `'espn'`), `wettbewerbSlug`→
+  `providerCompetitionSlug`, `wettbewerb`→`providerCompetitionName`, `anpfiff` (nur HH:MM)
+  entfernt zugunsten `kickoffUtc` (voller UTC-Zeitstempel), neu `verlaengerungGespielt` als
+  echter Boolwert. `providerCompetitionName` kommt jetzt aus `sum.header.league.name` statt
+  dem unzuverlässigen `evComp.altGameNote||season.slug||slug` — live an vier echten Abrufen
+  aus vier Wettbewerben belegt (u. a. „English Premier League", „German Cup", „Argentine Liga
+  Profesional de Fútbol"). Einzige Lesestelle des alten `wettbewerb`-Feldnamens im ganzen
+  Quelltext war `strukturAbgleich()` (maschinell mit grep bestätigt) — dort **angepasst**,
+  kein Kompatibilitäts-Alias (kein zweiter externer Leser vorhanden, ein Alias hätte die
+  ungenaue alte Benennung nur weiterleben lassen). `x.status==='FT'` unverändert. `daten/
+  espn-ergebnisse/` existiert im Ausgangscommit `1ef0e91` nicht als getrackter Pfad und auch
+  nicht nach frischer Prüfung vor der Umstellung — keine Migration nötig.
+- **B5 (Zeitplan/Gleichzeitigkeit):** Cron auf `25 8 * * *`/`55 23 * * *` verschoben (nicht
+  mehr dieselbe volle Stunde wie `schiri-ergebnisse.yml`). Beide Workflows tragen jetzt
+  dieselbe `concurrency`-Gruppe (`cancel-in-progress: false`) — verhindert gleichzeitige
+  Repository-Writer. **Grenze, bewusst nicht überclaimt:** keine beliebig lange
+  FIFO-Warteschlange; GitHub garantiert je Gruppe höchstens einen laufenden und einen
+  ausstehenden Run. Zusätzlich `git fetch origin main` + HEAD-Vergleich vor jedem Commit/Push
+  in beiden Workflows — weicht HEAD von `origin/main` ab, bricht der Lauf sichtbar ab
+  (`::error::`), kein automatischer Merge/Rebase/Force. An `schiri-ergebnisse.yml` sonst
+  nichts geändert.
+- **B6 (403/429 sichtbar):** `scoreboardHolen()`/`summaryHolen()` protokollieren jetzt bei
+  jedem `!res.ok` Slug, Datum bzw. Event-ID und den HTTP-Statuscode, 403/429 zusätzlich
+  markiert. Zähler je Statuscode über den ganzen Lauf, Zusammenfassungszeile am Ende. Lauf
+  bricht dadurch nicht ab, kein Retry — nur die Sichtbarkeit geändert.
+
+**Unverändert, wie beauftragt:** `REF_MIN_LAEUFE`, `refEinigkeit()`, STUFEN selbst, die
+90-Minuten-plus-Nachspielzeit-Definition, die Verlängerungsbehandlung, der Ausschluss von
+Elfmeterschiessen aus dem Messwert, `espnLauf()`, `openligaLauf()`, `ergebnisQuelleAus()` —
+laut `git diff` gegen `1ef0e91` byte-identisch, keine dieser Funktionen im Diff enthalten.
+
+**Verifiziert (Teil B, zusammengefasst):** `node --check` auf `beta.html` und
+`skripte/espn-ergebnisse-holen.js` bestanden · YAML beider Workflows maschinell geprüft ·
+**20 Prüfungen** an `espnSlugFuer()` gegen alle 56 echten Wettbewerbsnamen plus die vier
+Negativfälle · **68 Prüfungen** an `datensatzBauen()` gegen vier live abgerufene, echte
+ESPN-Antworten aus vier verschiedenen Wettbewerben (neue Feldnamen, kein Elfmeterfeld, `beleg`
+vollständig und roh, `teamId`/`teamDisplayName`/`homeAway`/`linescores` in Originalordnung) ·
+**24 Prüfungen** an der vollständigen Kaskade `strukturAbgleich()`/`espnArchivLesen()`/
+`espnRohSchreiben()` (Mehrdeutig-Fall, unbeteiligter Eintrag bleibt unberührt, neues Schema,
+`status:'FT'` erkannt, der DFB-Pokal-Elfmeterfall Norderstedt–St. Pauli liefert weiterhin
+0:0 statt 2:3, Live-Fall bleibt unverändert lesbar) · **14 Prüfungen** an der 403/429-Sichtbarkeit
+(Statuscode gezählt, Protokollzeile mit Slug+Datum/Event-ID, 403/429 markiert, kein Retry,
+kein Absturz) · **17 Prüfungen** Teil A (s. o.) — **insgesamt 143 neue Prüfungen dieser
+Lieferung, alle bestanden.** `pruefe.py`: ALLES SAUBER. **Keine neuen Sprachschlüssel**
+(349 unverändert).
+
+**🔴 Status ausdrücklich NICHT auf „behoben"/„bewährt" gesetzt:** Der neue Workflow (auch mit
+den B5/B6-Ergänzungen) hat noch keinen echten Lauf in GitHub Actions hinter sich — Bewährung
+steht aus (Stabilitätsregel). **Ondos Befund vom 18.9.2026 („4 von 10")** gilt erst dann als
+behoben, wenn ein echter Prüfzyklus am Gerät das bestätigt — **nicht bereits mit diesem Bau.**

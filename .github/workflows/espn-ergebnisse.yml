@@ -15,10 +15,30 @@ name: ESPN-Ergebnisse holen
 #
 # Committet nur, wenn sich eine Monatsdatei tatsaechlich aendert (git-eigener Diff auf den
 # gestagten Dateiinhalt) - derselbe, bereits bewaehrte Mechanismus wie bei schiri-ergebnisse.yml.
+#
+# NACHBESSERUNG 18.9.2026 (Backlog-Punkt 84, Fund ChatGPT, Fassung 3, Teil B5):
+# 1. Cron-Zeiten von 08:00/23:30 UTC auf 25 8 * * */55 23 * * * verschoben - beauftragt war
+#    ausdruecklich, NICHT dieselbe volle Stunde wie schiri-ergebnisse.yml zu nehmen (beide liefen
+#    bisher zeitgleich, ohne vorher den aktuellen Stand zu holen).
+# 2. Gemeinsame concurrency-Gruppe mit schiri-ergebnisse.yml (siehe unten) - verhindert, dass
+#    beide Workflows gleichzeitig als Repository-Writer laufen. GRENZE, bewusst nicht zu stark
+#    behauptet: concurrency ist eine Serialisierung, aber KEINE beliebig lange FIFO-Warteschlange.
+#    GitHub garantiert je Concurrency-Gruppe hoechstens einen laufenden und einen ausstehenden
+#    Run - kommen weitere Runs derselben Gruppe hinzu (z. B. mehrere manuelle workflow_dispatch
+#    kurz hintereinander), kann ein bereits ausstehender Run ersetzt/abgebrochen werden. Fuer die
+#    zwei reguraeren geplanten Laeufe (dieser Workflow + schiri-ergebnisse.yml) ist das dennoch
+#    der Schutz gegen gleichzeitige Schreiblaeufe, um den es hier geht.
+# 3. fetch/HEAD-Pruefung vor jedem Commit/Push (siehe Schritt unten) - kein automatischer Merge,
+#    kein Rebase, kein Force (stehende Regel). Hat sich main seit dem Checkout bewegt, bricht der
+#    Lauf sichtbar ab, statt selbst zu entscheiden.
+concurrency:
+  group: ondo-control-ergebnisse-schreiber
+  cancel-in-progress: false
+
 on:
   schedule:
-    - cron: '0 8 * * *'
-    - cron: '30 23 * * *'
+    - cron: '25 8 * * *'
+    - cron: '55 23 * * *'
   workflow_dispatch: {}
 
 permissions:
@@ -45,6 +65,11 @@ jobs:
           if git diff --cached --quiet; then
             echo "Keine Aenderung - nichts zu committen."
           else
+            git fetch origin main
+            if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then
+              echo "::error::main hat sich seit dem Checkout bewegt (HEAD ist nicht mehr origin/main) - sichtbarer Abbruch vor dem Commit. Kein automatischer Merge, kein Rebase, kein Force. Der naechste Lauf holt den aktuellen Stand neu."
+              exit 1
+            fi
             git commit -m "ESPN-Ergebnisse: automatischer Abruf"
             git push
           fi

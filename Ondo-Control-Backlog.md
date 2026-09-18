@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 18.9.2026, Fassung 137 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 18.9.2026, Fassung 138 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -288,13 +288,33 @@ ein Elfmeterschiessen-Fall) · Schritte 1, 2 (teilweise), 3, 5, 6 gebaut 17.9.20
 v19.14.0) · KI-Notnagel noch am selben Tag auf Auftrag Ondo zurück auf drei Läufe (v19.14.1) ·
 rohe ESPN-Antwort mitgeschrieben, Auftrag Ondo (v19.14.2) · UEFA-/openfootball-Lücke
 weiterverfolgt, Auftrag Ondo: OpenLigaDB als zweite Strukturquelle live bestätigt und gebaut
-(v19.15.0) · ESPN-Sammelautomatik + gehärtete Zuordnung, Auftrag Ondo 18.9.2026 (v19.17.0)* ·
-**Status: 🔴 TEILWEISE GEBAUT 18.9.2026, `beta.html` v19.17.0 — match.uefa.com und openfootball
+(v19.15.0) · ESPN-Sammelautomatik + gehärtete Zuordnung, Auftrag Ondo 18.9.2026 (v19.17.0) ·
+Nachbesserung nach Gegenprüfung ChatGPT, acht bestätigte Abweichungen behoben, Auftrag Ondo
+18.9.2026 (v19.18.0)* ·
+**Status: 🔴 TEILWEISE GEBAUT 18.9.2026, `beta.html` v19.18.0 — match.uefa.com und openfootball
 weiterhin NICHT gebaut (Verifikation gescheitert); OpenLigaDB als Ersatz für 3. Liga und drei
 Regionalliga-Staffeln gebaut und verifiziert; KI-Notnagel-Teil von Schritt 2 nach v19.14.0
 wieder auf drei Läufe zurückgesetzt; `espnRoh` mitgeschrieben; ESPN-Sammelautomatik +
-Archiv-Kaskade + gehärtete `strukturAbgleich()` gebaut und verifiziert, Bewährung im echten
-Betrieb steht aus**
+Archiv-Kaskade + gehärtete `strukturAbgleich()` gebaut und verifiziert; **Nachbesserung
+18.9.2026 (v19.18.0):** Scope-Abgleich (`usa.open` entfernt), alle 58 verbliebenen Slugs
+einzeln mit echtem, abgeschlossenem Spiel bestätigt (vorher nur HTTP 200), `ESPN_SLUG_REGELN`
+von 12 auf 31 von 56 echten Wettbewerbsnamen erweitert (Primera-División/Argentinien-Fehlmatch
+behoben, generische Namen bewusst unaufgelöst), kompakte Beweiskette (`beleg`) jetzt auch bei
+Archivtreffern, Datensatz-Schema auf die beauftragten Feldnamen umgestellt
+(`provider`/`providerCompetitionSlug`/`providerCompetitionName`/`kickoffUtc`/
+`verlaengerungGespielt`), Cron-Zeiten entzerrt (nicht mehr dieselbe volle Stunde wie
+`schiri-ergebnisse.yml`), gemeinsame `concurrency`-Gruppe + fetch/HEAD-Prüfung vor jedem
+Commit/Push in beiden Workflows, 403/429 jetzt sichtbar protokolliert. Einzelheiten:
+`STAND.md`, Abschnitt „Versionen". Bewährung im echten Betrieb steht weiterhin aus.**
+
+**Kosten der Nachbesserung (Arbeitsregel G):** Kein Geld (weiterhin keine Schlüssel nötig,
+weder ESPN noch die Core-API für die Live-Verifikation). Deutlich höherer Rechercheaufwand
+dieser Sitzung (58 Slugs einzeln live gegen echte Spiele geprüft statt nur HTTP-200-Test,
+56 Wettbewerbsnamen einzeln gegen die neuen Regeln geprüft) — einmaliger Aufwand dieser
+Lieferung, keine laufende Zusatzkosten. `beleg` vergrössert jede Monatsdatei um rund 85 %
+(gemessen: 340 auf 631 Byte je Datensatz) — bei geschätzt 600–900 Spielen/Monat rund
+150–300 KB zusätzlich, innerhalb der kostenlosen GitHub-Repository-Grösse, keine neue
+laufende Ausgabe.
 
 **Schritt 0 (Live-Verifikation), Befund:** Von vier wörtlich formulierten Bedingungen haben
 zwei nicht bestanden — `linescores[]` existiert nicht auf `.../scoreboard`, erst auf einem
@@ -493,7 +513,17 @@ Minuten, keine neue laufende Ausgabe.
 **85. Messdaten-Export: rekursive, schemabasierte Positivprojektion** · *Fund und Auftrag Ondo,
 18.9.2026, „am Code bestätigt": ein echtes Gerät stiess über `kiProtokoll[].espnRoh[]`
 (Backlog-Punkt 84, v19.14.2) auf `messGeheimFund()` und blockierte den gesamten Messdaten-Export
-· gebaut am selben Tag* · **Status: 🔴 GEBAUT 18.9.2026, `beta.html` v19.16.0**
+· gebaut am selben Tag · Nachbesserung nach Gegenprüfung ChatGPT, Auftrag Ondo 18.9.2026
+(v19.18.0)* · **Status: 🔴 GEBAUT 18.9.2026, `beta.html` v19.16.0 — Nachbesserung 18.9.2026,
+`beta.html` v19.18.0: maschinelles Audit gegen Ondos echten Export (505 kiProtokoll-Einträge,
+20 mit aera:'v18') fand eine Lücke — `tipp`/`quote` fehlten in `MESS_KI_FELDER`, alle 20
+v18-Einträge verloren dadurch ihren inhaltlichen Kern, jetzt ergänzt. `MESS_KONS_KOPF_FELDER =
+['sonnet','flash']` ersetzt die offene `Object.keys(bericht)`-Iteration in
+`messAntwortkonsistenzProjekt()` — ein unbekannter Kopf-Schlüssel (Objekt oder primitiver Wert)
+wird jetzt übersprungen statt durchgereicht. Einzelheiten: `STAND.md`, Abschnitt „Versionen".**
+
+**Kosten der Nachbesserung (Arbeitsregel G):** Kein Geld, keine Laufzeitkosten — reines Audit
+und zwei ergänzte Feldlisten, kein neuer Netzwerkaufruf, `state` selbst unangetastet.
 
 **Das Problem, belegt (Backlog-Punkt 44, 14.8.2026):** `messDatenBauen()` kopierte je
 `MESS_FELDER`-Eintrag bisher `raus[f]=state[f]` — vollständig, ungeprüft in die Tiefe.

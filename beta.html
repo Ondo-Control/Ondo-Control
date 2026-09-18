@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.17.0';
+var CODE_VERSION = 'v19.18.0';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -1240,13 +1240,32 @@ var MESS_VERBOTEN = /key|pin|token|secret|passw/i;
    UNVERAENDERT als zweite, unabhaengige Stufe stehen (siehe unten). Diese Projektion ersetzt
    die zweite Stufe nicht, sie sorgt nur dafuer, dass ein espnRoh-artiger Fall sie kuenftig gar
    nicht erst erreicht. */
+/* NACHBESSERUNG 18.9.2026 (Backlog-Punkt 85, Fund ChatGPT/Ondo, Fassung 3): Ein maschinelles
+   Audit der Vereinigungsmenge aller tatsaechlich vorkommenden Feldnamen gegen Ondos echtem
+   Export (ondo-control-messdaten-2026-09-17.json, 505 kiProtokoll-Eintraege, davon 20 mit
+   aera:'v18') gegen JEDE MESS_*-Liste unten zeigte GENAU EINE Luecke: 'tipp' und 'quote'
+   fehlten in MESS_KI_FELDER. Alle 20 v18-Eintraege tragen ausschliesslich die acht Felder
+   id/datum/match/tipp/quote/status/herkunft/aera (maschinell ausgezaehlt) - ohne tipp/quote
+   verlor ein v18-Eintrag seinen gesamten inhaltlichen Kern. Jede andere Liste unten
+   (MESS_MARKT_FELDER, MESS_MARKT_FALT_FELDER, MESS_BET_FELDER, MESS_REGELN_FELDER,
+   MESS_KORREKTURF_FELDER, MESS_TRAIN_PROT_FELDER, MESS_TRAIN_SPIEL_FELDER,
+   MESS_KONS_SPIEL_FELDER, MESS_KONS_GEHIRN_FELDER) deckte bei diesem Audit bereits alle
+   real vorkommenden Felder ab - kein weiterer Fund. state.bets, trainingsraumProtokoll,
+   trainingsraumSpiele und antwortkonsistenzBericht sind in dieser echten Datei leer (0
+   Eintraege) bzw. gar nicht vorhanden; fuer diese vier Bereiche stuetzt sich das Audit
+   ersatzweise auf die tatsaechlichen Zuweisungsstellen im Code (addBet(), Fotoerkennung,
+   trainingsraumSpielHinzufuegen(), state.trainingsraumProtokoll.unshift() in der
+   Trainingsraum-Auswertung, antwortkonsistenzAuswerten()) - dort deckt jede Liste ebenfalls
+   bereits alle tatsaechlich zugewiesenen Felder ab, aber ohne echte Nutzungsdaten ist das
+   eine schwaechere Beleglage als bei kiProtokoll (Luecke ehrlich benannt, nicht verschwiegen). */
 var MESS_MARKT_FALT_FELDER = ['code','label','p','status'];
 var MESS_MARKT_FELDER = ['typ','code','label','p','status','gedreht','fAlt','fKorr'];
 var MESS_KI_FELDER = ['id','aera','codeVersion','datum','match','wettbewerb','anpfiff','stufe',
   'herkunft','heim','gast','bttsWort','modell','begruendung','maerkte',
   'ergebnisHeim','ergebnisGast','status','recherchiert',
   'ergebnisHalbzeit','ergebnisVerl','ergebnisQuelle',
-  'refEinigkeit','refLaeufe','refQuellen','geparkt','parkGrund','parkFormat'];
+  'refEinigkeit','refLaeufe','refQuellen','geparkt','parkGrund','parkFormat',
+  'tipp','quote'];
 var MESS_BET_FELDER = ['id','datum','match','tipp','quote','einsatz','status','claudeRichtig',
   'fromKI','herkunft','kiProtokollId','kiProtokollIds'];
 var MESS_REGELN_FELDER = ['maxEinsatz'];
@@ -1257,6 +1276,16 @@ var MESS_TRAIN_PROT_FELDER = ['id','getestetAm','quelle','match','wettbewerb','a
 var MESS_TRAIN_SPIEL_FELDER = ['match','wettbewerb','datum','ergebnisHeim','ergebnisGast'];
 var MESS_KONS_SPIEL_FELDER = ['match','laeufe','gleich','spanne'];
 var MESS_KONS_GEHIRN_FELDER = ['spiele','gleichAnteil','avgSpanne','maxSpanne','bestanden','proSpiel'];
+/* NACHBESSERUNG 18.9.2026 (Backlog-Punkt 85, Fund ChatGPT, Fassung 3): messAntwortkonsistenzProjekt()
+   iterierte bisher ueber Object.keys(bericht) - jeder kuenftige, unbekannte Kopf-Schluessel kaeme
+   dadurch durch, und ein primitiver Wert sogar unveraendert (messNurFelder() gibt Nicht-Objekte
+   unveraendert zurueck). Beauftragt war ausschliesslich sonnet und flash - belegt in
+   antwortkonsistenzLauf(): gehirne wird ausschliesslich ueber hatSonnet()/hatGemini() mit den
+   Literalen 'sonnet'/'flash' befuellt, antwortkonsistenzAuswerten() iteriert nur ueber
+   Object.keys(laeufe), also exakt diese zwei. Eine echte Positivliste ersetzt jetzt die
+   Object.keys()-Iteration - dieselbe Disziplin wie bei MESS_PROJEKTOREN: lieber ein fehlendes
+   Feld im Export als ein zweiter, unbemerkter espnRoh-Fall. */
+var MESS_KONS_KOPF_FELDER = ['sonnet','flash'];
 
 /* Reine Hilfsfunktion: kopiert aus wert AUSSCHLIESSLICH die in felder genannten Eigenschaften.
    Kein Objekt (null/undefined/Zahl/Text/Bool) -> unveraendert zurueckgegeben, das sind bereits
@@ -1285,7 +1314,9 @@ function messTrainProtEintragProjekt(e){
 function messAntwortkonsistenzProjekt(bericht){
   if(!bericht || typeof bericht!=='object') return bericht;
   var raus={};
-  Object.keys(bericht).forEach(function(gehirn){
+  MESS_KONS_KOPF_FELDER.forEach(function(gehirn){
+    if(!(gehirn in bericht)) return;
+    if(!bericht[gehirn] || typeof bericht[gehirn]!=='object') return;
     var g = messNurFelder(bericht[gehirn], MESS_KONS_GEHIRN_FELDER);
     if(g && Array.isArray(g.proSpiel)){
       g.proSpiel = g.proSpiel.map(function(s){ return messNurFelder(s, MESS_KONS_SPIEL_FELDER); });
@@ -2287,7 +2318,16 @@ function datumIso(dmj){
    Spiel in einem einzigen Abgleich. RUECKWAERTSKOMPATIBEL: Die Rueckgabe bleibt ein Array wie
    bisher (jedes bestehende .forEach()/.map() funktioniert unveraendert) - die Mehrdeutig-Liste
    haengt zusaetzlich als .mehrdeutig-Eigenschaft am zurueckgegebenen Array, kein bestehender
-   Aufrufer muss sie lesen. */
+   Aufrufer muss sie lesen.
+   🔴 NACHBESSERUNG 18.9.2026 (Backlog-Punkt 84, Fund ChatGPT, Fassung 3, Teil B4): Das Schema
+   der fixtures-Eintraege (skripte/espn-ergebnisse-holen.js) wurde auf die beauftragten Feldnamen
+   umgestellt - x.wettbewerb heisst jetzt x.providerCompetitionName. ANGEPASST statt Alias:
+   diese Funktion ist die EINZIGE Lesestelle des alten Feldnamens im ganzen Quelltext (maschinell
+   mit grep geprueft, siehe Lieferbericht) - ein kompatibler Alias wuerde die ungenaue alte
+   Benennung genau dort weiterleben lassen, wo sie behoben werden sollte, ohne einen einzigen
+   externen Leser zu schuetzen, den es nicht gibt. x.status bleibt UNVERAENDERT 'FT' (Auftrag
+   Ondo, sonst faellt jeder Archivtreffer stumm durch). x.kickoffUtc und x.providerCompetitionSlug
+   werden hier weiterhin NICHT gelesen. */
 function strukturAbgleich(ziel, fixtures, quelleUrl){
   function teamPasstZu(a,b){
     var na=normName(a), nb=normName(b);
@@ -2314,17 +2354,23 @@ function strukturAbgleich(ziel, fixtures, quelleUrl){
       mehrdeutig.push({ id:p.id, match:p.match, datum:p.datum,
         kandidaten:kandidaten.map(function(x){
           return { heim:x.heim, gast:x.gast, torHeim:x.torHeim, torGast:x.torGast,
-            wettbewerb:x.wettbewerb||'', datum:x.datum };
+            wettbewerb:x.providerCompetitionName||'', datum:x.datum };
         }) });
       return;
     }
     var f=kandidaten[0];
     var heim=f.torHeim, gast=f.torGast;
     var r={ id:p.id, status:'fertig', heim:heim, gast:gast, datum:p.datum,
-      wettbewerb:f.wettbewerb||p.wettbewerb||'', quelle:quelleUrl,
+      wettbewerb:f.providerCompetitionName||p.wettbewerb||'', quelle:quelleUrl,
       verlaengerungGespielt:f.verlaengerung?'ja':'nein', verlaengerung:f.verlaengerung||'',
       torlos:(heim===0&&gast===0)?'bestaetigt':'nein' };
     if(f.halbzeit) r.halbzeit=f.halbzeit;
+    /* NACHBESSERUNG 18.9.2026 (Backlog-Punkt 84, Teil B3): der passende Rohkandidat haengt
+       intern (Unterstrich-Konvention wie bei espnLauf()s _espnRoh) am Ergebnis, damit ein
+       Aufrufer (espnArchivLesen()) daraus eine Beweiskette fuer diesen Treffer bauen kann, ohne
+       den Abgleich ein zweites Mal selbst nachzurechnen. Kein bestehender Aufrufer muss dieses
+       Feld lesen - dieselbe Rueckwaertskompatibilitaet wie bei .mehrdeutig oben. */
+    r._fixture = f;
     ergebnisse.push(r);
   });
   ergebnisse.mehrdeutig = mehrdeutig;
@@ -2507,13 +2553,74 @@ function wbNorm(s){
   return String(s||'').toLowerCase()
     .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss');
 }
+/* NACHBESSERUNG 18.9.2026 (Backlog-Punkt 84, Fund ChatGPT/Ondo, Fassung 3, Teil B2): Gegen
+   Ondos 56 echte Wettbewerbsnamen (505 kiProtokoll-Eintraege, ondo-control-messdaten-
+   2026-09-17.json, maschinell ausgezaehlt) bekamen vorher nur 12 von 56 einen Slug. Diese
+   Fassung erweitert die Liste auf 31 von 56 (die uebrigen 25 sind einzeln im Lieferbericht
+   dieser Fassung benannt: entweder ein bewusst NICHT aufgeloester generischer Name wie
+   "Bundesliga"/"Superliga"/"1. Liga"/"Super League"/"Premiership" - siehe unten - oder eine
+   echte ESPN-Abdeckungsluecke (z. B. EFL Cup, Regionalliga, Irland/Island/Finnland) oder
+   ausserhalb des STUFEN-Scopes (z. B. Uruguay, Frauenwettbewerbe).
+   BEHOBENER FEHLMATCH, live an echten Daten belegt: Die alte Regel /la\s*liga|primera\s*divisio/
+   -> esp.1 fing auch "Primera División" ab - in Ondos Daten ausschliesslich ARGENTINISCHE
+   Spiele (Gimnasia y Esgrima de Mendoza-Boca Juniors, Gimnasia La Plata-CA Tigre, CA
+   Aldosivi-CA Banfield, 5.9.2026). "primera divisio" wurde daher AUS der esp.1-Regel entfernt -
+   "la\s*liga" bleibt unveraendert stehen, die spanischen Treffer (14+2 Eintraege "La Liga"/
+   "LaLiga") gehen dadurch nicht verloren. KEINE Ersatzregel "Primera División" -> arg.1 gebaut:
+   der Name ist selbst generisch (auch Uruguay, Bolivien, Paraguay u.a. nennen ihre oberste Liga
+   so; Spanien selbst hiess vor der "La Liga"-Umbenennung ebenfalls so) und damit fachlich nicht
+   dauerhaft eindeutig - derselbe Massstab wie bei den unten genannten, bewusst unaufgeloesten
+   generischen Namen. "Primera División" faellt weiterhin an den bestehenden Rueckfallweg.
+   BEWUSST NICHT AUFGELOEST, weil der Name allein keine dauerhaft eindeutige Liga-Zuordnung
+   garantiert (Ondos Auftrag nennt als Beispiele: "Superliga", "1. Liga", "Super League",
+   "Premiership", "Bundesliga" - alle vier bzw. fuenf kommen in Ondos echten Daten vor und
+   bleiben hier bewusst ohne Regel): bare "Bundesliga" (Deutschland/Oesterreich beide so
+   genannt) · "Superliga"/"Dänemark Superliga"-Variante ohne Slug-Ziel (Daenemark, Tuerkei
+   Sueper Lig transliteriert, Serbien, Rumaenien, griechische Superleague u. a.) · bare "1. Liga"
+   (u. a. Schweiz 3. Stufe) · "Super League" (Schweiz, Griechenland, China u. a.) ·
+   "Premiership" (schottische wie englische Ligen historisch so genannt) · zusaetzlich hier
+   selbst gefunden, kein Ondo-Beispiel: bare "Championship" (englische UND schottische zweite
+   Liga gleichermassen so genannt - "EFL Championship" bleibt dagegen eindeutig und bekommt
+   eine eigene Regel) und bare "Serie A"/"Serie B" wurden NICHT verworfen, weil in Ondos realen
+   Daten die brasilianische Variante immer explizit als "Brasilien Serie A/B" auftritt (eigene,
+   vorrangige Regel unten) - die Restunterscheidung bleibt eine bewusste, im Bericht benannte
+   Abwaegung, kein Beleg wie bei den anderen Faellen.
+   FRAUEN-WETTBEWERBE: "UEFA Women's Champions League" kommt in Ondos Daten vor und würde ohne
+   Schutz von der neuen, allgemeinen Champions-League-Regel mitgefangen - alle drei neuen
+   Hauptrunden-Regeln (Champions/Europa/Conference League) schliessen "women" deshalb per
+   negativem Lookahead aus. Nur der Champions-League-Fall ist an echten Daten belegt, der
+   gleiche Schutz bei Europa/Conference League ist eine Vorsichtsmassnahme (UEFA fuehrt fuer
+   beide ebenfalls Frauen-Wettbewerbe), nicht an Ondos Daten selbst nachgewiesen - Frauen-
+   Wettbewerbe liegen ohnehin ausserhalb des STUFEN-Scopes (STUFEN nennt keine).
+   REIHENFOLGE: Qualifikations-Regeln stehen weiterhin vor den zugehoerigen Hauptrunden-Regeln
+   (neu ergaenzt: bare Champions/Europa/Conference League erst NACH ihren drei Qualifikations-
+   Regeln), "2. Bundesliga" weiterhin vor der neuen "1. Bundesliga"-Regel, laenderspezifische
+   Serie-A/B-Regeln (Brasilien) vor den bare-Regeln fuer Italien. */
 var ESPN_SLUG_REGELN = [
   { m:/champions.*(quali|qualifik)/,               slug:'uefa.champions_qual' },
   { m:/conf(erence)?.*(quali|qualifik)/,           slug:'uefa.europa.conf_qual' },
   { m:/europa.*(quali|qualifik)/,                  slug:'uefa.europa_qual' },
+  { m:/^(?!.*\bwomen\b).*champions\s*league/,      slug:'uefa.champions' },
+  { m:/^(?!.*\bwomen\b).*conf(erence)?\s*league/,  slug:'uefa.europa.conf' },
+  { m:/^(?!.*\bwomen\b).*europa\s*league/,         slug:'uefa.europa' },
   { m:/(2\.\s*bundesliga|zweite\s*bundesliga)/,    slug:'ger.2' },
-  { m:/la\s*liga|primera\s*divisio/,               slug:'esp.1' },
+  { m:/1\.\s*bundesliga/,                          slug:'ger.1' },
+  { m:/dfb[-\s]?pokal/,                            slug:'ger.dfb_pokal' },
+  { m:/la\s*liga/,                                 slug:'esp.1' },
   { m:/premier\s*league/,                          slug:'eng.1' },
+  { m:/efl\s*championship/,                        slug:'eng.2' },
+  { m:/brasilien.*serie\s*a|brazil.*serie\s*a/,    slug:'bra.1' },
+  { m:/brasilien.*serie\s*b|brazil.*serie\s*b/,    slug:'bra.2' },
+  { m:/serie\s*a\b/,                                slug:'ita.1' },
+  { m:/serie\s*b\b/,                                slug:'ita.2' },
+  { m:/liga\s*profesional/,                        slug:'arg.1' },
+  { m:/ligue\s*1\b/,                                slug:'fra.1' },
+  { m:/eredivisie/,                                 slug:'ned.1' },
+  { m:/jupiler/,                                    slug:'bel.1' },
+  { m:/primeira\s*liga/,                            slug:'por.1' },
+  { m:/allsvenskan/,                                slug:'swe.1' },
+  { m:/eliteserien/,                                slug:'nor.1' },
+  { m:/\bmls\b(?!\s*next)/,                         slug:'usa.1' },
   { m:/weltmeisterschaft.*quali|wm[- ]?quali.*europa|worldq.*uefa/, slug:'fifa.worldq.uefa' },
   { m:/laenderspiel|nationalmannschaft|freundschaft.*(nation|laender)/, slug:'fifa.friendly' },
   { m:/freundschaftsspiel|testspiel/,              slug:'club.friendly' }
@@ -2650,16 +2757,34 @@ function espnLauf(ziel, cache){
    wie beauftragt ("vollstaendige rohe JSON-Antwort").
    Reine Schreibfunktion, keine Rueckgabe, aendert nichts an refLaufPruefen()/refEinigkeit()/
    der Uebernahme-Logik - genau wie beauftragt: "Betrifft ausschliesslich das Mitschreiben
-   selbst". */
+   selbst".
+
+   🔴 NACHBESSERUNG 18.9.2026 (Backlog-Punkt 84, Fund ChatGPT, Fassung 3, Teil B3): Bisher
+   MUSSTE r._espnRoh.scoreboardEvent/.summary gesetzt sein (nur espnLauf() tat das) - ein
+   Archivtreffer aus espnArchivLesen() bekam dadurch NIE eine Evidence, obwohl das Archiv in
+   der Kaskade (rundeLaufen()) ZUERST laeuft und damit der Normalfall ist, nicht die Ausnahme.
+   espnArchivLesen() setzt jetzt ebenfalls r._espnRoh, aber in einer KOMPAKTEN Form (Herkunft,
+   URL der Monatsdatei, beleg-Objekt statt der vollen 47-404 KB grossen Summary-Antwort - die
+   wuerde die Monatsdateien selbst unbrauchbar aufblaehen). Diese Funktion unterscheidet beide
+   Formen ueber r._espnRoh.herkunft==='archiv' und schreibt fuer JEDEN e.espnRoh-Eintrag
+   zusaetzlich das Feld herkunft ('live'/'archiv') mit - bestehende Live-Eintraege bleiben dabei
+   unveraendert lesbar, espnLauf() selbst wurde nicht angefasst (dort steht weiterhin kein
+   herkunft-Feld in r._espnRoh, das Fehlen wird hier als 'live' gewertet). e.refRoh bleibt von
+   alledem unberuehrt. */
 function espnRohSchreiben(r, ziel){
   if(!r || !r._espnRoh) return;
   var p=null;
   for(var i=0;i<ziel.length;i++){ if(ziel[i].id===r.id){ p=ziel[i]; break; } }
   if(!p || p.art!=='log') return;
+  var istArchiv = r._espnRoh.herkunft==='archiv';
   (state.kiProtokoll||[]).forEach(function(e){
     if(p.eintraege.indexOf(e.id)<0) return;
     if(!e.espnRoh) e.espnRoh=[];
-    e.espnRoh.push({ datum:heuteStr(), scoreboardEvent:r._espnRoh.scoreboardEvent, summary:r._espnRoh.summary });
+    if(istArchiv){
+      e.espnRoh.push({ datum:heuteStr(), herkunft:'archiv', url:r._espnRoh.url, beleg:r._espnRoh.beleg });
+      return;
+    }
+    e.espnRoh.push({ datum:heuteStr(), herkunft:'live', scoreboardEvent:r._espnRoh.scoreboardEvent, summary:r._espnRoh.summary });
   });
 }
 
@@ -2679,7 +2804,12 @@ function espnRohSchreiben(r, ziel){
    bleibt ungeloest (faellt an Live-ESPN/OpenLigaDB/den KI-Notnagel weiter, siehe rundeLaufen()).
    Eine fehlende, noch nicht angelegte oder kaputte Monatsdatei ergibt fuer genau diesen Monat
    ein leeres Ergebnis, nie einen Absturz - derselbe Negativlisten-Geist wie bei jeder anderen
-   Strukturquelle hier. */
+   Strukturquelle hier.
+   🔴 NACHBESSERUNG 18.9.2026 (Backlog-Punkt 84, Fund ChatGPT, Fassung 3, Teil B3): setzt jetzt
+   zusaetzlich r._espnRoh je Treffer (Herkunft 'archiv', die URL der zustaendigen Monatsdatei,
+   das kompakte beleg-Objekt aus dem passenden Rohkandidaten, ueber r._fixture aus
+   strukturAbgleich() oben) - espnRohSchreiben() greift dadurch jetzt auch fuer Archivtreffer,
+   nicht nur fuer Live-ESPN-Funde. Vorher blieb r._espnRoh hier immer unbesetzt. */
 function espnArchivLesen(ziel){
   if(!(ziel&&ziel.length)) return Promise.resolve([]);
   var monate=[];
@@ -2705,6 +2835,7 @@ function espnArchivLesen(ziel){
       r.quelle = iso
         ? 'https://github.com/Ondo-Control/Ondo-Control/blob/main/daten/espn-ergebnisse/'+iso.slice(0,7)+'.json'
         : 'https://github.com/Ondo-Control/Ondo-Control/tree/main/daten/espn-ergebnisse';
+      r._espnRoh = { herkunft:'archiv', url:r.quelle, beleg: r._fixture && r._fixture.beleg };
     });
     /* .mehrdeutig aus strukturAbgleich() bewusst NICHT hier weiterverarbeitet - Ondos Auftrag
        verlangt fuer diese Lieferung nur, dass ein mehrdeutiger Fall NICHT geraten wird (erledigt,

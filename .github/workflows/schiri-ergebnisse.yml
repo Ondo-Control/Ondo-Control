@@ -17,6 +17,19 @@ name: Schiri-Ergebnisse holen
 # skripte/schiri-ergebnisse-holen.js byte-identische Ausgabe, git sieht keinen Diff, es wird
 # nichts committet. Echt getestet, kein zusaetzlicher Code dafuer noetig - siehe
 # Ondo-Control-Backlog.md, Punkt 9.
+#
+# NACHBESSERUNG 18.9.2026 (Backlog-Punkt 84, Fund ChatGPT, Fassung 3, Teil B5): SONST NICHTS an
+# diesem Workflow geaendert (keine anderen Zeiten, keine anderen Abrufe, kein anderer Zielordner,
+# keine sonstige Logikaenderung) - nur die beiden folgenden Ergaenzungen:
+# 1. Gemeinsame concurrency-Gruppe mit espn-ergebnisse.yml (siehe dort fuer die ausfuehrliche
+#    Begruendung und die Grenze: keine beliebig lange FIFO-Warteschlange, nur Schutz gegen
+#    gleichzeitige Schreiblaeufe der zwei regulaeren geplanten Workflows).
+# 2. fetch/HEAD-Pruefung vor jedem Commit/Push - kein automatischer Merge, kein Rebase, kein
+#    Force. Hat sich main seit dem Checkout bewegt, bricht der Lauf sichtbar ab.
+concurrency:
+  group: ondo-control-ergebnisse-schreiber
+  cancel-in-progress: false
+
 on:
   schedule:
     - cron: '0 8 * * *'
@@ -50,6 +63,11 @@ jobs:
           if git diff --cached --quiet; then
             echo "Keine Aenderung - nichts zu committen."
           else
+            git fetch origin main
+            if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then
+              echo "::error::main hat sich seit dem Checkout bewegt (HEAD ist nicht mehr origin/main) - sichtbarer Abbruch vor dem Commit. Kein automatischer Merge, kein Rebase, kein Force. Der naechste Lauf holt den aktuellen Stand neu."
+              exit 1
+            fi
             git commit -m "Schiri-Ergebnisse: taeglicher automatischer Abruf"
             git push
           fi
