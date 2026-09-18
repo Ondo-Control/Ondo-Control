@@ -1260,6 +1260,30 @@
    "torGast": 1,
    "quelle": "football-data.org",
    "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-09-17",
+   "anpfiff": "19:30",
+   "wettbewerb": "Primera Division",
+   "heim": "Málaga CF",
+   "gast": "Villarreal CF",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 3,
+   "quelle": "football-data.org",
+   "halbzeit": "1:2"
+  },
+  {
+   "datum": "2026-09-17",
+   "anpfiff": "17:00",
+   "wettbewerb": "Primera Division",
+   "heim": "Real Betis Balompié",
+   "gast": "Getafe CF",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
   }
  ]
 }
