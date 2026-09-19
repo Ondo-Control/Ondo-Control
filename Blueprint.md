@@ -3,10 +3,12 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.139
+**Version:** 0.140
 **Stand:** 19. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
+
+> **Was Fassung 0.140 ändert (19.9.2026):** Ondos „Nachtrag zur Grundsatznachricht" eingearbeitet, gilt für Claude, ChatGPT und Mistral gleichermassen. Inhaltliche Änderungen, keine reine Fassungspflege: Arbeitsregel K gelockert (frischer Prüfer-Chat nur noch bei eigener Vorarbeit nötig, Abschnitt 2c) · Abschnitt 2d Punkt 4 berichtigt (ChatGPT liest seit 28.8.2026 direkt im Repo, nicht mehr über GitHub-Pages-Links) · zwei neue Arbeitsregeln O (Leistungsmaßstab) und P (Keine Floskeln) ergänzt · Abschnitt 2e um den Hinweis auf das Schwesterprojekt `ondo-jarvis` ergänzt. Kein Verfassungsartikel geändert. Blueprint auf 0.140 gehoben.
 
 > **Was Fassung 0.139 ändert (19.9.2026):** Reine Fassungszahl-Anpassung nach Arbeitsregel M — `STAND.md` und der Backlog wurden für die Abschluss-Nachbesserung von Backlog-Punkt 84 geändert (`beta.html` v19.18.2: der echte Archivzweig in `rundeLaufen()` schreibt die ESPN-Archiv-Beweiskette jetzt auch im tatsächlichen App-Ablauf nach `e.espnRoh`, plus drei Dokumentationskorrekturen). Blueprint selbst inhaltlich nicht geändert, keine neue Architekturentscheidung und keine neue Arbeitsregel. Blueprint auf 0.139 gehoben.
 
@@ -146,6 +148,7 @@ Quellen erhalten Vertrauenswerte (z. B. offizielle Verbände hoch, Foren niedrig
 *Zwei Bedingungen, die ihn vom Beschluss des 30.7. abgrenzen: Er wird bei **jedem** Bericht neu aus den Dokumenten geschrieben, nie aus dem Gedächtnis, und **jede Zahl darin steht auch im Bericht selbst**, damit ein Widerspruch sofort auffällt. Er wird **nicht** als feste Datei ins Repo gelegt — eine solche Datei würde altern, ohne dass es jemand merkt.*
 *Anlass: Beide Prüfer lesen ganze Dateien nachweislich unvollständig — ChatGPT über Suchtreffer (6.8.), Gemini von vorn bis etwa drei Vierteln bei gleichzeitiger Meldung von Vollständigkeit (7.8.). Die zweite Hälfte der Regel geht auf Ondos Rückfrage vom 7.8. abends zurück: Ein reiner Zeilendiff ist in einem neuen Prüfer-Chat wertlos, weil dort niemand den Gegenstand kennt.*
 *Ergänzung vom 8.8. (Beschluss Ondo): **Prüfer bekommen für jede Vorlage einen frischen Chat ausserhalb des Projektordners.** Begründung: In fortgeführten Chats greifen sie auf alte Angaben und alte Ideen zurück; bei Rückfragen verteidigen sie zudem ihre eigene frühere Antwort. **Folgen:** Der Zusammenhangsblock ist damit die einzige Grundlage, die ein Prüfer hat — er muss vollständig sein. Und eine Rückfrage nennt die frühere Antwort nicht.*
+*🔴 Gelockert (19.9.2026, Ondo, Nachtrag zur Grundsatznachricht, gilt für Claude, ChatGPT und Mistral gleichermassen): Ein frischer Chat ist ab sofort nur noch nötig, wenn ein Prüfer seine **eigene** frühere Antwort prüfen soll — oder eine Vorlage, die überwiegend aus seinen eigenen Funden besteht. **In allen anderen Fällen darf eine fortgeführte Sitzung prüfen.** Begründung, warum genau diese Trennung: Die Ergänzung vom 8.8. nannte zwei Gründe. Der erste — Prüfer greifen auf alte Angaben zurück — ist seit dem 28.8.2026 durch den direkten Repo-Zugriff erledigt, ein Prüfer liest den aktuellen Stand direkt (siehe Abschnitt 2d, dort berichtigt). Der zweite — Prüfer verteidigen bei Rückfragen ihre eigene frühere Antwort — ist Verhalten und durch keinen Zugriff gelöst; nur dafür bleibt der frische Chat. Unverändert: Dateinamen tragen Datum und Uhrzeit, nichts, was nur im Chat steht, gilt als festgehalten.*
 
 **L — Bauen vor Aufnehmen** *(8.8., Beschluss Ondo)* **Jeder Chat arbeitet mindestens einen bereits beschlossenen Punkt ab, bevor neue Ideen ins Verzeichnis aufgenommen werden.**
 *Anlass: Bilanz vom 8.8. — 39 Backlog-Punkte, sieben gebaut, **sieben von Ondo beschlossen und nicht gebaut**, der älteste vom 25. Juli. Ondos Kritik: Punkte werden jedes Mal eingetragen und nie durchgehend abgearbeitet, und er stehe später vor Entscheidungen, deren Zusammenhang er nicht mehr kenne. Ursache: Es gab eine Regel, jede Entscheidung sofort **einzutragen**, aber keine, sie zu **bauen**. Chat 12 hat selbst keinen einzigen Punkt gebaut — genau das Muster, das diese Regel beendet.*
@@ -158,6 +161,12 @@ Quellen erhalten Vertrauenswerte (z. B. offizielle Verbände hoch, Foren niedrig
 **N — Fail Safe: bei einem unbekannten Fehler anhalten, nicht automatisch das nächste Modell nehmen** *(ChatGPT, 4.8.2026, als Reaktion auf den Denkfehler vom 3./4.8. · von Ondo entschieden 7.9.2026)* **Meldet ein Modellaufruf einen Fehler, dessen Art nicht vorgesehen war, wird nicht automatisch ein anderes Modell probiert — der Vorgang hält an und meldet die Lage als unklar.**
 *Anlass, mit Beleg (`CHRONIK-2026-08.md`, „Der Denkfehler, der den Schaden vergrössert hat"): Nach einem gescheiterten Versuch, ein stärkeres Modell für den Schiedsrichter zu nutzen, wurde eine Regel gebaut: „jeder unbekannte Fehler heisst: nimm das nächste Modell." Tatsächlich war das Nutzungskontingent erschöpft — ein Fall, der Anhalten verlangt, nicht Weitermachen. Die Regel liess die App **alle 14 verfügbaren Flash-Modelle** nacheinander durchprobieren. Derselbe Denkfehler, der dem Schiedsrichter vorgeworfen wird: eine unklare Lage in falsche Sicherheit übersetzen, statt sie als unklar zu melden.*
 *Stand im Code (geprüft 7.9.2026): Diese Regel behebt kein aktuelles Problem — die blinde „nimm das nächste Modell"-Logik existiert seit der Modellwahl-Umstellung (v19.7.4) nicht mehr. Der einzige verbliebene automatische Wechsel in `geminiCall()` ist eng gefasst und **bekannt**, kein unbekannter Fehler: fehlt ein stärkeres Modell für den vorhandenen Schlüssel, wird stattdessen mit Flash geprüft. Die Regel gilt vorsorglich für jede künftige Stelle, an der die App bei einem Fehler automatisch das Modell wechseln könnte.*
+
+**O — Leistungsmaßstab** *(19.9.2026, Ondo, Nachtrag zur Grundsatznachricht, gilt für Claude, ChatGPT und Mistral)* **Ondo zahlt eigene Abonnements für Claude, ChatGPT und Mistral und erwartet dafür messbare Leistung. Fehler werden anfangs toleriert, dürfen sich aber dauerhaft nicht wiederholen.**
+*Beleg, kein Einzelfall: Gemini und DeepSeek sind aus genau diesem Grund aus dem Projekt aussortiert worden — siehe `STAND.md`, Rollen-Abschnitt: „Gemini war bis zum 28.8.2026 Reviewer und ist seither nicht mehr am Projekt beteiligt" (Entscheidung Ondos); DeepSeek war nie Beteiligter hier.*
+
+**P — Keine Floskeln** *(19.9.2026, Ondo, Nachtrag zur Grundsatznachricht, gilt für Claude, ChatGPT und Mistral)* **Ein Fehler wird benannt, weil die Arbeit es verlangt — knapp, sachlich, mit der Ursache. Danach wird weitergearbeitet.**
+*Ondos eigener Massstab: Gemessen wird die Fehlerzahl, nicht die Zerknirschung. Eine wiederholte Formel wie „das war mein Fehler" zählt nicht als Verbesserung.*
 
 ---
 
@@ -172,11 +181,11 @@ Quellen erhalten Vertrauenswerte (z. B. offizielle Verbände hoch, Foren niedrig
 1. **Die Mappe ist eine Nachricht, keine Datei.** ChatGPT erzeugt sie im laufenden Chat als zusammenhängenden Text, den Ondo kopieren kann. Es fordert Ondo nicht auf, einen neuen Chat zu öffnen, und legt nichts im Repo ab.
 2. **Keine Kontrollfragen, kein Antwortschlüssel.** Beides setzt einen Nachfolger voraus, der geprüft werden kann. ChatGPT hat keinen. Stattdessen nennt es am Ende **die drei Dinge, die es selbst nicht nachprüfen konnte**.
 3. **Herkunft jeder Zahl ausweisen.** ChatGPT liest die Projektdateien über Suchtreffer und sieht nicht immer das ganze Dokument. Jede Zahl in seiner Mappe trägt deshalb die Fundstelle, oder den ausdrücklichen Vermerk, dass sie ungeprüft übernommen wurde. *Anlass: Am 6.8. meldete ChatGPT eine veraltete Zahl als aktuell.*
-4. **Nur die geänderten Stellen, nicht ganze Dateien** (Arbeitsregel K). ChatGPT liest über GitHub-Pages-Links, nicht über `raw.githubusercontent.com`.
+4. **Nur die geänderten Stellen, nicht ganze Dateien** (Arbeitsregel K). ~~ChatGPT liest über GitHub-Pages-Links, nicht über `raw.githubusercontent.com`.~~ **🔴 Berichtigt (19.9.2026, Ondo, Nachtrag zur Grundsatznachricht):** Seit dem 28.8.2026 hat ChatGPT eigenen GitHub-Zugriff und liest den Projektstand direkt im Repo — dieser Punkt war seither falsch, `STAND.md` hält das im Abschnitt „Dateizugriff" bereits korrekt fest, dieser Blueprint-Punkt wurde damals nicht nachgezogen. Der GitHub-Pages-Weg bleibt als Rückfallweg bestehen, falls der direkte Zugriff einmal ausfällt.
 5. **Höchstens zwei geschlossene Ja-Nein-Fragen** je Bericht — dieselbe Grenze wie bei den Prüferberichten.
 6. **Widerspruch ist ausdrücklich erwünscht.** Ein Prüferurteil ist ein Vorschlag, kein Auftrag (Art. 8). ChatGPT und Gemini sind schon uneins gewesen; das ist kein Mangel, sondern der Zweck zweier Prüfer.
 
-**Was auch für ChatGPT gilt, unverändert:** Prüfer bekommen **frische Chats ausserhalb der Projektordner**. Dateinamen tragen Datum und Uhrzeit. Nichts, was nur im Chat steht, gilt als festgehalten.
+**Was auch für ChatGPT gilt:** ~~Prüfer bekommen frische Chats ausserhalb der Projektordner.~~ **🔴 Seit 19.9.2026 gelockert** (siehe Arbeitsregel K, Abschnitt 2c) — ein frischer Chat ist nur noch nötig, wenn ChatGPT seine eigene frühere Antwort oder eine überwiegend eigene Vorlage prüfen soll. Unverändert: Dateinamen tragen Datum und Uhrzeit. Nichts, was nur im Chat steht, gilt als festgehalten.
 
 **Grenze dieser Regel (Art. 14):** Sie macht ChatGPTs Übergabe nachvollziehbar, nicht vollständig. Ob ein Dokument ganz gelesen wurde, lässt sich von aussen nicht feststellen.
 
@@ -196,6 +205,13 @@ Zuruf zusätzlich eine vierte, eng begrenzte Rolle — geprüfter Code-Zuliefere
 umrissene, von Claude vollständig spezifizierte Änderungen, ähnlich Mistrals Rolle, aber ohne
 eigenen Repo-Zugang: der Code kommt über Ondo, Claude prüft ihn vor jedem Commit. Einzelheiten
 beim genannten Backlog-Punkt (Punkt 45, nicht hier wiederholt).
+
+**Schwesterprojekt (Ondo, 19.9.2026, Nachtrag zur Grundsatznachricht):** `ondo-jarvis` läuft
+parallel, mit ChatGPT und Mistral:
+`https://github.com/Ondo-Control/ondo-jarvis/tree/main` und
+`https://github.com/Ondo-Control/ondo-jarvis/tree/mistral/work`. Kein Bestandteil dieses Repos
+und hier nur als Kontext festgehalten — eine Ondo-Control-Sitzung greift darauf nicht zu, ausser
+Ondo verlangt es ausdrücklich.
 
 **Eine Konfliktregel:** Wer eine Architektur entwirft, sollte sie nicht auch unabhängig prüfen —
 beides zusammen ist keine echte, unabhängige Kontrolle. Das betrifft seit 27./28.8.2026
