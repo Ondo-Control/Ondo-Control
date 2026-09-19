@@ -988,3 +988,70 @@ Lieferung, alle bestanden.** `pruefe.py`: ALLES SAUBER. **Keine neuen Sprachschl
 den B5/B6-Ergänzungen) hat noch keinen echten Lauf in GitHub Actions hinter sich — Bewährung
 steht aus (Stabilitätsregel). **Ondos Befund vom 18.9.2026 („4 von 10")** gilt erst dann als
 behoben, wenn ein echter Prüfzyklus am Gerät das bestätigt — **nicht bereits mit diesem Bau.**
+
+
+---
+
+## `beta.html` v19.18.0 — Nachbesserung Backlog-Punkt 84/85, aus `STAND.md` „Versionen" verschoben (19.9.2026, gezielte Abnahmenachbesserung v19.18.1, Fassung 139)
+
+*Wortgleich aus `STAND.md` hierher verschoben, nichts geloescht oder umformuliert (stehende
+Regel ab 14.9.2026, `STAND.md`-Wegweiser; dasselbe Vorgehen wie beim v19.17.0-Eintrag darueber).
+Nur die Listen-Kennzeichnung ist von „Beta:" auf „Beta zuvor:" gesetzt, wie bei jedem anderen
+verschobenen Versionseintrag.*
+
+**🔴 Drei Aussagen dieses Blocks sind seit dem 19.9.2026 ueberholt — sie bleiben hier als
+damaliger Stand stehen (Regel 3), massgeblich ist `STAND.md`:**
+1. **„jetzt 31 von 56"** — nach C1 (19.9.2026) sind es bewusst **29 von 56**. Zwei bare
+   Regeln (`/serie\s*a\b/` -> `ita.1`, `/serie\s*b\b/` -> `ita.2`) sind entfernt, weil
+   „Serie B" in Ondos Export einmal blank fuer ein brasilianisches Spiel steht (Grêmio
+   Novorizontino–Avaí FC, 5.9.2026) — ein real belegter Fehlmatch.
+2. **„Monatsdatei-Hochrechnung grob 230–570 KB"** — diese Schaetzung war zu niedrig. Der erste
+   reale Betriebstag erzeugte 30,1 KB bei 36 Spielen; Einzelheiten und die zulaessige
+   Einordnung stehen in `STAND.md`.
+3. **„kein echter GitHub-Actions-Lauf bisher"** — war am 18.9.2026 richtig, ist ueberholt: Beide
+   Workflows sind am 19.9.2026 erstmals real und erfolgreich gelaufen. Einzelheiten `STAND.md`.
+
+- **Beta zuvor: v19.18.0** (`beta.html` + geänderte Dateien, geliefert 18.9.2026) — **Nachbesserung
+  von v19.16.0/v19.17.0 (Backlog-Punkt 84/85), Fassung 3 des Auftrags — acht von ChatGPT
+  gemeldete, am echten Code des Commits `1ef0e91` bestätigte Abweichungen behoben.**
+  Vollständige Begründung, Bauweise je Teilpunkt (A1/A2, B0–B6) und Verifikation: wortgleich
+  in `CHRONIK-2026-09.md` (dort auch die vollständige, verschobene Vorgeschichte v19.17.0).
+  **Ausgangslücke, maschinell an Ondos echtem Export gemessen (505 `kiProtokoll`-Einträge):**
+  12 von 56 echten Wettbewerbsnamen bekamen einen ESPN-Slug — **jetzt 31 von 56.**
+  **Bewusst unaufgelöst, weil generisch (keine dauerhaft eindeutige Liga-Zuordnung):**
+  „Bundesliga", „Superliga", „1. Liga", „Super League", „Premiership" (Ondos eigene Beispiele,
+  alle fünf real in seinen Daten) sowie selbst gefunden „Championship" (bare) und „Primera
+  División" (in Ondos Daten Argentinien, aber selbst generisch — auch Uruguay/Bolivien/Paraguay
+  nennen ihre Liga so, deshalb **keine** Regel dafür, auch nicht auf `arg.1`). **Ausdrücklich
+  klargestellt:** Der historische Västerås-SK-Fall vom 10.8.2026 (Metadaten-/
+  Positionsverschiebungsfehler) belegt **keine** Aussage über „Superliga".
+  **Messdaten-Export (Teil A):** `tipp`/`quote` fehlten in `MESS_KI_FELDER` — alle 20 echten
+  v18-Einträge verloren dadurch ihren inhaltlichen Kern, jetzt ergänzt. Neue Positivliste
+  `MESS_KONS_KOPF_FELDER = ['sonnet','flash']` ersetzt eine offene `Object.keys()`-Iteration in
+  `messAntwortkonsistenzProjekt()`.
+  **ESPN-Automatik (Teil B):** `usa.open` als ausserhalb des STUFEN-Scopes entfernt, alle 58
+  verbliebenen Slugs einzeln mit echtem, abgeschlossenem Spiel (nicht nur HTTP 200) bestätigt.
+  Jeder Archiv-Datensatz trägt jetzt ein kompaktes `beleg`-Objekt (rohe Competitor-Daten) als
+  Beweiskette, auch für Archivtreffer (vorher nur für Live-Funde) — gemessen 340 Byte ohne,
+  631 Byte mit `beleg` (+~85 %), Monatsdatei-Hochrechnung grob 230–570 KB (Schätzung, kein
+  echter Monat gemessen). Schema auf die beauftragten Feldnamen umgestellt (`provider`/
+  `providerCompetitionSlug`/`providerCompetitionName`/`kickoffUtc`/`verlaengerungGespielt`),
+  `providerCompetitionName` jetzt live aus `sum.header.league.name` statt einem unzuverlässigen
+  Ersatzwert. Cron entzerrt (`25 8`/`55 23` UTC, nicht mehr dieselbe Stunde wie
+  `schiri-ergebnisse.yml`), gemeinsame `concurrency`-Gruppe (`cancel-in-progress: false` —
+  **Grenze:** verhindert parallele Writer, aber keine beliebig lange FIFO-Warteschlange) +
+  `git fetch`/HEAD-Prüfung vor jedem Commit/Push in beiden Workflows (sichtbarer Abbruch statt
+  automatischem Merge/Rebase/Force). 403/429 jetzt sichtbar protokolliert und gezählt, ohne
+  Retry und ohne Laufabbruch.
+  **Unverändert, laut `git diff` gegen `1ef0e91` byte-identisch:** `REF_MIN_LAEUFE`,
+  `refEinigkeit()`, STUFEN, `espnLauf()`, `openligaLauf()`, `ergebnisQuelleAus()`,
+  `MESS_VERBOTEN`, `messGeheimFund()`.
+  **Verifiziert:** `node --check` auf beide Skripte bestanden, YAML beider Workflows geprüft,
+  **143 neue Prüfungen** an den wortgleich herausgeschnittenen Funktionen (Teil A 17, `espnSlugFuer()`
+  gegen alle 56 echten Namen + 4 Negativfälle 20, `datensatzBauen()` gegen vier live abgerufene
+  ESPN-Antworten 68, volle Kaskade inkl. DFB-Pokal-Elfmeterfall Norderstedt–St. Pauli 24,
+  403/429-Simulation 14) — alle bestanden. `pruefe.py`: ALLES SAUBER. Keine neuen
+  Sprachschlüssel (349 unverändert).
+  **🔴 Status ausdrücklich NICHT auf „behoben"/„bewährt" gesetzt:** kein echter GitHub-Actions-
+  Lauf bisher — Bewährung steht aus. **Ondos Befund vom 18.9.2026 („4 von 10")** gilt erst nach
+  einem echten Prüfzyklus am Gerät als behoben, **nicht bereits mit diesem Bau.**

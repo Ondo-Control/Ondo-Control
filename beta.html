@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.18.0';
+var CODE_VERSION = 'v19.18.1';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -2321,13 +2321,20 @@ function datumIso(dmj){
    Aufrufer muss sie lesen.
    🔴 NACHBESSERUNG 18.9.2026 (Backlog-Punkt 84, Fund ChatGPT, Fassung 3, Teil B4): Das Schema
    der fixtures-Eintraege (skripte/espn-ergebnisse-holen.js) wurde auf die beauftragten Feldnamen
-   umgestellt - x.wettbewerb heisst jetzt x.providerCompetitionName. ANGEPASST statt Alias:
+   umgestellt - x.wettbewerb heisst jetzt x.providerCompetitionName. ~~ANGEPASST statt Alias:
    diese Funktion ist die EINZIGE Lesestelle des alten Feldnamens im ganzen Quelltext (maschinell
    mit grep geprueft, siehe Lieferbericht) - ein kompatibler Alias wuerde die ungenaue alte
    Benennung genau dort weiterleben lassen, wo sie behoben werden sollte, ohne einen einzigen
-   externen Leser zu schuetzen, den es nicht gibt. x.status bleibt UNVERAENDERT 'FT' (Auftrag
+   externen Leser zu schuetzen, den es nicht gibt.~~ x.status bleibt UNVERAENDERT 'FT' (Auftrag
    Ondo, sonst faellt jeder Archivtreffer stumm durch). x.kickoffUtc und x.providerCompetitionSlug
-   werden hier weiterhin NICHT gelesen. */
+   werden hier weiterhin NICHT gelesen.
+   🔴 BERICHTIGT 19.9.2026 (Backlog-Punkt 84, C3, Auftrag Ondo nach der Abnahmepruefung von
+   v19.18.0): Die durchgestrichene Begruendung war FALSCH. Es gibt sehr wohl Leser des alten
+   Feldnamens - nicht auf der Lesestelle, sondern auf der PRODUZENTENSEITE: apiFootballLauf(),
+   footballDataLauf() und footballDataArchivLesen() bauen ihre fixtures-Eintraege unveraendert
+   mit wettbewerb und ohne providerCompetitionName. Der grep suchte die falsche Seite. Diese
+   Funktion liest jetzt BEIDE Schemata ueber den gemeinsamen lokalen Leser wettbewerbAus()
+   (neues Schema hat Vorrang) - siehe dort. */
 function strukturAbgleich(ziel, fixtures, quelleUrl){
   function teamPasstZu(a,b){
     var na=normName(a), nb=normName(b);
@@ -2336,6 +2343,19 @@ function strukturAbgleich(ziel, fixtures, quelleUrl){
   }
   function tagesAbstand(a,b){
     return Math.abs(new Date(a+'T00:00:00Z').getTime()-new Date(b+'T00:00:00Z').getTime())/86400000;
+  }
+  /* 🔴 NACHBESSERUNG 19.9.2026 (Backlog-Punkt 84, C3, Auftrag Ondo): gemeinsamer Leser fuer
+     BEIDE bekannten Schemata. Das ESPN-Archiv (skripte/espn-ergebnisse-holen.js) liefert
+     providerCompetitionName; die aelteren Strukturproduzenten apiFootballLauf(),
+     footballDataLauf() und footballDataArchivLesen() liefern unveraendert wettbewerb. Sie sind
+     zurzeit teils nicht aktiv aufgerufen, bleiben aber bewusst im Code und sollen bei
+     Reaktivierung funktionieren - ohne diesen Leser verloere ihr eigener Wettbewerbsname hier
+     stillschweigend (beim normalen Treffer durch den Rueckfall auf p.wettbewerb ueberdeckt, in
+     der Mehrdeutig-Liste ersatzlos leer). Neues Schema hat Vorrang. Keine Umbenennung der alten
+     Produzenten, kein Alias im gespeicherten ESPN-Datensatz - die Kompatibilitaet gehoert in den
+     gemeinsamen Leser, nicht in jede Quelle einzeln. */
+  function wettbewerbAus(x){
+    return (x && (x.providerCompetitionName || x.wettbewerb)) || '';
   }
   var ergebnisse=[];
   var mehrdeutig=[];
@@ -2354,14 +2374,14 @@ function strukturAbgleich(ziel, fixtures, quelleUrl){
       mehrdeutig.push({ id:p.id, match:p.match, datum:p.datum,
         kandidaten:kandidaten.map(function(x){
           return { heim:x.heim, gast:x.gast, torHeim:x.torHeim, torGast:x.torGast,
-            wettbewerb:x.providerCompetitionName||'', datum:x.datum };
+            wettbewerb:wettbewerbAus(x), datum:x.datum };
         }) });
       return;
     }
     var f=kandidaten[0];
     var heim=f.torHeim, gast=f.torGast;
     var r={ id:p.id, status:'fertig', heim:heim, gast:gast, datum:p.datum,
-      wettbewerb:f.providerCompetitionName||p.wettbewerb||'', quelle:quelleUrl,
+      wettbewerb:wettbewerbAus(f)||p.wettbewerb||'', quelle:quelleUrl,
       verlaengerungGespielt:f.verlaengerung?'ja':'nein', verlaengerung:f.verlaengerung||'',
       torlos:(heim===0&&gast===0)?'bestaetigt':'nein' };
     if(f.halbzeit) r.halbzeit=f.halbzeit;
@@ -2555,12 +2575,29 @@ function wbNorm(s){
 }
 /* NACHBESSERUNG 18.9.2026 (Backlog-Punkt 84, Fund ChatGPT/Ondo, Fassung 3, Teil B2): Gegen
    Ondos 56 echte Wettbewerbsnamen (505 kiProtokoll-Eintraege, ondo-control-messdaten-
-   2026-09-17.json, maschinell ausgezaehlt) bekamen vorher nur 12 von 56 einen Slug. Diese
-   Fassung erweitert die Liste auf 31 von 56 (die uebrigen 25 sind einzeln im Lieferbericht
+   2026-09-17.json, maschinell ausgezaehlt) bekamen vorher nur 12 von 56 einen Slug. Die Fassung
+   v19.18.0 erweiterte die Liste auf 31 von 56; seit v19.18.1 (19.9.2026, C1, siehe unten) sind
+   es bewusst wieder 29 von 56 (die uebrigen 27 sind einzeln im Lieferbericht
    dieser Fassung benannt: entweder ein bewusst NICHT aufgeloester generischer Name wie
    "Bundesliga"/"Superliga"/"1. Liga"/"Super League"/"Premiership" - siehe unten - oder eine
    echte ESPN-Abdeckungsluecke (z. B. EFL Cup, Regionalliga, Irland/Island/Finnland) oder
    ausserhalb des STUFEN-Scopes (z. B. Uruguay, Frauenwettbewerbe).
+   🔴 ZWEITER BEHOBENER FEHLMATCH, an echten Daten belegt (19.9.2026, Backlog-Punkt 84, C1,
+   Auftrag Ondo nach der Abnahmepruefung von v19.18.0): Die bis dahin hier stehenden bare-Regeln
+   /serie\s*a\b/ -> ita.1 und /serie\s*b\b/ -> ita.2 sind ENTFERNT. Anlass ist ein REAL belegter
+   Fehlmatch, kein theoretisches Risiko: In Ondos Export steht unter dem blanken Wettbewerbsnamen
+   "Serie B" das Spiel "Grêmio Novorizontino - Avaí FC" (5.9.2026) - ein BRASILIANISCHES Spiel,
+   das die alte bare-Regel auf die italienische ita.2 geschickt haette. Derselbe Fehlertyp wie
+   zuvor bei "Primera División". "Serie A" ist in Ondos Daten zwar durchgaengig italienisch (6
+   Spiele, alle Serie A), der NAME selbst bleibt aber laenderuebergreifend mehrdeutig (Brasilien
+   fuehrt ebenfalls eine Serie A) - nach demselben Massstab wie bei den unten genannten
+   generischen Namen bekommt er deshalb ebenfalls keine ratende Regel mehr. Die expliziten
+   Brasilien-Regeln bleiben unveraendert und weiterhin VOR dieser Stelle. KEINE Ersatzregel fuer
+   Italien: im realen Bestand gibt es keine laenderspezifische italienische Schreibweise, an der
+   sich eine enge Regel belegen liesse (Art. 11 - nicht ausdenken). Die frueher an dieser Stelle
+   stehende Gegenbegruendung ("bare Serie A/B wurden NICHT verworfen, weil die brasilianische
+   Variante immer explizit auftritt") ist durch den Novorizontino-Fund WIDERLEGT und weiter unten
+   entsprechend berichtigt, nicht nur ergaenzt.
    BEHOBENER FEHLMATCH, live an echten Daten belegt: Die alte Regel /la\s*liga|primera\s*divisio/
    -> esp.1 fing auch "Primera División" ab - in Ondos Daten ausschliesslich ARGENTINISCHE
    Spiele (Gimnasia y Esgrima de Mendoza-Boca Juniors, Gimnasia La Plata-CA Tigre, CA
@@ -2581,10 +2618,16 @@ function wbNorm(s){
    "Premiership" (schottische wie englische Ligen historisch so genannt) · zusaetzlich hier
    selbst gefunden, kein Ondo-Beispiel: bare "Championship" (englische UND schottische zweite
    Liga gleichermassen so genannt - "EFL Championship" bleibt dagegen eindeutig und bekommt
-   eine eigene Regel) und bare "Serie A"/"Serie B" wurden NICHT verworfen, weil in Ondos realen
+   eine eigene Regel) und ~~bare "Serie A"/"Serie B" wurden NICHT verworfen, weil in Ondos realen
    Daten die brasilianische Variante immer explizit als "Brasilien Serie A/B" auftritt (eigene,
    vorrangige Regel unten) - die Restunterscheidung bleibt eine bewusste, im Bericht benannte
-   Abwaegung, kein Beleg wie bei den anderen Faellen.
+   Abwaegung, kein Beleg wie bei den anderen Faellen.~~
+   🔴 BERICHTIGT 19.9.2026 (Backlog-Punkt 84, C1): Diese Abwaegung war FALSCH. Die brasilianische
+   Variante tritt eben NICHT immer explizit auf - "Serie B" steht in Ondos Export einmal blank
+   fuer ein brasilianisches Spiel (Grêmio Novorizontino - Avaí FC, 5.9.2026). Bare "Serie A" und
+   bare "Serie B" stehen seit dieser Fassung deshalb GENAUSO ohne Regel da wie "Bundesliga",
+   "Superliga", "1. Liga", "Super League", "Premiership", "Championship" und "Primera División".
+   Einzelheiten oben, Abschnitt "ZWEITER BEHOBENER FEHLMATCH".
    FRAUEN-WETTBEWERBE: "UEFA Women's Champions League" kommt in Ondos Daten vor und würde ohne
    Schutz von der neuen, allgemeinen Champions-League-Regel mitgefangen - alle drei neuen
    Hauptrunden-Regeln (Champions/Europa/Conference League) schliessen "women" deshalb per
@@ -2594,8 +2637,18 @@ function wbNorm(s){
    Wettbewerbe liegen ohnehin ausserhalb des STUFEN-Scopes (STUFEN nennt keine).
    REIHENFOLGE: Qualifikations-Regeln stehen weiterhin vor den zugehoerigen Hauptrunden-Regeln
    (neu ergaenzt: bare Champions/Europa/Conference League erst NACH ihren drei Qualifikations-
-   Regeln), "2. Bundesliga" weiterhin vor der neuen "1. Bundesliga"-Regel, laenderspezifische
-   Serie-A/B-Regeln (Brasilien) vor den bare-Regeln fuer Italien. */
+   Regeln), "2. Bundesliga" weiterhin vor der neuen "1. Bundesliga"-Regel. Die laenderspezifischen
+   Serie-A/B-Regeln (Brasilien) stehen weiterhin ganz vorn in ihrer Gruppe; die bare-Regeln fuer
+   Italien, vor denen sie frueher stehen mussten, existieren seit 19.9.2026 nicht mehr (C1).
+   🔴 WAS DIESE ZAHL MISST, und was nicht (Backlog-Punkt 84, C4.5, Auftrag Ondo): "29 von 56"
+   ist die Abdeckung von espnSlugFuer() im LIVE-ESPN-FALLBACK - NICHT die gesamte ESPN-Abdeckung
+   des Systems. Der reale Gesamtweg in rundeLaufen() lautet: ESPN-ARCHIV ZUERST
+   (espnArchivLesen(), Zuordnung ueber Datum + Heimteam + Gastteam, ganz OHNE espnSlugFuer())
+   -> nur bei keinem eindeutigen Archivtreffer Live-ESPN (espnLauf(), erst hier zaehlt der Slug)
+   -> danach OpenLigaDB -> KI-Notnagel. Ein eindeutiger Archivtreffer ist von dieser Zahl
+   vollstaendig UNBERUEHRT. Der Rueckgang von 31 auf 29 ist deshalb eine bewusste
+   Sicherheitsverschaerfung (lieber keinen Slug raten als in der falschen Liga suchen) und
+   verschlechtert die vorgelagerte Archivsuche NICHT. */
 var ESPN_SLUG_REGELN = [
   { m:/champions.*(quali|qualifik)/,               slug:'uefa.champions_qual' },
   { m:/conf(erence)?.*(quali|qualifik)/,           slug:'uefa.europa.conf_qual' },
@@ -2611,8 +2664,12 @@ var ESPN_SLUG_REGELN = [
   { m:/efl\s*championship/,                        slug:'eng.2' },
   { m:/brasilien.*serie\s*a|brazil.*serie\s*a/,    slug:'bra.1' },
   { m:/brasilien.*serie\s*b|brazil.*serie\s*b/,    slug:'bra.2' },
-  { m:/serie\s*a\b/,                                slug:'ita.1' },
-  { m:/serie\s*b\b/,                                slug:'ita.2' },
+  /* Hier standen bis 19.9.2026 zwei bare Regeln /serie\s*a\b/ -> ita.1 und /serie\s*b\b/ ->
+     ita.2. ENTFERNT (Backlog-Punkt 84, C1, Auftrag Ondo, Abnahmepruefung von v19.18.0) - siehe
+     Kopf-Kommentar oben, Abschnitt "BEHOBENER FEHLMATCH ... Serie B". Keine Ersatzregel fuer
+     Italien gebaut: in Ondos realem Bestand existiert KEINE eindeutig laenderspezifische
+     italienische Schreibweise (nur bare "Serie A"), und eine ausgedachte waere genau das Raten,
+     das diese Liste vermeiden soll (Art. 11). */
   { m:/liga\s*profesional/,                        slug:'arg.1' },
   { m:/ligue\s*1\b/,                                slug:'fra.1' },
   { m:/eredivisie/,                                 slug:'ned.1' },
@@ -2770,7 +2827,16 @@ function espnLauf(ziel, cache){
    zusaetzlich das Feld herkunft ('live'/'archiv') mit - bestehende Live-Eintraege bleiben dabei
    unveraendert lesbar, espnLauf() selbst wurde nicht angefasst (dort steht weiterhin kein
    herkunft-Feld in r._espnRoh, das Fehlen wird hier als 'live' gewertet). e.refRoh bleibt von
-   alledem unberuehrt. */
+   alledem unberuehrt.
+
+   🔴 NACHBESSERUNG 19.9.2026 (Backlog-Punkt 84, C2, Auftrag Ondo, Abnahmepruefung von v19.18.0):
+   Der Archiv-Eintrag traegt jetzt zusaetzlich providerEventId - die Primaerschluessel-ID des
+   EINEN Archivdatensatzes, der diesen Treffer tatsaechlich ergeben hat (aus r._espnRoh, dort
+   direkt aus dem Rohdatensatz uebernommen, siehe espnArchivLesen()). Vorher war ein gespeicherter
+   Archiv-Eintrag nicht eindeutig auf genau einen Datensatz der Monatsdatei zurueckfuehrbar: die
+   url zeigt nur auf die Datei, in der viele Spiele liegen. Der LIVE-Fall bleibt wortgleich
+   unveraendert (kein providerEventId dort - die vollstaendige Summary-Antwort traegt ihre eigene
+   Kennung bereits mit sich) und damit unveraendert lesbar; espnLauf() wurde nicht angefasst. */
 function espnRohSchreiben(r, ziel){
   if(!r || !r._espnRoh) return;
   var p=null;
@@ -2781,7 +2847,8 @@ function espnRohSchreiben(r, ziel){
     if(p.eintraege.indexOf(e.id)<0) return;
     if(!e.espnRoh) e.espnRoh=[];
     if(istArchiv){
-      e.espnRoh.push({ datum:heuteStr(), herkunft:'archiv', url:r._espnRoh.url, beleg:r._espnRoh.beleg });
+      e.espnRoh.push({ datum:heuteStr(), herkunft:'archiv', url:r._espnRoh.url,
+        providerEventId:r._espnRoh.providerEventId, beleg:r._espnRoh.beleg });
       return;
     }
     e.espnRoh.push({ datum:heuteStr(), herkunft:'live', scoreboardEvent:r._espnRoh.scoreboardEvent, summary:r._espnRoh.summary });
@@ -2835,7 +2902,17 @@ function espnArchivLesen(ziel){
       r.quelle = iso
         ? 'https://github.com/Ondo-Control/Ondo-Control/blob/main/daten/espn-ergebnisse/'+iso.slice(0,7)+'.json'
         : 'https://github.com/Ondo-Control/Ondo-Control/tree/main/daten/espn-ergebnisse';
-      r._espnRoh = { herkunft:'archiv', url:r.quelle, beleg: r._fixture && r._fixture.beleg };
+      /* 🔴 NACHBESSERUNG 19.9.2026 (Backlog-Punkt 84, C2, Auftrag Ondo): providerEventId kommt
+         DIREKT aus dem konkret von strukturAbgleich() gefundenen Rohdatensatz (r._fixture) -
+         nicht aus r.id, nicht aus Datum/Team rekonstruiert. Grund: url zeigt nur auf die
+         Monatsdatei, in der nach dem ersten echten Actions-Lauf bereits 36 Datensaetze liegen -
+         ohne die Event-ID laesst sich im Nachhinein nicht mehr bestimmen, WELCHER Datensatz
+         tatsaechlich verwendet wurde, und genau das soll die Beweiskette leisten. Bewusst NUR
+         die ID zusaetzlich zur bereits vorhandenen kompakten beleg-Evidence - der ganze
+         Archivdatensatz wird NICHT ein zweites Mal gespeichert. */
+      r._espnRoh = { herkunft:'archiv', url:r.quelle,
+        providerEventId: r._fixture && r._fixture.providerEventId,
+        beleg: r._fixture && r._fixture.beleg };
     });
     /* .mehrdeutig aus strukturAbgleich() bewusst NICHT hier weiterverarbeitet - Ondos Auftrag
        verlangt fuer diese Lieferung nur, dass ein mehrdeutiger Fall NICHT geraten wird (erledigt,

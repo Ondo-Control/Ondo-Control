@@ -49,10 +49,20 @@
 
    ZEITFENSTER: "gestern" und "heute" (UTC) je Lauf - dieselbe Begruendung wie in
    skripte/schiri-ergebnisse-holen.js (spaeteste Spiele der US-Westkueste erst am naechsten
-   Morgen sicher abgepfiffen). Cron-Zeiten im Workflow-Kopf bewusst identisch zur bestehenden
+   Morgen sicher abgepfiffen). ~~Cron-Zeiten im Workflow-Kopf bewusst identisch zur bestehenden
    Automatik (08:00 + 23:30 UTC) - dieselbe, bereits begruendete Zeitwahl wiederverwendet statt
-   neu erfunden: 08:00 UTC holt "gestern" vollstaendig nach, 23:30 UTC erfasst europaeische
-   Abendspiele mit Verlaengerung/Elfmeterschiessen noch am selben Tag.
+   neu erfunden~~
+   🔴 BERICHTIGT 19.9.2026 (Backlog-Punkt 84, C4.1, Auftrag Ondo): Dieser Satz war seit der
+   Nachbesserung B5 (v19.18.0, 18.9.2026) falsch - die Zeiten sind dort gerade NICHT mehr
+   identisch, sondern bewusst entzerrt worden, damit die beiden Schreiber nicht in derselben
+   Minute starten. Aktuell gilt: ESPN 08:25 + 23:55 UTC (.github/workflows/espn-ergebnisse.yml),
+   Schiri 08:00 + 23:30 UTC (.github/workflows/schiri-ergebnisse.yml). Zusaetzlich teilen sich
+   beide Workflows seit derselben Fassung eine gemeinsame concurrency-Gruppe
+   (ondo-control-ergebnisse-schreiber, cancel-in-progress: false). Die Begruendung der
+   TAGESZEITEN bleibt unveraendert die alte: der Morgenlauf holt "gestern" vollstaendig nach,
+   der Nachtlauf erfasst europaeische Abendspiele mit Verlaengerung/Elfmeterschiessen noch am
+   selben Tag. An den Workflow-Zeiten selbst ist in dieser Lieferung NICHTS geaendert worden -
+   nur dieser Kommentar ist nachgezogen.
 
    KEIN EIGENES ELFMETER-FELD: torHeim/torGast sind immer der 90-Minuten-Stand (linescores[0]+[1],
    identische Formel wie espnLauf() in beta.html), verlaengerung (falls gespielt) der Stand nach
