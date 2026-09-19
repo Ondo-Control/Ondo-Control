@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 19.9.2026, Fassung 139 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 19.9.2026, Fassung 140 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -291,21 +291,16 @@ weiterverfolgt, Auftrag Ondo: OpenLigaDB als zweite Strukturquelle live bestäti
 (v19.15.0) · ESPN-Sammelautomatik + gehärtete Zuordnung, Auftrag Ondo 18.9.2026 (v19.17.0) ·
 Nachbesserung nach Gegenprüfung ChatGPT, acht bestätigte Abweichungen behoben, Auftrag Ondo
 18.9.2026 (v19.18.0) · gezielte Abnahmenachbesserung, Auftrag Ondo 19.9.2026 (v19.18.1)* ·
-**Status: 🔴 TEILWEISE GEBAUT 18.9.2026, `beta.html` v19.18.0 — match.uefa.com und openfootball
-weiterhin NICHT gebaut (Verifikation gescheitert); OpenLigaDB als Ersatz für 3. Liga und drei
-Regionalliga-Staffeln gebaut und verifiziert; KI-Notnagel-Teil von Schritt 2 nach v19.14.0
-wieder auf drei Läufe zurückgesetzt; `espnRoh` mitgeschrieben; ESPN-Sammelautomatik +
-Archiv-Kaskade + gehärtete `strukturAbgleich()` gebaut und verifiziert; **Nachbesserung
-18.9.2026 (v19.18.0):** Scope-Abgleich (`usa.open` entfernt), alle 58 verbliebenen Slugs
-einzeln mit echtem, abgeschlossenem Spiel bestätigt (vorher nur HTTP 200), `ESPN_SLUG_REGELN`
-von 12 auf 31 von 56 echten Wettbewerbsnamen erweitert (Primera-División/Argentinien-Fehlmatch
-behoben, generische Namen bewusst unaufgelöst), kompakte Beweiskette (`beleg`) jetzt auch bei
-Archivtreffern, Datensatz-Schema auf die beauftragten Feldnamen umgestellt
-(`provider`/`providerCompetitionSlug`/`providerCompetitionName`/`kickoffUtc`/
-`verlaengerungGespielt`), Cron-Zeiten entzerrt (nicht mehr dieselbe volle Stunde wie
-`schiri-ergebnisse.yml`), gemeinsame `concurrency`-Gruppe + fetch/HEAD-Prüfung vor jedem
-Commit/Push in beiden Workflows, 403/429 jetzt sichtbar protokolliert. Einzelheiten:
-`STAND.md`, Abschnitt „Versionen". Bewährung im echten Betrieb steht weiterhin aus.**
+**Status: 🔴 TEILWEISE GEBAUT 19.9.2026, `beta.html` v19.18.2 — Kaskade ESPN-Archiv → Live-ESPN
+→ OpenLigaDB → KI-Notnagel steht und ist verifiziert; die Archiv-Beweiskette (`e.espnRoh` mit
+`providerEventId`) wird seit v19.18.2 auch im echten App-Ablauf geschrieben. **Weiterhin
+TEILWEISE, nicht abgeschlossen:** match.uefa.com und openfootball bleiben ungebaut
+(Verifikation gescheitert), Regionalliga West/Südwest bei OpenLigaDB nicht auffindbar, 27 von
+56 echten Wettbewerbsnamen ohne Live-Slug, und vor allem: **Bewährung im echten
+App-Prüfzyklus steht aus — Ondos „4 von 10"-Befund vom 18.9.2026 gilt NICHT als behoben.**
+Einzelheiten zum jeweils geltenden Stand: `STAND.md`, Abschnitt „Versionen". Die vollständige
+Bau- und Begründungsgeschichte der Schritte v19.14.0 bis v19.18.1 steht in
+`BACKLOG-ARCHIV.md` und `CHRONIK-2026-09.md`.**
 
 **🔴 GEZIELTE ABNAHMENACHBESSERUNG 19.9.2026, `beta.html` v19.18.1 (Auftrag Ondo nach seiner
 Abnahmeprüfung von v19.18.0).** Ausdrücklich **keine** neue Architekturrunde — A1, A2, B0, B1,
@@ -380,16 +375,21 @@ laut Protokoll alle **58 Slugs**, schrieb **36 Spiele** in die neu angelegte
 `59c5548..1b506d4` samt neuer `git fetch`/HEAD-Prüfung funktionierte). **Korrekte Statusform:
 Gemeinsame `concurrency`-Konfiguration und normaler Commit/Push-Pfad funktionierten im Betrieb;
 eine echte gleichzeitige Writer-Kollision wurde noch nicht provoziert bzw. beobachtet** — die
-beiden Läufe lagen 21 Minuten auseinander. Nicht pauschal „bewährt". *Ehrlich mitnotiert
-(Art. 14): Beide Läufe starteten rund 1¾ Stunden nach ihrer Cron-Zeit — bekannte
-GitHub-Actions-Warteschlangenverzögerung; der 25-Minuten-Abstand blieb dabei erhalten. Ein
-einzelner Tag sagt nichts über die Regelmäßigkeit.*
+**konfigurierte Cron-Abstand beträgt 25 Minuten (23:30 → 23:55 UTC); tatsächlich starteten die
+beiden Läufe 21 Minuten 13 Sekunden auseinander** (Schiri 01:20:10, ESPN 01:41:23 UTC). Nicht
+pauschal „bewährt". *Ehrlich benannt (Art. 11): Beide Läufe starteten deutlich nach ihren
+eingestellten Cron-Zeiten. **Die Ursache wurde in dieser Lieferung nicht untersucht** —
+geplante GitHub-Actions sind allgemein nicht minutengenau garantiert, für diesen konkreten
+Lauf ist aber nichts nachgewiesen. Ein einzelner Tag sagt nichts über die Regelmäßigkeit.*
+🔴 Berichtigt 19.9.2026 (D3.1/D3.2): Hier standen zuvor „21 Minuten auseinander" UND „der
+25-Minuten-Abstand blieb erhalten" nebeneinander — zwei verschiedene Dinge, vermischt — sowie
+eine als bewiesen dargestellte „bekannte Warteschlangenverzögerung", die dieser eine Lauf
+nicht belegt.
 
 **🔴 Reale erste Archivgröße, am aktuellen `main` frisch gemessen** (ersetzt die zu niedrige
 230–570-KB-Schätzung aus v19.18.0, die als damalige Schätzung in `CHRONIK-2026-09.md` stehen
 bleibt): **30.809 Byte (30,1 KB)** · **36 Spiele** · **1 Kalendertag** (18.9.2026) · im Schnitt
-**856 Byte Datei je Spiel** · ein realer Beispieldatensatz **745 Byte mit `beleg`**, **430 Byte
-ohne** (Durchschnitt über alle 36: 660 bzw. 380 Byte). **Der erste reale Tag erzeugte rund
+**856 Byte Gesamtdatei je gespeichertem Spiel**. **Der erste reale Tag erzeugte rund
 30,1 KB bei 36 Spielen. Eine rein lineare 30-Tage-Hochrechnung läge damit grob in der
 Größenordnung von rund 0,9 MB. Das ist KEIN gemessener voller Monat;** Pokal-, Qualifikations-
 und Spielplandichte schwanken.
@@ -414,6 +414,59 @@ ausgeschieden · Regionalliga West/Südwest bei OpenLigaDB nicht auffindbar · 2
 Wettbewerbsnamen ohne Live-Slug (Liste oben) · das nicht belegte Restrisiko bei den
 Freundschaftsspiel-Regeln · **Bewährung im echten Betrieb steht weiterhin aus**, und Ondos
 „4 von 10"-Praxisbefund gilt erst nach einem echten Prüfzyklus am Gerät als behoben.
+
+**🔴 ABSCHLUSS-NACHBESSERUNG 19.9.2026, `beta.html` v19.18.2 (Auftrag Ondo nach ChatGPTs
+Review von v19.18.1 am echten Commit `02720ae`).** Im Review bestanden und hier **nicht erneut
+umgebaut**: C1 und C3 — beide nur als Regressionstest erneut geprüft. Offen war genau ein
+funktionaler Punkt:
+
+- **D1 — Archiv-Evidence im echten App-Pfad schreiben.** Der Fehler lag **nicht** mehr beim
+  Erzeugen der Evidence: `espnArchivLesen()` baut `herkunft`/`url`/`providerEventId`/`beleg`
+  seit v19.18.1 korrekt auf, und `espnRohSchreiben()` kann sie korrekt speichern. Er lag in der
+  **Orchestrierung**: der echte Archivzweig in `rundeLaufen()` rief `espnRohSchreiben()` gar
+  nicht auf, der Live-Zweig daneben tat es seit v19.14.2. Im tatsächlichen App-Ablauf wurde die
+  Evidence deshalb **nie** nach `e.espnRoh` geschrieben — und das Archiv läuft in dieser Kaskade
+  zuerst, ist also der Normalfall, nicht die Ausnahme. Behoben durch **genau einen ergänzten
+  Aufruf**; `espnArchivLesen()` und `espnRohSchreiben()` selbst sind byte-identisch unverändert.
+  Der gesamte funktionale Diff dieser Lieferung sind zwei Zeilen (dieser Aufruf und
+  `CODE_VERSION`), in einer einzigen Datei.
+- **D2 — warum der vorige Prüflauf das nicht gefangen hat, offen benannt (Art. 14).** Der
+  v19.18.1-Test rief `espnArchivLesen()` und danach **selbst** `espnRohSchreiben()` auf. Er
+  prüfte damit die Verkettung, die der Test herstellte — nicht die, die die App herstellt. Die
+  damalige Formulierung „`providerEventId` lückenlos bis `e.espnRoh`" galt genau in diesem Sinn
+  und war als Aussage über den echten Orchestrierungsweg **nicht gedeckt**; die Meldung „C2
+  vollständig umgesetzt" war entsprechend zu stark und ist in `CHRONIK-2026-09.md` ausdrücklich
+  zurückgenommen. Der neue Test ruft `espnRohSchreiben()` **nirgends selbst** auf: er führt
+  `ergebnissePruefen()` samt `rundeLaufen()` wortgleich aus und zählt nur mit, ob der echte Code
+  die Funktion selbst aufruft. **Gegenprobe gemacht:** gegen `02720ae` schlägt derselbe Test
+  fehl, gegen den neuen Stand läuft er durch — erst das belegt, dass er die Lücke prüft.
+- **D3 — drei Dokumentationskorrekturen:** 21:13 tatsächlicher Startabstand sauber vom
+  25-Minuten-Cron-Abstand getrennt · keine unbelegte Ursache mehr für die verspäteten Actions ·
+  die nicht reproduzierbaren Byte-Detailzahlen je Datensatz entfernt (sie stammten von einem
+  **anderen** Datensatz als dem geprüften und aus einem Serialisierer mit Leerzeichen nach
+  Komma und Doppelpunkt — zwei Abweichungsursachen zugleich; die Gesamtdateigröße ist davon
+  unberührt).
+
+**Verifiziert (v19.18.2):** `node --check` bestanden · **68 Prüfungen** an wortgleich
+herausgeschnittenem Code, alle bestanden — **18** am echten `rundeLaufen()`-Archivzweig
+(realer Datensatz `providerEventId 401874503`, Lyngby Boldklub–Silkeborg IF, 18.9.2026, 0:4,
+„Danish Superliga"; echter Netz-Roundtrip gegen die reale Monatsdatei; **2** erzeugte
+`e.espnRoh`-Archiv-Einträge aus **einem** Treffer, keine Dublette; unbeteiligter Eintrag und
+`e.refRoh` unberührt; Archivtreffer nicht mehr an Live-ESPN, Archiv-Miss weiterhin schon) ·
+**12** am echten Live-Zweig, gleichzeitig der DFB-Pokal-Elfmeterfall Norderstedt–St. Pauli
+(90-Minuten-Messwert weiterhin **0:0**, nie 2:3; Live-Format unverändert, kein
+`providerEventId` dort) · **17** Kaskaden- und C1/C3-Regressionstests (Live-Slug-Abdeckung
+weiterhin **29 von 56**) · **21** Byte-Identitätsnachweise gegen `02720ae`. `.github/workflows/`,
+`daten/` und `skripte/` laut `git diff` vollständig unangetastet. `pruefe.py`: ALLES SAUBER.
+Keine neuen Sprachschlüssel (349 unverändert).
+
+**Kosten (Arbeitsregel G):** Kein Geld, kein neuer Dienst, kein neuer Schlüssel, keine
+zusätzliche GitHub-Action, keine zusätzlichen ESPN-Abrufe im normalen Betrieb. D1 ruft nur die
+bereits vorhandene lokale Funktion dort auf, wo der Archivtreffer ohnehin schon verarbeitet
+wird. Speichermehrbedarf: die bereits beauftragte kompakte Archiv-Evidence samt
+`providerEventId`, die v19.18.1 zwar gebaut, im echten Archivpfad aber noch nicht gespeichert
+hat.
+
 
 **Kosten der Abnahmenachbesserung (Arbeitsregel G):** Kein Geld, kein neuer Dienst, kein neuer
 Schlüssel, keine neue laufende Architektur. C1 reduziert eher unzuverlässige Live-Routing-

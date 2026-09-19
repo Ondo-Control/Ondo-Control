@@ -3,10 +3,12 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.138
+**Version:** 0.139
 **Stand:** 19. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
+
+> **Was Fassung 0.139 ändert (19.9.2026):** Reine Fassungszahl-Anpassung nach Arbeitsregel M — `STAND.md` und der Backlog wurden für die Abschluss-Nachbesserung von Backlog-Punkt 84 geändert (`beta.html` v19.18.2: der echte Archivzweig in `rundeLaufen()` schreibt die ESPN-Archiv-Beweiskette jetzt auch im tatsächlichen App-Ablauf nach `e.espnRoh`, plus drei Dokumentationskorrekturen). Blueprint selbst inhaltlich nicht geändert, keine neue Architekturentscheidung und keine neue Arbeitsregel. Blueprint auf 0.139 gehoben.
 
 > **Was Fassung 0.138 ändert (19.9.2026):** Reine Fassungszahl-Anpassung nach Arbeitsregel M — `STAND.md` und der Backlog wurden für die gezielte Abnahmenachbesserung von Backlog-Punkt 84 geändert (`beta.html` v19.18.1: zwei unsichere bare-Regeln „Serie A"/„Serie B" aus `ESPN_SLUG_REGELN` entfernt nach einem real belegten Fehlmatch · `providerEventId` in die Archiv-Beweiskette · `strukturAbgleich()` liest wieder beide Feldschemata · Dokumentation an den inzwischen realen Betriebsdaten berichtigt). Blueprint selbst inhaltlich nicht geändert, keine neue Architekturentscheidung und keine neue Arbeitsregel. Blueprint auf 0.138 gehoben.
 

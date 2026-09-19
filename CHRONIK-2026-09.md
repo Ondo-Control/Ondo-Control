@@ -1055,3 +1055,114 @@ damaliger Stand stehen (Regel 3), massgeblich ist `STAND.md`:**
   **🔴 Status ausdrücklich NICHT auf „behoben"/„bewährt" gesetzt:** kein echter GitHub-Actions-
   Lauf bisher — Bewährung steht aus. **Ondos Befund vom 18.9.2026 („4 von 10")** gilt erst nach
   einem echten Prüfzyklus am Gerät als behoben, **nicht bereits mit diesem Bau.**
+
+
+---
+
+## `beta.html` v19.18.1 — Abnahmenachbesserung Backlog-Punkt 84 (C1/C2/C3/C4), aus `STAND.md` „Versionen" verschoben (19.9.2026, Abschluss-Nachbesserung v19.18.2, Fassung 140)
+
+*Wortgleich aus `STAND.md` hierher verschoben, nichts geloescht oder umformuliert (stehende Regel
+ab 14.9.2026, `STAND.md`-Wegweiser). Nur die Listen-Kennzeichnung ist von „Beta:" auf „Beta
+zuvor:" gesetzt, wie bei jedem anderen verschobenen Versionseintrag.*
+
+**🔴 NACHTRAEGLICHE BERICHTIGUNG, 19.9.2026 (Review ChatGPT am Commit `02720ae`) — die damalige
+Aussage „C2 vollstaendig umgesetzt" war ZU STARK und wird hier ausdruecklich zurueckgenommen,
+nicht heimlich umgeschrieben:**
+
+Richtig an v19.18.1 war, dass `espnArchivLesen()` die Archiv-Evidence samt `providerEventId`
+korrekt **aufbaut** und `espnRohSchreiben()` sie korrekt **speichern kann** — beides ist
+unveraendert gueltig und in v19.18.2 nicht angefasst worden.
+
+Falsch war die Schlussfolgerung daraus. Der echte Archivzweig in `rundeLaufen()` rief
+`espnRohSchreiben()` gar nicht auf (der Live-Zweig daneben tat es seit v19.14.2). Im
+tatsaechlichen App-Ablauf wurde die Evidence deshalb **nie** nach `e.espnRoh` geschrieben — und
+das Archiv laeuft in dieser Kaskade zuerst, ist also der Normalfall, nicht die Ausnahme.
+
+**Warum der damalige Prueflauf das nicht gefangen hat, offen benannt (Art. 14):** Der v19.18.1-Test
+rief `espnArchivLesen()` und danach **selbst** `espnRohSchreiben()` auf. Er pruefte damit die
+Verkettung, die der Test herstellte — nicht die, die die App herstellt. Die damalige Formulierung
+„providerEventId lueckenlos vom Archivdatensatz bis `e.espnRoh`" galt genau in diesem Sinn und war
+als Aussage ueber den echten Orchestrierungsweg nicht gedeckt. Behoben in v19.18.2 (D1), belegt
+durch einen Test, der `espnRohSchreiben()` nirgends selbst aufruft und am Stand `02720ae`
+nachweislich fehlschlaegt.
+
+**Drei weitere Zahlen dieses Blocks sind seit v19.18.2 berichtigt** (Einzelheiten `STAND.md`):
+der tatsaechliche Startabstand der beiden Actions-Laeufe (21 Minuten 13 Sekunden, nicht der
+konfigurierte 25-Minuten-Cron-Abstand), die als bewiesen dargestellte Ursache der Verspaetung
+(nicht untersucht), und die nicht reproduzierbaren Byte-Detailzahlen je Datensatz (entfernt).
+
+- **Beta zuvor: v19.18.1** (`beta.html` + `skripte/espn-ergebnisse-holen.js`, geliefert 19.9.2026) —
+  **gezielte Nachbesserung von v19.18.0 nach Ondos Abnahmeprüfung (Backlog-Punkt 84).** Drei
+  funktionale Punkte plus Dokumentationskorrekturen; **keine neue Architekturrunde** — A1, A2,
+  B0, B1, B5 und B6 sind nicht erneut angefasst worden. Der vollständige v19.18.0-Block steht
+  wortgleich in `CHRONIK-2026-09.md`.
+  **C1 — zwei unsichere Wettbewerbsregeln entfernt:** Die bare-Regeln „Serie A" → `ita.1` und
+  „Serie B" → `ita.2` sind weg. Anlass ist ein **real belegter Fehlmatch**, keine Vorsorge: In
+  Ondos Export steht unter dem blanken Namen „Serie B" das Spiel Grêmio Novorizontino–Avaí FC
+  (5.9.2026) — ein brasilianisches Spiel, das die Regel nach Italien geschickt hätte. „Serie A"
+  ist in Ondos Daten zwar durchgängig italienisch, der Name selbst bleibt aber
+  länderübergreifend mehrdeutig; er bekommt deshalb nach demselben Maßstab wie „Bundesliga",
+  „Superliga", „1. Liga", „Super League", „Premiership", „Championship" und „Primera División"
+  ebenfalls keine ratende Regel mehr. Die expliziten Brasilien-Regeln bleiben unverändert und
+  vorrangig. Keine Ersatzregel für Italien — im realen Bestand gibt es keine
+  länderspezifische italienische Schreibweise, an der sich eine enge Regel belegen ließe
+  (Art. 11).
+  **🔴 Was die Abdeckungszahl misst — und was nicht:** Die **LIVE-ESPN-Namensabdeckung** von
+  `espnSlugFuer()` sinkt dadurch von 31 auf **29 von 56** echten Wettbewerbsnamen (frisch
+  maschinell gemessen, nicht übernommen; genau zwei Zuordnungen haben sich geändert, beide
+  Serie A/B). **Das ist NICHT die gesamte ESPN-Abdeckung des Systems.** Der reale Weg lautet:
+  **ESPN-Archiv zuerst** (`espnArchivLesen()`, Zuordnung über Datum + Heimteam + Gastteam, ganz
+  **ohne** `espnSlugFuer()`) → nur bei keinem eindeutigen Archivtreffer Live-ESPN → dann
+  OpenLigaDB → KI-Notnagel. **Der Rückgang ist eine bewusste Sicherheitsverschärfung und
+  verschlechtert die vorgelagerte Archivsuche NICHT** — an einem echten Datensatz der realen
+  Monatsdatei belegt: „Danish Superliga" bekommt von `espnSlugFuer()` keinen Slug, der
+  Archivtreffer funktioniert trotzdem.
+  **C2 — Beweiskette bei Archivtreffern eindeutig:** `espnArchivLesen()` und
+  `espnRohSchreiben()` schreiben jetzt zusätzlich die `providerEventId` des tatsächlich
+  verwendeten Archivdatensatzes nach `e.espnRoh`. Vorher zeigte nur die URL auf die Monatsdatei,
+  in der inzwischen 36 Datensätze liegen — welcher davon verwendet wurde, war nicht mehr
+  bestimmbar. Der Live-Fall bleibt wortgleich unverändert.
+  **C3 — `strukturAbgleich()` liest wieder beide Schemata:** Ein gemeinsamer Leser nimmt
+  `providerCompetitionName` (neues ESPN-Archiv) **oder** `wettbewerb` (alte Produzenten
+  `apiFootballLauf()`, `footballDataLauf()`, `footballDataArchivLesen()`), neues Schema hat
+  Vorrang. Seit v19.18.0 las die Funktion nur noch den neuen Namen; der eigene Wettbewerbsname
+  einer alten Strukturquelle wäre bei Reaktivierung verlorengegangen — in der Mehrdeutig-Liste
+  sogar ersatzlos leer.
+  **C4 — Dokumentation an den inzwischen realen Betriebsdaten berichtigt:** falscher
+  Cron-Kommentar im ESPN-Skript, „59 Slugs" → 58 im Backlog, erster echter Actions-Lauf, reale
+  Dateigröße (siehe unten).
+  **Unverändert, maschinell als byte-identisch zu `1b506d4` belegt:** `REF_MIN_LAEUFE`,
+  `refEinigkeit()`, STUFEN, `espnLauf()`, `openligaLauf()`, `ergebnisQuelleAus()`,
+  `MESS_VERBOTEN`, `messGeheimFund()` — ebenso die Messdaten-Projektionslogik aus A1/A2 und
+  beide Workflow-Dateien (in dieser Lieferung nicht angefasst).
+  **Verifiziert:** `node --check` auf `beta.html` und `skripte/espn-ergebnisse-holen.js`
+  bestanden · **111 Prüfungen** an den wortgleich herausgeschnittenen Funktionen (C1 20 · C2 19,
+  davon ein **echter End-to-End-Netzwerk-Roundtrip** gegen die reale
+  `daten/espn-ergebnisse/2026-09.json` · C3 25 · bestehende ESPN-/OpenLigaDB-/Kaskaden-/
+  Elfmeter-Prüfungen 34 · Byte-Identität 13) — alle bestanden. `pruefe.py`: ALLES SAUBER. Keine
+  neuen Sprachschlüssel (349 unverändert).
+  **🔴 Erster realer geplanter Betriebslauf beider Workflows erfolgreich (19.9.2026, frisch über
+  GitHub geprüft, nicht übernommen):** Schiri-Ergebnisse — geplanter Lauf #13, 01:20:10–01:20:26
+  UTC, erfolgreich, erzeugte Commit `59c5548`. ESPN-Ergebnisse — **erster Lauf überhaupt** (#1),
+  01:41:23–01:42:05 UTC, erfolgreich, prüfte laut Protokoll alle **58 Slugs** („Slug geprueft
+  (58/58)"), schrieb **36 Spiele** in die neu angelegte `daten/espn-ergebnisse/2026-09.json`,
+  meldete **„Keine abgelehnten Abrufe (HTTP-Fehlercodes) in diesem Lauf"**, und Commit/Push
+  (`59c5548..1b506d4`) funktionierte samt der neuen `git fetch`/HEAD-Prüfung.
+  **Gemeinsame `concurrency`-Konfiguration und der normale Commit/Push-Pfad funktionierten im
+  Betrieb; eine echte gleichzeitige Writer-Kollision wurde noch nicht provoziert bzw.
+  beobachtet** — die beiden Läufe lagen 21 Minuten auseinander. **Nicht als „bewährt"
+  gesetzt.** *Ehrlich mitnotiert (Art. 14): Beide Läufe starteten rund 1¾ Stunden nach ihrer
+  Cron-Zeit (23:30 bzw. 23:55 UTC) — eine bekannte GitHub-Actions-Warteschlangenverzögerung. Der
+  25-Minuten-Abstand zwischen beiden blieb dabei erhalten. Ein einzelner Tag ist keine Aussage
+  über die Regelmäßigkeit.*
+  **🔴 Reale erste Archivgröße, am aktuellen `main` frisch gemessen (ersetzt die zu niedrige
+  230–570-KB-Schätzung aus v19.18.0):** `daten/espn-ergebnisse/2026-09.json` = **30.809 Byte
+  (30,1 KB)** bei **36 Spielen** an **einem** Kalendertag (18.9.2026), im Schnitt 856 Byte Datei
+  je gespeichertem Spiel. Ein realer Beispieldatensatz misst **745 Byte mit `beleg`** und
+  **430 Byte ohne** (Durchschnitt über alle 36: 660 bzw. 380 Byte). **Der erste reale Tag
+  erzeugte rund 30,1 KB bei 36 Spielen. Eine rein lineare 30-Tage-Hochrechnung läge damit grob
+  in der Größenordnung von rund 0,9 MB. Das ist KEIN gemessener voller Monat;** Pokal-,
+  Qualifikations- und Spielplandichte schwanken.
+  **🔴 Status weiterhin NICHT auf „behoben"/„bewährt" gesetzt:** **Ondos Befund vom 18.9.2026
+  („4 von 10")** gilt erst nach einem echten Prüfzyklus am Gerät als behoben — **nicht mit
+  diesem Bau und nicht mit dem ersten Actions-Lauf.**

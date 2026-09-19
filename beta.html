@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.18.1';
+var CODE_VERSION = 'v19.18.2';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -4532,7 +4532,18 @@ function ergebnissePruefen(btn){
       var espnArchivRohText = espnArchivErg.length
         ? espnArchivErg.map(function(r){ return r.id+': '+r.heim+':'+r.gast; }).join(' | ')
         : '(kein Treffer im ESPN-Archiv)';
-      espnArchivErg.forEach(function(r){ verarbeite(r, ziel, espnArchivRohText, 'espn'); });
+      /* 🔴 NACHBESSERUNG 19.9.2026 (Backlog-Punkt 84, D1, Auftrag Ondo nach ChatGPTs Review von
+         v19.18.1): espnRohSchreiben(r, ziel) FEHLTE hier - genau und ausschliesslich hier. Der
+         Live-Zweig unten rief es seit v19.14.2 auf, dieser Archivzweig nie. Folge: v19.18.1 baute
+         die Archiv-Evidence (herkunft/url/providerEventId/beleg) zwar korrekt auf und konnte sie
+         korrekt speichern, im ECHTEN App-Ablauf wurde sie aber nie nach e.espnRoh geschrieben -
+         und das Archiv laeuft in dieser Kaskade zuerst, ist also der Normalfall, nicht die
+         Ausnahme. Die v19.18.1-Aussage "providerEventId lueckenlos bis e.espnRoh" galt deshalb
+         nur fuer einen Test, der beide Funktionen selbst hintereinander aufrief, nicht fuer
+         diesen Orchestrierungsweg. Kein neuer Code ausser diesem Aufruf: espnArchivLesen() und
+         espnRohSchreiben() bleiben wortgleich unveraendert. Genau EIN Evidence-Eintrag je
+         Archivtreffer, weil jede r.id in espnArchivErg nur einmal vorkommt. */
+      espnArchivErg.forEach(function(r){ verarbeite(r, ziel, espnArchivRohText, 'espn'); espnRohSchreiben(r, ziel); });
       var zielNachArchiv = ziel.filter(function(p){ return !hat(espnArchivErg, p.id); });
 
       return Promise.all([ espnLauf(zielNachArchiv, espnCache), openligaLauf(zielNachArchiv, openligaCache) ]).then(function(struktur){
