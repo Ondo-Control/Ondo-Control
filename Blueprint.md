@@ -3,12 +3,14 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.140
+**Version:** 0.141
 **Stand:** 19. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
 
-> **Was Fassung 0.140 ändert (19.9.2026):** Ondos „Nachtrag zur Grundsatznachricht" eingearbeitet, gilt für Claude, ChatGPT und Mistral gleichermassen. Inhaltliche Änderungen, keine reine Fassungspflege: Arbeitsregel K gelockert (frischer Prüfer-Chat nur noch bei eigener Vorarbeit nötig, Abschnitt 2c) · Abschnitt 2d Punkt 4 berichtigt (ChatGPT liest seit 28.8.2026 direkt im Repo, nicht mehr über GitHub-Pages-Links) · zwei neue Arbeitsregeln O (Leistungsmaßstab) und P (Keine Floskeln) ergänzt · Abschnitt 2e um den Hinweis auf das Schwesterprojekt `ondo-jarvis` ergänzt. Kein Verfassungsartikel geändert. Blueprint auf 0.140 gehoben.
+> **Was Fassung 0.141 ändert (19.9.2026):** Nachbesserung zu Fassung 0.140, an einem gegen den vorherigen Stand (`04c2aca`) geschriebenen Auftrag geprüft und um zwei Platzierungsfehler korrigiert. (1) Leistungsmaßstab/Keine Floskeln (Arbeitsregeln O/P) standen zusätzlich als eigene Bullets in `STAND.md` — Verstoss gegen Punkt 45 (ein Ort je Tatsache), dort entfernt, stehen nur noch hier. (2) Der Hinweis auf das Schwesterprojekt `ondo-jarvis` bekam einen neuen Absatz in Abschnitt 2e statt der beiden Links an der bereits bestehenden Erwähnung (Abschnitt 6, Beleg vom 27.8.2026) — der neue Absatz ist entfernt, die Links stehen jetzt dort. Keine inhaltliche Änderung an Arbeitsregel K, Abschnitt 2d oder den Arbeitsregeln O/P selbst. Blueprint auf 0.141 gehoben.
+
+> **Was Fassung 0.140 ändert (19.9.2026):** Ondos „Nachtrag zur Grundsatznachricht" eingearbeitet, gilt für Claude, ChatGPT und Mistral gleichermassen. Inhaltliche Änderungen, keine reine Fassungspflege: Arbeitsregel K gelockert (frischer Prüfer-Chat nur noch bei eigener Vorarbeit nötig, Abschnitt 2c) · Abschnitt 2d Punkt 4 berichtigt (ChatGPT liest seit 28.8.2026 direkt im Repo, nicht mehr über GitHub-Pages-Links) · zwei neue Arbeitsregeln O (Leistungsmaßstab) und P (Keine Floskeln) ergänzt · ~~Abschnitt 2e um den Hinweis auf das Schwesterprojekt `ondo-jarvis` ergänzt~~ **🔴 berichtigt in Fassung 0.141: der Hinweis steht seither an der bereits bestehenden Erwähnung in Abschnitt 6, nicht in einem neuen Abschnitt 2e-Absatz.** Kein Verfassungsartikel geändert. Blueprint auf 0.140 gehoben.
 
 > **Was Fassung 0.139 ändert (19.9.2026):** Reine Fassungszahl-Anpassung nach Arbeitsregel M — `STAND.md` und der Backlog wurden für die Abschluss-Nachbesserung von Backlog-Punkt 84 geändert (`beta.html` v19.18.2: der echte Archivzweig in `rundeLaufen()` schreibt die ESPN-Archiv-Beweiskette jetzt auch im tatsächlichen App-Ablauf nach `e.espnRoh`, plus drei Dokumentationskorrekturen). Blueprint selbst inhaltlich nicht geändert, keine neue Architekturentscheidung und keine neue Arbeitsregel. Blueprint auf 0.139 gehoben.
 
@@ -206,13 +208,6 @@ umrissene, von Claude vollständig spezifizierte Änderungen, ähnlich Mistrals 
 eigenen Repo-Zugang: der Code kommt über Ondo, Claude prüft ihn vor jedem Commit. Einzelheiten
 beim genannten Backlog-Punkt (Punkt 45, nicht hier wiederholt).
 
-**Schwesterprojekt (Ondo, 19.9.2026, Nachtrag zur Grundsatznachricht):** `ondo-jarvis` läuft
-parallel, mit ChatGPT und Mistral:
-`https://github.com/Ondo-Control/ondo-jarvis/tree/main` und
-`https://github.com/Ondo-Control/ondo-jarvis/tree/mistral/work`. Kein Bestandteil dieses Repos
-und hier nur als Kontext festgehalten — eine Ondo-Control-Sitzung greift darauf nicht zu, ausser
-Ondo verlangt es ausdrücklich.
-
 **Eine Konfliktregel:** Wer eine Architektur entwirft, sollte sie nicht auch unabhängig prüfen —
 beides zusammen ist keine echte, unabhängige Kontrolle. Das betrifft seit 27./28.8.2026
 ChatGPT, der beides zugleich ist: Architekt seit Projektbeginn, seit diesem Datum zusätzlich
@@ -338,6 +333,7 @@ Für automatische, echte Quoten wäre ein Weg nötig, Quoten ohne Ondos Handarbe
    *Technische Einordnung, GEPRÜFT und BESTÄTIGT (10.9.2026):* Der Knopfdruck-Teil braucht **kein** GitHub Actions — ein reiner Abruf im Browser (wie die bestehenden Knöpfe „Vorhersagen"/„Ergebnisse prüfen" es schon tun) reicht, **gebaut in Backlog-Punkt 9**. Für Variante 1 (Zeitsteuerung) brauchte es tatsächlich einen eigens abzusichernden Zugriffsschlüssel — **gebaut, 11.9.2026:** zwei neue Repository-Geheimnisse, `API_FOOTBALL_KEY` und `FOOTBALL_DATA_ORG_KEY`, von Ondo selbst im GitHub-Repository angelegt, nie im Code oder im Browser.
 Vorgelagerte Sachfrage *(Gemini, 23.7.)*: Deckt ein kostenloser Quotendienst Ondos Spiele überhaupt ab? **🔴 Beantwortet, 11.9.2026 (per echtem Testabruf geprüft, nicht nur Websuche):** API-Football deckt nachweislich alle 16 Stufe-1-Länder, alle Stufe-2-Ligen und Länderspiele weltweit ohne Kontinent-Einschränkung ab; football-data.org zusätzlich 12 grosse Wettbewerbe als zweite, unabhängige Quelle. Einzelheiten und die kostenlose Stufe je Anbieter bei Backlog-Punkt 9.
 **Beleg (27.8.2026), aus einem Strukturvergleich mit dem Schwesterprojekt `ondo-jarvis`:** Dort läuft GitHub Actions bei jedem Push/Pull-Request und endet nach Sekunden — kein dauerhaft laufender Prozess. Erfahrungswert, kein Beschluss. Backlog-Punkt 9 hängt an dieser gesamten Frage.
+*Links ergänzt (19.9.2026, Ondo, Nachtrag zur Grundsatznachricht): `ondo-jarvis` läuft parallel, mit ChatGPT und Mistral — `https://github.com/Ondo-Control/ondo-jarvis/tree/main` und `https://github.com/Ondo-Control/ondo-jarvis/tree/mistral/work`. Kein Bestandteil dieses Repos, hier nur als Kontext festgehalten.*
 
 **✅ Geschlossen — kein Schreibzugriff der App aufs Repo** *(Frage aufgeworfen durch Backlog-Punkt 81, entschieden Ondo, 13.9.2026)*: Zur Behebung der strukturell nie erreichbaren Drei-Läufe-Schwelle beim Schiedsrichter (zwei von drei Plätzen gingen an oft leer ausgehende Strukturabfragen) stand ein automatisches Rückschreiben gefundener Ergebnisse in ein Archiv im Repo als möglicher Weg zur Debatte. **Ondos Entscheidung: nein — das Risiko eines Schreibzugriffs vom Browser aus wiegt schwerer als der Nutzen.** API-Football und football-data.org bleiben reine, lesende Live-Abfragen vom eigenen Gerät (`apiFootballLauf()`/`footballDataLauf()`), wie bisher. Die tägliche GitHub-Actions-Automatik bleibt als eigener, getrennter Weg bestehen und wird von `beta.html` weiterhin bewusst nicht gelesen — das galt bis heute als offener Punkt (Backlog-Punkt 81), gilt ab jetzt als bewusst getroffene, keine offene Entscheidung mehr. Gelöst wurde die eigentliche Schwelle stattdessen durch eine zweiphasige Wege-Zusammensetzung (`beta.html` v19.13.2) — Einzelheiten Backlog-Punkt 81.
 

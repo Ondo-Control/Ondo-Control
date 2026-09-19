@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 19.9.2026, Fassung 141, v19.18.2*
+*Die aktuelle Wahrheit. Stand: 19.9.2026, Fassung 142, v19.18.2*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -41,12 +41,6 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 
 *Vermerk (28.8.2026, Entscheidung Ondos): Gemini war bis zum 28.8.2026 Reviewer und ist seither nicht mehr am Projekt beteiligt. DeepSeek war nie Beteiligter hier.*
 
-*Schwesterprojekt (Ondo, 19.9.2026, Nachtrag zur Grundsatznachricht): `ondo-jarvis` läuft
-parallel, mit ChatGPT und Mistral —
-`https://github.com/Ondo-Control/ondo-jarvis/tree/main` und
-`https://github.com/Ondo-Control/ondo-jarvis/tree/mistral/work`. Kein Bestandteil dieses Repos,
-hier nur als Kontext festgehalten.*
-
 **Ondo führt die Dokumente nicht.** Er kopiert und lädt hoch. Buchführung, Übergaben und Erinnerungen sind Claudes Aufgabe, nicht seine — ausdrücklich klargestellt am 31.7.
 
 **Verfassungsregeln, die im Alltag zählen:**
@@ -65,8 +59,6 @@ hier nur als Kontext festgehalten.*
 - **Kostenregel** *(neu, 31.7., von Ondo angenommen)*: Jeder Vorschlag nennt seine Kosten — Geld, Zeit, Nutzungslimit — oder sagt ausdrücklich, dass er keine hat. Ein Satz genügt. *Steht im Blueprint, Abschnitt 2c, als Arbeitsregel G.*
 - **Prüfen, bevor behauptet wird, ein Dokument sei veraltet** *(31.7.)*. Zwei Claude-Instanzen haben das am 29.7. unabhängig falsch geschlossen.
 - **Belegen statt herleiten** *(31.7.)*. Eine plausible Erklärung ist keine geprüfte Erklärung. Codezeilen werden zitiert, nicht beschrieben.
-- **Leistungsmaßstab** *(Arbeitsregel O, 19.9.2026, Ondo, Nachtrag zur Grundsatznachricht)*: Ondo zahlt eigene Abonnements für Claude, ChatGPT und Mistral und erwartet messbare Leistung. Frühe Fehler werden toleriert, wiederholte nicht — Gemini und DeepSeek sind aus genau diesem Grund aussortiert.
-- **Keine Floskeln** *(Arbeitsregel P, 19.9.2026, Ondo)*: Ein Fehler wird knapp benannt, mit Ursache, dann wird weitergearbeitet. Gemessen wird die Fehlerzahl, nicht die Zerknirschung.
 
 **Master-Dokumente im Repo:** `Blueprint.md` · `Ondo-Core-Architektur.md` · `Ondo-Control-Backlog.md` · dieses Dokument.
 
@@ -389,6 +381,8 @@ https://ondo-control.github.io/Ondo-Control/Ondo-Core-Architektur.html
 **⚠ Für Claude gilt weiterhin: Raw-Links immer mit angehängter Zahl abrufen**, z. B. `…/PROJEKT-STATUS.md?v=20260731`. Ohne diesen Zusatz kann eine veraltete Zwischenkopie zurückkommen. Zweite Falle: In hochgeladenen Chat-PDFs steht die alte Fassung dieses Dokuments im Volltext.
 
 **Vermerk (28.8.2026, Entscheidung Ondos): ChatGPT hat jetzt eigenen GitHub-Zugriff** und liest den Projektstand direkt im Repo, statt über die GitHub-Pages-Adressen oben. Der GitHub-Pages-Weg bleibt hier als Rückfallweg stehen, nicht gelöscht — falls der direkte Zugriff einmal ausfällt. **Der Sperrvermerk für Übergabemappen weiter oben gilt dadurch unverändert weiter, und wird eher wichtiger, nicht unwichtiger:** Ein Beteiligter mit direktem Repo-Zugriff könnte eine versehentlich committete Mappe genauso lesen wie jede andere Repo-Datei.
+
+**Vermerk (19.9.2026, Ondo, Nachtrag zur Grundsatznachricht):** Blueprint 2d Punkt 4 nannte bis dahin noch den GitHub-Pages-Weg als ChatGPTs einzigen Zugriffsweg — im Widerspruch zu diesem Vermerk vom 28.8.2026, der bereits korrekt den direkten Repo-Zugriff festhielt. Im Blueprint berichtigt, hier nicht wiederholt (Punkt 45). Im selben Zug wurde Arbeitsregel K gelockert: ein frischer Prüfer-Chat ist nur noch nötig, wenn ein Prüfer seine eigene frühere Antwort oder eine überwiegend eigene Vorlage prüft — voller Wortlaut Blueprint, Abschnitt 2c.
 
 ### Keine Lieferung ohne Buchführung (Arbeitsregel F, 29.7.)
 - **Backlog:** jede Entscheidung sofort eintragen, in derselben Antwort. Bei Code-Lieferungen kommt die Backlog-Datei mit dem Code zusammen.
