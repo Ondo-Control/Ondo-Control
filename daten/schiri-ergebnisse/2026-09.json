@@ -1284,6 +1284,90 @@
    "torGast": 0,
    "quelle": "football-data.org",
    "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-09-18",
+   "anpfiff": "18:45",
+   "wettbewerb": "Serie A",
+   "heim": "AC Monza",
+   "gast": "US Sassuolo Calcio",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-09-18",
+   "anpfiff": "18:45",
+   "wettbewerb": "Ligue 1",
+   "heim": "AS Monaco FC",
+   "gast": "Racing Club de Lens",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-09-18",
+   "anpfiff": "19:00",
+   "wettbewerb": "Premier League",
+   "heim": "Brentford FC",
+   "gast": "Chelsea FC",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-09-18",
+   "anpfiff": "19:00",
+   "wettbewerb": "Championship",
+   "heim": "Bristol City FC",
+   "gast": "Watford FC",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-09-18",
+   "anpfiff": "18:30",
+   "wettbewerb": "Bundesliga",
+   "heim": "FC Bayern München",
+   "gast": "1. FC Union Berlin",
+   "status": "FT",
+   "torHeim": 7,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "3:0"
+  },
+  {
+   "datum": "2026-09-18",
+   "anpfiff": "18:00",
+   "wettbewerb": "Eredivisie",
+   "heim": "FC Groningen",
+   "gast": "PEC Zwolle",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "2:0"
+  },
+  {
+   "datum": "2026-09-18",
+   "anpfiff": "19:00",
+   "wettbewerb": "Primera Division",
+   "heim": "RCD Espanyol de Barcelona",
+   "gast": "Elche CF",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 3,
+   "quelle": "football-data.org",
+   "halbzeit": "0:2"
   }
  ]
 }
