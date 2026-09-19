@@ -1166,3 +1166,85 @@ konfigurierte 25-Minuten-Cron-Abstand), die als bewiesen dargestellte Ursache de
   **🔴 Status weiterhin NICHT auf „behoben"/„bewährt" gesetzt:** **Ondos Befund vom 18.9.2026
   („4 von 10")** gilt erst nach einem echten Prüfzyklus am Gerät als behoben — **nicht mit
   diesem Bau und nicht mit dem ersten Actions-Lauf.**
+
+
+---
+
+## `beta.html` v19.18.2 — Abschluss-Nachbesserung Backlog-Punkt 84, aus `STAND.md` „Versionen" verschoben (19.9.2026, Sammel-Nachbesserung Buchführung v19.18.3, Fassung 143)
+
+*Wortgleich aus `STAND.md` hierher verschoben, nichts geloescht oder umformuliert (stehende
+Regel ab 14.9.2026, `STAND.md`-Wegweiser). Nur die Listen-Kennzeichnung ist von „Beta:" auf
+„Beta zuvor:" gesetzt, wie bei jedem anderen verschobenen Versionseintrag.*
+
+**🔴 BERICHTIGT 19.9.2026 (Backlog-Punkt 84, F1, Sammel-Nachbesserung nach Abnahme von
+v19.18.2) — eine Aussage dieses Blocks war unbedingt formuliert und dadurch falsch:** Der Satz
+„`skripte/`, `.github/workflows/` und `daten/` sind laut `git diff` vollständig unangetastet —
+der gesamte Diff dieser Lieferung ist **eine Datei**" bezieht sich nur auf die davor genannten
+drei Pfade. Der v19.18.2-Commit selbst änderte tatsächlich **fünf** Dateien: `beta.html` plus
+vier Dokumentdateien (`STAND.md`, `Ondo-Control-Backlog.md`, `Blueprint.md`,
+`CHRONIK-2026-09.md`). Diese Zeile bleibt hier als damaliger, unpräziser Wortlaut stehen
+(Regel 3); die korrekte Unterscheidung Code/Dokumentation steht ab jetzt im aktuellen Stand.
+
+- **Beta zuvor: v19.18.2** (`beta.html`, geliefert 19.9.2026) — **Abschluss-Nachbesserung von
+  v19.18.1 nach ChatGPTs Review am echten Commit `02720ae` (Backlog-Punkt 84).** Der
+  vollständige v19.18.1-Block steht wortgleich in `CHRONIK-2026-09.md`, dort auch die
+  ausdrückliche Rücknahme der damals zu starken Aussage „C2 vollständig umgesetzt".
+  **Im Review bestanden und in dieser Lieferung NICHT erneut angefasst:** C1 (blanke „Serie
+  A"/„Serie B"-Live-Regeln entfernt, Brasilien-Regeln erhalten, Archivsuche weiterhin vor dem
+  Live-Fallback) und C3 (`strukturAbgleich()` liest `providerCompetitionName` **oder**
+  `wettbewerb`, neues Schema hat Vorrang, Mehrdeutig-Liste und normaler Treffer
+  rückwärtskompatibel). Beide sind hier nur als Regressionstest erneut geprüft.
+  **🔴 D1 — der eine funktionale Befund, behoben:** Der echte Archivzweig in `rundeLaufen()`
+  rief `espnRohSchreiben()` **nicht** auf; der Live-Zweig daneben tat es seit v19.14.2. Die
+  Archiv-Evidence samt `providerEventId` wurde dadurch im tatsächlichen App-Ablauf nie nach
+  `e.espnRoh` geschrieben — und das Archiv läuft in dieser Kaskade zuerst, ist also der
+  Normalfall. Behoben durch genau einen ergänzten Aufruf; `espnArchivLesen()` und
+  `espnRohSchreiben()` selbst sind byte-identisch unverändert geblieben.
+  **🔴 D2 — warum der vorige Prüflauf das nicht gefangen hat (Art. 14):** Der v19.18.1-Test rief
+  `espnArchivLesen()` und danach **selbst** `espnRohSchreiben()` auf und prüfte damit eine
+  Verkettung, die der Test herstellte, nicht die der App. Der neue Test ruft
+  `espnRohSchreiben()` **nirgends selbst** auf: er führt `ergebnissePruefen()` samt
+  `rundeLaufen()` wortgleich aus und zählt nur mit, ob der echte Code die Funktion selbst
+  aufruft. **Gegenprobe gemacht:** Gegen den Stand `02720ae` schlägt derselbe Test fehl, gegen
+  den neuen läuft er durch — erst das belegt, dass er die Lücke wirklich prüft.
+  **Unverändert, maschinell als byte-identisch zu `02720ae` belegt (21 Stellen):**
+  `ESPN_SLUG_REGELN`, `espnSlugFuer()`, `strukturAbgleich()`, `espnArchivLesen()`,
+  `espnRohSchreiben()`, `REF_MIN_LAEUFE`, `refEinigkeit()`, STUFEN, `espnLauf()`,
+  `openligaLauf()`, `ergebnisQuelleAus()`, `MESS_VERBOTEN`, `messGeheimFund()` und die
+  Messdaten-Projektionslogik aus A1/A2. `skripte/`, `.github/workflows/` und `daten/` sind laut
+  `git diff` vollständig unangetastet — der gesamte Diff dieser Lieferung ist **eine Datei**.
+  **Verifiziert:** `node --check` bestanden · **68 Prüfungen**, alle bestanden: 18 am echten
+  Archivzweig von `rundeLaufen()` (realer Datensatz `providerEventId 401874503`, Lyngby
+  Boldklub–Silkeborg IF, 18.9.2026, 0:4, „Danish Superliga" — ein Wettbewerb **ohne** Live-Slug,
+  echter Netz-Roundtrip gegen die reale Monatsdatei) · 12 am echten Live-Zweig, gleichzeitig der
+  DFB-Pokal-Elfmeterfall Norderstedt–St. Pauli (90-Minuten-Messwert weiterhin **0:0**, nie der
+  Elfmeterstand 2:3) · 17 Kaskaden- und C1/C3-Regressionstests · 21 Byte-Identitätsnachweise.
+  **Live-Slug-Abdeckung unverändert 29 von 56** (frisch nachgezählt, keine neue Slug-Arbeit).
+  **🔴 Erster realer geplanter Betriebslauf beider Workflows (19.9.2026, über GitHub geprüft):**
+  Schiri-Ergebnisse Lauf #13, Start **01:20:10 UTC**, erfolgreich, Commit `59c5548` ·
+  ESPN-Ergebnisse **Lauf #1, der erste überhaupt**, Start **01:41:23 UTC**, erfolgreich, prüfte
+  laut Protokoll alle **58 Slugs**, schrieb **36 Spiele** in die neu angelegte
+  `daten/espn-ergebnisse/2026-09.json`, meldete **keine abgelehnten HTTP-Abrufe**, Commit/Push
+  (`59c5548..1b506d4`) funktionierte samt der neuen `git fetch`/HEAD-Prüfung.
+  **Der konfigurierte Cron-Abstand beträgt 25 Minuten (23:30 → 23:55 UTC). Beim ersten realen
+  Betriebstag starteten die beiden Läufe tatsächlich 21 Minuten 13 Sekunden auseinander.**
+  **Gemeinsame `concurrency`-Konfiguration und normaler Commit/Push-Pfad funktionierten im
+  Betrieb; eine echte gleichzeitige Writer-Kollision wurde noch nicht provoziert bzw.
+  beobachtet.** Nicht als „bewährt" gesetzt. *Ehrlich benannt (Art. 11): Beide Läufe starteten
+  deutlich nach ihren eingestellten Cron-Zeiten. **Die Ursache wurde in dieser Lieferung nicht
+  untersucht** — geplante GitHub-Actions sind allgemein nicht minutengenau garantiert, aber für
+  diesen konkreten Lauf ist nichts nachgewiesen. Ein einzelner Tag sagt nichts über die
+  Regelmäßigkeit.*
+  **🔴 Reale erste Archivgröße, am aktuellen `main` frisch gemessen** (ersetzt die zu niedrige
+  230–570-KB-Schätzung aus v19.18.0): `daten/espn-ergebnisse/2026-09.json` = **30.809 Byte
+  (30,1 KB)** bei **36 Spielen** an **einem** Kalendertag (18.9.2026), also rund **856 Byte
+  Gesamtdatei je gespeichertem Spiel**. **Eine rein lineare 30-Tage-Hochrechnung läge damit grob
+  in der Größenordnung von rund 0,9 MB. Das ist KEIN gemessener voller Monat;** Pokal-,
+  Qualifikations- und Spielplandichte schwanken. *Die in v19.18.1 hier zusätzlich genannten
+  Byte-Zahlen je Einzeldatensatz (745/430 bzw. 660/380) sind **entfernt**: sie waren ohne
+  benannte Messmethode nicht reproduzierbar — sie stammten von einem **anderen** Datensatz als
+  dem geprüften und aus einem Serialisierer, der nach Komma und Doppelpunkt ein Leerzeichen
+  setzt. Die Gesamtdateigröße ist davon unberührt und unabhängig bestätigt.*
+  **🔴 Status weiterhin NICHT auf „behoben"/„bewährt" gesetzt:** Ondos Befund vom 18.9.2026
+  („4 von 10") gilt erst nach einem echten Prüfzyklus am Gerät als behoben — **nicht mit diesem
+  Bau, nicht mit dem ersten Actions-Lauf und nicht mit diesem Test.**

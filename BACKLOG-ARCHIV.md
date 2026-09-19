@@ -6424,3 +6424,80 @@ Strukturtreffer — insgesamt 40 neue Prüfungen, alle bestanden. Die 74 bereits
 ESPN-/OpenLigaDB-Prüfungen unverändert, da `espnLauf()`/`openligaLauf()`/`ergebnisQuelleAus()`/
 `refEinigkeit()` in dieser Lieferung nicht angefasst wurden. `pruefe.py`: ALLES SAUBER. Keine
 neuen Sprachschlüssel.
+
+
+---
+
+## Backlog-Punkt 84 — abgeschlossene Abnahmenachbesserung v19.18.1 (C1/C2/C3/C4), aus `Ondo-Control-Backlog.md` verschoben (19.9.2026, Sammel-Nachbesserung Buchführung v19.18.3, Fassung 143)
+
+*Wortgleich verschoben, gleicher Anlass und gleiche Regel wie bei den bereits am 19.9.2026
+verschobenen Abschnitten zu v19.14.0-v19.15.0 und v19.17.0: Der Backlog stand bei 79.863 von
+80.000 Zeichen (Punkt 82), nur noch 137 Zeichen Luft — zu knapp fuer die naechste Lieferung.
+Dieser Block war zudem laengst durch v19.18.2 (D1/D2) und v19.18.3 (F1-F4) ueberholt, und die
+Statuszeile bei Punkt 84 behauptete bereits (faelschlich), seine Geschichte stehe im Archiv.
+Nichts geloescht, nur verschoben - der Pruefer wurde NICHT aufgeweicht (Fehlerart C6).*
+
+**🔴 GEZIELTE ABNAHMENACHBESSERUNG 19.9.2026, `beta.html` v19.18.1 (Auftrag Ondo nach seiner
+Abnahmeprüfung von v19.18.0).** Ausdrücklich **keine** neue Architekturrunde — A1, A2, B0, B1,
+B5 und B6 sind nicht erneut umgebaut worden, die kompakte ESPN-Archivstruktur nicht neu
+entworfen, keine neue Quelle angeschlossen, keine neuen Elfmeterfelder. Drei funktionale Punkte
+plus Dokumentationskorrekturen:
+
+- **C1 — zwei generische Serie-A/B-Regeln entfernt, wegen eines REAL BELEGTEN Fehlmatchs.** Die
+  bare-Regeln `/serie\s*a\b/` → `ita.1` und `/serie\s*b\b/` → `ita.2` widersprachen der eigenen
+  Negativlisten-Disziplin. **Der Beleg, nicht nur ein Risiko:** In Ondos echtem Export
+  (`ondo-control-messdaten-2026-09-17.json`) steht unter dem blanken Wettbewerbsnamen „Serie B"
+  das Spiel **Grêmio Novorizontino – Avaí FC (5.9.2026)** — ein brasilianisches Spiel, das die
+  alte Regel nach Italien (`ita.2`) geschickt hätte. Derselbe Fehlertyp wie zuvor bei „Primera
+  División". „Serie A" ist in Ondos Daten zwar durchgängig italienisch (6 Spiele), der Name
+  selbst bleibt aber länderübergreifend mehrdeutig (Brasilien führt ebenfalls eine Serie A) und
+  bekommt deshalb nach demselben Maßstab ebenfalls keine ratende Regel mehr. Die expliziten
+  Brasilien-Regeln bleiben unverändert und vorrangig. **Keine Ersatzregel für Italien gebaut** —
+  im realen Bestand existiert keine länderspezifische italienische Schreibweise, an der sich
+  eine enge Regel belegen ließe (Art. 11, nicht ausgedacht).
+  **🔴 Bewusste Verringerung der LIVE-Slug-Abdeckung, und was sie NICHT bedeutet:** Frisch
+  maschinell gemessen gegen alle 56 echten Wettbewerbsnamen: **vorher 31 von 56, jetzt 29 von
+  56.** Genau zwei Zuordnungen haben sich geändert, beide Serie A/B. **Diese Zahl misst
+  ausschließlich `espnSlugFuer()` im LIVE-ESPN-FALLBACK — nicht die gesamte ESPN-Abdeckung des
+  Systems.** Der reale Gesamtweg lautet: **ESPN-Archiv zuerst** (`espnArchivLesen()`, Zuordnung
+  über Datum + Heimteam + Gastteam, ganz **ohne** `espnSlugFuer()`) → nur bei keinem eindeutigen
+  Archivtreffer Live-ESPN → danach OpenLigaDB → KI-Notnagel. **Der Rückgang ist eine bewusste
+  Sicherheitsverschärfung** (lieber keinen Slug raten als ein Spiel still in der falschen Liga
+  suchen) **und verschlechtert die vorgelagerte Archivsuche NICHT** — praktisch belegt an einem
+  echten Datensatz der realen Monatsdatei: „Danish Superliga" bekommt von `espnSlugFuer()`
+  keinen Slug, der eindeutige Archivtreffer funktioniert trotzdem.
+  **Weiterhin nicht aufgelöst (27 von 56):** 1. Lig · 1. Liga · Besta deild karla · Bundesliga ·
+  Championship · Dänemark Superliga · Dänische Superligaen · EFL Cup · Finnland Veikkausliiga ·
+  Irland Premier Division · Island - Premier · Island Besta deild karla · League of Ireland
+  Premier Division · MLS Next Pro · Premier Division (Irland) · Premiership · Primera División ·
+  Regionalliga Bayern · Saarland-Liga · **Serie A · Serie B** (neu) · Super League · Superliga ·
+  UEFA Super Cup · UEFA Women's Champions League · Uruguay Segunda División · ÖFB-Cup.
+  **NICHT ausgeweitet auf die Freundschaftsspiel-Regeln** (`fifa.friendly`/`club.friendly`):
+  Dort besteht ein **theoretisches, NICHT belegtes Restrisiko** — in Ondos echtem Export ist
+  kein einziger Fehlmatch belegt (20 „Freundschaftsspiel", 18 „Testspiel", 10
+  „Vereins-Freundschaftsspiele" — alle Klubspiele). Ausdrücklich ein Restrisiko, kein gefundener
+  Fehler; auf Verdacht wird nichts umgebaut.
+- **C2 — `providerEventId` in die Archiv-Beweiskette.** `espnArchivLesen()` übernimmt die
+  `providerEventId` direkt aus dem konkret gefundenen Rohdatensatz, `espnRohSchreiben()` schreibt
+  sie in den `e.espnRoh`-Eintrag. **Das Problem, belegt:** Die URL zeigte nur auf die
+  Monatsdatei — nach dem ersten echten Actions-Lauf liegen dort bereits **36 Datensätze**;
+  welcher tatsächlich verwendet wurde, war im Nachhinein nicht mehr bestimmbar, genau das soll
+  die Beweiskette aber leisten. Keine doppelte Speicherung ganzer Archivdatensätze, nur die
+  eindeutige ID zusätzlich zur bereits vorhandenen kompakten `beleg`-Evidence. Der Live-Fall und
+  `espnLauf()` bleiben wortgleich unverändert.
+- **C3 — `strukturAbgleich()` liest wieder BEIDE Schemata.** Seit v19.18.0 las die Funktion nur
+  noch `providerCompetitionName`. Die älteren Strukturproduzenten `apiFootballLauf()`,
+  `footballDataLauf()` und `footballDataArchivLesen()` erzeugen aber unverändert `wettbewerb` —
+  sie sind derzeit teils nicht aktiv, bleiben aber bewusst im Code und sollen bei Reaktivierung
+  funktionieren. Ihr eigener Wettbewerbsname wäre beim normalen Treffer durch den Rückfall auf
+  `p.wettbewerb` überdeckt und in der **Mehrdeutig-Liste sogar ersatzlos leer** geworden. Neuer
+  gemeinsamer lokaler Leser `wettbewerbAus()` (neues Schema hat Vorrang), keine Umbenennung der
+  alten Produzenten, kein Alias im gespeicherten ESPN-Datensatz. `x.status==='FT'`,
+  `kickoffUtc` und `providerCompetitionSlug` unverändert behandelt. *Die frühere Begründung im
+  Code („einzige Lesestelle, kein externer Leser zu schützen") war falsch — der damalige `grep`
+  suchte die Lesestellen, nicht die Produzentenseite; im Code berichtigt statt überschrieben.*
+- **C4 — Dokumentation an den inzwischen realen Betriebsdaten berichtigt:** falscher
+  Cron-Kommentar im ESPN-Skript (behauptete „identisch zur bestehenden Automatik, 08:00 + 23:30
+  UTC"; tatsächlich seit B5 entzerrt auf ESPN 08:25/23:55, Schiri 08:00/23:30, gemeinsame
+  `concurrency`-Gruppe) · „59 Slugs × 2 Tage" → **58** an der Kosten-/Laufzeitstelle · erster
+  echter Actions-Lauf · reale Dateigröße. **An den Workflow-Zeiten selbst ist nichts geändert.**

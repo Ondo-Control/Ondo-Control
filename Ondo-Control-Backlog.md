@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 19.9.2026, Fassung 142 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 19.9.2026, Fassung 143 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -302,70 +302,11 @@ Einzelheiten zum jeweils geltenden Stand: `STAND.md`, Abschnitt „Versionen". D
 Bau- und Begründungsgeschichte der Schritte v19.14.0 bis v19.18.1 steht in
 `BACKLOG-ARCHIV.md` und `CHRONIK-2026-09.md`.**
 
-**🔴 GEZIELTE ABNAHMENACHBESSERUNG 19.9.2026, `beta.html` v19.18.1 (Auftrag Ondo nach seiner
-Abnahmeprüfung von v19.18.0).** Ausdrücklich **keine** neue Architekturrunde — A1, A2, B0, B1,
-B5 und B6 sind nicht erneut umgebaut worden, die kompakte ESPN-Archivstruktur nicht neu
-entworfen, keine neue Quelle angeschlossen, keine neuen Elfmeterfelder. Drei funktionale Punkte
-plus Dokumentationskorrekturen:
-
-- **C1 — zwei generische Serie-A/B-Regeln entfernt, wegen eines REAL BELEGTEN Fehlmatchs.** Die
-  bare-Regeln `/serie\s*a\b/` → `ita.1` und `/serie\s*b\b/` → `ita.2` widersprachen der eigenen
-  Negativlisten-Disziplin. **Der Beleg, nicht nur ein Risiko:** In Ondos echtem Export
-  (`ondo-control-messdaten-2026-09-17.json`) steht unter dem blanken Wettbewerbsnamen „Serie B"
-  das Spiel **Grêmio Novorizontino – Avaí FC (5.9.2026)** — ein brasilianisches Spiel, das die
-  alte Regel nach Italien (`ita.2`) geschickt hätte. Derselbe Fehlertyp wie zuvor bei „Primera
-  División". „Serie A" ist in Ondos Daten zwar durchgängig italienisch (6 Spiele), der Name
-  selbst bleibt aber länderübergreifend mehrdeutig (Brasilien führt ebenfalls eine Serie A) und
-  bekommt deshalb nach demselben Maßstab ebenfalls keine ratende Regel mehr. Die expliziten
-  Brasilien-Regeln bleiben unverändert und vorrangig. **Keine Ersatzregel für Italien gebaut** —
-  im realen Bestand existiert keine länderspezifische italienische Schreibweise, an der sich
-  eine enge Regel belegen ließe (Art. 11, nicht ausgedacht).
-  **🔴 Bewusste Verringerung der LIVE-Slug-Abdeckung, und was sie NICHT bedeutet:** Frisch
-  maschinell gemessen gegen alle 56 echten Wettbewerbsnamen: **vorher 31 von 56, jetzt 29 von
-  56.** Genau zwei Zuordnungen haben sich geändert, beide Serie A/B. **Diese Zahl misst
-  ausschließlich `espnSlugFuer()` im LIVE-ESPN-FALLBACK — nicht die gesamte ESPN-Abdeckung des
-  Systems.** Der reale Gesamtweg lautet: **ESPN-Archiv zuerst** (`espnArchivLesen()`, Zuordnung
-  über Datum + Heimteam + Gastteam, ganz **ohne** `espnSlugFuer()`) → nur bei keinem eindeutigen
-  Archivtreffer Live-ESPN → danach OpenLigaDB → KI-Notnagel. **Der Rückgang ist eine bewusste
-  Sicherheitsverschärfung** (lieber keinen Slug raten als ein Spiel still in der falschen Liga
-  suchen) **und verschlechtert die vorgelagerte Archivsuche NICHT** — praktisch belegt an einem
-  echten Datensatz der realen Monatsdatei: „Danish Superliga" bekommt von `espnSlugFuer()`
-  keinen Slug, der eindeutige Archivtreffer funktioniert trotzdem.
-  **Weiterhin nicht aufgelöst (27 von 56):** 1. Lig · 1. Liga · Besta deild karla · Bundesliga ·
-  Championship · Dänemark Superliga · Dänische Superligaen · EFL Cup · Finnland Veikkausliiga ·
-  Irland Premier Division · Island - Premier · Island Besta deild karla · League of Ireland
-  Premier Division · MLS Next Pro · Premier Division (Irland) · Premiership · Primera División ·
-  Regionalliga Bayern · Saarland-Liga · **Serie A · Serie B** (neu) · Super League · Superliga ·
-  UEFA Super Cup · UEFA Women's Champions League · Uruguay Segunda División · ÖFB-Cup.
-  **NICHT ausgeweitet auf die Freundschaftsspiel-Regeln** (`fifa.friendly`/`club.friendly`):
-  Dort besteht ein **theoretisches, NICHT belegtes Restrisiko** — in Ondos echtem Export ist
-  kein einziger Fehlmatch belegt (20 „Freundschaftsspiel", 18 „Testspiel", 10
-  „Vereins-Freundschaftsspiele" — alle Klubspiele). Ausdrücklich ein Restrisiko, kein gefundener
-  Fehler; auf Verdacht wird nichts umgebaut.
-- **C2 — `providerEventId` in die Archiv-Beweiskette.** `espnArchivLesen()` übernimmt die
-  `providerEventId` direkt aus dem konkret gefundenen Rohdatensatz, `espnRohSchreiben()` schreibt
-  sie in den `e.espnRoh`-Eintrag. **Das Problem, belegt:** Die URL zeigte nur auf die
-  Monatsdatei — nach dem ersten echten Actions-Lauf liegen dort bereits **36 Datensätze**;
-  welcher tatsächlich verwendet wurde, war im Nachhinein nicht mehr bestimmbar, genau das soll
-  die Beweiskette aber leisten. Keine doppelte Speicherung ganzer Archivdatensätze, nur die
-  eindeutige ID zusätzlich zur bereits vorhandenen kompakten `beleg`-Evidence. Der Live-Fall und
-  `espnLauf()` bleiben wortgleich unverändert.
-- **C3 — `strukturAbgleich()` liest wieder BEIDE Schemata.** Seit v19.18.0 las die Funktion nur
-  noch `providerCompetitionName`. Die älteren Strukturproduzenten `apiFootballLauf()`,
-  `footballDataLauf()` und `footballDataArchivLesen()` erzeugen aber unverändert `wettbewerb` —
-  sie sind derzeit teils nicht aktiv, bleiben aber bewusst im Code und sollen bei Reaktivierung
-  funktionieren. Ihr eigener Wettbewerbsname wäre beim normalen Treffer durch den Rückfall auf
-  `p.wettbewerb` überdeckt und in der **Mehrdeutig-Liste sogar ersatzlos leer** geworden. Neuer
-  gemeinsamer lokaler Leser `wettbewerbAus()` (neues Schema hat Vorrang), keine Umbenennung der
-  alten Produzenten, kein Alias im gespeicherten ESPN-Datensatz. `x.status==='FT'`,
-  `kickoffUtc` und `providerCompetitionSlug` unverändert behandelt. *Die frühere Begründung im
-  Code („einzige Lesestelle, kein externer Leser zu schützen") war falsch — der damalige `grep`
-  suchte die Lesestellen, nicht die Produzentenseite; im Code berichtigt statt überschrieben.*
-- **C4 — Dokumentation an den inzwischen realen Betriebsdaten berichtigt:** falscher
-  Cron-Kommentar im ESPN-Skript (behauptete „identisch zur bestehenden Automatik, 08:00 + 23:30
-  UTC"; tatsächlich seit B5 entzerrt auf ESPN 08:25/23:55, Schiri 08:00/23:30, gemeinsame
-  `concurrency`-Gruppe) · „59 Slugs × 2 Tage" → **58** an der Kosten-/Laufzeitstelle · erster
-  echter Actions-Lauf · reale Dateigröße. **An den Workflow-Zeiten selbst ist nichts geändert.**
+**Bau- und Begründungsgeschichte der gezielten Abnahmenachbesserung v19.18.1 (C1: bare
+Serie-A/B-Regeln entfernt · C2: providerEventId-Evidence gebaut · C3:
+strukturAbgleich()-Schemakompatibilität · C4: Dokumentationskorrekturen) steht seit
+19.9.2026 wortgleich in `BACKLOG-ARCHIV.md`** (stehende Regel vom 14.9.2026:
+abgeschlossene Begründungen wandern ins Archiv, hier bleibt der aktuelle Stand).
 
 **🔴 Erster realer geplanter Betriebslauf (19.9.2026, frisch über GitHub geprüft):**
 Schiri-Ergebnisse Lauf #13 (01:20:10–01:20:26 UTC, erfolgreich, Commit `59c5548`) ·
@@ -557,6 +498,25 @@ Minuten, keine neue laufende Ausgabe. *(🔴 Berichtigt 19.9.2026: Hier stand 59
 Betriebslauf am Protokoll bestätigt („Slug geprueft (58/58)"). Die historische Aussage über die
 **ursprüngliche** 59-Slug-Liste in Schritt 0 weiter oben bleibt als Geschichte unverändert
 stehen.)*
+
+**🔴 SAMMEL-NACHBESSERUNG BUCHFÜHRUNG 19.9.2026, `beta.html` v19.18.3 (Auftrag Ondo nach der
+Abnahme von v19.18.2):** Keine Logikänderung — F1/F2 sind Berichtigungen in `STAND.md` bzw.
+einem Codekommentar, Einzelheiten `STAND.md`, Abschnitt „Versionen". Zusätzlich:
+
+- **F3 — `url` in der Archiv-Evidence ist die menschlich lesbare GitHub-Seite
+  (`.../blob/main/...`), NICHT die tatsächlich abgerufene `raw.githubusercontent.com`-Datei,
+  und zeigt auf den beweglichen Stand `main`. Bewusst unverändert** — für einen Menschen die
+  bessere Adresse, als Beweiskette aber eine andere URL als die gelesene. Wer die Beweiskette
+  später auswertet, soll das wissen.
+- **F4 — OFFENE FRAGE, nicht entschieden (Art. 8):** `STUFEN`/`stufeHolen()` schließen
+  Regionalligen, Oberligen und sonstige Amateur-Spielklassen ausdrücklich von der Spielliste
+  aus — in Ondos echten Daten stehen trotzdem Einträge wie „Regionalliga Bayern" und
+  „Saarland-Liga", und OpenLigaDB wurde genau für 3. Liga/Regionalliga angebunden. Widerspruch
+  zwischen Spielliste und Quellenausbau, ungeprüft, ob er nirgends schon stand — keine Stelle
+  gefunden, deshalb neu hier eingetragen.
+
+**Kosten (Arbeitsregel G):** Keine — reine Dokumentpflege und ein Codekommentar, kein Dienst,
+kein Schlüssel, kein zusätzlicher Abruf.
 
 ---
 

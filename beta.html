@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.18.2';
+var CODE_VERSION = 'v19.18.3';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -4541,8 +4541,17 @@ function ergebnissePruefen(btn){
          Ausnahme. Die v19.18.1-Aussage "providerEventId lueckenlos bis e.espnRoh" galt deshalb
          nur fuer einen Test, der beide Funktionen selbst hintereinander aufrief, nicht fuer
          diesen Orchestrierungsweg. Kein neuer Code ausser diesem Aufruf: espnArchivLesen() und
-         espnRohSchreiben() bleiben wortgleich unveraendert. Genau EIN Evidence-Eintrag je
-         Archivtreffer, weil jede r.id in espnArchivErg nur einmal vorkommt. */
+         espnRohSchreiben() bleiben wortgleich unveraendert.
+         🔴 BERICHTIGT 19.9.2026 (Backlog-Punkt 84, F2, Sammel-Nachbesserung nach Abnahme von
+         v19.18.2): Hier stand "Genau EIN Evidence-Eintrag je Archivtreffer" - das war falsch
+         formuliert, nicht nur ungenau: Genau EIN Aufruf von espnRohSchreiben() je Archivtreffer,
+         weil jede r.id in espnArchivErg nur einmal vorkommt. Die Funktion selbst haengt die
+         Evidence danach an JEDEN beteiligten kiProtokoll-Eintrag an (siehe espnRohSchreiben()
+         oben: state.kiProtokoll.forEach(), Filter p.eintraege.indexOf(e.id)) - bei zwei Gehirnen
+         je Spiel also zwei Eintraege aus einem einzigen Treffer, keine Dublette. Der
+         v19.18.2-Lieferbericht selbst zaehlte im echten Orchestrierungstest bereits richtig
+         "ERZEUGTE e.espnRoh-ARCHIV-EINTRAEGE: 2" - nur dieser Kommentar widersprach der eigenen
+         Messung. */
       espnArchivErg.forEach(function(r){ verarbeite(r, ziel, espnArchivRohText, 'espn'); espnRohSchreiben(r, ziel); });
       var zielNachArchiv = ziel.filter(function(p){ return !hat(espnArchivErg, p.id); });
 

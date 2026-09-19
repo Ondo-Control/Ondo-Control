@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 19.9.2026, Fassung 142, v19.18.2*
+*Die aktuelle Wahrheit. Stand: 19.9.2026, Fassung 143, v19.18.3*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -206,69 +206,38 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   den Trainingsraum) — dieser Commit ist der Stand **davor**, falls zurückgesetzt werden muss.
   Einzelheiten Backlog-Punkt 77.
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.18.2** (`beta.html`, geliefert 19.9.2026) — **Abschluss-Nachbesserung von
-  v19.18.1 nach ChatGPTs Review am echten Commit `02720ae` (Backlog-Punkt 84).** Der
-  vollständige v19.18.1-Block steht wortgleich in `CHRONIK-2026-09.md`, dort auch die
-  ausdrückliche Rücknahme der damals zu starken Aussage „C2 vollständig umgesetzt".
-  **Im Review bestanden und in dieser Lieferung NICHT erneut angefasst:** C1 (blanke „Serie
-  A"/„Serie B"-Live-Regeln entfernt, Brasilien-Regeln erhalten, Archivsuche weiterhin vor dem
-  Live-Fallback) und C3 (`strukturAbgleich()` liest `providerCompetitionName` **oder**
-  `wettbewerb`, neues Schema hat Vorrang, Mehrdeutig-Liste und normaler Treffer
-  rückwärtskompatibel). Beide sind hier nur als Regressionstest erneut geprüft.
-  **🔴 D1 — der eine funktionale Befund, behoben:** Der echte Archivzweig in `rundeLaufen()`
-  rief `espnRohSchreiben()` **nicht** auf; der Live-Zweig daneben tat es seit v19.14.2. Die
-  Archiv-Evidence samt `providerEventId` wurde dadurch im tatsächlichen App-Ablauf nie nach
-  `e.espnRoh` geschrieben — und das Archiv läuft in dieser Kaskade zuerst, ist also der
-  Normalfall. Behoben durch genau einen ergänzten Aufruf; `espnArchivLesen()` und
-  `espnRohSchreiben()` selbst sind byte-identisch unverändert geblieben.
-  **🔴 D2 — warum der vorige Prüflauf das nicht gefangen hat (Art. 14):** Der v19.18.1-Test rief
-  `espnArchivLesen()` und danach **selbst** `espnRohSchreiben()` auf und prüfte damit eine
-  Verkettung, die der Test herstellte, nicht die der App. Der neue Test ruft
-  `espnRohSchreiben()` **nirgends selbst** auf: er führt `ergebnissePruefen()` samt
-  `rundeLaufen()` wortgleich aus und zählt nur mit, ob der echte Code die Funktion selbst
-  aufruft. **Gegenprobe gemacht:** Gegen den Stand `02720ae` schlägt derselbe Test fehl, gegen
-  den neuen läuft er durch — erst das belegt, dass er die Lücke wirklich prüft.
-  **Unverändert, maschinell als byte-identisch zu `02720ae` belegt (21 Stellen):**
-  `ESPN_SLUG_REGELN`, `espnSlugFuer()`, `strukturAbgleich()`, `espnArchivLesen()`,
-  `espnRohSchreiben()`, `REF_MIN_LAEUFE`, `refEinigkeit()`, STUFEN, `espnLauf()`,
-  `openligaLauf()`, `ergebnisQuelleAus()`, `MESS_VERBOTEN`, `messGeheimFund()` und die
-  Messdaten-Projektionslogik aus A1/A2. `skripte/`, `.github/workflows/` und `daten/` sind laut
-  `git diff` vollständig unangetastet — der gesamte Diff dieser Lieferung ist **eine Datei**.
-  **Verifiziert:** `node --check` bestanden · **68 Prüfungen**, alle bestanden: 18 am echten
-  Archivzweig von `rundeLaufen()` (realer Datensatz `providerEventId 401874503`, Lyngby
-  Boldklub–Silkeborg IF, 18.9.2026, 0:4, „Danish Superliga" — ein Wettbewerb **ohne** Live-Slug,
-  echter Netz-Roundtrip gegen die reale Monatsdatei) · 12 am echten Live-Zweig, gleichzeitig der
-  DFB-Pokal-Elfmeterfall Norderstedt–St. Pauli (90-Minuten-Messwert weiterhin **0:0**, nie der
-  Elfmeterstand 2:3) · 17 Kaskaden- und C1/C3-Regressionstests · 21 Byte-Identitätsnachweise.
-  **Live-Slug-Abdeckung unverändert 29 von 56** (frisch nachgezählt, keine neue Slug-Arbeit).
-  **🔴 Erster realer geplanter Betriebslauf beider Workflows (19.9.2026, über GitHub geprüft):**
-  Schiri-Ergebnisse Lauf #13, Start **01:20:10 UTC**, erfolgreich, Commit `59c5548` ·
-  ESPN-Ergebnisse **Lauf #1, der erste überhaupt**, Start **01:41:23 UTC**, erfolgreich, prüfte
-  laut Protokoll alle **58 Slugs**, schrieb **36 Spiele** in die neu angelegte
-  `daten/espn-ergebnisse/2026-09.json`, meldete **keine abgelehnten HTTP-Abrufe**, Commit/Push
-  (`59c5548..1b506d4`) funktionierte samt der neuen `git fetch`/HEAD-Prüfung.
-  **Der konfigurierte Cron-Abstand beträgt 25 Minuten (23:30 → 23:55 UTC). Beim ersten realen
-  Betriebstag starteten die beiden Läufe tatsächlich 21 Minuten 13 Sekunden auseinander.**
-  **Gemeinsame `concurrency`-Konfiguration und normaler Commit/Push-Pfad funktionierten im
-  Betrieb; eine echte gleichzeitige Writer-Kollision wurde noch nicht provoziert bzw.
-  beobachtet.** Nicht als „bewährt" gesetzt. *Ehrlich benannt (Art. 11): Beide Läufe starteten
-  deutlich nach ihren eingestellten Cron-Zeiten. **Die Ursache wurde in dieser Lieferung nicht
-  untersucht** — geplante GitHub-Actions sind allgemein nicht minutengenau garantiert, aber für
-  diesen konkreten Lauf ist nichts nachgewiesen. Ein einzelner Tag sagt nichts über die
-  Regelmäßigkeit.*
-  **🔴 Reale erste Archivgröße, am aktuellen `main` frisch gemessen** (ersetzt die zu niedrige
-  230–570-KB-Schätzung aus v19.18.0): `daten/espn-ergebnisse/2026-09.json` = **30.809 Byte
-  (30,1 KB)** bei **36 Spielen** an **einem** Kalendertag (18.9.2026), also rund **856 Byte
-  Gesamtdatei je gespeichertem Spiel**. **Eine rein lineare 30-Tage-Hochrechnung läge damit grob
-  in der Größenordnung von rund 0,9 MB. Das ist KEIN gemessener voller Monat;** Pokal-,
-  Qualifikations- und Spielplandichte schwanken. *Die in v19.18.1 hier zusätzlich genannten
-  Byte-Zahlen je Einzeldatensatz (745/430 bzw. 660/380) sind **entfernt**: sie waren ohne
-  benannte Messmethode nicht reproduzierbar — sie stammten von einem **anderen** Datensatz als
-  dem geprüften und aus einem Serialisierer, der nach Komma und Doppelpunkt ein Leerzeichen
-  setzt. Die Gesamtdateigröße ist davon unberührt und unabhängig bestätigt.*
-  **🔴 Status weiterhin NICHT auf „behoben"/„bewährt" gesetzt:** Ondos Befund vom 18.9.2026
-  („4 von 10") gilt erst nach einem echten Prüfzyklus am Gerät als behoben — **nicht mit diesem
-  Bau, nicht mit dem ersten Actions-Lauf und nicht mit diesem Test.**
+- **Beta: v19.18.3** (`beta.html`, geliefert 19.9.2026) — **Sammel-Nachbesserung Buchführung
+  nach Abnahme von v19.18.2 (Backlog-Punkt 84): reine Berichtigungen, keine Logikänderung.**
+  Der vollständige v19.18.2-Block steht wortgleich in `CHRONIK-2026-09.md`.
+  **F1 — unbedingte Aussage berichtigt:** Der vorige Block sagte unbedingt, der gesamte Diff
+  der v19.18.2-Lieferung sei „eine Datei" — das galt nur für `skripte/`, `.github/workflows/`
+  und `daten/`. Tatsächlich änderte der Commit **fünf** Dateien: `beta.html` (der einzige
+  funktionale Code-Diff) plus vier Dokumentdateien.
+  **F2 — Codekommentar berichtigt, keine ausführbare Zeile geändert:** Der Kommentar über dem
+  Archiv-Aufruf in `rundeLaufen()` behauptete „Genau EIN Evidence-Eintrag je Archivtreffer" —
+  richtig ist „genau EIN **Aufruf** von `espnRohSchreiben()`", die Funktion selbst hängt die
+  Evidence an **jeden** beteiligten `kiProtokoll`-Eintrag an (bei zwei Gehirnen je Spiel also
+  zwei Einträge aus einem Treffer). Der v19.18.2-Lieferbericht hatte das schon richtig
+  gemessen („ERZEUGTE e.espnRoh-ARCHIV-EINTRAEGE: 2") — nur der Kommentar widersprach der
+  eigenen Messung. `CODE_VERSION` deshalb auf v19.18.3 gehoben, damit die Dokumente keine
+  Version behaupten, deren Inhalt abweicht.
+  **F3 — Eigenschaft festgehalten, nicht umgebaut:** Die `url` in der Archiv-Evidence zeigt auf
+  die menschlich lesbare GitHub-Seite (`.../blob/main/...`), nicht auf die tatsächlich
+  abgerufene `raw.githubusercontent.com`-Datei, und auf den beweglichen Stand `main`.
+  Einzelheiten und Begründung: Backlog-Punkt 84 (Punkt 45, hier nicht wiederholt).
+  **F4 — offene Frage neu eingetragen:** Widerspruch zwischen `STUFEN` (schließt
+  Regionalligen/Amateurklassen aus) und Ondos realen Daten (u. a. „Regionalliga Bayern",
+  „Saarland-Liga") sowie dem Ausbau von OpenLigaDB genau für 3. Liga/Regionalliga — nicht
+  entschieden, nicht aufgelöst (Art. 8). Einzelheiten: Backlog-Punkt 84.
+  **Unverändert, maschinell als byte-identisch zu `648d1dc` belegt (18 Stellen):**
+  `ESPN_SLUG_REGELN`, `espnSlugFuer()`, `strukturAbgleich()` (inkl. `wettbewerbAus()`),
+  `espnArchivLesen()`, `espnRohSchreiben()`, `REF_MIN_LAEUFE`, `refEinigkeit()`, STUFEN,
+  `espnLauf()`, `openligaLauf()`, `ergebnisQuelleAus()`, `MESS_VERBOTEN`, `messGeheimFund()`
+  und die Messdaten-Projektionslogik aus A1/A2. `skripte/` und `.github/workflows/` laut
+  `git diff` vollständig unangetastet; `daten/` änderte sich nur durch den regulären
+  automatischen ESPN-Actions-Lauf, nicht durch diese Lieferung.
+  **Verifiziert:** `node --check` bestanden. `git diff` gegen `648d1dc` für `beta.html` betrifft
+  ausschließlich `CODE_VERSION` und den einen Kommentarblock (F2) — keine ausführbare Zeile.
 - **Sprachschlüssel: 349** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 12.9.2026**). **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
 
 ---
