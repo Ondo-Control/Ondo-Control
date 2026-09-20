@@ -43,6 +43,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401841243",
+   "providerCompetitionSlug": "bra.1",
+   "providerCompetitionName": "Brazilian Serie A",
+   "datum": "2026-09-20",
+   "kickoffUtc": "2026-09-20T00:00Z",
+   "heim": "São Paulo",
+   "gast": "Internacional",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2026",
+      "teamDisplayName": "São Paulo",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "1936",
+      "teamDisplayName": "Internacional",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-09-20T13:06:13.168Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401841244",
    "providerCompetitionSlug": "bra.1",
    "providerCompetitionName": "Brazilian Serie A",
@@ -280,6 +320,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-09-20T01:43:42.147Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401841575",
+   "providerCompetitionSlug": "arg.1",
+   "providerCompetitionName": "Argentine Liga Profesional de Fútbol",
+   "datum": "2026-09-20",
+   "kickoffUtc": "2026-09-20T00:15Z",
+   "heim": "Instituto (Córdoba)",
+   "gast": "Talleres (Córdoba)",
+   "torHeim": 3,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2975",
+      "teamDisplayName": "Instituto (Córdoba)",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     },
+     {
+      "teamId": "19",
+      "teamDisplayName": "Talleres (Córdoba)",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-20T13:06:15.288Z"
   },
   {
    "provider": "espn",
@@ -1043,6 +1123,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401874934",
+   "providerCompetitionSlug": "ita.1",
+   "providerCompetitionName": "Italian Serie A",
+   "datum": "2026-09-20",
+   "kickoffUtc": "2026-09-20T10:30Z",
+   "heim": "Fiorentina",
+   "gast": "Napoli",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "109",
+      "teamDisplayName": "Fiorentina",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "114",
+      "teamDisplayName": "Napoli",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-09-20T13:05:45.591Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401874956",
    "providerCompetitionSlug": "ita.1",
    "providerCompetitionName": "Italian Serie A",
@@ -1120,6 +1240,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-09-20T01:43:17.348Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401875596",
+   "providerCompetitionSlug": "ned.1",
+   "providerCompetitionName": "Dutch Eredivisie",
+   "datum": "2026-09-20",
+   "kickoffUtc": "2026-09-20T10:15Z",
+   "heim": "Feyenoord Rotterdam",
+   "gast": "FC Utrecht",
+   "torHeim": 5,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "142",
+      "teamDisplayName": "Feyenoord Rotterdam",
+      "homeAway": "home",
+      "linescores": [
+       "3",
+       "2"
+      ]
+     },
+     {
+      "teamId": "153",
+      "teamDisplayName": "FC Utrecht",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "3:0",
+   "fetchedAt": "2026-09-20T13:05:51.353Z"
   },
   {
    "provider": "espn",
@@ -2323,6 +2483,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401877612",
+   "providerCompetitionSlug": "jpn.1",
+   "providerCompetitionName": "Japanese J.League",
+   "datum": "2026-09-20",
+   "kickoffUtc": "2026-09-20T08:00Z",
+   "heim": "Gamba Osaka",
+   "gast": "Vissel Kobe",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7102",
+      "teamDisplayName": "Gamba Osaka",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "7477",
+      "teamDisplayName": "Vissel Kobe",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-20T13:06:19.888Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401877613",
    "providerCompetitionSlug": "jpn.1",
    "providerCompetitionName": "Japanese J.League",
@@ -2360,6 +2560,46 @@
    },
    "halbzeit": "0:1",
    "fetchedAt": "2026-09-19T12:34:03.564Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401877614",
+   "providerCompetitionSlug": "jpn.1",
+   "providerCompetitionName": "Japanese J.League",
+   "datum": "2026-09-20",
+   "kickoffUtc": "2026-09-20T08:00Z",
+   "heim": "Machida Zelvia",
+   "gast": "Kashiwa Reysol",
+   "torHeim": 2,
+   "torGast": 4,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "22167",
+      "teamDisplayName": "Machida Zelvia",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "7476",
+      "teamDisplayName": "Kashiwa Reysol",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "4"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-09-20T13:06:20.081Z"
   },
   {
    "provider": "espn",
@@ -2600,6 +2840,46 @@
    },
    "halbzeit": "1:1",
    "fetchedAt": "2026-09-19T12:34:03.404Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401878375",
+   "providerCompetitionSlug": "sco.1",
+   "providerCompetitionName": "Scottish Premiership",
+   "datum": "2026-09-20",
+   "kickoffUtc": "2026-09-20T11:00Z",
+   "heim": "Celtic",
+   "gast": "Rangers",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "256",
+      "teamDisplayName": "Celtic",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "257",
+      "teamDisplayName": "Rangers",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-09-20T13:05:56.149Z"
   },
   {
    "provider": "espn",
@@ -3480,6 +3760,46 @@
    },
    "halbzeit": "1:0",
    "fetchedAt": "2026-09-20T01:43:10.635Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401880246",
+   "providerCompetitionSlug": "eng.2",
+   "providerCompetitionName": "English League Championship",
+   "datum": "2026-09-20",
+   "kickoffUtc": "2026-09-20T11:00Z",
+   "heim": "Wolverhampton Wanderers",
+   "gast": "West Bromwich Albion",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "380",
+      "teamDisplayName": "Wolverhampton Wanderers",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "383",
+      "teamDisplayName": "West Bromwich Albion",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-20T13:05:38.090Z"
   },
   {
    "provider": "espn",
@@ -5880,6 +6200,366 @@
    },
    "halbzeit": "0:1",
    "fetchedAt": "2026-09-20T01:43:39.519Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761820",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-09-20",
+   "kickoffUtc": "2026-09-20T00:30Z",
+   "heim": "Houston Dynamo FC",
+   "gast": "FC Cincinnati",
+   "torHeim": 2,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "6077",
+      "teamDisplayName": "Houston Dynamo FC",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "18267",
+      "teamDisplayName": "FC Cincinnati",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-09-20T13:06:10.457Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761821",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-09-20",
+   "kickoffUtc": "2026-09-20T00:30Z",
+   "heim": "Minnesota United FC",
+   "gast": "LA Galaxy",
+   "torHeim": 2,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "17362",
+      "teamDisplayName": "Minnesota United FC",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     },
+     {
+      "teamId": "187",
+      "teamDisplayName": "LA Galaxy",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:1",
+   "fetchedAt": "2026-09-20T13:06:10.652Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761822",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-09-20",
+   "kickoffUtc": "2026-09-20T00:30Z",
+   "heim": "FC Dallas",
+   "gast": "Austin FC",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "185",
+      "teamDisplayName": "FC Dallas",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "20906",
+      "teamDisplayName": "Austin FC",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-20T13:06:10.264Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761823",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-09-20",
+   "kickoffUtc": "2026-09-20T00:30Z",
+   "heim": "Sporting Kansas City",
+   "gast": "Philadelphia Union",
+   "torHeim": 3,
+   "torGast": 4,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "186",
+      "teamDisplayName": "Sporting Kansas City",
+      "homeAway": "home",
+      "linescores": [
+       "3",
+       "0"
+      ]
+     },
+     {
+      "teamId": "10739",
+      "teamDisplayName": "Philadelphia Union",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "4"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "3:0",
+   "fetchedAt": "2026-09-20T13:06:10.847Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761824",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-09-20",
+   "kickoffUtc": "2026-09-20T00:30Z",
+   "heim": "St. Louis CITY SC",
+   "gast": "Toronto FC",
+   "torHeim": 3,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "21812",
+      "teamDisplayName": "St. Louis CITY SC",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     },
+     {
+      "teamId": "7318",
+      "teamDisplayName": "Toronto FC",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-09-20T13:06:11.039Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761825",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-09-20",
+   "kickoffUtc": "2026-09-20T01:30Z",
+   "heim": "Real Salt Lake",
+   "gast": "Vancouver Whitecaps",
+   "torHeim": 0,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "4771",
+      "teamDisplayName": "Real Salt Lake",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "9727",
+      "teamDisplayName": "Vancouver Whitecaps",
+      "homeAway": "away",
+      "linescores": [
+       "2",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:2",
+   "fetchedAt": "2026-09-20T13:06:11.621Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761826",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-09-20",
+   "kickoffUtc": "2026-09-20T01:30Z",
+   "heim": "Colorado Rapids",
+   "gast": "Seattle Sounders FC",
+   "torHeim": 3,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "184",
+      "teamDisplayName": "Colorado Rapids",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     },
+     {
+      "teamId": "9726",
+      "teamDisplayName": "Seattle Sounders FC",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-09-20T13:06:11.232Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761827",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-09-20",
+   "kickoffUtc": "2026-09-20T01:30Z",
+   "heim": "Nashville SC",
+   "gast": "Chicago Fire FC",
+   "torHeim": 3,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "18986",
+      "teamDisplayName": "Nashville SC",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     },
+     {
+      "teamId": "182",
+      "teamDisplayName": "Chicago Fire FC",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-09-20T13:06:11.426Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761828",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-09-20",
+   "kickoffUtc": "2026-09-20T02:30Z",
+   "heim": "Portland Timbers",
+   "gast": "Atlanta United FC",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "9723",
+      "teamDisplayName": "Portland Timbers",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "18418",
+      "teamDisplayName": "Atlanta United FC",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-09-20T13:06:11.813Z"
   }
  ]
 }
