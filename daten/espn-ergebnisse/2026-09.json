@@ -403,6 +403,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401841570",
+   "providerCompetitionSlug": "arg.1",
+   "providerCompetitionName": "Argentine Liga Profesional de Fútbol",
+   "datum": "2026-09-21",
+   "kickoffUtc": "2026-09-21T00:30Z",
+   "heim": "Vélez Sarsfield",
+   "gast": "Tigre",
+   "torHeim": 3,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "21",
+      "teamDisplayName": "Vélez Sarsfield",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     },
+     {
+      "teamId": "7767",
+      "teamDisplayName": "Tigre",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-09-21T15:10:14.755Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401841571",
    "providerCompetitionSlug": "arg.1",
    "providerCompetitionName": "Argentine Liga Profesional de Fútbol",
@@ -9283,6 +9323,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401922312",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-21",
+   "kickoffUtc": "2026-09-21T07:00Z",
+   "heim": "Fiji",
+   "gast": "Vanuatu",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "4862",
+      "teamDisplayName": "Fiji",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "4864",
+      "teamDisplayName": "Vanuatu",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-21T15:10:10.307Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401922313",
    "providerCompetitionSlug": "fifa.friendly",
    "providerCompetitionName": "International Friendly",
@@ -9320,6 +9400,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-09-19T01:41:54.752Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401922333",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-21",
+   "kickoffUtc": "2026-09-21T04:00Z",
+   "heim": "New Caledonia",
+   "gast": "Solomon Islands",
+   "torHeim": 0,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "4888",
+      "teamDisplayName": "New Caledonia",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "4861",
+      "teamDisplayName": "Solomon Islands",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-21T15:10:10.144Z"
   },
   {
    "provider": "espn",
