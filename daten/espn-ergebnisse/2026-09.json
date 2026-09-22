@@ -923,6 +923,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401841582",
+   "providerCompetitionSlug": "arg.1",
+   "providerCompetitionName": "Argentine Liga Profesional de Fútbol",
+   "datum": "2026-09-22",
+   "kickoffUtc": "2026-09-22T00:15Z",
+   "heim": "Lanús",
+   "gast": "Estudiantes de La Plata",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "12",
+      "teamDisplayName": "Lanús",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "8",
+      "teamDisplayName": "Estudiantes de La Plata",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-09-22T13:28:46.354Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401841583",
    "providerCompetitionSlug": "arg.1",
    "providerCompetitionName": "Argentine Liga Profesional de Fútbol",
@@ -1680,6 +1720,46 @@
    },
    "halbzeit": "0:1",
    "fetchedAt": "2026-09-21T01:45:08.698Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401860350",
+   "providerCompetitionSlug": "bra.2",
+   "providerCompetitionName": "Brazilian Serie B",
+   "datum": "2026-09-22",
+   "kickoffUtc": "2026-09-22T00:30Z",
+   "heim": "Cuiabá",
+   "gast": "Náutico",
+   "torHeim": 3,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "17313",
+      "teamDisplayName": "Cuiabá",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     },
+     {
+      "teamId": "7633",
+      "teamDisplayName": "Náutico",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-09-22T13:28:45.401Z"
   },
   {
    "provider": "espn",
