@@ -403,6 +403,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401841569",
+   "providerCompetitionSlug": "arg.1",
+   "providerCompetitionName": "Argentine Liga Profesional de Fútbol",
+   "datum": "2026-09-21",
+   "kickoffUtc": "2026-09-21T17:30Z",
+   "heim": "Aldosivi",
+   "gast": "Atlético Tucumán",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "9739",
+      "teamDisplayName": "Aldosivi",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "9785",
+      "teamDisplayName": "Atlético Tucumán",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-22T01:56:12.228Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401841570",
    "providerCompetitionSlug": "arg.1",
    "providerCompetitionName": "Argentine Liga Profesional de Fútbol",
@@ -880,6 +920,46 @@
    },
    "halbzeit": "0:1",
    "fetchedAt": "2026-09-21T01:45:09.611Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401841583",
+   "providerCompetitionSlug": "arg.1",
+   "providerCompetitionName": "Argentine Liga Profesional de Fútbol",
+   "datum": "2026-09-21",
+   "kickoffUtc": "2026-09-21T22:00Z",
+   "heim": "Barracas Central",
+   "gast": "Independiente Rivadavia",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "10060",
+      "teamDisplayName": "Barracas Central",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "9744",
+      "teamDisplayName": "Independiente Rivadavia",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-09-22T01:56:12.391Z"
   },
   {
    "provider": "espn",
@@ -9320,6 +9400,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-09-20T01:43:47.204Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401922037",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-21",
+   "kickoffUtc": "2026-09-21T15:00Z",
+   "heim": "Dominica",
+   "gast": "Anguilla",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "13582",
+      "teamDisplayName": "Dominica",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "8942",
+      "teamDisplayName": "Anguilla",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-22T01:56:09.854Z"
   },
   {
    "provider": "espn",
