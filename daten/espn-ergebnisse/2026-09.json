@@ -1763,6 +1763,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401860351",
+   "providerCompetitionSlug": "bra.2",
+   "providerCompetitionName": "Brazilian Serie B",
+   "datum": "2026-09-22",
+   "kickoffUtc": "2026-09-22T22:30Z",
+   "heim": "Criciúma",
+   "gast": "Operário PR",
+   "torHeim": 0,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "9971",
+      "teamDisplayName": "Criciúma",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "18187",
+      "teamDisplayName": "Operário PR",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-09-23T01:51:21.318Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401873903",
    "providerCompetitionSlug": "nor.1",
    "providerCompetitionName": "Norwegian Eliteserien",
@@ -9440,6 +9480,578 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-09-19T12:34:04.845Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401916452",
+   "providerCompetitionSlug": "ned.cup",
+   "providerCompetitionName": "Dutch KNVB Beker",
+   "datum": "2026-09-22",
+   "kickoffUtc": "2026-09-22T18:00Z",
+   "heim": "HHC Hardenberg",
+   "gast": "BVV Barendrecht",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7051",
+      "teamDisplayName": "HHC Hardenberg",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "8490",
+      "teamDisplayName": "BVV Barendrecht",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-23T01:51:07.961Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401916454",
+   "providerCompetitionSlug": "ned.cup",
+   "providerCompetitionName": "Dutch KNVB Beker",
+   "datum": "2026-09-22",
+   "kickoffUtc": "2026-09-22T18:00Z",
+   "heim": "GVVV",
+   "gast": "DVS '33 Ermelo",
+   "torHeim": 4,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "9987",
+      "teamDisplayName": "GVVV",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "4"
+      ]
+     },
+     {
+      "teamId": "15682",
+      "teamDisplayName": "DVS '33 Ermelo",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-23T01:51:07.785Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401916456",
+   "providerCompetitionSlug": "ned.cup",
+   "providerCompetitionName": "Dutch KNVB Beker",
+   "datum": "2026-09-22",
+   "kickoffUtc": "2026-09-22T18:00Z",
+   "heim": "ACV",
+   "gast": "Hoogeveen",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "8489",
+      "teamDisplayName": "ACV",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "22038",
+      "teamDisplayName": "Hoogeveen",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-23T01:51:06.902Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401916457",
+   "providerCompetitionSlug": "ned.cup",
+   "providerCompetitionName": "Dutch KNVB Beker",
+   "datum": "2026-09-22",
+   "kickoffUtc": "2026-09-22T18:00Z",
+   "heim": "Noordwijk",
+   "gast": "LAC Frisia 1883",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "8503",
+      "teamDisplayName": "Noordwijk",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "132996",
+      "teamDisplayName": "LAC Frisia 1883",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-23T01:51:08.489Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401916459",
+   "providerCompetitionSlug": "ned.cup",
+   "providerCompetitionName": "Dutch KNVB Beker",
+   "datum": "2026-09-22",
+   "kickoffUtc": "2026-09-22T18:00Z",
+   "heim": "Kloetinge",
+   "gast": "Achilles Veen",
+   "torHeim": 8,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "10397",
+      "teamDisplayName": "Kloetinge",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "8"
+      ]
+     },
+     {
+      "teamId": "18379",
+      "teamDisplayName": "Achilles Veen",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-23T01:51:08.138Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401916460",
+   "providerCompetitionSlug": "ned.cup",
+   "providerCompetitionName": "Dutch KNVB Beker",
+   "datum": "2026-09-22",
+   "kickoffUtc": "2026-09-22T18:00Z",
+   "heim": "RKAV Volendam",
+   "gast": "Spakenburg",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": true,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FINAL_PEN",
+    "competitors": [
+     {
+      "teamId": "19321",
+      "teamDisplayName": "RKAV Volendam",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "6"
+      ]
+     },
+     {
+      "teamId": "8506",
+      "teamDisplayName": "Spakenburg",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "5"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "verlaengerung": "0:0",
+   "fetchedAt": "2026-09-23T01:51:08.665Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401916461",
+   "providerCompetitionSlug": "ned.cup",
+   "providerCompetitionName": "Dutch KNVB Beker",
+   "datum": "2026-09-22",
+   "kickoffUtc": "2026-09-22T18:00Z",
+   "heim": "FC Rijnvogels",
+   "gast": "VVSB",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "18380",
+      "teamDisplayName": "FC Rijnvogels",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "8609",
+      "teamDisplayName": "VVSB",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-23T01:51:07.608Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401916908",
+   "providerCompetitionSlug": "ned.cup",
+   "providerCompetitionName": "Dutch KNVB Beker",
+   "datum": "2026-09-22",
+   "kickoffUtc": "2026-09-22T18:00Z",
+   "heim": "RKSV Groene Ster",
+   "gast": "AFC",
+   "torHeim": 1,
+   "torGast": 6,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "8511",
+      "teamDisplayName": "RKSV Groene Ster",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "8491",
+      "teamDisplayName": "AFC",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "6"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-23T01:51:08.842Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401916910",
+   "providerCompetitionSlug": "ned.cup",
+   "providerCompetitionName": "Dutch KNVB Beker",
+   "datum": "2026-09-22",
+   "kickoffUtc": "2026-09-22T18:00Z",
+   "heim": "Eemdijk",
+   "gast": "RBC Roosendaal",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "19318",
+      "teamDisplayName": "Eemdijk",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "150",
+      "teamDisplayName": "RBC Roosendaal",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-23T01:51:07.078Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401916911",
+   "providerCompetitionSlug": "ned.cup",
+   "providerCompetitionName": "Dutch KNVB Beker",
+   "datum": "2026-09-22",
+   "kickoffUtc": "2026-09-22T18:00Z",
+   "heim": "VV Staphorst",
+   "gast": "SC Genemuiden",
+   "torHeim": 2,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "11812",
+      "teamDisplayName": "VV Staphorst",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "7046",
+      "teamDisplayName": "SC Genemuiden",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-23T01:51:09.194Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401916914",
+   "providerCompetitionSlug": "ned.cup",
+   "providerCompetitionName": "Dutch KNVB Beker",
+   "datum": "2026-09-22",
+   "kickoffUtc": "2026-09-22T18:00Z",
+   "heim": "Excelsior '31",
+   "gast": "AFC '34",
+   "torHeim": 4,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7049",
+      "teamDisplayName": "Excelsior '31",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "4"
+      ]
+     },
+     {
+      "teamId": "10600",
+      "teamDisplayName": "AFC '34",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-23T01:51:07.430Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401916915",
+   "providerCompetitionSlug": "ned.cup",
+   "providerCompetitionName": "Dutch KNVB Beker",
+   "datum": "2026-09-22",
+   "kickoffUtc": "2026-09-22T18:00Z",
+   "heim": "Koninklijke HFC",
+   "gast": "DOVO",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": true,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FINAL_AET",
+    "competitors": [
+     {
+      "teamId": "17992",
+      "teamDisplayName": "Koninklijke HFC",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0",
+       "0",
+       "3"
+      ]
+     },
+     {
+      "teamId": "10411",
+      "teamDisplayName": "DOVO",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0",
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "verlaengerung": "3:1",
+   "fetchedAt": "2026-09-23T01:51:08.314Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401916916",
+   "providerCompetitionSlug": "ned.cup",
+   "providerCompetitionName": "Dutch KNVB Beker",
+   "datum": "2026-09-22",
+   "kickoffUtc": "2026-09-22T18:00Z",
+   "heim": "Sportlust '46",
+   "gast": "Excelsior Maassluis",
+   "torHeim": 0,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "21516",
+      "teamDisplayName": "Sportlust '46",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "10618",
+      "teamDisplayName": "Excelsior Maassluis",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-23T01:51:09.017Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401916917",
+   "providerCompetitionSlug": "ned.cup",
+   "providerCompetitionName": "Dutch KNVB Beker",
+   "datum": "2026-09-22",
+   "kickoffUtc": "2026-09-22T18:00Z",
+   "heim": "EVV Echt",
+   "gast": "RKSV Halsteren",
+   "torHeim": 3,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7065",
+      "teamDisplayName": "EVV Echt",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     },
+     {
+      "teamId": "131458",
+      "teamDisplayName": "RKSV Halsteren",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-23T01:51:07.254Z"
   },
   {
    "provider": "espn",
