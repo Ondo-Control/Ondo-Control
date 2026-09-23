@@ -1,5 +1,6 @@
 # ONDO CORE v1 — Architektur-Entwurf
 *Antwort auf die Architektur-Anfrage von ChatGPT (5.7.2026). Autor: Claude. Status: Entwurf zur gemeinsamen Prüfung.*
+*Fassung 0.15 — 23.9.2026: Abschnitt 1e ergaenzt (Backlog-Punkt 86, Auftrag Ondo 21.9.2026) — die stabile Spielidentitaet und der persistente Lauf-/Pruefzustand sind Architektur, nicht Tagesarbeit. Nichts Bestehendes geaendert.*
 *Fassung 0.14 — 14.9.2026: Die zehn Fassungsnotizen 0.4–0.13 nach `ONDO-CORE-PROTOKOLL.md` verschoben (Ondos Auftrag, Phase 2 der Trennung von aktuellem Stand und Geschichte) — dieses Dokument enthaelt ab jetzt nur noch die Architektur selbst, keine Aenderungsvermerke mehr. Kein Inhalt der Architektur geaendert.*
 *(Name: Der Besitzer hat "Ondo Control" festgelegt; ChatGPT nutzt "ORION". Technisch irrelevant — hier "Ondo Core" für den Kern.)*
 
@@ -281,6 +282,86 @@ wie viele Einträge Ondo anlegt. Bauzeit real, aber kein Dauerkostenpunkt.
 (Tabelle bleibt bis zur Prüfung leer/gesperrt); ob ein N-Gehirne-Umbau (`GEHIRNE`-Registry) je
 gebaut wird. *Berichtigt v19.11.0: „ob und wann Weg (b) mit echten Einträgen befüllt wird" ist
 seit der Nachbesserung beantwortet — Ondo befüllt es selbst, über das neue Formular, wann er will.*
+
+---
+
+## 1e. Stabile Spielidentität und persistenter Laufzustand (Backlog-Punkt 86, Auftrag Ondo 21.9.2026)
+
+*Architektonisch, nicht kosmetisch: Bis hierher war ein reales Spiel im System **nur** durch
+seinen freien Textnamen bestimmt. Jede Ebene der Drei-Ebenen-Trennung (1b) musste denselben
+Namensvergleich erneut anstellen, und jeder Lauf begann wieder bei null.*
+
+### Die kanonische `fixtureId`
+
+Ein reales Spiel bekommt eine **interne, kanonische Kennung**, gebildet aus dem Datum nach
+Europe/Berlin und den starken Namens-Tokens beider Mannschaften. Sie enthält ausschliesslich
+`[a-z0-9_]`, weil Kennungen an mehreren Stellen in `onclick`-Attribute geschrieben werden.
+
+**Ausdrücklich nicht** die Kennung eines Anbieters: ESPN deckt den `STUFEN`-Bereich nachweislich
+nicht vollständig ab. Belegte Anbieter-Kennungen hängen **daneben** am Job (`providerIds.espn`,
+`providerIds['football-data-archiv']`, …) und werden nur gespeichert, wenn eine Quelle sie
+tatsächlich geliefert hat. Historische Dateien werden **nicht** mit erfundenen Kennungen
+rückgefüllt; bestehende bewertete Einträge werden nicht rückwirkend verändert.
+
+### Die dreistufige Zuordnungsregel
+
+Die Stufen laufen **strikt nacheinander**. Jede Stufe entscheidet abschliessend: genau ein
+Kandidat → Treffer; mehrere → mehrdeutig, **Stopp**, kein Weiterfallen; keiner → nächste Stufe.
+Eine Mehrdeutigkeit einer späteren Stufe entwertet nie einen eindeutigen Treffer einer früheren.
+
+| Stufe | Was bewiesen ist | Darf eine Anbieter-Kennung binden |
+|---|---|---|
+| **1** | Beide Mannschaften stimmen nach Normalisierung überein | ja, sofort |
+| **2** | Beide Mannschaften haben je einen gemeinsamen starken Token, die **Paarung** ist am Tag eindeutig | ja, sofort |
+| **3** | Nur **eine** Mannschaft ist verankert; der Rest folgt aus Wettbewerb, minutengenauem Anstoß und Eindeutigkeit | **nein** — erst wenn Ondo diesen Vorschlag übernimmt |
+
+**Schwache Tokens sind ausschliesslich echte Vereins- und Rechtsformkürzel** (FC, AFC, CF, SC,
+BC, AC, SS, SV und Vergleichbares). *United, City, Sporting, Athletic, Real, Racing* sind
+**stark** — sie können Teil der Identität sein. Es gibt **keine** gepflegte Alias-Tabelle als
+Hauptmechanismus; eine kleine Kompatibilitätsebene bliebe zulässig, wird aber nicht gebraucht.
+
+**Alle Zeitvergleiche laufen nach Europe/Berlin**, umgerechnet über `Intl` — keine feste
+Stundenverschiebung, Sommer- und Winterzeit inbegriffen, Datum **nach** der Umrechnung. Das ist
+keine Feinheit: Die Archivdateien führen ihre Anstoßzeiten in UTC, Ondos Einträge in deutscher
+Zeit, und ein Spiel um 22:30 UTC gehört in Berlin bereits zum Folgetag.
+
+**Stufe 3 heisst „sehr wahrscheinlicher Kandidat", nicht „bewiesen identisch".** Der Vorschlag
+zeigt deshalb beide vollständigen Paarungen im Wortlaut und trägt den sichtbaren Hinweis, dass
+der Gegnername nicht automatisch bestätigt ist. Die Absicherung ist diese Kennzeichnung **plus**
+Ondos vorhandener „Übernehmen"-Klick — kein zusätzlicher Arbeitsschritt.
+
+### Persistenter Lauf- und Prüfzustand
+
+Drei Strukturen liegen in `state` und überleben damit Reiterwechsel, Neuzeichnen, Neuladen und
+den Wechsel in eine andere App:
+
+- **`pruefJobs`** — je realem Spiel ein Auftrag mit eigenem Zustand
+  (offen · läuft · Vorschlag gefunden · unzureichend belegt · geparkt · übernommen · ignoriert)
+  und den bisher belegten Anbieter-Kennungen.
+- **`pruefRun`** und **`vorhersageRun`** — höchstens **ein** aktiver Lauf je Art, mit fester
+  `runId`, Status, Zeiten und Fortschritt. Das ist die eigentliche Laufsperre; sie hängt nicht
+  mehr am Knopf, den das Neuzeichnen ohnehin ersetzt.
+
+**Checkpoint statt Schlussspeicherung.** Vor jedem äusseren Arbeitsschritt und sofort nach jedem
+Ergebnis wird der Zustand geschrieben — über **eine** geordnete Schreibkette, in der ein älterer
+Schreibvorgang nie nach einem neueren fertig werden und ihn logisch zurücksetzen kann. Ein
+unterbrochener Lauf wird beim Programmstart erkannt und **sichtbar als fortsetzbar** ausgewiesen;
+er wird beim ersten noch offenen Schritt fortgesetzt und wiederholt keinen bereits bezahlten
+Modellaufruf. Eine ewige Sperre nach einem Browserabbruch kann dadurch nicht entstehen.
+
+**Die Reihenfolge der Quellen ist Architektur, keine Laune:** strukturierte Quellen zuerst,
+Modelle zuletzt. Ein Spiel, das eine Quelle gelöst hat, wird **keiner** weiteren Quelle mehr
+geschickt — ein stilles „eine Quelle gewinnt" ist damit baulich ausgeschlossen und nicht nur
+verabredet.
+
+**Im Vorhersage-Lauf** kommt ein **unveränderlicher Spieltag-Snapshot** hinzu: Sobald die
+Spielliste steht, trägt jeder Eintrag des Laufs sein Datum und seinen Anstoß in Europe/Berlin
+fest. Datum und Anstoß eines später geschriebenen Eintrags stammen **immer** aus diesem
+Snapshot, nie aus einem beim Abschluss neu berechneten „heute". Dazu gilt der **Anstoß-Schutz**:
+Ist ein Spiel angepfiffen, wird es an kein noch nicht gestartetes Gehirn mehr geschickt, und es
+entsteht keine Vorhersage mehr dafür. Eine Antwort, die **vor** dem Anpfiff eingegangen und
+gesichert wurde, bleibt dagegen erhalten — sie war rechtzeitig, nur ihr Aufschreiben verzögerte
+sich. Beide Gehirne laufen dabei unverändert **parallel**.
 
 ---
 

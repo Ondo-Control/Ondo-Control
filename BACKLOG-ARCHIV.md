@@ -6501,3 +6501,65 @@ plus Dokumentationskorrekturen:
   UTC"; tatsächlich seit B5 entzerrt auf ESPN 08:25/23:55, Schiri 08:00/23:30, gemeinsame
   `concurrency`-Gruppe) · „59 Slugs × 2 Tage" → **58** an der Kosten-/Laufzeitstelle · erster
   echter Actions-Lauf · reale Dateigröße. **An den Workflow-Zeiten selbst ist nichts geändert.**
+
+---
+
+## Punkt 85 — vollstaendig aus `Ondo-Control-Backlog.md` verschoben (23.9.2026, Fassung 144)
+
+*Grund: Der Punkt ist GEBAUT und traegt keine Bewaehrungs-Einschraenkung mehr - nach Regel 4 des Backlogs also erledigt und von Code selbstaendig zu archivieren. `pruefe.py` verlangt ausserdem, dass eine Punktnummer NICHT in beiden Dateien steht; ein im Backlog stehen gelassener Kopf waere deshalb ein Fehler gewesen (eigener Fund im pruefe.py-Lauf). Nichts geloescht, nur verschoben (Regel 3).*
+
+**85. Messdaten-Export: rekursive, schemabasierte Positivprojektion** · *Fund und Auftrag Ondo,
+18.9.2026, „am Code bestätigt": ein echtes Gerät stiess über `kiProtokoll[].espnRoh[]`
+(Backlog-Punkt 84, v19.14.2) auf `messGeheimFund()` und blockierte den gesamten Messdaten-Export
+· gebaut am selben Tag · Nachbesserung nach Gegenprüfung ChatGPT, Auftrag Ondo 18.9.2026
+(v19.18.0)* · **Status: 🔴 GEBAUT 18.9.2026, `beta.html` v19.16.0 — Nachbesserung 18.9.2026,
+`beta.html` v19.18.0: maschinelles Audit gegen Ondos echten Export (505 kiProtokoll-Einträge,
+20 mit aera:'v18') fand eine Lücke — `tipp`/`quote` fehlten in `MESS_KI_FELDER`, alle 20
+v18-Einträge verloren dadurch ihren inhaltlichen Kern, jetzt ergänzt. `MESS_KONS_KOPF_FELDER =
+['sonnet','flash']` ersetzt die offene `Object.keys(bericht)`-Iteration in
+`messAntwortkonsistenzProjekt()` — ein unbekannter Kopf-Schlüssel (Objekt oder primitiver Wert)
+wird jetzt übersprungen statt durchgereicht. Einzelheiten: `STAND.md`, Abschnitt „Versionen".**
+
+**Kosten der Nachbesserung (Arbeitsregel G):** Kein Geld, keine Laufzeitkosten — reines Audit
+und zwei ergänzte Feldlisten, kein neuer Netzwerkaufruf, `state` selbst unangetastet.
+
+**Das Problem, belegt (Backlog-Punkt 44, 14.8.2026):** `messDatenBauen()` kopierte je
+`MESS_FELDER`-Eintrag bisher `raus[f]=state[f]` — vollständig, ungeprüft in die Tiefe.
+`MESS_FELDER` war damit nur ein Schutz auf der **obersten** Ebene, kein Schutz innerhalb eines
+schon erlaubten Feldes. Ein später hinzugefügtes Feld **innerhalb** von `kiProtokoll` (hier:
+`espnRoh`) kam dadurch ungeprüft mit — exakt der Fehlertyp, den die Positivliste auf oberster
+Ebene verhindern soll, nur eine Ebene tiefer.
+
+**Gebaut:** Jede Stelle, an der ein `state`-Feld ein Objekt oder ein Array von Objekten ist,
+bekommt eine eigene, ausdrückliche Feldliste (`MESS_KI_FELDER`, `MESS_MARKT_FELDER`,
+`MESS_MARKT_FALT_FELDER`, `MESS_BET_FELDER`, `MESS_REGELN_FELDER`, `MESS_KORREKTURF_FELDER`,
+`MESS_TRAIN_PROT_FELDER`, `MESS_TRAIN_SPIEL_FELDER`, `MESS_KONS_SPIEL_FELDER`,
+`MESS_KONS_GEHIRN_FELDER`), aus dem tatsächlichen Code ausgezählt (Arbeitsregel H — jede
+Zuweisungs- und Lesestelle an einem `kiProtokoll`-/`bets`-/`trainingsraum`-/
+`antwortkonsistenz`-Eintrag durchsucht). `MESS_PROJEKTOREN` ordnet jedem `MESS_FELDER`-Eintrag
+seinen Projektor zu, bewusst **ohne** Rückfall auf einen rohen Kopiervorgang — ein Feld ohne
+Projektor wird beim Bauen übersprungen statt roh durchgereicht.
+
+**Ondos eigene, nicht delegierte Entscheidung:** `refRoh` und `espnRoh` bleiben **bewusst aussen
+vor** — beide bleiben vollständig in IndexedDB und in der normalen Sicherung erhalten, der
+normale Sicherungsweg (`datenSichern`/`datenLaden`) ist davon nicht betroffen. **Keine Ausnahme
+für `contentKey` oder ein anderes Einzelfeld in `MESS_VERBOTEN` eingetragen** — `MESS_VERBOTEN`
+und `messGeheimFund()` bleiben wortgleich unverändert als zweite, unabhängige Stufe stehen; diese
+Projektion ersetzt sie nicht, sie sorgt nur dafür, dass ein `espnRoh`-artiger Fall sie künftig
+gar nicht erst erreicht.
+
+**Verifiziert:** `node --check` bestanden · **29 neue Prüfungen** an den echten, wortgleich aus
+`beta.html` herausgeschnittenen Funktionen (kein Nachbau) — unbekanntes Feld auf jeder Ebene
+injiziert (Top-Level, `kiProtokoll`-Eintrag, `maerkte[]`, `fAlt`, `bets`, `regeln`, `korrekturF`,
+`trainingsraumProtokoll` inkl. dessen `maerkte[]`, `trainingsraumSpiele`,
+`antwortkonsistenzBericht` inkl. `proSpiel[]`) → keines davon im Export · der ursprüngliche
+Fehlerfall (`espnRoh` mit `contentKey`) exakt nachgebaut → `messGeheimFund()` meldet jetzt
+nichts mehr, der Export gelingt · alle erlaubten Felder bleiben inhaltlich vollständig erhalten
+(kein Datenverlust) · ein v18-Alteintrag ohne v19-Zusatzfelder läuft ohne Absturz durch ·
+`datenSichern()`/`datenLaden()` unverändert auf ganz `state` geprüft · `messGeheimFund()`
+erkennt weiterhin einen echten Schlüsselwert (Stufe 2 unabhängig wirksam) — alle 29 bestanden.
+`pruefe.py`: ALLES SAUBER. Keine neuen Sprachschlüssel. Kein Schnitt in der Messreihe — reine
+Exportlogik, `state` selbst unangetastet.
+
+**Kosten (Arbeitsregel G):** Kein Geld, keine Laufzeitkosten — reine, lokale Rechenlogik beim
+Erzeugen des Exporttexts/der Exportdatei, kein zusätzlicher Netzwerkaufruf.

@@ -3,10 +3,12 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.142
-**Stand:** 19. September 2026
+**Version:** 0.143
+**Stand:** 23. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
+
+> **Was Fassung 0.143 ändert (23.9.2026):** Reine Fassungszahl-Anpassung nach Arbeitsregel M — `STAND.md` und der Backlog wurden für Backlog-Punkt 86 geändert (`beta.html` v19.19.0: Prüflauf und Vorhersage-Lauf unterbrechungsfest, strukturierte Quellen zuerst, stabile Spielidentität). **Der Blueprint selbst ist inhaltlich nicht geändert: keine neue Arbeitsregel, keine Änderung an der Verfassung, an Abschnitt 2c oder an der Übergaberegel.** Die Architekturentscheidung dieser Lieferung (persistenter Prüfzustand, `fixtureId`/`providerIds`, dreistufige Zuordnungsregel) steht in `Ondo-Core-Architektur.md`, Abschnitt 1e — dort gehört sie hin, nicht hierher (Punkt 45, ein Ort je Tatsache). Blueprint auf 0.143 gehoben.
 
 > **Was Fassung 0.142 ändert (19.9.2026):** Reine Fassungszahl-Anpassung nach Arbeitsregel M — `STAND.md` und der Backlog wurden für die Sammel-Nachbesserung Buchführung von Backlog-Punkt 84 geändert (`beta.html` v19.18.3: eine unbedingte „eine Datei"-Aussage in `STAND.md` und ein der eigenen Messung widersprechender Codekommentar berichtigt, eine Eigenschaft der Archiv-Evidence festgehalten, eine offene Frage zu `STUFEN`/OpenLigaDB neu eingetragen). Blueprint selbst inhaltlich nicht geändert, keine neue Architekturentscheidung. Blueprint auf 0.142 gehoben.
 

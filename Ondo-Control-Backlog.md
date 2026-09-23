@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 19.9.2026, Fassung 143 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 23.9.2026, Fassung 144 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -28,6 +28,7 @@
 - **Die bisherigen fuenf Fassungsabschnitte (124-128) wortgleich nach `BACKLOG-ARCHIV.md` verschoben** — die letzte Anwendung der alten Regel-5-Mechanik, danach entsteht kein neuer Fassungsabschnitt mehr im Hauptdokument (stehende Regel ab sofort).
 - **Kein Codeaufwand, kein Eingriff an `beta.html`.** `pruefe.py` um Punkt 82 (Aktueller-Stand-Groesse, 80.000-Zeichen-Grenze je Pflichtdokument) erweitert — Einzelheiten im Antworttext.
 - **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unveraendert in der Zahl.)*
+- **🔴 Nachgefuehrt 23.9.2026 (Fassung 144, Backlog-Punkt 86 gebaut):** Die Zahl bleibt **zwei — 4, 81**. Punkt 86 ist mit dieser Lieferung gebaut und zaehlt daher nicht mit; Punkt 81 bleibt ausdruecklich OFFEN, weil die Bestaetigung an Ondos Geraet aussteht.
 
 ---
 
@@ -520,61 +521,74 @@ kein Schlüssel, kein zusätzlicher Abruf.
 
 ---
 
-**85. Messdaten-Export: rekursive, schemabasierte Positivprojektion** · *Fund und Auftrag Ondo,
-18.9.2026, „am Code bestätigt": ein echtes Gerät stiess über `kiProtokoll[].espnRoh[]`
-(Backlog-Punkt 84, v19.14.2) auf `messGeheimFund()` und blockierte den gesamten Messdaten-Export
-· gebaut am selben Tag · Nachbesserung nach Gegenprüfung ChatGPT, Auftrag Ondo 18.9.2026
-(v19.18.0)* · **Status: 🔴 GEBAUT 18.9.2026, `beta.html` v19.16.0 — Nachbesserung 18.9.2026,
-`beta.html` v19.18.0: maschinelles Audit gegen Ondos echten Export (505 kiProtokoll-Einträge,
-20 mit aera:'v18') fand eine Lücke — `tipp`/`quote` fehlten in `MESS_KI_FELDER`, alle 20
-v18-Einträge verloren dadurch ihren inhaltlichen Kern, jetzt ergänzt. `MESS_KONS_KOPF_FELDER =
-['sonnet','flash']` ersetzt die offene `Object.keys(bericht)`-Iteration in
-`messAntwortkonsistenzProjekt()` — ein unbekannter Kopf-Schlüssel (Objekt oder primitiver Wert)
-wird jetzt übersprungen statt durchgereicht. Einzelheiten: `STAND.md`, Abschnitt „Versionen".**
+**86. Prüflauf und Vorhersage-Lauf unterbrechungsfest, strukturierte Quellen zuerst, stabile
+Spielidentität** · *Meldung Ondo 20.9.2026 (gefundene Vorschläge gehen verloren, Läufe dauern
+sehr lange — Prüflauf UND Vorhersage) · Auftrag Ondo 21.9.2026 („Umfassender Auftrag an Code,
+Fassung 4", Entwurf ChatGPT, ergänzt Claude) · gebaut 23.9.2026* · **Status: 🔴 GEBAUT
+23.9.2026, `beta.html` v19.19.0 — Bewährung am Gerät steht aus**
 
-**Kosten der Nachbesserung (Arbeitsregel G):** Kein Geld, keine Laufzeitkosten — reines Audit
-und zwei ergänzte Feldlisten, kein neuer Netzwerkaufruf, `state` selbst unangetastet.
+**Die drei bestätigten Ursachen (frisch am Code nachgeprüft, nicht aus der Übergabe übernommen):**
+1. `ergebnissePruefen()` setzte beim Start `state.pruefListe=[]` — **jeder** neue Prüflauf
+   vernichtete jeden bereits gefundenen, noch nicht bearbeiteten Vorschlag.
+2. Der Laufzustand hing ausschliesslich am DOM-Knopf (`btn.disabled`); `render()` erzeugt bei
+   jedem Reiterwechsel einen neuen, freien Knopf — ein zweiter, paralleler Lauf war möglich.
+3. Die Zuordnung Spiel↔Ergebnis lief über freie Namen (`normName` + gegenseitiges `indexOf`).
+   Am echten Bestand des 12.9.2026 löste diese Regel **1 von 5** Problemfällen. Dazu kam:
+   `footballDataArchivLesen()` war seit dem ESPN-Umbau als „NICHT AUFGERUFEN" markiert, obwohl
+   `daten/schiri-ergebnisse/2026-09.json` alle zehn gesuchten Spiele enthält — und das
+   ESPN-Archiv für den 12.9.2026 **null** Spiele führt. Genau diese Lücke schickte zehn bereits
+   vorhandene Ergebnisse in den KI-Notnagel.
 
-**Das Problem, belegt (Backlog-Punkt 44, 14.8.2026):** `messDatenBauen()` kopierte je
-`MESS_FELDER`-Eintrag bisher `raus[f]=state[f]` — vollständig, ungeprüft in die Tiefe.
-`MESS_FELDER` war damit nur ein Schutz auf der **obersten** Ebene, kein Schutz innerhalb eines
-schon erlaubten Feldes. Ein später hinzugefügtes Feld **innerhalb** von `kiProtokoll` (hier:
-`espnRoh`) kam dadurch ungeprüft mit — exakt der Fehlertyp, den die Positivliste auf oberster
-Ebene verhindern soll, nur eine Ebene tiefer.
+**Gebaut:** neue Kaskade (ESPN-Archiv → Live-ESPN + OpenLigaDB → football-data-Archiv sekundär →
+KI nur für den Rest), Monatsdatei-Cache je Lauf auch für `espnArchivLesen()`, KI-Notnagel je
+Spiel mit eigenem Ein-Spiel-Auftragstext, persistente `state.pruefJobs`/`state.pruefRun`/
+`state.vorhersageRun`, `checkpointSave()` als geordnete, awaitbare Speicherbarriere,
+Spieltag-Snapshot und Anstoß-Schutz im Vorhersage-Lauf, idempotente Eintrags-IDs
+(`runId + gehirn + fixtureId`), kanonische `fixtureId` mit `providerIds` und der dreistufige
+Resolver. Alles Weitere steht in `STAND.md`, Abschnitt „Versionen" und in
+`Ondo-Core-Architektur.md`, Abschnitt 1e (Punkt 45 — hier nicht wiederholt).
 
-**Gebaut:** Jede Stelle, an der ein `state`-Feld ein Objekt oder ein Array von Objekten ist,
-bekommt eine eigene, ausdrückliche Feldliste (`MESS_KI_FELDER`, `MESS_MARKT_FELDER`,
-`MESS_MARKT_FALT_FELDER`, `MESS_BET_FELDER`, `MESS_REGELN_FELDER`, `MESS_KORREKTURF_FELDER`,
-`MESS_TRAIN_PROT_FELDER`, `MESS_TRAIN_SPIEL_FELDER`, `MESS_KONS_SPIEL_FELDER`,
-`MESS_KONS_GEHIRN_FELDER`), aus dem tatsächlichen Code ausgezählt (Arbeitsregel H — jede
-Zuweisungs- und Lesestelle an einem `kiProtokoll`-/`bets`-/`trainingsraum`-/
-`antwortkonsistenz`-Eintrag durchsucht). `MESS_PROJEKTOREN` ordnet jedem `MESS_FELDER`-Eintrag
-seinen Projektor zu, bewusst **ohne** Rückfall auf einen rohen Kopiervorgang — ein Feld ohne
-Projektor wird beim Bauen übersprungen statt roh durchgereicht.
+**Was ausdrücklich NICHT geändert wurde:** Vorhersagealgorithmen, gespeicherte
+Wahrscheinlichkeiten, Kalibrierungsformeln, Brier-Score, Marktdefinitionen, `marktUrteil()`,
+bestehende bewertete Messdaten, bestehende Endstände, `STUFEN`, die Auswahl der Spiele für neue
+Vorhersagen, Wett-/Finanzlogik, API-Schlüssel, `OndoControl.html`, die Auftragstexte beider
+Vorhersage-Gehirne, die Marktlage-Abfrage, die Websuche-Obergrenzen und **Ondos
+Drei-Läufe-/2-von-3-Regel**. Kein automatisches Übernehmen gefundener Endstände —
+Ondo behält die letzte Kontrolle. **Kein Schnitt in der Messreihe:** die `fixtureId` ist eine
+rein zusätzliche Identitätsreferenz an **neuen** Einträgen, bestehende bewertete Einträge
+bleiben byte-identisch (eigener Test M).
 
-**Ondos eigene, nicht delegierte Entscheidung:** `refRoh` und `espnRoh` bleiben **bewusst aussen
-vor** — beide bleiben vollständig in IndexedDB und in der normalen Sicherung erhalten, der
-normale Sicherungsweg (`datenSichern`/`datenLaden`) ist davon nicht betroffen. **Keine Ausnahme
-für `contentKey` oder ein anderes Einzelfeld in `MESS_VERBOTEN` eingetragen** — `MESS_VERBOTEN`
-und `messGeheimFund()` bleiben wortgleich unverändert als zweite, unabhängige Stufe stehen; diese
-Projektion ersetzt sie nicht, sie sorgt nur dafür, dass ein `espnRoh`-artiger Fall sie künftig
-gar nicht erst erreicht.
+**Bekannte Restgrenzen, offen benannt:**
+- **Stufe 3 bleibt ein begründeter Verdacht, kein Beweis.** Eine falsch gepaarte Spielliste mit
+  richtigem Anker, gleichem Wettbewerb und gleicher Zeit (Beispiel: Ondo „AJ Auxerre – Paris SG"
+  gegen Quelle „AJ Auxerre – OGC Nice") erzeugt einen Vorschlag. Er ist sichtbar als Stufe 3
+  gekennzeichnet, zeigt **beide** vollständigen Paarungen und bindet vor Ondos „Übernehmen"
+  **nichts** (im Test Q(f)–(j) belegt). Die Absicherung ist die Kennzeichnung plus Ondos Klick.
+- **Dünner Tagesbestand schwächt Stufe 2.** Die Eindeutigkeit wird an der tatsächlichen
+  Kandidatenmenge des Tages geprüft. Enthält eine Quelle für einen Tag nur ein einziges Spiel,
+  ist jede Paarung trivial eindeutig. Im echten Archiv stehen für den 12.9.2026 47 Spiele.
+- **Ein einmal abgeschickter Modellaufruf**, den das Betriebssystem genau zwischen Antwort und
+  Speichern zerstört, kann einmalig wiederholt werden. Der ganze Lauf wird dadurch nicht
+  wiederholt (Auftrag Abschnitt 6, ausdrücklich zugelassen).
+- **Fortsetzen geschieht auf Klick, nicht von selbst.** Ein unterbrochener Lauf wird beim Start
+  erkannt und **sichtbar** als fortsetzbar ausgewiesen; der nächste Klick auf denselben Knopf
+  macht beim ersten offenen Schritt weiter, ohne einen bereits bezahlten Aufruf zu wiederholen.
+  Begründung: Ein Lauf kostet echte Modellaufrufe (Arbeitsregel G); ein Selbststart beim blossen
+  Zurückwechseln in die App könnte diese Kosten auslösen, während Ondo nur kurz hineinschaut.
+  Abschnitt 7 des Auftrags lässt genau das zu („wieder aufgenommen **oder** sauber als
+  fortsetzbar erkannt"). **Kein zusätzlicher Bedienschritt** (Abschnitt 15b).
+- **`MAXR` bleibt 6.** Für diese Zahl gibt es **keine** dokumentierte Ondo-Entscheidung
+  (maschinell in `STAND.md`, Backlog, `Blueprint.md`, `Ondo-Core-Architektur.md`, Chronik und
+  `BACKLOG-ARCHIV.md` gesucht: kein einziger Treffer) — sie ist eine reine Code-Konstante und
+  wurde deshalb nicht angefasst, sondern nur seltener ausgereizt.
 
-**Verifiziert:** `node --check` bestanden · **29 neue Prüfungen** an den echten, wortgleich aus
-`beta.html` herausgeschnittenen Funktionen (kein Nachbau) — unbekanntes Feld auf jeder Ebene
-injiziert (Top-Level, `kiProtokoll`-Eintrag, `maerkte[]`, `fAlt`, `bets`, `regeln`, `korrekturF`,
-`trainingsraumProtokoll` inkl. dessen `maerkte[]`, `trainingsraumSpiele`,
-`antwortkonsistenzBericht` inkl. `proSpiel[]`) → keines davon im Export · der ursprüngliche
-Fehlerfall (`espnRoh` mit `contentKey`) exakt nachgebaut → `messGeheimFund()` meldet jetzt
-nichts mehr, der Export gelingt · alle erlaubten Felder bleiben inhaltlich vollständig erhalten
-(kein Datenverlust) · ein v18-Alteintrag ohne v19-Zusatzfelder läuft ohne Absturz durch ·
-`datenSichern()`/`datenLaden()` unverändert auf ganz `state` geprüft · `messGeheimFund()`
-erkennt weiterhin einen echten Schlüsselwert (Stufe 2 unabhängig wirksam) — alle 29 bestanden.
-`pruefe.py`: ALLES SAUBER. Keine neuen Sprachschlüssel. Kein Schnitt in der Messreihe — reine
-Exportlogik, `state` selbst unangetastet.
+**Kosten (Arbeitsregel G):** Kein Geld für den Umbau. Im Betrieb **sinkt** die Nutzung, weil
+Spiele mit vorhandenem strukturiertem Ergebnis gar kein Modell mehr erreichen; sie **steigt**
+nur dort, wo viele Spiele ungelöst bleiben (drei Aufrufe je Spiel statt drei je Stapel von bis
+zu fünf). Gemessen im Test: zehn echte Spiele vom 12.9.2026 → **0** Modellaufrufe; zwei
+ungelöste Testspiele → **6** Aufrufe. Keine geschätzten Euro-Beträge.
 
-**Kosten (Arbeitsregel G):** Kein Geld, keine Laufzeitkosten — reine, lokale Rechenlogik beim
-Erzeugen des Exporttexts/der Exportdatei, kein zusätzlicher Netzwerkaufruf.
+---
 
 ## 🟡 Prio 2 — wichtig, aber später
 

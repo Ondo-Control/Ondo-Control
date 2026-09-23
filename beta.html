@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.18.3';
+var CODE_VERSION = 'v19.19.0';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -146,6 +146,16 @@ function checkUpdate(){
 }
 
 /* ================= SPRACHEN ================= */
+/* 🔴 21.9.2026 (Backlog-Punkt 86): Neu hinzugekommen sind zehn Schluessel in jeder der drei
+   Sprachen - pruefLaeuft, pruefFortsetzbar, pruefUnzureichend, pruefErneutBtn,
+   zuordnungStufe3, zuordnungZeit, vorhersageFortsetzbar, vorhersageAngepfiffen,
+   vorhersageEinGehirn und refCalls-Ergaenzung. Sie stehen im de-Block hinter
+   refEinAnbieter, in en/fr an derselben Stelle.
+   WICHTIG und hier gelernt: INNERHALB dieses Blocks darf kein Kommentar zwischen zwei
+   Schluesseln stehen. pruefe.py (Punkt 60) zaehlt die Schluessel ueber das Muster
+   ",name:" - eine Kommentarzeile dazwischen verdeckt den DARAUFFOLGENDEN Schluessel,
+   und die drei Sprachen zaehlen dann verschieden (eigener Fund: de 357 gegen en/fr 358).
+   Deshalb steht diese Erlaeuterung vor dem Block, nicht darin. */
 var I18N = {
  de:{ nvHome:'Start', nvBets:'Wetten', nvFin:'Finanzen', nvMore:'Mehr',
   locked:'Ondo Control ist gesperrt', unlock:'Entsperren', wrongPin:'Falscher PIN', pinPh:'PIN',
@@ -290,6 +300,15 @@ var I18N = {
   refEinig2von3:'⚠ nicht einstimmig — {a} von {b} Läufen', refQuellenZahl:'{a} Läufe, aber nur {b} Quelle(n) — nicht unabhängig',
   refVerworfen:'⚠ verworfene Läufe: {a}', parkGrundFormat:'Sonderformat erkannt — kein 90-Minuten-Wert',
   refEinAnbieter:'⚠ Nur ein Anbieter verfügbar — alle drei Läufe auf demselben Modell',
+  pruefLaeuft:'Ein Prüflauf läuft bereits — bitte abwarten',
+  pruefFortsetzbar:'⏸ Unterbrochener Prüflauf — wird beim nächsten Klick fortgesetzt',
+  pruefUnzureichend:'noch nicht ausreichend belegt',
+  pruefErneutBtn:'Erneut prüfen',
+  zuordnungStufe3:'⚠ Zuordnung Stufe 3: Gegnername nicht automatisch bestätigt',
+  zuordnungZeit:'⚠ Anstoßzeit weicht ab',
+  vorhersageFortsetzbar:'⏸ Unterbrochener Vorhersage-Lauf — wird beim nächsten Klick fortgesetzt',
+  vorhersageAngepfiffen:'⏱ Nach Anpfiff — keine Vorhersage mehr erzeugt',
+  vorhersageEinGehirn:'nur ein Gehirn vor Anpfiff abgeschlossen',
   refDauer:'Dauer', balGeparkt:'in diesem Lauf geparkt',
   messT:'📤 Messdaten ausgeben (ohne Schlüssel)', messD:'Gibt alle Vorhersagen und Wetten aus — OHNE API-Schlüssel und OHNE PIN. Diese Ausgabe darfst du verschicken, ablegen und in einen Chat hochladen. Die Datensicherung oben bleibt davon unberührt und enthält weiterhin die Schlüssel.',
   messBtn:'📤 Messdaten erzeugen', messFile:'💾 Als Datei',
@@ -445,6 +464,15 @@ var I18N = {
   refEinig2von3:'⚠ pas unanime — {a} passages sur {b}', refQuellenZahl:'{a} passages, mais seulement {b} source(s) — pas indépendant',
   refVerworfen:'⚠ passages rejetés : {a}', parkGrundFormat:'Format particulier détecté — pas de score à 90 minutes',
   refEinAnbieter:'⚠ Un seul fournisseur disponible — les trois passages sur le même modèle',
+  pruefLaeuft:'Une vérification est déjà en cours — veuillez patienter',
+  pruefFortsetzbar:'⏸ Vérification interrompue — reprise au prochain clic',
+  pruefUnzureichend:'preuve encore insuffisante',
+  pruefErneutBtn:'Vérifier à nouveau',
+  zuordnungStufe3:'⚠ Correspondance niveau 3 : nom de l\'adversaire non confirmé automatiquement',
+  zuordnungZeit:'⚠ Heure du coup d\'envoi différente',
+  vorhersageFortsetzbar:'⏸ Prévision interrompue — reprise au prochain clic',
+  vorhersageAngepfiffen:'⏱ Après le coup d\'envoi — plus de prévision générée',
+  vorhersageEinGehirn:'un seul cerveau terminé avant le coup d\'envoi',
   refDauer:'Durée', balGeparkt:'mis de côté lors de ce passage',
   messT:'📤 Exporter les données de mesure (sans clés)', messD:'Sort toutes les prédictions et tous les paris — SANS clé API et SANS code PIN. Tu peux envoyer, archiver et téléverser cette sortie dans un chat. La sauvegarde ci-dessus reste inchangée et contient toujours les clés.',
   messBtn:'📤 Générer les données', messFile:'💾 En fichier',
@@ -600,6 +628,15 @@ var I18N = {
   refEinig2von3:'⚠ not unanimous — {a} of {b} runs', refQuellenZahl:'{a} runs, but only {b} source(s) — not independent',
   refVerworfen:'⚠ discarded runs: {a}', parkGrundFormat:'Special format detected — no 90-minute score',
   refEinAnbieter:'⚠ Only one provider available — all three runs on the same model',
+  pruefLaeuft:'A check run is already active — please wait',
+  pruefFortsetzbar:'⏸ Interrupted check run — will resume on next click',
+  pruefUnzureichend:'not yet sufficiently evidenced',
+  pruefErneutBtn:'Check again',
+  zuordnungStufe3:'⚠ Level 3 match: opponent name not automatically confirmed',
+  zuordnungZeit:'⚠ Kick-off time differs',
+  vorhersageFortsetzbar:'⏸ Interrupted prediction run — will resume on next click',
+  vorhersageAngepfiffen:'⏱ After kick-off — no prediction generated',
+  vorhersageEinGehirn:'only one brain completed before kick-off',
   refDauer:'Duration', balGeparkt:'parked in this run',
   messT:'📤 Export measurement data (no keys)', messD:'Outputs all predictions and bets — WITHOUT API keys and WITHOUT PIN. You may send, store and upload this output to a chat. The backup above is untouched and still contains the keys.',
   messBtn:'📤 Create measurement data', messFile:'💾 As file',
@@ -709,6 +746,17 @@ var state = {
      JSON stehen, ein altes Save ohne diese Schluessel behaelt einfach diese Defaults. */
   pruefListe: [],
   pruefBilanz: null,
+  /* 🔴 Backlog-Punkt 86 (21.9.2026, Abschnitt 5/6/7): der persistente Prueflaufzustand.
+     pruefJobs haelt je realem Spiel (fixtureId) einen Auftrag mit eigenem Zustand, pruefRun
+     hoechstens EINEN aktiven Lauf mit runId und Fortschritt, vorhersageRun dasselbe fuer den
+     Vorhersage-Lauf (Abschnitt 6b). Alle drei liegen bewusst in state, damit sie Reiterwechsel,
+     render(), Neuladen und App-Wechsel ueberleben - genau das war der gemeldete Fehler. Ein
+     altes Save ohne diese Schluessel behaelt einfach diese Defaults (dasselbe Verhalten wie
+     bei pruefListe/pruefBilanz seit v19.8.13); die seedV<9-Migration fuellt sie zusaetzlich
+     aus bereits vorhandenen Vorschlaegen. */
+  pruefJobs: {},
+  pruefRun: null,
+  vorhersageRun: null,
   /* v19.9.0 (Backlog-Punkt 77): eigenes Protokoll fuer den Trainingsraum, getrennt vom
      Evidence Ledger (state.kiProtokoll) - Einzelheiten Ondo-Core-Architektur.md, 1d.
      trainingsraumSpiele ist Weg (b), von Hand gepflegt.
@@ -949,6 +997,38 @@ async function load(){
     state.seedV = 8;
     await speicherSchreiben(KEY, state).catch(function(){});
   }
+  /* 🔴 seedV<9 — Backlog-Punkt 86 (Auftrag Ondo 21.9.2026, Abschnitt 5 und 13).
+     ADDITIVE Migration: Sie legt state.pruefJobs an und uebertraegt jeden bereits gefundenen,
+     noch nicht bearbeiteten Vorschlag aus state.pruefListe in einen Job. Es wird NICHTS
+     geloescht, NICHTS neu bewertet und kein Messwert angefasst - state.pruefListe selbst bleibt
+     unveraendert bestehen und ist weiterhin die Anzeigequelle von pruefBlock(). Ohne diese
+     Migration waeren vorhandene Vorschlaege beim ersten Lauf unter der neuen Logik ohne Job
+     und damit ohne Gedaechtnis ("ignoriert"/"uebernommen" nicht unterscheidbar).
+     Idempotent (Abschnitt 13): Ein zweiter Lauf findet die Jobs bereits vor und legt keinen
+     zweiten an; ein Job, dessen Zustand Ondo inzwischen veraendert hat, wird nicht
+     zurueckgesetzt. */
+  if(state.seedV < 9){
+    if(!state.pruefJobs || typeof state.pruefJobs!=='object') state.pruefJobs={};
+    (state.pruefListe||[]).forEach(function(v){
+      var teams=teamsAus(v.match||'');
+      var iso=datumIso(v.datum||'');
+      if(!iso) return;
+      var fid=fxId(iso, teams.heim, teams.gast);
+      if(state.pruefJobs[fid]) return;                      /* idempotent */
+      state.pruefJobs[fid]={
+        fixtureId:fid, match:v.match||'', datum:v.datum||'',
+        art:v.art||'log', eintraege:v.eintraege||null, betId:v.betId||null,
+        zustand:'vorschlag', vorschlagId:v.id, versuche:0, providerIds:{},
+        stufe:(v._stufe||null), aktualisiert:Date.now(),
+        herkunft:'migration_seedV9'
+      };
+      v.fixtureId=fid;                                      /* additiv, nichts ersetzt */
+    });
+    /* Ein beim Umstieg noch als "laufend" gespeicherter Lauf kann nicht mehr laufen. */
+    if(state.pruefRun && state.pruefRun.status==='laufend') state.pruefRun.status='pausiert';
+    state.seedV = 9;
+    await speicherSchreiben(KEY, state).catch(function(){});
+  }
   /* v19.8.30: Ohne diese Zeile schriebe load() NUR dann in den Speicher, wenn eine der acht
      Migrationen oben tatsaechlich etwas geaendert hat (state.seedV war schon vorher hoch
      genug bei jedem, der die App laenger nutzt — also bei fast jedem). Genau das ist die
@@ -985,6 +1065,98 @@ function save(){
     if(!speicherAlarm){ speicherAlarm=true; alert(t('saveFailAlert')); }
   });
 }
+/* ================= CHECKPOINT-SPEICHERBARRIERE (Backlog-Punkt 86, Auftrag Ondo 21.9.2026,
+   Abschnitt 6/6b) =================
+   save() gibt sein Promise NICHT zurueck (siehe oben) - fuer die normalen save(); render();
+   Aufrufe ist das genau richtig und bleibt unveraendert. Fuer einen Checkpoint reicht es
+   nicht: Dort muss feststehen, dass geschrieben WURDE, bevor der naechste externe Schritt
+   beginnt. Sonst kann iOS die Seite genau zwischen Antwort und Speichern anhalten.
+   ORDNUNG DER SCHREIBVORGAENGE (Abschnitt 6b): Alle Checkpoints laufen durch EINE Kette. Ein
+   aelterer Schreibvorgang kann deshalb nie nach einem neueren fertig werden und ihn logisch
+   zuruecksetzen - der letzte Aufruf ist immer auch der letzte Schreibvorgang. Geschrieben wird
+   jeweils der AKTUELLE state (kein Schnappschuss), der letzte Schreibvorgang enthaelt also
+   garantiert den neuesten Zustand.
+   Ein gescheiterter Checkpoint loest denselben sichtbaren Alarm aus wie ein gescheitertes
+   save() - ein stiller Datenverlust waere schlimmer als ein abgebrochener Lauf. */
+var speicherKette = Promise.resolve();
+function checkpointSave(){
+  speicherKette = speicherKette.then(function(){
+    return speicherSchreiben(KEY, state);
+  }).then(function(){
+    if(speicherAlarm){ speicherAlarm=false; }
+  }).catch(function(e){
+    if(!speicherAlarm){ speicherAlarm=true; try{ alert(t('saveFailAlert')); }catch(x){} }
+    /* Der Fehler wird bewusst NICHT weitergeworfen: Die Kette muss fuer den naechsten
+       Checkpoint benutzbar bleiben. Der Alarm bleibt stehen, bis ein Schreiben gelingt. */
+  });
+  return speicherKette;
+}
+
+/* ================= PERSISTENTER PRUEFZUSTAND (Backlog-Punkt 86, Abschnitt 5/7) =================
+   Bis hierher galt: ergebnissePruefen() setzte state.pruefListe=[] und state.pruefBilanz=null,
+   jeder neue Prueflauf vernichtete also alle bereits gefundenen Vorschlaege. Ausserdem hing die
+   Laufsperre nur am DOM-Knopf - ein render() erzeugte einen neuen, freien Knopf, waehrend der
+   alte asynchrone Lauf noch arbeitete.
+   Neu sind zwei persistente Strukturen:
+   - state.pruefJobs: je realem Spiel (fixtureId) EIN Auftrag mit eigenem Zustand.
+   - state.pruefRun:  hoechstens EIN aktiver Lauf, mit runId und Fortschritt.
+   Beide liegen in state und ueberleben damit Reiterwechsel, render(), Neuladen und App-Wechsel
+   - genau das, was Ondo am 20.9.2026 gemeldet hat. */
+var PRUEF_ZUSTAENDE = ['offen','laeuft','vorschlag','unzureichend','geparkt','uebernommen','ignoriert'];
+function jobsHolen(){
+  if(!state.pruefJobs || typeof state.pruefJobs!=='object') state.pruefJobs={};
+  return state.pruefJobs;
+}
+function jobHolen(fixtureId){
+  var j=jobsHolen();
+  return fixtureId ? j[fixtureId] : null;
+}
+function jobSetzen(fixtureId, aenderung){
+  if(!fixtureId) return null;
+  var j=jobsHolen();
+  if(!j[fixtureId]) j[fixtureId]={ fixtureId:fixtureId, zustand:'offen', versuche:0, providerIds:{} };
+  var job=j[fixtureId];
+  for(var k in aenderung){ if(Object.prototype.hasOwnProperty.call(aenderung,k)) job[k]=aenderung[k]; }
+  job.aktualisiert=Date.now();
+  return job;
+}
+/* Eine Provider-ID DAUERHAFT an die fixtureId binden. Abschnitt 8a, Provider-ID-Bindung:
+   Stufe 1/2 duerfen das sofort (die Identitaet ist ueber beide Mannschaften bewiesen),
+   Stufe 3 ausdruecklich NICHT - dort steht die ID zunaechst nur am Vorschlag und wird erst
+   gebunden, wenn Ondo genau diesen Vorschlag uebernimmt. "Ignorieren" bindet nie. */
+function providerIdBinden(fixtureId, anbieter, id){
+  if(!fixtureId || !anbieter || !id) return;
+  var job=jobSetzen(fixtureId, {});
+  if(!job.providerIds) job.providerIds={};
+  if(!job.providerIds[anbieter]) job.providerIds[anbieter]=String(id);
+}
+/* Ein laufender Prueflauf, der nach einem Neuladen wieder auftaucht, kann nicht mehr laufen -
+   in diesem Browser laeuft kein JavaScript mehr aus der alten Seite. Er wird beim Start
+   deshalb auf 'pausiert' gesetzt: fortsetzbar, aber keine Zombie-Sperre, die den Knopf fuer
+   immer blockiert. Bewusst OHNE Zeitschaetzung ("aelter als X Minuten") - eine geratene Grenze
+   waere entweder zu kurz (bricht laufende Arbeit ab) oder zu lang (blockiert unnoetig). */
+function pruefRunEntsperren(){
+  if(state.pruefRun && state.pruefRun.status==='laufend'){
+    state.pruefRun.status='pausiert';
+  }
+}
+function pruefRunAktiv(){
+  return !!(state.pruefRun && state.pruefRun.status==='laufend');
+}
+
+/* ================= APP-WECHSEL UND WIEDERKEHR (Abschnitt 6/6b) =================
+   iOS haelt eine Seite an, sobald Safari in den Hintergrund geht - ein laufender Prueflauf
+   wird dort schlicht eingefroren und kann Minuten spaeter, Stunden spaeter oder gar nicht
+   weiterlaufen. Der Auftrag verlangt ausdruecklich KEINE Hintergrundausfuehrungs-Tricks,
+   sondern: "beim Verlassen keine neuen Schritte mehr unnoetig starten".
+   Genau dafuer steht dieses Merkzeichen. Es bricht nichts ab, was schon unterwegs ist (eine
+   bereits abgesendete Anfrage laesst sich nicht zurueckholen), es verhindert nur, dass noch
+   ein weiteres Spiel oder eine weitere Runde ANGEFANGEN wird, deren Antwort dann im
+   Nirgendwo landet. Der Lauf wird stattdessen als 'pausiert' festgehalten und ist damit
+   fortsetzbar - Abschnitt 7: "persistierter Run muss wieder aufgenommen oder sauber als
+   fortsetzbar erkannt werden". */
+var seiteVerlassen = false;
+
 /* Wie viel Platz die gespeicherten Daten belegen. Gemessen, nicht geschaetzt: die Laenge
    genau der Zeichenkette, die save() schreibt.
    v19.8.28/29 hatten hier noch eine SCHAETZUNG der Warngrenze (erst 3 MB, dann mit Ondos
@@ -2301,6 +2473,240 @@ function datumIso(dmj){
   return m[3]+'-'+('0'+m[2]).slice(-2)+'-'+('0'+m[1]).slice(-2);
 }
 
+/* ================= STABILE SPIELIDENTITAET + RESOLVER (Backlog-Punkt 86, Auftrag Ondo
+   21.9.2026, Abschnitt 8/8a) =================
+   Bis hierher hing die Zuordnung Spiel<->Ergebnis an teamPasstZu(): normName() plus
+   gegenseitiges indexOf. Belegt am echten Datenbestand (12.9.2026, Ondos Export gegen
+   daten/schiri-ergebnisse/2026-09.json): von fuenf bekannten Problemfaellen loeste diese Regel
+   genau einen (Koeln-Bremen). "Lazio Rom"/"SS Lazio" und "AC Mailand"/"AC Milan" passen
+   buchstabenweise ueberhaupt nicht.
+   Die Loesung ist AUSDRUECKLICH KEINE handgepflegte Alias-Tabelle (Ondos Vorgabe, Abschnitt 8).
+   Sie besteht aus drei Teilen:
+   1. Normalisierung + Tokens, wobei NUR echte Vereinsform-/Rechtsformkuerzel als schwach
+      gelten. United/City/Sporting/Athletic/Real/Racing sind ausdruecklich NICHT schwach - sie
+      koennen Teil der Identitaet sein (Ondos Vorgabe).
+   2. Drei STRIKT nacheinander gepruefte Stufen (8a). Eine Mehrdeutigkeit einer spaeteren Stufe
+      entwertet nie einen eindeutigen Treffer einer frueheren.
+   3. Eine kanonische fixtureId plus belegte providerIds, damit derselbe Textvergleich beim
+      naechsten Mal gar nicht mehr noetig ist.
+   ZEITZONE, am Code belegt (nicht angenommen): skripte/schiri-ergebnisse-holen.js schreibt
+   anpfiff aus m.utcDate.slice(11,16) bzw. fx.date.slice(11,16) - also UTC. Das ESPN-Skript
+   schreibt kickoffUtc als vollen UTC-Stempel. Ondos kiProtokoll-Eintraege tragen deutsche Zeit
+   (Beleg 12.9.2026: Koeln-Bremen Archiv 16:30 UTC, Ondo 18:30). Jeder Zeitvergleich laeuft
+   deshalb ueber fxBerlin() mit Intl/Europe/Berlin - keine feste Stundenverschiebung, Sommer-
+   und Winterzeit kommen aus der Zeitzonendatenbank des Browsers. */
+
+/* Nur formale Vereins-/Rechtsformkuerzel und reine Zahlen (Gruendungsjahre wie "05", "1899").
+   Bewusst KNAPP gehalten: Jedes Wort, das hier steht, kann eine echte Namensunterscheidung
+   unsichtbar machen. Deshalb steht hier kein Ortsname und kein Identitaetswort. */
+var FX_SCHWACH = {
+  fc:1, afc:1, cf:1, cfc:1, sc:1, ssc:1, bc:1, ac:1, as:1, ss:1, sv:1, sg:1, tsg:1, tsv:1,
+  vfb:1, vfl:1, rc:1, rcd:1, ca:1, cd:1, cr:1, se:1, fk:1, sk:1, ks:1, us:1, ud:1, aj:1,
+  ogc:1, psv:1, bsc:1, msv:1, fsv:1, ec:1, fr:1, ad:1, club:1, calcio:1, futbol:1, fussball:1,
+  football:1, cfr:1, afk:1, mfk:1, nk:1, hk:1, if:1, ff:1, bk:1, ik:1
+};
+/* Unicode-Diakritika vereinheitlichen, Kleinschreibung, Satzzeichen zu Leerzeichen.
+   String.normalize('NFD') ist seit Safari 10 vorhanden; faellt es aus, bleibt der Text
+   unveraendert und die Regel wird nur strenger, nie falscher. */
+function fxNorm(s){
+  var t=String(s||'');
+  try{ t=t.normalize('NFD').replace(/[̀-ͯ]/g,''); }catch(e){}
+  t=t.toLowerCase()
+     .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss')
+     .replace(/ø/g,'o').replace(/å/g,'a').replace(/æ/g,'ae').replace(/đ/g,'d').replace(/ł/g,'l')
+     .replace(/[^a-z0-9]+/g,' ')
+     .replace(/\s+/g,' ').trim();
+  return t;
+}
+/* Starke Tokens = alles ausser formalen Kuerzeln und reinen Zahlen. Bleibt nach dem Filtern
+   nichts uebrig (z. B. ein Name, der NUR aus Kuerzeln besteht), gilt die ungefilterte Liste -
+   sonst haette so ein Name gar keine Identitaet mehr. */
+function fxTokens(s){
+  var alle=fxNorm(s).split(' ').filter(Boolean);
+  var stark=alle.filter(function(w){ return !FX_SCHWACH[w] && !/^\d+$/.test(w); });
+  return stark.length ? stark : alle;
+}
+/* Rechnet einen UTC-Zeitpunkt nach Europe/Berlin um und liefert {datum:'JJJJ-MM-TT',
+   zeit:'HH:MM'}. Intl statt fester Verschiebung: der 12.9. liegt in der Sommerzeit (+2), der
+   12.12. nicht (+1) - eine feste Zahl waere die Haelfte des Jahres falsch. */
+function fxBerlin(utcIso){
+  var d=new Date(utcIso);
+  if(isNaN(d.getTime())) return null;
+  try{
+    var f=new Intl.DateTimeFormat('sv-SE',{ timeZone:'Europe/Berlin', year:'numeric',
+      month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', hour12:false });
+    var s=f.format(d);                       /* sv-SE liefert "JJJJ-MM-TT HH:MM" */
+    var m=s.match(/(\d{4})-(\d{2})-(\d{2})\D+(\d{2}):(\d{2})/);
+    if(!m) return null;
+    return { datum:m[1]+'-'+m[2]+'-'+m[3], zeit:m[4]+':'+m[5] };
+  }catch(e){ return null; }
+}
+/* Ein Fixture aus einer strukturierten Quelle auf eine gemeinsame Form bringen. Liest BEIDE
+   bekannten Schemata (ESPN-Archiv: providerCompetitionName/kickoffUtc · football-data-Archiv
+   und die aelteren Produzenten: wettbewerb/datum+anpfiff, beides UTC). */
+function fxFixtureLesen(x){
+  var wb = (x && (x.providerCompetitionName || x.wettbewerb)) || '';
+  var utc = (x && x.kickoffUtc) ? String(x.kickoffUtc)
+          : (x && x.datum && x.anpfiff) ? (x.datum+'T'+x.anpfiff+':00Z') : '';
+  var b = utc ? fxBerlin(utc) : null;
+  return {
+    roh:x,
+    heim:(x&&x.heim)||'', gast:(x&&x.gast)||'',
+    wettbewerb:wb,
+    datumBerlin: b ? b.datum : ((x&&x.datum)||''),
+    zeitBerlin: b ? b.zeit : '',
+    heimTok:fxTokens((x&&x.heim)||''), gastTok:fxTokens((x&&x.gast)||'')
+  };
+}
+/* Kanonische, stabile Spielidentitaet. Bewusst NICHT die ESPN-ID: ESPN deckt Ondos
+   STUFEN-Bereich nachweislich nicht vollstaendig ab (Backlog-Punkt 84). Die fixtureId entsteht
+   deterministisch aus Berlin-Datum und den starken Tokens beider Mannschaften in
+   Heim-vor-Gast-Reihenfolge - dieselben zwei Mannschaften am selben Tag ergeben immer dieselbe
+   ID, unabhaengig von Schreibweise und Quelle. Nur [a-z0-9_]: die ID landet ueber vorhandene
+   onclick-Handler in HTML-Attributen, ein Anfuehrungszeichen darin waere ein Fehler. */
+function fxId(datumBerlinIso, heim, gast){
+  var h=fxTokens(heim).slice().sort().join('');
+  var g=fxTokens(gast).slice().sort().join('');
+  var basis=String(datumBerlinIso||'').replace(/-/g,'')+'_'+h+'_'+g;
+  return 'fx'+basis.replace(/[^a-z0-9_]/g,'').slice(0,60);
+}
+/* Schnittmenge starker Tokens */
+function fxGemeinsam(a,b){
+  return a.filter(function(w){ return b.indexOf(w)>=0; });
+}
+/* Gleiche Identitaet im Sinn der Stufe 1: dieselbe Menge starker Tokens, in beliebiger
+   Reihenfolge. Bewusst KEIN indexOf-Teilstring: "Ajax" steckt in "Ajax Amsterdam", ist aber
+   nicht derselbe Beweis - genau diese Unschaerfe soll Stufe 1 nicht mehr durchlassen. */
+function fxGleich(a,b){
+  if(a.length!==b.length) return false;
+  var x=a.slice().sort().join('|'), y=b.slice().sort().join('|');
+  return x===y;
+}
+/* Wettbewerbsnamen vergleichen. Nur normalisierter Namensvergleich oder eine bereits belegte
+   Provider-Wettbewerbs-ID - NICHT aus Teamnamen raten (Bedingung 4 der Stufe 3). */
+function fxWbKompatibel(a,b){
+  var x=fxNorm(a), y=fxNorm(b);
+  if(!x || !y) return false;
+  return x===y;
+}
+/* ---- DER RESOLVER (Abschnitt 8a) ----
+   p  = ein offener Posten aus Ondos Liste {match, datum:'T.M.JJJJ', anpfiff:'HH:MM', wettbewerb}
+   fx = bereits ueber fxFixtureLesen() vereinheitlichte Fixtures EINER Quelle
+   Rueckgabe: { stufe:1|2|3, fixture } · { mehrdeutig:true, kandidaten:[...] } · null
+   Die Stufen laufen STRIKT nacheinander. Jede Stufe entscheidet abschliessend: genau ein
+   Kandidat -> Treffer, mehrere -> mehrdeutig (STOP, kein Weiterfallen), keiner -> naechste
+   Stufe. */
+function fxAufloesen(p, fx, alleOffenen){
+  var pIso=datumIso(p.datum);
+  if(!pIso) return null;
+  var pHeim=fxTokens(teamsAus(p.match).heim), pGast=fxTokens(teamsAus(p.match).gast);
+  var pZeit=String(p.anpfiff||'').match(/(\d{1,2})[:.](\d{2})/);
+  pZeit = pZeit ? (('0'+pZeit[1]).slice(-2)+':'+pZeit[2]) : '';
+  /* Kandidatenmenge: alle Fixtures derselben Quelle am selben Berlin-Datum mit Endstand. */
+  var tages=fx.filter(function(f){
+    return f.datumBerlin===pIso && String(f.roh.status||'')==='FT';
+  });
+  if(!tages.length) return null;
+
+  /* --- Stufe 1: starke Identitaet beider Mannschaften --- */
+  var s1=tages.filter(function(f){
+    return fxGleich(pHeim,f.heimTok) && fxGleich(pGast,f.gastTok);
+  });
+  if(s1.length===1) return { stufe:1, fixture:s1[0], zeitAbweichung:fxZeitDiff(pZeit,s1[0]) };
+  if(s1.length>1)  return fxMehrdeutig(s1, pZeit, 1);
+
+  /* --- Stufe 2: zwei unabhaengige Anker --- */
+  var s2=tages.filter(function(f){
+    return fxGemeinsam(pHeim,f.heimTok).length>0 && fxGemeinsam(pGast,f.gastTok).length>0;
+  });
+  if(s2.length===1) return { stufe:2, fixture:s2[0], zeitAbweichung:fxZeitDiff(pZeit,s2[0]) };
+  if(s2.length>1)  return fxMehrdeutig(s2, pZeit, 2);
+
+  /* --- Stufe 3: EIN Anker + Wettbewerb + exakte Zeit + Eindeutigkeit --- */
+  /* Bedingung 2: Anstosszeit muss auf BEIDEN Seiten vorhanden sein. */
+  if(!pZeit) return null;
+  /* Bedingung 1 verlangt einen EINDEUTIGEN Anker-Token. Die Begriffsbestimmung steht wortgleich
+     im Auftrag (Abschnitt 8a, Vorbereitung): "Ein 'eindeutiger Anker-Token' ist ein Token, das
+     in der Kandidatenmenge dieses Tages und dieser Heim-/Gast-Seite nur zu einem Team passt."
+     Hier gezaehlt ueber genau diese Kandidatenmenge (alle Fixtures derselben Quelle mit
+     Endstand an diesem nach Europe/Berlin umgerechneten Datum), getrennt nach Heim- und
+     Gastseite. Beispiel aus Ondos echtem Datenbestand vom 12.9.2026: 'athletic' steht auf der
+     Heimseite bei ZWEI Vereinen (Athletic Club und Charlton Athletic FC) und ist dort deshalb
+     KEIN eindeutiger Anker - 'lazio' und 'auxerre' stehen je nur bei einem und sind es. Auf
+     Stufe 1 und 2 wird die Eindeutigkeit dagegen ueber die vollstaendige PAARUNG entschieden
+     (genau ein Kandidat, siehe oben) - so verlangt es der Auftrag, und so bleibt
+     Athletic Bilbao - FC Elche auf Stufe 2 loesbar, obwohl 'athletic' fuer sich nicht
+     eindeutig ist. */
+  function tokenEindeutig(tok, seite){
+    var traeger=[];
+    tages.forEach(function(f){
+      var toks = (seite==='heim') ? f.heimTok : f.gastTok;
+      var name = (seite==='heim') ? fxNorm(f.heim) : fxNorm(f.gast);
+      if(toks.indexOf(tok)>=0 && traeger.indexOf(name)<0) traeger.push(name);
+    });
+    return traeger.length===1;
+  }
+  function ankerTokens(meine, f, seite){
+    return fxGemeinsam(meine, (seite==='heim')?f.heimTok:f.gastTok)
+      .filter(function(tk){ return tokenEindeutig(tk, seite); });
+  }
+  var s3=tages.filter(function(f){
+    if(!f.zeitBerlin || f.zeitBerlin!==pZeit) return false;                    /* Bedingung 2 */
+    if(!fxWbKompatibel(p.wettbewerb, f.wettbewerb)) return false;              /* Bedingung 4 */
+    var ankerHeim=ankerTokens(pHeim,f,'heim').length>0;
+    var ankerGast=ankerTokens(pGast,f,'gast').length>0;
+    return (ankerHeim || ankerGast);                                           /* Bedingung 1 */
+  });
+  if(!s3.length) return null;
+  if(s3.length>1) return fxMehrdeutig(s3, pZeit, 3);
+  var k=s3[0];
+  /* Bedingung 5: Gehoert die ANDERE Mannschaft der Quelle eindeutig zu einem anderen offenen
+     Spiel desselben Tages in Ondos Liste? Dann ist die Paarung nicht glaubwuerdig. */
+  var ankerIstHeim=ankerTokens(pHeim,k,'heim').length>0;
+  var quelleAnder = ankerIstHeim ? k.gastTok : k.heimTok;
+  var meinAnder   = ankerIstHeim ? pGast : pHeim;
+  var kollision=(alleOffenen||[]).some(function(q){
+    if(q===p || q.id===p.id) return false;
+    if(datumIso(q.datum)!==pIso) return false;
+    var qT=teamsAus(q.match);
+    return fxGemeinsam(quelleAnder, fxTokens(qT.heim)).length>0
+        || fxGemeinsam(quelleAnder, fxTokens(qT.gast)).length>0;
+  });
+  if(kollision) return null;
+  /* Bedingung 6: Gehoert MEINE andere Mannschaft eindeutig zu einem anderen Fixture des Tages? */
+  var kollision2=tages.some(function(f){
+    if(f===k) return false;
+    return fxGemeinsam(meinAnder, f.heimTok).length>0
+        || fxGemeinsam(meinAnder, f.gastTok).length>0;
+  });
+  if(kollision2) return null;
+  return { stufe:3, fixture:k, zeitAbweichung:false,
+           anker: ankerIstHeim ? ankerTokens(pHeim,k,'heim')[0] : ankerTokens(pGast,k,'gast')[0] };
+}
+/* Zeitabweichung Stufe 1/2 (Abschnitt 8a, Entscheidung 【NEU v4】): Eine abweichende
+   Anstosszeit blockiert Stufe 1/2 NICHT, solange die Paarung am selben Berlin-Datum eindeutig
+   ist - genau das ist hier schon bewiesen (s1.length===1 bzw. s2.length===1). Der Vorschlag
+   traegt den Hinweis dann sichtbar. Fehlt eine der beiden Zeiten, gilt das nicht als
+   Abweichung, sondern als unbekannt. */
+function fxZeitDiff(pZeit, f){
+  if(!pZeit || !f.zeitBerlin) return false;
+  return pZeit!==f.zeitBerlin;
+}
+function fxMehrdeutig(liste, pZeit, stufe){
+  /* Mehrere Kandidaten derselben Stufe: Nur wenn die Anstosszeit sie eindeutig aufloest, darf
+     zugeordnet werden (Abschnitt 8a). Sonst mehrdeutig - kein Raten.
+     BERICHTIGT im eigenen Trockentest (21.9.2026): Hier stand fest stufe:1, auch wenn die
+     Mehrdeutigkeit aus Stufe 2 oder 3 kam. Der Vorschlag haette dann eine staerkere Zuordnung
+     ausgewiesen, als tatsaechlich bewiesen war - und bei Stufe 3 waere ausserdem die
+     Provider-ID sofort gebunden worden, obwohl Abschnitt 8a das erst nach Ondos Uebernehmen
+     erlaubt. Die aufrufende Stufe wird jetzt durchgereicht. */
+  if(pZeit){
+    var genau=liste.filter(function(f){ return f.zeitBerlin===pZeit; });
+    if(genau.length===1) return { stufe:(stufe||1), fixture:genau[0], zeitAbweichung:false, ueberZeit:true };
+  }
+  return { mehrdeutig:true, kandidaten:liste };
+}
+
 /* Reine Funktion, kein Netzaufruf - eigens testbar. Gleicht die offenen Posten (ziel) gegen
    eine bereits vereinheitlichte Liste roher Spiele (fixtures) ab und liefert Ergebnisse in
    genau der Form, die verarbeite()/refLaufPruefen() von einem KI-Lauf erwarten.
@@ -2357,34 +2763,55 @@ function strukturAbgleich(ziel, fixtures, quelleUrl){
   function wettbewerbAus(x){
     return (x && (x.providerCompetitionName || x.wettbewerb)) || '';
   }
+  /* 🔴 UMGESTELLT 21.9.2026 (Backlog-Punkt 86, Auftrag Ondo, Abschnitt 8a): Die Zuordnung
+     laeuft nicht mehr ueber teamPasstZu() (normName + gegenseitiges indexOf), sondern ueber
+     fxAufloesen() - den dreistufigen Resolver oben. teamPasstZu()/tagesAbstand() bleiben
+     bewusst als Funktionen stehen (Regel 3, nicht geloescht) und werden von den Tests noch
+     als Vergleichsmassstab benutzt; der aktive Weg benutzt sie nicht mehr.
+     Warum: Am echten Datenbestand vom 12.9.2026 loeste die alte Regel 1 von 5 Problemfaellen.
+     Die Rueckgabeform bleibt Zeichen fuer Zeichen dieselbe (Array + .mehrdeutig + r._fixture),
+     kein bestehender Aufrufer muss angefasst werden. NEU sind nur die zusaetzlichen Felder
+     r._stufe, r._zuordnung und r._zeitAbweichung - additive Diagnose fuer die Vorschlagskarte. */
   var ergebnisse=[];
   var mehrdeutig=[];
+  var fxListe=(fixtures||[]).map(fxFixtureLesen);
   (ziel||[]).forEach(function(p){
-    var teams=teamsAus(p.match), pIso=datumIso(p.datum);
+    var pIso=datumIso(p.datum);
     if(!pIso) return;
-    var kandidaten=[];
-    for(var i=0;i<fixtures.length;i++){
-      var x=fixtures[i];
-      if(x.status!=='FT') continue;
-      if(tagesAbstand(pIso,x.datum)>1) continue;
-      if(teamPasstZu(teams.heim,x.heim) && teamPasstZu(teams.gast,x.gast)) kandidaten.push(x);
-    }
-    if(!kandidaten.length) return;
-    if(kandidaten.length>1){
+    var treffer=fxAufloesen(p, fxListe, ziel);
+    if(!treffer) return;
+    if(treffer.mehrdeutig){
       mehrdeutig.push({ id:p.id, match:p.match, datum:p.datum,
-        kandidaten:kandidaten.map(function(x){
-          return { heim:x.heim, gast:x.gast, torHeim:x.torHeim, torGast:x.torGast,
-            wettbewerb:wettbewerbAus(x), datum:x.datum };
+        kandidaten:treffer.kandidaten.map(function(k){
+          return { heim:k.heim, gast:k.gast, torHeim:k.roh.torHeim, torGast:k.roh.torGast,
+            wettbewerb:k.wettbewerb, datum:k.roh.datum };
         }) });
       return;
     }
-    var f=kandidaten[0];
+    var f=treffer.fixture.roh;
     var heim=f.torHeim, gast=f.torGast;
     var r={ id:p.id, status:'fertig', heim:heim, gast:gast, datum:p.datum,
       wettbewerb:wettbewerbAus(f)||p.wettbewerb||'', quelle:quelleUrl,
       verlaengerungGespielt:f.verlaengerung?'ja':'nein', verlaengerung:f.verlaengerung||'',
       torlos:(heim===0&&gast===0)?'bestaetigt':'nein' };
     if(f.halbzeit) r.halbzeit=f.halbzeit;
+    /* Additive Diagnose (Abschnitt 8a): Stufe, die zugeordnete Paarung im Wortlaut BEIDER
+       Seiten und eine etwaige Zeitabweichung. pruefBlock() zeigt das; die Messung beruehrt es
+       nicht. */
+    r._stufe = treffer.stufe;
+    r._zeitAbweichung = !!treffer.zeitAbweichung;
+    r._zuordnung = {
+      stufe: treffer.stufe,
+      meins: p.match,
+      quelle: (f.heim||'')+' - '+(f.gast||''),
+      anker: treffer.anker||'',
+      wettbewerb: wettbewerbAus(f)||'',
+      zeitMeins: String(p.anpfiff||''),
+      zeitQuelle: treffer.fixture.zeitBerlin||'',
+      zeitAbweichung: !!treffer.zeitAbweichung,
+      fixtureId: fxId(treffer.fixture.datumBerlin, f.heim, f.gast),
+      providerEventId: f.providerEventId||null
+    };
     /* NACHBESSERUNG 18.9.2026 (Backlog-Punkt 84, Teil B3): der passende Rohkandidat haengt
        intern (Unterstrich-Konvention wie bei espnLauf()s _espnRoh) am Ergebnis, damit ein
        Aufrufer (espnArchivLesen()) daraus eine Beweiskette fuer diesen Treffer bauen kann, ohne
@@ -2462,12 +2889,19 @@ function footballDataLauf(ziel){
   }).catch(function(){ return []; });
 }
 
-/* NICHT AUFGERUFEN seit 17.9.2026 (Backlog-Punkt 84, Schritt 5: "football-data.org als
+/* ~~NICHT AUFGERUFEN seit 17.9.2026 (Backlog-Punkt 84, Schritt 5: "football-data.org als
    Primaerquelle abschalten (505 von 505 Eintraegen ohne Treffer, belegt)"). Ersetzt durch
-   espnLauf() weiter unten. Funktion bewusst NICHT geloescht (Regel 3, dasselbe Vorgehen wie
-   bei footballDataLauf() selbst) - die Monatsdateien unter daten/schiri-ergebnisse/ werden von
-   der taeglichen GitHub-Actions-Automatik weiterhin gefuellt, dieser Lesepfad ist jederzeit
-   wieder anschliessbar.
+   espnLauf() weiter unten.~~
+   🔴 WIEDER AKTIV SEIT 21.9.2026 (Backlog-Punkt 86, Auftrag Ondo, Ziel A) - als SEKUNDAERE
+   Strukturquelle NACH ESPN, nicht als Primaerquelle. Die Abschaltung von 2026-09-17 war fuer
+   ihren damaligen Zweck richtig (als PRIMAERquelle traf football-data 0 von 505 Eintraegen),
+   hat aber eine zweite Wirkung gehabt, die damals niemand gemessen hat: Sie nahm der Kaskade
+   auch den FALLBACK. Belegt am 12.9.2026 - das ESPN-Archiv enthaelt fuer diesen Tag null
+   Spiele (die ESPN-Sammelautomatik lief erst ab 18.9.2026), daten/schiri-ergebnisse/2026-09.json
+   enthaelt alle zehn gesuchten. Zehn bereits vorhandene Ergebnisse gingen deshalb in den
+   KI-Notnagel. Der Grund, warum die alte Zahl "0 von 505" jetzt nicht mehr gilt, ist nicht die
+   Quelle, sondern die Zuordnung: Die 0 entstand mit teamPasstZu(), nicht mit dem Resolver aus
+   Abschnitt 8a. Funktion war bewusst NICHT geloescht (Regel 3) - genau dafuer.
    Ersetzte footballDataLauf() als Strukturweg seit 14.9.2026 (Backlog-Punkt 81, Ondos Auftrag
    "football-data.org-Platz von Live-Aufruf auf Archivdatei-Lesen umstellen"). Anlass: der
    Browser erreicht football-data.org strukturell nie (CORS-Befund 13.9.2026, siehe oben) -
@@ -2483,8 +2917,9 @@ function footballDataLauf(ziel){
    KI-Suche bleibt der Rueckfallweg. strukturAbgleich() UNVERAENDERT wiederverwendet - das
    Feldformat der Monatsdateien (datum, heim, gast, torHeim, torGast, status, ...) passt genau
    auf die Form, die strukturAbgleich() als "fixtures" erwartet. */
-function footballDataArchivLesen(ziel){
+function footballDataArchivLesen(ziel, cache){
   if(!(ziel&&ziel.length)) return Promise.resolve([]);
+  cache = cache || {};
   var monate=[];
   ziel.forEach(function(p){
     var iso=datumIso(p.datum);
@@ -2494,10 +2929,14 @@ function footballDataArchivLesen(ziel){
   });
   if(!monate.length) return Promise.resolve([]);
   return Promise.all(monate.map(function(monat){
+    /* 🔴 Backlog-Punkt 86 (Ziel A): Monatsdatei nur EINMAL je Prueflauf laden. Der Cache wird
+       von rundeLaufen() ueber alle Runden hinweg weitergereicht; ohne uebergebenen Cache
+       verhaelt sich die Funktion wie bisher und bleibt einzeln testbar. */
+    if(cache[monat]) return Promise.resolve(cache[monat]);
     return fetch('https://raw.githubusercontent.com/Ondo-Control/Ondo-Control/main/daten/schiri-ergebnisse/'+monat+'.json')
       .then(function(res){ return res.ok ? res.json() : { spiele:[] }; })
-      .then(function(d){ return Array.isArray(d.spiele) ? d.spiele : []; })
-      .catch(function(){ return []; });
+      .then(function(d){ var l=Array.isArray(d.spiele) ? d.spiele : []; cache[monat]=l; return l; })
+      .catch(function(){ cache[monat]=[]; return []; });
   })).then(function(listen){
     var fixtures=[].concat.apply([], listen);
     var ergebnisse = strukturAbgleich(ziel, fixtures, '');
@@ -2877,8 +3316,16 @@ function espnRohSchreiben(r, ziel){
    das kompakte beleg-Objekt aus dem passenden Rohkandidaten, ueber r._fixture aus
    strukturAbgleich() oben) - espnRohSchreiben() greift dadurch jetzt auch fuer Archivtreffer,
    nicht nur fuer Live-ESPN-Funde. Vorher blieb r._espnRoh hier immer unbesetzt. */
-function espnArchivLesen(ziel){
+function espnArchivLesen(ziel, cache){
   if(!(ziel&&ziel.length)) return Promise.resolve([]);
+  /* 🔴 Backlog-Punkt 86 (Ziel A, Auftrag Ondo: "Monatsdateien innerhalb desselben Prueflaufs
+     nur einmal laden/cachen"): Diese Funktion hatte als einzige Strukturquelle KEINEN Cache -
+     im eigenen Orchestrierungstest ueber Ondos zehn echte Spiele vom 12.9.2026 wurde dieselbe
+     Monatsdatei deshalb in jeder Runde neu geladen (zwei Runden, weil je Runde hoechstens fuenf
+     Spiele geprueft werden). Der Cache wird von rundeLaufen() ueber alle Runden weitergereicht;
+     ohne uebergebenen Cache verhaelt sich die Funktion genau wie bisher und bleibt einzeln
+     testbar - gleiche Bauart wie bei footballDataArchivLesen(). */
+  cache = cache || {};
   var monate=[];
   ziel.forEach(function(p){
     var iso=datumIso(p.datum);
@@ -2888,10 +3335,11 @@ function espnArchivLesen(ziel){
   });
   if(!monate.length) return Promise.resolve([]);
   return Promise.all(monate.map(function(monat){
+    if(cache[monat]) return Promise.resolve(cache[monat]);
     return fetch('https://raw.githubusercontent.com/Ondo-Control/Ondo-Control/main/daten/espn-ergebnisse/'+monat+'.json')
       .then(function(res){ return res.ok ? res.json() : { spiele:[] }; })
-      .then(function(d){ return Array.isArray(d.spiele) ? d.spiele : []; })
-      .catch(function(){ return []; });
+      .then(function(d){ var l=Array.isArray(d.spiele) ? d.spiele : []; cache[monat]=l; return l; })
+      .catch(function(){ cache[monat]=[]; return []; });
   })).then(function(listen){
     var fixtures=[].concat.apply([], listen);
     var ergebnisse = strukturAbgleich(ziel, fixtures, '');
@@ -3355,13 +3803,66 @@ function vorhersageGehirn(gehirn, liste, marktlage){
 }
 
 /* ================= VORHERSAGE-LAUF (v19 Hauptknopf) ================= */
+/* ================= VORHERSAGE-LAUF: CHECKPOINT + RESUME (Backlog-Punkt 86, Abschnitt 6b,
+   Auftrag Ondo 21.9.2026) =================
+   Ondos Meldung vom 20.9.2026 nennt ausdruecklich Prueflauf UND Vorhersage. Der Befund am Code
+   (21.9.2026, alles am main nachgeprueft, nicht uebernommen):
+   - vorhersagen() speicherte ERST GANZ AM ENDE (ein save() nach dem Anlegen der Eintraege).
+     Wurde die Seite vorher angehalten, war der ganze Lauf weg - einschliesslich bereits
+     bezahlter Modellantworten.
+   - Das Datum der Eintraege entstand ebenfalls erst am Ende (new Date().toLocaleDateString).
+     Ein Lauf, der vor Mitternacht startete und nach Mitternacht fertig wurde, schrieb das
+     falsche Spieldatum.
+   - Die Spielliste traegt selbst kein Datum (spielListeHolen liefert match/wettbewerb/anpfiff/
+     stufe), es gab also gar keine feste Bezugszeit.
+   - kiAnfrageAktiv lebte nur im Arbeitsspeicher: nach einem Neuladen war die Sperre weg.
+   Neu: ein persistenter Run mit unveraenderlichem Spieltag-Snapshot, Checkpoints vor und nach
+   jedem externen Schritt, runId/attemptId-Schutz gegen verspaetete alte Antworten,
+   idempotenten Eintrags-IDs und einem harten Anstoss-Schutz.
+   NICHT veraendert (Abschnitt 10): Auftragstexte der Gehirne, Modelle, marktlageHolen(),
+   Websuche-Obergrenzen, STUFEN, maerkteBauen(), Wahrscheinlichkeiten, Maerkte. Sonnet und Flash
+   starten weiterhin PARALLEL (Promise.all) - die Checkpoints stellen den Lauf ausdruecklich
+   nicht auf nacheinander um. */
+
+/* Berlin-Ortszeit -> absoluter Zeitpunkt (ms). Ueber den tatsaechlichen Zonenversatz zu genau
+   diesem Zeitpunkt, nicht ueber eine feste Stundenzahl - im Sommer +2, im Winter +1. */
+function fxBerlinZuMs(datumIso, hhmm){
+  var roh=Date.parse(datumIso+'T'+hhmm+':00Z');
+  if(isNaN(roh)) return null;
+  var b=fxBerlin(new Date(roh).toISOString());
+  if(!b) return null;
+  var gezeigt=Date.parse(b.datum+'T'+b.zeit+':00Z');
+  if(isNaN(gezeigt)) return null;
+  return roh-(gezeigt-roh);
+}
+/* Heutiges Datum in Europe/Berlin als ISO und in der im Projekt ueblichen Schreibweise. */
+function fxHeuteBerlin(){
+  var b=fxBerlin(new Date().toISOString());
+  if(!b) return { iso:'', de:heuteStr() };
+  var t=b.datum.split('-');
+  return { iso:b.datum, de:Number(t[2])+'.'+Number(t[1])+'.'+t[0] };
+}
+function vorhersageRunAktiv(){
+  return !!(state.vorhersageRun && state.vorhersageRun.status==='laufend');
+}
+/* Wie pruefRunEntsperren(): Ein beim Start als 'laufend' vorgefundener Run kann nicht mehr
+   laufen und wird fortsetzbar gemacht - keine Zombie-Sperre. */
+function vorhersageRunEntsperren(){
+  if(state.vorhersageRun && state.vorhersageRun.status==='laufend'){
+    state.vorhersageRun.status='pausiert';
+  }
+}
 function vorhersagen(btn){
   if(!hatSonnet() && !hatGemini()){
     var f0=document.getElementById('ladeFehler'); if(f0) f0.textContent=t('noKey'); return;
   }
   /* v19.9.0 (Backlog-Punkt 77): Sperre gegen Ueberschneidung mit einem laufenden
-     Trainingsraum-Lauf, siehe kiAnfrageAktiv oben. */
-  if(kiAnfrageAktiv){
+     Trainingsraum-Lauf, siehe kiAnfrageAktiv oben.
+     🔴 21.9.2026 (Backlog-Punkt 86, Abschnitt 6b): Die Sperre ist jetzt ZUSAETZLICH persistent.
+     kiAnfrageAktiv bleibt unveraendert bestehen und schuetzt weiterhin gegen den Trainingsraum
+     im selben Arbeitsspeicher; state.vorhersageRun.status schuetzt daneben gegen einen zweiten
+     Lauf aus einem neu gerenderten Knopf und ueberlebt ein Neuladen. */
+  if(kiAnfrageAktiv || vorhersageRunAktiv()){
     var fB=document.getElementById('ladeFehler'); if(fB) fB.textContent=t('kiBusy'); return;
   }
   kiAnfrageAktiv = true;
@@ -3373,27 +3874,150 @@ function vorhersagen(btn){
      nur eine Uhrzeit-Differenz um den bestehenden Ablauf herum. */
   var startZeitV = Date.now();
 
-  spielListeHolen().then(function(liste){
-    if(!liste.length) throw new Error(t('loadFail'));
+  /* --- Schritt 0: fortsetzbaren Run erkennen oder neuen anlegen --- */
+  var lauf = (state.vorhersageRun && state.vorhersageRun.status==='pausiert')
+    ? state.vorhersageRun : null;
+  if(!lauf){
+    lauf = { runId:'p'+Date.now(), status:'laufend', gestartet:Date.now(), aktualisiert:Date.now(),
+             snapshot:null, marktlage:null, marktlageGeholt:false,
+             schritte:{}, materialisiert:{}, ausgelassen:[] };
+  } else {
+    lauf.status='laufend'; lauf.aktualisiert=Date.now();
+  }
+  state.vorhersageRun = lauf;
+
+  /* Anstoss-Schutz (Abschnitt 6b): Welche Spiele des Snapshots sind JETZT noch nicht
+     angepfiffen? Regel wortgleich aus dem Auftrag: jetzt >= geplanter Anstoss -> dieses Spiel
+     wird an KEIN noch nicht gestartetes Gehirn mehr geschickt. Keine Kulanz nach Anpfiff. */
+  function nochOffen(){
+    var jetzt=Date.now();
+    return (lauf.snapshot||[]).filter(function(s){
+      return !s.anstossMs || jetzt < s.anstossMs;
+    });
+  }
+  function angepfiffene(){
+    var jetzt=Date.now();
+    return (lauf.snapshot||[]).filter(function(s){
+      return s.anstossMs && jetzt >= s.anstossMs;
+    });
+  }
+
+  /* --- Schritt 1: Spielliste + unveraenderlicher Spieltag-Snapshot --- */
+  var schritt1 = lauf.snapshot
+    ? Promise.resolve(lauf.snapshot.map(function(s){ return s.spiel; }))
+    : spielListeHolen().then(function(liste){
+        if(!liste.length) throw new Error(t('loadFail'));
+        /* 🔴 SPIELTAG-SNAPSHOT (Abschnitt 6b, 【NEU v3】): Sobald die Liste steht, bekommt der
+           Run einen UNVERAENDERLICHEN Spieltag in Europe/Berlin. Jeder spaetere Eintrag nimmt
+           Datum und Anpfiff aus diesem Snapshot - nie aus einem beim Abschluss neu berechneten
+           "heute". Genau das war der Mitternachtsfehler. */
+        var heuteB=fxHeuteBerlin();
+        lauf.snapshot = liste.map(function(s){
+          var zeit=String(s.anpfiff||'').match(/(\d{1,2})[:.](\d{2})/);
+          var hhmm = zeit ? (('0'+zeit[1]).slice(-2)+':'+zeit[2]) : '';
+          var teams=teamsAus(s.match||'');
+          return {
+            spiel:s,
+            fixtureId: heuteB.iso ? fxId(heuteB.iso, teams.heim, teams.gast) : '',
+            match:s.match||'', wettbewerb:s.wettbewerb||'', anpfiffBerlin:hhmm,
+            stufe:(s.stufe||null),
+            spieltagBerlinIso:heuteB.iso, spieltagDe:heuteB.de,
+            anstossMs: (heuteB.iso && hhmm) ? fxBerlinZuMs(heuteB.iso, hhmm) : null
+          };
+        });
+        return checkpointSave().then(function(){ return liste; });
+      });
+
+  schritt1.then(function(liste){
     /* v19.10.0 (Backlog-Punkt 79): EINE gemeinsame Recherche fuer die ganze Liste, beiden
        Gehirnen gleich mitgegeben - Begruendung bei marktlageHolen(). state.marktlageAktiv
        ist Ondos Ausschalter fuer die laufenden Kosten, Standard an (seine Entscheidung
        "Ja fuer beides"). */
     btn.textContent=t('predResearch');
-    var lageAnfrage = (state.marktlageAktiv!==false) ? marktlageHolen(liste) : Promise.resolve(null);
+    /* --- Schritt 2: Marktlage ---
+       Ist sie bereits gespeichert, wird GENAU DIESER Stand wiederverwendet und nicht neu
+       recherchiert (Abschnitt 6b) - eine bereits bezahlte Websuche wird nach einer
+       Unterbrechung nicht noch einmal bezahlt. Fehlt sie, wird sie nur fuer die zu diesem
+       Zeitpunkt noch nicht angepfiffenen Spiele geholt. */
+    var offenJetzt = nochOffen();
+    var lageAnfrage;
+    if(lauf.marktlageGeholt){
+      lageAnfrage = Promise.resolve(lauf.marktlage);
+    } else if(state.marktlageAktiv!==false && offenJetzt.length){
+      lageAnfrage = marktlageHolen(offenJetzt.map(function(s){ return s.spiel; })).then(function(ml){
+        lauf.marktlage=ml; lauf.marktlageGeholt=true; lauf.aktualisiert=Date.now();
+        return checkpointSave().then(function(){ return ml; });
+      });
+    } else {
+      lauf.marktlage=null; lauf.marktlageGeholt=true;
+      lageAnfrage = checkpointSave().then(function(){ return null; });
+    }
     return lageAnfrage.then(function(marktlage){
       btn.textContent=t('predBrain');
+      /* --- Schritt 3: die beiden Gehirne, PARALLEL wie bisher ---
+         Die Nummerierung im Auftrag bedeutet ausdruecklich keine Reihenfolge; Promise.all
+         bleibt. Neu je Gehirn: ein Checkpoint VOR dem Netzaufruf (runId, brain, attemptId,
+         startedAt, eligibleFixtureIds) und die Pruefung JEDER eintreffenden Antwort gegen
+         genau diesen Schritt. */
+      function gehirnSchritt(gehirn){
+        var sch = lauf.schritte[gehirn];
+        /* Bereits erfolgreich gespeicherte Antwort: NICHT erneut aufrufen (Abschnitt 6b). */
+        if(sch && sch.status==='fertig') return Promise.resolve({ gehirn:gehirn, vorher:sch.antwort, alt:true });
+        /* Safari im Hintergrund: diesen Gehirn-Aufruf gar nicht erst starten (Abschnitt 6b).
+           Der Schritt bleibt ohne Status stehen und wird beim Fortsetzen nachgeholt -
+           bezahlt wurde nichts, verloren geht nichts. */
+        if(seiteVerlassen) return Promise.resolve({ gehirn:gehirn, vorher:null, veraltet:true });
+        var offenFuerDiesenSchritt = nochOffen();
+        if(!offenFuerDiesenSchritt.length){
+          /* Alle Spiele angepfiffen - dieses Gehirn wird gar nicht mehr aufgerufen. */
+          lauf.schritte[gehirn]={ status:'verfallen', attemptId:null, startedAt:Date.now() };
+          return checkpointSave().then(function(){ return { gehirn:gehirn, vorher:null, verfallen:true }; });
+        }
+        var attemptId='a'+Date.now()+'_'+gehirn+'_'+Math.floor(Math.random()*1e6);
+        lauf.schritte[gehirn]={ status:'laufend', attemptId:attemptId, startedAt:Date.now(),
+          eligibleFixtureIds:offenFuerDiesenSchritt.map(function(s){ return s.fixtureId; }) };
+        lauf.aktualisiert=Date.now();
+        return checkpointSave().then(function(){
+          return vorhersageGehirn(gehirn, offenFuerDiesenSchritt.map(function(s){ return s.spiel; }), marktlage);
+        }).then(function(vorher){
+          /* 🔴 SCHUTZ GEGEN VERALTETE ANTWORTEN (Abschnitt 6b): Gehoeren runId UND attemptId
+             noch zum gueltigen Schritt? Ein alter Promise aus einem frueheren Run kann so
+             nichts mehr in state schreiben. */
+          var jetzt=state.vorhersageRun;
+          if(!jetzt || jetzt.runId!==lauf.runId) return { gehirn:gehirn, vorher:null, veraltet:true };
+          var s2=jetzt.schritte[gehirn];
+          if(!s2 || s2.attemptId!==attemptId) return { gehirn:gehirn, vorher:null, veraltet:true };
+          /* Die Antwort wird ZUERST als Run-Ergebnis persistent gesichert und erst danach in
+             kiProtokoll materialisiert. Ein Absturz dazwischen fuehrt nicht zu einem erneuten
+             Modellaufruf. */
+          s2.status='fertig'; s2.antwort=vorher; s2.fertigAm=Date.now();
+          lauf.aktualisiert=Date.now();
+          return checkpointSave().then(function(){ return { gehirn:gehirn, vorher:vorher }; });
+        });
+      }
       var jobs=[], namen=[];
-      if(hatSonnet()){ jobs.push(vorhersageGehirn('sonnet', liste, marktlage)); namen.push('sonnet'); }
-      if(hatGemini()){ jobs.push(vorhersageGehirn('flash', liste, marktlage));  namen.push('flash'); }
-      return Promise.all(jobs).then(function(res){ return { liste:liste, res:res, namen:namen, marktlage:marktlage }; });
+      if(hatSonnet()){ jobs.push(gehirnSchritt('sonnet')); namen.push('sonnet'); }
+      if(hatGemini()){ jobs.push(gehirnSchritt('flash'));  namen.push('flash'); }
+      return Promise.all(jobs).then(function(res){
+        return { liste:liste, res:res.map(function(x){ return x.vorher; }), namen:namen,
+                 marktlage:marktlage, roh:res };
+      });
     });
   }).then(function(paket){
     if(!state.kiProtokoll) state.kiProtokoll=[];
-    var heuteD=new Date().toLocaleDateString('de-DE');
+    /* 🔴 21.9.2026 (Backlog-Punkt 86, Abschnitt 6b): Das Datum kommt jetzt aus dem
+       UNVERAENDERLICHEN Spieltag-Snapshot, nicht mehr aus einem hier neu berechneten "heute".
+       Ein Lauf, der vor Mitternacht startet und nach Mitternacht fertig wird, schreibt damit
+       weiterhin den richtigen Spieltag. */
     var neu=[], fehler=[];
+    var snapNach = {};
+    (lauf.snapshot||[]).forEach(function(s){ snapNach[normName(s.match)]=s; });
     paket.res.forEach(function(vorher, i){
       var gehirn=paket.namen[i];
+      var rohI=(paket.roh||[])[i]||{};
+      if(rohI.verfallen){ fehler.push(gehirn+': '+t('vorhersageAngepfiffen')); return; }
+      if(rohI.veraltet) return;                       /* alter Promise - nichts schreiben */
+      if(lauf.materialisiert && lauf.materialisiert[gehirn]) return;   /* schon geschrieben */
       if(!vorher || vorher._fehler){ fehler.push(gehirn+': '+((vorher&&vorher._fehler)||'?')); return; }
       vorher.forEach(function(v, idx){
         var h=Math.max(0,Math.round(Number(v.heim))), g=Math.max(0,Math.round(Number(v.gast)));
@@ -3414,6 +4038,36 @@ function vorhersagen(btn){
            einen eigenen Eintrag fuer dasselbe Spiel haben, nur ein zweiter Lauf desselben
            Gehirns am selben Tag fuer dasselbe Spiel wird uebersprungen. Keine Begrenzung der
            Laeufe pro Tag - nur echte Duplikate werden nicht angelegt. */
+        /* 🔴 21.9.2026 (Backlog-Punkt 86, Abschnitt 6b): Spieltag und Anstoss kommen aus dem
+           Snapshot. Fehlt ein Spiel dort (das Gehirn hat einen Namen geliefert, der in der
+           Liste nicht vorkommt), wird es NICHT angelegt - lieber kein Eintrag als einer mit
+           geratenem Datum (Art. 11). */
+        var snap = snapNach[normName(match)];
+        if(!snap) return;
+        var heuteD = snap.spieltagDe;
+        /* Anstoss-Schutz auch beim Schreiben. Massgeblich ist NICHT der Augenblick des
+           Schreibens, sondern der Augenblick, in dem die Antwort dieses Gehirns gesichert
+           wurde (schritt.fertigAm).
+           🔴 BERICHTIGT im eigenen Test O2 (21.9.2026): Hier stand Date.now(). Damit verlor
+           der Sonderfall aus Abschnitt 6b seinen Sinn - Sonnet antwortet VOR Anpfiff, die
+           Antwort wird persistent gesichert, beim Fortsetzen ist das Spiel angepfiffen, und
+           beim Materialisieren warf Date.now() genau diese bereits bezahlte, rechtzeitig
+           entstandene Vorhersage wieder weg. Der Auftrag verlangt das Gegenteil: "Sonnet
+           bleibt erhalten und wird NICHT erneut aufgerufen". Gemessen: 0 statt 1 Eintrag.
+           Die Schutzwirkung bleibt vollstaendig - ein Gehirn, dessen Antwort erst NACH dem
+           Anpfiff kam oder das gar nicht mehr aufgerufen wurde, bekommt weiterhin keinen
+           Eintrag. Zusaetzlich wird geprueft, ob dieses Spiel bei diesem Schritt ueberhaupt
+           zugelassen war (eligibleFixtureIds, Abschnitt 6b). */
+        var schrittG = (lauf.schritte && lauf.schritte[gehirn]) || {};
+        var zeitpunktG = schrittG.fertigAm || Date.now();
+        var erlaubtG = !schrittG.eligibleFixtureIds ||
+                       schrittG.eligibleFixtureIds.indexOf(snap.fixtureId)>=0;
+        if((snap.anstossMs && zeitpunktG >= snap.anstossMs) || !erlaubtG){
+          if(!lauf.ausgelassen.some(function(a){ return a.match===match && a.gehirn===gehirn; })){
+            lauf.ausgelassen.push({ match:match, gehirn:gehirn, grund:'angepfiffen' });
+          }
+          return;
+        }
         var istDuplikat = state.kiProtokoll.some(function(e){
           return e.aera==='v19' && e.herkunft===gehirn && e.datum===heuteD && normName(e.match)===normName(match);
         });
@@ -3424,8 +4078,22 @@ function vorhersagen(btn){
            diese Felder dem falschen Spiel zugeschrieben. Jetzt Nachschlagen ueber den Spielnamen
            (gleiche Namensvarianten-Logik wie bei S1/Punkt 37). Kein Treffer: Felder bleiben leer. */
         var spielGefunden = paket.liste.find(function(s){ return normName(s.match)===normName(match); });
+        /* 🔴 IDEMPOTENTE EINTRAGS-ID, 21.9.2026 (Backlog-Punkt 86, Abschnitt 6b): Bisher
+           'v'+Date.now()+'_'+gehirn+'_'+idx - bei einem Resume waere das eine NEUE ID fuer
+           dasselbe Spiel gewesen, also ein zweiter Eintrag. Jetzt eindeutig ueber
+           runId + gehirn + fixtureId; derselbe Lauf erzeugt fuer dieselbe Kombination nie
+           einen zweiten Eintrag. Zusaetzlich steht unten ein ausdruecklicher Existenztest.
+           FORMAT: weiterhin 'v' + [a-z0-9_] - e.id wird an mehreren Stellen in onclick-Attribute
+           geschrieben (logMarktSet, logParken, logLoeschen) und ausserdem in state.bets
+           (kiProtokollId/kiProtokollIds), state.vorhersagen.ids, p.eintraege und den
+           Messdaten-Export gelesen. Alle diese Leser behandeln die ID als undurchsichtige
+           Zeichenkette; ein Anfuehrungszeichen darf nie hineingeraten, deshalb enthaelt
+           fxId() ausschliesslich [a-z0-9_]. */
+        var eintragId='v'+lauf.runId+'_'+gehirn+'_'+(snap.fixtureId||('i'+idx));
+        if(state.kiProtokoll.some(function(e){ return e.id===eintragId; })) return;
         var eintrag={
-          id:'v'+Date.now()+'_'+gehirn+'_'+idx,
+          id:eintragId,
+          fixtureId:snap.fixtureId||'',
           aera:'v19',
           /* v19.8.0 (Backlog-Punkt F): Ab hier traegt jeder Eintrag die Codeversion, unter der
              er entstanden ist. aera ist dafuer zu grob — sie umfasst die ganze v19-Reihe.
@@ -3464,17 +4132,54 @@ function vorhersagen(btn){
         neu.push(eintrag);
       });
     });
+    /* Jedes Gehirn, dessen Antwort hier verarbeitet wurde, ist damit materialisiert - ein
+       spaeteres Resume legt fuer dieselbe Kombination keinen zweiten Eintrag an. */
+    paket.namen.forEach(function(g, i){
+      var rohI=(paket.roh||[])[i]||{};
+      if(rohI.veraltet) return;
+      if(!lauf.materialisiert) lauf.materialisiert={};
+      lauf.materialisiert[g]=true;
+    });
+    /* Sichtbarer Hinweis, wenn ein Spiel wegen Anpfiff ausgelassen wurde bzw. nur EIN Gehirn
+       es vor Anpfiff geschafft hat (Abschnitt 6b, Sonderfall). Keine kuenstliche zweite
+       Vorhersage - das waere eine erfundene Messung. */
+    var ausgelassenTxt='';
+    if(lauf.ausgelassen && lauf.ausgelassen.length){
+      var namenA=[]; lauf.ausgelassen.forEach(function(a){ if(namenA.indexOf(a.match)<0) namenA.push(a.match); });
+      ausgelassenTxt = ' · '+t('vorhersageAngepfiffen')+': '+namenA.join(', ');
+    }
+    var nurEins = paket.namen.length>1 && neu.length>0 &&
+      paket.namen.some(function(g){ return !neu.some(function(e){ return e.herkunft===g; }); });
     state.vorhersagen = { datum:heuteStr(), ids:neu.map(function(e){return e.id;}) };
     state.vorschlaegeInfo = t('kiOf')+': '+heuteStr()+
       ' · '+t('refDauer')+' '+Math.round((Date.now()-startZeitV)/1000)+' s'+
       ' · '+(paket.marktlage ? t('marktlageInfo').replace('{a}',paket.marktlage.length).replace('{b}',paket.liste.length) : t('marktlageAus'))+
+      ausgelassenTxt+(nurEins?(' · '+t('vorhersageEinGehirn')):'')+
       (fehler.length?(' · ⚠ '+fehler.join(' · ')):'');
-    save();
+    /* Lauf schliessen und die persistente Sperre freigeben - aber nur, wenn wirklich jeder
+       Gehirn-Schritt zu Ende gekommen ist. Wurde ein Schritt wegen App-Wechsel gar nicht erst
+       gestartet (seiteVerlassen) oder ist eine veraltete Antwort zurueckgekommen, bleibt der
+       Lauf 'pausiert' und damit fortsetzbar; die bereits gespeicherten Antworten und
+       Eintraege bleiben erhalten und werden nicht erneut bezahlt. */
+    var restOffen = paket.namen.some(function(g){
+      var s=lauf.schritte[g];
+      return !(s && (s.status==='fertig' || s.status==='verfallen'));
+    });
+    lauf.status = restOffen ? 'pausiert' : 'fertig';
+    lauf.aktualisiert=Date.now();
+    checkpointSave();
     kiAnfrageAktiv = false;
     btn.disabled=false; btn.textContent=t('predBtn');
     render();
   }).catch(function(e){
+    /* Fehlschlag: Die Sperre wird freigegeben, der Run bleibt aber als 'pausiert' stehen -
+       bereits bezahlte Antworten sind gespeichert und gehen beim naechsten Klick nicht
+       verloren, sondern werden fortgesetzt. */
     kiAnfrageAktiv = false;
+    if(state.vorhersageRun && state.vorhersageRun.status==='laufend'){
+      state.vorhersageRun.status='pausiert';
+      checkpointSave();
+    }
     btn.disabled=false; btn.textContent=t('predBtn');
     var el=document.getElementById('ladeFehler');
     if(el) el.textContent=(e&&e.message?e.message:'?');
@@ -4208,6 +4913,16 @@ function ergebnissePruefen(btn){
   var offeneP = (state.kiProtokoll||[]).filter(function(e){
     return e.aera==='v19' && e.status==='offen' && !e.geparkt;
   });
+  /* 🔴 ECHTE LAUFSPERRE, 21.9.2026 (Backlog-Punkt 86, Abschnitt 7): Bis hierher haftete der
+     Laufzustand nur am DOM-Knopf (btn.disabled). render() erzeugt aber einen NEUEN, freien
+     Knopf - ein Reiterwechsel waehrend eines Laufs konnte deshalb einen zweiten, parallelen
+     Lauf starten, der dieselben Spiele noch einmal bei denselben Modellen anfragt. Die Sperre
+     liegt jetzt in state und ueberlebt render() und Neuladen. */
+  if(pruefRunAktiv()){
+    var fB=document.getElementById('pruefStatus');
+    if(fB) fB.textContent=t('pruefLaeuft');
+    return;
+  }
   /* Doppelte Spiele nur einmal abfragen: beide Gehirne teilen sich denselben Endstand */
   var spiele={}, posten=[];
   offeneP.forEach(function(e){
@@ -4224,11 +4939,54 @@ function ergebnissePruefen(btn){
       tipp:b.tipp||'', zustand:'offen', gefragt:false });
   });
 
+  /* 🔴 STABILE SPIELIDENTITAET je Posten (Abschnitt 8) und der persistente Jobzustand
+     (Abschnitt 5). Zwei Wirkungen, beide von Ondo ausdruecklich verlangt:
+     1. Ein Spiel, dessen Vorschlag Ondo bewusst IGNORIERT hat, erscheint nicht beim naechsten
+        automatischen Lauf sofort wieder identisch. Es bleibt ueber "erneut pruefen"
+        (pruefErneut) jederzeit wieder aufnehmbar - nur eben nicht von selbst.
+     2. Ein Spiel, fuer das bereits ein gueltiger Vorschlag vorliegt, wird nicht noch einmal
+        gesucht (Ziel A: "Ein bereits vorhandener gueltiger Vorschlag darf nicht erneut gesucht
+        werden"). */
+  posten.forEach(function(p){
+    var teams=teamsAus(p.match||'');
+    var iso=datumIso(p.datum||'');
+    p.fixtureId = iso ? fxId(iso, teams.heim, teams.gast) : '';
+  });
+  posten = posten.filter(function(p){
+    var job=jobHolen(p.fixtureId);
+    if(!job) return true;
+    if(job.zustand==='ignoriert' || job.zustand==='uebernommen') return false;
+    if(job.zustand==='vorschlag') return false;
+    return true;
+  });
+
   var st=document.getElementById('pruefStatus');
   if(!posten.length){ if(st) st.textContent=t('noOpen'); return; }
   btn.disabled=true;
   if(st) st.textContent='';
-  state.pruefListe=[]; state.pruefBilanz=null;
+  /* 🔴 KEIN state.pruefListe=[] MEHR (Abschnitt 5, der Kern von Ondos Meldung vom 20.9.2026).
+     Ein neuer Prueflauf vernichtete bisher JEDEN bereits gefundenen Vorschlag - auch die, die
+     er in dieser Runde gar nicht mehr sucht. Entfernt werden jetzt nur die Vorschlaege der
+     Spiele, die dieser Lauf tatsaechlich erneut prueft; alles andere bleibt unangetastet
+     stehen, bis Ondo es uebernimmt oder ignoriert. */
+  var wiederIds={};
+  posten.forEach(function(p){ if(p.fixtureId) wiederIds[p.fixtureId]=true; });
+  state.pruefListe=(state.pruefListe||[]).filter(function(v){
+    return !(v.fixtureId && wiederIds[v.fixtureId]);
+  });
+  state.pruefBilanz=null;
+  /* Laufsperre setzen und sofort persistieren - ab hier gilt sie auch nach einem Neuladen.
+     FORTSETZEN statt neu anfangen (Abschnitt 6): Steht ein Run auf 'pausiert' - unterbrochen
+     durch App-Wechsel, Neuladen oder einen Fehler -, behaelt der fortgesetzte Lauf dessen
+     feste runId. Fortgesetzt wird beim ersten offenen Schritt: Spiele mit bereits gueltigem
+     Vorschlag, uebernommene und ignorierte sind oben schon aus posten herausgefiltert, werden
+     also nicht noch einmal gesucht. */
+  var altLauf = (state.pruefRun && state.pruefRun.status==='pausiert') ? state.pruefRun : null;
+  state.pruefRun = { runId: altLauf ? altLauf.runId : ('r'+Date.now()), status:'laufend',
+                     gestartet: altLauf ? altLauf.gestartet : Date.now(),
+                     aktualisiert:Date.now(), runde:0, fortschritt:'',
+                     fortgesetzt: altLauf ? true : false };
+  checkpointSave();
   pruefStark = { anfragen:0, modell:'', fallback:false, grund:'' };
   var runde=0, MAXR=6;
   /* Teil 4 des Auftrags vom 3.9.2026 (reine Diagnose, kein Backlog-Punkt): die tatsaechliche
@@ -4245,6 +5003,17 @@ function ergebnissePruefen(btn){
   /* Dasselbe Prinzip wie espnCache, fuer die zweite Strukturquelle (Backlog-Punkt 84,
      "UEFA-/openfootball-Luecke weiterverfolgen", openligaLauf() oben). */
   var openligaCache = {};
+  /* 🔴 Backlog-Punkt 86 (Ziel A, "Monatsdateien innerhalb desselben Prueflaufs nur einmal
+     laden/cachen"): Dasselbe Prinzip wie espnCache/openligaCache, jetzt auch fuer die
+     football-data-Monatsdateien. Ohne ihn laedt jede der bis zu MAXR Runden dieselbe
+     Monatsdatei erneut - bei sechs Runden sechsmal dieselben rund 100 KB. */
+  var fdCache = {};
+  /* Monatsdateien des ESPN-Archivs, ebenfalls nur einmal je Prueflauf (siehe espnArchivLesen). */
+  var espnArchivCache = {};
+  /* 🔴 Backlog-Punkt 86: Zaehlt die tatsaechlichen KI-Schiedsrichter-Aufrufe dieses Prueflaufs -
+     gemessen, nicht geschaetzt. Landet in state.pruefBilanz und ist damit die Zahl, die der
+     Lieferbericht nennt (Kostenregel, Abschnitt 4). */
+  var pruefKiAufrufe = 0;
 
   function tageAbstand(a,b){
     function z(s){ var m=String(s||'').match(/(\d{1,2})\.(\d{1,2})\.(\d{4})/); if(!m) return null;
@@ -4281,6 +5050,14 @@ function ergebnissePruefen(btn){
     var p=null;
     for(var i=0;i<ziel.length;i++){ if(ziel[i].id===id){ p=ziel[i]; break; } }
     if(!p) return;
+    /* 🔴 21.9.2026 (Backlog-Punkt 86): Die Resolver-Diagnose einer Strukturquelle (Stufe, beide
+       Paarungen, Zeitabweichung) wird hier an den Posten gehaengt, damit pruefAuswerten() sie
+       an den Vorschlag weitergeben kann. Rein additiv - ein KI-Lauf bringt sie nicht mit und
+       laesst das Feld einfach leer. */
+    if(r._zuordnung && !p.zuordnung){
+      p.zuordnung = r._zuordnung;
+      p.zuordnung.anbieter = String(modellGenutzt||'struktur');
+    }
     /* Backlog-Punkt 64 (28.8.2026): Die rohe Schiedsrichter-Antwort wird ab hier
        mitgeschrieben — an JEDEM Eintrag, den diese Runde betrifft, unabhaengig vom
        Status (fertig/laeuft/fehlt), nicht nur bei einem Fehlschlag. Array, weil ein
@@ -4363,6 +5140,8 @@ function ergebnissePruefen(btn){
     if(sf){
       parkeEintraege(p, 'sonderformat', '', sf.sonderformat);
       p.zustand='geparkt'; p.parkGrund='sonderformat'; p.parkInfo=sf.sonderformat;
+      jobSetzen(p.fixtureId, { zustand:'geparkt', match:p.match, datum:p.datum,
+        art:p.art, eintraege:p.eintraege||null, betId:p.betId||null, parkGrund:'sonderformat' });
       return 1;
     }
     var gut=laeufe.filter(function(x){ return x.ok; });
@@ -4379,12 +5158,26 @@ function ergebnissePruefen(btn){
     /* 3. Weniger als drei brauchbare Laeufe (Entscheidung Ondo, 3.9.2026): nichts uebernehmen,
        im naechsten Durchgang erneut fragen. NICHT parken — der Eintrag bleibt unveraendert
        offen und faellt am Ende unter "nicht gefunden". */
-    if(u.fall==='zuwenig'){ p.zustand='fehlt'; return 0; }
+    /* 🔴 21.9.2026 (Backlog-Punkt 86, Ziel A): Der Zustand wird jetzt zusaetzlich PERSISTENT
+       als 'unzureichend' festgehalten. Wirkung: Das Spiel wird in diesem Lauf nicht weitere
+       fuenf Male identisch gesucht (siehe nochWas-Filter in rundeLaufen()), bleibt aber ueber
+       "erneut pruefen" jederzeit gezielt wiederholbar. Ondos Drei-Laeufe-Regel selbst ist
+       unberuehrt: Es wird nach wie vor NICHTS uebernommen, solange keine drei brauchbaren
+       Laeufe vorliegen - nur der sofortige Wiederholungssturm entfaellt. */
+    if(u.fall==='zuwenig'){
+      p.zustand='fehlt';
+      jobSetzen(p.fixtureId, { zustand:'unzureichend', match:p.match, datum:p.datum,
+        art:p.art, eintraege:p.eintraege||null, betId:p.betId||null,
+        versuche:((jobHolen(p.fixtureId)||{}).versuche||0)+1, laeufeGut:u.gesamt });
+      return 0;
+    }
     /* 4. Alle drei verschieden: parken mit dem bestehenden Feld parkGrund 'unstable_ref'.
        Die drei widersprechenden refRoh-Laeufe sind ueber refRohAbgleich() sichtbar. */
     if(u.fall==='uneinig'){
       parkeEintraege(p, 'unstable_ref', '3verschieden', '');
       p.zustand='geparkt'; p.parkGrund='unstable_ref';
+      jobSetzen(p.fixtureId, { zustand:'geparkt', match:p.match, datum:p.datum,
+        art:p.art, eintraege:p.eintraege||null, betId:p.betId||null, parkGrund:'unstable_ref' });
       return 1;
     }
     /* 5. Einstimmig oder zwei von drei: uebernehmen. Bei zwei von drei ist die sichtbare
@@ -4420,7 +5213,26 @@ function ergebnissePruefen(btn){
     } else {
       gemeinsam.art='bet'; gemeinsam.betId=p.betId; gemeinsam.tipp=p.tipp;
     }
+    /* 🔴 21.9.2026 (Backlog-Punkt 86, Abschnitt 5/8a): Der Vorschlag traegt jetzt die stabile
+       fixtureId und - falls ueber eine Strukturquelle zugeordnet - die Diagnose des Resolvers
+       (Stufe, beide vollstaendigen Paarungen, Zeitabweichung, Provider-ID-Kandidat). Beides ist
+       additiv; Endstand, Halbzeit, Markturteile und alles, was die Messung betrifft, sind
+       unveraendert. */
+    gemeinsam.fixtureId = p.fixtureId||'';
+    if(p.zuordnung){
+      gemeinsam.zuordnung = p.zuordnung;
+      gemeinsam.stufe = p.zuordnung.stufe;
+    }
     state.pruefListe.push(gemeinsam);
+    /* Stufe 1/2: Identitaet ueber beide Mannschaften bewiesen -> Provider-ID darf sofort
+       dauerhaft gebunden werden. Stufe 3: ausdruecklich NICHT (Abschnitt 8a) - die ID steht
+       nur am Vorschlag und wird erst bei Ondos "Uebernehmen" gebunden. */
+    if(p.zuordnung && p.zuordnung.providerEventId && p.zuordnung.stufe<3){
+      providerIdBinden(p.fixtureId, p.zuordnung.anbieter||'struktur', p.zuordnung.providerEventId);
+    }
+    jobSetzen(p.fixtureId, { zustand:'vorschlag', match:p.match, datum:p.datum,
+      art:p.art, eintraege:p.eintraege||null, betId:p.betId||null,
+      vorschlagId:p.id, stufe:(p.zuordnung?p.zuordnung.stufe:null) });
     return 1;
   }
 
@@ -4527,7 +5339,7 @@ function ergebnissePruefen(btn){
        Archiv nicht geloesten Spiele) - kein Spiel wird doppelt bei ESPN angefragt. Ein
        mehrdeutiger Archivtreffer (strukturAbgleich(), .mehrdeutig) liefert HIER kein Ergebnis
        und faellt normal weiter an Live-ESPN/OpenLigaDB/den KI-Notnagel - kein Raten. */
-    espnArchivLesen(ziel).then(function(espnArchivErgRoh){
+    espnArchivLesen(ziel, espnArchivCache).then(function(espnArchivErgRoh){
       var espnArchivErg = espnArchivErgRoh || [];
       var espnArchivRohText = espnArchivErg.length
         ? espnArchivErg.map(function(r){ return r.id+': '+r.heim+':'+r.gast; }).join(' | ')
@@ -4572,6 +5384,32 @@ function ergebnissePruefen(btn){
         : '(kein Treffer bei OpenLigaDB)';
       openligaErg.forEach(function(r){ verarbeite(r, ziel, openligaRohText, 'openliga'); });
 
+      /* 🔴 SEKUNDAERE STRUKTURQUELLE WIEDER ANGESCHLOSSEN, 21.9.2026 (Backlog-Punkt 86,
+         Auftrag Ondo, Ziel A): footballDataArchivLesen() war seit dem ESPN-Umbau als "NICHT
+         AUFGERUFEN" markiert, obwohl daten/schiri-ergebnisse/ real gefuellt ist und vom
+         taeglichen Actions-Lauf weiter gefuellt wird. Belegt am 12.9.2026: Das ESPN-Archiv
+         enthaelt fuer diesen Tag NULL Spiele (die Sammelautomatik lief erst ab 18.9.), das
+         football-data-Archiv alle zehn gesuchten. Genau diese Luecke liess zehn bereits
+         vorhandene Ergebnisse in den KI-Notnagel laufen.
+         Sie laeuft NACH ESPN (Ondos Prioritaet bleibt: ESPN ist die primaere Quelle) und NUR
+         mit den Spielen, die bis hierher ungeloest sind - ein bereits geloestes Spiel wird
+         keiner weiteren Quelle mehr geschickt. */
+      var zielNachEspn = ziel.filter(function(p){
+        return !hat(espnArchivErg, p.id) && !hat(espnErg, p.id) && !hat(openligaErg, p.id);
+      });
+      return (zielNachEspn.length ? footballDataArchivLesen(zielNachEspn, fdCache)
+                                  : Promise.resolve([])).then(function(fdErgRoh){
+      var fdErg = fdErgRoh || [];
+      var fdRohText = fdErg.length
+        ? fdErg.map(function(r){ return r.id+': '+r.heim+':'+r.gast; }).join(' | ')
+        : '(kein Treffer im football-data-Archiv)';
+      /* Strukturkonflikt (Abschnitt 9): Ein Spiel kann hier gar nicht mehr ankommen, wenn ESPN
+         oder OpenLigaDB es schon geloest haben (zielNachEspn filtert sie heraus) - ein stilles
+         "eine Quelle gewinnt" ist damit baulich ausgeschlossen, nicht nur per Absprache.
+         Widersprechen sich zwei Quellen trotzdem einmal ueber denselben Weg, entscheidet
+         weiterhin refEinigkeit()/pruefAuswerten() unveraendert, nicht diese Stelle. */
+      fdErg.forEach(function(r){ verarbeite(r, ziel, fdRohText, 'football-data-archiv'); });
+
       /* Kaskade statt Abstimmung (Ondos Auftrag, Schritt 2): Nur die von KEINER Strukturquelle
          geloesten Spiele bekommen ueberhaupt einen KI-Aufruf. Loesen ESPN-Archiv+Live-ESPN+
          OpenLigaDB zusammen den ganzen Stapel, faellt kiZahl auf 0, es wird gar kein Modell
@@ -4581,7 +5419,8 @@ function ergebnissePruefen(btn){
          Gemini-Laeufe plus einen Sonnet-Lauf (wie vor v19.14.0), nicht mehr nur einen - passend
          zur in refEinigkeit() wiederhergestellten 2-von-3-Regel fuer reine KI-Laeufe. */
       var zielFuerKI = ziel.filter(function(p){
-        return !hat(espnArchivErg, p.id) && !hat(espnErg, p.id) && !hat(openligaErg, p.id);
+        return !hat(espnArchivErg, p.id) && !hat(espnErg, p.id) && !hat(openligaErg, p.id)
+            && !hat(fdErg, p.id);
       });
       var kiWege=[];
       if(hatGemini()){ kiWege.push('gemini'); kiWege.push('gemini'); }   /* 0a zurueckgenommen in v19.7.3, siehe Backlog */
@@ -4589,7 +5428,6 @@ function ergebnissePruefen(btn){
       var kiZahl = zielFuerKI.length ? 3 : 0;
       var wege=[];
       for(var wi=0; wi<kiZahl; wi++){ wege.push(kiWege[wi % kiWege.length]); }
-      var prompt = zielFuerKI.length ? promptBauen(zielFuerKI) : '';
 
       /* einAnbieter (Anzeige refEinAnbieter, unveraenderter Sprachschluessel): "lief die ganze
          Runde nur auf einem einzigen Anbieter?" Jede Strukturquelle zaehlt nur dann als eigener
@@ -4602,20 +5440,50 @@ function ergebnissePruefen(btn){
       var strukturAnbieter=[];
       if(espnArchivErg.length || espnErg.length) strukturAnbieter.push('espn');
       if(openligaErg.length) strukturAnbieter.push('openliga');
+      if(fdErg.length) strukturAnbieter.push('football-data-archiv');
       var alleWege = strukturAnbieter.concat(wege);
       einAnbieter = alleWege.length>0 && alleWege.every(function(w){ return w===alleWege[0]; });
 
       /* Ein Fehler in einem KI-Lauf wirft nicht mehr die ganze Runde weg: jeder Aufruf wird
          einzeln abgefangen und zaehlt dann als "kein Ergebnis". Unveraendert seit v19.8.12. */
-      function einLauf(weg){
+      function einLauf(weg, promptText){
+        pruefKiAufrufe++;
         var call = (weg==='gemini')
-          ? geminiCall({ prompt: prompt, useSearch: true, rolle:'ref' })
-          : sonnetSuche(prompt, 5, 1500);
+          ? geminiCall({ prompt: promptText, useSearch: true, rolle:'ref' })
+          : sonnetSuche(promptText, 5, 1500);
         return call.then(function(res){ return { weg:weg, res:res||{} }; })
                    .catch(function(e){ return { weg:weg, res:{ error:{ message:(e&&e.message)?e.message:'?' } } }; });
       }
 
-      return Promise.all(wege.map(einLauf)).then(function(antworten){
+      /* 🔴 KI-NOTNAGEL JE SPIEL EINZELN, 21.9.2026 (Backlog-Punkt 86, Abschnitt 4, Auftrag
+         Ondo). Bisher bekam der Notnagel EINEN Auftragstext mit bis zu fuenf Spielen und lief
+         dreimal darueber. In Ondos echten Rohdaten (12.-20.9.2026) erreichte der Sonnet-Lauf
+         dabei wiederholt sein Websuch-Limit (sonnetSuche(prompt,5,1500) - fuenf Suchen fuer
+         fuenf Spiele) und meldete "nicht_gefunden", waehrend beide Gemini-Laeufe dieselben
+         Ergebnisse laengst hatten. Nach der Drei-Laeufe-Regel blieben damit zwei
+         uebereinstimmende Laeufe wirkungslos, und dasselbe Spiel wurde Runde um Runde erneut
+         gesucht.
+         Jetzt bekommt jedes ungeloeste Spiel seinen EIGENEN Auftragstext mit genau diesem einen
+         Spiel; dasselbe Suchbudget steht damit einem Spiel statt fuenf zur Verfuegung.
+         UNVERAENDERT: der Wortlaut der Regeln im Auftragstext (90 Minuten, Format,
+         0:0-Bestaetigung, Verlaengerung, Quellenpflicht, Negativliste) - promptBauen() wird
+         wortgleich wiederverwendet, nur mit einer einelementigen Liste. UNVERAENDERT ebenso
+         Ondos Drei-Laeufe-/2-von-3-Regel: es bleiben drei Laeufe je Spiel (zwei Gemini, ein
+         Sonnet), refEinigkeit() und REF_MIN_LAEUFE sind nicht angefasst.
+         PARALLELITAET (Abschnitt 4, 【NEU v3】): Die drei Laeufe EINES Spiels starten parallel
+         wie bisher; verschiedene Spiele laufen nacheinander, damit nie mehr als drei
+         gleichzeitige Modellaufrufe entstehen (kein Aufrufsturm). */
+      function kiProSpiel(i, gesammelt){
+        /* seiteVerlassen: Safari ist im Hintergrund - kein weiteres Spiel mehr anfangen
+           (Abschnitt 6). Die bereits eingesammelten Antworten werden unten normal verarbeitet
+           und gespeichert, der Rest bleibt offen und wird beim Fortsetzen geholt. */
+        if(i>=zielFuerKI.length || !kiZahl || seiteVerlassen) return Promise.resolve(gesammelt);
+        var einSpiel=[zielFuerKI[i]];
+        var promptEins=promptBauen(einSpiel);
+        return Promise.all(wege.map(function(w){ return einLauf(w, promptEins); }))
+          .then(function(antw){ return kiProSpiel(i+1, gesammelt.concat(antw)); });
+      }
+      return kiProSpiel(0, []).then(function(antworten){
         var fehlerTexte=[];
         antworten.forEach(function(a){
           var res=a.res||{};
@@ -4642,11 +5510,39 @@ function ergebnissePruefen(btn){
            drei Laeufe, keiner uebernommen), waeren die rohen Antworten sonst verloren —
            genau der Fall, den Punkt 64 beheben soll. Ab v19.8.12 sichert das ausserdem die
            Parkungen aus pruefAuswerten(). */
-        save();
+        /* 🔴 CHECKPOINT statt save() (Backlog-Punkt 86, Abschnitt 6): Der naechste Durchgang
+           startet erst, wenn dieser Stand wirklich geschrieben ist. Bisher lief die naechste
+           Runde sofort los, waehrend save() noch schrieb - wurde die Seite genau dazwischen
+           angehalten, war die Arbeit der Runde weg. */
+        state.pruefRun.runde=runde;
+        state.pruefRun.aktualisiert=Date.now();
+        return checkpointSave().then(function(){
         var nochWas = posten.some(function(p){
+          /* 🔴 21.9.2026 (Backlog-Punkt 86, Ziel A): Ein Spiel, das persistent als
+             'unzureichend' festgehalten ist, zaehlt hier NICHT mehr als "noch was zu tun".
+             Genau das beendet die bis zu sechs praktisch identischen Wiederholungsrunden, die
+             nur deshalb entstanden, weil ein Anbieter sein Suchlimit erreicht hatte. MAXR
+             selbst bleibt unveraendert bei 6 - es gibt fuer diese Zahl keine dokumentierte
+             Ondo-Entscheidung (maschinell in STAND.md, Backlog, Blueprint, Chronik und
+             Backlog-Archiv gesucht: kein einziger Treffer), sie ist eine reine Code-Konstante.
+             Sie wird deshalb nicht angefasst, sondern nur seltener ausgereizt. */
+          /* ...ABER nur, wenn dieses Spiel in DIESEM Lauf schon an der Reihe war (p.gefragt).
+             Eigener Fund im Orchestrierungstest (21.9.2026): Ohne diese Bedingung beendete ein
+             SPAETERER Lauf sich nach der ersten Runde, sobald die fuenf Spiele dieser Runde
+             fertig waren - die noch gar nicht gefragten Spiele ab Position 6 trugen aus dem
+             vorigen Lauf noch 'unzureichend' und zaehlten deshalb faelschlich als "nichts mehr
+             zu tun". Gemessen: zweiter Lauf fand 5 statt 7 offenen Spielen. Die Absicht der
+             Regel - dieselbe Suche nicht in derselben Runde fuenfmal wiederholen - bleibt
+             unveraendert erhalten, denn innerhalb eines Laufs steht p.gefragt nach dem ersten
+             Versuch auf true. */
+          if(p.fixtureId && p.gefragt && (jobHolen(p.fixtureId)||{}).zustand==='unzureichend') return false;
           return p.zustand==='fehlt' || (p.zustand==='offen' && !p.gefragt);
         });
         var ungefragt = posten.some(function(p){ return p.zustand==='offen' && !p.gefragt; });
+        /* Beim Verlassen der Seite wird KEINE weitere Runde mehr begonnen. Der Lauf endet
+           nicht mit abschluss() (das wuerde die Bilanz als endgueltig schreiben und die Sperre
+           freigeben), sondern bleibt fortsetzbar stehen. */
+        if(seiteVerlassen && nochWas){ pausieren(); return; }
         if(runde<MAXR && nochWas && (neu>0 || ungefragt)){ rundeLaufen(); }
         /* Alle KI-Laeufe dieser Runde gescheitert und nichts erreicht (auch nicht per
            Struktur): den Grund zeigen statt schweigen. antworten enthaelt seit diesem Umbau
@@ -4654,12 +5550,29 @@ function ergebnissePruefen(btn){
            bei jedem Problem einfach null Treffer (siehe espnLauf()). */
         else if(antworten.length && fehlerTexte.length===antworten.length && !neu){ abschluss(fehlerTexte[0]); }
         else { abschluss(); }
+        });
+      });
       });
       });
     })
     .catch(function(e){
       abschluss((e&&e.message)?e.message:'?');
     });
+  }
+
+  /* Sauberes Anhalten statt Abschluss (Abschnitt 6/7). Alles bis hierher Gefundene ist bereits
+     ueber checkpointSave() geschrieben; hier wird nur noch der Run-Status so gesetzt, dass der
+     naechste Klick beim ersten offenen Schritt weitermacht. Bewusst OHNE state.pruefBilanz zu
+     ueberschreiben - eine Bilanz beschreibt einen abgeschlossenen Lauf, dieser ist keiner. */
+  function pausieren(){
+    if(state.pruefRun){
+      state.pruefRun.status='pausiert';
+      state.pruefRun.runde=runde;
+      state.pruefRun.aktualisiert=Date.now();
+    }
+    checkpointSave();
+    btn.disabled=false; btn.textContent=t('checkBtn');
+    render();
   }
 
   function abschluss(fehler){
@@ -4675,6 +5588,8 @@ function ergebnissePruefen(btn){
       runden: Math.min(runde, MAXR),
       /* Teil 4 (Diagnose): echte Dauer dieses Prueflaufs, gemessen, nicht geschaetzt. */
       dauerMs: Date.now()-startZeit,
+      /* 🔴 Backlog-Punkt 86: gemessene KI-Aufrufe dieses Laufs (Kostenregel). */
+      kiAufrufe: pruefKiAufrufe,
       einAnbieter: einAnbieter,
       starkAnfragen: pruefStark.anfragen,
       starkModell: pruefStark.modell,
@@ -4686,7 +5601,14 @@ function ergebnissePruefen(btn){
        im selben Tick und sichert deshalb nie die endgueltige Bilanz dieser Runde (Fehlertext,
        runden, dauerMs, einAnbieter) — nur den Stand davor. Ohne diesen Aufruf bliebe
        state.pruefBilanz nach einem Neuladen auf einem aelteren Zwischenstand stehen. */
-    save();
+    /* 🔴 LAUFSPERRE FREIGEBEN (Backlog-Punkt 86, Abschnitt 7): Erst hier, nach sauberem
+       Abschluss. Bricht der Lauf vorher ab (Browser zu, App gewechselt), bleibt der Run
+       persistent auf 'laufend' stehen und wird beim naechsten load() zu 'pausiert' - also
+       fortsetzbar statt Zombie. */
+    state.pruefRun = { runId:(state.pruefRun&&state.pruefRun.runId)||'', status:'fertig',
+                       gestartet:(state.pruefRun&&state.pruefRun.gestartet)||null,
+                       aktualisiert:Date.now(), runde:runde, fortschritt:'' };
+    checkpointSave();
     btn.disabled=false; btn.textContent=t('checkBtn');
     render();
   }
@@ -4706,7 +5628,12 @@ function ergebnissePruefen(btn){
    "raet" ebenfalls nicht und braucht deshalb in refEinigkeit() nur die Schwelle 1, nicht 3. */
 function ergebnisQuelleAus(modell){
   var m=String(modell||'');
-  if(m==='espn' || m==='uefa' || m==='openfootball' || m==='openliga') return m;
+  /* 🔴 21.9.2026 (Backlog-Punkt 86): 'football-data-archiv' ergaenzt - die wieder
+     angeschlossene sekundaere Strukturquelle. Sie zaehlt wie 'espn'/'openliga' als Struktur,
+     NICHT als 'ki': ein Archivtreffer raet nicht und braucht in refEinigkeit() deshalb die
+     Schwelle 1, nicht 3. Ondos Drei-Laeufe-Regel fuer REINE KI-Laeufe bleibt unberuehrt. */
+  if(m==='espn' || m==='uefa' || m==='openfootball' || m==='openliga'
+     || m==='football-data-archiv') return m;
   return 'ki';
 }
 function pruefAnwenden(pid){
@@ -4758,14 +5685,41 @@ function pruefAnwenden(pid){
      nur im log-Zweig — deckt jetzt auch den bet-Zweig ab. Vorher folgenlos, weil pruefListe
      nie gespeichert wurde; jetzt Pflicht, sonst taucht ein bereits uebernommener Vorschlag
      nach einem Neuladen wieder auf. */
+  /* 🔴 21.9.2026 (Backlog-Punkt 86, Abschnitt 8a): Genau HIER - und nur hier - wird die
+     Provider-ID einer Stufe-3-Zuordnung dauerhaft an die fixtureId gebunden. Ondos vorhandener
+     "Uebernehmen"-Klick ist die Bestaetigung; ein zusaetzlicher Arbeitsschritt entsteht fuer ihn
+     nicht (Abschnitt 15b, UX-Grenze). Stufe 1/2 waren schon beim Erzeugen des Vorschlags
+     gebunden, ein zweiter Aufruf ist dort folgenlos (providerIdBinden ueberschreibt nichts). */
+  if(p.zuordnung && p.zuordnung.providerEventId){
+    providerIdBinden(p.fixtureId, p.zuordnung.anbieter||'struktur', p.zuordnung.providerEventId);
+  }
+  jobSetzen(p.fixtureId, { zustand:'uebernommen', match:p.match, datum:p.datum,
+    art:p.art, stufe:(p.zuordnung?p.zuordnung.stufe:null), vorschlagId:null });
   state.pruefListe = state.pruefListe.filter(function(x){return x.id!==pid;});
   save();
   render();
+}
+/* 🔴 21.9.2026 (Backlog-Punkt 86, Abschnitt 5): "Erneut pruefen" holt ein Spiel bewusst zurueck
+   in den offenen Zustand - der einzige Weg, ein ignoriertes oder als unzureichend belegtes
+   Spiel wieder in den naechsten automatischen Lauf zu bekommen. Ondos ausdruecklicher Wunsch:
+   Ignorieren darf nicht endgueltig sein, aber auch nicht von selbst zurueckkommen. */
+function pruefErneut(fixtureId){
+  var job=jobHolen(fixtureId);
+  if(!job) return;
+  jobSetzen(fixtureId, { zustand:'offen', vorschlagId:null });
+  save(); render();
 }
 function pruefIgnorieren(pid){
   /* v19.8.13 (Backlog-Punkt 69): save() ist hier neu — bisher folgenlos, weil pruefListe nie
      gespeichert wurde. Ohne diesen Aufruf wuerde ein bewusst ignorierter Vorschlag nach einem
      Neuladen wieder auftauchen, dieselbe Art Luecke wie beim Uebernehmen. */
+  /* 🔴 21.9.2026 (Backlog-Punkt 86, Abschnitt 5/8a): Der Job merkt sich das Ignorieren
+     dauerhaft - deshalb erscheint derselbe Vorschlag beim naechsten automatischen Lauf NICHT
+     sofort wieder identisch. Eine Provider-ID wird dabei ausdruecklich NICHT gebunden: Ondo hat
+     den Vorschlag ja gerade verworfen, er ist kein Beleg fuer eine Identitaet. */
+  var p = (state.pruefListe||[]).filter(function(x){return x.id===pid;})[0];
+  if(p) jobSetzen(p.fixtureId, { zustand:'ignoriert', match:p.match, datum:p.datum,
+                                 art:p.art, vorschlagId:null });
   state.pruefListe = state.pruefListe.filter(function(x){return x.id!==pid;});
   save();
   render();
@@ -4863,6 +5817,16 @@ function pruefBlock(){
   var html='';
   html += '<button class="btn btn-ghost" onclick="ergebnissePruefen(this)">'+t('checkBtn')+'</button>';
   html += '<div id="pruefStatus" class="muted" style="color:var(--loss);margin:8px 0"></div>';
+  /* 🔴 21.9.2026 (Backlog-Punkt 86, Abschnitt 7): Der Lauf-Zustand steht jetzt SICHTBAR da,
+     statt nur am (nach jedem render() neuen) Knopf zu haengen. 'laufend' heisst: ein zweiter
+     Klick startet keinen zweiten Lauf. 'pausiert' heisst: unterbrochen, und der naechste Klick
+     auf denselben Knopf macht beim ersten offenen Schritt weiter. Kein zusaetzlicher Dialog,
+     kein neuer Pflichtschritt fuer Ondo (Abschnitt 15b) - nur eine Zeile Text. */
+  if(state.pruefRun && state.pruefRun.status==='laufend'){
+    html += '<div class="muted" style="margin:8px 0">'+t('pruefLaeuft')+'</div>';
+  } else if(state.pruefRun && state.pruefRun.status==='pausiert'){
+    html += '<div class="muted" style="margin:8px 0;color:var(--loss)">'+t('pruefFortsetzbar')+'</div>';
+  }
   if(state.pruefBilanz){
     var b=state.pruefBilanz;
     html += '<div class="card" style="padding:10px 14px">'+
@@ -4871,7 +5835,12 @@ function pruefBlock(){
       ((b.geparkt&&b.geparkt.length)?('<div class="muted" style="margin-top:4px;color:var(--loss)">'+t('balGeparkt')+': '+b.geparkt.map(esc).join(' · ')+'</div>'):'')+
       (b.fehlt.length?('<div class="muted" style="margin-top:4px;color:var(--loss)">'+t('balFehlt')+': '+b.fehlt.map(esc).join(' · ')+'</div>'):'')+
       (b.einAnbieter?('<div class="muted" style="margin-top:4px;color:var(--loss)">'+t('refEinAnbieter')+'</div>'):'')+
-      ((b.dauerMs||b.dauerMs===0)?('<div class="muted" style="margin-top:4px">'+t('refDauer')+': '+Math.round(b.dauerMs/1000)+' s</div>'):'')+
+      ((b.dauerMs||b.dauerMs===0)?('<div class="muted" style="margin-top:4px">'+t('refDauer')+': '+Math.round(b.dauerMs/1000)+' s'+
+        /* 🔴 Backlog-Punkt 86, Abschnitt 11: die GEMESSENE Zahl der KI-Aufrufe dieses Laufs,
+           direkt neben der gemessenen Dauer. Ein Lauf, der alles aus Strukturquellen holt,
+           zeigt hier 0 - genau das ist der Nachweis fuer "Struktur zuerst, KI zuletzt". */
+        ((b.kiAufrufe||b.kiAufrufe===0)?(' · '+t('refCalls')+' (KI): '+b.kiAufrufe):'')+
+        '</div>'):'')+
       (b.starkAnfragen?('<div class="muted" style="margin-top:4px">'+t('refModel')+': '+esc(b.starkModell)+
         ' · '+t('refCalls')+': '+b.starkAnfragen+'</div>'):'')+
       (b.starkFallback?('<div class="muted" style="margin-top:4px;color:var(--loss)">'+t('refFallback')+(b.starkGrund?(' — '+esc(b.starkGrund)):'')+'</div>'):'')+
@@ -4913,7 +5882,23 @@ function pruefBlock(){
             t('refQuellenZahl').replace('{a}',p.laeufeGut).replace('{b}',p.quellenZahl)+'</div>' : '')+
           ((p.verworfen && p.verworfen.length)
           ? '<div class="muted" style="font-size:11.5px;margin:4px 0">'+
-            t('refVerworfen').replace('{a}',esc(p.verworfen.join(' · ')))+'</div>' : '');
+            t('refVerworfen').replace('{a}',esc(p.verworfen.join(' · ')))+'</div>' : '')+
+          /* 🔴 21.9.2026 (Backlog-Punkt 86, Abschnitt 8a): Wie sicher die Zuordnung war.
+             Stufe 3 heisst: nur EINE Mannschaft ist namentlich bestaetigt, die zweite wurde
+             ueber Wettbewerb, Datum und Eindeutigkeit erschlossen. Das steht hier, damit Ondo
+             es VOR dem Uebernehmen sieht - eine Stufe-3-Zuordnung bindet deshalb auch keine
+             Provider-ID, bevor er zugestimmt hat. Stufe 1 und 2 brauchen keinen Hinweis:
+             dort sind beide Mannschaften bestaetigt. */
+          ((p.zuordnung && p.zuordnung.stufe===3)
+          ? '<div style="font-size:12.5px;color:var(--loss);font-weight:600;margin:4px 0">'+
+            t('zuordnungStufe3')+
+            (p.zuordnung.quelle?('<br><span class="muted" style="font-weight:400">'+esc(p.zuordnung.quelle)+'</span>'):'')+
+            '</div>' : '')+
+          ((p.zuordnung && p.zuordnung.zeitAbweichung)
+          ? '<div style="font-size:12.5px;color:var(--loss);margin:4px 0">'+t('zuordnungZeit')+
+            ((p.zuordnung.zeitMeins||p.zuordnung.zeitQuelle)
+              ? (': '+esc(p.zuordnung.zeitMeins||'?')+' / '+esc(p.zuordnung.zeitQuelle||'?')) : '')+
+            '</div>' : '');
         html += quelle + warnung +
         '<div style="margin:6px 0 8px">'+p.urteile.map(function(u){
           var farbe=u.ok?'var(--win)':'var(--loss)';
@@ -4931,6 +5916,35 @@ function pruefBlock(){
         '<button class="btn-sm" onclick="pruefIgnorieren(\''+p.id+'\')">'+t('ignore')+'</button></div>';
       }
       html += '</div>';
+    });
+    html += '</div>';
+  }
+  /* 🔴 21.9.2026 (Backlog-Punkt 86, Abschnitt 5): Zurueckgestellte Spiele. Zwei Faelle, beide
+     ausdruecklich von Ondo verlangt und beide bewusst NICHT endgueltig:
+     - 'unzureichend': weniger als drei brauchbare Laeufe. Das Spiel wird nicht weiter in jeder
+       Runde erneut gesucht (das waren die fast gleichen Wiederholungsrunden), verschwindet aber
+       auch nicht stillschweigend.
+     - 'ignoriert': Ondo hat einen Vorschlag verworfen. Er kommt nicht von selbst zurueck.
+     Beide holt genau ein Knopf zurueck. Nichts davon ist ein Pflichtschritt: wer nichts
+     anklickt, sieht nur eine Liste (Abschnitt 15b). */
+  var zurueck=[];
+  var alleJobs=jobsHolen();
+  for(var fid in alleJobs){
+    if(!Object.prototype.hasOwnProperty.call(alleJobs,fid)) continue;
+    var jj=alleJobs[fid];
+    if(jj.zustand==='unzureichend' || jj.zustand==='ignoriert') zurueck.push(jj);
+  }
+  if(zurueck.length){
+    zurueck.sort(function(a,b){ return (b.aktualisiert||0)-(a.aktualisiert||0); });
+    html += '<div class="card" style="border-color:rgba(245,217,10,.25)">'+
+      '<div class="muted" style="margin-bottom:8px">'+t('pruefUnzureichend')+'</div>';
+    zurueck.forEach(function(j){
+      html += '<div class="flex" style="padding:8px 0;border-top:1px solid var(--edge)">'+
+        '<div><b style="font-size:13px">'+esc(j.match||j.fixtureId)+'</b>'+
+        '<div class="muted" style="font-size:11.5px">'+esc(j.datum||'')+
+        ' · '+esc(j.zustand==='ignoriert'?t('ignore'):t('pruefUnzureichend'))+'</div></div>'+
+        '<button class="btn-sm" onclick="pruefErneut(\''+esc(j.fixtureId)+'\')">'+t('pruefErneutBtn')+'</button>'+
+      '</div>';
     });
     html += '</div>';
   }
@@ -5398,6 +6412,12 @@ function viewBets(c){
     return sub+
       '<button class="btn" onclick="vorhersagen(this)">'+t('predBtn')+'</button>'+
       '<div id="ladeFehler" class="muted" style="color:var(--loss);margin:10px 0"></div>'+
+      /* 🔴 21.9.2026 (Backlog-Punkt 86, Abschnitt 6b): Sichtbarer Zustand des Vorhersage-Laufs.
+         'pausiert' heisst: unterbrochen (App-Wechsel, Neuladen, Fehler) - bereits erhaltene
+         Gehirn-Antworten sind gespeichert und werden beim naechsten Klick NICHT noch einmal
+         bezahlt, es wird beim ersten offenen Schritt fortgesetzt. */
+      ((state.vorhersageRun && state.vorhersageRun.status==='pausiert')
+        ? '<div class="muted" style="margin:8px 0;color:var(--loss)">'+t('vorhersageFortsetzbar')+'</div>' : '')+
       '<div class="muted" style="margin:8px 0">'+t('duellD')+'</div>'+
       (state.vorschlaegeInfo?'<div class="muted" style="margin:8px 0">'+esc(state.vorschlaegeInfo)+'</div>':'')+
       (liste||'<div class="card empty">'+t('noPred')+'</div>');
@@ -5882,7 +6902,50 @@ document.querySelectorAll('.nav button').forEach(function(el){
    Speicher-Quote (echte Grenze dieses Geraets statt einer geschaetzten Zahl) wird einmal beim
    Start abgefragt und fliesst in denselben ersten render() mit ein. */
 speicherQuote().then(function(q){ speicherQuoteCache = q; });
-load().then(function(){ render(); checkUpdate(); });
+/* 🔴 21.9.2026 (Backlog-Punkt 86, Abschnitt 6/6b/7): Beim Start NACH load() - also erst,
+   wenn der gespeicherte Zustand wirklich da ist - wird ein unterbrochener Lauf erkannt.
+   Ein Run, der noch auf 'laufend' steht, kann nicht mehr laufen: das JavaScript der alten
+   Seite ist mit ihr verschwunden. Er wird auf 'pausiert' gesetzt, also fortsetzbar gemacht.
+   Ohne diesen Schritt bliebe die persistente Laufsperre aus Abschnitt 7 fuer immer stehen
+   (Zombie-Sperre) und kein Knopf liesse sich mehr druecken.
+   Der Auftrag verlangt ausdruecklich, dass diese Erkennung NICHT allein an visibilitychange
+   haengt - deshalb steht sie hier im Programmstart und nicht nur im Handler unten. */
+load().then(function(){
+  pruefRunEntsperren();
+  vorhersageRunEntsperren();
+  /* Nur schreiben, wenn sich wirklich etwas geaendert hat - ein gewoehnlicher Start soll
+     keinen ueberfluessigen Schreibvorgang ausloesen. */
+  if((state.pruefRun && state.pruefRun.status==='pausiert') ||
+     (state.vorhersageRun && state.vorhersageRun.status==='pausiert')) checkpointSave();
+  render(); checkUpdate();
+});
+/* Beim Wechsel in eine andere App bzw. beim Schliessen: keine neuen Schritte mehr anfangen
+   (siehe seiteVerlassen oben) und den aktuellen Stand sichern. Der laufende Zustand ist durch
+   die Checkpoints ohnehin schon fast vollstaendig geschrieben; dieser letzte Aufruf holt nur
+   das Allerletzte nach. pagehide ist der in Safari zuverlaessige Weg - 'unload' feuert auf
+   iOS nicht verlaesslich. */
+function seiteAnhalten(){
+  seiteVerlassen = true;
+  if(state.pruefRun && state.pruefRun.status==='laufend') state.pruefRun.status='pausiert';
+  if(state.vorhersageRun && state.vorhersageRun.status==='laufend') state.vorhersageRun.status='pausiert';
+  checkpointSave();
+}
+/* Bei der Rueckkehr wird der Lauf NICHT von selbst neu gestartet. Begruendung, ausdruecklich
+   genannt statt verschwiegen: Ein Vorhersage- oder Prueflauf kostet echte Modellaufrufe
+   (Arbeitsregel G). Ein Fortsetzen ohne Zutun koennte diese Kosten ausloesen, waehrend Ondo
+   gerade nur kurz in die App schaut. Abschnitt 7 laesst genau das zu: "wieder aufgenommen
+   ODER sauber als fortsetzbar erkannt". Der Zustand wird deshalb sichtbar gemacht, und der
+   naechste Klick auf denselben Knopf setzt beim ersten offenen Schritt fort - ohne einen
+   einzigen bereits bezahlten Aufruf zu wiederholen und ohne einen zusaetzlichen Dialog
+   (Abschnitt 15b: kein neuer Pflichtschritt fuer Ondo). */
+function seiteZurueck(){
+  seiteVerlassen = false;
+  render();
+}
+document.addEventListener('visibilitychange', function(){
+  if(document.visibilityState==='hidden') seiteAnhalten(); else seiteZurueck();
+});
+window.addEventListener('pagehide', seiteAnhalten);
 </script>
 </body>
 </html>

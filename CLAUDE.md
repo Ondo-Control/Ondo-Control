@@ -196,16 +196,20 @@ Punkt 73, nicht hier wiederholt (Punkt 45).
 `.claude/hooks/claude_md_frisch.py` vergleicht sie bei jedem Sitzungsstart und erinnert an
 eine Erneuerung, sobald einer abweicht. Er erneuert nichts von selbst.*
 
-- STAND.md — `76683908ca976a33e4dcdf1d4f4d9ac6eae4b968`
-- Ondo-Control-Backlog.md — `b68c09f4f261976ca053d551f7e691231bf675d0`
-- Blueprint.md — `e987d0e3a8042b5c69118805cd440921f0e8eb0f`
-- Ondo-Core-Architektur.md — `2923c6d2f1cf152a67522bd0ddafc42d6c196b40`
+- STAND.md — `7ace1fcfa6d29db9960b7aaccb8bf0c856dd4c01`
+- Ondo-Control-Backlog.md — `5e8057838989df86bfe8b4b240c8d44c87feeebc`
+- Blueprint.md — `10c1f21f0551d0bfb8b7678c650201f7300f3641`
+- Ondo-Core-Architektur.md — `d15817f2a4b074377230c19e33a8881a8cb0f58a`
 
-*Prüfstand nachgeführt am 14.9.2026 (nur Hashes — Anlass war Ondos Auftrag
-„football-data.org-Platz von Live-Aufruf auf Archivdatei-Lesen umstellen" (Backlog-Punkt 81,
-`beta.html` v19.13.3): Neue Funktion `footballDataArchivLesen(ziel)` ersetzt
-`footballDataLauf()` als Strukturweg, liest die vom täglichen GitHub-Actions-Lauf gesammelten
-Monatsdateien statt eines durch CORS blockierten Live-Aufrufs. Ein eigener Fehler im ersten
-Entwurf (unbedingter Push hätte die `einAnbieter`-Warnung dauerhaft unerreichbar gemacht) im
-eigenen Trockentest gefunden und vor der Auslieferung behoben. Inhaltlich für diese Datei
-nicht berührt, keine neue Arbeitsregel, keine Änderung an Zweig- oder Geheimfeld-Regeln).*
+*Prüfstand nachgeführt am 23.9.2026 (nur Hashes — Anlass war Ondos „Umfassender Auftrag an Code,
+Fassung 4" (Backlog-Punkt 86, `beta.html` v19.19.0): Prüflauf und Vorhersage-Lauf sind
+unterbrechungsfest (Checkpoint + Resume, persistente Laufsperre mit fester `runId`), gefundene
+Vorschläge überleben Reiterwechsel, Neuladen und App-Wechsel in `state.pruefJobs`, die
+strukturierten Quellen laufen vor der KI (football-data-Archiv als sekundärer Fallback wieder
+angeschlossen), und reale Spiele werden über eine kanonische `fixtureId` statt über freie
+Textnamen identifiziert. **Für diese Datei inhaltlich nicht berührt:** keine neue Arbeitsregel,
+keine Änderung an der Zweig-Regel, an der Geheimfeld-Regel oder an der Pflichtlektüre. Neu für
+eine spätere Sitzung wissenswert, aber in `Ondo-Core-Architektur.md` Abschnitt 1e nachzulesen und
+hier nach Punkt 45 bewusst nicht wiederholt: die dreistufige Zuordnungsregel und der persistente
+Prüfzustand. Neu im Verzeichnis: `tests/` mit vier Dateien — die Regressionstests laufen mit
+`node tests/t1_resolver.js` usw. gegen den echten `<script>`-Block aus `beta.html`.)*

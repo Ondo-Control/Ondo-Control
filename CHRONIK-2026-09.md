@@ -1248,3 +1248,40 @@ vier Dokumentdateien (`STAND.md`, `Ondo-Control-Backlog.md`, `Blueprint.md`,
   **🔴 Status weiterhin NICHT auf „behoben"/„bewährt" gesetzt:** Ondos Befund vom 18.9.2026
   („4 von 10") gilt erst nach einem echten Prüfzyklus am Gerät als behoben — **nicht mit diesem
   Bau, nicht mit dem ersten Actions-Lauf und nicht mit diesem Test.**
+
+---
+
+## `beta.html` v19.18.3 — aus `STAND.md` verschoben (23.9.2026, Fassung 144)
+
+- **Beta: v19.18.3** (`beta.html`, geliefert 19.9.2026) — **Sammel-Nachbesserung Buchführung
+  nach Abnahme von v19.18.2 (Backlog-Punkt 84): reine Berichtigungen, keine Logikänderung.**
+  Der vollständige v19.18.2-Block steht wortgleich in `CHRONIK-2026-09.md`.
+  **F1 — unbedingte Aussage berichtigt:** Der vorige Block sagte unbedingt, der gesamte Diff
+  der v19.18.2-Lieferung sei „eine Datei" — das galt nur für `skripte/`, `.github/workflows/`
+  und `daten/`. Tatsächlich änderte der Commit **fünf** Dateien: `beta.html` (der einzige
+  funktionale Code-Diff) plus vier Dokumentdateien.
+  **F2 — Codekommentar berichtigt, keine ausführbare Zeile geändert:** Der Kommentar über dem
+  Archiv-Aufruf in `rundeLaufen()` behauptete „Genau EIN Evidence-Eintrag je Archivtreffer" —
+  richtig ist „genau EIN **Aufruf** von `espnRohSchreiben()`", die Funktion selbst hängt die
+  Evidence an **jeden** beteiligten `kiProtokoll`-Eintrag an (bei zwei Gehirnen je Spiel also
+  zwei Einträge aus einem Treffer). Der v19.18.2-Lieferbericht hatte das schon richtig
+  gemessen („ERZEUGTE e.espnRoh-ARCHIV-EINTRAEGE: 2") — nur der Kommentar widersprach der
+  eigenen Messung. `CODE_VERSION` deshalb auf v19.18.3 gehoben, damit die Dokumente keine
+  Version behaupten, deren Inhalt abweicht.
+  **F3 — Eigenschaft festgehalten, nicht umgebaut:** Die `url` in der Archiv-Evidence zeigt auf
+  die menschlich lesbare GitHub-Seite (`.../blob/main/...`), nicht auf die tatsächlich
+  abgerufene `raw.githubusercontent.com`-Datei, und auf den beweglichen Stand `main`.
+  Einzelheiten und Begründung: Backlog-Punkt 84 (Punkt 45, hier nicht wiederholt).
+  **F4 — offene Frage neu eingetragen:** Widerspruch zwischen `STUFEN` (schließt
+  Regionalligen/Amateurklassen aus) und Ondos realen Daten (u. a. „Regionalliga Bayern",
+  „Saarland-Liga") sowie dem Ausbau von OpenLigaDB genau für 3. Liga/Regionalliga — nicht
+  entschieden, nicht aufgelöst (Art. 8). Einzelheiten: Backlog-Punkt 84.
+  **Unverändert, maschinell als byte-identisch zu `648d1dc` belegt (18 Stellen):**
+  `ESPN_SLUG_REGELN`, `espnSlugFuer()`, `strukturAbgleich()` (inkl. `wettbewerbAus()`),
+  `espnArchivLesen()`, `espnRohSchreiben()`, `REF_MIN_LAEUFE`, `refEinigkeit()`, STUFEN,
+  `espnLauf()`, `openligaLauf()`, `ergebnisQuelleAus()`, `MESS_VERBOTEN`, `messGeheimFund()`
+  und die Messdaten-Projektionslogik aus A1/A2. `skripte/` und `.github/workflows/` laut
+  `git diff` vollständig unangetastet; `daten/` änderte sich nur durch den regulären
+  automatischen ESPN-Actions-Lauf, nicht durch diese Lieferung.
+  **Verifiziert:** `node --check` bestanden. `git diff` gegen `648d1dc` für `beta.html` betrifft
+  ausschließlich `CODE_VERSION` und den einen Kommentarblock (F2) — keine ausführbare Zeile.
