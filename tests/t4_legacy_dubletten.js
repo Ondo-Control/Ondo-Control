@@ -54,7 +54,7 @@ function app(opt, save, frisch){
   });
 }
 function knopf(){ return { disabled:false, textContent:'' }; }
-function stand(c){ return JSON.parse(c._speicher[c.KEY]); }
+function stand(c){ return JSON.parse(c._gespeichert()); }   /* v19.19.2: IndexedDB zuerst, wie load() */
 function fertig(c, msMax){
   msMax=msMax||8000; var t0=Date.now();
   return new Promise(function(res, rej){

@@ -1,8 +1,8 @@
 /* Tests CPS1-CPS5 (v19.19.1, Nachbesserung zu Backlog-Punkt 86, Auftrag Ondo 24.9.2026,
    Abschnitt 7-10): checkpointSave() als HARTE Speicherbarriere.
-   Der Speicherfehler wird so erzeugt, wie er im Browser entsteht: Das Schreiben selbst wirft
-   (localStorage.setItem - IndexedDB fehlt in der Testumgebung, speicherSchreiben() faellt
-   dokumentiert auf localStorage zurueck). Nichts an checkpointSave() oder den Laeufen ist
+   Der Speicherfehler wird so erzeugt, wie er im Browser entsteht: Das Schreiben selbst
+   scheitert. Seit v19.19.2 (IndexedDB-Attrappe in umgebung.js) scheitern hier BEIDE Speicher,
+   IndexedDB und localStorage; der Fall "nur IndexedDB kaputt" steht in t6_checkpoint_idb.js. Nichts an checkpointSave() oder den Laeufen ist
    nachgebaut; gezaehlt wird jeder Netzabruf, den der echte Code ausloest. */
 var fs=require('fs'), path=require('path'), u=require('./umgebung.js');
 var R=path.join(__dirname,'..');
@@ -11,18 +11,23 @@ var ESPN  =JSON.parse(fs.readFileSync(R+'/daten/espn-ergebnisse/2026-09.json','u
 var MESS  =JSON.parse(fs.readFileSync(R+'/ondo-control-messdaten-2026-09-17.json','utf8'));
 
 /* --- Speicher, der sich gezielt kaputt machen laesst --- */
+/* v19.19.2: "Speicher defekt" heisst hier BEIDE Speicher kaputt - IndexedDB (Attrappe in
+   umgebung.js) und localStorage. versuche zaehlt Schreibversuche auf beiden Wegen. Der Fall
+   "nur IndexedDB kaputt, localStorage heil" steht eigens in t6_checkpoint_idb.js. */
 function speicherSteuern(c){
   var echt=c.localStorage.setItem;
   var s={ defekt:false, bedingung:null, fehlschlaege:0, versuche:0 };
+  function kaputt(txt){ return s.defekt || !!(s.bedingung && s.bedingung(String(txt))); }
   c.localStorage.setItem=function(k, v){
     s.versuche++;
-    if(s.defekt || (s.bedingung && s.bedingung(String(v)))){
+    if(kaputt(v)){
       s.fehlschlaege++;
       var e=new Error('QuotaExceededError (Test): Speicher voll'); e.name='QuotaExceededError';
       throw e;
     }
     return echt(k, v);
   };
+  c._idb.schreibFehler=function(txt){ s.versuche++; if(kaputt(txt)){ s.fehlschlaege++; return true; } return false; };
   c._sp=s;
   return s;
 }
@@ -122,12 +127,14 @@ schritt(function(){
     c.checkpointSave();
     return pause(20);
   }).then(function(){
-    var gespeichertVorher=c._speicher[c.KEY];
+    var gespeichertVorher=c._gespeichert();
     var listeVorher=JSON.stringify(c.state.pruefListe);
     var sp=speicherSteuern(c); sp.defekt=true;
     var alarmeVorher=c._protokoll.alerts.length;
     c.ergebnissePruefen(knopf());
-    return warte(c,'pruefRun').then(function(){
+    /* v19.19.2: kurz warten, bis auch der stille Pausen-Schreibversuch (asynchron, wie IndexedDB
+       im Browser) gelaufen ist - sonst zaehlte die Pruefung unten zu frueh. */
+    return warte(c,'pruefRun').then(function(){ return pause(50); }).then(function(){
       u.pruef('CPS1: 0 ESPN-Abrufe (Archiv und Live)', z.espnArchiv===0 && z.espnLive===0);
       u.pruef('CPS1: 0 OpenLigaDB-Abrufe', z.openliga===0);
       u.pruef('CPS1: 0 football-data-Archiv-Abrufe', z.fdArchiv===0);
@@ -139,7 +146,7 @@ schritt(function(){
               c.pruefBlock().indexOf(c.t('saveFail'))>=0 && c.speicherWarnBlock().indexOf(c.t('saveFailAlert'))>=0);
       u.pruef('CPS1: kein vorhandener Vorschlag verloren (auch nicht der des erneut zu pruefenden Spiels)',
               JSON.stringify(c.state.pruefListe)===listeVorher);
-      u.pruef('CPS1: der gespeicherte Stand ist unveraendert (CPS5 im Lauf)', c._speicher[c.KEY]===gespeichertVorher);
+      u.pruef('CPS1: der gespeicherte Stand ist unveraendert (CPS5 im Lauf)', c._gespeichert()===gespeichertVorher);
       u.pruef('CPS1: kein Aufrufsturm - genau zwei Schreibversuche (Barriere + ein stiller Pausenversuch)',
               sp.versuche===2, sp.versuche+' Versuche');
       /* CPS2 */
@@ -157,7 +164,7 @@ schritt(function(){
         u.pruef('CPS2: 0 KI-Aufrufe', z.gemini===0 && z.sonnet===0 && c.state.pruefBilanz.kiAufrufe===0);
         u.pruef('CPS2: Lauf sauber abgeschlossen, Alarm aufgehoben', c.state.pruefRun.status==='fertig' && c.speicherAlarm===false);
         u.pruef('CPS2: der fremde Vorschlag ist weiterhin da', c.state.pruefListe.some(function(v){ return v.id==='ALT1'; }));
-        u.pruef('CPS2: jetzt ist der neue Stand auch gespeichert', JSON.parse(c._speicher[c.KEY]).pruefListe.length===11);
+        u.pruef('CPS2: jetzt ist der neue Stand auch gespeichert', JSON.parse(c._gespeichert()).pruefListe.length===11);
       });
     });
   });
@@ -284,7 +291,7 @@ schritt(function(){
         return null;
       });
     }).then(function(){
-      var gesp=JSON.parse(c._speicher[c.KEY]);
+      var gesp=JSON.parse(c._gespeichert());
       u.pruef('CPS4: der spaetere Checkpoint gelingt und schreibt den neuen Stand',
               gesp.pruefListe && gesp.pruefListe[0].marke==='zweiter Versuch');
       u.pruef('CPS4: der Alarm ist nach dem Erfolg wieder aufgehoben', c.speicherAlarm===false);
@@ -307,15 +314,15 @@ schritt(function(){
     var sp=speicherSteuern(c);
     c.state.pruefListe=[{ id:'A', marke:'Stand A (erfolgreich)' }];
     return c.checkpointSave().then(function(){
-      var gespA=c._speicher[c.KEY];
+      var gespA=c._gespeichert();
       sp.defekt=true;
       c.state.pruefListe=[{ id:'A', marke:'Stand B (scheitert)' }];
       return c.checkpointSave().then(function(){ return 'ERFOLG'; }, function(){ return 'ABGELEHNT'; }).then(function(r){
         u.pruef('CPS5: der spaetere Checkpoint scheitert sichtbar', r==='ABGELEHNT');
-        u.pruef('CPS5: der gespeicherte Stand A ist Zeichen fuer Zeichen erhalten', c._speicher[c.KEY]===gespA,
-                JSON.parse(c._speicher[c.KEY]).pruefListe[0].marke);
+        u.pruef('CPS5: der gespeicherte Stand A ist Zeichen fuer Zeichen erhalten', c._gespeichert()===gespA,
+                JSON.parse(c._gespeichert()).pruefListe[0].marke);
         sp.defekt=false;
-        var c2=u.neueUmgebung({ save:c._speicher[c.KEY] });
+        var c2=u.neueUmgebung({ save:c._gespeichert() });
         return c2.bereit.then(function(){
           u.pruef('CPS5: ein Neustart laedt Stand A', c2.state.pruefListe[0].marke==='Stand A (erfolgreich)');
         });

@@ -196,18 +196,17 @@ Punkt 73, nicht hier wiederholt (Punkt 45).
 `.claude/hooks/claude_md_frisch.py` vergleicht sie bei jedem Sitzungsstart und erinnert an
 eine Erneuerung, sobald einer abweicht. Er erneuert nichts von selbst.*
 
-- STAND.md — `2dd5078aef304dab41a59ccf94598386db5671d7`
-- Ondo-Control-Backlog.md — `2fa1a97a531f6ae57f3a3b291734044aea578bf1`
-- Blueprint.md — `ceab75957c8895ef387a78adef3a657d01fa1dce`
-- Ondo-Core-Architektur.md — `df55b668ae86bf4e6183ece90af5f3276527661a`
+- STAND.md — `5af95bb62175198885608a87d032cf4cd22e46f2`
+- Ondo-Control-Backlog.md — `ab998008159013095f0aa9f4fab91876d3a11118`
+- Blueprint.md — `74870ee1ac51957a53653a2a80d54ee06a54309a`
+- Ondo-Core-Architektur.md — `775b62107f7fc8626290f1115ba74b50984cc54d`
 
-*Prüfstand nachgeführt am 24.9.2026 (nur Hashes — Anlass war Ondos eng begrenzte Nachbesserung
-zu v19.19.0 (Backlog-Punkt 86, `beta.html` v19.19.1): neue Migration `seedV<10` für alte
-Vorschläge ohne `datum`/`fixtureId` (der reale 15-statt-10-Befund), dauerhafte Dublettensperre
-beim Erzeugen, eindeutige Vorschlags-IDs, und `checkpointSave()` als echte harte Barriere, die bei
-einem Schreibfehler rejected, ohne die gemeinsame Schreibkette zu blockieren. **Für diese Datei
-inhaltlich nicht berührt:** keine neue Arbeitsregel, keine Änderung an Zweig-, Geheimfeld- oder
-Pflichtlektüre-Regel. Die präzisierte Architektur (Barriere-Semantik, Vorschlagsidentität) steht
-in `Ondo-Core-Architektur.md` Abschnitt 1e und wird hier nach Punkt 45 nicht wiederholt. Neu in
-`tests/`: `t4_legacy_dubletten.js` und `t5_checkpoint.js`; mit `ONDO_BETA=<Pfad>` laufen alle
-Tests zur Gegenprobe gegen eine andere Fassung von `beta.html`.)*
+*Prüfstand nachgeführt am 24.9.2026, zweite Lieferung des Tages (nur Hashes — Anlass war Ondos
+letzte eng begrenzte Nachbesserung zu Backlog-Punkt 86, `beta.html` v19.19.2: ein kritischer
+Checkpoint gilt nur noch als geschrieben, wenn IndexedDB ihn gespeichert hat;
+`speicherSchreibenKritisch()` ohne `localStorage`-Rückfall, `save()` und `speicherLesen()`
+unverändert. **Für diese Datei inhaltlich nicht berührt.** Vorige Lieferung desselben Tages
+(v19.19.1): Migration `seedV<10`, Dublettensperre, eindeutige Vorschlags-IDs, harte
+Checkpoint-Barriere. Neu in `tests/`: `t6_checkpoint_idb.js`; `umgebung.js` bildet jetzt eine
+steuerbare IndexedDB nach (`ctx._idb`, `opt.ohneIdb`, `opt.idb`). Mit `ONDO_BETA=<Pfad>` laufen
+alle Tests zur Gegenprobe gegen eine andere Fassung von `beta.html`.)*

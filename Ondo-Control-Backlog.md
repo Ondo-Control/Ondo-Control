@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 24.9.2026, Fassung 145 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 24.9.2026, Fassung 146 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -30,6 +30,7 @@
 - **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unveraendert in der Zahl.)*
 - **🔴 Nachgefuehrt 23.9.2026 (Fassung 144, Backlog-Punkt 86 gebaut):** Die Zahl bleibt **zwei — 4, 81**. Punkt 86 ist mit dieser Lieferung gebaut und zaehlt daher nicht mit; Punkt 81 bleibt ausdruecklich OFFEN, weil die Bestaetigung an Ondos Geraet aussteht.
 - **🔴 Nachgefuehrt 24.9.2026 (Fassung 145, Nachbesserung zu Punkt 86 gebaut, `beta.html` v19.19.1):** Die Zahl bleibt **zwei — 4, 81**. Die Nachbesserung ist gebaut; ihre Bewaehrung am iPhone steht aus.
+- **🔴 Nachgefuehrt 24.9.2026 (Fassung 146, letzte Nachbesserung zu Punkt 86, `beta.html` v19.19.2):** Die Zahl bleibt **zwei — 4, 81**.
 
 ---
 
@@ -526,8 +527,9 @@ kein Schlüssel, kein zusätzlicher Abruf.
 Spielidentität** · *Meldung Ondo 20.9.2026 (gefundene Vorschläge gehen verloren, Läufe dauern
 sehr lange — Prüflauf UND Vorhersage) · Auftrag Ondo 21.9.2026 („Umfassender Auftrag an Code,
 Fassung 4", Entwurf ChatGPT, ergänzt Claude) · gebaut 23.9.2026 · realer iPhone-Befund und Nachbesserungsauftrag Ondo 24.9.2026 · Nachbesserung gebaut
-24.9.2026* · **Status: 🔴 GEBAUT 23.9.2026 (`beta.html` v19.19.0), NACHGEBESSERT 24.9.2026
-(`beta.html` v19.19.1) — Bewährung der Nachbesserung am iPhone steht aus**
+24.9.2026 · letzte Nachbesserung (kritischer Checkpoint nur mit IndexedDB), Auftrag Ondo, gebaut 24.9.2026* ·
+**Status: 🔴 GEBAUT 23.9.2026 (`beta.html` v19.19.0), NACHGEBESSERT 24.9.2026 (`beta.html` v19.19.1
+und v19.19.2) — Bewährung am iPhone steht aus**
 
 **Stand v19.19.0 am Gerät (Ondo, 24.9.2026):** 10 von 10 Spielen gefunden, 3 Sekunden, 0
 KI-Anfragen, beide Stufe-3-Fälle gewarnt, nichts automatisch übernommen — dieses Verhalten ist
@@ -549,6 +551,12 @@ bewährt und darf nicht verschlechtert werden. **Aber: 15 Vorschläge für 10 Sp
   einer Unterbrechung** (die frühere Formulierung „kein zusätzlicher Bedienschritt" war zu stark,
   Wortlaut im Archiv); ein Selbststart ist bewusst nicht gebaut (Kosten, Arbeitsregel G).
 
+**Letzte Nachbesserung v19.19.2 (Auftrag Ondo 24.9.2026):** Ein kritischer Checkpoint wertete
+einen gelungenen `localStorage`-Rückfall trotz gescheitertem IndexedDB-Schreiben als Erfolg; ein
+Neustart hätte den älteren IndexedDB-Stand gelesen. Neu: strikter Schreibweg
+`speicherSchreibenKritisch()` (nur IndexedDB) für beide Checkpoint-Funktionen; `save()` und
+`speicherLesen()` unverändert.
+
 Einzelheiten, Messzahlen und Gegenprobe: `STAND.md`, Abschnitt „Versionen" (Punkt 45, hier nicht
 wiederholt). Die vollständige Bau- und Begründungsgeschichte von v19.19.0 steht seit 24.9.2026
 wortgleich in `BACKLOG-ARCHIV.md`.
@@ -562,11 +570,14 @@ wortgleich in `BACKLOG-ARCHIV.md`.
 - Scheitert der Checkpoint eines Gehirns, während das andere Gehirn schon angefragt ist, läuft
   diese eine bereits abgeschickte Anfrage zu Ende; ihre Antwort bleibt im Arbeitsspeicher und
   wird beim Fortsetzen nicht erneut bezahlt.
-- Unverändert und nicht Teil dieses Auftrags: `speicherSchreiben()` fällt bei einem
-  IndexedDB-Fehler auf `localStorage` zurück, `speicherLesen()` liest zuerst IndexedDB. Gelänge
-  nur der Rückfall, läse ein Neustart den älteren IndexedDB-Stand. Bei Ondos Datenmenge
-  (über 2,7 MB) scheitert `localStorage` erfahrungsgemäß ohnehin — nicht nachgestellt, nur
-  benannt (Art. 11).
+- **Für kritische Checkpoints behoben in v19.19.2:** Sie gelten nur noch als geschrieben, wenn
+  IndexedDB selbst geschrieben hat; ein `localStorage`-Rückfall zählt dort nicht mehr (Wortlaut
+  der früheren Restgrenze im Archiv). Für das normale `save()` bleibt der Rückfall bewusst
+  bestehen.
+- Neu benannt (v19.19.2, nicht geändert): Scheitert das **Öffnen** von IndexedDB einmal, merkt
+  sich `idbOeffnen()` das bis zum nächsten Neuladen der Seite; kritische Checkpoints scheitern
+  bis dahin weiter. Ein Schreibfehler bei geöffneter IndexedDB erholt sich dagegen beim nächsten
+  Klick (getestet).
 
 **Kosten (Arbeitsregel G):** kein Geld, kein neuer Dienst, kein zusätzlicher Netz- oder
 Modellaufruf; je Lauf ein zusätzlicher lokaler Schreibvorgang.

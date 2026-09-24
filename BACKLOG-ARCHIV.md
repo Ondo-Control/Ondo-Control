@@ -6633,3 +6633,16 @@ Spiele mit vorhandenem strukturiertem Ergebnis gar kein Modell mehr erreichen; s
 nur dort, wo viele Spiele ungelöst bleiben (drei Aufrufe je Spiel statt drei je Stapel von bis
 zu fünf). Gemessen im Test: zehn echte Spiele vom 12.9.2026 → **0** Modellaufrufe; zwei
 ungelöste Testspiele → **6** Aufrufe. Keine geschätzten Euro-Beträge.
+
+---
+
+## Backlog-Punkt 86 — überholte Restgrenze, aus `Ondo-Control-Backlog.md` verschoben (24.9.2026, v19.19.2, Fassung 146)
+
+*Wortgleich, Regel 3. Für kritische Checkpoints mit v19.19.2 behoben (Auftrag Ondo 24.9.2026);
+für das normale `save()` gilt der beschriebene Rückfall bewusst weiter.*
+
+- Unverändert und nicht Teil dieses Auftrags: `speicherSchreiben()` fällt bei einem
+  IndexedDB-Fehler auf `localStorage` zurück, `speicherLesen()` liest zuerst IndexedDB. Gelänge
+  nur der Rückfall, läse ein Neustart den älteren IndexedDB-Stand. Bei Ondos Datenmenge
+  (über 2,7 MB) scheitert `localStorage` erfahrungsgemäß ohnehin — nicht nachgestellt, nur
+  benannt (Art. 11).

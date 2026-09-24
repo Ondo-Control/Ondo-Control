@@ -66,7 +66,9 @@ function app(opt, save){
     return c;
   });
 }
-function gespeicherterStand(c){ return JSON.parse(c._speicher[c.KEY]); }
+/* v19.19.2: der Stand, den load() beim naechsten Start laese (IndexedDB zuerst) - seit die
+   Testumgebung eine IndexedDB hat, liegt er dort und nicht mehr im localStorage. */
+function gespeicherterStand(c){ return JSON.parse(c._gespeichert()); }
 function knopf(){ return { disabled:false, textContent:'' }; }
 /* Wartet, bis der Lauf wirklich zu Ende ist (der Lauf selbst gibt kein Promise zurueck). */
 function fertig(c, msMax){

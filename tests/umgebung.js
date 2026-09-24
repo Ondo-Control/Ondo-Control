@@ -103,8 +103,73 @@ function neueUmgebung(opt){
   ctx.window.addEventListener = function(n,f){ (protokoll.listener[n]=protokoll.listener[n]||[]).push(f); };
   ctx.addEventListener = ctx.window.addEventListener;
   ctx.removeEventListener = function(){};
-  /* window.indexedDB bleibt ABSICHTLICH undefiniert: speicherSchreiben/-Lesen fallen dann auf
-     localStorage zurueck, genau wie im Browser ohne IndexedDB (Art. 6, dokumentierter Weg). */
+  /* 🔴 v19.19.2: window.indexedDB war hier bis v19.19.1 ABSICHTLICH undefiniert - alles lief
+     ueber den localStorage-Rueckfall. Seit ein KRITISCHER Checkpoint nur noch als gelungen gilt,
+     wenn IndexedDB wirklich geschrieben wurde, braucht die Umgebung eine IndexedDB, und zwar
+     eine, die sich gezielt kaputt machen laesst (Auftrag 24.9.2026, Abschnitt 6).
+     Nachgebildet ist nur, was beta.html benutzt: open() mit onupgradeneeded/onsuccess/onerror,
+     transaction(store, mode).objectStore(store).get/put, oncomplete/onerror/onabort.
+     Gespeichert wird eine KOPIE (wie der structured clone des Browsers). Ein gescheitertes
+     Schreiben veraendert nichts - wie eine abgebrochene Transaktion.
+     Steuerung ueber ctx._idb:  schreibFehler (true/false)  ·  oeffnenFehler (true/false)
+     opt.ohneIdb: gar keine IndexedDB (alter Zustand).  opt.idb: Startinhalt, z. B. {Schluessel: Stand}. */
+  var idb={ daten:{}, schreibFehler:false, oeffnenFehler:false, schreibVersuche:0, schreibFehlschlaege:0 };
+  if(opt.idb) Object.keys(opt.idb).forEach(function(k){
+    idb.daten[k] = (typeof opt.idb[k]==='string') ? opt.idb[k] : JSON.stringify(opt.idb[k]); });
+  function spaeter(f){ setTimeout(f, 0); }
+  if(!opt.ohneIdb){
+    ctx.indexedDB = {
+      open:function(){
+        var req={ result:null, error:null };
+        spaeter(function(){
+          if(idb.oeffnenFehler){ req.error=new Error('indexedDB.open fehlgeschlagen (Test)'); if(req.onerror) req.onerror(); return; }
+          req.result={
+            createObjectStore:function(){},
+            transaction:function(store, modus){
+              var tx={ error:null };
+              var plan=[];
+              tx.objectStore=function(){
+                return {
+                  get:function(k){
+                    var r={ result:undefined };
+                    spaeter(function(){ r.result = Object.prototype.hasOwnProperty.call(idb.daten,k) ? JSON.parse(idb.daten[k]) : undefined;
+                                        if(r.onsuccess) r.onsuccess(); });
+                    return r;
+                  },
+                  put:function(v, k){ plan.push([k, JSON.stringify(v)]); }
+                };
+              };
+              spaeter(function(){
+                if(modus==='readwrite' && plan.length){
+                  idb.schreibVersuche++;
+                  var fehl = (typeof idb.schreibFehler==='function') ? idb.schreibFehler(plan[0][1]) : idb.schreibFehler;
+                  if(fehl){
+                    idb.schreibFehlschlaege++;
+                    tx.error=new Error('QuotaExceededError (Test): IndexedDB-Transaktion abgebrochen');
+                    if(tx.onabort) tx.onabort(); else if(tx.onerror) tx.onerror();
+                    return;
+                  }
+                  plan.forEach(function(p){ idb.daten[p[0]]=p[1]; });
+                }
+                if(tx.oncomplete) tx.oncomplete();
+              });
+              return tx;
+            }
+          };
+          if(req.onsuccess) req.onsuccess();
+        });
+        return req;
+      }
+    };
+  }
+  ctx._idb = idb;
+  /* Der Stand, den load() beim naechsten Start laese (speicherLesen: IndexedDB zuerst, sonst
+     localStorage) - als Zeichenkette, damit Tests zeichengenau vergleichen koennen. */
+  ctx._gespeichert = function(){
+    var k='ondo-control-v1';
+    if(Object.prototype.hasOwnProperty.call(idb.daten,k)) return idb.daten[k];
+    return Object.prototype.hasOwnProperty.call(speicher,k) ? speicher[k] : null;
+  };
 
   vm.createContext(ctx);
   vm.runInContext(skriptText(), ctx, { filename:'beta.html:<script>' });

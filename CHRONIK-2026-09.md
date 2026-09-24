@@ -838,6 +838,78 @@ richtig gezählt. Der Lieferbericht nannte außerdem „9 geänderte Dateien" �
 3 Sekunden, 0 KI — aber 15 Vorschläge durch nicht migrierte alte Vorschläge; Ursache und
 Reparatur siehe `STAND.md`, v19.19.1.*
 
+## `beta.html` v19.19.1 — aus `STAND.md` verschoben (24.9.2026, Fassung 146)
+
+*Wortgleich aus `STAND.md`, Abschnitt „Versionen". Nichts umformuliert (Regel 3).*
+
+- **Beta: v19.19.1** (`beta.html`, geliefert 24.9.2026) — **Eng begrenzte Nachbesserung zu
+  v19.19.0 (Backlog-Punkt 86, Ondos Auftrag vom 24.9.2026): Legacy-Migration + Dublettensperre,
+  `checkpointSave()` als echte harte Speicherbarriere.** Der vollständige v19.19.0-Block steht
+  wortgleich in `CHRONIK-2026-09.md`.
+  **Realer Befund an Ondos iPhone mit v19.19.0 (24.9.2026):** Ergebnis-Prüflauf **10 von 10**
+  gefunden, **3 Sekunden** (Gerätebeobachtung Ondos, keine Zusage des Codes), **0 KI-Anfragen**,
+  beide Stufe-3-Fälle sichtbar gewarnt, nichts automatisch übernommen — **aber 15 sichtbare
+  Vorschläge für 10 Spiele**: Sunderland–Arsenal, Sittard–Ajax, Go Ahead Eagles–Groningen,
+  Tottenham–Everton und Strasbourg–Monaco standen doppelt.
+  **Ursache A, am Code belegt:** Ein Vorschlag von vor v19.19.0 trug **kein** Feld `datum` und
+  keine `fixtureId` (sein Schema: `gefDatum`, `gefWb`, `quelle`, `eintraege` …). `seedV<9` baute
+  auf `datumIso(v.datum)`, bekam `''` und übersprang alle fünf. Ohne `fixtureId` und ohne Job
+  kannte der neue Prüflauf sie nicht, suchte alle zehn Spiele erneut und hängte zehn neue
+  Vorschläge ungeprüft an (`state.pruefListe.push`). Der alte Test L gab dem alten Vorschlag ein
+  erfundenes `datum` und konnte den Fehler deshalb nicht finden.
+  **Ursache B, am Code belegt:** `checkpointSave()` fing den Schreibfehler mit `.catch()` ab und
+  gab genau diese Kette zurück — ein gescheiterter Checkpoint erschien dem Aufrufer als Erfolg,
+  `checkpointSave().then(… vorhersageGehirn …)` hätte das Modell trotzdem bezahlt. Zusätzlich
+  startete `ergebnissePruefen()` seinen ersten Checkpoint nur, ohne ihn abzuwarten.
+  **Gebaut:** neue additive, idempotente Migration `seedV<10` (`seedV<9` wortgleich unverändert).
+  `fixtureId`: vorhandene gültige ID, sonst aus den referenzierten `kiProtokoll`-Einträgen (Log)
+  bzw. dem eindeutig über `betId` referenzierten Wettschein, **nie aus `gefDatum`**;
+  widersprüchliche oder fehlende Referenzen → keine erfundene ID, nichts gelöscht,
+  Kennzeichen `migrationKonflikt`. **Identische Dubletten** (gleiche `fixtureId` + `art`, bei
+  Wettscheinen + `betId`, gleicher 90-Minuten-Endstand, Halbzeit/Verlängerung soweit beide
+  angeben) → **ein** Vorschlag; der reichere bleibt, nur fehlende Angaben werden ergänzt, die
+  Zusammenführung steht am Vorschlag. **Widersprüche** bleiben **beide** stehen, sichtbar mit dem
+  neuen Hinweis `pruefKonflikt` (Anzeige und Textausgabe) — nichts gewählt, nichts überschrieben.
+  Jobs `uebernommen`/`ignoriert`/`geparkt` bleiben unangetastet. **Dauerhafte Dublettensperre:**
+  `vorschlagEinfuegen()` ersetzt das blanke `push`. **Harte Barriere:** `checkpointSave()`
+  rejected bei einem Schreibfehler; die globale `speicherKette` läuft über eine abgefangene
+  Fassung weiter und bleibt benutzbar; `checkpointOhneBarriere()` für Stellen ohne folgenden
+  externen Schritt. Start und Fortsetzen von Prüf- und Vorhersage-Lauf warten die Barriere ab;
+  scheitert ein kritischer Checkpoint: 0 externe Abrufe, Lauf `pausiert`, Fehler sichtbar, genau
+  ein stiller Schreibversuch für die Pause ohne Erfolgsbehauptung. Fortsetzen bleibt ein Klick
+  auf denselben Knopf — **ein zusätzlicher Klick, aber nur nach einer Unterbrechung.**
+  **Eigener Fund, mitbehoben (Datenintegrität):** Vorschlags-IDs (`'S'+Position`) wurden in jedem
+  Lauf neu ab `S0` vergeben, Vorschläge überleben seit v19.19.0 aber mehrere Läufe. Am echten
+  Code nachgestellt: nach einer vorn eingefügten neuen Vorhersage trugen Köln–Bremen und
+  Tottenham–Everton beide `S7`; „Übernehmen" bei Tottenham übernahm Kölns Ergebnis und entfernte
+  Tottenhams Vorschlag spurlos, dessen Job blieb auf `vorschlag` — das Spiel wäre nie wieder
+  gesucht worden. Jetzt ist jede ID in der aktiven Liste eindeutig; `pruefAnwenden()` und
+  `pruefIgnorieren()` selbst sind unverändert.
+  **Verifiziert (24.9.2026):** `node --check` bestanden · **287 Prüfungen** in `tests/`
+  (t1 43 · t2 80 · t3 51 · t4 72 · t5 41), alle bestanden. Realer 15→10-Fall: vorher 15
+  Vorschläge für 10 Spiele, nachher **genau 10**, 10 verschiedene `fixtureId`, 0 KI, keine
+  Evidence gelöscht, Messwerte zeichengleich, beide Stufe-3-Hinweise da, keine
+  Stufe-3-Provider-ID gebunden, Neuladen ohne neue Migrationswirkung. 10-Spiele-Regression:
+  10 von 10, 0 KI, Stufe 1 = 4 · Stufe 2 = 4 · Stufe 3 = 2, Laufzeit ohne Netz 94–102 ms
+  (v19.19.0 unter gleichen Bedingungen 90–109 ms — nicht langsamer). CPS1–CPS5 bestanden.
+  **Gegenprobe:** dieselben Tests schlagen gegen v19.19.0 fehl (15 Vorschläge, IDs `S0`–`S4`
+  doppelt · externe Abrufe trotz gescheitertem Checkpoint · Sonnet und Flash bezahlt ·
+  Fehlschlag als „ERFOLG" gemeldet). **49 von 49** geschützten Funktionen und Konstanten
+  byte-identisch zu v19.19.0 (u. a. `promptBauen`, `refEinigkeit`, `REF_MIN_LAEUFE`,
+  `marktUrteil`, `maerkteBauen`, `STUFEN`, `vorhersageGehirn`, `pruefAnwenden`, `seedV<9`).
+  `pruefe.py`: ALLES SAUBER. **`OndoControl.html` unangetastet** (keine Produktionspromotion).
+  **Berichtigt zum v19.19.0-Lieferbericht:** Commit `baf2efb` änderte **12** Dateien, nicht 9;
+  neu waren **9** Sprachschlüssel, nicht 10 (`refCalls` wurde nicht geändert, nur zusätzlich
+  verwendet).
+  **Bewährung am iPhone steht aus** — dieser Stand ist von Ondo noch nicht am Gerät geprüft.
+  **Kosten (Arbeitsregel G):** kein Geld, kein neuer Dienst, kein zusätzlicher Netz- oder
+  Modellaufruf; je Lauf ein zusätzlicher lokaler Schreibvorgang (die Startbarriere).
+
+*🔴 Ergänzt 24.9.2026 (v19.19.2):* Die Checkpoint-Barriere dieses Standes stoppte bei einem
+vollständigen Speicherfehler richtig, wertete aber einen gelungenen `localStorage`-Rückfall
+trotz gescheitertem IndexedDB-Schreiben noch als Erfolg. Im Backlog stand das als benannte
+Restgrenze; behoben in v19.19.2 (kritischer Checkpoint nur mit abgeschlossenem IndexedDB-Schreiben).
+
 ## Sprachschluesselzahl — Zaehlhistorie, aus STAND.md „Versionen" verschoben (14.9.2026)
 
 *Dieser Satz stand bis zum 14.9.2026 eingebettet in der „Sprachschluessel"-Zeile von `STAND.md`, Abschnitt „Versionen". Er beschreibt, wie die heute geltende Zahl (siehe `STAND.md`) ueber die gesamte Projektlaufzeit zustande kam, nicht nur den September-Anteil — deshalb hier ungeteilt, wortgleich, statt auf zwei Chronikdateien aufgesplittet.*

@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.19.1';
+var CODE_VERSION = 'v19.19.2';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -740,6 +740,20 @@ function speicherSchreiben(schluessel, wert){
     localStorage.setItem(schluessel, JSON.stringify(wert));
   });
 }
+/* 🔴 STRIKTER SCHREIBWEG FUER KRITISCHE CHECKPOINTS (v19.19.2, Auftrag Ondo 24.9.2026).
+   speicherSchreiben() oben bleibt unveraendert der Best-Effort-Weg fuer save(): IndexedDB,
+   bei einem Fehler localStorage. Fuer einen Checkpoint, nach dem ein externer oder bezahlter
+   Schritt beginnt, war genau dieser Rueckfall falsch: speicherLesen() liest beim Neustart
+   IndexedDB ZUERST. Scheiterte IndexedDB mit Stand B, gelang aber localStorage, galt der
+   Checkpoint als geschrieben, der externe Schritt lief los - und ein Neustart las den alten
+   IndexedDB-Stand A. Stand B war fuer die App verloren.
+   Deshalb gilt hier: erfolgreich NUR, wenn die IndexedDB-Transaktion abgeschlossen ist. Kein
+   localStorage-Rueckfall, auch nicht, wenn IndexedDB ganz fehlt oder sich nicht oeffnen laesst -
+   dann scheitert der Checkpoint sichtbar, und der Lauf pausiert (Absicht). localStorage wird
+   auf diesem Weg gar nicht erst beschrieben. speicherLesen() bleibt unveraendert. */
+function speicherSchreibenKritisch(schluessel, wert){
+  return idbSchreiben(schluessel, wert);
+}
 var state = {
   bets: [],
   regeln: { maxEinsatz: 20 },
@@ -1120,11 +1134,15 @@ function save(){
    aendert bei einem Fehler in setItem() nichts. Es wird nichts geloescht, um Platz zu machen.
    Wer KEINE Barriere braucht (Abschluss, Pause, Programmstart, Seite verlassen), ruft
    checkpointOhneBarriere() - dasselbe Schreiben in derselben Kette, nur ohne Ablehnung nach
-   aussen, damit kein unbehandeltes Promise entsteht. Das normale save() bleibt unveraendert. */
+   aussen, damit kein unbehandeltes Promise entsteht. Das normale save() bleibt unveraendert.
+   🔴 v19.19.2: "Schreibfehler" heisst seither auch: IndexedDB scheitert, localStorage haette
+   geklappt. Beide Checkpoint-Funktionen schreiben ueber speicherSchreibenKritisch() (nur
+   IndexedDB); ein localStorage-Rueckfall zaehlt fuer sie nicht als Erfolg. */
 var speicherKette = Promise.resolve();
 function checkpointSave(){
   var ergebnis = speicherKette.then(function(){
-    return speicherSchreiben(KEY, state);
+    /* v19.19.2: der strikte Weg (nur IndexedDB) - siehe speicherSchreibenKritisch(). */
+    return speicherSchreibenKritisch(KEY, state);
   }).then(function(){
     if(speicherAlarm){ speicherAlarm=false; }
   }, function(e){

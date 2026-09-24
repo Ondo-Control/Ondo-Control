@@ -90,7 +90,7 @@ function fertigV(c, msMax){
     })();
   });
 }
-function stand(c){ return JSON.parse(c._speicher[c.KEY]); }
+function stand(c){ return JSON.parse(c._gespeichert()); }   /* v19.19.2: IndexedDB zuerst, wie load() */
 
 var ablauf=Promise.resolve();
 function schritt(f){ ablauf=ablauf.then(f); }
@@ -290,15 +290,18 @@ schritt(function(){
     /* Das Schreiben wird kuenstlich verlangsamt, und zwar der ERSTE Aufruf staerker als der
        zweite. Ohne geordnete Kette wuerde der aeltere Schreibvorgang zuletzt fertig und den
        neueren Zustand logisch zuruecksetzen - genau das soll ausgeschlossen sein. */
-    var echtSetzen=c.localStorage.setItem;
+    /* v19.19.2: Checkpoints schreiben ueber den STRIKTEN Weg speicherSchreibenKritisch()
+       (nur IndexedDB) - die Verzoegerung sitzt deshalb dort. Sonst unveraendert: der erste
+       Schreibvorgang wird staerker verzoegert als der zweite. */
+    var echtKritisch=c.speicherSchreibenKritisch;
     var verzug=[80, 5];
     var i=0, reihenfolge=[];
-    c.speicherSchreiben=function(schluessel, wert){
-      var text=JSON.stringify(wert);
+    c.speicherSchreibenKritisch=function(schluessel, wert){
+      var kopie=JSON.parse(JSON.stringify(wert));
       var d=verzug[i]!==undefined?verzug[i]:0; i++;
       var nr=i;
-      return new Promise(function(res){
-        setTimeout(function(){ echtSetzen(schluessel, text); reihenfolge.push(nr); res(); }, d);
+      return new Promise(function(res, rej){
+        setTimeout(function(){ echtKritisch(schluessel, kopie).then(function(){ reihenfolge.push(nr); res(); }, rej); }, d);
       });
     };
     c.state.pruefListe=[{ id:'A', marke:'erster Stand' }];
@@ -308,7 +311,7 @@ schritt(function(){
     return Promise.all([p1,p2]).then(function(){
       u.pruef('die Schreibvorgaenge liefen in der Reihenfolge ihrer Aufrufe',
               reihenfolge.join(',')==='1,2', 'Reihenfolge: '+reihenfolge.join(','));
-      var endstand=JSON.parse(c._speicher[c.KEY]);
+      var endstand=JSON.parse(c._gespeichert());
       u.pruef('N5: der endgueltige Speicherstand enthaelt den NEUEREN Zustand',
               endstand.pruefListe[0].marke==='ZWEITER Stand', '"'+endstand.pruefListe[0].marke+'"');
     });

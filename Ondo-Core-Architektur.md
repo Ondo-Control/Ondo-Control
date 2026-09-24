@@ -1,5 +1,6 @@
 # ONDO CORE v1 — Architektur-Entwurf
 *Antwort auf die Architektur-Anfrage von ChatGPT (5.7.2026). Autor: Claude. Status: Entwurf zur gemeinsamen Prüfung.*
+*Fassung 0.17 — 24.9.2026: Abschnitt 1e, „harte Barriere", um eine Präzisierung ergänzt (`beta.html` v19.19.2): „geschrieben" heisst für einen Checkpoint „in IndexedDB geschrieben". Nichts Bestehendes geändert.*
 *Fassung 0.16 — 24.9.2026: Abschnitt 1e um zwei Präzisierungen ergänzt (Nachbesserung zu Backlog-Punkt 86, `beta.html` v19.19.1): der Checkpoint ist eine harte Barriere, und die Identität eines Ergebnisvorschlags ist festgelegt. Nichts Bestehendes geändert.*
 *Fassung 0.15 — 23.9.2026: Abschnitt 1e ergaenzt (Backlog-Punkt 86, Auftrag Ondo 21.9.2026) — die stabile Spielidentitaet und der persistente Lauf-/Pruefzustand sind Architektur, nicht Tagesarbeit. Nichts Bestehendes geaendert.*
 *Fassung 0.14 — 14.9.2026: Die zehn Fassungsnotizen 0.4–0.13 nach `ONDO-CORE-PROTOKOLL.md` verschoben (Ondos Auftrag, Phase 2 der Trennung von aktuellem Stand und Geschichte) — dieses Dokument enthaelt ab jetzt nur noch die Architektur selbst, keine Aenderungsvermerke mehr. Kein Inhalt der Architektur geaendert.*
@@ -357,6 +358,10 @@ oder kostenpflichtigen Schritt mehr und bleibt fortsetzbar stehen. Die gemeinsam
 wird von einem einzelnen Fehlschlag nicht blockiert, und ein gescheitertes Schreiben lässt den
 zuletzt erfolgreich geschriebenen Stand unberührt. Ein Schreibvorgang, dem kein externer Schritt
 folgt (Abschluss, Pause), ist keine Barriere und wird nur versucht.
+*Präzisiert 24.9.2026 (v19.19.2):* „Geschrieben" heisst dabei: **in den Speicher geschrieben,
+den der Programmstart zuerst liest** — IndexedDB. Ein Rückfall auf `localStorage` zählt für
+einen Checkpoint nicht als Erfolg, weil ein Neustart dann einen älteren IndexedDB-Stand läse.
+Das normale Speichern ohne folgenden externen Schritt behält seinen Rückfall.
 
 **Identität eines Ergebnisvorschlags** *(festgelegt 24.9.2026, v19.19.1)*. Ein Vorschlag gehört
 über `fixtureId` + Art (Log oder Wettschein, bei Wettscheinen zusätzlich die Wette) zu genau einem
