@@ -196,20 +196,18 @@ Punkt 73, nicht hier wiederholt (Punkt 45).
 `.claude/hooks/claude_md_frisch.py` vergleicht sie bei jedem Sitzungsstart und erinnert an
 eine Erneuerung, sobald einer abweicht. Er erneuert nichts von selbst.*
 
-- STAND.md — `7ace1fcfa6d29db9960b7aaccb8bf0c856dd4c01`
-- Ondo-Control-Backlog.md — `5e8057838989df86bfe8b4b240c8d44c87feeebc`
-- Blueprint.md — `10c1f21f0551d0bfb8b7678c650201f7300f3641`
-- Ondo-Core-Architektur.md — `d15817f2a4b074377230c19e33a8881a8cb0f58a`
+- STAND.md — `2dd5078aef304dab41a59ccf94598386db5671d7`
+- Ondo-Control-Backlog.md — `2fa1a97a531f6ae57f3a3b291734044aea578bf1`
+- Blueprint.md — `ceab75957c8895ef387a78adef3a657d01fa1dce`
+- Ondo-Core-Architektur.md — `df55b668ae86bf4e6183ece90af5f3276527661a`
 
-*Prüfstand nachgeführt am 23.9.2026 (nur Hashes — Anlass war Ondos „Umfassender Auftrag an Code,
-Fassung 4" (Backlog-Punkt 86, `beta.html` v19.19.0): Prüflauf und Vorhersage-Lauf sind
-unterbrechungsfest (Checkpoint + Resume, persistente Laufsperre mit fester `runId`), gefundene
-Vorschläge überleben Reiterwechsel, Neuladen und App-Wechsel in `state.pruefJobs`, die
-strukturierten Quellen laufen vor der KI (football-data-Archiv als sekundärer Fallback wieder
-angeschlossen), und reale Spiele werden über eine kanonische `fixtureId` statt über freie
-Textnamen identifiziert. **Für diese Datei inhaltlich nicht berührt:** keine neue Arbeitsregel,
-keine Änderung an der Zweig-Regel, an der Geheimfeld-Regel oder an der Pflichtlektüre. Neu für
-eine spätere Sitzung wissenswert, aber in `Ondo-Core-Architektur.md` Abschnitt 1e nachzulesen und
-hier nach Punkt 45 bewusst nicht wiederholt: die dreistufige Zuordnungsregel und der persistente
-Prüfzustand. Neu im Verzeichnis: `tests/` mit vier Dateien — die Regressionstests laufen mit
-`node tests/t1_resolver.js` usw. gegen den echten `<script>`-Block aus `beta.html`.)*
+*Prüfstand nachgeführt am 24.9.2026 (nur Hashes — Anlass war Ondos eng begrenzte Nachbesserung
+zu v19.19.0 (Backlog-Punkt 86, `beta.html` v19.19.1): neue Migration `seedV<10` für alte
+Vorschläge ohne `datum`/`fixtureId` (der reale 15-statt-10-Befund), dauerhafte Dublettensperre
+beim Erzeugen, eindeutige Vorschlags-IDs, und `checkpointSave()` als echte harte Barriere, die bei
+einem Schreibfehler rejected, ohne die gemeinsame Schreibkette zu blockieren. **Für diese Datei
+inhaltlich nicht berührt:** keine neue Arbeitsregel, keine Änderung an Zweig-, Geheimfeld- oder
+Pflichtlektüre-Regel. Die präzisierte Architektur (Barriere-Semantik, Vorschlagsidentität) steht
+in `Ondo-Core-Architektur.md` Abschnitt 1e und wird hier nach Punkt 45 nicht wiederholt. Neu in
+`tests/`: `t4_legacy_dubletten.js` und `t5_checkpoint.js`; mit `ONDO_BETA=<Pfad>` laufen alle
+Tests zur Gegenprobe gegen eine andere Fassung von `beta.html`.)*

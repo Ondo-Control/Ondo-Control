@@ -86,6 +86,10 @@ function fertig(c, msMax){
   });
 }
 
+/* Die fixtureId so, wie der Prueflauf sie seit v19.19.0 bildet - bewusst NUR aus Funktionen,
+   die es auch in v19.19.0 schon gab, damit die Gegenprobe gegen den alten Stand laeuft. */
+function fidVon(c, match, datum){ var t=c.teamsAus(match); return c.fxId(c.datumIso(datum), t.heim, t.gast); }
+
 var ablauf = Promise.resolve();
 function schritt(f){ ablauf = ablauf.then(f); }
 
@@ -403,40 +407,132 @@ schritt(function(){
   });
 });
 
-/* ═══ L. Alte Saves / Migration ═══ */
+/* ═══ L. Alte Saves / Migration ═══
+   🔴 BERICHTIGT 24.9.2026 (v19.19.1): Bis hierher gab dieser Test den alten Vorschlaegen ein
+   Feld datum:'12.9.2026' - ein Feld, das ein echter Vorschlag vor v19.19.0 NIE hatte (am Code
+   belegt: git show baf2efb~1:beta.html, "var gemeinsam={" - id, match, heim, gast, halbzeit,
+   verl, warnP, gefDatum, gefWb, quelle, warn, warnQ, einigkeit, laeufeGut, quellen,
+   quellenZahl, verworfen, art, eintraege, urteile, rohAntwort, modell). Er pruefte damit ein
+   erfundenes Schema und konnte den realen Fehler (seedV<9 uebersprang alle echten alten
+   Vorschlaege, Ondo sah 15 statt 10) nicht finden. Jetzt: das echte Schema, OHNE datum und
+   OHNE fixtureId, mit eintraege-Referenzen auf ECHTE kiProtokoll-IDs. Die bisherigen
+   Pruefungen (Bilanz, Wetten, kiProtokoll-Laenge, Idempotenz) bleiben alle stehen. */
+function altVorschlag(id, match, heim, gast, halbzeit, eintraege){
+  return { id:id, match:match, heim:heim, gast:gast, halbzeit:halbzeit, verl:'', warnP:false,
+    gefDatum:'12.09.2026', gefWb:'', quelle:'kicker.de', warn:false, warnQ:false,
+    einigkeit:'', laeufeGut:3, quellen:['kicker.de'], quellenZahl:1, verworfen:[],
+    art:'log', eintraege:eintraege, urteile:[], rohAntwort:'{"ergebnisse":[]}', modell:'gemini-2.5-flash' };
+}
 schritt(function(){
-  u.block('L. Migration eines alten Speicherstands');
+  u.block('L. Migration eines alten Speicherstands (echtes Schema: kein datum, keine fixtureId)');
+  var ki=eintraege1209();
+  function ids(m){ return ki.filter(function(e){ return e.match===m; }).map(function(e){ return e.id; }); }
+  var lazio=ids('Lazio Rom - AC Mailand'), koeln=ids('1. FC Köln - SV Werder Bremen');
   var altesSave = {
     seedV: 8,
     bets: [{ id:900001, datum:'4.7.2026', match:'Kanada – Marokko', tipp:'x', quote:1.9, einsatz:7, status:'verloren' }],
-    kiProtokoll: eintraege1209(),
+    kiProtokoll: ki,
     pruefListe: [
-      { id:'S0', art:'log', match:'Lazio Rom - AC Mailand', datum:'12.9.2026', heim:2, gast:2,
-        halbzeit:'2:0', urteile:[], eintraege:['alt1'], quelle:'https://alt' },
-      { id:'S1', art:'log', match:'1. FC Köln - SV Werder Bremen', datum:'12.9.2026', heim:1, gast:1,
-        halbzeit:'1:0', urteile:[], eintraege:['alt2'], quelle:'https://alt' }
+      /* L1: echter alter Log-Vorschlag - eindeutig ueber seine Eintraege */
+      altVorschlag('S0', 'Lazio Rom - AC Mailand', 2, 2, '2:0', lazio),
+      altVorschlag('S1', '1. FC Köln - SV Werder Bremen', 1, 1, '1:0', koeln),
+      /* L2: Referenzen auf ZWEI verschiedene Spiele - nicht eindeutig */
+      altVorschlag('S2', 'Lazio Rom - AC Mailand', 2, 2, '2:0', [lazio[0], koeln[0]]),
+      /* L2b: Referenz auf einen Eintrag, den es nicht (mehr) gibt */
+      altVorschlag('S3', 'Geloeschtes Spiel - Irgendwer', 0, 0, '0:0', ['gibt_es_nicht'])
     ],
     pruefBilanz: { gesamt:2, gef:2, laeuft:[], geparkt:[], fehlt:[], runden:3 },
     regeln: { maxEinsatz:20 }
   };
+  u.pruef('Aufbau: kein alter Vorschlag traegt datum oder fixtureId (echtes Schema)',
+          altesSave.pruefListe.every(function(v){ return !('datum' in v) && !('fixtureId' in v); }));
   return app({}, altesSave).then(function(c){
-    u.pruef('alte Vorschlaege sind nach der Migration noch da', c.state.pruefListe.length===2,
-            c.state.pruefListe.length+' Vorschlaege');
+    var L=c.state.pruefListe;
+    var s0=L.filter(function(v){ return v.id==='S0'; })[0], s1=L.filter(function(v){ return v.id==='S1'; })[0];
+    var s2=L.filter(function(v){ return v.id==='S2'; })[0], s3=L.filter(function(v){ return v.id==='S3'; })[0];
+    u.pruef('alte Vorschlaege sind nach der Migration noch da - keiner geloescht', L.length===4,
+            L.length+' Vorschlaege');
     u.pruef('alte Bilanz ist unveraendert erhalten', c.state.pruefBilanz && c.state.pruefBilanz.gef===2);
-    u.pruef('jeder alte Vorschlag hat jetzt eine fixtureId',
-            c.state.pruefListe.every(function(v){ return !!v.fixtureId; }),
-            c.state.pruefListe.map(function(v){ return v.fixtureId; }).join(' · '));
-    u.pruef('und einen Job im Zustand "vorschlag"',
-            c.state.pruefListe.every(function(v){ return (c.jobHolen(v.fixtureId)||{}).zustand==='vorschlag'; }));
+    u.pruef('L1: fixtureId eindeutig aus den referenzierten kiProtokoll-Eintraegen rekonstruiert',
+            !!s0 && s0.fixtureId===fidVon(c,'Lazio Rom - AC Mailand','12.9.2026') &&
+            !!s1 && s1.fixtureId===fidVon(c,'1. FC Köln - SV Werder Bremen','12.9.2026'),
+            (s0&&s0.fixtureId)+' · '+(s1&&s1.fixtureId));
+    u.pruef('L1: Herkunft der fixtureId ist nachvollziehbar vermerkt',
+            s0 && s0.fixtureIdHerkunft==='migration_seedV10_eintraege');
+    u.pruef('L1: und einen Job im Zustand "vorschlag", der auf genau diesen Vorschlag zeigt',
+            [s0,s1].every(function(v){ var j=c.jobHolen(v.fixtureId)||{}; return j.zustand==='vorschlag' && j.vorschlagId===v.id; }));
+    u.pruef('L1: seedV<9 hatte ihn tatsaechlich uebersprungen (erst seedV<10 hat ihn erfasst)',
+            c.datumIso(altesSave.pruefListe[0].datum||'')==='' && c.state.seedV===10);
+    u.pruef('L2: widerspruechliche Referenzen -> KEINE erfundene fixtureId', !!s2 && !s2.fixtureId,
+            s2 && JSON.stringify(s2.fixtureId));
+    u.pruef('L2: nicht still geloescht, sondern als Migrationskonflikt gekennzeichnet',
+            !!s2 && s2.migrationKonflikt==='eintraege_widerspruechlich', s2 && s2.migrationKonflikt);
+    u.pruef('L2: gefDatum wurde NICHT zum Raten benutzt', !!s3 && !s3.fixtureId && s3.migrationKonflikt==='eintraege_fehlen',
+            s3 && s3.migrationKonflikt);
+    u.pruef('L2: fuer beide wurde kein Job erfunden',
+            Object.keys(c.state.pruefJobs).length===2, Object.keys(c.state.pruefJobs).length+' Jobs');
     u.pruef('Wetten unveraendert', c.state.bets.length===1 && c.state.bets[0].id===900001);
     u.pruef('kiProtokoll unveraendert lang', c.state.kiProtokoll.length===eintraege1209().length);
+    u.pruef('kiProtokoll zeichengleich (kein Messwert, keine Evidence angefasst)',
+            JSON.stringify(c.state.kiProtokoll)===JSON.stringify(ki));
     /* Idempotenz: ein zweiter Start auf demselben migrierten Stand darf nichts verdoppeln. */
     var nachher1=gespeicherterStand(c);
     return app({}, nachher1).then(function(c2){
       u.pruef('Migration ist idempotent (zweiter Lauf aendert nichts mehr)',
-              c2.state.pruefListe.length===2 && Object.keys(c2.state.pruefJobs).length===Object.keys(c.state.pruefJobs).length,
+              c2.state.pruefListe.length===4 && Object.keys(c2.state.pruefJobs).length===Object.keys(c.state.pruefJobs).length &&
+              JSON.stringify(c2.state.pruefListe)===JSON.stringify(nachher1.pruefListe) &&
+              JSON.stringify(c2.state.pruefJobs)===JSON.stringify(nachher1.pruefJobs),
               Object.keys(c2.state.pruefJobs).length+' Jobs');
     });
+  });
+});
+
+/* ═══ L3. Bestehender Job-Zustand hat Vorrang vor der Migration ═══ */
+schritt(function(){
+  u.block('L3. Migration: uebernommen/ignoriert/geparkt werden nicht auf "vorschlag" zurueckgesetzt');
+  var ki=eintraege1209();
+  function ids(m){ return ki.filter(function(e){ return e.match===m; }).map(function(e){ return e.id; }); }
+  var fLazio, fKoeln, fAth, fSun, fTot;
+  /* Zwei Spiele hat Ondo bereits uebernommen: Sunderland 0:2 und Tottenham 0:0. */
+  ki.forEach(function(e){
+    var w = e.match==='AFC Sunderland - FC Arsenal' ? [0,2] : (e.match==='Tottenham Hotspur - FC Everton' ? [0,0] : null);
+    if(w){ e.ergebnisHeim=w[0]; e.ergebnisGast=w[1]; e.status='bewertet'; }
+  });
+  var kiVorher=JSON.stringify(ki);
+  var c0=u.neueUmgebung();
+  return c0.bereit.then(function(){
+    fLazio=fidVon(c0,'Lazio Rom - AC Mailand','12.9.2026');
+    fKoeln=fidVon(c0,'1. FC Köln - SV Werder Bremen','12.9.2026');
+    fAth=fidVon(c0,'Athletic Bilbao - FC Elche','12.9.2026');
+    fSun=fidVon(c0,'AFC Sunderland - FC Arsenal','12.9.2026');
+    fTot=fidVon(c0,'Tottenham Hotspur - FC Everton','12.9.2026');
+    var jobs={}; jobs[fLazio]={ fixtureId:fLazio, zustand:'ignoriert', providerIds:{} };
+    jobs[fKoeln]={ fixtureId:fKoeln, zustand:'geparkt', providerIds:{} };
+    jobs[fAth]={ fixtureId:fAth, zustand:'unzureichend', providerIds:{} };
+    jobs[fSun]={ fixtureId:fSun, zustand:'uebernommen', providerIds:{} };
+    jobs[fTot]={ fixtureId:fTot, zustand:'uebernommen', providerIds:{} };
+    var save={ seedV:9, kiProtokoll:ki, bets:[], regeln:{maxEinsatz:20}, pruefJobs:jobs,
+      pruefListe:[ altVorschlag('S0','Lazio Rom - AC Mailand',2,2,'2:0',ids('Lazio Rom - AC Mailand')),
+                   altVorschlag('S1','1. FC Köln - SV Werder Bremen',1,1,'1:0',ids('1. FC Köln - SV Werder Bremen')),
+                   altVorschlag('S2','Athletic Bilbao - FC Elche',2,1,'1:0',ids('Athletic Bilbao - FC Elche')),
+                   /* identisch zum bereits uebernommenen Ergebnis */
+                   altVorschlag('S3','AFC Sunderland - FC Arsenal',0,2,'0:0',ids('AFC Sunderland - FC Arsenal')),
+                   /* WIDERSPRICHT dem bereits uebernommenen Ergebnis */
+                   altVorschlag('S4','Tottenham Hotspur - FC Everton',1,0,'1:0',ids('Tottenham Hotspur - FC Everton')) ] };
+    return app({}, save);
+  }).then(function(c){
+    u.pruef('L3: "ignoriert" bleibt ignoriert', c.jobHolen(fLazio).zustand==='ignoriert');
+    u.pruef('L3: "geparkt" bleibt geparkt', c.jobHolen(fKoeln).zustand==='geparkt');
+    u.pruef('L3: "uebernommen" bleibt uebernommen (beide Faelle)',
+            c.jobHolen(fSun).zustand==='uebernommen' && c.jobHolen(fTot).zustand==='uebernommen');
+    u.pruef('L3: ein nur "unzureichend" belegtes Spiel mit vorhandenem Vorschlag steht jetzt auf "vorschlag"',
+            c.jobHolen(fAth).zustand==='vorschlag');
+    u.pruef('L3: nur der IDENTISCHE Rest eines bereits uebernommenen Spiels ist entfernt (Sunderland)',
+            !c.state.pruefListe.some(function(v){ return v.id==='S3'; }) && c.state.pruefMigrationV10.bereitsUebernommen===1);
+    u.pruef('L3: ein dem Uebernommenen WIDERSPRECHENDER Vorschlag bleibt stehen (Tottenham 1:0)',
+            c.state.pruefListe.some(function(v){ return v.id==='S4' && v.heim===1; }));
+    u.pruef('L3: sonst kein Vorschlag geloescht', c.state.pruefListe.length===4, c.state.pruefListe.length+' Vorschlaege');
+    u.pruef('L3: die bereits uebernommenen Messwerte sind zeichengleich', JSON.stringify(c.state.kiProtokoll)===kiVorher);
   });
 });
 

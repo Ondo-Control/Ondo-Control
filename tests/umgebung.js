@@ -9,6 +9,11 @@
    =================================================================================== */
 var fs=require('fs'), vm=require('vm'), path=require('path');
 var BETA = require('path').join(__dirname, '..', 'beta.html');
+/* v19.19.1: GEGENPROBE. Mit ONDO_BETA=<Pfad> laeuft derselbe Test gegen eine andere Fassung
+   von beta.html (z. B. den Stand v19.19.0 aus git). Erst wenn ein Test dort fehlschlaegt und
+   hier besteht, ist belegt, dass er den Fehler wirklich prueft. Ohne die Variable: unveraendert
+   die beta.html dieses Repos. */
+if(process.env.ONDO_BETA) BETA = process.env.ONDO_BETA;
 
 /* Der Skript-Block wird wortgleich uebernommen - mit GENAU EINER dokumentierten Ausnahme:
    Die allerletzte Zeile des Programmstarts, load().then(...), wird einem globalen Namen

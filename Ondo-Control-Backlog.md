@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 23.9.2026, Fassung 144 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 24.9.2026, Fassung 145 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -29,6 +29,7 @@
 - **Kein Codeaufwand, kein Eingriff an `beta.html`.** `pruefe.py` um Punkt 82 (Aktueller-Stand-Groesse, 80.000-Zeichen-Grenze je Pflichtdokument) erweitert — Einzelheiten im Antworttext.
 - **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unveraendert in der Zahl.)*
 - **🔴 Nachgefuehrt 23.9.2026 (Fassung 144, Backlog-Punkt 86 gebaut):** Die Zahl bleibt **zwei — 4, 81**. Punkt 86 ist mit dieser Lieferung gebaut und zaehlt daher nicht mit; Punkt 81 bleibt ausdruecklich OFFEN, weil die Bestaetigung an Ondos Geraet aussteht.
+- **🔴 Nachgefuehrt 24.9.2026 (Fassung 145, Nachbesserung zu Punkt 86 gebaut, `beta.html` v19.19.1):** Die Zahl bleibt **zwei — 4, 81**. Die Nachbesserung ist gebaut; ihre Bewaehrung am iPhone steht aus.
 
 ---
 
@@ -524,69 +525,51 @@ kein Schlüssel, kein zusätzlicher Abruf.
 **86. Prüflauf und Vorhersage-Lauf unterbrechungsfest, strukturierte Quellen zuerst, stabile
 Spielidentität** · *Meldung Ondo 20.9.2026 (gefundene Vorschläge gehen verloren, Läufe dauern
 sehr lange — Prüflauf UND Vorhersage) · Auftrag Ondo 21.9.2026 („Umfassender Auftrag an Code,
-Fassung 4", Entwurf ChatGPT, ergänzt Claude) · gebaut 23.9.2026* · **Status: 🔴 GEBAUT
-23.9.2026, `beta.html` v19.19.0 — Bewährung am Gerät steht aus**
+Fassung 4", Entwurf ChatGPT, ergänzt Claude) · gebaut 23.9.2026 · realer iPhone-Befund und Nachbesserungsauftrag Ondo 24.9.2026 · Nachbesserung gebaut
+24.9.2026* · **Status: 🔴 GEBAUT 23.9.2026 (`beta.html` v19.19.0), NACHGEBESSERT 24.9.2026
+(`beta.html` v19.19.1) — Bewährung der Nachbesserung am iPhone steht aus**
 
-**Die drei bestätigten Ursachen (frisch am Code nachgeprüft, nicht aus der Übergabe übernommen):**
-1. `ergebnissePruefen()` setzte beim Start `state.pruefListe=[]` — **jeder** neue Prüflauf
-   vernichtete jeden bereits gefundenen, noch nicht bearbeiteten Vorschlag.
-2. Der Laufzustand hing ausschliesslich am DOM-Knopf (`btn.disabled`); `render()` erzeugt bei
-   jedem Reiterwechsel einen neuen, freien Knopf — ein zweiter, paralleler Lauf war möglich.
-3. Die Zuordnung Spiel↔Ergebnis lief über freie Namen (`normName` + gegenseitiges `indexOf`).
-   Am echten Bestand des 12.9.2026 löste diese Regel **1 von 5** Problemfällen. Dazu kam:
-   `footballDataArchivLesen()` war seit dem ESPN-Umbau als „NICHT AUFGERUFEN" markiert, obwohl
-   `daten/schiri-ergebnisse/2026-09.json` alle zehn gesuchten Spiele enthält — und das
-   ESPN-Archiv für den 12.9.2026 **null** Spiele führt. Genau diese Lücke schickte zehn bereits
-   vorhandene Ergebnisse in den KI-Notnagel.
+**Stand v19.19.0 am Gerät (Ondo, 24.9.2026):** 10 von 10 Spielen gefunden, 3 Sekunden, 0
+KI-Anfragen, beide Stufe-3-Fälle gewarnt, nichts automatisch übernommen — dieses Verhalten ist
+bewährt und darf nicht verschlechtert werden. **Aber: 15 Vorschläge für 10 Spiele.**
 
-**Gebaut:** neue Kaskade (ESPN-Archiv → Live-ESPN + OpenLigaDB → football-data-Archiv sekundär →
-KI nur für den Rest), Monatsdatei-Cache je Lauf auch für `espnArchivLesen()`, KI-Notnagel je
-Spiel mit eigenem Ein-Spiel-Auftragstext, persistente `state.pruefJobs`/`state.pruefRun`/
-`state.vorhersageRun`, `checkpointSave()` als geordnete, awaitbare Speicherbarriere,
-Spieltag-Snapshot und Anstoß-Schutz im Vorhersage-Lauf, idempotente Eintrags-IDs
-(`runId + gehirn + fixtureId`), kanonische `fixtureId` mit `providerIds` und der dreistufige
-Resolver. Alles Weitere steht in `STAND.md`, Abschnitt „Versionen" und in
-`Ondo-Core-Architektur.md`, Abschnitt 1e (Punkt 45 — hier nicht wiederholt).
+**Nachbesserung v19.19.1 (Auftrag Ondo 24.9.2026, eng begrenzt, zwei Fehlerfamilien):**
+- **A — Legacy-Migration + Dubletten.** `seedV<9` übersprang jeden echten alten Vorschlag, weil
+  er kein Feld `datum` hatte; der neue Lauf legte zehn neue daneben. Neue Migration `seedV<10`
+  (rekonstruiert `fixtureId` aus `eintraege` bzw. `betId`, nie aus `gefDatum`; führt identische
+  Dubletten zusammen; lässt Widersprüche sichtbar stehen) und dauerhafte Sperre
+  `vorschlagEinfuegen()` beim Erzeugen. Test L auf das echte alte Schema berichtigt (L1–L3).
+- **B — `checkpointSave()` als harte Barriere.** Rejected bei Schreibfehler, globale Kette
+  bleibt benutzbar; Start und Fortsetzen beider Läufe warten sie ab. Gescheiterter kritischer
+  Checkpoint → 0 externe Abrufe, Lauf pausiert und fortsetzbar.
+- **Eigener Fund, mitbehoben:** kollidierende Vorschlags-IDs über mehrere Läufe (Übernehmen traf
+  das falsche Spiel) — jetzt eindeutig.
+- **Berichtigt:** v19.19.0 änderte 12 Dateien (nicht 9) und brachte 9 neue Sprachschlüssel
+  (nicht 10). Fortsetzen nach einer Unterbrechung ist **ein zusätzlicher Klick, aber nur nach
+  einer Unterbrechung** (die frühere Formulierung „kein zusätzlicher Bedienschritt" war zu stark,
+  Wortlaut im Archiv); ein Selbststart ist bewusst nicht gebaut (Kosten, Arbeitsregel G).
 
-**Was ausdrücklich NICHT geändert wurde:** Vorhersagealgorithmen, gespeicherte
-Wahrscheinlichkeiten, Kalibrierungsformeln, Brier-Score, Marktdefinitionen, `marktUrteil()`,
-bestehende bewertete Messdaten, bestehende Endstände, `STUFEN`, die Auswahl der Spiele für neue
-Vorhersagen, Wett-/Finanzlogik, API-Schlüssel, `OndoControl.html`, die Auftragstexte beider
-Vorhersage-Gehirne, die Marktlage-Abfrage, die Websuche-Obergrenzen und **Ondos
-Drei-Läufe-/2-von-3-Regel**. Kein automatisches Übernehmen gefundener Endstände —
-Ondo behält die letzte Kontrolle. **Kein Schnitt in der Messreihe:** die `fixtureId` ist eine
-rein zusätzliche Identitätsreferenz an **neuen** Einträgen, bestehende bewertete Einträge
-bleiben byte-identisch (eigener Test M).
+Einzelheiten, Messzahlen und Gegenprobe: `STAND.md`, Abschnitt „Versionen" (Punkt 45, hier nicht
+wiederholt). Die vollständige Bau- und Begründungsgeschichte von v19.19.0 steht seit 24.9.2026
+wortgleich in `BACKLOG-ARCHIV.md`.
 
-**Bekannte Restgrenzen, offen benannt:**
-- **Stufe 3 bleibt ein begründeter Verdacht, kein Beweis.** Eine falsch gepaarte Spielliste mit
-  richtigem Anker, gleichem Wettbewerb und gleicher Zeit (Beispiel: Ondo „AJ Auxerre – Paris SG"
-  gegen Quelle „AJ Auxerre – OGC Nice") erzeugt einen Vorschlag. Er ist sichtbar als Stufe 3
-  gekennzeichnet, zeigt **beide** vollständigen Paarungen und bindet vor Ondos „Übernehmen"
-  **nichts** (im Test Q(f)–(j) belegt). Die Absicherung ist die Kennzeichnung plus Ondos Klick.
-- **Dünner Tagesbestand schwächt Stufe 2.** Die Eindeutigkeit wird an der tatsächlichen
-  Kandidatenmenge des Tages geprüft. Enthält eine Quelle für einen Tag nur ein einziges Spiel,
-  ist jede Paarung trivial eindeutig. Im echten Archiv stehen für den 12.9.2026 47 Spiele.
-- **Ein einmal abgeschickter Modellaufruf**, den das Betriebssystem genau zwischen Antwort und
-  Speichern zerstört, kann einmalig wiederholt werden. Der ganze Lauf wird dadurch nicht
-  wiederholt (Auftrag Abschnitt 6, ausdrücklich zugelassen).
-- **Fortsetzen geschieht auf Klick, nicht von selbst.** Ein unterbrochener Lauf wird beim Start
-  erkannt und **sichtbar** als fortsetzbar ausgewiesen; der nächste Klick auf denselben Knopf
-  macht beim ersten offenen Schritt weiter, ohne einen bereits bezahlten Aufruf zu wiederholen.
-  Begründung: Ein Lauf kostet echte Modellaufrufe (Arbeitsregel G); ein Selbststart beim blossen
-  Zurückwechseln in die App könnte diese Kosten auslösen, während Ondo nur kurz hineinschaut.
-  Abschnitt 7 des Auftrags lässt genau das zu („wieder aufgenommen **oder** sauber als
-  fortsetzbar erkannt"). **Kein zusätzlicher Bedienschritt** (Abschnitt 15b).
-- **`MAXR` bleibt 6.** Für diese Zahl gibt es **keine** dokumentierte Ondo-Entscheidung
-  (maschinell in `STAND.md`, Backlog, `Blueprint.md`, `Ondo-Core-Architektur.md`, Chronik und
-  `BACKLOG-ARCHIV.md` gesucht: kein einziger Treffer) — sie ist eine reine Code-Konstante und
-  wurde deshalb nicht angefasst, sondern nur seltener ausgereizt.
+**Bekannte Restgrenzen der Nachbesserung, offen benannt:**
+- Ein alter Vorschlag, dessen `fixtureId` sich nicht eindeutig rekonstruieren lässt
+  (`migrationKonflikt`), bleibt ohne Identität sichtbar; ein späterer Lauf kann für dasselbe
+  Spiel einen zweiten Vorschlag erzeugen. Bewusst: lieber sichtbar doppelt als falsch vereinigt.
+- Übernimmt Ondo einen von zwei widersprüchlichen Vorschlägen, bleibt der andere stehen (nicht
+  still gelöscht) und zeigt dann keinen Widerspruchs-Hinweis mehr.
+- Scheitert der Checkpoint eines Gehirns, während das andere Gehirn schon angefragt ist, läuft
+  diese eine bereits abgeschickte Anfrage zu Ende; ihre Antwort bleibt im Arbeitsspeicher und
+  wird beim Fortsetzen nicht erneut bezahlt.
+- Unverändert und nicht Teil dieses Auftrags: `speicherSchreiben()` fällt bei einem
+  IndexedDB-Fehler auf `localStorage` zurück, `speicherLesen()` liest zuerst IndexedDB. Gelänge
+  nur der Rückfall, läse ein Neustart den älteren IndexedDB-Stand. Bei Ondos Datenmenge
+  (über 2,7 MB) scheitert `localStorage` erfahrungsgemäß ohnehin — nicht nachgestellt, nur
+  benannt (Art. 11).
 
-**Kosten (Arbeitsregel G):** Kein Geld für den Umbau. Im Betrieb **sinkt** die Nutzung, weil
-Spiele mit vorhandenem strukturiertem Ergebnis gar kein Modell mehr erreichen; sie **steigt**
-nur dort, wo viele Spiele ungelöst bleiben (drei Aufrufe je Spiel statt drei je Stapel von bis
-zu fünf). Gemessen im Test: zehn echte Spiele vom 12.9.2026 → **0** Modellaufrufe; zwei
-ungelöste Testspiele → **6** Aufrufe. Keine geschätzten Euro-Beträge.
+**Kosten (Arbeitsregel G):** kein Geld, kein neuer Dienst, kein zusätzlicher Netz- oder
+Modellaufruf; je Lauf ein zusätzlicher lokaler Schreibvorgang.
 
 ---
 

@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 23.9.2026, Fassung 144, v19.19.0*
+*Die aktuelle Wahrheit. Stand: 24.9.2026, Fassung 145, v19.19.1*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -206,69 +206,69 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   den Trainingsraum) — dieser Commit ist der Stand **davor**, falls zurückgesetzt werden muss.
   Einzelheiten Backlog-Punkt 77.
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.19.0** (`beta.html`, geliefert 23.9.2026) — **Prüflauf und Vorhersage-Lauf
-  unterbrechungsfest; strukturierte Quellen zuerst, KI zuletzt; stabile Spielidentität
-  (Backlog-Punkt 86, Ondos Auftrag „Umfassender Auftrag an Code, Fassung 4").** Der vollständige
-  v19.18.3-Block steht wortgleich in `CHRONIK-2026-09.md`.
-  **Ursache der langen Läufe, am Code belegt:** `ergebnissePruefen()` setzte beim Start
-  `state.pruefListe=[]` — jeder neue Prüflauf vernichtete jeden bereits gefundenen Vorschlag.
-  Die Laufsperre hing nur am DOM-Knopf, den `render()` neu erzeugt. Die Zuordnung lief über
-  freie Namen (`normName` + gegenseitiges `indexOf`); am echten Bestand des 12.9.2026 löste sie
-  **1 von 5** Problemfällen. `footballDataArchivLesen()` war als „NICHT AUFGERUFEN" markiert,
-  obwohl `daten/schiri-ergebnisse/2026-09.json` alle zehn gesuchten Spiele enthält und das
-  ESPN-Archiv für den 12.9. **null** Spiele führt (die Sammelautomatik lief erst ab 18.9.).
-  Zehn bereits vorhandene Ergebnisse liefen deshalb in den KI-Notnagel.
-  **Neue Kaskade:** ESPN-Archiv → Live-ESPN + OpenLigaDB → **football-data-Archiv (sekundär,
-  wieder angeschlossen)** → KI-Notnagel nur für danach Ungelöstes. Ein gelöstes Spiel wird
-  keiner weiteren Quelle mehr geschickt; Monatsdateien werden je Prüflauf **einmal** geladen
-  (Cache jetzt auch für `espnArchivLesen()`).
-  **KI-Notnagel je Spiel einzeln:** eigener Auftragstext mit genau einem Spiel, drei Läufe je
-  Spiel (zwei Gemini parallel + ein Sonnet), Spiele nacheinander. Der Wortlaut des
-  Auftragstexts (`promptBauen`) ist **byte-identisch** unverändert. **Ondos Drei-Läufe-/
-  2-von-3-Regel ist unangetastet** (`REF_MIN_LAEUFE` und `refEinigkeit()` byte-identisch).
-  Weniger als drei brauchbare Läufe → persistent „noch nicht ausreichend belegt", **keine**
-  sofortige Wiederholung; `MAXR` bleibt bei 6 (für diese Zahl gibt es keine dokumentierte
-  Ondo-Entscheidung — maschinell in allen vier Pflichtdokumenten, Chronik und Backlog-Archiv
-  gesucht, kein Treffer), sie wird nur seltener ausgereizt.
-  **Persistenter Prüfzustand:** `state.pruefJobs` je realem Spiel mit den Zuständen
-  offen/laeuft/vorschlag/unzureichend/geparkt/uebernommen/ignoriert, dazu `state.pruefRun` und
-  `state.vorhersageRun` als echte, persistente Laufsperren mit fester `runId`. Vorschläge
-  überleben Reiterwechsel, `render()`, einen neuen Prüflauf, App-Wechsel und Neuladen.
-  „Ignorieren" kommt nicht von selbst zurück, aber jederzeit über **„Erneut prüfen"**.
-  **Checkpoint + Resume** über `checkpointSave()` — eine geordnete Schreibkette, in der ein
-  älterer Schreibvorgang nie nach einem neueren fertig wird. Der Vorhersage-Lauf bekommt einen
-  **unveränderlichen Spieltag-Snapshot** in Europe/Berlin (Ende des Mitternachtsfehlers), je
-  Gehirn einen Checkpoint mit `runId`/`attemptId` vor dem Netzaufruf, idempotente Eintrags-IDs
-  aus `runId + gehirn + fixtureId` und einen **Anstoß-Schutz**: nach Anpfiff entsteht keine
-  neue Vorhersage mehr. Sonnet und Flash laufen weiterhin **parallel** (im Test gemessen:
-  0 ms Startabstand).
-  **Stabile Spielidentität:** kanonische `fixtureId` (Datum in Europe/Berlin + starke Tokens)
-  plus je Job `providerIds`. Der Resolver arbeitet in drei strikt nacheinander laufenden Stufen
-  (Blueprint 2c ist unberührt; die Regel selbst steht in `Ondo-Core-Architektur.md`, 1e).
-  **Keine Alias-Tabelle** — schwache Tokens sind ausschliesslich echte Vereins- und
-  Rechtsformkürzel; *United, City, Sporting, Athletic, Real, Racing* sind ausdrücklich **stark**.
-  **Gemessene Testergebnisse (23.9.2026):** die zehn echten Spiele vom 12.9.2026 —
-  **10 von 10** zugeordnet, Endstand **und** Halbzeit korrekt, **0 KI-Aufrufe**, Stufe 1 = 4 ·
-  Stufe 2 = 4 · Stufe 3 = 2, dauerhafte Provider-ID-Bindungen ohne Ondos Bestätigung: **0**.
-  Ganzer Prüflauf ohne echtes Netz: **84 ms**, reiner Abgleich **39 ms**; strukturierte Abrufe
-  je Lauf: ESPN-Archiv 1 · Live-ESPN 4 · OpenLigaDB 0 · football-data-Archiv 1.
-  KI-Notnagel-Test: 2 ungelöste Spiele → **6 Aufrufe** (genau 3 je Spiel), 2 getrennte
-  Auftragstexte, **kein** Vorschlag bei nur zwei brauchbaren Läufen.
-  **Verifiziert:** `node --check` bestanden (`beta.html`, beide `skripte/*.js`) · **158
-  Prüfungen** in `tests/` an den **echten** Funktionen — der vollständige `<script>`-Block aus
-  `beta.html` läuft wortgleich in einem Node-Kontext, nachgebildet ist nur, was ein Browser
-  mitbringt (Tests A–Q einschliesslich N2–N6, O, O2, P) — alle bestanden ·
-  **byte-identisch belegt:** `marktUrteil()`, `maerkteBauen()`, `refEinigkeit()`,
-  `refLaufPruefen()`, `REF_MIN_LAEUFE`, `STUFEN`, `calcKalibrierung()`, `calcBrierScore()`,
-  `kalibBlock()`, `calc()`, `vorhersageGehirn()`, `marktlageHolen()`, `stufeHolen()`,
-  `spielListeHolen()`, `trainingsraumLauf()`, `normName()`, `teamsAus()`, `geminiCall()`,
-  `sonnetSuche()`, `apiCall()`, `MARKTLAGE_MAX_SUCHEN` und `promptBauen()` ·
+- **Beta: v19.19.1** (`beta.html`, geliefert 24.9.2026) — **Eng begrenzte Nachbesserung zu
+  v19.19.0 (Backlog-Punkt 86, Ondos Auftrag vom 24.9.2026): Legacy-Migration + Dublettensperre,
+  `checkpointSave()` als echte harte Speicherbarriere.** Der vollständige v19.19.0-Block steht
+  wortgleich in `CHRONIK-2026-09.md`.
+  **Realer Befund an Ondos iPhone mit v19.19.0 (24.9.2026):** Ergebnis-Prüflauf **10 von 10**
+  gefunden, **3 Sekunden** (Gerätebeobachtung Ondos, keine Zusage des Codes), **0 KI-Anfragen**,
+  beide Stufe-3-Fälle sichtbar gewarnt, nichts automatisch übernommen — **aber 15 sichtbare
+  Vorschläge für 10 Spiele**: Sunderland–Arsenal, Sittard–Ajax, Go Ahead Eagles–Groningen,
+  Tottenham–Everton und Strasbourg–Monaco standen doppelt.
+  **Ursache A, am Code belegt:** Ein Vorschlag von vor v19.19.0 trug **kein** Feld `datum` und
+  keine `fixtureId` (sein Schema: `gefDatum`, `gefWb`, `quelle`, `eintraege` …). `seedV<9` baute
+  auf `datumIso(v.datum)`, bekam `''` und übersprang alle fünf. Ohne `fixtureId` und ohne Job
+  kannte der neue Prüflauf sie nicht, suchte alle zehn Spiele erneut und hängte zehn neue
+  Vorschläge ungeprüft an (`state.pruefListe.push`). Der alte Test L gab dem alten Vorschlag ein
+  erfundenes `datum` und konnte den Fehler deshalb nicht finden.
+  **Ursache B, am Code belegt:** `checkpointSave()` fing den Schreibfehler mit `.catch()` ab und
+  gab genau diese Kette zurück — ein gescheiterter Checkpoint erschien dem Aufrufer als Erfolg,
+  `checkpointSave().then(… vorhersageGehirn …)` hätte das Modell trotzdem bezahlt. Zusätzlich
+  startete `ergebnissePruefen()` seinen ersten Checkpoint nur, ohne ihn abzuwarten.
+  **Gebaut:** neue additive, idempotente Migration `seedV<10` (`seedV<9` wortgleich unverändert).
+  `fixtureId`: vorhandene gültige ID, sonst aus den referenzierten `kiProtokoll`-Einträgen (Log)
+  bzw. dem eindeutig über `betId` referenzierten Wettschein, **nie aus `gefDatum`**;
+  widersprüchliche oder fehlende Referenzen → keine erfundene ID, nichts gelöscht,
+  Kennzeichen `migrationKonflikt`. **Identische Dubletten** (gleiche `fixtureId` + `art`, bei
+  Wettscheinen + `betId`, gleicher 90-Minuten-Endstand, Halbzeit/Verlängerung soweit beide
+  angeben) → **ein** Vorschlag; der reichere bleibt, nur fehlende Angaben werden ergänzt, die
+  Zusammenführung steht am Vorschlag. **Widersprüche** bleiben **beide** stehen, sichtbar mit dem
+  neuen Hinweis `pruefKonflikt` (Anzeige und Textausgabe) — nichts gewählt, nichts überschrieben.
+  Jobs `uebernommen`/`ignoriert`/`geparkt` bleiben unangetastet. **Dauerhafte Dublettensperre:**
+  `vorschlagEinfuegen()` ersetzt das blanke `push`. **Harte Barriere:** `checkpointSave()`
+  rejected bei einem Schreibfehler; die globale `speicherKette` läuft über eine abgefangene
+  Fassung weiter und bleibt benutzbar; `checkpointOhneBarriere()` für Stellen ohne folgenden
+  externen Schritt. Start und Fortsetzen von Prüf- und Vorhersage-Lauf warten die Barriere ab;
+  scheitert ein kritischer Checkpoint: 0 externe Abrufe, Lauf `pausiert`, Fehler sichtbar, genau
+  ein stiller Schreibversuch für die Pause ohne Erfolgsbehauptung. Fortsetzen bleibt ein Klick
+  auf denselben Knopf — **ein zusätzlicher Klick, aber nur nach einer Unterbrechung.**
+  **Eigener Fund, mitbehoben (Datenintegrität):** Vorschlags-IDs (`'S'+Position`) wurden in jedem
+  Lauf neu ab `S0` vergeben, Vorschläge überleben seit v19.19.0 aber mehrere Läufe. Am echten
+  Code nachgestellt: nach einer vorn eingefügten neuen Vorhersage trugen Köln–Bremen und
+  Tottenham–Everton beide `S7`; „Übernehmen" bei Tottenham übernahm Kölns Ergebnis und entfernte
+  Tottenhams Vorschlag spurlos, dessen Job blieb auf `vorschlag` — das Spiel wäre nie wieder
+  gesucht worden. Jetzt ist jede ID in der aktiven Liste eindeutig; `pruefAnwenden()` und
+  `pruefIgnorieren()` selbst sind unverändert.
+  **Verifiziert (24.9.2026):** `node --check` bestanden · **287 Prüfungen** in `tests/`
+  (t1 43 · t2 80 · t3 51 · t4 72 · t5 41), alle bestanden. Realer 15→10-Fall: vorher 15
+  Vorschläge für 10 Spiele, nachher **genau 10**, 10 verschiedene `fixtureId`, 0 KI, keine
+  Evidence gelöscht, Messwerte zeichengleich, beide Stufe-3-Hinweise da, keine
+  Stufe-3-Provider-ID gebunden, Neuladen ohne neue Migrationswirkung. 10-Spiele-Regression:
+  10 von 10, 0 KI, Stufe 1 = 4 · Stufe 2 = 4 · Stufe 3 = 2, Laufzeit ohne Netz 94–102 ms
+  (v19.19.0 unter gleichen Bedingungen 90–109 ms — nicht langsamer). CPS1–CPS5 bestanden.
+  **Gegenprobe:** dieselben Tests schlagen gegen v19.19.0 fehl (15 Vorschläge, IDs `S0`–`S4`
+  doppelt · externe Abrufe trotz gescheitertem Checkpoint · Sonnet und Flash bezahlt ·
+  Fehlschlag als „ERFOLG" gemeldet). **49 von 49** geschützten Funktionen und Konstanten
+  byte-identisch zu v19.19.0 (u. a. `promptBauen`, `refEinigkeit`, `REF_MIN_LAEUFE`,
+  `marktUrteil`, `maerkteBauen`, `STUFEN`, `vorhersageGehirn`, `pruefAnwenden`, `seedV<9`).
   `pruefe.py`: ALLES SAUBER. **`OndoControl.html` unangetastet** (keine Produktionspromotion).
-  **Kosten (Arbeitsregel G):** Kein Geld für den Umbau selbst. Im Betrieb **sinkt** die
-  Nutzung, weil Spiele mit vorhandenem strukturiertem Ergebnis gar kein Modell mehr erreichen;
-  sie **steigt** nur für den Fall, dass viele Spiele ungelöst bleiben (drei Aufrufe je Spiel
-  statt drei je Stapel von bis zu fünf). Keine geschätzten Euro-Beträge.
-- **Sprachschlüssel: 358** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 23.9.2026** — zehn neue Schlüssel aus Backlog-Punkt 86). **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
+  **Berichtigt zum v19.19.0-Lieferbericht:** Commit `baf2efb` änderte **12** Dateien, nicht 9;
+  neu waren **9** Sprachschlüssel, nicht 10 (`refCalls` wurde nicht geändert, nur zusätzlich
+  verwendet).
+  **Bewährung am iPhone steht aus** — dieser Stand ist von Ondo noch nicht am Gerät geprüft.
+  **Kosten (Arbeitsregel G):** kein Geld, kein neuer Dienst, kein zusätzlicher Netz- oder
+  Modellaufruf; je Lauf ein zusätzlicher lokaler Schreibvorgang (die Startbarriere).
+- **Sprachschlüssel: 359** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 24.9.2026** — ein neuer Schlüssel `pruefKonflikt` aus v19.19.1; die vorige Zahl 358 enthielt neun, nicht zehn neue Schlüssel aus Backlog-Punkt 86, am echten Diff berichtigt). **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
 
 ---
 

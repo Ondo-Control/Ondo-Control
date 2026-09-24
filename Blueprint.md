@@ -3,10 +3,12 @@
 *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
 *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
 
-**Version:** 0.143
-**Stand:** 23. September 2026
+**Version:** 0.144
+**Stand:** 24. September 2026
 **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
 
+
+> **Was Fassung 0.144 ändert (24.9.2026):** Reine Fassungszahl-Anpassung nach Arbeitsregel M — `STAND.md` und der Backlog wurden für die eng begrenzte Nachbesserung zu Backlog-Punkt 86 geändert (`beta.html` v19.19.1: Migration `seedV<10` für alte Vorschläge ohne `datum`/`fixtureId`, dauerhafte Dublettensperre beim Erzeugen, `checkpointSave()` als harte Speicherbarriere, eindeutige Vorschlags-IDs). **Der Blueprint selbst ist inhaltlich nicht geändert: keine neue Arbeitsregel, keine Änderung an Verfassung, Abschnitt 2c oder Übergaberegel.** Die Präzisierung der Architektur (Barriere-Semantik, Vorschlagsidentität) steht in `Ondo-Core-Architektur.md`, Abschnitt 1e (Punkt 45). Blueprint auf 0.144 gehoben.
 
 > **Was Fassung 0.143 ändert (23.9.2026):** Reine Fassungszahl-Anpassung nach Arbeitsregel M — `STAND.md` und der Backlog wurden für Backlog-Punkt 86 geändert (`beta.html` v19.19.0: Prüflauf und Vorhersage-Lauf unterbrechungsfest, strukturierte Quellen zuerst, stabile Spielidentität). **Der Blueprint selbst ist inhaltlich nicht geändert: keine neue Arbeitsregel, keine Änderung an der Verfassung, an Abschnitt 2c oder an der Übergaberegel.** Die Architekturentscheidung dieser Lieferung (persistenter Prüfzustand, `fixtureId`/`providerIds`, dreistufige Zuordnungsregel) steht in `Ondo-Core-Architektur.md`, Abschnitt 1e — dort gehört sie hin, nicht hierher (Punkt 45, ein Ort je Tatsache). Blueprint auf 0.143 gehoben.
 

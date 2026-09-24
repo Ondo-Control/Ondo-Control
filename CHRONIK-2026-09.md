@@ -758,6 +758,86 @@
 
 ---
 
+## `beta.html` v19.19.0 — aus `STAND.md` verschoben (24.9.2026, Fassung 145)
+
+*Wortgleich aus `STAND.md`, Abschnitt „Versionen", samt der damaligen Sprachschlüssel-Zeile. Nichts
+umformuliert (Regel 3). Zwei Aussagen dieses Blocks bzw. seines Lieferberichts sind seit v19.19.1
+berichtigt — die Berichtigung steht unter dem Block, nicht darin.*
+
+- **Beta: v19.19.0** (`beta.html`, geliefert 23.9.2026) — **Prüflauf und Vorhersage-Lauf
+  unterbrechungsfest; strukturierte Quellen zuerst, KI zuletzt; stabile Spielidentität
+  (Backlog-Punkt 86, Ondos Auftrag „Umfassender Auftrag an Code, Fassung 4").** Der vollständige
+  v19.18.3-Block steht wortgleich in `CHRONIK-2026-09.md`.
+  **Ursache der langen Läufe, am Code belegt:** `ergebnissePruefen()` setzte beim Start
+  `state.pruefListe=[]` — jeder neue Prüflauf vernichtete jeden bereits gefundenen Vorschlag.
+  Die Laufsperre hing nur am DOM-Knopf, den `render()` neu erzeugt. Die Zuordnung lief über
+  freie Namen (`normName` + gegenseitiges `indexOf`); am echten Bestand des 12.9.2026 löste sie
+  **1 von 5** Problemfällen. `footballDataArchivLesen()` war als „NICHT AUFGERUFEN" markiert,
+  obwohl `daten/schiri-ergebnisse/2026-09.json` alle zehn gesuchten Spiele enthält und das
+  ESPN-Archiv für den 12.9. **null** Spiele führt (die Sammelautomatik lief erst ab 18.9.).
+  Zehn bereits vorhandene Ergebnisse liefen deshalb in den KI-Notnagel.
+  **Neue Kaskade:** ESPN-Archiv → Live-ESPN + OpenLigaDB → **football-data-Archiv (sekundär,
+  wieder angeschlossen)** → KI-Notnagel nur für danach Ungelöstes. Ein gelöstes Spiel wird
+  keiner weiteren Quelle mehr geschickt; Monatsdateien werden je Prüflauf **einmal** geladen
+  (Cache jetzt auch für `espnArchivLesen()`).
+  **KI-Notnagel je Spiel einzeln:** eigener Auftragstext mit genau einem Spiel, drei Läufe je
+  Spiel (zwei Gemini parallel + ein Sonnet), Spiele nacheinander. Der Wortlaut des
+  Auftragstexts (`promptBauen`) ist **byte-identisch** unverändert. **Ondos Drei-Läufe-/
+  2-von-3-Regel ist unangetastet** (`REF_MIN_LAEUFE` und `refEinigkeit()` byte-identisch).
+  Weniger als drei brauchbare Läufe → persistent „noch nicht ausreichend belegt", **keine**
+  sofortige Wiederholung; `MAXR` bleibt bei 6 (für diese Zahl gibt es keine dokumentierte
+  Ondo-Entscheidung — maschinell in allen vier Pflichtdokumenten, Chronik und Backlog-Archiv
+  gesucht, kein Treffer), sie wird nur seltener ausgereizt.
+  **Persistenter Prüfzustand:** `state.pruefJobs` je realem Spiel mit den Zuständen
+  offen/laeuft/vorschlag/unzureichend/geparkt/uebernommen/ignoriert, dazu `state.pruefRun` und
+  `state.vorhersageRun` als echte, persistente Laufsperren mit fester `runId`. Vorschläge
+  überleben Reiterwechsel, `render()`, einen neuen Prüflauf, App-Wechsel und Neuladen.
+  „Ignorieren" kommt nicht von selbst zurück, aber jederzeit über **„Erneut prüfen"**.
+  **Checkpoint + Resume** über `checkpointSave()` — eine geordnete Schreibkette, in der ein
+  älterer Schreibvorgang nie nach einem neueren fertig wird. Der Vorhersage-Lauf bekommt einen
+  **unveränderlichen Spieltag-Snapshot** in Europe/Berlin (Ende des Mitternachtsfehlers), je
+  Gehirn einen Checkpoint mit `runId`/`attemptId` vor dem Netzaufruf, idempotente Eintrags-IDs
+  aus `runId + gehirn + fixtureId` und einen **Anstoß-Schutz**: nach Anpfiff entsteht keine
+  neue Vorhersage mehr. Sonnet und Flash laufen weiterhin **parallel** (im Test gemessen:
+  0 ms Startabstand).
+  **Stabile Spielidentität:** kanonische `fixtureId` (Datum in Europe/Berlin + starke Tokens)
+  plus je Job `providerIds`. Der Resolver arbeitet in drei strikt nacheinander laufenden Stufen
+  (Blueprint 2c ist unberührt; die Regel selbst steht in `Ondo-Core-Architektur.md`, 1e).
+  **Keine Alias-Tabelle** — schwache Tokens sind ausschliesslich echte Vereins- und
+  Rechtsformkürzel; *United, City, Sporting, Athletic, Real, Racing* sind ausdrücklich **stark**.
+  **Gemessene Testergebnisse (23.9.2026):** die zehn echten Spiele vom 12.9.2026 —
+  **10 von 10** zugeordnet, Endstand **und** Halbzeit korrekt, **0 KI-Aufrufe**, Stufe 1 = 4 ·
+  Stufe 2 = 4 · Stufe 3 = 2, dauerhafte Provider-ID-Bindungen ohne Ondos Bestätigung: **0**.
+  Ganzer Prüflauf ohne echtes Netz: **84 ms**, reiner Abgleich **39 ms**; strukturierte Abrufe
+  je Lauf: ESPN-Archiv 1 · Live-ESPN 4 · OpenLigaDB 0 · football-data-Archiv 1.
+  KI-Notnagel-Test: 2 ungelöste Spiele → **6 Aufrufe** (genau 3 je Spiel), 2 getrennte
+  Auftragstexte, **kein** Vorschlag bei nur zwei brauchbaren Läufen.
+  **Verifiziert:** `node --check` bestanden (`beta.html`, beide `skripte/*.js`) · **158
+  Prüfungen** in `tests/` an den **echten** Funktionen — der vollständige `<script>`-Block aus
+  `beta.html` läuft wortgleich in einem Node-Kontext, nachgebildet ist nur, was ein Browser
+  mitbringt (Tests A–Q einschliesslich N2–N6, O, O2, P) — alle bestanden ·
+  **byte-identisch belegt:** `marktUrteil()`, `maerkteBauen()`, `refEinigkeit()`,
+  `refLaufPruefen()`, `REF_MIN_LAEUFE`, `STUFEN`, `calcKalibrierung()`, `calcBrierScore()`,
+  `kalibBlock()`, `calc()`, `vorhersageGehirn()`, `marktlageHolen()`, `stufeHolen()`,
+  `spielListeHolen()`, `trainingsraumLauf()`, `normName()`, `teamsAus()`, `geminiCall()`,
+  `sonnetSuche()`, `apiCall()`, `MARKTLAGE_MAX_SUCHEN` und `promptBauen()` ·
+  `pruefe.py`: ALLES SAUBER. **`OndoControl.html` unangetastet** (keine Produktionspromotion).
+  **Kosten (Arbeitsregel G):** Kein Geld für den Umbau selbst. Im Betrieb **sinkt** die
+  Nutzung, weil Spiele mit vorhandenem strukturiertem Ergebnis gar kein Modell mehr erreichen;
+  sie **steigt** nur für den Fall, dass viele Spiele ungelöst bleiben (drei Aufrufe je Spiel
+  statt drei je Stapel von bis zu fünf). Keine geschätzten Euro-Beträge.
+- **Sprachschlüssel: 358** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 23.9.2026** — zehn neue Schlüssel aus Backlog-Punkt 86). **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
+
+*🔴 Berichtigt 24.9.2026 (v19.19.1, am echten Diff `baf2efb~1..baf2efb` geprüft):* „zehn neue
+Schlüssel aus Backlog-Punkt 86" — es waren **neun** (`pruefLaeuft`, `pruefFortsetzbar`,
+`pruefUnzureichend`, `pruefErneutBtn`, `zuordnungStufe3`, `zuordnungZeit`,
+`vorhersageFortsetzbar`, `vorhersageAngepfiffen`, `vorhersageEinGehirn`); `refCalls` war kein
+neuer Schlüssel und wurde auch nicht geändert, nur zusätzlich verwendet. Die Zahl 358 selbst war
+richtig gezählt. Der Lieferbericht nannte außerdem „9 geänderte Dateien" — `baf2efb` änderte
+**12**. *Realer Befund an Ondos iPhone mit diesem Stand (24.9.2026): 10 von 10 gefunden,
+3 Sekunden, 0 KI — aber 15 Vorschläge durch nicht migrierte alte Vorschläge; Ursache und
+Reparatur siehe `STAND.md`, v19.19.1.*
+
 ## Sprachschluesselzahl — Zaehlhistorie, aus STAND.md „Versionen" verschoben (14.9.2026)
 
 *Dieser Satz stand bis zum 14.9.2026 eingebettet in der „Sprachschluessel"-Zeile von `STAND.md`, Abschnitt „Versionen". Er beschreibt, wie die heute geltende Zahl (siehe `STAND.md`) ueber die gesamte Projektlaufzeit zustande kam, nicht nur den September-Anteil — deshalb hier ungeteilt, wortgleich, statt auf zwei Chronikdateien aufgesplittet.*

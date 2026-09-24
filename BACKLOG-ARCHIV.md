@@ -6563,3 +6563,73 @@ Exportlogik, `state` selbst unangetastet.
 
 **Kosten (Arbeitsregel G):** Kein Geld, keine Laufzeitkosten — reine, lokale Rechenlogik beim
 Erzeugen des Exporttexts/der Exportdatei, kein zusätzlicher Netzwerkaufruf.
+
+---
+
+## Backlog-Punkt 86 — Bau- und Begründungsgeschichte v19.19.0, aus `Ondo-Control-Backlog.md` verschoben (24.9.2026, Nachbesserung v19.19.1, Fassung 145)
+
+*Wortgleich verschoben, nichts umformuliert (Regel 3). Eine Aussage darin ist seit v19.19.1
+berichtigt: „Kein zusätzlicher Bedienschritt (Abschnitt 15b)" beim Fortsetzen — richtig ist ein
+zusätzlicher Klick, aber nur nach einer Unterbrechung (Ondo, 24.9.2026). Der aktuelle Stand
+steht im Backlog bei Punkt 86.*
+
+**Die drei bestätigten Ursachen (frisch am Code nachgeprüft, nicht aus der Übergabe übernommen):**
+1. `ergebnissePruefen()` setzte beim Start `state.pruefListe=[]` — **jeder** neue Prüflauf
+   vernichtete jeden bereits gefundenen, noch nicht bearbeiteten Vorschlag.
+2. Der Laufzustand hing ausschliesslich am DOM-Knopf (`btn.disabled`); `render()` erzeugt bei
+   jedem Reiterwechsel einen neuen, freien Knopf — ein zweiter, paralleler Lauf war möglich.
+3. Die Zuordnung Spiel↔Ergebnis lief über freie Namen (`normName` + gegenseitiges `indexOf`).
+   Am echten Bestand des 12.9.2026 löste diese Regel **1 von 5** Problemfällen. Dazu kam:
+   `footballDataArchivLesen()` war seit dem ESPN-Umbau als „NICHT AUFGERUFEN" markiert, obwohl
+   `daten/schiri-ergebnisse/2026-09.json` alle zehn gesuchten Spiele enthält — und das
+   ESPN-Archiv für den 12.9.2026 **null** Spiele führt. Genau diese Lücke schickte zehn bereits
+   vorhandene Ergebnisse in den KI-Notnagel.
+
+**Gebaut:** neue Kaskade (ESPN-Archiv → Live-ESPN + OpenLigaDB → football-data-Archiv sekundär →
+KI nur für den Rest), Monatsdatei-Cache je Lauf auch für `espnArchivLesen()`, KI-Notnagel je
+Spiel mit eigenem Ein-Spiel-Auftragstext, persistente `state.pruefJobs`/`state.pruefRun`/
+`state.vorhersageRun`, `checkpointSave()` als geordnete, awaitbare Speicherbarriere,
+Spieltag-Snapshot und Anstoß-Schutz im Vorhersage-Lauf, idempotente Eintrags-IDs
+(`runId + gehirn + fixtureId`), kanonische `fixtureId` mit `providerIds` und der dreistufige
+Resolver. Alles Weitere steht in `STAND.md`, Abschnitt „Versionen" und in
+`Ondo-Core-Architektur.md`, Abschnitt 1e (Punkt 45 — hier nicht wiederholt).
+
+**Was ausdrücklich NICHT geändert wurde:** Vorhersagealgorithmen, gespeicherte
+Wahrscheinlichkeiten, Kalibrierungsformeln, Brier-Score, Marktdefinitionen, `marktUrteil()`,
+bestehende bewertete Messdaten, bestehende Endstände, `STUFEN`, die Auswahl der Spiele für neue
+Vorhersagen, Wett-/Finanzlogik, API-Schlüssel, `OndoControl.html`, die Auftragstexte beider
+Vorhersage-Gehirne, die Marktlage-Abfrage, die Websuche-Obergrenzen und **Ondos
+Drei-Läufe-/2-von-3-Regel**. Kein automatisches Übernehmen gefundener Endstände —
+Ondo behält die letzte Kontrolle. **Kein Schnitt in der Messreihe:** die `fixtureId` ist eine
+rein zusätzliche Identitätsreferenz an **neuen** Einträgen, bestehende bewertete Einträge
+bleiben byte-identisch (eigener Test M).
+
+**Bekannte Restgrenzen, offen benannt:**
+- **Stufe 3 bleibt ein begründeter Verdacht, kein Beweis.** Eine falsch gepaarte Spielliste mit
+  richtigem Anker, gleichem Wettbewerb und gleicher Zeit (Beispiel: Ondo „AJ Auxerre – Paris SG"
+  gegen Quelle „AJ Auxerre – OGC Nice") erzeugt einen Vorschlag. Er ist sichtbar als Stufe 3
+  gekennzeichnet, zeigt **beide** vollständigen Paarungen und bindet vor Ondos „Übernehmen"
+  **nichts** (im Test Q(f)–(j) belegt). Die Absicherung ist die Kennzeichnung plus Ondos Klick.
+- **Dünner Tagesbestand schwächt Stufe 2.** Die Eindeutigkeit wird an der tatsächlichen
+  Kandidatenmenge des Tages geprüft. Enthält eine Quelle für einen Tag nur ein einziges Spiel,
+  ist jede Paarung trivial eindeutig. Im echten Archiv stehen für den 12.9.2026 47 Spiele.
+- **Ein einmal abgeschickter Modellaufruf**, den das Betriebssystem genau zwischen Antwort und
+  Speichern zerstört, kann einmalig wiederholt werden. Der ganze Lauf wird dadurch nicht
+  wiederholt (Auftrag Abschnitt 6, ausdrücklich zugelassen).
+- **Fortsetzen geschieht auf Klick, nicht von selbst.** Ein unterbrochener Lauf wird beim Start
+  erkannt und **sichtbar** als fortsetzbar ausgewiesen; der nächste Klick auf denselben Knopf
+  macht beim ersten offenen Schritt weiter, ohne einen bereits bezahlten Aufruf zu wiederholen.
+  Begründung: Ein Lauf kostet echte Modellaufrufe (Arbeitsregel G); ein Selbststart beim blossen
+  Zurückwechseln in die App könnte diese Kosten auslösen, während Ondo nur kurz hineinschaut.
+  Abschnitt 7 des Auftrags lässt genau das zu („wieder aufgenommen **oder** sauber als
+  fortsetzbar erkannt"). **Kein zusätzlicher Bedienschritt** (Abschnitt 15b).
+- **`MAXR` bleibt 6.** Für diese Zahl gibt es **keine** dokumentierte Ondo-Entscheidung
+  (maschinell in `STAND.md`, Backlog, `Blueprint.md`, `Ondo-Core-Architektur.md`, Chronik und
+  `BACKLOG-ARCHIV.md` gesucht: kein einziger Treffer) — sie ist eine reine Code-Konstante und
+  wurde deshalb nicht angefasst, sondern nur seltener ausgereizt.
+
+**Kosten (Arbeitsregel G):** Kein Geld für den Umbau. Im Betrieb **sinkt** die Nutzung, weil
+Spiele mit vorhandenem strukturiertem Ergebnis gar kein Modell mehr erreichen; sie **steigt**
+nur dort, wo viele Spiele ungelöst bleiben (drei Aufrufe je Spiel statt drei je Stapel von bis
+zu fünf). Gemessen im Test: zehn echte Spiele vom 12.9.2026 → **0** Modellaufrufe; zwei
+ungelöste Testspiele → **6** Aufrufe. Keine geschätzten Euro-Beträge.

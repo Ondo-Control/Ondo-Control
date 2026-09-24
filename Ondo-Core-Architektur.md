@@ -1,5 +1,6 @@
 # ONDO CORE v1 — Architektur-Entwurf
 *Antwort auf die Architektur-Anfrage von ChatGPT (5.7.2026). Autor: Claude. Status: Entwurf zur gemeinsamen Prüfung.*
+*Fassung 0.16 — 24.9.2026: Abschnitt 1e um zwei Präzisierungen ergänzt (Nachbesserung zu Backlog-Punkt 86, `beta.html` v19.19.1): der Checkpoint ist eine harte Barriere, und die Identität eines Ergebnisvorschlags ist festgelegt. Nichts Bestehendes geändert.*
 *Fassung 0.15 — 23.9.2026: Abschnitt 1e ergaenzt (Backlog-Punkt 86, Auftrag Ondo 21.9.2026) — die stabile Spielidentitaet und der persistente Lauf-/Pruefzustand sind Architektur, nicht Tagesarbeit. Nichts Bestehendes geaendert.*
 *Fassung 0.14 — 14.9.2026: Die zehn Fassungsnotizen 0.4–0.13 nach `ONDO-CORE-PROTOKOLL.md` verschoben (Ondos Auftrag, Phase 2 der Trennung von aktuellem Stand und Geschichte) — dieses Dokument enthaelt ab jetzt nur noch die Architektur selbst, keine Aenderungsvermerke mehr. Kein Inhalt der Architektur geaendert.*
 *(Name: Der Besitzer hat "Ondo Control" festgelegt; ChatGPT nutzt "ORION". Technisch irrelevant — hier "Ondo Core" für den Kern.)*
@@ -348,6 +349,22 @@ Schreibvorgang nie nach einem neueren fertig werden und ihn logisch zurücksetze
 unterbrochener Lauf wird beim Programmstart erkannt und **sichtbar als fortsetzbar** ausgewiesen;
 er wird beim ersten noch offenen Schritt fortgesetzt und wiederholt keinen bereits bezahlten
 Modellaufruf. Eine ewige Sperre nach einem Browserabbruch kann dadurch nicht entstehen.
+
+**Der Checkpoint ist eine harte Barriere** *(präzisiert 24.9.2026, v19.19.1)*. „Vor jedem
+äusseren Arbeitsschritt geschrieben" heisst: Der äussere Schritt beginnt **erst nach erfolgreichem
+Schreiben**. Scheitert das Schreiben, erfährt der aufrufende Lauf das, beginnt keinen externen
+oder kostenpflichtigen Schritt mehr und bleibt fortsetzbar stehen. Die gemeinsame Schreibkette
+wird von einem einzelnen Fehlschlag nicht blockiert, und ein gescheitertes Schreiben lässt den
+zuletzt erfolgreich geschriebenen Stand unberührt. Ein Schreibvorgang, dem kein externer Schritt
+folgt (Abschluss, Pause), ist keine Barriere und wird nur versucht.
+
+**Identität eines Ergebnisvorschlags** *(festgelegt 24.9.2026, v19.19.1)*. Ein Vorschlag gehört
+über `fixtureId` + Art (Log oder Wettschein, bei Wettscheinen zusätzlich die Wette) zu genau einem
+Spiel. Für dasselbe Spiel gibt es höchstens **einen** aktiven Vorschlag je Ergebnis: Ein zweiter
+mit gleichem 90-Minuten-Endstand (und gleicher Halbzeit/Verlängerung, soweit beide sie nennen)
+wird nicht angelegt, sondern ergänzt nur fehlende Angaben. Ein **widersprechendes** Ergebnis
+wird nie still gewählt oder überschrieben — beide bleiben sichtbar, die Entscheidung bleibt bei
+Ondos Klick. Ein Vorschlag ohne belegbare `fixtureId` wird mit keinem anderen vereinigt.
 
 **Die Reihenfolge der Quellen ist Architektur, keine Laune:** strukturierte Quellen zuerst,
 Modelle zuletzt. Ein Spiel, das eine Quelle gelöst hat, wird **keiner** weiteren Quelle mehr
