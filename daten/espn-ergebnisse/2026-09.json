@@ -9043,6 +9043,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401898013",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-23",
+   "kickoffUtc": "2026-09-23T16:00Z",
+   "heim": "Azerbaijan",
+   "gast": "Tajikistan",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "581",
+      "teamDisplayName": "Azerbaijan",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "6723",
+      "teamDisplayName": "Tajikistan",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-24T01:41:02.703Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401899610",
    "providerCompetitionSlug": "ita.2",
    "providerCompetitionName": "Italian Serie B",
@@ -9443,6 +9483,126 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401900639",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-09-23",
+   "kickoffUtc": "2026-09-23T20:00Z",
+   "heim": "Bahamas",
+   "gast": "St. Martin",
+   "torHeim": 0,
+   "torGast": 8,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2640",
+      "teamDisplayName": "Bahamas",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "10596",
+      "teamDisplayName": "St. Martin",
+      "homeAway": "away",
+      "linescores": [
+       "5",
+       "3"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:5",
+   "fetchedAt": "2026-09-24T01:41:04.075Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401900640",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-09-23",
+   "kickoffUtc": "2026-09-23T23:00Z",
+   "heim": "Aruba",
+   "gast": "Antigua and Barbuda",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2642",
+      "teamDisplayName": "Aruba",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "2638",
+      "teamDisplayName": "Antigua and Barbuda",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-24T01:41:04.268Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401900641",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-09-23",
+   "kickoffUtc": "2026-09-23T19:00Z",
+   "heim": "Turks and Caicos Islands",
+   "gast": "Montserrat",
+   "torHeim": 0,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2665",
+      "teamDisplayName": "Turks and Caicos Islands",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "2655",
+      "teamDisplayName": "Montserrat",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-09-24T01:41:03.880Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401915927",
    "providerCompetitionSlug": "club.friendly",
    "providerCompetitionName": "Club Friendly",
@@ -9523,6 +9683,53 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401916453",
+   "providerCompetitionSlug": "ned.cup",
+   "providerCompetitionName": "Dutch KNVB Beker",
+   "datum": "2026-09-23",
+   "kickoffUtc": "2026-09-23T18:00Z",
+   "heim": "JOS Watergraafsmeer",
+   "gast": "TEC VV",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": true,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FINAL_PEN",
+    "competitors": [
+     {
+      "teamId": "132995",
+      "teamDisplayName": "JOS Watergraafsmeer",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "8"
+      ]
+     },
+     {
+      "teamId": "18377",
+      "teamDisplayName": "TEC VV",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "7"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "verlaengerung": "0:0",
+   "fetchedAt": "2026-09-24T01:40:51.334Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401916454",
    "providerCompetitionSlug": "ned.cup",
    "providerCompetitionName": "Dutch KNVB Beker",
@@ -9560,6 +9767,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-09-23T01:51:07.785Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401916455",
+   "providerCompetitionSlug": "ned.cup",
+   "providerCompetitionName": "Dutch KNVB Beker",
+   "datum": "2026-09-23",
+   "kickoffUtc": "2026-09-23T18:00Z",
+   "heim": "IJsselmeervogels",
+   "gast": "Gemert",
+   "torHeim": 0,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7044",
+      "teamDisplayName": "IJsselmeervogels",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "8507",
+      "teamDisplayName": "Gemert",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-24T01:40:51.143Z"
   },
   {
    "provider": "espn",
@@ -9640,6 +9887,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-09-23T01:51:08.489Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401916458",
+   "providerCompetitionSlug": "ned.cup",
+   "providerCompetitionName": "Dutch KNVB Beker",
+   "datum": "2026-09-23",
+   "kickoffUtc": "2026-09-23T18:00Z",
+   "heim": "Tot Ons Genoegen Berkel",
+   "gast": "ROHDA Raalte",
+   "torHeim": 4,
+   "torGast": 6,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "133004",
+      "teamDisplayName": "Tot Ons Genoegen Berkel",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "4"
+      ]
+     },
+     {
+      "teamId": "15683",
+      "teamDisplayName": "ROHDA Raalte",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "6"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-24T01:40:51.714Z"
   },
   {
    "provider": "espn",
@@ -9810,6 +10097,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401916909",
+   "providerCompetitionSlug": "ned.cup",
+   "providerCompetitionName": "Dutch KNVB Beker",
+   "datum": "2026-09-23",
+   "kickoffUtc": "2026-09-23T18:00Z",
+   "heim": "Sparta Nijkerk",
+   "gast": "UDI 19",
+   "torHeim": 3,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7048",
+      "teamDisplayName": "Sparta Nijkerk",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     },
+     {
+      "teamId": "133104",
+      "teamDisplayName": "UDI 19",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-24T01:40:51.524Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401916910",
    "providerCompetitionSlug": "ned.cup",
    "providerCompetitionName": "Dutch KNVB Beker",
@@ -9887,6 +10214,86 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-09-23T01:51:09.194Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401916912",
+   "providerCompetitionSlug": "ned.cup",
+   "providerCompetitionName": "Dutch KNVB Beker",
+   "datum": "2026-09-23",
+   "kickoffUtc": "2026-09-23T18:00Z",
+   "heim": "Zwaluwen '30",
+   "gast": "Purmersteijn",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "11813",
+      "teamDisplayName": "Zwaluwen '30",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "132998",
+      "teamDisplayName": "Purmersteijn",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-24T01:40:51.904Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401916913",
+   "providerCompetitionSlug": "ned.cup",
+   "providerCompetitionName": "Dutch KNVB Beker",
+   "datum": "2026-09-23",
+   "kickoffUtc": "2026-09-23T18:00Z",
+   "heim": "Germania",
+   "gast": "Kozakken Boys",
+   "torHeim": 1,
+   "torGast": 5,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "133103",
+      "teamDisplayName": "Germania",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "7059",
+      "teamDisplayName": "Kozakken Boys",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "5"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-24T01:40:50.953Z"
   },
   {
    "provider": "espn",
@@ -10052,6 +10459,86 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-09-23T01:51:07.254Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401918083",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-23",
+   "kickoffUtc": "2026-09-23T16:00Z",
+   "heim": "Gibraltar",
+   "gast": "Sao Tome and Principe",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "16721",
+      "teamDisplayName": "Gibraltar",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "11808",
+      "teamDisplayName": "Sao Tome and Principe",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-24T01:41:02.896Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401920462",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-23",
+   "kickoffUtc": "2026-09-23T16:00Z",
+   "heim": "SC Wiedenbrück 2000",
+   "gast": "VfL Osnabruck",
+   "torHeim": 0,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "11421",
+      "teamDisplayName": "SC Wiedenbrück 2000",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "7013",
+      "teamDisplayName": "VfL Osnabruck",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-24T01:41:08.250Z"
   },
   {
    "provider": "espn",
