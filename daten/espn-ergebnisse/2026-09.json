@@ -9603,6 +9603,126 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401905196",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-24",
+   "kickoffUtc": "2026-09-24T11:00Z",
+   "heim": "South Korea",
+   "gast": "Ecuador",
+   "torHeim": 3,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "451",
+      "teamDisplayName": "South Korea",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     },
+     {
+      "teamId": "209",
+      "teamDisplayName": "Ecuador",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-24T13:37:07.254Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401905330",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-24",
+   "kickoffUtc": "2026-09-24T10:05Z",
+   "heim": "Japan",
+   "gast": "Uruguay",
+   "torHeim": 3,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "627",
+      "teamDisplayName": "Japan",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     },
+     {
+      "teamId": "212",
+      "teamDisplayName": "Uruguay",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-09-24T13:37:07.057Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401914222",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-24",
+   "kickoffUtc": "2026-09-24T11:35Z",
+   "heim": "China",
+   "gast": "Maldives",
+   "torHeim": 3,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "658",
+      "teamDisplayName": "China",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     },
+     {
+      "teamId": "4390",
+      "teamDisplayName": "Maldives",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-24T13:37:07.450Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401915927",
    "providerCompetitionSlug": "club.friendly",
    "providerCompetitionName": "Club Friendly",
@@ -10502,6 +10622,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401920058",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-24",
+   "kickoffUtc": "2026-09-24T09:30Z",
+   "heim": "Palestine",
+   "gast": "New Zealand",
+   "torHeim": 2,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "6167",
+      "teamDisplayName": "Palestine",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     },
+     {
+      "teamId": "2666",
+      "teamDisplayName": "New Zealand",
+      "homeAway": "away",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:2",
+   "fetchedAt": "2026-09-24T13:37:06.829Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401920462",
    "providerCompetitionSlug": "club.friendly",
    "providerCompetitionName": "Club Friendly",
@@ -10622,6 +10782,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401922311",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-24",
+   "kickoffUtc": "2026-09-24T04:00Z",
+   "heim": "Solomon Islands",
+   "gast": "Vanuatu",
+   "torHeim": 3,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "4861",
+      "teamDisplayName": "Solomon Islands",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     },
+     {
+      "teamId": "4864",
+      "teamDisplayName": "Vanuatu",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-24T13:37:06.443Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401922312",
    "providerCompetitionSlug": "fifa.friendly",
    "providerCompetitionName": "International Friendly",
@@ -10702,6 +10902,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401922332",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-24",
+   "kickoffUtc": "2026-09-24T07:00Z",
+   "heim": "Papua New Guinea",
+   "gast": "New Caledonia",
+   "torHeim": 1,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "4885",
+      "teamDisplayName": "Papua New Guinea",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "4888",
+      "teamDisplayName": "New Caledonia",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-24T13:37:06.637Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401922333",
    "providerCompetitionSlug": "fifa.friendly",
    "providerCompetitionName": "International Friendly",
@@ -10739,6 +10979,206 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-09-21T15:10:10.144Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401923757",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-24",
+   "kickoffUtc": "2026-09-24T08:30Z",
+   "heim": "Austria Lustenau",
+   "gast": "Schwarz-Weiß Bregenz",
+   "torHeim": 3,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "21540",
+      "teamDisplayName": "Austria Lustenau",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     },
+     {
+      "teamId": "131869",
+      "teamDisplayName": "Schwarz-Weiß Bregenz",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-24T13:37:13.225Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401923769",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-24",
+   "kickoffUtc": "2026-09-24T09:00Z",
+   "heim": "Grasshoppers",
+   "gast": "FC Aarau",
+   "torHeim": 4,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "492",
+      "teamDisplayName": "Grasshoppers",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "4"
+      ]
+     },
+     {
+      "teamId": "3035",
+      "teamDisplayName": "FC Aarau",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-24T13:37:13.610Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401924028",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-24",
+   "kickoffUtc": "2026-09-24T09:00Z",
+   "heim": "FC Stade Lausanne-Ouchy",
+   "gast": "FC Sion",
+   "torHeim": 4,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "21926",
+      "teamDisplayName": "FC Stade Lausanne-Ouchy",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "4"
+      ]
+     },
+     {
+      "teamId": "3076",
+      "teamDisplayName": "FC Sion",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-24T13:37:13.418Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401924604",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-24",
+   "kickoffUtc": "2026-09-24T11:00Z",
+   "heim": "SV Waldhof Mannheim",
+   "gast": "SV Elversberg",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "6610",
+      "teamDisplayName": "SV Waldhof Mannheim",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "10388",
+      "teamDisplayName": "SV Elversberg",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-24T13:37:13.803Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761543",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-09-24",
+   "kickoffUtc": "2026-09-24T01:30Z",
+   "heim": "Seattle Sounders FC",
+   "gast": "Real Salt Lake",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "9726",
+      "teamDisplayName": "Seattle Sounders FC",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "4771",
+      "teamDisplayName": "Real Salt Lake",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-24T13:37:09.581Z"
   },
   {
    "provider": "espn",
