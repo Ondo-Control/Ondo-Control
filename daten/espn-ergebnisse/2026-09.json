@@ -6803,6 +6803,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401881899",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-25",
+   "kickoffUtc": "2026-09-25T10:00Z",
+   "heim": "Australia",
+   "gast": "Brazil",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "628",
+      "teamDisplayName": "Australia",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "205",
+      "teamDisplayName": "Brazil",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-25T13:56:05.495Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401882857",
    "providerCompetitionSlug": "esp.1",
    "providerCompetitionName": "Spanish LALIGA",
@@ -9803,6 +9843,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401900634",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-09-25",
+   "kickoffUtc": "2026-09-25T00:10Z",
+   "heim": "Cayman Islands",
+   "gast": "Dominica",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2646",
+      "teamDisplayName": "Cayman Islands",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "13582",
+      "teamDisplayName": "Dominica",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-25T13:56:07.749Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401900635",
    "providerCompetitionSlug": "concacaf.nations.league",
    "providerCompetitionName": "Concacaf Nations League",
@@ -9843,6 +9923,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401900636",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-09-25",
+   "kickoffUtc": "2026-09-25T00:20Z",
+   "heim": "Haiti",
+   "gast": "Trinidad and Tobago",
+   "torHeim": 3,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2654",
+      "teamDisplayName": "Haiti",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     },
+     {
+      "teamId": "2627",
+      "teamDisplayName": "Trinidad and Tobago",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-09-25T13:56:07.910Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401900637",
    "providerCompetitionSlug": "concacaf.nations.league",
    "providerCompetitionName": "Concacaf Nations League",
@@ -9880,6 +10000,46 @@
    },
    "halbzeit": "2:1",
    "fetchedAt": "2026-09-25T01:58:23.935Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401900638",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-09-25",
+   "kickoffUtc": "2026-09-25T02:00Z",
+   "heim": "Costa Rica",
+   "gast": "Curaçao",
+   "torHeim": 3,
+   "torGast": 4,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "214",
+      "teamDisplayName": "Costa Rica",
+      "homeAway": "home",
+      "linescores": [
+       "3",
+       "0"
+      ]
+     },
+     {
+      "teamId": "11678",
+      "teamDisplayName": "Curaçao",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "4"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "3:0",
+   "fetchedAt": "2026-09-25T13:56:08.072Z"
   },
   {
    "provider": "espn",
@@ -11982,6 +12142,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401924007",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-25",
+   "kickoffUtc": "2026-09-25T10:30Z",
+   "heim": "FC Zürich",
+   "gast": "Neuchatel Xamax",
+   "torHeim": 3,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "3019",
+      "teamDisplayName": "FC Zürich",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     },
+     {
+      "teamId": "7698",
+      "teamDisplayName": "Neuchatel Xamax",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-25T13:56:12.940Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401924028",
    "providerCompetitionSlug": "club.friendly",
    "providerCompetitionName": "Club Friendly",
@@ -12019,6 +12219,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-09-24T13:37:13.418Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401924592",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-25",
+   "kickoffUtc": "2026-09-25T09:00Z",
+   "heim": "Oakleigh Cannons FC",
+   "gast": "Melbourne City FC",
+   "torHeim": 0,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "133961",
+      "teamDisplayName": "Oakleigh Cannons FC",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "11143",
+      "teamDisplayName": "Melbourne City FC",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-25T13:56:12.783Z"
   },
   {
    "provider": "espn",
