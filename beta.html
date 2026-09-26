@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="theme-color" content="#0B1220" />
+<meta name="theme-color" content="#FAF8F3" />
 <title>Ondo Control</title>
 <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
 <style>
   :root{
-    --bg:#0B1220; --card:#111C30; --edge:#1D2B45; --inner:#0D1729;
-    --text:#E8EDF4; --dim:#8A98AF; --accent:#F5D90A;
+    --bg:#FAF8F3; --card:#FFFFFF; --edge:#E4DFD2; --inner:#F3EEE3;
+    --text:#1C1B18; --dim:#6B6558; --accent:#F5D90A; --navbg:rgba(250,248,243,.94);
     --win:#2FBF71; --loss:#E5484D; --open:#5B8DEF;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
@@ -38,7 +38,7 @@
      eigenes internes Element, auf das text-align am input selbst nicht wirkt. Wirkungslos in
      Browsern ohne dieses Element, keine Aenderung an Wert oder Bedienung des Feldes. */
   input[type="date"]::-webkit-date-and-time-value{text-align:center;}
-  .btn{background:var(--accent);color:#0B1220;border:none;border-radius:9px;padding:12px 16px;
+  .btn{background:var(--accent);color:#1C1B18;border:none;border-radius:9px;padding:12px 16px;
     font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;letter-spacing:1px;
     cursor:pointer;text-transform:uppercase;width:100%;}
   .btn:disabled{background:#2A3550;color:var(--dim);}
@@ -87,7 +87,7 @@
   .ktab th:first-child,.ktab td:first-child{text-align:left;}
   .ktab th{color:var(--dim);font-weight:500;font-size:11px;border-top:none;}
   /* Bottom-Navigation */
-  .nav{position:fixed;bottom:0;left:0;right:0;background:rgba(13,23,41,.97);
+  .nav{position:fixed;bottom:0;left:0;right:0;background:var(--navbg);
     border-top:1px solid var(--edge);display:flex;z-index:50;
     padding:8px 6px calc(8px + env(safe-area-inset-bottom));backdrop-filter:blur(10px);}
   .nav button{flex:1;background:none;border:none;color:var(--dim);cursor:pointer;
@@ -766,6 +766,7 @@ var state = {
   eingezahlt: 30,
   ausgezahlt: 0,
   lang: 'de',
+  theme: 'hell',
   vorschlaege: [],
   vorschlaegeInfo: "",
   kiProtokoll: [],
@@ -3975,6 +3976,35 @@ function parseJsonBlock(res){
   }
   return parsed;
 }
+var THEME_VALUES={
+  hell:{'--bg':'#FAF8F3','--card':'#FFFFFF','--edge':'#E4DFD2','--inner':'#F3EEE3','--text':'#1C1B18','--dim':'#6B6558','--accent':'#F5D90A','--navbg':'rgba(250,248,243,.94)'},
+  dunkelNeu:{'--bg':'#1B2537','--card':'#26314A','--edge':'#3A4864','--inner':'#212C42','--text':'#F0F3F8','--dim':'#9FACC4','--accent':'#F5D90A','--navbg':'rgba(27,37,55,.94)'},
+  dunkelKlassisch:{'--bg':'#0B1220','--card':'#111C30','--edge':'#1D2B45','--inner':'#0D1729','--text':'#E8EDF4','--dim':'#8A98AF','--accent':'#F5D90A','--navbg':'rgba(13,23,41,.97)'}
+};
+var THEME_NAME={
+  de:{title:'Darstellung',desc:'Farbschema der App',hell:'Hell',dunkelNeu:'Dunkel neu',dunkelKlassisch:'Dunkel klassisch'},
+  fr:{title:'Apparence',desc:'Thème de couleurs de l’app',hell:'Clair',dunkelNeu:'Sombre nouveau',dunkelKlassisch:'Sombre classique'},
+  en:{title:'Appearance',desc:'App colour theme',hell:'Light',dunkelNeu:'Dark new',dunkelKlassisch:'Dark classic'}
+};
+function themeKey(v){ return THEME_VALUES[v]?v:'hell'; }
+function applyTheme(){
+  var key=themeKey(state && state.theme);
+  if(state && state.theme!==key) state.theme=key;
+  var vals=THEME_VALUES[key], root=document.documentElement.style;
+  for(var n in vals){
+    if(root && typeof root.setProperty==='function') root.setProperty(n,vals[n]);
+    else if(root) root[n]=vals[n];
+  }
+  var meta=document.querySelector && document.querySelector('meta[name="theme-color"]');
+  if(meta && meta.setAttribute) meta.setAttribute('content',vals['--bg']);
+}
+function themeSet(v){
+  if(!THEME_VALUES[v]) return;
+  state.theme=v;
+  applyTheme();
+  save();
+  render();
+}
 var LANGWORD={de:'Deutsch',fr:'Franzoesisch',en:'Englisch'};
 
 /* Anthropic mit Websuche + Nachfass-Runden */
@@ -6669,6 +6699,7 @@ function navUpdate(){
 }
 
 function render(){
+  applyTheme();
   var c=calc(), v=document.getElementById("view");
   document.getElementById("heute").textContent=heuteStr();
   navUpdate();
@@ -6703,7 +6734,7 @@ function viewHome(c){
     {ic:'📅', name:t('modOrga'), d:t('modOrgaD'), on:false}
   ];
   var modHtml=mods.map(function(m){
-    return '<div class="card module" '+(m.on?('onclick="go(\''+m.go+'\')"'):'style="opacity:.55;cursor:default"')+'>'+
+    return '<div class="card module" '+(m.on?('onclick="go(\''+m.go+'\')"'):'style="opacity:.70;cursor:default"')+'>'+
       '<div style="display:flex;align-items:center"><span class="mi">'+m.ic+'</span>'+
       '<div><div class="mt">'+m.name+'</div><div class="md">'+m.d+'</div></div></div>'+
       '<span class="mstatus" style="color:'+(m.on?'var(--win)':'var(--dim)')+'">'+(m.on?t('active'):t('planned'))+'</span>'+
@@ -7278,9 +7309,18 @@ function viewMore(){
   var opts=['de','fr','en'].map(function(l){
     return '<option value="'+l+'"'+(state.lang===l?' selected':'')+'>'+LANGNAME[l]+'</option>';
   }).join('');
+  var th=THEME_NAME[state.lang]||THEME_NAME.de;
   return ''+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">🌐 '+t('lang')+'</div>'+
     '<select style="max-width:200px" onchange="state.lang=this.value;save();render()">'+opts+'</select>'+
+  '</div>'+
+  '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">'+th.title+'</div>'+
+    '<div class="muted" style="margin-bottom:10px">'+th.desc+'</div>'+
+    '<select id="themeSelect" style="max-width:260px" onchange="themeSet(this.value)">'+
+      '<option value="hell"'+(themeKey(state.theme)==='hell'?' selected':'')+'>'+th.hell+'</option>'+
+      '<option value="dunkelNeu"'+(themeKey(state.theme)==='dunkelNeu'?' selected':'')+'>'+th.dunkelNeu+'</option>'+
+      '<option value="dunkelKlassisch"'+(themeKey(state.theme)==='dunkelKlassisch'?' selected':'')+'>'+th.dunkelKlassisch+'</option>'+
+    '</select>'+
   '</div>'+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">'+t('pinT')+'</div>'+
     '<div class="muted" style="margin-bottom:12px">'+t('pinD')+'</div>'+
