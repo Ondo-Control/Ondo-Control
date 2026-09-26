@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 26.9.2026, Fassung 147, v19.20.0*
+*Die aktuelle Wahrheit. Stand: 26.9.2026, Fassung 148, v19.20.1*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -206,8 +206,8 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   den Trainingsraum) — dieser Commit ist der Stand **davor**, falls zurückgesetzt werden muss.
   Einzelheiten Backlog-Punkt 77.
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.20.0** (`beta.html`, geliefert 26.9.2026) — **zwei eng begrenzte Reparaturen,
-  Backlog-Punkte 87 und 88, plus Dokumentkorrekturen.**
+- **Beta: v19.20.1** (`beta.html`, geliefert 26.9.2026) — **v19.20.0 bleibt funktional
+  unverändert; zusätzlich Backlog-Punkt 89 (zwei kleine Optik-/Organisationskorrekturen).**
   **Punkt 87 — ESPN-Archiv bei Länderspielen:** Der Resolver kann deutsche und englische
   ISO-3166-1-Ländernamen jetzt über denselben standardisierten Ländercode erkennen. Die Namen
   entstehen zur Laufzeit mit `Intl.DisplayNames` (`de`/`en`); es gibt keine gepflegte
@@ -224,6 +224,14 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   Modell- und JSON-Fehler nicht mehr als leere Liste; `spielListeHolen()` bricht den Lauf dann
   sichtbar ab. Bewusster Trade-off: ein vorübergehender Fehler einer einzelnen Stufe verhindert
   diesen Spiellistenlauf und erfordert einen manuellen neuen Versuch.
+  **Punkt 89 — KI-Log-Werkzeuge:** Nur die fünf Unterreiter des KI-Logs sind auf
+  schmalen Bildschirmen horizontal scrollbar; die vier Haupt-Wetten-Reiter bleiben unverändert.
+  Der Schalter „Aktuelle Lage per Websuche“ steht nicht mehr unter „Mehr“, sondern unter
+  Wetten → KI-Log → Werkzeuge; seine Ein/Aus-Funktion und sein einziger Wirkpfad in der
+  Wetten-Vorhersage sind unverändert.
+  **Verifiziert:** 375-px-Browser-Gegenprobe: kein Seitenüberlauf, alle fünf KI-Log-Reiter
+  per horizontalem Scrollen erreichbar, Haupt-Wetten-Zeile passt weiterhin ohne Scrollen;
+  Marktlage-Karte nur unter Werkzeuge, Schalterzustand wechselt unverändert.
   **Verifiziert:** `node --check` bestanden · **365 Prüfungen** in `tests/` (t1 43 · t2 80 ·
   t3 51 · t4 72 · t5 41 · t6 43 · t7 35), alle bestanden — einschließlich Resolver-/
   Serie-A/B-Fehlmatch-Schutz, Nations-League-Gegenprobe und Fail-Safe-Simulation. **Keine Änderung** an den bewusst still weiterfallenden Strukturquellen-

@@ -6675,3 +6675,19 @@ für das normale `save()` gilt der beschriebene Rückfall bewusst weiter.*
 
 **Kosten (Arbeitsregel G):** Kein neuer Dienst. Unbekannte Fehler erzeugen weniger Modellanfragen als zuvor; der Preis dafür ist der bewusst notwendige manuelle Wiederholungsversuch bei einem vorübergehenden Stufenfehler.
 
+---
+
+## Backlog-Punkt 89 — Bau- und Begründungsgeschichte (26.9.2026, Fassung 148)
+
+**Fund Ondo:** Auf dem Gerät lief die fünfteilige KI-Log-Unterreiterzeile (Offen/Bewertet/Archiv/Daten/Werkzeuge) über den Bildschirmrand. Am Code bestätigt: Sie benutzte dieselben globalen `.subtabs/.subtab`-Regeln wie die vierteilige Haupt-Wetten-Zeile; `.subtab` hatte `flex:1` plus `white-space:nowrap`. Vier kurze Hauptreiter passten, die fünf KI-Log-Reiter einschließlich „Werkzeuge“ nicht.
+
+**Bau A:** Nur der KI-Log-`tabBar` erhält `class="subtabs scroll"`. `.subtabs.scroll` bekommt `overflow-x:auto` und nur darin verlieren `.subtab`-Elemente `flex:1` (`flex:none`, 14 px horizontaler Innenabstand). Die Haupt-Wetten-Zeile bleibt im HTML und in ihrer bisherigen CSS-Wirkung unverändert.
+
+**Fund/Entscheidung B:** `state.marktlageAktiv` wird funktional ausschließlich in der Wetten-Vorhersagekette gelesen. Nach der bereits am 12.9.2026 für Backlog-Punkt 77 entschiedenen Modultrennung gehört dieser Schalter deshalb nicht unter „Mehr“ (modulübergreifend), sondern ins Wettmodul.
+
+**Bau B:** Die bestehende Karte wurde ohne neue Sprachschlüssel und ohne Änderung der Toggle-Logik in `marktlageBlock()` gekapselt, aus `viewMore()` entfernt und unter Wetten → KI-Log → Werkzeuge nach `korrFBlock()+logExportBlock()` eingehängt. Der funktionale Leser in der Vorhersagekette blieb unverändert. „Antwortkonsistenz (Kriterium g)“ wurde ausdrücklich nicht verändert.
+
+**Verifiziert:** Vollständige Syntax-/Regressionssuite unverändert **365/365**. Zusätzlich echte Browser-Gegenprobe bei 375 px Breite: Dokumentbreite bleibt innerhalb des Viewports; KI-Log-Zeile ist horizontal scrollbar und der fünfte Reiter nach Scroll vollständig erreichbar; die vierteilige Haupt-Wetten-Zeile bleibt ohne Scrollbedarf. „Aktuelle Lage per Websuche“ erscheint unter Werkzeuge, nicht unter Mehr; der Button schaltet `state.marktlageAktiv` weiter zwischen an/aus.
+
+**Kosten (Arbeitsregel G):** Kein neuer Dienst, keine neue API, keine zusätzliche Modell- oder Webanfrage. Reine Darstellung/Organisation; Laufzeitkosten der Marktlage bleiben unverändert und weiterhin durch denselben Schalter kontrollierbar.
+

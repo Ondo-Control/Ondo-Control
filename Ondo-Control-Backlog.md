@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 26.9.2026, Fassung 147 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 26.9.2026, Fassung 148 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -591,6 +591,10 @@ Laufzeit-Normalisierung über ISO-3166-1 + `Intl.DisplayNames` statt gepflegter 
 **88. Fail Safe im echten Gemini-/Spiellistenpfad wiederherstellen** · *Fund ChatGPT im eigenen Schritt-0-Check 26.9.2026 · Entscheidung/Auftrag Ondo 26.9.2026 · mit Punkt 87 ausgeliefert* · **Status: 🔴 GEBAUT 26.9.2026 (`beta.html` v19.20.0) — Bewährung im echten App-Lauf steht aus**
 
 Unbekannte Gemini-Fehler stoppen jetzt als `_unklar` ohne Modellwechsel; nur bekannte Überlastung darf weiterwechseln, Kontingent bleibt Sofort-Stopp, fehlendes starkes Modell bleibt der bestehende Konfigurations-Fallback zu Flash. `stufeHolen()` reicht echte Fehler weiter statt `[]` vorzutäuschen; ein Stufenfehler stoppt bewusst die ganze Spielliste bis zum manuellen Wiederholen. Vollständige Begründung und Gegenproben: `BACKLOG-ARCHIV.md`.
+
+**89. KI-Log auf schmalem Bildschirm + Marktlage-Schalter ins Wettmodul** · *Fund Ondo 26.9.2026 · Auftrag Ondo 26.9.2026* · **Status: 🔴 GEBAUT 26.9.2026 (`beta.html` v19.20.1) — Bewährung am iPhone steht aus**
+
+Die fünf KI-Log-Unterreiter scrollen bei Bedarf horizontal, ohne die unverändert funktionierende Haupt-Wetten-Zeile umzubauen. Der nur von der Wetten-Vorhersage gelesene Schalter „Aktuelle Lage per Websuche“ steht jetzt unter Wetten → KI-Log → Werkzeuge statt unter „Mehr“. Funktion und Sprachschlüssel unverändert. Vollständige Begründung und Gegenprobe: `BACKLOG-ARCHIV.md`.
 
 ---
 

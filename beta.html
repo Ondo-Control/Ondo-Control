@@ -67,6 +67,11 @@
     border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;
     letter-spacing:.8px;cursor:pointer;text-transform:uppercase;white-space:nowrap;}
   .subtab.on{background:var(--accent);color:#0B1220;}
+  /* v19.20.1 (Backlog-Punkt 89, Fund/Auftrag Ondo 26.9.2026): Nur die fuenf
+     KI-Log-Unterreiter duerfen auf schmalen Bildschirmen horizontal scrollen. Die
+     Haupt-Wetten-Zeile mit vier Reitern behaelt unveraendert flex:1. */
+  .subtabs.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .subtabs.scroll .subtab{flex:none;padding:9px 14px;}
   .module{display:flex;justify-content:space-between;align-items:center;cursor:pointer;}
   .module .mi{font-size:26px;margin-right:12px;}
   .module .mt{font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:700;}
@@ -126,7 +131,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.20.0';
+var CODE_VERSION = 'v19.20.1';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -6936,7 +6941,7 @@ function viewBets(c){
     var bewertetListe = neu.filter(function(e){ return e.status==='bewertet'; });
     var geparktListe = neu.filter(function(e){ return e.geparkt===true; });
 
-    var tabBar = '<div class="subtabs">'+
+    var tabBar = '<div class="subtabs scroll">'+
       '<button class="subtab '+(kilogTab==="offen"?"on":"")+'" onclick="kilogTab=\'offen\';render()">'+t('filterStatusOffen')+'</button>'+
       '<button class="subtab '+(kilogTab==="bewertet"?"on":"")+'" onclick="kilogTab=\'bewertet\';render()">'+t('kilogTabBewertet')+'</button>'+
       '<button class="subtab '+(kilogTab==="archiv"?"on":"")+'" onclick="kilogTab=\'archiv\';render()">'+t('kilogTabArchiv')+'</button>'+
@@ -6983,7 +6988,7 @@ function viewBets(c){
             }).join('')
           : '');
     } else if(kilogTab==='werkzeuge'){
-      body = korrFBlock()+logExportBlock();
+      body = korrFBlock()+logExportBlock()+marktlageBlock();
     } else { // 'offen', Standardfall
       /* v19.7.6: Tageweise parken. Die offenen Vorhersagen liegen nach Tagen beieinander;
          einzeln zu klicken waeren bei den gesperrten Ergebnissen dutzende Griffe. Unveraendert
@@ -7257,6 +7262,18 @@ function modellWahl(rolle, wert){
 function modelleLaden(){
   gLadeModelle(false).then(function(){ render(); });
 }
+/* v19.20.1 (Backlog-Punkt 89, Fund/Auftrag Ondo 26.9.2026): Dieser Schalter wirkt
+   ausschliesslich in der Wetten-Vorhersagekette (state.marktlageAktiv wird dort gelesen).
+   Deshalb steht seine Karte jetzt unter Wetten -> KI-Log -> Werkzeuge statt unter Mehr.
+   Funktion und Sprachschluessel bleiben unveraendert; nur der Einbauort ist neu. */
+function marktlageBlock(){
+  return '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">🔎 '+t('marktlageT')+'</div>'+
+    '<div class="muted">'+t('marktlageD').replace('{a}',MARKTLAGE_MAX_SUCHEN)+'</div>'+
+    '<button class="btn'+(state.marktlageAktiv!==false?'':' btn-ghost')+'" style="margin-top:10px" onclick="state.marktlageAktiv=!(state.marktlageAktiv!==false);save();render()">'+
+      (state.marktlageAktiv!==false ? t('marktlageAn') : t('marktlageAusBtn'))+
+    '</button>'+
+  '</div>';
+}
 function viewMore(){
   var opts=['de','fr','en'].map(function(l){
     return '<option value="'+l+'"'+(state.lang===l?' selected':'')+'>'+LANGNAME[l]+'</option>';
@@ -7298,15 +7315,6 @@ function viewMore(){
   '</div>'+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">⚔️ '+t('duellT')+'</div>'+
     '<div class="muted">'+t('duellD')+'</div>'+
-  '</div>'+
-  /* v19.10.0 (Backlog-Punkt 79, Ondo "Ja fuer beides" + Kostenkontrolle): Aus-Schalter fuer
-     die Marktlage-Recherche, damit Ondo die laufenden Suchkosten selbst steuern kann, ohne
-     dafuer eine neue Codeaenderung zu brauchen. */
-  '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">🔎 '+t('marktlageT')+'</div>'+
-    '<div class="muted">'+t('marktlageD').replace('{a}',MARKTLAGE_MAX_SUCHEN)+'</div>'+
-    '<button class="btn'+(state.marktlageAktiv!==false?'':' btn-ghost')+'" style="margin-top:10px" onclick="state.marktlageAktiv=!(state.marktlageAktiv!==false);save();render()">'+
-      (state.marktlageAktiv!==false ? t('marktlageAn') : t('marktlageAusBtn'))+
-    '</button>'+
   '</div>'+
   /* v19.11.0 (Backlog-Punkt 77, Nachbesserung Ondo 12.9.2026): Hier stand bis v19.10.0
      kalibBlock()+beobachtungenBlock()+gepaartBlock()+trainingsraumBlock() (verschoben von

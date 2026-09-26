@@ -1479,3 +1479,9 @@ vier Dokumentdateien (`STAND.md`, `Ondo-Control-Backlog.md`, `Blueprint.md`,
   **Kosten (Arbeitsregel G):** keine — kein Geld, kein zusätzlicher Schreib-, Netz- oder
   Modellaufruf.
 
+---
+
+## v19.20.1 — 26.9.2026 — Backlog-Punkt 89
+
+Zwei kleine Optik-/Organisationskorrekturen, Fund und Auftrag Ondo. (A) Die fünf KI-Log-Unterreiter verwenden jetzt nur in dieser Zeile eine horizontal scrollbare `.subtabs.scroll`-Variante; die vier Haupt-Wetten-Reiter bleiben unverändert. (B) Der Schalter „Aktuelle Lage per Websuche“ wurde aus „Mehr“ nach Wetten → KI-Log → Werkzeuge verschoben, weil `state.marktlageAktiv` ausschließlich die Wetten-Vorhersage beeinflusst; Toggle-Logik und Sprachschlüssel blieben unverändert. Keine Änderung an „Antwortkonsistenz (Kriterium g)“. Verifiziert mit der bestehenden 365er Testsuite sowie einer 375-px-Headless-Browser-Gegenprobe.
+
