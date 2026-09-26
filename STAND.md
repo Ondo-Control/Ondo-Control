@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 24.9.2026, Fassung 146, v19.19.2*
+*Die aktuelle Wahrheit. Stand: 26.9.2026, Fassung 147, v19.20.0*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -206,43 +206,33 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   den Trainingsraum) — dieser Commit ist der Stand **davor**, falls zurückgesetzt werden muss.
   Einzelheiten Backlog-Punkt 77.
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.19.2** (`beta.html`, geliefert 24.9.2026) — **Letzte eng begrenzte Nachbesserung zu
-  v19.19.1 (Backlog-Punkt 86, Ondos Auftrag vom 24.9.2026): Ein kritischer Checkpoint gilt nur
-  noch als geschrieben, wenn IndexedDB ihn wirklich gespeichert hat.** Der vollständige
-  v19.19.1-Block steht wortgleich in `CHRONIK-2026-09.md`.
-  **Restlücke von v19.19.1, am Code belegt:** Die Checkpoint-Barriere stoppte bei einem
-  vollständigen Speicherfehler richtig, wertete aber einen gelungenen `localStorage`-Rückfall
-  trotz gescheitertem IndexedDB-Schreiben noch als Erfolg. `speicherLesen()` liest beim Neustart
-  IndexedDB **zuerst** — lag dort noch Stand A, war der als „gesichert" gemeldete Stand B nach
-  einem Neustart für die App verloren, obwohl der externe Schritt danach schon bezahlt war.
-  **Gebaut:** eine kleine, klare Trennung. `speicherSchreiben()` bleibt der Best-Effort-Weg für
-  das normale `save()` (IndexedDB, bei einem Fehler `localStorage`) — **unverändert**. Neu ist
-  `speicherSchreibenKritisch()`: nur IndexedDB, kein Rückfall, `localStorage` wird dabei gar nicht
-  erst beschrieben. `checkpointSave()` und `checkpointOhneBarriere()` schreiben ausschliesslich
-  über diesen strikten Weg; Schreibreihenfolge und Wiederbenutzbarkeit der `speicherKette` sind
-  unverändert. Fehlt IndexedDB ganz oder lässt sich nicht öffnen, scheitert der kritische
-  Checkpoint absichtlich: Lauf pausiert, Fehler sichtbar, kein externer Schritt.
-  `speicherLesen()` (IndexedDB zuerst) ist unverändert. Funktionaler Diff in `beta.html`: eine
-  neue Funktion und eine geänderte Zeile in `checkpointSave()`.
-  **Verifiziert (24.9.2026):** `node --check` bestanden · **330 Prüfungen** in `tests/`
-  (t1 43 · t2 80 · t3 51 · t4 72 · t5 41 · t6 43), alle bestanden. Die Testumgebung hat dafür
-  erstmals eine steuerbare IndexedDB-Attrappe. Fall „IndexedDB scheitert, `localStorage`
-  funktioniert": Checkpoint abgelehnt, 0 Abrufe bei ESPN, OpenLigaDB und football-data-Archiv,
-  0 Gemini, 0 Sonnet, 0 Flash, Lauf pausiert, Fehler sichtbar, IndexedDB weiterhin
-  zeichengleich Stand A; nach Wiederherstellung derselbe Lauf, 10 von 10, 0 KI, fehlender
-  Gehirn-Schritt genau einmal, gesicherte Antworten nicht erneut bezahlt. Normales `save()`
-  fällt weiterhin erfolgreich auf `localStorage` zurück. **Gegenprobe gegen `c189b61`:**
-  Checkpoint „ERFOLG", Prüflauf läuft durch (ESPN-Archiv 1, Live-ESPN 4), Sonnet und Flash
-  bezahlt — 19 der 43 neuen Prüfungen schlagen dort fehl. 38 von 38 übrigen Funktionen und
-  Konstanten byte-identisch zu `c189b61` (u. a. `speicherSchreiben`, `speicherLesen`, `save`,
-  `ergebnissePruefen`, `vorhersagen`, `pruefListeMigrierenV10`, `vorschlagEinfuegen`,
-  `refEinigkeit`, `promptBauen`, `REF_MIN_LAEUFE`). 10-Spiele-Regression 10 von 10, 0 KI,
-  Stufe 1/2/3 = 4/4/2. `pruefe.py`: ALLES SAUBER. **`OndoControl.html` unangetastet.**
-  **Bewährung am iPhone steht aus** — weder v19.19.1 noch v19.19.2 sind von Ondo am Gerät
-  geprüft.
-  **Kosten (Arbeitsregel G):** keine — kein Geld, kein zusätzlicher Schreib-, Netz- oder
-  Modellaufruf.
-- **Sprachschlüssel: 359** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 24.9.2026** — ein neuer Schlüssel `pruefKonflikt` aus v19.19.1; die vorige Zahl 358 enthielt neun, nicht zehn neue Schlüssel aus Backlog-Punkt 86, am echten Diff berichtigt). **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
+- **Beta: v19.20.0** (`beta.html`, geliefert 26.9.2026) — **zwei eng begrenzte Reparaturen,
+  Backlog-Punkte 87 und 88, plus Dokumentkorrekturen.**
+  **Punkt 87 — ESPN-Archiv bei Länderspielen:** Der Resolver kann deutsche und englische
+  ISO-3166-1-Ländernamen jetzt über denselben standardisierten Ländercode erkennen. Die Namen
+  entstehen zur Laufzeit mit `Intl.DisplayNames` (`de`/`en`); es gibt keine gepflegte
+  Namenstabelle. Der Zusatzweg greift nur, wenn beide Mannschaften auf beiden Seiten als
+  ISO-Länder erkannt werden. Vereine und Nicht-ISO-Fälle (u. a. England, Schottland, Wales,
+  Nordirland, Kosovo) bleiben im bisherigen Token-/Stufenweg. Reale Gegenprobe gegen das
+  ESPN-Archiv vom 25.9.2026: **vorher 2/8 (beide Stufe 3), jetzt 7/8 (alle Stufe 1)**;
+  Georgien–Nordirland bleibt bewusst außerhalb des ISO-Wegs.
+  **Punkt 88 — Fail Safe:** `geminiCall()` wechselt nur noch bei ausdrücklich erkannter
+  Überlastung (503 / `high demand` / `overloaded` / `try again`) automatisch das Modell.
+  Kontingentfehler halten wie bisher sofort an; jeder andere Modellfehler liefert `_unklar`
+  und löst keinen weiteren Modellversuch aus. Der bestehende Konfigurationsfall „kein starkes
+  Modell für diesen Schlüssel → Flash" bleibt unverändert. `stufeHolen()` maskiert Netzwerk-,
+  Modell- und JSON-Fehler nicht mehr als leere Liste; `spielListeHolen()` bricht den Lauf dann
+  sichtbar ab. Bewusster Trade-off: ein vorübergehender Fehler einer einzelnen Stufe verhindert
+  diesen Spiellistenlauf und erfordert einen manuellen neuen Versuch.
+  **Verifiziert:** `node --check` bestanden · **360 Prüfungen** in `tests/` (t1 43 · t2 80 ·
+  t3 51 · t4 72 · t5 41 · t6 43 · t7 30), alle bestanden — einschließlich Resolver-/
+  Serie-A/B-Fehlmatch-Schutz, Nations-League-Gegenprobe und Fail-Safe-Simulation. **Keine Änderung** an den bewusst still weiterfallenden Strukturquellen-
+  `catch(...return [])` in ESPN/OpenLigaDB/API-Football/football-data.org oder `gLadeModelle()`.
+  **Bewährung im echten App-Betrieb steht aus.**
+  **Kosten (Arbeitsregel G):** kein neuer Dienst und kein zusätzlicher regulärer Netzaufruf;
+  die Reparatur spart im belegten Nations-League-Fall Modellaufrufe und verhindert bei
+  unbekannten Gemini-Fehlern weitere automatische Versuche.
+- **Sprachschlüssel: 359** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 26.9.2026** — ein neuer Schlüssel `pruefKonflikt` aus v19.19.1; die vorige Zahl 358 enthielt neun, nicht zehn neue Schlüssel aus Backlog-Punkt 86, am echten Diff berichtigt). **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
 
 ---
 
@@ -449,7 +439,7 @@ selbst gemeldete Grenze. **Ein einzelner Test ist keine abgeschlossene Bewährun
 
 ## Arbeitsablauf für neue Chats
 
-Ondo schreibt „Ondo Control: [Anliegen]" und fügt Raw-Links ein, **immer mit angehängter Zahl**, z. B. `?v=20260731`. **Alle sechs Dateien plus `version.json` werden gelesen, bevor irgendetwas beurteilt wird** — Blueprint und Ondo-Core eingeschlossen. Das Weglassen hat am 30./31.7. zweimal zu falschen Empfehlungen geführt.
+Ondo schreibt „Ondo Control: [Anliegen]" und fügt die Raw-Links ein. **Vor jeder Beurteilung werden die vier Pflichtdokumente vollständig gelesen:** `STAND.md`, `Ondo-Control-Backlog.md`, `Blueprint.md` und `Ondo-Core-Architektur.md`. Das ist dieselbe aktuelle Regel wie im STARTPRÜFUNG-Absatz unten; zusätzliche Dateien werden nur gelesen, wenn der Auftrag oder der fachliche Zusammenhang sie verlangt.
 
 **Vor jeder Lieferung:** Syntax-Check (`node --check`), Sprachdatei-Abgleich (DE/FR/EN gleiche Schlüssel, **Zahl siehe Abschnitt „Versionen" — sie steht nur dort**), Trockentest der neuen Logik — am besten gegen Ondos jüngste Sicherungsdatei, das prüft die Rechnung an echten Daten. Versionsnummer im Header hochzählen. **Und die Dokumente (Arbeitsregel F).**
 
@@ -544,7 +534,7 @@ Die Tabelle aller bisherigen Chat-Uebergaben ist nach `CHRONIK-2026-08.md` gewan
 
 | Punkt | Worum es geht | Fundstelle |
 |---|---|---|
-| **3** | Such-Experiment — beschlossen, **ruht auf Ondos Wunsch (27.8.), nicht mehr blockiert**. *Der 20. August ist **keine Frist** (Ondo, 15.8.): eine Zeitspanne sagt nicht, wie viele Messungen noetig sind.* Empfehlung Claude: ruhen lassen | Backlog |
+| **3** | Such-Experiment — **überholt (Ondo, 12.9.2026)** | Backlog |
 | **Befund A** | Als nicht auswertbar fuehren? **Womoeglich durch die Auszaehlung vom 8.8. erledigt** — zu klaeren, nicht zu behaupten | Chronik August, „Der 8. August" |
 | **GitHub Actions** | Verfassungsfrage vollstaendig geklärt (11.9.2026). Zeitgesteuerte Ergebnis-Automatik gebaut 11.9.2026, aber von API-Football wegen geteilter Cloud-Adresse gesperrt (vom Support schriftlich als strukturelles Problem bestätigt, nicht nur ein Einzelfall) — laeuft seither nur mit football-data.org scharf. Als Antwort darauf, noch am selben Tag: beide Quellen zusaetzlich per Knopfdruck direkt aus der App (eigenes Geraet, keine geteilte Adresse), gekoppelt an den bestehenden Pruefe-Lauf — das ist vom Sperr-Problem nicht betroffen | Blueprint, Abschnitt 10; Backlog-Punkt 9 |
 | **Schiedsrichter** | Darf er ueberhaupt selbst Ergebnisse lesen, oder nur verifizierte Fakten bewerten? | Blueprint, Abschnitt 10 |

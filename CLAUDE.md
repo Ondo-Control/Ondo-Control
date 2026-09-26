@@ -67,9 +67,10 @@ Dateiausgabe:
 python3 pruefe.py
 ```
 
-Ohne Argument. Prüft unter anderem: dieselbe Fassungszahl im Kopf von `STAND.md`, Backlog
-und Blueprint (wird eines der drei inhaltlich geändert, bekommen alle drei dieselbe neue
-Zahl — kein stiller Wechsel in einer alten Fassung, Fehlerart C7); Lücken und
+Ohne Argument. Prüft unter anderem den tatsächlich gebauten Fassungsabgleich: **Ganzzahl
+in `STAND.md` = Ganzzahl im Backlog = numerischer Suffix der Blueprint-Version + 1** (z. B.
+147 / 147 / 0.146). Wird eines der drei inhaltlich geändert, werden die synchronen Köpfe nach
+diesem Schema gemeinsam angehoben — kein stiller Wechsel in einer alten Fassung (Fehlerart C7); Lücken und
 Querverweise; veraltete Messzahlen ausserhalb von Korrekturvermerken. Ein sauberer Lauf
 heisst wörtlich **ALLES SAUBER**. Meldet ein Lauf FEHL: nichts ausliefern, die Meldung im
 Wortlaut zeigen, anhalten — nie den Prüfer aufweichen, um ihn zu bestehen (Fehlerart C6).
@@ -93,12 +94,14 @@ tatsächlich App-Arbeit ist (zuletzt: die Lernkette, Backlog-Punkt 75, komplett 
 - **Vor dem Ändern die betroffene Stelle vollständig lesen** (Arbeitsregel H: belegen statt
   herleiten).
 - **Berichtigen statt danebenstellen:** Berührt ein neuer Befund eine ältere Aussage, wird
-  die ältere **im selben Durchgang** berichtigt — mit Vermerk, nicht durch Überschreiben.
-  Ein Widerspruch im selben Dokument ist Fehlerart C4.
+  der **aktuelle Stand im selben Durchgang direkt überschrieben oder ergänzt — ohne datierten
+  Änderungsvermerk**. Die vollständige Begründung/Geschichte wandert sofort in die zuständige
+  Archivdatei. Ein Widerspruch im selben Dokument ist Fehlerart C4.
 - **Buchführung gehört zur Lieferung** (Arbeitsregel F): Jede Entscheidung sofort in den
   Backlog, `STAND.md` vor jeder Übergabe, Blueprint und Ondo-Core nur bei Verfassungs- und
-  Architekturentscheidungen. Wird ein Punkt gebaut, ändert sich sein Status **und** die
-  Zahl im neuesten Fassungsabschnitt.
+  Architekturentscheidungen. Wird ein Punkt gebaut, ändert sich sein Status. **Seit Backlog-
+  Fassung 129 entsteht im Haupt-Backlog kein neuer „Was Fassung N ändert"-Abschnitt mehr;**
+  historische Begründung gehört ins Archiv, die synchronen Kopfzahlen folgen Arbeitsregel M.
 - **Jeder Vorschlag nennt seine Kosten** — Geld, Zeit, Nutzungslimit — oder sagt
   ausdrücklich, dass er keine hat (Arbeitsregel G).
 - **Artikel 11 gilt:** „Das weiss ich nicht" ist eine vollständige Antwort. Raten ist keine.
@@ -118,7 +121,7 @@ Diese Datei wiederholt keine Kennzahl. Sie nennt den Fundort:
 
 | Was | Wo es steht — und nur dort |
 |---|---|
-| **Beschlossen und nicht gebaut** (Zahl und Liste) | `Ondo-Control-Backlog.md`, **neuester Fassungsabschnitt ganz oben** |
+| **Beschlossen und nicht gebaut** (Zahl und Liste) | `Ondo-Control-Backlog.md`, aktueller Haupttext (seit Fassung 129 ohne neue Fassungsabschnitte) |
 | Messstand, Kalibrierung, Trefferquoten | `STAND.md`, „Aktueller Messstand" |
 | Versionen, Beta, Sprachschlüsselzahl | `STAND.md`, „Versionen" |
 | Letzte bestätigte Sicherung, Speicherstand, Nutzungslimit-Schätzung | `STAND.md`, unter „Datensicherung" |

@@ -1437,3 +1437,45 @@ vier Dokumentdateien (`STAND.md`, `Ondo-Control-Backlog.md`, `Blueprint.md`,
   automatischen ESPN-Actions-Lauf, nicht durch diese Lieferung.
   **Verifiziert:** `node --check` bestanden. `git diff` gegen `648d1dc` für `beta.html` betrifft
   ausschließlich `CODE_VERSION` und den einen Kommentarblock (F2) — keine ausführbare Zeile.
+
+---
+
+## `beta.html` v19.19.2 — aus `STAND.md` verschoben (26.9.2026, Fassung 147)
+
+- **Beta: v19.19.2** (`beta.html`, geliefert 24.9.2026) — **Letzte eng begrenzte Nachbesserung zu
+  v19.19.1 (Backlog-Punkt 86, Ondos Auftrag vom 24.9.2026): Ein kritischer Checkpoint gilt nur
+  noch als geschrieben, wenn IndexedDB ihn wirklich gespeichert hat.** Der vollständige
+  v19.19.1-Block steht wortgleich in `CHRONIK-2026-09.md`.
+  **Restlücke von v19.19.1, am Code belegt:** Die Checkpoint-Barriere stoppte bei einem
+  vollständigen Speicherfehler richtig, wertete aber einen gelungenen `localStorage`-Rückfall
+  trotz gescheitertem IndexedDB-Schreiben noch als Erfolg. `speicherLesen()` liest beim Neustart
+  IndexedDB **zuerst** — lag dort noch Stand A, war der als „gesichert" gemeldete Stand B nach
+  einem Neustart für die App verloren, obwohl der externe Schritt danach schon bezahlt war.
+  **Gebaut:** eine kleine, klare Trennung. `speicherSchreiben()` bleibt der Best-Effort-Weg für
+  das normale `save()` (IndexedDB, bei einem Fehler `localStorage`) — **unverändert**. Neu ist
+  `speicherSchreibenKritisch()`: nur IndexedDB, kein Rückfall, `localStorage` wird dabei gar nicht
+  erst beschrieben. `checkpointSave()` und `checkpointOhneBarriere()` schreiben ausschliesslich
+  über diesen strikten Weg; Schreibreihenfolge und Wiederbenutzbarkeit der `speicherKette` sind
+  unverändert. Fehlt IndexedDB ganz oder lässt sich nicht öffnen, scheitert der kritische
+  Checkpoint absichtlich: Lauf pausiert, Fehler sichtbar, kein externer Schritt.
+  `speicherLesen()` (IndexedDB zuerst) ist unverändert. Funktionaler Diff in `beta.html`: eine
+  neue Funktion und eine geänderte Zeile in `checkpointSave()`.
+  **Verifiziert (24.9.2026):** `node --check` bestanden · **330 Prüfungen** in `tests/`
+  (t1 43 · t2 80 · t3 51 · t4 72 · t5 41 · t6 43), alle bestanden. Die Testumgebung hat dafür
+  erstmals eine steuerbare IndexedDB-Attrappe. Fall „IndexedDB scheitert, `localStorage`
+  funktioniert": Checkpoint abgelehnt, 0 Abrufe bei ESPN, OpenLigaDB und football-data-Archiv,
+  0 Gemini, 0 Sonnet, 0 Flash, Lauf pausiert, Fehler sichtbar, IndexedDB weiterhin
+  zeichengleich Stand A; nach Wiederherstellung derselbe Lauf, 10 von 10, 0 KI, fehlender
+  Gehirn-Schritt genau einmal, gesicherte Antworten nicht erneut bezahlt. Normales `save()`
+  fällt weiterhin erfolgreich auf `localStorage` zurück. **Gegenprobe gegen `c189b61`:**
+  Checkpoint „ERFOLG", Prüflauf läuft durch (ESPN-Archiv 1, Live-ESPN 4), Sonnet und Flash
+  bezahlt — 19 der 43 neuen Prüfungen schlagen dort fehl. 38 von 38 übrigen Funktionen und
+  Konstanten byte-identisch zu `c189b61` (u. a. `speicherSchreiben`, `speicherLesen`, `save`,
+  `ergebnissePruefen`, `vorhersagen`, `pruefListeMigrierenV10`, `vorschlagEinfuegen`,
+  `refEinigkeit`, `promptBauen`, `REF_MIN_LAEUFE`). 10-Spiele-Regression 10 von 10, 0 KI,
+  Stufe 1/2/3 = 4/4/2. `pruefe.py`: ALLES SAUBER. **`OndoControl.html` unangetastet.**
+  **Bewährung am iPhone steht aus** — weder v19.19.1 noch v19.19.2 sind von Ondo am Gerät
+  geprüft.
+  **Kosten (Arbeitsregel G):** keine — kein Geld, kein zusätzlicher Schreib-, Netz- oder
+  Modellaufruf.
+

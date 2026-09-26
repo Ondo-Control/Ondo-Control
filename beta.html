@@ -126,7 +126,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.19.2';
+var CODE_VERSION = 'v19.20.0';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -2716,11 +2716,6 @@ function geminiCall(opts, modellIndex){
     if(res.error){
       var msg = res.error.message || String(res._status);
       var idx = (modellIndex||0);
-      /* v19.7.2: Frueher wurden nur bekannte Fehlermeldungen als Modellproblem erkannt. Eine
-         unbekannte — etwa "You exceeded your current quota, limit: 0" — beendete den ganzen
-         Lauf, obwohl weitere Modelle in der Liste standen. Jetzt gilt fuer BEIDE Listen:
-         jeder Fehler heisst "dieses Modell taugt hier nicht, nimm das naechste".
-         Eine Absicherung, die nur gegen vorhergesehene Stoerungen hilft, ist keine. */
       /* v19.7.3: Ein erschoepftes Kontingent ist KEIN Modellproblem. In v19.7.2 hat genau ein
          Kontingentfehler die App durch alle 14 Modelle gejagt und dabei 14 weitere Anfragen
          verbraucht — die Reparatur hat den Schaden vergroessert. Jetzt: sofort anhalten. */
@@ -2728,41 +2723,40 @@ function geminiCall(opts, modellIndex){
       if(kontingent){
         return { error:{ message:'Gemini-Kontingent erschoepft ('+modell+'). Es wurde nichts geprueft. Spaeter erneut versuchen — die Messdaten sind unberuehrt.' }, _status:429, _kontingent:true };
       }
-      var modellProblem = true;
+      /* v19.20.0 (Backlog-Punkt 88, Fund ChatGPT 26.9.2026, Entscheidung Ondo): Arbeitsregel N
+         ist ab hier wieder echte Laufzeitregel. Vorher stand hier bedingungslos
+         `modellProblem=true`; damit fuehrte JEDER Nicht-Kontingentfehler zum naechsten Modell
+         (bis zu vier Versuche, bei starker Liste danach sogar Flash). Nur eine ausdruecklich
+         klassifizierte Ueberlastung darf noch einen Modellwechsel ausloesen. Jede andere
+         Fehlerart bleibt sichtbar als UNKLAR und stoppt diesen Aufruf ohne weiteren Versuch. */
       var ueberlastet = res._status===503 || /high demand|overloaded|try again/i.test(msg);
-      /* Hoechstens vier Modelle je Lauf durchprobieren, damit ein Fehler nie eine ganze Liste kostet. */
-      if(idx >= 3) return { error:{ message:'Gemini: vier Modelle erfolglos, zuletzt '+modell+': '+msg }, _status:res._status };
-      /* v19.7.1: Beim starken Modell zaehlt JEDER Fehler als Modellproblem. Vorher wurden nur
-         vorhergesehene Meldungen erkannt ("not found", "not supported"); eine unbekannte wie
-         "This model only supports Interactions API" liess den ganzen Prueflauf abbrechen,
-         statt zum naechsten Modell oder auf Flash zu gehen. Eine Absicherung, die nur gegen
-         bekannte Stoerungen hilft, ist keine. */
-      if(stark) modellProblem = true;
-      if(modellProblem || ueberlastet){
-        if(stark) state.geminiProModel = null; else state.geminiModel = null;
-        save();
-        if(idx < liste.length-1){
-          return geminiCall(opts, idx+1);
-        }
-        if(stark){
-          /* Starke Liste ist durch — gleichgueltig, woran es lag: mit Flash pruefen ist besser
-             als gar nicht pruefen. */
-          opts.stark = false; opts._frisch = false;
-          pruefStark.fallback = true;
-          pruefStark.grund = msg;
-          return geminiCall(opts);
-        }
-        if(!opts._frisch){
-          opts._frisch = true;
-          state.geminiModelListe = null; save();
-          return gLadeModelle(false).then(function(neu){
-            if(neu.length) return geminiCall(opts, 0);
-            return { error:{ message:'Gemini: kein nutzbares Modell fuer diesen Schluessel gefunden — alle '+liste.length+' probiert, zuletzt: '+msg }, _status:404 };
-          });
-        }
-        return { error:{ message:'Gemini: alle '+liste.length+' Modelle erfolglos, zuletzt '+modell+': '+msg }, _status:res._status };
+      if(!ueberlastet){
+        return { error:{ message:'Gemini: unklarer Fehler ('+modell+'): '+msg },
+          _status:res._status, _unklar:true };
       }
-      return { error:{ message:'Gemini ('+modell+'): '+msg }, _status:res._status };
+      /* Bekannte Ueberlastung: bestehender Rueckfallweg, weiterhin hoechstens vier Modelle. */
+      if(idx >= 3) return { error:{ message:'Gemini: vier Modelle erfolglos, zuletzt '+modell+': '+msg }, _status:res._status };
+      if(stark) state.geminiProModel = null; else state.geminiModel = null;
+      save();
+      if(idx < liste.length-1){
+        return geminiCall(opts, idx+1);
+      }
+      if(stark){
+        /* Starke Liste ist wegen bekannter Ueberlastung durch — bestehender Flash-Rueckfall. */
+        opts.stark = false; opts._frisch = false;
+        pruefStark.fallback = true;
+        pruefStark.grund = msg;
+        return geminiCall(opts);
+      }
+      if(!opts._frisch){
+        opts._frisch = true;
+        state.geminiModelListe = null; save();
+        return gLadeModelle(false).then(function(neu){
+          if(neu.length) return geminiCall(opts, 0);
+          return { error:{ message:'Gemini: kein nutzbares Modell fuer diesen Schluessel gefunden — alle '+liste.length+' probiert, zuletzt: '+msg }, _status:404 };
+        });
+      }
+      return { error:{ message:'Gemini: alle '+liste.length+' Modelle erfolglos, zuletzt '+modell+': '+msg }, _status:res._status };
     }
     try{
       var txt = (res.candidates[0].content.parts||[]).map(function(p){return p.text||'';}).join('\n');
@@ -2775,8 +2769,14 @@ function geminiCall(opts, modellIndex){
          wird gebraucht, weil gemini-flash-latest ein beweglicher Alias ist. */
       return { content:[{ type:'text', text:txt }], stop_reason:'end_turn', _status:res._status, modelVersion: res.modelVersion || null };
     }catch(e){
-      return { error:{ message:'Gemini ('+modell+'): Antwort nicht lesbar' }, _status:500 };
+      return { error:{ message:'Gemini: unklarer Fehler ('+modell+'): Antwort nicht lesbar' },
+        _status:500, _unklar:true };
     }
+  }).catch(function(e){
+    /* Auch Transport-/Promise-Fehler sind unbekannte Fehler im Sinn von Arbeitsregel N:
+       kein Modellwechsel, kein zweiter Versuch, sondern ein ausdruecklicher unklar-Zustand. */
+    return { error:{ message:'Gemini: unklarer Fehler ('+modell+'): '+
+      ((e&&e.message)?e.message:'Netzwerk-/Abruffehler') }, _status:0, _unklar:true };
   });
 }
 function hatGemini(){ return !!(state.geminiKey && state.geminiKey.length > 20); }
@@ -2856,6 +2856,55 @@ function fxTokens(s){
   var stark=alle.filter(function(w){ return !FX_SCHWACH[w] && !/^\d+$/.test(w); });
   return stark.length ? stark : alle;
 }
+/* v19.20.0 (Backlog-Punkt 87, Fund Claude 26.9.2026, Architektur ChatGPT,
+   Auftrag Ondo): Länderspiele duerfen nicht an Deutsch/Englisch scheitern. KEINE gepflegte
+   Namenstabelle: Diese Konstante enthaelt nur die standardisierten ISO-3166-1-Alpha-2-Codes;
+   die Anzeigenamen erzeugt der Browser zur Laufzeit mit Intl.DisplayNames fuer de UND en.
+   Nicht-ISO-Auswahlen wie England, Schottland, Wales, Nordirland und Kosovo stehen folglich
+   nicht in diesem Weg und bleiben beim bestehenden Token-/Stufe-3-Verfahren. */
+var FX_ISO3166 = ('AD AE AF AG AI AL AM AO AQ AR AS AT AU AW AX AZ BA BB BD BE BF BG BH BI BJ BL BM BN BO BQ BR BS BT BV BW BY BZ CA CC CD CF CG CH CI CK CL CM CN CO CR CU CV CW CX CY CZ DE DJ DK DM DO DZ EC EE EG EH ER ES ET FI FJ FK FM FO FR GA GB GD GE GF GG GH GI GL GM GN GP GQ GR GS GT GU GW GY HK HM HN HR HT HU ID IE IL IM IN IO IQ IR IS IT JE JM JO JP KE KG KH KI KM KN KP KR KW KY KZ LA LB LC LI LK LR LS LT LU LV LY MA MC MD ME MF MG MH MK ML MM MN MO MP MQ MR MS MT MU MV MW MX MY MZ NA NC NE NF NG NI NL NO NP NR NU NZ OM PA PE PF PG PH PK PL PM PN PR PS PT PW PY QA RE RO RS RU RW SA SB SC SD SE SG SH SI SJ SK SL SM SN SO SR SS ST SV SX SY SZ TC TD TF TG TH TJ TK TL TM TN TO TR TT TV TW TZ UA UG UM US UY UZ VA VC VE VG VI VN VU WF WS YE YT ZA ZM ZW').split(' ');
+var FX_LAND_INDEX = null;
+/* DisplayNames benutzt in einigen Sprachen Bindewort-/Satzzeichenvarianten (z. B.
+   "Bosnien und Herzegowina"; Ondos Spielliste kann "Bosnien-Herzegowina" schreiben).
+   Das ist KEIN Alias: nur die von DisplayNames selbst erzeugte de/en-Bezeichnung wird noch
+   einmal ohne die beiden de/en-Bindewoerter indexiert. */
+function fxLandNorm(s){
+  return fxNorm(s).split(' ').filter(function(w){ return w!=='und' && w!=='and'; }).join(' ');
+}
+function fxLandIndex(){
+  if(FX_LAND_INDEX!==null) return FX_LAND_INDEX;
+  var idx={};
+  FX_LAND_INDEX=idx;
+  if(typeof Intl==='undefined' || typeof Intl.DisplayNames!=='function') return idx;
+  try{
+    var de=new Intl.DisplayNames(['de'],{type:'region'});
+    var en=new Intl.DisplayNames(['en'],{type:'region'});
+    FX_ISO3166.forEach(function(code){
+      [de.of(code),en.of(code)].forEach(function(name){
+        if(!name) return;
+        var n=fxNorm(name), kurz=fxLandNorm(name);
+        if(n) idx[n]=code;
+        if(kurz) idx[kurz]=code;
+      });
+    });
+  }catch(e){ /* Fehlt DisplayNames, bleibt der bisherige Resolver unveraendert aktiv. */ }
+  return idx;
+}
+function fxLandCode(name){
+  var n=fxNorm(name), kurz=fxLandNorm(name);
+  var idx=fxLandIndex();
+  return n ? (idx[n]||idx[kurz]||'') : '';
+}
+/* Zusatzidentitaet fuer Resolver Stufe 1/2. Sie greift NUR, wenn beide Mannschaften
+   auf BEIDEN Seiten als ISO-Laender erkannt werden — damit bleibt ein Vereinsduell selbst dann
+   vollstaendig im bisherigen Tokenweg, wenn ein Vereinsname zufaellig wie ein Land heisst.
+   fxTokens()/fxId() werden NICHT umgebaut: Die Kompatibilitaetsebene schliesst nur den DE/EN-
+   Namensunterschied bei Nationalteams und nummeriert keine gespeicherte Spielidentitaet um. */
+function fxLaenderPaarGleich(meinHeim, meinGast, quellHeim, quellGast){
+  var mh=fxLandCode(meinHeim), mg=fxLandCode(meinGast);
+  var qh=fxLandCode(quellHeim), qg=fxLandCode(quellGast);
+  return !!(mh && mg && qh && qg && mh===qh && mg===qg);
+}
 /* Rechnet einen UTC-Zeitpunkt nach Europe/Berlin um und liefert {datum:'JJJJ-MM-TT',
    zeit:'HH:MM'}. Intl statt fester Verschiebung: der 12.9. liegt in der Sommerzeit (+2), der
    12.12. nicht (+1) - eine feste Zahl waere die Haelfte des Jahres falsch. */
@@ -2929,7 +2978,8 @@ function fxWbKompatibel(a,b){
 function fxAufloesen(p, fx, alleOffenen){
   var pIso=datumIso(p.datum);
   if(!pIso) return null;
-  var pHeim=fxTokens(teamsAus(p.match).heim), pGast=fxTokens(teamsAus(p.match).gast);
+  var pTeams=teamsAus(p.match);
+  var pHeim=fxTokens(pTeams.heim), pGast=fxTokens(pTeams.gast);
   var pZeit=String(p.anpfiff||'').match(/(\d{1,2})[:.](\d{2})/);
   pZeit = pZeit ? (('0'+pZeit[1]).slice(-2)+':'+pZeit[2]) : '';
   /* Kandidatenmenge: alle Fixtures derselben Quelle am selben Berlin-Datum mit Endstand. */
@@ -2938,14 +2988,20 @@ function fxAufloesen(p, fx, alleOffenen){
   });
   if(!tages.length) return null;
 
-  /* --- Stufe 1: starke Identitaet beider Mannschaften --- */
+  /* --- Stufe 1: starke Identitaet beider Mannschaften ---
+     Bei einem vollstaendigen Nationalmannschaftspaar zaehlt zusaetzlich dieselbe ISO-Paarung
+     als starke Identitaet. Der bisherige Tokenvergleich bleibt fuer alle anderen Faelle
+     unveraendert. */
   var s1=tages.filter(function(f){
-    return fxGleich(pHeim,f.heimTok) && fxGleich(pGast,f.gastTok);
+    return fxLaenderPaarGleich(pTeams.heim,pTeams.gast,f.heim,f.gast)
+        || (fxGleich(pHeim,f.heimTok) && fxGleich(pGast,f.gastTok));
   });
   if(s1.length===1) return { stufe:1, fixture:s1[0], zeitAbweichung:fxZeitDiff(pZeit,s1[0]) };
   if(s1.length>1)  return fxMehrdeutig(s1, pZeit, 1);
 
-  /* --- Stufe 2: zwei unabhaengige Anker --- */
+  /* --- Stufe 2: zwei unabhaengige Anker ---
+     Unveraendert: Nationalmannschaftspaare mit zwei passenden ISO-Codes sind bereits in
+     Stufe 1 stark identifiziert; alles andere bleibt beim bisherigen Tokenvergleich. */
   var s2=tages.filter(function(f){
     return fxGemeinsam(pHeim,f.heimTok).length>0 && fxGemeinsam(pGast,f.gastTok).length>0;
   });
@@ -3010,8 +3066,9 @@ function fxAufloesen(p, fx, alleOffenen){
         || fxGemeinsam(meinAnder, f.gastTok).length>0;
   });
   if(kollision2) return null;
+  var aTok = ankerIstHeim ? ankerTokens(pHeim,k,'heim')[0] : ankerTokens(pGast,k,'gast')[0];
   return { stufe:3, fixture:k, zeitAbweichung:false,
-           anker: ankerIstHeim ? ankerTokens(pHeim,k,'heim')[0] : ankerTokens(pGast,k,'gast')[0] };
+           anker: aTok || (ankerIstHeim ? fxLandCode(pTeams.heim) : fxLandCode(pTeams.gast)) };
 }
 /* Zeitabweichung Stufe 1/2 (Abschnitt 8a, Entscheidung 【NEU v4】): Eine abweichende
    Anstosszeit blockiert Stufe 1/2 NICHT, solange die Paarung am selben Berlin-Datum eindeutig
@@ -3976,14 +4033,33 @@ function stufeHolen(stufe){
   var call = hatGemini()
     ? geminiCall({ prompt: prompt, useSearch: true, rolle:'liste' })
     : sonnetSuche(prompt, 5, 1500);
+  /* v19.20.0 (Backlog-Punkt 88): [] bedeutet ab jetzt AUSSCHLIESSLICH eine erfolgreich
+     gelesene {spiele:[]}-Antwort. Netzfehler, Modellfehler und kaputtes JSON werden sichtbar
+     nach oben gereicht; spielListeHolen() beginnt dann keine weitere Stufe. Bewusster Trade-off:
+     Ein voruebergehender Fehler einer Stufe blockiert diesen Tageslauf bis zum manuellen
+     Wiederholen, statt still eine kuerzere Liste vorzutäuschen. */
+  function unklar(grund){
+    var e=new Error('Spielliste unklar (Stufe '+stufe.nr+'): '+grund);
+    e._unklar=true;
+    return e;
+  }
   return call.then(function(res){
-    if(res.error) throw new Error(res.error.message||('HTTP '+res._status));
+    if(res.error){
+      var msg=res.error.message||('HTTP '+res._status);
+      if(res._unklar) throw unklar(msg);
+      var bekannt=new Error('Spielliste fehlgeschlagen (Stufe '+stufe.nr+'): '+msg);
+      bekannt._spiellisteFehler=true;
+      throw bekannt;
+    }
     var parsed=parseJsonBlock(res);
-    if(!parsed || !parsed.spiele) return [];
+    if(!parsed || !Array.isArray(parsed.spiele)) throw unklar('Antwort enthielt kein lesbares spiele-Array');
     return parsed.spiele.filter(function(s){ return s && s.match; }).slice(0,10).map(function(s){
       return { match:String(s.match), wettbewerb:String(s.wettbewerb||''), anpfiff:String(s.anpfiff||''), stufe:stufe.nr };
     });
-  }).catch(function(){ return []; });
+  }).catch(function(e){
+    if(e && (e._unklar || e._spiellisteFehler)) throw e;
+    throw unklar((e&&e.message)?e.message:'unbekannter Abruffehler');
+  });
 }
 function spielListeHolen(){
   var ZIEL=5, gesammelt=[];

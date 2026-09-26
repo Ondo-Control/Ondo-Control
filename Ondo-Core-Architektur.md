@@ -1,5 +1,6 @@
 # ONDO CORE v1 — Architektur-Entwurf
 *Antwort auf die Architektur-Anfrage von ChatGPT (5.7.2026). Autor: Claude. Status: Entwurf zur gemeinsamen Prüfung.*
+*Fassung 0.18 — 26.9.2026: Abschnitt 1e präzisiert die gebaute ISO-3166-1-/`Intl.DisplayNames`-Normalisierung für Nationalmannschaften (Backlog-Punkt 87, `beta.html` v19.20.0). Vereinsresolver und Stufe 3 unverändert.*
 *Fassung 0.17 — 24.9.2026: Abschnitt 1e, „harte Barriere", um eine Präzisierung ergänzt (`beta.html` v19.19.2): „geschrieben" heisst für einen Checkpoint „in IndexedDB geschrieben". Nichts Bestehendes geändert.*
 *Fassung 0.16 — 24.9.2026: Abschnitt 1e um zwei Präzisierungen ergänzt (Nachbesserung zu Backlog-Punkt 86, `beta.html` v19.19.1): der Checkpoint ist eine harte Barriere, und die Identität eines Ergebnisvorschlags ist festgelegt. Nichts Bestehendes geändert.*
 *Fassung 0.15 — 23.9.2026: Abschnitt 1e ergaenzt (Backlog-Punkt 86, Auftrag Ondo 21.9.2026) — die stabile Spielidentitaet und der persistente Lauf-/Pruefzustand sind Architektur, nicht Tagesarbeit. Nichts Bestehendes geaendert.*
@@ -320,7 +321,13 @@ Eine Mehrdeutigkeit einer späteren Stufe entwertet nie einen eindeutigen Treffe
 **Schwache Tokens sind ausschliesslich echte Vereins- und Rechtsformkürzel** (FC, AFC, CF, SC,
 BC, AC, SS, SV und Vergleichbares). *United, City, Sporting, Athletic, Real, Racing* sind
 **stark** — sie können Teil der Identität sein. Es gibt **keine** gepflegte Alias-Tabelle als
-Hauptmechanismus; eine kleine Kompatibilitätsebene bliebe zulässig, wird aber nicht gebraucht.
+Hauptmechanismus. Die tatsächlich gebaute kleine Kompatibilitätsebene gilt nur für vollständige
+Nationalmannschaftspaare: Der Browser erzeugt über `Intl.DisplayNames` für die standardisierten
+ISO-3166-1-Alpha-2-Codes die deutschen und englischen Regionsnamen und führt beide auf denselben
+Code. Der Zusatzweg greift nur, wenn **beide Mannschaften auf beiden Seiten** als ISO-Länder
+erkannt werden; Vereinsnamen bleiben vollständig im bisherigen Tokenweg. Nicht-ISO-Fälle wie
+England, Schottland, Wales, Nordirland und Kosovo werden bewusst nicht künstlich ergänzt und
+laufen weiter über die bestehende Resolverlogik. Stufe 3 wird dadurch nicht verändert.
 
 **Alle Zeitvergleiche laufen nach Europe/Berlin**, umgerechnet über `Intl` — keine feste
 Stundenverschiebung, Sommer- und Winterzeit inbegriffen, Datum **nach** der Umrechnung. Das ist

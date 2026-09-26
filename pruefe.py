@@ -206,7 +206,9 @@ pruef(_bpv is not None, "Blueprint-Kopf nennt eine Fassungsnummer")
 if _bpv:
     _v = _bpv.group(1)
     _prot = ARCHIV.get('BLUEPRINT-PROTOKOLL.md') or ''
-    pruef(f"Was Fassung {_v} ändert" in BP, f"Blueprint {_v}: Aenderungsnotiz im Blueprint")
+    # Seit Phase 2 (14.9.2026) ist Blueprint.md nur aktueller Stand: Eine neue
+    # Fassungsnotiz darf deshalb nicht mehr im Pflichtdokument erzwungen werden.
+    # Die bestehende Protokollkontrolle bleibt unveraendert ueber Blueprint + Protokoll.
     pruef(f"{_v} gehoben" in (BP + _prot), f"Blueprint {_v}: Protokolleintrag vorhanden")
 
 print("7) Keine veraltete Zahl als gueltige Behauptung — nur in den AKTIVEN Dokumenten")

@@ -6646,3 +6646,32 @@ für das normale `save()` gilt der beschriebene Rückfall bewusst weiter.*
   nur der Rückfall, läse ein Neustart den älteren IndexedDB-Stand. Bei Ondos Datenmenge
   (über 2,7 MB) scheitert `localStorage` erfahrungsgemäß ohnehin — nicht nachgestellt, nur
   benannt (Art. 11).
+
+---
+
+## Backlog-Punkt 87 — Bau- und Begründungsgeschichte (26.9.2026, Fassung 147)
+
+**Fund:** Beim Prüflauf am 26.9.2026 lagen alle acht Nations-League-Spiele vom 25.9.2026 bereits im echten ESPN-Monatsarchiv. Der bisherige Resolver löste denselben Fall trotzdem nur **2 von 8**, beide über Stufe 3. Ursache: `fxTokens()`/`fxAufloesen()` vergleichen normalisierte Wortlisten; deutsche Ländernamen aus Ondos Spielliste (z. B. „Schweden", „Italien") teilen mit den englischen ESPN-Namen („Sweden", „Italy") keinen Token. Das ist ein belegter Mechanismus, keine Behauptung über jeden künftigen Länderspieltag.
+
+**Bauweise:** Keine gepflegte Länder-Alias-Tabelle. `beta.html` enthält nur die standardisierten ISO-3166-1-Alpha-2-Codes; `Intl.DisplayNames` erzeugt zur Laufzeit deutsche und englische Regionsnamen und führt sie auf denselben Code. Der Zusatzpfad greift nur, wenn beide Teams auf beiden Seiten als ISO-Länder erkannt werden. Damit bleiben Vereinsduelle unverändert im bisherigen Tokenresolver. England, Schottland, Wales, Nordirland und Kosovo liegen bewusst außerhalb dieses ISO-Wegs und laufen weiter über die bestehende Resolverlogik. Stufe 3 selbst wurde nicht verändert.
+
+**Verifiziert:** Gegen exakt dasselbe ESPN-Archiv vom 25.9.2026: alte v19.19.2 **2/8, beide Stufe 3**; neue v19.20.0 **7/8, alle Stufe 1**. Georgien–Nordirland bleibt bewusst ungelöst über den neuen ISO-Weg. Bestehende Resolver-Regressionen einschließlich des Schutzes gegen den real belegten Serie-A/B-Fehlmatch bleiben Bestandteil der Gesamttests.
+
+**Kosten (Arbeitsregel G):** Kein neuer Dienst, keine zusätzliche API und keine zusätzliche Netzabfrage. Im belegten Fall sinken die Kosten, weil bereits archivierte Ergebnisse nicht mehr unnötig bis zum KI-Notnagel durchfallen.
+
+---
+
+## Backlog-Punkt 88 — Bau- und Begründungsgeschichte (26.9.2026, Fassung 147)
+
+**Fund im eigenen Schritt-0-Check:** Arbeitsregel N und der echte Code widersprachen sich. Nach der Kontingentprüfung setzte `geminiCall()` bedingungslos `modellProblem=true`; dadurch galt jeder andere Gemini-Fehler als Anlass für einen Modellwechsel (bis zu vier Versuche, bei starker Liste anschließend möglicher Flash-Rückfall). Zusätzlich verwandelte `stufeHolen()` jeden Fehler mit `.catch(function(){ return []; })` in eine scheinbar erfolgreiche leere Stufe.
+
+**Entscheidung Ondo:** Unbekannte Modellfehler müssen sichtbar als unklar anhalten. Automatischer Modellwechsel bleibt nur für ausdrücklich klassifizierte Überlastung (503 / `high demand` / `overloaded` / `try again`) zulässig. Kontingent bleibt der bestehende Sofort-Stopp. Der bestehende Fall „kein stärkeres Modell für diesen Schlüssel vorhanden → Flash" bleibt unverändert, weil er kein Fehlerfall, sondern fehlende Konfiguration ist. Netzwerk-, Modell- und unlesbare JSON-Fehler in `stufeHolen()` werden nach oben gereicht; `spielListeHolen()` startet danach keine weitere Stufe. Eine echte erfolgreiche `{spiele:[]}`-Antwort bleibt die einzige Bedeutung von `[]`.
+
+**Bewusster Trade-off:** Ein einzelner vorübergehender Fehler in einer Stufe verhindert damit den gesamten Spiellistenlauf dieses Versuchs. Das ist absichtlich strenger als vorher und verlangt einen manuellen neuen Versuch — sichtbar statt versteckt.
+
+**Ausdrücklich unangetastet:** Die stillen `catch(... return [])`-Kaskaden von ESPN, OpenLigaDB, den aktuell abgeschalteten `apiFootballLauf()`/`footballDataLauf()` und `gLadeModelle()`. Dort bedeutet ein leerer Rückfall bewusst „nächste Quelle/nächster Weg", nicht Verlust einer bereits als erfolgreich dargestellten Spiellistenstufe.
+
+**Verifiziert:** Simulierter unbekannter Gemini-Fehler → genau ein Request, `_unklar`, kein Modellwechsel. Kontingent → genau ein Request. Bekannte Überlastung → nächstes Modell weiterhin zulässig. Simulierter unbekannter Spiellistenfehler, kaputtes JSON und Netzwerkfehler → kein `[]`, keine nächste Stufe; erfolgreiche `{spiele:[]}`-Antwort → weiterhin echte leere Liste.
+
+**Kosten (Arbeitsregel G):** Kein neuer Dienst. Unbekannte Fehler erzeugen weniger Modellanfragen als zuvor; der Preis dafür ist der bewusst notwendige manuelle Wiederholungsversuch bei einem vorübergehenden Stufenfehler.
+

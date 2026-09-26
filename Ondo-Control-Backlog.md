@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 24.9.2026, Fassung 146 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 26.9.2026, Fassung 147 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -581,6 +581,16 @@ wortgleich in `BACKLOG-ARCHIV.md`.
 
 **Kosten (Arbeitsregel G):** kein Geld, kein neuer Dienst, kein zusätzlicher Netz- oder
 Modellaufruf; je Lauf ein zusätzlicher lokaler Schreibvorgang.
+
+---
+
+**87. ESPN-Archiv — deutsche/englische Ländernamen im Resolver normalisieren** · *Fund Claude 26.9.2026 · Architektur ChatGPT 26.9.2026 · Auftrag Ondo 26.9.2026* · **Status: 🔴 GEBAUT 26.9.2026 (`beta.html` v19.20.0) — Bewährung im echten App-Lauf steht aus**
+
+Laufzeit-Normalisierung über ISO-3166-1 + `Intl.DisplayNames` statt gepflegter Namenstabelle; nur vollständige Nationalmannschaftspaare, Vereinsresolver unverändert. Reale Gegenprobe 25.9.2026 gegen das echte ESPN-Archiv: **v19.19.2 2/8 (Stufe 3), v19.20.0 7/8 (Stufe 1)**. Nicht-ISO-Fälle bleiben bewusst außerhalb. Vollständige Begründung und Testdetails: `BACKLOG-ARCHIV.md`.
+
+**88. Fail Safe im echten Gemini-/Spiellistenpfad wiederherstellen** · *Fund ChatGPT im eigenen Schritt-0-Check 26.9.2026 · Entscheidung/Auftrag Ondo 26.9.2026 · mit Punkt 87 ausgeliefert* · **Status: 🔴 GEBAUT 26.9.2026 (`beta.html` v19.20.0) — Bewährung im echten App-Lauf steht aus**
+
+Unbekannte Gemini-Fehler stoppen jetzt als `_unklar` ohne Modellwechsel; nur bekannte Überlastung darf weiterwechseln, Kontingent bleibt Sofort-Stopp, fehlendes starkes Modell bleibt der bestehende Konfigurations-Fallback zu Flash. `stufeHolen()` reicht echte Fehler weiter statt `[]` vorzutäuschen; ein Stufenfehler stoppt bewusst die ganze Spielliste bis zum manuellen Wiederholen. Vollständige Begründung und Gegenproben: `BACKLOG-ARCHIV.md`.
 
 ---
 
