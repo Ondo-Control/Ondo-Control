@@ -224,8 +224,8 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   Modell- und JSON-Fehler nicht mehr als leere Liste; `spielListeHolen()` bricht den Lauf dann
   sichtbar ab. Bewusster Trade-off: ein vorübergehender Fehler einer einzelnen Stufe verhindert
   diesen Spiellistenlauf und erfordert einen manuellen neuen Versuch.
-  **Verifiziert:** `node --check` bestanden · **360 Prüfungen** in `tests/` (t1 43 · t2 80 ·
-  t3 51 · t4 72 · t5 41 · t6 43 · t7 30), alle bestanden — einschließlich Resolver-/
+  **Verifiziert:** `node --check` bestanden · **365 Prüfungen** in `tests/` (t1 43 · t2 80 ·
+  t3 51 · t4 72 · t5 41 · t6 43 · t7 35), alle bestanden — einschließlich Resolver-/
   Serie-A/B-Fehlmatch-Schutz, Nations-League-Gegenprobe und Fail-Safe-Simulation. **Keine Änderung** an den bewusst still weiterfallenden Strukturquellen-
   `catch(...return [])` in ESPN/OpenLigaDB/API-Football/football-data.org oder `gLadeModelle()`.
   **Bewährung im echten App-Betrieb steht aus.**
