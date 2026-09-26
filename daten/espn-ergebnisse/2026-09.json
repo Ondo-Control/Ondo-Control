@@ -10683,6 +10683,86 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401900632",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-09-26",
+   "kickoffUtc": "2026-09-26T03:00Z",
+   "heim": "El Salvador",
+   "gast": "Martinique",
+   "torHeim": 3,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2650",
+      "teamDisplayName": "El Salvador",
+      "homeAway": "home",
+      "linescores": [
+       "3",
+       "0"
+      ]
+     },
+     {
+      "teamId": "2728",
+      "teamDisplayName": "Martinique",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "3:0",
+   "fetchedAt": "2026-09-26T13:13:02.766Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401900633",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-09-26",
+   "kickoffUtc": "2026-09-26T01:00Z",
+   "heim": "Honduras",
+   "gast": "Suriname",
+   "torHeim": 2,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "215",
+      "teamDisplayName": "Honduras",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     },
+     {
+      "teamId": "2664",
+      "teamDisplayName": "Suriname",
+      "homeAway": "away",
+      "linescores": [
+       "2",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:2",
+   "fetchedAt": "2026-09-26T13:13:02.600Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401900634",
    "providerCompetitionSlug": "concacaf.nations.league",
    "providerCompetitionName": "Concacaf Nations League",
@@ -13742,6 +13822,86 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401924303",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-26",
+   "kickoffUtc": "2026-09-26T08:00Z",
+   "heim": "Sepsi Sfantu Gheorghe",
+   "gast": "CS Gloria Bistrita",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "18773",
+      "teamDisplayName": "Sepsi Sfantu Gheorghe",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "132691",
+      "teamDisplayName": "CS Gloria Bistrita",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-26T13:13:07.763Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401924589",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-26",
+   "kickoffUtc": "2026-09-26T08:00Z",
+   "heim": "FCSB",
+   "gast": "CSL Stefanesti",
+   "torHeim": 4,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "484",
+      "teamDisplayName": "FCSB",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "4"
+      ]
+     },
+     {
+      "teamId": "133342",
+      "teamDisplayName": "CSL Stefanesti",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-26T13:13:07.601Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401924592",
    "providerCompetitionSlug": "club.friendly",
    "providerCompetitionName": "Club Friendly",
@@ -13782,6 +13942,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401924594",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-26",
+   "kickoffUtc": "2026-09-26T10:00Z",
+   "heim": "Cherno More",
+   "gast": "Dunav Ruse",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7837",
+      "teamDisplayName": "Cherno More",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "18753",
+      "teamDisplayName": "Dunav Ruse",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-26T13:13:08.246Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401924604",
    "providerCompetitionSlug": "club.friendly",
    "providerCompetitionName": "Club Friendly",
@@ -13819,6 +14019,166 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-09-24T13:37:13.803Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401924625",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-26",
+   "kickoffUtc": "2026-09-26T05:00Z",
+   "heim": "Western Sydney Wanderers",
+   "gast": "Central Coast Mariners",
+   "torHeim": 5,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "13696",
+      "teamDisplayName": "Western Sydney Wanderers",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "5"
+      ]
+     },
+     {
+      "teamId": "5325",
+      "teamDisplayName": "Central Coast Mariners",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-26T13:13:07.279Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401925206",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-26",
+   "kickoffUtc": "2026-09-26T09:00Z",
+   "heim": "FC Farul Constanta",
+   "gast": "SC Popesti-Leordei",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "6731",
+      "teamDisplayName": "FC Farul Constanta",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "132545",
+      "teamDisplayName": "SC Popesti-Leordei",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-26T13:13:07.924Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401925343",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-26",
+   "kickoffUtc": "2026-09-26T09:00Z",
+   "heim": "WIECZYSTA KRAKÓW",
+   "gast": "HUTNIK KRAKÓW",
+   "torHeim": 5,
+   "torGast": 4,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "131863",
+      "teamDisplayName": "WIECZYSTA KRAKÓW",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "5"
+      ]
+     },
+     {
+      "teamId": "132649",
+      "teamDisplayName": "HUTNIK KRAKÓW",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "4"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-26T13:13:08.085Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401925344",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-26",
+   "kickoffUtc": "2026-09-26T08:00Z",
+   "heim": "Alashkert FC",
+   "gast": "FC VAN",
+   "torHeim": 1,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "17858",
+      "teamDisplayName": "Alashkert FC",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "132134",
+      "teamDisplayName": "FC VAN",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-26T13:13:07.441Z"
   },
   {
    "provider": "espn",
