@@ -6691,3 +6691,21 @@ für das normale `save()` gilt der beschriebene Rückfall bewusst weiter.*
 
 **Kosten (Arbeitsregel G):** Kein neuer Dienst, keine neue API, keine zusätzliche Modell- oder Webanfrage. Reine Darstellung/Organisation; Laufzeitkosten der Marktlage bleiben unverändert und weiterhin durch denselben Schalter kontrollierbar.
 
+---
+
+## Backlog-Punkt 90 — Bau- und Begründungsgeschichte (26.9.2026, Fassung 149)
+
+**Anlass und Entscheidung Ondo:** Die App sollte weniger düster, benutzerfreundlicher und auf einen Blick übersichtlicher werden. Nach einer ersten Hell-Vorschau wurde bewusst kein einzelnes neues Zwangsdesign gewählt: Ondo entschied einen Drei-Stufen-Darstellungsumschalter, damit Hell, eine klar eigenständige dunkle Grünvariante und das bisherige klassische Dunkel parallel verfügbar bleiben. Die vollständige 390-px-Vorschau (je Thema Start, Mehr, Finanzen und Wetten → KI-Log → Werkzeuge) wurde Ondo vor der Übernahme auf `main` gezeigt und von ihm freigegeben.
+
+**Themen:** Neues persistentes Feld `state.theme` verwendet wie bestehende Einstellungen `save()`; alte Speicherstände ohne Feld behalten den Default `hell`. `applyTheme()` setzt ausschließlich die vorhandenen Farbvariablen plus die zwei neuen Navigationsvariablen `--navbg` und `--navtext-active`. Hell: `#FAF8F3/#FFFFFF/#E4DFD2/#F3EEE3/#1C1B18/#6B6558`; Dunkel Grün: `#10241C/#16332A/#1F4636/#122A21/#E9F3ED/#8FB4A2`; Dunkel klassisch: exakt die bisherige Palette `#0B1220/#111C30/#1D2B45/#0D1729/#E8EDF4/#8A98AF`. `--accent:#F5D90A` bleibt in allen drei gleich. `.btn`-Text ist davon entkoppelt und fest `#1C1B18`. Die klassische Bottom-Navigation behält exakt `rgba(13,23,41,.97)`; Hell und Grün verwenden ihre jeweilige Hintergrundfarbe mit `.94`. Nur im hellen Thema erhält der aktive Nav-Text `#8A6D00`; in beiden dunklen Themen bleibt er Akzentgelb. Geplante Module bleiben im klassischen Thema bei der bisherigen Opacity `.55`, Hell/Grün verwenden `.70`.
+
+**Start:** Neue Karte „Heute auf einen Blick“ im bestehenden Kartensystem, 2×2-Raster ohne Schatten/Verlauf. Die vier Felder lesen ausschließlich vorhandene Daten: `calcAI()` für Trefferquote und X-von-Y, `calcKalibrierung('sonnet'/'flash')` für den gerundeten Mittelwert der beiden bereits berechneten Abweichungen, `state.pruefBilanz/state.pruefRun` für den letzten gespeicherten Prüflauf und `state.kiProtokoll` für offene, nicht geparkte v19-Vorhersagen. Fehlt ein gespeicherter Prüflauf, zeigt die App ausdrücklich keinen erfundenen Zeitpunkt. Modul- und Bottom-Navigations-Emojis wurden durch eine gemeinsame Inline-SVG-Strichsprache ersetzt.
+
+**Übrige Bildschirme:** „Mehr“ erhält nur Gruppierungsüberschriften (Konto & Sicherheit, KI-Schlüssel, Daten, Über die App); Karteninhalte und Reihenfolge innerhalb der Gruppen bleiben funktional unverändert. Der Drei-Themen-Umschalter steht im oberen Einstellungsbereich. Unter Finanzen bleiben die vier Kennzahlkarten unverändert; nur die beiden Korrekturfelder für Ein-/Auszahlung werden durch Trennlinie, kleinere Beschriftung und kompaktere Felder als Wartungsfälle zurückgenommen. Unter Wetten → KI-Log → Werkzeuge verwenden Einmalige Berichtigung, Aktuelle Lage per Websuche und Log als Text dieselbe Strich-Icon-Systematik; deren Funktionen bleiben unverändert.
+
+**Sprachen:** 19 neue reine Darstellungs-/Themen-Schlüssel je DE/FR/EN, maschinell gleiche Menge und gleiche Namen: 359 → 378. Vorhandene Werkzeugtexte verloren nur ihre vorangestellten Emoji-Zeichen; Bedeutung und Funktionspfade blieben gleich.
+
+**Verifiziert:** Design vor `main` als echte 390-px-Browserbilder für alle drei Themen auf Start, Mehr, Finanzen und KI-Log/Werkzeuge gezeigt und von Ondo freigegeben. Syntax, `pruefe.py`, bestehende 365er Regressionssuite sowie Theme-Sofortwechsel/Persistenz werden im finalen Lieferstand erneut geprüft. **Bewährung auf Ondos echtem iPhone steht aus.**
+
+**Kosten (Arbeitsregel G):** Kein neuer Dienst, keine API und kein zusätzlicher Modell-/Webaufruf. Das Umschalten und Dashboard rechnen nur lokal aus bereits vorhandenen Daten; zusätzliche Laufzeitkosten sind praktisch nur normale Browser-Darstellung und Speichern eines kleinen Theme-Felds.
+

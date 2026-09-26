@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 26.9.2026, Fassung 148, v19.20.1*
+*Die aktuelle Wahrheit. Stand: 26.9.2026, Fassung 149, v19.21.0*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -206,8 +206,9 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   den Trainingsraum) — dieser Commit ist der Stand **davor**, falls zurückgesetzt werden muss.
   Einzelheiten Backlog-Punkt 77.
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.20.1** (`beta.html`, geliefert 26.9.2026) — **v19.20.0 bleibt funktional
-  unverändert; zusätzlich Backlog-Punkt 89 (zwei kleine Optik-/Organisationskorrekturen).**
+- **Beta: v19.21.0** (`beta.html`, geliefert 26.9.2026) — **Backlog-Punkt 90: drei
+  wählbare Darstellungen und die freigegebene Dashboard-/Übersichtsüberarbeitung; Mess-,
+  Vorhersage-, Prüf- und Finanzlogik bleiben unverändert.**
   **Punkt 87 — ESPN-Archiv bei Länderspielen:** Der Resolver kann deutsche und englische
   ISO-3166-1-Ländernamen jetzt über denselben standardisierten Ländercode erkennen. Die Namen
   entstehen zur Laufzeit mit `Intl.DisplayNames` (`de`/`en`); es gibt keine gepflegte
@@ -232,6 +233,19 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   **Verifiziert:** 375-px-Browser-Gegenprobe: kein Seitenüberlauf, alle fünf KI-Log-Reiter
   per horizontalem Scrollen erreichbar, Haupt-Wetten-Zeile passt weiterhin ohne Scrollen;
   Marktlage-Karte nur unter Werkzeuge, Schalterzustand wechselt unverändert.
+  **Punkt 90 — Darstellung und Übersicht:** Unter „Mehr“ stehen drei persistente Themen:
+  **Hell** (Standard für alte Speicherstände), **Dunkel Grün** und **Dunkel klassisch**. Alle
+  wechseln dieselben CSS-Variablen; die klassische Palette bleibt einschließlich der alten
+  Dimmung geplanter Module unverändert. Die Bottom-Navigation folgt dem Thema; im hellen Thema
+  hat nur der aktive Nav-Text ein dunkles Gold für ausreichende Lesbarkeit. Start zeigt oben
+  „Heute auf einen Blick“ mit Trefferquote, mittlerer Kalibrierungsabweichung beider Gehirne,
+  letztem gespeicherten Prüflauf und offenen Vorhersagen — ausschließlich aus bereits
+  vorhandenen Zustands-/Messwerten. Modul- und Navigations-Emojis wurden durch eine gemeinsame
+  Inline-SVG-Strichsprache ersetzt. „Mehr“ ist in Konto & Sicherheit / KI-Schlüssel / Daten /
+  Über die App gruppiert; die Korrekturfelder unter Finanzen sind optisch zurückgenommen;
+  Wetten → KI-Log → Werkzeuge verwendet dieselbe Strich-Icon-Systematik.
+  **Design-Abnahme:** Ondo hat die gezeigte 390-px-Vorschau mit drei Themen × Start, Mehr,
+  Finanzen und KI-Log/Werkzeuge vor der Übernahme auf `main` ausdrücklich freigegeben.
   **Verifiziert:** `node --check` bestanden · **365 Prüfungen** in `tests/` (t1 43 · t2 80 ·
   t3 51 · t4 72 · t5 41 · t6 43 · t7 35), alle bestanden — einschließlich Resolver-/
   Serie-A/B-Fehlmatch-Schutz, Nations-League-Gegenprobe und Fail-Safe-Simulation. **Keine Änderung** an den bewusst still weiterfallenden Strukturquellen-
@@ -240,7 +254,7 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   **Kosten (Arbeitsregel G):** kein neuer Dienst und kein zusätzlicher regulärer Netzaufruf;
   die Reparatur spart im belegten Nations-League-Fall Modellaufrufe und verhindert bei
   unbekannten Gemini-Fehlern weitere automatische Versuche.
-- **Sprachschlüssel: 359** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 26.9.2026** — ein neuer Schlüssel `pruefKonflikt` aus v19.19.1; die vorige Zahl 358 enthielt neun, nicht zehn neue Schlüssel aus Backlog-Punkt 86, am echten Diff berichtigt). **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
+- **Sprachschlüssel: 378** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 26.9.2026** — v19.21.0 ergänzt 19 reine Darstellungs-/Themen-Schlüssel für Dashboard, Themenwahl und Abschnittsüberschriften). **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
 
 ---
 

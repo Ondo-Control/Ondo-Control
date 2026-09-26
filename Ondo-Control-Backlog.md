@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 26.9.2026, Fassung 148 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 26.9.2026, Fassung 149 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -595,6 +595,10 @@ Unbekannte Gemini-Fehler stoppen jetzt als `_unklar` ohne Modellwechsel; nur bek
 **89. KI-Log auf schmalem Bildschirm + Marktlage-Schalter ins Wettmodul** · *Fund Ondo 26.9.2026 · Auftrag Ondo 26.9.2026* · **Status: 🔴 GEBAUT 26.9.2026 (`beta.html` v19.20.1) — Bewährung am iPhone steht aus**
 
 Die fünf KI-Log-Unterreiter scrollen bei Bedarf horizontal, ohne die unverändert funktionierende Haupt-Wetten-Zeile umzubauen. Der nur von der Wetten-Vorhersage gelesene Schalter „Aktuelle Lage per Websuche“ steht jetzt unter Wetten → KI-Log → Werkzeuge statt unter „Mehr“. Funktion und Sprachschlüssel unverändert. Vollständige Begründung und Gegenprobe: `BACKLOG-ARCHIV.md`.
+
+**90. Drei Darstellungen + Dashboard-/Übersichtsdesign** · *Fund/Auftrag Ondo 26.9.2026 · Vorschau von ChatGPT/Bauer · von Ondo vor `main` freigegeben 26.9.2026* · **Status: 🔴 GEBAUT 26.9.2026 (`beta.html` v19.21.0) — Bewährung am iPhone steht aus**
+
+Drei persistente Themen (Hell als Standard, Dunkel Grün, Dunkel klassisch) schalten ausschließlich die gemeinsame Variablenpalette einschließlich Bottom-Navigation um; Dunkel klassisch behält die bisherige Palette und Dimmung. Start erhält „Heute auf einen Blick“ aus vorhandenen Mess-/Zustandswerten und gemeinsame Inline-SVG-Strichicons. „Mehr“ ist durch Abschnittsüberschriften gruppiert, Finanzen macht die Wartungs-Korrekturfelder optisch leiser, KI-Log/Werkzeuge verwendet dieselbe Strich-Icon-Sprache. Keine Änderung an Mess-, Vorhersage-, Prüf- oder Finanzlogik. Vollständige Begründung und Design-Abnahme: `BACKLOG-ARCHIV.md`.
 
 ---
 

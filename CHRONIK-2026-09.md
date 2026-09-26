@@ -1485,3 +1485,9 @@ vier Dokumentdateien (`STAND.md`, `Ondo-Control-Backlog.md`, `Blueprint.md`,
 
 Zwei kleine Optik-/Organisationskorrekturen, Fund und Auftrag Ondo. (A) Die fünf KI-Log-Unterreiter verwenden jetzt nur in dieser Zeile eine horizontal scrollbare `.subtabs.scroll`-Variante; die vier Haupt-Wetten-Reiter bleiben unverändert. (B) Der Schalter „Aktuelle Lage per Websuche“ wurde aus „Mehr“ nach Wetten → KI-Log → Werkzeuge verschoben, weil `state.marktlageAktiv` ausschließlich die Wetten-Vorhersage beeinflusst; Toggle-Logik und Sprachschlüssel blieben unverändert. Keine Änderung an „Antwortkonsistenz (Kriterium g)“. Verifiziert mit der bestehenden 365er Testsuite sowie einer 375-px-Headless-Browser-Gegenprobe.
 
+---
+
+## v19.21.0 — 26.9.2026 — Backlog-Punkt 90
+
+Freigegebene Design-/Übersichtslieferung. Drei persistente Darstellungen (Hell als Default, Dunkel Grün, Dunkel klassisch) wechseln die gemeinsame Variablenpalette einschließlich Bottom-Navigation; Dunkel klassisch behält die bisherige Palette und `.55`-Dimmung geplanter Module, Hell/Grün verwenden `.70`. Start erhält „Heute auf einen Blick“ aus vorhandenen Mess-/Zustandswerten. Modul- und Bottom-Navigations-Emojis werden durch gemeinsame Inline-SVG-Strichicons ersetzt. „Mehr“ erhält vier Abschnittsgruppen und den Themen-Umschalter, Finanzen stellt die zwei Wartungs-Korrekturfelder optisch zurück, Wetten → KI-Log → Werkzeuge nutzt dieselbe Strich-Icon-Systematik. 19 neue Darstellungs-/Themen-Schlüssel je Sprache (359 → 378). Keine Änderung an Mess-, Vorhersage-, Prüf- oder Finanzlogik. Die 390-px-Vorschau aller drei Themen auf Start, Mehr, Finanzen und Werkzeuge wurde Ondo vor `main` gezeigt und ausdrücklich freigegeben. Bewährung am echten iPhone steht aus.
+
