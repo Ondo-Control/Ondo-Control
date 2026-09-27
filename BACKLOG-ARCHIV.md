@@ -6709,3 +6709,18 @@ für das normale `save()` gilt der beschriebene Rückfall bewusst weiter.*
 
 **Kosten (Arbeitsregel G):** Kein neuer Dienst, keine API und kein zusätzlicher Modell-/Webaufruf. Das Umschalten und Dashboard rechnen nur lokal aus bereits vorhandenen Daten; zusätzliche Laufzeitkosten sind praktisch nur normale Browser-Darstellung und Speichern eines kleinen Theme-Felds.
 
+---
+
+## Backlog-Punkt 91 — Bau- und Begründungsgeschichte (27.9.2026, Fassung 150)
+
+**Fund am echten Gerät:** Ondo erzeugte am 27.9.2026 auf dem iPhone/Safari eine reale Sicherungsdatei (10:22 Uhr, 521 Vorhersagen, 35,2 MB). Danach entstanden 16 weitere Vorhersagen; nach Reload waren 537 vorhanden, während „Zuletzt gesichert“ wieder 26.9.2026 17:17 zeigte. Damit ist kein allgemeiner Datenverlust belegt: Die 16 neuen Vorhersagen überlebten. Belegt ist der getrennte Fehler im Sicherungsablauf: `datenSichern()` setzte den neuen Zeitstempel im RAM und in der Datei, startete `speicherSchreiben(KEY,state)` fire-and-forget und verschluckte jeden Fehler mit `.catch(function(){})`.
+
+**Reparatur Backup:** Die Datei wird weiterhin vor dem Persistenzabschluss erzeugt. `navigator.share()` wird weiterhin synchron im direkten Klickpfad gestartet; vor dem Share wird kein `await` und keine längere asynchrone Kette eingeschoben. Parallel läuft ein eigener `backupCheckpointSave()` über **dieselbe** globale `speicherKette` und **denselben** strikten `speicherSchreibenKritisch()`-Pfad wie kritische Checkpoints, aber ausdrücklich ohne deren blockierenden/globalen Alarm. Scheitert IndexedDB, bleibt die bereits erzeugte Datei erhalten; der in der Datei enthaltene neue Zeitpunkt bleibt dort korrekt, die App rollt ihre RAM-Anzeige auf den vorher bestätigten Zeitpunkt zurück und zeigt einen nicht-blockierenden Hinweis. Erst ein erfolgreich abgeschlossenes striktes Schreiben macht den neuen Zeitpunkt in der App dauerhaft sichtbar.
+
+**Reparatur allgemeine Speicherfehler:** Der bisherige Warntext bleibt bestehen. Neu wird `speicherFehlerText()` ausschließlich aus Fehler-`name` und Fehler-`message` (bei String direkt, sonst lesbarer Fallback) gebildet. `save()` und der bestehende Checkpoint-Alarm zeigen diesen technischen Fehler zusätzlich; `speicherWarnBlock()` hält ihn sichtbar. State-Inhalte, API-Schlüssel und sonstige Nutzdaten werden nicht in die Meldung übernommen. Keine eigene Deutung der Ursache als Safari/WebKit-Fehler oder sicherer Speichermangel.
+
+**Nicht gelöst/absichtlich offen:** Warum IndexedDB auf Ondos iPhone in diesem einen Vorgang konkret aussetzte, wurde in diesem Auftrag nicht untersucht und bleibt unbekannt. Keine Speicherarchitektur, Migration, Messdaten- oder Vorhersagelogik wurde neu entworfen.
+
+**Tests:** Neue `tests/t8_backup_speicher.js` prüft (1) erfolgreichen Backup-Checkpoint samt dauerhaftem Zeitstempel, (2) simulierten IndexedDB-Fehler bei weiterhin erzeugter Datei, ohne blockierendes Alert und mit sichtbarem technischen Hinweis, (3) synchronen `navigator.share()`-Aufruf im Benutzeraktionspfad, (4) normalen `save()`-Fehler mit altem Warntext plus echtem `AbortError` ohne Geheimdaten und (5) unverändert harte `checkpointSave()`-Barriere samt Erholung der seriellen Kette. Gesamtsuite und `pruefe.py` werden im Lieferlauf ausgeführt.
+
+**Kosten (Arbeitsregel G):** kein neuer Dienst, keine API und kein zusätzlicher Netz-/Modellaufruf. Beim Backup kommt ein bereits vorhandener strikter lokaler IndexedDB-Schreibvorgang an die Stelle des bisherigen nicht abgewarteten Best-Effort-Schreibens.

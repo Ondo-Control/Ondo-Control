@@ -153,7 +153,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.21.0';
+var CODE_VERSION = 'v19.21.1';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -250,6 +250,7 @@ var I18N = {
   delBetAsk:'Diese Wette endgültig löschen?\n\n{a}\n\nDas lässt sich nicht rückgängig machen.',
   delLogAsk:'Diesen Eintrag endgültig aus dem KI-Log löschen?\n\n{a}\n\nEr ist ein Beleg, auf dem die Auswertung aufbaut. Das lässt sich nicht rückgängig machen.',
   saveFailAlert:'Die Daten konnten NICHT gespeichert werden. Der Speicher dieses Browsers ist vermutlich voll. Sichere die Daten jetzt über „Daten sichern" und lösche danach nicht mehr benötigte Einträge — sonst geht alles Neue verloren.',
+  saveTech:'Technischer Fehler', saveTechUnknown:'Unbekannter Speicherfehler', backupPersistFail:'Datei wurde erzeugt, aber der Sicherungszeitpunkt konnte nicht dauerhaft im Browser gespeichert werden. Bitte die Datei aufbewahren und später erneut sichern.',
   speicherT:'Belegter Speicher', speicherEng:'wird eng — jetzt sichern',
   speicherVon:'von {a} MB, die dieser Browser auf diesem Gerät zulässt ({b} %)',
   beobT:'Was die Daten sagen', beobD:'Nur aus sicher bewerteten Einträgen: geparkte und solche, bei denen der Schiedsrichter sich nur mit 2 von 3 Läufen einig war, bleiben aussen vor.',
@@ -415,6 +416,7 @@ var I18N = {
   delBetAsk:'Supprimer définitivement ce pari ?\n\n{a}\n\nCette action est irréversible.',
   delLogAsk:'Supprimer définitivement cette entrée du journal IA ?\n\n{a}\n\nElle sert de preuve à l’évaluation. Cette action est irréversible.',
   saveFailAlert:'Les données n’ont PAS pu être enregistrées. La mémoire de ce navigateur est probablement pleine. Sauvegarde tout de suite via « Sauvegarder les données », puis supprime les entrées devenues inutiles — sinon tout le nouveau sera perdu.',
+  saveTech:'Erreur technique', saveTechUnknown:'Erreur de stockage inconnue', backupPersistFail:'Le fichier a été créé, mais l’heure de sauvegarde n’a pas pu être enregistrée durablement dans le navigateur. Conserve le fichier et réessaie plus tard.',
   speicherT:'Mémoire occupée', speicherEng:'ça devient juste — sauvegarde maintenant',
   speicherVon:'sur {a} Mo autorisés par ce navigateur sur cet appareil ({b} %)',
   beobT:'Ce que disent les données', beobD:'Uniquement à partir d’entrées évaluées de façon sûre : les entrées mises de côté et celles où l’arbitre n’était d’accord que sur 2 passages sur 3 restent exclues.',
@@ -580,6 +582,7 @@ var I18N = {
   delBetAsk:'Delete this bet for good?\n\n{a}\n\nThis cannot be undone.',
   delLogAsk:'Delete this entry from the AI log for good?\n\n{a}\n\nIt is evidence the evaluation builds on. This cannot be undone.',
   saveFailAlert:'The data could NOT be saved. This browser’s storage is probably full. Back up now via “Back up data”, then delete entries you no longer need — otherwise everything new will be lost.',
+  saveTech:'Technical error', saveTechUnknown:'Unknown storage error', backupPersistFail:'The file was created, but the backup time could not be stored persistently in the browser. Keep the file and back up again later.',
   speicherT:'Storage used', speicherEng:'getting tight — back up now',
   speicherVon:'of {a} MB this browser allows on this device ({b} %)',
   beobT:'What the data says', beobD:'Only from securely rated entries: parked ones, and those where the referee agreed on just 2 of 3 runs, stay out.',
@@ -1177,6 +1180,31 @@ async function load(){
    dieser Sitzung, nicht die Daten — und ein Zustand, der sich nicht speichern laesst, kann
    sich schlecht selbst mitspeichern. */
 var speicherAlarm=false;
+var speicherAlarmFehler='';
+/* v19.21.1 (Backlog-Punkt 91, Fund Claude/Pruefer 27.9.2026, Auftrag Ondo):
+   Der bisherige Alarm nannte nur eine moegliche Ursache (Browser-Speicher vermutlich voll).
+   Der vom Browser gelieferte technische Fehler wird jetzt zusaetzlich sichtbar gemacht. Nur
+   Name und Nachricht des Fehlerobjekts werden verwendet — niemals state oder Schluesseldaten. */
+function speicherFehlerText(e){
+  var name='', msg='';
+  if(e && typeof e==='object'){
+    if(typeof e.name==='string') name=e.name.trim();
+    if(typeof e.message==='string') msg=e.message.trim();
+  }else if(typeof e==='string'){
+    msg=e.trim();
+  }
+  if(!name && !msg){
+    try{
+      var s=String(e);
+      if(s && s!=='undefined' && s!=='null' && s!=='[object Object]') msg=s;
+    }catch(x){}
+  }
+  if(name && msg) return name+': '+msg;
+  return name || msg || t('saveTechUnknown');
+}
+function speicherFehlerMeldung(e){
+  return t('saveFailAlert')+'\n\n'+t('saveTech')+': '+speicherFehlerText(e);
+}
 /* v19.8.30: save() bleibt fuer jede rufende Stelle unveraendert aufrufbar (save(); render();)
    — render() liest den bereits im Speicher stehenden state, nicht das Ergebnis von save(),
    und wartet deshalb nicht darauf. Nur note()/alert() bei Erfolg oder Fehlschlag kommen jetzt
@@ -1184,10 +1212,12 @@ var speicherAlarm=false;
 function save(){
   speicherSchreiben(KEY, state).then(function(){
     if(speicherAlarm){ speicherAlarm=false; }
+    speicherAlarmFehler='';
     note(t('saved'));
   }).catch(function(e){
+    speicherAlarmFehler=speicherFehlerText(e);
     note(t('saveFail'));
-    if(!speicherAlarm){ speicherAlarm=true; alert(t('saveFailAlert')); }
+    if(!speicherAlarm){ speicherAlarm=true; alert(speicherFehlerMeldung(e)); }
   });
 }
 /* ================= CHECKPOINT-SPEICHERBARRIERE (Backlog-Punkt 86, Auftrag Ondo 21.9.2026,
@@ -1231,8 +1261,10 @@ function checkpointSave(){
     return speicherSchreibenKritisch(KEY, state);
   }).then(function(){
     if(speicherAlarm){ speicherAlarm=false; }
+    speicherAlarmFehler='';
   }, function(e){
-    if(!speicherAlarm){ speicherAlarm=true; try{ alert(t('saveFailAlert')); }catch(x){} }
+    speicherAlarmFehler=speicherFehlerText(e);
+    if(!speicherAlarm){ speicherAlarm=true; try{ alert(speicherFehlerMeldung(e)); }catch(x){} }
     throw (e || new Error('Checkpoint fehlgeschlagen'));
   });
   speicherKette = ergebnis.catch(function(){ /* Kette bleibt benutzbar (B) */ });
@@ -1240,6 +1272,16 @@ function checkpointSave(){
 }
 function checkpointOhneBarriere(){
   return checkpointSave().catch(function(){ return false; });
+}
+/* v19.21.1: Backup nutzt dieselbe serielle speicherKette und denselben strikten
+   IndexedDB-Weg wie ein kritischer Checkpoint, aber bewusst OHNE dessen blockierenden Alarm.
+   Der Aufrufer datenSichern() behandelt den Fehler nicht-blockierend und separat. */
+function backupCheckpointSave(){
+  var ergebnis = speicherKette.then(function(){
+    return speicherSchreibenKritisch(KEY, state);
+  });
+  speicherKette = ergebnis.catch(function(){ /* Kette bleibt nach einem Fehler benutzbar. */ });
+  return ergebnis;
 }
 
 /* ================= PERSISTENTER PRUEFZUSTAND (Backlog-Punkt 86, Abschnitt 5/7) =================
@@ -1602,7 +1644,9 @@ function speicherQuote(){
 function speicherWarnBlock(){
   if(!speicherAlarm) return '';
   return '<div class="card" style="border-color:var(--loss)">'+
-    '<b style="color:var(--loss)">'+t('saveFailAlert')+'</b></div>';
+    '<b style="color:var(--loss)">'+t('saveFailAlert')+'</b>'+
+    (speicherAlarmFehler?'<div class="muted" style="margin-top:8px;color:var(--loss)">'+
+      esc(t('saveTech')+': '+speicherAlarmFehler)+'</div>':'')+'</div>';
 }
 function note(x){
   var n=document.getElementById("saveNote"); n.textContent=x;
@@ -6637,6 +6681,12 @@ function delBet(id){
 }
 /* ================= DATENSICHERUNG (v19.1) =================
    Alle Messdaten liegen sonst nur im Browser-Speicher dieses Geraetes. */
+var backupSpeicherHinweis='';
+var backupSicherungPending=false;
+var backupSicherungVorher=null;
+function backupSicherungAnzeige(){
+  return backupSicherungPending ? backupSicherungVorher : state.letzteSicherung;
+}
 function dateiHerunterladen(blob, name){
   var url = URL.createObjectURL(blob);
   var a = document.createElement('a');
@@ -6651,31 +6701,48 @@ function datenSichern(){
   var d = new Date();
   var name = 'ondo-control-sicherung-'+d.getFullYear()+'-'+
     ('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)+'.json';
-  /* v19.7.5: Der Zeitstempel wird jetzt VOR dem Ausschreiben gesetzt. Vorher enthielt die
-     Datei den Stand der VORIGEN Sicherung — nach einem Import zeigte "zuletzt gesichert"
-     deshalb ein zu altes Datum und liess die Daten ungesicherter aussehen, als sie waren. */
-  state.letzteSicherung = d.toLocaleDateString('de-DE')+' '+
+  var vorherigeSicherung = state.letzteSicherung || null;
+  var neueSicherung = d.toLocaleDateString('de-DE')+' '+
     ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);
+  /* Der neue Zeitstempel muss in der Datei stehen, wird in der Oberflaeche aber erst als
+     dauerhaft behandelt, nachdem IndexedDB den strikten Backup-Checkpoint bestaetigt hat. */
+  state.letzteSicherung = neueSicherung;
+  backupSicherungPending=true;
+  backupSicherungVorher=vorherigeSicherung;
   var daten = JSON.stringify(state);
   var blob = new Blob([daten], {type:'application/json'});
-  /* v19.8.30: Vorher ein direkter, synchroner localStorage-Aufruf — genau der, der bei vollem
-     localStorage scheiterte und dadurch "zuletzt gesichert" nach einem Neustart wieder auf
-     einen aelteren Stand zurueckfallen liess (Ondos Beobachtung 12.9.2026: "jetzt hochgeladen,
-     verschwindet beim Neustart"). Jetzt ueber speicherSchreiben() — landet in IndexedDB, mit
-     demselben stillen Rueckfall wie ueberall sonst. Bewusst ohne Erfolgsmeldung hier: Die
-     Datei ist in jedem Fall schon erzeugt, ein zusaetzliches "gespeichert" waere verwirrend. */
-  speicherSchreiben(KEY, state).catch(function(){});
+  var persistenz = backupCheckpointSave();
+
+  /* WICHTIG fuer iOS/Safari: Share wird weiterhin im selben synchronen Benutzer-Klick
+     gestartet. Wir warten hier NICHT erst auf IndexedDB; dessen Promise wird separat unten
+     abgeschlossen. So bleibt die Datei auch bei Persistenzfehler erhalten/teilbar. */
   var datei = null;
   try{ datei = new File([blob], name, {type:'application/json'}); }catch(e){}
   if(datei && navigator.share && navigator.canShare && navigator.canShare({files:[datei]})){
     navigator.share({ files:[datei], title:name })
-      .then(function(){ render(); })
-      .catch(function(){ dateiHerunterladen(blob, name); render(); });
-    return;
+      .catch(function(){ dateiHerunterladen(blob, name); });
+  }else{
+    dateiHerunterladen(blob, name);
   }
-  dateiHerunterladen(blob, name);
-  render();
+
+  return persistenz.then(function(){
+    backupSicherungPending=false;
+    backupSicherungVorher=null;
+    backupSpeicherHinweis='';
+    render();
+    return true;
+  }).catch(function(e){
+    /* Datei ist bereits erzeugt/angeboten. Nur die Behauptung eines dauerhaft gespeicherten
+       Zeitpunkts wird zurueckgenommen; kein blockierender globaler Speicher-Alarm. */
+    if(state.letzteSicherung===neueSicherung) state.letzteSicherung=vorherigeSicherung;
+    backupSicherungPending=false;
+    backupSicherungVorher=null;
+    backupSpeicherHinweis=t('backupPersistFail')+' '+t('saveTech')+': '+speicherFehlerText(e);
+    render();
+    return false;
+  });
 }
+
 function datenLaden(input){
   if(!input.files || !input.files[0]) return;
   var leser = new FileReader();
@@ -7371,6 +7438,7 @@ function marktlageBlock(){
   '</div>';
 }
 function viewMore(){
+  var backupZeit=backupSicherungAnzeige();
   var opts=['de','fr','en'].map(function(l){
     return '<option value="'+l+'"'+(state.lang===l?' selected':'')+'>'+LANGNAME[l]+'</option>';
   }).join('');
@@ -7439,8 +7507,8 @@ function viewMore(){
     '<div class="muted" style="margin-bottom:12px">'+t('backupD')+'</div>'+
     '<div class="muted" style="margin-bottom:10px">'+
       t('backupInfo').replace('{a}',(state.kiProtokoll||[]).length).replace('{b}',(state.bets||[]).length)+
-      '<br>'+t('backupLast')+': <b style="color:'+(state.letzteSicherung?'var(--text)':'var(--loss)')+'">'+
-      (state.letzteSicherung||t('backupNever'))+'</b>'+
+      '<br>'+t('backupLast')+': <b style="color:'+(backupZeit?'var(--text)':'var(--loss)')+'">'+
+      (backupZeit||t('backupNever'))+'</b>'+
       /* v19.8.28: Wie voll der Browserspeicher ist, stand bisher nirgends — scheiterte das
          Speichern, sah man es 1,5 Sekunden lang und nie wieder.
          v19.8.30: Die Prozentzahl kommt jetzt vom Browser selbst (speicherQuoteCache, echte
@@ -7461,6 +7529,7 @@ function viewMore(){
         return zeile;
       })()+
     '</div>'+
+    (backupSpeicherHinweis?'<div class="muted" role="status" style="margin:10px 0;color:var(--loss)">'+esc(backupSpeicherHinweis)+'</div>':'')+
     '<button class="btn" onclick="datenSichern()">'+t('backupBtn')+'</button>'+
     '<div style="height:8px"></div>'+
     '<input type="file" accept=".json,application/json" id="sicherungInput" style="display:none" onchange="datenLaden(this)"/>'+

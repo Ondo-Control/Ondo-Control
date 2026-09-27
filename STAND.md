@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 26.9.2026, Fassung 149, v19.21.0*
+*Die aktuelle Wahrheit. Stand: 27.9.2026, Fassung 150, v19.21.1*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -206,9 +206,20 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   den Trainingsraum) — dieser Commit ist der Stand **davor**, falls zurückgesetzt werden muss.
   Einzelheiten Backlog-Punkt 77.
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.21.0** (`beta.html`, geliefert 26.9.2026) — **Backlog-Punkt 90: drei
-  wählbare Darstellungen und die freigegebene Dashboard-/Übersichtsüberarbeitung; Mess-,
-  Vorhersage-, Prüf- und Finanzlogik bleiben unverändert.**
+- **Beta: v19.21.1** (`beta.html`, geliefert 27.9.2026) — **Backlog-Punkt 91: zwei
+  Speicherfehler werden sichtbar und der Sicherungszeitpunkt gilt erst nach geprüftem
+  IndexedDB-Schreiben als dauerhaft.**
+  **Punkt 91 — Datensicherung/Persistenz:** `datenSichern()` erzeugt die Sicherungsdatei
+  weiterhin sofort und startet `navigator.share()` weiterhin direkt aus der Benutzeraktion.
+  Der Sicherungszeitpunkt läuft danach über dieselbe serielle `speicherKette` und denselben
+  strikten IndexedDB-Weg (`speicherSchreibenKritisch()`) wie kritische Checkpoints, aber mit
+  eigener nicht-blockierender Backup-Fehlerbehandlung. Scheitert IndexedDB, bleibt die Datei
+  erhalten, der neue Zeitpunkt wird in der App nicht als dauerhaft behauptet und ein sichtbarer
+  Hinweis nennt zusätzlich den tatsächlichen technischen Fehler. `save()` und der bestehende
+  blockierende Checkpoint-Alarm zeigen neben dem bisherigen verständlichen Warntext jetzt
+  ebenfalls ausschließlich Fehlername/-nachricht des echten Speicherfehlers. Keine State-,
+  Schlüssel- oder sonstigen Nutzdaten gelangen in die Meldung. **Die konkrete Ursache des am
+  27.9.2026 beobachteten einmaligen IndexedDB-Aussetzers bleibt ausdrücklich unbekannt/offen.**
   **Punkt 87 — ESPN-Archiv bei Länderspielen:** Der Resolver kann deutsche und englische
   ISO-3166-1-Ländernamen jetzt über denselben standardisierten Ländercode erkennen. Die Namen
   entstehen zur Laufzeit mit `Intl.DisplayNames` (`de`/`en`); es gibt keine gepflegte
@@ -246,15 +257,15 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   Wetten → KI-Log → Werkzeuge verwendet dieselbe Strich-Icon-Systematik.
   **Design-Abnahme:** Ondo hat die gezeigte 390-px-Vorschau mit drei Themen × Start, Mehr,
   Finanzen und KI-Log/Werkzeuge vor der Übernahme auf `main` ausdrücklich freigegeben.
-  **Verifiziert:** `node --check` bestanden · **365 Prüfungen** in `tests/` (t1 43 · t2 80 ·
-  t3 51 · t4 72 · t5 41 · t6 43 · t7 35), alle bestanden — einschließlich Resolver-/
+  **Verifiziert:** `node --check` bestanden · **400 Prüfungen** in `tests/` (t1 43 · t2 80 ·
+  t3 51 · t4 72 · t5 41 · t6 43 · t7 35 · t8 35), alle bestanden — einschließlich Resolver-/
   Serie-A/B-Fehlmatch-Schutz, Nations-League-Gegenprobe und Fail-Safe-Simulation. **Keine Änderung** an den bewusst still weiterfallenden Strukturquellen-
   `catch(...return [])` in ESPN/OpenLigaDB/API-Football/football-data.org oder `gLadeModelle()`.
   **Bewährung im echten App-Betrieb steht aus.**
   **Kosten (Arbeitsregel G):** kein neuer Dienst und kein zusätzlicher regulärer Netzaufruf;
   die Reparatur spart im belegten Nations-League-Fall Modellaufrufe und verhindert bei
   unbekannten Gemini-Fehlern weitere automatische Versuche.
-- **Sprachschlüssel: 378** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 26.9.2026** — v19.21.0 ergänzt 19 reine Darstellungs-/Themen-Schlüssel für Dashboard, Themenwahl und Abschnittsüberschriften). **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
+- **Sprachschlüssel: 381** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 27.9.2026** — v19.21.1 ergänzt drei Speicher-/Backup-Fehlertexte je Sprache). **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
 
 ---
 
