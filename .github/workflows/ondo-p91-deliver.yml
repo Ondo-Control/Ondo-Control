@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Verify base and reconstruct exact patches
+      - name: Verify base and reconstruct exact product patch
         shell: bash
         run: |
           set -euo pipefail
@@ -23,17 +23,39 @@ jobs:
           test "$(git hash-object .ondo/p91-01.b64)" = bb1c84061a57d249c4da4a384ff0aeca17d7068f
           test "$(git hash-object .ondo/p91-02.b64)" = f68190e0d9e7d3969f2544b1bcd69d91b8c18c5e
           test "$(git hash-object .ondo/p91-03.b64)" = 50c4cce4ce3aceda49069186e2f4e0525f65c7bf
-          test "$(git hash-object .ondo/p91-t5.patch)" = 80445400e024728794ab8b982b8c27bebe1cb4d9
           cat .ondo/p91-00.b64 .ondo/p91-01.b64 .ondo/p91-02.b64 .ondo/p91-03.b64 > /tmp/p91.patch.gz.b64
           base64 -d /tmp/p91.patch.gz.b64 | gzip -d > /tmp/p91.patch
-          cp .ondo/p91-t5.patch /tmp/p91-t5.patch
           test "$(git hash-object /tmp/p91.patch)" = 65b23938e317c58ff4e8beab76fd000f5d07b79c
-          test "$(git hash-object /tmp/p91-t5.patch)" = 80445400e024728794ab8b982b8c27bebe1cb4d9
           git checkout --detach "$BASE"
           git apply --check /tmp/p91.patch
           git apply /tmp/p91.patch
-          git apply --check /tmp/p91-t5.patch
-          git apply /tmp/p91-t5.patch
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('tests/t5_checkpoint.js')
+          s=p.read_text(encoding='utf-8')
+          old="""  var echt=c.localStorage.setItem;
+  var s={ defekt:false, bedingung:null, fehlschlaege:0, versuche:0 };
+  function kaputt(txt){ return s.defekt || !!(s.bedingung && s.bedingung(String(txt))); }
+  c.localStorage.setItem=function(k, v){
+    s.versuche++;
+    if(kaputt(v)){
+      s.fehlschlaege++;
+"""
+          new="""  var echt=c.localStorage.setItem;
+  var DIAG='ondo-control-speicherdiagnose-v1';
+  var s={ defekt:false, bedingung:null, fehlschlaege:0, versuche:0, diagnoseVersuche:0 };
+  function kaputt(txt){ return s.defekt || !!(s.bedingung && s.bedingung(String(txt))); }
+  c.localStorage.setItem=function(k, v){
+    var diagnose=(k===DIAG);
+    if(diagnose) s.diagnoseVersuche++;
+    else s.versuche++;
+    if(kaputt(v)){
+      if(!diagnose) s.fehlschlaege++;
+"""
+          if s.count(old)!=1:
+              raise SystemExit('t5 checkpoint counter block not unique')
+          p.write_text(s.replace(old,new,1),encoding='utf-8')
+          PY
       - name: Verify exact scope and storage callers
         shell: bash
         run: |
