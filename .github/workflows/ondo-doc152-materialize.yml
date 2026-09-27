@@ -62,7 +62,7 @@ jobs:
 
           p=Path('BLUEPRINT-PROTOKOLL.md')
           s=p.read_text(encoding='utf-8')
-          line='> **Was Fassung 0.151 ändert (27.9.2026):** Reine Synchronisierung nach Arbeitsregel M fuer den Abschluss von Backlog-Punkt 80 — keine neue Architektur- oder Verfassungsregel, nur Archivierung eines am Geraet bewaehrten Punkts.\n'
+          line='> **Was Fassung 0.151 ändert (27.9.2026):** Reine Synchronisierung nach Arbeitsregel M fuer den Abschluss von Backlog-Punkt 80 — keine neue Architektur- oder Verfassungsregel, nur Archivierung eines am Geraet bewaehrten Punkts. Blueprint auf 0.151 gehoben.\n'
           if line in s:
               raise SystemExit('BLUEPRINT-PROTOKOLL: line already present')
           if not s.endswith('\n'):
@@ -82,7 +82,7 @@ jobs:
           header='## Backlog-Punkt 80 — Bau- und Begründungsgeschichte (27.9.2026, Fassung 152)'
           if header in s:
               raise SystemExit('Archive point 80 already present')
-          block='''\n\n---\n\n## Backlog-Punkt 80 — Bau- und Begründungsgeschichte (27.9.2026, Fassung 152)\n\n**Ursprünglicher Auftrag (Ondo, 13.9.2026):** „Antwortkonsistenz (g): Teste. Aber Du musst klar definieren wann es fertig ist."\n\n**Werkzeug gebaut (13.9.2026, `beta.html` v19.13.0):** Kriterium (g) wurde als Wiederholungstest mit der vorab festgelegten Bestehensschwelle umgesetzt: mindestens **90 % gleicher Tipp** UND höchstens **10 Prozentpunkte Spanne im Schnitt**, bei `n=8` Spielen je Gehirn.\n\n**Fund Claude (27.9.2026):** Der Wiederholungslauf übernahm über `fruehere` den bereits abgegebenen eigenen Tipp desselben Spiels in den Prompt. Damit konnte ein positives Ergebnis nicht sauber belegen, dass die Antwort ohne diesen Eigenkontext konsistent zustande kam.\n\n**Korrektur (27.9.2026, `beta.html` v19.21.2):** Ausschließlich `antwortkonsistenzLauf()` ruft `vorhersageGehirn()` mit `ohneFruehere=true` auf; normale Vorhersagen und Trainingsraum behalten ihre bisherige Promptbildung. Ausgeliefert mit Commit `89465aff723533e6df4aa77cf781205312eb6e62`.\n\n**Gerätetest (Ondo, 27.9.2026, v19.21.2 BETA; anhand Ondos Bildschirmfotos von Claude gegengeprüft):**\n- Sonnet: **100 % gleicher Tipp**, Ø **3,5 Punkte Spanne**, `n=8` — **bestanden**.\n- Flash: **100 % gleicher Tipp**, Ø **2,8 Punkte Spanne**, `n=8` — **bestanden**.\n\n**Bewertung:** Die im Code seit v19.13.0 festgelegte Schwelle — mindestens **90 % gleicher Tipp** UND höchstens **10 Prozentpunkte Spanne im Schnitt** — wird von beiden Gehirnen klar erfüllt. **Status: ✅ BESTANDEN / ERLEDIGT am 27.9.2026.** Punkt 80 wird deshalb nicht mehr im offenen Backlog geführt.\n\n**Kosten (Arbeitsregel G):** Kein Geld, kein neuer Dienst und kein zusätzlicher Netz- oder Modellaufruf — reine Dokumentations- und Archivpflege.\n'''
+          block='''\n\n---\n\n## Backlog-Punkt 80 — Bau- und Begründungsgeschichte (27.9.2026, Fassung 152)\n\n**80. Kriterium (g) — Antwortkonsistenz durch Wiederholungsläufe testen** · *Beförderungskriterium 10.7.2026 · Auftrag Ondo 13.9.2026* · **Status: ✅ BESTANDEN / ERLEDIGT 27.9.2026**\n\n**Ursprünglicher Auftrag (Ondo, 13.9.2026):** „Antwortkonsistenz (g): Teste. Aber Du musst klar definieren wann es fertig ist."\n\n**Werkzeug gebaut (13.9.2026, `beta.html` v19.13.0):** Kriterium (g) wurde als Wiederholungstest mit der vorab festgelegten Bestehensschwelle umgesetzt: mindestens **90 % gleicher Tipp** UND höchstens **10 Prozentpunkte Spanne im Schnitt**, bei `n=8` Spielen je Gehirn.\n\n**Fund Claude (27.9.2026):** Der Wiederholungslauf übernahm über `fruehere` den bereits abgegebenen eigenen Tipp desselben Spiels in den Prompt. Damit konnte ein positives Ergebnis nicht sauber belegen, dass die Antwort ohne diesen Eigenkontext konsistent zustande kam.\n\n**Korrektur (27.9.2026, `beta.html` v19.21.2):** Ausschließlich `antwortkonsistenzLauf()` ruft `vorhersageGehirn()` mit `ohneFruehere=true` auf; normale Vorhersagen und Trainingsraum behalten ihre bisherige Promptbildung. Ausgeliefert mit Commit `89465aff723533e6df4aa77cf781205312eb6e62`.\n\n**Gerätetest (Ondo, 27.9.2026, v19.21.2 BETA; anhand Ondos Bildschirmfotos von Claude gegengeprüft):**\n- Sonnet: **100 % gleicher Tipp**, Ø **3,5 Punkte Spanne**, `n=8` — **bestanden**.\n- Flash: **100 % gleicher Tipp**, Ø **2,8 Punkte Spanne**, `n=8` — **bestanden**.\n\n**Bewertung:** Die im Code seit v19.13.0 festgelegte Schwelle — mindestens **90 % gleicher Tipp** UND höchstens **10 Prozentpunkte Spanne im Schnitt** — wird von beiden Gehirnen klar erfüllt. **Status: ✅ BESTANDEN / ERLEDIGT am 27.9.2026.** Punkt 80 wird deshalb nicht mehr im offenen Backlog geführt.\n\n**Kosten (Arbeitsregel G):** Kein Geld, kein neuer Dienst und kein zusätzlicher Netz- oder Modellaufruf — reine Dokumentations- und Archivpflege.\n'''
           if not s.endswith('\n'):
               s+='\n'
           p.write_text(s.rstrip('\n')+block,encoding='utf-8')
@@ -92,15 +92,15 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git hash-object BACKLOG-ARCHIV.md)" = "8fcdbf4b84b9c9a4b0e5b382a842928317e82810"
-          test "$(git hash-object BLUEPRINT-PROTOKOLL.md)" = "e13a353c5fce0ebbbdd5c78a1383c78427a3603e"
+          test "$(git hash-object BACKLOG-ARCHIV.md)" = "8dd89204c5d04b6eb9d8952332dc2a132893c93c"
+          test "$(git hash-object BLUEPRINT-PROTOKOLL.md)" = "8abf3f86d34263087f5f90c8b862a3ba3a86e0a0"
           test "$(git hash-object Blueprint.md)" = "1502ed0e334b6c1f1eec72cb03862fe0647a6ae5"
           test "$(git hash-object CHRONIK-2026-09.md)" = "620046ee2905fb58572a366dbe014c803cb2a261"
           test "$(git hash-object Ondo-Control-Backlog.md)" = "2031947462678e4c2bea731309558d3d5fad3228"
           test "$(git hash-object STAND.md)" = "09c7a845e69c6a888e26f4409e34d57891753e2d"
           test "$(git hash-object beta.html)" = "116378689c1e74c71c6088af73e2b620cac1f7e8"
           ! grep -Eq '^\*\*80\.' Ondo-Control-Backlog.md
-          grep -Fq '## Backlog-Punkt 80 — Bau- und Begründungsgeschichte (27.9.2026, Fassung 152)' BACKLOG-ARCHIV.md
+          grep -Fq '**80. Kriterium (g) — Antwortkonsistenz durch Wiederholungsläufe testen**' BACKLOG-ARCHIV.md
           grep -Fq '100 % gleicher Tipp' BACKLOG-ARCHIV.md
           grep -Fq '3,5 Punkte Spanne' BACKLOG-ARCHIV.md
           grep -Fq '2,8 Punkte Spanne' BACKLOG-ARCHIV.md
@@ -108,7 +108,7 @@ jobs:
           echo "FRESH_CLOCK=$(TZ=Europe/Berlin date -Iseconds)"
           python3 pruefe.py | tee /tmp/pruefe.log
           grep -Fq 'ERGEBNIS: ALLES SAUBER' /tmp/pruefe.log
-          grep -Fq '381' /tmp/pruefe.log
+          grep -Fq "{'de': 381, 'fr': 381, 'en': 381}" /tmp/pruefe.log
 
       - name: Commit materialized documentation blobs
         shell: bash
