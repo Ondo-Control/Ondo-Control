@@ -6724,3 +6724,25 @@ für das normale `save()` gilt der beschriebene Rückfall bewusst weiter.*
 **Tests:** Neue `tests/t8_backup_speicher.js` prüft (1) erfolgreichen Backup-Checkpoint samt dauerhaftem Zeitstempel, (2) simulierten IndexedDB-Fehler bei weiterhin erzeugter Datei, ohne blockierendes Alert und mit sichtbarem technischen Hinweis, (3) synchronen `navigator.share()`-Aufruf im Benutzeraktionspfad, (4) normalen `save()`-Fehler mit altem Warntext plus echtem `AbortError` ohne Geheimdaten und (5) unverändert harte `checkpointSave()`-Barriere samt Erholung der seriellen Kette. Gesamtsuite und `pruefe.py` werden im Lieferlauf ausgeführt.
 
 **Kosten (Arbeitsregel G):** kein neuer Dienst, keine API und kein zusätzlicher Netz-/Modellaufruf. Beim Backup kommt ein bereits vorhandener strikter lokaler IndexedDB-Schreibvorgang an die Stelle des bisherigen nicht abgewarteten Best-Effort-Schreibens.
+
+---
+
+## Backlog-Punkt 80 — Bau- und Begründungsgeschichte (27.9.2026, Fassung 152)
+
+**80. Kriterium (g) — Antwortkonsistenz durch Wiederholungsläufe testen** · *Beförderungskriterium 10.7.2026 · Auftrag Ondo 13.9.2026* · **Status: ✅ BESTANDEN / ERLEDIGT 27.9.2026**
+
+**Ursprünglicher Auftrag (Ondo, 13.9.2026):** „Antwortkonsistenz (g): Teste. Aber Du musst klar definieren wann es fertig ist."
+
+**Werkzeug gebaut (13.9.2026, `beta.html` v19.13.0):** Kriterium (g) wurde als Wiederholungstest mit der vorab festgelegten Bestehensschwelle umgesetzt: mindestens **90 % gleicher Tipp** UND höchstens **10 Prozentpunkte Spanne im Schnitt**, bei `n=8` Spielen je Gehirn.
+
+**Fund Claude (27.9.2026):** Der Wiederholungslauf übernahm über `fruehere` den bereits abgegebenen eigenen Tipp desselben Spiels in den Prompt. Damit konnte ein positives Ergebnis nicht sauber belegen, dass die Antwort ohne diesen Eigenkontext konsistent zustande kam.
+
+**Korrektur (27.9.2026, `beta.html` v19.21.2):** Ausschließlich `antwortkonsistenzLauf()` ruft `vorhersageGehirn()` mit `ohneFruehere=true` auf; normale Vorhersagen und Trainingsraum behalten ihre bisherige Promptbildung. Ausgeliefert mit Commit `89465aff723533e6df4aa77cf781205312eb6e62`.
+
+**Gerätetest (Ondo, 27.9.2026, v19.21.2 BETA; anhand Ondos Bildschirmfotos von Claude gegengeprüft):**
+- Sonnet: **100 % gleicher Tipp**, Ø **3,5 Punkte Spanne**, `n=8` — **bestanden**.
+- Flash: **100 % gleicher Tipp**, Ø **2,8 Punkte Spanne**, `n=8` — **bestanden**.
+
+**Bewertung:** Die im Code seit v19.13.0 festgelegte Schwelle — mindestens **90 % gleicher Tipp** UND höchstens **10 Prozentpunkte Spanne im Schnitt** — wird von beiden Gehirnen klar erfüllt. **Status: ✅ BESTANDEN / ERLEDIGT am 27.9.2026.** Punkt 80 wird deshalb nicht mehr im offenen Backlog geführt.
+
+**Kosten (Arbeitsregel G):** Kein Geld, kein neuer Dienst und kein zusätzlicher Netz- oder Modellaufruf — reine Dokumentations- und Archivpflege.
