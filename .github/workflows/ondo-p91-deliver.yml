@@ -26,12 +26,14 @@ jobs:
           test "$(git hash-object .ondo/p91-t5.patch)" = 80445400e024728794ab8b982b8c27bebe1cb4d9
           cat .ondo/p91-00.b64 .ondo/p91-01.b64 .ondo/p91-02.b64 .ondo/p91-03.b64 > /tmp/p91.patch.gz.b64
           base64 -d /tmp/p91.patch.gz.b64 | gzip -d > /tmp/p91.patch
+          cp .ondo/p91-t5.patch /tmp/p91-t5.patch
           test "$(git hash-object /tmp/p91.patch)" = 65b23938e317c58ff4e8beab76fd000f5d07b79c
+          test "$(git hash-object /tmp/p91-t5.patch)" = 80445400e024728794ab8b982b8c27bebe1cb4d9
           git checkout --detach "$BASE"
           git apply --check /tmp/p91.patch
           git apply /tmp/p91.patch
-          git apply --check "$GITHUB_WORKSPACE/.ondo/p91-t5.patch"
-          git apply "$GITHUB_WORKSPACE/.ondo/p91-t5.patch"
+          git apply --check /tmp/p91-t5.patch
+          git apply /tmp/p91-t5.patch
       - name: Verify exact scope and storage callers
         shell: bash
         run: |
