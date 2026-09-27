@@ -1,0 +1,135 @@
+name: ONDO point80 archive materialization
+
+on:
+  push:
+    branches: [ondotmp2]
+    paths:
+      - '.github/workflows/ondo-doc152-materialize.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify source and current main
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = "b3c3bf31be983a15f894c250849c17989ea7c6cb"
+          test "$(git hash-object BACKLOG-ARCHIV.md)" = "89ebe08d34b9d2ef282212efdb1364f7b82ad14b"
+          test "$(git hash-object BLUEPRINT-PROTOKOLL.md)" = "d942944e43a48f654405bfed85f8f992b8dd2535"
+          test "$(git hash-object Blueprint.md)" = "4930e40507e86f5d11ecaab6fa72bd9f8b46f518"
+          test "$(git hash-object CHRONIK-2026-09.md)" = "90c49e2ec0b5a50a0989d2fb45643c1023008ecb"
+          test "$(git hash-object Ondo-Control-Backlog.md)" = "1609aa1f000304249fafc94d78f76e95326acea4"
+          test "$(git hash-object STAND.md)" = "50ad5fba68ffebcaaa621ac0cc52862c2178449a"
+          test "$(git hash-object beta.html)" = "116378689c1e74c71c6088af73e2b620cac1f7e8"
+
+      - name: Apply documentation-only completion
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          def repl(path, old, new, count=1):
+              p=Path(path)
+              s=p.read_text(encoding='utf-8')
+              n=s.count(old)
+              if n != count:
+                  raise SystemExit(f'{path}: expected {count} occurrences, found {n}')
+              p.write_text(s.replace(old,new,count),encoding='utf-8')
+
+          repl('Ondo-Control-Backlog.md',
+               '**Nur offene Punkte. Gepflegt von Claude · Stand 27.9.2026, Fassung 151 · jede Idee mit Datum, Urheber und Status**',
+               '**Nur offene Punkte. Gepflegt von Claude · Stand 27.9.2026, Fassung 152 · jede Idee mit Datum, Urheber und Status**')
+          point80='''**80. Kriterium (g) — Antwortkonsistenz durch Wiederholungsläufe testen** · *Beförderungskriterium 10.7.2026 · von ChatGPT und Gemini gemeinsam am 6.8.2026 zurückgestellt · Auftrag Ondo 13.9.2026: „Antwortkonsistenz (g): Teste. Aber Du musst klar definieren wann es fertig ist." · Fund Claude 27.9.2026: Wiederholungsläufe sahen über `fruehere` den bereits abgegebenen eigenen Tipp desselben Spiels* · **Status: beschlossen — 🔴 Werkzeug GEBAUT 13.9.2026 (`beta.html` v19.13.0), KORRIGIERT 27.9.2026 (`beta.html` v19.21.2): nur der Konsistenzlauf unterdrückt den `fruehere`-Kontext; echtes Ergebnis steht aus — Ondo muss den Lauf in der App auslösen, diese Sitzung hat keinen Zugriff auf seine API-Schlüssel**\n\n'''
+          repl('Ondo-Control-Backlog.md', point80, '')
+
+          repl('STAND.md',
+               '*Die aktuelle Wahrheit. Stand: 27.9.2026, Fassung 151, v19.21.2*',
+               '*Die aktuelle Wahrheit. Stand: 27.9.2026, Fassung 152, v19.21.2*')
+          needle='''  Alle anderen Aufrufer lassen den Parameter weg und behalten ihre bisherige Promptbildung.\n  Schwellenwerte, Zahl der Spiele/Wiederholungen und der gemessene Markt bleiben unverändert.\n'''
+          addition=needle+'''  **Geräte-Bewährung (Ondo, 27.9.2026, v19.21.2 BETA):** Sonnet erreichte **100 % gleicher Tipp**,\n  Ø **3,5 Punkte Spanne**, `n=8`; Flash erreichte **100 % gleicher Tipp**, Ø **2,8 Punkte Spanne**,\n  `n=8`. Die seit v19.13.0 vorab festgelegte Schwelle — mindestens **90 % gleicher Tipp** UND\n  höchstens **10 Prozentpunkte Spanne im Schnitt** — ist damit bei beiden Gehirnen erfüllt.\n  Punkt 80 ist **bestanden und erledigt** und wurde aus dem offenen Backlog ins Archiv verschoben.\n'''
+          repl('STAND.md', needle, addition)
+
+          repl('Blueprint.md', '**Version:** 0.150', '**Version:** 0.151')
+
+          p=Path('BLUEPRINT-PROTOKOLL.md')
+          s=p.read_text(encoding='utf-8')
+          line='> **Was Fassung 0.151 ändert (27.9.2026):** Reine Synchronisierung nach Arbeitsregel M fuer den Abschluss von Backlog-Punkt 80 — keine neue Architektur- oder Verfassungsregel, nur Archivierung eines am Geraet bewaehrten Punkts.\n'
+          if line in s:
+              raise SystemExit('BLUEPRINT-PROTOKOLL: line already present')
+          if not s.endswith('\n'):
+              s+='\n'
+          p.write_text(s+line,encoding='utf-8')
+
+          p=Path('CHRONIK-2026-09.md')
+          s=p.read_text(encoding='utf-8')
+          marker='''Kriterium (g) eng korrigiert: `vorhersageGehirn()` besitzt jetzt den optionalen vierten Parameter `ohneFruehere`. Ausschließlich `antwortkonsistenzLauf()` ruft die Funktion mit `null, true` auf. Damit bleibt `fruehere` in den drei Wiederholungsläufen leer und der Prompt enthält dort nicht mehr den Absatz „Deine letzten eigenen Vorhersagen“ mit dem bereits im offenen `kiProtokoll` stehenden eigenen Tipp desselben Spiels. Ohne den vierten Parameter bleibt die bisherige Promptbildung der normalen Vorhersage und des Trainingsraums unverändert. Schwellenwerte (90 % / 10 Punkte), Zahl der Spiele/Wiederholungen und der gemessene Markt (nur Sieger) wurden nicht geändert. Keine neuen Sprachschlüssel, kein neuer Dienst und kein zusätzlicher Netz- oder Modellaufruf im normalen Betrieb.\n'''
+          if s.count(marker)!=1:
+              raise SystemExit(f'CHRONIK marker count={s.count(marker)}')
+          add='''\n**Nachtrag Gerätetest 27.9.2026 (Ondo, v19.21.2 BETA):** Sonnet: **100 % gleicher Tipp**, Ø **3,5 Punkte Spanne**, `n=8`; Flash: **100 % gleicher Tipp**, Ø **2,8 Punkte Spanne**, `n=8`. Damit erfüllen beide Gehirne die seit v19.13.0 vorab festgelegte Schwelle von mindestens **90 % gleicher Tipp** UND höchstens **10 Prozentpunkten Spanne im Schnitt**. Kriterium (g) ist bestanden; Backlog-Punkt 80 ist erledigt und archiviert.\n'''
+          p.write_text(s.replace(marker,marker+add,1),encoding='utf-8')
+
+          p=Path('BACKLOG-ARCHIV.md')
+          s=p.read_text(encoding='utf-8')
+          header='## Backlog-Punkt 80 — Bau- und Begründungsgeschichte (27.9.2026, Fassung 152)'
+          if header in s:
+              raise SystemExit('Archive point 80 already present')
+          block='''\n\n---\n\n## Backlog-Punkt 80 — Bau- und Begründungsgeschichte (27.9.2026, Fassung 152)\n\n**Ursprünglicher Auftrag (Ondo, 13.9.2026):** „Antwortkonsistenz (g): Teste. Aber Du musst klar definieren wann es fertig ist."\n\n**Werkzeug gebaut (13.9.2026, `beta.html` v19.13.0):** Kriterium (g) wurde als Wiederholungstest mit der vorab festgelegten Bestehensschwelle umgesetzt: mindestens **90 % gleicher Tipp** UND höchstens **10 Prozentpunkte Spanne im Schnitt**, bei `n=8` Spielen je Gehirn.\n\n**Fund Claude (27.9.2026):** Der Wiederholungslauf übernahm über `fruehere` den bereits abgegebenen eigenen Tipp desselben Spiels in den Prompt. Damit konnte ein positives Ergebnis nicht sauber belegen, dass die Antwort ohne diesen Eigenkontext konsistent zustande kam.\n\n**Korrektur (27.9.2026, `beta.html` v19.21.2):** Ausschließlich `antwortkonsistenzLauf()` ruft `vorhersageGehirn()` mit `ohneFruehere=true` auf; normale Vorhersagen und Trainingsraum behalten ihre bisherige Promptbildung. Ausgeliefert mit Commit `89465aff723533e6df4aa77cf781205312eb6e62`.\n\n**Gerätetest (Ondo, 27.9.2026, v19.21.2 BETA; anhand Ondos Bildschirmfotos von Claude gegengeprüft):**\n- Sonnet: **100 % gleicher Tipp**, Ø **3,5 Punkte Spanne**, `n=8` — **bestanden**.\n- Flash: **100 % gleicher Tipp**, Ø **2,8 Punkte Spanne**, `n=8` — **bestanden**.\n\n**Bewertung:** Die im Code seit v19.13.0 festgelegte Schwelle — mindestens **90 % gleicher Tipp** UND höchstens **10 Prozentpunkte Spanne im Schnitt** — wird von beiden Gehirnen klar erfüllt. **Status: ✅ BESTANDEN / ERLEDIGT am 27.9.2026.** Punkt 80 wird deshalb nicht mehr im offenen Backlog geführt.\n\n**Kosten (Arbeitsregel G):** Kein Geld, kein neuer Dienst und kein zusätzlicher Netz- oder Modellaufruf — reine Dokumentations- und Archivpflege.\n'''
+          if not s.endswith('\n'):
+              s+='\n'
+          p.write_text(s.rstrip('\n')+block,encoding='utf-8')
+          PY
+
+      - name: Verify exact blobs and project rules
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object BACKLOG-ARCHIV.md)" = "8fcdbf4b84b9c9a4b0e5b382a842928317e82810"
+          test "$(git hash-object BLUEPRINT-PROTOKOLL.md)" = "e13a353c5fce0ebbbdd5c78a1383c78427a3603e"
+          test "$(git hash-object Blueprint.md)" = "1502ed0e334b6c1f1eec72cb03862fe0647a6ae5"
+          test "$(git hash-object CHRONIK-2026-09.md)" = "620046ee2905fb58572a366dbe014c803cb2a261"
+          test "$(git hash-object Ondo-Control-Backlog.md)" = "2031947462678e4c2bea731309558d3d5fad3228"
+          test "$(git hash-object STAND.md)" = "09c7a845e69c6a888e26f4409e34d57891753e2d"
+          test "$(git hash-object beta.html)" = "116378689c1e74c71c6088af73e2b620cac1f7e8"
+          ! grep -Eq '^\*\*80\.' Ondo-Control-Backlog.md
+          grep -Fq '## Backlog-Punkt 80 — Bau- und Begründungsgeschichte (27.9.2026, Fassung 152)' BACKLOG-ARCHIV.md
+          grep -Fq '100 % gleicher Tipp' BACKLOG-ARCHIV.md
+          grep -Fq '3,5 Punkte Spanne' BACKLOG-ARCHIV.md
+          grep -Fq '2,8 Punkte Spanne' BACKLOG-ARCHIV.md
+          grep -Fq '89465aff723533e6df4aa77cf781205312eb6e62' BACKLOG-ARCHIV.md
+          echo "FRESH_CLOCK=$(TZ=Europe/Berlin date -Iseconds)"
+          python3 pruefe.py | tee /tmp/pruefe.log
+          grep -Fq 'ERGEBNIS: ALLES SAUBER' /tmp/pruefe.log
+          grep -Fq '381' /tmp/pruefe.log
+
+      - name: Commit materialized documentation blobs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "Ondo-Control"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/ondo-doc152-materialize.yml
+          git add BACKLOG-ARCHIV.md BLUEPRINT-PROTOKOLL.md Blueprint.md CHRONIK-2026-09.md Ondo-Control-Backlog.md STAND.md
+          printf '%s\n' \
+            .github/workflows/ondo-doc152-materialize.yml \
+            BACKLOG-ARCHIV.md \
+            BLUEPRINT-PROTOKOLL.md \
+            Blueprint.md \
+            CHRONIK-2026-09.md \
+            Ondo-Control-Backlog.md \
+            STAND.md > /tmp/expected
+          git diff --cached --name-only | sort > /tmp/actual
+          sort -o /tmp/expected /tmp/expected
+          diff -u /tmp/expected /tmp/actual
+          git diff --cached --check
+          git commit -m "Materialize point 80 archive completion"
+          ! git ls-tree -r HEAD --name-only | grep -Fqx '.github/workflows/ondo-doc152-materialize.yml'
+          git push origin HEAD:ondotmp2
