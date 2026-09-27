@@ -33,27 +33,9 @@ jobs:
           from pathlib import Path
           p=Path('tests/t5_checkpoint.js')
           s=p.read_text(encoding='utf-8')
-          old="""  var echt=c.localStorage.setItem;
-  var s={ defekt:false, bedingung:null, fehlschlaege:0, versuche:0 };
-  function kaputt(txt){ return s.defekt || !!(s.bedingung && s.bedingung(String(txt))); }
-  c.localStorage.setItem=function(k, v){
-    s.versuche++;
-    if(kaputt(v)){
-      s.fehlschlaege++;
-"""
-          new="""  var echt=c.localStorage.setItem;
-  var DIAG='ondo-control-speicherdiagnose-v1';
-  var s={ defekt:false, bedingung:null, fehlschlaege:0, versuche:0, diagnoseVersuche:0 };
-  function kaputt(txt){ return s.defekt || !!(s.bedingung && s.bedingung(String(txt))); }
-  c.localStorage.setItem=function(k, v){
-    var diagnose=(k===DIAG);
-    if(diagnose) s.diagnoseVersuche++;
-    else s.versuche++;
-    if(kaputt(v)){
-      if(!diagnose) s.fehlschlaege++;
-"""
-          if s.count(old)!=1:
-              raise SystemExit('t5 checkpoint counter block not unique')
+          old="  var echt=c.localStorage.setItem;\n  var s={ defekt:false, bedingung:null, fehlschlaege:0, versuche:0 };\n  function kaputt(txt){ return s.defekt || !!(s.bedingung && s.bedingung(String(txt))); }\n  c.localStorage.setItem=function(k, v){\n    s.versuche++;\n    if(kaputt(v)){\n      s.fehlschlaege++;\n"
+          new="  var echt=c.localStorage.setItem;\n  var DIAG='ondo-control-speicherdiagnose-v1';\n  var s={ defekt:false, bedingung:null, fehlschlaege:0, versuche:0, diagnoseVersuche:0 };\n  function kaputt(txt){ return s.defekt || !!(s.bedingung && s.bedingung(String(txt))); }\n  c.localStorage.setItem=function(k, v){\n    var diagnose=(k===DIAG);\n    if(diagnose) s.diagnoseVersuche++;\n    else s.versuche++;\n    if(kaputt(v)){\n      if(!diagnose) s.fehlschlaege++;\n"
+          if s.count(old)!=1: raise SystemExit('t5 checkpoint counter block not unique')
           p.write_text(s.replace(old,new,1),encoding='utf-8')
           PY
       - name: Verify exact scope and storage callers
@@ -61,15 +43,7 @@ jobs:
         run: |
           set -euo pipefail
           BASE=9baba99afb53c4611a829a8226cd195b56554a27
-          printf '%s\n' \
-            BLUEPRINT-PROTOKOLL.md \
-            Blueprint.md \
-            CHRONIK-2026-09.md \
-            Ondo-Control-Backlog.md \
-            STAND.md \
-            beta.html \
-            tests/t5_checkpoint.js \
-            tests/t9_speicherdiagnose.js | sort > /tmp/expected
+          printf '%s\n' BLUEPRINT-PROTOKOLL.md Blueprint.md CHRONIK-2026-09.md Ondo-Control-Backlog.md STAND.md beta.html tests/t5_checkpoint.js tests/t9_speicherdiagnose.js | sort > /tmp/expected
           { git diff --name-only "$BASE"; git ls-files --others --exclude-standard; } | sort > /tmp/actual
           diff -u /tmp/expected /tmp/actual
           git diff --check
