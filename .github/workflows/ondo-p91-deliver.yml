@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Verify base and reconstruct exact patch
+      - name: Verify base and reconstruct exact patches
         shell: bash
         run: |
           set -euo pipefail
@@ -23,12 +23,15 @@ jobs:
           test "$(git hash-object .ondo/p91-01.b64)" = bb1c84061a57d249c4da4a384ff0aeca17d7068f
           test "$(git hash-object .ondo/p91-02.b64)" = f68190e0d9e7d3969f2544b1bcd69d91b8c18c5e
           test "$(git hash-object .ondo/p91-03.b64)" = 50c4cce4ce3aceda49069186e2f4e0525f65c7bf
+          test "$(git hash-object .ondo/p91-t5.patch)" = 80445400e024728794ab8b982b8c27bebe1cb4d9
           cat .ondo/p91-00.b64 .ondo/p91-01.b64 .ondo/p91-02.b64 .ondo/p91-03.b64 > /tmp/p91.patch.gz.b64
           base64 -d /tmp/p91.patch.gz.b64 | gzip -d > /tmp/p91.patch
           test "$(git hash-object /tmp/p91.patch)" = 65b23938e317c58ff4e8beab76fd000f5d07b79c
           git checkout --detach "$BASE"
           git apply --check /tmp/p91.patch
           git apply /tmp/p91.patch
+          git apply --check "$GITHUB_WORKSPACE/.ondo/p91-t5.patch"
+          git apply "$GITHUB_WORKSPACE/.ondo/p91-t5.patch"
       - name: Verify exact scope and storage callers
         shell: bash
         run: |
@@ -41,6 +44,7 @@ jobs:
             Ondo-Control-Backlog.md \
             STAND.md \
             beta.html \
+            tests/t5_checkpoint.js \
             tests/t9_speicherdiagnose.js | sort > /tmp/expected
           { git diff --name-only "$BASE"; git ls-files --others --exclude-standard; } | sort > /tmp/actual
           diff -u /tmp/expected /tmp/actual
@@ -53,6 +57,7 @@ jobs:
           test "$(git hash-object CHRONIK-2026-09.md)" = 92d5e2e8d79275d19446fc520941098b52b9ef44
           test "$(git hash-object tests/t9_speicherdiagnose.js)" = baa95b06279bf1126e6690321700b6cdd49a84e0
           test "$(git hash-object tests/t8_backup_speicher.js)" = a7739a48c1421be33715496f86b9200410d3f46a
+          echo "T5_FINAL_BLOB=$(git hash-object tests/t5_checkpoint.js)"
           test "$(grep -Ec '^function speicherSchreibenKritisch\(' beta.html)" = 1
           test "$(grep -Ec 'speicherSchreibenKritisch\(KEY, state, .checkpoint.\)' beta.html)" = 1
           test "$(grep -Ec 'speicherSchreibenKritisch\(KEY, state, .backup.\)' beta.html)" = 1
@@ -91,7 +96,7 @@ jobs:
           test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$BASE"
           git config user.name 'Ondo-Control'
           git config user.email 'bmwffpgcbz@privaterelay.appleid.com'
-          git add BLUEPRINT-PROTOKOLL.md Blueprint.md CHRONIK-2026-09.md Ondo-Control-Backlog.md STAND.md beta.html tests/t9_speicherdiagnose.js
+          git add BLUEPRINT-PROTOKOLL.md Blueprint.md CHRONIK-2026-09.md Ondo-Control-Backlog.md STAND.md beta.html tests/t5_checkpoint.js tests/t9_speicherdiagnose.js
           git diff --cached --check
           git commit -m 'v19.21.3: Speicher-Diagnose fuer Punkt 91' -m 'Reine Ursachensuche fuer den sporadischen IndexedDB-Schreibfehler. Keine Recovery und keine Aenderung der bestehenden save/checkpoint/backup-Semantik.'
           test "$(git rev-parse HEAD^)" = "$BASE"
