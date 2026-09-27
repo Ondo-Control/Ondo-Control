@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 27.9.2026, Fassung 150 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 27.9.2026, Fassung 151 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -237,7 +237,7 @@ Ondo wörtlich (Grundidee): „Es gibt die Möglichkeit einen Trainingsraum zu b
 
 ---
 
-**80. Kriterium (g) — Antwortkonsistenz durch Wiederholungsläufe testen** · *Beförderungskriterium 10.7.2026 · von ChatGPT und Gemini gemeinsam am 6.8.2026 zurückgestellt · Auftrag Ondo 13.9.2026: „Antwortkonsistenz (g): Teste. Aber Du musst klar definieren wann es fertig ist."* · **Status: beschlossen — 🔴 Werkzeug GEBAUT 13.9.2026 (`beta.html` v19.13.0), echtes Ergebnis steht aus — Ondo muss den Lauf in der App auslösen, diese Sitzung hat keinen Zugriff auf seine API-Schlüssel**
+**80. Kriterium (g) — Antwortkonsistenz durch Wiederholungsläufe testen** · *Beförderungskriterium 10.7.2026 · von ChatGPT und Gemini gemeinsam am 6.8.2026 zurückgestellt · Auftrag Ondo 13.9.2026: „Antwortkonsistenz (g): Teste. Aber Du musst klar definieren wann es fertig ist." · Fund Claude 27.9.2026: Wiederholungsläufe sahen über `fruehere` den bereits abgegebenen eigenen Tipp desselben Spiels* · **Status: beschlossen — 🔴 Werkzeug GEBAUT 13.9.2026 (`beta.html` v19.13.0), KORRIGIERT 27.9.2026 (`beta.html` v19.21.2): nur der Konsistenzlauf unterdrückt den `fruehere`-Kontext; echtes Ergebnis steht aus — Ondo muss den Lauf in der App auslösen, diese Sitzung hat keinen Zugriff auf seine API-Schlüssel**
 
 **81. Schiedsrichter reparieren — nach Ondos eigener, strenger Definition** · *Auftrag Ondo 13.9.2026, wörtlich: „Dann Schiedsrichter reparieren. Das ist dein Job."* · **Status: beschlossen — 🔴 OFFEN. Ein echter Bug gefunden und behoben 13.9.2026 (`beta.html` v19.13.1, „0 von 10 gefunden"-Fund). Berichtigt 13.9.2026: die „zweite Datenquelle" war keine neue Entdeckung, sondern bereits bei Punkt 9 (11.9.2026) vollständig gebaut. 🔴 Wege-Neuzusammensetzung ausgeliefert 13.9.2026 (`beta.html` v19.13.2, Ondos Auftrag) — Bestätigung durch einen echten Prüfzyklus am Gerät steht aus, Status bleibt ausdrücklich OFFEN, nicht behoben. 🔴 football-data.org auf Archiv-Lesen umgestellt 14.9.2026 (`beta.html` v19.13.3, Ondos Auftrag) — Bestätigung durch einen echten Prüfzyklus am Gerät steht ebenfalls aus, Status bleibt OFFEN.**
 

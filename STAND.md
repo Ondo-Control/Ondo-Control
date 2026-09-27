@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 27.9.2026, Fassung 150, v19.21.1*
+*Die aktuelle Wahrheit. Stand: 27.9.2026, Fassung 151, v19.21.2*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -206,9 +206,13 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   den Trainingsraum) — dieser Commit ist der Stand **davor**, falls zurückgesetzt werden muss.
   Einzelheiten Backlog-Punkt 77.
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.21.1** (`beta.html`, geliefert 27.9.2026) — **Backlog-Punkt 91: zwei
-  Speicherfehler werden sichtbar und der Sicherungszeitpunkt gilt erst nach geprüftem
-  IndexedDB-Schreiben als dauerhaft.**
+- **Beta: v19.21.2** (`beta.html`, geliefert 27.9.2026) — **Backlog-Punkt 80:
+  Kriterium (g) testet Antwortkonsistenz jetzt ohne den Kontext der letzten eigenen Vorhersagen.**
+  **Punkt 80 — Antwortkonsistenz:** `vorhersageGehirn()` hat einen optionalen vierten Parameter
+  `ohneFruehere`. Nur `antwortkonsistenzLauf()` setzt ihn auf `true`; dadurch bleibt `fruehere`
+  leer und der Absatz „Deine letzten eigenen Vorhersagen“ fehlt in allen drei Wiederholungsläufen.
+  Alle anderen Aufrufer lassen den Parameter weg und behalten ihre bisherige Promptbildung.
+  Schwellenwerte, Zahl der Spiele/Wiederholungen und der gemessene Markt bleiben unverändert.
   **Punkt 91 — Datensicherung/Persistenz:** `datenSichern()` erzeugt die Sicherungsdatei
   weiterhin sofort und startet `navigator.share()` weiterhin direkt aus der Benutzeraktion.
   Der Sicherungszeitpunkt läuft danach über dieselbe serielle `speicherKette` und denselben
@@ -265,7 +269,7 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   **Kosten (Arbeitsregel G):** kein neuer Dienst und kein zusätzlicher regulärer Netzaufruf;
   die Reparatur spart im belegten Nations-League-Fall Modellaufrufe und verhindert bei
   unbekannten Gemini-Fehlern weitere automatische Versuche.
-- **Sprachschlüssel: 381** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 27.9.2026** — v19.21.1 ergänzt drei Speicher-/Backup-Fehlertexte je Sprache). **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
+- **Sprachschlüssel: 381** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 27.9.2026** — v19.21.2 ändert keine Sprachschlüssel; v19.21.1 ergänzte drei Speicher-/Backup-Fehlertexte je Sprache). **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
 
 ---
 

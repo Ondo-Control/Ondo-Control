@@ -153,7 +153,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.21.1';
+var CODE_VERSION = 'v19.21.2';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -4256,9 +4256,13 @@ function marktlageHolen(liste){
 /* v19.10.0 (Backlog-Punkt 79): dritter Parameter marktlage, OPTIONAL. Wird er nicht mitgegeben
    (wie bisher jeder Aufruf, und wie JEDER Trainingsraum-Aufruf weiterhin), aendert sich am
    Prompt nichts - genau das haelt den Trainingsraum ohne Suche/Erinnerung, wie Ondo verlangt,
-   ohne dass dort etwas eigens abgeschaltet werden muss. */
-function vorhersageGehirn(gehirn, liste, marktlage){
-  var fruehere = (state.kiProtokoll||[])
+   ohne dass dort etwas eigens abgeschaltet werden muss.
+   v19.21.2 (Backlog-Punkt 80): vierter Parameter ohneFruehere, OPTIONAL. Nur Kriterium (g)
+   setzt ihn auf true, damit der Wiederholungstest nicht den bereits im kiProtokoll stehenden
+   eigenen Tipp desselben Spiels im Prompt sieht. Ohne Parameter bleibt die Promptbildung
+   unveraendert. */
+function vorhersageGehirn(gehirn, liste, marktlage, ohneFruehere){
+  var fruehere = ohneFruehere ? '' : (state.kiProtokoll||[])
     .filter(function(e){ return e.aera==='v19' && (e.herkunft||'sonnet')===gehirn; })
     .slice(0,6)
     .map(function(e){
@@ -5022,8 +5026,10 @@ function trainingsraumSpielLoeschen(idx){
 /* ================= ANTWORTKONSISTENZ, KRITERIUM (g) (Backlog-Punkt 80, 13.9.2026) =================
    Auftrag Ondo: "Antwortkonsistenz (g): Teste. Aber Du musst klar definieren wann es fertig
    ist." Definition VOR dem ersten Lauf im Backlog festgehalten (Punkt 80), hier nur umgesetzt,
-   nicht neu erfunden. Nutzt vorhersageGehirn() unveraendert wieder, mit nur zwei Argumenten -
-   dieselbe Funktion, die auch der Trainingsraum verwendet, byte-identisch ohne Marktlage
+   nicht neu erfunden. Nutzt vorhersageGehirn() wieder, setzt aber nur hier den optionalen
+   vierten Parameter ohneFruehere=true: Die drei Wiederholungslaeufe duerfen den bereits im
+   kiProtokoll stehenden eigenen Tipp desselben Spiels nicht als Kontext sehen. Alle anderen
+   Aufrufer bleiben ohne vierten Parameter und behalten ihre bisherige Promptbildung
    (Regressionsgarantie aus Backlog-Punkt 79). Diese Code-Sitzung hat keinen Zugriff auf Ondos
    API-Schluessel - der Lauf selbst geschieht ueber Ondos eigenes Geraet, wie jede andere echte
    Vorhersage in dieser App. */
@@ -5105,7 +5111,7 @@ function antwortkonsistenzLauf(btn){
   gehirne.forEach(function(g){
     for(var k=0;k<ANTWORTKONSISTENZ_WIEDERHOLUNGEN;k++){
       jobs.push((function(gehirn){
-        return vorhersageGehirn(gehirn, liste).then(function(res){ laeufe[gehirn].push(res); });
+        return vorhersageGehirn(gehirn, liste, null, true).then(function(res){ laeufe[gehirn].push(res); });
       })(g));
     }
   });
