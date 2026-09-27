@@ -1,0 +1,145 @@
+diff --git a/beta.html b/beta.html
+index 8f56fb9..1163786 100644
+--- a/beta.html
++++ b/beta.html
+@@ -153,7 +153,7 @@ var APP_VERSION = 18;
+    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
+    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
+    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
+-var CODE_VERSION = 'v19.21.1';
++var CODE_VERSION = 'v19.21.2';
+ (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
+ function checkUpdate(){
+   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
+@@ -4256,9 +4256,13 @@ function marktlageHolen(liste){
+ /* v19.10.0 (Backlog-Punkt 79): dritter Parameter marktlage, OPTIONAL. Wird er nicht mitgegeben
+    (wie bisher jeder Aufruf, und wie JEDER Trainingsraum-Aufruf weiterhin), aendert sich am
+    Prompt nichts - genau das haelt den Trainingsraum ohne Suche/Erinnerung, wie Ondo verlangt,
+-   ohne dass dort etwas eigens abgeschaltet werden muss. */
+-function vorhersageGehirn(gehirn, liste, marktlage){
+-  var fruehere = (state.kiProtokoll||[])
++   ohne dass dort etwas eigens abgeschaltet werden muss.
++   v19.21.2 (Backlog-Punkt 80): vierter Parameter ohneFruehere, OPTIONAL. Nur Kriterium (g)
++   setzt ihn auf true, damit der Wiederholungstest nicht den bereits im kiProtokoll stehenden
++   eigenen Tipp desselben Spiels im Prompt sieht. Ohne Parameter bleibt die Promptbildung
++   unveraendert. */
++function vorhersageGehirn(gehirn, liste, marktlage, ohneFruehere){
++  var fruehere = ohneFruehere ? '' : (state.kiProtokoll||[])
+     .filter(function(e){ return e.aera==='v19' && (e.herkunft||'sonnet')===gehirn; })
+     .slice(0,6)
+     .map(function(e){
+@@ -5022,8 +5026,10 @@ function trainingsraumSpielLoeschen(idx){
+ /* ================= ANTWORTKONSISTENZ, KRITERIUM (g) (Backlog-Punkt 80, 13.9.2026) =================
+    Auftrag Ondo: "Antwortkonsistenz (g): Teste. Aber Du musst klar definieren wann es fertig
+    ist." Definition VOR dem ersten Lauf im Backlog festgehalten (Punkt 80), hier nur umgesetzt,
+-   nicht neu erfunden. Nutzt vorhersageGehirn() unveraendert wieder, mit nur zwei Argumenten -
+-   dieselbe Funktion, die auch der Trainingsraum verwendet, byte-identisch ohne Marktlage
++   nicht neu erfunden. Nutzt vorhersageGehirn() wieder, setzt aber nur hier den optionalen
++   vierten Parameter ohneFruehere=true: Die drei Wiederholungslaeufe duerfen den bereits im
++   kiProtokoll stehenden eigenen Tipp desselben Spiels nicht als Kontext sehen. Alle anderen
++   Aufrufer bleiben ohne vierten Parameter und behalten ihre bisherige Promptbildung
+    (Regressionsgarantie aus Backlog-Punkt 79). Diese Code-Sitzung hat keinen Zugriff auf Ondos
+    API-Schluessel - der Lauf selbst geschieht ueber Ondos eigenes Geraet, wie jede andere echte
+    Vorhersage in dieser App. */
+@@ -5105,7 +5111,7 @@ function antwortkonsistenzLauf(btn){
+   gehirne.forEach(function(g){
+     for(var k=0;k<ANTWORTKONSISTENZ_WIEDERHOLUNGEN;k++){
+       jobs.push((function(gehirn){
+-        return vorhersageGehirn(gehirn, liste).then(function(res){ laeufe[gehirn].push(res); });
++        return vorhersageGehirn(gehirn, liste, null, true).then(function(res){ laeufe[gehirn].push(res); });
+       })(g));
+     }
+   });
+diff --git a/STAND.md b/STAND.md
+index a2cf390..50ad5fb 100644
+--- a/STAND.md
++++ b/STAND.md
+@@ -1,5 +1,5 @@
+ # ONDO CONTROL — STAND
+-*Die aktuelle Wahrheit. Stand: 27.9.2026, Fassung 150, v19.21.1*
++*Die aktuelle Wahrheit. Stand: 27.9.2026, Fassung 151, v19.21.2*
+ 
+ > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
+ > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
+@@ -206,9 +206,13 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
+   den Trainingsraum) — dieser Commit ist der Stand **davor**, falls zurückgesetzt werden muss.
+   Einzelheiten Backlog-Punkt 77.
+ - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
+-- **Beta: v19.21.1** (`beta.html`, geliefert 27.9.2026) — **Backlog-Punkt 91: zwei
+-  Speicherfehler werden sichtbar und der Sicherungszeitpunkt gilt erst nach geprüftem
+-  IndexedDB-Schreiben als dauerhaft.**
++- **Beta: v19.21.2** (`beta.html`, geliefert 27.9.2026) — **Backlog-Punkt 80:
++  Kriterium (g) testet Antwortkonsistenz jetzt ohne den Kontext der letzten eigenen Vorhersagen.**
++  **Punkt 80 — Antwortkonsistenz:** `vorhersageGehirn()` hat einen optionalen vierten Parameter
++  `ohneFruehere`. Nur `antwortkonsistenzLauf()` setzt ihn auf `true`; dadurch bleibt `fruehere`
++  leer und der Absatz „Deine letzten eigenen Vorhersagen“ fehlt in allen drei Wiederholungsläufen.
++  Alle anderen Aufrufer lassen den Parameter weg und behalten ihre bisherige Promptbildung.
++  Schwellenwerte, Zahl der Spiele/Wiederholungen und der gemessene Markt bleiben unverändert.
+   **Punkt 91 — Datensicherung/Persistenz:** `datenSichern()` erzeugt die Sicherungsdatei
+   weiterhin sofort und startet `navigator.share()` weiterhin direkt aus der Benutzeraktion.
+   Der Sicherungszeitpunkt läuft danach über dieselbe serielle `speicherKette` und denselben
+@@ -265,7 +269,7 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
+   **Kosten (Arbeitsregel G):** kein neuer Dienst und kein zusätzlicher regulärer Netzaufruf;
+   die Reparatur spart im belegten Nations-League-Fall Modellaufrufe und verhindert bei
+   unbekannten Gemini-Fehlern weitere automatische Versuche.
+-- **Sprachschlüssel: 381** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 27.9.2026** — v19.21.1 ergänzt drei Speicher-/Backup-Fehlertexte je Sprache). **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
++- **Sprachschlüssel: 381** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 27.9.2026** — v19.21.2 ändert keine Sprachschlüssel; v19.21.1 ergänzte drei Speicher-/Backup-Fehlertexte je Sprache). **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
+ 
+ ---
+ 
+diff --git a/Ondo-Control-Backlog.md b/Ondo-Control-Backlog.md
+index 20f41f5..1609aa1 100644
+--- a/Ondo-Control-Backlog.md
++++ b/Ondo-Control-Backlog.md
+@@ -1,5 +1,5 @@
+ # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
+-**Nur offene Punkte. Gepflegt von Claude · Stand 27.9.2026, Fassung 150 · jede Idee mit Datum, Urheber und Status**
++**Nur offene Punkte. Gepflegt von Claude · Stand 27.9.2026, Fassung 151 · jede Idee mit Datum, Urheber und Status**
+ *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
+ 
+ ## Regeln für dieses Dokument
+@@ -237,7 +237,7 @@ Ondo wörtlich (Grundidee): „Es gibt die Möglichkeit einen Trainingsraum zu b
+ 
+ ---
+ 
+-**80. Kriterium (g) — Antwortkonsistenz durch Wiederholungsläufe testen** · *Beförderungskriterium 10.7.2026 · von ChatGPT und Gemini gemeinsam am 6.8.2026 zurückgestellt · Auftrag Ondo 13.9.2026: „Antwortkonsistenz (g): Teste. Aber Du musst klar definieren wann es fertig ist."* · **Status: beschlossen — 🔴 Werkzeug GEBAUT 13.9.2026 (`beta.html` v19.13.0), echtes Ergebnis steht aus — Ondo muss den Lauf in der App auslösen, diese Sitzung hat keinen Zugriff auf seine API-Schlüssel**
++**80. Kriterium (g) — Antwortkonsistenz durch Wiederholungsläufe testen** · *Beförderungskriterium 10.7.2026 · von ChatGPT und Gemini gemeinsam am 6.8.2026 zurückgestellt · Auftrag Ondo 13.9.2026: „Antwortkonsistenz (g): Teste. Aber Du musst klar definieren wann es fertig ist." · Fund Claude 27.9.2026: Wiederholungsläufe sahen über `fruehere` den bereits abgegebenen eigenen Tipp desselben Spiels* · **Status: beschlossen — 🔴 Werkzeug GEBAUT 13.9.2026 (`beta.html` v19.13.0), KORRIGIERT 27.9.2026 (`beta.html` v19.21.2): nur der Konsistenzlauf unterdrückt den `fruehere`-Kontext; echtes Ergebnis steht aus — Ondo muss den Lauf in der App auslösen, diese Sitzung hat keinen Zugriff auf seine API-Schlüssel**
+ 
+ **81. Schiedsrichter reparieren — nach Ondos eigener, strenger Definition** · *Auftrag Ondo 13.9.2026, wörtlich: „Dann Schiedsrichter reparieren. Das ist dein Job."* · **Status: beschlossen — 🔴 OFFEN. Ein echter Bug gefunden und behoben 13.9.2026 (`beta.html` v19.13.1, „0 von 10 gefunden"-Fund). Berichtigt 13.9.2026: die „zweite Datenquelle" war keine neue Entdeckung, sondern bereits bei Punkt 9 (11.9.2026) vollständig gebaut. 🔴 Wege-Neuzusammensetzung ausgeliefert 13.9.2026 (`beta.html` v19.13.2, Ondos Auftrag) — Bestätigung durch einen echten Prüfzyklus am Gerät steht aus, Status bleibt ausdrücklich OFFEN, nicht behoben. 🔴 football-data.org auf Archiv-Lesen umgestellt 14.9.2026 (`beta.html` v19.13.3, Ondos Auftrag) — Bestätigung durch einen echten Prüfzyklus am Gerät steht ebenfalls aus, Status bleibt OFFEN.**
+ 
+diff --git a/Blueprint.md b/Blueprint.md
+index 5e4d6ff..4930e40 100644
+--- a/Blueprint.md
++++ b/Blueprint.md
+@@ -3,7 +3,7 @@
+ *Das zentrale Fundament-Dokument. Unsere "einzige Quelle der Wahrheit".*
+ *Jede wichtige Entscheidung wird hier festgehalten, damit nichts in verstreuten Chats verloren geht.*
+ 
+-**Version:** 0.149
++**Version:** 0.150
+ **Stand:** 27. September 2026
+ **Arbeitstitel:** Ondo Control *(vom Besitzer bestätigt am 4.7.2026; ChatGPT schlug "ORION" vor — Entscheidung liegt allein beim Besitzer)*
+ 
+diff --git a/BLUEPRINT-PROTOKOLL.md b/BLUEPRINT-PROTOKOLL.md
+index 794f1b8..d942944 100644
+--- a/BLUEPRINT-PROTOKOLL.md
++++ b/BLUEPRINT-PROTOKOLL.md
+@@ -639,3 +639,4 @@
+ > **Was Fassung 0.147 ändert (26.9.2026):** Reine Synchronisierung nach Arbeitsregel M für Backlog-Punkt 89 (`beta.html` v19.20.1). Keine neue Architekturregel: Die Verschiebung des Marktlage-Schalters setzt die bereits in Backlog-Punkt 77 entschiedene Modultrennung („Mehr“ nur modulübergreifend, Wett-spezifisches ins Wettmodul) um; die scrollbare KI-Log-Unterreiterzeile ist reine Darstellung. Blueprint auf 0.147 gehoben.
+ > **Was Fassung 0.148 ändert (26.9.2026):** Reine Synchronisierung nach Arbeitsregel M für Backlog-Punkt 90 (`beta.html` v19.21.0). Keine neue Architektur- oder Verfassungsregel: Drei persistente Darstellungen, Start-Dashboard, gemeinsame Strich-Icons und visuelle Gruppierungen sind UI-/Darstellungsarbeit auf den bestehenden Zustands-, Speicher- und CSS-Mechanismen; Mess-, Vorhersage-, Prüf- und Finanzlogik bleiben unverändert. Blueprint auf 0.148 gehoben.
+ > **Was Fassung 0.149 ändert (27.9.2026):** Reine Synchronisierung nach Arbeitsregel M für Backlog-Punkt 91 (`beta.html` v19.21.1). Keine neue Architekturregel: Die bestehende strikte IndexedDB-Checkpoint-Architektur bleibt unverändert; `datenSichern()` benutzt denselben seriellen/strikten Schreibweg mit eigener nicht-blockierender Fehlerbehandlung, und Speicherwarnungen machen zusätzlich den tatsächlich gelieferten technischen Fehler sichtbar. Die konkrete Ursache des beobachteten IndexedDB-Aussetzers bleibt unbekannt/offen. Blueprint auf 0.149 gehoben.
++> **Was Fassung 0.150 ändert (27.9.2026):** Reine Synchronisierung nach Arbeitsregel M für die Korrektur von Backlog-Punkt 80 (`beta.html` v19.21.2). Keine neue Architektur- oder Verfassungsregel: Der bestehende Konsistenztest ruft `vorhersageGehirn()` nur in diesem Prüfpfad mit dem neuen optionalen Parameter `ohneFruehere=true` auf, damit der bereits gespeicherte eigene Tipp desselben Spiels nicht als Kontext in die Wiederholung gelangt. Alle übrigen Aufrufer behalten die bisherige Promptbildung. Schwellenwerte, Wiederholungszahl und gemessener Markt bleiben unverändert. Blueprint auf 0.150 gehoben.
+diff --git a/CHRONIK-2026-09.md b/CHRONIK-2026-09.md
+index 63ecdd0..90c49e2 100644
+--- a/CHRONIK-2026-09.md
++++ b/CHRONIK-2026-09.md
+@@ -1496,3 +1496,9 @@ Freigegebene Design-/Übersichtslieferung. Drei persistente Darstellungen (Hell
+ ## v19.21.1 — 27.9.2026 — Backlog-Punkt 91
+ 
+ Zwei am echten iPhone/Safari sichtbare Speicherprobleme eng repariert, ohne die unbekannte Ursache des einmaligen IndexedDB-Aussetzers zu behaupten. `datenSichern()` erzeugt/teilt die Datei weiterhin unmittelbar aus der Benutzeraktion, persistiert den neuen Sicherungszeitpunkt aber zusätzlich über `speicherKette` + `speicherSchreibenKritisch()`; ein Fehler löst keinen blockierenden Checkpoint-Alarm aus, lässt die Datei erhalten und zeigt einen nicht-blockierenden Hinweis. Der neue Zeitpunkt wird bis zum bestätigten IndexedDB-Schreiben nicht als dauerhaft angezeigt und bei Fehlschlag im RAM auf den vorher bestätigten Wert zurückgenommen. Allgemeine `save()`-/Checkpoint-Warnungen behalten ihren verständlichen bisherigen Text und ergänzen ausschließlich Name/Nachricht des tatsächlichen Speicherfehlers. Neue Regression `tests/t8_backup_speicher.js`; Checkpoint-Barrieren bleiben hart. Die konkrete IndexedDB-Ursache bleibt ausdrücklich unbekannt/offen.
++
++---
++
++## v19.21.2 — 27.9.2026 — Backlog-Punkt 80
++
++Kriterium (g) eng korrigiert: `vorhersageGehirn()` besitzt jetzt den optionalen vierten Parameter `ohneFruehere`. Ausschließlich `antwortkonsistenzLauf()` ruft die Funktion mit `null, true` auf. Damit bleibt `fruehere` in den drei Wiederholungsläufen leer und der Prompt enthält dort nicht mehr den Absatz „Deine letzten eigenen Vorhersagen“ mit dem bereits im offenen `kiProtokoll` stehenden eigenen Tipp desselben Spiels. Ohne den vierten Parameter bleibt die bisherige Promptbildung der normalen Vorhersage und des Trainingsraums unverändert. Schwellenwerte (90 % / 10 Punkte), Zahl der Spiele/Wiederholungen und der gemessene Markt (nur Sieger) wurden nicht geändert. Keine neuen Sprachschlüssel, kein neuer Dienst und kein zusätzlicher Netz- oder Modellaufruf im normalen Betrieb.

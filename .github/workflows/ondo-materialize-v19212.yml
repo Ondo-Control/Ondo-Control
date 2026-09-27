@@ -1,0 +1,38 @@
+name: materialize-v19.21.2
+on:
+  push:
+    branches:
+      - ondotmp2
+permissions:
+  contents: write
+jobs:
+  materialize:
+    if: github.ref == 'refs/heads/ondotmp2'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Apply exact patch and materialize target blobs
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE=1206cfceb81186501009b3f847d46e9d6865d0c1
+          test "$(git rev-parse HEAD^)" = "$BASE"
+          test -f .ondo-delivery/v19.21.2.patch
+          git apply --check .ondo-delivery/v19.21.2.patch
+          git apply .ondo-delivery/v19.21.2.patch
+          test "$(git hash-object beta.html)" = "116378689c1e74c71c6088af73e2b620cac1f7e8"
+          test "$(git hash-object STAND.md)" = "50ad5fba68ffebcaaa621ac0cc52862c2178449a"
+          test "$(git hash-object Ondo-Control-Backlog.md)" = "1609aa1f000304249fafc94d78f76e95326acea4"
+          test "$(git hash-object Blueprint.md)" = "4930e40507e86f5d11ecaab6fa72bd9f8b46f518"
+          test "$(git hash-object BLUEPRINT-PROTOKOLL.md)" = "d942944e43a48f654405bfed85f8f992b8dd2535"
+          test "$(git hash-object CHRONIK-2026-09.md)" = "90c49e2ec0b5a50a0989d2fb45643c1023008ecb"
+          rm -f .ondo-delivery/v19.21.2.patch
+          rmdir .ondo-delivery 2>/dev/null || true
+          rm -f .github/workflows/ondo-materialize-v19212.yml
+          git config user.name "Ondo-Control"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Materialize v19.21.2 target blobs"
+          git push origin HEAD:ondotmp2
