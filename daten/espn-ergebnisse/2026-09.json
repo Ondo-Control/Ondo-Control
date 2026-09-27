@@ -8923,6 +8923,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401883197",
+   "providerCompetitionSlug": "esp.2",
+   "providerCompetitionName": "Spanish LALIGA 2",
+   "datum": "2026-09-27",
+   "kickoffUtc": "2026-09-27T12:00Z",
+   "heim": "Real Valladolid",
+   "gast": "Córdoba",
+   "torHeim": 3,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "95",
+      "teamDisplayName": "Real Valladolid",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     },
+     {
+      "teamId": "8447",
+      "teamDisplayName": "Córdoba",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-09-27T14:04:49.556Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401883200",
    "providerCompetitionSlug": "esp.2",
    "providerCompetitionName": "Spanish LALIGA 2",
@@ -11563,6 +11603,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401900625",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-09-27",
+   "kickoffUtc": "2026-09-27T02:00Z",
+   "heim": "Sint Maarten",
+   "gast": "Belize",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "18243",
+      "teamDisplayName": "Sint Maarten",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "2641",
+      "teamDisplayName": "Belize",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-27T14:05:10.101Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401900626",
    "providerCompetitionSlug": "concacaf.nations.league",
    "providerCompetitionName": "Concacaf Nations League",
@@ -12203,6 +12283,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401903308",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-27",
+   "kickoffUtc": "2026-09-27T01:00Z",
+   "heim": "Mexico",
+   "gast": "Colombia",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "203",
+      "teamDisplayName": "Mexico",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "208",
+      "teamDisplayName": "Colombia",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-09-27T14:05:05.978Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401905196",
    "providerCompetitionSlug": "fifa.friendly",
    "providerCompetitionName": "International Friendly",
@@ -12400,6 +12520,46 @@
    },
    "halbzeit": "1:0",
    "fetchedAt": "2026-09-26T02:03:46.813Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401914142",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-27",
+   "kickoffUtc": "2026-09-27T11:35Z",
+   "heim": "China",
+   "gast": "New Zealand",
+   "torHeim": 0,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "658",
+      "teamDisplayName": "China",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "2666",
+      "teamDisplayName": "New Zealand",
+      "homeAway": "away",
+      "linescores": [
+       "2",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:2",
+   "fetchedAt": "2026-09-27T14:05:06.867Z"
   },
   {
    "provider": "espn",
@@ -13342,6 +13502,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401917288",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-27",
+   "kickoffUtc": "2026-09-27T02:00Z",
+   "heim": "Perth Glory",
+   "gast": "Adelaide United",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "5322",
+      "teamDisplayName": "Perth Glory",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "5321",
+      "teamDisplayName": "Adelaide United",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-27T14:05:20.411Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401918083",
    "providerCompetitionSlug": "fifa.friendly",
    "providerCompetitionName": "International Friendly",
@@ -13379,6 +13579,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-09-24T01:41:02.896Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401918749",
+   "providerCompetitionSlug": "esp.copa_del_rey",
+   "providerCompetitionName": "Spanish Copa del Rey",
+   "datum": "2026-09-27",
+   "kickoffUtc": "2026-09-27T10:00Z",
+   "heim": "Auriense Cented Academy",
+   "gast": "CD San José",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "133847",
+      "teamDisplayName": "Auriense Cented Academy",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "133836",
+      "teamDisplayName": "CD San José",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-27T14:04:50.974Z"
   },
   {
    "provider": "espn",
@@ -13499,6 +13739,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-09-27T01:54:04.007Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401918763",
+   "providerCompetitionSlug": "esp.copa_del_rey",
+   "providerCompetitionName": "Spanish Copa del Rey",
+   "datum": "2026-09-27",
+   "kickoffUtc": "2026-09-27T10:00Z",
+   "heim": "Sporting Hortaleza",
+   "gast": "Atlético Unión Güímar",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "133831",
+      "teamDisplayName": "Sporting Hortaleza",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "133833",
+      "teamDisplayName": "Atlético Unión Güímar",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-27T14:04:51.150Z"
   },
   {
    "provider": "espn",
@@ -14742,6 +15022,86 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401922309",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-27",
+   "kickoffUtc": "2026-09-27T07:00Z",
+   "heim": "Fiji",
+   "gast": "Papua New Guinea",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "4862",
+      "teamDisplayName": "Fiji",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "4885",
+      "teamDisplayName": "Papua New Guinea",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-27T14:05:06.688Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401922310",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-27",
+   "kickoffUtc": "2026-09-27T04:00Z",
+   "heim": "Vanuatu",
+   "gast": "New Caledonia",
+   "torHeim": 4,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "4864",
+      "teamDisplayName": "Vanuatu",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "4"
+      ]
+     },
+     {
+      "teamId": "4888",
+      "teamDisplayName": "New Caledonia",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-27T14:05:06.511Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401922311",
    "providerCompetitionSlug": "fifa.friendly",
    "providerCompetitionName": "International Friendly",
@@ -15422,6 +15782,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401923793",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-27",
+   "kickoffUtc": "2026-09-27T09:00Z",
+   "heim": "Fiorentina",
+   "gast": "SS Signa",
+   "torHeim": 9,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "109",
+      "teamDisplayName": "Fiorentina",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "9"
+      ]
+     },
+     {
+      "teamId": "133948",
+      "teamDisplayName": "SS Signa",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-27T14:05:20.763Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401923794",
    "providerCompetitionSlug": "club.friendly",
    "providerCompetitionName": "Club Friendly",
@@ -15899,6 +16299,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-09-27T01:54:27.292Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401924630",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-27",
+   "kickoffUtc": "2026-09-27T04:00Z",
+   "heim": "Cook Islands",
+   "gast": "Tahiti",
+   "torHeim": 1,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "4884",
+      "teamDisplayName": "Cook Islands",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "4863",
+      "teamDisplayName": "Tahiti",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-27T14:05:06.334Z"
   },
   {
    "provider": "espn",
@@ -16986,6 +17426,366 @@
    },
    "halbzeit": "2:0",
    "fetchedAt": "2026-09-27T01:54:21.610Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761835",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-09-27",
+   "kickoffUtc": "2026-09-27T00:30Z",
+   "heim": "FC Dallas",
+   "gast": "LAFC",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "185",
+      "teamDisplayName": "FC Dallas",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "18966",
+      "teamDisplayName": "LAFC",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-09-27T14:05:11.889Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761836",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-09-27",
+   "kickoffUtc": "2026-09-27T00:30Z",
+   "heim": "Houston Dynamo FC",
+   "gast": "Sporting Kansas City",
+   "torHeim": 0,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "6077",
+      "teamDisplayName": "Houston Dynamo FC",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "186",
+      "teamDisplayName": "Sporting Kansas City",
+      "homeAway": "away",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:2",
+   "fetchedAt": "2026-09-27T14:05:12.076Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761837",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-09-27",
+   "kickoffUtc": "2026-09-27T00:30Z",
+   "heim": "Seattle Sounders FC",
+   "gast": "Minnesota United FC",
+   "torHeim": 3,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "9726",
+      "teamDisplayName": "Seattle Sounders FC",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "1"
+      ]
+     },
+     {
+      "teamId": "17362",
+      "teamDisplayName": "Minnesota United FC",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:0",
+   "fetchedAt": "2026-09-27T14:05:12.436Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761838",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-09-27",
+   "kickoffUtc": "2026-09-27T00:30Z",
+   "heim": "Nashville SC",
+   "gast": "Toronto FC",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "18986",
+      "teamDisplayName": "Nashville SC",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     },
+     {
+      "teamId": "7318",
+      "teamDisplayName": "Toronto FC",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:0",
+   "fetchedAt": "2026-09-27T14:05:12.256Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761839",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-09-27",
+   "kickoffUtc": "2026-09-27T00:30Z",
+   "heim": "Austin FC",
+   "gast": "San Diego FC",
+   "torHeim": 3,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "20906",
+      "teamDisplayName": "Austin FC",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     },
+     {
+      "teamId": "22529",
+      "teamDisplayName": "San Diego FC",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-27T14:05:11.708Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761840",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-09-27",
+   "kickoffUtc": "2026-09-27T01:30Z",
+   "heim": "Real Salt Lake",
+   "gast": "New England Revolution",
+   "torHeim": 3,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "4771",
+      "teamDisplayName": "Real Salt Lake",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     },
+     {
+      "teamId": "189",
+      "teamDisplayName": "New England Revolution",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-09-27T14:05:12.616Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761841",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-09-27",
+   "kickoffUtc": "2026-09-27T02:30Z",
+   "heim": "LA Galaxy",
+   "gast": "Colorado Rapids",
+   "torHeim": 3,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "187",
+      "teamDisplayName": "LA Galaxy",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     },
+     {
+      "teamId": "184",
+      "teamDisplayName": "Colorado Rapids",
+      "homeAway": "away",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:2",
+   "fetchedAt": "2026-09-27T14:05:12.797Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761842",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-09-27",
+   "kickoffUtc": "2026-09-27T02:30Z",
+   "heim": "Vancouver Whitecaps",
+   "gast": "D.C. United",
+   "torHeim": 3,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "9727",
+      "teamDisplayName": "Vancouver Whitecaps",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "1"
+      ]
+     },
+     {
+      "teamId": "193",
+      "teamDisplayName": "D.C. United",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:1",
+   "fetchedAt": "2026-09-27T14:05:13.159Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761843",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-09-27",
+   "kickoffUtc": "2026-09-27T02:30Z",
+   "heim": "San Jose Earthquakes",
+   "gast": "Portland Timbers",
+   "torHeim": 3,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "191",
+      "teamDisplayName": "San Jose Earthquakes",
+      "homeAway": "home",
+      "linescores": [
+       "3",
+       "0"
+      ]
+     },
+     {
+      "teamId": "9723",
+      "teamDisplayName": "Portland Timbers",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "3:0",
+   "fetchedAt": "2026-09-27T14:05:12.978Z"
   }
  ]
 }
