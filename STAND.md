@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 27.9.2026, Fassung 151, v19.21.2*
+*Die aktuelle Wahrheit. Stand: 27.9.2026, Fassung 152, v19.21.2*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -213,6 +213,11 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   leer und der Absatz „Deine letzten eigenen Vorhersagen“ fehlt in allen drei Wiederholungsläufen.
   Alle anderen Aufrufer lassen den Parameter weg und behalten ihre bisherige Promptbildung.
   Schwellenwerte, Zahl der Spiele/Wiederholungen und der gemessene Markt bleiben unverändert.
+  **Geräte-Bewährung (Ondo, 27.9.2026, v19.21.2 BETA):** Sonnet erreichte **100 % gleicher Tipp**,
+  Ø **3,5 Punkte Spanne**, `n=8`; Flash erreichte **100 % gleicher Tipp**, Ø **2,8 Punkte Spanne**,
+  `n=8`. Die seit v19.13.0 vorab festgelegte Schwelle — mindestens **90 % gleicher Tipp** UND
+  höchstens **10 Prozentpunkte Spanne im Schnitt** — ist damit bei beiden Gehirnen erfüllt.
+  Punkt 80 ist **bestanden und erledigt** und wurde aus dem offenen Backlog ins Archiv verschoben.
   **Punkt 91 — Datensicherung/Persistenz:** `datenSichern()` erzeugt die Sicherungsdatei
   weiterhin sofort und startet `navigator.share()` weiterhin direkt aus der Benutzeraktion.
   Der Sicherungszeitpunkt läuft danach über dieselbe serielle `speicherKette` und denselben
