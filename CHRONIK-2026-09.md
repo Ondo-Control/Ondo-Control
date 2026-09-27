@@ -1496,3 +1496,9 @@ Freigegebene Design-/Übersichtslieferung. Drei persistente Darstellungen (Hell 
 ## v19.21.1 — 27.9.2026 — Backlog-Punkt 91
 
 Zwei am echten iPhone/Safari sichtbare Speicherprobleme eng repariert, ohne die unbekannte Ursache des einmaligen IndexedDB-Aussetzers zu behaupten. `datenSichern()` erzeugt/teilt die Datei weiterhin unmittelbar aus der Benutzeraktion, persistiert den neuen Sicherungszeitpunkt aber zusätzlich über `speicherKette` + `speicherSchreibenKritisch()`; ein Fehler löst keinen blockierenden Checkpoint-Alarm aus, lässt die Datei erhalten und zeigt einen nicht-blockierenden Hinweis. Der neue Zeitpunkt wird bis zum bestätigten IndexedDB-Schreiben nicht als dauerhaft angezeigt und bei Fehlschlag im RAM auf den vorher bestätigten Wert zurückgenommen. Allgemeine `save()`-/Checkpoint-Warnungen behalten ihren verständlichen bisherigen Text und ergänzen ausschließlich Name/Nachricht des tatsächlichen Speicherfehlers. Neue Regression `tests/t8_backup_speicher.js`; Checkpoint-Barrieren bleiben hart. Die konkrete IndexedDB-Ursache bleibt ausdrücklich unbekannt/offen.
+
+---
+
+## v19.21.2 — 27.9.2026 — Backlog-Punkt 80
+
+Kriterium (g) eng korrigiert: `vorhersageGehirn()` besitzt jetzt den optionalen vierten Parameter `ohneFruehere`. Ausschließlich `antwortkonsistenzLauf()` ruft die Funktion mit `null, true` auf. Damit bleibt `fruehere` in den drei Wiederholungsläufen leer und der Prompt enthält dort nicht mehr den Absatz „Deine letzten eigenen Vorhersagen“ mit dem bereits im offenen `kiProtokoll` stehenden eigenen Tipp desselben Spiels. Ohne den vierten Parameter bleibt die bisherige Promptbildung der normalen Vorhersage und des Trainingsraums unverändert. Schwellenwerte (90 % / 10 Punkte), Zahl der Spiele/Wiederholungen und der gemessene Markt (nur Sieger) wurden nicht geändert. Keine neuen Sprachschlüssel, kein neuer Dienst und kein zusätzlicher Netz- oder Modellaufruf im normalen Betrieb.
