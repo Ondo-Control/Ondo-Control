@@ -42,7 +42,7 @@ jobs:
             STAND.md \
             beta.html \
             tests/t9_speicherdiagnose.js | sort > /tmp/expected
-          git diff --name-only "$BASE" | sort > /tmp/actual
+          { git diff --name-only "$BASE"; git ls-files --others --exclude-standard; } | sort > /tmp/actual
           diff -u /tmp/expected /tmp/actual
           git diff --check
           test "$(git hash-object beta.html)" = 17e4e1484739d99271f04da4040055735f9ba802
