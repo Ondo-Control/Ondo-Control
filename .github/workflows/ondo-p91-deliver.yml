@@ -1,0 +1,98 @@
+name: ONDO P91 diagnose verify and deliver
+on:
+  push:
+    branches: [ondotmp2]
+    paths:
+      - '.github/workflows/ondo-p91-deliver.yml'
+permissions:
+  contents: write
+jobs:
+  verify-and-deliver:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify base and reconstruct exact patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE=9baba99afb53c4611a829a8226cd195b56554a27
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$BASE"
+          test "$(git hash-object .ondo/p91-00.b64)" = c4bcdccc8c8c7cebd16b5cf50a9af8ba9a0178ed
+          test "$(git hash-object .ondo/p91-01.b64)" = bb1c84061a57d249c4da4a384ff0aeca17d7068f
+          test "$(git hash-object .ondo/p91-02.b64)" = f68190e0d9e7d3969f2544b1bcd69d91b8c18c5e
+          test "$(git hash-object .ondo/p91-03.b64)" = 50c4cce4ce3aceda49069186e2f4e0525f65c7bf
+          cat .ondo/p91-00.b64 .ondo/p91-01.b64 .ondo/p91-02.b64 .ondo/p91-03.b64 > /tmp/p91.patch.gz.b64
+          base64 -d /tmp/p91.patch.gz.b64 | gzip -d > /tmp/p91.patch
+          test "$(git hash-object /tmp/p91.patch)" = 65b23938e317c58ff4e8beab76fd000f5d07b79c
+          git checkout --detach "$BASE"
+          git apply --check /tmp/p91.patch
+          git apply /tmp/p91.patch
+      - name: Verify exact scope and storage callers
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE=9baba99afb53c4611a829a8226cd195b56554a27
+          printf '%s\n' \
+            BLUEPRINT-PROTOKOLL.md \
+            Blueprint.md \
+            CHRONIK-2026-09.md \
+            Ondo-Control-Backlog.md \
+            STAND.md \
+            beta.html \
+            tests/t9_speicherdiagnose.js | sort > /tmp/expected
+          git diff --name-only "$BASE" | sort > /tmp/actual
+          diff -u /tmp/expected /tmp/actual
+          git diff --check
+          test "$(git hash-object beta.html)" = 17e4e1484739d99271f04da4040055735f9ba802
+          test "$(git hash-object STAND.md)" = 7b3be34633eb48464626828454cacfb580e70de8
+          test "$(git hash-object Ondo-Control-Backlog.md)" = f12fb69f1bfc35daf8a0a8c3511160a48181bd88
+          test "$(git hash-object Blueprint.md)" = 6461191a1dbe607754990a95d0bed555607fcb7f
+          test "$(git hash-object BLUEPRINT-PROTOKOLL.md)" = aa7654dc25f1d710ef041b7ffd618fcdb7ed7042
+          test "$(git hash-object CHRONIK-2026-09.md)" = 92d5e2e8d79275d19446fc520941098b52b9ef44
+          test "$(git hash-object tests/t9_speicherdiagnose.js)" = baa95b06279bf1126e6690321700b6cdd49a84e0
+          test "$(git hash-object tests/t8_backup_speicher.js)" = a7739a48c1421be33715496f86b9200410d3f46a
+          test "$(grep -Ec '^function speicherSchreibenKritisch\(' beta.html)" = 1
+          test "$(grep -Ec 'speicherSchreibenKritisch\(KEY, state, .checkpoint.\)' beta.html)" = 1
+          test "$(grep -Ec 'speicherSchreibenKritisch\(KEY, state, .backup.\)' beta.html)" = 1
+          test "$(grep -Ec 'speicherSchreibenKritisch\(' beta.html)" = 3
+          test "$(grep -Ec '^function idbSchreiben\(' beta.html)" = 1
+          test "$(grep -Ec 'idbSchreiben\(' beta.html)" = 3
+          grep -Fq "var CODE_VERSION = 'v19.21.3';" beta.html
+      - name: Syntax and full test suite
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          s=Path('beta.html').read_text(encoding='utf-8')
+          a=s.index('<script>')+len('<script>')
+          b=s.rindex('</script>')
+          Path('/tmp/beta-script.js').write_text(s[a:b],encoding='utf-8')
+          PY
+          node --check /tmp/beta-script.js
+          node --check tests/t9_speicherdiagnose.js
+          for t in tests/t[1-9]_*.js; do echo "=== $t ==="; node "$t"; done
+      - name: Project verification with fresh clock
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "FRESH_CLOCK=$(TZ=Europe/Berlin date -Iseconds)"
+          python3 pruefe.py | tee /tmp/pruefe.log
+          grep -Fq 'ERGEBNIS: ALLES SAUBER' /tmp/pruefe.log
+          grep -Fq "{'de': 386, 'fr': 386, 'en': 386}" /tmp/pruefe.log
+          grep -Fq 'selbst gezaehlt 386 == STAND.md behauptet 386' /tmp/pruefe.log
+      - name: Commit and fast-forward main only if unchanged
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE=9baba99afb53c4611a829a8226cd195b56554a27
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$BASE"
+          git config user.name 'Ondo-Control'
+          git config user.email 'bmwffpgcbz@privaterelay.appleid.com'
+          git add BLUEPRINT-PROTOKOLL.md Blueprint.md CHRONIK-2026-09.md Ondo-Control-Backlog.md STAND.md beta.html tests/t9_speicherdiagnose.js
+          git diff --cached --check
+          git commit -m 'v19.21.3: Speicher-Diagnose fuer Punkt 91' -m 'Reine Ursachensuche fuer den sporadischen IndexedDB-Schreibfehler. Keine Recovery und keine Aenderung der bestehenden save/checkpoint/backup-Semantik.'
+          test "$(git rev-parse HEAD^)" = "$BASE"
+          git push origin HEAD:main
