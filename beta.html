@@ -153,7 +153,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.21.2';
+var CODE_VERSION = 'v19.21.3';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -316,6 +316,8 @@ var I18N = {
   backupT:'💾 Datensicherung', backupD:'Alle Messdaten liegen sonst NUR im Speicher dieses Browsers. ACHTUNG: Auch das Löschen des Browserverlaufs löscht sie mit — Safari entfernt dabei den Websitespeicher. Regelmäßig sichern.',
   backupBtn:'💾 Daten sichern', restoreBtn:'📂 Sicherung laden',
   backupInfo:'Im Speicher: {a} Vorhersagen · {b} Wetten', backupLast:'Zuletzt gesichert', backupNever:'Noch nie gesichert',
+  diagT:'Speicher-Diagnose (temporär, Backlog-Punkt 91)', diagD:'Erfasst ausschließlich technische Metadaten zu fehlgeschlagenen Speicherzugriffen. Kein automatischer Versand.',
+  diagCount:'{a} gespeicherte Diagnoseeinträge', diagClear:'Leeren', diagEmpty:'Keine Diagnoseeinträge gespeichert.',
   impConfirm:'Sicherung mit {a} Vorhersagen und {b} Wetten laden?\n\nAchtung: Die Daten auf diesem Gerät werden dabei ERSETZT.',
   impOk:'Sicherung geladen ✓', impFail:'Datei nicht lesbar oder keine gültige Ondo-Control-Sicherung.',
   stRight:'RICHTIG', stWrong:'FALSCH', unknown:'unklar', bothBrains:'Beide Gehirne',
@@ -482,6 +484,8 @@ var I18N = {
   backupT:'💾 Sauvegarde des données', backupD:'Sinon toutes les données de mesure vivent UNIQUEMENT dans la mémoire de ce navigateur. ATTENTION : effacer l’historique les supprime aussi — Safari vide alors le stockage du site. Sauvegarde régulièrement.',
   backupBtn:'💾 Sauvegarder', restoreBtn:'📂 Charger une sauvegarde',
   backupInfo:'En mémoire : {a} prédictions · {b} paris', backupLast:'Dernière sauvegarde', backupNever:'Jamais sauvegardé',
+  diagT:'Diagnostic de stockage (temporaire, point 91)', diagD:'Enregistre uniquement des métadonnées techniques sur les écritures de stockage échouées. Aucun envoi automatique.',
+  diagCount:'{a} entrées de diagnostic enregistrées', diagClear:'Effacer', diagEmpty:'Aucune entrée de diagnostic enregistrée.',
   impConfirm:'Charger la sauvegarde avec {a} prédictions et {b} paris ?\n\nAttention : les données de cet appareil seront REMPLACÉES.',
   impOk:'Sauvegarde chargée ✓', impFail:'Fichier illisible ou sauvegarde Ondo Control invalide.',
   stRight:'CORRECT', stWrong:'FAUX', unknown:'incertain', bothBrains:'Les deux cerveaux',
@@ -648,6 +652,8 @@ var I18N = {
   backupT:'💾 Data backup', backupD:'Otherwise all measurement data lives ONLY in this browser’s storage. WARNING: clearing your browsing history deletes it too — Safari wipes the site storage along with it. Back up regularly.',
   backupBtn:'💾 Back up data', restoreBtn:'📂 Load backup',
   backupInfo:'In storage: {a} predictions · {b} bets', backupLast:'Last backup', backupNever:'Never backed up',
+  diagT:'Storage diagnostics (temporary, backlog point 91)', diagD:'Records only technical metadata for failed storage writes. Nothing is sent automatically.',
+  diagCount:'{a} saved diagnostic entries', diagClear:'Clear', diagEmpty:'No diagnostic entries saved.',
   impConfirm:'Load backup with {a} predictions and {b} bets?\n\nWarning: the data on this device will be REPLACED.',
   impOk:'Backup loaded ✓', impFail:'File unreadable or not a valid Ondo Control backup.',
   stRight:'RIGHT', stWrong:'WRONG', unknown:'unclear', bothBrains:'Both brains',
@@ -718,13 +724,182 @@ var KEY = "ondo-control-v1";
    vor Geschwindigkeit) — dieselbe Schutzwirkung wie bisher, nur ohne den grossen Vorteil. */
 var DB_NAME = 'ondo-control-db', DB_STORE = 'kv';
 var idbGeoeffnet = null;
+/* v19.21.3 (Backlog-Punkt 91, Auftrag Ondo 27.9.2026): REINE DIAGNOSE fuer den
+   sporadischen IndexedDB-Schreibfehler. Dieser Kanal ist absichtlich getrennt von state,
+   KEY, speicherSchreiben() und speicherSchreibenKritisch(): Er speichert nur technische
+   Metadaten zu FEHLGESCHLAGENEN Schreibvorgaengen, hoechstens 20 Eintraege, und darf die
+   bestehende Speicherentscheidung niemals beeinflussen. Erfolgreiche IDB-Schreibvorgaenge
+   werden nicht persistiert. */
+var SPEICHER_DIAG_KEY='ondo-control-speicherdiagnose-v1';
+var speicherDiagnosePuffer=[];
+var speicherSichtbarkeitsVerlauf=[];
+var speicherDiagnoseSeq=0;
+var idbUnerwartetGeschlossen=false;
+var idbUnerwartetGeschlossenZeit=null;
+function speicherDiagnoseFehlerMeta(e){
+  if(!e) return null;
+  var name='', message='';
+  try{ if(typeof e.name==='string') name=e.name; }catch(x){}
+  try{ if(typeof e.message==='string') message=e.message; }catch(x){}
+  if(!name && !message){
+    try{ message=String(e); }catch(x){}
+  }
+  if(message==='undefined' || message==='null' || message==='[object Object]') message='';
+  return {name:name||'', message:message||''};
+}
+function speicherDiagnoseSichtbarkeitKopie(max){
+  return speicherSichtbarkeitsVerlauf.slice(-max).map(function(e){
+    return {typ:e.typ, zeit:e.zeit, visibilityState:e.visibilityState, hidden:e.hidden};
+  });
+}
+function speicherSichtbarkeitMerken(typ){
+  speicherSichtbarkeitsVerlauf.push({
+    typ:typ,
+    zeit:Date.now(),
+    visibilityState:String(document.visibilityState||''),
+    hidden:!!document.hidden
+  });
+  if(speicherSichtbarkeitsVerlauf.length>10) speicherSichtbarkeitsVerlauf.splice(0,speicherSichtbarkeitsVerlauf.length-10);
+}
+function speicherDiagnoseTechnisch(e){
+  var out={
+    transaktionsId:String(e&&e.transaktionsId||''),
+    quelle:String(e&&e.quelle||'unbekannt'),
+    startZeit:Number(e&&e.startZeit)||0,
+    phase:String(e&&e.phase||''),
+    endZeit:(e&&e.endZeit!==null&&e.endZeit!==undefined)?Number(e.endZeit):null,
+    dauerMs:(e&&e.dauerMs!==null&&e.dauerMs!==undefined)?Number(e.dauerMs):null,
+    txFehler:e&&e.txFehler?speicherDiagnoseFehlerMeta(e.txFehler):null,
+    putFehler:e&&e.putFehler?speicherDiagnoseFehlerMeta(e.putFehler):null,
+    synchronerFehler:e&&e.synchronerFehler?speicherDiagnoseFehlerMeta(e.synchronerFehler):null,
+    visibilityStateJetzt:String(e&&e.visibilityStateJetzt||''),
+    hiddenJetzt:!!(e&&e.hiddenJetzt),
+    sichtbarkeitsVerlauf:Array.isArray(e&&e.sichtbarkeitsVerlauf)?e.sichtbarkeitsVerlauf.slice(-5).map(function(v){
+      return {typ:String(v&&v.typ||''), zeit:Number(v&&v.zeit)||0,
+              visibilityState:String(v&&v.visibilityState||''), hidden:!!(v&&v.hidden)};
+    }):[],
+    dbUnerwartetGeschlossen:!!(e&&e.dbUnerwartetGeschlossen),
+    dbUnerwartetGeschlossenZeit:(e&&e.dbUnerwartetGeschlossenZeit!==null&&e.dbUnerwartetGeschlossenZeit!==undefined)?Number(e.dbUnerwartetGeschlossenZeit):null,
+    rueckfallVersucht:!!(e&&e.rueckfallVersucht),
+    rueckfallErfolgreich:(e&&e.rueckfallErfolgreich===true)?true:((e&&e.rueckfallErfolgreich===false)?false:null),
+    rueckfallFehler:e&&e.rueckfallFehler?speicherDiagnoseFehlerMeta(e.rueckfallFehler):null,
+    storageEstimate:null,
+    storageEstimateFehler:e&&e.storageEstimateFehler?speicherDiagnoseFehlerMeta(e.storageEstimateFehler):null
+  };
+  if(e&&e.storageEstimate && typeof e.storageEstimate==='object'){
+    out.storageEstimate={usage:Number(e.storageEstimate.usage)||0, quota:Number(e.storageEstimate.quota)||0};
+    if(out.storageEstimate.quota>0 && e.storageEstimate.prozent!==undefined && e.storageEstimate.prozent!==null){
+      out.storageEstimate.prozent=Number(e.storageEstimate.prozent);
+    }
+  }
+  return out;
+}
+function speicherDiagnoseLaden(){
+  try{
+    var roh=localStorage.getItem(SPEICHER_DIAG_KEY);
+    if(!roh){ speicherDiagnosePuffer=[]; return; }
+    var arr=JSON.parse(roh);
+    if(!Array.isArray(arr)){ speicherDiagnosePuffer=[]; return; }
+    speicherDiagnosePuffer=arr.slice(-20).map(speicherDiagnoseTechnisch);
+  }catch(e){ speicherDiagnosePuffer=[]; }
+}
+function speicherDiagnoseSpeichern(){
+  try{
+    /* Ein paralleler save()-Fehler darf nicht versehentlich durch die Persistenz eines
+       anderen Diagnosefalls VOR seinem eigenen State-Rueckfall in localStorage landen. */
+    var arr=speicherDiagnosePuffer.filter(speicherDiagnoseDarfPersistieren).slice(-20).map(speicherDiagnoseTechnisch);
+    localStorage.setItem(SPEICHER_DIAG_KEY, JSON.stringify(arr));
+  }catch(e){}
+}
+function speicherDiagnoseDarfPersistieren(e){
+  if(!e) return false;
+  if(e.quelle!=='save') return true;
+  return e.rueckfallVersucht===true && (e.rueckfallErfolgreich===true || e.rueckfallErfolgreich===false);
+}
+function speicherDiagnoseNachtragen(e){
+  if(speicherDiagnoseDarfPersistieren(e)) speicherDiagnoseSpeichern();
+}
+function speicherDiagnoseEstimate(e){
+  if(!(navigator.storage && navigator.storage.estimate)) return;
+  navigator.storage.estimate().then(function(x){
+    if(!x) return;
+    e.storageEstimate={usage:Number(x.usage)||0, quota:Number(x.quota)||0};
+    if(e.storageEstimate.quota>0) e.storageEstimate.prozent=Math.round(e.storageEstimate.usage/e.storageEstimate.quota*1000)/10;
+    speicherDiagnoseNachtragen(e);
+  }).catch(function(err){
+    e.storageEstimateFehler=speicherDiagnoseFehlerMeta(err);
+    speicherDiagnoseNachtragen(e);
+  });
+}
+function speicherDiagnoseAnFehler(err,e){
+  if(err && (typeof err==='object' || typeof err==='function')){
+    try{ err._diagEintrag=e; }catch(x){}
+  }
+  return err;
+}
+function speicherDiagnoseLeeren(){
+  speicherDiagnosePuffer=[];
+  try{ localStorage.removeItem(SPEICHER_DIAG_KEY); }catch(e){}
+  var feld=document.getElementById('speicherDiagText'); if(feld) feld.value='';
+  var n=document.getElementById('speicherDiagAnzahl'); if(n) n.textContent=t('diagCount').replace('{a}','0');
+}
+function speicherDiagnoseWert(v){
+  if(v===null || v===undefined) return 'null';
+  if(typeof v==='object'){
+    try{ return JSON.stringify(v); }catch(e){ return '[nicht lesbar]'; }
+  }
+  return String(v);
+}
+function speicherDiagnoseTextBauen(){
+  var feld=document.getElementById('speicherDiagText');
+  if(!feld) return;
+  if(!speicherDiagnosePuffer.length){ feld.value=t('diagEmpty'); return; }
+  var bloecke=speicherDiagnosePuffer.map(function(rohe){
+    var e=speicherDiagnoseTechnisch(rohe);
+    return [
+      'transaktionsId: '+speicherDiagnoseWert(e.transaktionsId),
+      'quelle: '+speicherDiagnoseWert(e.quelle),
+      'startZeit: '+speicherDiagnoseWert(e.startZeit),
+      'phase: '+speicherDiagnoseWert(e.phase),
+      'endZeit: '+speicherDiagnoseWert(e.endZeit),
+      'dauerMs: '+speicherDiagnoseWert(e.dauerMs),
+      'txFehler: '+speicherDiagnoseWert(e.txFehler),
+      'putFehler: '+speicherDiagnoseWert(e.putFehler),
+      'synchronerFehler: '+speicherDiagnoseWert(e.synchronerFehler),
+      'visibilityStateJetzt: '+speicherDiagnoseWert(e.visibilityStateJetzt),
+      'hiddenJetzt: '+speicherDiagnoseWert(e.hiddenJetzt),
+      'sichtbarkeitsVerlauf: '+speicherDiagnoseWert(e.sichtbarkeitsVerlauf),
+      'dbUnerwartetGeschlossen: '+speicherDiagnoseWert(e.dbUnerwartetGeschlossen),
+      'dbUnerwartetGeschlossenZeit: '+speicherDiagnoseWert(e.dbUnerwartetGeschlossenZeit),
+      'rueckfallVersucht: '+speicherDiagnoseWert(e.rueckfallVersucht),
+      'rueckfallErfolgreich: '+speicherDiagnoseWert(e.rueckfallErfolgreich),
+      'rueckfallFehler: '+speicherDiagnoseWert(e.rueckfallFehler),
+      'storageEstimate: '+speicherDiagnoseWert(e.storageEstimate),
+      'storageEstimateFehler: '+speicherDiagnoseWert(e.storageEstimateFehler)
+    ].join('\n');
+  });
+  feld.value='ONDO CONTROL — Speicher-Diagnose · '+speicherDiagnosePuffer.length+' Eintraege\n\n'+bloecke.join('\n\n');
+}
 function idbOeffnen(){
   if(idbGeoeffnet) return idbGeoeffnet;
   idbGeoeffnet = new Promise(function(resolve, reject){
     if(!window.indexedDB){ reject(new Error('kein indexedDB')); return; }
     var req = indexedDB.open(DB_NAME, 1);
     req.onupgradeneeded = function(){ req.result.createObjectStore(DB_STORE); };
-    req.onsuccess = function(){ resolve(req.result); };
+    req.onsuccess = function(){
+      var db=req.result;
+      /* Nur beobachten: Keine Recovery, kein Reset von idbGeoeffnet. Ein tatsaechlich neu
+         geoeffnetes DB-Objekt startet mit einem frischen Close-Marker. */
+      idbUnerwartetGeschlossen=false;
+      idbUnerwartetGeschlossenZeit=null;
+      try{
+        db.onclose=function(){
+          idbUnerwartetGeschlossen=true;
+          idbUnerwartetGeschlossenZeit=Date.now();
+        };
+      }catch(e){}
+      resolve(db);
+    };
     req.onerror = function(){ reject(req.error||new Error('indexedDB.open fehlgeschlagen')); };
   });
   return idbGeoeffnet;
@@ -739,15 +914,88 @@ function idbLesen(schluessel){
     });
   });
 }
-function idbSchreiben(schluessel, wert){
+function idbSchreiben(schluessel, wert, quelle){
+  quelle=quelle||'unbekannt';
+  var start=Date.now(), diagnosefall=false, estimateGestartet=false;
+  var eintrag={
+    transaktionsId:start.toString(36)+'-'+(++speicherDiagnoseSeq),
+    quelle:quelle,
+    startZeit:start,
+    phase:'open',
+    endZeit:null,
+    dauerMs:null,
+    txFehler:null,
+    putFehler:null,
+    synchronerFehler:null,
+    visibilityStateJetzt:String(document.visibilityState||''),
+    hiddenJetzt:!!document.hidden,
+    sichtbarkeitsVerlauf:speicherDiagnoseSichtbarkeitKopie(5),
+    dbUnerwartetGeschlossen:!!idbUnerwartetGeschlossen,
+    dbUnerwartetGeschlossenZeit:idbUnerwartetGeschlossenZeit,
+    rueckfallVersucht:false,
+    rueckfallErfolgreich:null,
+    rueckfallFehler:null,
+    storageEstimate:null,
+    storageEstimateFehler:null
+  };
+  function diagnostizieren(phase, err, feld, synchron){
+    var jetzt=Date.now();
+    if(feld==='tx') eintrag.txFehler=speicherDiagnoseFehlerMeta(err);
+    if(feld==='put') eintrag.putFehler=speicherDiagnoseFehlerMeta(err);
+    if(synchron) eintrag.synchronerFehler=speicherDiagnoseFehlerMeta(err);
+    if(!diagnosefall){
+      diagnosefall=true;
+      eintrag.phase=phase;
+      eintrag.visibilityStateJetzt=String(document.visibilityState||'');
+      eintrag.hiddenJetzt=!!document.hidden;
+      eintrag.sichtbarkeitsVerlauf=speicherDiagnoseSichtbarkeitKopie(5);
+      eintrag.dbUnerwartetGeschlossen=!!idbUnerwartetGeschlossen;
+      eintrag.dbUnerwartetGeschlossenZeit=idbUnerwartetGeschlossenZeit;
+      speicherDiagnosePuffer.push(eintrag);
+      if(speicherDiagnosePuffer.length>20) speicherDiagnosePuffer.splice(0,speicherDiagnosePuffer.length-20);
+      if(!estimateGestartet){ estimateGestartet=true; speicherDiagnoseEstimate(eintrag); }
+    }
+    eintrag.endZeit=jetzt;
+    eintrag.dauerMs=Math.max(0,jetzt-eintrag.startZeit);
+    speicherDiagnoseNachtragen(eintrag);
+    return speicherDiagnoseAnFehler(err,eintrag);
+  }
   return idbOeffnen().then(function(db){
     return new Promise(function(resolve, reject){
-      var tx = db.transaction(DB_STORE, 'readwrite');
-      tx.objectStore(DB_STORE).put(wert, schluessel);
+      var tx, putReq;
+      try{
+        eintrag.phase='transaction-start';
+        tx=db.transaction(DB_STORE, 'readwrite');
+      }catch(e){
+        reject(diagnostizieren('transaction-start',e,null,true));
+        return;
+      }
+      try{
+        eintrag.phase='put-start';
+        putReq=tx.objectStore(DB_STORE).put(wert, schluessel);
+      }catch(e){
+        reject(diagnostizieren('put-start',e,null,true));
+        return;
+      }
+      /* Echtes IndexedDB liefert einen IDBRequest. Der Guard haelt die bestehende
+         Testsimulation kompatibel, deren alter put()-Mock keinen Request zurueckgibt. */
+      if(putReq){
+        putReq.onerror=function(){
+          diagnostizieren('put-error',putReq.error||new Error('idb-put fehlgeschlagen'),'put',false);
+        };
+      }
       tx.oncomplete = function(){ resolve(); };
-      tx.onerror = function(){ reject(tx.error||new Error('idb-Schreiben fehlgeschlagen')); };
-      tx.onabort = function(){ reject(tx.error||new Error('idb-Schreiben abgebrochen')); };
+      tx.onerror = function(){
+        var e=tx.error||new Error('idb-Schreiben fehlgeschlagen');
+        reject(diagnostizieren('tx-error',e,'tx',false));
+      };
+      tx.onabort = function(){
+        var e=tx.error||new Error('idb-Schreiben abgebrochen');
+        reject(diagnostizieren('tx-abort',e,'tx',false));
+      };
     });
+  }, function(e){
+    throw diagnostizieren('open',e,null,true);
   });
 }
 /* Speicher-Lesen mit Rueckfall: Erst IndexedDB versuchen, bei jedem Fehler (fehlt, blockiert,
@@ -768,8 +1016,24 @@ function speicherLesen(schluessel){
    Schlaegt AUCH das fehl (z. B. weil localStorage inzwischen voll ist), wird der Fehler an
    den Aufrufer weitergereicht, damit save() seinen Alarm auslösen kann wie bisher. */
 function speicherSchreiben(schluessel, wert){
-  return idbSchreiben(schluessel, wert).catch(function(idbFehler){
-    localStorage.setItem(schluessel, JSON.stringify(wert));
+  return idbSchreiben(schluessel, wert, 'save').catch(function(idbFehler){
+    var d=idbFehler && idbFehler._diagEintrag;
+    if(d) d.rueckfallVersucht=true;
+    /* WICHTIG: ZUERST der unveraenderte State-Rueckfall. Der Diagnosepuffer wird absichtlich
+       erst danach in localStorage geschrieben, damit Diagnose-Metadaten nie darueber
+       entscheiden koennen, ob fuer den eigentlichen State noch Platz ist. */
+    try{
+      localStorage.setItem(schluessel, JSON.stringify(wert));
+      if(d){ d.rueckfallErfolgreich=true; speicherDiagnoseSpeichern(); }
+    }catch(localStorageFehler){
+      if(d){
+        d.rueckfallErfolgreich=false;
+        d.rueckfallFehler=speicherDiagnoseFehlerMeta(localStorageFehler);
+        speicherDiagnoseAnFehler(localStorageFehler,d);
+        speicherDiagnoseSpeichern();
+      }
+      throw localStorageFehler;
+    }
   });
 }
 /* 🔴 STRIKTER SCHREIBWEG FUER KRITISCHE CHECKPOINTS (v19.19.2, Auftrag Ondo 24.9.2026).
@@ -783,8 +1047,8 @@ function speicherSchreiben(schluessel, wert){
    localStorage-Rueckfall, auch nicht, wenn IndexedDB ganz fehlt oder sich nicht oeffnen laesst -
    dann scheitert der Checkpoint sichtbar, und der Lauf pausiert (Absicht). localStorage wird
    auf diesem Weg gar nicht erst beschrieben. speicherLesen() bleibt unveraendert. */
-function speicherSchreibenKritisch(schluessel, wert){
-  return idbSchreiben(schluessel, wert);
+function speicherSchreibenKritisch(schluessel, wert, quelle){
+  return idbSchreiben(schluessel, wert, quelle);
 }
 var state = {
   bets: [],
@@ -1258,7 +1522,7 @@ var speicherKette = Promise.resolve();
 function checkpointSave(){
   var ergebnis = speicherKette.then(function(){
     /* v19.19.2: der strikte Weg (nur IndexedDB) - siehe speicherSchreibenKritisch(). */
-    return speicherSchreibenKritisch(KEY, state);
+    return speicherSchreibenKritisch(KEY, state, 'checkpoint');
   }).then(function(){
     if(speicherAlarm){ speicherAlarm=false; }
     speicherAlarmFehler='';
@@ -1278,7 +1542,7 @@ function checkpointOhneBarriere(){
    Der Aufrufer datenSichern() behandelt den Fehler nicht-blockierend und separat. */
 function backupCheckpointSave(){
   var ergebnis = speicherKette.then(function(){
-    return speicherSchreibenKritisch(KEY, state);
+    return speicherSchreibenKritisch(KEY, state, 'backup');
   });
   speicherKette = ergebnis.catch(function(){ /* Kette bleibt nach einem Fehler benutzbar. */ });
   return ergebnis;
@@ -7541,6 +7805,17 @@ function viewMore(){
     '<input type="file" accept=".json,application/json" id="sicherungInput" style="display:none" onchange="datenLaden(this)"/>'+
     '<button class="btn btn-ghost" onclick="document.getElementById(\'sicherungInput\').click()">'+t('restoreBtn')+'</button>'+
   '</div>'+
+  '<div class="card" style="border-color:rgba(245,217,10,.25)">'+
+    '<div class="disp" style="font-size:18px;margin-bottom:6px">'+t('diagT')+'</div>'+
+    '<div class="muted" style="margin-bottom:8px">'+t('diagD')+'</div>'+
+    '<div id="speicherDiagAnzahl" class="muted" style="margin-bottom:10px">'+t('diagCount').replace('{a}',speicherDiagnosePuffer.length)+'</div>'+
+    '<button class="btn" onclick="speicherDiagnoseTextBauen()">'+t('logExpBtn')+'</button>'+
+    '<textarea id="speicherDiagText" readonly rows="8" style="width:100%;margin-top:10px;background:var(--inner);'+
+      'border:1px solid var(--edge);border-radius:8px;color:var(--text);padding:10px;'+
+      'font-size:12px;font-family:ui-monospace,Menlo,monospace;line-height:1.5"></textarea>'+
+    '<button class="btn btn-ghost" style="margin-top:8px" onclick="logTextKopieren(\'speicherDiagText\')">'+t('logExpCopy')+'</button>'+
+    '<button class="btn btn-ghost" style="margin-top:8px" onclick="speicherDiagnoseLeeren()">'+t('diagClear')+'</button>'+
+  '</div>'+
   messExportBlock()+
   sectionCap(t('secAbout'))+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:6px">'+t('rulesT')+'</div>'+
@@ -7560,6 +7835,13 @@ function viewMore(){
 document.querySelectorAll('.nav button').forEach(function(el){
   el.onclick=function(){ go(el.dataset.tab); };
 });
+/* v19.21.3: Der Diagnosepuffer wird bestmoeglich geladen; defektes JSON bleibt wirkungslos.
+   Die drei Listener zeichnen nur die letzten Sichtbarkeitsereignisse im RAM auf. Sie ersetzen
+   oder beeinflussen die bestehenden Pause-/Checkpoint-Listener weiter unten NICHT. */
+speicherDiagnoseLaden();
+document.addEventListener('visibilitychange', function(){ speicherSichtbarkeitMerken('visibilitychange'); });
+window.addEventListener('pagehide', function(){ speicherSichtbarkeitMerken('pagehide'); });
+window.addEventListener('pageshow', function(){ speicherSichtbarkeitMerken('pageshow'); });
 /* v19.8.30: load() ist jetzt async (IndexedDB-Umstieg, siehe Kommentar bei DB_NAME) — render()
    und checkUpdate() warten deshalb auf ihr Ende, statt sich mit ihr zu ueberschneiden. Die
    Speicher-Quote (echte Grenze dieses Geraets statt einer geschaetzten Zahl) wird einmal beim

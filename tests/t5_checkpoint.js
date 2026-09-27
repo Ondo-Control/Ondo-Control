@@ -16,12 +16,15 @@ var MESS  =JSON.parse(fs.readFileSync(R+'/ondo-control-messdaten-2026-09-17.json
    "nur IndexedDB kaputt, localStorage heil" steht eigens in t6_checkpoint_idb.js. */
 function speicherSteuern(c){
   var echt=c.localStorage.setItem;
-  var s={ defekt:false, bedingung:null, fehlschlaege:0, versuche:0 };
+  var DIAG='ondo-control-speicherdiagnose-v1';
+  var s={ defekt:false, bedingung:null, fehlschlaege:0, versuche:0, diagnoseVersuche:0 };
   function kaputt(txt){ return s.defekt || !!(s.bedingung && s.bedingung(String(txt))); }
   c.localStorage.setItem=function(k, v){
-    s.versuche++;
+    var diagnose=(k===DIAG);
+    if(diagnose) s.diagnoseVersuche++;
+    else s.versuche++;
     if(kaputt(v)){
-      s.fehlschlaege++;
+      if(!diagnose) s.fehlschlaege++;
       var e=new Error('QuotaExceededError (Test): Speicher voll'); e.name='QuotaExceededError';
       throw e;
     }

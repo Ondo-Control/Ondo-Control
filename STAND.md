@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 27.9.2026, Fassung 152, v19.21.2*
+*Die aktuelle Wahrheit. Stand: 27.9.2026, Fassung 153, v19.21.3*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -206,8 +206,8 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   den Trainingsraum) — dieser Commit ist der Stand **davor**, falls zurückgesetzt werden muss.
   Einzelheiten Backlog-Punkt 77.
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.21.2** (`beta.html`, geliefert 27.9.2026) — **Backlog-Punkt 80:
-  Kriterium (g) testet Antwortkonsistenz jetzt ohne den Kontext der letzten eigenen Vorhersagen.**
+- **Beta: v19.21.3** (`beta.html`, geliefert 27.9.2026) — **Backlog-Punkt 91:
+  Reines Diagnosewerkzeug für den sporadischen IndexedDB-Schreibfehler; Ursache weiterhin unbekannt/offen.**
   **Punkt 80 — Antwortkonsistenz:** `vorhersageGehirn()` hat einen optionalen vierten Parameter
   `ohneFruehere`. Nur `antwortkonsistenzLauf()` setzt ihn auf `true`; dadurch bleibt `fruehere`
   leer und der Absatz „Deine letzten eigenen Vorhersagen“ fehlt in allen drei Wiederholungsläufen.
@@ -229,6 +229,17 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   ebenfalls ausschließlich Fehlername/-nachricht des echten Speicherfehlers. Keine State-,
   Schlüssel- oder sonstigen Nutzdaten gelangen in die Meldung. **Die konkrete Ursache des am
   27.9.2026 beobachteten einmaligen IndexedDB-Aussetzers bleibt ausdrücklich unbekannt/offen.**
+  **Diagnose v19.21.3 (27.9.2026):** Zusätzlich zeichnet ein strikt getrennter technischer
+  Diagnosekanal nur bei fehlgeschlagenen IndexedDB-Schreibvorgängen Quelle (`save`/`checkpoint`/
+  `backup`), erste Fehlerphase, Request-/Transaktions-/Synchronfehler, Dauer, die letzten
+  Sichtbarkeitsereignisse, einen unerwarteten DB-Close-Marker, Ergebnis des unveränderten
+  `save()`-localStorage-Rückfalls und bestmöglich `navigator.storage.estimate()` auf. Maximal
+  20 Einträge liegen unter `ondo-control-speicherdiagnose-v1`; erfolgreiche Schreibvorgänge
+  werden nicht protokolliert. Unter Mehr → Daten kann Ondo nur diese technischen Metadaten als
+  Text erzeugen/kopieren oder ausschließlich diesen Diagnosepuffer leeren. **Keine Reparatur,
+  keine Recovery-Logik und keine Änderung an save/checkpoint/backup/Alarm-/Barriere-Semantik.**
+  Die Ursache der realen iPhone/Safari-Aussetzer vom 27.9.2026 ist weiterhin ausdrücklich
+  **unbekannt/offen**; das nächste echte Auftreten soll sie erstmals belastbar eingrenzen.
   **Punkt 87 — ESPN-Archiv bei Länderspielen:** Der Resolver kann deutsche und englische
   ISO-3166-1-Ländernamen jetzt über denselben standardisierten Ländercode erkennen. Die Namen
   entstehen zur Laufzeit mit `Intl.DisplayNames` (`de`/`en`); es gibt keine gepflegte
@@ -274,7 +285,7 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   **Kosten (Arbeitsregel G):** kein neuer Dienst und kein zusätzlicher regulärer Netzaufruf;
   die Reparatur spart im belegten Nations-League-Fall Modellaufrufe und verhindert bei
   unbekannten Gemini-Fehlern weitere automatische Versuche.
-- **Sprachschlüssel: 381** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 27.9.2026** — v19.21.2 ändert keine Sprachschlüssel; v19.21.1 ergänzte drei Speicher-/Backup-Fehlertexte je Sprache). **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
+- **Sprachschlüssel: 386** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 27.9.2026** — v19.21.3 ergänzt fünf Texte für den temporären Speicher-Diagnoseblock je Sprache). **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
 
 ---
 
