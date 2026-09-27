@@ -56,7 +56,7 @@ jobs:
           test "$(grep -Ec '^function speicherSchreibenKritisch\(' beta.html)" = 1
           test "$(grep -Ec 'speicherSchreibenKritisch\(KEY, state, .checkpoint.\)' beta.html)" = 1
           test "$(grep -Ec 'speicherSchreibenKritisch\(KEY, state, .backup.\)' beta.html)" = 1
-          test "$(grep -Ec 'speicherSchreibenKritisch\(' beta.html)" = 3
+          test "$(grep -Ec '^[[:space:]]*return speicherSchreibenKritisch\(' beta.html)" = 2
           test "$(grep -Ec '^function idbSchreiben\(' beta.html)" = 1
           test "$(grep -Ec 'idbSchreiben\(' beta.html)" = 3
           grep -Fq "var CODE_VERSION = 'v19.21.3';" beta.html
