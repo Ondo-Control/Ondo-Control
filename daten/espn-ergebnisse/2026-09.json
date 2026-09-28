@@ -12123,6 +12123,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401900617",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-09-28",
+   "kickoffUtc": "2026-09-28T01:00Z",
+   "heim": "Trinidad and Tobago",
+   "gast": "Dominican Republic",
+   "torHeim": 1,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2627",
+      "teamDisplayName": "Trinidad and Tobago",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "2649",
+      "teamDisplayName": "Dominican Republic",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-09-28T16:49:29.083Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401900618",
    "providerCompetitionSlug": "concacaf.nations.league",
    "providerCompetitionName": "Concacaf Nations League",
@@ -13083,6 +13123,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401902642",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-28",
+   "kickoffUtc": "2026-09-28T10:25Z",
+   "heim": "Japan",
+   "gast": "Venezuela",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "627",
+      "teamDisplayName": "Japan",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "213",
+      "teamDisplayName": "Venezuela",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-28T16:49:25.570Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401903308",
    "providerCompetitionSlug": "fifa.friendly",
    "providerCompetitionName": "International Friendly",
@@ -13120,6 +13200,46 @@
    },
    "halbzeit": "0:1",
    "fetchedAt": "2026-09-27T14:05:05.978Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401905195",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-28",
+   "kickoffUtc": "2026-09-28T11:00Z",
+   "heim": "South Korea",
+   "gast": "Uruguay",
+   "torHeim": 1,
+   "torGast": 4,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "451",
+      "teamDisplayName": "South Korea",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "212",
+      "teamDisplayName": "Uruguay",
+      "homeAway": "away",
+      "linescores": [
+       "3",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:3",
+   "fetchedAt": "2026-09-28T16:49:25.766Z"
   },
   {
    "provider": "espn",
@@ -13520,6 +13640,46 @@
    },
    "halbzeit": "1:0",
    "fetchedAt": "2026-09-25T01:58:21.287Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915925",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-28",
+   "kickoffUtc": "2026-09-28T12:00Z",
+   "heim": "Tajikistan",
+   "gast": "Palestine",
+   "torHeim": 2,
+   "torGast": 4,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "6723",
+      "teamDisplayName": "Tajikistan",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "6167",
+      "teamDisplayName": "Palestine",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "4"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-28T16:49:25.959Z"
   },
   {
    "provider": "espn",
@@ -17182,6 +17342,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401924543",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-28",
+   "kickoffUtc": "2026-09-28T14:00Z",
+   "heim": "NK Maribor",
+   "gast": "HNK Gorica",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "619",
+      "teamDisplayName": "NK Maribor",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "132405",
+      "teamDisplayName": "HNK Gorica",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-28T16:49:36.608Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401924588",
    "providerCompetitionSlug": "club.friendly",
    "providerCompetitionName": "Club Friendly",
@@ -18146,6 +18346,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-09-28T02:01:12.039Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401926501",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-28",
+   "kickoffUtc": "2026-09-28T09:00Z",
+   "heim": "Dynamo Kyiv",
+   "gast": "FC Zorya Luhansk",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "440",
+      "teamDisplayName": "Dynamo Kyiv",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "17520",
+      "teamDisplayName": "FC Zorya Luhansk",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-28T16:49:36.415Z"
   },
   {
    "provider": "espn",
