@@ -1803,6 +1803,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401860352",
+   "providerCompetitionSlug": "bra.2",
+   "providerCompetitionName": "Brazilian Serie B",
+   "datum": "2026-09-28",
+   "kickoffUtc": "2026-09-28T22:30Z",
+   "heim": "América Mineiro",
+   "gast": "Juventude",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "6154",
+      "teamDisplayName": "América Mineiro",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "6270",
+      "teamDisplayName": "Juventude",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-29T02:47:54.937Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401860353",
    "providerCompetitionSlug": "bra.2",
    "providerCompetitionName": "Brazilian Serie B",
@@ -3480,6 +3520,326 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-09-28T02:01:05.388Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861075",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-09-28",
+   "kickoffUtc": "2026-09-28T16:00Z",
+   "heim": "Georgia",
+   "gast": "Ukraine",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "584",
+      "teamDisplayName": "Georgia",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "457",
+      "teamDisplayName": "Ukraine",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-29T02:47:50.444Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861076",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-09-28",
+   "kickoffUtc": "2026-09-28T16:00Z",
+   "heim": "Armenia",
+   "gast": "Montenegro",
+   "torHeim": 2,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "579",
+      "teamDisplayName": "Armenia",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "6775",
+      "teamDisplayName": "Montenegro",
+      "homeAway": "away",
+      "linescores": [
+       "2",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:2",
+   "fetchedAt": "2026-09-29T02:47:50.248Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861077",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-09-28",
+   "kickoffUtc": "2026-09-28T18:45Z",
+   "heim": "Türkiye",
+   "gast": "Italy",
+   "torHeim": 1,
+   "torGast": 4,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "465",
+      "teamDisplayName": "Türkiye",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "162",
+      "teamDisplayName": "Italy",
+      "homeAway": "away",
+      "linescores": [
+       "3",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:3",
+   "fetchedAt": "2026-09-29T02:47:51.629Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861078",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-09-28",
+   "kickoffUtc": "2026-09-28T18:45Z",
+   "heim": "Romania",
+   "gast": "Bosnia-Herzegovina",
+   "torHeim": 2,
+   "torGast": 4,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "473",
+      "teamDisplayName": "Romania",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "452",
+      "teamDisplayName": "Bosnia-Herzegovina",
+      "homeAway": "away",
+      "linescores": [
+       "3",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:3",
+   "fetchedAt": "2026-09-29T02:47:51.233Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861079",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-09-28",
+   "kickoffUtc": "2026-09-28T18:45Z",
+   "heim": "Northern Ireland",
+   "gast": "Hungary",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "586",
+      "teamDisplayName": "Northern Ireland",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "480",
+      "teamDisplayName": "Hungary",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-29T02:47:51.035Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861080",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-09-28",
+   "kickoffUtc": "2026-09-28T18:45Z",
+   "heim": "Sweden",
+   "gast": "Poland",
+   "torHeim": 3,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "466",
+      "teamDisplayName": "Sweden",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     },
+     {
+      "teamId": "471",
+      "teamDisplayName": "Poland",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-09-29T02:47:51.431Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861081",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-09-28",
+   "kickoffUtc": "2026-09-28T18:45Z",
+   "heim": "Belgium",
+   "gast": "France",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "459",
+      "teamDisplayName": "Belgium",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "478",
+      "teamDisplayName": "France",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-29T02:47:50.838Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861082",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-09-28",
+   "kickoffUtc": "2026-09-28T16:00Z",
+   "heim": "Latvia",
+   "gast": "Cyprus",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "456",
+      "teamDisplayName": "Latvia",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "445",
+      "teamDisplayName": "Cyprus",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-29T02:47:50.642Z"
   },
   {
    "provider": "espn",
@@ -9523,6 +9883,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401883199",
+   "providerCompetitionSlug": "esp.2",
+   "providerCompetitionName": "Spanish LALIGA 2",
+   "datum": "2026-09-28",
+   "kickoffUtc": "2026-09-28T18:30Z",
+   "heim": "Leganés",
+   "gast": "Castellón",
+   "torHeim": 0,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "17534",
+      "teamDisplayName": "Leganés",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "4438",
+      "teamDisplayName": "Castellón",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-09-29T02:47:33.432Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401883200",
    "providerCompetitionSlug": "esp.2",
    "providerCompetitionName": "Spanish LALIGA 2",
@@ -12120,6 +12520,246 @@
    },
    "halbzeit": "1:0",
    "fetchedAt": "2026-09-27T01:54:17.436Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401900611",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-09-28",
+   "kickoffUtc": "2026-09-28T22:00Z",
+   "heim": "Suriname",
+   "gast": "Martinique",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2664",
+      "teamDisplayName": "Suriname",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "2728",
+      "teamDisplayName": "Martinique",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-29T02:47:52.609Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401900612",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-09-29",
+   "kickoffUtc": "2026-09-29T00:00Z",
+   "heim": "Jamaica",
+   "gast": "Honduras",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "1038",
+      "teamDisplayName": "Jamaica",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "215",
+      "teamDisplayName": "Honduras",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-09-29T02:47:52.806Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401900613",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-09-29",
+   "kickoffUtc": "2026-09-29T00:00Z",
+   "heim": "St. Kitts and Nevis",
+   "gast": "Grenada",
+   "torHeim": 3,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2662",
+      "teamDisplayName": "St. Kitts and Nevis",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "1"
+      ]
+     },
+     {
+      "teamId": "2651",
+      "teamDisplayName": "Grenada",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:0",
+   "fetchedAt": "2026-09-29T02:47:53.002Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401900614",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-09-28",
+   "kickoffUtc": "2026-09-28T21:00Z",
+   "heim": "Cuba",
+   "gast": "Bonaire",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2647",
+      "teamDisplayName": "Cuba",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "19314",
+      "teamDisplayName": "Bonaire",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-09-29T02:47:52.412Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401900615",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-09-29",
+   "kickoffUtc": "2026-09-29T00:00Z",
+   "heim": "St. Lucia",
+   "gast": "Bermuda",
+   "torHeim": 5,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2661",
+      "teamDisplayName": "St. Lucia",
+      "homeAway": "home",
+      "linescores": [
+       "3",
+       "2"
+      ]
+     },
+     {
+      "teamId": "2643",
+      "teamDisplayName": "Bermuda",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "3:1",
+   "fetchedAt": "2026-09-29T02:47:53.198Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401900616",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-09-28",
+   "kickoffUtc": "2026-09-28T19:00Z",
+   "heim": "Guadeloupe",
+   "gast": "Barbados",
+   "torHeim": 2,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7657",
+      "teamDisplayName": "Guadeloupe",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "2637",
+      "teamDisplayName": "Barbados",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-29T02:47:52.213Z"
   },
   {
    "provider": "espn",
@@ -15062,6 +15702,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401919572",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-28",
+   "kickoffUtc": "2026-09-28T22:00Z",
+   "heim": "Kyrgyz Republic",
+   "gast": "Maldives",
+   "torHeim": 5,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "6724",
+      "teamDisplayName": "Kyrgyz Republic",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "5"
+      ]
+     },
+     {
+      "teamId": "4390",
+      "teamDisplayName": "Maldives",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-29T02:47:49.663Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401919977",
    "providerCompetitionSlug": "fifa.friendly",
    "providerCompetitionName": "International Friendly",
@@ -15099,6 +15779,166 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-09-28T02:01:03.906Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401920030",
+   "providerCompetitionSlug": "caf.nations_qual",
+   "providerCompetitionName": "Africa Cup of Nations Qualifying",
+   "datum": "2026-09-28",
+   "kickoffUtc": "2026-09-28T19:00Z",
+   "heim": "Tunisia",
+   "gast": "Botswana",
+   "torHeim": 2,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "659",
+      "teamDisplayName": "Tunisia",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "4245",
+      "teamDisplayName": "Botswana",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-09-29T02:47:47.336Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401920031",
+   "providerCompetitionSlug": "caf.nations_qual",
+   "providerCompetitionName": "Africa Cup of Nations Qualifying",
+   "datum": "2026-09-28",
+   "kickoffUtc": "2026-09-28T16:00Z",
+   "heim": "Zimbabwe",
+   "gast": "Congo DR",
+   "torHeim": 1,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "4214",
+      "teamDisplayName": "Zimbabwe",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "2850",
+      "teamDisplayName": "Congo DR",
+      "homeAway": "away",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:2",
+   "fetchedAt": "2026-09-29T02:47:47.138Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401920032",
+   "providerCompetitionSlug": "caf.nations_qual",
+   "providerCompetitionName": "Africa Cup of Nations Qualifying",
+   "datum": "2026-09-28",
+   "kickoffUtc": "2026-09-28T16:00Z",
+   "heim": "Central African Republic",
+   "gast": "Burkina Faso",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "10528",
+      "teamDisplayName": "Central African Republic",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "2845",
+      "teamDisplayName": "Burkina Faso",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-29T02:47:46.743Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401920033",
+   "providerCompetitionSlug": "caf.nations_qual",
+   "providerCompetitionName": "Africa Cup of Nations Qualifying",
+   "datum": "2026-09-28",
+   "kickoffUtc": "2026-09-28T16:00Z",
+   "heim": "Equatorial Guinea",
+   "gast": "Sierra Leone",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "8938",
+      "teamDisplayName": "Equatorial Guinea",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "8600",
+      "teamDisplayName": "Sierra Leone",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-09-29T02:47:46.940Z"
   },
   {
    "provider": "espn",
@@ -18106,6 +18946,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-09-26T13:13:07.924Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401925323",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-28",
+   "kickoffUtc": "2026-09-28T15:00Z",
+   "heim": "OFK Petrovac",
+   "gast": "OFK Mladost DG",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "131798",
+      "teamDisplayName": "OFK Petrovac",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "132444",
+      "teamDisplayName": "OFK Mladost DG",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-29T02:47:57.829Z"
   },
   {
    "provider": "espn",
