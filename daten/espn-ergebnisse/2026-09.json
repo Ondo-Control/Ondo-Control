@@ -13003,6 +13003,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401900605",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-09-30",
+   "kickoffUtc": "2026-09-30T02:00Z",
+   "heim": "Belize",
+   "gast": "St. Vincent and the Grenadines",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2641",
+      "teamDisplayName": "Belize",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "13584",
+      "teamDisplayName": "St. Vincent and the Grenadines",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-09-30T14:59:32.937Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401900606",
    "providerCompetitionSlug": "concacaf.nations.league",
    "providerCompetitionName": "Concacaf Nations League",
@@ -14483,6 +14523,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401903234",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-30",
+   "kickoffUtc": "2026-09-30T01:00Z",
+   "heim": "Mexico",
+   "gast": "Peru",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "203",
+      "teamDisplayName": "Mexico",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "211",
+      "teamDisplayName": "Peru",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-09-30T14:59:29.569Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401903308",
    "providerCompetitionSlug": "fifa.friendly",
    "providerCompetitionName": "International Friendly",
@@ -14760,6 +14840,46 @@
    },
    "halbzeit": "1:1",
    "fetchedAt": "2026-09-24T13:37:07.057Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401905964",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-30",
+   "kickoffUtc": "2026-09-30T00:30Z",
+   "heim": "San Antonio FC",
+   "gast": "SV Darmstadt 98",
+   "torHeim": 0,
+   "torGast": 7,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "18265",
+      "teamDisplayName": "San Antonio FC",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "3812",
+      "teamDisplayName": "SV Darmstadt 98",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "7"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-30T14:59:36.704Z"
   },
   {
    "provider": "espn",
@@ -18582,6 +18702,86 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401922307",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-30",
+   "kickoffUtc": "2026-09-30T07:00Z",
+   "heim": "Fiji",
+   "gast": "New Caledonia",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "4862",
+      "teamDisplayName": "Fiji",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "4888",
+      "teamDisplayName": "New Caledonia",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-30T14:59:30.043Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401922308",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-30",
+   "kickoffUtc": "2026-09-30T04:00Z",
+   "heim": "Papua New Guinea",
+   "gast": "Solomon Islands",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "4885",
+      "teamDisplayName": "Papua New Guinea",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "4861",
+      "teamDisplayName": "Solomon Islands",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-30T14:59:29.886Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401922309",
    "providerCompetitionSlug": "fifa.friendly",
    "providerCompetitionName": "International Friendly",
@@ -19659,6 +19859,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-09-24T13:37:13.418Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401924263",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-30",
+   "kickoffUtc": "2026-09-30T08:30Z",
+   "heim": "FC Arges",
+   "gast": "CSM Deva",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "20725",
+      "teamDisplayName": "FC Arges",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "133950",
+      "teamDisplayName": "CSM Deva",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-09-30T14:59:37.019Z"
   },
   {
    "provider": "espn",
