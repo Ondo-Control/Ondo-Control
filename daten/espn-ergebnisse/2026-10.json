@@ -3,6 +3,46 @@
  "spiele": [
   {
    "provider": "espn",
+   "providerEventId": "401920509",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-10-01",
+   "kickoffUtc": "2026-10-01T11:30Z",
+   "heim": "VfB Stuttgart II",
+   "gast": "Würzburger Kickers",
+   "torHeim": 3,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "134001",
+      "teamDisplayName": "VfB Stuttgart II",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     },
+     {
+      "teamId": "17491",
+      "teamDisplayName": "Würzburger Kickers",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-01T15:31:09.188Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401921545",
    "providerCompetitionSlug": "fifa.friendly",
    "providerCompetitionName": "International Friendly",
@@ -40,6 +80,366 @@
    },
    "halbzeit": "2:0",
    "fetchedAt": "2026-10-01T02:30:12.206Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401923771",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-10-01",
+   "kickoffUtc": "2026-10-01T12:00Z",
+   "heim": "SSV Jahn Regensburg",
+   "gast": "WSG Swarovski Tirol",
+   "torHeim": 0,
+   "torGast": 6,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "11017",
+      "teamDisplayName": "SSV Jahn Regensburg",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "18794",
+      "teamDisplayName": "WSG Swarovski Tirol",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "6"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-01T15:31:09.534Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401924584",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-10-01",
+   "kickoffUtc": "2026-10-01T11:30Z",
+   "heim": "Eupen",
+   "gast": "Alemannia Aachen",
+   "torHeim": 3,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "4689",
+      "teamDisplayName": "Eupen",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     },
+     {
+      "teamId": "2997",
+      "teamDisplayName": "Alemannia Aachen",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-01T15:31:09.014Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401924629",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-10-01",
+   "kickoffUtc": "2026-10-01T02:00Z",
+   "heim": "Cook Islands",
+   "gast": "Tahiti",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "4884",
+      "teamDisplayName": "Cook Islands",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "4863",
+      "teamDisplayName": "Tahiti",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-01T15:31:02.788Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401926842",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-10-01",
+   "kickoffUtc": "2026-10-01T13:00Z",
+   "heim": "Dunajska Streda",
+   "gast": "Puskas Akademia",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "19247",
+      "teamDisplayName": "Dunajska Streda",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "20711",
+      "teamDisplayName": "Puskas Akademia",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-01T15:31:09.882Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401927445",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-10-01",
+   "kickoffUtc": "2026-10-01T13:00Z",
+   "heim": "Juve Stabia",
+   "gast": "Palmese",
+   "torHeim": 4,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "3975",
+      "teamDisplayName": "Juve Stabia",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "4"
+      ]
+     },
+     {
+      "teamId": "133998",
+      "teamDisplayName": "Palmese",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-01T15:31:10.055Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401927446",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-10-01",
+   "kickoffUtc": "2026-10-01T10:00Z",
+   "heim": "Olimpija Ljubljana",
+   "gast": "Slaven Belupo Koprivnica",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "500",
+      "teamDisplayName": "Olimpija Ljubljana",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "13252",
+      "teamDisplayName": "Slaven Belupo Koprivnica",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-01T15:31:08.841Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401927457",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-10-01",
+   "kickoffUtc": "2026-10-01T12:30Z",
+   "heim": "SC Rheindorf Altach",
+   "gast": "FC Wil 1900",
+   "torHeim": 5,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "4405",
+      "teamDisplayName": "SC Rheindorf Altach",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "5"
+      ]
+     },
+     {
+      "teamId": "2992",
+      "teamDisplayName": "FC Wil 1900",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-01T15:31:09.708Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401927899",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-10-01",
+   "kickoffUtc": "2026-10-01T12:00Z",
+   "heim": "CFR Cluj-Napoca",
+   "gast": "CSM Olimpia Satu Mare",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "5260",
+      "teamDisplayName": "CFR Cluj-Napoca",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "134000",
+      "teamDisplayName": "CSM Olimpia Satu Mare",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-01T15:31:09.361Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401927913",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-10-01",
+   "kickoffUtc": "2026-10-01T09:00Z",
+   "heim": "Universitatea Cluj",
+   "gast": "CS Gloria Bistrita",
+   "torHeim": 3,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "8091",
+      "teamDisplayName": "Universitatea Cluj",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     },
+     {
+      "teamId": "132691",
+      "teamDisplayName": "CS Gloria Bistrita",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-01T15:31:08.668Z"
   }
  ]
 }

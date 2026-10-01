@@ -21389,6 +21389,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401927428",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-30",
+   "kickoffUtc": "2026-09-30T22:00Z",
+   "heim": "Alianza Lima",
+   "gast": "Palestino",
+   "torHeim": 1,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2680",
+      "teamDisplayName": "Alianza Lima",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "4422",
+      "teamDisplayName": "Palestino",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-01T15:31:08.147Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "761543",
    "providerCompetitionSlug": "usa.1",
    "providerCompetitionName": "MLS",
