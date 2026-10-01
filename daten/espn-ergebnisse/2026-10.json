@@ -1,0 +1,45 @@
+{
+ "hinweis": "Automatisch erzeugt, Backlog-Punkt 84 (ESPN-Sammelautomatik). Nicht von Hand bearbeiten.",
+ "spiele": [
+  {
+   "provider": "espn",
+   "providerEventId": "401921545",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-10-01",
+   "kickoffUtc": "2026-10-01T00:00Z",
+   "heim": "Argentina",
+   "gast": "Bolivia",
+   "torHeim": 4,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "202",
+      "teamDisplayName": "Argentina",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "2"
+      ]
+     },
+     {
+      "teamId": "204",
+      "teamDisplayName": "Bolivia",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:0",
+   "fetchedAt": "2026-10-01T02:30:12.206Z"
+  }
+ ]
+}

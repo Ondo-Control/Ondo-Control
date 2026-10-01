@@ -12963,6 +12963,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401899825",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-30",
+   "kickoffUtc": "2026-09-30T16:00Z",
+   "heim": "Lithuania",
+   "gast": "Andorra",
+   "torHeim": 3,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "460",
+      "teamDisplayName": "Lithuania",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "1"
+      ]
+     },
+     {
+      "teamId": "587",
+      "teamDisplayName": "Andorra",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:0",
+   "fetchedAt": "2026-10-01T02:30:12.021Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401900326",
    "providerCompetitionSlug": "fifa.friendly",
    "providerCompetitionName": "International Friendly",
@@ -14923,6 +14963,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401906302",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-30",
+   "kickoffUtc": "2026-09-30T23:30Z",
+   "heim": "D.C. United",
+   "gast": "SC Paderborn 07",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "193",
+      "teamDisplayName": "D.C. United",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "3307",
+      "teamDisplayName": "SC Paderborn 07",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-01T02:30:17.847Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401911182",
    "providerCompetitionSlug": "fifa.friendly",
    "providerCompetitionName": "International Friendly",
@@ -16062,6 +16142,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401917065",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-30",
+   "kickoffUtc": "2026-09-30T12:00Z",
+   "heim": "Seychelles",
+   "gast": "Sri Lanka",
+   "torHeim": 0,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "6726",
+      "teamDisplayName": "Seychelles",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "5782",
+      "teamDisplayName": "Sri Lanka",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-01T02:30:11.654Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401917066",
    "providerCompetitionSlug": "fifa.friendly",
    "providerCompetitionName": "International Friendly",
@@ -16659,6 +16779,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-09-28T02:01:03.906Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401919991",
+   "providerCompetitionSlug": "caf.nations_qual",
+   "providerCompetitionName": "Africa Cup of Nations Qualifying",
+   "datum": "2026-09-30",
+   "kickoffUtc": "2026-09-30T16:00Z",
+   "heim": "Eritrea",
+   "gast": "South Africa",
+   "torHeim": 0,
+   "torGast": 5,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "5774",
+      "teamDisplayName": "Eritrea",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "467",
+      "teamDisplayName": "South Africa",
+      "homeAway": "away",
+      "linescores": [
+       "2",
+       "3"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:2",
+   "fetchedAt": "2026-10-01T02:30:09.649Z"
   },
   {
    "provider": "espn",
@@ -19062,6 +19222,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401922621",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-09-30",
+   "kickoffUtc": "2026-09-30T14:00Z",
+   "heim": "Botswana",
+   "gast": "Mozambique",
+   "torHeim": 0,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "4245",
+      "teamDisplayName": "Botswana",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "8939",
+      "teamDisplayName": "Mozambique",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-01T02:30:11.838Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401923463",
    "providerCompetitionSlug": "club.friendly",
    "providerCompetitionName": "Club Friendly",
@@ -19579,6 +19779,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-09-24T13:37:13.610Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401923772",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-30",
+   "kickoffUtc": "2026-09-30T16:00Z",
+   "heim": "SC Kalsdorf",
+   "gast": "Grazer AK",
+   "torHeim": 1,
+   "torGast": 5,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "133694",
+      "teamDisplayName": "SC Kalsdorf",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "21846",
+      "teamDisplayName": "Grazer AK",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "5"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-01T02:30:17.302Z"
   },
   {
    "provider": "espn",
@@ -20629,6 +20869,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401925203",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-30",
+   "kickoffUtc": "2026-09-30T16:45Z",
+   "heim": "Chemnitzer GC",
+   "gast": "SG Handwerk Rabenstein",
+   "torHeim": 4,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7033",
+      "teamDisplayName": "Chemnitzer GC",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "4"
+      ]
+     },
+     {
+      "teamId": "133967",
+      "teamDisplayName": "SG Handwerk Rabenstein",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-01T02:30:17.485Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401925204",
    "providerCompetitionSlug": "club.friendly",
    "providerCompetitionName": "Club Friendly",
@@ -20949,6 +21229,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401925564",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-30",
+   "kickoffUtc": "2026-09-30T18:00Z",
+   "heim": "Seuzach",
+   "gast": "Winterthur",
+   "torHeim": 1,
+   "torGast": 4,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "133979",
+      "teamDisplayName": "Seuzach",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "20996",
+      "teamDisplayName": "Winterthur",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "4"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-01T02:30:17.666Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401925565",
    "providerCompetitionSlug": "club.friendly",
    "providerCompetitionName": "Club Friendly",
@@ -21026,6 +21346,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-09-28T16:49:36.415Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401927424",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-09-30",
+   "kickoffUtc": "2026-09-30T13:00Z",
+   "heim": "Juve Stabia",
+   "gast": "Quarto",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "3975",
+      "teamDisplayName": "Juve Stabia",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "133997",
+      "teamDisplayName": "Quarto",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-01T02:30:17.120Z"
   },
   {
    "provider": "espn",
@@ -21786,6 +22146,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-09-27T01:54:21.449Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761833",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-09-30",
+   "kickoffUtc": "2026-09-30T23:30Z",
+   "heim": "Red Bull New York",
+   "gast": "St. Louis CITY SC",
+   "torHeim": 0,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "190",
+      "teamDisplayName": "Red Bull New York",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "21812",
+      "teamDisplayName": "St. Louis CITY SC",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-10-01T02:30:13.846Z"
   },
   {
    "provider": "espn",
