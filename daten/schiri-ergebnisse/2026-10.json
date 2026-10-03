@@ -1,0 +1,17 @@
+{
+ "hinweis": "Automatisch erzeugt, Backlog-Punkt 9. Nicht von Hand bearbeiten.",
+ "spiele": [
+  {
+   "datum": "2026-10-02",
+   "anpfiff": "23:00",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "São Paulo FC",
+   "gast": "Santos FC",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "1:1"
+  }
+ ]
+}
