@@ -2163,6 +2163,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401883191",
+   "providerCompetitionSlug": "esp.2",
+   "providerCompetitionName": "Spanish LALIGA 2",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T12:00Z",
+   "heim": "Real Sociedad II",
+   "gast": "Granada",
+   "torHeim": 2,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "20983",
+      "teamDisplayName": "Real Sociedad II",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     },
+     {
+      "teamId": "3747",
+      "teamDisplayName": "Granada",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:0",
+   "fetchedAt": "2026-10-04T14:08:21.788Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401883193",
    "providerCompetitionSlug": "esp.2",
    "providerCompetitionName": "Spanish LALIGA 2",
@@ -2400,6 +2440,46 @@
    },
    "halbzeit": "0:3",
    "fetchedAt": "2026-10-04T02:53:19.260Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401900589",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T02:00Z",
+   "heim": "Belize",
+   "gast": "French Guiana",
+   "torHeim": 0,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2641",
+      "teamDisplayName": "Belize",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "10532",
+      "teamDisplayName": "French Guiana",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-04T14:08:42.088Z"
   },
   {
    "provider": "espn",
@@ -3080,6 +3160,46 @@
    },
    "halbzeit": "0:2",
    "fetchedAt": "2026-10-04T02:53:15.942Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401905202",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T02:00Z",
+   "heim": "United States",
+   "gast": "Mexico",
+   "torHeim": 3,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "660",
+      "teamDisplayName": "United States",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     },
+     {
+      "teamId": "203",
+      "teamDisplayName": "Mexico",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-10-04T14:08:39.448Z"
   },
   {
    "provider": "espn",
@@ -6763,6 +6883,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401925183",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T10:00Z",
+   "heim": "Dinamo Moscow",
+   "gast": "Rodina Moscow",
+   "torHeim": 3,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "596",
+      "teamDisplayName": "Dinamo Moscow",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     },
+     {
+      "teamId": "21927",
+      "teamDisplayName": "Rodina Moscow",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-04T14:09:02.368Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401925184",
    "providerCompetitionSlug": "club.friendly",
    "providerCompetitionName": "Club Friendly",
@@ -9123,6 +9283,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401927901",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T08:00Z",
+   "heim": "CSM Slatina",
+   "gast": "CSU Craiova",
+   "torHeim": 0,
+   "torGast": 4,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "132692",
+      "teamDisplayName": "CSM Slatina",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "8089",
+      "teamDisplayName": "CSU Craiova",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "4"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-04T14:09:01.987Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401927902",
    "providerCompetitionSlug": "club.friendly",
    "providerCompetitionName": "Club Friendly",
@@ -9280,6 +9480,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-10-02T14:47:57.526Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401927909",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T10:00Z",
+   "heim": "FC Kolos Kovalivka",
+   "gast": "FC Zorya Luhansk",
+   "torHeim": 1,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "20742",
+      "teamDisplayName": "FC Kolos Kovalivka",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "17520",
+      "teamDisplayName": "FC Zorya Luhansk",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-04T14:09:02.556Z"
   },
   {
    "provider": "espn",
@@ -9600,6 +9840,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-10-02T02:37:12.768Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401928044",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T09:00Z",
+   "heim": "Dinamo Minsk",
+   "gast": "FK Uni Iks Labs Minsk",
+   "torHeim": 3,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2539",
+      "teamDisplayName": "Dinamo Minsk",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     },
+     {
+      "teamId": "132638",
+      "teamDisplayName": "FK Uni Iks Labs Minsk",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-04T14:09:02.180Z"
   },
   {
    "provider": "espn",
