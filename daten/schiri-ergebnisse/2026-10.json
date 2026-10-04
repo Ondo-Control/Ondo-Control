@@ -12,6 +12,18 @@
    "torGast": 2,
    "quelle": "football-data.org",
    "halbzeit": "1:1"
+  },
+  {
+   "datum": "2026-10-03",
+   "anpfiff": "21:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "CA Mineiro",
+   "gast": "RB Bragantino",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
   }
  ]
 }
