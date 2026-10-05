@@ -1,10 +1,11 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 27.9.2026, Fassung 153, v19.21.3*
+*Die aktuelle Wahrheit. Stand: 6.10.2026, Fassung 154, v19.22.0*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
 > und war rund 200 KB gross. Es ist getrennt worden:
 > - **`STAND.md`** — was heute gilt. Wird beim Start **vollstaendig** gelesen.
+> - **`CHRONIK-2026-10.md`** — Versionsgeschichte ab Oktober 2026. Wird **nur auf Zuruf** gelesen.
 > - **`CHRONIK-2026-09.md`** — Versionsgeschichte vom 2. bis 13. September 2026, neu angelegt
 >   14.9.2026 (bis dahin fuehrte `STAND.md` seinen Versionsverlauf selbst mit, statt ihn laufend
 >   auszulagern). Wird **nur auf Zuruf** gelesen.
@@ -206,8 +207,17 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   den Trainingsraum) — dieser Commit ist der Stand **davor**, falls zurückgesetzt werden muss.
   Einzelheiten Backlog-Punkt 77.
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.21.3** (`beta.html`, geliefert 27.9.2026) — **Backlog-Punkt 91:
-  Reines Diagnosewerkzeug für den sporadischen IndexedDB-Schreibfehler; Ursache weiterhin unbekannt/offen.**
+- **Beta: v19.22.0** (`beta.html`, geliefert 6.10.2026) — **Backlog-Punkt 92,
+  Ausnahmespiele Schritt 1:** Ergebnisprüfung erst ab Anpfiff +3:30 h (ohne Anpfiff:
+  Spieltag 24:00 Berlin +3:30 h). Strukturbeleg: ESPN nur per Positivliste; football-data-
+  Archiv als FINISHED-gefilterter Beleg; OpenLigaDB parkt `verlauf_unklar` ohne KI. Sonst
+  braucht der KI-Weg 3× `normal_belegt`. Datum >1 Tag parkt, exakt 1 Tag nicht. Bestand und
+  `refRoh`/`espnRoh` bleiben erhalten.
+  **„Einsatz zurück":** `einsatz_zurueck` ist manuell bzw. nur bei eindeutig erkanntem
+  Wettschein setzbar, finanziell 0 €, geschlossen, aber ohne Trefferquoten-/Lernwertung.
+  Spielstatus oder Parkung setzen nie einen Wettstatus. **Schritt 2 offen:** spätere Nachprüfung
+  bereits akzeptierter Ergebnisse, einschließlich 14-Tage-Weg.
+  **Verifiziert:** Script-Syntax und t1–t10; `tests/t10_ausnahmen.js` deckt die neuen Regeln ab.
   **Punkt 80 — Antwortkonsistenz:** `vorhersageGehirn()` hat einen optionalen vierten Parameter
   `ohneFruehere`. Nur `antwortkonsistenzLauf()` setzt ihn auf `true`; dadurch bleibt `fruehere`
   leer und der Absatz „Deine letzten eigenen Vorhersagen“ fehlt in allen drei Wiederholungsläufen.
@@ -285,7 +295,7 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   **Kosten (Arbeitsregel G):** kein neuer Dienst und kein zusätzlicher regulärer Netzaufruf;
   die Reparatur spart im belegten Nations-League-Fall Modellaufrufe und verhindert bei
   unbekannten Gemini-Fehlern weitere automatische Versuche.
-- **Sprachschlüssel: 386** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 27.9.2026** — v19.21.3 ergänzt fünf Texte für den temporären Speicher-Diagnoseblock je Sprache). **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
+- **Sprachschlüssel: 392** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 6.10.2026** — v19.22.0 ergänzt sechs Texte je Sprache: Wett-Ausgang/Knopf „Einsatz zurück“ und vier neue Parkgründe). **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
 
 ---
 

@@ -342,7 +342,9 @@ schritt(function(){
     var m=text.match(/\n(S\d+): ([^\[(\n]+)/);
     var id=m?m[1]:'S0', name=m?m[2]:'';
     var tore = name.indexOf('AFC Sunderland')>=0 ? [0,2] : [1,2];
-    var erg=[{ id:id, status:'fertig', format:'2x45', halbzeit:'0:0', heim:tore[0], gast:tore[1],
+    var erg=[{ id:id, status:'fertig', verlaufStatus:'normal_belegt',
+               verlaufGrund:'Testquelle belegt normalen Spielabschluss',
+               format:'2x45', halbzeit:'0:0', heim:tore[0], gast:tore[1],
                verlaengerungGespielt:'nein', torlos:'nein', datum:'12.09.2026', wettbewerb:'Premier League',
                quelle:'https://www.kicker.de/x' }];
     var t=JSON.stringify({ ergebnisse:erg });

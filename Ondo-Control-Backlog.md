@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 27.9.2026, Fassung 153 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 6.10.2026, Fassung 154 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -27,7 +27,7 @@
 - **🔴 Regel 5 abgeloest**, siehe Abschnitt „Regeln fuer dieses Dokument" oben — die neue, uebergreifende Regel (`STAND.md`, Wegweiser) wirkt jetzt am Textkoerper UND an Fassungsabschnitten, nicht mehr nur an Fassungsabschnitten.
 - **Die bisherigen fuenf Fassungsabschnitte (124-128) wortgleich nach `BACKLOG-ARCHIV.md` verschoben** — die letzte Anwendung der alten Regel-5-Mechanik, danach entsteht kein neuer Fassungsabschnitt mehr im Hauptdokument (stehende Regel ab sofort).
 - **Kein Codeaufwand, kein Eingriff an `beta.html`.** `pruefe.py` um Punkt 82 (Aktueller-Stand-Groesse, 80.000-Zeichen-Grenze je Pflichtdokument) erweitert — Einzelheiten im Antworttext.
-- **Beschlossen und nicht gebaut: zwei** — **4, 81** *(unveraendert in der Zahl.)*
+- **Beschlossen und nicht gebaut: drei** — **4, 81, 92** *(Punkt 92 bleibt wegen des separaten Schritt 2 offen.)*
 - **🔴 Nachgefuehrt 23.9.2026 (Fassung 144, Backlog-Punkt 86 gebaut):** Die Zahl bleibt **zwei — 4, 81**. Punkt 86 ist mit dieser Lieferung gebaut und zaehlt daher nicht mit; Punkt 81 bleibt ausdruecklich OFFEN, weil die Bestaetigung an Ondos Geraet aussteht.
 - **🔴 Nachgefuehrt 24.9.2026 (Fassung 145, Nachbesserung zu Punkt 86 gebaut, `beta.html` v19.19.1):** Die Zahl bleibt **zwei — 4, 81**. Die Nachbesserung ist gebaut; ihre Bewaehrung am iPhone steht aus.
 - **🔴 Nachgefuehrt 24.9.2026 (Fassung 146, letzte Nachbesserung zu Punkt 86, `beta.html` v19.19.2):** Die Zahl bleibt **zwei — 4, 81**.
@@ -603,6 +603,21 @@ Drei persistente Themen (Hell als Standard, Dunkel Grün, Dunkel klassisch) scha
 `datenSichern()` behält Datei/Share auch bei Persistenzfehler, behandelt den Sicherungszeitpunkt aber erst nach strengem IndexedDB-Schreiben als dauerhaft. Backup-Fehler erscheinen nicht-blockierend; allgemeine Speicherwarnungen zeigen zusätzlich den echten technischen Fehler. Checkpoint-Barrieren bleiben unverändert hart. v19.21.3 ergänzt ausschließlich technische Diagnose-Metadaten für fehlgeschlagene IndexedDB-Schreibversuche (Quelle/Phase/Request- und Transaktionsfehler/Visibility/unerwartetes DB-Close/Fallback-Ergebnis/Storage-Schätzung) in einem getrennten, auf 20 Einträge begrenzten localStorage-Puffer plus manuellen Text-/Kopier-/Leeren-Block unter Mehr → Daten. **Keine Reparatur und keine Änderung der bestehenden Speicher-, Alarm-, Fallback- oder Barriere-Semantik. Ursache bleibt offen, bis ein weiterer realer Fehler einen Diagnoseeintrag liefert.**
 
 ---
+
+
+**92. Ausnahmespiele: nur belegter Normalfall automatisch bewertbar; Wett-Ausgang „Einsatz zurück"** · *Auftrag Ondo 5.10.2026 · Schritt 1 umgesetzt 6.10.2026* · **Status: 🟡 SCHRITT 1 UMGESETZT — SCHRITT 2 BESCHLOSSEN UND OFFEN**
+
+Schritt 1: Sport-Schranke vor dem Ergebnisweg. Erst nach Fälligkeit; ESPN per Positivliste,
+football-data-Archiv als FINISHED-Beleg, OpenLigaDB parkt `verlauf_unklar` ohne KI; sonst
+3× `normal_belegt`. Datum >1 Tag parkt. „Einsatz zurück" = 0 €, geschlossen, aber ohne
+Trefferquoten-/Lernwertung; Spielstatus setzt nie den Wettstatus.
+
+**Schritt 2 bleibt offen:** spätere Nachprüfung bereits akzeptierter Ergebnisse einschließlich
+14-Tage-Weg. Nicht Teil von Schritt 1: Rollback, mehrere Provider-IDs je Provider,
+Änderungen am ESPN-Sammelskript.
+
+---
+
 
 ## 🟡 Prio 2 — wichtig, aber später
 

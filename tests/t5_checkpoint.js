@@ -73,9 +73,25 @@ function warte(c, feld, msMax){
 function pause(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
 
 /* --- Netz fuer den Vorhersage-Lauf (wie t3) --- */
+/* Deterministische Testuhr: Die alte HH:MM-Addition verlor beim Tageswechsel das Datum und
+   machte die Checkpoint-Tests am Abend faelschlich zu "bereits angepfiffen"-Faellen. */
+var TEST_EPOCH0=Date.parse('2026-09-23T10:00:00Z'); /* 12:00 Europe/Berlin */
+var TEST_WALL0=Date.now();
+function testJetztMs(){ return TEST_EPOCH0+(Date.now()-TEST_WALL0); }
+function testUhr(c){
+  var R=c.Date;
+  function F(a,b,d,h,m,s,ms){
+    if(!(this instanceof F)) return R.apply(null,arguments);
+    if(arguments.length===0) return new R(testJetztMs());
+    if(arguments.length===1) return new R(a);
+    return new R(a,b,d,h,m,s,ms);
+  }
+  F.now=testJetztMs; F.parse=R.parse; F.UTC=R.UTC; F.prototype=R.prototype;
+  c.Date=F;
+}
 function berlinPlus(min){
   var f=new Intl.DateTimeFormat('sv-SE',{ timeZone:'Europe/Berlin', hour:'2-digit', minute:'2-digit', hour12:false });
-  var t=f.format(new Date()).split(':'); var g=Number(t[0])*60+Number(t[1])+min; g=((g%1440)+1440)%1440;
+  var t=f.format(new Date(testJetztMs())).split(':'); var g=Number(t[0])*60+Number(t[1])+min; g=((g%1440)+1440)%1440;
   return ('0'+Math.floor(g/60)).slice(-2)+':'+('0'+(g%60)).slice(-2);
 }
 function netzVorhersage(c, spiele){
@@ -214,6 +230,7 @@ schritt(function(){
   var c=u.neueUmgebung();
   var z=netzVorhersage(c, spiele);
   return c.bereit.then(function(){
+    testUhr(c);
     c.state.geminiKey='AIza-testschluessel-lang-genug-fuer-die-pruefung'; c.state.apiKey='sk-ant-testschluessel';
     c.state.kiProtokoll=[]; c.state.bets=[]; c.state.vorhersageRun=null;
     var sp=speicherSteuern(c);
@@ -254,6 +271,7 @@ schritt(function(){
   var c=u.neueUmgebung();
   var z=netzVorhersage(c, spiele);
   return c.bereit.then(function(){
+    testUhr(c);
     c.state.geminiKey='AIza-testschluessel-lang-genug-fuer-die-pruefung'; c.state.apiKey='sk-ant-testschluessel';
     c.state.kiProtokoll=[]; c.state.bets=[]; c.state.vorhersageRun=null;
     var sp=speicherSteuern(c); sp.defekt=true;

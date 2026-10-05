@@ -35,12 +35,22 @@ function kiLeer(){
   return { candidates:[{ content:{ parts:[{ text:'{"ergebnisse":[]}' }] } }], modelVersion:'gemini-2.5-flash' };
 }
 /* Eine Gemini-Antwort mit echten Ergebnissen im erwarteten JSON-Format. */
+function mitNormalverlauf(ergebnisse){
+  return (ergebnisse||[]).map(function(r){
+    var x=Object.assign({},r);
+    if(x.status==='fertig' && !x.verlaufStatus){
+      x.verlaufStatus='normal_belegt';
+      x.verlaufGrund='Testquelle belegt normalen Spielabschluss';
+    }
+    return x;
+  });
+}
 function kiAntwort(ergebnisse){
-  return { candidates:[{ content:{ parts:[{ text:JSON.stringify({ ergebnisse:ergebnisse }) }] } }],
+  return { candidates:[{ content:{ parts:[{ text:JSON.stringify({ ergebnisse:mitNormalverlauf(ergebnisse) }) }] } }],
            modelVersion:'gemini-2.5-flash' };
 }
 function sonnetAntwort(ergebnisse){
-  return { content:[{ type:'text', text:JSON.stringify({ ergebnisse:ergebnisse }) }], model:'claude-sonnet-5' };
+  return { content:[{ type:'text', text:JSON.stringify({ ergebnisse:mitNormalverlauf(ergebnisse) }) }], model:'claude-sonnet-5' };
 }
 
 /* --- Eine App mit Ondos zehn echten Spielen vom 12.9.2026 im kiProtokoll --- */
@@ -381,7 +391,8 @@ schritt(function(){
   var c=u.neueUmgebung();
   var espnEins={ spiele:[{ heim:'Testheim FC', gast:'Testgast FC', torHeim:2, torGast:1, halbzeit:'1:0',
       status:'FT', datum:'2026-09-12', anpfiff:'18:00', providerCompetitionName:'Testliga',
-      providerEventId:'ESPN-1', verlaengerung:'' }] };
+      providerEventId:'ESPN-1', verlaengerung:'',
+      beleg:{ completed:true, statusTyp:'STATUS_FULL_TIME', competitors:[] } }] };
   var fdEins={ spiele:[{ heim:'Testheim FC', gast:'Testgast FC', torHeim:0, torGast:0, halbzeit:'0:0',
       status:'FT', datum:'2026-09-12', anpfiff:'18:00', wettbewerb:'Testliga',
       providerEventId:'FD-1', verlaengerung:'' }] };

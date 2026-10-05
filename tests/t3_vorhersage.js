@@ -2,12 +2,28 @@
    Unterbrechung, Fortsetzen, Anstoss-Schutz, Parallelitaet, Reihenfolge der Checkpoints. */
 var fs=require('fs'), u=require('./umgebung.js');
 
-/* Zwei Testspiele. Die Anstosszeiten werden je Test aus der AKTUELLEN Berliner Uhrzeit
-   abgeleitet, damit "vor Anpfiff" und "nach Anpfiff" unabhaengig davon stimmen, wann dieser
-   Test laeuft. */
+/* Die Tests brauchen einen deterministischen Zeitpunkt mit genug Resttag. Die bisherige
+   "aktuelle Uhrzeit + 180/240 Minuten"-Konstruktion wickelte nur HH:MM um 24 Stunden, nicht
+   das Datum. Ein Lauf am Abend machte dadurch aus morgen 01:00 faelschlich heute 01:00 und
+   testete den Anstoss-Schutz statt den beabsichtigten Vorhersagepfad. Nur die Testuhr wird
+   fixiert; der App-Code und alle fachlichen Schwellen bleiben unveraendert. */
+var TEST_EPOCH0=Date.parse('2026-09-23T10:00:00Z'); /* 12:00 Europe/Berlin */
+var TEST_WALL0=Date.now();
+function testJetztMs(){ return TEST_EPOCH0+(Date.now()-TEST_WALL0); }
+function testUhr(c){
+  var R=c.Date;
+  function F(a,b,d,h,m,s,ms){
+    if(!(this instanceof F)) return R.apply(null,arguments);
+    if(arguments.length===0) return new R(testJetztMs());
+    if(arguments.length===1) return new R(a);
+    return new R(a,b,d,h,m,s,ms);
+  }
+  F.now=testJetztMs; F.parse=R.parse; F.UTC=R.UTC; F.prototype=R.prototype;
+  c.Date=F;
+}
 function berlinJetzt(){
   var f=new Intl.DateTimeFormat('sv-SE',{ timeZone:'Europe/Berlin', hour:'2-digit', minute:'2-digit', hour12:false });
-  return f.format(new Date());                       /* 'HH:MM' */
+  return f.format(new Date(testJetztMs()));          /* 'HH:MM' */
 }
 function plusMinuten(hhmm, min){
   var t=hhmm.split(':'); var g=Number(t[0])*60+Number(t[1])+min;
@@ -70,6 +86,7 @@ function app(opt, save){
   var c=u.neueUmgebung(save?{save:save}:{});
   netz(c, opt||{});
   return c.bereit.then(function(){
+    testUhr(c);
     c.state.geminiKey='AIza-testschluessel-lang-genug-fuer-die-pruefung';
     c.state.apiKey='sk-ant-testschluessel';
     if(!save){ c.state.kiProtokoll=[]; c.state.bets=[]; c.state.vorhersageRun=null; }
@@ -337,7 +354,7 @@ schritt(function(){
       return app({ spiele:spiele }, gespeichert).then(function(c2){
         /* Fortsetzen NACH dem Anpfiff des ersten Spiels: sein Anstoss wird in die Vergangenheit
            gelegt, der des zweiten bleibt in der Zukunft. */
-        c2.state.vorhersageRun.snapshot[0].anstossMs = Date.now()-60000;
+        c2.state.vorhersageRun.snapshot[0].anstossMs = c2.Date.now()-60000;
         var angepfiffen=c2.state.vorhersageRun.snapshot[0].match;
         c2.vorhersagen(knopf());
         return fertigV(c2).then(function(){
@@ -381,7 +398,7 @@ schritt(function(){
                 sonnetFertig < c2.state.vorhersageRun.snapshot[0].anstossMs);
         return new Promise(function(r){ setTimeout(r, 60); }).then(function(){
         u.pruef('Aufbau stimmt: das Fortsetzen geschieht NACH dem Anpfiff',
-                Date.now() > c2.state.vorhersageRun.snapshot[0].anstossMs);
+                c2.Date.now() > c2.state.vorhersageRun.snapshot[0].anstossMs);
         c2.vorhersagen(knopf());
         return fertigV(c2).then(function(){
           var s=c2.state.kiProtokoll.filter(function(e){ return e.herkunft==='sonnet'; });

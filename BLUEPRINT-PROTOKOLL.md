@@ -642,3 +642,13 @@
 > **Was Fassung 0.150 ändert (27.9.2026):** Reine Synchronisierung nach Arbeitsregel M für die Korrektur von Backlog-Punkt 80 (`beta.html` v19.21.2). Keine neue Architektur- oder Verfassungsregel: Der bestehende Konsistenztest ruft `vorhersageGehirn()` nur in diesem Prüfpfad mit dem neuen optionalen Parameter `ohneFruehere=true` auf, damit der bereits gespeicherte eigene Tipp desselben Spiels nicht als Kontext in die Wiederholung gelangt. Alle übrigen Aufrufer behalten die bisherige Promptbildung. Schwellenwerte, Wiederholungszahl und gemessener Markt bleiben unverändert. Blueprint auf 0.150 gehoben.
 > **Was Fassung 0.151 ändert (27.9.2026):** Reine Synchronisierung nach Arbeitsregel M fuer den Abschluss von Backlog-Punkt 80 — keine neue Architektur- oder Verfassungsregel, nur Archivierung eines am Geraet bewaehrten Punkts. Blueprint auf 0.151 gehoben.
 > **Was Fassung 0.152 ändert (27.9.2026):** Reine Synchronisierung nach Arbeitsregel M für das Diagnosewerkzeug zu Backlog-Punkt 91 (`beta.html` v19.21.3). Keine neue Architektur- oder Verfassungsregel: Die bestehende Speicher-, Fallback-, Alarm- und Checkpoint-Barriere bleibt fachlich unverändert; hinzu kommt nur ein getrennter technischer Diagnosepuffer für fehlgeschlagene IndexedDB-Schreibversuche und eine manuelle Anzeige unter Mehr → Daten. Die Ursache des realen iPhone/Safari-Fehlers bleibt unbekannt/offen. Blueprint auf 0.152 gehoben.
+
+
+> **Was Fassung 0.153 ändert (6.10.2026):** Reine Synchronisierung nach Arbeitsregel M für
+> Backlog-Punkt 92, Ausnahmespiele Schritt 1 (`beta.html` v19.22.0). Keine neue Verfassungs-
+> oder allgemeine Arbeitsregel: Der Ergebnisweg erhält eine positive Sport-Schranke
+> (Fälligkeit; ESPN nur per Positivliste; football-data-Archiv als FINISHED-gefilterter Beleg;
+> OpenLigaDB allein parkt `verlauf_unklar`; sonst drei KI-Verlaufbelege; Datum >1 Tag parkt).
+> Der manuelle Wettstatus erhält `einsatz_zurueck` als finanziell geschlossenen, statistisch
+> nicht bewerteten Ausgang. Bestand bleibt unangetastet; Schritt 2 bleibt offen. Blueprint auf
+> 0.153 gehoben.

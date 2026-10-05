@@ -63,7 +63,7 @@ def lies(name):
 AKTIV = {n: lies(n) for n in ('STAND.md', 'Ondo-Control-Backlog.md',
                               'Blueprint.md', 'Ondo-Core-Architektur.md')}
 # Archive — nur auf Zuruf, aber hier mitgeprueft
-ARCHIV = {n: lies(n) for n in ('CHRONIK-2026-08.md', 'CHRONIK-2026-07.md', 'CHRONIK-2026-09.md',
+ARCHIV = {n: lies(n) for n in ('CHRONIK-2026-10.md', 'CHRONIK-2026-09.md', 'CHRONIK-2026-08.md', 'CHRONIK-2026-07.md',
                                'BACKLOG-ARCHIV.md', 'BLUEPRINT-PROTOKOLL.md',
                                'ONDO-CORE-PROTOKOLL.md')}
 S  = AKTIV['STAND.md']
@@ -104,8 +104,8 @@ if _fs_m and _fb_m and _fp_m:
 
 print("2) Erwaehnte Dateien existieren wirklich")
 PROJEKTDATEIEN = {'STAND.md','Ondo-Control-Backlog.md','Blueprint.md',
-                  'Ondo-Core-Architektur.md','CHRONIK-2026-08.md','CHRONIK-2026-07.md',
-                  'CHRONIK-2026-09.md','BACKLOG-ARCHIV.md','BLUEPRINT-PROTOKOLL.md',
+                  'Ondo-Core-Architektur.md','CHRONIK-2026-10.md','CHRONIK-2026-09.md',
+                  'CHRONIK-2026-08.md','CHRONIK-2026-07.md','BACKLOG-ARCHIV.md','BLUEPRINT-PROTOKOLL.md',
                   'ONDO-CORE-PROTOKOLL.md','pruefe.py'}
 _dateien = set(re.findall(r'`([A-Za-z0-9_\-]+\.(?:md|py|html|json))`', ALLE)) & PROJEKTDATEIEN
 # 16.8., Chat 18: pruefe.py liegt auf Ondos Tablet ABSICHTLICH ausserhalb des

@@ -153,7 +153,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.21.3';
+var CODE_VERSION = 'v19.22.0';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -187,6 +187,8 @@ function checkUpdate(){
    hinter vorhersageEinGehirn - 358 -> 359.
    v19.21.0 (Backlog-Punkt 90, Design): 19 reine Darstellungs-/Themen-Schluessel fuer
    Start-Dashboard, Drei-Themen-Auswahl und Abschnittsueberschriften - 359 -> 378.
+   v19.22.0 (Backlog-Punkt 92): sechs neue Texte je Sprache - "Einsatz zurueck" als
+   Status/Knopf plus vier neue Parkgruende; aktueller Gesamtstand 392.
    WICHTIG und hier gelernt: INNERHALB dieses Blocks darf kein Kommentar zwischen zwei
    Schluesseln stehen. pruefe.py (Punkt 60) zaehlt die Schluessel ueber das Muster
    ",name:" - eine Kommentarzeile dazwischen verdeckt den DARAUFFOLGENDEN Schluessel,
@@ -264,12 +266,12 @@ var I18N = {
   beobZuvJa:'Zuversicht trägt: sichere Aussagen (ab 70 %) treffen zu {a} % zu, unsichere nur zu {b} %.',
   beobZuvNein:'Zuversicht trägt NICHT: sichere Aussagen (ab 70 %) treffen zu {a} % zu, unsichere zu {b} % — die Prozentzahl sagt hier nichts.',
   beobWettenT:'Wetten aus einer Vorhersage gegen von Hand gesetzte',
-  beobWettenKi:'Aus einer Vorhersage: {a} abgerechnet, {b} % getroffen, {c}',
-  beobWettenHand:'Von Hand: {a} abgerechnet, {b} % getroffen, {c}',
+  beobWettenKi:'Aus einer Vorhersage: {a} bewertet, {b} % getroffen, {c}',
+  beobWettenHand:'Von Hand: {a} bewertet, {b} % getroffen, {c}',
   beobWettenVerwaist:'{a} Wetten zeigen auf einen Eintrag, den es nicht mehr gibt — sie zählen in keiner der beiden Gruppen mit.',
   beobGrundlage:'Ab 20 bewerteten Aussagen gilt eine Beobachtung als belegt, ab 10 als Hinweis. Darunter wird nichts behauptet.',
-  noBets:'Noch keine Wetten erfasst.', won:'GEWONNEN', lost:'VERLOREN', openB:'OFFEN',
-  bWon:'✓ Gewonnen', bLost:'✗ Verloren', reset:'Zurücksetzen', del:'Löschen',
+  noBets:'Noch keine Wetten erfasst.', won:'GEWONNEN', lost:'VERLOREN', openB:'OFFEN', refund:'EINSATZ ZURÜCK',
+  bWon:'✓ Gewonnen', bLost:'✗ Verloren', reset:'Zurücksetzen', del:'Löschen', bRefund:'↩ Einsatz zurück',
   aiRight:'KI richtig', aiWrong:'KI falsch', ai:'KI',
   photoT:'📷 Schein fotografieren', photoD:'Foto/Screenshot deines Wettscheins — die KI liest ihn und trägt alles ein. Kostet wenige Cent.',
   photoBtn:'📷 Foto wählen / aufnehmen', photoRead:'📷 Lese Schein … (20-40 Sek.)', photoOk:'Wette(n) übernommen.',
@@ -356,7 +358,7 @@ var I18N = {
   messBlock:'⛔ NICHT AUSGEGEBEN — die Prüfung hat ein mögliches Schlüsselfeld gefunden:',
   korrT:'Einmalige Berichtigung — Punkt F', korrD:'Berichtigt die vor dem 9.8.2026 falsch bewerteten "beide treffen"-Aussagen von Sonnet. Erst pruefen, dann anwenden. Laeuft nur einmal.', korrPruef:'Nur pruefen (aendert nichts)', korrGo:'Jetzt berichtigen', korrDone:'Bereits ausgefuehrt am {d}. Der Knopf laeuft kein zweites Mal.', korrNone:'Keine betroffenen Eintraege gefunden.', korrAsk:'{a} Eintraege werden berichtigt ({b} Etikett, {c} Prozentzahl). Fortfahren?', korrOk:'Berichtigt: {a} Eintraege.',
   parkBtn:'Nicht prüfen', unparkBtn:'Wieder prüfen', parked:'GEPARKT',
-  parkGrundInstabil:'Neubewertung ausstehend (Schiedsrichter instabil)',
+  parkGrundInstabil:'Neubewertung ausstehend (Schiedsrichter instabil)', parkGrundEspnStatus:'ESPN-Status belegt keinen normalen Spielabschluss', parkGrundVerlaufAbweichung:'Abweichender Spielverlauf belegt', parkGrundVerlaufUnklar:'Normaler Spielverlauf nicht positiv belegt', parkGrundDatumAbweichung:'Gefundenes Spieldatum weicht um mehr als einen Tag ab',
   parkedD:'Geparkte Vorhersagen werden beim Ergebnis-Prüfen übersprungen. Die Daten bleiben vollständig erhalten, jederzeit umkehrbar.',
   parkedCount:'{a} geparkt', dateSwap:'⚠ Zeitraum war verkehrt herum — Datumsfelder getauscht.',
   pruefExpT:'📄 Vorschläge als Text', pruefExpD:'Gibt die gefundenen Endstände als Text aus — zum Kopieren in einen Chat, damit sie VOR dem Übernehmen gegengeprüft werden können. Ein falsch übernommener Endstand lässt sich nicht einfach zurücknehmen.'
@@ -432,12 +434,12 @@ var I18N = {
   beobZuvJa:'L’assurance compte : les affirmations sûres (à partir de 70 %) se réalisent à {a} %, les incertaines seulement à {b} %.',
   beobZuvNein:'L’assurance ne compte PAS : les affirmations sûres (à partir de 70 %) se réalisent à {a} %, les incertaines à {b} % — le pourcentage ne dit rien ici.',
   beobWettenT:'Paris issus d’une prédiction contre paris saisis à la main',
-  beobWettenKi:'Issus d’une prédiction : {a} réglés, {b} % réussis, {c}',
-  beobWettenHand:'À la main : {a} réglés, {b} % réussis, {c}',
+  beobWettenKi:'Issus d’une prédiction : {a} évalués, {b} % réussis, {c}',
+  beobWettenHand:'À la main : {a} évalués, {b} % réussis, {c}',
   beobWettenVerwaist:'{a} paris renvoient à une entrée qui n’existe plus — ils ne comptent dans aucun des deux groupes.',
   beobGrundlage:'À partir de 20 affirmations évaluées, une observation est dite établie ; à partir de 10, c’est un indice. En dessous, rien n’est affirmé.',
-  noBets:'Aucun pari enregistré.', won:'GAGNÉ', lost:'PERDU', openB:'OUVERT',
-  bWon:'✓ Gagné', bLost:'✗ Perdu', reset:'Réinitialiser', del:'Supprimer',
+  noBets:'Aucun pari enregistré.', won:'GAGNÉ', lost:'PERDU', openB:'OUVERT', refund:'MISE REMBOURSÉE',
+  bWon:'✓ Gagné', bLost:'✗ Perdu', reset:'Réinitialiser', del:'Supprimer', bRefund:'↩ Mise remboursée',
   aiRight:'IA correcte', aiWrong:'IA fausse', ai:'IA',
   photoT:'📷 Photographier un ticket', photoD:'Photo/capture de ton ticket — l’IA le lit et enregistre tout. Quelques centimes.',
   photoBtn:'📷 Choisir / prendre une photo', photoRead:'📷 Lecture du ticket … (20-40 s)', photoOk:'pari(s) enregistré(s).',
@@ -524,7 +526,7 @@ var I18N = {
   messBlock:'⛔ RIEN SORTI — la vérification a trouvé un champ de clé possible :',
   korrT:'Correction unique — point F', korrD:'Corrige les affirmations "les deux marquent" de Sonnet mal évaluées avant le 9.8.2026. Vérifier d\'abord, puis appliquer. Ne s\'exécute qu\'une fois.', korrPruef:'Vérifier seulement (ne modifie rien)', korrGo:'Corriger maintenant', korrDone:'Déjà exécuté le {d}. Le bouton ne s\'exécute pas une deuxième fois.', korrNone:'Aucune entrée concernée trouvée.', korrAsk:'{a} entrées seront corrigées ({b} étiquette, {c} pourcentage). Continuer ?', korrOk:'Corrigé : {a} entrées.',
   parkBtn:'Ne pas vérifier', unparkBtn:'Vérifier à nouveau', parked:'EN PAUSE',
-  parkGrundInstabil:'Réévaluation en attente (arbitre instable)',
+  parkGrundInstabil:'Réévaluation en attente (arbitre instable)', parkGrundEspnStatus:'Le statut ESPN ne prouve pas une fin de match normale', parkGrundVerlaufAbweichung:'Déroulement de match anormal confirmé', parkGrundVerlaufUnklar:'Déroulement normal du match non positivement établi', parkGrundDatumAbweichung:'La date trouvée diffère de plus d’un jour',
   parkedD:'Les prédictions en pause sont ignorées lors de la vérification. Les données restent intactes, réversible à tout moment.',
   parkedCount:'{a} en pause', dateSwap:'⚠ Période inversée — les dates ont été échangées.',
   pruefExpT:'📄 Propositions en texte', pruefExpD:'Sort les scores trouvés en texte brut — à copier dans un chat, afin de les vérifier AVANT de les appliquer. Un score appliqué à tort ne se retire pas facilement.'
@@ -600,12 +602,12 @@ var I18N = {
   beobZuvJa:'Confidence holds: confident statements (70 % and up) come true {a} % of the time, uncertain ones only {b} %.',
   beobZuvNein:'Confidence does NOT hold: confident statements (70 % and up) come true {a} % of the time, uncertain ones {b} % — the percentage says nothing here.',
   beobWettenT:'Bets from a prediction versus bets entered by hand',
-  beobWettenKi:'From a prediction: {a} settled, {b} % hit, {c}',
-  beobWettenHand:'By hand: {a} settled, {b} % hit, {c}',
+  beobWettenKi:'From a prediction: {a} rated, {b} % hit, {c}',
+  beobWettenHand:'By hand: {a} rated, {b} % hit, {c}',
   beobWettenVerwaist:'{a} bets point to an entry that no longer exists — they count in neither group.',
   beobGrundlage:'From 20 rated statements an observation counts as established, from 10 as an indication. Below that, nothing is claimed.',
-  noBets:'No bets recorded yet.', won:'WON', lost:'LOST', openB:'OPEN',
-  bWon:'✓ Won', bLost:'✗ Lost', reset:'Reset', del:'Delete',
+  noBets:'No bets recorded yet.', won:'WON', lost:'LOST', openB:'OPEN', refund:'STAKE RETURNED',
+  bWon:'✓ Won', bLost:'✗ Lost', reset:'Reset', del:'Delete', bRefund:'↩ Stake returned',
   aiRight:'AI right', aiWrong:'AI wrong', ai:'AI',
   photoT:'📷 Scan a bet slip', photoD:'Photo/screenshot of your slip — the AI reads it and records everything. Costs a few cents.',
   photoBtn:'📷 Choose / take photo', photoRead:'📷 Reading slip … (20-40 s)', photoOk:'bet(s) recorded.',
@@ -692,7 +694,7 @@ var I18N = {
   messBlock:'⛔ NOTHING WRITTEN — the check found a possible key field:',
   korrT:'One-time correction — point F', korrD:'Corrects Sonnet\'s wrongly evaluated "both teams to score" statements from before 9.8.2026. Check first, then apply. Runs only once.', korrPruef:'Check only (changes nothing)', korrGo:'Correct now', korrDone:'Already run on {d}. The button does not run a second time.', korrNone:'No affected entries found.', korrAsk:'{a} entries will be corrected ({b} label, {c} percentage). Continue?', korrOk:'Corrected: {a} entries.',
   parkBtn:'Do not check', unparkBtn:'Check again', parked:'PARKED',
-  parkGrundInstabil:'Re-evaluation pending (referee unstable)',
+  parkGrundInstabil:'Re-evaluation pending (referee unstable)', parkGrundEspnStatus:'ESPN status does not prove a normal match completion', parkGrundVerlaufAbweichung:'Abnormal match progression evidenced', parkGrundVerlaufUnklar:'Normal match progression not positively evidenced', parkGrundDatumAbweichung:'Found match date differs by more than one day',
   parkedD:'Parked predictions are skipped when checking results. The data stays fully intact and this is reversible at any time.',
   parkedCount:'{a} parked', dateSwap:'⚠ Date range was reversed — the two dates have been swapped.',
   pruefExpT:'📄 Proposals as text', pruefExpD:'Outputs the found final scores as plain text — to paste into a chat so they can be checked BEFORE applying. A wrongly applied score cannot easily be undone.'
@@ -1923,6 +1925,7 @@ function fmt(n){ return (n>=0?"+":"")+eur(n); }
 function profit(b){
   if(b.status==="gewonnen") return b.einsatz*(b.quote-1);
   if(b.status==="verloren") return -b.einsatz;
+  if(b.status==="einsatz_zurueck") return 0;
   return 0;
 }
 function heuteStr(){
@@ -2007,7 +2010,11 @@ function logTextBauen(){
       (e.bttsWort?(' · Wort '+e.bttsWort):'')+
       (e.geparkt?' [geparkt'+
         (e.parkGrund==='unstable_ref'?(': '+t('parkGrundInstabil')):'')+
-        (e.parkGrund==='sonderformat'?(': '+t('parkGrundFormat')+(e.parkFormat?(' '+e.parkFormat):'')):'')+']':'')+
+        (e.parkGrund==='sonderformat'?(': '+t('parkGrundFormat')+(e.parkFormat?(' '+e.parkFormat):'')):'')+
+        (e.parkGrund==='espn_status'?(': '+t('parkGrundEspnStatus')):'')+
+        (e.parkGrund==='verlauf_abweichung'?(': '+t('parkGrundVerlaufAbweichung')):'')+
+        (e.parkGrund==='verlauf_unklar'?(': '+t('parkGrundVerlaufUnklar')):'')+
+        (e.parkGrund==='datum_abweichung'?(': '+t('parkGrundDatumAbweichung')):'')+']':'')+
       /* v19.8.12 (Backlog-Punkt 68): Die Markierung gehoert ausdruecklich auch in den
          Log-Text-Export, nicht nur in die Karte — sonst waere sie im Chat nicht auswertbar. */
       (e.refEinigkeit==='3verschieden' ? ' [3 Laeufe, 3 verschiedene Werte]' :
@@ -2593,15 +2600,16 @@ function marktUrteil(code, h, g){
 /* ================= BERECHNUNG ================= */
 function calc(){
   var done = state.bets.filter(function(b){return b.status!=="offen";});
-  var wins = done.filter(function(b){return b.status==="gewonnen";}).length;
+  var rated = state.bets.filter(function(b){return b.status==="gewonnen" || b.status==="verloren";});
+  var wins = rated.filter(function(b){return b.status==="gewonnen";}).length;
   var wettSaldo = done.reduce(function(s,b){return s+profit(b);},0);
   var offen = state.bets.filter(function(b){return b.status==="offen";})
                         .reduce(function(s,b){return s+b.einsatz;},0);
   var gesamt = wettSaldo + state.startSaldo;
   return {
-    done:done.length, wins:wins, wettSaldo:wettSaldo, offen:offen,
+    done:done.length, rated:rated.length, wins:wins, wettSaldo:wettSaldo, offen:offen,
     gesamt:gesamt, tipico: state.eingezahlt + gesamt - offen - (state.ausgezahlt||0),
-    quoteIch: done.length? Math.round(wins/done.length*100):null
+    quoteIch: rated.length? Math.round(wins/rated.length*100):null
   };
 }
 /* Trefferquote: ab v19 Nebenkennzahl (Ergaenzung von ChatGPT), zaehlt nur v19-Aussagen */
@@ -2895,7 +2903,7 @@ function lernAbweichung(punkte){
 function lernWetten(){
   var ausKi={ n:0, wins:0, saldo:0 }, vonHand={ n:0, wins:0, saldo:0 }, verwaist=0;
   (state.bets||[]).forEach(function(b){
-    if(b.status==='offen') return;
+    if(b.status!=='gewonnen' && b.status!=='verloren') return;
     var ids=betKiIds(b);
     var treffer = ids.filter(function(id){ return (state.kiProtokoll||[]).some(function(x){ return x.id===id; }); });
     if(ids.length && !treffer.length){ verwaist++; return; }
@@ -3914,6 +3922,11 @@ function espnSlugFuer(wettbewerb){
 /* Reine Funktion: liest einen linescores-Eintrag (displayValue, String) als Zahl, 0 wenn nicht
    vorhanden. NIE ueber Index 1 hinaus fuer den 90-Minuten-Stand aufgerufen - siehe Kopf-Kommentar
    oben (Elfmeter-/Verlaengerungs-Sicherheit). */
+var ESPN_NORMAL_STATUS = { STATUS_FULL_TIME:1, STATUS_FINAL_AET:1, STATUS_FINAL_PEN:1 };
+function espnStatusNormal(completed, statusName){
+  return completed===true && !!ESPN_NORMAL_STATUS[String(statusName||'')];
+}
+
 function espnLinescoreZahl(ls, i){
   var e=(ls||[])[i];
   var n=e ? Number(e.displayValue) : NaN;
@@ -3956,7 +3969,7 @@ function espnLauf(ziel, cache){
       var kandidaten=[], schonGefunden={};
       events.forEach(function(ev){
         var comp=(ev.competitions||[])[0]; if(!comp) return;
-        if(!comp.status || !comp.status.type || comp.status.type.completed!==true) return;
+        var statusType=(comp.status&&comp.status.type)||{};
         var cs=comp.competitors||[];
         var heimC=cs.filter(function(c){return c.homeAway==='home';})[0];
         var gastC=cs.filter(function(c){return c.homeAway==='away';})[0];
@@ -3968,16 +3981,33 @@ function espnLauf(ziel, cache){
           var t=teamsAus(p.match), nTH=normName(t.heim), nTG=normName(t.gast);
           var passtHeim = nTH && nH && (nH.indexOf(nTH)>=0 || nTH.indexOf(nH)>=0);
           var passtGast = nTG && nG && (nG.indexOf(nTG)>=0 || nTG.indexOf(nG)>=0);
-          if(passtHeim && passtGast){ schonGefunden[p.id]=true; kandidaten.push({ id:ev.id, p:p, ev:ev }); }
+          if(passtHeim && passtGast){
+            schonGefunden[p.id]=true;
+            kandidaten.push({ id:ev.id, p:p, ev:ev,
+              completed:statusType.completed===true, statusName:String(statusType.name||'') });
+          }
         });
       });
       if(!kandidaten.length) return [];
       return Promise.all(kandidaten.map(function(kd){
+        if(!espnStatusNormal(kd.completed,kd.statusName)){
+          return Promise.resolve({ id:kd.p.id, status:'espn_status', espnStatus:kd.statusName,
+            espnCompleted:kd.completed, datum:kd.p.datum, wettbewerb:kd.p.wettbewerb||'',
+            quelle:'https://www.espn.com/soccer/match/_/gameId/'+kd.id,
+            _espnRoh:{ scoreboardEvent:kd.ev, summary:null } });
+        }
         return fetch('https://site.web.api.espn.com/apis/site/v2/sports/soccer/'+slug+'/summary?event='+kd.id)
           .then(function(res){ return res.ok ? res.json() : null; })
           .then(function(sum){
             var comp = sum && sum.header && (sum.header.competitions||[])[0];
             if(!comp) return null;
+            var sumStatus=(comp.status&&comp.status.type)||{};
+            if(!espnStatusNormal(sumStatus.completed===true,String(sumStatus.name||''))){
+              return { id:kd.p.id, status:'espn_status', espnStatus:String(sumStatus.name||''),
+                espnCompleted:sumStatus.completed===true, datum:kd.p.datum, wettbewerb:kd.p.wettbewerb||'',
+                quelle:'https://www.espn.com/soccer/match/_/gameId/'+kd.id,
+                _espnRoh:{ scoreboardEvent:kd.ev, summary:sum } };
+            }
             var cs=comp.competitors||[];
             var heimC=cs.filter(function(c){return c.homeAway==='home';})[0];
             var gastC=cs.filter(function(c){return c.homeAway==='away';})[0];
@@ -4125,6 +4155,12 @@ function espnArchivLesen(ziel, cache){
     var fixtures=[].concat.apply([], listen);
     var ergebnisse = strukturAbgleich(ziel, fixtures, '');
     ergebnisse.forEach(function(r){
+      var belegStatus=(r._fixture&&r._fixture.beleg)||{};
+      if(!espnStatusNormal(belegStatus.completed===true,String(belegStatus.statusTyp||''))){
+        r.status='espn_status';
+        r.espnStatus=String(belegStatus.statusTyp||'');
+        r.espnCompleted=belegStatus.completed===true;
+      }
       var p=null;
       for(var i=0;i<ziel.length;i++){ if(ziel[i].id===r.id){ p=ziel[i]; break; } }
       var iso = p ? datumIso(p.datum) : '';
@@ -4231,7 +4267,10 @@ function openligaErgebnisAus(m){
 /* Schritt 2+3, Kaskade zu espnLauf(): disjunkte Wettbewerbe (openligaShortcutFuer() deckt keine
    der ESPN_SLUG_REGELN-Wettbewerbe ab und umgekehrt), deshalb parallel statt nacheinander
    aufgerufen - kein Spiel kann beide Quellen gleichzeitig treffen. cache-Parameter wie bei
-   espnLauf(): ueber mehrere Runden desselben Prueflaufs weitergereicht (Schritt 6). */
+   espnLauf(): ueber mehrere Runden desselben Prueflaufs weitergereicht (Schritt 6).
+   v19.22.0: OpenLigaDB trennt mit matchIsFinished den Abschluss nicht von allen relevanten
+   Ausnahmearten. Ein Treffer bleibt deshalb Evidence, gibt aber NICHT frei: status
+   verlauf_unklar -> Parkung ohne KI-Fallback. */
 function openligaLauf(ziel, cache){
   if(!(ziel&&ziel.length)) return Promise.resolve([]);
   cache = cache || {};
@@ -4275,7 +4314,7 @@ function openligaLauf(ziel, cache){
         if(!fund) return;
         var erg=openligaErgebnisAus(fund);
         if(!erg) return;
-        treffer.push({ id:p.id, status:'fertig', heim:erg.heim, gast:erg.gast, datum:p.datum,
+        treffer.push({ id:p.id, status:'verlauf_unklar', heim:erg.heim, gast:erg.gast, datum:p.datum,
           wettbewerb:p.wettbewerb||'', quelle:'https://www.openligadb.de/',
           verlaengerungGespielt: erg.verlaengerung?'ja':'nein', verlaengerung:erg.verlaengerung,
           halbzeit:erg.halbzeit, torlos:(erg.heim===0&&erg.gast===0)?'bestaetigt':'nein' });
@@ -4638,6 +4677,26 @@ function fxBerlinZuMs(datumIso, hhmm){
   var gezeigt=Date.parse(b.datum+'T'+b.zeit+':00Z');
   if(isNaN(gezeigt)) return null;
   return roh-(gezeigt-roh);
+}
+/* v19.22.0: Ausnahmespiele Schritt 1 — Ergebnispruefung erst 3:30 h nach Anpfiff.
+   Ohne Anpfiff gilt Spieltag 24:00 Uhr Europe/Berlin plus 3:30 h. */
+function pruefFaelligAbMs(datum, anpfiff){
+  var iso=datumIso(datum||'');
+  if(!iso) return null;
+  var u=String(anpfiff||'').match(/(\d{1,2})[:.](\d{2})/);
+  if(u){
+    var start=fxBerlinZuMs(iso,('0'+u[1]).slice(-2)+':'+u[2]);
+    return start===null ? null : start+3.5*3600000;
+  }
+  var m=iso.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if(!m) return null;
+  var folge=new Date(Date.UTC(Number(m[1]),Number(m[2])-1,Number(m[3])+1)).toISOString().slice(0,10);
+  var mitternacht=fxBerlinZuMs(folge,'00:00');
+  return mitternacht===null ? null : mitternacht+3.5*3600000;
+}
+function pruefIstFaellig(datum, anpfiff, jetztMs){
+  var ab=pruefFaelligAbMs(datum,anpfiff);
+  return ab!==null && Number(jetztMs===undefined?Date.now():jetztMs)>=ab;
 }
 /* Heutiges Datum in Europe/Berlin als ISO und in der im Projekt ueblichen Schreibweise. */
 function fxHeuteBerlin(){
@@ -5424,6 +5483,9 @@ function antwortkonsistenzBlock(){
 }
 
 /* ================= SCHEIN-FOTO ================= */
+function wettStatusNormalisieren(status){
+  return (status==='gewonnen'||status==='verloren'||status==='einsatz_zurueck') ? status : 'offen';
+}
 function fotoLesen(input){
   if(!input.files || !input.files[0]) return;
   if(!hatGemini() && !hatSonnet()){
@@ -5442,7 +5504,7 @@ function fotoLesen(input){
       var cv=document.createElement('canvas'); cv.width=w; cv.height=h;
       cv.getContext('2d').drawImage(img,0,0,w,h);
       var b64=cv.toDataURL('image/jpeg',0.8).split(',')[1];
-      var fotoPrompt='Das ist ein Foto eines Wettscheins (z.B. Tipico). Lies ihn exakt. Bei einer Kombi: EIN Eintrag, Gesamtquote = Moeglicher Gewinn geteilt durch Einsatz (2 Dezimalen). Bei Einzelwetten: ein Eintrag pro Wette. Status: VERLOREN -> verloren, GEWONNEN -> gewonnen, sonst offen. NUR kompaktes JSON: {"wetten":[{"match":"...","tipp":"...","quote":2.05,"einsatz":7,"status":"offen"}]}';
+      var fotoPrompt='Das ist ein Foto eines Wettscheins (z.B. Tipico). Lies ihn exakt. Bei einer Kombi: EIN Eintrag, Gesamtquote = Moeglicher Gewinn geteilt durch Einsatz (2 Dezimalen). Bei Einzelwetten: ein Eintrag pro Wette. Status: VERLOREN -> verloren, GEWONNEN -> gewonnen. NUR wenn der Schein eine VOLLSTAENDIGE Rueckzahlung/Annullierung des Einsatzes eindeutig zeigt -> einsatz_zurueck. Sonst offen. NUR kompaktes JSON: {"wetten":[{"match":"...","tipp":"...","quote":2.05,"einsatz":7,"status":"offen"}]}';
       var fotoCall = hatGemini()
         ? geminiCall({ prompt: fotoPrompt, imageB64: b64 })
         : apiCall({model:'claude-sonnet-4-6',max_tokens:800,
@@ -5464,7 +5526,7 @@ function fotoLesen(input){
             tipp:String(w.tipp||''),
             quote:Number(w.quote)||0,
             einsatz:Number(w.einsatz)||0,
-            status:(w.status==='gewonnen'||w.status==='verloren')?w.status:'offen',
+            status:wettStatusNormalisieren(w.status),
             claudeRichtig:null
           });
           n++;
@@ -5748,12 +5810,18 @@ function ergebnissePruefen(btn){
         anpfiff:e.anpfiff||'', wettbewerb:e.wettbewerb||'', eintraege:[], zustand:'offen', gefragt:false };
       posten.push(spiele[k]);
     }
+    if(!spiele[k].anpfiff && e.anpfiff) spiele[k].anpfiff=e.anpfiff;
     spiele[k].eintraege.push(e.id);
   });
   state.bets.filter(function(b){return b.status==='offen';}).forEach(function(b){
     posten.push({ id:'B'+b.id, art:'bet', betId:b.id, match:b.match, datum:b.datum,
-      tipp:b.tipp||'', zustand:'offen', gefragt:false });
+      anpfiff:b.anpfiff||'', tipp:b.tipp||'', zustand:'offen', gefragt:false });
   });
+
+  /* v19.22.0, Ausnahmespiele Schritt 1: Vor der Faelligkeit keinerlei Ergebnisabruf.
+     Bereits bewertete/geparkte KI-Eintraege sind schon im offeneP-Filter ausgeschlossen.
+     Der Wett-Ausgang bleibt davon getrennt und wird nie aus dem Spielergebnis gesetzt. */
+  posten = posten.filter(function(p){ return pruefIstFaellig(p.datum,p.anpfiff); });
 
   /* 🔴 STABILE SPIELIDENTITAET je Posten (Abschnitt 8) und der persistente Jobzustand
      (Abschnitt 5). Zwei Wirkungen, beide von Ondo ausdruecklich verlangt:
@@ -5893,12 +5961,21 @@ function ergebnissePruefen(btn){
         if(p.eintraege.indexOf(e.id)<0) return;
         if(!e.refRoh) e.refRoh=[];
         var zeile={ datum:heuteStr(), text:rohText, modell:modellGenutzt };
+        if(String(modellGenutzt||'')==='openliga' && r.quelle) zeile.quelle=String(r.quelle);
         e.refRoh.push(zeile);
         rohZeilen.push(zeile);
       });
     }
     if(!p.laeufe) p.laeufe=[];
     var status=String(r.status||'').toLowerCase();
+    if(status==='espn_status'){
+      p.laeufe.push({ ok:false, grund:'espn_status',
+        text:'ESPN '+String(r.espnStatus||'?')+' (completed='+(r.espnCompleted===true?'true':'false')+')',
+        heim:null, gast:null, halbzeit:'', verl:'', host:quellHost(String(r.quelle||'')),
+        quelleSchwach:'', sonderformat:'', modell:modellGenutzt,
+        espnStatus:String(r.espnStatus||''), espnCompleted:r.espnCompleted===true });
+      return;
+    }
     if(status==='laeuft'){
       /* Ein regulaeres Spiel ist rund 2 Stunden nach Anpfiff vorbei. Laeuft Verlaengerung
          oder Elfmeterschiessen, steht der Stand nach 90 Minuten laengst fest — auch dann
@@ -5918,6 +5995,27 @@ function ergebnissePruefen(btn){
     pr.gefWb=String(r.wettbewerb||'');
     pr.rohText=rohText;
     pr.modell=modellGenutzt;
+    if(status==='verlauf_unklar'){
+      pr.ok=false;
+      pr.grund='verlauf_unklar';
+      pr.text='Normaler Spielverlauf nicht positiv belegt';
+      rohZeilen.forEach(function(z){
+        z.verlaufStatus='unklar';
+        z.verlaufGrund='Normaler Spielverlauf nicht positiv belegt';
+      });
+    }
+    if(ergebnisQuelleAus(modellGenutzt)==='ki'){
+      var verlauf=String(r.verlaufStatus||'').trim();
+      if(['normal_belegt','abweichung_belegt','unklar'].indexOf(verlauf)<0) verlauf='unklar';
+      var verlaufGrund=String(r.verlaufGrund||'').trim();
+      if(verlauf==='normal_belegt' && !urlOk(quelle)){
+        verlauf='unklar';
+        if(!verlaufGrund) verlaufGrund='kein belastbarer Quellenbeleg';
+      }
+      pr.verlaufStatus=verlauf;
+      pr.verlaufGrund=verlaufGrund;
+      rohZeilen.forEach(function(z){ z.verlaufStatus=verlauf; z.verlaufGrund=verlaufGrund; });
+    }
     /* v19.8.9 (Nachfrage zu Punkt 64, Teil 2), unveraendert in der Sache: Hat der Lauf Ziffern
        genannt, wird der geparste Stand am refRoh-Eintrag DIESES Laufs vermerkt — auch wenn er
        an einer festen Pruefung gescheitert ist. Nur so bleibt der Widerspruch fuer
@@ -5962,12 +6060,44 @@ function ergebnissePruefen(btn){
         art:p.art, eintraege:p.eintraege||null, betId:p.betId||null, parkGrund:'sonderformat' });
       return 1;
     }
+    var espnAbweichung=laeufe.filter(function(x){ return x.grund==='espn_status'; })[0];
+    if(espnAbweichung){
+      parkeEintraege(p,'espn_status','','');
+      p.zustand='geparkt'; p.parkGrund='espn_status'; p.parkInfo=espnAbweichung.espnStatus||'';
+      jobSetzen(p.fixtureId,{ zustand:'geparkt', match:p.match, datum:p.datum,
+        art:p.art, eintraege:p.eintraege||null, betId:p.betId||null, parkGrund:'espn_status' });
+      return 1;
+    }
+    var verlaufUnklarStruktur=laeufe.filter(function(x){ return x.grund==='verlauf_unklar'; })[0];
+    if(verlaufUnklarStruktur){
+      parkeEintraege(p,'verlauf_unklar','','');
+      p.zustand='geparkt'; p.parkGrund='verlauf_unklar';
+      jobSetzen(p.fixtureId,{ zustand:'geparkt', match:p.match, datum:p.datum,
+        art:p.art, eintraege:p.eintraege||null, betId:p.betId||null, parkGrund:'verlauf_unklar' });
+      return 1;
+    }
     var gut=laeufe.filter(function(x){ return x.ok; });
     /* 2. "laeuft noch" gilt nur, wenn kein einziger Lauf ein brauchbares Ergebnis geliefert
        hat und die 2,5-Stunden-Regel (v19.5, fuenfte Fehlerart) die Angabe stuetzt. */
     if(!gut.length && laeufe.some(function(x){ return x.grund==='laeuft' && x.nochAktuell; })){
       p.zustand='laeuft';
       return 0;
+    }
+    var strukturGut=gut.filter(function(x){ return ergebnisQuelleAus(x.modell)!=='ki'; });
+    var kiGut=gut.filter(function(x){ return ergebnisQuelleAus(x.modell)==='ki'; });
+    if(!strukturGut.length && kiGut.some(function(x){ return x.verlaufStatus==='abweichung_belegt'; })){
+      parkeEintraege(p,'verlauf_abweichung','','');
+      p.zustand='geparkt'; p.parkGrund='verlauf_abweichung';
+      jobSetzen(p.fixtureId,{ zustand:'geparkt', match:p.match, datum:p.datum,
+        art:p.art, eintraege:p.eintraege||null, betId:p.betId||null, parkGrund:'verlauf_abweichung' });
+      return 1;
+    }
+    if(!strukturGut.length && kiGut.some(function(x){ return x.verlaufStatus!=='normal_belegt'; })){
+      parkeEintraege(p,'verlauf_unklar','','');
+      p.zustand='geparkt'; p.parkGrund='verlauf_unklar';
+      jobSetzen(p.fixtureId,{ zustand:'geparkt', match:p.match, datum:p.datum,
+        art:p.art, eintraege:p.eintraege||null, betId:p.betId||null, parkGrund:'verlauf_unklar' });
+      return 1;
     }
     var u=refEinigkeit(laeufe);
     p.einigkeit=u;
@@ -6003,7 +6133,14 @@ function ergebnissePruefen(btn){
        pruefAnwenden() an den Eintrag geschrieben. */
     var w=u.wert;
     var abstand=tageAbstand(p.datum, w.gefDatum);
-    var warn=(abstand!==null && abstand>1);
+    if(abstand!==null && abstand>1){
+      parkeEintraege(p,'datum_abweichung','','');
+      p.zustand='geparkt'; p.parkGrund='datum_abweichung';
+      jobSetzen(p.fixtureId,{ zustand:'geparkt', match:p.match, datum:p.datum,
+        art:p.art, eintraege:p.eintraege||null, betId:p.betId||null, parkGrund:'datum_abweichung' });
+      return 1;
+    }
+    var warn=false;
     var warnQ=(runde>=3 && !urlOk(w.quelleRoh));
     /* warnP heisst weiterhin, was sein Text sagt: mindestens ein Lauf hatte den Halbzeit-
        stand hoeher als den Endstand. Neu ist nur, dass dieser Lauf zusaetzlich verworfen
@@ -6108,6 +6245,11 @@ function ergebnissePruefen(btn){
       '- "2x45" fuer das Standardformat. Das gilt auch dann, wenn danach eine REGULAERE Verlaengerung von 2x15 Minuten oder ein Elfmeterschiessen folgte.\n'+
       '- Wurde in einem anderen Format gespielt, schreibe es hin, z. B. "2x60" oder "3x45". Solche Spiele haben keine regulaere Marke bei Minute 90.\n'+
       '- Findest du keine Angabe zum Format, LASS DAS FELD LEER. Rate nicht.\n\n'+
+      'ZUSÄTZLICH PFLICHT — belege den tatsaechlichen SPIELVERLAUF im Feld "verlaufStatus":\n'+
+      '- "normal_belegt" NUR wenn eine konkrete Quelle fuer GENAU dieses Spiel, den genannten Wettbewerb und die Ansetzung einen normalen Abschluss auf dem Platz belegt. Ein Endstand allein reicht NICHT.\n'+
+      '- "abweichung_belegt" bei JEDEM Hinweis auf Verlegung, Unterbrechung, Abbruch, Wiederholung, administrative Wertung oder nachtraegliche Ergebnis-Aenderung.\n'+
+      '- "unklar" wenn ein normaler Verlauf nicht belegt werden kann. Niemals aus dem Endstand auf einen normalen Verlauf schliessen.\n'+
+      'Nenne im Feld "verlaufGrund" kurz den konkreten Beleg oder den Grund fuer unklar/abweichend.\n\n'+
       'Gib jedem Spiel GENAU EINEN Status:\n'+
       '- "fertig": Endstand aus verlaesslicher Quelle bestaetigt (dann heim, gast, datum, wettbewerb, quelle angeben)\n'+
       '- "laeuft": Spiel laeuft gerade noch oder wurde noch nicht angepfiffen. '+
@@ -6130,7 +6272,7 @@ function ergebnissePruefen(btn){
       '6. QUELLE: Nenne KEINE Wett- oder Buchmacherseite als Quelle. Solche Seiten laden ihre Zahlen erst im Browser nach; ein Abruf sieht dort nicht die echten Ergebnisse. Ein Lauf mit einer solchen Quelle wird nicht als Beleg gezaehlt.\n\n'+
       quellPflicht+
       zeilen.join('\n')+
-      '\n\nLetzte Nachricht: NUR kompaktes JSON:\n{"ergebnisse":[{"id":"S0","status":"fertig","format":"2x45","halbzeit":"1:0","heim":2,"gast":1,"verlaengerungGespielt":"nein","verlaengerung":"","torlos":"nein","datum":"24.07.2026","wettbewerb":"MLS","quelle":"https://..."}]}';
+      '\n\nLetzte Nachricht: NUR kompaktes JSON:\n{"ergebnisse":[{"id":"S0","status":"fertig","verlaufStatus":"normal_belegt","verlaufGrund":"Quelle belegt regulaeren Abschluss","format":"2x45","halbzeit":"1:0","heim":2,"gast":1,"verlaengerungGespielt":"nein","verlaengerung":"","torlos":"nein","datum":"24.07.2026","wettbewerb":"MLS","quelle":"https://..."}]}';
     }
 
     /* 🔴 ABGELOEST am 17.9.2026 (Backlog-Punkt 84, Ondos Auftrag "ESPN als primaere
@@ -6792,6 +6934,7 @@ function pruefBlock(){
         html += '<div class="muted" style="margin:6px 0">'+t('tip')+': '+esc(p.tipp)+'</div>'+
         '<div><button class="btn-sm btn-win" onclick="setStatus('+p.betId+',\'gewonnen\');pruefIgnorieren(\''+p.id+'\')">'+t('bWon')+'</button> '+
         '<button class="btn-sm btn-loss" onclick="setStatus('+p.betId+',\'verloren\');pruefIgnorieren(\''+p.id+'\')">'+t('bLost')+'</button> '+
+        '<button class="btn-sm" onclick="setStatus('+p.betId+',\'einsatz_zurueck\');pruefIgnorieren(\''+p.id+'\')">'+t('bRefund')+'</button> '+
         '<button class="btn-sm" onclick="pruefIgnorieren(\''+p.id+'\')">'+t('ignore')+'</button></div>';
       }
       html += '</div>';
@@ -7264,7 +7407,11 @@ function vorhersageKarte(e, mitKnoepfen, einklappbar){
         (e.parkGrund==='unstable_ref'?(' <span class="badge b-open" style="font-size:11px">'+t('parkGrundInstabil')+'</span>'):'')+
         /* v19.8.12 (Backlog-Punkt 36, zweiter Teil): eigener Parkgrund fuer ein erkanntes
            Sonderformat — er ist etwas anderes als der instabile Schiedsrichter. */
-        (e.parkGrund==='sonderformat'?(' <span class="badge b-open" style="font-size:11px">'+t('parkGrundFormat')+(e.parkFormat?(': '+esc(e.parkFormat)):'')+'</span>'):'')+'</div>'+
+        (e.parkGrund==='sonderformat'?(' <span class="badge b-open" style="font-size:11px">'+t('parkGrundFormat')+(e.parkFormat?(': '+esc(e.parkFormat)):'')+'</span>'):'')+
+        (e.parkGrund==='espn_status'?(' <span class="badge b-open" style="font-size:11px">'+t('parkGrundEspnStatus')+'</span>'):'')+
+        (e.parkGrund==='verlauf_abweichung'?(' <span class="badge b-open" style="font-size:11px">'+t('parkGrundVerlaufAbweichung')+'</span>'):'')+
+        (e.parkGrund==='verlauf_unklar'?(' <span class="badge b-open" style="font-size:11px">'+t('parkGrundVerlaufUnklar')+'</span>'):'')+
+        (e.parkGrund==='datum_abweichung'?(' <span class="badge b-open" style="font-size:11px">'+t('parkGrundDatumAbweichung')+'</span>'):'')+'</div>'+
       '<div class="muted">'+e.datum+(e.anpfiff?(' '+esc(e.anpfiff)):'')+' · '+quelle+(e.wettbewerb?(' · '+esc(e.wettbewerb)):'')+'</div>'+
     '</div><div style="text-align:right">'+
       '<div class="score">'+e.heim+':'+e.gast+'</div>'+
@@ -7448,13 +7595,15 @@ function viewBets(c){
   var h=state.bets.map(function(b){
     var badge = b.status==="offen"?'<span class="badge b-open">'+t('openB')+'</span>':
                 b.status==="gewonnen"?'<span class="badge b-win">'+t('won')+'</span>':
+                b.status==="einsatz_zurueck"?'<span class="badge b-open">'+t('refund')+'</span>':
                 '<span class="badge b-loss">'+t('lost')+'</span>';
     var akt = b.status==="offen"
       ? '<button class="btn-sm btn-win" onclick="setStatus('+b.id+',\'gewonnen\')">'+t('bWon')+'</button> '+
-        '<button class="btn-sm btn-loss" onclick="setStatus('+b.id+',\'verloren\')">'+t('bLost')+'</button>'
+        '<button class="btn-sm btn-loss" onclick="setStatus('+b.id+',\'verloren\')">'+t('bLost')+'</button> '+
+        '<button class="btn-sm" onclick="setStatus('+b.id+',\'einsatz_zurueck\')">'+t('bRefund')+'</button>'
       : '<button class="btn-sm" onclick="setStatus('+b.id+',\'offen\')">'+t('reset')+'</button>';
     var pnl = b.status!=="offen"
-      ? '<div style="color:'+(profit(b)>=0?"var(--win)":"var(--loss)")+';font-weight:600;margin-top:2px">'+fmt(profit(b))+'</div>'
+      ? '<div style="color:'+(b.status==="einsatz_zurueck"?"var(--dim)":(profit(b)>=0?"var(--win)":"var(--loss)"))+';font-weight:600;margin-top:2px">'+fmt(profit(b))+'</div>'
       : '<div class="muted">'+t('possWin')+': <span style="color:var(--win)">'+fmt(b.einsatz*(b.quote-1))+'</span></div>';
     return '<div class="card">'+
       '<div class="flex"><div><div class="disp" style="font-size:19px">'+esc(b.match)+'</div>'+
@@ -7622,7 +7771,7 @@ function viewFinance(c){
        und wurde beim ersten Umzug (Fassung 106) uebersehen. */
     '<div class="card"><div class="stat-label">'+t('hitYou')+'</div>'+
       '<div class="stat-val">'+(c.quoteIch===null?"–":c.quoteIch+" %")+'</div>'+
-      '<div class="stat-sub">'+(c.done?c.wins+" "+t('of')+" "+c.done:t('noBetYet'))+'</div></div>'+
+      '<div class="stat-sub">'+(c.rated?c.wins+" "+t('of')+" "+c.rated:t('noBetYet'))+'</div></div>'+
   '</div>'+
   '<div class="card"><div class="disp" style="font-size:20px;margin-bottom:10px">'+t('finT')+'</div>'+
     '<label>'+t('depNew')+'</label>'+
