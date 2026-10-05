@@ -83,6 +83,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401841584",
+   "providerCompetitionSlug": "arg.1",
+   "providerCompetitionName": "Argentine Liga Profesional de Fútbol",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T20:00Z",
+   "heim": "Talleres (Córdoba)",
+   "gast": "Belgrano (Córdoba)",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "19",
+      "teamDisplayName": "Talleres (Córdoba)",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "4",
+      "teamDisplayName": "Belgrano (Córdoba)",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-05T02:26:39.852Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401841586",
    "providerCompetitionSlug": "arg.1",
    "providerCompetitionName": "Argentine Liga Profesional de Fútbol",
@@ -203,6 +243,86 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401841589",
+   "providerCompetitionSlug": "arg.1",
+   "providerCompetitionName": "Argentine Liga Profesional de Fútbol",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T17:45Z",
+   "heim": "Huracán",
+   "gast": "Aldosivi",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "10",
+      "teamDisplayName": "Huracán",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "9739",
+      "teamDisplayName": "Aldosivi",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-10-05T02:26:39.664Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401841591",
+   "providerCompetitionSlug": "arg.1",
+   "providerCompetitionName": "Argentine Liga Profesional de Fútbol",
+   "datum": "2026-10-05",
+   "kickoffUtc": "2026-10-05T00:30Z",
+   "heim": "Estudiantes de Río Cuarto",
+   "gast": "Racing Club",
+   "torHeim": 1,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "19685",
+      "teamDisplayName": "Estudiantes de Río Cuarto",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "15",
+      "teamDisplayName": "Racing Club",
+      "homeAway": "away",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:2",
+   "fetchedAt": "2026-10-05T02:26:40.227Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401841593",
    "providerCompetitionSlug": "arg.1",
    "providerCompetitionName": "Argentine Liga Profesional de Fútbol",
@@ -320,6 +440,46 @@
    },
    "halbzeit": "1:0",
    "fetchedAt": "2026-10-04T02:53:22.552Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401841597",
+   "providerCompetitionSlug": "arg.1",
+   "providerCompetitionName": "Argentine Liga Profesional de Fútbol",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T22:15Z",
+   "heim": "Argentinos Juniors",
+   "gast": "Tigre",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "3",
+      "teamDisplayName": "Argentinos Juniors",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     },
+     {
+      "teamId": "7767",
+      "teamDisplayName": "Tigre",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:0",
+   "fetchedAt": "2026-10-05T02:26:40.040Z"
   },
   {
    "provider": "espn",
@@ -1763,6 +1923,366 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401861119",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T13:00Z",
+   "heim": "Azerbaijan",
+   "gast": "Lithuania",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "581",
+      "teamDisplayName": "Azerbaijan",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "460",
+      "teamDisplayName": "Lithuania",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-10-05T02:26:34.621Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861120",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T16:00Z",
+   "heim": "Malta",
+   "gast": "Andorra",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "453",
+      "teamDisplayName": "Malta",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "587",
+      "teamDisplayName": "Andorra",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-05T02:26:34.999Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861121",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T16:00Z",
+   "heim": "Kosovo",
+   "gast": "Austria",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "18272",
+      "teamDisplayName": "Kosovo",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "474",
+      "teamDisplayName": "Austria",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-05T02:26:34.810Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861122",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T18:45Z",
+   "heim": "Netherlands",
+   "gast": "Serbia",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "449",
+      "teamDisplayName": "Netherlands",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "6757",
+      "teamDisplayName": "Serbia",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-10-05T02:26:35.375Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861123",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T18:45Z",
+   "heim": "Greece",
+   "gast": "Germany",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "455",
+      "teamDisplayName": "Greece",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "481",
+      "teamDisplayName": "Germany",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-05T02:26:35.187Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861124",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T18:45Z",
+   "heim": "Republic of Ireland",
+   "gast": "Israel",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "476",
+      "teamDisplayName": "Republic of Ireland",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "461",
+      "teamDisplayName": "Israel",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-10-05T02:26:35.751Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861125",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T18:45Z",
+   "heim": "Wales",
+   "gast": "Denmark",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "578",
+      "teamDisplayName": "Wales",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "479",
+      "teamDisplayName": "Denmark",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-05T02:26:35.940Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861126",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T18:45Z",
+   "heim": "Portugal",
+   "gast": "Norway",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "482",
+      "teamDisplayName": "Portugal",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "464",
+      "teamDisplayName": "Norway",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-10-05T02:26:35.563Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401875905",
+   "providerCompetitionSlug": "ned.2",
+   "providerCompetitionName": "Dutch Keuken Kampioen Divisie",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T12:30Z",
+   "heim": "VVV-Venlo",
+   "gast": "Roda JC Kerkrade",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "3731",
+      "teamDisplayName": "VVV-Venlo",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "149",
+      "teamDisplayName": "Roda JC Kerkrade",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-05T02:26:22.630Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401875906",
    "providerCompetitionSlug": "ned.2",
    "providerCompetitionName": "Dutch Keuken Kampioen Divisie",
@@ -2163,6 +2683,126 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401883160",
+   "providerCompetitionSlug": "esp.2",
+   "providerCompetitionName": "Spanish LALIGA 2",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T19:00Z",
+   "heim": "Girona",
+   "gast": "Mallorca",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "9812",
+      "teamDisplayName": "Girona",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "84",
+      "teamDisplayName": "Mallorca",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-05T02:26:18.197Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401883162",
+   "providerCompetitionSlug": "esp.2",
+   "providerCompetitionName": "Spanish LALIGA 2",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T16:30Z",
+   "heim": "Castellón",
+   "gast": "Ceuta",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "4438",
+      "teamDisplayName": "Castellón",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "5404",
+      "teamDisplayName": "Ceuta",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-10-05T02:26:17.629Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401883190",
+   "providerCompetitionSlug": "esp.2",
+   "providerCompetitionName": "Spanish LALIGA 2",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T19:00Z",
+   "heim": "CD Sabadell",
+   "gast": "FC Andorra",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "11487",
+      "teamDisplayName": "CD Sabadell",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "20179",
+      "teamDisplayName": "FC Andorra",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-05T02:26:18.007Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401883191",
    "providerCompetitionSlug": "esp.2",
    "providerCompetitionName": "Spanish LALIGA 2",
@@ -2200,6 +2840,46 @@
    },
    "halbzeit": "2:0",
    "fetchedAt": "2026-10-04T14:08:21.788Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401883192",
+   "providerCompetitionSlug": "esp.2",
+   "providerCompetitionName": "Spanish LALIGA 2",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T16:30Z",
+   "heim": "Las Palmas",
+   "gast": "Real Valladolid",
+   "torHeim": 2,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "98",
+      "teamDisplayName": "Las Palmas",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "95",
+      "teamDisplayName": "Real Valladolid",
+      "homeAway": "away",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:2",
+   "fetchedAt": "2026-10-05T02:26:17.818Z"
   },
   {
    "provider": "espn",
@@ -2363,6 +3043,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401883311",
+   "providerCompetitionSlug": "esp.2",
+   "providerCompetitionName": "Spanish LALIGA 2",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T14:15Z",
+   "heim": "Sporting Gijón",
+   "gast": "RC Celta Fortuna",
+   "torHeim": 3,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "3788",
+      "teamDisplayName": "Sporting Gijón",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "1"
+      ]
+     },
+     {
+      "teamId": "131858",
+      "teamDisplayName": "RC Celta Fortuna",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:1",
+   "fetchedAt": "2026-10-05T02:26:17.440Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401900325",
    "providerCompetitionSlug": "fifa.friendly",
    "providerCompetitionName": "International Friendly",
@@ -2400,6 +3120,286 @@
    },
    "halbzeit": "2:0",
    "fetchedAt": "2026-10-04T02:53:16.334Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401900574",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T22:00Z",
+   "heim": "Trinidad and Tobago",
+   "gast": "Curaçao",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2627",
+      "teamDisplayName": "Trinidad and Tobago",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "11678",
+      "teamDisplayName": "Curaçao",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-10-05T02:26:37.256Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401900575",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-10-05",
+   "kickoffUtc": "2026-10-05T00:00Z",
+   "heim": "Costa Rica",
+   "gast": "Haiti",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "214",
+      "teamDisplayName": "Costa Rica",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     },
+     {
+      "teamId": "2654",
+      "teamDisplayName": "Haiti",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:0",
+   "fetchedAt": "2026-10-05T02:26:37.634Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401900583",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T22:00Z",
+   "heim": "Puerto Rico",
+   "gast": "Cayman Islands",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "11766",
+      "teamDisplayName": "Puerto Rico",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "2646",
+      "teamDisplayName": "Cayman Islands",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-05T02:26:37.067Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401900584",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T19:00Z",
+   "heim": "Guyana",
+   "gast": "Dominica",
+   "torHeim": 8,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2653",
+      "teamDisplayName": "Guyana",
+      "homeAway": "home",
+      "linescores": [
+       "4",
+       "4"
+      ]
+     },
+     {
+      "teamId": "13582",
+      "teamDisplayName": "Dominica",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "4:0",
+   "fetchedAt": "2026-10-05T02:26:36.499Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401900585",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T20:00Z",
+   "heim": "Bahamas",
+   "gast": "US Virgin Islands",
+   "torHeim": 2,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2640",
+      "teamDisplayName": "Bahamas",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "2645",
+      "teamDisplayName": "US Virgin Islands",
+      "homeAway": "away",
+      "linescores": [
+       "2",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:2",
+   "fetchedAt": "2026-10-05T02:26:36.689Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401900586",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T23:00Z",
+   "heim": "Aruba",
+   "gast": "Anguilla",
+   "torHeim": 3,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2642",
+      "teamDisplayName": "Aruba",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     },
+     {
+      "teamId": "8942",
+      "teamDisplayName": "Anguilla",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-10-05T02:26:37.445Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401900587",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T20:00Z",
+   "heim": "Turks and Caicos Islands",
+   "gast": "British Virgin Islands",
+   "torHeim": 3,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2665",
+      "teamDisplayName": "Turks and Caicos Islands",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     },
+     {
+      "teamId": "2644",
+      "teamDisplayName": "British Virgin Islands",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-10-05T02:26:36.876Z"
   },
   {
    "provider": "espn",
@@ -3283,6 +4283,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401916425",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T18:00Z",
+   "heim": "Egypt",
+   "gast": "South Africa",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2620",
+      "teamDisplayName": "Egypt",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "467",
+      "teamDisplayName": "South Africa",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-05T02:26:33.875Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401917293",
    "providerCompetitionSlug": "club.friendly",
    "providerCompetitionName": "Club Friendly",
@@ -3483,6 +4523,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401918510",
+   "providerCompetitionSlug": "esp.copa_del_rey",
+   "providerCompetitionName": "Spanish Copa del Rey",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T14:00Z",
+   "heim": "CD San José",
+   "gast": "Auriense Cented Academy",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "133836",
+      "teamDisplayName": "CD San José",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "133847",
+      "teamDisplayName": "Auriense Cented Academy",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-05T02:26:18.751Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401918748",
    "providerCompetitionSlug": "esp.copa_del_rey",
    "providerCompetitionName": "Spanish Copa del Rey",
@@ -3563,6 +4643,126 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401918753",
+   "providerCompetitionSlug": "esp.copa_del_rey",
+   "providerCompetitionName": "Spanish Copa del Rey",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T14:00Z",
+   "heim": "SD Noja",
+   "gast": "Ribadesella",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "133850",
+      "teamDisplayName": "SD Noja",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "133842",
+      "teamDisplayName": "Ribadesella",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-05T02:26:18.936Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401918757",
+   "providerCompetitionSlug": "esp.copa_del_rey",
+   "providerCompetitionName": "Spanish Copa del Rey",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T15:30Z",
+   "heim": "Sporting de Alcázar",
+   "gast": "CP Talayuela",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "133843",
+      "teamDisplayName": "Sporting de Alcázar",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "133841",
+      "teamDisplayName": "CP Talayuela",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-05T02:26:19.121Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401918759",
+   "providerCompetitionSlug": "esp.copa_del_rey",
+   "providerCompetitionName": "Spanish Copa del Rey",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T16:00Z",
+   "heim": "Atlético Melilla",
+   "gast": "Atlético Pinatarense",
+   "torHeim": 0,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "131419",
+      "teamDisplayName": "Atlético Melilla",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "133832",
+      "teamDisplayName": "Atlético Pinatarense",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-05T02:26:19.306Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401918760",
    "providerCompetitionSlug": "esp.copa_del_rey",
    "providerCompetitionName": "Spanish Copa del Rey",
@@ -3600,6 +4800,53 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-10-04T02:52:59.575Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401918761",
+   "providerCompetitionSlug": "esp.copa_del_rey",
+   "providerCompetitionName": "Spanish Copa del Rey",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T16:00Z",
+   "heim": "Tavernes de la Valldigna",
+   "gast": "Maracena",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": true,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FINAL_PEN",
+    "competitors": [
+     {
+      "teamId": "133846",
+      "teamDisplayName": "Tavernes de la Valldigna",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "4"
+      ]
+     },
+     {
+      "teamId": "131412",
+      "teamDisplayName": "Maracena",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "verlaengerung": "0:0",
+   "fetchedAt": "2026-10-05T02:26:19.491Z"
   },
   {
    "provider": "espn",
@@ -4003,6 +5250,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401921339",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T14:00Z",
+   "heim": "Kyrgyz Republic",
+   "gast": "Lebanon",
+   "torHeim": 3,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "6724",
+      "teamDisplayName": "Kyrgyz Republic",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     },
+     {
+      "teamId": "4388",
+      "teamDisplayName": "Lebanon",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-05T02:26:33.685Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401921544",
    "providerCompetitionSlug": "fifa.friendly",
    "providerCompetitionName": "International Friendly",
@@ -4200,6 +5487,86 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-10-02T14:47:53.251Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401922038",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T13:00Z",
+   "heim": "Comoros",
+   "gast": "Senegal",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "8601",
+      "teamDisplayName": "Comoros",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "654",
+      "teamDisplayName": "Senegal",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-10-05T02:26:33.500Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401922273",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T18:00Z",
+   "heim": "Morocco",
+   "gast": "Mali",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2869",
+      "teamDisplayName": "Morocco",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "2849",
+      "teamDisplayName": "Mali",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-10-05T02:26:34.063Z"
   },
   {
    "provider": "espn",
@@ -4643,6 +6010,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401923750",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T15:30Z",
+   "heim": "Molde",
+   "gast": "Kristiansund BK",
+   "torHeim": 3,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2715",
+      "teamDisplayName": "Molde",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     },
+     {
+      "teamId": "6672",
+      "teamDisplayName": "Kristiansund BK",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-05T02:26:43.918Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401923751",
    "providerCompetitionSlug": "club.friendly",
    "providerCompetitionName": "Club Friendly",
@@ -4880,6 +6287,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-10-03T13:30:57.858Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401923763",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T13:30Z",
+   "heim": "Hamburg SV",
+   "gast": "F.C. København",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "127",
+      "teamDisplayName": "Hamburg SV",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "909",
+      "teamDisplayName": "F.C. København",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-05T02:26:43.179Z"
   },
   {
    "provider": "espn",
@@ -5280,6 +6727,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-10-02T14:47:54.370Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401923795",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T12:00Z",
+   "heim": "CSKA Moscow",
+   "gast": "FC Arsenal Tula",
+   "torHeim": 3,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "1963",
+      "teamDisplayName": "CSKA Moscow",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     },
+     {
+      "teamId": "17495",
+      "teamDisplayName": "FC Arsenal Tula",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-05T02:26:42.995Z"
   },
   {
    "provider": "espn",
@@ -6840,6 +8327,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-10-02T14:47:54.843Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401925172",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T14:00Z",
+   "heim": "Ludogorets Razgrad",
+   "gast": "Cherno More",
+   "torHeim": 5,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "13018",
+      "teamDisplayName": "Ludogorets Razgrad",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "5"
+      ]
+     },
+     {
+      "teamId": "7837",
+      "teamDisplayName": "Cherno More",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-05T02:26:43.734Z"
   },
   {
    "provider": "espn",
@@ -9403,6 +10930,48 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401927904",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T14:00Z",
+   "heim": "Gjilani",
+   "gast": "KF Bashkimi 1947",
+   "torHeim": 3,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "20709",
+      "teamDisplayName": "Gjilani",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "3",
+       "3"
+      ]
+     },
+     {
+      "teamId": "133968",
+      "teamDisplayName": "KF Bashkimi 1947",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-05T02:26:43.549Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401927907",
    "providerCompetitionSlug": "club.friendly",
    "providerCompetitionName": "Club Friendly",
@@ -9720,6 +11289,86 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-10-04T02:53:34.680Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401927915",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T16:00Z",
+   "heim": "Zenit St Petersburg",
+   "gast": "BATE Borisov",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2533",
+      "teamDisplayName": "Zenit St Petersburg",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "497",
+      "teamDisplayName": "BATE Borisov",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-05T02:26:44.103Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401927916",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-10-04",
+   "kickoffUtc": "2026-10-04T14:00Z",
+   "heim": "Enosis Neon Paralimni",
+   "gast": "Anorthosis",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "131461",
+      "teamDisplayName": "Enosis Neon Paralimni",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "2550",
+      "teamDisplayName": "Anorthosis",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-05T02:26:43.365Z"
   },
   {
    "provider": "espn",
