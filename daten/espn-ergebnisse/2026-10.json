@@ -3123,6 +3123,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401900573",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-10-05",
+   "kickoffUtc": "2026-10-05T02:00Z",
+   "heim": "Nicaragua",
+   "gast": "Dominican Republic",
+   "torHeim": 1,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2658",
+      "teamDisplayName": "Nicaragua",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "2649",
+      "teamDisplayName": "Dominican Republic",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-05T17:13:56.859Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401900574",
    "providerCompetitionSlug": "concacaf.nations.league",
    "providerCompetitionName": "Concacaf Nations League",
@@ -4203,6 +4243,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401912454",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-10-05",
+   "kickoffUtc": "2026-10-05T15:00Z",
+   "heim": "Mauritius",
+   "gast": "Sri Lanka",
+   "torHeim": 2,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "5534",
+      "teamDisplayName": "Mauritius",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "5782",
+      "teamDisplayName": "Sri Lanka",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-05T17:13:53.471Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401913267",
    "providerCompetitionSlug": "fifa.friendly",
    "providerCompetitionName": "International Friendly",
@@ -4480,6 +4560,46 @@
    },
    "halbzeit": "1:0",
    "fetchedAt": "2026-10-04T02:53:16.138Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401918508",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-10-05",
+   "kickoffUtc": "2026-10-05T13:00Z",
+   "heim": "Uganda",
+   "gast": "Congo DR",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "4211",
+      "teamDisplayName": "Uganda",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "2850",
+      "teamDisplayName": "Congo DR",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-05T17:13:53.296Z"
   },
   {
    "provider": "espn",
@@ -5407,6 +5527,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-10-02T02:37:04.079Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401921831",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-10-05",
+   "kickoffUtc": "2026-10-05T01:00Z",
+   "heim": "Guadalajara",
+   "gast": "América",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "219",
+      "teamDisplayName": "Guadalajara",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "227",
+      "teamDisplayName": "América",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-05T17:14:03.152Z"
   },
   {
    "provider": "espn",
