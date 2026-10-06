@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 6.10.2026, Fassung 154, v19.22.0*
+*Die aktuelle Wahrheit. Stand: 6.10.2026, Fassung 155, v19.22.0*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -217,7 +217,7 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   Wettschein setzbar, finanziell 0 €, geschlossen, aber ohne Trefferquoten-/Lernwertung.
   Spielstatus oder Parkung setzen nie einen Wettstatus. **Schritt 2 offen:** spätere Nachprüfung
   bereits akzeptierter Ergebnisse, einschließlich 14-Tage-Weg.
-  **Verifiziert:** Script-Syntax und t1–t10; `tests/t10_ausnahmen.js` deckt die neuen Regeln ab.
+  **Verifiziert:** Script-Syntax und t1–t10; t10 jetzt **48/48** nach beweiskräftiger Fälligkeits-Gegenprobe; Produktcode unverändert.
   **Punkt 80 — Antwortkonsistenz:** `vorhersageGehirn()` hat einen optionalen vierten Parameter
   `ohneFruehere`. Nur `antwortkonsistenzLauf()` setzt ihn auf `true`; dadurch bleibt `fruehere`
   leer und der Absatz „Deine letzten eigenen Vorhersagen“ fehlt in allen drei Wiederholungsläufen.

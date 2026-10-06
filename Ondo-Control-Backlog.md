@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 6.10.2026, Fassung 154 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 6.10.2026, Fassung 155 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -615,6 +615,9 @@ Trefferquoten-/Lernwertung; Spielstatus setzt nie den Wettstatus.
 **Schritt 2 bleibt offen:** spätere Nachprüfung bereits akzeptierter Ergebnisse einschließlich
 14-Tage-Weg. Nicht Teil von Schritt 1: Rollback, mehrere Provider-IDs je Provider,
 Änderungen am ESPN-Sammelskript.
+
+**Testnachbesserung 6.10.:** t10 wartet bei Fälligkeit bis Laufende/Stille; Mutation ohne
+Schranke lässt beide Vor-Fälligkeitsfälle scheitern.
 
 ---
 

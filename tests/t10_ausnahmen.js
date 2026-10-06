@@ -78,6 +78,34 @@ function fakeNow(c,ms){
   F.now=function(){return ms;}; F.parse=R.parse; F.UTC=R.UTC; F.prototype=R.prototype; c.Date=F;
   return function(){c.Date=R;};
 }
+function mitFakeNow(c,ms,f){
+  var rueck=fakeNow(c,ms);
+  return Promise.resolve().then(f).then(function(x){ rueck(); return x; },function(e){ rueck(); throw e; });
+}
+function netzAbrufe(c){
+  return c._netz.espnArchiv+c._netz.espnLive+c._netz.fd+c._netz.openliga+c._netz.gemini+c._netz.sonnet;
+}
+/* Vor Faelligkeit beendet ergebnissePruefen() synchron, BEVOR state.pruefRun angelegt wird.
+   Darum gibt es im korrekten Fall kein Lauf-Ende, auf das der Test warten koennte. Wir warten
+   dann 1000 ms auf ein eventuell doch asynchron gestartetes pruefRun. Das ist bewusst laenger
+   als die 500-ms-Gegenprobe, in der die fehlende Schranke bereits ESPN/FD/KI-Abrufe erzeugt.
+   Sobald ein Lauf auftaucht, warten wir dagegen auf dessen echtes status-Ende, nicht auf Zeit. */
+function faelligkeitsLaufAbwarten(c,msMax){
+  msMax=msMax||12000; var t0=Date.now(), stilleBis=t0+1000, gesehen=false;
+  return new Promise(function(res,rej){
+    (function schau(){
+      var r=c.state.pruefRun;
+      if(r){
+        gesehen=true;
+        if(r.status!=='laufend') return res(r);
+      }else if(!gesehen && Date.now()>=stilleBis){
+        return res(null);
+      }
+      if(Date.now()-t0>msMax) return rej(new Error('Faelligkeits-Prueflauf haengt'));
+      setTimeout(schau,5);
+    })();
+  });
+}
 function archivStatus(statusTyp,completed){
   return {spiele:[{provider:'espn',providerEventId:'E1',providerCompetitionName:'Testliga',
     datum:'2026-09-12',kickoffUtc:'2026-09-12T18:00Z',heim:'Testheim FC',gast:'Testgast FC',
@@ -103,23 +131,55 @@ function schritt(f){ablauf=ablauf.then(f);}
 
 schritt(function(){
   u.block('1-2. Faelligkeits-Schranke');
+  var faellig, ohne;
   return app().then(function(c){
-    var faellig=c.pruefFaelligAbMs('12.9.2026','20:00');
-    u.pruef('1: Anpfiff 20:00 Berlin -> faellig erst +3:30',faellig===Date.parse('2026-09-12T21:30:00Z'),new Date(faellig).toISOString());
-    var rueck=fakeNow(c,Date.parse('2026-09-12T21:29:00Z'));
-    c.ergebnissePruefen(knopf()); rueck();
-    u.pruef('1: eine Minute vor Faelligkeit kein Ergebnisabruf',
-      c._netz.espnArchiv+c._netz.espnLive+c._netz.fd+c._netz.openliga+c._netz.gemini+c._netz.sonnet===0,
-      JSON.stringify(c._netz));
-    var ohne=c.pruefFaelligAbMs('12.9.2026','');
-    u.pruef('2: fehlender Anpfiff -> Spieltag 24:00 Berlin +3:30',
-      ohne===Date.parse('2026-09-13T01:30:00Z'),new Date(ohne).toISOString());
-    c.state.kiProtokoll[0].anpfiff='';
-    var rueck2=fakeNow(c,ohne-60000);
-    c.ergebnissePruefen(knopf()); rueck2();
-    u.pruef('2: eine Minute vor Ersatz-Faelligkeit ebenfalls kein Ergebnisabruf',
-      c._netz.espnArchiv+c._netz.espnLive+c._netz.fd+c._netz.openliga+c._netz.gemini+c._netz.sonnet===0,
-      JSON.stringify(c._netz));
+    faellig=c.pruefFaelligAbMs('12.9.2026','20:00');
+    u.pruef('1: Anpfiff 20:00 Berlin -> faellig erst +3:30',
+      faellig===Date.parse('2026-09-12T21:30:00Z'),new Date(faellig).toISOString());
+    return mitFakeNow(c,faellig-60000,function(){
+      c.ergebnissePruefen(knopf());
+      return faelligkeitsLaufAbwarten(c).then(function(){
+        u.pruef('1: eine Minute vor Faelligkeit kein Ergebnisabruf',
+          netzAbrufe(c)===0,JSON.stringify(c._netz));
+      });
+    });
+  }).then(function(){
+    /* Positive Gegenprobe: Derselbe Netzaufbau MUSS nach der Schranke wirklich arbeiten. */
+    return app().then(function(c){
+      return mitFakeNow(c,faellig+60000,function(){
+        c.ergebnissePruefen(knopf());
+        return fertig(c,12000).then(function(){
+          u.pruef('1+: eine Minute nach Faelligkeit findet mindestens ein Ergebnisabruf statt',
+            netzAbrufe(c)>0,JSON.stringify(c._netz));
+        });
+      });
+    });
+  }).then(function(){
+    return app().then(function(c){
+      ohne=c.pruefFaelligAbMs('12.9.2026','');
+      u.pruef('2: fehlender Anpfiff -> Spieltag 24:00 Berlin +3:30',
+        ohne===Date.parse('2026-09-13T01:30:00Z'),new Date(ohne).toISOString());
+      c.state.kiProtokoll[0].anpfiff='';
+      return mitFakeNow(c,ohne-60000,function(){
+        c.ergebnissePruefen(knopf());
+        return faelligkeitsLaufAbwarten(c).then(function(){
+          u.pruef('2: eine Minute vor Ersatz-Faelligkeit ebenfalls kein Ergebnisabruf',
+            netzAbrufe(c)===0,JSON.stringify(c._netz));
+        });
+      });
+    });
+  }).then(function(){
+    /* Dieselbe positive Gegenprobe auch fuer den Ersatz-Faelligkeitsweg ohne Anpfiff. */
+    return app().then(function(c){
+      c.state.kiProtokoll[0].anpfiff='';
+      return mitFakeNow(c,ohne+60000,function(){
+        c.ergebnissePruefen(knopf());
+        return fertig(c,12000).then(function(){
+          u.pruef('2+: eine Minute nach Ersatz-Faelligkeit findet mindestens ein Ergebnisabruf statt',
+            netzAbrufe(c)>0,JSON.stringify(c._netz));
+        });
+      });
+    });
   });
 });
 

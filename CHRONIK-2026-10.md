@@ -115,8 +115,8 @@ Testuhr; Speicherbarrieren, Fehlerbedingungen und Sollsemantik bleiben unveränd
 
 **Vollständiger GitHub-Staginglauf vor dem finalen main-Pin:** `python3 pruefe.py` =
 `ERGEBNIS: ALLES SAUBER`, Node-Syntaxprüfung PASS und t1–t10 vollständig PASS:
-t1 43, t2 80, t3 51, t4 72, t5 41, t6 43, t7 35, t8 35, t9 52, t10 46 —
-insgesamt 498 Prüfungen, 0 fehlgeschlagen.
+t1 43, t2 80, t3 51, t4 72, t5 41, t6 43, t7 35, t8 35, t9 52, t10 48 —
+insgesamt 500 Prüfungen, 0 fehlgeschlagen.
 
 ### Nicht in Schritt 1
 
@@ -127,3 +127,26 @@ Parlay-Sonderlogik.
 **Kosten.** Kein neuer Dienst, kein zusätzlicher KI-Lauf. Vor Fälligkeit entstehen keine
 Ergebnisabrufe. ESPN-Ausnahmestatus und OpenLigaDB-Treffer parken ohne KI-Fallback und können
 damit KI-Kosten vermeiden.
+
+
+### Testnachbesserung t10 — Fälligkeit, 6.10.2026
+
+Nur `tests/t10_ausnahmen.js` wurde fachlich am Test geändert; `beta.html` bleibt bytegenau
+unverändert. Die Uhr bleibt in den beiden Vor-Fälligkeitsfällen jetzt aktiv, bis ein gestarteter
+Prüflauf wirklich beendet ist. Da der korrekte Fälligkeitsfilter vor dem Anlegen von
+`state.pruefRun` synchron zurückkehrt, wartet der Test in diesem Fall 1000 ms auf einen
+unerwartet doch gestarteten Lauf; das ist bewusst länger als Claudes belegte 500-ms-Gegenprobe.
+Zusätzlich muss je Fall eine Minute nach Fälligkeit mindestens ein Abruf stattfinden.
+
+Mutationsnachweis mit einer Wegwerfkopie von `beta.html`, in der ausschließlich
+`posten = posten.filter(function(p){ return pruefIstFaellig(p.datum,p.anpfiff); });`
+entfernt wurde: unveränderte `beta.html` → t10 **48/48**; Mutation → **46/48**, und genau
+„1: eine Minute vor Faelligkeit kein Ergebnisabruf“ sowie
+„2: eine Minute vor Ersatz-Faelligkeit ebenfalls kein Ergebnisabruf“ schlagen fehl.
+Die positive Gegenprobe erzeugt in beiden Fällen Abrufe. Alle übrigen t10-Aussagen zu
+„0 Abrufe“, „keine KI-Anfrage“ oder „kein Fallback“ wurden auf Frühzählung geprüft:
+ESPN-, football-data- und OpenLigaDB-Fälle warten auf das echte Laufende; die Bestandschutz-
+Nullabrufprüfung hat synchron keine offenen Posten und startet daher keinen asynchronen
+Abrufpfad. Keine weitere Teständerung nötig.
+
+**Kosten:** keine. Kein neuer Dienst und kein Modellaufruf im App-Betrieb.

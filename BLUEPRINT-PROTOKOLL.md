@@ -652,3 +652,11 @@
 > Der manuelle Wettstatus erhält `einsatz_zurueck` als finanziell geschlossenen, statistisch
 > nicht bewerteten Ausgang. Bestand bleibt unangetastet; Schritt 2 bleibt offen. Blueprint auf
 > 0.153 gehoben.
+
+
+> **Was Fassung 0.154 ändert (6.10.2026):** Reine Synchronisierung nach Arbeitsregel M für
+> die Testnachbesserung zu Backlog-Punkt 92. `beta.html` und `CODE_VERSION v19.22.0` bleiben
+> byte-/fachlich unverändert; ausschließlich `tests/t10_ausnahmen.js` macht die beiden
+> Fälligkeitsprüfungen beweiskräftig (Warten bis Laufende bzw. begründete Stille plus positive
+> Gegenprobe nach Fälligkeit). Mutationsnachweis: ohne Schrankenzeile scheitern genau beide
+> Vor-Fälligkeitsfälle. Blueprint auf 0.154 gehoben.
