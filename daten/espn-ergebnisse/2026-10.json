@@ -4043,6 +4043,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401900582",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-10-06",
+   "kickoffUtc": "2026-10-06T02:00Z",
+   "heim": "Honduras",
+   "gast": "Jamaica",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "215",
+      "teamDisplayName": "Honduras",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "1038",
+      "teamDisplayName": "Jamaica",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-10-06T15:18:19.478Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401900583",
    "providerCompetitionSlug": "concacaf.nations.league",
    "providerCompetitionName": "Concacaf Nations League",
@@ -4923,6 +4963,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401902245",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-10-06",
+   "kickoffUtc": "2026-10-06T11:00Z",
+   "heim": "South Korea",
+   "gast": "Uzbekistan",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "451",
+      "teamDisplayName": "South Korea",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "2570",
+      "teamDisplayName": "Uzbekistan",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-10-06T15:18:16.421Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401902634",
    "providerCompetitionSlug": "fifa.friendly",
    "providerCompetitionName": "International Friendly",
@@ -5120,6 +5200,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-10-03T02:22:59.944Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401914140",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-10-06",
+   "kickoffUtc": "2026-10-06T11:35Z",
+   "heim": "China",
+   "gast": "Tajikistan",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "658",
+      "teamDisplayName": "China",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "6723",
+      "teamDisplayName": "Tajikistan",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-06T15:18:16.583Z"
   },
   {
    "provider": "espn",
@@ -12769,6 +12889,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-10-02T14:47:51.516Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401928131",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-10-06",
+   "kickoffUtc": "2026-10-06T11:00Z",
+   "heim": "IFK Norrköping",
+   "gast": "Kalmar FF",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "8544",
+      "teamDisplayName": "IFK Norrköping",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "3052",
+      "teamDisplayName": "Kalmar FF",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-06T15:18:23.567Z"
   },
   {
    "provider": "espn",
