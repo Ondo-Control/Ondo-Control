@@ -4243,6 +4243,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401900569",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-10-07",
+   "kickoffUtc": "2026-10-07T02:00Z",
+   "heim": "French Guiana",
+   "gast": "Belize",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "10532",
+      "teamDisplayName": "French Guiana",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "2641",
+      "teamDisplayName": "Belize",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-07T15:37:48.461Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401900570",
    "providerCompetitionSlug": "concacaf.nations.league",
    "providerCompetitionName": "Concacaf Nations League",
@@ -5760,6 +5800,46 @@
    },
    "halbzeit": "0:2",
    "fetchedAt": "2026-10-04T02:53:15.942Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401903298",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-10-07",
+   "kickoffUtc": "2026-10-07T02:30Z",
+   "heim": "Mexico",
+   "gast": "Chile",
+   "torHeim": 0,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "203",
+      "teamDisplayName": "Mexico",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "207",
+      "teamDisplayName": "Chile",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-07T15:37:44.942Z"
   },
   {
    "provider": "espn",
