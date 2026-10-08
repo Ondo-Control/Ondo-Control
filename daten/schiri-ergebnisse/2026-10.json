@@ -24,6 +24,66 @@
    "torGast": 0,
    "quelle": "football-data.org",
    "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-10-07",
+   "anpfiff": "23:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "Botafogo FR",
+   "gast": "CR Vasco da Gama",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "0:1"
+  },
+  {
+   "datum": "2026-10-07",
+   "anpfiff": "22:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "Clube do Remo",
+   "gast": "Grêmio FBPA",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:1"
+  },
+  {
+   "datum": "2026-10-07",
+   "anpfiff": "23:00",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "EC Vitória",
+   "gast": "Chapecoense AF",
+   "status": "FT",
+   "torHeim": 4,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-10-07",
+   "anpfiff": "22:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "RB Bragantino",
+   "gast": "Mirassol FC",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-10-07",
+   "anpfiff": "22:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "SC Internacional",
+   "gast": "SC Corinthians Paulista",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
   }
  ]
 }
