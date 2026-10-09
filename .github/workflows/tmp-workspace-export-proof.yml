@@ -15,12 +15,12 @@ jobs:
       - name: Checkout exact base
         uses: actions/checkout@v4
         with:
-          ref: ae38e4a52a8ce130670ba65572173254d00ff150
+          ref: c7cd9dcab335ecb7dde8587a519e387f5ad0483c
           path: repo
           fetch-depth: 1
       - name: Verify and package exact workspace
         env:
-          BASE_SHA: ae38e4a52a8ce130670ba65572173254d00ff150
+          BASE_SHA: c7cd9dcab335ecb7dde8587a519e387f5ad0483c
         run: |
           set -euo pipefail
           test "$(git -C repo rev-parse HEAD)" = "$BASE_SHA"
