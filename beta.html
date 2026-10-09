@@ -153,7 +153,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.22.0';
+var CODE_VERSION = 'v19.22.1';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -738,6 +738,17 @@ var speicherSichtbarkeitsVerlauf=[];
 var speicherDiagnoseSeq=0;
 var idbUnerwartetGeschlossen=false;
 var idbUnerwartetGeschlossenZeit=null;
+/* v19.22.1 (Backlog-Punkt 91): Lifecycle-Schreibsteuerung lebt ausschliesslich im RAM.
+   anzahlSaveAusstehend beobachtet die normalen save()-Writes, ohne deren bestehenden
+   Best-Effort-/Fallback-Weg in die Checkpoint-Kette umzubauen. Die Lifecycle-Zaehler und
+   Guards werden bewusst NICHT in state persistiert. */
+var anzahlSaveAusstehend=0;
+var lebenszyklusHideVerarbeitet=false;
+var lebenszyklusUngesichert=false;
+var lebenszyklusUngesichertGrund='';
+var lebenszyklusWritesGestartet=0;
+var lebenszyklusWritesErfolgreich=0;
+var lebenszyklusWritesFehlgeschlagen=0;
 function speicherDiagnoseFehlerMeta(e){
   if(!e) return null;
   var name='', message='';
@@ -785,6 +796,12 @@ function speicherDiagnoseTechnisch(e){
     rueckfallVersucht:!!(e&&e.rueckfallVersucht),
     rueckfallErfolgreich:(e&&e.rueckfallErfolgreich===true)?true:((e&&e.rueckfallErfolgreich===false)?false:null),
     rueckfallFehler:e&&e.rueckfallFehler?speicherDiagnoseFehlerMeta(e.rueckfallFehler):null,
+    ausloeser:String(e&&e.ausloeser||''),
+    pruefRunStatusStart:String(e&&e.pruefRunStatusStart||''),
+    vorhersageRunStatusStart:String(e&&e.vorhersageRunStatusStart||''),
+    schreibNoetig:(e&&typeof e.schreibNoetig==='boolean')?e.schreibNoetig:null,
+    schreibGrund:String(e&&e.schreibGrund||''),
+    anzahlSaveAussteht:(e&&e.anzahlSaveAussteht!==undefined&&e.anzahlSaveAussteht!==null)?Math.max(0,Number(e.anzahlSaveAussteht)||0):null,
     storageEstimate:null,
     storageEstimateFehler:e&&e.storageEstimateFehler?speicherDiagnoseFehlerMeta(e.storageEstimateFehler):null
   };
@@ -839,6 +856,30 @@ function speicherDiagnoseAnFehler(err,e){
   }
   return err;
 }
+/* v19.22.1: Zusatzmetadaten werden erst am tatsaechlichen Start des seriellen Schreibens
+   aufgenommen. Sie werden NUR an einen bereits von idbSchreiben() erzeugten Fehlerfall
+   angehaengt. Ein Fehler in dieser reinen Diagnose darf niemals die Speichersemantik aendern. */
+function speicherDiagnoseStartMeta(ausloeser, schreibNoetig, grund){
+  return {
+    ausloeser:String(ausloeser||''),
+    pruefRunStatusStart:String(state.pruefRun&&state.pruefRun.status||''),
+    vorhersageRunStatusStart:String(state.vorhersageRun&&state.vorhersageRun.status||''),
+    schreibNoetig:schreibNoetig!==false,
+    schreibGrund:String(grund||''),
+    anzahlSaveAussteht:Math.max(0,Number(anzahlSaveAusstehend)||0)
+  };
+}
+function speicherDiagnoseMetadatenAnhaengen(err, meta){
+  if(!err || !err._diagEintrag || !meta) return;
+  var d=err._diagEintrag;
+  d.ausloeser=meta.ausloeser;
+  d.pruefRunStatusStart=meta.pruefRunStatusStart;
+  d.vorhersageRunStatusStart=meta.vorhersageRunStatusStart;
+  d.schreibNoetig=meta.schreibNoetig;
+  d.schreibGrund=meta.schreibGrund;
+  d.anzahlSaveAussteht=meta.anzahlSaveAussteht;
+  speicherDiagnoseSpeichern();
+}
 function speicherDiagnoseLeeren(){
   speicherDiagnosePuffer=[];
   try{ localStorage.removeItem(SPEICHER_DIAG_KEY); }catch(e){}
@@ -855,12 +896,20 @@ function speicherDiagnoseWert(v){
 function speicherDiagnoseTextBauen(){
   var feld=document.getElementById('speicherDiagText');
   if(!feld) return;
-  if(!speicherDiagnosePuffer.length){ feld.value=t('diagEmpty'); return; }
+  var zaehler='Lifecycle-Writes: gestartet='+lebenszyklusWritesGestartet+
+    ' · erfolgreich='+lebenszyklusWritesErfolgreich+' · fehlgeschlagen='+lebenszyklusWritesFehlgeschlagen;
+  if(!speicherDiagnosePuffer.length){ feld.value=t('diagEmpty')+'\n\n'+zaehler; return; }
   var bloecke=speicherDiagnosePuffer.map(function(rohe){
     var e=speicherDiagnoseTechnisch(rohe);
     return [
       'transaktionsId: '+speicherDiagnoseWert(e.transaktionsId),
       'quelle: '+speicherDiagnoseWert(e.quelle),
+      'ausloeser: '+speicherDiagnoseWert(e.ausloeser),
+      'pruefRunStatusStart: '+speicherDiagnoseWert(e.pruefRunStatusStart),
+      'vorhersageRunStatusStart: '+speicherDiagnoseWert(e.vorhersageRunStatusStart),
+      'schreibNoetig: '+(e.schreibNoetig===true?'ja':(e.schreibNoetig===false?'nein':'null')),
+      'schreibGrund: '+speicherDiagnoseWert(e.schreibGrund),
+      'anzahlSaveAussteht: '+speicherDiagnoseWert(e.anzahlSaveAussteht),
       'startZeit: '+speicherDiagnoseWert(e.startZeit),
       'phase: '+speicherDiagnoseWert(e.phase),
       'endZeit: '+speicherDiagnoseWert(e.endZeit),
@@ -880,7 +929,7 @@ function speicherDiagnoseTextBauen(){
       'storageEstimateFehler: '+speicherDiagnoseWert(e.storageEstimateFehler)
     ].join('\n');
   });
-  feld.value='ONDO CONTROL — Speicher-Diagnose · '+speicherDiagnosePuffer.length+' Eintraege\n\n'+bloecke.join('\n\n');
+  feld.value='ONDO CONTROL — Speicher-Diagnose · '+speicherDiagnosePuffer.length+' Eintraege\n'+zaehler+'\n\n'+bloecke.join('\n\n');
 }
 function idbOeffnen(){
   if(idbGeoeffnet) return idbGeoeffnet;
@@ -1476,11 +1525,14 @@ function speicherFehlerMeldung(e){
    und wartet deshalb nicht darauf. Nur note()/alert() bei Erfolg oder Fehlschlag kommen jetzt
    etwas spaeter (nach dem asynchronen Schreiben), nicht mehr in derselben Millisekunde. */
 function save(){
+  anzahlSaveAusstehend++;
   speicherSchreiben(KEY, state).then(function(){
+    anzahlSaveAusstehend=Math.max(0,anzahlSaveAusstehend-1);
     if(speicherAlarm){ speicherAlarm=false; }
     speicherAlarmFehler='';
     note(t('saved'));
   }).catch(function(e){
+    anzahlSaveAusstehend=Math.max(0,anzahlSaveAusstehend-1);
     speicherAlarmFehler=speicherFehlerText(e);
     note(t('saveFail'));
     if(!speicherAlarm){ speicherAlarm=true; alert(speicherFehlerMeldung(e)); }
@@ -1521,14 +1573,21 @@ function save(){
    geklappt. Beide Checkpoint-Funktionen schreiben ueber speicherSchreibenKritisch() (nur
    IndexedDB); ein localStorage-Rueckfall zaehlt fuer sie nicht als Erfolg. */
 var speicherKette = Promise.resolve();
-function checkpointSave(){
+function checkpointSave(ausloeser){
+  ausloeser=ausloeser||'checkpoint';
+  var startMeta=null;
   var ergebnis = speicherKette.then(function(){
-    /* v19.19.2: der strikte Weg (nur IndexedDB) - siehe speicherSchreibenKritisch(). */
+    /* v19.19.2: der strikte Weg (nur IndexedDB) - siehe speicherSchreibenKritisch().
+       v19.22.1: Nur Diagnose-Metadaten werden hier am tatsaechlichen Schreibstart erfasst. */
+    var grund = ausloeser==='startup' ? 'lauf_geaendert' :
+      (ausloeser==='rueckkehr_wiederholung' ? lebenszyklusUngesichertGrund : '');
+    startMeta=speicherDiagnoseStartMeta(ausloeser,true,grund);
     return speicherSchreibenKritisch(KEY, state, 'checkpoint');
   }).then(function(){
     if(speicherAlarm){ speicherAlarm=false; }
     speicherAlarmFehler='';
   }, function(e){
+    try{ speicherDiagnoseMetadatenAnhaengen(e,startMeta); }catch(x){}
     speicherAlarmFehler=speicherFehlerText(e);
     if(!speicherAlarm){ speicherAlarm=true; try{ alert(speicherFehlerMeldung(e)); }catch(x){} }
     throw (e || new Error('Checkpoint fehlgeschlagen'));
@@ -1536,17 +1595,41 @@ function checkpointSave(){
   speicherKette = ergebnis.catch(function(){ /* Kette bleibt benutzbar (B) */ });
   return ergebnis;
 }
-function checkpointOhneBarriere(){
-  return checkpointSave().catch(function(){ return false; });
+function checkpointOhneBarriere(ausloeser){
+  return checkpointSave(ausloeser).catch(function(){ return false; });
 }
 /* v19.21.1: Backup nutzt dieselbe serielle speicherKette und denselben strikten
    IndexedDB-Weg wie ein kritischer Checkpoint, aber bewusst OHNE dessen blockierenden Alarm.
    Der Aufrufer datenSichern() behandelt den Fehler nicht-blockierend und separat. */
 function backupCheckpointSave(){
+  var startMeta=null;
   var ergebnis = speicherKette.then(function(){
+    startMeta=speicherDiagnoseStartMeta('backup',true,'');
     return speicherSchreibenKritisch(KEY, state, 'backup');
+  }).then(null,function(e){
+    try{ speicherDiagnoseMetadatenAnhaengen(e,startMeta); }catch(x){}
+    throw e;
   });
   speicherKette = ergebnis.catch(function(){ /* Kette bleibt nach einem Fehler benutzbar. */ });
+  return ergebnis;
+}
+/* v19.22.1: eigener Lifecycle-Schreibweg. Gleiche serielle Kette und derselbe strikte
+   IndexedDB-Weg wie Checkpoints, aber absichtlich OHNE Alarm und OHNE localStorage-Rueckfall. */
+function lebenszyklusSave(ausloeser, grund){
+  var startMeta=null;
+  var ergebnis=speicherKette.then(function(){
+    lebenszyklusWritesGestartet++;
+    startMeta=speicherDiagnoseStartMeta(ausloeser,true,grund);
+    return speicherSchreibenKritisch(KEY,state,'lebenszyklus');
+  }).then(function(){
+    lebenszyklusWritesErfolgreich++;
+    return true;
+  },function(e){
+    lebenszyklusWritesFehlgeschlagen++;
+    try{ speicherDiagnoseMetadatenAnhaengen(e,startMeta); }catch(x){}
+    throw e;
+  });
+  speicherKette=ergebnis.catch(function(){ /* Kette bleibt nach Lifecycle-Fehler benutzbar. */ });
   return ergebnis;
 }
 
@@ -8005,41 +8088,57 @@ speicherQuote().then(function(q){ speicherQuoteCache = q; });
    Der Auftrag verlangt ausdruecklich, dass diese Erkennung NICHT allein an visibilitychange
    haengt - deshalb steht sie hier im Programmstart und nicht nur im Handler unten. */
 load().then(function(){
+  var pruefStatusVor=String(state.pruefRun&&state.pruefRun.status||'');
+  var vorhersageStatusVor=String(state.vorhersageRun&&state.vorhersageRun.status||'');
   pruefRunEntsperren();
   vorhersageRunEntsperren();
-  /* Nur schreiben, wenn sich wirklich etwas geaendert hat - ein gewoehnlicher Start soll
-     keinen ueberfluessigen Schreibvorgang ausloesen. */
-  if((state.pruefRun && state.pruefRun.status==='pausiert') ||
-     (state.vorhersageRun && state.vorhersageRun.status==='pausiert')) checkpointOhneBarriere();
+  /* v19.22.1: Nur ein TATSAECHLICH von laufend -> pausiert entsperrter Run wird beim Start
+     geschrieben. Ein bereits vor dem Start pausierter Run ist keine Aenderung und loest
+     keinen ueberfluessigen Voll-State-Write mehr aus. */
+  var laufGeaendert =
+    (pruefStatusVor==='laufend' && state.pruefRun && state.pruefRun.status==='pausiert') ||
+    (vorhersageStatusVor==='laufend' && state.vorhersageRun && state.vorhersageRun.status==='pausiert');
+  if(laufGeaendert) checkpointOhneBarriere('startup');
   render(); checkUpdate();
 });
-/* Beim Wechsel in eine andere App bzw. beim Schliessen: keine neuen Schritte mehr anfangen
-   (siehe seiteVerlassen oben) und den aktuellen Stand sichern. Der laufende Zustand ist durch
-   die Checkpoints ohnehin schon fast vollstaendig geschrieben; dieser letzte Aufruf holt nur
-   das Allerletzte nach. pagehide ist der in Safari zuverlaessige Weg - 'unload' feuert auf
-   iOS nicht verlaesslich. */
-function seiteAnhalten(){
+/* v19.22.1 (Backlog-Punkt 91): Beim Hintergrundwechsel wird NICHT mehr pauschal der ganze
+   State geschrieben. Ein Lifecycle-Write ist nur noetig, wenn dieser Handler einen laufenden
+   Run auf pausiert gestellt hat oder wenn ein normaler save()-Write noch aussteht.
+   visibilitychange+pagehide werden je Hide-Zyklus durch ein eigenes RAM-Flag entdoppelt. */
+function seiteAnhalten(ausloeser){
   seiteVerlassen = true;
-  if(state.pruefRun && state.pruefRun.status==='laufend') state.pruefRun.status='pausiert';
-  if(state.vorhersageRun && state.vorhersageRun.status==='laufend') state.vorhersageRun.status='pausiert';
-  checkpointOhneBarriere();
+  if(lebenszyklusHideVerarbeitet) return;
+  var laufGeaendert=false;
+  if(state.pruefRun && state.pruefRun.status==='laufend'){ state.pruefRun.status='pausiert'; laufGeaendert=true; }
+  if(state.vorhersageRun && state.vorhersageRun.status==='laufend'){ state.vorhersageRun.status='pausiert'; laufGeaendert=true; }
+  var saveAussteht=anzahlSaveAusstehend>0;
+  if(!laufGeaendert && !saveAussteht) return;
+  lebenszyklusHideVerarbeitet=true;
+  var grund = laufGeaendert && saveAussteht ? 'lauf_geaendert / save_aussteht' :
+    (laufGeaendert ? 'lauf_geaendert' : 'save_aussteht');
+  lebenszyklusSave(ausloeser||'pagehide',grund).catch(function(){
+    lebenszyklusUngesichert=true;
+    lebenszyklusUngesichertGrund=grund;
+  });
 }
-/* Bei der Rueckkehr wird der Lauf NICHT von selbst neu gestartet. Begruendung, ausdruecklich
-   genannt statt verschwiegen: Ein Vorhersage- oder Prueflauf kostet echte Modellaufrufe
-   (Arbeitsregel G). Ein Fortsetzen ohne Zutun koennte diese Kosten ausloesen, waehrend Ondo
-   gerade nur kurz in die App schaut. Abschnitt 7 laesst genau das zu: "wieder aufgenommen
-   ODER sauber als fortsetzbar erkannt". Der Zustand wird deshalb sichtbar gemacht, und der
-   naechste Klick auf denselben Knopf setzt beim ersten offenen Schritt fort - ohne einen
-   einzigen bereits bezahlten Aufruf zu wiederholen und ohne einen zusaetzlichen Dialog
-   (Abschnitt 15b: kein neuer Pflichtschritt fuer Ondo). */
+/* Bei der Rueckkehr wird der Lauf NICHT von selbst neu gestartet. Ein fehlgeschlagener
+   noetiger Lifecycle-Write bekommt jedoch genau EINEN Wiederholungsversuch im sichtbaren
+   Zustand ueber den bestehenden checkpointOhneBarriere()-Pfad. Das Flag wird VORHER
+   geloescht; scheitert auch diese Wiederholung, gilt der bestehende Checkpoint-Alarm. */
 function seiteZurueck(){
   seiteVerlassen = false;
+  lebenszyklusHideVerarbeitet=false;
+  if(lebenszyklusUngesichert){
+    lebenszyklusUngesichert=false;
+    checkpointOhneBarriere('rueckkehr_wiederholung');
+  }
   render();
 }
 document.addEventListener('visibilitychange', function(){
-  if(document.visibilityState==='hidden') seiteAnhalten(); else seiteZurueck();
+  if(document.visibilityState==='hidden') seiteAnhalten('visibilitychange'); else seiteZurueck();
 });
-window.addEventListener('pagehide', seiteAnhalten);
+window.addEventListener('pagehide', function(){ seiteAnhalten('pagehide'); });
+window.addEventListener('pageshow', function(){ seiteZurueck(); });
 </script>
 </body>
 </html>

@@ -22,7 +22,7 @@ if(process.env.ONDO_BETA) BETA = process.env.ONDO_BETA;
    Zustand geladen ist, sonst laeuft ein zweiter, spaeter Ladevorgang in einen halb fertigen
    Zustand hinein. Es wird keine Zeile Logik veraendert, nur das erzeugte Promise festgehalten -
    und die Ersetzung wird geprueft, damit sie nicht eines Tages stillschweigend ausfaellt. */
-var START_ALT = 'load().then(function(){\n  pruefRunEntsperren();';
+var START_ALT = "load().then(function(){\n  var pruefStatusVor=String(state.pruefRun&&state.pruefRun.status||'');";
 function skriptText(){
   var s=fs.readFileSync(BETA,'utf8');
   var m=s.match(/<script>([\s\S]*)<\/script>/);

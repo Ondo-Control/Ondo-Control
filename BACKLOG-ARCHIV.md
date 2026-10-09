@@ -6746,3 +6746,8 @@ für das normale `save()` gilt der beschriebene Rückfall bewusst weiter.*
 **Bewertung:** Die im Code seit v19.13.0 festgelegte Schwelle — mindestens **90 % gleicher Tipp** UND höchstens **10 Prozentpunkte Spanne im Schnitt** — wird von beiden Gehirnen klar erfüllt. **Status: ✅ BESTANDEN / ERLEDIGT am 27.9.2026.** Punkt 80 wird deshalb nicht mehr im offenen Backlog geführt.
 
 **Kosten (Arbeitsregel G):** Kein Geld, kein neuer Dienst und kein zusätzlicher Netz- oder Modellaufruf — reine Dokumentations- und Archivpflege.
+
+
+### Backlog-Punkt 91 — Zwischenstand vor der Lifecycle-Reparatur (bis 8.10.2026)
+
+`datenSichern()` behält Datei/Share auch bei Persistenzfehler, behandelt den Sicherungszeitpunkt aber erst nach strengem IndexedDB-Schreiben als dauerhaft. Backup-Fehler erscheinen nicht-blockierend; allgemeine Speicherwarnungen zeigen zusätzlich den echten technischen Fehler. Checkpoint-Barrieren bleiben unverändert hart. v19.21.3 ergänzt ausschließlich technische Diagnose-Metadaten für fehlgeschlagene IndexedDB-Schreibversuche (Quelle/Phase/Request- und Transaktionsfehler/Visibility/unerwartetes DB-Close/Fallback-Ergebnis/Storage-Schätzung) in einem getrennten, auf 20 Einträge begrenzten localStorage-Puffer plus manuellen Text-/Kopier-/Leeren-Block unter Mehr → Daten. **Keine Reparatur und keine Änderung der bestehenden Speicher-, Alarm-, Fallback- oder Barriere-Semantik. Ursache bleibt offen, bis ein weiterer realer Fehler einen Diagnoseeintrag liefert.**

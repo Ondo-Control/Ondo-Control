@@ -660,3 +660,14 @@
 > Fälligkeitsprüfungen beweiskräftig (Warten bis Laufende bzw. begründete Stille plus positive
 > Gegenprobe nach Fälligkeit). Mutationsnachweis: ohne Schrankenzeile scheitern genau beide
 > Vor-Fälligkeitsfälle. Blueprint auf 0.154 gehoben.
+
+> **Was Fassung 0.155 ändert (9.10.2026):** Reine Synchronisierung nach Arbeitsregel M für
+> Backlog-Punkt 91 (`beta.html` v19.22.1). Keine neue Architektur- oder Verfassungsregel:
+> Der harte Checkpoint-Weg und der Best-Effort-`save()`-Rückfall bleiben fachlich unverändert.
+> Neu ist ausschließlich der kleine Lifecycle-Schreibweg: Hintergrund-Persistenz nur nach
+> tatsächlichem `laufend→pausiert` oder bei ausstehendem `save()`, höchstens einmal je
+> Hide-Zyklus; sein strikter IndexedDB-Fehler bleibt im Hintergrund ohne globalen Alarm und
+> führt bei Rückkehr höchstens zu einem Versuch über den bestehenden Checkpoint-Weg.
+> **Belegt** sind die Codekette bis `tx-abort` und fünf reale Messungen vom 8.10.2026;
+> **plausibel, aber nicht bewiesen** ist WebKit-Prozess-Suspendierung als konkrete Ursache
+> (WebKit Bug 202705). Blueprint auf 0.155 gehoben.

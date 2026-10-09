@@ -1,6 +1,69 @@
 # ONDO CONTROL — CHRONIK OKTOBER 2026
 *Versionsgeschichte und Prüfbelege ab Oktober 2026. Aktueller Stand steht in `STAND.md`.*
 
+## v19.22.1 — 9.10.2026 — Backlog-Punkt 91: Lifecycle-Schreibweg
+
+**Ausgangsbefund.** Im echten Gerätelauf vom 8.10.2026 entstanden fünf Diagnoseeinträge;
+alle trugen `quelle=checkpoint`, `phase=tx-abort`, ohne put-Fehler, unerwartetes DB-Close oder
+versuchten Rückfall. Jeder betroffene Write startete 1–10 ms nach
+`visibilitychange→hidden`. Im Code ist die Kette **belegt**:
+`seiteAnhalten()` → `checkpointOhneBarriere()` → `checkpointSave()` →
+`speicherSchreibenKritisch()` → `idbSchreiben()` → `tx-abort`. Der bisherige
+`seiteAnhalten()`-Pfad schrieb bei jedem `hidden` und `pagehide` den vollständigen State.
+**Plausibel, aber nicht bewiesen:** WebKit Bug 202705 dokumentiert, dass laufende
+IndexedDB-Transaktionen bei Prozess-Suspendierung zwangsweise abgebrochen werden. Dass genau
+diese Suspendierung die fünf ONDO-Abbrüche verursacht hat, wurde nicht per A/B-Test bewiesen.
+Die früher beobachteten Speicherzuwächse 1×/1×/3×/3× werden ebenfalls nicht als diesem Fehler
+beweisbar zugeordnet.
+
+**Schritt 0 — Pfadinventur.** Alle Aufrufer von `seiteAnhalten()`, `seiteZurueck()`,
+`checkpointOhneBarriere()`, `save()` und `speicherSchreiben()` wurden am aktuellen Produktcode
+inventarisiert. Es existiert kein State-Teil, der nur durch den bisherigen Hide-Write
+persistiert wird. Die Hilfsfunktionen, die State verändern ohne selbst zu speichern, laufen
+in ihre bestehenden `save()`-/Migrations-/Checkpoint-Pfade. Die einzige Auftragsergänzung wurde
+von Ondo ausdrücklich freigegeben: `checkpointSave()` und `backupCheckpointSave()` dürfen
+ausschließlich im Fehlerpfad um Diagnose-Startmetadaten ergänzt werden.
+
+**Gebaut.** `save()` zählt laufende normale Speicherungen nur im Arbeitsspeicher und senkt den
+Zähler in Erfolg wie Fehler sicher wieder ab. `seiteAnhalten()` pausiert laufende Runs wie
+bisher, schreibt aber nur bei tatsächlichem `laufend→pausiert` oder solange ein `save()`
+aussteht. `visibilitychange` und `pagehide` teilen einen eigenen Hide-Zyklus-Guard; `pagehide`
+allein kann den einen nötigen Write weiterhin auslösen. Der neue `lebenszyklus`-Schreibweg
+benutzt dieselbe serielle `speicherKette` und `speicherSchreibenKritisch()` ohne
+localStorage-Rückfall. Sein Fehler erzeugt keinen Alert und setzt `speicherAlarm` nicht; ist
+der Write nötig, wird nur im Arbeitsspeicher ein Ungesichert-Flag gesetzt. Bei
+visible/pageshow wird dieses Flag vorab gelöscht und genau ein Wiederholungsversuch über
+`checkpointOhneBarriere('rueckkehr_wiederholung')` gestartet; scheitert dieser im sichtbaren
+Zustand, gilt unverändert der bestehende Alarm. Startup schreibt nur noch, wenn eine
+Entsperrfunktion wirklich `laufend→pausiert` geändert hat.
+
+**Diagnose.** Fehlerdiagnosen können zusätzlich `ausloeser`, `pruefRunStatusStart`,
+`vorhersageRunStatusStart`, `schreibNoetig`, `schreibGrund` und `anzahlSaveAussteht` tragen.
+Die Werte werden zum tatsächlichen Schreibstart in der seriellen Kette erfasst und erst im
+Fehlerpfad an denselben vorhandenen Diagnoseeintrag angehängt; kein zweiter Eintrag entsteht.
+Drei rein flüchtige Zähler nennen gestartete/erfolgreiche/fehlgeschlagene Lifecycle-Writes im
+Text unter „Text erzeugen“. Sie werden nicht zusätzlich persistiert. Keine neuen
+Sprachschlüssel; 392/392/392 bleibt unverändert.
+
+**Bewusst unverändert:** `idbSchreiben()`, `speicherSchreibenKritisch()`, Reihenfolge und
+Semantik der harten Checkpoint-Barriere, alle bestehenden kritischen Checkpoint-Aufrufer vor
+KI-/Netzschritten, normaler `save()`-localStorage-Rückfall, Backup-Verhalten, Run-Wiederaufnahme,
+Alarmtexte, Quoten-/Speicheranzeige und State-Struktur.
+
+**Lokale Verifikation am festgenagelten Ausgangsstand `c7cd9dcab335ecb7dde8587a519e387f5ad0483c`:**
+Vor dem Bau waren t1–t10 **500/500** grün. Nach der Reparatur bestehen t1–t11 **553/553**;
+`t11_lebenszyklus.js` trägt **53/53** Prüfungen. `t5_checkpoint.js` bleibt **41/41**,
+`t9_speicherdiagnose.js` **52/52**. Mutationsgegenprobe in Wegwerfkopien:
+(1) save-Zähler entfernt → 7 Fehler; (2) alten pauschalen Hide-Weg wiederhergestellt → 17 Fehler;
+(3) eigenen Lifecycle-Weg durch normalen Checkpoint ersetzt → 10 Fehler;
+(4) alten Startup-„jeder pausierte Run“-Write wiederhergestellt → 1 Fehler;
+(5) Diagnose-Metadaten-Anhängung entfernt → 3 Fehler. Damit scheitert für jede Produktionsänderung
+der zugehörige Test am gezielt verschlechterten Stand.
+
+**Offen:** Die Reparatur ist lokal belegt, aber noch nicht am echten iPhone bewährt.
+Backlog-Punkt 91 bleibt deshalb offen. Kosten: kein neuer Dienst, keine API, kein Modellaufruf;
+im Gegenteil entfallen unnötige große IndexedDB-Writes bei gewöhnlichen Hintergrundwechseln.
+
 ## v19.22.0 — 6.10.2026 — Backlog-Punkt 92: Ausnahmespiele, Schritt 1
 
 **Auftrag.** Automatische Ergebnisbewertung darf nur erfolgen, wenn ein normaler Spielabschluss

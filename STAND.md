@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 6.10.2026, Fassung 155, v19.22.0*
+*Die aktuelle Wahrheit. Stand: 9.10.2026, Fassung 156, v19.22.1*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -207,17 +207,13 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   den Trainingsraum) — dieser Commit ist der Stand **davor**, falls zurückgesetzt werden muss.
   Einzelheiten Backlog-Punkt 77.
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.22.0** (`beta.html`, geliefert 6.10.2026) — **Backlog-Punkt 92,
-  Ausnahmespiele Schritt 1:** Ergebnisprüfung erst ab Anpfiff +3:30 h (ohne Anpfiff:
-  Spieltag 24:00 Berlin +3:30 h). Strukturbeleg: ESPN nur per Positivliste; football-data-
-  Archiv als FINISHED-gefilterter Beleg; OpenLigaDB parkt `verlauf_unklar` ohne KI. Sonst
-  braucht der KI-Weg 3× `normal_belegt`. Datum >1 Tag parkt, exakt 1 Tag nicht. Bestand und
-  `refRoh`/`espnRoh` bleiben erhalten.
-  **„Einsatz zurück":** `einsatz_zurueck` ist manuell bzw. nur bei eindeutig erkanntem
-  Wettschein setzbar, finanziell 0 €, geschlossen, aber ohne Trefferquoten-/Lernwertung.
-  Spielstatus oder Parkung setzen nie einen Wettstatus. **Schritt 2 offen:** spätere Nachprüfung
-  bereits akzeptierter Ergebnisse, einschließlich 14-Tage-Weg.
-  **Verifiziert:** Script-Syntax und t1–t10; t10 jetzt **48/48** nach beweiskräftiger Fälligkeits-Gegenprobe; Produktcode unverändert.
+- **Beta: v19.22.1** (`beta.html`, geliefert 9.10.2026) — **Backlog-Punkt 91, Lifecycle-Schreibweg:**
+  Beim Hintergrundwechsel wird der große State nicht mehr pauschal geschrieben, sondern nur
+  nach `laufend→pausiert` oder solange ein normales `save()` aussteht; `visibilitychange` und
+  `pagehide` werden je Hide-Zyklus entdoppelt. Lifecycle-Fehler bleiben im Hintergrund still
+  und werden diagnostiziert; bei Rückkehr folgt höchstens ein normal alarmierender Retry.
+  **v19.22.0 / Punkt 92 bleibt vollständig erhalten:** Sport-Schranke, `einsatz_zurueck` und
+  offener Schritt 2 (spätere Nachprüfung bereits akzeptierter Ergebnisse inklusive 14-Tage-Weg).
   **Punkt 80 — Antwortkonsistenz:** `vorhersageGehirn()` hat einen optionalen vierten Parameter
   `ohneFruehere`. Nur `antwortkonsistenzLauf()` setzt ihn auf `true`; dadurch bleibt `fruehere`
   leer und der Absatz „Deine letzten eigenen Vorhersagen“ fehlt in allen drei Wiederholungsläufen.
@@ -228,28 +224,23 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   `n=8`. Die seit v19.13.0 vorab festgelegte Schwelle — mindestens **90 % gleicher Tipp** UND
   höchstens **10 Prozentpunkte Spanne im Schnitt** — ist damit bei beiden Gehirnen erfüllt.
   Punkt 80 ist **bestanden und erledigt** und wurde aus dem offenen Backlog ins Archiv verschoben.
-  **Punkt 91 — Datensicherung/Persistenz:** `datenSichern()` erzeugt die Sicherungsdatei
-  weiterhin sofort und startet `navigator.share()` weiterhin direkt aus der Benutzeraktion.
-  Der Sicherungszeitpunkt läuft danach über dieselbe serielle `speicherKette` und denselben
-  strikten IndexedDB-Weg (`speicherSchreibenKritisch()`) wie kritische Checkpoints, aber mit
-  eigener nicht-blockierender Backup-Fehlerbehandlung. Scheitert IndexedDB, bleibt die Datei
-  erhalten, der neue Zeitpunkt wird in der App nicht als dauerhaft behauptet und ein sichtbarer
-  Hinweis nennt zusätzlich den tatsächlichen technischen Fehler. `save()` und der bestehende
-  blockierende Checkpoint-Alarm zeigen neben dem bisherigen verständlichen Warntext jetzt
-  ebenfalls ausschließlich Fehlername/-nachricht des echten Speicherfehlers. Keine State-,
-  Schlüssel- oder sonstigen Nutzdaten gelangen in die Meldung. **Die konkrete Ursache des am
-  27.9.2026 beobachteten einmaligen IndexedDB-Aussetzers bleibt ausdrücklich unbekannt/offen.**
-  **Diagnose v19.21.3 (27.9.2026):** Zusätzlich zeichnet ein strikt getrennter technischer
-  Diagnosekanal nur bei fehlgeschlagenen IndexedDB-Schreibvorgängen Quelle (`save`/`checkpoint`/
-  `backup`), erste Fehlerphase, Request-/Transaktions-/Synchronfehler, Dauer, die letzten
-  Sichtbarkeitsereignisse, einen unerwarteten DB-Close-Marker, Ergebnis des unveränderten
-  `save()`-localStorage-Rückfalls und bestmöglich `navigator.storage.estimate()` auf. Maximal
-  20 Einträge liegen unter `ondo-control-speicherdiagnose-v1`; erfolgreiche Schreibvorgänge
-  werden nicht protokolliert. Unter Mehr → Daten kann Ondo nur diese technischen Metadaten als
-  Text erzeugen/kopieren oder ausschließlich diesen Diagnosepuffer leeren. **Keine Reparatur,
-  keine Recovery-Logik und keine Änderung an save/checkpoint/backup/Alarm-/Barriere-Semantik.**
-  Die Ursache der realen iPhone/Safari-Aussetzer vom 27.9.2026 ist weiterhin ausdrücklich
-  **unbekannt/offen**; das nächste echte Auftreten soll sie erstmals belastbar eingrenzen.
+  **Punkt 91 — Persistenz/Lifecycle:** Backup und normale Speicherwarnungen behalten die seit
+  v19.21.1 bestehende Fehlerbehandlung; v19.21.3 führt den getrennten Diagnosepuffer fort.
+  **Belegt am 8.10.2026:** fünf Fehler waren `quelle=checkpoint`, `phase=tx-abort`; die Writes
+  starteten 1–10 ms nach `visibilitychange→hidden`. Codekette: `seiteAnhalten()` →
+  `checkpointOhneBarriere()` → `checkpointSave()` → `speicherSchreibenKritisch()` →
+  `idbSchreiben()` → `tx-abort`. Der bisherige Hide-Handler schrieb auf jedes `hidden`/`pagehide`.
+  **Plausibel, nicht bewiesen:** WebKit Bug 202705 dokumentiert zwangsweise Abbrüche laufender
+  IndexedDB-Transaktionen bei Prozess-Suspendierung; dass genau dies die fünf ONDO-Abbrüche
+  verursachte, ist nicht per A/B-Test belegt.
+  **v19.22.1:** Hide schreibt nur noch bei tatsächlichem `laufend→pausiert` oder ausstehendem
+  `save()`, maximal einmal je Hide-Zyklus, über einen eigenen strikten `lebenszyklus`-Weg in
+  derselben `speicherKette`. Sein Fehler setzt keinen globalen Alarm und nutzt keinen
+  localStorage-Rückfall; bei visible/pageshow wird bei Bedarf genau ein Versuch über den
+  bestehenden Checkpoint-Weg gemacht. Startup schreibt nur nach tatsächlicher Entsperrung.
+  Diagnose nennt zusätzlich Auslöser, Run-Status am Schreibstart, Schreibgrund/ausstehende Saves
+  und RAM-Zähler. Harte Checkpoint-Barriere, `save()`-Fallback, Backup-Semantik und Alarmtexte
+  bleiben fachlich unverändert. **Punkt 91 bleibt offen bis zur iPhone-Bewährung.**
   **Punkt 87 — ESPN-Archiv bei Länderspielen:** Der Resolver kann deutsche und englische
   ISO-3166-1-Ländernamen jetzt über denselben standardisierten Ländercode erkennen. Die Namen
   entstehen zur Laufzeit mit `Intl.DisplayNames` (`de`/`en`); es gibt keine gepflegte

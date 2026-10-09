@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 6.10.2026, Fassung 155 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 9.10.2026, Fassung 156 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -598,9 +598,11 @@ Die fünf KI-Log-Unterreiter scrollen bei Bedarf horizontal, ohne die unverände
 
 Drei persistente Themen (Hell als Standard, Dunkel Grün, Dunkel klassisch) schalten ausschließlich die gemeinsame Variablenpalette einschließlich Bottom-Navigation um; Dunkel klassisch behält die bisherige Palette und Dimmung. Start erhält „Heute auf einen Blick“ aus vorhandenen Mess-/Zustandswerten und gemeinsame Inline-SVG-Strichicons. „Mehr“ ist durch Abschnittsüberschriften gruppiert, Finanzen macht die Wartungs-Korrekturfelder optisch leiser, KI-Log/Werkzeuge verwendet dieselbe Strich-Icon-Sprache. Keine Änderung an Mess-, Vorhersage-, Prüf- oder Finanzlogik. Vollständige Begründung und Design-Abnahme: `BACKLOG-ARCHIV.md`.
 
-**91. Speicherfehler beim Backup und allgemeinen Speichern sichtbar machen** · *Fund Claude/Prüfer 27.9.2026 · Auftrag Ondo 27.9.2026 · zwei reale iPhone/Safari-Fälle am 27.9.2026* · **Status: 🔴 OFFEN — Fehleranzeige GEBAUT 27.9.2026 (`beta.html` v19.21.1), Diagnosewerkzeug GEBAUT 27.9.2026 (`beta.html` v19.21.3); echte Ursache weiterhin nicht belegt**
+**91. Speicherfehler beim Backup und allgemeinen Speichern sichtbar machen** · *Fund Claude/Prüfer 27.9.2026 · Diagnose 27.9.2026 · Lifecycle-Auftrag Ondo 9.10.2026* · **Status: 🔴 OFFEN — Lifecycle-Reparatur v19.22.1 geliefert; Bewährung am iPhone steht aus**
 
-`datenSichern()` behält Datei/Share auch bei Persistenzfehler, behandelt den Sicherungszeitpunkt aber erst nach strengem IndexedDB-Schreiben als dauerhaft. Backup-Fehler erscheinen nicht-blockierend; allgemeine Speicherwarnungen zeigen zusätzlich den echten technischen Fehler. Checkpoint-Barrieren bleiben unverändert hart. v19.21.3 ergänzt ausschließlich technische Diagnose-Metadaten für fehlgeschlagene IndexedDB-Schreibversuche (Quelle/Phase/Request- und Transaktionsfehler/Visibility/unerwartetes DB-Close/Fallback-Ergebnis/Storage-Schätzung) in einem getrennten, auf 20 Einträge begrenzten localStorage-Puffer plus manuellen Text-/Kopier-/Leeren-Block unter Mehr → Daten. **Keine Reparatur und keine Änderung der bestehenden Speicher-, Alarm-, Fallback- oder Barriere-Semantik. Ursache bleibt offen, bis ein weiterer realer Fehler einen Diagnoseeintrag liefert.**
+**Belegt (8.10.2026):** 5/5 Fehler: `quelle=checkpoint`, `phase=tx-abort`, Schreibstart 1–10 ms nach `visibilitychange→hidden`. Kette: `seiteAnhalten()` → `checkpointOhneBarriere()` → `checkpointSave()` → `speicherSchreibenKritisch()` → `idbSchreiben()` → `tx-abort`; der Altcode schrieb auf jedes `hidden`/`pagehide`. **Plausibel, unbewiesen:** WebKit Bug 202705 dokumentiert zwangsweise Abbrüche laufender IndexedDB-Transaktionen bei Prozess-Suspendierung; die Zuordnung zu diesen fünf Fällen ist nicht A/B-belegt.
+
+**v19.22.1:** Hide schreibt nur nach `laufend→pausiert` oder bei ausstehendem `save()` und entdoppelt `visibilitychange`/`pagehide`. Eigener strikter `lebenszyklus`-Weg in derselben `speicherKette`; Fehler dort ohne Alarm/localStorage-Rückfall, bei Rückkehr genau ein Versuch über den bisherigen Checkpoint-Weg. Startup nur nach tatsächlichem Statuswechsel. Diagnose ergänzt Auslöser, Run-Status am Schreibstart, Schreibgrund/ausstehende Saves und RAM-Zähler. Bestehende save-/Backup-/Barriere-/Alarmsemantik bleibt unverändert. **Offen bis zur iPhone-Bewährung.**
 
 ---
 
