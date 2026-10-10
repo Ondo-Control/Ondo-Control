@@ -120,6 +120,114 @@
    "torGast": 2,
    "quelle": "football-data.org",
    "halbzeit": "0:2"
+  },
+  {
+   "datum": "2026-10-09",
+   "anpfiff": "18:30",
+   "wettbewerb": "Bundesliga",
+   "heim": "Borussia Dortmund",
+   "gast": "SV Werder Bremen",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-10-09",
+   "anpfiff": "00:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "Fluminense FC",
+   "gast": "Coritiba FBC",
+   "status": "FT",
+   "torHeim": 4,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-10-09",
+   "anpfiff": "19:00",
+   "wettbewerb": "Primera Division",
+   "heim": "Málaga CF",
+   "gast": "RCD Espanyol de Barcelona",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:1"
+  },
+  {
+   "datum": "2026-10-09",
+   "anpfiff": "17:45",
+   "wettbewerb": "Primeira Liga",
+   "heim": "Moreirense FC",
+   "gast": "Gil Vicente FC",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-10-09",
+   "anpfiff": "18:00",
+   "wettbewerb": "Eredivisie",
+   "heim": "PSV",
+   "gast": "SC Heerenveen",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-10-09",
+   "anpfiff": "18:45",
+   "wettbewerb": "Ligue 1",
+   "heim": "Racing Club de Lens",
+   "gast": "Olympique Lyonnais",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-10-09",
+   "anpfiff": "00:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "SE Palmeiras",
+   "gast": "EC Bahia",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-10-09",
+   "anpfiff": "19:15",
+   "wettbewerb": "Primeira Liga",
+   "heim": "Sporting Clube de Braga",
+   "gast": "Sporting Clube de Portugal",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 3,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-10-09",
+   "anpfiff": "19:00",
+   "wettbewerb": "Championship",
+   "heim": "West Ham United FC",
+   "gast": "Queens Park Rangers FC",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:1"
   }
  ]
 }
