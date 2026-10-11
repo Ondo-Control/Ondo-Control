@@ -720,6 +720,18 @@
    "torGast": 1,
    "quelle": "football-data.org",
    "halbzeit": "0:1"
+  },
+  {
+   "datum": "2026-10-11",
+   "anpfiff": "00:00",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "São Paulo FC",
+   "gast": "EC Vitória",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "1:1"
   }
  ]
 }
