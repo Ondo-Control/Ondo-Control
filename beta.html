@@ -153,7 +153,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.22.1';
+var CODE_VERSION = 'v19.22.2';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -8119,26 +8119,38 @@ function seiteAnhalten(ausloeser){
   lebenszyklusSave(ausloeser||'pagehide',grund).catch(function(){
     lebenszyklusUngesichert=true;
     lebenszyklusUngesichertGrund=grund;
+    /* v19.22.2: Der IndexedDB-Abbruch kann erst NACH der Rueckkehr auf visible gemeldet werden.
+       Dann gab es den Rueckkehr-Handler bereits. In diesem Fall denselben EINMAL-Weg sofort
+       nachholen; ist die Seite inzwischen wieder hidden, bleibt das Flag bis zur naechsten
+       Rueckkehr stehen. */
+    if(document.visibilityState==='visible') lebenszyklusWiederholen();
   });
 }
-/* Bei der Rueckkehr wird der Lauf NICHT von selbst neu gestartet. Ein fehlgeschlagener
-   noetiger Lifecycle-Write bekommt jedoch genau EINEN Wiederholungsversuch im sichtbaren
-   Zustand ueber den bestehenden checkpointOhneBarriere()-Pfad. Das Flag wird VORHER
-   geloescht; scheitert auch diese Wiederholung, gilt der bestehende Checkpoint-Alarm. */
+/* v19.22.2: EIN gemeinsamer Wiederholungsweg fuer Rueckkehr-Handler und verspaeteten
+   Lifecycle-Fehler. Das Flag ist zugleich der Einmal-Guard und wird VOR dem Versuch geloescht.
+   Scheitert die Wiederholung, setzt nur der bestehende Checkpoint-Weg seinen Alarm; es wird kein
+   neues Lifecycle-Flag erzeugt und damit keine Schleife gestartet. */
+function lebenszyklusWiederholen(){
+  if(!lebenszyklusUngesichert) return false;
+  lebenszyklusUngesichert=false;
+  checkpointOhneBarriere('rueckkehr_wiederholung');
+  return true;
+}
+/* Bei der Rueckkehr wird der Lauf NICHT von selbst neu gestartet. */
 function seiteZurueck(){
   seiteVerlassen = false;
   lebenszyklusHideVerarbeitet=false;
-  if(lebenszyklusUngesichert){
-    lebenszyklusUngesichert=false;
-    checkpointOhneBarriere('rueckkehr_wiederholung');
-  }
+  lebenszyklusWiederholen();
   render();
 }
 document.addEventListener('visibilitychange', function(){
   if(document.visibilityState==='hidden') seiteAnhalten('visibilitychange'); else seiteZurueck();
 });
 window.addEventListener('pagehide', function(){ seiteAnhalten('pagehide'); });
-window.addEventListener('pageshow', function(){ seiteZurueck(); });
+/* pageshow feuert auch beim ersten Laden. Das ist keine Lifecycle-Rueckkehr und darf nicht vor
+   dem asynchronen load() einen Default-State rendern. Nur echte BFCache-Wiederherstellung nutzt
+   deshalb diesen Zusatzweg; normale Rueckkehr bleibt visibilitychange->visible. */
+window.addEventListener('pageshow', function(e){ if(e && e.persisted) seiteZurueck(); });
 </script>
 </body>
 </html>

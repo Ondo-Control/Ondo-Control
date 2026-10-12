@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 9.10.2026, Fassung 156 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 12.10.2026, Fassung 157 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -598,11 +598,11 @@ Die fünf KI-Log-Unterreiter scrollen bei Bedarf horizontal, ohne die unverände
 
 Drei persistente Themen (Hell als Standard, Dunkel Grün, Dunkel klassisch) schalten ausschließlich die gemeinsame Variablenpalette einschließlich Bottom-Navigation um; Dunkel klassisch behält die bisherige Palette und Dimmung. Start erhält „Heute auf einen Blick“ aus vorhandenen Mess-/Zustandswerten und gemeinsame Inline-SVG-Strichicons. „Mehr“ ist durch Abschnittsüberschriften gruppiert, Finanzen macht die Wartungs-Korrekturfelder optisch leiser, KI-Log/Werkzeuge verwendet dieselbe Strich-Icon-Sprache. Keine Änderung an Mess-, Vorhersage-, Prüf- oder Finanzlogik. Vollständige Begründung und Design-Abnahme: `BACKLOG-ARCHIV.md`.
 
-**91. Speicherfehler beim Backup und allgemeinen Speichern sichtbar machen** · *Fund Claude/Prüfer 27.9.2026 · Diagnose 27.9.2026 · Lifecycle-Auftrag Ondo 9.10.2026* · **Status: 🔴 OFFEN — Lifecycle-Reparatur v19.22.1 geliefert; Bewährung am iPhone steht aus**
+**91. Speicherfehler beim Backup und allgemeinen Speichern sichtbar machen** · *Fund Claude/Prüfer 27.9.2026 · Diagnose 27.9.2026 · Lifecycle-Auftrag Ondo 9.10.2026 · Korrektur 12.10.2026* · **Status: 🔴 OFFEN — Lifecycle-Korrektur v19.22.2 geliefert; Bewährung am iPhone steht aus**
 
-**Belegt (8.10.2026):** 5/5 Fehler: `quelle=checkpoint`, `phase=tx-abort`, Schreibstart 1–10 ms nach `visibilitychange→hidden`. Kette: `seiteAnhalten()` → `checkpointOhneBarriere()` → `checkpointSave()` → `speicherSchreibenKritisch()` → `idbSchreiben()` → `tx-abort`; der Altcode schrieb auf jedes `hidden`/`pagehide`. **Plausibel, unbewiesen:** WebKit Bug 202705 dokumentiert zwangsweise Abbrüche laufender IndexedDB-Transaktionen bei Prozess-Suspendierung; die Zuordnung zu diesen fünf Fällen ist nicht A/B-belegt.
+**Belegt:** 5/5 reale Fehler vom 8.10. waren `quelle=checkpoint`, `phase=tx-abort`, Start 1–10 ms nach `visibilitychange→hidden`; drei Abbrüche wurden erst 37/329/331 ms nach `visible` gemeldet. Codekette bis `tx-abort` ist belegt. **Plausibel, unbewiesen:** WebKit Bug 202705 beschreibt Abbrüche laufender IndexedDB-Transaktionen bei Prozess-Suspendierung; die konkrete Ursache der fünf ONDO-Fälle ist nicht A/B-bewiesen.
 
-**v19.22.1:** Hide schreibt nur nach `laufend→pausiert` oder bei ausstehendem `save()` und entdoppelt `visibilitychange`/`pagehide`. Eigener strikter `lebenszyklus`-Weg in derselben `speicherKette`; Fehler dort ohne Alarm/localStorage-Rückfall, bei Rückkehr genau ein Versuch über den bisherigen Checkpoint-Weg. Startup nur nach tatsächlichem Statuswechsel. Diagnose ergänzt Auslöser, Run-Status am Schreibstart, Schreibgrund/ausstehende Saves und RAM-Zähler. Bestehende save-/Backup-/Barriere-/Alarmsemantik bleibt unverändert. **Offen bis zur iPhone-Bewährung.**
+**v19.22.2:** v19.22.1 bleibt sonst unverändert. Ein gemeinsames `lebenszyklusWiederholen()` wird sowohl bei Rückkehr als auch vom verspäteten Lifecycle-Fehler benutzt; das Ungesichert-Flag wird vor dem einzigen Retry gelöscht. Ist die Seite beim verspäteten Fehler wieder hidden, wartet der Retry bis zur nächsten Rückkehr. `pageshow` wirkt nur bei `event.persisted===true`; normales erstes Laden erzeugt keinen zusätzlichen Vorab-Render. t11 deckt außerdem `save_aussteht` + `hidden` + `pagehide` mutationssensitiv ab. **Offen bis zur iPhone-Bewährung.** Historie v19.22.1: `BACKLOG-ARCHIV.md`.
 
 ---
 

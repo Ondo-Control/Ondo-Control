@@ -671,3 +671,15 @@
 > **Belegt** sind die Codekette bis `tx-abort` und fünf reale Messungen vom 8.10.2026;
 > **plausibel, aber nicht bewiesen** ist WebKit-Prozess-Suspendierung als konkrete Ursache
 > (WebKit Bug 202705). Blueprint auf 0.155 gehoben.
+
+> **Was Fassung 0.156 ändert (12.10.2026):** Reine Synchronisierung nach Arbeitsregel M für
+> die Korrektur zu Backlog-Punkt 91 (`beta.html` v19.22.2). v19.22.1 hatte einen lokal grünen,
+> aber real unvollständigen Retry: drei gemessene `tx-abort`-Meldungen kamen erst 37/329/331 ms
+> nach `visibilitychange→visible`, sodass der Rückkehrhandler das Ungesichert-Flag zu früh prüfte.
+> Jetzt benutzen Rückkehrhandler und verspäteter Lifecycle-catch genau einen gemeinsamen
+> `lebenszyklusWiederholen()`-Weg; das Flag wird vor dem Retry gelöscht. `pageshow` wirkt nur bei
+> `event.persisted===true`, um das erste Laden nicht mit einem zusätzlichen Default-State-Render
+> zu überlagern. Der Hide-Guard wird zusätzlich mit ausstehendem `save()` mutationssensitiv
+> bewiesen. Keine neue Architektur- oder Verfassungsregel; harte Checkpoint-, save-, Backup- und
+> Alarmsemantik bleiben unverändert. Blueprint auf 0.156 gehoben.
+

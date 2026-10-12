@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 9.10.2026, Fassung 156, v19.22.1*
+*Die aktuelle Wahrheit. Stand: 12.10.2026, Fassung 157, v19.22.2*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -207,11 +207,10 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   den Trainingsraum) — dieser Commit ist der Stand **davor**, falls zurückgesetzt werden muss.
   Einzelheiten Backlog-Punkt 77.
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.22.1** (`beta.html`, geliefert 9.10.2026) — **Backlog-Punkt 91, Lifecycle-Schreibweg:**
-  Beim Hintergrundwechsel wird der große State nicht mehr pauschal geschrieben, sondern nur
-  nach `laufend→pausiert` oder solange ein normales `save()` aussteht; `visibilitychange` und
-  `pagehide` werden je Hide-Zyklus entdoppelt. Lifecycle-Fehler bleiben im Hintergrund still
-  und werden diagnostiziert; bei Rückkehr folgt höchstens ein normal alarmierender Retry.
+- **Beta: v19.22.2** (`beta.html`, geliefert 12.10.2026) — **Backlog-Punkt 91, Lifecycle-Korrektur:**
+  v19.22.1 bleibt fachlich erhalten; v19.22.2 schließt die Retry-Race, wenn `tx-abort` erst nach
+  `visibilitychange→visible` gemeldet wird. Rückkehr und verspäteter Fehler benutzen denselben
+  Einmal-Retry; `pageshow` greift nur bei echter BFCache-Wiederherstellung (`persisted=true`).
   **v19.22.0 / Punkt 92 bleibt vollständig erhalten:** Sport-Schranke, `einsatz_zurueck` und
   offener Schritt 2 (spätere Nachprüfung bereits akzeptierter Ergebnisse inklusive 14-Tage-Weg).
   **Punkt 80 — Antwortkonsistenz:** `vorhersageGehirn()` hat einen optionalen vierten Parameter
@@ -233,14 +232,17 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   **Plausibel, nicht bewiesen:** WebKit Bug 202705 dokumentiert zwangsweise Abbrüche laufender
   IndexedDB-Transaktionen bei Prozess-Suspendierung; dass genau dies die fünf ONDO-Abbrüche
   verursachte, ist nicht per A/B-Test belegt.
-  **v19.22.1:** Hide schreibt nur noch bei tatsächlichem `laufend→pausiert` oder ausstehendem
-  `save()`, maximal einmal je Hide-Zyklus, über einen eigenen strikten `lebenszyklus`-Weg in
-  derselben `speicherKette`. Sein Fehler setzt keinen globalen Alarm und nutzt keinen
-  localStorage-Rückfall; bei visible/pageshow wird bei Bedarf genau ein Versuch über den
-  bestehenden Checkpoint-Weg gemacht. Startup schreibt nur nach tatsächlicher Entsperrung.
-  Diagnose nennt zusätzlich Auslöser, Run-Status am Schreibstart, Schreibgrund/ausstehende Saves
-  und RAM-Zähler. Harte Checkpoint-Barriere, `save()`-Fallback, Backup-Semantik und Alarmtexte
-  bleiben fachlich unverändert. **Punkt 91 bleibt offen bis zur iPhone-Bewährung.**
+  **v19.22.1-Basis:** Hide schreibt nur bei tatsächlichem `laufend→pausiert` oder ausstehendem
+  `save()`, höchstens einmal je Hide-Zyklus, über den strikten `lebenszyklus`-Weg; Fehler dort
+  bleiben ohne globalen Alarm/localStorage-Rückfall. Startup und Diagnose bleiben wie geliefert.
+  **Korrektur v19.22.2:** Drei reale Abbrüche wurden erst 37/329/331 ms nach `visible` gemeldet;
+  deshalb kann nun auch der Lifecycle-catch den gemeinsamen `lebenszyklusWiederholen()`-Weg
+  auslösen, falls die Seite dann sichtbar ist. Das Ungesichert-Flag wird vor dem einzigen Retry
+  gelöscht; bei erneut hidden wartet es bis zur nächsten Rückkehr. `pageshow` ruft den Rückweg
+  nur mit `event.persisted===true` auf, sodass erstes Laden keinen Vorab-Render auslöst. Der
+  Entdoppelungs-Guard ist jetzt auch für `save_aussteht` + `hidden` + `pagehide` mutationssensitiv
+  getestet. Harte Barriere, `save()`-Fallback, Backup-Semantik und Alarmtexte bleiben unverändert.
+  **Punkt 91 bleibt offen bis zur iPhone-Bewährung.**
   **Punkt 87 — ESPN-Archiv bei Länderspielen:** Der Resolver kann deutsche und englische
   ISO-3166-1-Ländernamen jetzt über denselben standardisierten Ländercode erkennen. Die Namen
   entstehen zur Laufzeit mit `Intl.DisplayNames` (`de`/`en`); es gibt keine gepflegte

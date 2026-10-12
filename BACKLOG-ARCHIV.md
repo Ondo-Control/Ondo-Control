@@ -6751,3 +6751,14 @@ für das normale `save()` gilt der beschriebene Rückfall bewusst weiter.*
 ### Backlog-Punkt 91 — Zwischenstand vor der Lifecycle-Reparatur (bis 8.10.2026)
 
 `datenSichern()` behält Datei/Share auch bei Persistenzfehler, behandelt den Sicherungszeitpunkt aber erst nach strengem IndexedDB-Schreiben als dauerhaft. Backup-Fehler erscheinen nicht-blockierend; allgemeine Speicherwarnungen zeigen zusätzlich den echten technischen Fehler. Checkpoint-Barrieren bleiben unverändert hart. v19.21.3 ergänzt ausschließlich technische Diagnose-Metadaten für fehlgeschlagene IndexedDB-Schreibversuche (Quelle/Phase/Request- und Transaktionsfehler/Visibility/unerwartetes DB-Close/Fallback-Ergebnis/Storage-Schätzung) in einem getrennten, auf 20 Einträge begrenzten localStorage-Puffer plus manuellen Text-/Kopier-/Leeren-Block unter Mehr → Daten. **Keine Reparatur und keine Änderung der bestehenden Speicher-, Alarm-, Fallback- oder Barriere-Semantik. Ursache bleibt offen, bis ein weiterer realer Fehler einen Diagnoseeintrag liefert.**
+
+---
+
+### Backlog-Punkt 91 — v19.22.1-Zwischenstand (9.10.2026; durch v19.22.2 korrigiert)
+
+**Belegt (8.10.2026):** 5/5 Fehler: `quelle=checkpoint`, `phase=tx-abort`, Schreibstart 1–10 ms nach `visibilitychange→hidden`. Kette: `seiteAnhalten()` → `checkpointOhneBarriere()` → `checkpointSave()` → `speicherSchreibenKritisch()` → `idbSchreiben()` → `tx-abort`; der Altcode schrieb auf jedes `hidden`/`pagehide`. **Plausibel, unbewiesen:** WebKit Bug 202705 dokumentiert zwangsweise Abbrüche laufender IndexedDB-Transaktionen bei Prozess-Suspendierung; die Zuordnung zu diesen fünf Fällen ist nicht A/B-belegt.
+
+**v19.22.1:** Hide schreibt nur nach `laufend→pausiert` oder bei ausstehendem `save()` und entdoppelt `visibilitychange`/`pagehide`. Eigener strikter `lebenszyklus`-Weg in derselben `speicherKette`; Fehler dort ohne Alarm/localStorage-Rückfall, bei Rückkehr ein Versuch über den bisherigen Checkpoint-Weg. Startup nur nach tatsächlichem Statuswechsel. Diagnose ergänzt Auslöser, Run-Status am Schreibstart, Schreibgrund/ausstehende Saves und RAM-Zähler. Bestehende save-/Backup-/Barriere-/Alarmsemantik blieb unverändert.
+
+**Warum v19.22.1 nicht abgenommen wurde (Prüfer + Claude, 12.10.2026):** Der Retry hing ausschließlich daran, dass `lebenszyklusUngesichert` bereits beim Rückkehrereignis gesetzt war. In drei der fünf realen Diagnosefälle vom 8.10. kam `tx-abort` jedoch erst 37/329/331 ms **nach** `visibilitychange→visible`; dann hatte `seiteZurueck()` das noch falsche Flag gesehen und es gab keinen weiteren Auslöser. Zusätzlich bewies t11 den Hide-Guard nicht mutationssensitiv: Bei laufendem Run genügte der Statuswechsel selbst zur Entdoppelung; erst `save_aussteht` + `hidden` + `pagehide` trennt Guard vorhanden (1 Write) von Guard entfernt (2 Writes). Diese beiden Lücken werden erst mit v19.22.2 korrigiert. Punkt 91 blieb offen.
+

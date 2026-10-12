@@ -1,4 +1,4 @@
-/* Backlog-Punkt 91, v19.22.1: Lifecycle-Schreibweg.
+/* Backlog-Punkt 91, v19.22.2: Lifecycle-Schreibweg und verspaeteter Abbruch.
    Der echte <script>-Block aus beta.html laeuft ueber umgebung.js. Geprueft werden nur
    Browserereignisse/IndexedDB durch die vorhandene Attrappe; Produktfunktionen werden nicht
    nachgebaut. ONDO_BETA erlaubt die Mutations-Gegenproben gegen Wegwerfkopien. */
@@ -6,9 +6,9 @@ var u=require('./umgebung.js');
 var KEY='ondo-control-v1';
 var DIAG='ondo-control-speicherdiagnose-v1';
 function pause(ms){ return new Promise(function(r){ setTimeout(r,ms); }); }
-function fire(c, typ, sichtbarkeit){
+function fire(c, typ, sichtbarkeit, persisted){
   if(sichtbarkeit){ c.document.visibilityState=sichtbarkeit; c.document.hidden=(sichtbarkeit==='hidden'); }
-  (c._protokoll.listener[typ]||[]).slice().forEach(function(f){ f({type:typ}); });
+  (c._protokoll.listener[typ]||[]).slice().forEach(function(f){ f({type:typ,persisted:!!persisted}); });
 }
 function diagListe(c){ var r=c.localStorage.getItem(DIAG); return r?JSON.parse(r):[]; }
 function letzter(c){ var a=diagListe(c); return a[a.length-1]||null; }
@@ -96,6 +96,22 @@ schritt(function(){
 });
 
 schritt(function(){
+  u.block('L4b. pageshow wirkt nur bei echter BFCache-Wiederherstellung');
+  var c=u.neueUmgebung(), renders=0;
+  return c.bereit.then(function(){
+    c.render=function(){ renders++; };
+    fire(c,'pageshow','visible',false);
+    return pause(0).then(function(){
+      u.pruef('L4b: normales erstes pageshow loest keinen Zusatz-render aus', renders===0,renders);
+      fire(c,'pageshow','visible',true);
+      return pause(0);
+    }).then(function(){
+      u.pruef('L4b: pageshow persisted=true nutzt den Rueckkehrweg', renders===1,renders);
+    });
+  });
+});
+
+schritt(function(){
   u.block('L5. Lifecycle-Abbruch: still, Diagnose, genau ein Recovery-Versuch');
   var c=u.neueUmgebung();
   return c.bereit.then(function(){
@@ -117,7 +133,7 @@ schritt(function(){
       return pause(35).then(function(){
         u.pruef('L5: genau ein Recovery-Write bei Rueckkehr', c._idb.schreibVersuche===vor+2,c._idb.schreibVersuche-vor);
         u.pruef('L5: Flag vor Wiederholung geloescht', c.lebenszyklusUngesichert===false);
-        fire(c,'pageshow','visible');
+        fire(c,'pageshow','visible',true);
         return pause(25);
       }).then(function(){
         u.pruef('L5: pageshow erzeugt keinen zweiten Recovery-Write', c._idb.schreibVersuche===vor+2,c._idb.schreibVersuche-vor);
@@ -133,10 +149,10 @@ schritt(function(){
     c.state.pruefRun={runId:'r4',status:'laufend'};
     c._idb.schreibFehler=true;
     var vor=c._idb.schreibVersuche;
-    fire(c,'pagehide');
+    fire(c,'pagehide','hidden');
     return pause(35).then(function(){
       u.pruef('L5b: erster Lifecycle-Abbruch bleibt still', c._protokoll.alerts.length===0&&c.speicherAlarm===false);
-      fire(c,'pageshow','visible');
+      fire(c,'pageshow','visible',true);
       return pause(40).then(function(){
         var a=diagListe(c), d=a[a.length-1];
         u.pruef('L5b: exakt ein Wiederholungsversuch', c._idb.schreibVersuche===vor+2,c._idb.schreibVersuche-vor);
@@ -160,6 +176,96 @@ schritt(function(){
       u.pruef('L5c: Grund save_aussteht', d&&d.schreibGrund==='save_aussteht',d&&d.schreibGrund);
       u.pruef('L5c: Anzahl ausstehender save am Schreibstart = 1', d&&d.anzahlSaveAussteht===1,d&&d.anzahlSaveAussteht);
       fertig(); return pause(0);
+    });
+  });
+});
+
+schritt(function(){
+  u.block('L5d. Realablauf: Abbruch kommt erst NACH visible -> sofort genau ein Recovery');
+  var c=u.neueUmgebung(), fehlerNr=0;
+  return c.bereit.then(function(){
+    c.state.pruefRun={runId:'spaet1',status:'laufend'};
+    c._idb.schreibVerzoegerungMs=30;
+    c._idb.schreibFehler=function(){ fehlerNr++; return fehlerNr===1; };
+    var vor=c._idb.schreibVersuche;
+    fire(c,'visibilitychange','hidden');
+    fire(c,'visibilitychange','visible');
+    return pause(5).then(function(){
+      u.pruef('L5d: visible kam vor dem simulierten Transaktionsabbruch', c._idb.schreibVersuche===vor,c._idb.schreibVersuche-vor);
+      u.pruef('L5d: vor spaetem Abbruch ist noch kein Ungesichert-Flag gesetzt', c.lebenszyklusUngesichert===false);
+      return pause(95);
+    }).then(function(){
+      u.pruef('L5d: spaeter Abbruch erzeugt genau einen Recovery-Write', c._idb.schreibVersuche===vor+2,c._idb.schreibVersuche-vor);
+      u.pruef('L5d: gemeinsamer Einmal-Guard ist danach false', c.lebenszyklusUngesichert===false);
+      u.pruef('L5d: erfolgreicher Recovery bleibt ohne Alarm', c.speicherAlarm===false&&c._protokoll.alerts.length===0);
+      fire(c,'pageshow','visible',true);
+      return pause(45);
+    }).then(function(){
+      u.pruef('L5d: spaeter pageshow erzeugt keinen zweiten Recovery', c._idb.schreibVersuche===vor+2,c._idb.schreibVersuche-vor);
+    });
+  });
+});
+
+schritt(function(){
+  u.block('L5e. Verspaeteter Abbruch + scheiternder Recovery: Alarm, aber keine Schleife');
+  var c=u.neueUmgebung();
+  return c.bereit.then(function(){
+    c.state.pruefRun={runId:'spaet2',status:'laufend'};
+    c._idb.schreibVerzoegerungMs=25;
+    c._idb.schreibFehler=true;
+    var vor=c._idb.schreibVersuche;
+    fire(c,'visibilitychange','hidden');
+    fire(c,'visibilitychange','visible');
+    return pause(85).then(function(){
+      u.pruef('L5e: Lifecycle plus genau ein gescheiterter Recovery', c._idb.schreibVersuche===vor+2,c._idb.schreibVersuche-vor);
+      u.pruef('L5e: bestehender Checkpoint-Alarm erscheint genau einmal', c.speicherAlarm===true&&c._protokoll.alerts.length===1,c._protokoll.alerts.length);
+      u.pruef('L5e: Flag vor Recovery geloescht, keine Schleifenmarke', c.lebenszyklusUngesichert===false);
+      fire(c,'pageshow','visible',true);
+      return pause(45);
+    }).then(function(){
+      u.pruef('L5e: pageshow nach gescheitertem Recovery startet keinen dritten Versuch', c._idb.schreibVersuche===vor+2,c._idb.schreibVersuche-vor);
+    });
+  });
+});
+
+schritt(function(){
+  u.block('L5f. Verspaeteter Abbruch waehrend neuem Hide wartet bis zur naechsten Rueckkehr');
+  var c=u.neueUmgebung(), fehlerNr=0;
+  return c.bereit.then(function(){
+    c.state.pruefRun={runId:'spaet3',status:'laufend'};
+    c._idb.schreibVerzoegerungMs=30;
+    c._idb.schreibFehler=function(){ fehlerNr++; return fehlerNr===1; };
+    var vor=c._idb.schreibVersuche;
+    fire(c,'visibilitychange','hidden');
+    fire(c,'visibilitychange','visible');
+    fire(c,'visibilitychange','hidden');
+    return pause(45).then(function(){
+      u.pruef('L5f: kein Sofort-Retry solange Seite wieder hidden ist', c._idb.schreibVersuche===vor+1,c._idb.schreibVersuche-vor);
+      u.pruef('L5f: Ungesichert-Flag bleibt bis zur naechsten Rueckkehr stehen', c.lebenszyklusUngesichert===true);
+      fire(c,'visibilitychange','visible');
+      return pause(50);
+    }).then(function(){
+      u.pruef('L5f: naechste Rueckkehr startet genau einen Recovery', c._idb.schreibVersuche===vor+2,c._idb.schreibVersuche-vor);
+      u.pruef('L5f: Flag danach false', c.lebenszyklusUngesichert===false);
+    });
+  });
+});
+
+schritt(function(){
+  u.block('L5g. Entdoppelungs-Guard ist bei ausstehendem save mutationssensitiv');
+  var c=u.neueUmgebung(), fertig;
+  return c.bereit.then(function(){
+    c.speicherSchreiben=function(){ return new Promise(function(res){ fertig=res; }); };
+    c.save();
+    var vor=c._idb.schreibVersuche;
+    fire(c,'visibilitychange','hidden');
+    fire(c,'pagehide');
+    return pause(35).then(function(){
+      u.pruef('L5g: save bleibt waehrend Hide+pagehide ausstehend', c.anzahlSaveAusstehend===1,c.anzahlSaveAusstehend);
+      u.pruef('L5g: hidden + pagehide erzeugt trotz save_aussteht genau EINEN Lifecycle-Write', c._idb.schreibVersuche===vor+1,c._idb.schreibVersuche-vor);
+      u.pruef('L5g: Lifecycle-Zaehler bestaetigt genau einen Start', c.lebenszyklusWritesGestartet===1,c.lebenszyklusWritesGestartet);
+      fertig();
+      return pause(0);
     });
   });
 });

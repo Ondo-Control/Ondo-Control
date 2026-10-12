@@ -113,10 +113,11 @@ function neueUmgebung(opt){
      Schreiben veraendert nichts - wie eine abgebrochene Transaktion.
      Steuerung ueber ctx._idb:  schreibFehler (true/false)  ·  oeffnenFehler (true/false)
      opt.ohneIdb: gar keine IndexedDB (alter Zustand).  opt.idb: Startinhalt, z. B. {Schluessel: Stand}. */
-  var idb={ daten:{}, schreibFehler:false, oeffnenFehler:false, schreibVersuche:0, schreibFehlschlaege:0 };
+  var idb={ daten:{}, schreibFehler:false, oeffnenFehler:false, schreibVersuche:0, schreibFehlschlaege:0, schreibVerzoegerungMs:0 };
   if(opt.idb) Object.keys(opt.idb).forEach(function(k){
     idb.daten[k] = (typeof opt.idb[k]==='string') ? opt.idb[k] : JSON.stringify(opt.idb[k]); });
   function spaeter(f){ setTimeout(f, 0); }
+  function schreibSpaeter(f){ setTimeout(f, Math.max(0,Number(idb.schreibVerzoegerungMs)||0)); }
   if(!opt.ohneIdb){
     ctx.indexedDB = {
       open:function(){
@@ -139,7 +140,7 @@ function neueUmgebung(opt){
                   put:function(v, k){ plan.push([k, JSON.stringify(v)]); }
                 };
               };
-              spaeter(function(){
+              schreibSpaeter(function(){
                 if(modus==='readwrite' && plan.length){
                   idb.schreibVersuche++;
                   var fehl = (typeof idb.schreibFehler==='function') ? idb.schreibFehler(plan[0][1]) : idb.schreibFehler;

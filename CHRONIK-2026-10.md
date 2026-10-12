@@ -1,6 +1,49 @@
 # ONDO CONTROL — CHRONIK OKTOBER 2026
 *Versionsgeschichte und Prüfbelege ab Oktober 2026. Aktueller Stand steht in `STAND.md`.*
 
+
+## v19.22.2 — 12.10.2026 — Backlog-Punkt 91: verspäteten Lifecycle-Abbruch nach Rückkehr abfangen
+
+**Anlass.** v19.22.1 war statisch und lokal vollständig grün, wurde aber von Prüfer und Claude am
+echten Commit nicht abgenommen. Der reale Diagnoseverlauf vom 8.10. zeigte, dass drei der fünf
+`tx-abort`-Meldungen erst 37, 329 und 331 ms **nach** `visibilitychange→visible` eintrafen. Damit
+konnte `seiteZurueck()` das Flag `lebenszyklusUngesichert` prüfen, bevor der Lifecycle-catch es
+setzte; anschließend fehlte ein weiterer Auslöser. Zusätzlich war der Hide-Guard in t11 nicht
+mutationssensitiv bewiesen, weil der bisherige Doppelauslöser-Test einen laufenden Run verwendete,
+dessen Statuswechsel den zweiten Write auch ohne Guard verhinderte.
+
+**Korrektur.** Neu gibt es genau einen gemeinsamen `lebenszyklusWiederholen()`-Weg. Er tut nur
+etwas bei gesetztem Ungesichert-Flag, löscht dieses **vor** dem Retry und ruft dann den bestehenden
+`checkpointOhneBarriere('rueckkehr_wiederholung')` auf. `seiteZurueck()` benutzt nur noch diesen
+Weg. Meldet der Lifecycle-catch seinen Fehler verspätet, setzt er wie bisher Flag/Grund und prüft
+anschließend die aktuelle `document.visibilityState`: bei `visible` startet er sofort denselben
+Einmal-Retry; bei erneutem `hidden` bleibt das Flag bis zur nächsten Rückkehr stehen. Ein Fehler
+des sichtbaren Recovery-Checkpoints erzeugt weiterhin nur den bisherigen Checkpoint-Alarm und
+setzt kein neues Lifecycle-Flag — keine Schleife.
+
+**pageshow-Entscheidung.** `pageshow` wird nur noch bei `event.persisted===true` an
+`seiteZurueck()` weitergegeben. Begründung: `pageshow` feuert auch beim ersten Laden; dort ist es
+keine Lifecycle-Rückkehr und ein zusätzliches `render()` kann neben dem asynchronen `load()` den
+Default-State vorab zeichnen. Normale Rückkehr bleibt über `visibilitychange→visible` abgedeckt;
+echte BFCache-Wiederherstellung bleibt über `pageshow persisted=true` abgedeckt. t11 prüft beide
+Seiten dieser Entscheidung positiv.
+
+**Tests.** Die IndexedDB-Attrappe in `tests/umgebung.js` bekam ausschließlich für Tests eine
+konfigurierbare Schreibverzögerung. t11 simuliert nun den realen Ablauf `hidden → visible →
+verspäteter tx-abort`, einen ebenfalls scheiternden Recovery ohne Schleife, einen verspäteten
+Abbruch während eines bereits neuen Hide-Zyklus und `save_aussteht + hidden + pagehide` als echte
+Guard-Gegenprobe. Final: t1–t11 **572/572**, davon t11 **72/72**; t5 bleibt **41/41**, t9
+**52/52**. Mutationen: Sofort-Retry im catch entfernt → **5 Fehler**; Hide-Guard entfernt →
+**2 Fehler** (beide im neuen `save_aussteht`-Fall); Ungesichert-Flag nicht vor dem Retry gelöscht
+→ **7 Fehler** einschließlich doppeltem dritten Write nach `pageshow`. Node-Syntax und
+`python3 pruefe.py` bleiben sauber.
+
+**Unverändert:** `lebenszyklusSave`, Schreibbedingung `laufGeaendert || saveAussteht`, Startup-
+Write, Diagnosefelder, `checkpointSave()`, `backupCheckpointSave()`, `speicherSchreibenKritisch()`,
+`idbSchreiben()`, harte Barrieren, Alarmtexte und 392/392/392 Sprachschlüssel. **Punkt 91 bleibt
+offen bis zur Gerätebewährung.** Die belegte Code-/Messkette und die weiterhin nur plausible,
+nicht bewiesene WebKit-Ursachenzuordnung (Bug 202705) werden nicht umgedeutet.
+
 ## v19.22.1 — 9.10.2026 — Backlog-Punkt 91: Lifecycle-Schreibweg
 
 **Ausgangsbefund.** Im echten Gerätelauf vom 8.10.2026 entstanden fünf Diagnoseeinträge;
