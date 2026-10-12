@@ -10443,6 +10443,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401883159",
+   "providerCompetitionSlug": "esp.2",
+   "providerCompetitionName": "Spanish LALIGA 2",
+   "datum": "2026-10-12",
+   "kickoffUtc": "2026-10-12T12:00Z",
+   "heim": "Real Valladolid",
+   "gast": "Albacete",
+   "torHeim": 5,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "95",
+      "teamDisplayName": "Real Valladolid",
+      "homeAway": "home",
+      "linescores": [
+       "4",
+       "1"
+      ]
+     },
+     {
+      "teamId": "2737",
+      "teamDisplayName": "Albacete",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "4:0",
+   "fetchedAt": "2026-10-12T18:02:00.234Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401883160",
    "providerCompetitionSlug": "esp.2",
    "providerCompetitionName": "Spanish LALIGA 2",
@@ -10720,6 +10760,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-10-12T02:40:50.333Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401883187",
+   "providerCompetitionSlug": "esp.2",
+   "providerCompetitionName": "Spanish LALIGA 2",
+   "datum": "2026-10-12",
+   "kickoffUtc": "2026-10-12T14:15Z",
+   "heim": "Burgos",
+   "gast": "Granada",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "12597",
+      "teamDisplayName": "Burgos",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "3747",
+      "teamDisplayName": "Granada",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-10-12T18:02:00.428Z"
   },
   {
    "provider": "espn",
@@ -12800,6 +12880,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-10-12T02:41:01.180Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401896819",
+   "providerCompetitionSlug": "gre.1",
+   "providerCompetitionName": "Greek Super League",
+   "datum": "2026-10-12",
+   "kickoffUtc": "2026-10-12T15:00Z",
+   "heim": "PAOK",
+   "gast": "Kalamata",
+   "torHeim": 1,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "605",
+      "teamDisplayName": "PAOK",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "132429",
+      "teamDisplayName": "Kalamata",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-10-12T18:02:13.996Z"
   },
   {
    "provider": "espn",
