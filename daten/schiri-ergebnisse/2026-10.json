@@ -1092,6 +1092,102 @@
    "torGast": 1,
    "quelle": "football-data.org",
    "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-10-12",
+   "anpfiff": "16:30",
+   "wettbewerb": "Serie A",
+   "heim": "Atalanta BC",
+   "gast": "Venezia FC",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "3:1"
+  },
+  {
+   "datum": "2026-10-12",
+   "anpfiff": "22:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "Chapecoense AF",
+   "gast": "CA Paranaense",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 4,
+   "quelle": "football-data.org",
+   "halbzeit": "0:3"
+  },
+  {
+   "datum": "2026-10-12",
+   "anpfiff": "19:00",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "Coritiba FBC",
+   "gast": "Botafogo FR",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "1:1"
+  },
+  {
+   "datum": "2026-10-12",
+   "anpfiff": "19:00",
+   "wettbewerb": "Premier League",
+   "heim": "Coventry City FC",
+   "gast": "Newcastle United FC",
+   "status": "FT",
+   "torHeim": 4,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-10-12",
+   "anpfiff": "19:15",
+   "wettbewerb": "Primeira Liga",
+   "heim": "FC Famalicão",
+   "gast": "FC Alverca",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 4,
+   "quelle": "football-data.org",
+   "halbzeit": "1:1"
+  },
+  {
+   "datum": "2026-10-12",
+   "anpfiff": "19:00",
+   "wettbewerb": "Primera Division",
+   "heim": "Levante UD",
+   "gast": "Sevilla FC",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 3,
+   "quelle": "football-data.org",
+   "halbzeit": "0:1"
+  },
+  {
+   "datum": "2026-10-12",
+   "anpfiff": "18:45",
+   "wettbewerb": "Serie A",
+   "heim": "Torino FC",
+   "gast": "Udinese Calcio",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "1:1"
+  },
+  {
+   "datum": "2026-10-13",
+   "anpfiff": "00:00",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "RB Bragantino",
+   "gast": "Cruzeiro EC",
+   "status": "FT",
+   "torHeim": 4,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "3:1"
   }
  ]
 }
