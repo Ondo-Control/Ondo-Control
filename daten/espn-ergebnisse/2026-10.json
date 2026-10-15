@@ -27254,6 +27254,366 @@
    },
    "halbzeit": "1:1",
    "fetchedAt": "2026-10-15T01:53:53.326Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761866",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T00:30Z",
+   "heim": "Nashville SC",
+   "gast": "Sporting Kansas City",
+   "torHeim": 4,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "18986",
+      "teamDisplayName": "Nashville SC",
+      "homeAway": "home",
+      "linescores": [
+       "3",
+       "1"
+      ]
+     },
+     {
+      "teamId": "186",
+      "teamDisplayName": "Sporting Kansas City",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "3:0",
+   "fetchedAt": "2026-10-15T13:31:57.364Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761867",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T00:30Z",
+   "heim": "FC Dallas",
+   "gast": "Seattle Sounders FC",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "185",
+      "teamDisplayName": "FC Dallas",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "9726",
+      "teamDisplayName": "Seattle Sounders FC",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-15T13:31:57.173Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761868",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T00:30Z",
+   "heim": "St. Louis CITY SC",
+   "gast": "Vancouver Whitecaps",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "21812",
+      "teamDisplayName": "St. Louis CITY SC",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "9727",
+      "teamDisplayName": "Vancouver Whitecaps",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-15T13:31:57.555Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761869",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T00:30Z",
+   "heim": "Chicago Fire FC",
+   "gast": "Philadelphia Union",
+   "torHeim": 1,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "182",
+      "teamDisplayName": "Chicago Fire FC",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "10739",
+      "teamDisplayName": "Philadelphia Union",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-10-15T13:31:56.981Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761870",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T01:30Z",
+   "heim": "Real Salt Lake",
+   "gast": "San Jose Earthquakes",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "4771",
+      "teamDisplayName": "Real Salt Lake",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "191",
+      "teamDisplayName": "San Jose Earthquakes",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-15T13:31:57.938Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761871",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T01:30Z",
+   "heim": "Colorado Rapids",
+   "gast": "Minnesota United FC",
+   "torHeim": 2,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "184",
+      "teamDisplayName": "Colorado Rapids",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "17362",
+      "teamDisplayName": "Minnesota United FC",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-10-15T13:31:57.747Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761872",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T02:30Z",
+   "heim": "San Diego FC",
+   "gast": "Houston Dynamo FC",
+   "torHeim": 3,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "22529",
+      "teamDisplayName": "San Diego FC",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "1"
+      ]
+     },
+     {
+      "teamId": "6077",
+      "teamDisplayName": "Houston Dynamo FC",
+      "homeAway": "away",
+      "linescores": [
+       "3",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:3",
+   "fetchedAt": "2026-10-15T13:31:58.512Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761873",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T02:30Z",
+   "heim": "LAFC",
+   "gast": "Austin FC",
+   "torHeim": 3,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "18966",
+      "teamDisplayName": "LAFC",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     },
+     {
+      "teamId": "20906",
+      "teamDisplayName": "Austin FC",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-15T13:31:58.320Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761874",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T02:30Z",
+   "heim": "LA Galaxy",
+   "gast": "Portland Timbers",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "187",
+      "teamDisplayName": "LA Galaxy",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "9723",
+      "teamDisplayName": "Portland Timbers",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-10-15T13:31:58.129Z"
   }
  ]
 }
