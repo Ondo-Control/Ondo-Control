@@ -2083,6 +2083,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401841622",
+   "providerCompetitionSlug": "arg.1",
+   "providerCompetitionName": "Argentine Liga Profesional de Fútbol",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T23:00Z",
+   "heim": "Huracán",
+   "gast": "Gimnasia La Plata",
+   "torHeim": 1,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "10",
+      "teamDisplayName": "Huracán",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "9",
+      "teamDisplayName": "Gimnasia La Plata",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-10-16T01:43:40.819Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401842836",
    "providerCompetitionSlug": "swe.1",
    "providerCompetitionName": "Swedish Allsvenskan",
@@ -17520,6 +17560,1446 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-10-14T02:11:56.645Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915549",
+   "providerCompetitionSlug": "uefa.europa",
+   "providerCompetitionName": "UEFA Europa League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T19:00Z",
+   "heim": "Dinamo Zagreb",
+   "gast": "Anderlecht",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "597",
+      "teamDisplayName": "Dinamo Zagreb",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "441",
+      "teamDisplayName": "Anderlecht",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-16T01:43:27.641Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915550",
+   "providerCompetitionSlug": "uefa.europa",
+   "providerCompetitionName": "UEFA Europa League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T19:00Z",
+   "heim": "Marseille",
+   "gast": "Olympiacos",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "176",
+      "teamDisplayName": "Marseille",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "435",
+      "teamDisplayName": "Olympiacos",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-10-16T01:43:28.178Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915560",
+   "providerCompetitionSlug": "uefa.europa",
+   "providerCompetitionName": "UEFA Europa League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T19:00Z",
+   "heim": "Celta Vigo",
+   "gast": "Juventus",
+   "torHeim": 1,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "85",
+      "teamDisplayName": "Celta Vigo",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "111",
+      "teamDisplayName": "Juventus",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-10-16T01:43:27.460Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915561",
+   "providerCompetitionSlug": "uefa.europa",
+   "providerCompetitionName": "UEFA Europa League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T19:00Z",
+   "heim": "Jagiellonia Bialystok",
+   "gast": "Ararat-Armenia",
+   "torHeim": 3,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "11505",
+      "teamDisplayName": "Jagiellonia Bialystok",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "1"
+      ]
+     },
+     {
+      "teamId": "20024",
+      "teamDisplayName": "Ararat-Armenia",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:1",
+   "fetchedAt": "2026-10-16T01:43:27.999Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915562",
+   "providerCompetitionSlug": "uefa.europa",
+   "providerCompetitionName": "UEFA Europa League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T19:00Z",
+   "heim": "Benfica",
+   "gast": "Celtic",
+   "torHeim": 4,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "1929",
+      "teamDisplayName": "Benfica",
+      "homeAway": "home",
+      "linescores": [
+       "3",
+       "1"
+      ]
+     },
+     {
+      "teamId": "256",
+      "teamDisplayName": "Celtic",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "3:0",
+   "fetchedAt": "2026-10-16T01:43:27.281Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915563",
+   "providerCompetitionSlug": "uefa.europa",
+   "providerCompetitionName": "UEFA Europa League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T19:00Z",
+   "heim": "TSG Hoffenheim",
+   "gast": "Besiktas",
+   "torHeim": 2,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7911",
+      "teamDisplayName": "TSG Hoffenheim",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "1895",
+      "teamDisplayName": "Besiktas",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-16T01:43:28.717Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915564",
+   "providerCompetitionSlug": "uefa.europa",
+   "providerCompetitionName": "UEFA Europa League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T19:00Z",
+   "heim": "Ferencvaros",
+   "gast": "Viktoria Plzen",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "622",
+      "teamDisplayName": "Ferencvaros",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "11706",
+      "teamDisplayName": "Viktoria Plzen",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-16T01:43:27.820Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915565",
+   "providerCompetitionSlug": "uefa.europa",
+   "providerCompetitionName": "UEFA Europa League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T19:00Z",
+   "heim": "NEC Nijmegen",
+   "gast": "Levski Sofia",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "147",
+      "teamDisplayName": "NEC Nijmegen",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "490",
+      "teamDisplayName": "Levski Sofia",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-10-16T01:43:28.358Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915566",
+   "providerCompetitionSlug": "uefa.europa",
+   "providerCompetitionName": "UEFA Europa League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T16:45Z",
+   "heim": "Lyon",
+   "gast": "Crystal Palace",
+   "torHeim": 3,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "167",
+      "teamDisplayName": "Lyon",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "1"
+      ]
+     },
+     {
+      "teamId": "384",
+      "teamDisplayName": "Crystal Palace",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:0",
+   "fetchedAt": "2026-10-16T01:43:26.027Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915567",
+   "providerCompetitionSlug": "uefa.europa",
+   "providerCompetitionName": "UEFA Europa League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T16:45Z",
+   "heim": "Sparta Prague",
+   "gast": "Lillestrom",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "433",
+      "teamDisplayName": "Sparta Prague",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "987",
+      "teamDisplayName": "Lillestrom",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-16T01:43:26.561Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915568",
+   "providerCompetitionSlug": "uefa.europa",
+   "providerCompetitionName": "UEFA Europa League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T16:45Z",
+   "heim": "RB Salzburg",
+   "gast": "AC Milan",
+   "torHeim": 0,
+   "torGast": 4,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2790",
+      "teamDisplayName": "RB Salzburg",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "103",
+      "teamDisplayName": "AC Milan",
+      "homeAway": "away",
+      "linescores": [
+       "2",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:2",
+   "fetchedAt": "2026-10-16T01:43:26.382Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915571",
+   "providerCompetitionSlug": "uefa.europa",
+   "providerCompetitionName": "UEFA Europa League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T19:00Z",
+   "heim": "AFC Bournemouth",
+   "gast": "SK Sturm Graz",
+   "torHeim": 3,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "349",
+      "teamDisplayName": "AFC Bournemouth",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     },
+     {
+      "teamId": "3746",
+      "teamDisplayName": "SK Sturm Graz",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-10-16T01:43:27.099Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915572",
+   "providerCompetitionSlug": "uefa.europa",
+   "providerCompetitionName": "UEFA Europa League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T19:00Z",
+   "heim": "Stade Rennais",
+   "gast": "OFI Crete",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "169",
+      "teamDisplayName": "Stade Rennais",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "1010",
+      "teamDisplayName": "OFI Crete",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-10-16T01:43:28.537Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915573",
+   "providerCompetitionSlug": "uefa.europa",
+   "providerCompetitionName": "UEFA Europa League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T16:45Z",
+   "heim": "AZ Alkmaar",
+   "gast": "Hapoel Be'er",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "140",
+      "teamDisplayName": "AZ Alkmaar",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "13083",
+      "teamDisplayName": "Hapoel Be'er",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-16T01:43:25.669Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915574",
+   "providerCompetitionSlug": "uefa.europa",
+   "providerCompetitionName": "UEFA Europa League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T16:45Z",
+   "heim": "Union St.-Gilloise",
+   "gast": "Real Sociedad",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "5807",
+      "teamDisplayName": "Union St.-Gilloise",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "89",
+      "teamDisplayName": "Real Sociedad",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-16T01:43:26.919Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915575",
+   "providerCompetitionSlug": "uefa.europa",
+   "providerCompetitionName": "UEFA Europa League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T16:45Z",
+   "heim": "Torreense",
+   "gast": "Sunderland",
+   "torHeim": 1,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "21615",
+      "teamDisplayName": "Torreense",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "366",
+      "teamDisplayName": "Sunderland",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-10-16T01:43:26.740Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915576",
+   "providerCompetitionSlug": "uefa.europa",
+   "providerCompetitionName": "UEFA Europa League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T16:45Z",
+   "heim": "Lech Poznan",
+   "gast": "Bayer Leverkusen",
+   "torHeim": 0,
+   "torGast": 4,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2990",
+      "teamDisplayName": "Lech Poznan",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "131",
+      "teamDisplayName": "Bayer Leverkusen",
+      "homeAway": "away",
+      "linescores": [
+       "3",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:3",
+   "fetchedAt": "2026-10-16T01:43:25.848Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915577",
+   "providerCompetitionSlug": "uefa.europa",
+   "providerCompetitionName": "UEFA Europa League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T16:45Z",
+   "heim": "NK Celje",
+   "gast": "Omonia Nicosia",
+   "torHeim": 0,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "3362",
+      "teamDisplayName": "NK Celje",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "617",
+      "teamDisplayName": "Omonia Nicosia",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-10-16T01:43:26.204Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915746",
+   "providerCompetitionSlug": "uefa.europa.conf",
+   "providerCompetitionName": "UEFA Conference League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T19:00Z",
+   "heim": "Atalanta",
+   "gast": "Pafos",
+   "torHeim": 3,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "105",
+      "teamDisplayName": "Atalanta",
+      "homeAway": "home",
+      "linescores": [
+       "3",
+       "0"
+      ]
+     },
+     {
+      "teamId": "22281",
+      "teamDisplayName": "Pafos",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "3:0",
+   "fetchedAt": "2026-10-16T01:43:31.388Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915747",
+   "providerCompetitionSlug": "uefa.europa.conf",
+   "providerCompetitionName": "UEFA Conference League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T16:45Z",
+   "heim": "Riga FC",
+   "gast": "Kairat Almaty",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "19246",
+      "teamDisplayName": "Riga FC",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "2528",
+      "teamDisplayName": "Kairat Almaty",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-10-16T01:43:31.207Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915748",
+   "providerCompetitionSlug": "uefa.europa.conf",
+   "providerCompetitionName": "UEFA Conference League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T16:45Z",
+   "heim": "FC Lugano",
+   "gast": "Red Star Belgrade",
+   "torHeim": 3,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7672",
+      "teamDisplayName": "FC Lugano",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     },
+     {
+      "teamId": "2290",
+      "teamDisplayName": "Red Star Belgrade",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-10-16T01:43:30.134Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915847",
+   "providerCompetitionSlug": "uefa.europa.conf",
+   "providerCompetitionName": "UEFA Conference League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T19:00Z",
+   "heim": "SK Brann",
+   "gast": "Lincoln Red Imps",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "620",
+      "teamDisplayName": "SK Brann",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "17856",
+      "teamDisplayName": "Lincoln Red Imps",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-16T01:43:32.634Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915848",
+   "providerCompetitionSlug": "uefa.europa.conf",
+   "providerCompetitionName": "UEFA Conference League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T19:00Z",
+   "heim": "SC Freiburg",
+   "gast": "Jablonec",
+   "torHeim": 3,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "126",
+      "teamDisplayName": "SC Freiburg",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     },
+     {
+      "teamId": "7922",
+      "teamDisplayName": "Jablonec",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-10-16T01:43:32.280Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915849",
+   "providerCompetitionSlug": "uefa.europa.conf",
+   "providerCompetitionName": "UEFA Conference League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T19:00Z",
+   "heim": "Sint-Truidense",
+   "gast": "Iberia 1999",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "936",
+      "teamDisplayName": "Sint-Truidense",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "20025",
+      "teamDisplayName": "Iberia 1999",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-10-16T01:43:32.457Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915850",
+   "providerCompetitionSlug": "uefa.europa.conf",
+   "providerCompetitionName": "UEFA Conference League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T19:00Z",
+   "heim": "Heart of Midlothian",
+   "gast": "FC Nordsjælland",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "262",
+      "teamDisplayName": "Heart of Midlothian",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "3101",
+      "teamDisplayName": "FC Nordsjælland",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-10-16T01:43:32.103Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915851",
+   "providerCompetitionSlug": "uefa.europa.conf",
+   "providerCompetitionName": "UEFA Conference League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T19:00Z",
+   "heim": "FC Twente",
+   "gast": "FC Thun",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "152",
+      "teamDisplayName": "FC Twente",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "3024",
+      "teamDisplayName": "FC Thun",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-16T01:43:31.925Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915852",
+   "providerCompetitionSlug": "uefa.europa.conf",
+   "providerCompetitionName": "UEFA Conference League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T19:00Z",
+   "heim": "F.C. København",
+   "gast": "Braga",
+   "torHeim": 3,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "909",
+      "teamDisplayName": "F.C. København",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     },
+     {
+      "teamId": "2994",
+      "teamDisplayName": "Braga",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-16T01:43:31.746Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915853",
+   "providerCompetitionSlug": "uefa.europa.conf",
+   "providerCompetitionName": "UEFA Conference League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T19:00Z",
+   "heim": "Brighton & Hove Albion",
+   "gast": "Kauno Zalgiris",
+   "torHeim": 4,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "331",
+      "teamDisplayName": "Brighton & Hove Albion",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "2"
+      ]
+     },
+     {
+      "teamId": "20028",
+      "teamDisplayName": "Kauno Zalgiris",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:0",
+   "fetchedAt": "2026-10-16T01:43:31.567Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915854",
+   "providerCompetitionSlug": "uefa.europa.conf",
+   "providerCompetitionName": "UEFA Conference League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T16:45Z",
+   "heim": "CSU Craiova",
+   "gast": "Getafe",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "8089",
+      "teamDisplayName": "CSU Craiova",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "2922",
+      "teamDisplayName": "Getafe",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-16T01:43:29.776Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915855",
+   "providerCompetitionSlug": "uefa.europa.conf",
+   "providerCompetitionName": "UEFA Conference League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T16:45Z",
+   "heim": "CSKA Sofia",
+   "gast": "AS Monaco",
+   "torHeim": 1,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "10834",
+      "teamDisplayName": "CSKA Sofia",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "174",
+      "teamDisplayName": "AS Monaco",
+      "homeAway": "away",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:2",
+   "fetchedAt": "2026-10-16T01:43:29.596Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915856",
+   "providerCompetitionSlug": "uefa.europa.conf",
+   "providerCompetitionName": "UEFA Conference League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T16:45Z",
+   "heim": "Panathinaikos",
+   "gast": "Borac Banja Luka",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "443",
+      "teamDisplayName": "Panathinaikos",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "20710",
+      "teamDisplayName": "Borac Banja Luka",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-10-16T01:43:31.028Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915857",
+   "providerCompetitionSlug": "uefa.europa.conf",
+   "providerCompetitionName": "UEFA Conference League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T16:45Z",
+   "heim": "Mjällby AIF",
+   "gast": "Inter D'Escaldes",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "20301",
+      "teamDisplayName": "Mjällby AIF",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "20703",
+      "teamDisplayName": "Inter D'Escaldes",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-16T01:43:30.850Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915858",
+   "providerCompetitionSlug": "uefa.europa.conf",
+   "providerCompetitionName": "UEFA Conference League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T16:45Z",
+   "heim": "KuPS Kuopio",
+   "gast": "Trabzonspor",
+   "torHeim": 2,
+   "torGast": 4,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "8169",
+      "teamDisplayName": "KuPS Kuopio",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "997",
+      "teamDisplayName": "Trabzonspor",
+      "homeAway": "away",
+      "linescores": [
+       "2",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:2",
+   "fetchedAt": "2026-10-16T01:43:30.673Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915859",
+   "providerCompetitionSlug": "uefa.europa.conf",
+   "providerCompetitionName": "UEFA Conference League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T16:45Z",
+   "heim": "Egnatia",
+   "gast": "FC Midtjylland",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "21943",
+      "teamDisplayName": "Egnatia",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "572",
+      "teamDisplayName": "FC Midtjylland",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-10-16T01:43:29.954Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915860",
+   "providerCompetitionSlug": "uefa.europa.conf",
+   "providerCompetitionName": "UEFA Conference League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T16:45Z",
+   "heim": "KAA Gent",
+   "gast": "AGF",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "3611",
+      "teamDisplayName": "KAA Gent",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "7853",
+      "teamDisplayName": "AGF",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-16T01:43:30.493Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915861",
+   "providerCompetitionSlug": "uefa.europa.conf",
+   "providerCompetitionName": "UEFA Conference League",
+   "datum": "2026-10-15",
+   "kickoffUtc": "2026-10-15T16:45Z",
+   "heim": "Hajduk Split",
+   "gast": "Ajax Amsterdam",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "489",
+      "teamDisplayName": "Hajduk Split",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "139",
+      "teamDisplayName": "Ajax Amsterdam",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-10-16T01:43:30.314Z"
   },
   {
    "provider": "espn",
