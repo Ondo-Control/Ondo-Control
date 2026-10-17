@@ -1548,6 +1548,90 @@
    "torGast": 2,
    "quelle": "football-data.org",
    "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-10-16",
+   "anpfiff": "19:00",
+   "wettbewerb": "Championship",
+   "heim": "Burnley FC",
+   "gast": "Wolverhampton Wanderers FC",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "1:1"
+  },
+  {
+   "datum": "2026-10-16",
+   "anpfiff": "18:30",
+   "wettbewerb": "Bundesliga",
+   "heim": "Eintracht Frankfurt",
+   "gast": "1. FC Köln",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-10-16",
+   "anpfiff": "18:45",
+   "wettbewerb": "Serie A",
+   "heim": "Frosinone Calcio",
+   "gast": "US Sassuolo Calcio",
+   "status": "FT",
+   "torHeim": 4,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "3:2"
+  },
+  {
+   "datum": "2026-10-16",
+   "anpfiff": "18:45",
+   "wettbewerb": "Ligue 1",
+   "heim": "Le Mans FC",
+   "gast": "Toulouse FC",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 3,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-10-16",
+   "anpfiff": "23:00",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "Mirassol FC",
+   "gast": "SC Internacional",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-10-16",
+   "anpfiff": "19:00",
+   "wettbewerb": "Primera Division",
+   "heim": "RC Deportivo La Coruña",
+   "gast": "Levante UD",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-10-16",
+   "anpfiff": "18:00",
+   "wettbewerb": "Eredivisie",
+   "heim": "SC Heerenveen",
+   "gast": "SBV Excelsior",
+   "status": "FT",
+   "torHeim": 4,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
   }
  ]
 }
