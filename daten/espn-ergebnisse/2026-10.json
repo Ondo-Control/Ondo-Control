@@ -2203,6 +2203,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401841627",
+   "providerCompetitionSlug": "arg.1",
+   "providerCompetitionName": "Argentine Liga Profesional de Fútbol",
+   "datum": "2026-10-17",
+   "kickoffUtc": "2026-10-17T00:30Z",
+   "heim": "Boca Juniors",
+   "gast": "Talleres (Córdoba)",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "5",
+      "teamDisplayName": "Boca Juniors",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "19",
+      "teamDisplayName": "Talleres (Córdoba)",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-10-17T12:15:54.240Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401842836",
    "providerCompetitionSlug": "swe.1",
    "providerCompetitionName": "Swedish Allsvenskan",
@@ -3880,6 +3920,46 @@
    },
    "halbzeit": "1:0",
    "fetchedAt": "2026-10-17T01:36:54.469Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401860399",
+   "providerCompetitionSlug": "bra.2",
+   "providerCompetitionName": "Brazilian Serie B",
+   "datum": "2026-10-16",
+   "kickoffUtc": "2026-10-16T23:30Z",
+   "heim": "Sport",
+   "gast": "Fortaleza",
+   "torHeim": 0,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7635",
+      "teamDisplayName": "Sport",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "6272",
+      "teamDisplayName": "Fortaleza",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-10-17T12:15:53.485Z"
   },
   {
    "provider": "espn",
@@ -9163,6 +9243,86 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401877572",
+   "providerCompetitionSlug": "jpn.1",
+   "providerCompetitionName": "Japanese J.League",
+   "datum": "2026-10-17",
+   "kickoffUtc": "2026-10-17T05:00Z",
+   "heim": "Tokyo Verdy 1969",
+   "gast": "FC Tokyo",
+   "torHeim": 0,
+   "torGast": 4,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "3393",
+      "teamDisplayName": "Tokyo Verdy 1969",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "3384",
+      "teamDisplayName": "FC Tokyo",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "3"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-10-17T12:15:57.043Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401877573",
+   "providerCompetitionSlug": "jpn.1",
+   "providerCompetitionName": "Japanese J.League",
+   "datum": "2026-10-17",
+   "kickoffUtc": "2026-10-17T05:00Z",
+   "heim": "JEF United Ichihara-Chiba",
+   "gast": "Yokohama F. Marinos",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7111",
+      "teamDisplayName": "JEF United Ichihara-Chiba",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "7116",
+      "teamDisplayName": "Yokohama F. Marinos",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-17T12:15:56.662Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401877574",
    "providerCompetitionSlug": "jpn.1",
    "providerCompetitionName": "Japanese J.League",
@@ -9280,6 +9440,246 @@
    },
    "halbzeit": "1:0",
    "fetchedAt": "2026-10-11T14:58:28.575Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401877597",
+   "providerCompetitionSlug": "jpn.1",
+   "providerCompetitionName": "Japanese J.League",
+   "datum": "2026-10-17",
+   "kickoffUtc": "2026-10-17T05:00Z",
+   "heim": "Sanfrecce Hiroshima",
+   "gast": "Kyoto Sanga",
+   "torHeim": 3,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7114",
+      "teamDisplayName": "Sanfrecce Hiroshima",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     },
+     {
+      "teamId": "21361",
+      "teamDisplayName": "Kyoto Sanga",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-17T12:15:56.855Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401877599",
+   "providerCompetitionSlug": "jpn.1",
+   "providerCompetitionName": "Japanese J.League",
+   "datum": "2026-10-17",
+   "kickoffUtc": "2026-10-17T06:00Z",
+   "heim": "Cerezo Osaka",
+   "gast": "Kawasaki Frontale",
+   "torHeim": 2,
+   "torGast": 4,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7109",
+      "teamDisplayName": "Cerezo Osaka",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "7112",
+      "teamDisplayName": "Kawasaki Frontale",
+      "homeAway": "away",
+      "linescores": [
+       "2",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:2",
+   "fetchedAt": "2026-10-17T12:15:57.232Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401877600",
+   "providerCompetitionSlug": "jpn.1",
+   "providerCompetitionName": "Japanese J.League",
+   "datum": "2026-10-17",
+   "kickoffUtc": "2026-10-17T04:00Z",
+   "heim": "Shimizu S-Pulse",
+   "gast": "Gamba Osaka",
+   "torHeim": 2,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7104",
+      "teamDisplayName": "Shimizu S-Pulse",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     },
+     {
+      "teamId": "7102",
+      "teamDisplayName": "Gamba Osaka",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:0",
+   "fetchedAt": "2026-10-17T12:15:56.474Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401877602",
+   "providerCompetitionSlug": "jpn.1",
+   "providerCompetitionName": "Japanese J.League",
+   "datum": "2026-10-17",
+   "kickoffUtc": "2026-10-17T10:00Z",
+   "heim": "Kashiwa Reysol",
+   "gast": "Nagoya Grampus",
+   "torHeim": 1,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7476",
+      "teamDisplayName": "Kashiwa Reysol",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "7108",
+      "teamDisplayName": "Nagoya Grampus",
+      "homeAway": "away",
+      "linescores": [
+       "2",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:2",
+   "fetchedAt": "2026-10-17T12:15:57.795Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401877603",
+   "providerCompetitionSlug": "jpn.1",
+   "providerCompetitionName": "Japanese J.League",
+   "datum": "2026-10-17",
+   "kickoffUtc": "2026-10-17T07:00Z",
+   "heim": "Mito Hollyhock",
+   "gast": "Urawa Red Diamonds",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "131701",
+      "teamDisplayName": "Mito Hollyhock",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "3385",
+      "teamDisplayName": "Urawa Red Diamonds",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-10-17T12:15:57.606Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401877604",
+   "providerCompetitionSlug": "jpn.1",
+   "providerCompetitionName": "Japanese J.League",
+   "datum": "2026-10-17",
+   "kickoffUtc": "2026-10-17T06:00Z",
+   "heim": "Kashima Antlers",
+   "gast": "V-Varen Nagasaki",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7115",
+      "teamDisplayName": "Kashima Antlers",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     },
+     {
+      "teamId": "19001",
+      "teamDisplayName": "V-Varen Nagasaki",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:0",
+   "fetchedAt": "2026-10-17T12:15:57.418Z"
   },
   {
    "provider": "espn",
