@@ -2088,6 +2088,18 @@
    "torGast": 1,
    "quelle": "football-data.org",
    "halbzeit": "2:1"
+  },
+  {
+   "datum": "2026-10-18",
+   "anpfiff": "00:00",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "São Paulo FC",
+   "gast": "CR Vasco da Gama",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
   }
  ]
 }
