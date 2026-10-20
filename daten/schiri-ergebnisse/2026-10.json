@@ -2436,6 +2436,78 @@
    "torGast": 3,
    "quelle": "football-data.org",
    "halbzeit": "0:2"
+  },
+  {
+   "datum": "2026-10-19",
+   "anpfiff": "16:30",
+   "wettbewerb": "Serie A",
+   "heim": "AC Monza",
+   "gast": "Cagliari Calcio",
+   "status": "FT",
+   "torHeim": 4,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-10-19",
+   "anpfiff": "19:00",
+   "wettbewerb": "Primera Division",
+   "heim": "Getafe CF",
+   "gast": "Rayo Vallecano de Madrid",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:1"
+  },
+  {
+   "datum": "2026-10-19",
+   "anpfiff": "18:45",
+   "wettbewerb": "Serie A",
+   "heim": "Parma Calcio 1913",
+   "gast": "Torino FC",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 3,
+   "quelle": "football-data.org",
+   "halbzeit": "0:2"
+  },
+  {
+   "datum": "2026-10-19",
+   "anpfiff": "23:00",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "SC Corinthians Paulista",
+   "gast": "EC Vitória",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:1"
+  },
+  {
+   "datum": "2026-10-19",
+   "anpfiff": "19:15",
+   "wettbewerb": "Primeira Liga",
+   "heim": "Sporting Clube de Braga",
+   "gast": "Gil Vicente FC",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-10-19",
+   "anpfiff": "19:00",
+   "wettbewerb": "Premier League",
+   "heim": "Tottenham Hotspur FC",
+   "gast": "Coventry City FC",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
   }
  ]
 }
