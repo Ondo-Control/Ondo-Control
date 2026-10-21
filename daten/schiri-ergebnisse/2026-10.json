@@ -2508,6 +2508,126 @@
    "torGast": 1,
    "quelle": "football-data.org",
    "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-10-20",
+   "anpfiff": "19:00",
+   "wettbewerb": "UEFA Champions League",
+   "heim": "AS Roma",
+   "gast": "ŠK Slovan Bratislava",
+   "status": "FT",
+   "torHeim": 4,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "2:0"
+  },
+  {
+   "datum": "2026-10-20",
+   "anpfiff": "19:00",
+   "wettbewerb": "UEFA Champions League",
+   "heim": "FC Porto",
+   "gast": "PSV",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-10-20",
+   "anpfiff": "16:45",
+   "wettbewerb": "UEFA Champions League",
+   "heim": "Fenerbahçe SK",
+   "gast": "SK Slavia Praha",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "2:1"
+  },
+  {
+   "datum": "2026-10-20",
+   "anpfiff": "19:00",
+   "wettbewerb": "UEFA Champions League",
+   "heim": "Liverpool FC",
+   "gast": "Villarreal CF",
+   "status": "FT",
+   "torHeim": 4,
+   "torGast": 3,
+   "quelle": "football-data.org",
+   "halbzeit": "2:2"
+  },
+  {
+   "datum": "2026-10-20",
+   "anpfiff": "19:00",
+   "wettbewerb": "UEFA Champions League",
+   "heim": "Manchester City FC",
+   "gast": "PAE AEK",
+   "status": "FT",
+   "torHeim": 5,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "2:0"
+  },
+  {
+   "datum": "2026-10-20",
+   "anpfiff": "19:00",
+   "wettbewerb": "UEFA Champions League",
+   "heim": "Paris Saint-Germain FC",
+   "gast": "FC Barcelona",
+   "status": "FT",
+   "torHeim": 4,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-10-20",
+   "anpfiff": "16:45",
+   "wettbewerb": "UEFA Champions League",
+   "heim": "Sabah FK",
+   "gast": "Borussia Dortmund",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "1:1"
+  },
+  {
+   "datum": "2026-10-20",
+   "anpfiff": "19:00",
+   "wettbewerb": "UEFA Champions League",
+   "heim": "SSC Napoli",
+   "gast": "FK Bodø/Glimt",
+   "status": "FT",
+   "torHeim": 4,
+   "torGast": 3,
+   "quelle": "football-data.org",
+   "halbzeit": "2:1"
+  },
+  {
+   "datum": "2026-10-20",
+   "anpfiff": "19:00",
+   "wettbewerb": "UEFA Champions League",
+   "heim": "VfB Stuttgart",
+   "gast": "Club Atlético de Madrid",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-10-20",
+   "anpfiff": "18:45",
+   "wettbewerb": "Championship",
+   "heim": "Wolverhampton Wanderers FC",
+   "gast": "Portsmouth FC",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
   }
  ]
 }
