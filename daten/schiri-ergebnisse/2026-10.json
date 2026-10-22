@@ -2628,6 +2628,126 @@
    "torGast": 1,
    "quelle": "football-data.org",
    "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-10-21",
+   "anpfiff": "19:00",
+   "wettbewerb": "UEFA Champions League",
+   "heim": "Aston Villa FC",
+   "gast": "Viking FK",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "2:0"
+  },
+  {
+   "datum": "2026-10-21",
+   "anpfiff": "19:00",
+   "wettbewerb": "UEFA Champions League",
+   "heim": "Club Brugge KV",
+   "gast": "Racing Club de Lens",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-10-21",
+   "anpfiff": "16:45",
+   "wettbewerb": "UEFA Champions League",
+   "heim": "Como 1907",
+   "gast": "Manchester United FC",
+   "status": "FT",
+   "torHeim": 4,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-10-21",
+   "anpfiff": "19:00",
+   "wettbewerb": "UEFA Champions League",
+   "heim": "FC Bayern München",
+   "gast": "Arsenal FC",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "1:1"
+  },
+  {
+   "datum": "2026-10-21",
+   "anpfiff": "19:00",
+   "wettbewerb": "UEFA Champions League",
+   "heim": "FC Internazionale Milano",
+   "gast": "FK Shakhtar Donetsk",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-10-21",
+   "anpfiff": "18:00",
+   "wettbewerb": "Primera Division",
+   "heim": "Levante UD",
+   "gast": "Athletic Club",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "2:0"
+  },
+  {
+   "datum": "2026-10-21",
+   "anpfiff": "16:45",
+   "wettbewerb": "UEFA Champions League",
+   "heim": "Lille OSC",
+   "gast": "Galatasaray SK",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 4,
+   "quelle": "football-data.org",
+   "halbzeit": "2:2"
+  },
+  {
+   "datum": "2026-10-21",
+   "anpfiff": "19:00",
+   "wettbewerb": "UEFA Champions League",
+   "heim": "Real Betis Balompié",
+   "gast": "Feyenoord Rotterdam",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-10-21",
+   "anpfiff": "19:00",
+   "wettbewerb": "UEFA Champions League",
+   "heim": "Real Madrid CF",
+   "gast": "RB Leipzig",
+   "status": "FT",
+   "torHeim": 4,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-10-21",
+   "anpfiff": "19:00",
+   "wettbewerb": "UEFA Champions League",
+   "heim": "Sporting Clube de Portugal",
+   "gast": "LASK Linz",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 3,
+   "quelle": "football-data.org",
+   "halbzeit": "1:1"
   }
  ]
 }
