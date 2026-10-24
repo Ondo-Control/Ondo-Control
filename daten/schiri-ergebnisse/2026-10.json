@@ -2748,6 +2748,114 @@
    "torGast": 3,
    "quelle": "football-data.org",
    "halbzeit": "1:1"
+  },
+  {
+   "datum": "2026-10-23",
+   "anpfiff": "19:00",
+   "wettbewerb": "Championship",
+   "heim": "Bolton Wanderers FC",
+   "gast": "Middlesbrough FC",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 5,
+   "quelle": "football-data.org",
+   "halbzeit": "1:2"
+  },
+  {
+   "datum": "2026-10-23",
+   "anpfiff": "23:00",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "Cruzeiro EC",
+   "gast": "Clube do Remo",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-10-23",
+   "anpfiff": "19:00",
+   "wettbewerb": "Primera Division",
+   "heim": "Deportivo Alavés",
+   "gast": "Málaga CF",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:1"
+  },
+  {
+   "datum": "2026-10-23",
+   "anpfiff": "18:00",
+   "wettbewerb": "Eredivisie",
+   "heim": "Go Ahead Eagles",
+   "gast": "Telstar 1963",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "2:0"
+  },
+  {
+   "datum": "2026-10-23",
+   "anpfiff": "19:00",
+   "wettbewerb": "Premier League",
+   "heim": "Ipswich Town FC",
+   "gast": "Nottingham Forest FC",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "1:1"
+  },
+  {
+   "datum": "2026-10-23",
+   "anpfiff": "18:45",
+   "wettbewerb": "Ligue 1",
+   "heim": "Stade Brestois 29",
+   "gast": "OGC Nice",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-10-23",
+   "anpfiff": "18:45",
+   "wettbewerb": "Serie A",
+   "heim": "Torino FC",
+   "gast": "AC Monza",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-10-23",
+   "anpfiff": "18:30",
+   "wettbewerb": "Bundesliga",
+   "heim": "VfB Stuttgart",
+   "gast": "Borussia Mönchengladbach",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 3,
+   "quelle": "football-data.org",
+   "halbzeit": "1:1"
+  },
+  {
+   "datum": "2026-10-23",
+   "anpfiff": "19:45",
+   "wettbewerb": "Primeira Liga",
+   "heim": "Vitória SC",
+   "gast": "CS Marítimo",
+   "status": "FT",
+   "torHeim": 5,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
   }
  ]
 }
