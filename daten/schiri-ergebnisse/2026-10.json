@@ -3732,6 +3732,66 @@
    "torGast": 2,
    "quelle": "football-data.org",
    "halbzeit": "0:2"
+  },
+  {
+   "datum": "2026-10-26",
+   "anpfiff": "18:45",
+   "wettbewerb": "Primeira Liga",
+   "heim": "CD Santa Clara",
+   "gast": "Sport Lisboa e Benfica",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-10-26",
+   "anpfiff": "22:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "Coritiba FBC",
+   "gast": "Grêmio FBPA",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-10-26",
+   "anpfiff": "23:00",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "CR Flamengo",
+   "gast": "CA Mineiro",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "2:1"
+  },
+  {
+   "datum": "2026-10-26",
+   "anpfiff": "19:30",
+   "wettbewerb": "Ligue 1",
+   "heim": "Paris Saint-Germain FC",
+   "gast": "Olympique Lyonnais",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-10-26",
+   "anpfiff": "20:00",
+   "wettbewerb": "Primera Division",
+   "heim": "Sevilla FC",
+   "gast": "CA Osasuna",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
   }
  ]
 }
