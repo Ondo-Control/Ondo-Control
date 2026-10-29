@@ -3828,6 +3828,102 @@
    "torGast": 6,
    "quelle": "football-data.org",
    "halbzeit": "2:4"
+  },
+  {
+   "datum": "2026-10-28",
+   "anpfiff": "17:30",
+   "wettbewerb": "Serie A",
+   "heim": "AC Milan",
+   "gast": "Bologna FC 1909",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 4,
+   "quelle": "football-data.org",
+   "halbzeit": "2:1"
+  },
+  {
+   "datum": "2026-10-28",
+   "anpfiff": "19:45",
+   "wettbewerb": "Serie A",
+   "heim": "AC Monza",
+   "gast": "SSC Napoli",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 4,
+   "quelle": "football-data.org",
+   "halbzeit": "1:1"
+  },
+  {
+   "datum": "2026-10-28",
+   "anpfiff": "22:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "Fluminense FC",
+   "gast": "SC Internacional",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-10-28",
+   "anpfiff": "19:45",
+   "wettbewerb": "Serie A",
+   "heim": "Genoa CFC",
+   "gast": "Juventus FC",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "2:0"
+  },
+  {
+   "datum": "2026-10-28",
+   "anpfiff": "17:30",
+   "wettbewerb": "Serie A",
+   "heim": "Parma Calcio 1913",
+   "gast": "Udinese Calcio",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-10-28",
+   "anpfiff": "22:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "RB Bragantino",
+   "gast": "Chapecoense AF",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-10-28",
+   "anpfiff": "22:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "Santos FC",
+   "gast": "SE Palmeiras",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-10-28",
+   "anpfiff": "17:30",
+   "wettbewerb": "Serie A",
+   "heim": "Venezia FC",
+   "gast": "FC Internazionale Milano",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
   }
  ]
 }
