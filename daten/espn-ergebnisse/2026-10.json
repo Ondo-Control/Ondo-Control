@@ -55088,6 +55088,126 @@
    },
    "halbzeit": "0:2",
    "fetchedAt": "2026-10-29T02:56:22.579Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761916",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-10-29",
+   "kickoffUtc": "2026-10-29T02:30Z",
+   "heim": "Seattle Sounders FC",
+   "gast": "Houston Dynamo FC",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "9726",
+      "teamDisplayName": "Seattle Sounders FC",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "6077",
+      "teamDisplayName": "Houston Dynamo FC",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-10-29T15:18:09.766Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761917",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-10-29",
+   "kickoffUtc": "2026-10-29T02:30Z",
+   "heim": "San Jose Earthquakes",
+   "gast": "Colorado Rapids",
+   "torHeim": 2,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "191",
+      "teamDisplayName": "San Jose Earthquakes",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "184",
+      "teamDisplayName": "Colorado Rapids",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-10-29T15:18:09.579Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761918",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-10-29",
+   "kickoffUtc": "2026-10-29T02:30Z",
+   "heim": "Vancouver Whitecaps",
+   "gast": "San Diego FC",
+   "torHeim": 4,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "9727",
+      "teamDisplayName": "Vancouver Whitecaps",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "2"
+      ]
+     },
+     {
+      "teamId": "22529",
+      "teamDisplayName": "San Diego FC",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:0",
+   "fetchedAt": "2026-10-29T15:18:09.952Z"
   }
  ]
 }
