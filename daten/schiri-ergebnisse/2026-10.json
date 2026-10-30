@@ -3924,6 +3924,78 @@
    "torGast": 2,
    "quelle": "football-data.org",
    "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-10-29",
+   "anpfiff": "19:45",
+   "wettbewerb": "Serie A",
+   "heim": "ACF Fiorentina",
+   "gast": "Atalanta BC",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "0:1"
+  },
+  {
+   "datum": "2026-10-29",
+   "anpfiff": "22:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "CA Mineiro",
+   "gast": "Cruzeiro EC",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:1"
+  },
+  {
+   "datum": "2026-10-29",
+   "anpfiff": "00:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "Clube do Remo",
+   "gast": "Botafogo FR",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-10-29",
+   "anpfiff": "23:00",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "CR Vasco da Gama",
+   "gast": "CR Flamengo",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 4,
+   "quelle": "football-data.org",
+   "halbzeit": "1:2"
+  },
+  {
+   "datum": "2026-10-29",
+   "anpfiff": "00:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "EC Bahia",
+   "gast": "São Paulo FC",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "2:2"
+  },
+  {
+   "datum": "2026-10-29",
+   "anpfiff": "17:30",
+   "wettbewerb": "Serie A",
+   "heim": "Frosinone Calcio",
+   "gast": "US Lecce",
+   "status": "FT",
+   "torHeim": 5,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "2:0"
   }
  ]
 }
