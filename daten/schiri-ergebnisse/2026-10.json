@@ -3996,6 +3996,102 @@
    "torGast": 1,
    "quelle": "football-data.org",
    "halbzeit": "2:0"
+  },
+  {
+   "datum": "2026-10-30",
+   "anpfiff": "20:15",
+   "wettbewerb": "Primeira Liga",
+   "heim": "Casa Pia AC",
+   "gast": "Sporting Clube de Portugal",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "0:1"
+  },
+  {
+   "datum": "2026-10-30",
+   "anpfiff": "00:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "Grêmio FBPA",
+   "gast": "CA Paranaense",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-10-30",
+   "anpfiff": "18:00",
+   "wettbewerb": "Ligue 1",
+   "heim": "Le Havre AC",
+   "gast": "Paris Saint-Germain FC",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 5,
+   "quelle": "football-data.org",
+   "halbzeit": "1:2"
+  },
+  {
+   "datum": "2026-10-30",
+   "anpfiff": "20:05",
+   "wettbewerb": "Ligue 1",
+   "heim": "Lille OSC",
+   "gast": "Racing Club de Lens",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-10-30",
+   "anpfiff": "18:00",
+   "wettbewerb": "Ligue 1",
+   "heim": "OGC Nice",
+   "gast": "Stade Rennais FC 1901",
+   "status": "FT",
+   "torHeim": 5,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "3:1"
+  },
+  {
+   "datum": "2026-10-30",
+   "anpfiff": "23:00",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "SC Corinthians Paulista",
+   "gast": "Mirassol FC",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-10-30",
+   "anpfiff": "19:30",
+   "wettbewerb": "Bundesliga",
+   "heim": "SV 07 Elversberg",
+   "gast": "1. FSV Mainz 05",
+   "status": "FT",
+   "torHeim": 4,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "3:0"
+  },
+  {
+   "datum": "2026-10-30",
+   "anpfiff": "20:00",
+   "wettbewerb": "Primera Division",
+   "heim": "Villarreal CF",
+   "gast": "RCD Espanyol de Barcelona",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
   }
  ]
 }
