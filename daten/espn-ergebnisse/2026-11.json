@@ -1,0 +1,45 @@
+{
+ "hinweis": "Automatisch erzeugt, Backlog-Punkt 84 (ESPN-Sammelautomatik). Nicht von Hand bearbeiten.",
+ "spiele": [
+  {
+   "provider": "espn",
+   "providerEventId": "401841654",
+   "providerCompetitionSlug": "arg.1",
+   "providerCompetitionName": "Argentine Liga Profesional de Fútbol",
+   "datum": "2026-11-01",
+   "kickoffUtc": "2026-11-01T00:30Z",
+   "heim": "Estudiantes de La Plata",
+   "gast": "Instituto (Córdoba)",
+   "torHeim": 3,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "8",
+      "teamDisplayName": "Estudiantes de La Plata",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     },
+     {
+      "teamId": "2975",
+      "teamDisplayName": "Instituto (Córdoba)",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-11-01T02:40:19.657Z"
+  }
+ ]
+}
