@@ -2203,6 +2203,86 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401883144",
+   "providerCompetitionSlug": "esp.2",
+   "providerCompetitionName": "Spanish LALIGA 2",
+   "datum": "2026-11-02",
+   "kickoffUtc": "2026-11-02T13:00Z",
+   "heim": "Tenerife",
+   "gast": "FC Andorra",
+   "torHeim": 2,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "245",
+      "teamDisplayName": "Tenerife",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     },
+     {
+      "teamId": "20179",
+      "teamDisplayName": "FC Andorra",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:0",
+   "fetchedAt": "2026-11-02T18:31:38.383Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401883146",
+   "providerCompetitionSlug": "esp.2",
+   "providerCompetitionName": "Spanish LALIGA 2",
+   "datum": "2026-11-02",
+   "kickoffUtc": "2026-11-02T15:15Z",
+   "heim": "Real Oviedo",
+   "gast": "Las Palmas",
+   "torHeim": 2,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "92",
+      "teamDisplayName": "Real Oviedo",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "98",
+      "teamDisplayName": "Las Palmas",
+      "homeAway": "away",
+      "linescores": [
+       "2",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:2",
+   "fetchedAt": "2026-11-02T18:31:38.581Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401883149",
    "providerCompetitionSlug": "esp.2",
    "providerCompetitionName": "Spanish LALIGA 2",
@@ -2923,6 +3003,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401896739",
+   "providerCompetitionSlug": "gre.1",
+   "providerCompetitionName": "Greek Super League",
+   "datum": "2026-11-02",
+   "kickoffUtc": "2026-11-02T16:00Z",
+   "heim": "Atromitos",
+   "gast": "Volos NFC",
+   "torHeim": 3,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "6790",
+      "teamDisplayName": "Atromitos",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     },
+     {
+      "teamId": "20043",
+      "teamDisplayName": "Volos NFC",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-11-02T18:31:53.003Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401899562",
    "providerCompetitionSlug": "ita.2",
    "providerCompetitionName": "Italian Serie B",
@@ -3163,6 +3283,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "761921",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-11-02",
+   "kickoffUtc": "2026-11-02T01:30Z",
+   "heim": "LAFC",
+   "gast": "Minnesota United FC",
+   "torHeim": 1,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "18966",
+      "teamDisplayName": "LAFC",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "17362",
+      "teamDisplayName": "Minnesota United FC",
+      "homeAway": "away",
+      "linescores": [
+       "2",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:2",
+   "fetchedAt": "2026-11-02T18:32:03.409Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "761923",
    "providerCompetitionSlug": "usa.1",
    "providerCompetitionName": "MLS",
@@ -3320,6 +3480,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-11-02T02:47:57.032Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "761933",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-11-02",
+   "kickoffUtc": "2026-11-02T02:45Z",
+   "heim": "Portland Timbers",
+   "gast": "Houston Dynamo FC",
+   "torHeim": 3,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "9723",
+      "teamDisplayName": "Portland Timbers",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     },
+     {
+      "teamId": "6077",
+      "teamDisplayName": "Houston Dynamo FC",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-11-02T18:32:03.608Z"
   }
  ]
 }
