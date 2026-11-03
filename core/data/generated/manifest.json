@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "outputs": {
+    "coverage.json": {
+      "bytes": 47368,
+      "hardLimitBytes": 250000
+    }
+  },
+  "invariants": {
+    "rawDataInState": false,
+    "footballDataCoUkUsed": false,
+    "llmCalls": false,
+    "oddsUsed": false,
+    "modelBuilt": false
+  },
+  "sourceFingerprint": {
+    "openfootballCommit": "e6744429ee395bc86f247348c6184bb08d4eb361",
+    "espnFiles": [
+      {
+        "file": "2026-09.json",
+        "sha256": "564f93a93eb44b8e545cb4b4f40d01e4c0e40789131e8ab101314b160454ef4d"
+      },
+      {
+        "file": "2026-10.json",
+        "sha256": "8aaf64a3e53d2f98ecccc0f9bb7641996b46880dea78023f7de583d7b6a752f8"
+      },
+      {
+        "file": "2026-11.json",
+        "sha256": "ab9ca728acf1804debbc0189ab3cb5dca0f7bd3def00ac205a5c1a474b8b7554"
+      }
+    ]
+  }
+}
