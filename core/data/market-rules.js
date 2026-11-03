@@ -1,5 +1,4 @@
-'use strict';
-/* Paritaetsmodul; in Teil 1 nur getestet, nicht fuer Modell/Backtest benutzt. */
+/* Reine Paritaetskopie der deterministischen Marktbewertung aus beta.html. */
 function marktUrteil(code, h, g){
   var ges = h + g;
   switch(code){
@@ -13,4 +12,4 @@ function marktUrteil(code, h, g){
   }
   return null;
 }
-module.exports={marktUrteil};
+module.exports={marktUrteil:marktUrteil};

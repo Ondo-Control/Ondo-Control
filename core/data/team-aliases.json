@@ -1,31 +1,31 @@
 {
   "version": 1,
-  "purpose": "Nur belegte source-spezifische Namensvarianten, damit dieselbe Mannschaft quellenuebergreifend denselben Schluessel bekommt.",
-  "entries": [
-    {"league":"ger.1","canonicalKey":"koeln","canonicalName":"1. FC Köln","openfootball":["1. FC Köln"],"espn":["FC Cologne"]},
-    {"league":"ger.1","canonicalKey":"bayern_muenchen","canonicalName":"FC Bayern München","openfootball":["FC Bayern München"],"espn":["Bayern Munich"]},
-    {"league":"ger.1","canonicalKey":"hamburg","canonicalName":"Hamburger SV","openfootball":["Hamburger SV"],"espn":["Hamburg SV"]},
+  "purpose": "Explizite ESPN→OpenFootball-Kanonisierung fuer Namen, deren starke Tokenmengen nicht identisch sind. Keine unscharfe automatische Ersetzung.",
+  "aliases": [
+    {"league":"de.1","source":"espn","name":"Bayern Munich","canonical":"FC Bayern München"},
+    {"league":"de.1","source":"espn","name":"FC Cologne","canonical":"1. FC Köln"},
+    {"league":"de.1","source":"espn","name":"Hamburg SV","canonical":"Hamburger SV"},
 
-    {"league":"esp.1","canonicalKey":"atletico_madrid","canonicalName":"Club Atlético de Madrid","openfootball":["Club Atlético de Madrid"],"espn":["Atlético Madrid"]},
-    {"league":"esp.1","canonicalKey":"alaves","canonicalName":"Deportivo Alavés","openfootball":["Deportivo Alavés"],"espn":["Alavés"]},
-    {"league":"esp.1","canonicalKey":"celta_vigo","canonicalName":"RC Celta de Vigo","openfootball":["RC Celta de Vigo"],"espn":["Celta Vigo"]},
-    {"league":"esp.1","canonicalKey":"deportivo_la_coruna","canonicalName":"RC Deportivo La Coruña","openfootball":["RC Deportivo La Coruña"],"espn":["Deportivo"]},
-    {"league":"esp.1","canonicalKey":"espanyol","canonicalName":"RCD Espanyol de Barcelona","openfootball":["RCD Espanyol de Barcelona"],"espn":["Espanyol"]},
-    {"league":"esp.1","canonicalKey":"rayo_vallecano","canonicalName":"Rayo Vallecano de Madrid","openfootball":["Rayo Vallecano de Madrid"],"espn":["Rayo Vallecano"]},
-    {"league":"esp.1","canonicalKey":"real_betis","canonicalName":"Real Betis Balompié","openfootball":["Real Betis Balompié"],"espn":["Real Betis"]},
-    {"league":"esp.1","canonicalKey":"racing_santander","canonicalName":"Real Racing Club de Santander","openfootball":["Real Racing Club de Santander"],"espn":["Racing Santander"]},
-    {"league":"esp.1","canonicalKey":"real_sociedad","canonicalName":"Real Sociedad de Fútbol","openfootball":["Real Sociedad de Fútbol"],"espn":["Real Sociedad"]},
+    {"league":"es.1","source":"espn","name":"Alavés","canonical":"Deportivo Alavés"},
+    {"league":"es.1","source":"espn","name":"Atlético Madrid","canonical":"Club Atlético de Madrid"},
+    {"league":"es.1","source":"espn","name":"Celta Vigo","canonical":"RC Celta de Vigo"},
+    {"league":"es.1","source":"espn","name":"Deportivo","canonical":"RC Deportivo La Coruña"},
+    {"league":"es.1","source":"espn","name":"Espanyol","canonical":"RCD Espanyol de Barcelona"},
+    {"league":"es.1","source":"espn","name":"Racing Santander","canonical":"Real Racing Club de Santander"},
+    {"league":"es.1","source":"espn","name":"Rayo Vallecano","canonical":"Rayo Vallecano de Madrid"},
+    {"league":"es.1","source":"espn","name":"Real Betis","canonical":"Real Betis Balompié"},
+    {"league":"es.1","source":"espn","name":"Real Sociedad","canonical":"Real Sociedad de Fútbol"},
 
-    {"league":"ita.1","canonicalKey":"fiorentina","canonicalName":"ACF Fiorentina","openfootball":["ACF Fiorentina"],"espn":["Fiorentina"]},
-    {"league":"ita.1","canonicalKey":"internazionale","canonicalName":"FC Internazionale Milano","openfootball":["FC Internazionale Milano"],"espn":["Internazionale"]},
+    {"league":"it.1","source":"espn","name":"Fiorentina","canonical":"ACF Fiorentina"},
+    {"league":"it.1","source":"espn","name":"Internazionale","canonical":"FC Internazionale Milano"},
 
-    {"league":"fra.1","canonicalKey":"angers","canonicalName":"Angers SCO","openfootball":["Angers SCO"],"espn":["Angers"]},
-    {"league":"fra.1","canonicalKey":"troyes","canonicalName":"ES Troyes AC","openfootball":["ES Troyes AC"],"espn":["Troyes"]},
-    {"league":"fra.1","canonicalKey":"lille","canonicalName":"Lille OSC","openfootball":["Lille OSC"],"espn":["Lille"]},
-    {"league":"fra.1","canonicalKey":"lyon","canonicalName":"Olympique Lyonnais","openfootball":["Olympique Lyonnais"],"espn":["Lyon"]},
-    {"league":"fra.1","canonicalKey":"marseille","canonicalName":"Olympique de Marseille","openfootball":["Olympique de Marseille"],"espn":["Marseille"]},
-    {"league":"fra.1","canonicalKey":"strasbourg","canonicalName":"RC Strasbourg Alsace","openfootball":["RC Strasbourg Alsace"],"espn":["Strasbourg"]},
-    {"league":"fra.1","canonicalKey":"lens","canonicalName":"Racing Club de Lens","openfootball":["Racing Club de Lens"],"espn":["Lens"]},
-    {"league":"fra.1","canonicalKey":"brest","canonicalName":"Stade Brestois 29","openfootball":["Stade Brestois 29"],"espn":["Brest"]}
+    {"league":"fr.1","source":"espn","name":"Angers","canonical":"Angers SCO"},
+    {"league":"fr.1","source":"espn","name":"Brest","canonical":"Stade Brestois 29"},
+    {"league":"fr.1","source":"espn","name":"Lens","canonical":"Racing Club de Lens"},
+    {"league":"fr.1","source":"espn","name":"Lille","canonical":"Lille OSC"},
+    {"league":"fr.1","source":"espn","name":"Lyon","canonical":"Olympique Lyonnais"},
+    {"league":"fr.1","source":"espn","name":"Marseille","canonical":"Olympique de Marseille"},
+    {"league":"fr.1","source":"espn","name":"Strasbourg","canonical":"RC Strasbourg Alsace"},
+    {"league":"fr.1","source":"espn","name":"Troyes","canonical":"ES Troyes AC"}
   ]
 }

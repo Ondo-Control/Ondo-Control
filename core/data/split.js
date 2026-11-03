@@ -1,11 +1,13 @@
 'use strict';
 function seasonCmp(a,b){ return String(a).localeCompare(String(b)); }
-function splitFuerSaison(league,season,seasonStatus,config){
-  if(seasonCmp(season,config.holdoutFromSeason)>=0) return 'holdout';
-  const l=(config.leagues||{})[league]; if(!l) return 'nicht_verwendbar';
-  if((l.pruefen||[]).includes(season)) return seasonStatus==='vollstaendig'?'pruefen':'nicht_verwendbar';
-  if(seasonCmp(season,l.lernenThrough)<=0) return seasonStatus==='vollstaendig'?'lernen':'nicht_verwendbar';
-  return 'nicht_verwendbar';
+function bucketForSeason(season,cfg){
+  if((cfg.finalHoldout.seasons||[]).indexOf(season)>=0) return 'holdout';
+  if((cfg.validation.seasons||[]).indexOf(season)>=0) return 'validation';
+  if(seasonCmp(season,cfg.learning.throughSeason)<=0) return 'learning';
+  if(seasonCmp(season,cfg.runningOrFuture.fromSeason)>=0) return 'running_or_future';
+  return 'unassigned';
 }
-function darfLernen(split){ return split==='lernen'; }
-module.exports={splitFuerSaison,darfLernen};
+function mayTrain(season,cfg,seasonStatus){
+  return seasonStatus==='vollstaendig' && bucketForSeason(season,cfg)==='learning';
+}
+module.exports={bucketForSeason:bucketForSeason,mayTrain:mayTrain};

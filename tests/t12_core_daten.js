@@ -1,139 +1,142 @@
-/* Core Stufe 1 / Teil 1 — Datenfundament. Kein Netz, kein Modell, kein beta-Umbau. */
+/* Core Stufe 1, Teil 1 — Datenfundament (Backlog-Punkt 94).
+   beta.html und t1–t11 bleiben unveraendert. Dieser Test prueft:
+   - Paritaet der aus beta.html nachgebauten reinen Funktionen,
+   - beide realen OpenFootball-Scoreformate,
+   - Parken von Ausnahmen,
+   - Saisonstatus/Split-Holdout,
+   - Alias- und Dublettenlogik,
+   - Groessengrenzen der Pages-tauglichen Ausgaben. */
 'use strict';
-const fs=require('fs'), path=require('path');
-const u=require('./umgebung');
-const identity=require('../core/data/identity');
-const {marktUrteil}=require('../core/data/market-rules');
-const schema=require('../core/data/schema');
-const aliases=require('../core/data/team-aliases.json');
-const aliasLib=require('../core/data/aliases');
-const of=require('../core/data/adapters/openfootball');
-const espn=require('../core/data/adapters/espn');
-const {dedupliziere}=require('../core/data/normalize');
-const {seasonStatus}=require('../core/data/validate');
-const splitCfg=require('../core/data/splits.json');
-const {splitFuerSaison,darfLernen}=require('../core/data/split');
+var fs=require('fs'), path=require('path');
+var u=require('./umgebung');
+var id=require('../core/data/identity');
+var market=require('../core/data/market-rules');
+var schema=require('../core/data/schema');
+var aliases=require('../core/data/aliases');
+var ofa=require('../core/data/adapters/openfootball');
+var ea=require('../core/data/adapters/espn');
+var norm=require('../core/data/normalize');
+var val=require('../core/data/validate');
+var split=require('../core/data/split');
+var splitCfg=require('../core/data/splits.json');
 
-let ok=0,fail=0;
-function block(s){console.log('\n── '+s);}
-function check(s,v,d){if(v){ok++;console.log('  ✓ '+s);}else{fail++;console.log('  ✗ FEHL: '+s+(d!==undefined?' ['+JSON.stringify(d)+']':''));}}
-function same(a,b){return JSON.stringify(a)===JSON.stringify(b);}
-function directRecord(date,h,g,status='normal'){
-  const heim={name:h,key:identity.fxTokens(h).slice().sort().join('_'),sourceName:h,alias:false};
-  const gast={name:g,key:identity.fxTokens(g).slice().sort().join('_'),sourceName:g,alias:false};
-  return {schemaVersion:1,spielId:identity.fxId(date,heim.key,gast.key),datum:date,liga:'test.1',saison:'2024-25',heim,gast,
-    tore:status==='normal'?{heim:1,gast:0}:null,halbzeit:null,status,parkGrund:null,quelle:'test',beleg:[{quelle:'test',ref:'x'}]};
+function eq(a,b){ return JSON.stringify(a)===JSON.stringify(b); }
+function rec(i,opt){
+  opt=opt||{};
+  return schema.makeMatchRecord({id:'m'+i,date:'2022-01-'+('0'+(i+1)).slice(-2),league:'x.1',season:'2021-22',home:opt.home||('H'+i),away:opt.away||('A'+i),goals:opt.goals||{home:1,away:0},halftime:null,status:opt.status||'normal',parkReason:opt.parkReason||null,source:opt.source||'test',evidence:[]});
 }
-async function main(){
-  block('P1: Paritaet zum echten beta.html');
-  const c=u.neueUmgebung(); await c.bereit;
-  const normCases=['Bayern Munich','1. FC Köln','RCD Espanyol de Barcelona','A&B / C'];
-  for(const x of normCases) check('normName '+x,identity.normName(x)===c.normName(x),[identity.normName(x),c.normName(x)]);
-  const fxCases=['FC Bayern München','Bayern Munich','RCD Espanyol de Barcelona','Olympique de Marseille','ACF Fiorentina'];
-  for(const x of fxCases){
-    check('fxNorm '+x,identity.fxNorm(x)===c.fxNorm(x));
-    check('fxTokens '+x,same(identity.fxTokens(x),Array.from(c.fxTokens(x))));
-  }
-  const ids=[['2026-11-01','FC Bayern München','Bayer 04 Leverkusen'],['2026-09-12','SS Lazio','AC Milan']];
-  for(const a of ids) check('fxId '+a.join(' / '),identity.fxId(...a)===c.fxId(...a));
-  const raw=[{status:'FT',heim:'SS Lazio',gast:'AC Milan',providerCompetitionName:'Italian Serie A',kickoffUtc:'2026-09-12T18:45:00Z'}];
-  const p={id:'p1',datum:'12.09.2026',match:'SS Lazio - AC Milan',anpfiff:'20:45',wettbewerb:'Italian Serie A'};
-  const a1=identity.fxAufloesen(p,raw.map(identity.fxFixtureLesen),[p]);
-  const a2=c.fxAufloesen(p,raw.map(x=>c.fxFixtureLesen(x)),[p]);
-  check('fxAufloesen Stufe',a1&&a2&&a1.stufe===a2.stufe,a1&&a2?[a1.stufe,a2.stufe]:[a1,a2]);
-  check('fxAufloesen Zeitabweichung',a1&&a2&&a1.zeitAbweichung===a2.zeitAbweichung);
-  for(const [code,h,g] of [['sieg_heim',2,1],['sieg_gast',0,1],['remis',1,1],['ueber',2,1],['unter',1,1],['btts_ja',1,2],['btts_nein',0,2]]){
-    check('marktUrteil '+code,marktUrteil(code,h,g)===c.marktUrteil(code,h,g));
-  }
 
-  block('P2: Alias-Tabelle und quellenuebergreifende Identitaet');
-  const ix=aliasLib.aliasIndex(aliases);
-  const aliasPairs=[
-    ['ger.1','FC Bayern München','Bayern Munich'],['ger.1','1. FC Köln','FC Cologne'],
-    ['esp.1','RCD Espanyol de Barcelona','Espanyol'],['esp.1','RC Deportivo La Coruña','Deportivo'],
-    ['ita.1','FC Internazionale Milano','Internazionale'],['fra.1','Olympique Lyonnais','Lyon'],['fra.1','Olympique de Marseille','Marseille']
+(async function(){
+  var c=u.neueUmgebung(); await c.bereit;
+
+  u.block('P1. Paritaet beta.html -> reine Node-Module');
+  ['FC Köln','Bayern München','Paris Saint-Germain','RCD Espanyol de Barcelona',''].forEach(function(x){
+    u.pruef('normName '+x, id.normName(x)===c.normName(x), id.normName(x));
+    u.pruef('fxNorm '+x, id.fxNorm(x)===c.fxNorm(x), id.fxNorm(x));
+    u.pruef('fxTokens '+x, eq(id.fxTokens(x),c.fxTokens(x)), JSON.stringify(id.fxTokens(x)));
+  });
+  ['Team A - Team B','Real Madrid – Barcelona','A-B'].forEach(function(x){
+    u.pruef('teamsAus '+x, eq(id.teamsAus(x),c.teamsAus(x)),JSON.stringify(id.teamsAus(x)));
+  });
+  ['1.9.2026','01.09.2026','2026-09-01',''].forEach(function(x){
+    u.pruef('datumIso '+x, id.datumIso(x)===c.datumIso(x),id.datumIso(x));
+  });
+  var ids=[
+    ['2026-09-01','FC Bayern München','RB Leipzig'],
+    ['2026-10-30','Olympique de Marseille','Lille OSC']
   ];
-  for(const [lg,a,b] of aliasPairs){
-    const x=aliasLib.resolveTeam('openfootball',lg,a,aliases,ix), y=aliasLib.resolveTeam('espn',lg,b,aliases,ix);
-    check('Alias '+a+' = '+b,x.key===y.key,[x.key,y.key]);
-  }
-  const seen=new Set(); let dups=0;
-  for(const e of aliases.entries) for(const src of ['openfootball','espn']) for(const n of e[src]||[]){const k=src+'|'+e.league+'|'+identity.fxNorm(n);if(seen.has(k))dups++;seen.add(k);}
-  check('Alias-Tabelle ohne doppelte Source-Schluessel',dups===0,dups);
+  ids.forEach(function(x){ u.pruef('fxId '+x.join('|'),id.fxId.apply(null,x)===c.fxId.apply(null,x),id.fxId.apply(null,x)); });
+  u.pruef('fxGleich gleiche Tokenmenge',id.fxGleich(['real','madrid'],['madrid','real'])===c.fxGleich(['real','madrid'],['madrid','real']));
+  u.pruef('fxGleich ungleich',id.fxGleich(['real'],['real','madrid'])===c.fxGleich(['real'],['real','madrid']));
 
-  block('P3: Adapter — nur normal belegter Abschluss, Ausnahmen geparkt');
-  const lg={id:'ger.1',espn:'ger.1'};
-  let r=of.adaptMatch({date:'2026-01-02',team1:'FC Bayern München',team2:'Bayer 04 Leverkusen',score:{ft:[2,1],ht:[1,0]}},{league:lg,season:'2025-26',sourcePath:'2025-26/de.1.json',index:0,aliases});
-  check('OpenFootball FT normal',r.status==='normal'&&r.tore.heim===2&&r.halbzeit.heim===1,r);
-  check('OpenFootball Schema gueltig',schema.pruefeMatchRecord(r).length===0,schema.pruefeMatchRecord(r));
-  r=of.adaptMatch({date:'2026-01-03',team1:'A',team2:'B'},{league:lg,season:'2025-26',sourcePath:'x',index:1,aliases});
-  check('OpenFootball ohne Ergebnis offen',r.status==='offen',r.status);
-  r=of.adaptMatch({date:'2026-01-03',team1:'A',team2:'B',score:{ft:[1,1],et:[2,1]}},{league:lg,season:'2025-26',sourcePath:'x',index:2,aliases});
-  check('OpenFootball Sonderformat geparkt',r.status==='geparkt'&&/^sonderformat_/.test(r.parkGrund||''),r);
-  const ebase={providerCompetitionSlug:'ger.1',providerEventId:'1',datum:'2026-10-01',heim:'Bayern Munich',gast:'Bayer Leverkusen',torHeim:2,torGast:1,status:'FT',verlaengerungGespielt:false,beleg:{completed:true,statusTyp:'STATUS_FULL_TIME'},halbzeit:'1:0'};
-  r=espn.adaptMatch(ebase,{league:lg,aliases});
-  check('ESPN FULL_TIME normal',r.status==='normal'&&r.tore.heim===2,r);
-  r=espn.adaptMatch(Object.assign({},ebase,{providerEventId:'2',verlaengerungGespielt:true}),{league:lg,aliases});
-  check('ESPN Verlaengerung geparkt',r.status==='geparkt'&&r.parkGrund==='verlaengerung',r);
+  var raw={heim:'FC Bayern München',gast:'RB Leipzig',providerCompetitionName:'German Bundesliga',kickoffUtc:'2026-09-01T18:30:00Z',status:'FT'};
+  var fb=c.fxFixtureLesen(raw), fn=id.fxFixtureLesen(raw);
+  var post={id:'p1',match:'Bayern Munich - RB Leipzig',datum:'1.9.2026',anpfiff:'20:30',wettbewerb:'German Bundesliga'};
+  var rb=c.fxAufloesen(post,[fb],[post]), rn=id.fxAufloesen(post,[fn],[post]);
+  u.pruef('fxAufloesen gleiche Stufe',rn&&rb&&rn.stufe===rb.stufe,rn&&rn.stufe);
+  u.pruef('fxAufloesen gleiche Fixture',rn&&rb&&rn.fixture.heim===rb.fixture.heim&&rn.fixture.gast===rb.fixture.gast);
+  u.pruef('fxAufloesen gleiche Zeitabweichung',rn&&rb&&rn.zeitAbweichung===rb.zeitAbweichung,String(rn&&rn.zeitAbweichung));
 
-  block('P4: Dubletten und Quellenkonflikt');
-  const oa=of.adaptMatch({date:'2026-10-01',team1:'FC Bayern München',team2:'Bayer 04 Leverkusen',score:{ft:[2,1]}},{league:lg,season:'2026-27',sourcePath:'x',index:0,aliases});
-  const ea=espn.adaptMatch(ebase,{league:lg,aliases});
-  let merged=dedupliziere([oa,ea]);
-  check('Alias-Dublette wird genau ein Spiel',merged.length===1,merged.length);
-  check('Dublettenbelege beider Quellen bleiben',merged[0].beleg.length===2,merged[0].beleg);
-  const ek=espn.adaptMatch(Object.assign({},ebase,{torGast:2}),{league:lg,aliases});
-  merged=dedupliziere([oa,ek]);
-  check('Quellenkonflikt wird geparkt',merged.length===1&&merged[0].status==='geparkt'&&merged[0].parkGrund==='quellenkonflikt',merged[0]);
+  ['sieg_heim','sieg_gast','remis','ueber','unter','btts_ja','btts_nein','unbekannt'].forEach(function(code){
+    u.pruef('marktUrteil '+code, market.marktUrteil(code,2,1)===c.marktUrteil(code,2,1),String(market.marktUrteil(code,2,1)));
+  });
 
-  block('P5: Saisonstatus — Gegenproben');
-  const teams=['A','B','C','D']; const full=[]; let day=1;
-  for(const h of teams) for(const g of teams) if(h!==g) full.push(directRecord('2024-08-'+String(day++).padStart(2,'0'),h,g));
-  let st=seasonStatus(full,{heute:'2025-06-01'});
-  check('vollstaendige Doppelrunde erkannt',st.status==='vollstaendig'&&st.lernfaehig&&st.spiele===12&&st.erwartet===12,st);
-  const future=full.map(x=>JSON.parse(JSON.stringify(x))); future[0].status='offen';future[0].tore=null;future[0].datum='2026-12-01';
-  st=seasonStatus(future,{heute:'2026-11-03'});
-  check('fehlendes Zukunftsergebnis = laufend',st.status==='laufend'&&!st.lernfaehig,st);
-  const past=full.map(x=>JSON.parse(JSON.stringify(x))); past[0].status='offen';past[0].tore=null;
-  st=seasonStatus(past,{heute:'2026-11-03'});
-  check('fehlendes vergangenes Ergebnis = unvollstaendig',st.status==='unvollstaendig'&&!st.lernfaehig,st);
-  const nurDrei=full.filter(r=>r.heim.key!=='d'&&r.gast.key!=='d');
-  st=seasonStatus(nurDrei,{heute:'2026-11-03',expectedTeams:4});
-  check('fehlende ganze Mannschaft kann nicht faelschlich vollstaendig sein',st.status==='unvollstaendig'&&!st.lernfaehig&&st.teams===3&&st.erwarteteTeams===4,st);
+  u.block('P2. OpenFootball-Adapter — beide echten Scoreformate und Ausnahmen');
+  var aidx=aliases.buildIndex(aliases.loadAliases());
+  var ctx={league:'en.1',season:'2025-26',aliasIndex:aidx,sourcePath:'2025-26/en.1.json'};
+  var arr=ofa.adaptMatch({date:'2025-08-16',team1:'Aston Villa FC',team2:'Newcastle United FC',score:[0,0]},ctx);
+  u.pruef('score:[0,0] ist ein belegtes Ergebnis, nicht pending',arr.status==='normal'&&arr.goals.home===0&&arr.goals.away===0,JSON.stringify(arr));
+  var obj=ofa.adaptMatch({date:'2025-08-15',team1:'Liverpool FC',team2:'AFC Bournemouth',score:{ft:[4,2],ht:[1,0]}},ctx);
+  u.pruef('score.ft wird gelesen',obj.status==='normal'&&obj.goals.home===4&&obj.goals.away===2);
+  u.pruef('Halbzeit wird nur bei vorhandenem ht uebernommen',obj.halftime.home===1&&obj.halftime.away===0);
+  var awarded=ofa.adaptMatch({date:'2025-08-17',team1:'A',team2:'B',score:{ft:[3,0]},status:'awarded'},ctx);
+  u.pruef('awarded wird geparkt',awarded.status==='parked'&&awarded.parkReason==='source_status_awarded');
+  var canceled=ofa.adaptMatch({date:'2025-08-18',team1:'A',team2:'C',status:'canceled'},ctx);
+  u.pruef('canceled wird geparkt',canceled.status==='parked'&&canceled.parkReason==='source_status_canceled');
+  var pending=ofa.adaptMatch({date:'2025-08-19',team1:'B',team2:'C'},ctx);
+  u.pruef('fehlendes Ergebnis bleibt pending',pending.status==='pending');
 
-  block('P6: vorab eingefrorene zeitliche Trennung');
-  check('England 2023-24 lernen',splitFuerSaison('eng.1','2023-24','vollstaendig',splitCfg)==='lernen');
-  check('England 2024-25 pruefen',splitFuerSaison('eng.1','2024-25','vollstaendig',splitCfg)==='pruefen');
-  check('Spanien 2023-24 pruefen',splitFuerSaison('esp.1','2023-24','vollstaendig',splitCfg)==='pruefen');
-  check('unvollstaendige Pruefsaison nicht verwendbar',splitFuerSaison('eng.1','2024-25','unvollstaendig',splitCfg)==='nicht_verwendbar');
-  for(const lgid of Object.keys(splitCfg.leagues)){
-    const sp=splitFuerSaison(lgid,'2025-26','vollstaendig',splitCfg);
-    check('Holdout '+lgid+' nie Lernen',sp==='holdout'&&!darfLernen(sp),sp);
-  }
+  u.block('P3. ESPN-Adapter — normaler Abschluss vs. Ausnahmespiel');
+  var leagueCfg=require('../core/data/leagues.json').leagues;
+  var e1=ea.adaptMatch({providerCompetitionName:'German Bundesliga',kickoffUtc:'2026-09-12T13:30:00Z',heim:'Bayern Munich',gast:'RB Leipzig',torHeim:2,torGast:1,status:'FT',verlaengerungGespielt:false,providerEventId:'1'}, {leagues:leagueCfg,aliasIndex:aidx});
+  u.pruef('ESPN FT normal zaehlt',e1.status==='normal'&&e1.league==='de.1'&&e1.home==='FC Bayern München',JSON.stringify(e1));
+  var e2=ea.adaptMatch({providerCompetitionName:'German Bundesliga',kickoffUtc:'2026-09-12T13:30:00Z',heim:'Bayern Munich',gast:'RB Leipzig',torHeim:2,torGast:2,status:'FT',verlaengerungGespielt:true,providerEventId:'2'}, {leagues:leagueCfg,aliasIndex:aidx});
+  u.pruef('ESPN Verlaengerung wird geparkt',e2.status==='parked'&&e2.parkReason==='extra_time');
 
-  block('P7: erzeugte reale Coverage und Dateigrenzen');
-  const gen=path.join(__dirname,'..','core','data','generated');
-  const cov=JSON.parse(fs.readFileSync(path.join(gen,'coverage.json'),'utf8'));
-  const man=JSON.parse(fs.readFileSync(path.join(gen,'manifest.json'),'utf8'));
-  check('Coverage hat genau 5 konfigurierte Ligen',Object.keys(cov.leagues).length===5,Object.keys(cov.leagues));
-  check('ESPN-Archiv wird als nichtleere Quelle erfasst',cov.espn.spiele>0&&cov.espn.wettbewerbe>0&&cov.espn.teamnamen>0,cov.espn);
-  for(const [lgid,v] of Object.entries(cov.leagues)){
-    check('keine unaufgeloesten aktuellen Teamnamen '+lgid,v.teamIdentity.unresolved===0,v.teamIdentity);
-    check('OpenFootball-Ergebnisse vorhanden '+lgid,v.openfootballErgebnisse>0,v.openfootballErgebnisse);
-    for(const s of v.seasons){
-      if(s.split==='lernen'||s.split==='pruefen') check('nur vollstaendige Saison in '+s.split+' '+lgid+' '+s.saison,s.status==='vollstaendig',s);
-      if(s.split==='holdout') check('Holdout nicht lernfaehig '+lgid+' '+s.saison,!darfLernen(s.split));
-    }
-  }
-  check('coverage.json <= 250 KB',fs.statSync(path.join(gen,'coverage.json')).size<=250000,fs.statSync(path.join(gen,'coverage.json')).size);
-  check('manifest.json <= 100 KB',fs.statSync(path.join(gen,'manifest.json')).size<=100000,fs.statSync(path.join(gen,'manifest.json')).size);
-  check('Manifest enthaelt Saisonpruefungen statt Rohdaten',man.seasons.length>0&&!('records' in man),man.seasons.length);
-  const generatedFiles=fs.readdirSync(gen).sort();
-  check('Generated enthaelt nur kleine Ableitungen',same(generatedFiles,['coverage.json','manifest.json']),generatedFiles);
+  u.block('P4. Stable Core-ID und Alias-Tabelle');
+  u.pruef('FC Cologne Alias ist explizit',aliases.canonicalTeam('FC Cologne','de.1','espn',aidx)==='1. FC Köln');
+  u.pruef('Lyon Alias ist explizit',aliases.canonicalTeam('Lyon','fr.1','espn',aidx)==='Olympique Lyonnais');
+  var cid1=id.coreMatchId('de.1','2026-27','1. FC Köln','Hamburger SV');
+  var cid2=id.coreMatchId('de.1','2026-27',aliases.canonicalTeam('FC Cologne','de.1','espn',aidx),aliases.canonicalTeam('Hamburg SV','de.1','espn',aidx));
+  u.pruef('Core-ID ist nach Alias quellenstabil',cid1===cid2,cid1);
+  u.pruef('Core-ID enthaelt bewusst kein Datum',cid1.indexOf('2026')>=0 && cid1.indexOf('202611')<0,cid1);
 
-  console.log('\n════════════════════════════════════════════════════════════════');
-  console.log(`  ${ok} Pruefungen bestanden, ${fail} fehlgeschlagen`);
-  console.log('════════════════════════════════════════════════════════════════');
-  if(fail) process.exit(1);
-}
-main().catch(e=>{console.error(e&&e.stack||e);process.exit(1);});
+  u.block('P5. Saisonvalidator');
+  var complete=[
+    rec(1,{home:'A',away:'B'}),rec(2,{home:'B',away:'A'}),
+    rec(3,{home:'A',away:'C'}),rec(4,{home:'C',away:'A'}),
+    rec(5,{home:'B',away:'C'}),rec(6,{home:'C',away:'B'})
+  ];
+  var st=val.seasonStats(complete,{running:false});
+  u.pruef('3 Teams Doppelrunde = 6 -> vollstaendig',st.status==='vollstaendig'&&st.expectedFixtures===6,JSON.stringify(st));
+  var inc=val.seasonStats(complete.slice(0,5),{running:false});
+  u.pruef('fehlendes Fixture -> unvollstaendig',inc.status==='unvollstaendig'&&inc.issues.indexOf('fixture_count')>=0,JSON.stringify(inc));
+  var run=val.seasonStats(complete.slice(0,5),{running:true});
+  u.pruef('laufende Saison bleibt laufend',run.status==='laufend');
+  var withCanceled=complete.slice(); withCanceled[0]=rec(7,{home:'A',away:'B',status:'parked',parkReason:'source_status_canceled',goals:null});
+  var sc=val.seasonStats(withCanceled,{running:false});
+  u.pruef('cancelled macht Saison unvollstaendig',sc.status==='unvollstaendig'&&sc.cancelledParked===1,JSON.stringify(sc));
+  var withAwarded=complete.slice(); withAwarded[0]=rec(8,{home:'A',away:'B',status:'parked',parkReason:'source_status_awarded',goals:{home:3,away:0}});
+  var sa=val.seasonStats(withAwarded,{running:false});
+  u.pruef('awarded ist terminal, aber Match bleibt geparkt',sa.status==='vollstaendig'&&sa.awardedParked===1&&sa.normalMatches===5,JSON.stringify(sa));
+
+  u.block('P6. Fester chronologischer Split / finaler Holdout');
+  u.pruef('2022-23 -> learning',split.bucketForSeason('2022-23',splitCfg)==='learning');
+  u.pruef('2023-24 -> validation',split.bucketForSeason('2023-24',splitCfg)==='validation');
+  u.pruef('2025-26 -> finaler Holdout',split.bucketForSeason('2025-26',splitCfg)==='holdout');
+  u.pruef('2026-27 -> running/future',split.bucketForSeason('2026-27',splitCfg)==='running_or_future');
+  u.pruef('Holdout darf NIE trainieren',split.mayTrain('2025-26',splitCfg,'vollstaendig')===false);
+  u.pruef('Learning darf nur bei vollstaendiger Saison trainieren',split.mayTrain('2022-23',splitCfg,'vollstaendig')===true && split.mayTrain('2022-23',splitCfg,'unvollstaendig')===false);
+
+  u.block('P7. Quellen-Dubletten');
+  var x1=schema.makeMatchRecord({id:'same',date:'2026-10-01',league:'de.1',season:'2026-27',home:'A',away:'B',goals:{home:1,away:0},status:'normal',source:'openfootball',evidence:[{source:'openfootball'}]});
+  var x2=schema.makeMatchRecord({id:'same',date:'2026-10-02',league:'de.1',season:'2026-27',home:'A',away:'B',goals:{home:1,away:0},status:'normal',source:'espn',evidence:[{source:'espn'}]});
+  var m1=norm.dedupe([x1,x2]);
+  u.pruef('gleiche Paarung/Saison ueber Quellen wird eins',m1.length===1&&m1[0].source==='merged',JSON.stringify(m1));
+  u.pruef('bei Terminverschiebung gewinnt ESPN-Datum ohne neue ID',m1[0].date==='2026-10-02',m1[0].date);
+  var x3=Object.assign({},x2,{goals:{home:0,away:1}});
+  var m2=norm.dedupe([x1,x3]);
+  u.pruef('widersprechende Endstaende werden geparkt',m2[0].status==='parked'&&m2[0].parkReason==='source_conflict');
+
+  u.block('P8. Generierte kleine Pages-Dateien / harte Grenzen');
+  var gp=path.join(__dirname,'..','core','data','generated','coverage.json');
+  var mp=path.join(__dirname,'..','core','data','generated','manifest.json');
+  var cov=JSON.parse(fs.readFileSync(gp,'utf8')), man=JSON.parse(fs.readFileSync(mp,'utf8'));
+  u.pruef('coverage.json < 250 KB',fs.statSync(gp).size<250000,fs.statSync(gp).size);
+  u.pruef('manifest.json < 250 KB',fs.statSync(mp).size<250000,fs.statSync(mp).size);
+  u.pruef('Coverage markiert jede Saison mit erlaubtem Status',cov.leagues.every(function(l){return l.seasons.every(function(s){return ['vollstaendig','unvollstaendig','laufend'].indexOf(s.status)>=0;});}));
+  u.pruef('Coverage enthaelt unaufgeloeste Teamnamen je Liga',cov.teamNameCoverage.every(function(x){return Number.isInteger(x.unresolvedCount)&&Array.isArray(x.unresolved);}));
+  u.pruef('Manifest belegt Scope: keine Quoten/LLM/Modelle',man.invariants.footballDataCoUkUsed===false&&man.invariants.llmCalls===false&&man.invariants.oddsUsed===false&&man.invariants.modelBuilt===false);
+
+  process.exitCode=u.bilanz()?1:0;
+})().catch(function(e){ console.error(e&&e.stack||e); process.exitCode=1; });

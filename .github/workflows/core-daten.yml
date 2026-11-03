@@ -1,20 +1,24 @@
 name: Core-Datenfundament aktualisieren
 
-# Backlog-Punkt 94, Core Stufe 1 / Teil 1.
-# Holt ausschliesslich OpenFootball (CC0) und benutzt das bereits im Repo vorhandene ESPN-Archiv.
-# football-data.co.uk wird hier NICHT automatisiert abgerufen. Keine Schluessel, keine LLMs.
-# GitHub kann geplante Workflows in oeffentlichen Repositories nach 60 Tagen ohne Repository-
-# Aktivitaet automatisch deaktivieren; workflow_dispatch bleibt als manueller Startweg bestehen.
-# Der Workflow schreibt nur die kleinen abgeleiteten Dateien unter core/data/generated/ und
-# committet nur bei echtem Diff. Kein Merge, kein Rebase, kein Force.
-
+# Backlog-Punkt 94, Core Stufe 1 Teil 1.
+# Keine Schluessel, keine Quoten, kein Modell, keine LLM-Aufrufe. OpenFootball wird als
+# separates oeffentliches CC0-Repository ausgecheckt; ESPN wird nur aus dem bereits im Repo
+# vorhandenen Archiv gelesen. Der Workflow schreibt ausschliesslich kleine abgeleitete Dateien
+# unter core/data/generated/ und committet nur bei echtem Diff.
+#
+# GitHub-Hinweis: In oeffentlichen Repositories koennen geplante Workflows nach 60 Tagen ohne
+# Repository-Aktivitaet automatisch deaktiviert werden. workflow_dispatch bleibt fuer einen
+# manuellen Neustart vorhanden.
+#
+# Gemeinsame Concurrency-Gruppe mit den bestehenden Ergebnis-Schreibern: keine zwei regulären
+# Repository-Writer gleichzeitig. Wie dort gilt: keine FIFO-Garantie fuer beliebig viele Runs.
 concurrency:
   group: ondo-control-ergebnisse-schreiber
   cancel-in-progress: false
 
 on:
   schedule:
-    - cron: '20 9 * * *'
+    - cron: '40 9 * * *'
   workflow_dispatch: {}
 
 permissions:
@@ -27,38 +31,43 @@ jobs:
       - name: ONDO Control auschecken
         uses: actions/checkout@v4
         with:
+          path: repo
           fetch-depth: 1
 
-      - name: Node einrichten
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-
-      - name: OpenFootball auschecken
+      - name: OpenFootball CC0 auschecken
         uses: actions/checkout@v4
         with:
           repository: openfootball/football.json
           ref: master
-          path: .cache/openfootball
+          path: openfootball
           fetch-depth: 1
 
-      - name: Datenfundament bauen
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Lizenz und Quellenstand pruefen
         run: |
           set -euo pipefail
-          OF_SHA="$(git -C .cache/openfootball rev-parse HEAD)"
-          node core/data/build.js \
-            --openfootball .cache/openfootball \
-            --espn daten/espn-ergebnisse \
-            --out core/data/generated \
-            --openfootball-commit "$OF_SHA"
+          test -f openfootball/LICENSE.md
+          grep -q 'CC0 1.0 Universal' openfootball/LICENSE.md
+          echo "OPENFOOTBALL_COMMIT=$(git -C openfootball rev-parse HEAD)" >> "$GITHUB_ENV"
 
-      - name: Datenfundament pruefen
+      - name: Kleine abgeleitete Core-Daten bauen
+        working-directory: repo
+        env:
+          OPENFOOTBALL_DIR: ../openfootball
+        run: node core/data/build.js
+
+      - name: Datenfundament testen
+        working-directory: repo
         run: |
           set -euo pipefail
           node tests/t12_core_daten.js
           python3 pruefe.py
 
-      - name: Aenderung committen, falls vorhanden
+      - name: Nur bei Aenderung committen
+        working-directory: repo
         run: |
           set -euo pipefail
           git config user.name "Ondo-Control-Automatik"
@@ -67,11 +76,11 @@ jobs:
           if git diff --cached --quiet; then
             echo "Keine Aenderung - nichts zu committen."
           else
-            git fetch origin "$GITHUB_REF_NAME"
-            if [ "$(git rev-parse HEAD)" != "$(git rev-parse "origin/$GITHUB_REF_NAME")" ]; then
-              echo "::error::$GITHUB_REF_NAME hat sich seit dem Checkout bewegt - sichtbarer Abbruch. Kein Merge, kein Rebase, kein Force."
+            git fetch origin main
+            if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then
+              echo "::error::main hat sich seit dem Checkout bewegt - sichtbarer Abbruch. Kein Merge, kein Rebase, kein Force."
               exit 1
             fi
-            git commit -m "Core-Daten: automatischer Datenstand"
-            git push origin "HEAD:$GITHUB_REF_NAME"
+            git commit -m "Core-Daten: Coverage aktualisieren"
+            git push
           fi

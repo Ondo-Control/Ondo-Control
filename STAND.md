@@ -199,16 +199,6 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 
 ---
 
-## Core Stufe 1 — Datenfundament (Punkt 94, Staging 3.11.2026)
-
-- `beta.html` bleibt v19.22.2 und unverändert; t1–t11 bleiben unverändert.
-- Neue reine Node-Schicht `core/data/`: neutrales Match-Schema, OpenFootball-/ESPN-Adapter, Identitäts-/Aliasauflösung, Quellen-Deduplizierung, Saisonvalidierung und feste chronologische Splits.
-- OpenFootball ist CC0; automatisiert wird **nicht** auf football-data.co.uk zugegriffen. Rohhistorie wird nicht in App-State/IndexedDB oder als duplizierter Matchbestand in Pages geschrieben.
-- Committed werden nur kleine Ableitungen (`coverage.json`, `manifest.json`). Nur `vollstaendig` validierte Saisons dürfen Lernen/Prüfen speisen; der endgültige Holdout ab 2025-26 bleibt dauerhaft vom Lernen ausgeschlossen.
-- Stand dieses Dokuments ist die Staging-Lieferung; `main` bleibt bis zu einer gesonderten Abnahme unverändert.
-
----
-
 ## Versionen
 
 - **🔴 Rücksetzpunkt vor dem KI-Log-Umbau (Ondos Wunsch, 12.9.2026):** Commit `ed14eb7`,
@@ -233,7 +223,26 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   `n=8`. Die seit v19.13.0 vorab festgelegte Schwelle — mindestens **90 % gleicher Tipp** UND
   höchstens **10 Prozentpunkte Spanne im Schnitt** — ist damit bei beiden Gehirnen erfüllt.
   Punkt 80 ist **bestanden und erledigt** und wurde aus dem offenen Backlog ins Archiv verschoben.
-  **Punkt 91 — Persistenz/Lifecycle:** v19.22.2 bleibt unverändert ausgeliefert. **Offen bleibt die iPhone-Bewährung.** Die WebKit-Ursachenzuordnung ist weiterhin nur plausibel, nicht A/B-bewiesen; erledigte Diagnose-/Bauhistorie steht in `BACKLOG-ARCHIV.md`.
+  **Punkt 91 — Persistenz/Lifecycle:** Backup und normale Speicherwarnungen behalten die seit
+  v19.21.1 bestehende Fehlerbehandlung; v19.21.3 führt den getrennten Diagnosepuffer fort.
+  **Belegt am 8.10.2026:** fünf Fehler waren `quelle=checkpoint`, `phase=tx-abort`; die Writes
+  starteten 1–10 ms nach `visibilitychange→hidden`. Codekette: `seiteAnhalten()` →
+  `checkpointOhneBarriere()` → `checkpointSave()` → `speicherSchreibenKritisch()` →
+  `idbSchreiben()` → `tx-abort`. Der bisherige Hide-Handler schrieb auf jedes `hidden`/`pagehide`.
+  **Plausibel, nicht bewiesen:** WebKit Bug 202705 dokumentiert zwangsweise Abbrüche laufender
+  IndexedDB-Transaktionen bei Prozess-Suspendierung; dass genau dies die fünf ONDO-Abbrüche
+  verursachte, ist nicht per A/B-Test belegt.
+  **v19.22.1-Basis:** Hide schreibt nur bei tatsächlichem `laufend→pausiert` oder ausstehendem
+  `save()`, höchstens einmal je Hide-Zyklus, über den strikten `lebenszyklus`-Weg; Fehler dort
+  bleiben ohne globalen Alarm/localStorage-Rückfall. Startup und Diagnose bleiben wie geliefert.
+  **Korrektur v19.22.2:** Drei reale Abbrüche wurden erst 37/329/331 ms nach `visible` gemeldet;
+  deshalb kann nun auch der Lifecycle-catch den gemeinsamen `lebenszyklusWiederholen()`-Weg
+  auslösen, falls die Seite dann sichtbar ist. Das Ungesichert-Flag wird vor dem einzigen Retry
+  gelöscht; bei erneut hidden wartet es bis zur nächsten Rückkehr. `pageshow` ruft den Rückweg
+  nur mit `event.persisted===true` auf, sodass erstes Laden keinen Vorab-Render auslöst. Der
+  Entdoppelungs-Guard ist jetzt auch für `save_aussteht` + `hidden` + `pagehide` mutationssensitiv
+  getestet. Harte Barriere, `save()`-Fallback, Backup-Semantik und Alarmtexte bleiben unverändert.
+  **Punkt 91 bleibt offen bis zur iPhone-Bewährung.**
   **Punkt 87 — ESPN-Archiv bei Länderspielen:** Der Resolver kann deutsche und englische
   ISO-3166-1-Ländernamen jetzt über denselben standardisierten Ländercode erkennen. Die Namen
   entstehen zur Laufzeit mit `Intl.DisplayNames` (`de`/`en`); es gibt keine gepflegte
@@ -280,6 +289,8 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   die Reparatur spart im belegten Nations-League-Fall Modellaufrufe und verhindert bei
   unbekannten Gemini-Fehlern weitere automatische Versuche.
 - **Sprachschlüssel: 392** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 6.10.2026** — v19.22.0 ergänzt sechs Texte je Sprache: Wett-Ausgang/Knopf „Einsatz zurück“ und vier neue Parkgründe). **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
+- **Core Stufe 1 / Punkt 94 (nur STAGING, 3.11.2026):** Eigenes Datenfundament außerhalb von `beta.html`/IndexedDB: neutrales MatchRecord-Schema, CC0-OpenFootball + vorhandenes ESPN-Archiv, explizite Team-Aliase, Saisonstatus vollständig/unvollständig/laufend und fester Split (Lernen bis 2022/23 · Prüfung 2023/24–2024/25 · finaler Holdout 2025/26 · 2026/27 laufend). Der Core nutzt eine liga-/saison-/Heim-/Gast-ID ohne Datum, damit Terminverschiebungen dieselbe Partie bleiben; die bisherigen Beta-Resolverfunktionen werden nur paritätsgetreu als reine Node-Funktionen gespiegelt. Kein Modell, keine Quoten, keine LLM-Aufrufe; `beta.html`, CODE_VERSION und t1–t11 bleiben unverändert.
+
 
 ---
 
@@ -306,7 +317,7 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 
 **Bekannte Lücke:** Die Wiederholung greift nur bei „nicht gefunden". Ein einmal als *fertig* gemeldetes Ergebnis wird nie wieder hinterfragt.
 
-**Historische Diagnose zu Punkt 81:** nach aktueller ausdrücklicher Freigabe aus dem aktuellen STAND entfernt und in `BACKLOG-ARCHIV.md` archiviert. Der vor dieser Lieferung bestehende Repo-Stand hatte Punkt 81 noch als offen geführt; die Archivierung stützt sich auf die aktuelle Freigabe vom 3.11. mit Verweis auf Ondos Entscheidung vom 12.10.
+**Punkt 81:** Laut Ondos neuerer Entscheidung vom 12.10.2026 erledigt. Die abgeschlossene Diagnose-, CORS- und Reparaturhistorie wurde nach `CHRONIK-2026-09.md` verschoben.
 
 ---
 

@@ -1,49 +1,49 @@
 'use strict';
-const {SCHEMA_VERSION,STATUS}=require('../schema');
-const {fxId}=require('../identity');
-const {resolveTeam,aliasIndex}=require('../aliases');
+var schema=require('../schema');
+var identity=require('../identity');
+var aliases=require('../aliases');
 
-function halbzeitLesen(v){
-  const m=String(v||'').match(/^\s*(\d+)\s*:\s*(\d+)\s*$/);
-  return m?{heim:Number(m[1]),gast:Number(m[2])}:null;
+function seasonFromDate(date){
+  var m=String(date||'').match(/^(\d{4})-(\d{2})-/);
+  if(!m) return '';
+  var y=Number(m[1]), mo=Number(m[2]), a=mo>=7?y:y-1, b=(a+1)%100;
+  return String(a)+'-'+('0'+b).slice(-2);
 }
-function saisonAusDatum(datum){
-  const m=String(datum||'').match(/^(\d{4})-(\d{2})-/); if(!m)return '';
-  const y=Number(m[1]), mon=Number(m[2]);
-  const start=mon>=7?y:y-1;
-  return String(start)+'-'+String((start+1)%100).padStart(2,'0');
+function leagueFor(raw,leagues){
+  var n=String(raw.providerCompetitionName||raw.wettbewerb||'');
+  var f=(leagues||[]).find(function(l){ return l.espnCompetition===n; });
+  return f ? f.id : '';
 }
-function adaptMatch(match,ctx){
-  const idx=ctx.aliasIndex||aliasIndex(ctx.aliases);
-  const heim=resolveTeam('espn',ctx.league.id,match.heim,ctx.aliases,idx);
-  const gast=resolveTeam('espn',ctx.league.id,match.gast,ctx.aliases,idx);
-  const datum=String(match.datum||'');
-  const saison=saisonAusDatum(datum);
-  const normal=String(match.status||'')==='FT' && match.beleg && match.beleg.completed===true &&
-    String(match.beleg.statusTyp||'')==='STATUS_FULL_TIME' && match.verlaengerungGespielt!==true;
-  let status,grund=null,tore=null;
-  if(normal && Number.isInteger(Number(match.torHeim)) && Number(match.torHeim)>=0 && Number.isInteger(Number(match.torGast)) && Number(match.torGast)>=0){
-    status=STATUS.NORMAL; tore={heim:Number(match.torHeim),gast:Number(match.torGast)};
-  }else if(String(match.status||'')!=='FT' || !(match.beleg&&match.beleg.completed===true)){
-    status=STATUS.OFFEN;
-  }else{
-    status=STATUS.GEPARKT;
-    grund=match.verlaengerungGespielt===true?'verlaengerung':'abschluss_nicht_normal_belegt';
+function adaptMatch(raw,ctx){
+  ctx=ctx||{};
+  var league=ctx.league||leagueFor(raw,ctx.leagues);
+  if(!league) return null;
+  var b=raw.kickoffUtc ? identity.fxBerlin(raw.kickoffUtc) : null;
+  var date=(b&&b.datum)||String(raw.datum||'');
+  var season=ctx.season||seasonFromDate(date);
+  var aliasIndex=ctx.aliasIndex||{};
+  var home=aliases.canonicalTeam(raw.heim,league,'espn',aliasIndex);
+  var away=aliases.canonicalTeam(raw.gast,league,'espn',aliasIndex);
+  var ft=(Number.isFinite(Number(raw.torHeim))&&Number.isFinite(Number(raw.torGast)))
+    ? {home:Number(raw.torHeim),away:Number(raw.torGast)} : null;
+  var ht=schema.scorePair(raw.halbzeit);
+  var sourceStatus=String(raw.status||'');
+  var status=schema.MATCH_STATUS.PENDING, reason=null;
+  if(sourceStatus==='FT' && raw.verlaengerungGespielt===true){
+    status=schema.MATCH_STATUS.PARKED; reason='extra_time';
+  }else if(sourceStatus==='FT' && ft){
+    status=schema.MATCH_STATUS.NORMAL;
+  }else if(sourceStatus && sourceStatus!=='FT'){
+    status=schema.MATCH_STATUS.PARKED; reason='source_status_'+sourceStatus.toLowerCase();
   }
-  if(!/^\d{4}-\d{2}-\d{2}$/.test(datum)){ status=STATUS.GEPARKT; grund='datum_unlesbar'; }
-  if(!heim.key||!gast.key||heim.key===gast.key){ status=STATUS.GEPARKT; grund='teamidentitaet_unbrauchbar'; }
-  return {
-    schemaVersion:SCHEMA_VERSION,spielId:fxId(datum,heim.key,gast.key),datum,liga:ctx.league.id,saison,
-    heim,gast,tore,halbzeit:halbzeitLesen(match.halbzeit),status,parkGrund:grund,
-    quelle:'espn',
-    beleg:[{quelle:'espn',ref:String(match.providerEventId||''),competition:String(match.providerCompetitionSlug||''),
-      statusTyp:String(match.beleg&&match.beleg.statusTyp||''),fetchedAt:String(match.fetchedAt||'')}]
-  };
+  return schema.makeMatchRecord({
+    id:identity.coreMatchId(league,season,home,away), date:date, league:league, season:season,
+    home:home, away:away, goals:ft, halftime:ht, status:status, parkReason:reason,
+    source:'espn', evidence:[{source:'espn',ref:String(raw.providerEventId||''),url:String(raw.beleg||''),file:String(ctx.sourcePath||'')}]
+  });
 }
-function adaptArchive(json,ctx){
-  const games=(json&&Array.isArray(json.spiele))?json.spiele:[];
-  const idx=aliasIndex(ctx.aliases);
-  return games.filter(g=>String(g.providerCompetitionSlug||'')===ctx.league.espn)
-    .map(g=>adaptMatch(g,Object.assign({},ctx,{aliasIndex:idx})));
+function adaptArchive(doc,ctx){
+  if(!doc || !Array.isArray(doc.spiele)) throw new Error('ESPN: spiele fehlt');
+  return doc.spiele.map(function(m){ return adaptMatch(m,ctx); }).filter(Boolean);
 }
-module.exports={halbzeitLesen,saisonAusDatum,adaptMatch,adaptArchive};
+module.exports={seasonFromDate:seasonFromDate,leagueFor:leagueFor,adaptMatch:adaptMatch,adaptArchive:adaptArchive};

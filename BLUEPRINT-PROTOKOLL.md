@@ -683,5 +683,4 @@
 > bewiesen. Keine neue Architektur- oder Verfassungsregel; harte Checkpoint-, save-, Backup- und
 > Alarmsemantik bleiben unverändert. Blueprint auf 0.156 gehoben.
 
-> **Was Fassung 0.157 ändert (3.11.2026):** Synchronisierung nach Arbeitsregel M für Backlog-Punkt 94, Core Stufe 1 / Teil 1. Das Datenfundament wird als eigenständige, deterministische Node-Schicht außerhalb von `beta.html` gebaut: neutrales Match-Schema, OpenFootball-CC0-/ESPN-Adapter, Alias-/Identitätsauflösung, Saisonvollständigkeit und vorab feste chronologische Lernen/Prüfen/Holdout-Grenzen. Keine Quoten, kein Modell, kein Backtest und kein LLM in diesem Teil. `beta.html`, CODE_VERSION und t1–t11 bleiben unverändert. Blueprint auf 0.157 gehoben.
-
+> **Was Fassung 0.157 ändert (3.11.2026):** Synchronisierung nach Arbeitsregel M für Backlog-Punkt 94, Core Stufe 1 Teil 1. Die bestehende Web-App bleibt unangetastet; neu ist nur das getrennte Datenfundament unter `core/data/` mit neutralem Schema, CC0-OpenFootball-/ESPN-Adaptern, Saisonvalidierung, festem Holdout und kleinen generierten Coverage-Dateien. Kein Modell, keine Quoten, keine LLM-Aufrufe und keine Änderung an `beta.html` oder t1–t11. Blueprint auf 0.157 gehoben.

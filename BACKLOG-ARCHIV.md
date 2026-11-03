@@ -6764,106 +6764,38 @@ für das normale `save()` gilt der beschriebene Rückfall bewusst weiter.*
 
 ---
 
-## Archivierung für Core Stufe 1 / Punkt 94 — 3.11.2026
+## 3.11.2026 — Archivierung vor Core Stufe 1, Teil 1 (Punkt 94)
 
-**Hinweis zur Einordnung:** Der vor dieser Lieferung vorliegende Repo-Stand führte Punkt 81 noch als OFFEN. Die Verschiebung aus dem offenen Backlog erfolgt aufgrund der aktuellen ausdrücklichen Freigabe vom 3.11.2026 mit Verweis auf Ondos Entscheidung vom 12.10.; diese Erledigung wird hier nicht als unabhängig aus dem alten Repo-Stand bewiesen dargestellt. Bei Punkt 91 bleibt die Gerätebewährung offen, bei Punkt 92 bleibt Schritt 2 offen.
+**Nur bereits Entschiedenes/Erledigtes verschoben; offene Aussagen bleiben im Haupt-Backlog.**
 
-### Aus `Ondo-Control-Backlog.md`: historische Zählzeilen zu Punkt 81
+### Punkt 81 — laut Ondos neuerer Entscheidung vom 12.10.2026 erledigt
 
-- **Beschlossen und nicht gebaut: drei** — **4, 81, 92** *(Punkt 92 bleibt wegen des separaten Schritt 2 offen.)*
+**81. Schiedsrichter reparieren — nach Ondos eigener, strenger Definition** · *Auftrag Ondo 13.9.2026, wörtlich: „Dann Schiedsrichter reparieren. Das ist dein Job."* · **Status: beschlossen — 🔴 OFFEN. Ein echter Bug gefunden und behoben 13.9.2026 (`beta.html` v19.13.1, „0 von 10 gefunden"-Fund). Berichtigt 13.9.2026: die „zweite Datenquelle" war keine neue Entdeckung, sondern bereits bei Punkt 9 (11.9.2026) vollständig gebaut. 🔴 Wege-Neuzusammensetzung ausgeliefert 13.9.2026 (`beta.html` v19.13.2, Ondos Auftrag) — Bestätigung durch einen echten Prüfzyklus am Gerät steht aus, Status bleibt ausdrücklich OFFEN, nicht behoben. 🔴 football-data.org auf Archiv-Lesen umgestellt 14.9.2026 (`beta.html` v19.13.3, Ondos Auftrag) — Bestätigung durch einen echten Prüfzyklus am Gerät steht ebenfalls aus, Status bleibt OFFEN.**
+
+### Historische Status-Nachführungen zu Punkt 81
+
 - **🔴 Nachgefuehrt 23.9.2026 (Fassung 144, Backlog-Punkt 86 gebaut):** Die Zahl bleibt **zwei — 4, 81**. Punkt 86 ist mit dieser Lieferung gebaut und zaehlt daher nicht mit; Punkt 81 bleibt ausdruecklich OFFEN, weil die Bestaetigung an Ondos Geraet aussteht.
 - **🔴 Nachgefuehrt 24.9.2026 (Fassung 145, Nachbesserung zu Punkt 86 gebaut, `beta.html` v19.19.1):** Die Zahl bleibt **zwei — 4, 81**. Die Nachbesserung ist gebaut; ihre Bewaehrung am iPhone steht aus.
 - **🔴 Nachgefuehrt 24.9.2026 (Fassung 146, letzte Nachbesserung zu Punkt 86, `beta.html` v19.19.2):** Die Zahl bleibt **zwei — 4, 81**.
 
-### Aus `Ondo-Control-Backlog.md`: Punkt 81 (bisheriger vollständiger Eintrag)
+### Punkt 91 — erledigte Diagnose-/Lieferhistorie; Gerätebewährung bleibt offen
 
-**81. Schiedsrichter reparieren — nach Ondos eigener, strenger Definition** · *Auftrag Ondo 13.9.2026, wörtlich: „Dann Schiedsrichter reparieren. Das ist dein Job."* · **Status: beschlossen — 🔴 OFFEN. Ein echter Bug gefunden und behoben 13.9.2026 (`beta.html` v19.13.1, „0 von 10 gefunden"-Fund). Berichtigt 13.9.2026: die „zweite Datenquelle" war keine neue Entdeckung, sondern bereits bei Punkt 9 (11.9.2026) vollständig gebaut. 🔴 Wege-Neuzusammensetzung ausgeliefert 13.9.2026 (`beta.html` v19.13.2, Ondos Auftrag) — Bestätigung durch einen echten Prüfzyklus am Gerät steht aus, Status bleibt ausdrücklich OFFEN, nicht behoben. 🔴 football-data.org auf Archiv-Lesen umgestellt 14.9.2026 (`beta.html` v19.13.3, Ondos Auftrag) — Bestätigung durch einen echten Prüfzyklus am Gerät steht ebenfalls aus, Status bleibt OFFEN.**
-
----
-
-### Aus `Ondo-Control-Backlog.md`: erledigte Diagnose-/Bauhistorie Punkt 91
-
-> **91. Speicherfehler beim Backup und allgemeinen Speichern sichtbar machen** · *Fund Claude/Prüfer 27.9.2026 · Diagnose 27.9.2026 · Lifecycle-Auftrag Ondo 9.10.2026 · Korrektur 12.10.2026* · **Status: 🔴 OFFEN — Lifecycle-Korrektur v19.22.2 geliefert; Bewährung am iPhone steht aus**
+**Archiv 91 — erledigte Diagnose und Lieferung bis v19.22.2** · *Fund Claude/Prüfer 27.9.2026 · Diagnose 27.9.2026 · Lifecycle-Auftrag Ondo 9.10.2026 · Korrektur 12.10.2026*
 
 **Belegt:** 5/5 reale Fehler vom 8.10. waren `quelle=checkpoint`, `phase=tx-abort`, Start 1–10 ms nach `visibilitychange→hidden`; drei Abbrüche wurden erst 37/329/331 ms nach `visible` gemeldet. Codekette bis `tx-abort` ist belegt. **Plausibel, unbewiesen:** WebKit Bug 202705 beschreibt Abbrüche laufender IndexedDB-Transaktionen bei Prozess-Suspendierung; die konkrete Ursache der fünf ONDO-Fälle ist nicht A/B-bewiesen.
 
-**v19.22.2:** v19.22.1 bleibt sonst unverändert. Ein gemeinsames `lebenszyklusWiederholen()` wird sowohl bei Rückkehr als auch vom verspäteten Lifecycle-Fehler benutzt; das Ungesichert-Flag wird vor dem einzigen Retry gelöscht. Ist die Seite beim verspäteten Fehler wieder hidden, wartet der Retry bis zur nächsten Rückkehr. `pageshow` wirkt nur bei `event.persisted===true`; normales erstes Laden erzeugt keinen zusätzlichen Vorab-Render. t11 deckt außerdem `save_aussteht` + `hidden` + `pagehide` mutationssensitiv ab. **Offen bis zur iPhone-Bewährung.** Historie v19.22.1: `BACKLOG-ARCHIV.md`.
+**v19.22.2:** v19.22.1 bleibt sonst unverändert. Ein gemeinsames `lebenszyklusWiederholen()` wird sowohl bei Rückkehr als auch vom verspäteten Lifecycle-Fehler benutzt; das Ungesichert-Flag wird vor dem einzigen Retry gelöscht. Ist die Seite beim verspäteten Fehler wieder hidden, wartet der Retry bis zur nächsten Rückkehr. `pageshow` wirkt nur bei `event.persisted===true`; normales erstes Laden erzeugt keinen zusätzlichen Vorab-Render. t11 deckt außerdem `save_aussteht` + `hidden` + `pagehide` mutationssensitiv ab. Der noch offene Gerätebewährungsstatus steht ausschließlich im aktiven Backlog.
 
----
+### Punkt 92 — erledigter Schritt 1 und Testnachbesserung; Schritt 2 bleibt offen
 
-### Aus `Ondo-Control-Backlog.md`: erledigte Schritt-1-/Testhistorie Punkt 92
-
-> **92. Ausnahmespiele: nur belegter Normalfall automatisch bewertbar; Wett-Ausgang „Einsatz zurück"** · *Auftrag Ondo 5.10.2026 · Schritt 1 umgesetzt 6.10.2026* · **Status: 🟡 SCHRITT 1 UMGESETZT — SCHRITT 2 BESCHLOSSEN UND OFFEN**
+**Archiv 92 — erledigter Schritt 1: belegter Normalfall / „Einsatz zurück"** · *Auftrag Ondo 5.10.2026 · Schritt 1 umgesetzt 6.10.2026*
 
 Schritt 1: Sport-Schranke vor dem Ergebnisweg. Erst nach Fälligkeit; ESPN per Positivliste,
 football-data-Archiv als FINISHED-Beleg, OpenLigaDB parkt `verlauf_unklar` ohne KI; sonst
 3× `normal_belegt`. Datum >1 Tag parkt. „Einsatz zurück" = 0 €, geschlossen, aber ohne
 Trefferquoten-/Lernwertung; Spielstatus setzt nie den Wettstatus.
 
-**Schritt 2 bleibt offen:** spätere Nachprüfung bereits akzeptierter Ergebnisse einschließlich
-14-Tage-Weg. Nicht Teil von Schritt 1: Rollback, mehrere Provider-IDs je Provider,
-Änderungen am ESPN-Sammelskript.
 
 **Testnachbesserung 6.10.:** t10 wartet bei Fälligkeit bis Laufende/Stille; Mutation ohne
 Schranke lässt beide Vor-Fälligkeitsfälle scheitern.
-
----
-
-
-### Aus `STAND.md`: erledigte Implementierungs-/Diagnosehistorie Punkt 91
-
-  **Punkt 91 — Persistenz/Lifecycle:** Backup und normale Speicherwarnungen behalten die seit
-  v19.21.1 bestehende Fehlerbehandlung; v19.21.3 führt den getrennten Diagnosepuffer fort.
-  **Belegt am 8.10.2026:** fünf Fehler waren `quelle=checkpoint`, `phase=tx-abort`; die Writes
-  starteten 1–10 ms nach `visibilitychange→hidden`. Codekette: `seiteAnhalten()` →
-  `checkpointOhneBarriere()` → `checkpointSave()` → `speicherSchreibenKritisch()` →
-  `idbSchreiben()` → `tx-abort`. Der bisherige Hide-Handler schrieb auf jedes `hidden`/`pagehide`.
-  **Plausibel, nicht bewiesen:** WebKit Bug 202705 dokumentiert zwangsweise Abbrüche laufender
-  IndexedDB-Transaktionen bei Prozess-Suspendierung; dass genau dies die fünf ONDO-Abbrüche
-  verursachte, ist nicht per A/B-Test belegt.
-  **v19.22.1-Basis:** Hide schreibt nur bei tatsächlichem `laufend→pausiert` oder ausstehendem
-  `save()`, höchstens einmal je Hide-Zyklus, über den strikten `lebenszyklus`-Weg; Fehler dort
-  bleiben ohne globalen Alarm/localStorage-Rückfall. Startup und Diagnose bleiben wie geliefert.
-  **Korrektur v19.22.2:** Drei reale Abbrüche wurden erst 37/329/331 ms nach `visible` gemeldet;
-  deshalb kann nun auch der Lifecycle-catch den gemeinsamen `lebenszyklusWiederholen()`-Weg
-  auslösen, falls die Seite dann sichtbar ist. Das Ungesichert-Flag wird vor dem einzigen Retry
-  gelöscht; bei erneut hidden wartet es bis zur nächsten Rückkehr. `pageshow` ruft den Rückweg
-  nur mit `event.persisted===true` auf, sodass erstes Laden keinen Vorab-Render auslöst. Der
-  Entdoppelungs-Guard ist jetzt auch für `save_aussteht` + `hidden` + `pagehide` mutationssensitiv
-  getestet. Harte Barriere, `save()`-Fallback, Backup-Semantik und Alarmtexte bleiben unverändert.
-  **Punkt 91 bleibt offen bis zur iPhone-Bewährung.**
-
-### Aus `STAND.md`: historische Diagnose Punkt 81
-
-~~Ergänzt 13.9.2026 (Diagnose zu Backlog-Punkt 81): … für die rund 12 grossen Wettbewerbe, die
-football-data.org abdeckt, sind Fehlerart 7 und 8 damit strukturell entschärft. … Wie gross
-diese Lücke bei Ondos tatsächlichen Ligen ist, ist noch nicht geprüft.~~
-**🔴 BERICHTIGT, noch am selben Tag (13.9.2026), jetzt mit echten Daten statt nur mit dem
-Code-Kommentar geprüft:** Die Lücke wurde nachgezählt (505 `kiProtokoll`-Einträge, 58
-verschiedene Wettbewerbe) — sie ist **gross**, nicht klein: der grösste Teil von Ondos Spielen
-liegt in UEFA-Qualifikationsrunden, Pokal-Runden, Testspielen und kleinen/regionalen Ligen,
-klar ausserhalb der rund 12 grossen Wettbewerbe. **Wichtiger noch:** In 505 Messdaten-Einträgen
-und 401 Schiedsrichter-Rohantworten (30.7.–13.9.2026) kommt „api-football.com" oder
-„football-data.org" kein einziges Mal als tatsächlich genutzte Quelle vor — maschinell
-nachgezählt. Die strukturelle Absicherung ist im Code vorhanden, hat in der echten Nutzung
-bisher aber **keine einzige Auswirkung gehabt**. Einzelheiten Backlog-Punkt 81.
-**Zusätzlich, beim Nachsehen gefunden, unabhängig von der Ligen-Frage:** Ein echter Bug in der
-Anfrage-Auswahl (`rundeLaufen()` wählte immer dieselben ersten fünf Spiele, weitere kamen nie
-an die Reihe) erklärt Ondos „0 von 10 gefunden" vom 13.9.2026 — behoben, `beta.html` v19.13.1.
-Einzelheiten Backlog-Punkt 81.
-
-**🔴 Diagnose fertig, 13.9.2026 (Ondos Auftrag, reine Untersuchung, kein Codeaufwand): Warum
-football-data.org „kein einziges Mal als tatsächlich genutzte Quelle" vorkommt, ist jetzt
-geklärt, nicht mehr nur die Ligen-Abdeckung.** Echte Testabrufe (OPTIONS-Preflight, wie ihn
-ein Browser bei jeder Anfrage mit dem Kopf-Feld `X-Auth-Token` automatisch verschickt) zeigen:
-`Access-Control-Allow-Origin: http://localhost` — fest, dreifach mit verschiedenen
-Origin-Werten geprüft, nie Ondos echte Adresse. **Browser-Zugriffe auf football-data.org sind
-nachweislich nur von `localhost` erlaubt, nicht von `https://ondo-control.github.io`** — ein
-echter Browser schickt die eigentliche Anfrage deshalb nie ab, `fetch()` scheitert mit einem
-generischen Netzwerkfehler, das bestehende `.catch(){ return []; }` fängt das still ab. Zum
-Vergleich: API-Football liefert `Access-Control-Allow-Origin: *` (uneingeschränkt) — dort
-bleibt die bereits bekannte Kontosperre die Ursache, nicht CORS. **Grenze:** Diese Sitzung
-hat keinen Zugriff auf Ondos echten Schlüssel, die CORS-Kopfzeile ist davon aber unabhängig,
-weil sie unabhängig von der Tokengültigkeit gesetzt wird. Kein Fix in dieser Fassung, wie
-beauftragt. Volle Kopfzeilen und Einzelheiten: Backlog-Punkt 81.
 

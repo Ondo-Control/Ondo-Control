@@ -27,10 +27,7 @@
 - **🔴 Regel 5 abgeloest**, siehe Abschnitt „Regeln fuer dieses Dokument" oben — die neue, uebergreifende Regel (`STAND.md`, Wegweiser) wirkt jetzt am Textkoerper UND an Fassungsabschnitten, nicht mehr nur an Fassungsabschnitten.
 - **Die bisherigen fuenf Fassungsabschnitte (124-128) wortgleich nach `BACKLOG-ARCHIV.md` verschoben** — die letzte Anwendung der alten Regel-5-Mechanik, danach entsteht kein neuer Fassungsabschnitt mehr im Hauptdokument (stehende Regel ab sofort).
 - **Kein Codeaufwand, kein Eingriff an `beta.html`.** `pruefe.py` um Punkt 82 (Aktueller-Stand-Groesse, 80.000-Zeichen-Grenze je Pflichtdokument) erweitert — Einzelheiten im Antworttext.
-
----
-
-- **Beschlossen und nicht gebaut: ein** — **4**.
+- **Beschlossen und nicht gebaut: zwei** — **4, 92** *(Punkt 92 bleibt wegen des separaten Schritt 2 offen; Punkt 81 laut Ondos Entscheidung vom 12.10.2026 erledigt und archiviert.)*
 
 ---
 
@@ -236,6 +233,7 @@ Ondo wörtlich (Grundidee): „Es gibt die Möglichkeit einen Trainingsraum zu b
 **Der Fund, der zu diesem Punkt führte:** Ondo ging davon aus, dass die Gehirne für ihre echten Vorhersagen bereits per Websuche recherchieren — Kader, Verletzte, Formstärke, Tabellenstand. **Das stimmt nicht, seit v19.0 nie.** `vorhersageGehirn()` bekommt nur Spielname, Wettbewerb und Anpfiffzeit; weder `apiCall()` (Sonnet) noch `geminiCall({rolle:'gehirn'})` (Flash) hängen ein Suchwerkzeug an. Jede Prozentzahl und jede Begründungszeile stammt allein aus dem trainierten Wissen des Modells. Websuche gibt es im Code nur beim Schiedsrichter (Ergebnis-Prüfung), nie bei der Vorhersage selbst. **Dieselbe Lücke steht jetzt auch in `Ondo-Core-Architektur.md`, Abschnitt 2 und 3, mit Vermerk berichtigt** — beide Abschnitte beschrieben seit ihrer ersten Fassung ein nie gebautes Ziel (Quellenprüfung, Vertrauensstufen mit Begründung) als wäre es der aktuelle Stand.
 
 ---
+
 
 **83. STARTPRÜFUNG als aktuelle Chat-Übergaberegel dokumentiert** · *Idee/beschlossen 15.9.2026, Ondo · gebaut 17.9.2026* · **Status: 🔴 GEBAUT 17.9.2026**
 
@@ -594,17 +592,15 @@ Die fünf KI-Log-Unterreiter scrollen bei Bedarf horizontal, ohne die unverände
 
 Drei persistente Themen (Hell als Standard, Dunkel Grün, Dunkel klassisch) schalten ausschließlich die gemeinsame Variablenpalette einschließlich Bottom-Navigation um; Dunkel klassisch behält die bisherige Palette und Dimmung. Start erhält „Heute auf einen Blick“ aus vorhandenen Mess-/Zustandswerten und gemeinsame Inline-SVG-Strichicons. „Mehr“ ist durch Abschnittsüberschriften gruppiert, Finanzen macht die Wartungs-Korrekturfelder optisch leiser, KI-Log/Werkzeuge verwendet dieselbe Strich-Icon-Sprache. Keine Änderung an Mess-, Vorhersage-, Prüf- oder Finanzlogik. Vollständige Begründung und Design-Abnahme: `BACKLOG-ARCHIV.md`.
 
-**91. Persistenz/Lifecycle** · **Status: 🔴 OFFEN — v19.22.2 gebaut; iPhone-Bewährung fehlt.** WebKit-Ursache: plausibel, nicht bewiesen. Historie: `BACKLOG-ARCHIV.md`.
+**91. Speicherfehler beim Speichern/Backup** · **Status: 🔴 OFFEN — v19.22.2 geliefert; iPhone-Bewährung ausstehend.** Erledigte Diagnose-/Lieferhistorie: `BACKLOG-ARCHIV.md`.
 
 ---
 
 
-**92. Ausnahmespiele / „Einsatz zurück"** · **Status: 🟡 OFFEN — nur Schritt 2.** Schritt 1 ist umgesetzt. Offen: spätere Nachprüfung akzeptierter Ergebnisse einschließlich 14-Tage-Weg. Rollback, mehrere Provider-IDs und ESPN-Sammelskript bleiben außerhalb. Historie: `BACKLOG-ARCHIV.md`.
-
----
+**92. Ausnahmespiele** · **Status: 🟡 Schritt 1 erledigt; Schritt 2 beschlossen/offen.** Offen: Nachprüfung bereits akzeptierter Ergebnisse inkl. 14-Tage-Weg; kein Rollback/Provider-ID-Umbau. Historie: `BACKLOG-ARCHIV.md`.
 
 
-**94. ONDO Core Stufe 1/1—Datenfundament** · **Status: 🟡 AUF STAGING — nicht `main`.** `core/data/`: Match-Schema, OF-/ESPN-Adapter, Aliasse, Saisonstatus, feste Splits. Nur vollständige Saisons zählen; Holdout ab 2025-26 lernt nie mit. Keine Quoten/Modelle/LLMs/Schlüssel/privaten Daten; `beta.html`/t1–t11 unverändert.
+**94. Core Stufe 1, Teil 1 — Datenfundament** · **Status: 🟡 STAGING auf `ondotmp2`.** MatchRecord, OpenFootball/ESPN, Aliase, Saisonstatus, fester Split, Coverage, Action, t12. Kein Modell/Backtest/Quoten/LLM; `beta.html` und t1–t11 unverändert.
 
 ---
 

@@ -1,26 +1,36 @@
 'use strict';
-const {STATUS,pruefeMatchRecord}=require('./schema');
+var schema=require('./schema');
 
-function seasonStatus(records,opt){
+function seasonStats(records,opt){
   opt=opt||{};
-  const heute=String(opt.heute||new Date().toISOString().slice(0,10));
-  const teams=new Set(); const paare=new Set(); let duplicate=0,self=0,shape=0;
-  let normal=0,offen=0,geparkt=0; let hatZukunft=false;
-  for(const r of records){
-    if(pruefeMatchRecord(r).length) shape++;
-    if(r.heim&&r.heim.key) teams.add(r.heim.key); if(r.gast&&r.gast.key) teams.add(r.gast.key);
-    const pk=(r.heim&&r.heim.key)+'>'+ (r.gast&&r.gast.key);
-    if(r.heim&&r.gast&&r.heim.key===r.gast.key) self++;
-    if(paare.has(pk)) duplicate++; else paare.add(pk);
-    if(r.status===STATUS.NORMAL) normal++; else if(r.status===STATUS.OFFEN) offen++; else geparkt++;
-    if(r.datum>=heute && r.status!==STATUS.NORMAL) hatZukunft=true;
-  }
-  const teamCount=teams.size;
-  const expectedTeams=Number(opt.expectedTeams)||teamCount;
-  const erwartet=expectedTeams>1?expectedTeams*(expectedTeams-1):0;
-  let status='unvollstaendig';
-  if(shape===0&&self===0&&duplicate===0&&teamCount===expectedTeams&&records.length===erwartet&&normal===erwartet&&offen===0&&geparkt===0) status='vollstaendig';
-  else if(hatZukunft) status='laufend';
-  return {status,spiele:records.length,normal,offen,geparkt,teams:teamCount,erwarteteTeams:expectedTeams,erwartet,duplicate,self,shapeFehler:shape,lernfaehig:status==='vollstaendig'};
+  var teams={}; records.forEach(function(r){ teams[r.home]=1; teams[r.away]=1; });
+  var teamCount=Object.keys(teams).length;
+  var expected=teamCount>1 ? teamCount*(teamCount-1) : 0;
+  var ids={}, duplicateIds=0, invalid=0, normal=0, awarded=0, pending=0, cancelled=0, parkedOther=0;
+  records.forEach(function(r){
+    if(schema.validateShape(r).length) invalid++;
+    if(ids[r.id]) duplicateIds++; else ids[r.id]=1;
+    if(r.status===schema.MATCH_STATUS.NORMAL) normal++;
+    else if(r.status===schema.MATCH_STATUS.PENDING) pending++;
+    else if(r.parkReason==='source_status_awarded') awarded++;
+    else if(/^source_status_cancel/.test(String(r.parkReason||''))) cancelled++;
+    else parkedOther++;
+  });
+  var running=!!opt.running;
+  var complete=!running && records.length===expected && invalid===0 && duplicateIds===0 && pending===0 && cancelled===0;
+  var status=running ? schema.SEASON_STATUS.RUNNING : (complete?schema.SEASON_STATUS.COMPLETE:schema.SEASON_STATUS.INCOMPLETE);
+  var issues=[];
+  if(records.length!==expected) issues.push('fixture_count');
+  if(invalid) issues.push('invalid_record');
+  if(duplicateIds) issues.push('duplicate_id');
+  if(pending) issues.push('pending');
+  if(cancelled) issues.push('cancelled');
+  return {
+    status:status,teamCount:teamCount,expectedFixtures:expected,sourceFixtures:records.length,
+    normalMatches:normal,awardedParked:awarded,cancelledParked:cancelled,otherParked:parkedOther,
+    pendingMatches:pending,duplicateIds:duplicateIds,invalidRecords:invalid,
+    usableNormalMatches:complete?normal:0,issues:issues
+  };
 }
-module.exports={seasonStatus};
+
+module.exports={seasonStats:seasonStats};

@@ -1510,3 +1510,41 @@ Kriterium (g) eng korrigiert: `vorhersageGehirn()` besitzt jetzt den optionalen 
 ## v19.21.3 — 27.9.2026 — Backlog-Punkt 91
 
 Reiner Diagnoseausbau für den wiederkehrenden, weiterhin ungeklärten IndexedDB-Schreibfehler auf Ondos iPhone/Safari. `idbSchreiben()` erhält pro Aufruf genau einen technischen Diagnosefall mit Quelle, erster Fehlerphase, put-/Transaktions-/Synchronfehler, Dauer, Sichtbarkeitsverlauf, unerwartetem DB-Close-Marker und bestmöglicher Storage-Schätzung. Der normale `save()`-Rückfall auf localStorage bleibt in Reihenfolge und Außenverhalten unverändert; erst nach dessen Versuch wird der getrennte Diagnosepuffer (`ondo-control-speicherdiagnose-v1`, maximal 20 Einträge) bestmöglich persistiert. Checkpoint und Backup bleiben strikt ohne State-Rückfall. Unter Mehr → Daten kann Ondo die technischen Einträge als Text erzeugen/kopieren oder nur diesen Diagnosepuffer leeren. Erfolgreiche Schreibvorgänge werden nicht protokolliert; State-Inhalt, Spiele, Vorhersagen, Wetten, Schlüssel, PIN, Tokens und Prompt-Inhalte werden nicht in den Diagnoseeintrag übernommen. **Keine Reparatur/Recovery in dieser Fassung; Ursache ausdrücklich weiterhin unbekannt/offen.** Fünf neue UI-Sprachschlüssel je Sprache.
+
+---
+
+## Nacharchivierung 3.11.2026 — Punkt 81
+
+Die folgenden Absätze standen bis zur Entscheidung Ondos vom 12.10.2026 im aktuellen `STAND.md`. Punkt 81 ist laut dieser neueren Entscheidung erledigt; deshalb wird nur die abgeschlossene Diagnose-/Reparaturhistorie hierhin verschoben.
+
+~~Ergänzt 13.9.2026 (Diagnose zu Backlog-Punkt 81): … für die rund 12 grossen Wettbewerbe, die
+football-data.org abdeckt, sind Fehlerart 7 und 8 damit strukturell entschärft. … Wie gross
+diese Lücke bei Ondos tatsächlichen Ligen ist, ist noch nicht geprüft.~~
+**🔴 BERICHTIGT, noch am selben Tag (13.9.2026), jetzt mit echten Daten statt nur mit dem
+Code-Kommentar geprüft:** Die Lücke wurde nachgezählt (505 `kiProtokoll`-Einträge, 58
+verschiedene Wettbewerbe) — sie ist **gross**, nicht klein: der grösste Teil von Ondos Spielen
+liegt in UEFA-Qualifikationsrunden, Pokal-Runden, Testspielen und kleinen/regionalen Ligen,
+klar ausserhalb der rund 12 grossen Wettbewerbe. **Wichtiger noch:** In 505 Messdaten-Einträgen
+und 401 Schiedsrichter-Rohantworten (30.7.–13.9.2026) kommt „api-football.com" oder
+„football-data.org" kein einziges Mal als tatsächlich genutzte Quelle vor — maschinell
+nachgezählt. Die strukturelle Absicherung ist im Code vorhanden, hat in der echten Nutzung
+bisher aber **keine einzige Auswirkung gehabt**. Einzelheiten Backlog-Punkt 81.
+**Zusätzlich, beim Nachsehen gefunden, unabhängig von der Ligen-Frage:** Ein echter Bug in der
+Anfrage-Auswahl (`rundeLaufen()` wählte immer dieselben ersten fünf Spiele, weitere kamen nie
+an die Reihe) erklärt Ondos „0 von 10 gefunden" vom 13.9.2026 — behoben, `beta.html` v19.13.1.
+Einzelheiten Backlog-Punkt 81.
+
+**🔴 Diagnose fertig, 13.9.2026 (Ondos Auftrag, reine Untersuchung, kein Codeaufwand): Warum
+football-data.org „kein einziges Mal als tatsächlich genutzte Quelle" vorkommt, ist jetzt
+geklärt, nicht mehr nur die Ligen-Abdeckung.** Echte Testabrufe (OPTIONS-Preflight, wie ihn
+ein Browser bei jeder Anfrage mit dem Kopf-Feld `X-Auth-Token` automatisch verschickt) zeigen:
+`Access-Control-Allow-Origin: http://localhost` — fest, dreifach mit verschiedenen
+Origin-Werten geprüft, nie Ondos echte Adresse. **Browser-Zugriffe auf football-data.org sind
+nachweislich nur von `localhost` erlaubt, nicht von `https://ondo-control.github.io`** — ein
+echter Browser schickt die eigentliche Anfrage deshalb nie ab, `fetch()` scheitert mit einem
+generischen Netzwerkfehler, das bestehende `.catch(){ return []; }` fängt das still ab. Zum
+Vergleich: API-Football liefert `Access-Control-Allow-Origin: *` (uneingeschränkt) — dort
+bleibt die bereits bekannte Kontosperre die Ursache, nicht CORS. **Grenze:** Diese Sitzung
+hat keinen Zugriff auf Ondos echten Schlüssel, die CORS-Kopfzeile ist davon aber unabhängig,
+weil sie unabhängig von der Tokengültigkeit gesetzt wird. Kein Fix in dieser Fassung, wie
+beauftragt. Volle Kopfzeilen und Einzelheiten: Backlog-Punkt 81.

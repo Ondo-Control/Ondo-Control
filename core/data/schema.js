@@ -1,33 +1,32 @@
 'use strict';
 
-const SCHEMA_VERSION = 1;
-const STATUS = Object.freeze({ NORMAL:'normal', OFFEN:'offen', GEPARKT:'geparkt' });
+var MATCH_STATUS={ NORMAL:'normal', PARKED:'parked', PENDING:'pending' };
+var SEASON_STATUS={ COMPLETE:'vollstaendig', INCOMPLETE:'unvollstaendig', RUNNING:'laufend' };
 
-function istIsoDatum(v){ return /^\d{4}-\d{2}-\d{2}$/.test(String(v||'')); }
-function istTor(v){ return Number.isInteger(v) && v>=0; }
-
-function pruefeMatchRecord(r){
-  const fehler=[];
-  if(!r || typeof r!=='object') return ['record_kein_objekt'];
-  if(r.schemaVersion!==SCHEMA_VERSION) fehler.push('schemaVersion');
-  if(!/^fx[a-z0-9_]+$/.test(String(r.spielId||''))) fehler.push('spielId');
-  if(!istIsoDatum(r.datum)) fehler.push('datum');
-  if(!r.liga) fehler.push('liga');
-  if(!/^\d{4}-\d{2}$/.test(String(r.saison||''))) fehler.push('saison');
-  for(const k of ['heim','gast']){
-    const t=r[k];
-    if(!t || !t.name || !t.key) fehler.push(k);
-  }
-  if(!Object.values(STATUS).includes(r.status)) fehler.push('status');
-  if(r.status===STATUS.NORMAL){
-    if(!r.tore || !istTor(r.tore.heim) || !istTor(r.tore.gast)) fehler.push('tore');
-  }
-  if(r.halbzeit!==null && r.halbzeit!==undefined){
-    if(!istTor(r.halbzeit.heim) || !istTor(r.halbzeit.gast)) fehler.push('halbzeit');
-  }
-  if(!r.quelle) fehler.push('quelle');
-  if(!Array.isArray(r.beleg) || !r.beleg.length) fehler.push('beleg');
-  return fehler;
+function scorePair(v){
+  return Array.isArray(v) && v.length>=2 && Number.isFinite(Number(v[0])) && Number.isFinite(Number(v[1]))
+    ? {home:Number(v[0]),away:Number(v[1])} : null;
 }
 
-module.exports={SCHEMA_VERSION,STATUS,pruefeMatchRecord};
+function makeMatchRecord(x){
+  var r={
+    id:String(x.id||''), date:String(x.date||''), league:String(x.league||''), season:String(x.season||''),
+    home:String(x.home||''), away:String(x.away||''),
+    goals:x.goals||null, halftime:x.halftime||null,
+    status:String(x.status||MATCH_STATUS.PENDING), parkReason:x.parkReason||null,
+    source:String(x.source||''), evidence:Array.isArray(x.evidence)?x.evidence:[]
+  };
+  return r;
+}
+
+function validateShape(r){
+  var errors=[];
+  ['id','date','league','season','home','away','status','source'].forEach(function(k){ if(!r[k]) errors.push('missing:'+k); });
+  if(r.home && r.away && r.home===r.away) errors.push('same_team');
+  if(r.goals && (!Number.isInteger(r.goals.home)||!Number.isInteger(r.goals.away)||r.goals.home<0||r.goals.away<0)) errors.push('bad_goals');
+  if(r.halftime && (!Number.isInteger(r.halftime.home)||!Number.isInteger(r.halftime.away)||r.halftime.home<0||r.halftime.away<0)) errors.push('bad_halftime');
+  if([MATCH_STATUS.NORMAL,MATCH_STATUS.PARKED,MATCH_STATUS.PENDING].indexOf(r.status)<0) errors.push('bad_status');
+  return errors;
+}
+
+module.exports={MATCH_STATUS:MATCH_STATUS,SEASON_STATUS:SEASON_STATUS,scorePair:scorePair,makeMatchRecord:makeMatchRecord,validateShape:validateShape};
