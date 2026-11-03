@@ -1,0 +1,26 @@
+name: TEMP OpenFootball Export
+
+on:
+  push:
+    branches:
+      - ondotmp2
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone OpenFootball JSON
+        run: |
+          set -euo pipefail
+          git clone --depth 1 https://github.com/openfootball/football.json.git openfootball
+          test -f openfootball/LICENSE.md
+          tar -czf openfootball-json.tar.gz openfootball
+      - uses: actions/upload-artifact@v4
+        with:
+          name: openfootball-json
+          path: openfootball-json.tar.gz
+          retention-days: 1
+          compression-level: 0
