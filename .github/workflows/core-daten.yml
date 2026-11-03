@@ -59,12 +59,36 @@ jobs:
           OPENFOOTBALL_DIR: ../openfootball
         run: node core/data/build.js
 
-      - name: Datenfundament testen
+      - name: Datenfundament und Bestand testen
         working-directory: repo
         run: |
           set -euo pipefail
-          node tests/t12_core_daten.js
+          for f in tests/t1_resolver.js tests/t2_prueflauf.js tests/t3_vorhersage.js tests/t4_legacy_dubletten.js tests/t5_checkpoint.js tests/t6_checkpoint_idb.js tests/t7_laender_failsafe.js tests/t8_backup_speicher.js tests/t9_speicherdiagnose.js tests/t10_ausnahmen.js tests/t11_lebenszyklus.js tests/t12_core_daten.js; do
+            node "$f"
+          done
           python3 pruefe.py
+
+      - name: Mutationsbeweise fuer t12
+        if: github.event_name == 'workflow_dispatch'
+        working-directory: repo
+        run: |
+          set -euo pipefail
+          mutate_fail() {
+            name="$1"; py="$2"
+            rm -rf "/tmp/coremut-$name"
+            cp -a . "/tmp/coremut-$name"
+            python3 -c "$py" "/tmp/coremut-$name"
+            if (cd "/tmp/coremut-$name" && node tests/t12_core_daten.js >/tmp/"$name".log 2>&1); then
+              echo "::error::Mutation $name blieb gruen"
+              cat /tmp/"$name".log
+              exit 1
+            fi
+            echo "MUTATION $name: erwartungsgemaess ROT"
+          }
+          mutate_fail nullscore "import pathlib,sys; p=pathlib.Path(sys.argv[1])/'core/data/schema.js'; s=p.read_text(); s=s.replace("  if(v[0]===null || v[0]===undefined || v[1]===null || v[1]===undefined) return null;\n  if(String(v[0]).trim()==='' || String(v[1]).trim()==='') return null;\n",''); p.write_text(s)"
+          mutate_fail awarded "import pathlib,sys,re; p=pathlib.Path(sys.argv[1])/'core/data/validate.js'; s=p.read_text(); s=re.sub(r"var complete=!running[\\s\\S]*?parkedOther===0;","var complete=!running && records.length===expected && invalid===0 && duplicateIds===0 && pending===0 && cancelled===0;",s,count=1); p.write_text(s)"
+          mutate_fail holdout "import pathlib,sys; p=pathlib.Path(sys.argv[1])/'core/data/split.js'; s=p.read_text(); s=s.replace("return seasonStatus==='vollstaendig' && bucketForSeason(season,cfg)==='learning';","return seasonStatus==='vollstaendig' && bucketForSeason(season,cfg)!=='running_or_future';"); p.write_text(s)"
+          mutate_fail alias "import pathlib,sys,json; p=pathlib.Path(sys.argv[1])/'core/data/team-aliases.json'; j=json.loads(p.read_text()); j['aliases']=[a for a in j['aliases'] if not (a['league']=='de.1' and a['name']=='FC Cologne')]; p.write_text(json.dumps(j,ensure_ascii=False,indent=2)+'\\n')"
 
       - name: Nur bei Aenderung committen
         working-directory: repo
@@ -76,11 +100,12 @@ jobs:
           if git diff --cached --quiet; then
             echo "Keine Aenderung - nichts zu committen."
           else
-            git fetch origin main
-            if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then
-              echo "::error::main hat sich seit dem Checkout bewegt - sichtbarer Abbruch. Kein Merge, kein Rebase, kein Force."
+            BRANCH="$GITHUB_REF_NAME"
+            git fetch origin "$BRANCH"
+            if [ "$(git rev-parse HEAD)" != "$(git rev-parse "origin/$BRANCH")" ]; then
+              echo "::error::$BRANCH hat sich seit dem Checkout bewegt - sichtbarer Abbruch. Kein Merge, kein Rebase, kein Force."
               exit 1
             fi
             git commit -m "Core-Daten: Coverage aktualisieren"
-            git push
+            git push origin "HEAD:$BRANCH"
           fi
