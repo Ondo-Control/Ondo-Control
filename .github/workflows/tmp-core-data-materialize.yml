@@ -98,7 +98,7 @@ jobs:
         run: |
           set -euo pipefail
           grep -q 'CC0 1.0 Universal' ../openfootball/LICENSE.md
-          node core/data/build.js --openfootball ../openfootball --repo . --upstream-sha e6744429ee395bc86f247348c6184bb08d4eb361
+          OPENFOOTBALL_DIR=../openfootball OPENFOOTBALL_COMMIT=e6744429ee395bc86f247348c6184bb08d4eb361 node core/data/build.js
           test "$(git hash-object core/data/generated/coverage.json)" = "5dee4d52566e89b7430ad6634c879a74dbe68fba"
           test "$(git hash-object core/data/generated/manifest.json)" = "1302098ecda1bf39733000ed79b67412d1c9e96d"
           python3 pruefe.py | tee /tmp/pruefe.log
