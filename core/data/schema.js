@@ -4,8 +4,11 @@ var MATCH_STATUS={ NORMAL:'normal', PARKED:'parked', PENDING:'pending' };
 var SEASON_STATUS={ COMPLETE:'vollstaendig', INCOMPLETE:'unvollstaendig', RUNNING:'laufend' };
 
 function scorePair(v){
-  return Array.isArray(v) && v.length>=2 && Number.isFinite(Number(v[0])) && Number.isFinite(Number(v[1]))
-    ? {home:Number(v[0]),away:Number(v[1])} : null;
+  if(!Array.isArray(v) || v.length<2) return null;
+  if(v[0]===null || v[0]===undefined || v[1]===null || v[1]===undefined) return null;
+  if(String(v[0]).trim()==='' || String(v[1]).trim()==='') return null;
+  var h=Number(v[0]), a=Number(v[1]);
+  return Number.isInteger(h) && Number.isInteger(a) && h>=0 && a>=0 ? {home:h,away:a} : null;
 }
 
 function makeMatchRecord(x){
