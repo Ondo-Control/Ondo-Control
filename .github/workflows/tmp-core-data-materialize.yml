@@ -78,7 +78,7 @@ jobs:
           EOF
           while IFS=$'\t' read -r f sha; do test "$(git hash-object "$f")" = "$sha"; done < /tmp/expected.tsv
           cut -f1 /tmp/expected.tsv | sort > /tmp/expected-files.txt
-          git status --porcelain | sed 's/^...//' | sort > /tmp/actual-files.txt
+          git status --porcelain -uall | sed 's/^...//' | sort > /tmp/actual-files.txt
           diff -u /tmp/expected-files.txt /tmp/actual-files.txt
           test "$(git hash-object beta.html)" = "$(git rev-parse HEAD:beta.html)"
           for f in tests/t1_resolver.js tests/t2_prueflauf.js tests/t3_vorhersage.js tests/t4_legacy_dubletten.js tests/t5_checkpoint.js tests/t6_checkpoint_idb.js tests/t7_laender_failsafe.js tests/t8_backup_speicher.js tests/t9_speicherdiagnose.js tests/t10_ausnahmen.js tests/t11_lebenszyklus.js tests/umgebung.js; do
