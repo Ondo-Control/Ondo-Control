@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 6.10.2026, Fassung 155, v19.22.0*
+*Die aktuelle Wahrheit. Stand: 3.11.2026, Fassung 158, v19.22.2*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -199,6 +199,16 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 
 ---
 
+## Core Stufe 1 — Datenfundament (Punkt 94, Staging 3.11.2026)
+
+- `beta.html` bleibt v19.22.2 und unverändert; t1–t11 bleiben unverändert.
+- Neue reine Node-Schicht `core/data/`: neutrales Match-Schema, OpenFootball-/ESPN-Adapter, Identitäts-/Aliasauflösung, Quellen-Deduplizierung, Saisonvalidierung und feste chronologische Splits.
+- OpenFootball ist CC0; automatisiert wird **nicht** auf football-data.co.uk zugegriffen. Rohhistorie wird nicht in App-State/IndexedDB oder als duplizierter Matchbestand in Pages geschrieben.
+- Committed werden nur kleine Ableitungen (`coverage.json`, `manifest.json`). Nur `vollstaendig` validierte Saisons dürfen Lernen/Prüfen speisen; der endgültige Holdout ab 2025-26 bleibt dauerhaft vom Lernen ausgeschlossen.
+- Stand dieses Dokuments ist die Staging-Lieferung; `main` bleibt bis zu einer gesonderten Abnahme unverändert.
+
+---
+
 ## Versionen
 
 - **🔴 Rücksetzpunkt vor dem KI-Log-Umbau (Ondos Wunsch, 12.9.2026):** Commit `ed14eb7`,
@@ -207,17 +217,12 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   den Trainingsraum) — dieser Commit ist der Stand **davor**, falls zurückgesetzt werden muss.
   Einzelheiten Backlog-Punkt 77.
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.22.0** (`beta.html`, geliefert 6.10.2026) — **Backlog-Punkt 92,
-  Ausnahmespiele Schritt 1:** Ergebnisprüfung erst ab Anpfiff +3:30 h (ohne Anpfiff:
-  Spieltag 24:00 Berlin +3:30 h). Strukturbeleg: ESPN nur per Positivliste; football-data-
-  Archiv als FINISHED-gefilterter Beleg; OpenLigaDB parkt `verlauf_unklar` ohne KI. Sonst
-  braucht der KI-Weg 3× `normal_belegt`. Datum >1 Tag parkt, exakt 1 Tag nicht. Bestand und
-  `refRoh`/`espnRoh` bleiben erhalten.
-  **„Einsatz zurück":** `einsatz_zurueck` ist manuell bzw. nur bei eindeutig erkanntem
-  Wettschein setzbar, finanziell 0 €, geschlossen, aber ohne Trefferquoten-/Lernwertung.
-  Spielstatus oder Parkung setzen nie einen Wettstatus. **Schritt 2 offen:** spätere Nachprüfung
-  bereits akzeptierter Ergebnisse, einschließlich 14-Tage-Weg.
-  **Verifiziert:** Script-Syntax und t1–t10; t10 jetzt **48/48** nach beweiskräftiger Fälligkeits-Gegenprobe; Produktcode unverändert.
+- **Beta: v19.22.2** (`beta.html`, geliefert 12.10.2026) — **Backlog-Punkt 91, Lifecycle-Korrektur:**
+  v19.22.1 bleibt fachlich erhalten; v19.22.2 schließt die Retry-Race, wenn `tx-abort` erst nach
+  `visibilitychange→visible` gemeldet wird. Rückkehr und verspäteter Fehler benutzen denselben
+  Einmal-Retry; `pageshow` greift nur bei echter BFCache-Wiederherstellung (`persisted=true`).
+  **v19.22.0 / Punkt 92 bleibt vollständig erhalten:** Sport-Schranke, `einsatz_zurueck` und
+  offener Schritt 2 (spätere Nachprüfung bereits akzeptierter Ergebnisse inklusive 14-Tage-Weg).
   **Punkt 80 — Antwortkonsistenz:** `vorhersageGehirn()` hat einen optionalen vierten Parameter
   `ohneFruehere`. Nur `antwortkonsistenzLauf()` setzt ihn auf `true`; dadurch bleibt `fruehere`
   leer und der Absatz „Deine letzten eigenen Vorhersagen“ fehlt in allen drei Wiederholungsläufen.
@@ -228,28 +233,7 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   `n=8`. Die seit v19.13.0 vorab festgelegte Schwelle — mindestens **90 % gleicher Tipp** UND
   höchstens **10 Prozentpunkte Spanne im Schnitt** — ist damit bei beiden Gehirnen erfüllt.
   Punkt 80 ist **bestanden und erledigt** und wurde aus dem offenen Backlog ins Archiv verschoben.
-  **Punkt 91 — Datensicherung/Persistenz:** `datenSichern()` erzeugt die Sicherungsdatei
-  weiterhin sofort und startet `navigator.share()` weiterhin direkt aus der Benutzeraktion.
-  Der Sicherungszeitpunkt läuft danach über dieselbe serielle `speicherKette` und denselben
-  strikten IndexedDB-Weg (`speicherSchreibenKritisch()`) wie kritische Checkpoints, aber mit
-  eigener nicht-blockierender Backup-Fehlerbehandlung. Scheitert IndexedDB, bleibt die Datei
-  erhalten, der neue Zeitpunkt wird in der App nicht als dauerhaft behauptet und ein sichtbarer
-  Hinweis nennt zusätzlich den tatsächlichen technischen Fehler. `save()` und der bestehende
-  blockierende Checkpoint-Alarm zeigen neben dem bisherigen verständlichen Warntext jetzt
-  ebenfalls ausschließlich Fehlername/-nachricht des echten Speicherfehlers. Keine State-,
-  Schlüssel- oder sonstigen Nutzdaten gelangen in die Meldung. **Die konkrete Ursache des am
-  27.9.2026 beobachteten einmaligen IndexedDB-Aussetzers bleibt ausdrücklich unbekannt/offen.**
-  **Diagnose v19.21.3 (27.9.2026):** Zusätzlich zeichnet ein strikt getrennter technischer
-  Diagnosekanal nur bei fehlgeschlagenen IndexedDB-Schreibvorgängen Quelle (`save`/`checkpoint`/
-  `backup`), erste Fehlerphase, Request-/Transaktions-/Synchronfehler, Dauer, die letzten
-  Sichtbarkeitsereignisse, einen unerwarteten DB-Close-Marker, Ergebnis des unveränderten
-  `save()`-localStorage-Rückfalls und bestmöglich `navigator.storage.estimate()` auf. Maximal
-  20 Einträge liegen unter `ondo-control-speicherdiagnose-v1`; erfolgreiche Schreibvorgänge
-  werden nicht protokolliert. Unter Mehr → Daten kann Ondo nur diese technischen Metadaten als
-  Text erzeugen/kopieren oder ausschließlich diesen Diagnosepuffer leeren. **Keine Reparatur,
-  keine Recovery-Logik und keine Änderung an save/checkpoint/backup/Alarm-/Barriere-Semantik.**
-  Die Ursache der realen iPhone/Safari-Aussetzer vom 27.9.2026 ist weiterhin ausdrücklich
-  **unbekannt/offen**; das nächste echte Auftreten soll sie erstmals belastbar eingrenzen.
+  **Punkt 91 — Persistenz/Lifecycle:** v19.22.2 bleibt unverändert ausgeliefert. **Offen bleibt die iPhone-Bewährung.** Die WebKit-Ursachenzuordnung ist weiterhin nur plausibel, nicht A/B-bewiesen; erledigte Diagnose-/Bauhistorie steht in `BACKLOG-ARCHIV.md`.
   **Punkt 87 — ESPN-Archiv bei Länderspielen:** Der Resolver kann deutsche und englische
   ISO-3166-1-Ländernamen jetzt über denselben standardisierten Ländercode erkennen. Die Namen
   entstehen zur Laufzeit mit `Intl.DisplayNames` (`de`/`en`); es gibt keine gepflegte
@@ -322,37 +306,7 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 
 **Bekannte Lücke:** Die Wiederholung greift nur bei „nicht gefunden". Ein einmal als *fertig* gemeldetes Ergebnis wird nie wieder hinterfragt.
 
-~~Ergänzt 13.9.2026 (Diagnose zu Backlog-Punkt 81): … für die rund 12 grossen Wettbewerbe, die
-football-data.org abdeckt, sind Fehlerart 7 und 8 damit strukturell entschärft. … Wie gross
-diese Lücke bei Ondos tatsächlichen Ligen ist, ist noch nicht geprüft.~~
-**🔴 BERICHTIGT, noch am selben Tag (13.9.2026), jetzt mit echten Daten statt nur mit dem
-Code-Kommentar geprüft:** Die Lücke wurde nachgezählt (505 `kiProtokoll`-Einträge, 58
-verschiedene Wettbewerbe) — sie ist **gross**, nicht klein: der grösste Teil von Ondos Spielen
-liegt in UEFA-Qualifikationsrunden, Pokal-Runden, Testspielen und kleinen/regionalen Ligen,
-klar ausserhalb der rund 12 grossen Wettbewerbe. **Wichtiger noch:** In 505 Messdaten-Einträgen
-und 401 Schiedsrichter-Rohantworten (30.7.–13.9.2026) kommt „api-football.com" oder
-„football-data.org" kein einziges Mal als tatsächlich genutzte Quelle vor — maschinell
-nachgezählt. Die strukturelle Absicherung ist im Code vorhanden, hat in der echten Nutzung
-bisher aber **keine einzige Auswirkung gehabt**. Einzelheiten Backlog-Punkt 81.
-**Zusätzlich, beim Nachsehen gefunden, unabhängig von der Ligen-Frage:** Ein echter Bug in der
-Anfrage-Auswahl (`rundeLaufen()` wählte immer dieselben ersten fünf Spiele, weitere kamen nie
-an die Reihe) erklärt Ondos „0 von 10 gefunden" vom 13.9.2026 — behoben, `beta.html` v19.13.1.
-Einzelheiten Backlog-Punkt 81.
-
-**🔴 Diagnose fertig, 13.9.2026 (Ondos Auftrag, reine Untersuchung, kein Codeaufwand): Warum
-football-data.org „kein einziges Mal als tatsächlich genutzte Quelle" vorkommt, ist jetzt
-geklärt, nicht mehr nur die Ligen-Abdeckung.** Echte Testabrufe (OPTIONS-Preflight, wie ihn
-ein Browser bei jeder Anfrage mit dem Kopf-Feld `X-Auth-Token` automatisch verschickt) zeigen:
-`Access-Control-Allow-Origin: http://localhost` — fest, dreifach mit verschiedenen
-Origin-Werten geprüft, nie Ondos echte Adresse. **Browser-Zugriffe auf football-data.org sind
-nachweislich nur von `localhost` erlaubt, nicht von `https://ondo-control.github.io`** — ein
-echter Browser schickt die eigentliche Anfrage deshalb nie ab, `fetch()` scheitert mit einem
-generischen Netzwerkfehler, das bestehende `.catch(){ return []; }` fängt das still ab. Zum
-Vergleich: API-Football liefert `Access-Control-Allow-Origin: *` (uneingeschränkt) — dort
-bleibt die bereits bekannte Kontosperre die Ursache, nicht CORS. **Grenze:** Diese Sitzung
-hat keinen Zugriff auf Ondos echten Schlüssel, die CORS-Kopfzeile ist davon aber unabhängig,
-weil sie unabhängig von der Tokengültigkeit gesetzt wird. Kein Fix in dieser Fassung, wie
-beauftragt. Volle Kopfzeilen und Einzelheiten: Backlog-Punkt 81.
+**Historische Diagnose zu Punkt 81:** nach aktueller ausdrücklicher Freigabe aus dem aktuellen STAND entfernt und in `BACKLOG-ARCHIV.md` archiviert. Der vor dieser Lieferung bestehende Repo-Stand hatte Punkt 81 noch als offen geführt; die Archivierung stützt sich auf die aktuelle Freigabe vom 3.11. mit Verweis auf Ondos Entscheidung vom 12.10.
 
 ---
 

@@ -1,5 +1,6 @@
 # ONDO CORE v1 — Architektur-Entwurf
 *Antwort auf die Architektur-Anfrage von ChatGPT (5.7.2026). Autor: Claude. Status: Entwurf zur gemeinsamen Prüfung.*
+*Fassung 0.19 — 3.11.2026: Core Stufe 1 / Teil 1 (Backlog-Punkt 94) setzt erstmals einen eigenständigen, deterministischen Daten-Layer unter `core/data/` um; `beta.html` bleibt unberührt. Abschnitt 6a dokumentiert den gebauten Schnitt.*
 *Fassung 0.18 — 26.9.2026: Abschnitt 1e präzisiert die gebaute ISO-3166-1-/`Intl.DisplayNames`-Normalisierung für Nationalmannschaften (Backlog-Punkt 87, `beta.html` v19.20.0). Vereinsresolver und Stufe 3 unverändert.*
 *Fassung 0.17 — 24.9.2026: Abschnitt 1e, „harte Barriere", um eine Präzisierung ergänzt (`beta.html` v19.19.2): „geschrieben" heisst für einen Checkpoint „in IndexedDB geschrieben". Nichts Bestehendes geändert.*
 *Fassung 0.16 — 24.9.2026: Abschnitt 1e um zwei Präzisierungen ergänzt (Nachbesserung zu Backlog-Punkt 86, `beta.html` v19.19.1): der Checkpoint ist eine harte Barriere, und die Identität eines Ergebnisvorschlags ist festgelegt. Nichts Bestehendes geändert.*
@@ -493,6 +494,18 @@ QUELLEN = [
 ```
 
 Der Core fragt Quellen in Vertrauens-/Kosten-Reihenfolge, kennzeichnet die Herkunft im Ergebnis und fällt bei Ausfall auf die nächste zurück. Ehrliche Anmerkung aus der Praxis (getestet 5.7.2026): Die kostenlosen JSON-Quellen liefern in der K.o.-Phase nur Platzhalter — die Brain-Websuche ist derzeit die einzige vollwertige Quelle. Das Register ändert daran nichts, macht aber den Ausfall-Fall sauber und dokumentiert die Grenze im System selbst.
+
+---
+
+## 6a. Core Stufe 1 / Teil 1 — gebautes Datenfundament (Punkt 94)
+
+Der erste gebaute Core-Baustein liegt **außerhalb** der Oberfläche unter `core/data/`. Er entscheidet noch nichts und enthält bewusst weder Modell noch Quoten- oder Einsatzlogik. Sein Vertrag ist: heterogene Ergebnisquellen in ein neutrales `MatchRecord`-Schema überführen, Teamidentitäten nachvollziehbar normalisieren, Dubletten/Quellenkonflikte behandeln, Saisonvollständigkeit bestimmen und die vorab festgelegten chronologischen Bereiche Lernen/Prüfen/endgültiger Holdout maschinell erzwingen.
+
+**Quellen in Teil 1:** OpenFootball (`football.json`, CC0) für historische Ligaergebnisse und das vorhandene ESPN-Archiv im Repository für aktuelle/überlappende Ergebnisse. `football-data.co.uk` wird nicht automatisiert abgerufen. Rohdaten und historische Matchmengen werden nicht in `state`/IndexedDB und nicht als zweite große Kopie für Pages persistiert; die Action erzeugt nur kleine Coverage-/Manifest-Ableitungen.
+
+**Identität:** Die bestehenden Beta-Regeln `normName`, `fxNorm`, `fxTokens`, `fxId`, `fxGleich`, `fxAufloesen`, `teamsAus`, `datumIso` und ihre notwendigen Hilfsfunktionen werden zunächst als reine Node-Funktionen paritätsgetreu nachgebildet, ohne `beta.html` umzubauen. Quellenbedingte Namensabweichungen stehen separat und überprüfbar in `core/data/team-aliases.json`. Erst spätere Aufträge dürfen die Browser-App auf gemeinsame Module umstellen.
+
+**Lernschutz:** Eine Saison zählt nur bei maschinellem Status `vollstaendig` für Lernen oder Prüfen. Unvollständige/laufende Saisons werden nicht still zugelassen. Der endgültige Holdout beginnt in der festgefrorenen Konfiguration ab 2025-26 und darf nie zum Lernen verwendet werden. Damit ist dieser Teil Datenfundament, noch kein Nachweis eines Wettvorteils.
 
 ---
 

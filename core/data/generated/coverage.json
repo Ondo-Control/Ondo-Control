@@ -1,0 +1,1696 @@
+{
+  "schemaVersion": 1,
+  "openfootball": {
+    "repository": "openfootball/football.json",
+    "license": "CC0-1.0",
+    "commit": "e6744429ee395bc86f247348c6184bb08d4eb361"
+  },
+  "espn": {
+    "spiele": 2222,
+    "wettbewerbe": 38,
+    "teamnamen": 1125
+  },
+  "leagues": {
+    "eng.1": {
+      "name": "English Premier League",
+      "openfootballId": "en.1",
+      "openfootballErgebnisse": 6130,
+      "espnErgebnisse": 50,
+      "teamIdentitySeason": "2026-27",
+      "teamIdentity": {
+        "openfootballTeams": 20,
+        "espnTeams": 20,
+        "matchedStandard": 20,
+        "matchedAlias": 0,
+        "unresolved": 0,
+        "unresolvedNames": []
+      },
+      "seasons": [
+        {
+          "saison": "2010-11",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2011-12",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2012-13",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2013-14",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2014-15",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2015-16",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2016-17",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2017-18",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2018-19",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2019-20",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2020-21",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2021-22",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2022-23",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2023-24",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2024-25",
+          "status": "vollstaendig",
+          "split": "pruefen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2025-26",
+          "status": "vollstaendig",
+          "split": "holdout",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2026-27",
+          "status": "laufend",
+          "split": "holdout",
+          "openfootball": {
+            "status": "laufend",
+            "spiele": 380,
+            "normal": 50,
+            "offen": 330,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": false
+          },
+          "espn": 50,
+          "merged": 380
+        }
+      ]
+    },
+    "ger.1": {
+      "name": "German Bundesliga",
+      "openfootballId": "de.1",
+      "openfootballErgebnisse": 4932,
+      "espnErgebnisse": 45,
+      "teamIdentitySeason": "2026-27",
+      "teamIdentity": {
+        "openfootballTeams": 18,
+        "espnTeams": 18,
+        "matchedStandard": 15,
+        "matchedAlias": 3,
+        "unresolved": 0,
+        "unresolvedNames": []
+      },
+      "seasons": [
+        {
+          "saison": "2010-11",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 306,
+            "normal": 306,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 18,
+            "erwarteteTeams": 18,
+            "erwartet": 306,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 306
+        },
+        {
+          "saison": "2011-12",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 306,
+            "normal": 306,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 18,
+            "erwarteteTeams": 18,
+            "erwartet": 306,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 306
+        },
+        {
+          "saison": "2012-13",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 306,
+            "normal": 306,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 18,
+            "erwarteteTeams": 18,
+            "erwartet": 306,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 306
+        },
+        {
+          "saison": "2013-14",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 306,
+            "normal": 306,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 18,
+            "erwarteteTeams": 18,
+            "erwartet": 306,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 306
+        },
+        {
+          "saison": "2014-15",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 306,
+            "normal": 306,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 18,
+            "erwarteteTeams": 18,
+            "erwartet": 306,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 306
+        },
+        {
+          "saison": "2015-16",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 306,
+            "normal": 306,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 18,
+            "erwarteteTeams": 18,
+            "erwartet": 306,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 306
+        },
+        {
+          "saison": "2016-17",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 306,
+            "normal": 306,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 18,
+            "erwarteteTeams": 18,
+            "erwartet": 306,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 306
+        },
+        {
+          "saison": "2017-18",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 306,
+            "normal": 306,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 18,
+            "erwarteteTeams": 18,
+            "erwartet": 306,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 306
+        },
+        {
+          "saison": "2018-19",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 306,
+            "normal": 306,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 18,
+            "erwarteteTeams": 18,
+            "erwartet": 306,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 306
+        },
+        {
+          "saison": "2019-20",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 306,
+            "normal": 306,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 18,
+            "erwarteteTeams": 18,
+            "erwartet": 306,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 306
+        },
+        {
+          "saison": "2020-21",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 306,
+            "normal": 306,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 18,
+            "erwarteteTeams": 18,
+            "erwartet": 306,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 306
+        },
+        {
+          "saison": "2021-22",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 306,
+            "normal": 306,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 18,
+            "erwarteteTeams": 18,
+            "erwartet": 306,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 306
+        },
+        {
+          "saison": "2022-23",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 306,
+            "normal": 306,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 18,
+            "erwarteteTeams": 18,
+            "erwartet": 306,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 306
+        },
+        {
+          "saison": "2023-24",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 306,
+            "normal": 306,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 18,
+            "erwarteteTeams": 18,
+            "erwartet": 306,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 306
+        },
+        {
+          "saison": "2024-25",
+          "status": "vollstaendig",
+          "split": "pruefen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 306,
+            "normal": 306,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 18,
+            "erwarteteTeams": 18,
+            "erwartet": 306,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 306
+        },
+        {
+          "saison": "2025-26",
+          "status": "vollstaendig",
+          "split": "holdout",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 306,
+            "normal": 306,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 18,
+            "erwarteteTeams": 18,
+            "erwartet": 306,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 306
+        },
+        {
+          "saison": "2026-27",
+          "status": "laufend",
+          "split": "holdout",
+          "openfootball": {
+            "status": "laufend",
+            "spiele": 306,
+            "normal": 36,
+            "offen": 270,
+            "geparkt": 0,
+            "teams": 18,
+            "erwarteteTeams": 18,
+            "erwartet": 306,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": false
+          },
+          "espn": 45,
+          "merged": 306
+        }
+      ]
+    },
+    "esp.1": {
+      "name": "Spanish La Liga",
+      "openfootballId": "es.1",
+      "openfootballErgebnisse": 5379,
+      "espnErgebnisse": 50,
+      "teamIdentitySeason": "2026-27",
+      "teamIdentity": {
+        "openfootballTeams": 20,
+        "espnTeams": 20,
+        "matchedStandard": 11,
+        "matchedAlias": 9,
+        "unresolved": 0,
+        "unresolvedNames": []
+      },
+      "seasons": [
+        {
+          "saison": "2012-13",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2013-14",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2014-15",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2015-16",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2016-17",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2017-18",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2018-19",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2019-20",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2020-21",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2021-22",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2022-23",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2023-24",
+          "status": "vollstaendig",
+          "split": "pruefen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2024-25",
+          "status": "unvollstaendig",
+          "split": "nicht_verwendbar",
+          "openfootball": {
+            "status": "unvollstaendig",
+            "spiele": 380,
+            "normal": 370,
+            "offen": 10,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": false
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2025-26",
+          "status": "vollstaendig",
+          "split": "holdout",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2026-27",
+          "status": "laufend",
+          "split": "holdout",
+          "openfootball": {
+            "status": "laufend",
+            "spiele": 380,
+            "normal": 69,
+            "offen": 311,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": false
+          },
+          "espn": 50,
+          "merged": 392
+        }
+      ]
+    },
+    "ita.1": {
+      "name": "Italian Serie A",
+      "openfootballId": "it.1",
+      "openfootballErgebnisse": 4980,
+      "espnErgebnisse": 60,
+      "teamIdentitySeason": "2026-27",
+      "teamIdentity": {
+        "openfootballTeams": 20,
+        "espnTeams": 20,
+        "matchedStandard": 18,
+        "matchedAlias": 2,
+        "unresolved": 0,
+        "unresolvedNames": []
+      },
+      "seasons": [
+        {
+          "saison": "2013-14",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2014-15",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2015-16",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2016-17",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2017-18",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2018-19",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2019-20",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2020-21",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2021-22",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2022-23",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2023-24",
+          "status": "vollstaendig",
+          "split": "pruefen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2024-25",
+          "status": "unvollstaendig",
+          "split": "nicht_verwendbar",
+          "openfootball": {
+            "status": "unvollstaendig",
+            "spiele": 380,
+            "normal": 370,
+            "offen": 10,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": false
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2025-26",
+          "status": "vollstaendig",
+          "split": "holdout",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2026-27",
+          "status": "laufend",
+          "split": "holdout",
+          "openfootball": {
+            "status": "laufend",
+            "spiele": 380,
+            "normal": 50,
+            "offen": 330,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": false
+          },
+          "espn": 60,
+          "merged": 380
+        }
+      ]
+    },
+    "fra.1": {
+      "name": "French Ligue 1",
+      "openfootballId": "fr.1",
+      "openfootballErgebnisse": 4281,
+      "espnErgebnisse": 45,
+      "teamIdentitySeason": "2026-27",
+      "teamIdentity": {
+        "openfootballTeams": 18,
+        "espnTeams": 18,
+        "matchedStandard": 10,
+        "matchedAlias": 8,
+        "unresolved": 0,
+        "unresolvedNames": []
+      },
+      "seasons": [
+        {
+          "saison": "2014-15",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2015-16",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2016-17",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2017-18",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2018-19",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2019-20",
+          "status": "unvollstaendig",
+          "split": "nicht_verwendbar",
+          "openfootball": {
+            "status": "unvollstaendig",
+            "spiele": 380,
+            "normal": 279,
+            "offen": 101,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": false
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2020-21",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2021-22",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2022-23",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 380,
+            "normal": 380,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 20,
+            "erwarteteTeams": 20,
+            "erwartet": 380,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 380
+        },
+        {
+          "saison": "2023-24",
+          "status": "vollstaendig",
+          "split": "lernen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 306,
+            "normal": 306,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 18,
+            "erwarteteTeams": 18,
+            "erwartet": 306,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 306
+        },
+        {
+          "saison": "2024-25",
+          "status": "vollstaendig",
+          "split": "pruefen",
+          "openfootball": {
+            "status": "vollstaendig",
+            "spiele": 306,
+            "normal": 306,
+            "offen": 0,
+            "geparkt": 0,
+            "teams": 18,
+            "erwarteteTeams": 18,
+            "erwartet": 306,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": true
+          },
+          "espn": 0,
+          "merged": 306
+        },
+        {
+          "saison": "2025-26",
+          "status": "unvollstaendig",
+          "split": "holdout",
+          "openfootball": {
+            "status": "unvollstaendig",
+            "spiele": 306,
+            "normal": 305,
+            "offen": 1,
+            "geparkt": 0,
+            "teams": 18,
+            "erwarteteTeams": 18,
+            "erwartet": 306,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": false
+          },
+          "espn": 0,
+          "merged": 306
+        },
+        {
+          "saison": "2026-27",
+          "status": "laufend",
+          "split": "holdout",
+          "openfootball": {
+            "status": "laufend",
+            "spiele": 306,
+            "normal": 45,
+            "offen": 261,
+            "geparkt": 0,
+            "teams": 18,
+            "erwarteteTeams": 18,
+            "erwartet": 306,
+            "duplicate": 0,
+            "self": 0,
+            "shapeFehler": 0,
+            "lernfaehig": false
+          },
+          "espn": 45,
+          "merged": 311
+        }
+      ]
+    }
+  }
+}

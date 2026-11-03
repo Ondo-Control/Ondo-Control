@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 6.10.2026, Fassung 155 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 3.11.2026, Fassung 158 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -27,10 +27,10 @@
 - **🔴 Regel 5 abgeloest**, siehe Abschnitt „Regeln fuer dieses Dokument" oben — die neue, uebergreifende Regel (`STAND.md`, Wegweiser) wirkt jetzt am Textkoerper UND an Fassungsabschnitten, nicht mehr nur an Fassungsabschnitten.
 - **Die bisherigen fuenf Fassungsabschnitte (124-128) wortgleich nach `BACKLOG-ARCHIV.md` verschoben** — die letzte Anwendung der alten Regel-5-Mechanik, danach entsteht kein neuer Fassungsabschnitt mehr im Hauptdokument (stehende Regel ab sofort).
 - **Kein Codeaufwand, kein Eingriff an `beta.html`.** `pruefe.py` um Punkt 82 (Aktueller-Stand-Groesse, 80.000-Zeichen-Grenze je Pflichtdokument) erweitert — Einzelheiten im Antworttext.
-- **Beschlossen und nicht gebaut: drei** — **4, 81, 92** *(Punkt 92 bleibt wegen des separaten Schritt 2 offen.)*
-- **🔴 Nachgefuehrt 23.9.2026 (Fassung 144, Backlog-Punkt 86 gebaut):** Die Zahl bleibt **zwei — 4, 81**. Punkt 86 ist mit dieser Lieferung gebaut und zaehlt daher nicht mit; Punkt 81 bleibt ausdruecklich OFFEN, weil die Bestaetigung an Ondos Geraet aussteht.
-- **🔴 Nachgefuehrt 24.9.2026 (Fassung 145, Nachbesserung zu Punkt 86 gebaut, `beta.html` v19.19.1):** Die Zahl bleibt **zwei — 4, 81**. Die Nachbesserung ist gebaut; ihre Bewaehrung am iPhone steht aus.
-- **🔴 Nachgefuehrt 24.9.2026 (Fassung 146, letzte Nachbesserung zu Punkt 86, `beta.html` v19.19.2):** Die Zahl bleibt **zwei — 4, 81**.
+
+---
+
+- **Beschlossen und nicht gebaut: ein** — **4**.
 
 ---
 
@@ -234,10 +234,6 @@ Ondo wörtlich (Grundidee): „Es gibt die Möglichkeit einen Trainingsraum zu b
 **79. Websuche für echte Vorhersagen** · *Fund + Auftrag Ondo, 12.9.2026 (im Gespräch über den Trainingsraum aufgedeckt) · Auftrag Ondo: „Bau eine Obergrenze für die Suchvorgänge je Lauf ein"* · **Status: ✅ GEBAUT 12.9.2026, `beta.html` v19.10.0**
 
 **Der Fund, der zu diesem Punkt führte:** Ondo ging davon aus, dass die Gehirne für ihre echten Vorhersagen bereits per Websuche recherchieren — Kader, Verletzte, Formstärke, Tabellenstand. **Das stimmt nicht, seit v19.0 nie.** `vorhersageGehirn()` bekommt nur Spielname, Wettbewerb und Anpfiffzeit; weder `apiCall()` (Sonnet) noch `geminiCall({rolle:'gehirn'})` (Flash) hängen ein Suchwerkzeug an. Jede Prozentzahl und jede Begründungszeile stammt allein aus dem trainierten Wissen des Modells. Websuche gibt es im Code nur beim Schiedsrichter (Ergebnis-Prüfung), nie bei der Vorhersage selbst. **Dieselbe Lücke steht jetzt auch in `Ondo-Core-Architektur.md`, Abschnitt 2 und 3, mit Vermerk berichtigt** — beide Abschnitte beschrieben seit ihrer ersten Fassung ein nie gebautes Ziel (Quellenprüfung, Vertrauensstufen mit Begründung) als wäre es der aktuelle Stand.
-
----
-
-**81. Schiedsrichter reparieren — nach Ondos eigener, strenger Definition** · *Auftrag Ondo 13.9.2026, wörtlich: „Dann Schiedsrichter reparieren. Das ist dein Job."* · **Status: beschlossen — 🔴 OFFEN. Ein echter Bug gefunden und behoben 13.9.2026 (`beta.html` v19.13.1, „0 von 10 gefunden"-Fund). Berichtigt 13.9.2026: die „zweite Datenquelle" war keine neue Entdeckung, sondern bereits bei Punkt 9 (11.9.2026) vollständig gebaut. 🔴 Wege-Neuzusammensetzung ausgeliefert 13.9.2026 (`beta.html` v19.13.2, Ondos Auftrag) — Bestätigung durch einen echten Prüfzyklus am Gerät steht aus, Status bleibt ausdrücklich OFFEN, nicht behoben. 🔴 football-data.org auf Archiv-Lesen umgestellt 14.9.2026 (`beta.html` v19.13.3, Ondos Auftrag) — Bestätigung durch einen echten Prüfzyklus am Gerät steht ebenfalls aus, Status bleibt OFFEN.**
 
 ---
 
@@ -598,26 +594,17 @@ Die fünf KI-Log-Unterreiter scrollen bei Bedarf horizontal, ohne die unverände
 
 Drei persistente Themen (Hell als Standard, Dunkel Grün, Dunkel klassisch) schalten ausschließlich die gemeinsame Variablenpalette einschließlich Bottom-Navigation um; Dunkel klassisch behält die bisherige Palette und Dimmung. Start erhält „Heute auf einen Blick“ aus vorhandenen Mess-/Zustandswerten und gemeinsame Inline-SVG-Strichicons. „Mehr“ ist durch Abschnittsüberschriften gruppiert, Finanzen macht die Wartungs-Korrekturfelder optisch leiser, KI-Log/Werkzeuge verwendet dieselbe Strich-Icon-Sprache. Keine Änderung an Mess-, Vorhersage-, Prüf- oder Finanzlogik. Vollständige Begründung und Design-Abnahme: `BACKLOG-ARCHIV.md`.
 
-**91. Speicherfehler beim Backup und allgemeinen Speichern sichtbar machen** · *Fund Claude/Prüfer 27.9.2026 · Auftrag Ondo 27.9.2026 · zwei reale iPhone/Safari-Fälle am 27.9.2026* · **Status: 🔴 OFFEN — Fehleranzeige GEBAUT 27.9.2026 (`beta.html` v19.21.1), Diagnosewerkzeug GEBAUT 27.9.2026 (`beta.html` v19.21.3); echte Ursache weiterhin nicht belegt**
-
-`datenSichern()` behält Datei/Share auch bei Persistenzfehler, behandelt den Sicherungszeitpunkt aber erst nach strengem IndexedDB-Schreiben als dauerhaft. Backup-Fehler erscheinen nicht-blockierend; allgemeine Speicherwarnungen zeigen zusätzlich den echten technischen Fehler. Checkpoint-Barrieren bleiben unverändert hart. v19.21.3 ergänzt ausschließlich technische Diagnose-Metadaten für fehlgeschlagene IndexedDB-Schreibversuche (Quelle/Phase/Request- und Transaktionsfehler/Visibility/unerwartetes DB-Close/Fallback-Ergebnis/Storage-Schätzung) in einem getrennten, auf 20 Einträge begrenzten localStorage-Puffer plus manuellen Text-/Kopier-/Leeren-Block unter Mehr → Daten. **Keine Reparatur und keine Änderung der bestehenden Speicher-, Alarm-, Fallback- oder Barriere-Semantik. Ursache bleibt offen, bis ein weiterer realer Fehler einen Diagnoseeintrag liefert.**
+**91. Persistenz/Lifecycle** · **Status: 🔴 OFFEN — v19.22.2 gebaut; iPhone-Bewährung fehlt.** WebKit-Ursache: plausibel, nicht bewiesen. Historie: `BACKLOG-ARCHIV.md`.
 
 ---
 
 
-**92. Ausnahmespiele: nur belegter Normalfall automatisch bewertbar; Wett-Ausgang „Einsatz zurück"** · *Auftrag Ondo 5.10.2026 · Schritt 1 umgesetzt 6.10.2026* · **Status: 🟡 SCHRITT 1 UMGESETZT — SCHRITT 2 BESCHLOSSEN UND OFFEN**
+**92. Ausnahmespiele / „Einsatz zurück"** · **Status: 🟡 OFFEN — nur Schritt 2.** Schritt 1 ist umgesetzt. Offen: spätere Nachprüfung akzeptierter Ergebnisse einschließlich 14-Tage-Weg. Rollback, mehrere Provider-IDs und ESPN-Sammelskript bleiben außerhalb. Historie: `BACKLOG-ARCHIV.md`.
 
-Schritt 1: Sport-Schranke vor dem Ergebnisweg. Erst nach Fälligkeit; ESPN per Positivliste,
-football-data-Archiv als FINISHED-Beleg, OpenLigaDB parkt `verlauf_unklar` ohne KI; sonst
-3× `normal_belegt`. Datum >1 Tag parkt. „Einsatz zurück" = 0 €, geschlossen, aber ohne
-Trefferquoten-/Lernwertung; Spielstatus setzt nie den Wettstatus.
+---
 
-**Schritt 2 bleibt offen:** spätere Nachprüfung bereits akzeptierter Ergebnisse einschließlich
-14-Tage-Weg. Nicht Teil von Schritt 1: Rollback, mehrere Provider-IDs je Provider,
-Änderungen am ESPN-Sammelskript.
 
-**Testnachbesserung 6.10.:** t10 wartet bei Fälligkeit bis Laufende/Stille; Mutation ohne
-Schranke lässt beide Vor-Fälligkeitsfälle scheitern.
+**94. ONDO Core Stufe 1/1—Datenfundament** · **Status: 🟡 AUF STAGING — nicht `main`.** `core/data/`: Match-Schema, OF-/ESPN-Adapter, Aliasse, Saisonstatus, feste Splits. Nur vollständige Saisons zählen; Holdout ab 2025-26 lernt nie mit. Keine Quoten/Modelle/LLMs/Schlüssel/privaten Daten; `beta.html`/t1–t11 unverändert.
 
 ---
 

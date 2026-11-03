@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "frozen": true,
+  "description": "Vor dem ersten Modell festgelegte zeitliche Trennung. Der finale Holdout ab 2025-26 darf nie in Lernen oder Pruefen zurueckfliessen.",
+  "holdoutFromSeason": "2025-26",
+  "leagues": {
+    "eng.1": {"lernenThrough":"2023-24","pruefen":["2024-25"]},
+    "ger.1": {"lernenThrough":"2023-24","pruefen":["2024-25"]},
+    "fra.1": {"lernenThrough":"2023-24","pruefen":["2024-25"]},
+    "esp.1": {"lernenThrough":"2022-23","pruefen":["2023-24"]},
+    "ita.1": {"lernenThrough":"2022-23","pruefen":["2023-24"]}
+  },
+  "rules": {"lernenRequiresCompleteSeason":true,"pruefenRequiresCompleteSeason":true,"holdoutNeverLearn":true}
+}

@@ -1,0 +1,77 @@
+name: Core-Datenfundament aktualisieren
+
+# Backlog-Punkt 94, Core Stufe 1 / Teil 1.
+# Holt ausschliesslich OpenFootball (CC0) und benutzt das bereits im Repo vorhandene ESPN-Archiv.
+# football-data.co.uk wird hier NICHT automatisiert abgerufen. Keine Schluessel, keine LLMs.
+# GitHub kann geplante Workflows in oeffentlichen Repositories nach 60 Tagen ohne Repository-
+# Aktivitaet automatisch deaktivieren; workflow_dispatch bleibt als manueller Startweg bestehen.
+# Der Workflow schreibt nur die kleinen abgeleiteten Dateien unter core/data/generated/ und
+# committet nur bei echtem Diff. Kein Merge, kein Rebase, kein Force.
+
+concurrency:
+  group: ondo-control-ergebnisse-schreiber
+  cancel-in-progress: false
+
+on:
+  schedule:
+    - cron: '20 9 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  bauen:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ONDO Control auschecken
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Node einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: OpenFootball auschecken
+        uses: actions/checkout@v4
+        with:
+          repository: openfootball/football.json
+          ref: master
+          path: .cache/openfootball
+          fetch-depth: 1
+
+      - name: Datenfundament bauen
+        run: |
+          set -euo pipefail
+          OF_SHA="$(git -C .cache/openfootball rev-parse HEAD)"
+          node core/data/build.js \
+            --openfootball .cache/openfootball \
+            --espn daten/espn-ergebnisse \
+            --out core/data/generated \
+            --openfootball-commit "$OF_SHA"
+
+      - name: Datenfundament pruefen
+        run: |
+          set -euo pipefail
+          node tests/t12_core_daten.js
+          python3 pruefe.py
+
+      - name: Aenderung committen, falls vorhanden
+        run: |
+          set -euo pipefail
+          git config user.name "Ondo-Control-Automatik"
+          git config user.email "actions@users.noreply.github.com"
+          git add core/data/generated/
+          if git diff --cached --quiet; then
+            echo "Keine Aenderung - nichts zu committen."
+          else
+            git fetch origin "$GITHUB_REF_NAME"
+            if [ "$(git rev-parse HEAD)" != "$(git rev-parse "origin/$GITHUB_REF_NAME")" ]; then
+              echo "::error::$GITHUB_REF_NAME hat sich seit dem Checkout bewegt - sichtbarer Abbruch. Kein Merge, kein Rebase, kein Force."
+              exit 1
+            fi
+            git commit -m "Core-Daten: automatischer Datenstand"
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi

@@ -1,0 +1,695 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "openfootballCommit": "e6744429ee395bc86f247348c6184bb08d4eb361"
+  },
+  "splitConfigVersion": 1,
+  "leagueConfigVersion": 1,
+  "aliasVersion": 1,
+  "seasons": [
+    {
+      "liga": "eng.1",
+      "saison": "2010-11",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "eng.1",
+      "saison": "2011-12",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "eng.1",
+      "saison": "2012-13",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "eng.1",
+      "saison": "2013-14",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "eng.1",
+      "saison": "2014-15",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "eng.1",
+      "saison": "2015-16",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "eng.1",
+      "saison": "2016-17",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "eng.1",
+      "saison": "2017-18",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "eng.1",
+      "saison": "2018-19",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "eng.1",
+      "saison": "2019-20",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "eng.1",
+      "saison": "2020-21",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "eng.1",
+      "saison": "2021-22",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "eng.1",
+      "saison": "2022-23",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "eng.1",
+      "saison": "2023-24",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "eng.1",
+      "saison": "2024-25",
+      "status": "vollstaendig",
+      "split": "pruefen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "eng.1",
+      "saison": "2025-26",
+      "status": "vollstaendig",
+      "split": "holdout",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "eng.1",
+      "saison": "2026-27",
+      "status": "laufend",
+      "split": "holdout",
+      "openfootball": 380,
+      "espn": 50,
+      "merged": 380
+    },
+    {
+      "liga": "ger.1",
+      "saison": "2010-11",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 306,
+      "espn": 0,
+      "merged": 306
+    },
+    {
+      "liga": "ger.1",
+      "saison": "2011-12",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 306,
+      "espn": 0,
+      "merged": 306
+    },
+    {
+      "liga": "ger.1",
+      "saison": "2012-13",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 306,
+      "espn": 0,
+      "merged": 306
+    },
+    {
+      "liga": "ger.1",
+      "saison": "2013-14",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 306,
+      "espn": 0,
+      "merged": 306
+    },
+    {
+      "liga": "ger.1",
+      "saison": "2014-15",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 306,
+      "espn": 0,
+      "merged": 306
+    },
+    {
+      "liga": "ger.1",
+      "saison": "2015-16",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 306,
+      "espn": 0,
+      "merged": 306
+    },
+    {
+      "liga": "ger.1",
+      "saison": "2016-17",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 306,
+      "espn": 0,
+      "merged": 306
+    },
+    {
+      "liga": "ger.1",
+      "saison": "2017-18",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 306,
+      "espn": 0,
+      "merged": 306
+    },
+    {
+      "liga": "ger.1",
+      "saison": "2018-19",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 306,
+      "espn": 0,
+      "merged": 306
+    },
+    {
+      "liga": "ger.1",
+      "saison": "2019-20",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 306,
+      "espn": 0,
+      "merged": 306
+    },
+    {
+      "liga": "ger.1",
+      "saison": "2020-21",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 306,
+      "espn": 0,
+      "merged": 306
+    },
+    {
+      "liga": "ger.1",
+      "saison": "2021-22",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 306,
+      "espn": 0,
+      "merged": 306
+    },
+    {
+      "liga": "ger.1",
+      "saison": "2022-23",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 306,
+      "espn": 0,
+      "merged": 306
+    },
+    {
+      "liga": "ger.1",
+      "saison": "2023-24",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 306,
+      "espn": 0,
+      "merged": 306
+    },
+    {
+      "liga": "ger.1",
+      "saison": "2024-25",
+      "status": "vollstaendig",
+      "split": "pruefen",
+      "openfootball": 306,
+      "espn": 0,
+      "merged": 306
+    },
+    {
+      "liga": "ger.1",
+      "saison": "2025-26",
+      "status": "vollstaendig",
+      "split": "holdout",
+      "openfootball": 306,
+      "espn": 0,
+      "merged": 306
+    },
+    {
+      "liga": "ger.1",
+      "saison": "2026-27",
+      "status": "laufend",
+      "split": "holdout",
+      "openfootball": 306,
+      "espn": 45,
+      "merged": 306
+    },
+    {
+      "liga": "esp.1",
+      "saison": "2012-13",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "esp.1",
+      "saison": "2013-14",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "esp.1",
+      "saison": "2014-15",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "esp.1",
+      "saison": "2015-16",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "esp.1",
+      "saison": "2016-17",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "esp.1",
+      "saison": "2017-18",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "esp.1",
+      "saison": "2018-19",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "esp.1",
+      "saison": "2019-20",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "esp.1",
+      "saison": "2020-21",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "esp.1",
+      "saison": "2021-22",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "esp.1",
+      "saison": "2022-23",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "esp.1",
+      "saison": "2023-24",
+      "status": "vollstaendig",
+      "split": "pruefen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "esp.1",
+      "saison": "2024-25",
+      "status": "unvollstaendig",
+      "split": "nicht_verwendbar",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "esp.1",
+      "saison": "2025-26",
+      "status": "vollstaendig",
+      "split": "holdout",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "esp.1",
+      "saison": "2026-27",
+      "status": "laufend",
+      "split": "holdout",
+      "openfootball": 380,
+      "espn": 50,
+      "merged": 392
+    },
+    {
+      "liga": "ita.1",
+      "saison": "2013-14",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "ita.1",
+      "saison": "2014-15",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "ita.1",
+      "saison": "2015-16",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "ita.1",
+      "saison": "2016-17",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "ita.1",
+      "saison": "2017-18",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "ita.1",
+      "saison": "2018-19",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "ita.1",
+      "saison": "2019-20",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "ita.1",
+      "saison": "2020-21",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "ita.1",
+      "saison": "2021-22",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "ita.1",
+      "saison": "2022-23",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "ita.1",
+      "saison": "2023-24",
+      "status": "vollstaendig",
+      "split": "pruefen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "ita.1",
+      "saison": "2024-25",
+      "status": "unvollstaendig",
+      "split": "nicht_verwendbar",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "ita.1",
+      "saison": "2025-26",
+      "status": "vollstaendig",
+      "split": "holdout",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "ita.1",
+      "saison": "2026-27",
+      "status": "laufend",
+      "split": "holdout",
+      "openfootball": 380,
+      "espn": 60,
+      "merged": 380
+    },
+    {
+      "liga": "fra.1",
+      "saison": "2014-15",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "fra.1",
+      "saison": "2015-16",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "fra.1",
+      "saison": "2016-17",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "fra.1",
+      "saison": "2017-18",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "fra.1",
+      "saison": "2018-19",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "fra.1",
+      "saison": "2019-20",
+      "status": "unvollstaendig",
+      "split": "nicht_verwendbar",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "fra.1",
+      "saison": "2020-21",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "fra.1",
+      "saison": "2021-22",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "fra.1",
+      "saison": "2022-23",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 380,
+      "espn": 0,
+      "merged": 380
+    },
+    {
+      "liga": "fra.1",
+      "saison": "2023-24",
+      "status": "vollstaendig",
+      "split": "lernen",
+      "openfootball": 306,
+      "espn": 0,
+      "merged": 306
+    },
+    {
+      "liga": "fra.1",
+      "saison": "2024-25",
+      "status": "vollstaendig",
+      "split": "pruefen",
+      "openfootball": 306,
+      "espn": 0,
+      "merged": 306
+    },
+    {
+      "liga": "fra.1",
+      "saison": "2025-26",
+      "status": "unvollstaendig",
+      "split": "holdout",
+      "openfootball": 306,
+      "espn": 0,
+      "merged": 306
+    },
+    {
+      "liga": "fra.1",
+      "saison": "2026-27",
+      "status": "laufend",
+      "split": "holdout",
+      "openfootball": 306,
+      "espn": 45,
+      "merged": 311
+    }
+  ]
+}

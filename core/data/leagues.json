@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "leagues": [
+    {
+      "id": "eng.1",
+      "name": "English Premier League",
+      "openfootball": "en.1",
+      "espn": "eng.1",
+      "regularRoundRobin": true,
+      "expectedTeams": 20
+    },
+    {
+      "id": "ger.1",
+      "name": "German Bundesliga",
+      "openfootball": "de.1",
+      "espn": "ger.1",
+      "regularRoundRobin": true,
+      "expectedTeams": 18
+    },
+    {
+      "id": "esp.1",
+      "name": "Spanish La Liga",
+      "openfootball": "es.1",
+      "espn": "esp.1",
+      "regularRoundRobin": true,
+      "expectedTeams": 20
+    },
+    {
+      "id": "ita.1",
+      "name": "Italian Serie A",
+      "openfootball": "it.1",
+      "espn": "ita.1",
+      "regularRoundRobin": true,
+      "expectedTeams": 20
+    },
+    {
+      "id": "fra.1",
+      "name": "French Ligue 1",
+      "openfootball": "fr.1",
+      "espn": "fra.1",
+      "regularRoundRobin": true,
+      "expectedTeams": 20,
+      "teamCountChanges": [
+        {
+          "from": "2023-24",
+          "count": 18
+        }
+      ]
+    }
+  ]
+}

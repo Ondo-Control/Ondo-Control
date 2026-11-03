@@ -660,3 +660,28 @@
 > Fälligkeitsprüfungen beweiskräftig (Warten bis Laufende bzw. begründete Stille plus positive
 > Gegenprobe nach Fälligkeit). Mutationsnachweis: ohne Schrankenzeile scheitern genau beide
 > Vor-Fälligkeitsfälle. Blueprint auf 0.154 gehoben.
+
+> **Was Fassung 0.155 ändert (9.10.2026):** Reine Synchronisierung nach Arbeitsregel M für
+> Backlog-Punkt 91 (`beta.html` v19.22.1). Keine neue Architektur- oder Verfassungsregel:
+> Der harte Checkpoint-Weg und der Best-Effort-`save()`-Rückfall bleiben fachlich unverändert.
+> Neu ist ausschließlich der kleine Lifecycle-Schreibweg: Hintergrund-Persistenz nur nach
+> tatsächlichem `laufend→pausiert` oder bei ausstehendem `save()`, höchstens einmal je
+> Hide-Zyklus; sein strikter IndexedDB-Fehler bleibt im Hintergrund ohne globalen Alarm und
+> führt bei Rückkehr höchstens zu einem Versuch über den bestehenden Checkpoint-Weg.
+> **Belegt** sind die Codekette bis `tx-abort` und fünf reale Messungen vom 8.10.2026;
+> **plausibel, aber nicht bewiesen** ist WebKit-Prozess-Suspendierung als konkrete Ursache
+> (WebKit Bug 202705). Blueprint auf 0.155 gehoben.
+
+> **Was Fassung 0.156 ändert (12.10.2026):** Reine Synchronisierung nach Arbeitsregel M für
+> die Korrektur zu Backlog-Punkt 91 (`beta.html` v19.22.2). v19.22.1 hatte einen lokal grünen,
+> aber real unvollständigen Retry: drei gemessene `tx-abort`-Meldungen kamen erst 37/329/331 ms
+> nach `visibilitychange→visible`, sodass der Rückkehrhandler das Ungesichert-Flag zu früh prüfte.
+> Jetzt benutzen Rückkehrhandler und verspäteter Lifecycle-catch genau einen gemeinsamen
+> `lebenszyklusWiederholen()`-Weg; das Flag wird vor dem Retry gelöscht. `pageshow` wirkt nur bei
+> `event.persisted===true`, um das erste Laden nicht mit einem zusätzlichen Default-State-Render
+> zu überlagern. Der Hide-Guard wird zusätzlich mit ausstehendem `save()` mutationssensitiv
+> bewiesen. Keine neue Architektur- oder Verfassungsregel; harte Checkpoint-, save-, Backup- und
+> Alarmsemantik bleiben unverändert. Blueprint auf 0.156 gehoben.
+
+> **Was Fassung 0.157 ändert (3.11.2026):** Synchronisierung nach Arbeitsregel M für Backlog-Punkt 94, Core Stufe 1 / Teil 1. Das Datenfundament wird als eigenständige, deterministische Node-Schicht außerhalb von `beta.html` gebaut: neutrales Match-Schema, OpenFootball-CC0-/ESPN-Adapter, Alias-/Identitätsauflösung, Saisonvollständigkeit und vorab feste chronologische Lernen/Prüfen/Holdout-Grenzen. Keine Quoten, kein Modell, kein Backtest und kein LLM in diesem Teil. `beta.html`, CODE_VERSION und t1–t11 bleiben unverändert. Blueprint auf 0.157 gehoben.
+
