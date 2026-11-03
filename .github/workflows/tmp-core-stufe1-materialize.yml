@@ -85,8 +85,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          git fetch origin "${GITHUB_SHA}"
-          test "$(git rev-parse origin/ondotmp2)" = "${GITHUB_SHA}"
+          git fetch origin "refs/heads/ondotmp2:refs/remotes/origin/ondotmp2"
+          test "$(git rev-parse refs/remotes/origin/ondotmp2)" = "${GITHUB_SHA}"
           test "$(git ls-remote origin refs/heads/main | cut -f1)" = "2fa48c3213c6a361aa6b4a834e6e7ff7135417ed"
           git add -A
           tree="$(git write-tree)"
