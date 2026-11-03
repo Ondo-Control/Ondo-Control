@@ -36,4 +36,4 @@ v19.12.0): Der Decision Ledger verknüpft eine Wette jetzt optional mit mehreren
 — für Kombi-Wetten. Ebenen-Trennung (1b) unberührt, reine Referenzliste. Kein
 Verfassungsartikel geändert, keine neue Arbeitsregel.*
 *Fassung 0.18 — 26.9.2026: Abschnitt 1e präzisiert (Backlog-Punkt 87, `beta.html` v19.20.0): Laufzeit-Normalisierung von deutschen/englischen Nationalmannschaftsnamen über ISO-3166-1 + `Intl.DisplayNames`; nur wenn beide Teams auf beiden Seiten ISO-Länder sind. Keine gepflegte Alias-Tabelle, Vereinsresolver und Stufe 3 unverändert; Nicht-ISO-Fälle bleiben im bisherigen Weg.*
-*Fassung 0.19 — 3.11.2026: Backlog-Punkt 94, Core Stufe 1 Teil 1, als Staging ergänzt. Erster getrennter `core/data/`-Baustein: neutrales MatchRecord-Schema, Adapter OpenFootball/ESPN, explizite Aliasdatei, Quellen-Dubletten, Saisonstatus und fester Split mit unveränderlichem finalem Holdout. Die Beta-Resolverfunktionen werden nicht aus `beta.html` entfernt, sondern zunächst als reine Node-Funktionen mit Paritätstest nachgebaut. Kein Modell, keine Quoten, keine LLM-Aufrufe; `beta.html`/CODE_VERSION/t1–t11 unverändert.*
+
