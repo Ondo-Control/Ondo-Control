@@ -1,6 +1,7 @@
 # ONDO CORE v1 — Architektur-Entwurf
 *Antwort auf die Architektur-Anfrage von ChatGPT (5.7.2026). Autor: Claude. Status: Entwurf zur gemeinsamen Prüfung.*
-*Fassung 0.19 — 3.11.2026: Core Stufe 1 Teil 1 (Backlog-Punkt 94) ergänzt den gebauten Staging-Stand des getrennten Datenfundaments. Kein Eingriff in `beta.html`; Einzelheiten im Architektur-Protokoll.*
+*Fassung 0.19 — 3.11.2026: Core Stufe 1 Teil 1 (Backlog-Punkt 94) ergänzt den gebauten Staging-Stand des getrennten Datenfundaments. Kein Eingriff in `beta.html`; Einzelheiten im Abschnitt 6a.*
+*Fassung 0.18 — 26.9.2026: Abschnitt 1e präzisiert die gebaute ISO-3166-1-/`Intl.DisplayNames`-Normalisierung für Nationalmannschaften (Backlog-Punkt 87, `beta.html` v19.20.0). Vereinsresolver und Stufe 3 unverändert.*
 *Fassung 0.17 — 24.9.2026: Abschnitt 1e, „harte Barriere", um eine Präzisierung ergänzt (`beta.html` v19.19.2): „geschrieben" heisst für einen Checkpoint „in IndexedDB geschrieben". Nichts Bestehendes geändert.*
 *Fassung 0.16 — 24.9.2026: Abschnitt 1e um zwei Präzisierungen ergänzt (Nachbesserung zu Backlog-Punkt 86, `beta.html` v19.19.1): der Checkpoint ist eine harte Barriere, und die Identität eines Ergebnisvorschlags ist festgelegt. Nichts Bestehendes geändert.*
 *Fassung 0.15 — 23.9.2026: Abschnitt 1e ergaenzt (Backlog-Punkt 86, Auftrag Ondo 21.9.2026) — die stabile Spielidentitaet und der persistente Lauf-/Pruefzustand sind Architektur, nicht Tagesarbeit. Nichts Bestehendes geaendert.*
@@ -494,14 +495,15 @@ QUELLEN = [
 
 Der Core fragt Quellen in Vertrauens-/Kosten-Reihenfolge, kennzeichnet die Herkunft im Ergebnis und fällt bei Ausfall auf die nächste zurück. Ehrliche Anmerkung aus der Praxis (getestet 5.7.2026): Die kostenlosen JSON-Quellen liefern in der K.o.-Phase nur Platzhalter — die Brain-Websuche ist derzeit die einzige vollwertige Quelle. Das Register ändert daran nichts, macht aber den Ausfall-Fall sauber und dokumentiert die Grenze im System selbst.
 
+---
+
 ### 6a. Core Stufe 1 — Datenfundament (Punkt 94, Staging 3.11.2026)
 
-Der erste reale Core-Baustein liegt **außerhalb** des App-State: `core/data/`. `MatchRecord` ist quellenneutral; OpenFootball (CC0) und das vorhandene ESPN-Archiv werden über Adapter normalisiert. Rohdaten werden weder in `state` noch in IndexedDB kopiert. Ausnahmen (`awarded`, `cancelled`, ESPN-Verlängerung usw.) werden geparkt statt als Normalfall gelernt. Jede Saison wird als `vollstaendig`, `unvollstaendig` oder `laufend` klassifiziert; nur vollständige Saisons dürfen später überhaupt in einen Lernsplit gelangen.
+Der erste reale Core-Baustein liegt **außerhalb** des App-State: `core/data/`. `MatchRecord` ist quellenneutral; OpenFootball (CC0) und das vorhandene ESPN-Archiv werden über Adapter normalisiert. Rohdaten werden weder in `state` noch in IndexedDB kopiert. Ausnahmen (z. B. `awarded`, `cancelled`, ESPN-Verlängerung) werden geparkt statt als Normalfall gelernt. Jede Saison wird als `vollstaendig`, `unvollstaendig` oder `laufend` klassifiziert; **nur wenn alle erwarteten Spiele als normaler Abschluss belegt sind**, kann eine Saison vollständig sein.
 
-Die Core-Spiel-ID ist für Liga-Historien `Liga + Saison + kanonisches Heim + kanonischer Gast` und enthält bewusst **kein Datum**, weil Ansetzungen verschoben werden können. Die bisherige Beta-Identitätslogik (`normName`, `fxNorm`, `fxTokens`, `fxId`, `fxGleich`, `fxAufloesen`, `teamsAus`, `datumIso`) bleibt unverändert in `beta.html` und wird in Node nur paritätsgetreu gespiegelt. Quellenabweichende Teamnamen werden über die nachvollziehbare Datei `core/data/team-aliases.json` kanonisiert; unbekannte Namen werden im Coverage-Bericht sichtbar, nicht geraten.
+Die Core-Spiel-ID für Liga-Historien ist `Liga + Saison + kanonisches Heim + kanonischer Gast` und enthält bewusst **kein Datum**, damit eine Terminverschiebung dieselbe Partie bleibt. Die bestehende Beta-Identitätslogik (`normName`, `datumIso`, `fxNorm`, `fxTokens`, `fxId`, `fxGleich`, `fxAufloesen` samt benötigten Helfern) bleibt unverändert in `beta.html` und wird zunächst nur paritätsgetreu als reines Node-Modul gespiegelt. Quellenabweichende Teamnamen werden über `core/data/team-aliases.json` explizit kanonisiert; unaufgelöste Namen werden im Coverage-Bericht sichtbar und niemals geraten.
 
-Der vorab feste Split für die nächste Stufe lautet: Lernen bis 2022/23, Prüfung 2023/24–2024/25, endgültiger Holdout 2025/26 (`neverTrain`), 2026/27 und später laufend/zukünftig. **Diese Stufe baut noch kein Modell und führt keinen Backtest aus.**
-
+Der vorab feste Split für die nächste Stufe lautet: Lernen bis 2021/22, Prüfung 2022/23, endgültiger Holdout 2023/24 (`neverTrain`), 2024/25–2025/26 post-Holdout ebenfalls ohne Training, ab 2026/27 laufend/zukünftig. **Diese Stufe baut noch kein Modell, führt keinen Backtest aus, verarbeitet keine Quoten und ruft kein LLM auf.**
 
 ---
 
