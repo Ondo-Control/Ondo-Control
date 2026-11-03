@@ -17,14 +17,18 @@ function seasonStats(records,opt){
     else parkedOther++;
   });
   var running=!!opt.running;
-  var complete=!running && records.length===expected && invalid===0 && duplicateIds===0 && pending===0 && cancelled===0;
+  var complete=!running && records.length===expected && normal===expected &&
+    invalid===0 && duplicateIds===0 && pending===0 && awarded===0 && cancelled===0 && parkedOther===0;
   var status=running ? schema.SEASON_STATUS.RUNNING : (complete?schema.SEASON_STATUS.COMPLETE:schema.SEASON_STATUS.INCOMPLETE);
   var issues=[];
   if(records.length!==expected) issues.push('fixture_count');
   if(invalid) issues.push('invalid_record');
   if(duplicateIds) issues.push('duplicate_id');
   if(pending) issues.push('pending');
+  if(awarded) issues.push('awarded');
   if(cancelled) issues.push('cancelled');
+  if(parkedOther) issues.push('parked_other');
+  if(normal!==expected) issues.push('normal_count');
   return {
     status:status,teamCount:teamCount,expectedFixtures:expected,sourceFixtures:records.length,
     normalMatches:normal,awardedParked:awarded,cancelledParked:cancelled,otherParked:parkedOther,
