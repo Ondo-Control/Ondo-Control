@@ -75,6 +75,8 @@ function rec(i,opt){
   u.pruef('canceled wird geparkt',canceled.status==='parked'&&canceled.parkReason==='source_status_canceled');
   var pending=ofa.adaptMatch({date:'2025-08-19',team1:'B',team2:'C'},ctx);
   u.pruef('fehlendes Ergebnis bleibt pending',pending.status==='pending');
+  var nullScore=ofa.adaptMatch({date:'2025-08-20',team1:'C',team2:'D',score:[null,null]},ctx);
+  u.pruef('score:[null,null] darf NICHT als 0:0 gelten',nullScore.status==='pending'&&nullScore.goals===null,JSON.stringify(nullScore));
 
   u.block('P3. ESPN-Adapter — normaler Abschluss vs. Ausnahmespiel');
   var leagueCfg=require('../core/data/leagues.json').leagues;
@@ -108,15 +110,17 @@ function rec(i,opt){
   u.pruef('cancelled macht Saison unvollstaendig',sc.status==='unvollstaendig'&&sc.cancelledParked===1,JSON.stringify(sc));
   var withAwarded=complete.slice(); withAwarded[0]=rec(8,{home:'A',away:'B',status:'parked',parkReason:'source_status_awarded',goals:{home:3,away:0}});
   var sa=val.seasonStats(withAwarded,{running:false});
-  u.pruef('awarded ist terminal, aber Match bleibt geparkt',sa.status==='vollstaendig'&&sa.awardedParked===1&&sa.normalMatches===5,JSON.stringify(sa));
+  u.pruef('awarded verhindert vollstaendige Lernsaison',sa.status==='unvollstaendig'&&sa.awardedParked===1&&sa.normalMatches===5&&sa.issues.indexOf('awarded')>=0,JSON.stringify(sa));
 
   u.block('P6. Fester chronologischer Split / finaler Holdout');
-  u.pruef('2022-23 -> learning',split.bucketForSeason('2022-23',splitCfg)==='learning');
-  u.pruef('2023-24 -> validation',split.bucketForSeason('2023-24',splitCfg)==='validation');
-  u.pruef('2025-26 -> finaler Holdout',split.bucketForSeason('2025-26',splitCfg)==='holdout');
+  u.pruef('2021-22 -> learning',split.bucketForSeason('2021-22',splitCfg)==='learning');
+  u.pruef('2022-23 -> validation',split.bucketForSeason('2022-23',splitCfg)==='validation');
+  u.pruef('2023-24 -> finaler Holdout',split.bucketForSeason('2023-24',splitCfg)==='holdout');
+  u.pruef('2024-25/2025-26 -> post-Holdout, kein Training',split.bucketForSeason('2024-25',splitCfg)==='post_holdout'&&split.bucketForSeason('2025-26',splitCfg)==='post_holdout');
   u.pruef('2026-27 -> running/future',split.bucketForSeason('2026-27',splitCfg)==='running_or_future');
-  u.pruef('Holdout darf NIE trainieren',split.mayTrain('2025-26',splitCfg,'vollstaendig')===false);
-  u.pruef('Learning darf nur bei vollstaendiger Saison trainieren',split.mayTrain('2022-23',splitCfg,'vollstaendig')===true && split.mayTrain('2022-23',splitCfg,'unvollstaendig')===false);
+  u.pruef('Holdout darf NIE trainieren',split.mayTrain('2023-24',splitCfg,'vollstaendig')===false);
+  u.pruef('post-Holdout darf NIE trainieren',split.mayTrain('2024-25',splitCfg,'vollstaendig')===false);
+  u.pruef('Learning darf nur bei vollstaendiger Saison trainieren',split.mayTrain('2021-22',splitCfg,'vollstaendig')===true && split.mayTrain('2021-22',splitCfg,'unvollstaendig')===false);
 
   u.block('P7. Quellen-Dubletten');
   var x1=schema.makeMatchRecord({id:'same',date:'2026-10-01',league:'de.1',season:'2026-27',home:'A',away:'B',goals:{home:1,away:0},status:'normal',source:'openfootball',evidence:[{source:'openfootball'}]});
