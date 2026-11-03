@@ -1,0 +1,39 @@
+name: TEMP OpenFootball Data Proof
+
+on:
+  push:
+    branches:
+      - ondotmp2
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout OpenFootball exact head
+        uses: actions/checkout@v4
+        with:
+          repository: openfootball/football.json
+          ref: e6744429ee395bc86f247348c6184bb08d4eb361
+          path: openfootball
+          fetch-depth: 1
+
+      - name: Verify and package target data
+        run: |
+          set -euo pipefail
+          test "$(git -C openfootball rev-parse HEAD)" = "e6744429ee395bc86f247348c6184bb08d4eb361"
+          mkdir -p proof
+          cp openfootball/LICENSE.md proof/
+          find openfootball -type f \( -name 'en.1.json' -o -name 'de.1.json' -o -name 'es.1.json' -o -name 'it.1.json' -o -name 'fr.1.json' \) -print0 | sort -z | xargs -0 tar -czf proof/openfootball-target-data.tar.gz
+          printf '%s\n' e6744429ee395bc86f247348c6184bb08d4eb361 > proof/openfootball-head.txt
+          find openfootball -type f \( -name 'en.1.json' -o -name 'de.1.json' -o -name 'es.1.json' -o -name 'it.1.json' -o -name 'fr.1.json' \) | sort | wc -l
+
+      - name: Upload proof
+        uses: actions/upload-artifact@v4
+        with:
+          name: openfootball-target-data-proof
+          path: proof/
+          retention-days: 1
+          compression-level: 0
