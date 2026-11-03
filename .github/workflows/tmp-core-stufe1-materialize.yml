@@ -1,0 +1,110 @@
+name: TEMP Core Stufe 1 Part 1 Materialize
+
+on:
+  push:
+    branches:
+      - ondotmp2
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact main base
+        uses: actions/checkout@v4
+        with:
+          ref: 2fa48c3213c6a361aa6b4a834e6e7ff7135417ed
+          path: repo
+          fetch-depth: 1
+
+      - name: Reconstruct exact local patch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          : > /tmp/patch.b64
+          for sha in             70e7369a10408258734976f264145a1cf3b6342c             43e90c81bf9ebfc9d763ba66293ff89f8fb264ac             b96dca3310e142a56003fc1ab75276ace48301bd             c60097b7a9ec01128c9f82207ac6c9ae0cc2aec5             b532491cb6ab07a1fc3ca3ed21fa00f46d9808bf             0b085ae715a3edfe7eebda49d0916d1249f5b593
+          do
+            gh api "repos/${GITHUB_REPOSITORY}/git/blobs/${sha}" --jq .content | tr -d '\n' | base64 -d >> /tmp/patch.b64
+          done
+          echo "889ce20214964507d1b1e49c6c69fbfd337aa6ea8b37b242808504b0f9163fb1  /tmp/patch.b64" | sha256sum -c -
+          base64 -d /tmp/patch.b64 | gunzip > /tmp/core.patch
+          git -C repo apply --check /tmp/core.patch
+          git -C repo apply /tmp/core.patch
+
+      - name: Verify exact target and tests
+        working-directory: repo
+        run: |
+          set -euo pipefail
+          cat > /tmp/expected.tsv <<'EOF'
+          .github/workflows/core-daten.yml	9189ac9fe0e851cc0f5188aa4cddec8270165365
+          BACKLOG-ARCHIV.md	3217db0858f75a1b5307ce64f7ae7f60d5509172
+          BLUEPRINT-PROTOKOLL.md	3e26ca80773078e9c187c0c43680c74969c821a5
+          Blueprint.md	4c6b3c7e2787492965363456d5557374b8bb07ce
+          CHRONIK-2026-11.md	6fe555f0388ece2d8e594efc57952a937ed91031
+          ONDO-CORE-PROTOKOLL.md	e794a42ae51896d48924a4a8b598ee5890b0918e
+          Ondo-Control-Backlog.md	bf50a485eb0b56855a4b8eb7505044959baa88f5
+          Ondo-Core-Architektur.md	b5dc3463c544be910bdff735200a184b5175023c
+          STAND.md	35bacb641c762b8e5baa6205234a8e107c108e50
+          core/data/adapters/espn.js	c51288f1592ca626c5f742729c466c68018576a2
+          core/data/adapters/openfootball.js	e9db6d2b194efc7106c82eb0e65dfa92d04420a1
+          core/data/aliases.js	b26fcfe775565e8600d07b35e3043010bdf74aa4
+          core/data/build.js	4eb77278642b1fdeb41fab70326573e0ae821d2d
+          core/data/generated/coverage.json	abb537a7edccf633c3b55a134dfa036601143d84
+          core/data/generated/manifest.json	928faa691bcee2582ac52ba57e560efe280d2907
+          core/data/identity.js	99767d44a31291e9b9b01a161e0cbecbccbac151
+          core/data/leagues.json	bc870b1bc719d3d68357bc454a7972a82af8e7fa
+          core/data/market-rules.js	055c31608937f179d39c1f55be7e1f5f0f9d28e6
+          core/data/normalize.js	173abcc00ca38ea0ee1a4379d4153c29811874a5
+          core/data/schema.js	acddb71a380dac712e41f977bb48ce3230181d66
+          core/data/split.js	0b258bd9cbd0ca0d1d41909233cc19f43e7633f0
+          core/data/splits.json	97712518f2dd925e0756ab614ca379ffc227fec0
+          core/data/team-aliases.json	5fa0e799a4e00a67adbea2b636ad5460e9c274db
+          core/data/validate.js	cca524b3bafc9b5f763a9060915913e70124b82b
+          tests/t12_core_daten.js	5dd9b2569a08342633cb068d99209e5793c96df2
+          EOF
+          cut -f1 /tmp/expected.tsv | sort > /tmp/expected-files
+          git status --porcelain | sed 's/^...//' | sort > /tmp/actual-files
+          diff -u /tmp/expected-files /tmp/actual-files
+          while IFS=$'\t' read -r f sha; do
+            test "$(git hash-object "$f")" = "$sha" || { echo "Blob mismatch: $f"; exit 1; }
+          done < /tmp/expected.tsv
+          python3 pruefe.py | tee /tmp/pruefe.log
+          grep -q "ERGEBNIS: ALLES SAUBER" /tmp/pruefe.log
+          for f in tests/t1_resolver.js tests/t2_prueflauf.js tests/t3_vorhersage.js tests/t4_legacy_dubletten.js tests/t5_checkpoint.js tests/t6_checkpoint_idb.js tests/t7_laender_failsafe.js tests/t8_backup_speicher.js tests/t9_speicherdiagnose.js tests/t10_ausnahmen.js tests/t11_lebenszyklus.js tests/t12_core_daten.js; do
+            node "$f"
+          done
+          for f in core/data/*.js core/data/adapters/*.js tests/t12_core_daten.js; do node --check "$f"; done
+          test "$(git hash-object beta.html)" = "06cf2561f8d0e85809bacf3ea82ce3f3fa31fb97"
+
+      - name: Create fast-forward staging commit
+        working-directory: repo
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git fetch origin "${GITHUB_SHA}"
+          test "$(git rev-parse origin/ondotmp2)" = "${GITHUB_SHA}"
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = "2fa48c3213c6a361aa6b4a834e6e7ff7135417ed"
+          git add -A
+          tree="$(git write-tree)"
+          git config user.name "Ondo-Control"
+          git config user.email "bmwffpgcbz@privaterelay.appleid.com"
+          commit="$(printf '%s\n' 'STAGING Core Stufe 1 Teil 1: Datenfundament' | git commit-tree "$tree" -p "${GITHUB_SHA}")"
+          git push origin "$commit:refs/heads/ondotmp2"
+          printf '%s\n' "$commit" > /tmp/staging-commit.txt
+          printf '%s\n' "$tree" > /tmp/staging-tree.txt
+
+      - name: Upload proof
+        uses: actions/upload-artifact@v4
+        with:
+          name: core-stufe1-part1-staging-proof
+          path: |
+            /tmp/expected.tsv
+            /tmp/pruefe.log
+            /tmp/staging-commit.txt
+            /tmp/staging-tree.txt
+          retention-days: 1
+          compression-level: 0
