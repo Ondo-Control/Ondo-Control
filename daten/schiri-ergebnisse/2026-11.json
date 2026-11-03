@@ -288,6 +288,102 @@
    "torGast": 2,
    "quelle": "football-data.org",
    "halbzeit": "1:2"
+  },
+  {
+   "datum": "2026-11-02",
+   "anpfiff": "19:45",
+   "wettbewerb": "Serie A",
+   "heim": "Atalanta BC",
+   "gast": "Parma Calcio 1913",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 3,
+   "quelle": "football-data.org",
+   "halbzeit": "0:1"
+  },
+  {
+   "datum": "2026-11-02",
+   "anpfiff": "19:45",
+   "wettbewerb": "Ligue 1",
+   "heim": "FC Lorient",
+   "gast": "Stade Brestois 29",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-11-02",
+   "anpfiff": "20:15",
+   "wettbewerb": "Primeira Liga",
+   "heim": "Gil Vicente FC",
+   "gast": "Vitória SC",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-11-02",
+   "anpfiff": "20:00",
+   "wettbewerb": "Premier League",
+   "heim": "Newcastle United FC",
+   "gast": "Everton FC",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-11-02",
+   "anpfiff": "23:00",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "RB Bragantino",
+   "gast": "Santos FC",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "2:1"
+  },
+  {
+   "datum": "2026-11-02",
+   "anpfiff": "20:00",
+   "wettbewerb": "Primera Division",
+   "heim": "RC Deportivo La Coruña",
+   "gast": "CA Osasuna",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:1"
+  },
+  {
+   "datum": "2026-11-02",
+   "anpfiff": "20:15",
+   "wettbewerb": "Primeira Liga",
+   "heim": "Sport Lisboa e Benfica",
+   "gast": "FC Alverca",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-11-02",
+   "anpfiff": "17:30",
+   "wettbewerb": "Serie A",
+   "heim": "US Sassuolo Calcio",
+   "gast": "ACF Fiorentina",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 4,
+   "quelle": "football-data.org",
+   "halbzeit": "1:1"
   }
  ]
 }
