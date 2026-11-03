@@ -1,0 +1,147 @@
+name: TEMP Core Data Materialize Proof
+
+on:
+  push:
+    branches:
+      - ondotmp2
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact main base
+        uses: actions/checkout@v4
+        with:
+          ref: 2fa48c3213c6a361aa6b4a834e6e7ff7135417ed
+          path: repo
+          fetch-depth: 1
+
+      - name: Checkout staging transport
+        uses: actions/checkout@v4
+        with:
+          ref: ondotmp2
+          path: delivery
+          fetch-depth: 1
+
+      - name: Reconstruct and apply exact locally-tested patch
+        run: |
+          set -euo pipefail
+          test "$(git -C repo rev-parse HEAD)" = "2fa48c3213c6a361aa6b4a834e6e7ff7135417ed"
+          test "$(sha256sum delivery/.ondo-delivery/corepart00.txt | cut -d' ' -f1)" = "703d3702a74ec5cb4a2b92585ad387e2c4db43bd129ba389db1690625085a5dd" || true
+          test "$(sha256sum delivery/.ondo-delivery/corepart02.txt | cut -d' ' -f1)" = "f995f22c52ed7dbebce9e7af7332a623d15eed6f23a5719b9e62ba0f59b1347e"
+          test "$(sha256sum delivery/.ondo-delivery/corepart03.txt | cut -d' ' -f1)" = "dac28a921c9c84a54a8b18091e3c483cefcdc0adcbaee68c30f22b04f64d3e3a"
+          test "$(sha256sum delivery/.ondo-delivery/corepart04.txt | cut -d' ' -f1)" = "9ef526338e6ff153b2b130bd2e28495f401f492083cbe3c85fb672511d36d590"
+          test "$(sha256sum delivery/.ondo-delivery/corepart05.txt | cut -d' ' -f1)" = "04dd9fb6ac59a1c66345f248c147c90a942cc24ef9fc3b858a5181d603d1e5e4"
+          cat delivery/.ondo-delivery/corepart0{0,1,2,3,4,5}.txt > /tmp/patch.gz.b64
+          test "$(wc -c < /tmp/patch.gz.b64)" = "38216"
+          base64 -d /tmp/patch.gz.b64 > /tmp/patch.gz
+          test "$(sha256sum /tmp/patch.gz | cut -d' ' -f1)" = "ef637082e58f2144e9f91e74ca60af203c55898e64175d204b3cddf97129a090"
+          gzip -dc /tmp/patch.gz > /tmp/coredata.patch
+          test "$(sha256sum /tmp/coredata.patch | cut -d' ' -f1)" = "c6e20826e7da1cd276a6becbb443fd85dbfac0e2ea021e7670c561f5a06f97cc"
+          git -C repo apply --check /tmp/coredata.patch
+          git -C repo apply /tmp/coredata.patch
+
+      - name: Verify exact target files
+        working-directory: repo
+        run: |
+          set -euo pipefail
+          cat > /tmp/expected.tsv <<'EOF'
+          .github/workflows/core-daten.yml	e8a84d50e42567236125978ecb2e86256a4354a2
+          BACKLOG-ARCHIV.md	ae4d7846bbed9a8a5ca3c6779d8b2adb2cb73cee
+          BLUEPRINT-PROTOKOLL.md	8900cd9371991271781d5d8e9270f391685001ac
+          Blueprint.md	4c6b3c7e2787492965363456d5557374b8bb07ce
+          CHRONIK-2026-09.md	2dcd8f89373dccf074e52cbade1bc2aa1ff599cf
+          ONDO-CORE-PROTOKOLL.md	f8bc9d05ed4e3459abdd4b05c4665d27a9217f4d
+          Ondo-Control-Backlog.md	ba015c6d27344f1b73300feadbac902f4c4a5d32
+          Ondo-Core-Architektur.md	5604abc8d8d87f77c757764295a5b5cf87ebd579
+          STAND.md	fea7a35e3f0a06f186aa728bf0f88979a88d7333
+          core/data/README.md	559b5a28439e68cdfa402c067243deecea868d88
+          core/data/adapters/espn.js	133d69b356d7c1f47e9cb8ab75f92ed92f40c130
+          core/data/adapters/openfootball.js	470f7aa2cb3e9402965270e32a5fab49b55a7c65
+          core/data/aliases.js	d6a7bffcc87bcb09934507174527693d7f6052ab
+          core/data/build.js	234921e79a626f73cac15f9d6f5d7375d3bee667
+          core/data/generated/coverage.json	5dee4d52566e89b7430ad6634c879a74dbe68fba
+          core/data/generated/manifest.json	1302098ecda1bf39733000ed79b67412d1c9e96d
+          core/data/identity.js	44deafd827deef84d5ce31e4a2e42b772dd1fd3c
+          core/data/leagues.json	bd5b9cc393eccef0295c44b4ca851e2e81071676
+          core/data/market-rules.js	4a35ad435381f800c8e8998dc37681acb58de7d7
+          core/data/normalize.js	d40e1bd0f3fe4f1d8e5f2fd43092c57179dee407
+          core/data/schema.js	24f14a49d110785248fbf5addfdbafea12dbb227
+          core/data/split.js	afdb4fae53494f00d1a29ae5212a1e6caa1cec58
+          core/data/splits.json	c2a86187c250e6fee7356288b78fab83e733ba23
+          core/data/team-aliases.json	9dc4884d98bba15897216b3a3670e4e45bc9fe2b
+          core/data/validate.js	439e12ca066786897fb931b4d884e0128c8b7fef
+          tests/t12_core_daten.js	2fcc423e72daebcc4ddb94bf0aa5711d547cb66e
+          EOF
+          while IFS=$'\t' read -r f sha; do test "$(git hash-object "$f")" = "$sha"; done < /tmp/expected.tsv
+          cut -f1 /tmp/expected.tsv | sort > /tmp/expected-files.txt
+          git status --porcelain | sed 's/^...//' | sort > /tmp/actual-files.txt
+          diff -u /tmp/expected-files.txt /tmp/actual-files.txt
+          test "$(git hash-object beta.html)" = "$(git rev-parse HEAD:beta.html)"
+          for f in tests/t1_resolver.js tests/t2_prueflauf.js tests/t3_vorhersage.js tests/t4_legacy_dubletten.js tests/t5_checkpoint.js tests/t6_checkpoint_idb.js tests/t7_laender_failsafe.js tests/t8_backup_speicher.js tests/t9_speicherdiagnose.js tests/t10_ausnahmen.js tests/t11_lebenszyklus.js tests/umgebung.js; do
+            test "$(git hash-object "$f")" = "$(git rev-parse HEAD:"$f")"
+          done
+
+      - name: Checkout pinned OpenFootball source
+        uses: actions/checkout@v4
+        with:
+          repository: openfootball/football.json
+          ref: e6744429ee395bc86f247348c6184bb08d4eb361
+          path: openfootball
+          fetch-depth: 1
+
+      - name: Rebuild generated files and run all checks
+        working-directory: repo
+        run: |
+          set -euo pipefail
+          grep -q 'CC0 1.0 Universal' ../openfootball/LICENSE.md
+          node core/data/build.js --openfootball ../openfootball --repo . --upstream-sha e6744429ee395bc86f247348c6184bb08d4eb361
+          test "$(git hash-object core/data/generated/coverage.json)" = "5dee4d52566e89b7430ad6634c879a74dbe68fba"
+          test "$(git hash-object core/data/generated/manifest.json)" = "1302098ecda1bf39733000ed79b67412d1c9e96d"
+          python3 pruefe.py | tee /tmp/pruefe.log
+          grep -q 'ERGEBNIS: ALLES SAUBER' /tmp/pruefe.log
+          for f in core/data/*.js core/data/adapters/*.js tests/t12_core_daten.js; do node --check "$f"; done
+          : > /tmp/tests.log
+          for f in tests/t1_resolver.js tests/t2_prueflauf.js tests/t3_vorhersage.js tests/t4_legacy_dubletten.js tests/t5_checkpoint.js tests/t6_checkpoint_idb.js tests/t7_laender_failsafe.js tests/t8_backup_speicher.js tests/t9_speicherdiagnose.js tests/t10_ausnahmen.js tests/t11_lebenszyklus.js tests/t12_core_daten.js; do
+            echo "===== $f =====" | tee -a /tmp/tests.log
+            node "$f" | tee -a /tmp/tests.log
+          done
+
+      - name: Materialize exact blobs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        working-directory: repo
+        run: |
+          set -euo pipefail
+          : > /tmp/materialized-blobs.tsv
+          while IFS=$'\t' read -r f expected; do
+            base64 -w0 "$f" > /tmp/blob-content.b64
+            python3 - <<'PY' > /tmp/blob.json
+          import json, pathlib
+          print(json.dumps({"content":pathlib.Path("/tmp/blob-content.b64").read_text(),"encoding":"base64"}))
+          PY
+            curl -fsS -X POST               -H "Accept: application/vnd.github+json"               -H "Authorization: Bearer $GH_TOKEN"               -H "X-GitHub-Api-Version: 2022-11-28"               "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/git/blobs"               --data-binary @/tmp/blob.json > /tmp/blob-response.json
+            actual="$(python3 - <<'PY'
+          import json
+          print(json.load(open("/tmp/blob-response.json"))["sha"])
+          PY
+          )"
+            test "$actual" = "$expected"
+            printf '%s\t%s\n' "$f" "$actual" >> /tmp/materialized-blobs.tsv
+          done < /tmp/expected.tsv
+          printf '%s\n' 2fa48c3213c6a361aa6b4a834e6e7ff7135417ed > /tmp/base-sha.txt
+
+      - name: Upload proof
+        uses: actions/upload-artifact@v4
+        with:
+          name: core-data-materialization-proof
+          path: |
+            /tmp/materialized-blobs.tsv
+            /tmp/base-sha.txt
+            /tmp/pruefe.log
+            /tmp/tests.log
+          retention-days: 1
+          compression-level: 0
