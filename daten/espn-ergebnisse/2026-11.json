@@ -3,6 +3,46 @@
  "spiele": [
   {
    "provider": "espn",
+   "providerEventId": "401841298",
+   "providerCompetitionSlug": "bra.1",
+   "providerCompetitionName": "Brazilian Serie A",
+   "datum": "2026-11-05",
+   "kickoffUtc": "2026-11-05T00:30Z",
+   "heim": "São Paulo",
+   "gast": "Corinthians",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2026",
+      "teamDisplayName": "São Paulo",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "874",
+      "teamDisplayName": "Corinthians",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-05T03:46:41.147Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401841299",
    "providerCompetitionSlug": "bra.1",
    "providerCompetitionName": "Brazilian Serie A",
@@ -120,6 +160,126 @@
    },
    "halbzeit": "1:1",
    "fetchedAt": "2026-11-04T03:22:19.895Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401841305",
+   "providerCompetitionSlug": "bra.1",
+   "providerCompetitionName": "Brazilian Serie A",
+   "datum": "2026-11-05",
+   "kickoffUtc": "2026-11-05T00:30Z",
+   "heim": "Botafogo",
+   "gast": "Atlético-MG",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "6086",
+      "teamDisplayName": "Botafogo",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "7632",
+      "teamDisplayName": "Atlético-MG",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-11-05T03:46:40.956Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401841306",
+   "providerCompetitionSlug": "bra.1",
+   "providerCompetitionName": "Brazilian Serie A",
+   "datum": "2026-11-04",
+   "kickoffUtc": "2026-11-04T22:30Z",
+   "heim": "Athletico Paranaense",
+   "gast": "Vasco da Gama",
+   "torHeim": 1,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "3458",
+      "teamDisplayName": "Athletico Paranaense",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "3454",
+      "teamDisplayName": "Vasco da Gama",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-11-05T03:46:40.576Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401841307",
+   "providerCompetitionSlug": "bra.1",
+   "providerCompetitionName": "Brazilian Serie A",
+   "datum": "2026-11-04",
+   "kickoffUtc": "2026-11-04T22:30Z",
+   "heim": "Flamengo",
+   "gast": "Grêmio",
+   "torHeim": 3,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "819",
+      "teamDisplayName": "Flamengo",
+      "homeAway": "home",
+      "linescores": [
+       "3",
+       "0"
+      ]
+     },
+     {
+      "teamId": "6273",
+      "teamDisplayName": "Grêmio",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "3:0",
+   "fetchedAt": "2026-11-05T03:46:40.766Z"
   },
   {
    "provider": "espn",
@@ -2763,6 +2923,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401878967",
+   "providerCompetitionSlug": "bel.1",
+   "providerCompetitionName": "Belgian Pro League",
+   "datum": "2026-11-04",
+   "kickoffUtc": "2026-11-04T19:30Z",
+   "heim": "KV Kortrijk",
+   "gast": "KV Mechelen",
+   "torHeim": 1,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "5786",
+      "teamDisplayName": "KV Kortrijk",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "7879",
+      "teamDisplayName": "KV Mechelen",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-05T03:46:26.871Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401879246",
    "providerCompetitionSlug": "eng.1",
    "providerCompetitionName": "English Premier League",
@@ -2803,6 +3003,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401880173",
+   "providerCompetitionSlug": "eng.2",
+   "providerCompetitionName": "English League Championship",
+   "datum": "2026-11-04",
+   "kickoffUtc": "2026-11-04T19:45Z",
+   "heim": "Wrexham",
+   "gast": "Middlesbrough",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "352",
+      "teamDisplayName": "Wrexham",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "369",
+      "teamDisplayName": "Middlesbrough",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-05T03:46:19.568Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401880174",
    "providerCompetitionSlug": "eng.2",
    "providerCompetitionName": "English League Championship",
@@ -2840,6 +3080,86 @@
    },
    "halbzeit": "0:1",
    "fetchedAt": "2026-11-04T03:22:01.824Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401880175",
+   "providerCompetitionSlug": "eng.2",
+   "providerCompetitionName": "English League Championship",
+   "datum": "2026-11-04",
+   "kickoffUtc": "2026-11-04T19:45Z",
+   "heim": "Cardiff City",
+   "gast": "West Ham United",
+   "torHeim": 3,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "347",
+      "teamDisplayName": "Cardiff City",
+      "homeAway": "home",
+      "linescores": [
+       "3",
+       "0"
+      ]
+     },
+     {
+      "teamId": "371",
+      "teamDisplayName": "West Ham United",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "3:0",
+   "fetchedAt": "2026-11-05T03:46:19.377Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401880176",
+   "providerCompetitionSlug": "eng.2",
+   "providerCompetitionName": "English League Championship",
+   "datum": "2026-11-04",
+   "kickoffUtc": "2026-11-04T20:00Z",
+   "heim": "Bristol City",
+   "gast": "Wolverhampton Wanderers",
+   "torHeim": 1,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "333",
+      "teamDisplayName": "Bristol City",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "380",
+      "teamDisplayName": "Wolverhampton Wanderers",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-11-05T03:46:19.759Z"
   },
   {
    "provider": "espn",
@@ -4843,6 +5163,246 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401915301",
+   "providerCompetitionSlug": "uefa.champions",
+   "providerCompetitionName": "UEFA Champions League",
+   "datum": "2026-11-04",
+   "kickoffUtc": "2026-11-04T20:00Z",
+   "heim": "FC Porto",
+   "gast": "Napoli",
+   "torHeim": 4,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "437",
+      "teamDisplayName": "FC Porto",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "3"
+      ]
+     },
+     {
+      "teamId": "114",
+      "teamDisplayName": "Napoli",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-11-05T03:46:29.876Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915302",
+   "providerCompetitionSlug": "uefa.champions",
+   "providerCompetitionName": "UEFA Champions League",
+   "datum": "2026-11-04",
+   "kickoffUtc": "2026-11-04T20:00Z",
+   "heim": "Viking FK",
+   "gast": "Sabah FK",
+   "torHeim": 4,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "510",
+      "teamDisplayName": "Viking FK",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "3"
+      ]
+     },
+     {
+      "teamId": "21922",
+      "teamDisplayName": "Sabah FK",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-11-05T03:46:30.837Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915303",
+   "providerCompetitionSlug": "uefa.champions",
+   "providerCompetitionName": "UEFA Champions League",
+   "datum": "2026-11-04",
+   "kickoffUtc": "2026-11-04T20:00Z",
+   "heim": "PSV Eindhoven",
+   "gast": "Club Brugge",
+   "torHeim": 1,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "148",
+      "teamDisplayName": "PSV Eindhoven",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "570",
+      "teamDisplayName": "Club Brugge",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-11-05T03:46:30.259Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915304",
+   "providerCompetitionSlug": "uefa.champions",
+   "providerCompetitionName": "UEFA Champions League",
+   "datum": "2026-11-04",
+   "kickoffUtc": "2026-11-04T20:00Z",
+   "heim": "Borussia Dortmund",
+   "gast": "Real Betis",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "124",
+      "teamDisplayName": "Borussia Dortmund",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "244",
+      "teamDisplayName": "Real Betis",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-05T03:46:29.685Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915305",
+   "providerCompetitionSlug": "uefa.champions",
+   "providerCompetitionName": "UEFA Champions League",
+   "datum": "2026-11-04",
+   "kickoffUtc": "2026-11-04T20:00Z",
+   "heim": "Lens",
+   "gast": "Como",
+   "torHeim": 1,
+   "torGast": 9,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "175",
+      "teamDisplayName": "Lens",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "2572",
+      "teamDisplayName": "Como",
+      "homeAway": "away",
+      "linescores": [
+       "3",
+       "6"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:3",
+   "fetchedAt": "2026-11-05T03:46:30.068Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915306",
+   "providerCompetitionSlug": "uefa.champions",
+   "providerCompetitionName": "UEFA Champions League",
+   "datum": "2026-11-04",
+   "kickoffUtc": "2026-11-04T20:00Z",
+   "heim": "RB Leipzig",
+   "gast": "Manchester City",
+   "torHeim": 2,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "11420",
+      "teamDisplayName": "RB Leipzig",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "382",
+      "teamDisplayName": "Manchester City",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-11-05T03:46:30.455Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401915307",
    "providerCompetitionSlug": "uefa.champions",
    "providerCompetitionName": "UEFA Champions League",
@@ -5043,6 +5603,126 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401915381",
+   "providerCompetitionSlug": "uefa.champions",
+   "providerCompetitionName": "UEFA Champions League",
+   "datum": "2026-11-04",
+   "kickoffUtc": "2026-11-04T20:00Z",
+   "heim": "Slavia Prague",
+   "gast": "Arsenal",
+   "torHeim": 1,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "494",
+      "teamDisplayName": "Slavia Prague",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "359",
+      "teamDisplayName": "Arsenal",
+      "homeAway": "away",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:2",
+   "fetchedAt": "2026-11-05T03:46:30.647Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915382",
+   "providerCompetitionSlug": "uefa.champions",
+   "providerCompetitionName": "UEFA Champions League",
+   "datum": "2026-11-04",
+   "kickoffUtc": "2026-11-04T17:45Z",
+   "heim": "Fenerbahce",
+   "gast": "Liverpool",
+   "torHeim": 3,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "436",
+      "teamDisplayName": "Fenerbahce",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     },
+     {
+      "teamId": "364",
+      "teamDisplayName": "Liverpool",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-11-05T03:46:29.495Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915383",
+   "providerCompetitionSlug": "uefa.champions",
+   "providerCompetitionName": "UEFA Champions League",
+   "datum": "2026-11-04",
+   "kickoffUtc": "2026-11-04T17:45Z",
+   "heim": "AEK Athens",
+   "gast": "Real Madrid",
+   "torHeim": 2,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "887",
+      "teamDisplayName": "AEK Athens",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "86",
+      "teamDisplayName": "Real Madrid",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-11-05T03:46:29.303Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401915384",
    "providerCompetitionSlug": "uefa.champions",
    "providerCompetitionName": "UEFA Champions League",
@@ -5200,6 +5880,86 @@
    },
    "halbzeit": "1:0",
    "fetchedAt": "2026-11-04T03:22:11.108Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401915551",
+   "providerCompetitionSlug": "uefa.europa",
+   "providerCompetitionName": "UEFA Europa League",
+   "datum": "2026-11-04",
+   "kickoffUtc": "2026-11-04T15:30Z",
+   "heim": "Stade Rennais",
+   "gast": "Olympiacos",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "169",
+      "teamDisplayName": "Stade Rennais",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "435",
+      "teamDisplayName": "Olympiacos",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-05T03:46:31.780Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401933098",
+   "providerCompetitionSlug": "fra.coupe_de_france",
+   "providerCompetitionName": "Coupe de France",
+   "datum": "2026-11-04",
+   "kickoffUtc": "2026-11-04T22:00Z",
+   "heim": "Sporting Club Baie-Mahault",
+   "gast": "Siroco Les Abymes",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "134140",
+      "teamDisplayName": "Sporting Club Baie-Mahault",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "134141",
+      "teamDisplayName": "Siroco Les Abymes",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-05T03:46:24.809Z"
   },
   {
    "provider": "espn",
