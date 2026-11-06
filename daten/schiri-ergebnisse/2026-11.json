@@ -792,6 +792,42 @@
    "torGast": 0,
    "quelle": "football-data.org",
    "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-11-05",
+   "anpfiff": "00:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "Botafogo FR",
+   "gast": "CA Mineiro",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-11-05",
+   "anpfiff": "22:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "SE Palmeiras",
+   "gast": "Clube do Remo",
+   "status": "FT",
+   "torHeim": 6,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "4:1"
+  },
+  {
+   "datum": "2026-11-05",
+   "anpfiff": "00:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "São Paulo FC",
+   "gast": "SC Corinthians Paulista",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
   }
  ]
 }
