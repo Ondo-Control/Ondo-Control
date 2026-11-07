@@ -828,6 +828,126 @@
    "torGast": 0,
    "quelle": "football-data.org",
    "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-11-06",
+   "anpfiff": "00:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "Cruzeiro EC",
+   "gast": "EC Bahia",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "1:1"
+  },
+  {
+   "datum": "2026-11-06",
+   "anpfiff": "20:00",
+   "wettbewerb": "Championship",
+   "heim": "Derby County FC",
+   "gast": "Bolton Wanderers FC",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:1"
+  },
+  {
+   "datum": "2026-11-06",
+   "anpfiff": "23:00",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "EC Vitória",
+   "gast": "Fluminense FC",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 3,
+   "quelle": "football-data.org",
+   "halbzeit": "0:2"
+  },
+  {
+   "datum": "2026-11-06",
+   "anpfiff": "20:00",
+   "wettbewerb": "Premier League",
+   "heim": "Everton FC",
+   "gast": "Coventry City FC",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-11-06",
+   "anpfiff": "20:45",
+   "wettbewerb": "Primeira Liga",
+   "heim": "FC Famalicão",
+   "gast": "FC Arouca",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-11-06",
+   "anpfiff": "19:30",
+   "wettbewerb": "Bundesliga",
+   "heim": "Hamburger SV",
+   "gast": "Borussia Mönchengladbach",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "1:1"
+  },
+  {
+   "datum": "2026-11-06",
+   "anpfiff": "20:00",
+   "wettbewerb": "Primera Division",
+   "heim": "Sevilla FC",
+   "gast": "Deportivo Alavés",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-11-06",
+   "anpfiff": "19:45",
+   "wettbewerb": "Ligue 1",
+   "heim": "Toulouse FC",
+   "gast": "RC Strasbourg Alsace",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-11-06",
+   "anpfiff": "19:45",
+   "wettbewerb": "Serie A",
+   "heim": "Venezia FC",
+   "gast": "Udinese Calcio",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-11-06",
+   "anpfiff": "19:00",
+   "wettbewerb": "Eredivisie",
+   "heim": "Willem II Tilburg",
+   "gast": "PEC Zwolle",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "1:1"
   }
  ]
 }
