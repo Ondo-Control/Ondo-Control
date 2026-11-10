@@ -18002,6 +18002,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401933765",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-11-10",
+   "kickoffUtc": "2026-11-10T12:00Z",
+   "heim": "SC Paderborn 07",
+   "gast": "TSV Eintracht Braunschweig",
+   "torHeim": 4,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "3307",
+      "teamDisplayName": "SC Paderborn 07",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "4"
+      ]
+     },
+     {
+      "teamId": "3067",
+      "teamDisplayName": "TSV Eintracht Braunschweig",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-10T16:28:35.799Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "761920",
    "providerCompetitionSlug": "usa.1",
    "providerCompetitionName": "MLS",
