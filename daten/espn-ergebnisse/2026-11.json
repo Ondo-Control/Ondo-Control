@@ -2403,6 +2403,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401843480",
+   "providerCompetitionSlug": "nor.1",
+   "providerCompetitionName": "Norwegian Eliteserien",
+   "datum": "2026-11-09",
+   "kickoffUtc": "2026-11-09T18:00Z",
+   "heim": "Kristiansund BK",
+   "gast": "Vålerenga",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "6672",
+      "teamDisplayName": "Kristiansund BK",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "2791",
+      "teamDisplayName": "Vålerenga",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-11-10T04:49:10.484Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401843481",
    "providerCompetitionSlug": "nor.1",
    "providerCompetitionName": "Norwegian Eliteserien",
@@ -10563,6 +10603,86 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401883139",
+   "providerCompetitionSlug": "esp.2",
+   "providerCompetitionName": "Spanish LALIGA 2",
+   "datum": "2026-11-09",
+   "kickoffUtc": "2026-11-09T19:30Z",
+   "heim": "CD Sabadell",
+   "gast": "Real Sociedad II",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "11487",
+      "teamDisplayName": "CD Sabadell",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "20983",
+      "teamDisplayName": "Real Sociedad II",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-10T04:48:54.405Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401883140",
+   "providerCompetitionSlug": "esp.2",
+   "providerCompetitionName": "Spanish LALIGA 2",
+   "datum": "2026-11-09",
+   "kickoffUtc": "2026-11-09T19:30Z",
+   "heim": "Las Palmas",
+   "gast": "Eldense",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "98",
+      "teamDisplayName": "Las Palmas",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "7320",
+      "teamDisplayName": "Eldense",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-10T04:48:54.581Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401883141",
    "providerCompetitionSlug": "esp.2",
    "providerCompetitionName": "Spanish LALIGA 2",
@@ -16939,6 +17059,51 @@
    "halbzeit": "1:1",
    "verlaengerung": "2:2",
    "fetchedAt": "2026-11-08T02:45:24.915Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401931098",
+   "providerCompetitionSlug": "eng.fa",
+   "providerCompetitionName": "English FA Cup",
+   "datum": "2026-11-09",
+   "kickoffUtc": "2026-11-09T19:30Z",
+   "heim": "Plymouth Parkway",
+   "gast": "Berkhamsted",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": true,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FINAL_AET",
+    "competitors": [
+     {
+      "teamId": "132948",
+      "teamDisplayName": "Plymouth Parkway",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1",
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "132350",
+      "teamDisplayName": "Berkhamsted",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1",
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "verlaengerung": "2:1",
+   "fetchedAt": "2026-11-10T04:48:52.515Z"
   },
   {
    "provider": "espn",
