@@ -16523,6 +16523,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401930244",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-11-11",
+   "kickoffUtc": "2026-11-11T12:00Z",
+   "heim": "Vietnam",
+   "gast": "Chinese Taipei",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7349",
+      "teamDisplayName": "Vietnam",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "14561",
+      "teamDisplayName": "Chinese Taipei",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-11T16:19:00.369Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401931079",
    "providerCompetitionSlug": "eng.fa",
    "providerCompetitionName": "English FA Cup",
