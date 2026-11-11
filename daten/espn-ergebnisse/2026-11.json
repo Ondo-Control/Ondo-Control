@@ -16283,6 +16283,246 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401928504",
+   "providerCompetitionSlug": "esp.copa_del_rey",
+   "providerCompetitionName": "Spanish Copa del Rey",
+   "datum": "2026-11-10",
+   "kickoffUtc": "2026-11-10T20:00Z",
+   "heim": "Tavernes de la Valldigna",
+   "gast": "Valencia",
+   "torHeim": 0,
+   "torGast": 6,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "133846",
+      "teamDisplayName": "Tavernes de la Valldigna",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "94",
+      "teamDisplayName": "Valencia",
+      "homeAway": "away",
+      "linescores": [
+       "4",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:4",
+   "fetchedAt": "2026-11-11T03:09:49.209Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401928514",
+   "providerCompetitionSlug": "esp.copa_del_rey",
+   "providerCompetitionName": "Spanish Copa del Rey",
+   "datum": "2026-11-10",
+   "kickoffUtc": "2026-11-10T18:00Z",
+   "heim": "Anaitasuna",
+   "gast": "Alavés",
+   "torHeim": 1,
+   "torGast": 6,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "20776",
+      "teamDisplayName": "Anaitasuna",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "96",
+      "teamDisplayName": "Alavés",
+      "homeAway": "away",
+      "linescores": [
+       "2",
+       "4"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:2",
+   "fetchedAt": "2026-11-11T03:09:48.406Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401928516",
+   "providerCompetitionSlug": "esp.copa_del_rey",
+   "providerCompetitionName": "Spanish Copa del Rey",
+   "datum": "2026-11-10",
+   "kickoffUtc": "2026-11-10T18:00Z",
+   "heim": "CD Pamplona",
+   "gast": "Eibar",
+   "torHeim": 0,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "133835",
+      "teamDisplayName": "CD Pamplona",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "3752",
+      "teamDisplayName": "Eibar",
+      "homeAway": "away",
+      "linescores": [
+       "2",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:2",
+   "fetchedAt": "2026-11-11T03:09:48.568Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401928519",
+   "providerCompetitionSlug": "esp.copa_del_rey",
+   "providerCompetitionName": "Spanish Copa del Rey",
+   "datum": "2026-11-10",
+   "kickoffUtc": "2026-11-10T19:00Z",
+   "heim": "Amorebieta",
+   "gast": "UD Logroñés",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "12587",
+      "teamDisplayName": "Amorebieta",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "7206",
+      "teamDisplayName": "UD Logroñés",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-11T03:09:48.727Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401928528",
+   "providerCompetitionSlug": "esp.copa_del_rey",
+   "providerCompetitionName": "Spanish Copa del Rey",
+   "datum": "2026-11-10",
+   "kickoffUtc": "2026-11-10T19:00Z",
+   "heim": "Mijas Las Lagunas",
+   "gast": "Real Jaen CF",
+   "torHeim": 1,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "22043",
+      "teamDisplayName": "Mijas Las Lagunas",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "5401",
+      "teamDisplayName": "Real Jaen CF",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-11-11T03:09:48.887Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401928550",
+   "providerCompetitionSlug": "esp.copa_del_rey",
+   "providerCompetitionName": "Spanish Copa del Rey",
+   "datum": "2026-11-10",
+   "kickoffUtc": "2026-11-10T19:00Z",
+   "heim": "Trival Valderas",
+   "gast": "Leganés",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "17573",
+      "teamDisplayName": "Trival Valderas",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "17534",
+      "teamDisplayName": "Leganés",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-11T03:09:49.047Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401931079",
    "providerCompetitionSlug": "eng.fa",
    "providerCompetitionName": "English FA Cup",
@@ -18039,6 +18279,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-11-10T16:28:35.799Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401933840",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-11-10",
+   "kickoffUtc": "2026-11-10T18:30Z",
+   "heim": "SV Bergisch Gladbach 09",
+   "gast": "SV SCHLEBUSCH",
+   "torHeim": 4,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "133973",
+      "teamDisplayName": "SV Bergisch Gladbach 09",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "4"
+      ]
+     },
+     {
+      "teamId": "134167",
+      "teamDisplayName": "SV SCHLEBUSCH",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-11T03:10:04.917Z"
   },
   {
    "provider": "espn",
