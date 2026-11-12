@@ -3163,6 +3163,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401860435",
+   "providerCompetitionSlug": "bra.2",
+   "providerCompetitionName": "Brazilian Serie B",
+   "datum": "2026-11-11",
+   "kickoffUtc": "2026-11-11T22:00Z",
+   "heim": "Londrina",
+   "gast": "Náutico",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "17333",
+      "teamDisplayName": "Londrina",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "7633",
+      "teamDisplayName": "Náutico",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-12T04:23:18.809Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401874488",
    "providerCompetitionSlug": "den.1",
    "providerCompetitionName": "Danish Superliga",
@@ -18319,6 +18359,133 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-11-10T16:28:35.799Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401933769",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-11-11",
+   "kickoffUtc": "2026-11-11T18:00Z",
+   "heim": "FC Wegberg-Beeck 1920",
+   "gast": "Alemannia Aachen",
+   "torHeim": 0,
+   "torGast": 5,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "6329",
+      "teamDisplayName": "FC Wegberg-Beeck 1920",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "2997",
+      "teamDisplayName": "Alemannia Aachen",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "5"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-12T04:23:21.250Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401933838",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-11-11",
+   "kickoffUtc": "2026-11-11T19:00Z",
+   "heim": "Real Valladolid",
+   "gast": "Santa Clara",
+   "torHeim": 2,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": true,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FINAL_PEN",
+    "competitors": [
+     {
+      "teamId": "95",
+      "teamDisplayName": "Real Valladolid",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2",
+       "0",
+       "0",
+       "3"
+      ]
+     },
+     {
+      "teamId": "12215",
+      "teamDisplayName": "Santa Clara",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2",
+       "0",
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "verlaengerung": "2:2",
+   "fetchedAt": "2026-11-12T04:23:21.425Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401933839",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-11-11",
+   "kickoffUtc": "2026-11-11T17:00Z",
+   "heim": "SC Wiedenbrück 2000",
+   "gast": "Preußen Münster II",
+   "torHeim": 2,
+   "torGast": 5,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "11421",
+      "teamDisplayName": "SC Wiedenbrück 2000",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "133878",
+      "teamDisplayName": "Preußen Münster II",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "5"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-12T04:23:21.076Z"
   },
   {
    "provider": "espn",
