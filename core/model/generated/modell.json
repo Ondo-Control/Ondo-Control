@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "stand": "2026-11-13",
+ "stand": "2026-11-14",
  "kandidat": "K6",
  "parameter": {
   "startNiveau": 0.18,
@@ -1509,9 +1509,9 @@
      "spiele": 5410
     },
     "es.2": {
-     "niveau": 0.0886,
-     "heim": 0.2952,
-     "spiele": 4804
+     "niveau": 0.0864,
+     "heim": 0.2941,
+     "spiele": 4805
     }
    },
    "teams": {
@@ -1653,11 +1653,11 @@
     },
     "castellon": {
      "name": "CD Castellón",
-     "a": 0.198,
-     "d": 0.0432,
+     "a": 0.1822,
+     "d": 0.0913,
      "liga": "es.2",
-     "spiele": 102,
-     "zuletzt": "2026-11-01"
+     "spiele": 103,
+     "zuletzt": "2026-11-14"
     },
     "castillamadridreal": {
      "name": "Real Madrid Castilla",
@@ -2021,11 +2021,11 @@
     },
     "realvalladolid": {
      "name": "Real Valladolid",
-     "a": 0.1315,
-     "d": -0.1365,
+     "a": 0.0834,
+     "d": -0.1207,
      "liga": "es.2",
-     "spiele": 452,
-     "zuletzt": "2026-11-08"
+     "spiele": 453,
+     "zuletzt": "2026-11-14"
     },
     "realzaragoza": {
      "name": "Real Zaragoza",

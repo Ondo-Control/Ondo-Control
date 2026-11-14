@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "stand": "2026-11-13",
+ "stand": "2026-11-14",
  "festgelegt": "2026-11-14",
  "wahl": {
   "regel": "kleinster Log-Loss 1X2 auf den Pruefsaisons, Holdout weggelassen",
@@ -276,24 +276,24 @@
  "seitdem": {
   "hinweis": "Spiele nach dem Holdout (nur Beobachtung, kein Beschluss)",
   "alle": {
-   "spiele": 6552,
+   "spiele": 6553,
    "maerkte": {
     "m1x2": {
-     "n": 6552,
+     "n": 6553,
      "logLossModell": 0.9994,
      "logLossGrundquote": 1.063,
      "brierModell": 0.5967,
-     "brierGrundquote": 0.6425
+     "brierGrundquote": 0.6426
     },
     "tore": {
-     "n": 6552,
-     "logLossModell": 0.6851,
+     "n": 6553,
+     "logLossModell": 0.6852,
      "logLossGrundquote": 0.6904,
      "brierModell": 0.4922,
-     "brierGrundquote": 0.4973
+     "brierGrundquote": 0.4972
     },
     "btts": {
-     "n": 6552,
+     "n": 6553,
      "logLossModell": 0.6855,
      "logLossGrundquote": 0.6877,
      "brierModell": 0.4924,
@@ -302,36 +302,36 @@
    },
    "vorsprung": {
     "m1x2": {
-     "n": 6552,
-     "spieltage": 2046,
+     "n": 6553,
+     "spieltage": 2047,
      "differenz": 0.0636,
-     "unten": 0.0555,
-     "oben": 0.0719
+     "unten": 0.0557,
+     "oben": 0.072
     },
     "tore": {
-     "n": 6552,
-     "spieltage": 2046,
+     "n": 6553,
+     "spieltage": 2047,
      "differenz": 0.0052,
-     "unten": -0.0001,
-     "oben": 0.0106
+     "unten": -0.0003,
+     "oben": 0.0103
     },
     "btts": {
-     "n": 6552,
-     "spieltage": 2046,
+     "n": 6553,
+     "spieltage": 2047,
      "differenz": 0.0022,
-     "unten": -0.0016,
-     "oben": 0.0056
+     "unten": -0.0018,
+     "oben": 0.0059
     }
    },
    "wieInDerApp": {
-    "aussagen": 19656,
+    "aussagen": 19659,
     "trefferquote": 54,
     "brier": 0.2432,
     "kalibrierung": [
      {
       "von": 0,
       "bis": 50,
-      "n": 3902,
+      "n": 3903,
       "behauptet": 42.3,
       "eingetroffen": 44.1
      },
@@ -345,7 +345,7 @@
      {
       "von": 60,
       "bis": 70,
-      "n": 4259,
+      "n": 4261,
       "behauptet": 63.9,
       "eingetroffen": 60.9
      },
@@ -369,64 +369,64 @@
   "laufendeSaison": {
    "saison": "2026-27",
    "werte": {
-    "spiele": 1110,
+    "spiele": 1111,
     "maerkte": {
      "m1x2": {
-      "n": 1110,
+      "n": 1111,
       "logLossModell": 0.997,
-      "logLossGrundquote": 1.0657,
-      "brierModell": 0.5954,
-      "brierGrundquote": 0.6447
+      "logLossGrundquote": 1.066,
+      "brierModell": 0.5955,
+      "brierGrundquote": 0.6449
      },
      "tore": {
-      "n": 1110,
-      "logLossModell": 0.6713,
-      "logLossGrundquote": 0.6869,
-      "brierModell": 0.479,
-      "brierGrundquote": 0.4938
+      "n": 1111,
+      "logLossModell": 0.6715,
+      "logLossGrundquote": 0.6867,
+      "brierModell": 0.4793,
+      "brierGrundquote": 0.4937
      },
      "btts": {
-      "n": 1110,
-      "logLossModell": 0.6747,
+      "n": 1111,
+      "logLossModell": 0.675,
       "logLossGrundquote": 0.6833,
-      "brierModell": 0.4819,
+      "brierModell": 0.4821,
       "brierGrundquote": 0.4902
      }
     },
     "vorsprung": {
      "m1x2": {
-      "n": 1110,
-      "spieltage": 375,
-      "differenz": 0.0687,
-      "unten": 0.0509,
-      "oben": 0.0883
+      "n": 1111,
+      "spieltage": 376,
+      "differenz": 0.069,
+      "unten": 0.0508,
+      "oben": 0.0895
      },
      "tore": {
-      "n": 1110,
-      "spieltage": 375,
-      "differenz": 0.0156,
-      "unten": 0.0039,
+      "n": 1111,
+      "spieltage": 376,
+      "differenz": 0.0152,
+      "unten": 0.0036,
       "oben": 0.0266
      },
      "btts": {
-      "n": 1110,
-      "spieltage": 375,
-      "differenz": 0.0086,
-      "unten": 0.0002,
-      "oben": 0.0175
+      "n": 1111,
+      "spieltage": 376,
+      "differenz": 0.0083,
+      "unten": -0.0011,
+      "oben": 0.0174
      }
     },
     "wieInDerApp": {
-     "aussagen": 3330,
-     "trefferquote": 55.3,
-     "brier": 0.2384,
+     "aussagen": 3333,
+     "trefferquote": 55.2,
+     "brier": 0.2385,
      "kalibrierung": [
       {
        "von": 0,
        "bis": 50,
-       "n": 631,
+       "n": 632,
        "behauptet": 43.1,
-       "eingetroffen": 42.2
+       "eingetroffen": 42.1
       },
       {
        "von": 50,
@@ -438,9 +438,9 @@
       {
        "von": 60,
        "bis": 70,
-       "n": 791,
+       "n": 793,
        "behauptet": 64,
-       "eingetroffen": 64.6
+       "eingetroffen": 64.4
       },
       {
        "von": 70,

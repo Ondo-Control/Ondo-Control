@@ -1,17 +1,17 @@
 {
  "schema": 1,
- "heute": "2026-11-13",
+ "heute": "2026-11-14",
  "aktuelleSaison": "2026-27",
  "summen": {
   "ligen": 15,
   "saisons": 186,
-  "spiele": 68845,
+  "spiele": 68846,
   "lernbestand": 48852,
   "nachRolle": {
    "lernen": 48852,
    "pruefen": 5943,
    "holdout": 5867,
-   "spaeter": 6552,
+   "spaeter": 6553,
    "aus": 1631
   },
   "nachStatus": {
@@ -37,11 +37,11 @@
    "sco.2": 39,
    "bel.1": 45,
    "aut.1": 36,
-   "fifa.friendly": 88,
+   "fifa.friendly": 93,
    "tur.1": 54,
    "gre.1": 41,
-   "concacaf.nations.league": 85,
-   "club.friendly": 289,
+   "concacaf.nations.league": 86,
+   "club.friendly": 303,
    "ned.cup": 46,
    "esp.copa_del_rey": 70,
    "caf.nations_qual": 69,
@@ -51,10 +51,10 @@
    "uefa.europa.conf": 54,
    "ger.dfb_pokal": 16,
    "eng.fa": 40,
-   "fra.coupe_de_france": 6
+   "fra.coupe_de_france": 8
   },
   "verarbeitet": {
-   "neu": 249,
+   "neu": 250,
    "gefuellt": 420,
    "bestaetigt": 74,
    "konflikt": 0,
@@ -2396,16 +2396,16 @@
     },
     "2026-27": {
      "status": "laufend",
-     "grund": "78 von 420 Spielen der Doppelrunde",
+     "grund": "79 von 420 Spielen der Doppelrunde",
      "teams": 21,
      "soll": 420,
-     "angesetzt": 78,
-     "mitErgebnis": 78,
+     "angesetzt": 79,
+     "mitErgebnis": 79,
      "zusatz": 0,
-     "gespeichert": 78,
+     "gespeichert": 79,
      "quellen": {
       "of": 0,
-      "espn": 78,
+      "espn": 79,
       "beide": 0
      },
      "ofDatei": false,
