@@ -1,6 +1,6 @@
-# Ondo Core — Plan Stufe 1 (Fassung 3, 14.11.2026)
+# Ondo Core — Plan Stufe 1 (Fassung 4, 14.11.2026)
 
-Von Ondo am 3.11.2026 bestätigt. Fassung 3 trägt nur den Stand nach: Schritt 1 ist gebaut.
+Von Ondo am 3.11.2026 bestätigt. Fassung 4 trägt nur den Stand nach: Schritte 1 bis 4 sind gebaut.
 Status der Schritte steht im Backlog bei Punkt 94, nicht hier.
 
 ## Ziel
@@ -34,12 +34,13 @@ das Testfeld.
 ## Schritte
 1. **Daten** — gebaut: `core/data/` (Schema, Identität, Alias-Tabelle, Leser für OpenFootball
    und das ESPN-Archiv, Saisonprüfung, eingefrorene Aufteilung, täglicher Bau).
-2. **Modell** — Mannschaftsstärken (Angriff, Abwehr, Heimvorteil) aus Ergebnissen;
+2. **Modell** — gebaut (`core/model/`): Mannschaftsstärken (Angriff, Abwehr, Heimvorteil) aus Ergebnissen;
    Wahrscheinlichkeiten für 1X2, Über/Unter 2,5 und BTTS; Neulernen täglich.
-3. **Rücktest** — zeitlich getrennt (Lernen, Prüfen, einmaliger Abschlusstest); gegen die
+3. **Rücktest** — gebaut, bisher nur gegen die Grundquote der Liga: zeitlich getrennt (Lernen, Prüfen, einmaliger Abschlusstest); gegen die
    Quote ohne Wettmarge nur dort, wo zeitlich korrekte Quoten vorliegen; gegen Sonnet/Flash
    nur auf dem Zeitraum, den es von ihnen gibt.
-4. **Selbstprüfung und Beschluss** je Liga und Markt, mit Protokoll.
+4. **Selbstprüfung und Beschluss** — gebaut: je Markt ein Urteil, Bericht in
+   `core/model/generated/bericht.json`; je Liga nur Beobachtung.
 5. **Anbindung** an die App als dritte Herkunft neben Sonnet und Flash.
 
 ## Erfolgs- und Abbruchkriterium

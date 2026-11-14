@@ -672,6 +672,10 @@
 > **plausibel, aber nicht bewiesen** ist WebKit-Prozess-Suspendierung als konkrete Ursache
 > (WebKit Bug 202705). Blueprint auf 0.155 gehoben.
 
+> **Was Fassung 0.158 ändert (14.11.2026):** Reine Synchronisierung nach Arbeitsregel M für
+> den zweiten Teil von Backlog-Punkt 94 (eigenes Rechenmodell in `core/model/`). `beta.html` bleibt
+> v19.22.2. Keine neue Verfassungsregel. Blueprint auf 0.158 gehoben.
+
 > **Was Fassung 0.157 ändert (14.11.2026):** Reine Synchronisierung nach Arbeitsregel M für
 > Backlog-Punkt 94 (Ondo Core, Datenfundament in `core/data/`). `beta.html` bleibt v19.22.2 und
 > wird nicht berührt. Keine neue Verfassungsregel und keine Änderung an einer Arbeitsregel.

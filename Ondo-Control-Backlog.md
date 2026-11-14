@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 14.11.2026, Fassung 158 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 14.11.2026, Fassung 159 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -622,9 +622,9 @@ Der Foto-Import übernimmt jede Anzahl erkannter Einträge ohne Vorschau und ohn
 
 ---
 
-**94. Ondo Core, Stufe 1, Teil 1: Datenfundament** · *Ondos Ja zum Plan 3.11.2026, Auftrag 14.11.2026 · von Claude geliefert 14.11.2026* · **Status: 🔴 TEIL 1 GEBAUT 14.11.2026 — Teil 2 (eigenes Rechenmodell, Rücktest) offen, eigener Auftrag**
+**94. Ondo Core, Stufe 1: Datenfundament und eigenes Rechenmodell** · *Ondos Ja zum Plan 3.11.2026, Aufträge 14.11.2026 · von Claude geliefert 14.11.2026* · **Status: 🔴 DATEN UND MODELL GEBAUT 14.11.2026 — Quotenvergleich und Anbindung an die App offen, eigener Auftrag**
 
-Eigener Ordner `core/data/`; `beta.html` und t1–t11 unverändert. Neutrales Spielschema, Identitätsfunktionen als Nachbau mit Paritätstest gegen `beta.html`, Alias-Tabelle je Land, Leser für OpenFootball (CC0) und das ESPN-Archiv, Saisonprüfung (vollständig / laufend / unvollständig), eingefrorene Aufteilung Lernen / Prüfen / Holdout, täglicher Bau durch `core-daten.yml`. Kein Modell, keine Quoten, keine Sprachmodelle. Zahlen stehen nur in `core/data/generated/coverage.json`. Plan: `core/PLAN.md`. Test: `tests/t12_core_daten.js`. **Offen:** OpenFootball führt jüngere Saisons lückenhaft; historische Quoten fehlen. Befunde: `BACKLOG-ARCHIV.md`.
+Eigene Ordner `core/data/` und `core/model/`; `beta.html` und t1–t11 unverändert. **Daten:** geprüfter Spielbestand aus OpenFootball (CC0) und dem ESPN-Archiv, Alias-Tabelle, Saisonprüfung, eingefrorene Aufteilung Lernen / Prüfen / Holdout. **Modell:** Angriffs- und Abwehrstärke je Mannschaft, lernt nach jedem Spiel; Kandidaten und Prüfregeln vorab in `core/model/kandidaten.json`; Selbstprüfung mit Beschluss in `core/model/generated/bericht.json`. Täglicher Lauf durch `core-daten.yml`. Zahlen stehen nur in den erzeugten Dateien. Plan: `core/PLAN.md`. Tests: `tests/t12_core_daten.js`, `tests/t13_core_modell.js`. **Offen:** Quoten fehlen, Vorteil gegen den Markt nicht prüfbar, deshalb kein echtes Geld. Befunde: `BACKLOG-ARCHIV.md`.
 
 ---
 

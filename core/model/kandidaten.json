@@ -1,0 +1,23 @@
+{
+ "hinweis": "Vorab festgelegte Kandidaten und Pruefregeln des Ondo-Core-Modells (Backlog-Punkt 94, Teil 2), festgelegt am 14.11.2026, BEVOR ein Ergebnis auf den Pruef- oder Holdout-Saisons angesehen wurde. Gewaehlt wird der Kandidat mit dem kleinsten Log-Loss im Markt 1X2 ueber alle Pruefsaisons; dabei werden die Holdout-Saisons vollstaendig weggelassen (weder vorhergesagt noch gelernt). Danach wird genau dieser eine Kandidat einmal auf den Holdout-Saisons gemessen. Neue Kandidaten oder geaenderte Regeln sind eine bewusste Entscheidung mit Eintrag im Backlog - der Holdout ist dann verbraucht und braucht eine neue, noch ungesehene Saison.",
+ "festgelegt": "2026-11-14",
+ "fest": { "startNiveau": 0.18, "startHeim": 0.25, "lernrateLiga": 0.002, "stufenSprung": 0.25, "neuStart": -0.15 },
+ "kandidaten": [
+  { "name": "K1", "lernrate": 0.03, "saisonBehalt": 1.0,  "dc": 0 },
+  { "name": "K2", "lernrate": 0.03, "saisonBehalt": 0.85, "dc": 0 },
+  { "name": "K3", "lernrate": 0.05, "saisonBehalt": 1.0,  "dc": 0 },
+  { "name": "K4", "lernrate": 0.05, "saisonBehalt": 0.85, "dc": 0 },
+  { "name": "K5", "lernrate": 0.03, "saisonBehalt": 1.0,  "dc": -0.06 },
+  { "name": "K6", "lernrate": 0.03, "saisonBehalt": 0.85, "dc": -0.06 },
+  { "name": "K7", "lernrate": 0.05, "saisonBehalt": 1.0,  "dc": -0.06 },
+  { "name": "K8", "lernrate": 0.05, "saisonBehalt": 0.85, "dc": -0.06 }
+ ],
+ "pruefregeln": {
+  "haupttest": "Log-Loss im Markt 1X2 auf den Holdout-Saisons, Modell gegen Grundquote der Liga",
+  "belegt": "Die untere Grenze des 95-Prozent-Bereichs der Differenz (Grundquote minus Modell) liegt ueber 0, bei mindestens 1000 Spielen",
+  "bootstrapZiehungen": 1000,
+  "bootstrapStartwert": 20261114,
+  "mindestSpieleBelastbar": 20,
+  "gegenMarkt": "Nicht pruefbar, solange keine erlaubten historischen Quoten im Bestand sind. Ohne diesen Beleg gibt es kein echtes Geld, nur virtuelle Probeeinsaetze."
+ }
+}

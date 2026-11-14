@@ -1,0 +1,3559 @@
+{
+ "schema": 1,
+ "stand": "2026-11-13",
+ "kandidat": "K6",
+ "parameter": {
+  "startNiveau": 0.18,
+  "startHeim": 0.25,
+  "lernrateLiga": 0.002,
+  "stufenSprung": 0.25,
+  "neuStart": -0.15,
+  "lernrate": 0.03,
+  "saisonBehalt": 0.85,
+  "dc": -0.06
+ },
+ "mindestSpiele": 20,
+ "laender": {
+  "de": {
+   "ligen": {
+    "de.1": {
+     "niveau": 0.2322,
+     "heim": 0.2227,
+     "spiele": 4963
+    },
+    "de.2": {
+     "niveau": 0.2205,
+     "heim": 0.2123,
+     "spiele": 4126
+    },
+    "de.3": {
+     "niveau": 0.1756,
+     "heim": 0.1274,
+     "spiele": 2660
+    }
+   },
+   "teams": {
+    "aalenvfr": {
+     "name": "VfR Aalen",
+     "a": -0.1696,
+     "d": -0.3189,
+     "liga": "de.3",
+     "spiele": 254,
+     "zuletzt": "2019-05-18"
+    },
+    "arminiabielefeld": {
+     "name": "Arminia Bielefeld",
+     "a": 0.1057,
+     "d": -0.0731,
+     "liga": "de.2",
+     "spiele": 361,
+     "zuletzt": "2026-11-07"
+    },
+    "aueerzgebirge": {
+     "name": "Erzgebirge Aue",
+     "a": -0.311,
+     "d": -0.4905,
+     "liga": "de.2",
+     "spiele": 344,
+     "zuletzt": "2022-05-15"
+    },
+    "augsburg": {
+     "name": "FC Augsburg",
+     "a": 0.1554,
+     "d": -0.1432,
+     "liga": "de.1",
+     "spiele": 518,
+     "zuletzt": "2026-11-07"
+    },
+    "bayerleverkusen": {
+     "name": "Bayer 04 Leverkusen",
+     "a": 0.3528,
+     "d": 0.0397,
+     "liga": "de.1",
+     "spiele": 553,
+     "zuletzt": "2026-11-08"
+    },
+    "bayerniimunchen": {
+     "name": "Bayern München II",
+     "a": -0.0719,
+     "d": -0.1988,
+     "liga": "de.3",
+     "spiele": 76,
+     "zuletzt": "2021-05-22"
+    },
+    "bayernmunchen": {
+     "name": "FC Bayern München",
+     "a": 0.824,
+     "d": 0.294,
+     "liga": "de.1",
+     "spiele": 552,
+     "zuletzt": "2026-11-07"
+    },
+    "berlinunion": {
+     "name": "1. FC Union Berlin",
+     "a": -0.1648,
+     "d": -0.0943,
+     "liga": "de.1",
+     "spiele": 483,
+     "zuletzt": "2026-11-08"
+    },
+    "bochum": {
+     "name": "VfL Bochum",
+     "a": -0.0691,
+     "d": -0.0003,
+     "liga": "de.2",
+     "spiele": 459,
+     "zuletzt": "2026-11-08"
+    },
+    "borussiadortmund": {
+     "name": "Borussia Dortmund",
+     "a": 0.2507,
+     "d": 0.4276,
+     "liga": "de.1",
+     "spiele": 553,
+     "zuletzt": "2026-11-07"
+    },
+    "borussiadortmundii": {
+     "name": "Borussia Dortmund II",
+     "a": -0.2763,
+     "d": -0.0902,
+     "liga": "de.3",
+     "spiele": 38,
+     "zuletzt": "2015-05-23"
+    },
+    "borussiamonchengladbach": {
+     "name": "Borussia Mönchengladbach",
+     "a": 0.029,
+     "d": -0.2492,
+     "liga": "de.1",
+     "spiele": 548,
+     "zuletzt": "2026-11-06"
+    },
+    "braunschweigeintracht": {
+     "name": "Eintracht Braunschweig",
+     "a": -0.3076,
+     "d": -0.1408,
+     "liga": "de.2",
+     "spiele": 433,
+     "zuletzt": "2026-11-06"
+    },
+    "bremeniiwerder": {
+     "name": "Werder Bremen II",
+     "a": -0.3459,
+     "d": -0.2623,
+     "liga": "de.3",
+     "spiele": 114,
+     "zuletzt": "2018-05-12"
+    },
+    "bremenwerder": {
+     "name": "SV Werder Bremen",
+     "a": 0.0267,
+     "d": 0.022,
+     "liga": "de.1",
+     "spiele": 552,
+     "zuletzt": "2026-11-07"
+    },
+    "carljenazeiss": {
+     "name": "FC Carl Zeiss Jena",
+     "a": -0.2118,
+     "d": -0.5067,
+     "liga": "de.3",
+     "spiele": 114,
+     "zuletzt": "2020-07-04"
+    },
+    "chemnitzer": {
+     "name": "Chemnitzer FC",
+     "a": -0.0827,
+     "d": -0.1931,
+     "liga": "de.3",
+     "spiele": 190,
+     "zuletzt": "2020-07-04"
+    },
+    "cottbusenergie": {
+     "name": "Energie Cottbus",
+     "a": -0.3217,
+     "d": -0.2856,
+     "liga": "de.2",
+     "spiele": 188,
+     "zuletzt": "2026-11-06"
+    },
+    "darmstadt": {
+     "name": "SV Darmstadt 98",
+     "a": -0.0914,
+     "d": -0.1114,
+     "liga": "de.2",
+     "spiele": 389,
+     "zuletzt": "2026-11-07"
+    },
+    "dresdendynamo": {
+     "name": "Dynamo Dresden",
+     "a": -0.1803,
+     "d": -0.1041,
+     "liga": "de.2",
+     "spiele": 369,
+     "zuletzt": "2026-11-06"
+    },
+    "duisburg": {
+     "name": "MSV Duisburg",
+     "a": 0.0699,
+     "d": -0.3411,
+     "liga": "de.3",
+     "spiele": 288,
+     "zuletzt": "2021-05-22"
+    },
+    "dusseldorffortuna": {
+     "name": "Fortuna Düsseldorf",
+     "a": -0.0627,
+     "d": -0.1821,
+     "liga": "de.2",
+     "spiele": 452,
+     "zuletzt": "2025-11-02"
+    },
+    "eintrachtfrankfurt": {
+     "name": "Eintracht Frankfurt",
+     "a": 0.1818,
+     "d": -0.1769,
+     "liga": "de.1",
+     "spiele": 518,
+     "zuletzt": "2026-11-07"
+    },
+    "elversberg": {
+     "name": "SV 07 Elversberg",
+     "a": 0.129,
+     "d": -0.0636,
+     "liga": "de.1",
+     "spiele": 88,
+     "zuletzt": "2026-11-07"
+    },
+    "erfurtrotweiss": {
+     "name": "Rot-Weiß Erfurt",
+     "a": -0.5789,
+     "d": -0.6916,
+     "liga": "de.3",
+     "spiele": 152,
+     "zuletzt": "2018-05-12"
+    },
+    "fortunakoln": {
+     "name": "Fortuna Köln",
+     "a": -0.3006,
+     "d": -0.3114,
+     "liga": "de.3",
+     "spiele": 190,
+     "zuletzt": "2019-05-18"
+    },
+    "frankfurt": {
+     "name": "FSV Frankfurt",
+     "a": -0.3198,
+     "d": -0.2851,
+     "liga": "de.3",
+     "spiele": 174,
+     "zuletzt": "2017-05-20"
+    },
+    "freiburg": {
+     "name": "SC Freiburg",
+     "a": 0.2136,
+     "d": 0.1049,
+     "liga": "de.1",
+     "spiele": 551,
+     "zuletzt": "2026-11-08"
+    },
+    "furthgreutherspvgg": {
+     "name": "SpVgg Greuther Fürth",
+     "a": -0.1635,
+     "d": -0.3177,
+     "liga": "de.2",
+     "spiele": 459,
+     "zuletzt": "2026-11-06"
+    },
+    "grossaspachsonnenhof": {
+     "name": "SG Sonnenhof Großaspach",
+     "a": -0.4566,
+     "d": -0.1665,
+     "liga": "de.3",
+     "spiele": 228,
+     "zuletzt": "2020-07-04"
+    },
+    "hallescher": {
+     "name": "Hallescher FC",
+     "a": 0.054,
+     "d": -0.1464,
+     "liga": "de.3",
+     "spiele": 266,
+     "zuletzt": "2021-05-22"
+    },
+    "hamburger": {
+     "name": "Hamburger SV",
+     "a": -0.039,
+     "d": -0.1396,
+     "liga": "de.1",
+     "spiele": 549,
+     "zuletzt": "2026-11-06"
+    },
+    "hannover": {
+     "name": "Hannover 96",
+     "a": -0.0516,
+     "d": -0.0082,
+     "liga": "de.2",
+     "spiele": 527,
+     "zuletzt": "2026-11-08"
+    },
+    "hansarostock": {
+     "name": "Hansa Rostock",
+     "a": -0.4925,
+     "d": -0.1375,
+     "liga": "de.2",
+     "spiele": 368,
+     "zuletzt": "2024-05-19"
+    },
+    "heidenheim": {
+     "name": "1. FC Heidenheim 1846",
+     "a": 0.0686,
+     "d": 0.0292,
+     "liga": "de.2",
+     "spiele": 414,
+     "zuletzt": "2026-11-08"
+    },
+    "hertha": {
+     "name": "Hertha BSC",
+     "a": 0.0345,
+     "d": 0.1522,
+     "liga": "de.2",
+     "spiele": 491,
+     "zuletzt": "2026-11-07"
+    },
+    "hoffenheim": {
+     "name": "TSG 1899 Hoffenheim",
+     "a": 0.1881,
+     "d": -0.107,
+     "liga": "de.1",
+     "spiele": 552,
+     "zuletzt": "2026-11-08"
+    },
+    "holsteinkiel": {
+     "name": "Holstein Kiel",
+     "a": -0.0904,
+     "d": 0.1063,
+     "liga": "de.2",
+     "spiele": 403,
+     "zuletzt": "2026-11-07"
+    },
+    "iimainz": {
+     "name": "1. FSV Mainz 05 II",
+     "a": -0.0967,
+     "d": -0.2258,
+     "liga": "de.3",
+     "spiele": 114,
+     "zuletzt": "2017-05-20"
+    },
+    "iistuttgart": {
+     "name": "VfB Stuttgart II",
+     "a": -0.3384,
+     "d": -0.3193,
+     "liga": "de.3",
+     "spiele": 76,
+     "zuletzt": "2016-05-14"
+    },
+    "ingolstadt": {
+     "name": "FC Ingolstadt 04",
+     "a": -0.3465,
+     "d": -0.2473,
+     "liga": "de.2",
+     "spiele": 348,
+     "zuletzt": "2022-05-15"
+    },
+    "jahnregensburg": {
+     "name": "Jahn Regensburg",
+     "a": -0.5234,
+     "d": -0.3179,
+     "liga": "de.2",
+     "spiele": 348,
+     "zuletzt": "2025-05-18"
+    },
+    "kaiserslautern": {
+     "name": "1. FC Kaiserslautern",
+     "a": -0.0332,
+     "d": 0.0801,
+     "liga": "de.2",
+     "spiele": 505,
+     "zuletzt": "2026-11-07"
+    },
+    "karlsruher": {
+     "name": "Karlsruher SC",
+     "a": 0.1177,
+     "d": -0.2122,
+     "liga": "de.2",
+     "spiele": 431,
+     "zuletzt": "2026-11-08"
+    },
+    "kfcuerdingen": {
+     "name": "KFC Uerdingen 05",
+     "a": -0.2708,
+     "d": -0.1021,
+     "liga": "de.3",
+     "spiele": 114,
+     "zuletzt": "2021-05-22"
+    },
+    "kickersstuttgarter": {
+     "name": "Stuttgarter Kickers",
+     "a": -0.2621,
+     "d": -0.0732,
+     "liga": "de.3",
+     "spiele": 76,
+     "zuletzt": "2016-05-14"
+    },
+    "kickerswurzburger": {
+     "name": "Würzburger Kickers",
+     "a": -0.2071,
+     "d": -0.3711,
+     "liga": "de.2",
+     "spiele": 220,
+     "zuletzt": "2021-05-23"
+    },
+    "koln": {
+     "name": "1. FC Köln",
+     "a": -0.147,
+     "d": -0.0726,
+     "liga": "de.1",
+     "spiele": 553,
+     "zuletzt": "2026-11-08"
+    },
+    "kolnviktoria": {
+     "name": "Viktoria Köln",
+     "a": 0.0376,
+     "d": -0.1957,
+     "liga": "de.3",
+     "spiele": 76,
+     "zuletzt": "2021-05-22"
+    },
+    "leipzigrb": {
+     "name": "RB Leipzig",
+     "a": 0.5146,
+     "d": 0.0944,
+     "liga": "de.1",
+     "spiele": 416,
+     "zuletzt": "2026-11-07"
+    },
+    "lottesportfreunde": {
+     "name": "Sportfreunde Lotte",
+     "a": -0.4882,
+     "d": -0.0744,
+     "liga": "de.3",
+     "spiele": 114,
+     "zuletzt": "2019-05-18"
+    },
+    "lubeck": {
+     "name": "VfB Lübeck",
+     "a": -0.2151,
+     "d": -0.1796,
+     "liga": "de.3",
+     "spiele": 38,
+     "zuletzt": "2021-05-22"
+    },
+    "magdeburg": {
+     "name": "1. FC Magdeburg",
+     "a": 0.1189,
+     "d": -0.1251,
+     "liga": "de.2",
+     "spiele": 342,
+     "zuletzt": "2026-11-08"
+    },
+    "mainz": {
+     "name": "1. FSV Mainz 05",
+     "a": 0.1729,
+     "d": -0.0666,
+     "liga": "de.1",
+     "spiele": 551,
+     "zuletzt": "2026-11-07"
+    },
+    "mannheimwaldhof": {
+     "name": "Waldhof Mannheim",
+     "a": -0.1367,
+     "d": -0.0667,
+     "liga": "de.3",
+     "spiele": 76,
+     "zuletzt": "2021-05-22"
+    },
+    "meppen": {
+     "name": "SV Meppen",
+     "a": -0.2586,
+     "d": -0.2391,
+     "liga": "de.3",
+     "spiele": 152,
+     "zuletzt": "2021-05-22"
+    },
+    "munchen": {
+     "name": "TSV 1860 München",
+     "a": 0.2219,
+     "d": 0.2048,
+     "liga": "de.3",
+     "spiele": 284,
+     "zuletzt": "2021-05-22"
+    },
+    "munchenturkgucu": {
+     "name": "Türkgücü München",
+     "a": -0.225,
+     "d": -0.2058,
+     "liga": "de.3",
+     "spiele": 38,
+     "zuletzt": "2021-05-22"
+    },
+    "munsterpreussen": {
+     "name": "Preußen Münster",
+     "a": -0.1403,
+     "d": -0.0964,
+     "liga": "de.2",
+     "spiele": 273,
+     "zuletzt": "2025-10-31"
+    },
+    "nurnberg": {
+     "name": "1. FC Nürnberg",
+     "a": 0.0352,
+     "d": -0.0413,
+     "liga": "de.2",
+     "spiele": 526,
+     "zuletzt": "2026-11-07"
+    },
+    "osnabruck": {
+     "name": "VfL Osnabrück",
+     "a": -0.372,
+     "d": -0.1356,
+     "liga": "de.2",
+     "spiele": 298,
+     "zuletzt": "2026-11-07"
+    },
+    "paderborn": {
+     "name": "SC Paderborn 07",
+     "a": -0.205,
+     "d": -0.0397,
+     "liga": "de.1",
+     "spiele": 468,
+     "zuletzt": "2026-11-07"
+    },
+    "paulist": {
+     "name": "FC St. Pauli 1910",
+     "a": -0.159,
+     "d": 0.0578,
+     "liga": "de.2",
+     "spiele": 513,
+     "zuletzt": "2026-11-08"
+    },
+    "saarbrucken": {
+     "name": "1. FC Saarbrücken",
+     "a": 0.1754,
+     "d": -0.0823,
+     "liga": "de.3",
+     "spiele": 38,
+     "zuletzt": "2021-05-22"
+    },
+    "sandhausen": {
+     "name": "SV Sandhausen",
+     "a": -0.2914,
+     "d": -0.2621,
+     "liga": "de.2",
+     "spiele": 374,
+     "zuletzt": "2023-05-28"
+    },
+    "schalke": {
+     "name": "FC Schalke 04",
+     "a": -0.3801,
+     "d": -0.0226,
+     "liga": "de.1",
+     "spiele": 529,
+     "zuletzt": "2026-11-08"
+    },
+    "spvggunterhaching": {
+     "name": "SpVgg Unterhaching",
+     "a": -0.2425,
+     "d": -0.1761,
+     "liga": "de.3",
+     "spiele": 190,
+     "zuletzt": "2021-05-22"
+    },
+    "ssvulm": {
+     "name": "SSV Ulm 1846",
+     "a": -0.2815,
+     "d": -0.1181,
+     "liga": "de.2",
+     "spiele": 34,
+     "zuletzt": "2025-05-18"
+    },
+    "stuttgart": {
+     "name": "VfB Stuttgart",
+     "a": 0.3065,
+     "d": 0.0832,
+     "liga": "de.1",
+     "spiele": 552,
+     "zuletzt": "2026-11-07"
+    },
+    "verl": {
+     "name": "SC Verl",
+     "a": 0.104,
+     "d": -0.1409,
+     "liga": "de.3",
+     "spiele": 38,
+     "zuletzt": "2021-05-22"
+    },
+    "wehenwiesbaden": {
+     "name": "SV Wehen Wiesbaden",
+     "a": -0.3293,
+     "d": -0.1575,
+     "liga": "de.2",
+     "spiele": 296,
+     "zuletzt": "2024-05-19"
+    },
+    "wolfsburg": {
+     "name": "VfL Wolfsburg",
+     "a": 0.3503,
+     "d": 0.056,
+     "liga": "de.2",
+     "spiele": 549,
+     "zuletzt": "2026-11-07"
+    },
+    "zwickau": {
+     "name": "FSV Zwickau",
+     "a": -0.0934,
+     "d": 0.0547,
+     "liga": "de.3",
+     "spiele": 190,
+     "zuletzt": "2021-05-22"
+    }
+   }
+  },
+  "en": {
+   "ligen": {
+    "en.1": {
+     "niveau": 0.1923,
+     "heim": 0.1761,
+     "spiele": 6149
+    },
+    "en.2": {
+     "niveau": 0.1847,
+     "heim": 0.2263,
+     "spiele": 7890
+    },
+    "en.3": {
+     "niveau": 0.1724,
+     "heim": 0.1981,
+     "spiele": 5629
+    },
+    "en.4": {
+     "niveau": 0.109,
+     "heim": 0.1838,
+     "spiele": 5669
+    }
+   },
+   "teams": {
+    "accringtonstanley": {
+     "name": "Accrington Stanley",
+     "a": -0.2576,
+     "d": -0.0445,
+     "liga": "en.4",
+     "spiele": 471,
+     "zuletzt": "2025-12-29"
+    },
+    "albionbrightonhove": {
+     "name": "Brighton & Hove Albion FC",
+     "a": 0.4157,
+     "d": 0.3601,
+     "liga": "en.1",
+     "spiele": 626,
+     "zuletzt": "2026-11-08"
+    },
+    "albionbromwichwest": {
+     "name": "West Bromwich Albion FC",
+     "a": -0.0044,
+     "d": 0.1021,
+     "liga": "en.2",
+     "spiele": 675,
+     "zuletzt": "2026-11-07"
+    },
+    "albionburton": {
+     "name": "Burton Albion",
+     "a": -0.3429,
+     "d": -0.2554,
+     "liga": "en.3",
+     "spiele": 469,
+     "zuletzt": "2025-12-29"
+    },
+    "aldershottown": {
+     "name": "Aldershot Town",
+     "a": -0.3768,
+     "d": -0.0348,
+     "liga": "en.4",
+     "spiele": 138,
+     "zuletzt": "2013-04-27"
+    },
+    "alexandracrewe": {
+     "name": "Crewe Alexandra",
+     "a": -0.0333,
+     "d": 0.1222,
+     "liga": "en.4",
+     "spiele": 473,
+     "zuletzt": "2025-12-29"
+    },
+    "argyleplymouth": {
+     "name": "Plymouth Argyle",
+     "a": -0.119,
+     "d": -0.1996,
+     "liga": "en.3",
+     "spiele": 519,
+     "zuletzt": "2025-12-29"
+    },
+    "arsenal": {
+     "name": "Arsenal FC",
+     "a": 0.2528,
+     "d": 0.6339,
+     "liga": "en.1",
+     "spiele": 616,
+     "zuletzt": "2026-11-07"
+    },
+    "astonvilla": {
+     "name": "Aston Villa FC",
+     "a": 0.2645,
+     "d": 0,
+     "liga": "en.1",
+     "spiele": 546,
+     "zuletzt": "2026-11-08"
+    },
+    "athleticcharlton": {
+     "name": "Charlton Athletic FC",
+     "a": -0.3248,
+     "d": -0.1852,
+     "liga": "en.2",
+     "spiele": 517,
+     "zuletzt": "2026-11-07"
+    },
+    "athleticoldham": {
+     "name": "Oldham Athletic",
+     "a": -0.1166,
+     "d": -0.1387,
+     "liga": "en.4",
+     "spiele": 423,
+     "zuletzt": "2025-12-29"
+    },
+    "athleticwigan": {
+     "name": "Wigan Athletic",
+     "a": -0.1993,
+     "d": 0.3176,
+     "liga": "en.3",
+     "spiele": 505,
+     "zuletzt": "2025-12-29"
+    },
+    "barnet": {
+     "name": "Barnet FC",
+     "a": -0.1421,
+     "d": -0.2193,
+     "liga": "en.4",
+     "spiele": 207,
+     "zuletzt": "2025-12-29"
+    },
+    "barnsley": {
+     "name": "Barnsley FC",
+     "a": 0.0742,
+     "d": -0.1599,
+     "liga": "en.3",
+     "spiele": 526,
+     "zuletzt": "2025-12-29"
+    },
+    "barrow": {
+     "name": "Barrow AFC",
+     "a": -0.1743,
+     "d": 0.1672,
+     "liga": "en.4",
+     "spiele": 113,
+     "zuletzt": "2025-12-29"
+    },
+    "birminghamcity": {
+     "name": "Birmingham City FC",
+     "a": 0.1169,
+     "d": 0.152,
+     "liga": "en.2",
+     "spiele": 649,
+     "zuletzt": "2026-11-07"
+    },
+    "blackburnrovers": {
+     "name": "Blackburn Rovers FC",
+     "a": -0.1086,
+     "d": -0.1079,
+     "liga": "en.2",
+     "spiele": 638,
+     "zuletzt": "2026-11-07"
+    },
+    "blackpool": {
+     "name": "Blackpool FC",
+     "a": -0.1907,
+     "d": -0.0882,
+     "liga": "en.3",
+     "spiele": 556,
+     "zuletzt": "2025-12-29"
+    },
+    "boltonwanderers": {
+     "name": "Bolton Wanderers FC",
+     "a": -0.1258,
+     "d": -0.3184,
+     "liga": "en.2",
+     "spiele": 468,
+     "zuletzt": "2026-11-06"
+    },
+    "bournemouth": {
+     "name": "AFC Bournemouth",
+     "a": 0.2887,
+     "d": 0.1404,
+     "liga": "en.1",
+     "spiele": 669,
+     "zuletzt": "2026-11-08"
+    },
+    "bradfordcity": {
+     "name": "Bradford City",
+     "a": -0.0716,
+     "d": -0.0069,
+     "liga": "en.3",
+     "spiele": 470,
+     "zuletzt": "2025-12-29"
+    },
+    "brentford": {
+     "name": "Brentford FC",
+     "a": 0.2326,
+     "d": 0.1347,
+     "liga": "en.1",
+     "spiele": 610,
+     "zuletzt": "2026-11-08"
+    },
+    "bristolcity": {
+     "name": "Bristol City FC",
+     "a": -0.1922,
+     "d": -0.1967,
+     "liga": "en.2",
+     "spiele": 657,
+     "zuletzt": "2026-11-07"
+    },
+    "bristolrovers": {
+     "name": "Bristol Rovers",
+     "a": 0.0301,
+     "d": -0.0374,
+     "liga": "en.4",
+     "spiele": 425,
+     "zuletzt": "2025-12-29"
+    },
+    "bromley": {
+     "name": "Bromley FC",
+     "a": 0.0871,
+     "d": -0.0049,
+     "liga": "en.4",
+     "spiele": 68,
+     "zuletzt": "2025-12-29"
+    },
+    "burnley": {
+     "name": "Burnley FC",
+     "a": 0.0882,
+     "d": -0.2221,
+     "liga": "en.2",
+     "spiele": 677,
+     "zuletzt": "2026-11-07"
+    },
+    "bury": {
+     "name": "Bury FC",
+     "a": 0.1572,
+     "d": -0.1288,
+     "liga": "en.4",
+     "spiele": 322,
+     "zuletzt": "2019-05-04"
+    },
+    "cambridgeunited": {
+     "name": "Cambridge United",
+     "a": -0.0732,
+     "d": 0.0565,
+     "liga": "en.4",
+     "spiele": 288,
+     "zuletzt": "2025-12-29"
+    },
+    "cardiffcity": {
+     "name": "Cardiff City FC",
+     "a": 0.1533,
+     "d": -0.1773,
+     "liga": "en.2",
+     "spiele": 618,
+     "zuletzt": "2026-11-07"
+    },
+    "carlisleunited": {
+     "name": "Carlisle United",
+     "a": -0.1397,
+     "d": -0.2028,
+     "liga": "en.4",
+     "spiele": 451,
+     "zuletzt": "2025-05-03"
+    },
+    "chelsea": {
+     "name": "Chelsea FC",
+     "a": 0.2223,
+     "d": 0.0354,
+     "liga": "en.1",
+     "spiele": 616,
+     "zuletzt": "2026-11-08"
+    },
+    "cheltenhamtown": {
+     "name": "Cheltenham Town",
+     "a": -0.3109,
+     "d": -0.2722,
+     "liga": "en.4",
+     "spiele": 425,
+     "zuletzt": "2025-12-29"
+    },
+    "chesterfield": {
+     "name": "Chesterfield FC",
+     "a": 0.2788,
+     "d": -0.2027,
+     "liga": "en.4",
+     "spiele": 345,
+     "zuletzt": "2025-12-29"
+    },
+    "citycoventry": {
+     "name": "Coventry City FC",
+     "a": 0.0867,
+     "d": -0.1719,
+     "liga": "en.1",
+     "spiele": 642,
+     "zuletzt": "2026-11-06"
+    },
+    "cityexeter": {
+     "name": "Exeter City",
+     "a": -0.4122,
+     "d": -0.0684,
+     "liga": "en.3",
+     "spiele": 474,
+     "zuletzt": "2025-12-29"
+    },
+    "cityhull": {
+     "name": "Hull City AFC",
+     "a": -0.1289,
+     "d": -0.0878,
+     "liga": "en.1",
+     "spiele": 674,
+     "zuletzt": "2026-11-07"
+    },
+    "cityleicester": {
+     "name": "Leicester City FC",
+     "a": -0.1292,
+     "d": -0.1914,
+     "liga": "en.2",
+     "spiele": 654,
+     "zuletzt": "2026-05-02"
+    },
+    "citylincoln": {
+     "name": "Lincoln City FC",
+     "a": -0.3197,
+     "d": -0.2326,
+     "liga": "en.2",
+     "spiele": 255,
+     "zuletzt": "2026-11-07"
+    },
+    "citymanchester": {
+     "name": "Manchester City FC",
+     "a": 0.4106,
+     "d": 0.3281,
+     "liga": "en.1",
+     "spiele": 617,
+     "zuletzt": "2026-11-07"
+    },
+    "citynorwich": {
+     "name": "Norwich City FC",
+     "a": 0.2881,
+     "d": -0.0568,
+     "liga": "en.2",
+     "spiele": 613,
+     "zuletzt": "2026-11-07"
+    },
+    "citysalford": {
+     "name": "Salford City",
+     "a": 0.3658,
+     "d": 0.045,
+     "liga": "en.4",
+     "spiele": 152,
+     "zuletzt": "2025-12-29"
+    },
+    "citystoke": {
+     "name": "Stoke City FC",
+     "a": -0.0602,
+     "d": -0.0445,
+     "liga": "en.2",
+     "spiele": 683,
+     "zuletzt": "2026-11-07"
+    },
+    "cityswansea": {
+     "name": "Swansea City AFC",
+     "a": 0.0665,
+     "d": -0.0289,
+     "liga": "en.2",
+     "spiele": 692,
+     "zuletzt": "2026-11-07"
+    },
+    "cityyork": {
+     "name": "York City",
+     "a": -0.2186,
+     "d": -0.4331,
+     "liga": "en.4",
+     "spiele": 184,
+     "zuletzt": "2016-05-07"
+    },
+    "colchesterunited": {
+     "name": "Colchester United",
+     "a": -0.0736,
+     "d": -0.1755,
+     "liga": "en.4",
+     "spiele": 473,
+     "zuletzt": "2025-12-29"
+    },
+    "countyderby": {
+     "name": "Derby County FC",
+     "a": -0.1836,
+     "d": -0.2411,
+     "liga": "en.2",
+     "spiele": 567,
+     "zuletzt": "2026-11-06"
+    },
+    "countynewport": {
+     "name": "Newport County",
+     "a": -0.2076,
+     "d": -0.2157,
+     "liga": "en.4",
+     "spiele": 335,
+     "zuletzt": "2025-12-29"
+    },
+    "countynotts": {
+     "name": "Notts County",
+     "a": 0.3134,
+     "d": 0.1554,
+     "liga": "en.4",
+     "spiele": 391,
+     "zuletzt": "2025-12-29"
+    },
+    "countystockport": {
+     "name": "Stockport County",
+     "a": 0.0058,
+     "d": 0.2587,
+     "liga": "en.3",
+     "spiele": 115,
+     "zuletzt": "2025-12-29"
+    },
+    "crawleytown": {
+     "name": "Crawley Town",
+     "a": -0.2289,
+     "d": -0.2401,
+     "liga": "en.4",
+     "spiele": 428,
+     "zuletzt": "2025-12-29"
+    },
+    "crystalpalace": {
+     "name": "Crystal Palace FC",
+     "a": -0.0268,
+     "d": -0.2002,
+     "liga": "en.1",
+     "spiele": 636,
+     "zuletzt": "2026-11-08"
+    },
+    "dagenhamredbridge": {
+     "name": "Dagenham & Redbridge",
+     "a": -0.254,
+     "d": -0.3528,
+     "liga": "en.4",
+     "spiele": 276,
+     "zuletzt": "2016-05-07"
+    },
+    "doncasterrovers": {
+     "name": "Doncaster Rovers",
+     "a": -0.3667,
+     "d": -0.34,
+     "liga": "en.3",
+     "spiele": 471,
+     "zuletzt": "2025-12-29"
+    },
+    "donskeynesmilton": {
+     "name": "Milton Keynes Dons",
+     "a": 0.35,
+     "d": 0.0084,
+     "liga": "en.4",
+     "spiele": 471,
+     "zuletzt": "2025-12-29"
+    },
+    "endnorthpreston": {
+     "name": "Preston North End FC",
+     "a": -0.2739,
+     "d": -0.3332,
+     "liga": "en.2",
+     "spiele": 657,
+     "zuletzt": "2026-11-07"
+    },
+    "everton": {
+     "name": "Everton FC",
+     "a": 0.0215,
+     "d": 0.1889,
+     "liga": "en.1",
+     "spiele": 615,
+     "zuletzt": "2026-11-06"
+    },
+    "fleetwoodtown": {
+     "name": "Fleetwood Town",
+     "a": -0.0098,
+     "d": -0.0319,
+     "liga": "en.4",
+     "spiele": 379,
+     "zuletzt": "2025-12-29"
+    },
+    "forestgreenrovers": {
+     "name": "Forest Green Rovers",
+     "a": -0.0793,
+     "d": -0.0593,
+     "liga": "en.4",
+     "spiele": 128,
+     "zuletzt": "2021-05-08"
+    },
+    "forestnottingham": {
+     "name": "Nottingham Forest FC",
+     "a": 0.0824,
+     "d": 0.139,
+     "liga": "en.1",
+     "spiele": 621,
+     "zuletzt": "2026-11-07"
+    },
+    "fulham": {
+     "name": "Fulham FC",
+     "a": -0.0478,
+     "d": 0.1192,
+     "liga": "en.1",
+     "spiele": 571,
+     "zuletzt": "2026-11-07"
+    },
+    "gillingham": {
+     "name": "Gillingham FC",
+     "a": -0.0811,
+     "d": 0.3127,
+     "liga": "en.4",
+     "spiele": 471,
+     "zuletzt": "2025-12-29"
+    },
+    "grimsbytown": {
+     "name": "Grimsby Town",
+     "a": -0.0515,
+     "d": -0.2089,
+     "liga": "en.4",
+     "spiele": 197,
+     "zuletzt": "2025-12-26"
+    },
+    "hamunitedwest": {
+     "name": "West Ham United FC",
+     "a": 0.4533,
+     "d": 0.0235,
+     "liga": "en.2",
+     "spiele": 629,
+     "zuletzt": "2026-11-07"
+    },
+    "harrogatetown": {
+     "name": "Harrogate Town",
+     "a": -0.2519,
+     "d": -0.378,
+     "liga": "en.4",
+     "spiele": 113,
+     "zuletzt": "2025-12-29"
+    },
+    "hartlepoolunited": {
+     "name": "Hartlepool United",
+     "a": -0.2552,
+     "d": -0.2915,
+     "liga": "en.4",
+     "spiele": 276,
+     "zuletzt": "2016-05-07"
+    },
+    "herefordunited": {
+     "name": "Hereford United",
+     "a": -0.2314,
+     "d": -0.1568,
+     "liga": "en.4",
+     "spiele": 92,
+     "zuletzt": "2012-05-05"
+    },
+    "hotspurtottenham": {
+     "name": "Tottenham Hotspur FC",
+     "a": 0.0006,
+     "d": 0.051,
+     "liga": "en.1",
+     "spiele": 615,
+     "zuletzt": "2026-11-07"
+    },
+    "huddersfieldtown": {
+     "name": "Huddersfield Town",
+     "a": -0.047,
+     "d": -0.0058,
+     "liga": "en.3",
+     "spiele": 652,
+     "zuletzt": "2025-12-29"
+    },
+    "ipswichtown": {
+     "name": "Ipswich Town FC",
+     "a": 0.068,
+     "d": -0.1799,
+     "liga": "en.1",
+     "spiele": 541,
+     "zuletzt": "2026-11-08"
+    },
+    "leedsunited": {
+     "name": "Leeds United FC",
+     "a": 0.0361,
+     "d": 0.2343,
+     "liga": "en.1",
+     "spiele": 621,
+     "zuletzt": "2026-11-07"
+    },
+    "leytonorient": {
+     "name": "Leyton Orient",
+     "a": -0.0351,
+     "d": -0.3192,
+     "liga": "en.3",
+     "spiele": 427,
+     "zuletzt": "2025-12-29"
+    },
+    "liverpool": {
+     "name": "Liverpool FC",
+     "a": 0.2976,
+     "d": 0.1829,
+     "liga": "en.1",
+     "spiele": 615,
+     "zuletzt": "2026-11-08"
+    },
+    "lutontown": {
+     "name": "Luton Town",
+     "a": 0.0486,
+     "d": 0.1404,
+     "liga": "en.3",
+     "spiele": 433,
+     "zuletzt": "2025-12-29"
+    },
+    "macclesfieldtown": {
+     "name": "Macclesfield Town",
+     "a": -0.4125,
+     "d": -0.1599,
+     "liga": "en.4",
+     "spiele": 175,
+     "zuletzt": "2020-03-07"
+    },
+    "manchesterunited": {
+     "name": "Manchester United FC",
+     "a": 0.2414,
+     "d": 0.0051,
+     "liga": "en.1",
+     "spiele": 617,
+     "zuletzt": "2026-11-08"
+    },
+    "mansfieldtown": {
+     "name": "Mansfield Town",
+     "a": -0.2253,
+     "d": -0.3503,
+     "liga": "en.3",
+     "spiele": 335,
+     "zuletzt": "2025-12-29"
+    },
+    "middlesbrough": {
+     "name": "Middlesbrough FC",
+     "a": 0.1989,
+     "d": 0.0684,
+     "liga": "en.2",
+     "spiele": 697,
+     "zuletzt": "2026-11-07"
+    },
+    "millwall": {
+     "name": "Millwall FC",
+     "a": 0.0338,
+     "d": -0.1226,
+     "liga": "en.2",
+     "spiele": 657,
+     "zuletzt": "2026-11-07"
+    },
+    "morecambe": {
+     "name": "Morecambe FC",
+     "a": -0.2592,
+     "d": -0.2661,
+     "liga": "en.4",
+     "spiele": 451,
+     "zuletzt": "2025-05-03"
+    },
+    "newcastleunited": {
+     "name": "Newcastle United FC",
+     "a": 0.1162,
+     "d": 0.0001,
+     "liga": "en.1",
+     "spiele": 576,
+     "zuletzt": "2026-11-07"
+    },
+    "northamptontown": {
+     "name": "Northampton Town",
+     "a": -0.4998,
+     "d": -0.1446,
+     "liga": "en.3",
+     "spiele": 471,
+     "zuletzt": "2025-12-29"
+    },
+    "oxfordunited": {
+     "name": "Oxford United FC",
+     "a": -0.223,
+     "d": -0.1408,
+     "liga": "en.2",
+     "spiele": 490,
+     "zuletzt": "2026-05-02"
+    },
+    "parkqueensrangers": {
+     "name": "Queens Park Rangers FC",
+     "a": 0.1366,
+     "d": -0.198,
+     "liga": "en.2",
+     "spiele": 627,
+     "zuletzt": "2026-11-07"
+    },
+    "peterboroughunited": {
+     "name": "Peterborough United",
+     "a": 0.1582,
+     "d": -0.3069,
+     "liga": "en.3",
+     "spiele": 517,
+     "zuletzt": "2025-12-29"
+    },
+    "portsmouth": {
+     "name": "Portsmouth FC",
+     "a": -0.0868,
+     "d": -0.0332,
+     "liga": "en.2",
+     "spiele": 507,
+     "zuletzt": "2026-11-07"
+    },
+    "portvale": {
+     "name": "Port Vale FC",
+     "a": -0.3729,
+     "d": -0.1697,
+     "liga": "en.3",
+     "spiele": 470,
+     "zuletzt": "2025-12-29"
+    },
+    "reading": {
+     "name": "Reading FC",
+     "a": -0.1721,
+     "d": -0.0602,
+     "liga": "en.3",
+     "spiele": 567,
+     "zuletzt": "2025-12-29"
+    },
+    "rochdale": {
+     "name": "Rochdale AFC",
+     "a": -0.0193,
+     "d": -0.2418,
+     "liga": "en.3",
+     "spiele": 402,
+     "zuletzt": "2021-05-09"
+    },
+    "rotherhamunited": {
+     "name": "Rotherham United",
+     "a": -0.1913,
+     "d": 0.0454,
+     "liga": "en.3",
+     "spiele": 563,
+     "zuletzt": "2025-12-29"
+    },
+    "roverstranmere": {
+     "name": "Tranmere Rovers",
+     "a": -0.1423,
+     "d": -0.0948,
+     "liga": "en.4",
+     "spiele": 422,
+     "zuletzt": "2025-12-29"
+    },
+    "scunthorpeunited": {
+     "name": "Scunthorpe United",
+     "a": -0.4005,
+     "d": -0.2877,
+     "liga": "en.4",
+     "spiele": 405,
+     "zuletzt": "2021-05-08"
+    },
+    "sheffieldunited": {
+     "name": "Sheffield United FC",
+     "a": 0.0534,
+     "d": -0.1428,
+     "liga": "en.2",
+     "spiele": 637,
+     "zuletzt": "2026-11-07"
+    },
+    "sheffieldwednesday": {
+     "name": "Sheffield Wednesday FC",
+     "a": -0.5238,
+     "d": -0.4438,
+     "liga": "en.2",
+     "spiele": 549,
+     "zuletzt": "2026-05-02"
+    },
+    "shrewsburytown": {
+     "name": "Shrewsbury Town",
+     "a": -0.2311,
+     "d": -0.1566,
+     "liga": "en.4",
+     "spiele": 467,
+     "zuletzt": "2025-12-26"
+    },
+    "southampton": {
+     "name": "Southampton FC",
+     "a": 0.2196,
+     "d": 0.1576,
+     "liga": "en.2",
+     "spiele": 656,
+     "zuletzt": "2026-11-07"
+    },
+    "southendunited": {
+     "name": "Southend United",
+     "a": -0.4877,
+     "d": -0.0169,
+     "liga": "en.4",
+     "spiele": 403,
+     "zuletzt": "2021-05-08"
+    },
+    "stevenage": {
+     "name": "Stevenage FC",
+     "a": -0.3403,
+     "d": -0.0021,
+     "liga": "en.3",
+     "spiele": 470,
+     "zuletzt": "2025-12-29"
+    },
+    "sunderland": {
+     "name": "Sunderland AFC",
+     "a": -0.1736,
+     "d": 0.0047,
+     "liga": "en.1",
+     "spiele": 581,
+     "zuletzt": "2026-11-08"
+    },
+    "swindontown": {
+     "name": "Swindon Town",
+     "a": 0.1117,
+     "d": -0.1002,
+     "liga": "en.4",
+     "spiele": 472,
+     "zuletzt": "2025-12-29"
+    },
+    "torquayunited": {
+     "name": "Torquay United",
+     "a": -0.3193,
+     "d": -0.2177,
+     "liga": "en.4",
+     "spiele": 184,
+     "zuletzt": "2014-05-03"
+    },
+    "townyeovil": {
+     "name": "Yeovil Town",
+     "a": -0.5261,
+     "d": -0.2576,
+     "liga": "en.4",
+     "spiele": 322,
+     "zuletzt": "2019-05-04"
+    },
+    "walsall": {
+     "name": "Walsall FC",
+     "a": 0.029,
+     "d": 0.1457,
+     "liga": "en.4",
+     "spiele": 473,
+     "zuletzt": "2025-12-29"
+    },
+    "wandererswolverhampton": {
+     "name": "Wolverhampton Wanderers FC",
+     "a": 0.0617,
+     "d": 0.1306,
+     "liga": "en.2",
+     "spiele": 577,
+     "zuletzt": "2026-11-07"
+    },
+    "wandererswycombe": {
+     "name": "Wycombe Wanderers",
+     "a": -0.1159,
+     "d": 0.1383,
+     "liga": "en.3",
+     "spiele": 471,
+     "zuletzt": "2025-12-29"
+    },
+    "watford": {
+     "name": "Watford FC",
+     "a": -0.3352,
+     "d": -0.1928,
+     "liga": "en.2",
+     "spiele": 701,
+     "zuletzt": "2026-11-07"
+    },
+    "wimbledon": {
+     "name": "AFC Wimbledon",
+     "a": -0.3267,
+     "d": 0.0428,
+     "liga": "en.3",
+     "spiele": 426,
+     "zuletzt": "2025-12-29"
+    },
+    "wrexham": {
+     "name": "Wrexham AFC",
+     "a": -0.0125,
+     "d": -0.0839,
+     "liga": "en.2",
+     "spiele": 104,
+     "zuletzt": "2026-11-07"
+    }
+   }
+  },
+  "es": {
+   "ligen": {
+    "es.1": {
+     "niveau": 0.146,
+     "heim": 0.2756,
+     "spiele": 5410
+    },
+    "es.2": {
+     "niveau": 0.0886,
+     "heim": 0.2952,
+     "spiele": 4804
+    }
+   },
+   "teams": {
+    "alavesdeportivo": {
+     "name": "Deportivo Alavés",
+     "a": -0.0954,
+     "d": -0.0016,
+     "liga": "es.1",
+     "spiele": 478,
+     "zuletzt": "2026-11-06"
+    },
+    "albacete": {
+     "name": "Albacete",
+     "a": 0.0685,
+     "d": -0.3189,
+     "liga": "es.2",
+     "spiele": 310,
+     "zuletzt": "2026-11-07"
+    },
+    "alcorcon": {
+     "name": "AD Alcorcón",
+     "a": -0.2743,
+     "d": 0.0885,
+     "liga": "es.2",
+     "spiele": 378,
+     "zuletzt": "2021-05-30"
+    },
+    "almeria": {
+     "name": "UD Almería",
+     "a": 0.296,
+     "d": 0.0137,
+     "liga": "es.2",
+     "spiele": 506,
+     "zuletzt": "2026-11-08"
+    },
+    "andorra": {
+     "name": "FC Andorra",
+     "a": -0.0611,
+     "d": -0.2301,
+     "liga": "es.2",
+     "spiele": 17,
+     "zuletzt": "2026-11-02"
+    },
+    "athletic": {
+     "name": "Athletic Club",
+     "a": -0.0403,
+     "d": 0.1188,
+     "liga": "es.1",
+     "spiele": 541,
+     "zuletzt": "2026-11-07"
+    },
+    "athleticb": {
+     "name": "Athletic Club B",
+     "a": -0.3113,
+     "d": -0.3298,
+     "liga": "es.2",
+     "spiele": 42,
+     "zuletzt": "2016-06-04"
+    },
+    "atleticodemadrid": {
+     "name": "Club Atlético de Madrid",
+     "a": 0.2333,
+     "d": 0.288,
+     "liga": "es.1",
+     "spiele": 542,
+     "zuletzt": "2026-11-08"
+    },
+    "atleticosevilla": {
+     "name": "Sevilla Atlético",
+     "a": -0.4141,
+     "d": -0.2619,
+     "liga": "es.2",
+     "spiele": 84,
+     "zuletzt": "2018-06-01"
+    },
+    "balompiebetisreal": {
+     "name": "Real Betis Balompié",
+     "a": 0.2038,
+     "d": 0.097,
+     "liga": "es.1",
+     "spiele": 545,
+     "zuletzt": "2026-11-08"
+    },
+    "barcelona": {
+     "name": "FC Barcelona",
+     "a": 0.8901,
+     "d": 0.2764,
+     "liga": "es.1",
+     "spiele": 543,
+     "zuletzt": "2026-11-08"
+    },
+    "barcelonadeespanyol": {
+     "name": "RCD Espanyol de Barcelona",
+     "a": -0.173,
+     "d": 0.0316,
+     "liga": "es.1",
+     "spiele": 506,
+     "zuletzt": "2026-11-07"
+    },
+    "bbarcelona": {
+     "name": "FC Barcelona B",
+     "a": -0.168,
+     "d": -0.2493,
+     "liga": "es.2",
+     "spiele": 168,
+     "zuletzt": "2018-06-02"
+    },
+    "brealsociedad": {
+     "name": "Real Sociedad B",
+     "a": -0.1694,
+     "d": -0.1782,
+     "liga": "es.2",
+     "spiele": 18,
+     "zuletzt": "2026-11-09"
+    },
+    "burgos": {
+     "name": "Burgos CF",
+     "a": -0.046,
+     "d": -0.0098,
+     "liga": "es.2",
+     "spiele": 59,
+     "zuletzt": "2026-11-13"
+    },
+    "cadiz": {
+     "name": "Cádiz CF",
+     "a": -0.0154,
+     "d": -0.0135,
+     "liga": "es.2",
+     "spiele": 378,
+     "zuletzt": "2026-11-07"
+    },
+    "cartagena": {
+     "name": "FC Cartagena",
+     "a": -0.3336,
+     "d": -0.4309,
+     "liga": "es.2",
+     "spiele": 83,
+     "zuletzt": "2025-05-25"
+    },
+    "castellon": {
+     "name": "CD Castellón",
+     "a": 0.198,
+     "d": 0.0432,
+     "liga": "es.2",
+     "spiele": 102,
+     "zuletzt": "2026-11-01"
+    },
+    "castillamadridreal": {
+     "name": "Real Madrid Castilla",
+     "a": -0.0744,
+     "d": -0.1435,
+     "liga": "es.2",
+     "spiele": 84,
+     "zuletzt": "2014-06-07"
+    },
+    "celtadevigo": {
+     "name": "RC Celta de Vigo",
+     "a": -0.0883,
+     "d": 0.0941,
+     "liga": "es.1",
+     "spiele": 539,
+     "zuletzt": "2026-11-08"
+    },
+    "cesabadell": {
+     "name": "CE Sabadell",
+     "a": -0.225,
+     "d": -0.0066,
+     "liga": "es.2",
+     "spiele": 175,
+     "zuletzt": "2026-11-09"
+    },
+    "ceuta": {
+     "name": "AD Ceuta FC",
+     "a": -0.208,
+     "d": -0.2216,
+     "liga": "es.2",
+     "spiele": 18,
+     "zuletzt": "2026-11-07"
+    },
+    "cordoba": {
+     "name": "Córdoba CF",
+     "a": 0.1162,
+     "d": -0.0774,
+     "liga": "es.2",
+     "spiele": 349,
+     "zuletzt": "2026-11-07"
+    },
+    "corunadeportivola": {
+     "name": "RC Deportivo La Coruña",
+     "a": -0.1186,
+     "d": -0.0428,
+     "liga": "es.1",
+     "spiele": 380,
+     "zuletzt": "2026-11-07"
+    },
+    "culturalleonesa": {
+     "name": "Cultural Leonesa",
+     "a": 0.014,
+     "d": -0.2435,
+     "liga": "es.2",
+     "spiele": 52,
+     "zuletzt": "2025-11-01"
+    },
+    "degimnastictarragona": {
+     "name": "Gimnàstic de Tarragona",
+     "a": -0.3892,
+     "d": -0.2579,
+     "liga": "es.2",
+     "spiele": 168,
+     "zuletzt": "2019-06-09"
+    },
+    "demadridrayovallecano": {
+     "name": "Rayo Vallecano de Madrid",
+     "a": -0.056,
+     "d": -0.0047,
+     "liga": "es.1",
+     "spiele": 555,
+     "zuletzt": "2026-11-08"
+    },
+    "deportiureus": {
+     "name": "CF Reus Deportiu",
+     "a": -0.9005,
+     "d": 0.0353,
+     "liga": "es.2",
+     "spiele": 126,
+     "zuletzt": "2019-06-09"
+    },
+    "deracingrealsantander": {
+     "name": "Real Racing Club de Santander",
+     "a": -0.0025,
+     "d": -0.421,
+     "liga": "es.1",
+     "spiele": 191,
+     "zuletzt": "2026-11-07"
+    },
+    "derealsociedad": {
+     "name": "Real Sociedad de Fútbol",
+     "a": 0.2167,
+     "d": -0.1775,
+     "liga": "es.1",
+     "spiele": 542,
+     "zuletzt": "2026-11-08"
+    },
+    "eibarsd": {
+     "name": "SD Eibar",
+     "a": -0.0356,
+     "d": 0.0038,
+     "liga": "es.2",
+     "spiele": 366,
+     "zuletzt": "2026-10-31"
+    },
+    "elche": {
+     "name": "Elche CF",
+     "a": -0.0723,
+     "d": -0.0457,
+     "liga": "es.1",
+     "spiele": 489,
+     "zuletzt": "2026-11-08"
+    },
+    "eldense": {
+     "name": "CD Eldense",
+     "a": -0.1822,
+     "d": -0.2314,
+     "liga": "es.2",
+     "spiele": 49,
+     "zuletzt": "2026-11-09"
+    },
+    "extremadura": {
+     "name": "Extremadura UD",
+     "a": -0.1634,
+     "d": -0.2345,
+     "liga": "es.2",
+     "spiele": 84,
+     "zuletzt": "2020-07-20"
+    },
+    "ferrolracing": {
+     "name": "Racing Ferrol",
+     "a": -0.6365,
+     "d": -0.262,
+     "liga": "es.2",
+     "spiele": 42,
+     "zuletzt": "2025-05-31"
+    },
+    "fuenlabrada": {
+     "name": "CF Fuenlabrada",
+     "a": -0.1115,
+     "d": -0.022,
+     "liga": "es.2",
+     "spiele": 84,
+     "zuletzt": "2021-05-30"
+    },
+    "getafe": {
+     "name": "Getafe CF",
+     "a": -0.396,
+     "d": 0.1501,
+     "liga": "es.1",
+     "spiele": 545,
+     "zuletzt": "2026-11-08"
+    },
+    "gijonsporting": {
+     "name": "Sporting Gijón",
+     "a": -0.0305,
+     "d": -0.103,
+     "liga": "es.2",
+     "spiele": 430,
+     "zuletzt": "2026-11-08"
+    },
+    "girona": {
+     "name": "Girona FC",
+     "a": -0.0243,
+     "d": 0.3366,
+     "liga": "es.2",
+     "spiele": 527,
+     "zuletzt": "2026-11-08"
+    },
+    "granada": {
+     "name": "Granada CF",
+     "a": 0.1813,
+     "d": -0.1281,
+     "liga": "es.2",
+     "spiele": 483,
+     "zuletzt": "2026-11-01"
+    },
+    "guadalajara": {
+     "name": "CD Guadalajara",
+     "a": -0.3021,
+     "d": -0.0351,
+     "liga": "es.2",
+     "spiele": 42,
+     "zuletzt": "2013-06-08"
+    },
+    "hercules": {
+     "name": "Hércules CF",
+     "a": -0.2969,
+     "d": -0.2152,
+     "liga": "es.2",
+     "spiele": 84,
+     "zuletzt": "2014-06-07"
+    },
+    "huelvarecreativo": {
+     "name": "Recreativo Huelva",
+     "a": -0.4461,
+     "d": -0.2286,
+     "liga": "es.2",
+     "spiele": 126,
+     "zuletzt": "2015-06-07"
+    },
+    "huescasd": {
+     "name": "SD Huesca",
+     "a": -0.1194,
+     "d": -0.0502,
+     "liga": "es.2",
+     "spiele": 338,
+     "zuletzt": "2025-11-01"
+    },
+    "jaenreal": {
+     "name": "Real Jaén",
+     "a": -0.3477,
+     "d": -0.0335,
+     "liga": "es.2",
+     "spiele": 42,
+     "zuletzt": "2014-06-07"
+    },
+    "laspalmas": {
+     "name": "UD Las Palmas",
+     "a": 0.0136,
+     "d": -0.0174,
+     "liga": "es.2",
+     "spiele": 458,
+     "zuletzt": "2026-11-09"
+    },
+    "leganes": {
+     "name": "CD Leganés",
+     "a": -0.0455,
+     "d": -0.1421,
+     "liga": "es.2",
+     "spiele": 333,
+     "zuletzt": "2026-11-13"
+    },
+    "levante": {
+     "name": "Levante UD",
+     "a": 0.0895,
+     "d": -0.1648,
+     "liga": "es.1",
+     "spiele": 471,
+     "zuletzt": "2026-11-08"
+    },
+    "llagosteraue": {
+     "name": "UE Llagostera",
+     "a": -0.2003,
+     "d": -0.0434,
+     "liga": "es.2",
+     "spiele": 84,
+     "zuletzt": "2016-06-04"
+    },
+    "logrones": {
+     "name": "UD Logroñés",
+     "a": -0.4513,
+     "d": -0.1714,
+     "liga": "es.2",
+     "spiele": 42,
+     "zuletzt": "2021-05-30"
+    },
+    "lorca": {
+     "name": "Lorca FC",
+     "a": -0.329,
+     "d": -0.4016,
+     "liga": "es.2",
+     "spiele": 42,
+     "zuletzt": "2018-06-01"
+    },
+    "lugo": {
+     "name": "CD Lugo",
+     "a": -0.2392,
+     "d": -0.204,
+     "liga": "es.2",
+     "spiele": 378,
+     "zuletzt": "2021-05-30"
+    },
+    "madridreal": {
+     "name": "Real Madrid CF",
+     "a": 0.4949,
+     "d": 0.4136,
+     "liga": "es.1",
+     "spiele": 542,
+     "zuletzt": "2026-11-07"
+    },
+    "majadahondarayo": {
+     "name": "Rayo Majadahonda",
+     "a": -0.0896,
+     "d": -0.3358,
+     "liga": "es.2",
+     "spiele": 42,
+     "zuletzt": "2019-06-09"
+    },
+    "malaga": {
+     "name": "Málaga CF",
+     "a": -0.4294,
+     "d": -0.2649,
+     "liga": "es.1",
+     "spiele": 418,
+     "zuletzt": "2026-11-07"
+    },
+    "mallorca": {
+     "name": "RCD Mallorca",
+     "a": 0.1092,
+     "d": 0.2754,
+     "liga": "es.2",
+     "spiele": 523,
+     "zuletzt": "2026-11-02"
+    },
+    "mirandes": {
+     "name": "CD Mirandés",
+     "a": -0.0679,
+     "d": -0.113,
+     "liga": "es.2",
+     "spiele": 346,
+     "zuletzt": "2025-11-01"
+    },
+    "murciareal": {
+     "name": "Real Murcia",
+     "a": -0.1426,
+     "d": 0.0672,
+     "liga": "es.2",
+     "spiele": 84,
+     "zuletzt": "2014-06-07"
+    },
+    "murciaucam": {
+     "name": "UCAM Murcia CF",
+     "a": -0.2691,
+     "d": -0.0568,
+     "liga": "es.2",
+     "spiele": 42,
+     "zuletzt": "2017-06-10"
+    },
+    "numancia": {
+     "name": "CD Numancia",
+     "a": -0.1868,
+     "d": -0.1875,
+     "liga": "es.2",
+     "spiele": 336,
+     "zuletzt": "2020-07-20"
+    },
+    "osasuna": {
+     "name": "CA Osasuna",
+     "a": -0.11,
+     "d": -0.187,
+     "liga": "es.1",
+     "spiele": 556,
+     "zuletzt": "2026-11-07"
+    },
+    "oviedoreal": {
+     "name": "Real Oviedo",
+     "a": 0.0453,
+     "d": -0.0531,
+     "liga": "es.2",
+     "spiele": 334,
+     "zuletzt": "2026-11-07"
+    },
+    "ponferradinasd": {
+     "name": "SD Ponferradina",
+     "a": -0.1467,
+     "d": -0.1439,
+     "liga": "es.2",
+     "spiele": 252,
+     "zuletzt": "2021-05-30"
+    },
+    "realvalladolid": {
+     "name": "Real Valladolid",
+     "a": 0.1315,
+     "d": -0.1365,
+     "liga": "es.2",
+     "spiele": 452,
+     "zuletzt": "2026-11-08"
+    },
+    "realzaragoza": {
+     "name": "Real Zaragoza",
+     "a": -0.3007,
+     "d": -0.3214,
+     "liga": "es.2",
+     "spiele": 427,
+     "zuletzt": "2025-11-02"
+    },
+    "sevilla": {
+     "name": "Sevilla FC",
+     "a": -0.0593,
+     "d": -0.0535,
+     "liga": "es.1",
+     "spiele": 543,
+     "zuletzt": "2026-11-06"
+    },
+    "tenerife": {
+     "name": "CD Tenerife",
+     "a": -0.2734,
+     "d": -0.1368,
+     "liga": "es.2",
+     "spiele": 383,
+     "zuletzt": "2026-11-02"
+    },
+    "valencia": {
+     "name": "Valencia CF",
+     "a": -0.1633,
+     "d": -0.0414,
+     "liga": "es.1",
+     "spiele": 541,
+     "zuletzt": "2026-11-07"
+    },
+    "villarreal": {
+     "name": "Villarreal CF",
+     "a": 0.1594,
+     "d": 0.0949,
+     "liga": "es.1",
+     "spiele": 547,
+     "zuletzt": "2026-11-08"
+    },
+    "xerez": {
+     "name": "Xerez CD",
+     "a": -0.4105,
+     "d": -0.4022,
+     "liga": "es.2",
+     "spiele": 42,
+     "zuletzt": "2013-06-08"
+    }
+   }
+  },
+  "fr": {
+   "ligen": {
+    "fr.1": {
+     "niveau": 0.1998,
+     "heim": 0.1901,
+     "spiele": 4299
+    },
+    "fr.2": {
+     "niveau": 0.182,
+     "heim": 0.2181,
+     "spiele": 3027
+    }
+   },
+   "teams": {
+    "afrodez": {
+     "name": "Rodez AF",
+     "a": -0.1258,
+     "d": -0.1935,
+     "liga": "fr.2",
+     "spiele": 118,
+     "zuletzt": "2026-11-07"
+    },
+    "ajaccio": {
+     "name": "AC Ajaccio",
+     "a": -0.39,
+     "d": -0.0602,
+     "liga": "fr.2",
+     "spiele": 328,
+     "zuletzt": "2025-05-10"
+    },
+    "ajacciogazelec": {
+     "name": "Gazélec FC Ajaccio",
+     "a": -0.4498,
+     "d": -0.2719,
+     "liga": "fr.2",
+     "spiele": 190,
+     "zuletzt": "2019-05-17"
+    },
+    "alsacestrasbourg": {
+     "name": "RC Strasbourg Alsace",
+     "a": 0.3112,
+     "d": -0.1485,
+     "liga": "fr.1",
+     "spiele": 364,
+     "zuletzt": "2026-11-06"
+    },
+    "amiens": {
+     "name": "Amiens SC",
+     "a": -0.1297,
+     "d": -0.2316,
+     "liga": "fr.2",
+     "spiele": 226,
+     "zuletzt": "2025-11-01"
+    },
+    "angerssco": {
+     "name": "Angers SCO",
+     "a": -0.3101,
+     "d": -0.1707,
+     "liga": "fr.1",
+     "spiele": 407,
+     "zuletzt": "2026-11-08"
+    },
+    "annecy": {
+     "name": "FC Annecy",
+     "a": -0.1447,
+     "d": -0.13,
+     "liga": "fr.2",
+     "spiele": 52,
+     "zuletzt": "2026-11-06"
+    },
+    "arlesavignon": {
+     "name": "AC Arles-Avignon",
+     "a": -0.3923,
+     "d": -0.3133,
+     "liga": "fr.2",
+     "spiele": 38,
+     "zuletzt": "2015-05-22"
+    },
+    "auxerre": {
+     "name": "AJ Auxerre",
+     "a": -0.0334,
+     "d": -0.1798,
+     "liga": "fr.1",
+     "spiele": 367,
+     "zuletzt": "2026-11-07"
+    },
+    "bastia": {
+     "name": "SC Bastia",
+     "a": -0.2863,
+     "d": -0.0362,
+     "liga": "fr.2",
+     "spiele": 157,
+     "zuletzt": "2025-10-31"
+    },
+    "beziers": {
+     "name": "AS Béziers",
+     "a": -0.2918,
+     "d": -0.1853,
+     "liga": "fr.2",
+     "spiele": 38,
+     "zuletzt": "2019-05-17"
+    },
+    "bordeauxgirondins": {
+     "name": "Girondins Bordeaux",
+     "a": 0.0387,
+     "d": -0.5491,
+     "liga": "fr.1",
+     "spiele": 294,
+     "zuletzt": "2022-05-21"
+    },
+    "boulogne": {
+     "name": "US Boulogne",
+     "a": -0.1717,
+     "d": -0.0679,
+     "liga": "fr.2",
+     "spiele": 19,
+     "zuletzt": "2026-11-06"
+    },
+    "bourgperonnas": {
+     "name": "FC Bourg-Péronnas",
+     "a": -0.0912,
+     "d": -0.7088,
+     "liga": "fr.2",
+     "spiele": 114,
+     "zuletzt": "2018-05-11"
+    },
+    "brestoisstade": {
+     "name": "Stade Brestois 29",
+     "a": 0.1293,
+     "d": 0.0055,
+     "liga": "fr.1",
+     "spiele": 442,
+     "zuletzt": "2026-11-08"
+    },
+    "caensm": {
+     "name": "SM Caen",
+     "a": -0.3706,
+     "d": -0.3591,
+     "liga": "fr.2",
+     "spiele": 290,
+     "zuletzt": "2025-05-10"
+    },
+    "chambly": {
+     "name": "FC Chambly",
+     "a": -0.1676,
+     "d": -0.3388,
+     "liga": "fr.2",
+     "spiele": 66,
+     "zuletzt": "2021-05-15"
+    },
+    "chamoisniortais": {
+     "name": "Chamois Niortais",
+     "a": -0.3849,
+     "d": -0.3105,
+     "liga": "fr.2",
+     "spiele": 256,
+     "zuletzt": "2021-05-15"
+    },
+    "chateaurouxlb": {
+     "name": "LB Châteauroux",
+     "a": -0.3701,
+     "d": -0.2599,
+     "liga": "fr.2",
+     "spiele": 180,
+     "zuletzt": "2021-05-15"
+    },
+    "clermontfoot": {
+     "name": "Clermont Foot 63",
+     "a": -0.2369,
+     "d": -0.1288,
+     "liga": "fr.2",
+     "spiele": 417,
+     "zuletzt": "2026-11-07"
+    },
+    "creteillusitanos": {
+     "name": "US Créteil-Lusitanos",
+     "a": -0.1982,
+     "d": -0.4944,
+     "liga": "fr.2",
+     "spiele": 76,
+     "zuletzt": "2016-05-13"
+    },
+    "delensracing": {
+     "name": "Racing Club de Lens",
+     "a": 0.259,
+     "d": 0.1609,
+     "liga": "fr.1",
+     "spiele": 443,
+     "zuletzt": "2026-11-08"
+    },
+    "demarseilleolympique": {
+     "name": "Olympique de Marseille",
+     "a": 0.3384,
+     "d": 0.0673,
+     "liga": "fr.1",
+     "spiele": 444,
+     "zuletzt": "2026-11-08"
+    },
+    "dereimsstade": {
+     "name": "Stade de Reims",
+     "a": 0.1174,
+     "d": 0.0572,
+     "liga": "fr.2",
+     "spiele": 418,
+     "zuletzt": "2026-11-06"
+    },
+    "dijonfco": {
+     "name": "Dijon FCO",
+     "a": -0.0519,
+     "d": -0.1795,
+     "liga": "fr.2",
+     "spiele": 262,
+     "zuletzt": "2026-11-06"
+    },
+    "dunkerqueusl": {
+     "name": "USL Dunkerque",
+     "a": 0.0148,
+     "d": 0.0291,
+     "liga": "fr.2",
+     "spiele": 90,
+     "zuletzt": "2026-11-06"
+    },
+    "eaguingamp": {
+     "name": "EA Guingamp",
+     "a": 0.0238,
+     "d": -0.1658,
+     "liga": "fr.2",
+     "spiele": 308,
+     "zuletzt": "2026-11-06"
+    },
+    "estroyes": {
+     "name": "ES Troyes AC",
+     "a": -0.2299,
+     "d": -0.101,
+     "liga": "fr.1",
+     "spiele": 386,
+     "zuletzt": "2026-11-07"
+    },
+    "etiennesaint": {
+     "name": "AS Saint-Étienne",
+     "a": 0.1521,
+     "d": -0.0213,
+     "liga": "fr.2",
+     "spiele": 347,
+     "zuletzt": "2026-11-07"
+    },
+    "eviangaillardthonon": {
+     "name": "Évian Thonon Gaillard",
+     "a": -0.1898,
+     "d": -0.0216,
+     "liga": "fr.2",
+     "spiele": 76,
+     "zuletzt": "2016-05-13"
+    },
+    "footgrenoble": {
+     "name": "Grenoble Foot 38",
+     "a": -0.1204,
+     "d": -0.1981,
+     "liga": "fr.2",
+     "spiele": 155,
+     "zuletzt": "2026-11-06"
+    },
+    "germainparissaint": {
+     "name": "Paris Saint-Germain FC",
+     "a": 0.4288,
+     "d": 0.3922,
+     "liga": "fr.1",
+     "spiele": 443,
+     "zuletzt": "2026-11-07"
+    },
+    "havrele": {
+     "name": "Le Havre AC",
+     "a": -0.1315,
+     "d": -0.2291,
+     "liga": "fr.1",
+     "spiele": 362,
+     "zuletzt": "2026-11-08"
+    },
+    "hscmontpellier": {
+     "name": "Montpellier HSC",
+     "a": 0.0063,
+     "d": 0.0955,
+     "liga": "fr.2",
+     "spiele": 419,
+     "zuletzt": "2026-11-06"
+    },
+    "lavalloisstade": {
+     "name": "Stade Lavallois",
+     "a": -0.2602,
+     "d": -0.1091,
+     "liga": "fr.2",
+     "spiele": 164,
+     "zuletzt": "2026-11-07"
+    },
+    "lemans": {
+     "name": "Le Mans FC",
+     "a": -0.2756,
+     "d": -0.2473,
+     "liga": "fr.1",
+     "spiele": 51,
+     "zuletzt": "2026-11-08"
+    },
+    "lilleosc": {
+     "name": "Lille OSC",
+     "a": 0.0692,
+     "d": 0.4007,
+     "liga": "fr.1",
+     "spiele": 442,
+     "zuletzt": "2026-11-08"
+    },
+    "lorient": {
+     "name": "FC Lorient",
+     "a": -0.0429,
+     "d": 0.1498,
+     "liga": "fr.1",
+     "spiele": 442,
+     "zuletzt": "2026-11-08"
+    },
+    "lorrainenancy": {
+     "name": "AS Nancy Lorraine",
+     "a": 0.0341,
+     "d": -0.0268,
+     "liga": "fr.2",
+     "spiele": 274,
+     "zuletzt": "2026-11-06"
+    },
+    "lyonnaisolympique": {
+     "name": "Olympique Lyonnais",
+     "a": 0.2147,
+     "d": 0.132,
+     "liga": "fr.1",
+     "spiele": 439,
+     "zuletzt": "2026-11-08"
+    },
+    "martigues": {
+     "name": "FC Martigues",
+     "a": -0.3022,
+     "d": -0.2264,
+     "liga": "fr.2",
+     "spiele": 34,
+     "zuletzt": "2025-05-10"
+    },
+    "metz": {
+     "name": "FC Metz",
+     "a": 0.2233,
+     "d": -0.3376,
+     "liga": "fr.2",
+     "spiele": 397,
+     "zuletzt": "2026-11-06"
+    },
+    "monaco": {
+     "name": "AS Monaco FC",
+     "a": 0.1954,
+     "d": 0.065,
+     "liga": "fr.1",
+     "spiele": 442,
+     "zuletzt": "2026-11-08"
+    },
+    "nantes": {
+     "name": "FC Nantes",
+     "a": -0.0348,
+     "d": 0.2062,
+     "liga": "fr.2",
+     "spiele": 436,
+     "zuletzt": "2026-11-07"
+    },
+    "nice": {
+     "name": "OGC Nice",
+     "a": 0.0829,
+     "d": -0.0265,
+     "liga": "fr.1",
+     "spiele": 440,
+     "zuletzt": "2026-11-08"
+    },
+    "nimesolympique": {
+     "name": "Nîmes Olympique",
+     "a": -0.0936,
+     "d": -0.2652,
+     "liga": "fr.1",
+     "spiele": 256,
+     "zuletzt": "2021-05-23"
+    },
+    "orleans": {
+     "name": "US Orléans",
+     "a": -0.2962,
+     "d": -0.3318,
+     "liga": "fr.2",
+     "spiele": 180,
+     "zuletzt": "2020-03-09"
+    },
+    "paris": {
+     "name": "Paris FC",
+     "a": 0.232,
+     "d": 0.0993,
+     "liga": "fr.1",
+     "spiele": 252,
+     "zuletzt": "2026-11-07"
+    },
+    "pau": {
+     "name": "Pau FC",
+     "a": -0.0058,
+     "d": -0.1464,
+     "liga": "fr.2",
+     "spiele": 91,
+     "zuletzt": "2026-11-07"
+    },
+    "quevillyrouen": {
+     "name": "US Quevilly-Rouen",
+     "a": -0.1434,
+     "d": -0.3298,
+     "liga": "fr.2",
+     "spiele": 38,
+     "zuletzt": "2018-05-11"
+    },
+    "redstar": {
+     "name": "Red Star FC",
+     "a": -0.1373,
+     "d": -0.0712,
+     "liga": "fr.2",
+     "spiele": 167,
+     "zuletzt": "2026-11-06"
+    },
+    "rennaisstade": {
+     "name": "Stade Rennais FC 1901",
+     "a": 0.3709,
+     "d": -0.1874,
+     "liga": "fr.1",
+     "spiele": 442,
+     "zuletzt": "2026-11-08"
+    },
+    "sochaux": {
+     "name": "FC Sochaux",
+     "a": -0.2338,
+     "d": -0.0394,
+     "liga": "fr.2",
+     "spiele": 262,
+     "zuletzt": "2026-11-06"
+    },
+    "toulouse": {
+     "name": "Toulouse FC",
+     "a": 0.0908,
+     "d": 0.0684,
+     "liga": "fr.1",
+     "spiele": 403,
+     "zuletzt": "2026-11-06"
+    },
+    "tours": {
+     "name": "Tours FC",
+     "a": -0.2478,
+     "d": -0.3769,
+     "liga": "fr.2",
+     "spiele": 152,
+     "zuletzt": "2018-05-11"
+    },
+    "valenciennes": {
+     "name": "Valenciennes FC",
+     "a": -0.0226,
+     "d": -0.3987,
+     "liga": "fr.2",
+     "spiele": 256,
+     "zuletzt": "2021-05-15"
+    }
+   }
+  },
+  "it": {
+   "ligen": {
+    "it.1": {
+     "niveau": 0.218,
+     "heim": 0.1261,
+     "spiele": 5004
+    },
+    "it.2": {
+     "niveau": 0.1226,
+     "heim": 0.2354,
+     "spiele": 4221
+    }
+   },
+   "teams": {
+    "acffiorentina": {
+     "name": "ACF Fiorentina",
+     "a": 0.122,
+     "d": -0.1503,
+     "liga": "it.1",
+     "spiele": 499,
+     "zuletzt": "2026-11-08"
+    },
+    "ascoli": {
+     "name": "Ascoli Calcio",
+     "a": -0.0327,
+     "d": 0.0044,
+     "liga": "it.2",
+     "spiele": 246,
+     "zuletzt": "2026-11-06"
+    },
+    "atalanta": {
+     "name": "Atalanta BC",
+     "a": 0.1447,
+     "d": 0.0101,
+     "liga": "it.1",
+     "spiele": 501,
+     "zuletzt": "2026-11-08"
+    },
+    "avellino": {
+     "name": "US Avellino",
+     "a": -0.1256,
+     "d": -0.1945,
+     "liga": "it.2",
+     "spiele": 249,
+     "zuletzt": "2026-11-07"
+    },
+    "bari": {
+     "name": "SSC Bari",
+     "a": -0.2345,
+     "d": -0.268,
+     "liga": "it.2",
+     "spiele": 281,
+     "zuletzt": "2026-03-17"
+    },
+    "benevento": {
+     "name": "Benevento Calcio",
+     "a": -0.0799,
+     "d": 0.0186,
+     "liga": "it.2",
+     "spiele": 205,
+     "zuletzt": "2026-11-07"
+    },
+    "bologna": {
+     "name": "Bologna FC 1909",
+     "a": 0.1035,
+     "d": 0.0727,
+     "liga": "it.1",
+     "spiele": 510,
+     "zuletzt": "2026-11-07"
+    },
+    "brescia": {
+     "name": "Brescia Calcio",
+     "a": -0.1429,
+     "d": -0.0936,
+     "liga": "it.2",
+     "spiele": 361,
+     "zuletzt": "2025-05-13"
+    },
+    "cagliari": {
+     "name": "Cagliari Calcio",
+     "a": -0.1356,
+     "d": -0.024,
+     "liga": "it.1",
+     "spiele": 467,
+     "zuletzt": "2026-11-07"
+    },
+    "carpi": {
+     "name": "Carpi FC",
+     "a": -0.2905,
+     "d": -0.4137,
+     "liga": "it.2",
+     "spiele": 247,
+     "zuletzt": "2019-05-11"
+    },
+    "carrarese": {
+     "name": "Carrarese Calcio",
+     "a": -0.1338,
+     "d": -0.1543,
+     "liga": "it.2",
+     "spiele": 70,
+     "zuletzt": "2026-11-08"
+    },
+    "catania": {
+     "name": "Calcio Catania",
+     "a": -0.0186,
+     "d": -0.1886,
+     "liga": "it.2",
+     "spiele": 80,
+     "zuletzt": "2015-05-22"
+    },
+    "catanzaro": {
+     "name": "US Catanzaro",
+     "a": 0.0386,
+     "d": -0.2874,
+     "liga": "it.2",
+     "spiele": 75,
+     "zuletzt": "2026-11-07"
+    },
+    "cesena": {
+     "name": "Cesena FC",
+     "a": -0.2385,
+     "d": -0.1961,
+     "liga": "it.2",
+     "spiele": 287,
+     "zuletzt": "2026-11-07"
+    },
+    "chievoverona": {
+     "name": "Chievo Verona",
+     "a": -0.0366,
+     "d": 0.0849,
+     "liga": "it.2",
+     "spiele": 308,
+     "zuletzt": "2021-05-13"
+    },
+    "cittadella": {
+     "name": "AS Cittadella",
+     "a": -0.3822,
+     "d": -0.1871,
+     "liga": "it.2",
+     "spiele": 333,
+     "zuletzt": "2025-05-13"
+    },
+    "como": {
+     "name": "Como 1907",
+     "a": 0.2883,
+     "d": 0.2986,
+     "liga": "it.1",
+     "spiele": 122,
+     "zuletzt": "2026-11-08"
+    },
+    "cosenza": {
+     "name": "Cosenza Calcio",
+     "a": -0.4356,
+     "d": -0.3429,
+     "liga": "it.2",
+     "spiele": 150,
+     "zuletzt": "2025-05-13"
+    },
+    "cremonese": {
+     "name": "US Cremonese",
+     "a": 0.07,
+     "d": 0.0278,
+     "liga": "it.2",
+     "spiele": 271,
+     "zuletzt": "2026-11-08"
+    },
+    "crotone": {
+     "name": "FC Crotone",
+     "a": -0.095,
+     "d": -0.4513,
+     "liga": "it.1",
+     "spiele": 315,
+     "zuletzt": "2021-05-22"
+    },
+    "delfinopescara": {
+     "name": "Delfino Pescara",
+     "a": -0.1158,
+     "d": -0.3097,
+     "liga": "it.2",
+     "spiele": 361,
+     "zuletzt": "2026-03-17"
+    },
+    "empoli": {
+     "name": "Empoli FC",
+     "a": -0.0855,
+     "d": -0.2896,
+     "liga": "it.2",
+     "spiele": 501,
+     "zuletzt": "2026-11-07"
+    },
+    "entellavirtus": {
+     "name": "Virtus Entella",
+     "a": -0.4302,
+     "d": -0.1892,
+     "liga": "it.2",
+     "spiele": 285,
+     "zuletzt": "2026-11-08"
+    },
+    "ferraraspal": {
+     "name": "SPAL 2013 Ferrara",
+     "a": -0.2175,
+     "d": -0.0898,
+     "liga": "it.2",
+     "spiele": 194,
+     "zuletzt": "2021-05-10"
+    },
+    "foggia": {
+     "name": "Foggia Calcio",
+     "a": -0.1355,
+     "d": -0.1099,
+     "liga": "it.2",
+     "spiele": 78,
+     "zuletzt": "2019-05-11"
+    },
+    "frosinone": {
+     "name": "Frosinone Calcio",
+     "a": 0.203,
+     "d": -0.1236,
+     "liga": "it.1",
+     "spiele": 406,
+     "zuletzt": "2026-11-07"
+    },
+    "genoa": {
+     "name": "Genoa CFC",
+     "a": -0.0961,
+     "d": -0.0308,
+     "liga": "it.1",
+     "spiele": 460,
+     "zuletzt": "2026-11-08"
+    },
+    "hellasverona": {
+     "name": "Hellas Verona FC",
+     "a": -0.0835,
+     "d": 0.1329,
+     "liga": "it.2",
+     "spiele": 501,
+     "zuletzt": "2026-11-07"
+    },
+    "internazionalemilano": {
+     "name": "FC Internazionale Milano",
+     "a": 0.592,
+     "d": 0.2546,
+     "liga": "it.1",
+     "spiele": 504,
+     "zuletzt": "2026-11-08"
+    },
+    "juventus": {
+     "name": "Juventus FC",
+     "a": 0.1466,
+     "d": 0.238,
+     "liga": "it.1",
+     "spiele": 501,
+     "zuletzt": "2026-11-08"
+    },
+    "juvestabia": {
+     "name": "Juve Stabia",
+     "a": -0.118,
+     "d": -0.0391,
+     "liga": "it.2",
+     "spiele": 154,
+     "zuletzt": "2026-11-01"
+    },
+    "lancianovirtus": {
+     "name": "Virtus Lanciano",
+     "a": -0.3246,
+     "d": -0.2244,
+     "liga": "it.2",
+     "spiele": 128,
+     "zuletzt": "2016-06-08"
+    },
+    "latina": {
+     "name": "Latina Calcio",
+     "a": -0.411,
+     "d": -0.0626,
+     "liga": "it.2",
+     "spiele": 172,
+     "zuletzt": "2017-05-18"
+    },
+    "lazio": {
+     "name": "SS Lazio",
+     "a": 0.2771,
+     "d": 0.1762,
+     "liga": "it.1",
+     "spiele": 499,
+     "zuletzt": "2026-11-08"
+    },
+    "lecce": {
+     "name": "US Lecce",
+     "a": -0.2681,
+     "d": -0.1831,
+     "liga": "it.1",
+     "spiele": 271,
+     "zuletzt": "2026-11-07"
+    },
+    "livorno": {
+     "name": "AS Livorno",
+     "a": -0.455,
+     "d": -0.4599,
+     "liga": "it.2",
+     "spiele": 196,
+     "zuletzt": "2020-07-31"
+    },
+    "lrvicenzavirtus": {
+     "name": "L.R. Vicenza Virtus",
+     "a": -0.161,
+     "d": -0.3159,
+     "liga": "it.2",
+     "spiele": 173,
+     "zuletzt": "2026-11-08"
+    },
+    "mantovassd": {
+     "name": "Mantova 1911 SSD",
+     "a": -0.1444,
+     "d": -0.1226,
+     "liga": "it.2",
+     "spiele": 74,
+     "zuletzt": "2026-11-07"
+    },
+    "milan": {
+     "name": "AC Milan",
+     "a": 0.2741,
+     "d": 0.1568,
+     "liga": "it.1",
+     "spiele": 502,
+     "zuletzt": "2026-11-08"
+    },
+    "modena": {
+     "name": "Modena FC",
+     "a": 0.1057,
+     "d": 0.0234,
+     "liga": "it.2",
+     "spiele": 201,
+     "zuletzt": "2026-11-08"
+    },
+    "monza": {
+     "name": "AC Monza",
+     "a": 0.0138,
+     "d": -0.2964,
+     "liga": "it.1",
+     "spiele": 193,
+     "zuletzt": "2026-11-08"
+    },
+    "napoli": {
+     "name": "SSC Napoli",
+     "a": 0.2145,
+     "d": 0.2125,
+     "liga": "it.1",
+     "spiele": 501,
+     "zuletzt": "2026-11-08"
+    },
+    "novara": {
+     "name": "Novara Calcio",
+     "a": -0.3418,
+     "d": -0.0532,
+     "liga": "it.2",
+     "spiele": 173,
+     "zuletzt": "2018-05-18"
+    },
+    "padova": {
+     "name": "Calcio Padova",
+     "a": -0.2444,
+     "d": -0.1352,
+     "liga": "it.2",
+     "spiele": 115,
+     "zuletzt": "2026-11-07"
+    },
+    "palermo": {
+     "name": "Palermo FC",
+     "a": 0.2691,
+     "d": 0.0054,
+     "liga": "it.2",
+     "spiele": 312,
+     "zuletzt": "2026-11-06"
+    },
+    "parma": {
+     "name": "Parma Calcio 1913",
+     "a": -0.2933,
+     "d": 0.0104,
+     "liga": "it.1",
+     "spiele": 312,
+     "zuletzt": "2026-11-07"
+    },
+    "perugia": {
+     "name": "AC Perugia Calcio",
+     "a": -0.2679,
+     "d": -0.1605,
+     "liga": "it.2",
+     "spiele": 249,
+     "zuletzt": "2020-08-14"
+    },
+    "pisa": {
+     "name": "AC Pisa 1909",
+     "a": 0.0372,
+     "d": -0.1983,
+     "liga": "it.2",
+     "spiele": 197,
+     "zuletzt": "2026-11-07"
+    },
+    "pordenone": {
+     "name": "Pordenone Calcio",
+     "a": -0.2469,
+     "d": -0.006,
+     "liga": "it.2",
+     "spiele": 78,
+     "zuletzt": "2021-05-10"
+    },
+    "provercelli": {
+     "name": "Pro Vercelli",
+     "a": -0.2748,
+     "d": -0.3102,
+     "liga": "it.2",
+     "spiele": 168,
+     "zuletzt": "2018-05-18"
+    },
+    "reggiana": {
+     "name": "AC Reggiana 1919",
+     "a": -0.2721,
+     "d": -0.3481,
+     "liga": "it.2",
+     "spiele": 103,
+     "zuletzt": "2026-03-14"
+    },
+    "reggina": {
+     "name": "Reggina 1914",
+     "a": -0.1813,
+     "d": -0.135,
+     "liga": "it.2",
+     "spiele": 80,
+     "zuletzt": "2021-05-10"
+    },
+    "roma": {
+     "name": "AS Roma",
+     "a": 0.5411,
+     "d": 0.3479,
+     "liga": "it.1",
+     "spiele": 504,
+     "zuletzt": "2026-11-07"
+    },
+    "salernitana": {
+     "name": "US Salernitana 1919",
+     "a": -0.2366,
+     "d": -0.0447,
+     "liga": "it.2",
+     "spiele": 394,
+     "zuletzt": "2025-05-13"
+    },
+    "sampdoria": {
+     "name": "Sampdoria",
+     "a": -0.2591,
+     "d": -0.1377,
+     "liga": "it.2",
+     "spiele": 452,
+     "zuletzt": "2026-11-08"
+    },
+    "sassuolo": {
+     "name": "US Sassuolo Calcio",
+     "a": 0.063,
+     "d": -0.3313,
+     "liga": "it.1",
+     "spiele": 503,
+     "zuletzt": "2026-11-07"
+    },
+    "siena": {
+     "name": "AC Siena",
+     "a": -0.1786,
+     "d": 0.0916,
+     "liga": "it.2",
+     "spiele": 42,
+     "zuletzt": "2014-05-30"
+    },
+    "spezia": {
+     "name": "Spezia Calcio",
+     "a": -0.1631,
+     "d": -0.1458,
+     "liga": "it.2",
+     "spiele": 479,
+     "zuletzt": "2026-03-17"
+    },
+    "sudtirol": {
+     "name": "FC Südtirol",
+     "a": -0.1739,
+     "d": -0.1357,
+     "liga": "it.2",
+     "spiele": 70,
+     "zuletzt": "2026-11-07"
+    },
+    "ternana": {
+     "name": "Ternana Calcio",
+     "a": 0.0022,
+     "d": -0.4416,
+     "liga": "it.2",
+     "spiele": 210,
+     "zuletzt": "2018-05-18"
+    },
+    "torino": {
+     "name": "Torino FC",
+     "a": -0.0029,
+     "d": -0.1348,
+     "liga": "it.1",
+     "spiele": 500,
+     "zuletzt": "2026-11-07"
+    },
+    "trapani": {
+     "name": "Trapani Calcio",
+     "a": -0.0075,
+     "d": -0.187,
+     "liga": "it.2",
+     "spiele": 210,
+     "zuletzt": "2020-07-31"
+    },
+    "udinese": {
+     "name": "Udinese Calcio",
+     "a": -0.0966,
+     "d": -0.179,
+     "liga": "it.1",
+     "spiele": 503,
+     "zuletzt": "2026-11-06"
+    },
+    "varese": {
+     "name": "AS Varese 1910",
+     "a": -0.4048,
+     "d": -0.3481,
+     "liga": "it.2",
+     "spiele": 86,
+     "zuletzt": "2015-05-22"
+    },
+    "venezia": {
+     "name": "Venezia FC",
+     "a": -0.1054,
+     "d": -0.111,
+     "liga": "it.1",
+     "spiele": 278,
+     "zuletzt": "2026-11-06"
+    }
+   }
+  },
+  "nl": {
+   "ligen": {
+    "nl.1": {
+     "niveau": 0.2635,
+     "heim": 0.1954,
+     "spiele": 2470
+    }
+   },
+   "teams": {
+    "adodenhaag": {
+     "name": "ADO Den Haag",
+     "a": -0.3017,
+     "d": -0.293,
+     "liga": "nl.1",
+     "spiele": 106,
+     "zuletzt": "2026-11-07"
+    },
+    "aheadeaglesgo": {
+     "name": "Go Ahead Eagles",
+     "a": 0.0984,
+     "d": -0.2796,
+     "liga": "nl.1",
+     "spiele": 180,
+     "zuletzt": "2026-11-07"
+    },
+    "ajax": {
+     "name": "AFC Ajax",
+     "a": 0.3936,
+     "d": 0.1838,
+     "liga": "nl.1",
+     "spiele": 273,
+     "zuletzt": "2026-11-08"
+    },
+    "almeloheracles": {
+     "name": "Heracles Almelo",
+     "a": -0.364,
+     "d": -0.48,
+     "liga": "nl.1",
+     "spiele": 229,
+     "zuletzt": "2026-05-17"
+    },
+    "almerecity": {
+     "name": "Almere City FC",
+     "a": -0.5136,
+     "d": -0.1428,
+     "liga": "nl.1",
+     "spiele": 68,
+     "zuletzt": "2025-05-18"
+    },
+    "az": {
+     "name": "AZ",
+     "a": 0.1369,
+     "d": 0.0545,
+     "liga": "nl.1",
+     "spiele": 274,
+     "zuletzt": "2026-11-08"
+    },
+    "bredanac": {
+     "name": "NAC Breda",
+     "a": -0.3372,
+     "d": -0.2384,
+     "liga": "nl.1",
+     "spiele": 99,
+     "zuletzt": "2026-05-17"
+    },
+    "cambuurleeuwarden": {
+     "name": "SC Cambuur-Leeuwarden",
+     "a": -0.0172,
+     "d": -0.3508,
+     "liga": "nl.1",
+     "spiele": 80,
+     "zuletzt": "2026-11-08"
+    },
+    "degraafschap": {
+     "name": "De Graafschap",
+     "a": -0.3292,
+     "d": -0.3792,
+     "liga": "nl.1",
+     "spiele": 34,
+     "zuletzt": "2019-05-15"
+    },
+    "emmen": {
+     "name": "FC Emmen",
+     "a": -0.2765,
+     "d": -0.3419,
+     "liga": "nl.1",
+     "spiele": 128,
+     "zuletzt": "2023-05-28"
+    },
+    "excelsiorsbv": {
+     "name": "SBV Excelsior",
+     "a": -0.1367,
+     "d": -0.2543,
+     "liga": "nl.1",
+     "spiele": 147,
+     "zuletzt": "2026-11-07"
+    },
+    "feyenoordrotterdam": {
+     "name": "Feyenoord Rotterdam",
+     "a": 0.447,
+     "d": 0.1069,
+     "liga": "nl.1",
+     "spiele": 274,
+     "zuletzt": "2026-11-08"
+    },
+    "fortunasittard": {
+     "name": "Fortuna Sittard",
+     "a": -0.0463,
+     "d": -0.0898,
+     "liga": "nl.1",
+     "spiele": 276,
+     "zuletzt": "2026-11-07"
+    },
+    "groningen": {
+     "name": "FC Groningen",
+     "a": 0.2552,
+     "d": -0.2154,
+     "liga": "nl.1",
+     "spiele": 240,
+     "zuletzt": "2026-11-08"
+    },
+    "heerenveen": {
+     "name": "SC Heerenveen",
+     "a": 0.2701,
+     "d": 0.0384,
+     "liga": "nl.1",
+     "spiele": 273,
+     "zuletzt": "2026-11-08"
+    },
+    "iitilburgwillem": {
+     "name": "Willem II Tilburg",
+     "a": -0.3894,
+     "d": -0.5184,
+     "liga": "nl.1",
+     "spiele": 174,
+     "zuletzt": "2026-11-06"
+    },
+    "nec": {
+     "name": "NEC",
+     "a": 0.1159,
+     "d": -0.0361,
+     "liga": "nl.1",
+     "spiele": 182,
+     "zuletzt": "2026-11-08"
+    },
+    "peczwolle": {
+     "name": "PEC Zwolle",
+     "a": -0.2297,
+     "d": -0.2438,
+     "liga": "nl.1",
+     "spiele": 241,
+     "zuletzt": "2026-11-06"
+    },
+    "psv": {
+     "name": "PSV",
+     "a": 0.6743,
+     "d": 0.137,
+     "liga": "nl.1",
+     "spiele": 276,
+     "zuletzt": "2026-11-08"
+    },
+    "rkcwaalwijk": {
+     "name": "RKC Waalwijk",
+     "a": -0.0454,
+     "d": -0.3452,
+     "liga": "nl.1",
+     "spiele": 196,
+     "zuletzt": "2025-05-18"
+    },
+    "rotterdamsparta": {
+     "name": "Sparta Rotterdam",
+     "a": -0.0368,
+     "d": -0.3022,
+     "liga": "nl.1",
+     "spiele": 241,
+     "zuletzt": "2026-11-07"
+    },
+    "sbvvitesse": {
+     "name": "SBV Vitesse",
+     "a": -0.3141,
+     "d": -0.3041,
+     "liga": "nl.1",
+     "spiele": 196,
+     "zuletzt": "2024-05-19"
+    },
+    "telstar": {
+     "name": "Telstar 1963",
+     "a": 0.0392,
+     "d": -0.2157,
+     "liga": "nl.1",
+     "spiele": 44,
+     "zuletzt": "2026-11-07"
+    },
+    "twente": {
+     "name": "FC Twente '65",
+     "a": 0.2897,
+     "d": 0.243,
+     "liga": "nl.1",
+     "spiele": 240,
+     "zuletzt": "2026-11-08"
+    },
+    "utrecht": {
+     "name": "FC Utrecht",
+     "a": 0.1156,
+     "d": -0.2528,
+     "liga": "nl.1",
+     "spiele": 274,
+     "zuletzt": "2026-11-08"
+    },
+    "venlovvv": {
+     "name": "VVV-Venlo",
+     "a": -0.3027,
+     "d": -0.6251,
+     "liga": "nl.1",
+     "spiele": 94,
+     "zuletzt": "2021-05-16"
+    },
+    "volendam": {
+     "name": "FC Volendam",
+     "a": -0.3309,
+     "d": -0.1226,
+     "liga": "nl.1",
+     "spiele": 101,
+     "zuletzt": "2026-05-17"
+    }
+   }
+  },
+  "pt": {
+   "ligen": {
+    "pt.1": {
+     "niveau": 0.1461,
+     "heim": 0.1803,
+     "spiele": 2524
+    }
+   },
+   "teams": {
+    "academicodeviseu": {
+     "name": "Académico de Viseu FC",
+     "a": -0.0902,
+     "d": -0.0171,
+     "liga": "pt.1",
+     "spiele": 11,
+     "zuletzt": "2026-11-08"
+    },
+    "alverca": {
+     "name": "FC Alverca",
+     "a": -0.1163,
+     "d": 0.0004,
+     "liga": "pt.1",
+     "spiele": 44,
+     "zuletzt": "2026-11-07"
+    },
+    "amadoradaestrela": {
+     "name": "CF Estrela da Amadora",
+     "a": -0.0427,
+     "d": -0.3034,
+     "liga": "pt.1",
+     "spiele": 108,
+     "zuletzt": "2026-11-08"
+    },
+    "arouca": {
+     "name": "FC Arouca",
+     "a": 0.0263,
+     "d": 0.0523,
+     "liga": "pt.1",
+     "spiele": 179,
+     "zuletzt": "2026-11-06"
+    },
+    "averio": {
+     "name": "Rio Ave FC",
+     "a": -0.228,
+     "d": -0.3681,
+     "liga": "pt.1",
+     "spiele": 246,
+     "zuletzt": "2026-11-08"
+    },
+    "aves": {
+     "name": "CD Aves",
+     "a": -0.5777,
+     "d": -0.4512,
+     "liga": "pt.1",
+     "spiele": 68,
+     "zuletzt": "2020-07-26"
+    },
+    "avs": {
+     "name": "AVS",
+     "a": -0.297,
+     "d": -0.2606,
+     "liga": "pt.1",
+     "spiele": 65,
+     "zuletzt": "2026-05-16"
+    },
+    "belenensessad": {
+     "name": "Belenenses SAD",
+     "a": -0.5101,
+     "d": -0.1457,
+     "liga": "pt.1",
+     "spiele": 136,
+     "zuletzt": "2022-05-14"
+    },
+    "benficaelisboasport": {
+     "name": "Sport Lisboa e Benfica",
+     "a": 0.5535,
+     "d": 0.3268,
+     "liga": "pt.1",
+     "spiele": 281,
+     "zuletzt": "2026-11-08"
+    },
+    "boavista": {
+     "name": "Boavista FC",
+     "a": -0.3897,
+     "d": -0.3463,
+     "liga": "pt.1",
+     "spiele": 238,
+     "zuletzt": "2025-05-17"
+    },
+    "bragaclubedesporting": {
+     "name": "Sporting Clube de Braga",
+     "a": 0.0787,
+     "d": 0.1992,
+     "liga": "pt.1",
+     "spiele": 283,
+     "zuletzt": "2026-11-08"
+    },
+    "casapia": {
+     "name": "Casa Pia AC",
+     "a": -0.2857,
+     "d": -0.2131,
+     "liga": "pt.1",
+     "spiele": 142,
+     "zuletzt": "2026-11-07"
+    },
+    "chavesgd": {
+     "name": "GD Chaves",
+     "a": -0.3354,
+     "d": -0.2853,
+     "liga": "pt.1",
+     "spiele": 102,
+     "zuletzt": "2024-05-18"
+    },
+    "clarasanta": {
+     "name": "CD Santa Clara",
+     "a": -0.0854,
+     "d": 0.1977,
+     "liga": "pt.1",
+     "spiele": 246,
+     "zuletzt": "2026-11-08"
+    },
+    "clubedeportugalsporting": {
+     "name": "Sporting Clube de Portugal",
+     "a": 0.4463,
+     "d": 0.3315,
+     "liga": "pt.1",
+     "spiele": 283,
+     "zuletzt": "2026-11-07"
+    },
+    "csmaritimo": {
+     "name": "CS Marítimo",
+     "a": -0.2212,
+     "d": -0.3706,
+     "liga": "pt.1",
+     "spiele": 180,
+     "zuletzt": "2026-11-01"
+    },
+    "deferreirapacos": {
+     "name": "Paços de Ferreira",
+     "a": -0.3768,
+     "d": -0.3056,
+     "liga": "pt.1",
+     "spiele": 136,
+     "zuletzt": "2023-05-27"
+    },
+    "estorilgdpraia": {
+     "name": "GD Estoril Praia",
+     "a": -0.0809,
+     "d": -0.2833,
+     "liga": "pt.1",
+     "spiele": 178,
+     "zuletzt": "2026-10-31"
+    },
+    "famalicao": {
+     "name": "FC Famalicão",
+     "a": 0.062,
+     "d": 0.1305,
+     "liga": "pt.1",
+     "spiele": 244,
+     "zuletzt": "2026-11-06"
+    },
+    "farense": {
+     "name": "SC Farense",
+     "a": -0.3168,
+     "d": -0.0213,
+     "liga": "pt.1",
+     "spiele": 102,
+     "zuletzt": "2025-05-17"
+    },
+    "feirense": {
+     "name": "CD Feirense",
+     "a": -0.389,
+     "d": -0.5556,
+     "liga": "pt.1",
+     "spiele": 34,
+     "zuletzt": "2019-05-18"
+    },
+    "gilvicente": {
+     "name": "Gil Vicente FC",
+     "a": -0.1095,
+     "d": 0.1284,
+     "liga": "pt.1",
+     "spiele": 245,
+     "zuletzt": "2026-11-08"
+    },
+    "guimaraesvitoria": {
+     "name": "Vitória Guimarães",
+     "a": -0.0724,
+     "d": 0.0278,
+     "liga": "pt.1",
+     "spiele": 280,
+     "zuletzt": "2026-11-08"
+    },
+    "moreirense": {
+     "name": "Moreirense FC",
+     "a": -0.1631,
+     "d": -0.0848,
+     "liga": "pt.1",
+     "spiele": 248,
+     "zuletzt": "2026-11-07"
+    },
+    "nacional": {
+     "name": "CD Nacional",
+     "a": -0.2283,
+     "d": -0.095,
+     "liga": "pt.1",
+     "spiele": 146,
+     "zuletzt": "2026-11-08"
+    },
+    "portimonense": {
+     "name": "Portimonense SC",
+     "a": -0.185,
+     "d": -0.355,
+     "liga": "pt.1",
+     "spiele": 204,
+     "zuletzt": "2024-05-18"
+    },
+    "porto": {
+     "name": "FC Porto",
+     "a": 0.4005,
+     "d": 0.5545,
+     "liga": "pt.1",
+     "spiele": 282,
+     "zuletzt": "2026-11-08"
+    },
+    "setubalvitoria": {
+     "name": "Vitória Setúbal",
+     "a": -0.462,
+     "d": -0.1002,
+     "liga": "pt.1",
+     "spiele": 68,
+     "zuletzt": "2020-07-26"
+    },
+    "tondela": {
+     "name": "CD Tondela",
+     "a": -0.2695,
+     "d": -0.2394,
+     "liga": "pt.1",
+     "spiele": 167,
+     "zuletzt": "2026-05-16"
+    },
+    "vizela": {
+     "name": "FC Vizela",
+     "a": -0.1991,
+     "d": -0.339,
+     "liga": "pt.1",
+     "spiele": 102,
+     "zuletzt": "2024-05-18"
+    }
+   }
+  }
+ }
+}

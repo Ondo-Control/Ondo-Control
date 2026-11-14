@@ -6785,3 +6785,13 @@ für das normale `save()` gilt der beschriebene Rückfall bewusst weiter.*
 **Prüfung:** t12 mit 85 Prüfungen; 14 gezielte Veränderungen am neuen Code und zwei an den Daten lassen den Test jeweils durchfallen; die Paritätsprüfung fällt gegen eine veränderte `beta.html` durch (Gegenprobe). t1–t11 unverändert 572 bestanden.
 
 **Grenzen:** Kein Modell, kein Rücktest, keine Quoten. Am grünen Tisch gewertete Spiele sind in OpenFootball nicht erkennbar. Die Aufteilung Lernen / Prüfen / Holdout ist je Liga auf die drei jüngsten vollständigen Saisons festgelegt und wird vom Bau nur geprüft.
+
+### Zur Lieferung des Rechenmodells (Backlog 94, zweiter Teil, 14.11.2026) — Befunde
+
+**Was gebaut wurde:** Ein eigenes, fest rechnendes Modell ohne Sprachmodell: je Mannschaft eine Angriffs- und eine Abwehrstärke, je Liga Tor-Grundniveau und Heimvorteil; nach jedem Spiel wird erst vorhergesagt, dann in kleinen Schritten gelernt. Acht Kandidaten und alle Prüfregeln wurden vor dem ersten Blick auf Prüf- und Holdout-Saisons in `core/model/kandidaten.json` festgelegt. Die Wahl des Kandidaten lässt die Holdout-Saisons vollständig weg.
+
+**Ergebnis des einmaligen Abschlusstests (Stand der Daten 13.11.2026, 5.854 Spiele aus 15 Ligen):** gewählt K6. Markt 1X2: Log-Loss 1,0288 gegen 1,0791 der Grundquote der Liga, Vorsprung 0,0503, 95-Prozent-Bereich 0,0418 bis 0,0583 — belegt. Über/Unter 2,5: Vorsprung 0,0032 (−0,0024 bis 0,0085) — nicht belegt. Beide treffen: −0,0010 (−0,0050 bis 0,0030) — nicht belegt. Gezählt wie in der App (je Markt die wahrscheinlichste Aussage): Trefferquote 52,5 %, Brier 0,2445; Aussagen mit 60–69 % trafen zu 59,4 % ein, das Modell ist also etwas zu sicher. Zum Vergleich, auf ANDEREN Spielen und deshalb nur grob: Sonnet 55 % / 0,2423, Flash 54 % / 0,2439 (Ondos Bildschirmfoto 1.11.2026).
+
+**Beschluss der Selbstprüfung:** Im Markt 1X2 weiß das Modell nachweislich mehr als die Grundquote. Gegen die Wettquoten ist nichts geprüft, weil keine Quoten im Bestand sind — deshalb kein echtes Geld, nur virtuelle Probeeinsätze.
+
+**Grenzen:** Der Holdout ist mit diesem Lauf einmal angesehen; jede Änderung am Modell braucht zur ehrlichen Prüfung neue, noch ungesehene Spiele (die laufende Saison). Das Modell kennt nur Ergebnisse — keine Kader, Trainer, Verletzten. Es ist nicht an die App angebunden. t13: 50 Prüfungen, 17 gezielte Veränderungen am Code lassen den Test durchfallen; alle Tests zusammen 707 bestanden.

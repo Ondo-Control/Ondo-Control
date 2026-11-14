@@ -1,0 +1,499 @@
+{
+ "schema": 1,
+ "stand": "2026-11-13",
+ "festgelegt": "2026-11-14",
+ "wahl": {
+  "regel": "kleinster Log-Loss 1X2 auf den Pruefsaisons, Holdout weggelassen",
+  "kandidaten": [
+   {
+    "name": "K1",
+    "lernrate": 0.03,
+    "saisonBehalt": 1,
+    "dc": 0,
+    "spiele": 5928,
+    "logLoss1x2": 1.0286
+   },
+   {
+    "name": "K2",
+    "lernrate": 0.03,
+    "saisonBehalt": 0.85,
+    "dc": 0,
+    "spiele": 5928,
+    "logLoss1x2": 1.0284
+   },
+   {
+    "name": "K3",
+    "lernrate": 0.05,
+    "saisonBehalt": 1,
+    "dc": 0,
+    "spiele": 5928,
+    "logLoss1x2": 1.0368
+   },
+   {
+    "name": "K4",
+    "lernrate": 0.05,
+    "saisonBehalt": 0.85,
+    "dc": 0,
+    "spiele": 5928,
+    "logLoss1x2": 1.0358
+   },
+   {
+    "name": "K5",
+    "lernrate": 0.03,
+    "saisonBehalt": 1,
+    "dc": -0.06,
+    "spiele": 5928,
+    "logLoss1x2": 1.0281
+   },
+   {
+    "name": "K6",
+    "lernrate": 0.03,
+    "saisonBehalt": 0.85,
+    "dc": -0.06,
+    "spiele": 5928,
+    "logLoss1x2": 1.0278
+   },
+   {
+    "name": "K7",
+    "lernrate": 0.05,
+    "saisonBehalt": 1,
+    "dc": -0.06,
+    "spiele": 5928,
+    "logLoss1x2": 1.0365
+   },
+   {
+    "name": "K8",
+    "lernrate": 0.05,
+    "saisonBehalt": 0.85,
+    "dc": -0.06,
+    "spiele": 5928,
+    "logLoss1x2": 1.0355
+   }
+  ],
+  "gewaehlt": "K6"
+ },
+ "abschluss": {
+  "regel": "Log-Loss im Markt 1X2 auf den Holdout-Saisons, Modell gegen Grundquote der Liga",
+  "holdout": {
+   "spiele": 5854,
+   "maerkte": {
+    "m1x2": {
+     "n": 5854,
+     "logLossModell": 1.0288,
+     "logLossGrundquote": 1.0791,
+     "brierModell": 0.6181,
+     "brierGrundquote": 0.6533
+    },
+    "tore": {
+     "n": 5854,
+     "logLossModell": 0.684,
+     "logLossGrundquote": 0.6872,
+     "brierModell": 0.4905,
+     "brierGrundquote": 0.4941
+    },
+    "btts": {
+     "n": 5854,
+     "logLossModell": 0.6913,
+     "logLossGrundquote": 0.6904,
+     "brierModell": 0.4981,
+     "brierGrundquote": 0.4972
+    }
+   },
+   "vorsprung": {
+    "m1x2": {
+     "n": 5854,
+     "spieltage": 1683,
+     "differenz": 0.0503,
+     "unten": 0.0418,
+     "oben": 0.0583
+    },
+    "tore": {
+     "n": 5854,
+     "spieltage": 1683,
+     "differenz": 0.0032,
+     "unten": -0.0024,
+     "oben": 0.0085
+    },
+    "btts": {
+     "n": 5854,
+     "spieltage": 1683,
+     "differenz": -0.001,
+     "unten": -0.005,
+     "oben": 0.003
+    }
+   },
+   "wieInDerApp": {
+    "aussagen": 17562,
+    "trefferquote": 52.5,
+    "brier": 0.2445,
+    "kalibrierung": [
+     {
+      "von": 0,
+      "bis": 50,
+      "n": 3629,
+      "behauptet": 42.1,
+      "eingetroffen": 41.5
+     },
+     {
+      "von": 50,
+      "bis": 60,
+      "n": 9057,
+      "behauptet": 54.6,
+      "eingetroffen": 52.3
+     },
+     {
+      "von": 60,
+      "bis": 70,
+      "n": 3997,
+      "behauptet": 63.9,
+      "eingetroffen": 59.4
+     },
+     {
+      "von": 70,
+      "bis": 80,
+      "n": 749,
+      "behauptet": 73.5,
+      "eingetroffen": 68.2
+     },
+     {
+      "von": 80,
+      "bis": 100,
+      "n": 130,
+      "behauptet": 84.6,
+      "eingetroffen": 77.7
+     }
+    ]
+   }
+  },
+  "jeLiga": {
+   "de.3": {
+    "saison": "2020-21",
+    "spiele": 380,
+    "logLossModell": 1.0919,
+    "logLossGrundquote": 1.0978,
+    "differenz": 0.0059
+   },
+   "de.2": {
+    "saison": "2024-25",
+    "spiele": 306,
+    "logLossModell": 1.0749,
+    "logLossGrundquote": 1.0879,
+    "differenz": 0.013
+   },
+   "de.1": {
+    "saison": "2024-25",
+    "spiele": 306,
+    "logLossModell": 1.0276,
+    "logLossGrundquote": 1.0926,
+    "differenz": 0.065
+   },
+   "en.3": {
+    "saison": "2024-25",
+    "spiele": 552,
+    "logLossModell": 1.0412,
+    "logLossGrundquote": 1.0723,
+    "differenz": 0.0311
+   },
+   "en.2": {
+    "saison": "2024-25",
+    "spiele": 552,
+    "logLossModell": 1.0366,
+    "logLossGrundquote": 1.069,
+    "differenz": 0.0324
+   },
+   "en.4": {
+    "saison": "2024-25",
+    "spiele": 552,
+    "logLossModell": 1.095,
+    "logLossGrundquote": 1.0829,
+    "differenz": -0.0121
+   },
+   "en.1": {
+    "saison": "2024-25",
+    "spiele": 380,
+    "logLossModell": 0.9825,
+    "logLossGrundquote": 1.0821,
+    "differenz": 0.0996
+   },
+   "es.2": {
+    "saison": "2020-21",
+    "spiele": 462,
+    "logLossModell": 1.06,
+    "logLossGrundquote": 1.0805,
+    "differenz": 0.0205
+   },
+   "es.1": {
+    "saison": "2023-24",
+    "spiele": 380,
+    "logLossModell": 0.9647,
+    "logLossGrundquote": 1.0767,
+    "differenz": 0.112
+   },
+   "fr.2": {
+    "saison": "2024-25",
+    "spiele": 306,
+    "logLossModell": 1.0288,
+    "logLossGrundquote": 1.0583,
+    "differenz": 0.0295
+   },
+   "fr.1": {
+    "saison": "2024-25",
+    "spiele": 306,
+    "logLossModell": 0.9644,
+    "logLossGrundquote": 1.0531,
+    "differenz": 0.0887
+   },
+   "it.2": {
+    "saison": "2020-21",
+    "spiele": 380,
+    "logLossModell": 1.0766,
+    "logLossGrundquote": 1.0983,
+    "differenz": 0.0217
+   },
+   "it.1": {
+    "saison": "2023-24",
+    "spiele": 380,
+    "logLossModell": 0.9813,
+    "logLossGrundquote": 1.0877,
+    "differenz": 0.1064
+   },
+   "nl.1": {
+    "saison": "2024-25",
+    "spiele": 306,
+    "logLossModell": 0.9801,
+    "logLossGrundquote": 1.0679,
+    "differenz": 0.0878
+   },
+   "pt.1": {
+    "saison": "2024-25",
+    "spiele": 306,
+    "logLossModell": 0.9524,
+    "logLossGrundquote": 1.077,
+    "differenz": 0.1246
+   }
+  }
+ },
+ "seitdem": {
+  "hinweis": "Spiele nach dem Holdout (nur Beobachtung, kein Beschluss)",
+  "alle": {
+   "spiele": 6552,
+   "maerkte": {
+    "m1x2": {
+     "n": 6552,
+     "logLossModell": 0.9994,
+     "logLossGrundquote": 1.063,
+     "brierModell": 0.5967,
+     "brierGrundquote": 0.6425
+    },
+    "tore": {
+     "n": 6552,
+     "logLossModell": 0.6851,
+     "logLossGrundquote": 0.6904,
+     "brierModell": 0.4922,
+     "brierGrundquote": 0.4973
+    },
+    "btts": {
+     "n": 6552,
+     "logLossModell": 0.6855,
+     "logLossGrundquote": 0.6877,
+     "brierModell": 0.4924,
+     "brierGrundquote": 0.4946
+    }
+   },
+   "vorsprung": {
+    "m1x2": {
+     "n": 6552,
+     "spieltage": 2046,
+     "differenz": 0.0636,
+     "unten": 0.0555,
+     "oben": 0.0719
+    },
+    "tore": {
+     "n": 6552,
+     "spieltage": 2046,
+     "differenz": 0.0052,
+     "unten": -0.0001,
+     "oben": 0.0106
+    },
+    "btts": {
+     "n": 6552,
+     "spieltage": 2046,
+     "differenz": 0.0022,
+     "unten": -0.0016,
+     "oben": 0.0056
+    }
+   },
+   "wieInDerApp": {
+    "aussagen": 19656,
+    "trefferquote": 54,
+    "brier": 0.2432,
+    "kalibrierung": [
+     {
+      "von": 0,
+      "bis": 50,
+      "n": 3902,
+      "behauptet": 42.3,
+      "eingetroffen": 44.1
+     },
+     {
+      "von": 50,
+      "bis": 60,
+      "n": 10505,
+      "behauptet": 54.6,
+      "eingetroffen": 53.1
+     },
+     {
+      "von": 60,
+      "bis": 70,
+      "n": 4259,
+      "behauptet": 63.9,
+      "eingetroffen": 60.9
+     },
+     {
+      "von": 70,
+      "bis": 80,
+      "n": 807,
+      "behauptet": 73.6,
+      "eingetroffen": 70.6
+     },
+     {
+      "von": 80,
+      "bis": 100,
+      "n": 183,
+      "behauptet": 84.5,
+      "eingetroffen": 85.2
+     }
+    ]
+   }
+  },
+  "laufendeSaison": {
+   "saison": "2026-27",
+   "werte": {
+    "spiele": 1110,
+    "maerkte": {
+     "m1x2": {
+      "n": 1110,
+      "logLossModell": 0.997,
+      "logLossGrundquote": 1.0657,
+      "brierModell": 0.5954,
+      "brierGrundquote": 0.6447
+     },
+     "tore": {
+      "n": 1110,
+      "logLossModell": 0.6713,
+      "logLossGrundquote": 0.6869,
+      "brierModell": 0.479,
+      "brierGrundquote": 0.4938
+     },
+     "btts": {
+      "n": 1110,
+      "logLossModell": 0.6747,
+      "logLossGrundquote": 0.6833,
+      "brierModell": 0.4819,
+      "brierGrundquote": 0.4902
+     }
+    },
+    "vorsprung": {
+     "m1x2": {
+      "n": 1110,
+      "spieltage": 375,
+      "differenz": 0.0687,
+      "unten": 0.0509,
+      "oben": 0.0883
+     },
+     "tore": {
+      "n": 1110,
+      "spieltage": 375,
+      "differenz": 0.0156,
+      "unten": 0.0039,
+      "oben": 0.0266
+     },
+     "btts": {
+      "n": 1110,
+      "spieltage": 375,
+      "differenz": 0.0086,
+      "unten": 0.0002,
+      "oben": 0.0175
+     }
+    },
+    "wieInDerApp": {
+     "aussagen": 3330,
+     "trefferquote": 55.3,
+     "brier": 0.2384,
+     "kalibrierung": [
+      {
+       "von": 0,
+       "bis": 50,
+       "n": 631,
+       "behauptet": 43.1,
+       "eingetroffen": 42.2
+      },
+      {
+       "von": 50,
+       "bis": 60,
+       "n": 1702,
+       "behauptet": 54.7,
+       "eingetroffen": 53.5
+      },
+      {
+       "von": 60,
+       "bis": 70,
+       "n": 791,
+       "behauptet": 64,
+       "eingetroffen": 64.6
+      },
+      {
+       "von": 70,
+       "bis": 80,
+       "n": 173,
+       "behauptet": 73.9,
+       "eingetroffen": 71.7
+      },
+      {
+       "von": 80,
+       "bis": 100,
+       "n": 33,
+       "behauptet": 84.4,
+       "eingetroffen": 84.8
+      }
+     ]
+    }
+   }
+  }
+ },
+ "beschluss": {
+  "gegenGrundquote": {
+   "m1x2": {
+    "markt": "1X2",
+    "spiele": 5854,
+    "differenz": 0.0503,
+    "unten": 0.0418,
+    "oben": 0.0583,
+    "urteil": "belegt"
+   },
+   "tore": {
+    "markt": "Ueber/Unter 2,5",
+    "spiele": 5854,
+    "differenz": 0.0032,
+    "unten": -0.0024,
+    "oben": 0.0085,
+    "urteil": "nicht_belegt"
+   },
+   "btts": {
+    "markt": "Beide treffen",
+    "spiele": 5854,
+    "differenz": -0.001,
+    "unten": -0.005,
+    "oben": 0.003,
+    "urteil": "nicht_belegt"
+   }
+  },
+  "gegenMarkt": {
+   "urteil": "nicht_pruefbar",
+   "grund": "Nicht pruefbar, solange keine erlaubten historischen Quoten im Bestand sind. Ohne diesen Beleg gibt es kein echtes Geld, nur virtuelle Probeeinsaetze."
+  },
+  "echtesGeld": false,
+  "einsatz": "nur_virtuell",
+  "satz": "Das Modell weiss im Markt 1X2 nachweislich mehr als die blosse Grundquote der Liga. Ob es besser ist als die Wettquoten, ist nicht geprueft, weil keine Quoten im Bestand sind. Deshalb: kein echtes Geld, nur virtuelle Probeeinsaetze."
+ }
+}
