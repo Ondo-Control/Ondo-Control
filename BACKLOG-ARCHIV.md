@@ -6762,3 +6762,26 @@ für das normale `save()` gilt der beschriebene Rückfall bewusst weiter.*
 
 **Warum v19.22.1 nicht abgenommen wurde (Prüfer + Claude, 12.10.2026):** Der Retry hing ausschließlich daran, dass `lebenszyklusUngesichert` bereits beim Rückkehrereignis gesetzt war. In drei der fünf realen Diagnosefälle vom 8.10. kam `tx-abort` jedoch erst 37/329/331 ms **nach** `visibilitychange→visible`; dann hatte `seiteZurueck()` das noch falsche Flag gesehen und es gab keinen weiteren Auslöser. Zusätzlich bewies t11 den Hide-Guard nicht mutationssensitiv: Bei laufendem Run genügte der Statuswechsel selbst zur Entdoppelung; erst `save_aussteht` + `hidden` + `pagehide` trennt Guard vorhanden (1 Write) von Guard entfernt (2 Writes). Diese beiden Lücken werden erst mit v19.22.2 korrigiert. Punkt 91 blieb offen.
 
+---
+
+## Archiviert mit Fassung 158 (14.11.2026)
+
+*Archivvermerk: Ondo hat den folgenden Punkt am 12.10.2026 für erledigt erklärt („Schiri ist gut genug"). Der Wortlaut ist unverändert aus dem Backlog übernommen.*
+
+**81. Schiedsrichter reparieren — nach Ondos eigener, strenger Definition** · *Auftrag Ondo 13.9.2026, wörtlich: „Dann Schiedsrichter reparieren. Das ist dein Job."* · **Status: beschlossen — 🔴 OFFEN. Ein echter Bug gefunden und behoben 13.9.2026 (`beta.html` v19.13.1, „0 von 10 gefunden"-Fund). Berichtigt 13.9.2026: die „zweite Datenquelle" war keine neue Entdeckung, sondern bereits bei Punkt 9 (11.9.2026) vollständig gebaut. 🔴 Wege-Neuzusammensetzung ausgeliefert 13.9.2026 (`beta.html` v19.13.2, Ondos Auftrag) — Bestätigung durch einen echten Prüfzyklus am Gerät steht aus, Status bleibt ausdrücklich OFFEN, nicht behoben. 🔴 football-data.org auf Archiv-Lesen umgestellt 14.9.2026 (`beta.html` v19.13.3, Ondos Auftrag) — Bestätigung durch einen echten Prüfzyklus am Gerät steht ebenfalls aus, Status bleibt OFFEN.**
+
+*Aus dem Backlog-Abschnitt „Was Fassung 129 ändert" wortgleich hierher verschoben (reine Verlaufszeilen):*
+
+- **🔴 Nachgefuehrt 23.9.2026 (Fassung 144, Backlog-Punkt 86 gebaut):** Die Zahl bleibt **zwei — 4, 81**. Punkt 86 ist mit dieser Lieferung gebaut und zaehlt daher nicht mit; Punkt 81 bleibt ausdruecklich OFFEN, weil die Bestaetigung an Ondos Geraet aussteht.
+- **🔴 Nachgefuehrt 24.9.2026 (Fassung 145, Nachbesserung zu Punkt 86 gebaut, `beta.html` v19.19.1):** Die Zahl bleibt **zwei — 4, 81**. Die Nachbesserung ist gebaut; ihre Bewaehrung am iPhone steht aus.
+- **🔴 Nachgefuehrt 24.9.2026 (Fassung 146, letzte Nachbesserung zu Punkt 86, `beta.html` v19.19.2):** Die Zahl bleibt **zwei — 4, 81**.
+
+### Zur Lieferung des Datenfundaments (Backlog 94, 14.11.2026) — Begründung und Befunde
+
+**Anlass:** Ondo am 1.11.2026: Die App misst nur Sprachmodelle; er will ein eigenes Gehirn, das Spiele selbst bewertet, aus vielen vergangenen Spielen lernt und sich selbst prüft. Plan am 3.11.2026 von Ondo bestätigt, von Prüfer und Bauer gegengelesen. Am 14.11.2026 hat Claude Teil 1 selbst gebaut, weil die Bauer-Sitzung nicht geliefert hatte.
+
+**Befunde am Datenbestand (Stand 14.11.2026, von Claude gemessen):** Das Abbild `openfootball/football.json` wurde zuletzt am 22.9.2026 geändert. Vollständig im Sinn der Saisonprüfung sind 151 von 186 Liga-Saisons; die Saison 2025-26 ist in keiner der fünfzehn Ligen vollständig, 2024-25 fehlt in Spanien und Italien teilweise. Das ESPN-Archiv ergänzt die laufende Saison: 420 fehlende Ergebnisse gefüllt, 74 Ergebnisse beider Quellen stimmen überein, kein Widerspruch, 15 Spiele mit zwei nicht auflösbaren Mannschaftsnamen (Celta Fortuna, Arezzo — in OpenFootball nicht vorhanden) bleiben draußen. 64 Alias-Zeilen; ohne sie entstünden in sechs Ländern doppelte Mannschaften.
+
+**Prüfung:** t12 mit 85 Prüfungen; 14 gezielte Veränderungen am neuen Code und zwei an den Daten lassen den Test jeweils durchfallen; die Paritätsprüfung fällt gegen eine veränderte `beta.html` durch (Gegenprobe). t1–t11 unverändert 572 bestanden.
+
+**Grenzen:** Kein Modell, kein Rücktest, keine Quoten. Am grünen Tisch gewertete Spiele sind in OpenFootball nicht erkennbar. Die Aufteilung Lernen / Prüfen / Holdout ist je Liga auf die drei jüngsten vollständigen Saisons festgelegt und wird vom Bau nur geprüft.

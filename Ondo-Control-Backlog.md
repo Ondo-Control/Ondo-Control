@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 12.10.2026, Fassung 157 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 14.11.2026, Fassung 158 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -27,10 +27,7 @@
 - **🔴 Regel 5 abgeloest**, siehe Abschnitt „Regeln fuer dieses Dokument" oben — die neue, uebergreifende Regel (`STAND.md`, Wegweiser) wirkt jetzt am Textkoerper UND an Fassungsabschnitten, nicht mehr nur an Fassungsabschnitten.
 - **Die bisherigen fuenf Fassungsabschnitte (124-128) wortgleich nach `BACKLOG-ARCHIV.md` verschoben** — die letzte Anwendung der alten Regel-5-Mechanik, danach entsteht kein neuer Fassungsabschnitt mehr im Hauptdokument (stehende Regel ab sofort).
 - **Kein Codeaufwand, kein Eingriff an `beta.html`.** `pruefe.py` um Punkt 82 (Aktueller-Stand-Groesse, 80.000-Zeichen-Grenze je Pflichtdokument) erweitert — Einzelheiten im Antworttext.
-- **Beschlossen und nicht gebaut: drei** — **4, 81, 92** *(Punkt 92 bleibt wegen des separaten Schritt 2 offen.)*
-- **🔴 Nachgefuehrt 23.9.2026 (Fassung 144, Backlog-Punkt 86 gebaut):** Die Zahl bleibt **zwei — 4, 81**. Punkt 86 ist mit dieser Lieferung gebaut und zaehlt daher nicht mit; Punkt 81 bleibt ausdruecklich OFFEN, weil die Bestaetigung an Ondos Geraet aussteht.
-- **🔴 Nachgefuehrt 24.9.2026 (Fassung 145, Nachbesserung zu Punkt 86 gebaut, `beta.html` v19.19.1):** Die Zahl bleibt **zwei — 4, 81**. Die Nachbesserung ist gebaut; ihre Bewaehrung am iPhone steht aus.
-- **🔴 Nachgefuehrt 24.9.2026 (Fassung 146, letzte Nachbesserung zu Punkt 86, `beta.html` v19.19.2):** Die Zahl bleibt **zwei — 4, 81**.
+- **Beschlossen und nicht gebaut: zwei** — **4, 92** *(Punkt 92 bleibt wegen des separaten Schritt 2 offen.)*
 
 ---
 
@@ -234,10 +231,6 @@ Ondo wörtlich (Grundidee): „Es gibt die Möglichkeit einen Trainingsraum zu b
 **79. Websuche für echte Vorhersagen** · *Fund + Auftrag Ondo, 12.9.2026 (im Gespräch über den Trainingsraum aufgedeckt) · Auftrag Ondo: „Bau eine Obergrenze für die Suchvorgänge je Lauf ein"* · **Status: ✅ GEBAUT 12.9.2026, `beta.html` v19.10.0**
 
 **Der Fund, der zu diesem Punkt führte:** Ondo ging davon aus, dass die Gehirne für ihre echten Vorhersagen bereits per Websuche recherchieren — Kader, Verletzte, Formstärke, Tabellenstand. **Das stimmt nicht, seit v19.0 nie.** `vorhersageGehirn()` bekommt nur Spielname, Wettbewerb und Anpfiffzeit; weder `apiCall()` (Sonnet) noch `geminiCall({rolle:'gehirn'})` (Flash) hängen ein Suchwerkzeug an. Jede Prozentzahl und jede Begründungszeile stammt allein aus dem trainierten Wissen des Modells. Websuche gibt es im Code nur beim Schiedsrichter (Ergebnis-Prüfung), nie bei der Vorhersage selbst. **Dieselbe Lücke steht jetzt auch in `Ondo-Core-Architektur.md`, Abschnitt 2 und 3, mit Vermerk berichtigt** — beide Abschnitte beschrieben seit ihrer ersten Fassung ein nie gebautes Ziel (Quellenprüfung, Vertrauensstufen mit Begründung) als wäre es der aktuelle Stand.
-
----
-
-**81. Schiedsrichter reparieren — nach Ondos eigener, strenger Definition** · *Auftrag Ondo 13.9.2026, wörtlich: „Dann Schiedsrichter reparieren. Das ist dein Job."* · **Status: beschlossen — 🔴 OFFEN. Ein echter Bug gefunden und behoben 13.9.2026 (`beta.html` v19.13.1, „0 von 10 gefunden"-Fund). Berichtigt 13.9.2026: die „zweite Datenquelle" war keine neue Entdeckung, sondern bereits bei Punkt 9 (11.9.2026) vollständig gebaut. 🔴 Wege-Neuzusammensetzung ausgeliefert 13.9.2026 (`beta.html` v19.13.2, Ondos Auftrag) — Bestätigung durch einen echten Prüfzyklus am Gerät steht aus, Status bleibt ausdrücklich OFFEN, nicht behoben. 🔴 football-data.org auf Archiv-Lesen umgestellt 14.9.2026 (`beta.html` v19.13.3, Ondos Auftrag) — Bestätigung durch einen echten Prüfzyklus am Gerät steht ebenfalls aus, Status bleibt OFFEN.**
 
 ---
 
@@ -623,6 +616,17 @@ Schranke lässt beide Vor-Fälligkeitsfälle scheitern.
 
 ---
 
+**93. Foto-Import von Wettscheinen: Vorschau vor dem Speichern, Kombi nicht zerlegen** · *Fund Ondo 1.11.2026 · Auftragstext von Claude entworfen, nicht verschickt* · **Status: Idee — wartet auf Ondos Wort**
+
+Der Foto-Import übernimmt jede Anzahl erkannter Einträge ohne Vorschau und ohne Plausibilitätsprüfung; eine Kombiwette kann als mehrere Einzelwetten gespeichert werden. Von Hand erfasste Kombis sind nicht betroffen.
+
+---
+
+**94. Ondo Core, Stufe 1, Teil 1: Datenfundament** · *Ondos Ja zum Plan 3.11.2026, Auftrag 14.11.2026 · von Claude geliefert 14.11.2026* · **Status: 🔴 TEIL 1 GEBAUT 14.11.2026 — Teil 2 (eigenes Rechenmodell, Rücktest) offen, eigener Auftrag**
+
+Eigener Ordner `core/data/`; `beta.html` und t1–t11 unverändert. Neutrales Spielschema, Identitätsfunktionen als Nachbau mit Paritätstest gegen `beta.html`, Alias-Tabelle je Land, Leser für OpenFootball (CC0) und das ESPN-Archiv, Saisonprüfung (vollständig / laufend / unvollständig), eingefrorene Aufteilung Lernen / Prüfen / Holdout, täglicher Bau durch `core-daten.yml`. Kein Modell, keine Quoten, keine Sprachmodelle. Zahlen stehen nur in `core/data/generated/coverage.json`. Plan: `core/PLAN.md`. Test: `tests/t12_core_daten.js`. **Offen:** OpenFootball führt jüngere Saisons lückenhaft; historische Quoten fehlen. Befunde: `BACKLOG-ARCHIV.md`.
+
+---
 
 ## 🟡 Prio 2 — wichtig, aber später
 

@@ -1,0 +1,68 @@
+name: Core-Daten bauen
+
+# Backlog-Punkt 94 (Ondo Core, Stufe 1, Teil 1 - Datenfundament). Baut aus OpenFootball
+# (https://github.com/openfootball/football.json, CC0 1.0) und dem eigenen ESPN-Archiv
+# (daten/espn-ergebnisse/) den geprueften Spielbestand unter core/data/generated/.
+#
+# Kein Schluessel, keine Sprachmodelle, keine Quoten. beta.html wird nicht beruehrt.
+#
+# Zeit: 09:10 UTC - nach dem Morgenlauf des ESPN-Sammlers (08:25 UTC), damit dessen frische
+# Ergebnisse am selben Tag eingearbeitet werden. Laeuft der ESPN-Lauf verspaetet, holt der
+# naechste Tag es nach; das Bauen haengt nie von der Uhrzeit ab, nur von den Dateien.
+#
+# Gemeinsame concurrency-Gruppe mit den beiden Ergebnis-Sammlern: nie zwei Schreiber
+# gleichzeitig. Vor dem Commit dieselbe fetch/HEAD-Pruefung wie dort - kein automatischer
+# Merge, kein Rebase, kein Force.
+#
+# Meldet das Bauen einen Fehler (z. B. eine Holdout-Saison ist nicht mehr vollstaendig oder
+# ein Datensatz ist ungueltig), bricht der Lauf sichtbar ab und schreibt nichts.
+#
+# Hinweis GitHub: Geplante Laeufe in oeffentlichen Repositories werden nach 60 Tagen ohne
+# Repository-Aktivitaet abgeschaltet.
+concurrency:
+  group: ondo-control-ergebnisse-schreiber
+  cancel-in-progress: false
+
+on:
+  schedule:
+    - cron: '10 9 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  bauen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: OpenFootball holen (nur lesen)
+        run: git clone --quiet --depth 1 https://github.com/openfootball/football.json "$RUNNER_TEMP/football.json"
+
+      - name: Datenbestand bauen
+        run: node core/data/bauen.js --of "$RUNNER_TEMP/football.json"
+
+      - name: Test des Datenfundaments
+        run: node tests/t12_core_daten.js
+
+      - name: Aenderung committen, falls vorhanden
+        run: |
+          git config user.name "Ondo-Control-Automatik"
+          git config user.email "actions@users.noreply.github.com"
+          git add core/data/generated/
+          if git diff --cached --quiet; then
+            echo "Keine Aenderung - nichts zu committen."
+          else
+            git fetch origin main
+            if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then
+              echo "::error::main hat sich seit dem Checkout bewegt (HEAD ist nicht mehr origin/main) - sichtbarer Abbruch vor dem Commit. Kein automatischer Merge, kein Rebase, kein Force. Der naechste Lauf holt den aktuellen Stand neu."
+              exit 1
+            fi
+            git commit -m "Core-Daten: automatischer Bau"
+            git push
+          fi

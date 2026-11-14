@@ -1,0 +1,3727 @@
+{
+ "schema": 1,
+ "heute": "2026-11-13",
+ "aktuelleSaison": "2026-27",
+ "summen": {
+  "ligen": 15,
+  "saisons": 186,
+  "spiele": 68845,
+  "lernbestand": 48852,
+  "nachRolle": {
+   "lernen": 48852,
+   "pruefen": 5943,
+   "holdout": 5867,
+   "spaeter": 6552,
+   "aus": 1631
+  },
+  "nachStatus": {
+   "vollstaendig": 151,
+   "unvollstaendig": 23,
+   "laufend": 12
+  }
+ },
+ "espn": {
+  "dateien": 3,
+  "geparkt": 0,
+  "ohneLiga": {
+   "bra.1": 72,
+   "arg.1": 105,
+   "swe.1": 56,
+   "nor.1": 48,
+   "bra.2": 93,
+   "uefa.nations": 122,
+   "den.1": 36,
+   "ned.2": 75,
+   "jpn.1": 70,
+   "sco.1": 39,
+   "sco.2": 39,
+   "bel.1": 45,
+   "aut.1": 36,
+   "fifa.friendly": 88,
+   "tur.1": 54,
+   "gre.1": 41,
+   "concacaf.nations.league": 85,
+   "club.friendly": 289,
+   "ned.cup": 46,
+   "esp.copa_del_rey": 70,
+   "caf.nations_qual": 69,
+   "usa.1": 138,
+   "uefa.champions": 54,
+   "uefa.europa": 54,
+   "uefa.europa.conf": 54,
+   "ger.dfb_pokal": 16,
+   "eng.fa": 40,
+   "fra.coupe_de_france": 6
+  },
+  "verarbeitet": {
+   "neu": 249,
+   "gefuellt": 420,
+   "bestaetigt": 74,
+   "konflikt": 0,
+   "doppelt": 0,
+   "unaufgeloest": 15
+  }
+ },
+ "aliasZeilen": 64,
+ "ligen": {
+  "de.1": {
+   "name": "Bundesliga",
+   "land": "de",
+   "espn": "ger.1",
+   "saisons": {
+    "2010-11": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2011-12": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2012-13": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2013-14": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2014-15": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2015-16": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2016-17": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2017-18": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2018-19": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2019-20": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2020-21": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2021-22": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2022-23": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2023-24": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "pruefen"
+    },
+    "2024-25": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "holdout"
+    },
+    "2025-26": {
+     "status": "unvollstaendig",
+     "grund": "294 von 306 Paarungen mit Ergebnis (12 angesetzte ohne Ergebnis)",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 294,
+     "zusatz": 0,
+     "gespeichert": 294,
+     "quellen": {
+      "of": 294,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    },
+    "2026-27": {
+     "status": "laufend",
+     "grund": "79 von 306 Spielen der Doppelrunde",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 79,
+     "zusatz": 0,
+     "gespeichert": 79,
+     "quellen": {
+      "of": 25,
+      "espn": 46,
+      "beide": 8
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    }
+   },
+   "espnUnaufgeloest": {}
+  },
+  "de.2": {
+   "name": "2. Bundesliga",
+   "land": "de",
+   "espn": "ger.2",
+   "saisons": {
+    "2012-13": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2013-14": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2014-15": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2015-16": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2016-17": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2017-18": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2018-19": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2019-20": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2020-21": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2021-22": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2022-23": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2023-24": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "pruefen"
+    },
+    "2024-25": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "holdout"
+    },
+    "2025-26": {
+     "status": "unvollstaendig",
+     "grund": "94 von 306 Paarungen mit Ergebnis (212 angesetzte ohne Ergebnis)",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 94,
+     "zusatz": 0,
+     "gespeichert": 94,
+     "quellen": {
+      "of": 94,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    },
+    "2026-27": {
+     "status": "laufend",
+     "grund": "54 von 306 Spielen der Doppelrunde",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 54,
+     "mitErgebnis": 54,
+     "zusatz": 0,
+     "gespeichert": 54,
+     "quellen": {
+      "of": 0,
+      "espn": 54,
+      "beide": 0
+     },
+     "ofDatei": false,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    }
+   },
+   "espnUnaufgeloest": {}
+  },
+  "de.3": {
+   "name": "3. Liga",
+   "land": "de",
+   "espn": null,
+   "saisons": {
+    "2014-15": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2015-16": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2016-17": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2017-18": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2018-19": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2019-20": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "pruefen"
+    },
+    "2020-21": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "holdout"
+    }
+   },
+   "espnUnaufgeloest": {}
+  },
+  "en.1": {
+   "name": "Premier League",
+   "land": "en",
+   "espn": "eng.1",
+   "saisons": {
+    "2010-11": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2011-12": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2012-13": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2013-14": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2014-15": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2015-16": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2016-17": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2017-18": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2018-19": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2019-20": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2020-21": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2021-22": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2022-23": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2023-24": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "pruefen"
+    },
+    "2024-25": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "holdout"
+    },
+    "2025-26": {
+     "status": "unvollstaendig",
+     "grund": "353 von 380 Paarungen mit Ergebnis (27 angesetzte ohne Ergebnis)",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 353,
+     "zusatz": 0,
+     "gespeichert": 353,
+     "quellen": {
+      "of": 353,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    },
+    "2026-27": {
+     "status": "laufend",
+     "grund": "96 von 380 Spielen der Doppelrunde",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 96,
+     "zusatz": 0,
+     "gespeichert": 96,
+     "quellen": {
+      "of": 36,
+      "espn": 51,
+      "beide": 9
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    }
+   },
+   "espnUnaufgeloest": {}
+  },
+  "en.2": {
+   "name": "Championship",
+   "land": "en",
+   "espn": "eng.2",
+   "saisons": {
+    "2010-11": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2011-12": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2012-13": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2013-14": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2014-15": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2015-16": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2018-19": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2019-20": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2020-21": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2021-22": {
+     "status": "vollstaendig",
+     "grund": "mit 5 Zusatzspielen",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 557,
+     "mitErgebnis": 557,
+     "zusatz": 5,
+     "gespeichert": 557,
+     "quellen": {
+      "of": 557,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2022-23": {
+     "status": "vollstaendig",
+     "grund": "mit 5 Zusatzspielen",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 557,
+     "mitErgebnis": 557,
+     "zusatz": 5,
+     "gespeichert": 557,
+     "quellen": {
+      "of": 557,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2023-24": {
+     "status": "vollstaendig",
+     "grund": "mit 5 Zusatzspielen",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 557,
+     "mitErgebnis": 557,
+     "zusatz": 5,
+     "gespeichert": 557,
+     "quellen": {
+      "of": 557,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "pruefen"
+    },
+    "2024-25": {
+     "status": "vollstaendig",
+     "grund": "mit 5 Zusatzspielen",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 557,
+     "mitErgebnis": 557,
+     "zusatz": 5,
+     "gespeichert": 557,
+     "quellen": {
+      "of": 557,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "holdout"
+    },
+    "2025-26": {
+     "status": "unvollstaendig",
+     "grund": "518 von 552 Paarungen mit Ergebnis (36 angesetzte ohne Ergebnis)",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 557,
+     "mitErgebnis": 521,
+     "zusatz": 0,
+     "gespeichert": 521,
+     "quellen": {
+      "of": 521,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    },
+    "2026-27": {
+     "status": "laufend",
+     "grund": "173 von 552 Spielen der Doppelrunde",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 173,
+     "zusatz": 0,
+     "gespeichert": 173,
+     "quellen": {
+      "of": 76,
+      "espn": 85,
+      "beide": 12
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    }
+   },
+   "espnUnaufgeloest": {}
+  },
+  "en.3": {
+   "name": "League One",
+   "land": "en",
+   "espn": null,
+   "saisons": {
+    "2010-11": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2011-12": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2012-13": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2013-14": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2014-15": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2015-16": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2018-19": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2019-20": {
+     "status": "unvollstaendig",
+     "grund": "400 von 506 Paarungen mit Ergebnis (106 angesetzte ohne Ergebnis)",
+     "teams": 23,
+     "soll": 506,
+     "angesetzt": 506,
+     "mitErgebnis": 400,
+     "zusatz": 0,
+     "gespeichert": 400,
+     "quellen": {
+      "of": 400,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "aus"
+    },
+    "2020-21": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "pruefen"
+    },
+    "2024-25": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "holdout"
+    },
+    "2025-26": {
+     "status": "unvollstaendig",
+     "grund": "261 von 552 Paarungen mit Ergebnis (291 angesetzte ohne Ergebnis)",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 261,
+     "zusatz": 0,
+     "gespeichert": 261,
+     "quellen": {
+      "of": 261,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    }
+   },
+   "espnUnaufgeloest": {}
+  },
+  "en.4": {
+   "name": "League Two",
+   "land": "en",
+   "espn": null,
+   "saisons": {
+    "2010-11": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2011-12": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2012-13": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2013-14": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2014-15": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2015-16": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2018-19": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2019-20": {
+     "status": "unvollstaendig",
+     "grund": "440 von 552 Paarungen mit Ergebnis (112 angesetzte ohne Ergebnis)",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 440,
+     "zusatz": 0,
+     "gespeichert": 440,
+     "quellen": {
+      "of": 440,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "aus"
+    },
+    "2020-21": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "pruefen"
+    },
+    "2024-25": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 552,
+     "mitErgebnis": 552,
+     "zusatz": 0,
+     "gespeichert": 552,
+     "quellen": {
+      "of": 552,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "holdout"
+    },
+    "2025-26": {
+     "status": "unvollstaendig",
+     "grund": "261 von 552 Paarungen mit Ergebnis (303 angesetzte ohne Ergebnis)",
+     "teams": 24,
+     "soll": 552,
+     "angesetzt": 564,
+     "mitErgebnis": 261,
+     "zusatz": 0,
+     "gespeichert": 261,
+     "quellen": {
+      "of": 261,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    }
+   },
+   "espnUnaufgeloest": {}
+  },
+  "es.1": {
+   "name": "La Liga",
+   "land": "es",
+   "espn": "esp.1",
+   "saisons": {
+    "2012-13": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2013-14": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2014-15": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2015-16": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2016-17": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2017-18": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2018-19": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2019-20": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2020-21": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2021-22": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2022-23": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "pruefen"
+    },
+    "2023-24": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "holdout"
+    },
+    "2024-25": {
+     "status": "unvollstaendig",
+     "grund": "370 von 380 Paarungen mit Ergebnis (10 angesetzte ohne Ergebnis)",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 370,
+     "zusatz": 0,
+     "gespeichert": 370,
+     "quellen": {
+      "of": 370,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    },
+    "2025-26": {
+     "status": "unvollstaendig",
+     "grund": "365 von 380 Paarungen mit Ergebnis (15 angesetzte ohne Ergebnis)",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 365,
+     "zusatz": 0,
+     "gespeichert": 365,
+     "quellen": {
+      "of": 365,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    },
+    "2026-27": {
+     "status": "laufend",
+     "grund": "115 von 380 Spielen der Doppelrunde",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 115,
+     "zusatz": 0,
+     "gespeichert": 115,
+     "quellen": {
+      "of": 55,
+      "espn": 51,
+      "beide": 9
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    }
+   },
+   "espnUnaufgeloest": {}
+  },
+  "es.2": {
+   "name": "La Liga 2",
+   "land": "es",
+   "espn": "esp.2",
+   "saisons": {
+    "2012-13": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 22,
+     "soll": 462,
+     "angesetzt": 462,
+     "mitErgebnis": 462,
+     "zusatz": 0,
+     "gespeichert": 462,
+     "quellen": {
+      "of": 462,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2013-14": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 22,
+     "soll": 462,
+     "angesetzt": 462,
+     "mitErgebnis": 462,
+     "zusatz": 0,
+     "gespeichert": 462,
+     "quellen": {
+      "of": 462,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2014-15": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 22,
+     "soll": 462,
+     "angesetzt": 462,
+     "mitErgebnis": 462,
+     "zusatz": 0,
+     "gespeichert": 462,
+     "quellen": {
+      "of": 462,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2015-16": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 22,
+     "soll": 462,
+     "angesetzt": 462,
+     "mitErgebnis": 462,
+     "zusatz": 0,
+     "gespeichert": 462,
+     "quellen": {
+      "of": 462,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2016-17": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 22,
+     "soll": 462,
+     "angesetzt": 462,
+     "mitErgebnis": 462,
+     "zusatz": 0,
+     "gespeichert": 462,
+     "quellen": {
+      "of": 462,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2017-18": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 22,
+     "soll": 462,
+     "angesetzt": 462,
+     "mitErgebnis": 462,
+     "zusatz": 0,
+     "gespeichert": 462,
+     "quellen": {
+      "of": 462,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2018-19": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 22,
+     "soll": 462,
+     "angesetzt": 462,
+     "mitErgebnis": 462,
+     "zusatz": 0,
+     "gespeichert": 462,
+     "quellen": {
+      "of": 462,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2019-20": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 22,
+     "soll": 462,
+     "angesetzt": 462,
+     "mitErgebnis": 462,
+     "zusatz": 0,
+     "gespeichert": 462,
+     "quellen": {
+      "of": 462,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "pruefen"
+    },
+    "2020-21": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 22,
+     "soll": 462,
+     "angesetzt": 462,
+     "mitErgebnis": 462,
+     "zusatz": 0,
+     "gespeichert": 462,
+     "quellen": {
+      "of": 462,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "holdout"
+    },
+    "2024-25": {
+     "status": "unvollstaendig",
+     "grund": "453 von 462 Paarungen mit Ergebnis (9 angesetzte ohne Ergebnis)",
+     "teams": 22,
+     "soll": 462,
+     "angesetzt": 462,
+     "mitErgebnis": 453,
+     "zusatz": 0,
+     "gespeichert": 453,
+     "quellen": {
+      "of": 453,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    },
+    "2025-26": {
+     "status": "unvollstaendig",
+     "grund": "115 von 462 Paarungen mit Ergebnis (347 angesetzte ohne Ergebnis)",
+     "teams": 22,
+     "soll": 462,
+     "angesetzt": 462,
+     "mitErgebnis": 115,
+     "zusatz": 0,
+     "gespeichert": 115,
+     "quellen": {
+      "of": 115,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    },
+    "2026-27": {
+     "status": "laufend",
+     "grund": "78 von 420 Spielen der Doppelrunde",
+     "teams": 21,
+     "soll": 420,
+     "angesetzt": 78,
+     "mitErgebnis": 78,
+     "zusatz": 0,
+     "gespeichert": 78,
+     "quellen": {
+      "of": 0,
+      "espn": 78,
+      "beide": 0
+     },
+     "ofDatei": false,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    }
+   },
+   "espnUnaufgeloest": {
+    "RC Celta Fortuna": 8
+   }
+  },
+  "fr.1": {
+   "name": "Ligue 1",
+   "land": "fr",
+   "espn": "fra.1",
+   "saisons": {
+    "2014-15": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2015-16": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2016-17": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2017-18": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2018-19": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2019-20": {
+     "status": "unvollstaendig",
+     "grund": "279 von 380 Paarungen mit Ergebnis (101 angesetzte ohne Ergebnis)",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 279,
+     "zusatz": 0,
+     "gespeichert": 279,
+     "quellen": {
+      "of": 279,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "aus"
+    },
+    "2020-21": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2021-22": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2022-23": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2023-24": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "pruefen"
+    },
+    "2024-25": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "holdout"
+    },
+    "2025-26": {
+     "status": "unvollstaendig",
+     "grund": "282 von 306 Paarungen mit Ergebnis (24 angesetzte ohne Ergebnis)",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 282,
+     "zusatz": 0,
+     "gespeichert": 282,
+     "quellen": {
+      "of": 282,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    },
+    "2026-27": {
+     "status": "laufend",
+     "grund": "86 von 306 Spielen der Doppelrunde",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 86,
+     "zusatz": 0,
+     "gespeichert": 86,
+     "quellen": {
+      "of": 32,
+      "espn": 45,
+      "beide": 9
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    }
+   },
+   "espnUnaufgeloest": {}
+  },
+  "fr.2": {
+   "name": "Ligue 2",
+   "land": "fr",
+   "espn": "fra.2",
+   "saisons": {
+    "2014-15": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2015-16": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2016-17": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2017-18": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2018-19": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2019-20": {
+     "status": "unvollstaendig",
+     "grund": "280 von 380 Paarungen mit Ergebnis (100 angesetzte ohne Ergebnis)",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 280,
+     "zusatz": 0,
+     "gespeichert": 280,
+     "quellen": {
+      "of": 280,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "aus"
+    },
+    "2020-21": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "pruefen"
+    },
+    "2024-25": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "holdout"
+    },
+    "2025-26": {
+     "status": "unvollstaendig",
+     "grund": "107 von 306 Paarungen mit Ergebnis (199 angesetzte ohne Ergebnis)",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 107,
+     "zusatz": 0,
+     "gespeichert": 107,
+     "quellen": {
+      "of": 107,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    },
+    "2026-27": {
+     "status": "laufend",
+     "grund": "54 von 306 Spielen der Doppelrunde",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 54,
+     "mitErgebnis": 54,
+     "zusatz": 0,
+     "gespeichert": 54,
+     "quellen": {
+      "of": 0,
+      "espn": 54,
+      "beide": 0
+     },
+     "ofDatei": false,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    }
+   },
+   "espnUnaufgeloest": {}
+  },
+  "it.1": {
+   "name": "Serie A",
+   "land": "it",
+   "espn": "ita.1",
+   "saisons": {
+    "2013-14": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2014-15": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2015-16": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2016-17": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2017-18": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2018-19": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2019-20": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2020-21": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2021-22": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2022-23": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "pruefen"
+    },
+    "2023-24": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 380,
+     "zusatz": 0,
+     "gespeichert": 380,
+     "quellen": {
+      "of": 380,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "holdout"
+    },
+    "2024-25": {
+     "status": "unvollstaendig",
+     "grund": "370 von 380 Paarungen mit Ergebnis (10 angesetzte ohne Ergebnis)",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 370,
+     "zusatz": 0,
+     "gespeichert": 370,
+     "quellen": {
+      "of": 370,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    },
+    "2025-26": {
+     "status": "unvollstaendig",
+     "grund": "344 von 380 Paarungen mit Ergebnis (36 angesetzte ohne Ergebnis)",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 344,
+     "zusatz": 0,
+     "gespeichert": 344,
+     "quellen": {
+      "of": 344,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    },
+    "2026-27": {
+     "status": "laufend",
+     "grund": "110 von 380 Spielen der Doppelrunde",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 110,
+     "zusatz": 0,
+     "gespeichert": 110,
+     "quellen": {
+      "of": 40,
+      "espn": 60,
+      "beide": 10
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    }
+   },
+   "espnUnaufgeloest": {}
+  },
+  "it.2": {
+   "name": "Serie B",
+   "land": "it",
+   "espn": "ita.2",
+   "saisons": {
+    "2013-14": {
+     "status": "vollstaendig",
+     "grund": "mit 10 Zusatzspielen",
+     "teams": 22,
+     "soll": 462,
+     "angesetzt": 472,
+     "mitErgebnis": 472,
+     "zusatz": 10,
+     "gespeichert": 472,
+     "quellen": {
+      "of": 472,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2014-15": {
+     "status": "vollstaendig",
+     "grund": "mit 10 Zusatzspielen",
+     "teams": 22,
+     "soll": 462,
+     "angesetzt": 472,
+     "mitErgebnis": 472,
+     "zusatz": 10,
+     "gespeichert": 472,
+     "quellen": {
+      "of": 472,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2015-16": {
+     "status": "vollstaendig",
+     "grund": "mit 10 Zusatzspielen",
+     "teams": 22,
+     "soll": 462,
+     "angesetzt": 472,
+     "mitErgebnis": 472,
+     "zusatz": 10,
+     "gespeichert": 472,
+     "quellen": {
+      "of": 472,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2016-17": {
+     "status": "vollstaendig",
+     "grund": "mit 8 Zusatzspielen",
+     "teams": 22,
+     "soll": 462,
+     "angesetzt": 470,
+     "mitErgebnis": 470,
+     "zusatz": 8,
+     "gespeichert": 470,
+     "quellen": {
+      "of": 470,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2017-18": {
+     "status": "vollstaendig",
+     "grund": "mit 10 Zusatzspielen",
+     "teams": 22,
+     "soll": 462,
+     "angesetzt": 472,
+     "mitErgebnis": 472,
+     "zusatz": 10,
+     "gespeichert": 472,
+     "quellen": {
+      "of": 472,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2018-19": {
+     "status": "vollstaendig",
+     "grund": "mit 10 Zusatzspielen",
+     "teams": 19,
+     "soll": 342,
+     "angesetzt": 352,
+     "mitErgebnis": 352,
+     "zusatz": 10,
+     "gespeichert": 352,
+     "quellen": {
+      "of": 352,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2019-20": {
+     "status": "vollstaendig",
+     "grund": "mit 10 Zusatzspielen",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 390,
+     "mitErgebnis": 390,
+     "zusatz": 10,
+     "gespeichert": 390,
+     "quellen": {
+      "of": 390,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "pruefen"
+    },
+    "2020-21": {
+     "status": "vollstaendig",
+     "grund": "mit 8 Zusatzspielen",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 388,
+     "mitErgebnis": 388,
+     "zusatz": 8,
+     "gespeichert": 388,
+     "quellen": {
+      "of": 388,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "holdout"
+    },
+    "2024-25": {
+     "status": "unvollstaendig",
+     "grund": "3 angesetzte Spiele ohne Ergebnis",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 390,
+     "mitErgebnis": 387,
+     "zusatz": 0,
+     "gespeichert": 387,
+     "quellen": {
+      "of": 387,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    },
+    "2025-26": {
+     "status": "unvollstaendig",
+     "grund": "283 von 380 Paarungen mit Ergebnis (97 angesetzte ohne Ergebnis)",
+     "teams": 20,
+     "soll": 380,
+     "angesetzt": 380,
+     "mitErgebnis": 283,
+     "zusatz": 0,
+     "gespeichert": 283,
+     "quellen": {
+      "of": 283,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    },
+    "2026-27": {
+     "status": "laufend",
+     "grund": "63 von 342 Spielen der Doppelrunde",
+     "teams": 19,
+     "soll": 342,
+     "angesetzt": 63,
+     "mitErgebnis": 63,
+     "zusatz": 0,
+     "gespeichert": 63,
+     "quellen": {
+      "of": 0,
+      "espn": 63,
+      "beide": 0
+     },
+     "ofDatei": false,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    }
+   },
+   "espnUnaufgeloest": {
+    "Arezzo": 7
+   }
+  },
+  "nl.1": {
+   "name": "Eredivisie",
+   "land": "nl",
+   "espn": "ned.1",
+   "saisons": {
+    "2018-19": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2019-20": {
+     "status": "unvollstaendig",
+     "grund": "232 von 306 Paarungen mit Ergebnis (74 angesetzte ohne Ergebnis)",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 232,
+     "zusatz": 0,
+     "gespeichert": 232,
+     "quellen": {
+      "of": 232,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "aus"
+    },
+    "2020-21": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2021-22": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2022-23": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2023-24": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "pruefen"
+    },
+    "2024-25": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "holdout"
+    },
+    "2025-26": {
+     "status": "unvollstaendig",
+     "grund": "295 von 306 Paarungen mit Ergebnis (11 angesetzte ohne Ergebnis)",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 295,
+     "zusatz": 0,
+     "gespeichert": 295,
+     "quellen": {
+      "of": 295,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    },
+    "2026-27": {
+     "status": "laufend",
+     "grund": "107 von 306 Spielen der Doppelrunde",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 107,
+     "zusatz": 0,
+     "gespeichert": 107,
+     "quellen": {
+      "of": 53,
+      "espn": 45,
+      "beide": 9
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    }
+   },
+   "espnUnaufgeloest": {}
+  },
+  "pt.1": {
+   "name": "Primeira Liga",
+   "land": "pt",
+   "espn": "por.1",
+   "saisons": {
+    "2018-19": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2019-20": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2020-21": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2021-22": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2022-23": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "lernen"
+    },
+    "2023-24": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "pruefen"
+    },
+    "2024-25": {
+     "status": "vollstaendig",
+     "grund": "",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 306,
+     "zusatz": 0,
+     "gespeichert": 306,
+     "quellen": {
+      "of": 306,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "holdout"
+    },
+    "2025-26": {
+     "status": "unvollstaendig",
+     "grund": "287 von 306 Paarungen mit Ergebnis (19 angesetzte ohne Ergebnis)",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 287,
+     "zusatz": 0,
+     "gespeichert": 287,
+     "quellen": {
+      "of": 287,
+      "espn": 0,
+      "beide": 0
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    },
+    "2026-27": {
+     "status": "laufend",
+     "grund": "95 von 306 Spielen der Doppelrunde",
+     "teams": 18,
+     "soll": 306,
+     "angesetzt": 306,
+     "mitErgebnis": 95,
+     "zusatz": 0,
+     "gespeichert": 95,
+     "quellen": {
+      "of": 50,
+      "espn": 37,
+      "beide": 8
+     },
+     "ofDatei": true,
+     "dubletten": 0,
+     "konflikte": [],
+     "rolle": "spaeter"
+    }
+   },
+   "espnUnaufgeloest": {}
+  }
+ },
+ "moeglicheAliasLuecken": {}
+}

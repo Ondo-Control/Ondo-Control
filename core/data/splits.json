@@ -1,0 +1,21 @@
+{
+ "hinweis": "Eingefrorene zeitliche Aufteilung des Ondo Core (Backlog-Punkt 94), festgelegt am 14.11.2026, BEVOR irgendein Modell ausgewertet wurde. Je Liga: lernen = alle vollstaendigen Saisons bis einschliesslich lernenBis; pruefen = eine Saison zur Modellwahl; holdout = eine Saison fuer den einmaligen Abschlusstest, sie darf NIE zum Lernen oder zur Modellwahl benutzt werden. Regel bei der Festlegung: die drei juengsten vollstaendigen Saisons der Liga. Alles nach dem Holdout ist 'spaeter' (nur fortlaufende Vorhersage). Diese Datei wird vom Bauen nur geprueft, nie veraendert. Eine Aenderung ist eine bewusste Entscheidung mit Eintrag im Backlog - sonst waere der Abschlusstest wertlos.",
+ "festgelegt": "2026-11-14",
+ "ligen": {
+  "de.1": {"lernenBis": "2022-23", "pruefen": "2023-24", "holdout": "2024-25"},
+  "de.2": {"lernenBis": "2022-23", "pruefen": "2023-24", "holdout": "2024-25"},
+  "de.3": {"lernenBis": "2018-19", "pruefen": "2019-20", "holdout": "2020-21"},
+  "en.1": {"lernenBis": "2022-23", "pruefen": "2023-24", "holdout": "2024-25"},
+  "en.2": {"lernenBis": "2022-23", "pruefen": "2023-24", "holdout": "2024-25"},
+  "en.3": {"lernenBis": "2018-19", "pruefen": "2020-21", "holdout": "2024-25"},
+  "en.4": {"lernenBis": "2018-19", "pruefen": "2020-21", "holdout": "2024-25"},
+  "es.1": {"lernenBis": "2021-22", "pruefen": "2022-23", "holdout": "2023-24"},
+  "es.2": {"lernenBis": "2018-19", "pruefen": "2019-20", "holdout": "2020-21"},
+  "fr.1": {"lernenBis": "2022-23", "pruefen": "2023-24", "holdout": "2024-25"},
+  "fr.2": {"lernenBis": "2018-19", "pruefen": "2020-21", "holdout": "2024-25"},
+  "it.1": {"lernenBis": "2021-22", "pruefen": "2022-23", "holdout": "2023-24"},
+  "it.2": {"lernenBis": "2018-19", "pruefen": "2019-20", "holdout": "2020-21"},
+  "nl.1": {"lernenBis": "2022-23", "pruefen": "2023-24", "holdout": "2024-25"},
+  "pt.1": {"lernenBis": "2022-23", "pruefen": "2023-24", "holdout": "2024-25"}
+ }
+}

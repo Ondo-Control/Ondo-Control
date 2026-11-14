@@ -1,0 +1,1512 @@
+{
+ "schema": 1,
+ "heute": "2026-11-13",
+ "summen": {
+  "ligen": 15,
+  "saisons": 186,
+  "spiele": 68845,
+  "lernbestand": 48852,
+  "nachRolle": {
+   "lernen": 48852,
+   "pruefen": 5943,
+   "holdout": 5867,
+   "spaeter": 6552,
+   "aus": 1631
+  },
+  "nachStatus": {
+   "vollstaendig": 151,
+   "unvollstaendig": 23,
+   "laufend": 12
+  }
+ },
+ "dateien": [
+  {
+   "liga": "de.1",
+   "saison": "2010-11",
+   "datei": "spiele/de.1/2010-11.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.1",
+   "saison": "2011-12",
+   "datei": "spiele/de.1/2011-12.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.1",
+   "saison": "2012-13",
+   "datei": "spiele/de.1/2012-13.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.1",
+   "saison": "2013-14",
+   "datei": "spiele/de.1/2013-14.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.1",
+   "saison": "2014-15",
+   "datei": "spiele/de.1/2014-15.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.1",
+   "saison": "2015-16",
+   "datei": "spiele/de.1/2015-16.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.1",
+   "saison": "2016-17",
+   "datei": "spiele/de.1/2016-17.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.1",
+   "saison": "2017-18",
+   "datei": "spiele/de.1/2017-18.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.1",
+   "saison": "2018-19",
+   "datei": "spiele/de.1/2018-19.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.1",
+   "saison": "2019-20",
+   "datei": "spiele/de.1/2019-20.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.1",
+   "saison": "2020-21",
+   "datei": "spiele/de.1/2020-21.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.1",
+   "saison": "2021-22",
+   "datei": "spiele/de.1/2021-22.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.1",
+   "saison": "2022-23",
+   "datei": "spiele/de.1/2022-23.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.1",
+   "saison": "2023-24",
+   "datei": "spiele/de.1/2023-24.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "pruefen"
+  },
+  {
+   "liga": "de.1",
+   "saison": "2024-25",
+   "datei": "spiele/de.1/2024-25.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "holdout"
+  },
+  {
+   "liga": "de.1",
+   "saison": "2025-26",
+   "datei": "spiele/de.1/2025-26.json",
+   "spiele": 294,
+   "status": "unvollstaendig",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "de.1",
+   "saison": "2026-27",
+   "datei": "spiele/de.1/2026-27.json",
+   "spiele": 79,
+   "status": "laufend",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "de.2",
+   "saison": "2012-13",
+   "datei": "spiele/de.2/2012-13.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.2",
+   "saison": "2013-14",
+   "datei": "spiele/de.2/2013-14.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.2",
+   "saison": "2014-15",
+   "datei": "spiele/de.2/2014-15.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.2",
+   "saison": "2015-16",
+   "datei": "spiele/de.2/2015-16.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.2",
+   "saison": "2016-17",
+   "datei": "spiele/de.2/2016-17.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.2",
+   "saison": "2017-18",
+   "datei": "spiele/de.2/2017-18.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.2",
+   "saison": "2018-19",
+   "datei": "spiele/de.2/2018-19.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.2",
+   "saison": "2019-20",
+   "datei": "spiele/de.2/2019-20.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.2",
+   "saison": "2020-21",
+   "datei": "spiele/de.2/2020-21.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.2",
+   "saison": "2021-22",
+   "datei": "spiele/de.2/2021-22.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.2",
+   "saison": "2022-23",
+   "datei": "spiele/de.2/2022-23.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.2",
+   "saison": "2023-24",
+   "datei": "spiele/de.2/2023-24.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "pruefen"
+  },
+  {
+   "liga": "de.2",
+   "saison": "2024-25",
+   "datei": "spiele/de.2/2024-25.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "holdout"
+  },
+  {
+   "liga": "de.2",
+   "saison": "2025-26",
+   "datei": "spiele/de.2/2025-26.json",
+   "spiele": 94,
+   "status": "unvollstaendig",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "de.2",
+   "saison": "2026-27",
+   "datei": "spiele/de.2/2026-27.json",
+   "spiele": 54,
+   "status": "laufend",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "de.3",
+   "saison": "2014-15",
+   "datei": "spiele/de.3/2014-15.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.3",
+   "saison": "2015-16",
+   "datei": "spiele/de.3/2015-16.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.3",
+   "saison": "2016-17",
+   "datei": "spiele/de.3/2016-17.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.3",
+   "saison": "2017-18",
+   "datei": "spiele/de.3/2017-18.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.3",
+   "saison": "2018-19",
+   "datei": "spiele/de.3/2018-19.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "de.3",
+   "saison": "2019-20",
+   "datei": "spiele/de.3/2019-20.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "pruefen"
+  },
+  {
+   "liga": "de.3",
+   "saison": "2020-21",
+   "datei": "spiele/de.3/2020-21.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "holdout"
+  },
+  {
+   "liga": "en.1",
+   "saison": "2010-11",
+   "datei": "spiele/en.1/2010-11.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.1",
+   "saison": "2011-12",
+   "datei": "spiele/en.1/2011-12.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.1",
+   "saison": "2012-13",
+   "datei": "spiele/en.1/2012-13.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.1",
+   "saison": "2013-14",
+   "datei": "spiele/en.1/2013-14.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.1",
+   "saison": "2014-15",
+   "datei": "spiele/en.1/2014-15.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.1",
+   "saison": "2015-16",
+   "datei": "spiele/en.1/2015-16.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.1",
+   "saison": "2016-17",
+   "datei": "spiele/en.1/2016-17.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.1",
+   "saison": "2017-18",
+   "datei": "spiele/en.1/2017-18.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.1",
+   "saison": "2018-19",
+   "datei": "spiele/en.1/2018-19.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.1",
+   "saison": "2019-20",
+   "datei": "spiele/en.1/2019-20.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.1",
+   "saison": "2020-21",
+   "datei": "spiele/en.1/2020-21.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.1",
+   "saison": "2021-22",
+   "datei": "spiele/en.1/2021-22.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.1",
+   "saison": "2022-23",
+   "datei": "spiele/en.1/2022-23.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.1",
+   "saison": "2023-24",
+   "datei": "spiele/en.1/2023-24.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "pruefen"
+  },
+  {
+   "liga": "en.1",
+   "saison": "2024-25",
+   "datei": "spiele/en.1/2024-25.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "holdout"
+  },
+  {
+   "liga": "en.1",
+   "saison": "2025-26",
+   "datei": "spiele/en.1/2025-26.json",
+   "spiele": 353,
+   "status": "unvollstaendig",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "en.1",
+   "saison": "2026-27",
+   "datei": "spiele/en.1/2026-27.json",
+   "spiele": 96,
+   "status": "laufend",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "en.2",
+   "saison": "2010-11",
+   "datei": "spiele/en.2/2010-11.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.2",
+   "saison": "2011-12",
+   "datei": "spiele/en.2/2011-12.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.2",
+   "saison": "2012-13",
+   "datei": "spiele/en.2/2012-13.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.2",
+   "saison": "2013-14",
+   "datei": "spiele/en.2/2013-14.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.2",
+   "saison": "2014-15",
+   "datei": "spiele/en.2/2014-15.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.2",
+   "saison": "2015-16",
+   "datei": "spiele/en.2/2015-16.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.2",
+   "saison": "2018-19",
+   "datei": "spiele/en.2/2018-19.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.2",
+   "saison": "2019-20",
+   "datei": "spiele/en.2/2019-20.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.2",
+   "saison": "2020-21",
+   "datei": "spiele/en.2/2020-21.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.2",
+   "saison": "2021-22",
+   "datei": "spiele/en.2/2021-22.json",
+   "spiele": 557,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.2",
+   "saison": "2022-23",
+   "datei": "spiele/en.2/2022-23.json",
+   "spiele": 557,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.2",
+   "saison": "2023-24",
+   "datei": "spiele/en.2/2023-24.json",
+   "spiele": 557,
+   "status": "vollstaendig",
+   "rolle": "pruefen"
+  },
+  {
+   "liga": "en.2",
+   "saison": "2024-25",
+   "datei": "spiele/en.2/2024-25.json",
+   "spiele": 557,
+   "status": "vollstaendig",
+   "rolle": "holdout"
+  },
+  {
+   "liga": "en.2",
+   "saison": "2025-26",
+   "datei": "spiele/en.2/2025-26.json",
+   "spiele": 521,
+   "status": "unvollstaendig",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "en.2",
+   "saison": "2026-27",
+   "datei": "spiele/en.2/2026-27.json",
+   "spiele": 173,
+   "status": "laufend",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "en.3",
+   "saison": "2010-11",
+   "datei": "spiele/en.3/2010-11.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.3",
+   "saison": "2011-12",
+   "datei": "spiele/en.3/2011-12.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.3",
+   "saison": "2012-13",
+   "datei": "spiele/en.3/2012-13.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.3",
+   "saison": "2013-14",
+   "datei": "spiele/en.3/2013-14.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.3",
+   "saison": "2014-15",
+   "datei": "spiele/en.3/2014-15.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.3",
+   "saison": "2015-16",
+   "datei": "spiele/en.3/2015-16.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.3",
+   "saison": "2018-19",
+   "datei": "spiele/en.3/2018-19.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.3",
+   "saison": "2019-20",
+   "datei": "spiele/en.3/2019-20.json",
+   "spiele": 400,
+   "status": "unvollstaendig",
+   "rolle": "aus"
+  },
+  {
+   "liga": "en.3",
+   "saison": "2020-21",
+   "datei": "spiele/en.3/2020-21.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "pruefen"
+  },
+  {
+   "liga": "en.3",
+   "saison": "2024-25",
+   "datei": "spiele/en.3/2024-25.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "holdout"
+  },
+  {
+   "liga": "en.3",
+   "saison": "2025-26",
+   "datei": "spiele/en.3/2025-26.json",
+   "spiele": 261,
+   "status": "unvollstaendig",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "en.4",
+   "saison": "2010-11",
+   "datei": "spiele/en.4/2010-11.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.4",
+   "saison": "2011-12",
+   "datei": "spiele/en.4/2011-12.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.4",
+   "saison": "2012-13",
+   "datei": "spiele/en.4/2012-13.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.4",
+   "saison": "2013-14",
+   "datei": "spiele/en.4/2013-14.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.4",
+   "saison": "2014-15",
+   "datei": "spiele/en.4/2014-15.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.4",
+   "saison": "2015-16",
+   "datei": "spiele/en.4/2015-16.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.4",
+   "saison": "2018-19",
+   "datei": "spiele/en.4/2018-19.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "en.4",
+   "saison": "2019-20",
+   "datei": "spiele/en.4/2019-20.json",
+   "spiele": 440,
+   "status": "unvollstaendig",
+   "rolle": "aus"
+  },
+  {
+   "liga": "en.4",
+   "saison": "2020-21",
+   "datei": "spiele/en.4/2020-21.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "pruefen"
+  },
+  {
+   "liga": "en.4",
+   "saison": "2024-25",
+   "datei": "spiele/en.4/2024-25.json",
+   "spiele": 552,
+   "status": "vollstaendig",
+   "rolle": "holdout"
+  },
+  {
+   "liga": "en.4",
+   "saison": "2025-26",
+   "datei": "spiele/en.4/2025-26.json",
+   "spiele": 261,
+   "status": "unvollstaendig",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "es.1",
+   "saison": "2012-13",
+   "datei": "spiele/es.1/2012-13.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "es.1",
+   "saison": "2013-14",
+   "datei": "spiele/es.1/2013-14.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "es.1",
+   "saison": "2014-15",
+   "datei": "spiele/es.1/2014-15.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "es.1",
+   "saison": "2015-16",
+   "datei": "spiele/es.1/2015-16.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "es.1",
+   "saison": "2016-17",
+   "datei": "spiele/es.1/2016-17.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "es.1",
+   "saison": "2017-18",
+   "datei": "spiele/es.1/2017-18.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "es.1",
+   "saison": "2018-19",
+   "datei": "spiele/es.1/2018-19.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "es.1",
+   "saison": "2019-20",
+   "datei": "spiele/es.1/2019-20.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "es.1",
+   "saison": "2020-21",
+   "datei": "spiele/es.1/2020-21.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "es.1",
+   "saison": "2021-22",
+   "datei": "spiele/es.1/2021-22.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "es.1",
+   "saison": "2022-23",
+   "datei": "spiele/es.1/2022-23.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "pruefen"
+  },
+  {
+   "liga": "es.1",
+   "saison": "2023-24",
+   "datei": "spiele/es.1/2023-24.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "holdout"
+  },
+  {
+   "liga": "es.1",
+   "saison": "2024-25",
+   "datei": "spiele/es.1/2024-25.json",
+   "spiele": 370,
+   "status": "unvollstaendig",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "es.1",
+   "saison": "2025-26",
+   "datei": "spiele/es.1/2025-26.json",
+   "spiele": 365,
+   "status": "unvollstaendig",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "es.1",
+   "saison": "2026-27",
+   "datei": "spiele/es.1/2026-27.json",
+   "spiele": 115,
+   "status": "laufend",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "es.2",
+   "saison": "2012-13",
+   "datei": "spiele/es.2/2012-13.json",
+   "spiele": 462,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "es.2",
+   "saison": "2013-14",
+   "datei": "spiele/es.2/2013-14.json",
+   "spiele": 462,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "es.2",
+   "saison": "2014-15",
+   "datei": "spiele/es.2/2014-15.json",
+   "spiele": 462,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "es.2",
+   "saison": "2015-16",
+   "datei": "spiele/es.2/2015-16.json",
+   "spiele": 462,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "es.2",
+   "saison": "2016-17",
+   "datei": "spiele/es.2/2016-17.json",
+   "spiele": 462,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "es.2",
+   "saison": "2017-18",
+   "datei": "spiele/es.2/2017-18.json",
+   "spiele": 462,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "es.2",
+   "saison": "2018-19",
+   "datei": "spiele/es.2/2018-19.json",
+   "spiele": 462,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "es.2",
+   "saison": "2019-20",
+   "datei": "spiele/es.2/2019-20.json",
+   "spiele": 462,
+   "status": "vollstaendig",
+   "rolle": "pruefen"
+  },
+  {
+   "liga": "es.2",
+   "saison": "2020-21",
+   "datei": "spiele/es.2/2020-21.json",
+   "spiele": 462,
+   "status": "vollstaendig",
+   "rolle": "holdout"
+  },
+  {
+   "liga": "es.2",
+   "saison": "2024-25",
+   "datei": "spiele/es.2/2024-25.json",
+   "spiele": 453,
+   "status": "unvollstaendig",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "es.2",
+   "saison": "2025-26",
+   "datei": "spiele/es.2/2025-26.json",
+   "spiele": 115,
+   "status": "unvollstaendig",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "es.2",
+   "saison": "2026-27",
+   "datei": "spiele/es.2/2026-27.json",
+   "spiele": 78,
+   "status": "laufend",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "fr.1",
+   "saison": "2014-15",
+   "datei": "spiele/fr.1/2014-15.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "fr.1",
+   "saison": "2015-16",
+   "datei": "spiele/fr.1/2015-16.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "fr.1",
+   "saison": "2016-17",
+   "datei": "spiele/fr.1/2016-17.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "fr.1",
+   "saison": "2017-18",
+   "datei": "spiele/fr.1/2017-18.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "fr.1",
+   "saison": "2018-19",
+   "datei": "spiele/fr.1/2018-19.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "fr.1",
+   "saison": "2019-20",
+   "datei": "spiele/fr.1/2019-20.json",
+   "spiele": 279,
+   "status": "unvollstaendig",
+   "rolle": "aus"
+  },
+  {
+   "liga": "fr.1",
+   "saison": "2020-21",
+   "datei": "spiele/fr.1/2020-21.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "fr.1",
+   "saison": "2021-22",
+   "datei": "spiele/fr.1/2021-22.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "fr.1",
+   "saison": "2022-23",
+   "datei": "spiele/fr.1/2022-23.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "fr.1",
+   "saison": "2023-24",
+   "datei": "spiele/fr.1/2023-24.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "pruefen"
+  },
+  {
+   "liga": "fr.1",
+   "saison": "2024-25",
+   "datei": "spiele/fr.1/2024-25.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "holdout"
+  },
+  {
+   "liga": "fr.1",
+   "saison": "2025-26",
+   "datei": "spiele/fr.1/2025-26.json",
+   "spiele": 282,
+   "status": "unvollstaendig",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "fr.1",
+   "saison": "2026-27",
+   "datei": "spiele/fr.1/2026-27.json",
+   "spiele": 86,
+   "status": "laufend",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "fr.2",
+   "saison": "2014-15",
+   "datei": "spiele/fr.2/2014-15.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "fr.2",
+   "saison": "2015-16",
+   "datei": "spiele/fr.2/2015-16.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "fr.2",
+   "saison": "2016-17",
+   "datei": "spiele/fr.2/2016-17.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "fr.2",
+   "saison": "2017-18",
+   "datei": "spiele/fr.2/2017-18.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "fr.2",
+   "saison": "2018-19",
+   "datei": "spiele/fr.2/2018-19.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "fr.2",
+   "saison": "2019-20",
+   "datei": "spiele/fr.2/2019-20.json",
+   "spiele": 280,
+   "status": "unvollstaendig",
+   "rolle": "aus"
+  },
+  {
+   "liga": "fr.2",
+   "saison": "2020-21",
+   "datei": "spiele/fr.2/2020-21.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "pruefen"
+  },
+  {
+   "liga": "fr.2",
+   "saison": "2024-25",
+   "datei": "spiele/fr.2/2024-25.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "holdout"
+  },
+  {
+   "liga": "fr.2",
+   "saison": "2025-26",
+   "datei": "spiele/fr.2/2025-26.json",
+   "spiele": 107,
+   "status": "unvollstaendig",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "fr.2",
+   "saison": "2026-27",
+   "datei": "spiele/fr.2/2026-27.json",
+   "spiele": 54,
+   "status": "laufend",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "it.1",
+   "saison": "2013-14",
+   "datei": "spiele/it.1/2013-14.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "it.1",
+   "saison": "2014-15",
+   "datei": "spiele/it.1/2014-15.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "it.1",
+   "saison": "2015-16",
+   "datei": "spiele/it.1/2015-16.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "it.1",
+   "saison": "2016-17",
+   "datei": "spiele/it.1/2016-17.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "it.1",
+   "saison": "2017-18",
+   "datei": "spiele/it.1/2017-18.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "it.1",
+   "saison": "2018-19",
+   "datei": "spiele/it.1/2018-19.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "it.1",
+   "saison": "2019-20",
+   "datei": "spiele/it.1/2019-20.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "it.1",
+   "saison": "2020-21",
+   "datei": "spiele/it.1/2020-21.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "it.1",
+   "saison": "2021-22",
+   "datei": "spiele/it.1/2021-22.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "it.1",
+   "saison": "2022-23",
+   "datei": "spiele/it.1/2022-23.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "pruefen"
+  },
+  {
+   "liga": "it.1",
+   "saison": "2023-24",
+   "datei": "spiele/it.1/2023-24.json",
+   "spiele": 380,
+   "status": "vollstaendig",
+   "rolle": "holdout"
+  },
+  {
+   "liga": "it.1",
+   "saison": "2024-25",
+   "datei": "spiele/it.1/2024-25.json",
+   "spiele": 370,
+   "status": "unvollstaendig",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "it.1",
+   "saison": "2025-26",
+   "datei": "spiele/it.1/2025-26.json",
+   "spiele": 344,
+   "status": "unvollstaendig",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "it.1",
+   "saison": "2026-27",
+   "datei": "spiele/it.1/2026-27.json",
+   "spiele": 110,
+   "status": "laufend",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "it.2",
+   "saison": "2013-14",
+   "datei": "spiele/it.2/2013-14.json",
+   "spiele": 472,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "it.2",
+   "saison": "2014-15",
+   "datei": "spiele/it.2/2014-15.json",
+   "spiele": 472,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "it.2",
+   "saison": "2015-16",
+   "datei": "spiele/it.2/2015-16.json",
+   "spiele": 472,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "it.2",
+   "saison": "2016-17",
+   "datei": "spiele/it.2/2016-17.json",
+   "spiele": 470,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "it.2",
+   "saison": "2017-18",
+   "datei": "spiele/it.2/2017-18.json",
+   "spiele": 472,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "it.2",
+   "saison": "2018-19",
+   "datei": "spiele/it.2/2018-19.json",
+   "spiele": 352,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "it.2",
+   "saison": "2019-20",
+   "datei": "spiele/it.2/2019-20.json",
+   "spiele": 390,
+   "status": "vollstaendig",
+   "rolle": "pruefen"
+  },
+  {
+   "liga": "it.2",
+   "saison": "2020-21",
+   "datei": "spiele/it.2/2020-21.json",
+   "spiele": 388,
+   "status": "vollstaendig",
+   "rolle": "holdout"
+  },
+  {
+   "liga": "it.2",
+   "saison": "2024-25",
+   "datei": "spiele/it.2/2024-25.json",
+   "spiele": 387,
+   "status": "unvollstaendig",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "it.2",
+   "saison": "2025-26",
+   "datei": "spiele/it.2/2025-26.json",
+   "spiele": 283,
+   "status": "unvollstaendig",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "it.2",
+   "saison": "2026-27",
+   "datei": "spiele/it.2/2026-27.json",
+   "spiele": 63,
+   "status": "laufend",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "nl.1",
+   "saison": "2018-19",
+   "datei": "spiele/nl.1/2018-19.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "nl.1",
+   "saison": "2019-20",
+   "datei": "spiele/nl.1/2019-20.json",
+   "spiele": 232,
+   "status": "unvollstaendig",
+   "rolle": "aus"
+  },
+  {
+   "liga": "nl.1",
+   "saison": "2020-21",
+   "datei": "spiele/nl.1/2020-21.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "nl.1",
+   "saison": "2021-22",
+   "datei": "spiele/nl.1/2021-22.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "nl.1",
+   "saison": "2022-23",
+   "datei": "spiele/nl.1/2022-23.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "nl.1",
+   "saison": "2023-24",
+   "datei": "spiele/nl.1/2023-24.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "pruefen"
+  },
+  {
+   "liga": "nl.1",
+   "saison": "2024-25",
+   "datei": "spiele/nl.1/2024-25.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "holdout"
+  },
+  {
+   "liga": "nl.1",
+   "saison": "2025-26",
+   "datei": "spiele/nl.1/2025-26.json",
+   "spiele": 295,
+   "status": "unvollstaendig",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "nl.1",
+   "saison": "2026-27",
+   "datei": "spiele/nl.1/2026-27.json",
+   "spiele": 107,
+   "status": "laufend",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "pt.1",
+   "saison": "2018-19",
+   "datei": "spiele/pt.1/2018-19.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "pt.1",
+   "saison": "2019-20",
+   "datei": "spiele/pt.1/2019-20.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "pt.1",
+   "saison": "2020-21",
+   "datei": "spiele/pt.1/2020-21.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "pt.1",
+   "saison": "2021-22",
+   "datei": "spiele/pt.1/2021-22.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "pt.1",
+   "saison": "2022-23",
+   "datei": "spiele/pt.1/2022-23.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "lernen"
+  },
+  {
+   "liga": "pt.1",
+   "saison": "2023-24",
+   "datei": "spiele/pt.1/2023-24.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "pruefen"
+  },
+  {
+   "liga": "pt.1",
+   "saison": "2024-25",
+   "datei": "spiele/pt.1/2024-25.json",
+   "spiele": 306,
+   "status": "vollstaendig",
+   "rolle": "holdout"
+  },
+  {
+   "liga": "pt.1",
+   "saison": "2025-26",
+   "datei": "spiele/pt.1/2025-26.json",
+   "spiele": 287,
+   "status": "unvollstaendig",
+   "rolle": "spaeter"
+  },
+  {
+   "liga": "pt.1",
+   "saison": "2026-27",
+   "datei": "spiele/pt.1/2026-27.json",
+   "spiele": 95,
+   "status": "laufend",
+   "rolle": "spaeter"
+  }
+ ]
+}
