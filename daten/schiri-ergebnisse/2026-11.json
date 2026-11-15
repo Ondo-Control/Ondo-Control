@@ -1776,6 +1776,30 @@
    "torGast": 2,
    "quelle": "football-data.org",
    "halbzeit": "0:1"
+  },
+  {
+   "datum": "2026-11-14",
+   "anpfiff": "23:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "Chapecoense AF",
+   "gast": "CR Vasco da Gama",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "0:1"
+  },
+  {
+   "datum": "2026-11-14",
+   "anpfiff": "21:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "Mirassol FC",
+   "gast": "CA Mineiro",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
   }
  ]
 }
