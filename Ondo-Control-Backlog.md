@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 14.11.2026, Fassung 159 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 15.11.2026, Fassung 160 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -624,14 +624,14 @@ Der Foto-Import übernimmt jede Anzahl erkannter Einträge ohne Vorschau und ohn
 
 **94. Ondo Core, Stufe 1: Datenfundament und eigenes Rechenmodell** · *Ondos Ja zum Plan 3.11.2026, Aufträge 14.11.2026 · von Claude geliefert 14.11.2026* · **Status: 🔴 DATEN UND MODELL GEBAUT 14.11.2026 — Quotenvergleich und Anbindung an die App offen, eigener Auftrag**
 
-Eigene Ordner `core/data/` und `core/model/`; `beta.html` und t1–t11 unverändert. **Daten:** geprüfter Spielbestand aus OpenFootball (CC0) und dem ESPN-Archiv, Alias-Tabelle, Saisonprüfung, eingefrorene Aufteilung Lernen / Prüfen / Holdout. **Modell:** Angriffs- und Abwehrstärke je Mannschaft, lernt nach jedem Spiel; Kandidaten und Prüfregeln vorab in `core/model/kandidaten.json`; Selbstprüfung mit Beschluss in `core/model/generated/bericht.json`. Täglicher Lauf durch `core-daten.yml`. Zahlen stehen nur in den erzeugten Dateien. Plan: `core/PLAN.md`. Tests: `tests/t12_core_daten.js`, `tests/t13_core_modell.js`. **Offen:** Quoten fehlen, Vorteil gegen den Markt nicht prüfbar, deshalb kein echtes Geld. Befunde: `BACKLOG-ARCHIV.md`.
+Eigene Ordner `core/data/` und `core/model/`; `beta.html` und t1–t11 unverändert. **Daten:** geprüfter Spielbestand aus OpenFootball (CC0) und dem ESPN-Archiv, Alias-Tabelle, Saisonprüfung, eingefrorene Aufteilung Lernen / Prüfen / Holdout. **Modell:** Angriffs- und Abwehrstärke je Mannschaft, lernt nach jedem Spiel; Kandidaten und Prüfregeln vorab in `core/model/kandidaten.json`; Selbstprüfung mit Beschluss in `core/model/generated/bericht.json`. Täglicher Lauf durch `core-daten.yml`. Zahlen stehen nur in den erzeugten Dateien. Plan: `core/PLAN.md`, Reihenfolge: `core/ORIENTIERUNG.md`. Tests: `tests/t12_core_daten.js`, `tests/t13_core_modell.js`. **Offen:** Quoten fehlen, Vorteil gegen den Markt nicht prüfbar, deshalb kein echtes Geld. Befunde: `BACKLOG-ARCHIV.md`.
 
 ---
 
 ## 🟡 Prio 2 — wichtig, aber später
 
 
-**4. Daten-Export in die stabile Version** · *Idee Chat 1, erneut 28.7.* · **Status: beschlossen — 🔴 wartet auf die Beförderung Beta→Stabil (Ondo, 12.9.2026) — kein eigener Bauaufwand mehr, siehe Vermerk unten**
+**4. Daten-Export in die stabile Version** · *Idee Chat 1, erneut 28.7.* · **Status: beschlossen — 🔴 wartet auf die Beförderung Beta→Stabil (Ondo, 12.9.2026) — kein eigener Bauaufwand mehr, Begründung im Archiv**
 
 **34. Brier-Score als zweite Kennzahl neben der Kalibrierung** *(🔴 GERECHNET am 14.8. abends aus
 den Rohdaten — Sonnet **0,2429**, Bereich 0,2350–0,2513 · Flash **0,2497**, Bereich
@@ -678,7 +678,7 @@ Zwei Ergänzungen von Claude offen: Architekt und unabhängiger Prüfer sollten 
 → **🔴 Vermerk 28.8.2026:** Die zweite Ergänzung (Geminis Doppelrolle) ist mit seinem Ausscheiden aus dem Projekt gegenstandslos — als erledigt vermerkt, nicht gelöscht. **Die erste Ergänzung bleibt offen und betrifft jetzt ChatGPT:** Architekt und unabhängiger Prüfer sollten nicht dieselbe Rolle sein, und ChatGPT ist seit 27.8./28.8. beides — Architekt (seit Projektbeginn) und Prüfer (Rollen-Zeile in `STAND.md`).
 
 **19. Beta auf Deutsch beschränken** · *Idee 31.7., Ondo · vorgelegt 3.8.* · **Status: Idee — NEU**
-In `beta.html` steht jede Beschriftung dreimal (DE/FR/EN), rund 13 % der Datei. Jede neue Beschriftung kostet dreifache Arbeit, und vor jeder Lieferung müssen 175 Schlüssel × 3 abgeglichen werden. Die stabile v17 behielte alle drei Sprachen.
+In `beta.html` steht jede Beschriftung dreimal (DE/FR/EN), gut ein Zehntel der Datei. Jede neue Beschriftung kostet dreifache Arbeit; die Schlüsselzahl steht in `STAND.md`. Die stabile v17 behielte alle drei Sprachen.
 → **Entscheidung Ondos am 3.8.: NEIN, vorerst nicht.** Wörtlich: *„solange es geht dreisprachig bauen; wenn es zu viel wird, können wir auf diese Idee zurückgreifen."*
 → **Ausdrücklich keine Ablehnung.** Der Punkt bleibt als Rückgriff verfügbar.
 → *Bedingung, falls er je gezogen wird: Die französischen und englischen v19-Wörter gibt es nur in `beta.html`. Vor dem Löschen bekommt Ondo eine Datei mit beiden Blöcken zum Aufheben.*
@@ -761,13 +761,13 @@ Wenn ein Korrekturfaktor nur für das Modell gilt, an dem er gemessen wurde (neu
 | **Doppelter Code** — `beta.html` und `OndoControl.html` sind zwei vollständige Kopien | Jede Korrektur muss zweimal gemacht werden | hoch, sobald v19 befördert wird |
 | **Bekannte Lücke im Schiedsrichter** — ein einmal als *fertig* gemeldetes Ergebnis wird nie wieder hinterfragt | Ein falsch abgelesener Endstand bleibt dauerhaft falsch, sobald übernommen wurde | **hoch** — durch die erfundenen 0:0 vom 31.7. weiter verschärft |
 | **Der Schiedsrichter sucht, statt zu prüfen** | Ein Modell, das suchen soll, liefert irgendetwas statt „nicht gefunden" | **hoch** → Punkt E |
-| **`APP_VERSION = 18` in `beta.html`**, während der Kopf v19.6 anzeigt | Heute folgenlos. Wird `version.json` bei der Beförderung auf 19 gesetzt, zeigt die Beta ein Update-Banner, das aus der Beta herausführt | vor der Beförderung klären |
+| **`APP_VERSION = 18` in `beta.html`**, `version.json` steht auf 17 | Heute folgenlos. Wird `version.json` bei der Beförderung auf 19 gesetzt, zeigt die Beta ein Update-Banner, das aus der Beta herausführt | vor der Beförderung klären |
 | **Rückblick auf eigene Tipps enthält Vermutungen, keine Tatsachen** | Ein falscher Tipp kann Grundlage des nächsten werden | **wird mit v19.7 behoben** → Punkt D |
-| **Nur lokale Speicherung** (localStorage) | Sicherung seit v19.1 gebaut; offen bleibt die Übertragung in die stabile Version | → Prio 2, Punkt 4 |
+| **Nur lokale Speicherung** (IndexedDB) | Sicherung seit v19.1 gebaut; offen bleibt die Übertragung in die stabile Version | → Prio 2, Punkt 4 |
 | **Eine lange JS-Datei** (keine Module) | Änderungen werden mit der Zeit riskanter | mittel |
 | **Sprachdateien von Hand** (drei Sprachen, DE/FR/EN, von `pruefe.py` Abschnitt 13 bei jedem Lauf selbst gezählt und auf Gleichheit geprüft — **die Zahl selbst steht nur in `STAND.md`, Abschnitt „Versionen"**, Punkt 45). *🔴 Berichtigt 2.9.2026: Hier stand „229 Schlüssel × 3 Sprachen, Stand 28.8.2026" — seit v19.8.9 überholt, richtig sind 234. Die Zahl ist bewusst **nicht** auf den neuen Wert gesetzt, sondern durch den Verweis ersetzt worden: Sie war hier ein zweiter Ort für dieselbe Tatsache und wäre an dieser Stelle erneut unbemerkt gealtert. `pruefe.py` hat es nicht gefangen — Abschnitt 6 prüft nur das Muster `**Sprachschlüssel: N**`, diese Tabellenzelle schrieb die Zahl anders.* | Dreifache Pflege bei jeder neuen Beschriftung. Rückgriff bleibt Punkt 19 | niedrig |
 | **Seed-Daten fest im Code** (WM-Wetten vom Juli) | Ballast bei jedem Start | niedrig |
-| **Kein automatischer Test** | Jede Änderung wird nur von Hand geprüft | mittel → Punkt B wäre der erste Schritt |
+| **Tests t1–t11 laufen nur von Hand** | Nur t12/t13 laufen im Workflow | niedrig |
 | **Gemini-Kaskade komplex** | Funktioniert, aber schwer zu durchschauen bei Fehlern | niedrig |
 | **Die Dokumente selbst** | Das Einlesen kostet einen neuen Chat etwa die Hälfte seines Arbeitsspeichers | **NEU 31.7.** → Punkt 18 |
 | **Löschen ohne Rückfrage** — `delBet()` und `logLoeschen()` löschen sofort und endgültig, während die zwei anderen unumkehrbaren Schritte der App vorher fragen (`korrFAnwenden()`, `datenLaden()` über `confirm()`) | Auf dem iPhone genügt ein Fehltipp. Seit Fassung 97 ist `state.kiProtokoll` der **Evidence Ledger** — ein Fehltipp löscht einen Beleg, auf dem das Lernen aufsetzen soll. Behebung: dieselbe `confirm()`-Rückfrage wie an den zwei vorhandenen Stellen; Kosten kein Geld, keine Laufzeit, zwei Sprachschlüssel | **✅ BEHOBEN 11.9.** in v19.8.28 (Fassung 101) — beide fragen jetzt, mit dem Spielnamen in der Frage |

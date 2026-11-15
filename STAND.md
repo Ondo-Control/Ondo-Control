@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 14.11.2026, Fassung 159, v19.22.2*
+*Die aktuelle Wahrheit. Stand: 15.11.2026, Fassung 160, v19.22.2*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -36,7 +36,7 @@
 > **Zur Datierung:** Die Kalibrierungszahlen im Abschnitt „Aktueller Messstand" sind am **13.9.2026 aus den Bildschirmfotos der App abgelesen** — Sonnet 609 bewertete Aussagen bei 4 % Abweichung und 55 % Treffern, Flash 606 bei 3 % und 53 %. *Die genaue Ablesezeit ist unbekannt (Art. 11); die Sicherungszeit steht unter „Datensicherung" und ist NICHT die Ablesezeit.* Alle älteren Zahlen — 4.9. (468/465), 2.9. (402/399), 30.8. (399/396), 14.8. (330/327), 13.8. (300/297), 9.8. (je 207), 8.8. (je 180) — sind ab jetzt Verlaufsangaben. Massgeblich ist immer der Abschnitt „Aktueller Messstand". *(Bis zum 13.9.2026 stand hier die Ablesung vom 4.9.2026; sie ist durch diese vollständig ersetzt, nicht ergänzt.)*
 ## Für jede KI, die dieses Projekt unterstützt
 
-Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungssystem. Eine einzige HTML-Datei, GitHub Pages, localStorage, kein Server. Besitzer und alleiniger Entscheider: **Ondo** (kein Programmierer, arbeitet primär am iPhone, liefert jede Änderung selbst per Datei-Upload zu GitHub).
+Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungssystem. Die App ist eine einzige HTML-Datei auf GitHub Pages; ihre Daten liegen im Browser des Geräts (IndexedDB). Ergebnis-Archiv und Core laufen zeitgesteuert als GitHub Actions. Besitzer und alleiniger Entscheider: **Ondo** (kein Programmierer, arbeitet primär am iPhone, liefert jede Änderung selbst per Datei-Upload zu GitHub).
 
 **Rollen:** Claude = Entwickler und Archivar · ChatGPT = Architekt und Prüfer · Mistral = beaufsichtigter Mitarbeiter, auf dem Prüfstand · Ondo = Product Owner.
 
@@ -180,7 +180,7 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 - **Flashs Zuversicht trägt:** sichere Aussagen (ab 70 %) treffen zu 63 % zu, unsichere nur zu 52 % (n=32).
 *(Die App zeigt daneben noch eine vierte Beobachtung, Wetten aus einer Vorhersage gegen von Hand gesetzte — auf diesem Bildschirmfoto nicht sichtbar, hier nicht behauptet.)*
 
-**Trainingsraum (Backlog-Punkt 77) und Kriterium (g) (Backlog-Punkt 80) — beide gebaut, keins bisher genutzt:** Trainingsraum zeigt für Sonnet und Flash „Stichtag nicht geprüft — gesperrt" (`TRAININGSRAUM_STICHTAG` weiterhin leer, Art. 11 wie beim Bau angelegt). Der Antwortkonsistenz-Test zeigt für beide „Noch kein Test gelaufen." Deckt sich mit der bei beiden Punkten offen benannten Grenze: Bewährung/echter Lauf stehen aus.
+**Trainingsraum (Backlog-Punkt 77) — gebaut, nie genutzt:** zeigt für Sonnet und Flash „Stichtag nicht geprüft — gesperrt" (`TRAININGSRAUM_STICHTAG` leer, Art. 11). **Kriterium (g):** am 27.9.2026 am Gerät gelaufen, Ergebnis unter „Versionen".
 
 **Wetten:** Kontostand laut Kopfzeile **0,00 €**, 6 Wetten im Speicher. **Saldo, Trefferquote und Gesamt-Bilanz sind auf diesem Bildschirmfoto nicht sichtbar** — nicht erfunden, sondern offen gelassen (Art. 11). Der Neustart bei 0 vom 12.9.2026 gilt unverändert; ein vollständiger Wetten-Messstand braucht ein eigenes Bildschirmfoto der Finanzen-Ansicht.
 

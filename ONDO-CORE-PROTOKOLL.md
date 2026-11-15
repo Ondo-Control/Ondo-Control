@@ -36,4 +36,4 @@ v19.12.0): Der Decision Ledger verknüpft eine Wette jetzt optional mit mehreren
 — für Kombi-Wetten. Ebenen-Trennung (1b) unberührt, reine Referenzliste. Kein
 Verfassungsartikel geändert, keine neue Arbeitsregel.*
 *Fassung 0.18 — 26.9.2026: Abschnitt 1e präzisiert (Backlog-Punkt 87, `beta.html` v19.20.0): Laufzeit-Normalisierung von deutschen/englischen Nationalmannschaftsnamen über ISO-3166-1 + `Intl.DisplayNames`; nur wenn beide Teams auf beiden Seiten ISO-Länder sind. Keine gepflegte Alias-Tabelle, Vereinsresolver und Stufe 3 unverändert; Nicht-ISO-Fälle bleiben im bisherigen Weg.*
-
+*Fassung 0.19 — 15.11.2026: Abschnitt 5 „Rule Engine" berichtigt. Dort stand, `maxEinsatz` sei „bereits an beiden Stellen durchgesetzt". Der Code (`beta.html` v19.22.2) begrenzt nur in `addBet`; im Auftragstext von `vorhersageGehirn()` kommt die Regel nicht vor, der Foto-Import begrenzt nicht. Fund der Bestandsaufnahme vom 14.11.2026. Kein Verfassungsartikel geändert, keine neue Arbeitsregel.*

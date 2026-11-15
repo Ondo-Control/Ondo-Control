@@ -1,5 +1,6 @@
 # ONDO CORE v1 — Architektur-Entwurf
 *Antwort auf die Architektur-Anfrage von ChatGPT (5.7.2026). Autor: Claude. Status: Entwurf zur gemeinsamen Prüfung.*
+*Fassung 0.19 — 15.11.2026: Abschnitt 5 berichtigt — `maxEinsatz` wird nur an einer Stelle durchgesetzt, nicht an zweien. Nichts sonst geändert.*
 *Fassung 0.18 — 26.9.2026: Abschnitt 1e präzisiert die gebaute ISO-3166-1-/`Intl.DisplayNames`-Normalisierung für Nationalmannschaften (Backlog-Punkt 87, `beta.html` v19.20.0). Vereinsresolver und Stufe 3 unverändert.*
 *Fassung 0.17 — 24.9.2026: Abschnitt 1e, „harte Barriere", um eine Präzisierung ergänzt (`beta.html` v19.19.2): „geschrieben" heisst für einen Checkpoint „in IndexedDB geschrieben". Nichts Bestehendes geändert.*
 *Fassung 0.16 — 24.9.2026: Abschnitt 1e um zwei Präzisierungen ergänzt (Nachbesserung zu Backlog-Punkt 86, `beta.html` v19.19.1): der Checkpoint ist eine harte Barriere, und die Identität eines Ergebnisvorschlags ist festgelegt. Nichts Bestehendes geändert.*
@@ -476,7 +477,7 @@ Regeln sind **Daten, nicht Code**: eine Liste von Regel-Objekten { id, text, typ
 1. **Vor** jeder Brain-Anfrage (Regeln wandern in den Prompt-Vertrag: "max. Einsatz 20 €")
 2. **Nach** jeder Antwort und vor jeder Aktion (Code-Prüfung: Einsatz > Limit → kappen; kritische Aktion → Freigabe-Dialog)
 
-Heute existiert genau eine Regel (maxEinsatz) — hart verdrahtet, aber bereits an beiden Stellen durchgesetzt. Der Umbau zu einer Regel-Liste ist der natürliche nächste Schritt und ermöglicht die Vision "Regeln in normaler Sprache": Der Besitzer formuliert einen Satz, das Brain übersetzt ihn in ein Regel-Objekt, der Besitzer bestätigt, der Core setzt durch. (Wichtig: Durchsetzung im Code, nicht im Prompt allein — Prompts kann man überreden, Code nicht.)
+Heute existiert genau eine Regel (maxEinsatz) — hart verdrahtet und nur an einer Stelle durchgesetzt: beim Anlegen einer Wette von Hand (`addBet`). Im Auftragstext an die Gehirne steht sie nicht, und der Foto-Import begrenzt nicht. Der Umbau zu einer Regel-Liste ist der natürliche nächste Schritt und ermöglicht die Vision "Regeln in normaler Sprache": Der Besitzer formuliert einen Satz, das Brain übersetzt ihn in ein Regel-Objekt, der Besitzer bestätigt, der Core setzt durch. (Wichtig: Durchsetzung im Code, nicht im Prompt allein — Prompts kann man überreden, Code nicht.)
 
 ---
 
