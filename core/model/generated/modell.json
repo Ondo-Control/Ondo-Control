@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "stand": "2026-11-14",
+ "stand": "2026-11-15",
  "kandidat": "K6",
  "parameter": {
   "startNiveau": 0.18,
@@ -1509,9 +1509,9 @@
      "spiele": 5410
     },
     "es.2": {
-     "niveau": 0.0864,
-     "heim": 0.2941,
-     "spiele": 4805
+     "niveau": 0.0909,
+     "heim": 0.2934,
+     "spiele": 4810
     }
    },
    "teams": {
@@ -1541,19 +1541,19 @@
     },
     "almeria": {
      "name": "UD Almería",
-     "a": 0.296,
-     "d": 0.0137,
+     "a": 0.2814,
+     "d": 0.0141,
      "liga": "es.2",
-     "spiele": 506,
-     "zuletzt": "2026-11-08"
+     "spiele": 507,
+     "zuletzt": "2026-11-14"
     },
     "andorra": {
      "name": "FC Andorra",
-     "a": -0.0611,
-     "d": -0.2301,
+     "a": -0.0615,
+     "d": -0.2155,
      "liga": "es.2",
-     "spiele": 17,
-     "zuletzt": "2026-11-02"
+     "spiele": 18,
+     "zuletzt": "2026-11-14"
     },
     "athletic": {
      "name": "Athletic Club",
@@ -1621,11 +1621,11 @@
     },
     "brealsociedad": {
      "name": "Real Sociedad B",
-     "a": -0.1694,
-     "d": -0.1782,
+     "a": -0.1506,
+     "d": -0.2002,
      "liga": "es.2",
-     "spiele": 18,
-     "zuletzt": "2026-11-09"
+     "spiele": 19,
+     "zuletzt": "2026-11-14"
     },
     "burgos": {
      "name": "Burgos CF",
@@ -1653,8 +1653,8 @@
     },
     "castellon": {
      "name": "CD Castellón",
-     "a": 0.1822,
-     "d": 0.0913,
+     "a": 0.182,
+     "d": 0.0914,
      "liga": "es.2",
      "spiele": 103,
      "zuletzt": "2026-11-14"
@@ -1685,19 +1685,19 @@
     },
     "ceuta": {
      "name": "AD Ceuta FC",
-     "a": -0.208,
-     "d": -0.2216,
+     "a": -0.2386,
+     "d": -0.2398,
      "liga": "es.2",
-     "spiele": 18,
-     "zuletzt": "2026-11-07"
+     "spiele": 19,
+     "zuletzt": "2026-11-15"
     },
     "cordoba": {
      "name": "Córdoba CF",
-     "a": 0.1162,
-     "d": -0.0774,
+     "a": 0.1782,
+     "d": -0.1143,
      "liga": "es.2",
-     "spiele": 349,
-     "zuletzt": "2026-11-07"
+     "spiele": 350,
+     "zuletzt": "2026-11-14"
     },
     "corunadeportivola": {
      "name": "RC Deportivo La Coruña",
@@ -1813,19 +1813,19 @@
     },
     "gijonsporting": {
      "name": "Sporting Gijón",
-     "a": -0.0305,
-     "d": -0.103,
+     "a": -0.0085,
+     "d": -0.1219,
      "liga": "es.2",
-     "spiele": 430,
-     "zuletzt": "2026-11-08"
+     "spiele": 431,
+     "zuletzt": "2026-11-14"
     },
     "girona": {
      "name": "Girona FC",
-     "a": -0.0243,
-     "d": 0.3366,
+     "a": 0.0018,
+     "d": 0.3396,
      "liga": "es.2",
-     "spiele": 527,
-     "zuletzt": "2026-11-08"
+     "spiele": 528,
+     "zuletzt": "2026-11-14"
     },
     "granada": {
      "name": "Granada CF",
@@ -1957,11 +1957,11 @@
     },
     "mallorca": {
      "name": "RCD Mallorca",
-     "a": 0.1092,
-     "d": 0.2754,
+     "a": 0.1461,
+     "d": 0.2134,
      "liga": "es.2",
-     "spiele": 523,
-     "zuletzt": "2026-11-02"
+     "spiele": 524,
+     "zuletzt": "2026-11-14"
     },
     "mirandes": {
      "name": "CD Mirandés",
@@ -2005,11 +2005,11 @@
     },
     "oviedoreal": {
      "name": "Real Oviedo",
-     "a": 0.0453,
-     "d": -0.0531,
+     "a": 0.0423,
+     "d": -0.0792,
      "liga": "es.2",
-     "spiele": 334,
-     "zuletzt": "2026-11-07"
+     "spiele": 335,
+     "zuletzt": "2026-11-14"
     },
     "ponferradinasd": {
      "name": "SD Ponferradina",
@@ -2021,8 +2021,8 @@
     },
     "realvalladolid": {
      "name": "Real Valladolid",
-     "a": 0.0834,
-     "d": -0.1207,
+     "a": 0.0833,
+     "d": -0.1205,
      "liga": "es.2",
      "spiele": 453,
      "zuletzt": "2026-11-14"
@@ -2045,11 +2045,11 @@
     },
     "tenerife": {
      "name": "CD Tenerife",
-     "a": -0.2734,
-     "d": -0.1368,
+     "a": -0.2552,
+     "d": -0.1062,
      "liga": "es.2",
-     "spiele": 383,
-     "zuletzt": "2026-11-02"
+     "spiele": 384,
+     "zuletzt": "2026-11-15"
     },
     "valencia": {
      "name": "Valencia CF",
