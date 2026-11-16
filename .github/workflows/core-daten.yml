@@ -103,6 +103,7 @@ jobs:
           node tests/t19_quoten.js
           node tests/t20_archiv.js
           node tests/t21_produktion.js
+          node tests/t22_lerntest_versteckt.js
 
       - name: Aenderung committen, falls vorhanden
         run: |
