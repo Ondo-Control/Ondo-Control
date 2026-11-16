@@ -15,7 +15,7 @@
    Kein Netz, kein Schluessel, keine Uhr.
    =================================================================================== */
 var fs=require('fs'), path=require('path');
-var L=require('./lauf.js'), LA=require('./lagen.js');
+var L=require('./lauf.js'), LA=require('./lagen.js'), NL=require('./nichtlinear.js');
 
 /* Huerde: einseitiger Test, Alpha 5 % geteilt durch die Zahl ALLER geprueften Ideen in ideen.json
    (Bonferroni, strenger als Holm; jede Vorprobe zaehlt). Je mehr Ideen, desto hoeher die Huerde. */
@@ -28,6 +28,7 @@ function anzahlIdeen(ordner){
 }
 var HUERDE = Math.round(zFuer(0.05/anzahlIdeen(__dirname))*100)/100;
 var TRAINING = { maxRunden:400, geduld:15, lernrate:1, bremse:0.0001 };
+var TRAINING_NL = { maxRunden:300, geduld:20, lernrate:0.02, bremse:0.0001, versteckt:16 };
 
 function sperre(zeilenListen, stichtag){
   zeilenListen.forEach(function(liste){
@@ -77,6 +78,17 @@ function waehle(name, lernen, pruefen, kandidaten, opt){
   };
 }
 
+/* Nichtlinearer Versuch je Menge (gezaehlt in ideen.json als NL-<menge>): kleines Netz auf ALLEN waehlbaren Gruppen gegen das
+   gewaehlte lineare Modell, Pruefspiele wie bei der Wahl der Gruppen, gleiche Huerde. Uebernommen wird es nur bei bestandener Huerde. */
+function nichtlinear(name, lernen, pruefen, kandidaten, gewaehlt, opt){
+  var sp=teile(lernen), lin=LA.trainieren(sp.training, sp.stopp, gewaehlt, opt), vLin=LA.verlusteAuf(lin, pruefen);
+  var voll=LA.trainieren(sp.training, sp.stopp, kandidaten, opt);                       /* nur fuer Namen und Standardisierung */
+  var nl=NL.trainieren(sp.training, sp.stopp, voll.namen, voll.standardisierung, TRAINING_NL), vNl=nl.verlusteAuf(pruefen);
+  var v=LA.vergleich(pruefen, vLin, vNl), z=v.standardfehler>0?v.differenz/v.standardfehler:0;
+  return { versuch:'NL-'+name, gruppen:kandidaten, verlustPruefenLinear:round(avg(vLin)), verlustPruefenNichtlinear:round(avg(vNl)), vorsprung:round(v.differenz,5), standardfehler:round(v.standardfehler,5),
+           z:round(z,2), besteHuerde:z>=HUERDE, runde:nl.runde, spiele:v.n, uebernommen:z>=HUERDE };
+}
+
 /* Zwei Mengen: 'alle' = alle Spiele mit den sechs Ergebnis-Gruppen; 'mitAufstellung' = nur Spiele, zu denen
    Aufstellungsdaten vorliegen, mit den sechs Gruppen plus 'aufst'. Spiele ohne Aufstellungsdaten fallen
    spaeter auf den Lernstand der Menge 'alle' zurueck. */
@@ -87,9 +99,10 @@ function lauf(bestand, par, stichtag, opt, aufst){
   var pruefen=zeilen.filter(function(z){ return z.r.rolle==='pruefen' && !z.r.zusatz && z.r.datum<stichtag; });
   sperre([lernen, pruefen], stichtag);
   var mengen=[ waehle('alle', lernen, pruefen, LA.GRUPPEN, opt) ];
+  mengen[0].nichtlinear=nichtlinear('alle', lernen, pruefen, LA.GRUPPEN, mengen[0].gewaehlt, opt);
   if(aufst){
     var la=lernen.filter(function(z){ return z.mitAufst; }), pa=pruefen.filter(function(z){ return z.mitAufst; });
-    if(la.length && pa.length) mengen.push(waehle('mitAufstellung', la, pa, LA.GRUPPEN_AUFST, opt));
+    if(la.length && pa.length){ var ma=waehle('mitAufstellung', la, pa, LA.GRUPPEN_AUFST, opt); ma.nichtlinear=nichtlinear('mitAufstellung', la, pa, LA.GRUPPEN_AUFST, ma.gewaehlt, opt); mengen.push(ma); }
   }
   var versuche=[]; mengen.forEach(function(m){ m.versuche.forEach(function(v){ versuche.push(v); }); });
   return { schema:2, stichtag:stichtag, huerde:HUERDE, zaehlerVersuche:versuche.length, mengen:mengen,
@@ -123,6 +136,7 @@ if(require.main===module){
   e.mengen.forEach(function(m){
     console.log('Menge '+m.menge+': Lernspiele '+m.spiele.lernen+' · Pruefspiele '+m.spiele.pruefen+' · gewaehlt: '+(m.gewaehlt.join(', ')||'keine'));
     console.log('  Log-Loss Pruefsaisons: altes Modell K6 '+m.pruefen.altesModellK6+' · Ende '+m.pruefen.ende+' · Vorsprung gegen K6 '+m.pruefen.vorsprungGegenK6+' (SE '+m.pruefen.standardfehler+')');
+    if(m.nichtlinear){ var n=m.nichtlinear; console.log('  Nichtlinear '+n.versuch+': linear '+n.verlustPruefenLinear+' · Netz '+n.verlustPruefenNichtlinear+' · Vorsprung '+n.vorsprung+' (SE '+n.standardfehler+') z='+n.z+(n.besteHuerde?'  <- Huerde bestanden':'  (Huerde nicht bestanden)')); }
     m.versuche.forEach(function(v){ console.log('  Schritt '+v.schritt+' '+v.gruppe.padEnd(8)+' z='+v.z+(v.besteHuerde?'  <- Huerde bestanden':'')); });
   });
   if(nurPruefen){ console.log('Nur geprueft, nichts geschrieben.'); process.exit(0); }

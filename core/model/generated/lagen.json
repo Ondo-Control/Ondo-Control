@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "stichtag": "2026-08-01",
- "huerde": 3.28,
+ "huerde": 3.29,
  "zaehlerVersuche": 19,
  "mengen": [
   {
@@ -144,7 +144,27 @@
      "verlustPruefen": 0.9993,
      "pruefsumme": "c615b2cc"
     }
-   ]
+   ],
+   "nichtlinear": {
+    "versuch": "NL-alle",
+    "gruppen": [
+     "form",
+     "ort",
+     "ruhe",
+     "saison",
+     "staerke",
+     "tempo"
+    ],
+    "verlustPruefenLinear": 1.0278,
+    "verlustPruefenNichtlinear": 1.0256,
+    "vorsprung": 0.00224,
+    "standardfehler": 0.00077,
+    "z": 2.92,
+    "besteHuerde": false,
+    "runde": 73,
+    "spiele": 5928,
+    "uebernommen": false
+   }
   },
   {
    "menge": "mitAufstellung",
@@ -409,7 +429,28 @@
      "verlustPruefen": 0.98,
      "pruefsumme": "9df317f5"
     }
-   ]
+   ],
+   "nichtlinear": {
+    "versuch": "NL-mitAufstellung",
+    "gruppen": [
+     "form",
+     "ort",
+     "ruhe",
+     "saison",
+     "staerke",
+     "tempo",
+     "aufst"
+    ],
+    "verlustPruefenLinear": 0.9811,
+    "verlustPruefenNichtlinear": 0.9812,
+    "vorsprung": -0.0001,
+    "standardfehler": 0.0014,
+    "z": -0.07,
+    "besteHuerde": false,
+    "runde": 13,
+    "spiele": 2168,
+    "uebernommen": false
+   }
   }
  ],
  "regeln": {

@@ -195,6 +195,19 @@
    "geprueftAuf": "Pruefsaisons",
    "ergebnis": "siehe lagen.json",
    "art": "formal"
+  },
+  {
+   "nr": 10,
+   "datum": "2026-11-16",
+   "name": "Nichtlineares Verfahren (kleines Netz) auf allen Gruppen je Menge, gegen das gewaehlte lineare Modell",
+   "namen": [
+    "NL-alle",
+    "NL-mitAufstellung"
+   ],
+   "versuche": 2,
+   "geprueftAuf": "Pruefsaisons",
+   "ergebnis": "siehe lagen.json, Feld nichtlinear",
+   "art": "formal"
   }
  ]
 }
