@@ -72,8 +72,15 @@ jobs:
       - name: Prognose je Spiel (naechste 7 Tage, Position ohne Quote = keine Wette)
         run: node core/model/prognose.js --of "$RUNNER_TEMP/football.json" --ab "$(date -u +%F)"
 
-      - name: Test Prognose
-        run: node tests/t18_prognose.js
+      - name: Quoten abholen (nur mit Secret ODDS_API_KEY; Rohquoten nie ins Repo)
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: node core/model/quoten_holen.js
+
+      - name: Test Prognose und Quote-Gatter
+        run: |
+          node tests/t18_prognose.js
+          node tests/t19_quoten.js
 
       - name: Aenderung committen, falls vorhanden
         run: |
