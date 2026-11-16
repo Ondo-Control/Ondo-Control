@@ -77,6 +77,11 @@ jobs:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: node core/model/quoten_holen.js
 
+      - name: Test der Quelle Bzzoiro (nur Zaehlwerte, nur mit Secret BSD_API_KEY)
+        env:
+          BSD_API_KEY: ${{ secrets.BSD_API_KEY }}
+        run: node core/model/bsd_probe.js
+
       - name: Test Prognose und Quote-Gatter
         run: |
           node tests/t18_prognose.js
