@@ -1,7 +1,7 @@
 /* ===================================================================================
    ONDO CORE - Quotenabruf (Odds API, Gratis-Tarif). Nur im GitHub-Lauf, Schluessel aus ODDS_API_KEY (Secret).
    Ohne Schluessel: Hinweis, Ausstieg ohne Fehler, prognose.json bleibt "keine Wette" ohne Quote.
-   Rohquoten werden NICHT gespeichert (AGB: keine Weitergabe als Datei). Gespeichert wird nur je Spiel,
+   Rohquoten nur als privates Actions-Artefakt, nie im Repo (AGB: keine Weitergabe als Datei). Gespeichert wird nur je Spiel,
    ob eine geprueft Quote vorlag (ja/nein) und die daraus folgende Position, plus eine Abdeckungszahl.
    Kosten: 1 Abruf je Liga und Tag, unter 500 Credits im Monat.
    =================================================================================== */
@@ -35,12 +35,14 @@ function bestQuote(ev, abgerufen){
       var land=lg.split('.')[0], idx={};
       evs.forEach(function(ev){ var k=al(land,ev.home_team).schluessel+'|'+al(land,ev.away_team).schluessel+'|'+ev.commence_time.slice(0,10); idx[k]=idx[k]?'mehrdeutig':ev; });
       pr.spiele.forEach(function(s){ if(s.liga!==lg||!s.prognose) return;
-        var ev=idx[al(land,s.heim).schluessel+'|'+al(land,s.gast).schluessel+'|'+s.datum]; var q=ev&&ev!=='mehrdeutig'?bestQuote(ev,abgerufen):null;
+        var ev=idx[al(land,s.heim).schluessel+'|'+al(land,s.gast).schluessel+'|'+s.datum]; var paarAnz=pr.spiele.filter(function(t){ return t.liga===s.liga&&t.heim===s.heim&&t.gast===s.gast; }).length;   /* gleiche Paarung zweimal im Fenster -> keine Quote */
+        if(paarAnz>1) ev='mehrdeutig';
+        var q=ev&&ev!=='mehrdeutig'?bestQuote(ev,abgerufen):null;
         var p=[s.prognose.heimsieg,s.prognose.remis,s.prognose.auswaertssieg];
         s.position=Q.position(p,q||null,{ vorteilBelegt:freigabe }); if(ev==='mehrdeutig') s.position.grund='Quote nicht zugeordnet: mehrdeutige Paarung am selben Tag'; if(q){ mitQuote++; s.position.quelle=q.quelle; s.position.abgerufenUtc=q.abgerufenUtc; s.position.anstossUtc=q.anstossUtc; s.position.anbieterSpielId=ev.id; } });
     }catch(e){ fehler.push(lg+': '+e.message); }
   }
-  pr.quoten={ spieleMitGeprueftQuote:mitQuote, spieleGesamt:pr.spiele.length, fehler:fehler, hinweis:'Rohquoten werden nicht gespeichert (AGB der Odds API). Vorteil gegen die Quote ist nicht belegt.' };
+  pr.quoten={ spieleMitGeprueftQuote:mitQuote, spieleGesamt:pr.spiele.length, fehler:fehler, hinweis:'Rohquoten liegen nur im privaten Actions-Artefakt (90 Tage), nicht im Repo (AGB der Odds API). Vorteil gegen die Quote ist nicht belegt.' };
   fs.writeFileSync(pf,JSON.stringify(pr,null,1)+'\n');
   /* Rohquoten nur als PRIVATES Actions-Artefakt (interne Speicherung, AGB erlaubt es), nie im Repo */
   var rp=process.env.QUOTEN_ROH_PFAD; if(rp) fs.writeFileSync(rp,JSON.stringify(roh));
