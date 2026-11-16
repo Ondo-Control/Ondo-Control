@@ -724,3 +724,7 @@
 > (`beta.html` v19.24.2): Das Layout-Labor der Sonde hat am iPhone 14 Bauweisen des Datumsfelds gemessen; nur
 > `appearance:none` mit fester Höhe hielt es in der Spalte. Diese Regel gilt jetzt für alle Datumsfelder. Der
 > Reiter-Überlauf aus v19.24.1 ist am iPhone gemessen behoben. Keine neue Verfassungsregel. Blueprint auf 0.164 gehoben.
+
+> **Was Fassung 0.165 ändert (16.11.2026):** Reine Synchronisierung nach Arbeitsregel M: Backlog-Punkt 73 ist behoben;
+> die Regel aus `beta.html` v19.24.2 wurde von Ondo am iPhone per Foto bestätigt (zentriert, in der Spalte, Datumswähler
+> öffnet sich). Kein Codewechsel. Keine neue Verfassungsregel. Blueprint auf 0.165 gehoben.
