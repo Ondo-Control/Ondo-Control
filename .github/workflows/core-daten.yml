@@ -63,6 +63,9 @@ jobs:
       - name: Lagen lernen (Wahl der Merkmale, Training in Runden)
         run: node core/model/lagen_lauf.js
 
+      - name: Bericht Lagen lernen (A, B, C) mit Blockbootstrap
+        run: node core/model/lagen_bericht.js
+
       - name: Test Lagen lernen und Stichtag-Sperre
         run: node tests/t17_lagen.js
 

@@ -1,0 +1,48 @@
+{
+ "schema": 1,
+ "stichtag": "2026-08-01",
+ "gruppen": [
+  "aufst"
+ ],
+ "lernstand": "L398",
+ "pruefsumme": "0d1e86e6",
+ "versuchteIdeen": 41,
+ "huerdeAuswahl": 3.03,
+ "A_entwicklung": {
+  "was": "Pruefsaisons, Spiele mit Aufstellungsdaten; nach Sichtung gewaehlt, Auswahl-Optimismus moeglich",
+  "spiele": 2168,
+  "vorsprung": 0.01204,
+  "standardfehlerSpieltag": 0.00248,
+  "blockbootstrap": {
+   "mittel": 0.01204,
+   "bereich95": [
+    0.00745,
+    0.01684
+   ],
+   "pEinseitig": 0.0005,
+   "wochenBloecke": 81,
+   "ziehungen": 2000
+  }
+ },
+ "B_retrospektiv": {
+  "was": "Holdout-Saisons, Spiele mit Aufstellungsdaten; ein Blick (versiegelt.json), Experiment a: Aufstellung als bekannt vorausgesetzt",
+  "spiele": 2230,
+  "vorsprung": 0.0063,
+  "standardfehlerSpieltag": 0.00236,
+  "blockbootstrap": {
+   "mittel": 0.0063,
+   "bereich95": [
+    0.00128,
+    0.01126
+   ],
+   "pEinseitig": 0.0095,
+   "wochenBloecke": 81,
+   "ziehungen": 2000
+  }
+ },
+ "C_prospektiv": {
+  "was": "handelbare Vorab-Validierung",
+  "stand": "OFFEN - keine fuer ONDO verifizierte, legale, kostenlose Quelle mit Zeitstempel; keine Aussage"
+ },
+ "grenzen": "Kein Vergleich mit dem Markt auf diesen Spielen (keine Quoten fuer die Zeitraeume). Kein Anspruch auf Wettvorteil."
+}

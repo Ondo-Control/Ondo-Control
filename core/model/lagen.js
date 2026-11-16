@@ -212,6 +212,22 @@ function vorhersageGeprueft(lernstand, x, opt){
   return { ok:true, p:vorhersage(lernstand, x) };
 }
 
+/* Gepaarter Blockbootstrap: Unterschied je Spiel (va minus vb, positiv = vb besser), gezogen wird nach WOCHEN-Bloecken
+   (ISO-Woche ueber alle Ligen, damit gleichzeitige Spiele zusammenbleiben). Fester Startwert, keine Uhr.
+   Gibt Mittel, 95-%-Bereich und einseitigen p-Wert (Anteil der Ziehungen mit Mittel <= 0). */
+function wocheVon(datum){ var d=new Date(datum+'T12:00:00Z'), t=Date.UTC(d.getUTCFullYear(),0,1); return d.getUTCFullYear()+'-'+Math.floor((d-t)/604800000); }
+function blockBootstrap(zeilen, va, vb, ziehungen, startwert){
+  var bl={}, ks=[];
+  zeilen.forEach(function(z,i){ var k=wocheVon(z.r.datum); if(!bl[k]){ bl[k]={ s:0, n:0 }; ks.push(k); } bl[k].s+=va[i]-vb[i]; bl[k].n++; });
+  var a=startwert>>>0, N=ks.length, mw=[], gesS=0, gesN=0;
+  ks.forEach(function(k){ gesS+=bl[k].s; gesN+=bl[k].n; });
+  function zufall(){ a=(a+0x6D2B79F5)>>>0; var t=a; t=Math.imul(t^(t>>>15), t|1); t^=t+Math.imul(t^(t>>>7), t|61); return ((t^(t>>>14))>>>0)/4294967296; }
+  for(var r=0;r<ziehungen;r++){ var s=0, n=0; for(var j=0;j<N;j++){ var b=bl[ks[Math.floor(zufall()*N)]]; s+=b.s; n+=b.n; } mw.push(s/n); }
+  mw.sort(function(x,y){ return x-y; });
+  var nul=0; mw.forEach(function(x){ if(x<=0) nul++; });
+  return { mittel:gesS/gesN, unten:mw[Math.floor(0.025*ziehungen)], oben:mw[Math.floor(0.975*ziehungen)], p:(nul+1)/(ziehungen+1), bloecke:N, spiele:gesN };
+}
+
 /* Hilfen fuer Wahl: Verluste je Spiel eines Lernstands auf einer Zeilenliste */
 function verlusteAuf(lernstand, zeilen){
   var d=zeilen.map(function(z){ return { v:vektor(z.x, lernstand.namen, lernstand.standardisierung), y:z.y }; });
@@ -232,6 +248,6 @@ function vergleich(zeilen, va, vb){
   return { n:N, spieltage:ls.length, differenz:m, standardfehler:se };
 }
 
-module.exports={ vorhersageGeprueft:vorhersageGeprueft, GRUPPEN_AUFST:GRUPPEN_AUFST, MERKMALE:MERKMALE, GRUPPEN:GRUPPEN, zeilenFuerLand:zeilenFuerLand, zeilenBauen:zeilenBauen,
+module.exports={ blockBootstrap:blockBootstrap, vorhersageGeprueft:vorhersageGeprueft, GRUPPEN_AUFST:GRUPPEN_AUFST, MERKMALE:MERKMALE, GRUPPEN:GRUPPEN, zeilenFuerLand:zeilenFuerLand, zeilenBauen:zeilenBauen,
   namenVon:namenVon, trainieren:trainieren, vorhersage:vorhersage, verlusteAuf:verlusteAuf, vergleich:vergleich,
   pruefsumme:pruefsumme, wahrsch:wahrsch };

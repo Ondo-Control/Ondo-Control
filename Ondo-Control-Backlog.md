@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 16.11.2026, Fassung 169 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 16.11.2026, Fassung 170 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 **Beschlossen und nicht gebaut: eins** — **92** *(Punkt 92 bleibt wegen des separaten Schritt 2 offen.)*
@@ -614,7 +614,7 @@ Der Foto-Import übernimmt jede Anzahl erkannter Einträge ohne Vorschau und ohn
 
 **94. Ondo Core, Stufe 1: Daten, Rechenmodell, Regeln, Trainingsraum** · *Ondos Ja zum Plan 3.11.2026, Aufträge 14.11. und 16.11.2026 · von Claude geliefert* · **Status: 🔴 GEBAUT 14.11. und 16.11.2026 — Quotenvergleich und Anbindung an die App offen, eigener Auftrag**
 
-`beta.html` unverändert. Daten, Modell, `core/REGELN.md`, Trainingsraum (`raum.js`). **Seit 16.11.2026 „Lagen lernen“** (Stichtag 1.8.2026, `lagen_lauf.js`, t17): Core wählt Merkmalsgruppen selbst, Hürde 2,64, Versuche gezählt. Ergebnis (Prüfsaisons, Holdout nicht angesehen): Ergebnis-Gruppen bestehen nicht; Aufstellung/Marktwert besteht (z 4,23). **Offen:** laufende Aufstellungsquelle (API-Football-Schlüssel liegt auf dem Gerät; Cloud-Adressen gesperrt); Holdout-Blick und Pinnacle-Vergleich auf versiegelten Spielen; Anbindung an die App (Ondos Entscheidung); kein echtes Geld. Baugeschichte: `BACKLOG-ARCHIV.md`.
+`beta.html` unverändert. Daten, Modell, `core/REGELN.md`, Trainingsraum. **Seit 16.11.2026 „Lagen lernen“** (Stichtag 1.8.2026, t17): Hürde 3,03 nach 41 Ideen; Aufstellung/Marktwert besteht: (A) Prüfsaisons 0,9917→0,9797, (B) Holdout einmal 0,9932→0,9869 (Experiment a), (C) vorab handelbar offen. **Offen:** legale Aufstellungsquelle mit Zeitstempel (API-Football gesperrt, ESPN nicht erlaubt) – Ondo entscheidet: Lizenz oder Verzicht; Quoten-Gatter vor jeder Wettposition; Anbindung an die App; kein echtes Geld. Baugeschichte: `BACKLOG-ARCHIV.md`.
 
 **95. Sonde: Selbsttest der App mit Bericht ans ONDO-Relay** · *Ondos Idee und Ja 16.11.2026 · von Claude geliefert* · **Status: 🔴 GEBAUT 16.11.2026 (`beta.html` v19.24.3, Vollsonde) — Berichte vom iPhone kamen an, Layout-Labor lief; Wirkung der Datumsfeld-Regel (v19.24.2) noch nicht am iPhone gemessen**
 

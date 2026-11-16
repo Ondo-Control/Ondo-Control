@@ -83,4 +83,12 @@ if(fs.existsSync(f)){
   u.pruef('lagen.json: jede gewaehlte Gruppe hat die Huerde bestanden', e.mengen.every(function(m){ return m.gewaehlt.every(function(g){ return m.versuche.some(function(v){ return v.gruppe===g && v.besteHuerde; }); }); }));
   u.pruef('lagen.json: keine Gruppe ohne bestandene Huerde gewaehlt (Gegenprobe zur Wahl)', e.mengen.every(function(m){ return m.versuche.filter(function(v){ return v.besteHuerde; }).length>=m.gewaehlt.length; }));
 } else u.pruef('lagen.json noch nicht erzeugt (wird beim ersten Lauf angelegt)', true);
+var bf=path.join(REPO,'core/model/generated/lagen_bericht.json');
+if(fs.existsSync(bf)){
+  u.block('E. Bericht in drei Teilen');
+  var B=JSON.parse(fs.readFileSync(bf,'utf8'));
+  u.pruef('Bericht hat A, B und C getrennt; C ist offen und ohne Zahl', !!B.A_entwicklung && !!B.B_retrospektiv && /OFFEN/.test(B.C_prospektiv.stand) && !('vorsprung' in B.C_prospektiv));
+  u.pruef('Blockbootstrap: Bereich enthaelt den Mittelwert, p zwischen 0 und 1', [B.A_entwicklung,B.B_retrospektiv].every(function(x){ var b=x.blockbootstrap; return b.bereich95[0]<=b.mittel && b.mittel<=b.bereich95[1] && b.pEinseitig>0 && b.pEinseitig<=1; }));
+  u.pruef('Bootstrap: gleiche Eingabe, gleicher Startwert → gleiches Ergebnis', (function(){ var va=[0.1,-0.2,0.3,0.05,0.2,-0.1], zl=va.map(function(x,i){ return { r:{ datum:'2026-0'+(1+i%3)+'-1'+i } }; }), vb=va.map(function(){ return 0; }); var a=LA.blockBootstrap(zl,va,vb,200,7), b=LA.blockBootstrap(zl,va,vb,200,7), c=LA.blockBootstrap(zl,va,vb,200,8); return JSON.stringify(a)===JSON.stringify(b) && JSON.stringify(a)!==JSON.stringify(c); })());
+}
 process.exit(u.bilanz()?1:0);
