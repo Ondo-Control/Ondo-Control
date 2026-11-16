@@ -33,7 +33,7 @@ function prognose(opt){
       if(r.hatErgebnis || r.datum<opt.ab || r.datum>bis) return;
       var hk=aufloesen(l.land, r.heim).schluessel, gk=aufloesen(l.land, r.gast).schluessel;
       var v=P.vorhersage(opt.modell, l.id, hk, gk);
-      var eintrag={ liga:l.id, ligaName:l.name, datum:r.datum, heim:r.heim, gast:r.gast };
+      var eintrag={ liga:l.id, ligaName:l.name, datum:r.datum, heim:r.heim, gast:r.gast, schluessel:{ heim:hk, gast:gk } };
       if(!v.ok){ eintrag.prognose=null; eintrag.grund=v.grund; eintrag.position={ empfehlung:'keine Wette', grund:'keine Prognose moeglich' }; ohne++; spiele.push(eintrag); return; }
       var x={ lnH:Math.log(v.p.sieg_heim), lnD:Math.log(v.p.remis), lnA:Math.log(v.p.sieg_gast) };
       var q=LA.vorhersageMitFallback(lsMit, lsOhne, x, {});      /* keine Aufstellung vorhanden -> Rueckfall */

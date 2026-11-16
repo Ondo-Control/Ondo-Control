@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 16.11.2026, Fassung 174, v19.24.3*
+*Die aktuelle Wahrheit. Stand: 16.11.2026, Fassung 175, v19.24.3*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -212,8 +212,8 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   Hürde z = 3,28 (5 % geteilt durch alle 98 geprüften Ideen in `ideen.json`). Nur **Aufstellung/Marktwert** besteht (`aufstellung.json`, 7 Ligen, Daten bis 6.7.2026). **Pipeline v2** (Funde: Kalendertag-Leck, doppelte Auswahl). Bericht (`lagen_bericht.json`):
   **(A)** Prüfsaisons 0,9918 → 0,9811; **(B)** Holdout, zwei Blicke auf dieselbe Saison, Experiment a: 0,9933 → 0,9866, Blockbootstrap-p 0,005 (Hinweis);
   **(C)** vorab handelbar: offen. Gatter: Vorab-Zeitstempel; Rückfall-Funktion (ungenutzt). Keine freie Quelle geprüft; kein Marktvergleich.
-  **Prognose je Spiel** (`prognose.json`): Tipp, Prozent, „keine Wette“. **Quote-Gatter** `quoten.js` (t19), Abruf `quoten_holen.js`, Secret `ODDS_API_KEY` (live ungetestet). Aufstellungstest `bsd_probe.js` (Secret `BSD_API_KEY`).
-  Lauf `core-daten.yml`, Tests `tests/t12` bis `t14`, `t17` bis `t19`. Zahlen nur in
+  **Prognose je Spiel** (`prognose.json`): Tipp, Prozent, „keine Wette“. **Quote-Gatter** `quoten.js` (t19), Abruf `quoten_holen.js`, Secret `ODDS_API_KEY` . Aufstellungstest `bsd_probe.js`. **Vorab-Archiv** `prognose_archiv.js` (t20).
+  Lauf `core-daten.yml`, Tests `tests/t12` bis `t14`, `t17` bis `t20`. Zahlen nur in
   `core/model/generated/`; Reihenfolge in `core/ORIENTIERUNG.md`.
   Nicht an die App angebunden.
 - **Stabil: v19.24.3** (`OndoControl.html`, seit 16.11.2026 = Beta-Code ohne „BETA“; `version.json` bleibt 17, `APP_VERSION` 18). Davor v17 (seit 17.7.). **Gerätetest Home-Bildschirm-App 16.11. 15:16 bestanden:** Sicherung geladen,

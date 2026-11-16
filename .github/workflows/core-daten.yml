@@ -91,10 +91,14 @@ jobs:
           BSD_API_KEY: ${{ secrets.BSD_API_KEY }}
         run: node core/model/bsd_probe.js
 
-      - name: Test Prognose und Quote-Gatter
+      - name: Prognose-Archiv (Vorab-Tipps ablegen, Ergebnisse bewerten)
+        run: node core/model/prognose_archiv.js
+
+      - name: Test Prognose, Quote-Gatter, Archiv
         run: |
           node tests/t18_prognose.js
           node tests/t19_quoten.js
+          node tests/t20_archiv.js
 
       - name: Aenderung committen, falls vorhanden
         run: |

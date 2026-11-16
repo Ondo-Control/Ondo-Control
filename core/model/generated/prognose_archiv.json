@@ -1,0 +1,980 @@
+{
+ "schema": 1,
+ "eintraege": {
+  "de.1|2026-11-20|bayernmunchen|koln": {
+   "liga": "de.1",
+   "datum": "2026-11-20",
+   "heim": "FC Bayern München",
+   "gast": "1. FC Köln",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.89,
+    0.075,
+    0.036
+   ],
+   "tipp": "Heimsieg"
+  },
+  "fr.1|2026-11-20|estroyes|havrele": {
+   "liga": "fr.1",
+   "datum": "2026-11-20",
+   "heim": "ES Troyes AC",
+   "gast": "Le Havre AC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.431,
+    0.272,
+    0.297
+   ],
+   "tipp": "Heimsieg"
+  },
+  "de.1|2026-11-21|berlinunion|leipzigrb": {
+   "liga": "de.1",
+   "datum": "2026-11-21",
+   "heim": "1. FC Union Berlin",
+   "gast": "RB Leipzig",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.184,
+    0.201,
+    0.615
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "de.1|2026-11-21|bayerleverkusen|paderborn": {
+   "liga": "de.1",
+   "datum": "2026-11-21",
+   "heim": "Bayer 04 Leverkusen",
+   "gast": "SC Paderborn 07",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.669,
+    0.191,
+    0.139
+   ],
+   "tipp": "Heimsieg"
+  },
+  "de.1|2026-11-21|borussiamonchengladbach|borussiadortmund": {
+   "liga": "de.1",
+   "datum": "2026-11-21",
+   "heim": "Borussia Mönchengladbach",
+   "gast": "Borussia Dortmund",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.18,
+    0.218,
+    0.603
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "de.1|2026-11-21|eintrachtfrankfurt|hoffenheim": {
+   "liga": "de.1",
+   "datum": "2026-11-21",
+   "heim": "Eintracht Frankfurt",
+   "gast": "TSG 1899 Hoffenheim",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.447,
+    0.216,
+    0.336
+   ],
+   "tipp": "Heimsieg"
+  },
+  "de.1|2026-11-21|schalke|stuttgart": {
+   "liga": "de.1",
+   "datum": "2026-11-21",
+   "heim": "FC Schalke 04",
+   "gast": "VfB Stuttgart",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.206,
+    0.248,
+    0.546
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "de.1|2026-11-21|elversberg|freiburg": {
+   "liga": "de.1",
+   "datum": "2026-11-21",
+   "heim": "SV 07 Elversberg",
+   "gast": "SC Freiburg",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.368,
+    0.243,
+    0.389
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "en.1|2026-11-21|bournemouth|forestnottingham": {
+   "liga": "en.1",
+   "datum": "2026-11-21",
+   "heim": "AFC Bournemouth",
+   "gast": "Nottingham Forest FC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.492,
+    0.255,
+    0.253
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.1|2026-11-21|astonvilla|sunderland": {
+   "liga": "en.1",
+   "datum": "2026-11-21",
+   "heim": "Aston Villa FC",
+   "gast": "Sunderland AFC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.567,
+    0.237,
+    0.196
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.1|2026-11-21|brentford|everton": {
+   "liga": "en.1",
+   "datum": "2026-11-21",
+   "heim": "Brentford FC",
+   "gast": "Everton FC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.464,
+    0.272,
+    0.265
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.1|2026-11-21|chelsea|leedsunited": {
+   "liga": "en.1",
+   "datum": "2026-11-21",
+   "heim": "Chelsea FC",
+   "gast": "Leeds United FC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.413,
+    0.275,
+    0.313
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.1|2026-11-21|citycoventry|crystalpalace": {
+   "liga": "en.1",
+   "datum": "2026-11-21",
+   "heim": "Coventry City FC",
+   "gast": "Crystal Palace FC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.492,
+    0.233,
+    0.275
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.1|2026-11-21|cityhull|albionbrightonhove": {
+   "liga": "en.1",
+   "datum": "2026-11-21",
+   "heim": "Hull City AFC",
+   "gast": "Brighton & Hove Albion FC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.152,
+    0.219,
+    0.628
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "en.1|2026-11-21|liverpool|manchesterunited": {
+   "liga": "en.1",
+   "datum": "2026-11-21",
+   "heim": "Liverpool FC",
+   "gast": "Manchester United FC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.52,
+    0.233,
+    0.247
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.1|2026-11-21|citymanchester|fulham": {
+   "liga": "en.1",
+   "datum": "2026-11-21",
+   "heim": "Manchester City FC",
+   "gast": "Fulham FC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.627,
+    0.225,
+    0.148
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.1|2026-11-21|newcastleunited|arsenal": {
+   "liga": "en.1",
+   "datum": "2026-11-21",
+   "heim": "Newcastle United FC",
+   "gast": "Arsenal FC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.2,
+    0.269,
+    0.531
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "en.1|2026-11-21|hotspurtottenham|ipswichtown": {
+   "liga": "en.1",
+   "datum": "2026-11-21",
+   "heim": "Tottenham Hotspur FC",
+   "gast": "Ipswich Town FC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.484,
+    0.25,
+    0.266
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.2|2026-11-21|boltonwanderers|portsmouth": {
+   "liga": "en.2",
+   "datum": "2026-11-21",
+   "heim": "Bolton Wanderers FC",
+   "gast": "Portsmouth FC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.338,
+    0.261,
+    0.401
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "en.2|2026-11-21|citylincoln|wrexham": {
+   "liga": "en.2",
+   "datum": "2026-11-21",
+   "heim": "Lincoln City FC",
+   "gast": "Wrexham AFC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.294,
+    0.27,
+    0.436
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "en.2|2026-11-21|middlesbrough|bristolcity": {
+   "liga": "en.2",
+   "datum": "2026-11-21",
+   "heim": "Middlesbrough FC",
+   "gast": "Bristol City FC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.666,
+    0.197,
+    0.137
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.2|2026-11-21|millwall|parkqueensrangers": {
+   "liga": "en.2",
+   "datum": "2026-11-21",
+   "heim": "Millwall FC",
+   "gast": "Queens Park Rangers FC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.454,
+    0.232,
+    0.313
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.2|2026-11-21|citynorwich|cardiffcity": {
+   "liga": "en.2",
+   "datum": "2026-11-21",
+   "heim": "Norwich City FC",
+   "gast": "Cardiff City FC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.575,
+    0.2,
+    0.225
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.2|2026-11-21|sheffieldunited|watford": {
+   "liga": "en.2",
+   "datum": "2026-11-21",
+   "heim": "Sheffield United FC",
+   "gast": "Watford FC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.586,
+    0.23,
+    0.183
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.2|2026-11-21|southampton|countyderby": {
+   "liga": "en.2",
+   "datum": "2026-11-21",
+   "heim": "Southampton FC",
+   "gast": "Derby County FC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.709,
+    0.179,
+    0.111
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.2|2026-11-21|citystoke|birminghamcity": {
+   "liga": "en.2",
+   "datum": "2026-11-21",
+   "heim": "Stoke City FC",
+   "gast": "Birmingham City FC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.317,
+    0.275,
+    0.407
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "en.2|2026-11-21|cityswansea|albionbromwichwest": {
+   "liga": "en.2",
+   "datum": "2026-11-21",
+   "heim": "Swansea City AFC",
+   "gast": "West Bromwich Albion FC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.416,
+    0.272,
+    0.313
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.2|2026-11-21|hamunitedwest|endnorthpreston": {
+   "liga": "en.2",
+   "datum": "2026-11-21",
+   "heim": "West Ham United FC",
+   "gast": "Preston North End FC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.828,
+    0.11,
+    0.062
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.2|2026-11-21|wandererswolverhampton|athleticcharlton": {
+   "liga": "en.2",
+   "datum": "2026-11-21",
+   "heim": "Wolverhampton Wanderers FC",
+   "gast": "Charlton Athletic FC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.643,
+    0.222,
+    0.134
+   ],
+   "tipp": "Heimsieg"
+  },
+  "fr.1|2026-11-21|monaco|auxerre": {
+   "liga": "fr.1",
+   "datum": "2026-11-21",
+   "heim": "AS Monaco FC",
+   "gast": "AJ Auxerre",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.606,
+    0.213,
+    0.181
+   ],
+   "tipp": "Heimsieg"
+  },
+  "fr.1|2026-11-21|lilleosc|lyonnaisolympique": {
+   "liga": "fr.1",
+   "datum": "2026-11-21",
+   "heim": "Lille OSC",
+   "gast": "Olympique Lyonnais",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.447,
+    0.286,
+    0.267
+   ],
+   "tipp": "Heimsieg"
+  },
+  "fr.1|2026-11-21|nice|germainparissaint": {
+   "liga": "fr.1",
+   "datum": "2026-11-21",
+   "heim": "OGC Nice",
+   "gast": "Paris Saint-Germain FC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.204,
+    0.233,
+    0.564
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "fr.1|2026-11-21|alsacestrasbourg|brestoisstade": {
+   "liga": "fr.1",
+   "datum": "2026-11-21",
+   "heim": "RC Strasbourg Alsace",
+   "gast": "Stade Brestois 29",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.466,
+    0.225,
+    0.308
+   ],
+   "tipp": "Heimsieg"
+  },
+  "fr.1|2026-11-21|delensracing|toulouse": {
+   "liga": "fr.1",
+   "datum": "2026-11-21",
+   "heim": "Racing Club de Lens",
+   "gast": "Toulouse FC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.519,
+    0.246,
+    0.235
+   ],
+   "tipp": "Heimsieg"
+  },
+  "it.1|2026-11-21|como|cagliari": {
+   "liga": "it.1",
+   "datum": "2026-11-21",
+   "heim": "Como 1907",
+   "gast": "Cagliari Calcio",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.632,
+    0.225,
+    0.143
+   ],
+   "tipp": "Heimsieg"
+  },
+  "it.1|2026-11-21|parma|roma": {
+   "liga": "it.1",
+   "datum": "2026-11-21",
+   "heim": "Parma Calcio 1913",
+   "gast": "AS Roma",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.114,
+    0.201,
+    0.686
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "it.1|2026-11-21|lazio|lecce": {
+   "liga": "it.1",
+   "datum": "2026-11-21",
+   "heim": "SS Lazio",
+   "gast": "US Lecce",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.695,
+    0.191,
+    0.114
+   ],
+   "tipp": "Heimsieg"
+  },
+  "it.1|2026-11-21|napoli|torino": {
+   "liga": "it.1",
+   "datum": "2026-11-21",
+   "heim": "SSC Napoli",
+   "gast": "Torino FC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.599,
+    0.224,
+    0.177
+   ],
+   "tipp": "Heimsieg"
+  },
+  "nl.1|2026-11-21|groningen|heerenveen": {
+   "liga": "nl.1",
+   "datum": "2026-11-21",
+   "heim": "FC Groningen",
+   "gast": "SC Heerenveen",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.365,
+    0.213,
+    0.422
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "nl.1|2026-11-21|utrecht|cambuurleeuwarden": {
+   "liga": "nl.1",
+   "datum": "2026-11-21",
+   "heim": "FC Utrecht",
+   "gast": "SC Cambuur-Leeuwarden",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.565,
+    0.194,
+    0.241
+   ],
+   "tipp": "Heimsieg"
+  },
+  "nl.1|2026-11-21|feyenoordrotterdam|excelsiorsbv": {
+   "liga": "nl.1",
+   "datum": "2026-11-21",
+   "heim": "Feyenoord Rotterdam",
+   "gast": "SBV Excelsior",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.792,
+    0.126,
+    0.082
+   ],
+   "tipp": "Heimsieg"
+  },
+  "nl.1|2026-11-21|nec|psv": {
+   "liga": "nl.1",
+   "datum": "2026-11-21",
+   "heim": "NEC",
+   "gast": "PSV",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.208,
+    0.185,
+    0.607
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "nl.1|2026-11-21|telstar|peczwolle": {
+   "liga": "nl.1",
+   "datum": "2026-11-21",
+   "heim": "Telstar 1963",
+   "gast": "PEC Zwolle",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.556,
+    0.22,
+    0.224
+   ],
+   "tipp": "Heimsieg"
+  },
+  "de.1|2026-11-22|augsburg|mainz": {
+   "liga": "de.1",
+   "datum": "2026-11-22",
+   "heim": "FC Augsburg",
+   "gast": "1. FSV Mainz 05",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.435,
+    0.225,
+    0.34
+   ],
+   "tipp": "Heimsieg"
+  },
+  "de.1|2026-11-22|bremenwerder|hamburger": {
+   "liga": "de.1",
+   "datum": "2026-11-22",
+   "heim": "SV Werder Bremen",
+   "gast": "Hamburger SV",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.525,
+    0.239,
+    0.236
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.2|2026-11-22|burnley|blackburnrovers": {
+   "liga": "en.2",
+   "datum": "2026-11-22",
+   "heim": "Burnley FC",
+   "gast": "Blackburn Rovers FC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.483,
+    0.24,
+    0.276
+   ],
+   "tipp": "Heimsieg"
+  },
+  "es.1|2026-11-22|athletic|barcelonadeespanyol": {
+   "liga": "es.1",
+   "datum": "2026-11-22",
+   "heim": "Athletic Club",
+   "gast": "RCD Espanyol de Barcelona",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.492,
+    0.286,
+    0.222
+   ],
+   "tipp": "Heimsieg"
+  },
+  "es.1|2026-11-22|osasuna|malaga": {
+   "liga": "es.1",
+   "datum": "2026-11-22",
+   "heim": "CA Osasuna",
+   "gast": "Málaga CF",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.573,
+    0.244,
+    0.183
+   ],
+   "tipp": "Heimsieg"
+  },
+  "es.1|2026-11-22|alavesdeportivo|corunadeportivola": {
+   "liga": "es.1",
+   "datum": "2026-11-22",
+   "heim": "Deportivo Alavés",
+   "gast": "RC Deportivo La Coruña",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.459,
+    0.279,
+    0.261
+   ],
+   "tipp": "Heimsieg"
+  },
+  "es.1|2026-11-22|barcelona|villarreal": {
+   "liga": "es.1",
+   "datum": "2026-11-22",
+   "heim": "FC Barcelona",
+   "gast": "Villarreal CF",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.812,
+    0.114,
+    0.073
+   ],
+   "tipp": "Heimsieg"
+  },
+  "es.1|2026-11-22|getafe|atleticodemadrid": {
+   "liga": "es.1",
+   "datum": "2026-11-22",
+   "heim": "Getafe CF",
+   "gast": "Club Atlético de Madrid",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.22,
+    0.309,
+    0.471
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "es.1|2026-11-22|levante|elche": {
+   "liga": "es.1",
+   "datum": "2026-11-22",
+   "heim": "Levante UD",
+   "gast": "Elche CF",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.479,
+    0.248,
+    0.272
+   ],
+   "tipp": "Heimsieg"
+  },
+  "es.1|2026-11-22|demadridrayovallecano|valencia": {
+   "liga": "es.1",
+   "datum": "2026-11-22",
+   "heim": "Rayo Vallecano de Madrid",
+   "gast": "Valencia CF",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.484,
+    0.275,
+    0.241
+   ],
+   "tipp": "Heimsieg"
+  },
+  "es.1|2026-11-22|madridreal|celtadevigo": {
+   "liga": "es.1",
+   "datum": "2026-11-22",
+   "heim": "Real Madrid CF",
+   "gast": "RC Celta de Vigo",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.726,
+    0.181,
+    0.094
+   ],
+   "tipp": "Heimsieg"
+  },
+  "es.1|2026-11-22|deracingrealsantander|derealsociedad": {
+   "liga": "es.1",
+   "datum": "2026-11-22",
+   "heim": "Real Racing Club de Santander",
+   "gast": "Real Sociedad de Fútbol",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.322,
+    0.212,
+    0.465
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "es.1|2026-11-22|sevilla|balompiebetisreal": {
+   "liga": "es.1",
+   "datum": "2026-11-22",
+   "heim": "Sevilla FC",
+   "gast": "Real Betis Balompié",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.323,
+    0.266,
+    0.411
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "fr.1|2026-11-22|lorient|rennaisstade": {
+   "liga": "fr.1",
+   "datum": "2026-11-22",
+   "heim": "FC Lorient",
+   "gast": "Stade Rennais FC 1901",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.417,
+    0.244,
+    0.339
+   ],
+   "tipp": "Heimsieg"
+  },
+  "fr.1|2026-11-22|demarseilleolympique|lemans": {
+   "liga": "fr.1",
+   "datum": "2026-11-22",
+   "heim": "Olympique de Marseille",
+   "gast": "Le Mans FC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.749,
+    0.157,
+    0.094
+   ],
+   "tipp": "Heimsieg"
+  },
+  "fr.1|2026-11-22|paris|angerssco": {
+   "liga": "fr.1",
+   "datum": "2026-11-22",
+   "heim": "Paris FC",
+   "gast": "Angers SCO",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.687,
+    0.195,
+    0.118
+   ],
+   "tipp": "Heimsieg"
+  },
+  "it.1|2026-11-22|milan|frosinone": {
+   "liga": "it.1",
+   "datum": "2026-11-22",
+   "heim": "AC Milan",
+   "gast": "Frosinone Calcio",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.552,
+    0.22,
+    0.228
+   ],
+   "tipp": "Heimsieg"
+  },
+  "it.1|2026-11-22|atalanta|internazionalemilano": {
+   "liga": "it.1",
+   "datum": "2026-11-22",
+   "heim": "Atalanta BC",
+   "gast": "FC Internazionale Milano",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.204,
+    0.21,
+    0.586
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "it.1|2026-11-22|bologna|udinese": {
+   "liga": "it.1",
+   "datum": "2026-11-22",
+   "heim": "Bologna FC 1909",
+   "gast": "Udinese Calcio",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.559,
+    0.237,
+    0.203
+   ],
+   "tipp": "Heimsieg"
+  },
+  "it.1|2026-11-22|sassuolo|genoa": {
+   "liga": "it.1",
+   "datum": "2026-11-22",
+   "heim": "US Sassuolo Calcio",
+   "gast": "Genoa CFC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.37,
+    0.25,
+    0.38
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "nl.1|2026-11-22|ajax|adodenhaag": {
+   "liga": "nl.1",
+   "datum": "2026-11-22",
+   "heim": "AFC Ajax",
+   "gast": "ADO Den Haag",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.826,
+    0.115,
+    0.059
+   ],
+   "tipp": "Heimsieg"
+  },
+  "nl.1|2026-11-22|twente|iitilburgwillem": {
+   "liga": "nl.1",
+   "datum": "2026-11-22",
+   "heim": "FC Twente '65",
+   "gast": "Willem II Tilburg",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.882,
+    0.083,
+    0.035
+   ],
+   "tipp": "Heimsieg"
+  },
+  "nl.1|2026-11-22|aheadeaglesgo|fortunasittard": {
+   "liga": "nl.1",
+   "datum": "2026-11-22",
+   "heim": "Go Ahead Eagles",
+   "gast": "Fortuna Sittard",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.439,
+    0.23,
+    0.331
+   ],
+   "tipp": "Heimsieg"
+  },
+  "nl.1|2026-11-22|rotterdamsparta|az": {
+   "liga": "nl.1",
+   "datum": "2026-11-22",
+   "heim": "Sparta Rotterdam",
+   "gast": "AZ",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.27,
+    0.226,
+    0.504
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "it.1|2026-11-23|monza|acffiorentina": {
+   "liga": "it.1",
+   "datum": "2026-11-23",
+   "heim": "AC Monza",
+   "gast": "ACF Fiorentina",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.339,
+    0.23,
+    0.431
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "it.1|2026-11-23|juventus|venezia": {
+   "liga": "it.1",
+   "datum": "2026-11-23",
+   "heim": "Juventus FC",
+   "gast": "Venezia FC",
+   "erstelltAm": "2026-11-16",
+   "modellStand": "2026-11-15",
+   "p": [
+    0.59,
+    0.239,
+    0.171
+   ],
+   "tipp": "Heimsieg"
+  }
+ },
+ "zusammenfassung": {
+  "abgelegt": 69,
+  "bewertet": 0,
+  "offen": 69,
+  "logLoss": null,
+  "trefferquote": null,
+  "vergleichZufall": 1.0986,
+  "hinweis": "Nur vorab abgelegte Tipps. Ohne Quote kein Vergleich mit dem Markt; die Zahl ist erst mit vielen Spielen aussagekraeftig."
+ }
+}
