@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 15.11.2026, Fassung 160, v19.22.2*
+*Die aktuelle Wahrheit. Stand: 16.11.2026, Fassung 161, v19.22.2*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -206,10 +206,12 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   Nachbesserungen verlangt (KI-Daten von „Mehr" nach Wettmodul/KI-Log verschieben, Auswahl-UI für
   den Trainingsraum) — dieser Commit ist der Stand **davor**, falls zurückgesetzt werden muss.
   Einzelheiten Backlog-Punkt 77.
-- **Ondo Core, Daten und eigenes Rechenmodell (Backlog-Punkt 94, geliefert 14.11.2026) — `beta.html`
-  unverändert:** `core/data/` (geprüfter Spielbestand) und `core/model/` (Modell, Rücktest, Selbstprüfung),
-  täglicher Lauf durch `core-daten.yml`, Tests `tests/t12_core_daten.js` und `tests/t13_core_modell.js`.
-  Zahlen und Beschluss stehen nur in `core/model/generated/bericht.json`; Plan in `core/PLAN.md`.
+- **Ondo Core (Backlog-Punkt 94, geliefert 14.11. und 16.11.2026) — `beta.html` unverändert:**
+  `core/data/` (geprüfter Spielbestand), `core/model/` (Modell, Rücktest, Selbstprüfung),
+  `core/REGELN.md` (Ondos Regeln als Textdatei, vom Core gelesen und durchgesetzt),
+  `core/model/raum.js` (Trainingsraum in Runden mit Lernständen, Zähler in `ideen.json`).
+  Täglicher Lauf durch `core-daten.yml`, Tests `tests/t12` bis `t14`. Zahlen und Beschluss nur in
+  `core/model/generated/` (`bericht.json`, `raum.json`); Reihenfolge in `core/ORIENTIERUNG.md`.
   Nicht an die App angebunden; gegen Wettquoten nicht geprüft.
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
 - **Beta: v19.22.2** (`beta.html`, geliefert 12.10.2026) — **Backlog-Punkt 91, Lifecycle-Korrektur:**

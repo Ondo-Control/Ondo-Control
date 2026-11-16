@@ -166,14 +166,17 @@ var GEN=path.join(REPO,'core','model','generated');
 var modell=JSON.parse(fs.readFileSync(path.join(GEN,'modell.json'),'utf8')), bericht=JSON.parse(fs.readFileSync(path.join(GEN,'bericht.json'),'utf8'));
 var kand=JSON.parse(fs.readFileSync(path.join(REPO,'core','model','kandidaten.json'),'utf8'));
 var aliases=JSON.parse(fs.readFileSync(path.join(REPO,'core','data','aliases.json'),'utf8'));
-var neu=L.lauf(L.bestandLaden(path.join(REPO,'core','data','generated'), aliases), kand);
+/* Seit 15.11.2026 liest der Lauf Ondos Regeln aus core/REGELN.md (Test dazu: t14). */
+var ondoRegeln=require('../core/regeln.js').lesen(fs.readFileSync(path.join(REPO,'core','REGELN.md'),'utf8')).werte;
+kand.ideen=JSON.parse(fs.readFileSync(path.join(REPO,'core','model','ideen.json'),'utf8')).ideen;
+var neu=L.lauf(L.bestandLaden(path.join(REPO,'core','data','generated'), aliases), kand, ondoRegeln);
 u.pruef('bericht.json = Neuberechnung aus dem Bestand', gleich(neu.bericht, bericht));
 u.pruef('modell.json = Neuberechnung aus dem Bestand', gleich(neu.modell, modell));
 u.pruef('gewaehlter Kandidat steht in der vorab festgelegten Liste', kand.kandidaten.some(function(k){ return k.name===bericht.wahl.gewaehlt; }) && bericht.wahl.kandidaten.length===kand.kandidaten.length);
 u.pruef('Holdout mit mindestens 5000 Spielen gemessen', bericht.abschluss.holdout.spiele>=5000, String(bericht.abschluss.holdout.spiele));
 u.pruef('Beschluss: gegen den Markt nicht pruefbar, kein echtes Geld', bericht.beschluss.gegenMarkt.urteil==='nicht_pruefbar' && bericht.beschluss.echtesGeld===false);
-u.pruef('jedes Urteil gegen die Grundquote folgt der Regel (untere Grenze > 0 bei >= 1000 Spielen)', Object.keys(bericht.beschluss.gegenGrundquote).every(function(m){
-  var g=bericht.beschluss.gegenGrundquote[m]; return g.urteil===L.urteil({ n:g.spiele, unten:g.unten }); }));
+u.pruef('jedes Urteil gegen die Grundquote folgt der Regel (untere Grenze > 0 bei genug Spielen)', Object.keys(bericht.beschluss.gegenGrundquote).every(function(m){
+  var g=bericht.beschluss.gegenGrundquote[m]; return g.urteil===L.urteil({ n:g.spiele, unten:g.unten }, ondoRegeln.mindestSpieleUrteil); }));
 var bay=ident.teamSchluessel('FC Bayern München'), koe=ident.teamSchluessel('1. FC Köln');
 var vv=P.vorhersage(modell,'de.1',bay,koe);
 u.pruef('Vorhersage aus der Modelldatei: gueltig und ergibt 100 %', vv.ok && nah(vv.p.sieg_heim+vv.p.remis+vv.p.sieg_gast,1,1e-9) && vv.lh>0 && vv.la>0);

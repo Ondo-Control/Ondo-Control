@@ -672,6 +672,12 @@
 > **plausibel, aber nicht bewiesen** ist WebKit-Prozess-Suspendierung als konkrete Ursache
 > (WebKit Bug 202705). Blueprint auf 0.155 gehoben.
 
+> **Was Fassung 0.160 ändert (16.11.2026):** Reine Synchronisierung nach Arbeitsregel M für Backlog-Punkt 94,
+> Teile K2 und K3: Ondos Regeln als Textdatei `core/REGELN.md` (Abschnitt 5 der Architektur ist damit
+> gebaut, der Text dort unverändert) und der Trainingsraum `core/model/raum.js` mit Lernstand-Versionen
+> und Ideen-Zähler. Neu: `tests/t14_core_regeln_raum.js`. `beta.html` bleibt v19.22.2. Keine neue
+> Verfassungsregel. Blueprint auf 0.160 gehoben.
+
 > **Was Fassung 0.159 ändert (15.11.2026):** Reine Synchronisierung nach Arbeitsregel M. `STAND.md`
 > und Backlog wurden an sechs veralteten Stellen berichtigt (Speicherort IndexedDB, Kriterium (g) am
 > 27.9. gelaufen, `APP_VERSION`/`version.json`, Tests vorhanden, Verweis bei Punkt 4, Schlüsselzahl

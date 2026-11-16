@@ -18,7 +18,7 @@
    =================================================================================== */
 var fs=require('fs'), path=require('path');
 var ident=require('../data/identity.js'), schema=require('../data/schema.js');
-var M=require('./poisson.js');
+var M=require('./poisson.js'), REGELN=require('../regeln.js'), RAUM=require('./raum.js');
 
 var MAERKTE={ m1x2:['sieg_heim','remis','sieg_gast'], tore:['ueber','unter'], btts:['btts_ja','btts_nein'] };
 
@@ -108,8 +108,9 @@ function zufall(start){ var s=start>>>0; return function(){ s=(Math.imul(s,16645
 
 /* Wie sicher ist der Vorsprung? Gezogen werden ganze Spieltage (Liga + Datum), weil Spiele
    eines Tages nicht unabhaengig sind. Rueckgabe: mittlere Differenz (Grundquote minus Modell;
-   positiv = Modell besser) und der 95-Prozent-Bereich. */
-function vorsprung(zeilen, markt, ziehungen, startwert){
+   positiv = Modell besser) und der Bereich mit der verlangten Sicherheit (Regel, ueblich 95 Prozent). */
+function vorsprung(zeilen, markt, ziehungen, startwert, sicherheit){
+  var sich=sicherheit||95;
   var gruppen={}, liste=[];
   zeilen.forEach(function(z){
     var k=z.liga+'|'+z.datum;
@@ -125,8 +126,8 @@ function vorsprung(zeilen, markt, ziehungen, startwert){
     werte.push(s/n);
   }
   werte.sort(function(a,b){ return a-b; });
-  return { n:N, spieltage:liste.length, differenz:rund(S/N), unten:rund(werte[Math.floor(ziehungen*0.025)]),
-           oben:rund(werte[Math.min(ziehungen-1, Math.floor(ziehungen*0.975))]) };
+  return { n:N, spieltage:liste.length, differenz:rund(S/N), unten:rund(werte[Math.round(ziehungen*(100-sich)/200)]),
+           oben:rund(werte[Math.min(ziehungen-1, Math.round(ziehungen*(100+sich)/200))]) };
 }
 
 /* Aussagen wie in der App: je Markt die wahrscheinlichste Option mit ihrer Prozentzahl.
@@ -154,7 +155,7 @@ function auswerten(zeilen, regeln){
   var aus={ spiele:zeilen.length, maerkte:{}, vorsprung:{} };
   Object.keys(MAERKTE).forEach(function(m){
     aus.maerkte[m]=kennzahlen(zeilen, m);
-    aus.vorsprung[m]=vorsprung(zeilen, m, regeln.bootstrapZiehungen, regeln.bootstrapStartwert);
+    aus.vorsprung[m]=vorsprung(zeilen, m, regeln.bootstrapZiehungen, regeln.bootstrapStartwert, regeln.sicherheit);
   });
   aus.wieInDerApp=aussagen(zeilen);
   return aus;
@@ -163,14 +164,20 @@ function auswerten(zeilen, regeln){
 /* Das Urteil der Selbstpruefung fuer einen Markt. "belegt" nur, wenn genug Spiele da sind UND
    selbst die vorsichtige untere Grenze des Vorsprungs ueber 0 liegt. */
 var MINDEST_SPIELE_URTEIL = 1000;
-function urteil(v){
-  if(!v || !(v.n>=MINDEST_SPIELE_URTEIL)) return 'zu_wenig_daten';
+function urteil(v, mindest){
+  if(!v || !(v.n>=(mindest||MINDEST_SPIELE_URTEIL))) return 'zu_wenig_daten';
   return v.unten>0 ? 'belegt' : 'nicht_belegt';
 }
 
-/* Der ganze Lauf: Wahl, Abschluss, Selbstpruefung. Rein rechnerisch, schreibt nichts. */
-function lauf(bestand, kand){
-  var regeln=kand.pruefregeln;
+/* Was der Trainingsraum (raum.js) von hier braucht - dieselben Funktionen wie im Lauf. */
+function raumHilfen(){ return { vorsprung:vorsprung, urteil:urteil, ergebnis:ergebnis, grundquote:grundquote, VORRAT:VORRAT, MAERKTE:MAERKTE, rund:rund }; }
+
+/* Der ganze Lauf: Wahl, Abschluss, Selbstpruefung. Rein rechnerisch, schreibt nichts.
+   ondoRegeln = die Werte aus core/REGELN.md (Ondos Regeln). Fehlen sie, gelten die am
+   14.11.2026 festgelegten Werte. */
+function lauf(bestand, kand, ondoRegeln){
+  var R=ondoRegeln||REGELN.standard();
+  var regeln=Object.assign({}, kand.pruefregeln, { sicherheit:R.sicherheit, mindestSpieleBelastbar:R.mindestSpieleBelastbar });
   function par(k){ return Object.assign({}, kand.fest, { lernrate:k.lernrate, saisonBehalt:k.saisonBehalt, dc:k.dc }); }
   function gewertet(zeilen, rolle){ return zeilen.filter(function(z){ return z.rolle===rolle && !z.zusatz; }); }
 
@@ -202,13 +209,14 @@ function lauf(bestand, kand){
   Object.keys(MAERKTE).forEach(function(m){
     var v=ergH.vorsprung[m];
     gegenGrundquote[m]={ markt:namen[m], spiele:v.n, differenz:v.differenz, unten:v.unten, oben:v.oben,
-      urteil:urteil(v) };
+      urteil:urteil(v, R.mindestSpieleUrteil) };
   });
   var beschluss={
     gegenGrundquote:gegenGrundquote,
     gegenMarkt:{ urteil:'nicht_pruefbar', grund:regeln.gegenMarkt },
-    echtesGeld:false,
+    echtesGeld:REGELN.echtesGeldErlaubt(R, 'nicht_pruefbar'),
     einsatz:'nur_virtuell',
+    hoechsterEinsatz:R.maxEinsatz,
     satz:'Das Modell ' + (gegenGrundquote.m1x2.urteil==='belegt' ? 'weiss im Markt 1X2 nachweislich mehr als die blosse Grundquote der Liga' :
       'ist im Markt 1X2 nicht nachweislich besser als die blosse Grundquote der Liga') +
       '. Ob es besser ist als die Wettquoten, ist nicht geprueft, weil keine Quoten im Bestand sind. Deshalb: kein echtes Geld, nur virtuelle Probeeinsaetze.'
@@ -230,15 +238,26 @@ function lauf(bestand, kand){
     abschluss:{ regel:regeln.haupttest, holdout:ergH, jeLiga:jeLiga },
     seitdem:{ hinweis:'Spiele nach dem Holdout (nur Beobachtung, kein Beschluss)', alle:auswerten(spaeter, regeln),
               laufendeSaison:{ saison:aktuelleSaison, werte:auswerten(laufend, regeln) } },
+    regeln:REGELN.uebersicht(R),
     beschluss:beschluss };
-  return { modell:modell, bericht:bericht };
+  var raum=RAUM.raum(bestand, par(siegerK), { name:sieger.name, mindestSpieleRunde:R.mindestSpieleRunde, mindestSpieleUrteil:R.mindestSpieleUrteil,
+    sicherheit:R.sicherheit, ziehungen:regeln.bootstrapZiehungen, startwert:regeln.bootstrapStartwert, ideen:kand.ideen||[] },
+    raumHilfen());
+  return { modell:modell, bericht:bericht, raum:raum };
 }
 
 if(require.main===module){
   var hier=__dirname, nurPruefen=process.argv.indexOf('--nur-pruefen')>=0;
   var aliases=JSON.parse(fs.readFileSync(path.join(hier,'..','data','aliases.json'),'utf8'));
   var kand=JSON.parse(fs.readFileSync(path.join(hier,'kandidaten.json'),'utf8'));
-  var erg=lauf(bestandLaden(path.join(hier,'..','data','generated'), aliases), kand);
+  kand.ideen=JSON.parse(fs.readFileSync(path.join(hier,'ideen.json'),'utf8')).ideen;
+  var gelesen=REGELN.lesen(fs.readFileSync(path.join(hier,'..','REGELN.md'),'utf8'));
+  if(!gelesen.ok){
+    console.error('FEHLER in core/REGELN.md - der Lauf bricht ab, nichts wird geschrieben:');
+    gelesen.fehler.forEach(function(x){ console.error('  '+x); });
+    process.exit(1);
+  }
+  var erg=lauf(bestandLaden(path.join(hier,'..','data','generated'), aliases), kand, gelesen.werte);
   var b=erg.bericht, h=b.abschluss.holdout;
   console.log('Stand '+b.stand+' · gewaehlt: '+b.wahl.gewaehlt+' · Holdout: '+h.spiele+' Spiele');
   Object.keys(h.maerkte).forEach(function(m){
@@ -248,12 +267,16 @@ if(require.main===module){
   });
   console.log('  wie in der App: Trefferquote '+h.wieInDerApp.trefferquote+' % · Brier '+h.wieInDerApp.brier);
   console.log('Beschluss: '+b.beschluss.satz);
+  var rz=erg.raum.zusammenfassung;
+  console.log('Trainingsraum: '+erg.raum.runden.length+' Runden · aktueller Lernstand '+erg.raum.lernstand.name+' · Lernen hilft: '+rz.lernenHilft.urteil+' ('+rz.lernenHilft.differenz+')');
   if(nurPruefen){ console.log('Nur geprueft, nichts geschrieben.'); process.exit(0); }
   var ziel=path.join(hier,'generated'); fs.mkdirSync(ziel,{ recursive:true });
   fs.writeFileSync(path.join(ziel,'modell.json'), JSON.stringify(erg.modell,null,1)+'\n');
   fs.writeFileSync(path.join(ziel,'bericht.json'), JSON.stringify(erg.bericht,null,1)+'\n');
-  console.log('modell.json und bericht.json geschrieben nach core/model/generated/');
+  fs.writeFileSync(path.join(ziel,'raum.json'), JSON.stringify(erg.raum,null,1)+'\n');
+  console.log('modell.json, bericht.json und raum.json geschrieben nach core/model/generated/');
 }
 
 module.exports={ bestandLaden:bestandLaden, durchlauf:durchlauf, lauf:lauf, kennzahlen:kennzahlen,
-                 vorsprung:vorsprung, urteil:urteil, aussagen:aussagen, grundquote:grundquote, MAERKTE:MAERKTE };
+                 vorsprung:vorsprung, urteil:urteil, aussagen:aussagen, grundquote:grundquote, MAERKTE:MAERKTE,
+                 raumHilfen:raumHilfen };

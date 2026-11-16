@@ -57,6 +57,9 @@ jobs:
       - name: Test des Modells
         run: node tests/t13_core_modell.js
 
+      - name: Test der Regeln und des Trainingsraums
+        run: node tests/t14_core_regeln_raum.js
+
       - name: Aenderung committen, falls vorhanden
         run: |
           git config user.name "Ondo-Control-Automatik"

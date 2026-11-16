@@ -1,0 +1,1970 @@
+{
+ "schema": 1,
+ "stand": "2026-11-15",
+ "kandidat": "K6",
+ "regel": {
+  "mindestSpieleRunde": 300,
+  "einlaufRunden": 12,
+  "text": "Eine Runde = ganze Kalendermonate, bis die Mindestzahl Spiele erreicht ist. Getippt wird mit eingefrorenem Lernstand, gelernt erst danach."
+ },
+ "gepruefteIdeen": 8,
+ "lernstand": {
+  "name": "L135",
+  "pruefsumme": "5f023709",
+  "giltAb": "2026-11"
+ },
+ "zusammenfassung": {
+  "hinweis": "Markt 1X2, alle Runden nach der Einlaufzeit. Differenz positiv = der erstgenannte ist besser.",
+  "spiele": 63443,
+  "lernenHilft": {
+   "frage": "Tippt der aktuelle Lernstand besser als der eine Runde aeltere?",
+   "spiele": 63443,
+   "differenz": 0.0032,
+   "unten": 0.0024,
+   "oben": 0.004,
+   "urteil": "belegt"
+  },
+  "gegenGrundquote": {
+   "m1x2": {
+    "spiele": 63443,
+    "differenz": 0.0494,
+    "unten": 0.0469,
+    "oben": 0.052,
+    "urteil": "belegt"
+   },
+   "tore": {
+    "spiele": 63443,
+    "differenz": 0.0017,
+    "unten": 0.0001,
+    "oben": 0.0033,
+    "urteil": "belegt"
+   },
+   "btts": {
+    "spiele": 63443,
+    "differenz": -0.001,
+    "unten": -0.0021,
+    "oben": 0.0002,
+    "urteil": "nicht_belegt"
+   }
+  },
+  "laufendGegenEingefroren": {
+   "frage": "Was bringt Lernen nach jedem einzelnen Spiel gegenueber Lernen je Runde?",
+   "spiele": 63443,
+   "differenz": 0.002,
+   "unten": 0.0015,
+   "oben": 0.0026,
+   "urteil": "belegt"
+  },
+  "letzteZwoelfRunden": {
+   "runden": 12,
+   "davonBesserAlsVoriger": 8
+  }
+ },
+ "runden": [
+  {
+   "nr": 1,
+   "lernstand": "L0",
+   "pruefsumme": "811c9dc5",
+   "von": "2010-08",
+   "bis": "2010-09",
+   "spiele": 438,
+   "logLoss1x2": {
+    "lernstand": 1.0833,
+    "voriger": null,
+    "laufend": 1.0795,
+    "grundquote": 1.0847
+   }
+  },
+  {
+   "nr": 2,
+   "lernstand": "L1",
+   "pruefsumme": "071f4c7c",
+   "von": "2010-10",
+   "bis": "2010-11",
+   "spiele": 496,
+   "logLoss1x2": {
+    "lernstand": 1.0653,
+    "voriger": 1.0723,
+    "laufend": 1.0728,
+    "grundquote": 1.0785
+   }
+  },
+  {
+   "nr": 3,
+   "lernstand": "L2",
+   "pruefsumme": "4aa2280b",
+   "von": "2010-12",
+   "bis": "2011-01",
+   "spiele": 418,
+   "logLoss1x2": {
+    "lernstand": 1.0455,
+    "voriger": 1.0452,
+    "laufend": 1.0474,
+    "grundquote": 1.0659
+   }
+  },
+  {
+   "nr": 4,
+   "lernstand": "L3",
+   "pruefsumme": "a8894b2c",
+   "von": "2011-02",
+   "bis": "2011-03",
+   "spiele": 562,
+   "logLoss1x2": {
+    "lernstand": 1.05,
+    "voriger": 1.0638,
+    "laufend": 1.0443,
+    "grundquote": 1.0724
+   }
+  },
+  {
+   "nr": 5,
+   "lernstand": "L4",
+   "pruefsumme": "33d3b707",
+   "von": "2011-04",
+   "bis": "2011-04",
+   "spiele": 336,
+   "logLoss1x2": {
+    "lernstand": 1.0246,
+    "voriger": 1.0395,
+    "laufend": 1.0251,
+    "grundquote": 1.0677
+   }
+  },
+  {
+   "nr": 6,
+   "lernstand": "L5",
+   "pruefsumme": "0b2aba97",
+   "von": "2011-05",
+   "bis": "2011-08",
+   "spiele": 336,
+   "logLoss1x2": {
+    "lernstand": 1.0728,
+    "voriger": 1.0755,
+    "laufend": 1.0723,
+    "grundquote": 1.0916
+   }
+  },
+  {
+   "nr": 7,
+   "lernstand": "L6",
+   "pruefsumme": "6e735405",
+   "von": "2011-09",
+   "bis": "2011-10",
+   "spiele": 502,
+   "logLoss1x2": {
+    "lernstand": 1.0521,
+    "voriger": 1.063,
+    "laufend": 1.041,
+    "grundquote": 1.0712
+   }
+  },
+  {
+   "nr": 8,
+   "lernstand": "L7",
+   "pruefsumme": "151d6677",
+   "von": "2011-11",
+   "bis": "2011-12",
+   "spiele": 430,
+   "logLoss1x2": {
+    "lernstand": 1.0393,
+    "voriger": 1.0438,
+    "laufend": 1.0345,
+    "grundquote": 1.0854
+   }
+  },
+  {
+   "nr": 9,
+   "lernstand": "L8",
+   "pruefsumme": "72d51d04",
+   "von": "2012-01",
+   "bis": "2012-02",
+   "spiele": 448,
+   "logLoss1x2": {
+    "lernstand": 1.0155,
+    "voriger": 1.017,
+    "laufend": 1.0162,
+    "grundquote": 1.0684
+   }
+  },
+  {
+   "nr": 10,
+   "lernstand": "L9",
+   "pruefsumme": "754e1af4",
+   "von": "2012-03",
+   "bis": "2012-03",
+   "spiele": 364,
+   "logLoss1x2": {
+    "lernstand": 1.0712,
+    "voriger": 1.0748,
+    "laufend": 1.0607,
+    "grundquote": 1.0807
+   }
+  },
+  {
+   "nr": 11,
+   "lernstand": "L10",
+   "pruefsumme": "ccc89177",
+   "von": "2012-04",
+   "bis": "2012-05",
+   "spiele": 354,
+   "logLoss1x2": {
+    "lernstand": 0.9935,
+    "voriger": 0.9992,
+    "laufend": 0.9877,
+    "grundquote": 1.0736
+   }
+  },
+  {
+   "nr": 12,
+   "lernstand": "L11",
+   "pruefsumme": "92db35b7",
+   "von": "2012-08",
+   "bis": "2012-09",
+   "spiele": 628,
+   "logLoss1x2": {
+    "lernstand": 1.0547,
+    "voriger": 1.0547,
+    "laufend": 1.0423,
+    "grundquote": 1.0665
+   }
+  },
+  {
+   "nr": 13,
+   "lernstand": "L12",
+   "pruefsumme": "dc652478",
+   "von": "2012-10",
+   "bis": "2012-10",
+   "spiele": 365,
+   "logLoss1x2": {
+    "lernstand": 1.0497,
+    "voriger": 1.0567,
+    "laufend": 1.0479,
+    "grundquote": 1.0703
+   }
+  },
+  {
+   "nr": 14,
+   "lernstand": "L13",
+   "pruefsumme": "db2e4bc6",
+   "von": "2012-11",
+   "bis": "2012-11",
+   "spiele": 422,
+   "logLoss1x2": {
+    "lernstand": 1.0582,
+    "voriger": 1.0547,
+    "laufend": 1.0605,
+    "grundquote": 1.0824
+   }
+  },
+  {
+   "nr": 15,
+   "lernstand": "L14",
+   "pruefsumme": "3efa526e",
+   "von": "2012-12",
+   "bis": "2012-12",
+   "spiele": 364,
+   "logLoss1x2": {
+    "lernstand": 1.0554,
+    "voriger": 1.0686,
+    "laufend": 1.0509,
+    "grundquote": 1.1004
+   }
+  },
+  {
+   "nr": 16,
+   "lernstand": "L15",
+   "pruefsumme": "1a29520e",
+   "von": "2013-01",
+   "bis": "2013-02",
+   "spiele": 673,
+   "logLoss1x2": {
+    "lernstand": 1.051,
+    "voriger": 1.0526,
+    "laufend": 1.0451,
+    "grundquote": 1.0624
+   }
+  },
+  {
+   "nr": 17,
+   "lernstand": "L16",
+   "pruefsumme": "93a39350",
+   "von": "2013-03",
+   "bis": "2013-03",
+   "spiele": 407,
+   "logLoss1x2": {
+    "lernstand": 1.0494,
+    "voriger": 1.0587,
+    "laufend": 1.0522,
+    "grundquote": 1.0778
+   }
+  },
+  {
+   "nr": 18,
+   "lernstand": "L17",
+   "pruefsumme": "e870b008",
+   "von": "2013-04",
+   "bis": "2013-04",
+   "spiele": 416,
+   "logLoss1x2": {
+    "lernstand": 1.0349,
+    "voriger": 1.0468,
+    "laufend": 1.0331,
+    "grundquote": 1.0671
+   }
+  },
+  {
+   "nr": 19,
+   "lernstand": "L18",
+   "pruefsumme": "053e2235",
+   "von": "2013-05",
+   "bis": "2013-08",
+   "spiele": 588,
+   "logLoss1x2": {
+    "lernstand": 1.0231,
+    "voriger": 1.0274,
+    "laufend": 1.024,
+    "grundquote": 1.0682
+   }
+  },
+  {
+   "nr": 20,
+   "lernstand": "L19",
+   "pruefsumme": "86ccfdac",
+   "von": "2013-09",
+   "bis": "2013-09",
+   "spiele": 436,
+   "logLoss1x2": {
+    "lernstand": 1.0161,
+    "voriger": 1.0357,
+    "laufend": 1.01,
+    "grundquote": 1.0669
+   }
+  },
+  {
+   "nr": 21,
+   "lernstand": "L20",
+   "pruefsumme": "f0f14650",
+   "von": "2013-10",
+   "bis": "2013-10",
+   "spiele": 417,
+   "logLoss1x2": {
+    "lernstand": 1.0537,
+    "voriger": 1.0582,
+    "laufend": 1.0566,
+    "grundquote": 1.0777
+   }
+  },
+  {
+   "nr": 22,
+   "lernstand": "L21",
+   "pruefsumme": "151d2c4d",
+   "von": "2013-11",
+   "bis": "2013-11",
+   "spiele": 439,
+   "logLoss1x2": {
+    "lernstand": 1.0548,
+    "voriger": 1.058,
+    "laufend": 1.0532,
+    "grundquote": 1.0743
+   }
+  },
+  {
+   "nr": 23,
+   "lernstand": "L22",
+   "pruefsumme": "833d59a8",
+   "von": "2013-12",
+   "bis": "2013-12",
+   "spiele": 452,
+   "logLoss1x2": {
+    "lernstand": 1.0526,
+    "voriger": 1.0602,
+    "laufend": 1.054,
+    "grundquote": 1.0971
+   }
+  },
+  {
+   "nr": 24,
+   "lernstand": "L23",
+   "pruefsumme": "4eac3d59",
+   "von": "2014-01",
+   "bis": "2014-01",
+   "spiele": 344,
+   "logLoss1x2": {
+    "lernstand": 1.0142,
+    "voriger": 1.0145,
+    "laufend": 1.01,
+    "grundquote": 1.0791
+   }
+  },
+  {
+   "nr": 25,
+   "lernstand": "L24",
+   "pruefsumme": "3223d460",
+   "von": "2014-02",
+   "bis": "2014-02",
+   "spiele": 438,
+   "logLoss1x2": {
+    "lernstand": 1.0451,
+    "voriger": 1.0414,
+    "laufend": 1.0486,
+    "grundquote": 1.0808
+   }
+  },
+  {
+   "nr": 26,
+   "lernstand": "L25",
+   "pruefsumme": "9ecfb21e",
+   "von": "2014-03",
+   "bis": "2014-03",
+   "spiele": 655,
+   "logLoss1x2": {
+    "lernstand": 1.0394,
+    "voriger": 1.0345,
+    "laufend": 1.0393,
+    "grundquote": 1.0792
+   }
+  },
+  {
+   "nr": 27,
+   "lernstand": "L26",
+   "pruefsumme": "7110734b",
+   "von": "2014-04",
+   "bis": "2014-04",
+   "spiele": 490,
+   "logLoss1x2": {
+    "lernstand": 1.0072,
+    "voriger": 1.0088,
+    "laufend": 1.0064,
+    "grundquote": 1.0623
+   }
+  },
+  {
+   "nr": 28,
+   "lernstand": "L27",
+   "pruefsumme": "2f542929",
+   "von": "2014-05",
+   "bis": "2014-07",
+   "spiele": 298,
+   "logLoss1x2": {
+    "lernstand": 1.0204,
+    "voriger": 1.0268,
+    "laufend": 1.0124,
+    "grundquote": 1.0633
+   }
+  },
+  {
+   "nr": 29,
+   "lernstand": "L28",
+   "pruefsumme": "b1963091",
+   "von": "2014-08",
+   "bis": "2014-08",
+   "spiele": 473,
+   "logLoss1x2": {
+    "lernstand": 1.0818,
+    "voriger": 1.0791,
+    "laufend": 1.0844,
+    "grundquote": 1.1043
+   }
+  },
+  {
+   "nr": 30,
+   "lernstand": "L29",
+   "pruefsumme": "4bf0f7ae",
+   "von": "2014-09",
+   "bis": "2014-09",
+   "spiele": 588,
+   "logLoss1x2": {
+    "lernstand": 1.0437,
+    "voriger": 1.0435,
+    "laufend": 1.041,
+    "grundquote": 1.0753
+   }
+  },
+  {
+   "nr": 31,
+   "lernstand": "L30",
+   "pruefsumme": "22cf03aa",
+   "von": "2014-10",
+   "bis": "2014-10",
+   "spiele": 530,
+   "logLoss1x2": {
+    "lernstand": 1.0336,
+    "voriger": 1.0378,
+    "laufend": 1.0284,
+    "grundquote": 1.0586
+   }
+  },
+  {
+   "nr": 32,
+   "lernstand": "L31",
+   "pruefsumme": "011a94d9",
+   "von": "2014-11",
+   "bis": "2014-11",
+   "spiele": 555,
+   "logLoss1x2": {
+    "lernstand": 1.0377,
+    "voriger": 1.0401,
+    "laufend": 1.0372,
+    "grundquote": 1.0655
+   }
+  },
+  {
+   "nr": 33,
+   "lernstand": "L32",
+   "pruefsumme": "97468dcb",
+   "von": "2014-12",
+   "bis": "2014-12",
+   "spiele": 530,
+   "logLoss1x2": {
+    "lernstand": 1.0319,
+    "voriger": 1.0401,
+    "laufend": 1.0319,
+    "grundquote": 1.0897
+   }
+  },
+  {
+   "nr": 34,
+   "lernstand": "L33",
+   "pruefsumme": "60b83c74",
+   "von": "2015-01",
+   "bis": "2015-01",
+   "spiele": 451,
+   "logLoss1x2": {
+    "lernstand": 1.0291,
+    "voriger": 1.0335,
+    "laufend": 1.0309,
+    "grundquote": 1.0769
+   }
+  },
+  {
+   "nr": 35,
+   "lernstand": "L34",
+   "pruefsumme": "88c21224",
+   "von": "2015-02",
+   "bis": "2015-02",
+   "spiele": 603,
+   "logLoss1x2": {
+    "lernstand": 1.0447,
+    "voriger": 1.042,
+    "laufend": 1.0441,
+    "grundquote": 1.0643
+   }
+  },
+  {
+   "nr": 36,
+   "lernstand": "L35",
+   "pruefsumme": "ec9eabc4",
+   "von": "2015-03",
+   "bis": "2015-03",
+   "spiele": 573,
+   "logLoss1x2": {
+    "lernstand": 1.0321,
+    "voriger": 1.0351,
+    "laufend": 1.0305,
+    "grundquote": 1.0763
+   }
+  },
+  {
+   "nr": 37,
+   "lernstand": "L36",
+   "pruefsumme": "f2cc2394",
+   "von": "2015-04",
+   "bis": "2015-04",
+   "spiele": 679,
+   "logLoss1x2": {
+    "lernstand": 0.9997,
+    "voriger": 1.0031,
+    "laufend": 0.9968,
+    "grundquote": 1.071
+   }
+  },
+  {
+   "nr": 38,
+   "lernstand": "L37",
+   "pruefsumme": "5e52caf0",
+   "von": "2015-05",
+   "bis": "2015-05",
+   "spiele": 469,
+   "logLoss1x2": {
+    "lernstand": 1.0424,
+    "voriger": 1.0363,
+    "laufend": 1.0371,
+    "grundquote": 1.0626
+   }
+  },
+  {
+   "nr": 39,
+   "lernstand": "L38",
+   "pruefsumme": "ded968ec",
+   "von": "2015-06",
+   "bis": "2015-08",
+   "spiele": 514,
+   "logLoss1x2": {
+    "lernstand": 1.0816,
+    "voriger": 1.0846,
+    "laufend": 1.0753,
+    "grundquote": 1.1037
+   }
+  },
+  {
+   "nr": 40,
+   "lernstand": "L39",
+   "pruefsumme": "aae49d5d",
+   "von": "2015-09",
+   "bis": "2015-09",
+   "spiele": 579,
+   "logLoss1x2": {
+    "lernstand": 1.0776,
+    "voriger": 1.0792,
+    "laufend": 1.0739,
+    "grundquote": 1.0836
+   }
+  },
+  {
+   "nr": 41,
+   "lernstand": "L40",
+   "pruefsumme": "0bbb9776",
+   "von": "2015-10",
+   "bis": "2015-10",
+   "spiele": 608,
+   "logLoss1x2": {
+    "lernstand": 1.0417,
+    "voriger": 1.0409,
+    "laufend": 1.0398,
+    "grundquote": 1.0692
+   }
+  },
+  {
+   "nr": 42,
+   "lernstand": "L41",
+   "pruefsumme": "4f8ae8e9",
+   "von": "2015-11",
+   "bis": "2015-11",
+   "spiele": 501,
+   "logLoss1x2": {
+    "lernstand": 1.0407,
+    "voriger": 1.0505,
+    "laufend": 1.0443,
+    "grundquote": 1.0657
+   }
+  },
+  {
+   "nr": 43,
+   "lernstand": "L42",
+   "pruefsumme": "55d5fb28",
+   "von": "2015-12",
+   "bis": "2015-12",
+   "spiele": 526,
+   "logLoss1x2": {
+    "lernstand": 1.0358,
+    "voriger": 1.0431,
+    "laufend": 1.0346,
+    "grundquote": 1.0795
+   }
+  },
+  {
+   "nr": 44,
+   "lernstand": "L43",
+   "pruefsumme": "43919b42",
+   "von": "2016-01",
+   "bis": "2016-01",
+   "spiele": 503,
+   "logLoss1x2": {
+    "lernstand": 1.0432,
+    "voriger": 1.0481,
+    "laufend": 1.0435,
+    "grundquote": 1.0758
+   }
+  },
+  {
+   "nr": 45,
+   "lernstand": "L44",
+   "pruefsumme": "cb2661f4",
+   "von": "2016-02",
+   "bis": "2016-02",
+   "spiele": 608,
+   "logLoss1x2": {
+    "lernstand": 1.0208,
+    "voriger": 1.0271,
+    "laufend": 1.021,
+    "grundquote": 1.0813
+   }
+  },
+  {
+   "nr": 46,
+   "lernstand": "L45",
+   "pruefsumme": "4ad9705b",
+   "von": "2016-03",
+   "bis": "2016-03",
+   "spiele": 576,
+   "logLoss1x2": {
+    "lernstand": 1.0674,
+    "voriger": 1.0681,
+    "laufend": 1.0642,
+    "grundquote": 1.0894
+   }
+  },
+  {
+   "nr": 47,
+   "lernstand": "L46",
+   "pruefsumme": "add90023",
+   "von": "2016-04",
+   "bis": "2016-04",
+   "spiele": 738,
+   "logLoss1x2": {
+    "lernstand": 1.0114,
+    "voriger": 1.0129,
+    "laufend": 1.0092,
+    "grundquote": 1.0728
+   }
+  },
+  {
+   "nr": 48,
+   "lernstand": "L47",
+   "pruefsumme": "39be268d",
+   "von": "2016-05",
+   "bis": "2016-05",
+   "spiele": 319,
+   "logLoss1x2": {
+    "lernstand": 0.9975,
+    "voriger": 0.9939,
+    "laufend": 0.9953,
+    "grundquote": 1.0421
+   }
+  },
+  {
+   "nr": 49,
+   "lernstand": "L48",
+   "pruefsumme": "529ba7fc",
+   "von": "2016-06",
+   "bis": "2016-09",
+   "spiele": 709,
+   "logLoss1x2": {
+    "lernstand": 1.0411,
+    "voriger": 1.0362,
+    "laufend": 1.0356,
+    "grundquote": 1.061
+   }
+  },
+  {
+   "nr": 50,
+   "lernstand": "L49",
+   "pruefsumme": "58d25aa3",
+   "von": "2016-10",
+   "bis": "2016-10",
+   "spiele": 425,
+   "logLoss1x2": {
+    "lernstand": 1.0352,
+    "voriger": 1.0354,
+    "laufend": 1.0296,
+    "grundquote": 1.0659
+   }
+  },
+  {
+   "nr": 51,
+   "lernstand": "L50",
+   "pruefsumme": "4a57d389",
+   "von": "2016-11",
+   "bis": "2016-11",
+   "spiele": 340,
+   "logLoss1x2": {
+    "lernstand": 1.0119,
+    "voriger": 1.0326,
+    "laufend": 1.0137,
+    "grundquote": 1.0587
+   }
+  },
+  {
+   "nr": 52,
+   "lernstand": "L51",
+   "pruefsumme": "5d5808eb",
+   "von": "2016-12",
+   "bis": "2016-12",
+   "spiele": 366,
+   "logLoss1x2": {
+    "lernstand": 0.9881,
+    "voriger": 0.9941,
+    "laufend": 0.9896,
+    "grundquote": 1.028
+   }
+  },
+  {
+   "nr": 53,
+   "lernstand": "L52",
+   "pruefsumme": "e1b517ba",
+   "von": "2017-01",
+   "bis": "2017-02",
+   "spiele": 707,
+   "logLoss1x2": {
+    "lernstand": 1.0036,
+    "voriger": 1.0008,
+    "laufend": 1.0041,
+    "grundquote": 1.0613
+   }
+  },
+  {
+   "nr": 54,
+   "lernstand": "L53",
+   "pruefsumme": "c28a7962",
+   "von": "2017-03",
+   "bis": "2017-03",
+   "spiele": 365,
+   "logLoss1x2": {
+    "lernstand": 1.0105,
+    "voriger": 1.0112,
+    "laufend": 1.0086,
+    "grundquote": 1.0725
+   }
+  },
+  {
+   "nr": 55,
+   "lernstand": "L54",
+   "pruefsumme": "27d7b737",
+   "von": "2017-04",
+   "bis": "2017-04",
+   "spiele": 556,
+   "logLoss1x2": {
+    "lernstand": 1.0027,
+    "voriger": 1.0065,
+    "laufend": 0.9992,
+    "grundquote": 1.0654
+   }
+  },
+  {
+   "nr": 56,
+   "lernstand": "L55",
+   "pruefsumme": "7a9d7f0e",
+   "von": "2017-05",
+   "bis": "2017-05",
+   "spiele": 337,
+   "logLoss1x2": {
+    "lernstand": 0.9877,
+    "voriger": 0.9853,
+    "laufend": 0.9844,
+    "grundquote": 1.0627
+   }
+  },
+  {
+   "nr": 57,
+   "lernstand": "L56",
+   "pruefsumme": "34de32b1",
+   "von": "2017-06",
+   "bis": "2017-08",
+   "spiele": 329,
+   "logLoss1x2": {
+    "lernstand": 1.0367,
+    "voriger": 1.0401,
+    "laufend": 1.0298,
+    "grundquote": 1.0754
+   }
+  },
+  {
+   "nr": 58,
+   "lernstand": "L57",
+   "pruefsumme": "7af2b8c3",
+   "von": "2017-09",
+   "bis": "2017-09",
+   "spiele": 449,
+   "logLoss1x2": {
+    "lernstand": 1.0145,
+    "voriger": 1.0194,
+    "laufend": 1.014,
+    "grundquote": 1.0678
+   }
+  },
+  {
+   "nr": 59,
+   "lernstand": "L58",
+   "pruefsumme": "eb635787",
+   "von": "2017-10",
+   "bis": "2017-10",
+   "spiele": 393,
+   "logLoss1x2": {
+    "lernstand": 1.0022,
+    "voriger": 1.0158,
+    "laufend": 0.9977,
+    "grundquote": 1.0567
+   }
+  },
+  {
+   "nr": 60,
+   "lernstand": "L59",
+   "pruefsumme": "785e55b9",
+   "von": "2017-11",
+   "bis": "2017-11",
+   "spiele": 353,
+   "logLoss1x2": {
+    "lernstand": 1.0313,
+    "voriger": 1.0372,
+    "laufend": 1.0312,
+    "grundquote": 1.076
+   }
+  },
+  {
+   "nr": 61,
+   "lernstand": "L60",
+   "pruefsumme": "ae02539c",
+   "von": "2017-12",
+   "bis": "2017-12",
+   "spiele": 406,
+   "logLoss1x2": {
+    "lernstand": 1.0087,
+    "voriger": 1.0073,
+    "laufend": 1.0052,
+    "grundquote": 1.0674
+   }
+  },
+  {
+   "nr": 62,
+   "lernstand": "L61",
+   "pruefsumme": "5a48b42f",
+   "von": "2018-01",
+   "bis": "2018-01",
+   "spiele": 325,
+   "logLoss1x2": {
+    "lernstand": 0.9927,
+    "voriger": 1.0001,
+    "laufend": 0.9961,
+    "grundquote": 1.0647
+   }
+  },
+  {
+   "nr": 63,
+   "lernstand": "L62",
+   "pruefsumme": "6c513785",
+   "von": "2018-02",
+   "bis": "2018-02",
+   "spiele": 404,
+   "logLoss1x2": {
+    "lernstand": 1.0119,
+    "voriger": 1.0106,
+    "laufend": 1.0071,
+    "grundquote": 1.0626
+   }
+  },
+  {
+   "nr": 64,
+   "lernstand": "L63",
+   "pruefsumme": "73a7f169",
+   "von": "2018-03",
+   "bis": "2018-03",
+   "spiele": 396,
+   "logLoss1x2": {
+    "lernstand": 0.974,
+    "voriger": 0.9723,
+    "laufend": 0.9687,
+    "grundquote": 1.0721
+   }
+  },
+  {
+   "nr": 65,
+   "lernstand": "L64",
+   "pruefsumme": "915ed784",
+   "von": "2018-04",
+   "bis": "2018-04",
+   "spiele": 491,
+   "logLoss1x2": {
+    "lernstand": 1.0323,
+    "voriger": 1.0323,
+    "laufend": 1.0252,
+    "grundquote": 1.084
+   }
+  },
+  {
+   "nr": 66,
+   "lernstand": "L65",
+   "pruefsumme": "b5de3a28",
+   "von": "2018-05",
+   "bis": "2018-06",
+   "spiele": 292,
+   "logLoss1x2": {
+    "lernstand": 1.0196,
+    "voriger": 1.0144,
+    "laufend": 1.0174,
+    "grundquote": 1.0328
+   }
+  },
+  {
+   "nr": 67,
+   "lernstand": "L66",
+   "pruefsumme": "a1c0f441",
+   "von": "2018-07",
+   "bis": "2018-08",
+   "spiele": 521,
+   "logLoss1x2": {
+    "lernstand": 1.0721,
+    "voriger": 1.069,
+    "laufend": 1.0659,
+    "grundquote": 1.0821
+   }
+  },
+  {
+   "nr": 68,
+   "lernstand": "L67",
+   "pruefsumme": "e8f4131d",
+   "von": "2018-09",
+   "bis": "2018-09",
+   "spiele": 678,
+   "logLoss1x2": {
+    "lernstand": 1.0567,
+    "voriger": 1.0667,
+    "laufend": 1.0526,
+    "grundquote": 1.084
+   }
+  },
+  {
+   "nr": 69,
+   "lernstand": "L68",
+   "pruefsumme": "c069d5a6",
+   "von": "2018-10",
+   "bis": "2018-10",
+   "spiele": 570,
+   "logLoss1x2": {
+    "lernstand": 1.0343,
+    "voriger": 1.0464,
+    "laufend": 1.0327,
+    "grundquote": 1.0747
+   }
+  },
+  {
+   "nr": 70,
+   "lernstand": "L69",
+   "pruefsumme": "dc3f59e9",
+   "von": "2018-11",
+   "bis": "2018-11",
+   "spiele": 515,
+   "logLoss1x2": {
+    "lernstand": 1.0271,
+    "voriger": 1.0384,
+    "laufend": 1.0255,
+    "grundquote": 1.0652
+   }
+  },
+  {
+   "nr": 71,
+   "lernstand": "L70",
+   "pruefsumme": "13e1198b",
+   "von": "2018-12",
+   "bis": "2018-12",
+   "spiele": 708,
+   "logLoss1x2": {
+    "lernstand": 1.0197,
+    "voriger": 1.0251,
+    "laufend": 1.015,
+    "grundquote": 1.0757
+   }
+  },
+  {
+   "nr": 72,
+   "lernstand": "L71",
+   "pruefsumme": "99cf7716",
+   "von": "2019-01",
+   "bis": "2019-01",
+   "spiele": 488,
+   "logLoss1x2": {
+    "lernstand": 1.0174,
+    "voriger": 1.0155,
+    "laufend": 1.0205,
+    "grundquote": 1.0716
+   }
+  },
+  {
+   "nr": 73,
+   "lernstand": "L72",
+   "pruefsumme": "fa768e83",
+   "von": "2019-02",
+   "bis": "2019-02",
+   "spiele": 641,
+   "logLoss1x2": {
+    "lernstand": 1.0259,
+    "voriger": 1.0234,
+    "laufend": 1.0224,
+    "grundquote": 1.0793
+   }
+  },
+  {
+   "nr": 74,
+   "lernstand": "L73",
+   "pruefsumme": "aebae8df",
+   "von": "2019-03",
+   "bis": "2019-03",
+   "spiele": 676,
+   "logLoss1x2": {
+    "lernstand": 0.9974,
+    "voriger": 1.0039,
+    "laufend": 0.996,
+    "grundquote": 1.0668
+   }
+  },
+  {
+   "nr": 75,
+   "lernstand": "L74",
+   "pruefsumme": "bbdfc809",
+   "von": "2019-04",
+   "bis": "2019-04",
+   "spiele": 747,
+   "logLoss1x2": {
+    "lernstand": 1.0186,
+    "voriger": 1.0231,
+    "laufend": 1.0162,
+    "grundquote": 1.0658
+   }
+  },
+  {
+   "nr": 76,
+   "lernstand": "L75",
+   "pruefsumme": "bc789321",
+   "von": "2019-05",
+   "bis": "2019-05",
+   "spiele": 399,
+   "logLoss1x2": {
+    "lernstand": 1.0305,
+    "voriger": 1.0353,
+    "laufend": 1.0301,
+    "grundquote": 1.0505
+   }
+  },
+  {
+   "nr": 77,
+   "lernstand": "L76",
+   "pruefsumme": "c304fa2a",
+   "von": "2019-06",
+   "bis": "2019-08",
+   "spiele": 788,
+   "logLoss1x2": {
+    "lernstand": 1.0525,
+    "voriger": 1.0503,
+    "laufend": 1.0462,
+    "grundquote": 1.0889
+   }
+  },
+  {
+   "nr": 78,
+   "lernstand": "L77",
+   "pruefsumme": "57985972",
+   "von": "2019-09",
+   "bis": "2019-09",
+   "spiele": 608,
+   "logLoss1x2": {
+    "lernstand": 1.0306,
+    "voriger": 1.0365,
+    "laufend": 1.0318,
+    "grundquote": 1.0845
+   }
+  },
+  {
+   "nr": 79,
+   "lernstand": "L78",
+   "pruefsumme": "982f6282",
+   "von": "2019-10",
+   "bis": "2019-10",
+   "spiele": 559,
+   "logLoss1x2": {
+    "lernstand": 1.0536,
+    "voriger": 1.0534,
+    "laufend": 1.0558,
+    "grundquote": 1.0622
+   }
+  },
+  {
+   "nr": 80,
+   "lernstand": "L79",
+   "pruefsumme": "a57173ed",
+   "von": "2019-11",
+   "bis": "2019-11",
+   "spiele": 550,
+   "logLoss1x2": {
+    "lernstand": 1.0087,
+    "voriger": 1.0122,
+    "laufend": 1.008,
+    "grundquote": 1.0595
+   }
+  },
+  {
+   "nr": 81,
+   "lernstand": "L80",
+   "pruefsumme": "31ebb8ff",
+   "von": "2019-12",
+   "bis": "2019-12",
+   "spiele": 641,
+   "logLoss1x2": {
+    "lernstand": 1.0396,
+    "voriger": 1.0495,
+    "laufend": 1.0407,
+    "grundquote": 1.0727
+   }
+  },
+  {
+   "nr": 82,
+   "lernstand": "L81",
+   "pruefsumme": "ec3b0489",
+   "von": "2020-01",
+   "bis": "2020-01",
+   "spiele": 506,
+   "logLoss1x2": {
+    "lernstand": 1.0451,
+    "voriger": 1.0461,
+    "laufend": 1.0459,
+    "grundquote": 1.0843
+   }
+  },
+  {
+   "nr": 83,
+   "lernstand": "L82",
+   "pruefsumme": "8bb3ef7c",
+   "von": "2020-02",
+   "bis": "2020-02",
+   "spiele": 747,
+   "logLoss1x2": {
+    "lernstand": 1.0332,
+    "voriger": 1.0377,
+    "laufend": 1.0306,
+    "grundquote": 1.0767
+   }
+  },
+  {
+   "nr": 84,
+   "lernstand": "L83",
+   "pruefsumme": "cee65094",
+   "von": "2020-03",
+   "bis": "2020-06",
+   "spiele": 729,
+   "logLoss1x2": {
+    "lernstand": 1.0361,
+    "voriger": 1.0438,
+    "laufend": 1.0335,
+    "grundquote": 1.0911
+   }
+  },
+  {
+   "nr": 85,
+   "lernstand": "L84",
+   "pruefsumme": "e5d94f6e",
+   "von": "2020-07",
+   "bis": "2020-07",
+   "spiele": 345,
+   "logLoss1x2": {
+    "lernstand": 1.0151,
+    "voriger": 1.0143,
+    "laufend": 1.0069,
+    "grundquote": 1.0613
+   }
+  },
+  {
+   "nr": 86,
+   "lernstand": "L85",
+   "pruefsumme": "2a93764a",
+   "von": "2020-08",
+   "bis": "2020-09",
+   "spiele": 433,
+   "logLoss1x2": {
+    "lernstand": 1.0431,
+    "voriger": 1.0448,
+    "laufend": 1.0442,
+    "grundquote": 1.079
+   }
+  },
+  {
+   "nr": 87,
+   "lernstand": "L86",
+   "pruefsumme": "513c7005",
+   "von": "2020-10",
+   "bis": "2020-10",
+   "spiele": 692,
+   "logLoss1x2": {
+    "lernstand": 1.0547,
+    "voriger": 1.0511,
+    "laufend": 1.0509,
+    "grundquote": 1.0867
+   }
+  },
+  {
+   "nr": 88,
+   "lernstand": "L87",
+   "pruefsumme": "87cc23c5",
+   "von": "2020-11",
+   "bis": "2020-11",
+   "spiele": 595,
+   "logLoss1x2": {
+    "lernstand": 1.061,
+    "voriger": 1.0587,
+    "laufend": 1.0587,
+    "grundquote": 1.1016
+   }
+  },
+  {
+   "nr": 89,
+   "lernstand": "L88",
+   "pruefsumme": "2a35f697",
+   "von": "2020-12",
+   "bis": "2020-12",
+   "spiele": 791,
+   "logLoss1x2": {
+    "lernstand": 1.0535,
+    "voriger": 1.0489,
+    "laufend": 1.0554,
+    "grundquote": 1.0978
+   }
+  },
+  {
+   "nr": 90,
+   "lernstand": "L89",
+   "pruefsumme": "d16c45e7",
+   "von": "2021-01",
+   "bis": "2021-01",
+   "spiele": 756,
+   "logLoss1x2": {
+    "lernstand": 1.025,
+    "voriger": 1.0225,
+    "laufend": 1.0215,
+    "grundquote": 1.084
+   }
+  },
+  {
+   "nr": 91,
+   "lernstand": "L90",
+   "pruefsumme": "abbfe2cb",
+   "von": "2021-02",
+   "bis": "2021-02",
+   "spiele": 739,
+   "logLoss1x2": {
+    "lernstand": 1.0429,
+    "voriger": 1.0471,
+    "laufend": 1.0378,
+    "grundquote": 1.0871
+   }
+  },
+  {
+   "nr": 92,
+   "lernstand": "L91",
+   "pruefsumme": "97e7eb8a",
+   "von": "2021-03",
+   "bis": "2021-03",
+   "spiele": 642,
+   "logLoss1x2": {
+    "lernstand": 1.0304,
+    "voriger": 1.0394,
+    "laufend": 1.0329,
+    "grundquote": 1.0848
+   }
+  },
+  {
+   "nr": 93,
+   "lernstand": "L92",
+   "pruefsumme": "2f0a23e7",
+   "von": "2021-04",
+   "bis": "2021-04",
+   "spiele": 785,
+   "logLoss1x2": {
+    "lernstand": 1.0408,
+    "voriger": 1.0477,
+    "laufend": 1.0366,
+    "grundquote": 1.0779
+   }
+  },
+  {
+   "nr": 94,
+   "lernstand": "L93",
+   "pruefsumme": "f519ac7f",
+   "von": "2021-05",
+   "bis": "2021-05",
+   "spiele": 580,
+   "logLoss1x2": {
+    "lernstand": 1.0099,
+    "voriger": 1.0133,
+    "laufend": 1.009,
+    "grundquote": 1.0789
+   }
+  },
+  {
+   "nr": 95,
+   "lernstand": "L94",
+   "pruefsumme": "796aedf5",
+   "von": "2021-07",
+   "bis": "2021-08",
+   "spiele": 313,
+   "logLoss1x2": {
+    "lernstand": 1.0188,
+    "voriger": 1.0148,
+    "laufend": 1.0157,
+    "grundquote": 1.0863
+   }
+  },
+  {
+   "nr": 96,
+   "lernstand": "L95",
+   "pruefsumme": "84f7ce16",
+   "von": "2021-09",
+   "bis": "2021-09",
+   "spiele": 324,
+   "logLoss1x2": {
+    "lernstand": 1.0189,
+    "voriger": 1.0231,
+    "laufend": 1.0143,
+    "grundquote": 1.096
+   }
+  },
+  {
+   "nr": 97,
+   "lernstand": "L96",
+   "pruefsumme": "bd614de1",
+   "von": "2021-10",
+   "bis": "2021-10",
+   "spiele": 368,
+   "logLoss1x2": {
+    "lernstand": 1.0033,
+    "voriger": 1.0122,
+    "laufend": 1.0069,
+    "grundquote": 1.0632
+   }
+  },
+  {
+   "nr": 98,
+   "lernstand": "L97",
+   "pruefsumme": "bf83b35f",
+   "von": "2021-11",
+   "bis": "2021-12",
+   "spiele": 636,
+   "logLoss1x2": {
+    "lernstand": 1.0017,
+    "voriger": 0.9971,
+    "laufend": 0.9991,
+    "grundquote": 1.0783
+   }
+  },
+  {
+   "nr": 99,
+   "lernstand": "L98",
+   "pruefsumme": "fe270a40",
+   "von": "2022-01",
+   "bis": "2022-02",
+   "spiele": 664,
+   "logLoss1x2": {
+    "lernstand": 1.0193,
+    "voriger": 1.0172,
+    "laufend": 1.0145,
+    "grundquote": 1.0833
+   }
+  },
+  {
+   "nr": 100,
+   "lernstand": "L99",
+   "pruefsumme": "7fb41417",
+   "von": "2022-03",
+   "bis": "2022-04",
+   "spiele": 724,
+   "logLoss1x2": {
+    "lernstand": 1.003,
+    "voriger": 1.0041,
+    "laufend": 1.0031,
+    "grundquote": 1.0704
+   }
+  },
+  {
+   "nr": 101,
+   "lernstand": "L100",
+   "pruefsumme": "4d52fa94",
+   "von": "2022-05",
+   "bis": "2022-07",
+   "spiele": 296,
+   "logLoss1x2": {
+    "lernstand": 0.9884,
+    "voriger": 1.0046,
+    "laufend": 0.9887,
+    "grundquote": 1.0708
+   }
+  },
+  {
+   "nr": 102,
+   "lernstand": "L101",
+   "pruefsumme": "54d81e72",
+   "von": "2022-08",
+   "bis": "2022-08",
+   "spiele": 379,
+   "logLoss1x2": {
+    "lernstand": 1.0042,
+    "voriger": 1.0036,
+    "laufend": 0.9988,
+    "grundquote": 1.0883
+   }
+  },
+  {
+   "nr": 103,
+   "lernstand": "L102",
+   "pruefsumme": "717c26e8",
+   "von": "2022-09",
+   "bis": "2022-10",
+   "spiele": 732,
+   "logLoss1x2": {
+    "lernstand": 0.9988,
+    "voriger": 1.0048,
+    "laufend": 1.0014,
+    "grundquote": 1.0617
+   }
+  },
+  {
+   "nr": 104,
+   "lernstand": "L103",
+   "pruefsumme": "456dd5f3",
+   "von": "2022-11",
+   "bis": "2022-12",
+   "spiele": 321,
+   "logLoss1x2": {
+    "lernstand": 1.0093,
+    "voriger": 1.0034,
+    "laufend": 0.9958,
+    "grundquote": 1.0749
+   }
+  },
+  {
+   "nr": 105,
+   "lernstand": "L104",
+   "pruefsumme": "d4231e4c",
+   "von": "2023-01",
+   "bis": "2023-01",
+   "spiele": 317,
+   "logLoss1x2": {
+    "lernstand": 1.0097,
+    "voriger": 1.0218,
+    "laufend": 1.0008,
+    "grundquote": 1.0879
+   }
+  },
+  {
+   "nr": 106,
+   "lernstand": "L105",
+   "pruefsumme": "5370ec9f",
+   "von": "2023-02",
+   "bis": "2023-02",
+   "spiele": 387,
+   "logLoss1x2": {
+    "lernstand": 0.9603,
+    "voriger": 0.9618,
+    "laufend": 0.9589,
+    "grundquote": 1.0476
+   }
+  },
+  {
+   "nr": 107,
+   "lernstand": "L106",
+   "pruefsumme": "f2dab5a6",
+   "von": "2023-03",
+   "bis": "2023-04",
+   "spiele": 750,
+   "logLoss1x2": {
+    "lernstand": 0.9943,
+    "voriger": 0.9937,
+    "laufend": 0.9945,
+    "grundquote": 1.0639
+   }
+  },
+  {
+   "nr": 108,
+   "lernstand": "L107",
+   "pruefsumme": "97a08d3a",
+   "von": "2023-05",
+   "bis": "2023-05",
+   "spiele": 351,
+   "logLoss1x2": {
+    "lernstand": 0.9758,
+    "voriger": 0.9749,
+    "laufend": 0.9713,
+    "grundquote": 1.0354
+   }
+  },
+  {
+   "nr": 109,
+   "lernstand": "L108",
+   "pruefsumme": "f61c3b72",
+   "von": "2023-06",
+   "bis": "2023-09",
+   "spiele": 635,
+   "logLoss1x2": {
+    "lernstand": 1.0002,
+    "voriger": 1.0014,
+    "laufend": 0.9927,
+    "grundquote": 1.0679
+   }
+  },
+  {
+   "nr": 110,
+   "lernstand": "L109",
+   "pruefsumme": "e256fe78",
+   "von": "2023-10",
+   "bis": "2023-10",
+   "spiele": 307,
+   "logLoss1x2": {
+    "lernstand": 0.9473,
+    "voriger": 0.967,
+    "laufend": 0.9432,
+    "grundquote": 1.0599
+   }
+  },
+  {
+   "nr": 111,
+   "lernstand": "L110",
+   "pruefsumme": "74456ba6",
+   "von": "2023-11",
+   "bis": "2023-12",
+   "spiele": 672,
+   "logLoss1x2": {
+    "lernstand": 1.0003,
+    "voriger": 1.0058,
+    "laufend": 0.9955,
+    "grundquote": 1.0637
+   }
+  },
+  {
+   "nr": 112,
+   "lernstand": "L111",
+   "pruefsumme": "36f9166a",
+   "von": "2024-01",
+   "bis": "2024-02",
+   "spiele": 634,
+   "logLoss1x2": {
+    "lernstand": 0.9942,
+    "voriger": 1.0078,
+    "laufend": 0.994,
+    "grundquote": 1.0879
+   }
+  },
+  {
+   "nr": 113,
+   "lernstand": "L112",
+   "pruefsumme": "76745ad1",
+   "von": "2024-03",
+   "bis": "2024-03",
+   "spiele": 345,
+   "logLoss1x2": {
+    "lernstand": 0.9681,
+    "voriger": 0.9719,
+    "laufend": 0.9673,
+    "grundquote": 1.0815
+   }
+  },
+  {
+   "nr": 114,
+   "lernstand": "L113",
+   "pruefsumme": "d5c85776",
+   "von": "2024-04",
+   "bis": "2024-04",
+   "spiele": 387,
+   "logLoss1x2": {
+    "lernstand": 1.0106,
+    "voriger": 1.0073,
+    "laufend": 1.0118,
+    "grundquote": 1.085
+   }
+  },
+  {
+   "nr": 115,
+   "lernstand": "L114",
+   "pruefsumme": "45829453",
+   "von": "2024-05",
+   "bis": "2024-08",
+   "spiele": 723,
+   "logLoss1x2": {
+    "lernstand": 0.9978,
+    "voriger": 0.9989,
+    "laufend": 0.9926,
+    "grundquote": 1.0753
+   }
+  },
+  {
+   "nr": 116,
+   "lernstand": "L115",
+   "pruefsumme": "1cf71b25",
+   "von": "2024-09",
+   "bis": "2024-09",
+   "spiele": 512,
+   "logLoss1x2": {
+    "lernstand": 1.003,
+    "voriger": 1.0041,
+    "laufend": 1.005,
+    "grundquote": 1.0732
+   }
+  },
+  {
+   "nr": 117,
+   "lernstand": "L116",
+   "pruefsumme": "46948406",
+   "von": "2024-10",
+   "bis": "2024-10",
+   "spiele": 550,
+   "logLoss1x2": {
+    "lernstand": 1.0365,
+    "voriger": 1.0356,
+    "laufend": 1.0289,
+    "grundquote": 1.0706
+   }
+  },
+  {
+   "nr": 118,
+   "lernstand": "L117",
+   "pruefsumme": "24035f75",
+   "von": "2024-11",
+   "bis": "2024-11",
+   "spiele": 511,
+   "logLoss1x2": {
+    "lernstand": 1.0445,
+    "voriger": 1.0544,
+    "laufend": 1.0427,
+    "grundquote": 1.0784
+   }
+  },
+  {
+   "nr": 119,
+   "lernstand": "L118",
+   "pruefsumme": "97125138",
+   "von": "2024-12",
+   "bis": "2024-12",
+   "spiele": 630,
+   "logLoss1x2": {
+    "lernstand": 1.0195,
+    "voriger": 1.0211,
+    "laufend": 1.019,
+    "grundquote": 1.0641
+   }
+  },
+  {
+   "nr": 120,
+   "lernstand": "L119",
+   "pruefsumme": "05443cf6",
+   "von": "2025-01",
+   "bis": "2025-01",
+   "spiele": 554,
+   "logLoss1x2": {
+    "lernstand": 1.0544,
+    "voriger": 1.0619,
+    "laufend": 1.0505,
+    "grundquote": 1.0928
+   }
+  },
+  {
+   "nr": 121,
+   "lernstand": "L120",
+   "pruefsumme": "ef032d0b",
+   "von": "2025-02",
+   "bis": "2025-02",
+   "spiele": 600,
+   "logLoss1x2": {
+    "lernstand": 1.0125,
+    "voriger": 1.0173,
+    "laufend": 1.0135,
+    "grundquote": 1.0765
+   }
+  },
+  {
+   "nr": 122,
+   "lernstand": "L121",
+   "pruefsumme": "77e6dc1c",
+   "von": "2025-03",
+   "bis": "2025-03",
+   "spiele": 599,
+   "logLoss1x2": {
+    "lernstand": 1.0133,
+    "voriger": 1.0161,
+    "laufend": 1.0148,
+    "grundquote": 1.0685
+   }
+  },
+  {
+   "nr": 123,
+   "lernstand": "L122",
+   "pruefsumme": "b086c4ed",
+   "von": "2025-04",
+   "bis": "2025-04",
+   "spiele": 645,
+   "logLoss1x2": {
+    "lernstand": 1.0247,
+    "voriger": 1.0316,
+    "laufend": 1.0228,
+    "grundquote": 1.0787
+   }
+  },
+  {
+   "nr": 124,
+   "lernstand": "L123",
+   "pruefsumme": "e90b2273",
+   "von": "2025-05",
+   "bis": "2025-05",
+   "spiele": 400,
+   "logLoss1x2": {
+    "lernstand": 1.0079,
+    "voriger": 1.0041,
+    "laufend": 1.0079,
+    "grundquote": 1.0694
+   }
+  },
+  {
+   "nr": 125,
+   "lernstand": "L124",
+   "pruefsumme": "76e71415",
+   "von": "2025-08",
+   "bis": "2025-08",
+   "spiele": 476,
+   "logLoss1x2": {
+    "lernstand": 1.0239,
+    "voriger": 1.0269,
+    "laufend": 1.0178,
+    "grundquote": 1.0546
+   }
+  },
+  {
+   "nr": 126,
+   "lernstand": "L125",
+   "pruefsumme": "093b0c8e",
+   "von": "2025-09",
+   "bis": "2025-09",
+   "spiele": 468,
+   "logLoss1x2": {
+    "lernstand": 1.0274,
+    "voriger": 1.0274,
+    "laufend": 1.0283,
+    "grundquote": 1.0678
+   }
+  },
+  {
+   "nr": 127,
+   "lernstand": "L126",
+   "pruefsumme": "d36295aa",
+   "von": "2025-10",
+   "bis": "2025-10",
+   "spiele": 480,
+   "logLoss1x2": {
+    "lernstand": 1.016,
+    "voriger": 1.0139,
+    "laufend": 1.0154,
+    "grundquote": 1.0527
+   }
+  },
+  {
+   "nr": 128,
+   "lernstand": "L127",
+   "pruefsumme": "c796be1c",
+   "von": "2025-11",
+   "bis": "2025-11",
+   "spiele": 445,
+   "logLoss1x2": {
+    "lernstand": 0.9888,
+    "voriger": 0.986,
+    "laufend": 0.9783,
+    "grundquote": 1.0448
+   }
+  },
+  {
+   "nr": 129,
+   "lernstand": "L128",
+   "pruefsumme": "75733436",
+   "von": "2025-12",
+   "bis": "2025-12",
+   "spiele": 437,
+   "logLoss1x2": {
+    "lernstand": 0.9604,
+    "voriger": 0.9822,
+    "laufend": 0.9513,
+    "grundquote": 1.0492
+   }
+  },
+  {
+   "nr": 130,
+   "lernstand": "L129",
+   "pruefsumme": "cb419adb",
+   "von": "2026-01",
+   "bis": "2026-01",
+   "spiele": 370,
+   "logLoss1x2": {
+    "lernstand": 0.9872,
+    "voriger": 0.9904,
+    "laufend": 0.9836,
+    "grundquote": 1.0713
+   }
+  },
+  {
+   "nr": 131,
+   "lernstand": "L130",
+   "pruefsumme": "698ff833",
+   "von": "2026-02",
+   "bis": "2026-02",
+   "spiele": 355,
+   "logLoss1x2": {
+    "lernstand": 0.9496,
+    "voriger": 0.954,
+    "laufend": 0.9569,
+    "grundquote": 1.0582
+   }
+  },
+  {
+   "nr": 132,
+   "lernstand": "L131",
+   "pruefsumme": "0016fa54",
+   "von": "2026-03",
+   "bis": "2026-04",
+   "spiele": 587,
+   "logLoss1x2": {
+    "lernstand": 0.9803,
+    "voriger": 0.9892,
+    "laufend": 0.977,
+    "grundquote": 1.0541
+   }
+  },
+  {
+   "nr": 133,
+   "lernstand": "L132",
+   "pruefsumme": "271d34e3",
+   "von": "2026-05",
+   "bis": "2026-08",
+   "spiele": 434,
+   "logLoss1x2": {
+    "lernstand": 1.0017,
+    "voriger": 1.0022,
+    "laufend": 1.003,
+    "grundquote": 1.0609
+   }
+  },
+  {
+   "nr": 134,
+   "lernstand": "L133",
+   "pruefsumme": "3756680c",
+   "von": "2026-09",
+   "bis": "2026-09",
+   "spiele": 302,
+   "logLoss1x2": {
+    "lernstand": 1.0214,
+    "voriger": 1.0227,
+    "laufend": 1.02,
+    "grundquote": 1.0865
+   }
+  },
+  {
+   "nr": 135,
+   "lernstand": "L134",
+   "pruefsumme": "d22d7f5f",
+   "von": "2026-10",
+   "bis": "2026-10",
+   "spiele": 447,
+   "logLoss1x2": {
+    "lernstand": 1.0124,
+    "voriger": 1.0231,
+    "laufend": 1.0099,
+    "grundquote": 1.0616
+   }
+  },
+  {
+   "nr": 136,
+   "lernstand": "L135",
+   "pruefsumme": "5f023709",
+   "von": "2026-11",
+   "bis": "2026-11",
+   "spiele": 177,
+   "logLoss1x2": {
+    "lernstand": 0.9674,
+    "voriger": 0.9757,
+    "laufend": 0.9644,
+    "grundquote": 1.0541
+   },
+   "laeuftNoch": true
+  }
+ ]
+}

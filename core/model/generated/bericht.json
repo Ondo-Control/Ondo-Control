@@ -461,6 +461,41 @@
    }
   }
  },
+ "regeln": {
+  "liste": [
+   {
+    "id": "echtesGeld",
+    "text": "Echtes Geld erlaubt",
+    "wert": false
+   },
+   {
+    "id": "maxEinsatz",
+    "text": "Höchster Einsatz je Wette in Euro",
+    "wert": 20
+   },
+   {
+    "id": "mindestSpieleUrteil",
+    "text": "Mindestzahl Spiele für ein Urteil",
+    "wert": 1000
+   },
+   {
+    "id": "sicherheit",
+    "text": "Sicherheit für ein Urteil in Prozent",
+    "wert": 95
+   },
+   {
+    "id": "mindestSpieleBelastbar",
+    "text": "Mindestzahl Spiele je Mannschaft für eine belastbare Einschätzung",
+    "wert": 20
+   },
+   {
+    "id": "mindestSpieleRunde",
+    "text": "Mindestzahl Spiele je Trainingsrunde",
+    "wert": 300
+   }
+  ],
+  "geaendert": []
+ },
  "beschluss": {
   "gegenGrundquote": {
    "m1x2": {
@@ -494,6 +529,7 @@
   },
   "echtesGeld": false,
   "einsatz": "nur_virtuell",
+  "hoechsterEinsatz": 20,
   "satz": "Das Modell weiss im Markt 1X2 nachweislich mehr als die blosse Grundquote der Liga. Ob es besser ist als die Wettquoten, ist nicht geprueft, weil keine Quoten im Bestand sind. Deshalb: kein echtes Geld, nur virtuelle Probeeinsaetze."
  }
 }

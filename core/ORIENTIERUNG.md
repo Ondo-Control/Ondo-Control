@@ -1,4 +1,4 @@
-# Ondo Core — Orientierung (15.11.2026)
+# Ondo Core — Orientierung (16.11.2026)
 
 Diese Datei ist eine Orientierung, keine Regel. Sie sagt, in welcher Reihenfolge am Core
 weitergearbeitet wird und was dafür schon klar ist. Gebaut wird erst nach Ondos Ja (Artikel 8).
@@ -22,14 +22,14 @@ Zahlen stehen nicht hier, sondern in `core/model/generated/bericht.json`. Status
 - `core/model/`: Rechenmodell mit Angriff und Abwehr je Mannschaft, Rücktest, Selbstprüfung.
   Es lernt Mannschaften. Es bleibt deshalb nur die Messlatte, die das neue Gehirn schlagen muss.
 - Die App speichert keine Quote je Spiel. Gegen den Markt ist der Core darum nicht prüfbar.
-- Der Core ist nicht an die App angebunden.
+- Der Core ist nicht an die App angebunden. Seine Regeln stehen in `core/REGELN.md`, sein Trainingsraum in `raum.json`.
 
 ## Klar und ohne neue Entscheidung umsetzbar
 | Nr. | Schritt | Berührt die App? | Kosten |
 |---|---|---|---|
 | K1 | Dokumente berichtigen (erledigt 15.11.2026) | nein | keine |
-| K2 | Regeln des Core als Textdatei, die Ondo ändert, vom Core gelesen und durchgesetzt | nein | keine |
-| K3 | Trainingsraum in Runden mit Lernstand-Versionen und Zähler aller geprüften Ideen | nein | keine |
+| K2 | Regeln des Core als Textdatei `core/REGELN.md`, vom Core gelesen und durchgesetzt (erledigt 16.11.2026) | nein | keine |
+| K3 | Trainingsraum in Runden mit Lernstand-Versionen und Zähler aller geprüften Ideen (erledigt 16.11.2026) | nein | keine |
 | K4 | Beförderung vorbereiten: Kriterien prüfen, Fallen auflösen, Probelauf ohne Veröffentlichung | nur Probe | keine |
 | K5 | Kleine Gerätetests (Kurzbefehl mit Rückgabe, Shell, Scriptable) | nein | keine |
 
@@ -42,7 +42,7 @@ Zahlen stehen nicht hier, sondern in `core/model/generated/bericht.json`. Status
 - Einsatzregeln, Recht, später Finanzen.
 
 ## Reihenfolge
-1. K2 und K3 im Core, weil sie die App nicht berühren und alles Spätere tragen.
+1. K2 und K3 im Core (erledigt 16.11.2026).
 2. K4 und K5 mit Ondo am iPhone.
 3. Quotenbasis und erster Test gegen den Markt.
 4. Entwurf für das Lernen von Lagen, danach Bau im Trainingsraum.

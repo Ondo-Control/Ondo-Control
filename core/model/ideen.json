@@ -1,0 +1,6 @@
+{
+ "hinweis": "Zaehler aller Ideen, die am Bestand geprueft wurden. Jede Variante des Modells, die auf Pruefdaten gemessen wird, steht hier - auch die verworfenen. Je mehr Ideen geprueft sind, desto eher ist ein guter Fund nur Zufall. Deshalb zaehlt der Core mit. Eine Variante, die hier fehlt, laesst den Test t14 durchfallen.",
+ "ideen": [
+  { "nr": 1, "datum": "2026-11-14", "name": "Acht Einstellungen des Rechenmodells", "namen": ["K1","K2","K3","K4","K5","K6","K7","K8"], "geprueftAuf": "Pruefsaisons, Holdout weggelassen", "ergebnis": "K6 gewaehlt" }
+ ]
+}

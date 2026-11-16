@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 15.11.2026, Fassung 160 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 16.11.2026, Fassung 161 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -622,9 +622,9 @@ Der Foto-Import übernimmt jede Anzahl erkannter Einträge ohne Vorschau und ohn
 
 ---
 
-**94. Ondo Core, Stufe 1: Datenfundament und eigenes Rechenmodell** · *Ondos Ja zum Plan 3.11.2026, Aufträge 14.11.2026 · von Claude geliefert 14.11.2026* · **Status: 🔴 DATEN UND MODELL GEBAUT 14.11.2026 — Quotenvergleich und Anbindung an die App offen, eigener Auftrag**
+**94. Ondo Core, Stufe 1: Daten, Rechenmodell, Regeln, Trainingsraum** · *Ondos Ja zum Plan 3.11.2026, Aufträge 14.11. und 16.11.2026 · von Claude geliefert* · **Status: 🔴 GEBAUT 14.11. (Daten, Modell) und 16.11.2026 (Regeln, Trainingsraum) — Quotenvergleich und Anbindung an die App offen, eigener Auftrag**
 
-Eigene Ordner `core/data/` und `core/model/`; `beta.html` und t1–t11 unverändert. **Daten:** geprüfter Spielbestand aus OpenFootball (CC0) und dem ESPN-Archiv, Alias-Tabelle, Saisonprüfung, eingefrorene Aufteilung Lernen / Prüfen / Holdout. **Modell:** Angriffs- und Abwehrstärke je Mannschaft, lernt nach jedem Spiel; Kandidaten und Prüfregeln vorab in `core/model/kandidaten.json`; Selbstprüfung mit Beschluss in `core/model/generated/bericht.json`. Täglicher Lauf durch `core-daten.yml`. Zahlen stehen nur in den erzeugten Dateien. Plan: `core/PLAN.md`, Reihenfolge: `core/ORIENTIERUNG.md`. Tests: `tests/t12_core_daten.js`, `tests/t13_core_modell.js`. **Offen:** Quoten fehlen, Vorteil gegen den Markt nicht prüfbar, deshalb kein echtes Geld. Befunde: `BACKLOG-ARCHIV.md`.
+Ordner `core/`; `beta.html` und t1–t11 unverändert. **Daten:** geprüfter Spielbestand (OpenFootball CC0, ESPN-Archiv), Saisonprüfung, eingefrorene Aufteilung Lernen / Prüfen / Holdout. **Modell:** Angriff und Abwehr je Mannschaft; Kandidaten und Prüfregeln vorab in `kandidaten.json`. **Regeln:** `core/REGELN.md`, Textdatei, die Ondo ändert; fehlerhafte Zeile bricht den Lauf ab; echtes Geld nur mit Ondos Regel UND belegtem Vorteil gegen die Quote. **Trainingsraum:** `core/model/raum.js`, Runden mit eingefrorenem Lernstand (L0, L1 …); `ideen.json` zählt alle geprüften Ideen. Täglicher Lauf, Zahlen nur in `generated/`. Reihenfolge: `core/ORIENTIERUNG.md`. Tests t12–t14. **Offen:** Quoten fehlen, Vorteil gegen den Markt nicht prüfbar, kein echtes Geld. Befunde: `BACKLOG-ARCHIV.md`.
 
 ---
 
