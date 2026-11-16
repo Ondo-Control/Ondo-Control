@@ -92,6 +92,7 @@ var MUTATIONEN=[
     pruefe('A8 Kammer-iframe wieder entfernt', (await page.evaluate(function(){ return document.querySelectorAll('iframe').length; }))===0);
     pruefe('A9 echter Zustand unveraendert', vorher===nachher);
     pruefe('A10 Stichprobe gekuerzt', erg.stichprobe && erg.stichprobe.eintraege<=60, JSON.stringify(erg.stichprobe));
+    pruefe('A15 Datumsfeld-Regel (am iPhone gemessen) steht im CSS', /input\[type="date"\]\{[^}]*-webkit-appearance:none;appearance:none;height:44px;[^}]*\}/.test(BETA));
     pruefe('A12 Layout-Labor misst mindestens zehn Bauweisen', (erg.labor || []).length>=10 && erg.labor.every(function(l){ return typeof l.breite==='number' && l.breite>0 && typeof l.huelle==='number'; }), JSON.stringify((erg.labor || []).slice(0,2)));
     pruefe('A13 Labor: Ist-Bauweise vorhanden', (erg.labor || []).some(function(l){ return l.variante==='ist'; }));
     pruefe('A14 Reiter Daten ohne seitlichen Ueberlauf bei 352 px', erg.layout.filter(function(l){ return l.ansicht==='wetten/kilog/daten'; })[0].seitenUeberlauf<=1);

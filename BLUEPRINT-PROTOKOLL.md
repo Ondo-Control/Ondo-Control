@@ -719,3 +719,8 @@
 > (`beta.html` v19.24.1): Die Sonde hat am iPhone den Datumsfeld-Überlauf aus Punkt 73 erstmals gemessen; neu ein
 > Layout-Labor in der Probekammer (14 Bauweisen, ein Lauf), und der 21-px-Überlauf im Reiter KI-Log → Daten ist behoben.
 > Keine neue Verfassungsregel. Blueprint auf 0.163 gehoben.
+
+> **Was Fassung 0.164 ändert (16.11.2026):** Reine Synchronisierung nach Arbeitsregel M für Backlog-Punkt 73/95
+> (`beta.html` v19.24.2): Das Layout-Labor der Sonde hat am iPhone 14 Bauweisen des Datumsfelds gemessen; nur
+> `appearance:none` mit fester Höhe hielt es in der Spalte. Diese Regel gilt jetzt für alle Datumsfelder. Der
+> Reiter-Überlauf aus v19.24.1 ist am iPhone gemessen behoben. Keine neue Verfassungsregel. Blueprint auf 0.164 gehoben.

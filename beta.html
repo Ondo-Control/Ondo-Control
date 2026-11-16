@@ -39,6 +39,12 @@
      eigenes internes Element, auf das text-align am input selbst nicht wirkt. Wirkungslos in
      Browsern ohne dieses Element, keine Aenderung an Wert oder Bedienung des Feldes. */
   input[type="date"]::-webkit-date-and-time-value{text-align:center;}
+  /* v19.24.2 (Backlog-Punkt 73, GEMESSEN statt geraten): Die Sonde hat am echten iPhone (Fensterbreite 352 px)
+     14 Bauweisen verglichen. Mit nativem Aussehen ist das Feld 167 px breit in einer 141-px-Spalte und das
+     linke ueberlappt das rechte. NUR die Bauweise appearance:none liess es in der Spalte (141 von 141 px, keine
+     Ueberlappung), braucht aber eine feste Hoehe (sonst 24 px statt 44 px). Der Datumswaehler oeffnet sich
+     weiterhin beim Tippen. Pruefung weiter ueber das Layout-Labor der Sonde (Teil kammer.labor). */
+  input[type="date"]{-webkit-appearance:none;appearance:none;height:44px;}
   .btn{background:var(--accent);color:#1C1B18;border:none;border-radius:9px;padding:12px 16px;
     font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;letter-spacing:1px;
     cursor:pointer;text-transform:uppercase;width:100%;}
@@ -153,7 +159,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.24.1';
+var CODE_VERSION = 'v19.24.2';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -3321,8 +3327,8 @@ function kilogFilterBlock(gesamt, gezeigt, modus){
        ebenfalls trug. Die Zentrierungsregel aus Kandidat 1
        (input[type="date"]::-webkit-date-and-time-value) bleibt bewusst stehen — sie war nie
        Teil des Ueberlauf-Problems und schadet nicht. Der urspruengliche Fehler (rechtes Feld
-       ragt bei leeren Feldern ueber den Kartenrand) besteht damit wieder wie vor dem 4.9.2026 —
-       bewusst in Kauf genommen, kein weiterer Rateversuch ohne neuen Auftrag. */
+       ragt bei leeren Feldern ueber den Kartenrand) bestand bis v19.24.1 — behoben in v19.24.2
+       durch die am Geraet gemessene Regel input[type="date"]{appearance:none;height:44px} (siehe CSS oben). */
     '<div style="display:flex;gap:10px">'+
       '<div style="flex:1;min-width:0"><label>'+t('logExpFrom')+'</label>'+
         '<input type="date" id="kilogVon" style="min-width:0;text-align:center" value="'+esc(kilogVon)+'" '+
