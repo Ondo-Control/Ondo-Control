@@ -199,17 +199,31 @@ function vorhersage(lernstand, x){
   return wahrsch(lernstand.gewichte, vektor(x, lernstand.namen, lernstand.standardisierung));
 }
 
-/* Hartes Gatter: Ein Lernstand mit Aufstellungs-Merkmalen darf nur rechnen, wenn fuer genau dieses Spiel eine
-   Aufstellung MIT Vorab-Zeitstempel vorliegt (erfasstUtc vor anstossUtc). Sonst kommt eine Absage, keine Zahl.
-   opt = { aufstellungVorab: { erfasstUtc, anstossUtc } } */
+/* Hartes Gatter: Ein Lernstand mit Aufstellungs-Merkmalen darf nur rechnen, wenn fuer genau DIESES Spiel eine
+   gueltige Aufstellung mit Vorab-Zeitstempel vorliegt:
+   - erfasstUtc und anstossUtc sind echte UTC-Zeitpunkte (ISO 8601 mit 'Z'), erfasst STRENG vor Anstoss
+   - spielId der Aufstellung = spielId der Vorhersage
+   - je Mannschaft genau 11 bestaetigte Starter
+   Sonst kommt eine Absage mit Grund, keine Zahl. opt = { spielId, aufstellungVorab:{ spielId, erfasstUtc, anstossUtc, starterHeim, starterGast } } */
+function utcMs(t){ if(typeof t!=='string' || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2}(\.\d+)?)?Z$/.test(t)) return NaN; return Date.parse(t); }
 function vorhersageGeprueft(lernstand, x, opt){
   var braucht=MERKMALE.aufst.some(function(n){ return lernstand.namen.indexOf(n)>=0; });
   if(braucht){
-    var a=opt&&opt.aufstellungVorab;
-    var ok=a && a.erfasstUtc && a.anstossUtc && String(a.erfasstUtc)<String(a.anstossUtc);
-    if(!ok) return { ok:false, grund:'Aufstellung ohne Vorab-Zeitstempel (erfasst vor Anstoss) - Lernstand mit Aufstellung darf nicht rechnen' };
+    var a=opt&&opt.aufstellungVorab, grund=null;
+    if(!a) grund='keine Aufstellung vorhanden';
+    else if(!(utcMs(a.erfasstUtc)<utcMs(a.anstossUtc))) grund='Zeitstempel ungueltig oder nicht vor dem Anstoss (UTC mit Z erforderlich)';
+    else if(!opt.spielId || a.spielId!==opt.spielId) grund='Aufstellung gehoert nicht zu diesem Spiel';
+    else if(a.starterHeim!==11 || a.starterGast!==11) grund='keine 11 bestaetigten Starter je Mannschaft';
+    if(grund) return { ok:false, grund:'Aufstellung nicht verwendbar: '+grund };
   }
   return { ok:true, p:vorhersage(lernstand, x) };
+}
+/* Alle Spiele werden vorhergesagt: Ist die Aufstellung nicht verwendbar, rechnet der Lernstand OHNE Aufstellung. */
+function vorhersageMitFallback(lernstandMit, lernstandOhne, x, opt){
+  var r=vorhersageGeprueft(lernstandMit, x, opt);
+  if(r.ok) return { ok:true, p:r.p, quelle:'mit Aufstellung' };
+  var o=vorhersageGeprueft(lernstandOhne, x, opt);
+  return { ok:o.ok, p:o.p, quelle:'ohne Aufstellung (Rueckfall)', grundRueckfall:r.grund };
 }
 
 /* Gepaarter Blockbootstrap: Unterschied je Spiel (va minus vb, positiv = vb besser), gezogen wird nach WOCHEN-Bloecken
@@ -248,6 +262,6 @@ function vergleich(zeilen, va, vb){
   return { n:N, spieltage:ls.length, differenz:m, standardfehler:se };
 }
 
-module.exports={ blockBootstrap:blockBootstrap, vorhersageGeprueft:vorhersageGeprueft, GRUPPEN_AUFST:GRUPPEN_AUFST, MERKMALE:MERKMALE, GRUPPEN:GRUPPEN, zeilenFuerLand:zeilenFuerLand, zeilenBauen:zeilenBauen,
+module.exports={ vorhersageMitFallback:vorhersageMitFallback, blockBootstrap:blockBootstrap, vorhersageGeprueft:vorhersageGeprueft, GRUPPEN_AUFST:GRUPPEN_AUFST, MERKMALE:MERKMALE, GRUPPEN:GRUPPEN, zeilenFuerLand:zeilenFuerLand, zeilenBauen:zeilenBauen,
   namenVon:namenVon, trainieren:trainieren, vorhersage:vorhersage, verlusteAuf:verlusteAuf, vergleich:vergleich,
   pruefsumme:pruefsumme, wahrsch:wahrsch };

@@ -65,13 +65,22 @@ if(fs.existsSync(af)){
   u.pruef('aufstellung.json: Spalten und Werte je Spiel (3 Zahlen)', A.spalten.length===3 && ids.length===A.zugeordnet && ids.every(function(i){ var w=A.werte[i]; return w.length===3 && w.every(function(x){ return typeof x==='number' && isFinite(x); }); }));
   u.pruef('aufstellung.json: keine Namen, keine Spieler-IDs, keine Rohdaten', !/player|spieler_id|market_value|"home"|"away"/i.test(JSON.stringify(Object.keys(A))+A.hinweis.replace(/Marktwert|Transfermarkt/g,'')));
 }
-u.block('C3. Gatter: Aufstellung nur mit Vorab-Zeitstempel');
+u.block('C3. Gatter: Aufstellung nur gueltig, vorab, zum Spiel, 11 Starter');
 basis.forEach(function(z,i){ z.x.dLnStart=Math.sin(i); z.x.dLnBest=Math.cos(i); z.x.dFehlt=(i%5)/10; });
 var mA=LA.trainieren(lern, pruef, ['aufst'], { maxRunden:3, geduld:2, lernrate:1, bremse:0.0001 }), xx=lern[0].x;
-u.pruef('ohne Zeitstempel: Absage statt Zahl', LA.vorhersageGeprueft(mA, xx, {}).ok===false);
-u.pruef('Zeitstempel NACH dem Anstoss: Absage', LA.vorhersageGeprueft(mA, xx, { aufstellungVorab:{ erfasstUtc:'2026-11-21T15:05:00Z', anstossUtc:'2026-11-21T15:00:00Z' } }).ok===false);
-u.pruef('Gegenprobe: Zeitstempel davor: Zahl, gueltige Wahrscheinlichkeiten', (function(){ var r=LA.vorhersageGeprueft(mA, xx, { aufstellungVorab:{ erfasstUtc:'2026-11-21T14:00:00Z', anstossUtc:'2026-11-21T15:00:00Z' } }); return r.ok && Math.abs(r.p[0]+r.p[1]+r.p[2]-1)<1e-9; })());
+function gut(){ return { spielId:'S1', aufstellungVorab:{ spielId:'S1', erfasstUtc:'2026-11-21T14:00:00Z', anstossUtc:'2026-11-21T15:00:00Z', starterHeim:11, starterGast:11 } }; }
+function mit(f){ var o=gut(); f(o); return LA.vorhersageGeprueft(mA, xx, o); }
+u.pruef('Gegenprobe: gueltige Aufstellung vorab → Zahl, Summe 1', (function(){ var r=LA.vorhersageGeprueft(mA, xx, gut()); return r.ok && Math.abs(r.p[0]+r.p[1]+r.p[2]-1)<1e-9; })());
+u.pruef('ohne Aufstellung: Absage', LA.vorhersageGeprueft(mA, xx, {}).ok===false);
+u.pruef('Zeitstempel NACH dem Anstoss: Absage', mit(function(o){ o.aufstellungVorab.erfasstUtc='2026-11-21T15:05:00Z'; }).ok===false);
+u.pruef('Zeitstempel ohne Z (Zeitzone unklar): Absage', mit(function(o){ o.aufstellungVorab.erfasstUtc='2026-11-21T14:00:00+01:00'; }).ok===false);
+u.pruef('Zeitstempel kein Datum: Absage', mit(function(o){ o.aufstellungVorab.erfasstUtc='morgen'; }).ok===false);
+u.pruef('Aufstellung eines anderen Spiels: Absage', mit(function(o){ o.aufstellungVorab.spielId='S2'; }).ok===false);
+u.pruef('weniger als 11 Starter: Absage', mit(function(o){ o.aufstellungVorab.starterHeim=10; }).ok===false);
 u.pruef('Lernstand ohne Aufstellung rechnet auch ohne Zeitstempel', LA.vorhersageGeprueft(m0, xx, {}).ok===true);
+var fb=LA.vorhersageMitFallback(mA, m0, xx, {});
+u.pruef('Rueckfall: ohne Aufstellung wird trotzdem vorhergesagt (alle Spiele)', fb.ok && fb.quelle.indexOf('ohne Aufstellung')===0 && Math.abs(fb.p[0]+fb.p[1]+fb.p[2]-1)<1e-9 && !!fb.grundRueckfall);
+u.pruef('mit gueltiger Aufstellung: Quelle "mit Aufstellung"', LA.vorhersageMitFallback(mA, m0, xx, gut()).quelle==='mit Aufstellung');
 u.block('D. Abgelegte Datei');
 var f=path.join(REPO,'core/model/generated/lagen.json');
 if(fs.existsSync(f)){
