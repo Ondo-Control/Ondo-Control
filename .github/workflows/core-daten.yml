@@ -69,6 +69,9 @@ jobs:
       - name: Test Lagen lernen und Stichtag-Sperre
         run: node tests/t17_lagen.js
 
+      - name: Produktionspfad Lagen (Gewichte taeglich neu, versiegelt.json unveraendert)
+        run: node core/model/lagen_produktion.js
+
       - name: Prognose je Spiel (naechste 7 Tage, Position ohne Quote = keine Wette)
         run: node core/model/prognose.js --of "$RUNNER_TEMP/football.json" --ab "$(date -u +%F)"
 
@@ -99,6 +102,7 @@ jobs:
           node tests/t18_prognose.js
           node tests/t19_quoten.js
           node tests/t20_archiv.js
+          node tests/t21_produktion.js
 
       - name: Aenderung committen, falls vorhanden
         run: |

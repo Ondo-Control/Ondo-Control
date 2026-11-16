@@ -1,0 +1,117 @@
+{
+ "schema": 1,
+ "hinweis": "Produktionspfad, aendert versiegelt.json nicht; Qualitaet nur am Vorab-Archiv gemessen.",
+ "mengen": [
+  {
+   "menge": "alle",
+   "gruppen": [],
+   "trainingsspiele": 68755,
+   "bis": "2026-11-15",
+   "pruefsumme": "6d5e6a08",
+   "runde": 0,
+   "merkmalsgewinn": false,
+   "hinweis": "Keine Gruppe gewaehlt: nur Kalibrierung, KEIN Merkmalsgewinn",
+   "gewichte": [
+    [
+     1,
+     0,
+     0
+    ],
+    [
+     0,
+     1,
+     0
+    ],
+    [
+     0,
+     0,
+     1
+    ]
+   ],
+   "standardisierung": {
+    "mittel": {
+     "lnH": 0,
+     "lnD": 0,
+     "lnA": 0
+    },
+    "streuung": {
+     "lnH": 1,
+     "lnD": 1,
+     "lnA": 1
+    }
+   }
+  },
+  {
+   "menge": "mitAufstellung",
+   "gruppen": [
+    "aufst"
+   ],
+   "trainingsspiele": 25564,
+   "bis": "2026-11-15",
+   "pruefsumme": "03063052",
+   "runde": 123,
+   "merkmalsgewinn": true,
+   "hinweis": "Gruppen aus dem Messpfad uebernommen, Gewichte neu trainiert",
+   "gewichte": [
+    [
+     0.69825,
+     0.07589,
+     0.11736,
+     0.14756,
+     0.12248,
+     -0.05453
+    ],
+    [
+     0.09424,
+     0.84878,
+     0.08332,
+     0.00418,
+     0.00546,
+     -0.01889
+    ],
+    [
+     0.2075,
+     0.07534,
+     0.79932,
+     -0.15174,
+     -0.12793,
+     0.07342
+    ]
+   ],
+   "standardisierung": {
+    "mittel": {
+     "lnH": 0,
+     "lnD": 0,
+     "lnA": 0,
+     "dLnStart": 0.01070053912081837,
+     "dLnBest": 0.00003661413694590264,
+     "dFehlt": -0.007395516542254177
+    },
+    "streuung": {
+     "lnH": 1,
+     "lnD": 1,
+     "lnA": 1,
+     "dLnStart": 1.18942962776098,
+     "dLnBest": 1.166972349699412,
+     "dFehlt": 0.15895371911202602
+    }
+   }
+  }
+ ],
+ "verlauf": [
+  {
+   "menge": "alle",
+   "bis": "2026-11-15",
+   "trainingsspiele": 68755,
+   "zuwachs": null,
+   "pruefsumme": "6d5e6a08"
+  },
+  {
+   "menge": "mitAufstellung",
+   "bis": "2026-11-15",
+   "trainingsspiele": 25564,
+   "zuwachs": null,
+   "pruefsumme": "03063052"
+  }
+ ]
+}
