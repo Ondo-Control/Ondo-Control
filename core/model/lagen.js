@@ -83,6 +83,7 @@ function zeilenFuerLand(spiele, par){
       dElo:((elo[H]+ELO_HEIM)-elo[G])/400,
       tempo10:(tn?tot/tn:LAENDER_MITTEL_TORE)-LAENDER_MITTEL_TORE
     };
+    if(r.kommend){ zeilen.push({ r:r, x:x, y:-1, kommend:true }); return; }     /* kommendes Spiel: Merkmale ja, nichts einbuchen */
     var y=r.th>r.tg?0:r.th===r.tg?1:2;
     zeilen.push({ r:r, x:x, y:y });
     /* 3. erst am Ende des Kalendertags Ergebnis einbuchen und lernen */
@@ -98,6 +99,20 @@ function zeilenFuerLand(spiele, par){
   });
   tagAbschliessen();
   return zeilen;
+}
+
+/* Merkmale fuer KOMMENDE Spiele (ohne Ergebnis): fixtures = [{ liga, saison, datum, heimKey, gastKey }].
+   Sie werden hinter den abgeschlossenen Spielen ihres Landes eingereiht, mit dem Stand aller bisher gespielten Spiele vorhergesagt
+   und NIE eingebucht. Ergebnis: Zeilen { r, x, kommend:true } nur fuer die Fixtures, in derselben Reihenfolge wie fixtures. */
+function zeilenKommend(bestand, par, fixtures, schema){
+  var jeLand={}; fixtures.forEach(function(f,i){ var land=String(f.liga).split('.')[0]; (jeLand[land]=jeLand[land]||[]).push({ liga:f.liga, saison:f.saison, datum:f.datum, heimKey:f.heimKey, gastKey:f.gastKey, kommend:true, id:'kommend-'+i, idx:i }); });
+  var aus=new Array(fixtures.length);
+  Object.keys(jeLand).forEach(function(land){
+    var neu=jeLand[land].slice().sort(function(a,b){ return a.datum<b.datum?-1:a.datum>b.datum?1:a.idx-b.idx; });
+    var spiele=(bestand.jeLand[land]||[]).concat(neu);
+    zeilenFuerLand(spiele, par).forEach(function(z){ if(z.kommend) aus[z.r.idx]=z; });
+  });
+  return aus;
 }
 
 /* Alle Zeilen aller Laender. bestand = Ergebnis von lauf.bestandLaden. */
@@ -270,6 +285,6 @@ function vergleich(zeilen, va, vb){
   return { n:N, spieltage:ls.length, differenz:m, standardfehler:se };
 }
 
-module.exports={ vorhersageMitFallback:vorhersageMitFallback, blockBootstrap:blockBootstrap, vorhersageGeprueft:vorhersageGeprueft, GRUPPEN_AUFST:GRUPPEN_AUFST, MERKMALE:MERKMALE, GRUPPEN:GRUPPEN, zeilenFuerLand:zeilenFuerLand, zeilenBauen:zeilenBauen,
+module.exports={ zeilenKommend:zeilenKommend, vorhersageMitFallback:vorhersageMitFallback, blockBootstrap:blockBootstrap, vorhersageGeprueft:vorhersageGeprueft, GRUPPEN_AUFST:GRUPPEN_AUFST, MERKMALE:MERKMALE, GRUPPEN:GRUPPEN, zeilenFuerLand:zeilenFuerLand, zeilenBauen:zeilenBauen,
   namenVon:namenVon, trainieren:trainieren, vorhersage:vorhersage, verlusteAuf:verlusteAuf, vergleich:vergleich,
   pruefsumme:pruefsumme, wahrsch:wahrsch };

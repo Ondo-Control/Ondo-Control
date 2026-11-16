@@ -106,6 +106,7 @@ jobs:
           node tests/t22_lerntest_versteckt.js
           node tests/t23_merkmalswahl_versteckt.js
           node tests/t24_nichtlinear.js
+          node tests/t25_kommende_spiele.js
 
       - name: Aenderung committen, falls vorhanden
         run: |

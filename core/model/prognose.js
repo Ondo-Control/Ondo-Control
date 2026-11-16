@@ -30,25 +30,35 @@ function prognose(opt){
   /* Produktionspfad: taeglich neu trainierte Gewichte der Menge 'alle' (Kalibrierung); ohne Datei bleibt L0 */
   var pa=opt.produktion && (opt.produktion.mengen||[]).filter(function(m){ return m.menge==='alle' && m.namen && m.gewichte; })[0];
   var nlProd=pa&&pa.nichtlinear?pa.nichtlinear:null;
-  if(pa){ lsOhne={ namen:pa.namen, standardisierung:pa.standardisierung, gewichte:pa.gewichte }; lagenStand='Produktion alle '+pa.pruefsumme+' ('+pa.trainingsspiele+' Spiele bis '+pa.bis+')'+(pa.merkmalsgewinn?'':', kein Merkmalsgewinn')+(nlProd?', nichtlineares Netz '+nlProd.pruefsumme+' vorhanden, aber NICHT eingesetzt (Merkmale fuer kommende Spiele fehlen)':''); }
+  if(pa){ lsOhne={ namen:pa.namen, standardisierung:pa.standardisierung, gewichte:pa.gewichte }; lagenStand='Produktion alle '+pa.pruefsumme+' ('+pa.trainingsspiele+' Spiele bis '+pa.bis+')'+(pa.merkmalsgewinn?'':', kein Merkmalsgewinn'); }
+  /* 1. Kandidaten sammeln (Spielplan ohne Ergebnis im Fenster) */
+  var kand=[];
   schema.LIGEN.forEach(function(l){
     var s=quellen.openfootballSaisons(opt.ofWurzel, l.id); if(!s.length) return;
-    quellen.openfootballLesen(opt.ofWurzel, l.id, s[s.length-1]).forEach(function(r){
+    var saison=s[s.length-1];
+    quellen.openfootballLesen(opt.ofWurzel, l.id, saison).forEach(function(r){
       if(r.hatErgebnis || r.datum<opt.ab || r.datum>bis) return;
       var hk=aufloesen(l.land, r.heim).schluessel, gk=aufloesen(l.land, r.gast).schluessel;
-      var v=P.vorhersage(opt.modell, l.id, hk, gk);
-      var eintrag={ liga:l.id, ligaName:l.name, datum:r.datum, heim:r.heim, gast:r.gast, schluessel:{ heim:hk, gast:gk } };
-      if(!v.ok){ eintrag.prognose=null; eintrag.grund=v.grund; eintrag.position={ empfehlung:'keine Wette', grund:'keine Prognose moeglich' }; ohne++; spiele.push(eintrag); return; }
-      var x={ lnH:Math.log(v.p.sieg_heim), lnD:Math.log(v.p.remis), lnA:Math.log(v.p.sieg_gast) };
-      var q=LA.vorhersageMitFallback(lsMit, lsOhne, x, {});      /* keine Aufstellung vorhanden -> Rueckfall */
-      /* Netz nur einsetzbar, wenn die Merkmale (Form, Staerke ...) fuer kommende Spiele gebaut sind: noch nicht gebaut, daher bleibt es beim linearen Stand */
-      var p=q.p, tipp=p[0]>=p[1]&&p[0]>=p[2]?'Heimsieg':(p[2]>=p[1]?'Auswaertssieg':'Remis');
-      eintrag.prognose={ heimsieg:r3(p[0]), remis:r3(p[1]), auswaertssieg:r3(p[2]) };
-      eintrag.tipp=tipp; eintrag.erwarteteTore={ heim:r3(v.lh), gast:r3(v.la) }; eintrag.haeufigsteTorfolge=haeufigstes(v.lh, v.la);
-      eintrag.modell={ lagenStand:lagenStand, quelle:q.quelle, belastbar:v.belastbar, hinweis:v.belastbar?'':v.grund };
-      eintrag.position={ empfehlung:'keine Wette', grund:'keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt' };
-      spiele.push(eintrag);
+      kand.push({ l:l, r:r, saison:saison, hk:hk, gk:gk, v:P.vorhersage(opt.modell, l.id, hk, gk) });
     });
+  });
+  /* 2. Merkmale fuer kommende Spiele (Stand aller bisher gespielten Spiele, nichts eingebucht) */
+  var zk=opt.bestand?LA.zeilenKommend(opt.bestand, opt.modell.parameter, kand.map(function(c){ return { liga:c.l.id, saison:c.saison, datum:c.r.datum, heimKey:c.hk, gastKey:c.gk }; })):null;
+  var nlEingesetzt=!!(nlProd && zk);
+  if(pa && nlProd) lagenStand=lagenStand.replace(/, nichtlineares Netz .*$/,'')+', nichtlineares Netz '+nlProd.pruefsumme+(nlEingesetzt?' eingesetzt':' vorhanden, aber NICHT eingesetzt (kein Bestand uebergeben)');
+  kand.forEach(function(c,i){
+    var l=c.l, r=c.r, hk=c.hk, gk=c.gk, v=c.v;
+    var eintrag={ liga:l.id, ligaName:l.name, datum:r.datum, heim:r.heim, gast:r.gast, schluessel:{ heim:hk, gast:gk } };
+    if(!v.ok){ eintrag.prognose=null; eintrag.grund=v.grund; eintrag.position={ empfehlung:'keine Wette', grund:'keine Prognose moeglich' }; ohne++; spiele.push(eintrag); return; }
+    var x=zk&&zk[i]?zk[i].x:{ lnH:Math.log(v.p.sieg_heim), lnD:Math.log(v.p.remis), lnA:Math.log(v.p.sieg_gast) };
+    var q=LA.vorhersageMitFallback(lsMit, lsOhne, x, {});      /* keine Aufstellung vorhanden -> Rueckfall */
+    if(nlEingesetzt && /Rueckfall/.test(q.quelle)) q={ p:NLM.vorhersageNetz(nlProd, x), quelle:q.quelle+' (nichtlineares Netz)' };
+    var p=q.p, tipp=p[0]>=p[1]&&p[0]>=p[2]?'Heimsieg':(p[2]>=p[1]?'Auswaertssieg':'Remis');
+    eintrag.prognose={ heimsieg:r3(p[0]), remis:r3(p[1]), auswaertssieg:r3(p[2]) };
+    eintrag.tipp=tipp; eintrag.erwarteteTore={ heim:r3(v.lh), gast:r3(v.la) }; eintrag.haeufigsteTorfolge=haeufigstes(v.lh, v.la);
+    eintrag.modell={ lagenStand:lagenStand, merkmale:zk?'fuer kommende Spiele berechnet':'nur K6', quelle:q.quelle, belastbar:v.belastbar, hinweis:v.belastbar?'':v.grund };
+    eintrag.position={ empfehlung:'keine Wette', grund:'keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt' };
+    spiele.push(eintrag);
   });
   spiele.sort(function(a,b){ return a.datum<b.datum?-1:a.datum>b.datum?1:(a.liga+a.heim<b.liga+b.heim?-1:1); });
   return { schema:1, ab:opt.ab, bis:bis, anzahl:spiele.length, ohnePrognose:ohne,
@@ -62,7 +72,8 @@ if(require.main===module){
   var of=wert('--of'), ab=wert('--ab'), tage=Number(wert('--tage')||7);
   if(!of || !/^\d{4}-\d{2}-\d{2}$/.test(ab||'')){ console.error('Aufruf: node core/model/prognose.js --of <Ordner> --ab JJJJ-MM-TT [--tage 7]'); process.exit(2); }
   var hier=__dirname, lies=function(p){ return JSON.parse(fs.readFileSync(p,'utf8')); };
-  var e=prognose({ ofWurzel:of, ab:ab, tage:tage, aliases:lies(path.join(hier,'..','data','aliases.json')), modell:lies(path.join(hier,'generated','modell.json')), lagen:lies(path.join(hier,'generated','lagen.json')), produktion:fs.existsSync(path.join(hier,'generated','lagen_produktion.json'))?lies(path.join(hier,'generated','lagen_produktion.json')):null });
+  var e=prognose({ ofWurzel:of, ab:ab, tage:tage, aliases:lies(path.join(hier,'..','data','aliases.json')), modell:lies(path.join(hier,'generated','modell.json')), lagen:lies(path.join(hier,'generated','lagen.json')), produktion:fs.existsSync(path.join(hier,'generated','lagen_produktion.json'))?lies(path.join(hier,'generated','lagen_produktion.json')):null,
+    bestand:require('./lauf.js').bestandLaden(path.join(hier,'..','data','generated'), lies(path.join(hier,'..','data','aliases.json'))) });
   fs.writeFileSync(path.join(hier,'generated','prognose.json'), JSON.stringify(e,null,1)+'\n');
   console.log('Prognose '+e.ab+' bis '+e.bis+': '+e.anzahl+' Spiele, ohne Prognose '+e.ohnePrognose);
 }
