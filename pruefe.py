@@ -451,6 +451,10 @@ else:
         _liste2 = {x.strip().strip("'\"") for x in _m.group(1).split(',')}
         pruef(not (_geheim & _liste2), f"kein geheimes Feld in der Positivliste")
     pruef("messGeheimFund" in _BH, "zweite Pruefstufe im Code vorhanden")
+    # Punkt 95 (Sonde): Die Relay-Adresse ist ein Schluessel. Sie darf NIE ein Feld des Zustands sein
+    # (sonst steht sie in der Datensicherung), sondern liegt in einem eigenen Speicherschluessel.
+    pruef("var SONDE_RELAY_KEY='ondo-control-sonde-relay'" in _BH and not re.search(r'state\.(sonde|relay)', _BH),
+          "Punkt 95 — Relay-Adresse liegt in eigenem Speicherschluessel, nicht im Zustand")
     _cv = re.search(r"var CODE_VERSION = '(v[\d.]+)';", _BH)
     _bv = re.search(r'\*\*Beta: (v[\d.]+)\*\*', S)
     if _cv and _bv:

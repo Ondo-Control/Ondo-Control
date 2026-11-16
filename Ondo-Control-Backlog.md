@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 16.11.2026, Fassung 161 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 16.11.2026, Fassung 162 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 ## Regeln für dieses Dokument
@@ -622,9 +622,13 @@ Der Foto-Import übernimmt jede Anzahl erkannter Einträge ohne Vorschau und ohn
 
 ---
 
-**94. Ondo Core, Stufe 1: Daten, Rechenmodell, Regeln, Trainingsraum** · *Ondos Ja zum Plan 3.11.2026, Aufträge 14.11. und 16.11.2026 · von Claude geliefert* · **Status: 🔴 GEBAUT 14.11. (Daten, Modell) und 16.11.2026 (Regeln, Trainingsraum) — Quotenvergleich und Anbindung an die App offen, eigener Auftrag**
+**94. Ondo Core, Stufe 1: Daten, Rechenmodell, Regeln, Trainingsraum** · *Ondos Ja zum Plan 3.11.2026, Aufträge 14.11. und 16.11.2026 · von Claude geliefert* · **Status: 🔴 GEBAUT 14.11. und 16.11.2026 — Quotenvergleich und Anbindung an die App offen, eigener Auftrag**
 
-Ordner `core/`; `beta.html` und t1–t11 unverändert. **Daten:** geprüfter Spielbestand (OpenFootball CC0, ESPN-Archiv), Saisonprüfung, eingefrorene Aufteilung Lernen / Prüfen / Holdout. **Modell:** Angriff und Abwehr je Mannschaft; Kandidaten und Prüfregeln vorab in `kandidaten.json`. **Regeln:** `core/REGELN.md`, Textdatei, die Ondo ändert; fehlerhafte Zeile bricht den Lauf ab; echtes Geld nur mit Ondos Regel UND belegtem Vorteil gegen die Quote. **Trainingsraum:** `core/model/raum.js`, Runden mit eingefrorenem Lernstand (L0, L1 …); `ideen.json` zählt alle geprüften Ideen. Täglicher Lauf, Zahlen nur in `generated/`. Reihenfolge: `core/ORIENTIERUNG.md`. Tests t12–t14. **Offen:** Quoten fehlen, Vorteil gegen den Markt nicht prüfbar, kein echtes Geld. Befunde: `BACKLOG-ARCHIV.md`.
+`beta.html` unverändert. Daten, Modell, `core/REGELN.md` (Ondos Regeln als Text), Trainingsraum (`raum.js`, Lernstände L0, L1 …). Täglicher Lauf, Zahlen nur in `core/model/generated/`. Reihenfolge: `core/ORIENTIERUNG.md`. t12–t14. **Offen:** Quoten fehlen, kein echtes Geld. Baugeschichte: `BACKLOG-ARCHIV.md`.
+
+**95. Sonde: Selbsttest der App mit Bericht ans ONDO-Relay** · *Ondos Idee und Ja 16.11.2026 · von Claude geliefert* · **Status: 🔴 GEBAUT 16.11.2026 (`beta.html` v19.23.0) — Bewährung am iPhone steht aus**
+
+Knopf unter „Mehr": prüft Speicher, Daten, Quellen und Funktionen, schickt einen Technikbericht (keine Wetten, Schlüssel, Spielnamen) ans ONDO-Relay; Claude liest ihn mit `ondo_diag`. Ein passiver Zähler erfasst technische Fehler je Host (Grundlage für Kriterium (b)). Die Relay-Adresse liegt in eigenem Speicherschlüssel, nicht im Zustand und nicht in der Sicherung. **Offen:** Ob der Versand am iPhone ankommt (ungetestet, das Relay sendet kein CORS); KI-Aufrufe nur mit Ondos Freigabe. Test t15.
 
 ---
 
@@ -665,8 +669,6 @@ einzelne Prozentzahl ohne Streuungsangabe ist die Scheinpräzision, die Artikel 
 angewandt auf die eigenen Kennzahlen.**
 
 ---
-
-**5. Beförderungskriterium (c) neu fassen** · *Idee 23.7., ChatGPT* · **Status: ✅ ENTSCHIEDEN 13.9.2026 — Ondo: „Wir haben genug Spiele!!!!", kein Blocker mehr**
 
 **9. Echte Quoten automatisch (Knopfdruck gebaut, Zeitsteuerung teilweise gebaut) — Ausbau: eigene Ergebnis-Datenquelle für den Schiedsrichter** · *Idee 23.7., Claude · Verfassungsfrage teilweise geklärt 7.9.2026 · Knopfdruck-Teil Auftrag Ondo und gebaut 10.9.2026 · Zeitsteuerung/Ergebnis-Automatik Auftrag Ondo 11.9.2026 · Knopfdruck-Kopplung Auftrag Ondo und gebaut 11.9.2026 · Zwei-Läufe-Ausbau Auftrag Ondo und gebaut 14.9.2026 · API-Football aus der Automatik entfernt, Auftrag Ondo und gebaut 14.9.2026* · **Status: 🔴 Knopfdruck-Teil (Quoten) GEBAUT 10.9.2026 — Zeitgesteuerte Ergebnis-Automatik GEBAUT 11.9.2026, wegen API-Football-Sperre nur mit football-data.org scharf — Knopfdruck-Ergebnisabgleich (API-Football + football-data.org, gekoppelt an den Prüflauf) GEBAUT und geprüft 11.9.2026 — Zeitgesteuerte Automatik auf zwei tägliche Läufe erweitert (08:00 + 23:30 UTC) GEBAUT 14.9.2026 — API-Football aus der zeitgesteuerten Automatik entfernt (Kontosperre wegen geteilter Cloud-Infrastruktur), läuft dort seither nur noch football-data.org, GEBAUT 14.9.2026**
 Offene Vorfrage (Gemini, weiterhin unbeantwortet): Deckt ein kostenloser Dienst überhaupt Ondos Spiele ab? **🔴 Verfassungsfrage teilweise geklärt (Ondo, 7.9.2026, Blueprint 0.83, Abschnitt 10):** Eine durch Knopfdruck in der App ausgelöste Aktualisierung verletzt „kein Server" nicht — ein Knopfdruck ist die von der Regel verlangte Aufforderung. Eine zeitgesteuerte, unbeaufsichtigte Ausführung bleibt weiterhin offen und ist eine andere Variante. **Ungeprüft, technische Einordnung:** Ob dafür überhaupt GitHub Actions nötig wäre (ein reiner Abruf im Browser bei Knopfdruck bräuchte gar keine Actions-Infrastruktur, wie die bestehenden Knöpfe es schon vormachen) oder ob ein dauerhaft im Repo gespeichertes Ergebnis einen manuell auslösbaren `workflow_dispatch` mit einem neuen, eigens abzusicherndem GitHub-Zugriffsschlüssel bräuchte, ist nicht untersucht.

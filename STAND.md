@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 16.11.2026, Fassung 161, v19.22.2*
+*Die aktuelle Wahrheit. Stand: 16.11.2026, Fassung 162, v19.23.0*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -214,7 +214,10 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   `core/model/generated/` (`bericht.json`, `raum.json`); Reihenfolge in `core/ORIENTIERUNG.md`.
   Nicht an die App angebunden; gegen Wettquoten nicht geprüft.
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.22.2** (`beta.html`, geliefert 12.10.2026) — **Backlog-Punkt 91, Lifecycle-Korrektur:**
+- **Beta: v19.23.0** (`beta.html`, geliefert 16.11.2026) — **Backlog-Punkt 95, Sonde:** Karte unter „Mehr“,
+  Knopf prüft Speicher, Daten, Quellen und Funktionen und sendet einen Technikbericht an das ONDO-Relay
+  (Adresse nur lokal, eigener Speicherschlüssel); passiver Fehlerzähler je Host; Test `tests/t15_sonde.js`.
+  Versand ans echte Relay am iPhone noch nicht erprobt. **Davor v19.22.2** (12.10.2026) — **Punkt 91, Lifecycle-Korrektur:**
   v19.22.1 bleibt fachlich erhalten; v19.22.2 schließt die Retry-Race, wenn `tx-abort` erst nach
   `visibilitychange→visible` gemeldet wird. Rückkehr und verspäteter Fehler benutzen denselben
   Einmal-Retry; `pageshow` greift nur bei echter BFCache-Wiederherstellung (`persisted=true`).
@@ -295,7 +298,7 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   **Kosten (Arbeitsregel G):** kein neuer Dienst und kein zusätzlicher regulärer Netzaufruf;
   die Reparatur spart im belegten Nations-League-Fall Modellaufrufe und verhindert bei
   unbekannten Gemini-Fehlern weitere automatische Versuche.
-- **Sprachschlüssel: 392** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 6.10.2026** — v19.22.0 ergänzt sechs Texte je Sprache: Wett-Ausgang/Knopf „Einsatz zurück“ und vier neue Parkgründe). **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
+- **Sprachschlüssel: 404** in DE, FR und EN, maschinell abgeglichen und identisch (**selbst gezählt von `pruefe.py` Abschnitt 13, Stand 16.11.2026** — v19.23.0 ergänzt zwölf Sonden-Texte je Sprache). **Diese Zahl ist bei jeder Änderung an den Sprachschlüsseln in derselben Lieferung mitzuführen.**
 
 ---
 
