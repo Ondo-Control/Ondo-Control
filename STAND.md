@@ -218,7 +218,7 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   einen Technikbericht ans ONDO-Relay (Adresse nur lokal; Berichte vom iPhone kamen an). **Probekammer** (iframe ohne Zugriff auf
   den echten Speicher) führt Bildschirme, Sicherung, Export, ESPN und simulierte Netzfehler aus und misst das Layout; Taste
   **KI-Probe** (wenige Cent). Lauf am iPhone: 21 ok. Punkt 73 dort gemessen; Layout-Labor (14 Bauweisen) am iPhone gelaufen; v19.24.2 setzt die gemessene Datumsfeld-Regel
-  (`appearance:none`, Höhe 44 px), am iPhone per Foto bestätigt (zentriert, Datumswähler öffnet sich, Punkt 73 behoben); 21-px-Überlauf im Reiter „Daten“ behoben. Tests `t15_sonde.js`, `t16_sonde_kammer.js` (Chromium, kein WebKit).
+  (`appearance:none`, Höhe 44 px), am iPhone per Foto bestätigt (Punkt 73 behoben); Reiter-Überlauf behoben. Tests `t15_sonde.js`, `t16_sonde_kammer.js` (Chromium, kein WebKit).
   **Davor v19.23.0 (Sonde) und v19.22.2** (12.10.2026) — **Punkt 91, Lifecycle-Korrektur:**
   v19.22.1 bleibt fachlich erhalten; v19.22.2 schließt die Retry-Race, wenn `tx-abort` erst nach
   `visibilitychange→visible` gemeldet wird. Rückkehr und verspäteter Fehler benutzen denselben
