@@ -199,6 +199,19 @@ function vorhersage(lernstand, x){
   return wahrsch(lernstand.gewichte, vektor(x, lernstand.namen, lernstand.standardisierung));
 }
 
+/* Hartes Gatter: Ein Lernstand mit Aufstellungs-Merkmalen darf nur rechnen, wenn fuer genau dieses Spiel eine
+   Aufstellung MIT Vorab-Zeitstempel vorliegt (erfasstUtc vor anstossUtc). Sonst kommt eine Absage, keine Zahl.
+   opt = { aufstellungVorab: { erfasstUtc, anstossUtc } } */
+function vorhersageGeprueft(lernstand, x, opt){
+  var braucht=MERKMALE.aufst.some(function(n){ return lernstand.namen.indexOf(n)>=0; });
+  if(braucht){
+    var a=opt&&opt.aufstellungVorab;
+    var ok=a && a.erfasstUtc && a.anstossUtc && String(a.erfasstUtc)<String(a.anstossUtc);
+    if(!ok) return { ok:false, grund:'Aufstellung ohne Vorab-Zeitstempel (erfasst vor Anstoss) - Lernstand mit Aufstellung darf nicht rechnen' };
+  }
+  return { ok:true, p:vorhersage(lernstand, x) };
+}
+
 /* Hilfen fuer Wahl: Verluste je Spiel eines Lernstands auf einer Zeilenliste */
 function verlusteAuf(lernstand, zeilen){
   var d=zeilen.map(function(z){ return { v:vektor(z.x, lernstand.namen, lernstand.standardisierung), y:z.y }; });
@@ -219,6 +232,6 @@ function vergleich(zeilen, va, vb){
   return { n:N, spieltage:ls.length, differenz:m, standardfehler:se };
 }
 
-module.exports={ GRUPPEN_AUFST:GRUPPEN_AUFST, MERKMALE:MERKMALE, GRUPPEN:GRUPPEN, zeilenFuerLand:zeilenFuerLand, zeilenBauen:zeilenBauen,
+module.exports={ vorhersageGeprueft:vorhersageGeprueft, GRUPPEN_AUFST:GRUPPEN_AUFST, MERKMALE:MERKMALE, GRUPPEN:GRUPPEN, zeilenFuerLand:zeilenFuerLand, zeilenBauen:zeilenBauen,
   namenVon:namenVon, trainieren:trainieren, vorhersage:vorhersage, verlusteAuf:verlusteAuf, vergleich:vergleich,
   pruefsumme:pruefsumme, wahrsch:wahrsch };

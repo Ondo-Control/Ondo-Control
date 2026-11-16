@@ -1,6 +1,110 @@
 {
  "hinweis": "Zaehler aller Ideen, die am Bestand geprueft wurden. Jede Variante des Modells, die auf Pruefdaten gemessen wird, steht hier - auch die verworfenen. Je mehr Ideen geprueft sind, desto eher ist ein guter Fund nur Zufall. Deshalb zaehlt der Core mit. Eine Variante, die hier fehlt, laesst den Test t14 durchfallen.",
  "ideen": [
-  { "nr": 1, "datum": "2026-11-14", "name": "Acht Einstellungen des Rechenmodells", "namen": ["K1","K2","K3","K4","K5","K6","K7","K8"], "geprueftAuf": "Pruefsaisons, Holdout weggelassen", "ergebnis": "K6 gewaehlt" }
+  {
+   "nr": 1,
+   "datum": "2026-11-14",
+   "name": "Acht Einstellungen des Rechenmodells",
+   "namen": [
+    "K1",
+    "K2",
+    "K3",
+    "K4",
+    "K5",
+    "K6",
+    "K7",
+    "K8"
+   ],
+   "geprueftAuf": "Pruefsaisons, Holdout weggelassen",
+   "ergebnis": "K6 gewaehlt"
+  },
+  {
+   "nr": 2,
+   "datum": "2026-11-16",
+   "name": "Lagen lernen: Optimierer-Einstellungen (Vorprobe)",
+   "namen": [
+    "L-opt-lr1-b1e-3",
+    "L-opt-lr1-b1e-4",
+    "L-opt-lr1-b1e-5"
+   ],
+   "versuche": 3,
+   "geprueftAuf": "Pruefsaisons (alle Spiele)",
+   "ergebnis": "alle Gruppen zusammen nur ca. 0,002 besser als K6",
+   "art": "Vorprobe"
+  },
+  {
+   "nr": 3,
+   "datum": "2026-11-16",
+   "name": "Lagen lernen: sechs Gruppen einzeln (Vorprobe, einfaches Verfahren)",
+   "namen": [
+    "L-v-form",
+    "L-v-ort",
+    "L-v-ruhe",
+    "L-v-saison",
+    "L-v-staerke",
+    "L-v-tempo"
+   ],
+   "versuche": 6,
+   "geprueftAuf": "Pruefsaisons (alle Spiele)",
+   "ergebnis": "staerke z -2,1; form -1,2; tempo -1,2; ort/ruhe/saison ca. 0",
+   "art": "Vorprobe"
+  },
+  {
+   "nr": 4,
+   "datum": "2026-11-16",
+   "name": "Lagen lernen: formaler Lauf, Menge alle, Schritt 1",
+   "namen": [
+    "L-f-alle-form",
+    "L-f-alle-ort",
+    "L-f-alle-ruhe",
+    "L-f-alle-saison",
+    "L-f-alle-staerke",
+    "L-f-alle-tempo"
+   ],
+   "versuche": 6,
+   "geprueftAuf": "Pruefsaisons (alle Spiele)",
+   "ergebnis": "keine Gruppe besteht (beste staerke z 2,02)",
+   "art": "formal"
+  },
+  {
+   "nr": 5,
+   "datum": "2026-11-16",
+   "name": "Lagen lernen: Aufstellungs-Kombinationen (Vorprobe)",
+   "namen": [
+    "L-a-aufst",
+    "L-a-staerke",
+    "L-a-staerke+aufst",
+    "L-a-alle6",
+    "L-a-alle6+aufst"
+   ],
+   "versuche": 5,
+   "geprueftAuf": "Pruefsaisons (Spiele mit Aufstellungsdaten)",
+   "ergebnis": "aufst z 4,24; alle6+aufst z 4,57",
+   "art": "Vorprobe"
+  },
+  {
+   "nr": 6,
+   "datum": "2026-11-16",
+   "name": "Lagen lernen: formaler Lauf, Menge mitAufstellung",
+   "namen": [
+    "L-f-auf1-form",
+    "L-f-auf1-ort",
+    "L-f-auf1-ruhe",
+    "L-f-auf1-saison",
+    "L-f-auf1-staerke",
+    "L-f-auf1-tempo",
+    "L-f-auf1-aufst",
+    "L-f-auf2-form",
+    "L-f-auf2-ort",
+    "L-f-auf2-ruhe",
+    "L-f-auf2-saison",
+    "L-f-auf2-staerke",
+    "L-f-auf2-tempo"
+   ],
+   "versuche": 13,
+   "geprueftAuf": "Pruefsaisons (Spiele mit Aufstellungsdaten)",
+   "ergebnis": "aufst gewaehlt (z 4,23); Schritt 2 keine",
+   "art": "formal"
+  }
  ]
 }

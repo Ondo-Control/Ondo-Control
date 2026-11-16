@@ -8,5 +8,14 @@
    "was": "Altes Modell K6 gegen Pinnacle-Schlussquote (TipsAudit), 872 zugeordnete Spiele ab 2026-08. Nur Beobachtung, keine Wahl danach darauf gestuetzt. Ergebnis: Log-Loss 0,9982 gegen 0,9715.",
    "gehoert_zu": "K6"
   }
- ]
+ ],
+ "vorabfestlegung": {
+  "festgelegt": "2026-11-16",
+  "hypothese": "Die Gruppe aufst (Log-Marktwert Startelf, Log-Marktwert beste Elf, Anteil nicht aufgestellter Marktwert) senkt den Log-Loss gegenueber K6 in Spielen mit Aufstellungsdaten.",
+  "pipeline": "core/model/lagen.js + lagen_lauf.js im Commit dieser Festlegung; Lernen nur Rolle lernen, Waehlen nur Rolle pruefen, beide vor Stichtag; Gewichte danach unveraendert.",
+  "huerde": "einseitig, Alpha 5 % geteilt durch Zahl aller Ideen in ideen.json (Bonferroni, mind. so streng wie Holm)",
+  "blick": "Einmal: Holdout-Saison je Liga (splits.json), nur Spiele mit Aufstellungsdaten, K6 gegen gewaehlten Lernstand, identische Spiele, Standardfehler nach Spieltag.",
+  "bewertung": "Nur sekundaerer, rueckblickender Bestaetigungstest (Experiment a: Aufstellung als bekannt vorausgesetzt). Kein Anspruch gegen den Markt, kein Anspruch auf vorab handelbar, kein jungfraeulicher Holdout (K6 sah ihn am 14.11.).",
+  "gatter": "Ein Lernstand mit aufst darf nur mit Vorab-Zeitstempel rechnen (vorhersageGeprueft). Echter Abschlusstest wartet auf rechtlich saubere Quelle mit Zeitstempeln."
+ }
 }

@@ -17,7 +17,16 @@
 var fs=require('fs'), path=require('path');
 var L=require('./lauf.js'), LA=require('./lagen.js');
 
-var HUERDE = 2.64;            /* Standardfehler; entspricht 95 % bei 6 gleichzeitigen Versuchen (Bonferroni) */
+/* Huerde: einseitiger Test, Alpha 5 % geteilt durch die Zahl ALLER geprueften Ideen in ideen.json
+   (Bonferroni, strenger als Holm; jede Vorprobe zaehlt). Je mehr Ideen, desto hoeher die Huerde. */
+function phi(x){ var t=1/(1+0.2316419*Math.abs(x)), d=0.3989423*Math.exp(-x*x/2),
+  p=d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274)))); return x>0?1-p:p; }
+function zFuer(alpha){ var lo=0, hi=10; for(var i=0;i<60;i++){ var m=(lo+hi)/2; if(1-phi(m)>alpha) lo=m; else hi=m; } return (lo+hi)/2; }
+function anzahlIdeen(ordner){
+  var d=JSON.parse(fs.readFileSync(path.join(ordner,'ideen.json'),'utf8'));
+  return d.ideen.reduce(function(s,i){ return s+(i.namen||[]).length; },0);
+}
+var HUERDE = Math.round(zFuer(0.05/anzahlIdeen(__dirname))*100)/100;
 var TRAINING = { maxRunden:400, geduld:15, lernrate:1, bremse:0.0001 };
 
 function sperre(zeilenListen, stichtag){
@@ -81,7 +90,7 @@ function avg(a){ var s=0; a.forEach(function(x){ s+=x; }); return s/a.length; }
 function round(x,n){ var f=Math.pow(10,n===undefined?4:n); return Math.round(x*f)/f; }
 function rundeObj(st){ var o={ mittel:{}, streuung:{} }; Object.keys(st.mittel).forEach(function(k){ o.mittel[k]=round(st.mittel[k],6); o.streuung[k]=round(st.streuung[k],6); }); return o; }
 
-module.exports={ lauf:lauf, waehle:waehle, sperre:sperre, HUERDE:HUERDE, TRAINING:TRAINING };
+module.exports={ zFuer:zFuer, anzahlIdeen:anzahlIdeen, lauf:lauf, waehle:waehle, sperre:sperre, HUERDE:HUERDE, TRAINING:TRAINING };
 
 if(require.main===module){
   var hier=__dirname, nurPruefen=process.argv.indexOf('--nur-pruefen')>=0;
