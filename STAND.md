@@ -213,7 +213,7 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   **Neu 16.11.2026: „Lagen lernen“** (`lagen_lauf.js`, Stichtag 1.8.2026 in `versiegelt.json`, Test t17): Der Core wählt Gruppen selbst;
   Hürde z = 3,28 (5 % geteilt durch alle 98 geprüften Ideen in `ideen.json`). Nur **Aufstellung/Marktwert** besteht (`aufstellung.json`, 7 Ligen, Daten bis 6.7.2026). **Pipeline v2** (Funde: Kalendertag-Leck, doppelte Auswahl). Bericht (`lagen_bericht.json`):
   **(A)** Prüfsaisons 0,9918 → 0,9811; **(B)** Holdout, zwei Blicke auf dieselbe Saison, Experiment a: 0,9933 → 0,9866, Blockbootstrap-p 0,005 (nur Hinweis);
-  **(C)** vorab handelbar: offen. Gatter: Vorab-Zeitstempel, Rückfall ohne Aufstellung. Keine verifizierte legale kostenlose Quelle; kein Marktvergleich.
+  **(C)** vorab handelbar: offen. Gatter: Vorab-Zeitstempel; Rückfall-Funktion (ungenutzt). Keine geprüfte freie Quelle; kein Marktvergleich.
   Täglicher Lauf durch `core-daten.yml`, Tests `tests/t12` bis `t14`, `t17`. Zahlen und Beschluss nur in
   `core/model/generated/` (`bericht.json`, `raum.json`, `lagen.json`); Reihenfolge in `core/ORIENTIERUNG.md`.
   Nicht an die App angebunden.

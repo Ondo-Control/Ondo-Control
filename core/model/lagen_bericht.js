@@ -26,10 +26,11 @@ var l0={ namen:LA.namenVon([]), standardisierung:{ mittel:{lnH:0,lnD:0,lnA:0}, s
 function teil(zl){ var a=LA.verlusteAuf(l0,zl), b=LA.verlusteAuf(lernstand,zl), v=LA.vergleich(zl,a,b), bb=LA.blockBootstrap(zl,a,b,ZIEH,START);
   function r(x){ return Math.round(x*1e5)/1e5; }
   return { spiele:zl.length, vorsprung:r(v.differenz), standardfehlerSpieltag:r(v.standardfehler), blockbootstrap:{ mittel:r(bb.mittel), bereich95:[r(bb.unten),r(bb.oben)], pEinseitig:Math.round(bb.p*1e4)/1e4, wochenBloecke:bb.bloecke, ziehungen:ZIEH } }; }
+var frei=LL.holdoutFreigabe(vers, 'aufst-holdout-2', lernstand.pruefsumme);
 var bericht={ schema:1, stichtag:ST, gruppen:m.gewaehlt, lernstand:m.lernstand.name, pruefsumme:lernstand.pruefsumme, versuchteIdeen:LL.anzahlIdeen(hier), huerdeAuswahl:LL.HUERDE,
   A_entwicklung:Object.assign({ was:'Pruefsaisons, Spiele mit Aufstellungsdaten; nach Sichtung gewaehlt, Auswahl-Optimismus moeglich' }, teil(pruefen)),
-  B_retrospektiv:Object.assign({ was:'Holdout-Saisons, Spiele mit Aufstellungsdaten; zwei Blicke auf dieselbe Saison (Pipeline v1 und v2, beide in versiegelt.json), Experiment a: Aufstellung als bekannt vorausgesetzt' }, teil(holdout)),
+  B_retrospektiv:!frei.ok ? { was:'Holdout NICHT neu gerechnet', stand:frei.grund+'. Es gilt der protokollierte Blick in versiegelt.json; ein neuer Blick waere ein weiterer Test auf schon gesehenen Spielen.' } : Object.assign({ was:'Holdout-Saisons, Spiele mit Aufstellungsdaten; zwei Blicke auf dieselbe Saison (Pipeline v1 und v2, beide in versiegelt.json), Experiment a: Aufstellung als bekannt vorausgesetzt' }, teil(holdout)),
   C_prospektiv:{ was:'handelbare Vorab-Validierung', stand:'OFFEN - keine fuer ONDO verifizierte, legale, kostenlose Quelle mit Zeitstempel; keine Aussage' },
   grenzen:'Kein Vergleich mit dem Markt auf diesen Spielen (keine Quoten fuer die Zeitraeume). Kein Anspruch auf Wettvorteil.' };
 fs.writeFileSync(path.join(hier,'generated','lagen_bericht.json'), JSON.stringify(bericht,null,1)+'\n');
-console.log(JSON.stringify({ A:bericht.A_entwicklung, B:bericht.B_retrospektiv }));
+console.log(JSON.stringify({ A:bericht.A_entwicklung, B:bericht.B_retrospektiv, freigabe:frei }));

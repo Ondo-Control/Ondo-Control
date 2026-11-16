@@ -107,6 +107,10 @@ if(fs.existsSync(f)){
 var bf=path.join(REPO,'core/model/generated/lagen_bericht.json');
 if(fs.existsSync(bf)){
   u.block('E. Bericht in drei Teilen');
+  var vv={ blicke:[{ gehoert_zu:'k', pruefsumme:'abc' }] };
+  u.pruef('Holdout-Freigabe: gleicher Lernstand → frei', LL.holdoutFreigabe(vv,'k','abc').ok===true);
+  u.pruef('Gegenprobe: geaenderter Lernstand → gesperrt, kein dritter Blick', LL.holdoutFreigabe(vv,'k','xyz').ok===false);
+  u.pruef('Gegenprobe: unbekannter Blick oder fehlende Pruefsumme → gesperrt', LL.holdoutFreigabe(vv,'zz','abc').ok===false && LL.holdoutFreigabe({ blicke:[{ gehoert_zu:'k' }] },'k','abc').ok===false);
   var B=JSON.parse(fs.readFileSync(bf,'utf8'));
   u.pruef('Bericht hat A, B und C getrennt; C ist offen und ohne Zahl', !!B.A_entwicklung && !!B.B_retrospektiv && /OFFEN/.test(B.C_prospektiv.stand) && !('vorsprung' in B.C_prospektiv));
   u.pruef('Blockbootstrap: Bereich enthaelt den Mittelwert, p zwischen 0 und 1', [B.A_entwicklung,B.B_retrospektiv].every(function(x){ var b=x.blockbootstrap; return b.bereich95[0]<=b.mittel && b.mittel<=b.bereich95[1] && b.pEinseitig>0 && b.pEinseitig<=1; }));

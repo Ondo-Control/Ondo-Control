@@ -18,7 +18,8 @@
    "wann": "2026-11-16",
    "was": "Einmal-Blick Holdout-Saisons (Spiele mit Aufstellungsdaten), K6 gegen Lernstand mit aufst. Pipeline v2, ZWEITER Blick auf dieselbe schon gesehene Holdout-Saison (nur Hinweis, nicht jungfraeulich). Sekundaerer rueckblickender Test (Experiment a), kein Markt-Anspruch. 2230 Spiele, Log-Loss K6 0.9933 gegen 0.9866, Vorsprung 0.00677 (SE 0.00212, z 3.19).",
    "gehoert_zu": "aufst-holdout-2",
-   "einfrierung": "Commit 04f8a4d"
+   "einfrierung": "Commit 04f8a4d",
+   "pruefsumme": "af6fa60d"
   }
  ],
  "vorabfestlegung": {

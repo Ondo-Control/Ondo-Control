@@ -99,7 +99,16 @@ function avg(a){ var s=0; a.forEach(function(x){ s+=x; }); return s/a.length; }
 function round(x,n){ var f=Math.pow(10,n===undefined?4:n); return Math.round(x*f)/f; }
 function rundeObj(st){ var o={ mittel:{}, streuung:{} }; Object.keys(st.mittel).forEach(function(k){ o.mittel[k]=round(st.mittel[k],6); o.streuung[k]=round(st.streuung[k],6); }); return o; }
 
-module.exports={ teile:teile, zFuer:zFuer, anzahlIdeen:anzahlIdeen, lauf:lauf, waehle:waehle, sperre:sperre, HUERDE:HUERDE, TRAINING:TRAINING };
+/* Der Holdout wird nur dann erneut ausgewertet (Bootstrap im Bericht), wenn der aktuelle Lernstand GENAU der ist, der beim
+   protokollierten Blick benutzt wurde. Sonst waere es ein weiterer, unprotokollierter Blick auf dieselben Spiele. */
+function holdoutFreigabe(vers, kennung, pruefsumme){
+  var b=(vers.blicke||[]).filter(function(x){ return x.gehoert_zu===kennung; })[0];
+  if(!b) return { ok:false, grund:'kein protokollierter Blick' };
+  if(!b.pruefsumme) return { ok:false, grund:'Blick ohne Pruefsumme protokolliert' };
+  if(b.pruefsumme!==pruefsumme) return { ok:false, grund:'Lernstand hat sich seit dem protokollierten Blick geaendert (Pruefsumme '+pruefsumme+' statt '+b.pruefsumme+')' };
+  return { ok:true };
+}
+module.exports={ holdoutFreigabe:holdoutFreigabe, teile:teile, zFuer:zFuer, anzahlIdeen:anzahlIdeen, lauf:lauf, waehle:waehle, sperre:sperre, HUERDE:HUERDE, TRAINING:TRAINING };
 
 if(require.main===module){
   var hier=__dirname, nurPruefen=process.argv.indexOf('--nur-pruefen')>=0;
