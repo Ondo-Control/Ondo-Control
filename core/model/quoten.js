@@ -22,14 +22,18 @@ function quoteGeprueft(q){
 function fair(q){ var a=[1/q.heim,1/q.remis,1/q.gast], s=a[0]+a[1]+a[2]; return [a[0]/s,a[1]/s,a[2]/s]; }
 function logLoss(p,i){ return -Math.log(Math.max(1e-12,p[i])); }
 
-/* Position fuer ein Spiel. p=[heim,remis,gast] des Modells. */
+/* Position fuer ein Spiel. p=[heim,remis,gast] des Modells.
+   Selbst bei belegtem Vorteil (nur aus dokumentierter Freigabe) muss die konkrete Quote nach Marge
+   p*Quote >= 1+PUFFER erfuellen, sonst bleibt es bei "keine Wette". */
+var PUFFER=0.05;
 function position(p, q, opt){
   var g=quoteGeprueft(q);
   if(!g.ok) return { empfehlung:'keine Wette', grund:'Quote nicht pruefbar: '+g.grund };
-  var f=fair(q), diff=[p[0]-f[0],p[1]-f[1],p[2]-f[2]];
-  var i=diff.indexOf(Math.max(diff[0],diff[1],diff[2]));
+  var o=[q.heim,q.remis,q.gast], w=[p[0]*o[0],p[1]*o[1],p[2]*o[2]];
+  var i=w.indexOf(Math.max(w[0],w[1],w[2]));
   if(!(opt && opt.vorteilBelegt===true)) return { empfehlung:'keine Wette', grund:'Vorteil gegen die Quote nicht belegt', quoteGeprueft:true };
-  return { empfehlung:'Wette erwogen: '+['Heimsieg','Remis','Auswaertssieg'][i], grund:'belegter Vorteil', quoteGeprueft:true };
+  if(!(w[i]>=1+PUFFER)) return { empfehlung:'keine Wette', grund:'kein Nachmargen-Vorteil: Wahrscheinlichkeit mal Quote unter '+(1+PUFFER), quoteGeprueft:true };
+  return { empfehlung:'Wette erwogen: '+['Heimsieg','Remis','Auswaertssieg'][i], grund:'belegter Vorteil, Quote '+o[i], quoteGeprueft:true };
 }
 
 /* Messung: Paare { p:[..], q:{..}, ergebnis:0|1|2 } nur mit geprueften Quoten. Eigene Zahlen, keine Rohquoten. */
@@ -41,4 +45,4 @@ function messen(paare){
   });
   return n?{ spiele:n, logLossCore:Math.round(a/n*10000)/10000, logLossQuote:Math.round(b/n*10000)/10000, vorsprungCore:Math.round((b-a)/n*10000)/10000 }:{ spiele:0 };
 }
-module.exports={ quoteGeprueft:quoteGeprueft, fair:fair, position:position, messen:messen, istUtc:istUtc };
+module.exports={ quoteGeprueft:quoteGeprueft, fair:fair, position:position, PUFFER:PUFFER, messen:messen, istUtc:istUtc };

@@ -10,6 +10,8 @@ u.pruef('gueltige Quote ok', Q.quoteGeprueft(gut()).ok===true);
 u.pruef('keine Quote -> keine Wette', Q.position(p,null).empfehlung==='keine Wette');
 u.pruef('geprueft aber Vorteil nicht belegt -> keine Wette', Q.position(p,gut()).empfehlung==='keine Wette');
 u.pruef('nur mit vorteilBelegt eine Wette erwogen', /^Wette erwogen/.test(Q.position(p,gut(),{vorteilBelegt:true}).empfehlung));
+u.pruef('mit Freigabe, aber p*Quote unter 1,05 -> keine Wette', /Nachmargen/.test(Q.position([0.5,0.29,0.21],gut(),{vorteilBelegt:true}).grund));
+u.pruef('mit Freigabe und p*Quote ueber 1,05 -> Wette erwogen mit Quote', /Heimsieg, Quote 2|Heimsieg/.test(Q.position([0.6,0.25,0.15],gut(),{vorteilBelegt:true}).empfehlung));
 var f=Q.fair(gut()); u.pruef('faire Wahrscheinlichkeiten summieren auf 1', Math.abs(f[0]+f[1]+f[2]-1)<1e-12);
 u.block('Messung');
 var m=Q.messen([{p:p,q:gut(),ergebnis:0},{p:p,q:gut(),ergebnis:2},{p:p,q:{},ergebnis:1}]);

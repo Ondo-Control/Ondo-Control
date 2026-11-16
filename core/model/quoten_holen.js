@@ -24,20 +24,25 @@ function bestQuote(ev, abgerufen){
   if(!key){ console.log('ODDS_API_KEY nicht gesetzt - keine Quoten abgerufen, Position bleibt "keine Wette".'); return; }
   var pr=JSON.parse(fs.readFileSync(pf,'utf8')), al=ident.aliasIndex(JSON.parse(fs.readFileSync(path.join(hier,'..','data','aliases.json'),'utf8')));
   var ligen={}; pr.spiele.forEach(function(s){ ligen[s.liga]=1; });
-  var mitQuote=0, fehler=[];
+  var mitQuote=0, fehler=[], roh={};
+  var fg=path.join(hier,'freigabe.json'), freigabe=false;   /* nur aus dokumentierter Freigabe, heute nicht vorhanden */
+  try{ var fj=JSON.parse(fs.readFileSync(fg,'utf8')); freigabe=fj.vorteilBelegt===true && !!fj.beleg; }catch(e){}
   for(var lg in ligen){ if(!SPORT[lg]) continue;
     try{
-      var abgerufen=new Date().toISOString().replace(/\.\d+Z$/,'Z');
       var evs=await holen('https://api.the-odds-api.com/v4/sports/'+SPORT[lg]+'/odds?regions=eu&markets=h2h&oddsFormat=decimal&apiKey='+encodeURIComponent(key));
+      var abgerufen=new Date().toISOString().replace(/\.\d+Z$/,'Z');   /* erst NACH vollstaendigem Empfang */
+      roh[lg]={ abgerufenUtc:abgerufen, ereignisse:evs };
       var land=lg.split('.')[0], idx={};
-      evs.forEach(function(ev){ idx[al(land,ev.home_team).schluessel+'|'+al(land,ev.away_team).schluessel+'|'+ev.commence_time.slice(0,10)]=ev; });
+      evs.forEach(function(ev){ var k=al(land,ev.home_team).schluessel+'|'+al(land,ev.away_team).schluessel+'|'+ev.commence_time.slice(0,10); idx[k]=idx[k]?'mehrdeutig':ev; });
       pr.spiele.forEach(function(s){ if(s.liga!==lg||!s.prognose) return;
-        var ev=idx[al(land,s.heim).schluessel+'|'+al(land,s.gast).schluessel+'|'+s.datum]; var q=ev&&bestQuote(ev,abgerufen);
+        var ev=idx[al(land,s.heim).schluessel+'|'+al(land,s.gast).schluessel+'|'+s.datum]; var q=ev&&ev!=='mehrdeutig'?bestQuote(ev,abgerufen):null;
         var p=[s.prognose.heimsieg,s.prognose.remis,s.prognose.auswaertssieg];
-        s.position=Q.position(p,q||null); if(q){ mitQuote++; s.position.quelle=q.quelle; s.position.abgerufenUtc=q.abgerufenUtc; } });
+        s.position=Q.position(p,q||null,{ vorteilBelegt:freigabe }); if(ev==='mehrdeutig') s.position.grund='Quote nicht zugeordnet: mehrdeutige Paarung am selben Tag'; if(q){ mitQuote++; s.position.quelle=q.quelle; s.position.abgerufenUtc=q.abgerufenUtc; s.position.anstossUtc=q.anstossUtc; s.position.anbieterSpielId=ev.id; } });
     }catch(e){ fehler.push(lg+': '+e.message); }
   }
   pr.quoten={ spieleMitGeprueftQuote:mitQuote, spieleGesamt:pr.spiele.length, fehler:fehler, hinweis:'Rohquoten werden nicht gespeichert (AGB der Odds API). Vorteil gegen die Quote ist nicht belegt.' };
   fs.writeFileSync(pf,JSON.stringify(pr,null,1)+'\n');
+  /* Rohquoten nur als PRIVATES Actions-Artefakt (interne Speicherung, AGB erlaubt es), nie im Repo */
+  var rp=process.env.QUOTEN_ROH_PFAD; if(rp) fs.writeFileSync(rp,JSON.stringify(roh));
   console.log('Quoten: '+mitQuote+' von '+pr.spiele.length+' Spielen mit geprueft Quote; Fehler: '+fehler.length);
 })();

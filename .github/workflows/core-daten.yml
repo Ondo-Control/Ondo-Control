@@ -75,7 +75,16 @@ jobs:
       - name: Quoten abholen (nur mit Secret ODDS_API_KEY; Rohquoten nie ins Repo)
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          QUOTEN_ROH_PFAD: ${{ runner.temp }}/quoten_roh.json
         run: node core/model/quoten_holen.js
+
+      - name: Rohquoten privat aufbewahren (Artefakt, 90 Tage, nicht im Repo)
+        uses: actions/upload-artifact@v4
+        with:
+          name: quoten-roh-${{ github.run_id }}
+          path: ${{ runner.temp }}/quoten_roh.json
+          retention-days: 90
+          if-no-files-found: ignore
 
       - name: Test der Quelle Bzzoiro (nur Zaehlwerte, nur mit Secret BSD_API_KEY)
         env:
