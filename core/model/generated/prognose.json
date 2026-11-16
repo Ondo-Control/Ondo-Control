@@ -1,0 +1,2332 @@
+{
+ "schema": 1,
+ "ab": "2026-11-20",
+ "bis": "2026-11-27",
+ "anzahl": 86,
+ "ohnePrognose": 0,
+ "hinweis": "Prozentzahlen sind die Rechnung des Modells, keine Garantie. Das Modell ist auf Pruefspielen schlechter als die Pinnacle-Quote (STAND). Position: keine Wette, solange keine Quote mit Quelle und Zeitstempel und kein belegter Vorteil vorliegen.",
+ "spiele": [
+  {
+   "liga": "de.1",
+   "ligaName": "Bundesliga",
+   "datum": "2026-11-20",
+   "heim": "FC Bayern München",
+   "gast": "1. FC Köln",
+   "prognose": {
+    "heimsieg": 0.89,
+    "remis": 0.075,
+    "auswaertssieg": 0.036
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 3.863,
+    "gast": 0.812
+   },
+   "haeufigsteTorfolge": "3:0",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "fr.1",
+   "ligaName": "Ligue 1",
+   "datum": "2026-11-20",
+   "heim": "ES Troyes AC",
+   "gast": "Le Havre AC",
+   "prognose": {
+    "heimsieg": 0.431,
+    "remis": 0.272,
+    "auswaertssieg": 0.297
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.476,
+    "gast": 1.184
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "de.1",
+   "ligaName": "Bundesliga",
+   "datum": "2026-11-21",
+   "heim": "1. FC Union Berlin",
+   "gast": "RB Leipzig",
+   "prognose": {
+    "heimsieg": 0.184,
+    "remis": 0.201,
+    "auswaertssieg": 0.615
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.216,
+    "gast": 2.319
+   },
+   "haeufigsteTorfolge": "1:2",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "de.1",
+   "ligaName": "Bundesliga",
+   "datum": "2026-11-21",
+   "heim": "Bayer 04 Leverkusen",
+   "gast": "SC Paderborn 07",
+   "prognose": {
+    "heimsieg": 0.669,
+    "remis": 0.191,
+    "auswaertssieg": 0.139
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 2.334,
+    "gast": 0.988
+   },
+   "haeufigsteTorfolge": "2:0",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "de.1",
+   "ligaName": "Bundesliga",
+   "datum": "2026-11-21",
+   "heim": "Borussia Mönchengladbach",
+   "gast": "Borussia Dortmund",
+   "prognose": {
+    "heimsieg": 0.18,
+    "remis": 0.218,
+    "auswaertssieg": 0.603
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.058,
+    "gast": 2.079
+   },
+   "haeufigsteTorfolge": "1:2",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "de.1",
+   "ligaName": "Bundesliga",
+   "datum": "2026-11-21",
+   "heim": "Eintracht Frankfurt",
+   "gast": "TSG 1899 Hoffenheim",
+   "prognose": {
+    "heimsieg": 0.447,
+    "remis": 0.216,
+    "auswaertssieg": 0.336
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 2.104,
+    "gast": 1.817
+   },
+   "haeufigsteTorfolge": "2:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "de.1",
+   "ligaName": "Bundesliga",
+   "datum": "2026-11-21",
+   "heim": "FC Schalke 04",
+   "gast": "VfB Stuttgart",
+   "prognose": {
+    "heimsieg": 0.206,
+    "remis": 0.248,
+    "auswaertssieg": 0.546
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 0.992,
+    "gast": 1.753
+   },
+   "haeufigsteTorfolge": "0:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "de.1",
+   "ligaName": "Bundesliga",
+   "datum": "2026-11-21",
+   "heim": "SV 07 Elversberg",
+   "gast": "SC Freiburg",
+   "prognose": {
+    "heimsieg": 0.368,
+    "remis": 0.243,
+    "auswaertssieg": 0.389
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.614,
+    "gast": 1.664
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.1",
+   "ligaName": "Premier League",
+   "datum": "2026-11-21",
+   "heim": "AFC Bournemouth",
+   "gast": "Nottingham Forest FC",
+   "prognose": {
+    "heimsieg": 0.492,
+    "remis": 0.255,
+    "auswaertssieg": 0.253
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.679,
+    "gast": 1.144
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.1",
+   "ligaName": "Premier League",
+   "datum": "2026-11-21",
+   "heim": "Aston Villa FC",
+   "gast": "Sunderland AFC",
+   "prognose": {
+    "heimsieg": 0.567,
+    "remis": 0.237,
+    "auswaertssieg": 0.196
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.874,
+    "gast": 1.019
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.1",
+   "ligaName": "Premier League",
+   "datum": "2026-11-21",
+   "heim": "Brentford FC",
+   "gast": "Everton FC",
+   "prognose": {
+    "heimsieg": 0.464,
+    "remis": 0.272,
+    "auswaertssieg": 0.265
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.51,
+    "gast": 1.082
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.1",
+   "ligaName": "Premier League",
+   "datum": "2026-11-21",
+   "heim": "Chelsea FC",
+   "gast": "Leeds United FC",
+   "prognose": {
+    "heimsieg": 0.413,
+    "remis": 0.275,
+    "auswaertssieg": 0.313
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.428,
+    "gast": 1.213
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.1",
+   "ligaName": "Premier League",
+   "datum": "2026-11-21",
+   "heim": "Coventry City FC",
+   "gast": "Crystal Palace FC",
+   "prognose": {
+    "heimsieg": 0.492,
+    "remis": 0.233,
+    "auswaertssieg": 0.275
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.926,
+    "gast": 1.401
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.1",
+   "ligaName": "Premier League",
+   "datum": "2026-11-21",
+   "heim": "Hull City AFC",
+   "gast": "Brighton & Hove Albion FC",
+   "prognose": {
+    "heimsieg": 0.152,
+    "remis": 0.219,
+    "auswaertssieg": 0.628
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 0.886,
+    "gast": 2.005
+   },
+   "haeufigsteTorfolge": "0:2",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.1",
+   "ligaName": "Premier League",
+   "datum": "2026-11-21",
+   "heim": "Liverpool FC",
+   "gast": "Manchester United FC",
+   "prognose": {
+    "heimsieg": 0.52,
+    "remis": 0.233,
+    "auswaertssieg": 0.247
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.937,
+    "gast": 1.285
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.1",
+   "ligaName": "Premier League",
+   "datum": "2026-11-21",
+   "heim": "Manchester City FC",
+   "gast": "Fulham FC",
+   "prognose": {
+    "heimsieg": 0.627,
+    "remis": 0.225,
+    "auswaertssieg": 0.148
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.934,
+    "gast": 0.832
+   },
+   "haeufigsteTorfolge": "1:0",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.1",
+   "ligaName": "Premier League",
+   "datum": "2026-11-21",
+   "heim": "Newcastle United FC",
+   "gast": "Arsenal FC",
+   "prognose": {
+    "heimsieg": 0.2,
+    "remis": 0.269,
+    "auswaertssieg": 0.531
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 0.861,
+    "gast": 1.56
+   },
+   "haeufigsteTorfolge": "0:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.1",
+   "ligaName": "Premier League",
+   "datum": "2026-11-21",
+   "heim": "Tottenham Hotspur FC",
+   "gast": "Ipswich Town FC",
+   "prognose": {
+    "heimsieg": 0.484,
+    "remis": 0.25,
+    "auswaertssieg": 0.266
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.731,
+    "gast": 1.233
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-11-21",
+   "heim": "Bolton Wanderers FC",
+   "gast": "Portsmouth FC",
+   "prognose": {
+    "heimsieg": 0.338,
+    "remis": 0.261,
+    "auswaertssieg": 0.401
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.375,
+    "gast": 1.516
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-11-21",
+   "heim": "Lincoln City FC",
+   "gast": "Wrexham AFC",
+   "prognose": {
+    "heimsieg": 0.294,
+    "remis": 0.27,
+    "auswaertssieg": 0.436
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.191,
+    "gast": 1.499
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-11-21",
+   "heim": "Middlesbrough FC",
+   "gast": "Bristol City FC",
+   "prognose": {
+    "heimsieg": 0.666,
+    "remis": 0.197,
+    "auswaertssieg": 0.137
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 2.24,
+    "gast": 0.927
+   },
+   "haeufigsteTorfolge": "2:0",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-11-21",
+   "heim": "Millwall FC",
+   "gast": "Queens Park Rangers FC",
+   "prognose": {
+    "heimsieg": 0.454,
+    "remis": 0.232,
+    "auswaertssieg": 0.313
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.902,
+    "gast": 1.559
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-11-21",
+   "heim": "Norwich City FC",
+   "gast": "Cardiff City FC",
+   "prognose": {
+    "heimsieg": 0.575,
+    "remis": 0.2,
+    "auswaertssieg": 0.225
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 2.402,
+    "gast": 1.484
+   },
+   "haeufigsteTorfolge": "2:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-11-21",
+   "heim": "Sheffield United FC",
+   "gast": "Watford FC",
+   "prognose": {
+    "heimsieg": 0.586,
+    "remis": 0.23,
+    "auswaertssieg": 0.183
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.929,
+    "gast": 0.992
+   },
+   "haeufigsteTorfolge": "1:0",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-11-21",
+   "heim": "Southampton FC",
+   "gast": "Derby County FC",
+   "prognose": {
+    "heimsieg": 0.709,
+    "remis": 0.179,
+    "auswaertssieg": 0.111
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 2.391,
+    "gast": 0.855
+   },
+   "haeufigsteTorfolge": "2:0",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-11-21",
+   "heim": "Stoke City FC",
+   "gast": "Birmingham City FC",
+   "prognose": {
+    "heimsieg": 0.317,
+    "remis": 0.275,
+    "auswaertssieg": 0.407
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.22,
+    "gast": 1.414
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-11-21",
+   "heim": "Swansea City AFC",
+   "gast": "West Bromwich Albion FC",
+   "prognose": {
+    "heimsieg": 0.416,
+    "remis": 0.272,
+    "auswaertssieg": 0.313
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.456,
+    "gast": 1.233
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-11-21",
+   "heim": "West Ham United FC",
+   "gast": "Preston North End FC",
+   "prognose": {
+    "heimsieg": 0.828,
+    "remis": 0.11,
+    "auswaertssieg": 0.062
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 3.312,
+    "gast": 0.893
+   },
+   "haeufigsteTorfolge": "3:0",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-11-21",
+   "heim": "Wolverhampton Wanderers FC",
+   "gast": "Charlton Athletic FC",
+   "prognose": {
+    "heimsieg": 0.643,
+    "remis": 0.222,
+    "auswaertssieg": 0.134
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.931,
+    "gast": 0.763
+   },
+   "haeufigsteTorfolge": "1:0",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "fr.1",
+   "ligaName": "Ligue 1",
+   "datum": "2026-11-21",
+   "heim": "AS Monaco FC",
+   "gast": "AJ Auxerre",
+   "prognose": {
+    "heimsieg": 0.606,
+    "remis": 0.213,
+    "auswaertssieg": 0.181
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 2.149,
+    "gast": 1.107
+   },
+   "haeufigsteTorfolge": "2:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "fr.1",
+   "ligaName": "Ligue 1",
+   "datum": "2026-11-21",
+   "heim": "Lille OSC",
+   "gast": "Olympique Lyonnais",
+   "prognose": {
+    "heimsieg": 0.447,
+    "remis": 0.286,
+    "auswaertssieg": 0.267
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.387,
+    "gast": 1.014
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "fr.1",
+   "ligaName": "Ligue 1",
+   "datum": "2026-11-21",
+   "heim": "OGC Nice",
+   "gast": "Paris Saint-Germain FC",
+   "prognose": {
+    "heimsieg": 0.204,
+    "remis": 0.233,
+    "auswaertssieg": 0.564
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.084,
+    "gast": 1.925
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "fr.1",
+   "ligaName": "Ligue 1",
+   "datum": "2026-11-21",
+   "heim": "RC Strasbourg Alsace",
+   "gast": "Stade Brestois 29",
+   "prognose": {
+    "heimsieg": 0.466,
+    "remis": 0.225,
+    "auswaertssieg": 0.308
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 2.005,
+    "gast": 1.612
+   },
+   "haeufigsteTorfolge": "2:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "fr.1",
+   "ligaName": "Ligue 1",
+   "datum": "2026-11-21",
+   "heim": "Racing Club de Lens",
+   "gast": "Toulouse FC",
+   "prognose": {
+    "heimsieg": 0.519,
+    "remis": 0.246,
+    "auswaertssieg": 0.235
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.787,
+    "gast": 1.138
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "it.1",
+   "ligaName": "Serie A",
+   "datum": "2026-11-21",
+   "heim": "Como 1907",
+   "gast": "Cagliari Calcio",
+   "prognose": {
+    "heimsieg": 0.632,
+    "remis": 0.225,
+    "auswaertssieg": 0.143
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.928,
+    "gast": 0.806
+   },
+   "haeufigsteTorfolge": "1:0",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "it.1",
+   "ligaName": "Serie A",
+   "datum": "2026-11-21",
+   "heim": "Parma Calcio 1913",
+   "gast": "AS Roma",
+   "prognose": {
+    "heimsieg": 0.114,
+    "remis": 0.201,
+    "auswaertssieg": 0.686
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 0.743,
+    "gast": 2.114
+   },
+   "haeufigsteTorfolge": "0:2",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "it.1",
+   "ligaName": "Serie A",
+   "datum": "2026-11-21",
+   "heim": "SS Lazio",
+   "gast": "US Lecce",
+   "prognose": {
+    "heimsieg": 0.695,
+    "remis": 0.191,
+    "auswaertssieg": 0.114
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 2.235,
+    "gast": 0.797
+   },
+   "haeufigsteTorfolge": "2:0",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "it.1",
+   "ligaName": "Serie A",
+   "datum": "2026-11-21",
+   "heim": "SSC Napoli",
+   "gast": "Torino FC",
+   "prognose": {
+    "heimsieg": 0.599,
+    "remis": 0.224,
+    "auswaertssieg": 0.177
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 2.001,
+    "gast": 1.003
+   },
+   "haeufigsteTorfolge": "2:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "nl.1",
+   "ligaName": "Eredivisie",
+   "datum": "2026-11-21",
+   "heim": "FC Groningen",
+   "gast": "SC Heerenveen",
+   "prognose": {
+    "heimsieg": 0.365,
+    "remis": 0.213,
+    "auswaertssieg": 0.422
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.965,
+    "gast": 2.115
+   },
+   "haeufigsteTorfolge": "1:2",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "nl.1",
+   "ligaName": "Eredivisie",
+   "datum": "2026-11-21",
+   "heim": "FC Utrecht",
+   "gast": "SC Cambuur-Leeuwarden",
+   "prognose": {
+    "heimsieg": 0.565,
+    "remis": 0.194,
+    "auswaertssieg": 0.241
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 2.523,
+    "gast": 1.647
+   },
+   "haeufigsteTorfolge": "2:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "nl.1",
+   "ligaName": "Eredivisie",
+   "datum": "2026-11-21",
+   "heim": "Feyenoord Rotterdam",
+   "gast": "SBV Excelsior",
+   "prognose": {
+    "heimsieg": 0.792,
+    "remis": 0.126,
+    "auswaertssieg": 0.082
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 3.191,
+    "gast": 1.02
+   },
+   "haeufigsteTorfolge": "3:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "nl.1",
+   "ligaName": "Eredivisie",
+   "datum": "2026-11-21",
+   "heim": "NEC",
+   "gast": "PSV",
+   "prognose": {
+    "heimsieg": 0.208,
+    "remis": 0.185,
+    "auswaertssieg": 0.607
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.549,
+    "gast": 2.648
+   },
+   "haeufigsteTorfolge": "1:2",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "nl.1",
+   "ligaName": "Eredivisie",
+   "datum": "2026-11-21",
+   "heim": "Telstar 1963",
+   "gast": "PEC Zwolle",
+   "prognose": {
+    "heimsieg": 0.556,
+    "remis": 0.22,
+    "auswaertssieg": 0.224
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 2.1,
+    "gast": 1.283
+   },
+   "haeufigsteTorfolge": "2:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "de.1",
+   "ligaName": "Bundesliga",
+   "datum": "2026-11-22",
+   "heim": "FC Augsburg",
+   "gast": "1. FSV Mainz 05",
+   "prognose": {
+    "heimsieg": 0.435,
+    "remis": 0.225,
+    "auswaertssieg": 0.34
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.968,
+    "gast": 1.73
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "de.1",
+   "ligaName": "Bundesliga",
+   "datum": "2026-11-22",
+   "heim": "SV Werder Bremen",
+   "gast": "Hamburger SV",
+   "prognose": {
+    "heimsieg": 0.525,
+    "remis": 0.239,
+    "auswaertssieg": 0.236
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.861,
+    "gast": 1.187
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-11-22",
+   "heim": "Burnley FC",
+   "gast": "Blackburn Rovers FC",
+   "prognose": {
+    "heimsieg": 0.483,
+    "remis": 0.24,
+    "auswaertssieg": 0.276
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.835,
+    "gast": 1.347
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "es.1",
+   "ligaName": "La Liga",
+   "datum": "2026-11-22",
+   "heim": "Athletic Club",
+   "gast": "RCD Espanyol de Barcelona",
+   "prognose": {
+    "heimsieg": 0.492,
+    "remis": 0.286,
+    "auswaertssieg": 0.222
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.419,
+    "gast": 0.864
+   },
+   "haeufigsteTorfolge": "1:0",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "es.1",
+   "ligaName": "La Liga",
+   "datum": "2026-11-22",
+   "heim": "CA Osasuna",
+   "gast": "Málaga CF",
+   "prognose": {
+    "heimsieg": 0.573,
+    "remis": 0.244,
+    "auswaertssieg": 0.183
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.78,
+    "gast": 0.908
+   },
+   "haeufigsteTorfolge": "1:0",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "es.1",
+   "ligaName": "La Liga",
+   "datum": "2026-11-22",
+   "heim": "Deportivo Alavés",
+   "gast": "RC Deportivo La Coruña",
+   "prognose": {
+    "heimsieg": 0.459,
+    "remis": 0.279,
+    "auswaertssieg": 0.261
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.446,
+    "gast": 1.029
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "es.1",
+   "ligaName": "La Liga",
+   "datum": "2026-11-22",
+   "heim": "FC Barcelona",
+   "gast": "Villarreal CF",
+   "prognose": {
+    "heimsieg": 0.812,
+    "remis": 0.114,
+    "auswaertssieg": 0.073
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 3.376,
+    "gast": 1.029
+   },
+   "haeufigsteTorfolge": "3:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "es.1",
+   "ligaName": "La Liga",
+   "datum": "2026-11-22",
+   "heim": "Getafe CF",
+   "gast": "Club Atlético de Madrid",
+   "prognose": {
+    "heimsieg": 0.22,
+    "remis": 0.309,
+    "auswaertssieg": 0.471
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 0.769,
+    "gast": 1.258
+   },
+   "haeufigsteTorfolge": "0:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "es.1",
+   "ligaName": "La Liga",
+   "datum": "2026-11-22",
+   "heim": "Levante UD",
+   "gast": "Elche CF",
+   "prognose": {
+    "heimsieg": 0.479,
+    "remis": 0.248,
+    "auswaertssieg": 0.272
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.745,
+    "gast": 1.269
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "es.1",
+   "ligaName": "La Liga",
+   "datum": "2026-11-22",
+   "heim": "Rayo Vallecano de Madrid",
+   "gast": "Valencia CF",
+   "prognose": {
+    "heimsieg": 0.484,
+    "remis": 0.275,
+    "auswaertssieg": 0.241
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.502,
+    "gast": 0.987
+   },
+   "haeufigsteTorfolge": "1:0",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "es.1",
+   "ligaName": "La Liga",
+   "datum": "2026-11-22",
+   "heim": "Real Madrid CF",
+   "gast": "RC Celta de Vigo",
+   "prognose": {
+    "heimsieg": 0.726,
+    "remis": 0.181,
+    "auswaertssieg": 0.094
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 2.276,
+    "gast": 0.701
+   },
+   "haeufigsteTorfolge": "2:0",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "es.1",
+   "ligaName": "La Liga",
+   "datum": "2026-11-22",
+   "heim": "Real Racing Club de Santander",
+   "gast": "Real Sociedad de Fútbol",
+   "prognose": {
+    "heimsieg": 0.322,
+    "remis": 0.212,
+    "auswaertssieg": 0.465
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.816,
+    "gast": 2.19
+   },
+   "haeufigsteTorfolge": "1:2",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "es.1",
+   "ligaName": "La Liga",
+   "datum": "2026-11-22",
+   "heim": "Sevilla FC",
+   "gast": "Real Betis Balompié",
+   "prognose": {
+    "heimsieg": 0.323,
+    "remis": 0.266,
+    "auswaertssieg": 0.411
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.304,
+    "gast": 1.497
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "fr.1",
+   "ligaName": "Ligue 1",
+   "datum": "2026-11-22",
+   "heim": "FC Lorient",
+   "gast": "Stade Rennais FC 1901",
+   "prognose": {
+    "heimsieg": 0.417,
+    "remis": 0.244,
+    "auswaertssieg": 0.339
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.706,
+    "gast": 1.523
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "fr.1",
+   "ligaName": "Ligue 1",
+   "datum": "2026-11-22",
+   "heim": "Olympique de Marseille",
+   "gast": "Le Mans FC",
+   "prognose": {
+    "heimsieg": 0.749,
+    "remis": 0.157,
+    "auswaertssieg": 0.094
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 2.653,
+    "gast": 0.867
+   },
+   "haeufigsteTorfolge": "2:0",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "fr.1",
+   "ligaName": "Ligue 1",
+   "datum": "2026-11-22",
+   "heim": "Paris FC",
+   "gast": "Angers SCO",
+   "prognose": {
+    "heimsieg": 0.687,
+    "remis": 0.195,
+    "auswaertssieg": 0.118
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 2.209,
+    "gast": 0.811
+   },
+   "haeufigsteTorfolge": "2:0",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "it.1",
+   "ligaName": "Serie A",
+   "datum": "2026-11-22",
+   "heim": "AC Milan",
+   "gast": "Frosinone Calcio",
+   "prognose": {
+    "heimsieg": 0.552,
+    "remis": 0.22,
+    "auswaertssieg": 0.228
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 2.1,
+    "gast": 1.302
+   },
+   "haeufigsteTorfolge": "2:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "it.1",
+   "ligaName": "Serie A",
+   "datum": "2026-11-22",
+   "heim": "Atalanta BC",
+   "gast": "FC Internazionale Milano",
+   "prognose": {
+    "heimsieg": 0.204,
+    "remis": 0.21,
+    "auswaertssieg": 0.586
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.264,
+    "gast": 2.225
+   },
+   "haeufigsteTorfolge": "1:2",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "it.1",
+   "ligaName": "Serie A",
+   "datum": "2026-11-22",
+   "heim": "Bologna FC 1909",
+   "gast": "Udinese Calcio",
+   "prognose": {
+    "heimsieg": 0.559,
+    "remis": 0.237,
+    "auswaertssieg": 0.203
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.871,
+    "gast": 1.05
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "it.1",
+   "ligaName": "Serie A",
+   "datum": "2026-11-22",
+   "heim": "US Sassuolo Calcio",
+   "gast": "Genoa CFC",
+   "prognose": {
+    "heimsieg": 0.37,
+    "remis": 0.25,
+    "auswaertssieg": 0.38
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.549,
+    "gast": 1.573
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "nl.1",
+   "ligaName": "Eredivisie",
+   "datum": "2026-11-22",
+   "heim": "AFC Ajax",
+   "gast": "ADO Den Haag",
+   "prognose": {
+    "heimsieg": 0.826,
+    "remis": 0.115,
+    "auswaertssieg": 0.059
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 3.144,
+    "gast": 0.801
+   },
+   "haeufigsteTorfolge": "3:0",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "nl.1",
+   "ligaName": "Eredivisie",
+   "datum": "2026-11-22",
+   "heim": "FC Twente '65",
+   "gast": "Willem II Tilburg",
+   "prognose": {
+    "heimsieg": 0.882,
+    "remis": 0.083,
+    "auswaertssieg": 0.035
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 3.55,
+    "gast": 0.691
+   },
+   "haeufigsteTorfolge": "3:0",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "nl.1",
+   "ligaName": "Eredivisie",
+   "datum": "2026-11-22",
+   "heim": "Go Ahead Eagles",
+   "gast": "Fortuna Sittard",
+   "prognose": {
+    "heimsieg": 0.439,
+    "remis": 0.23,
+    "auswaertssieg": 0.331
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.91,
+    "gast": 1.643
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "nl.1",
+   "ligaName": "Eredivisie",
+   "datum": "2026-11-22",
+   "heim": "Sparta Rotterdam",
+   "gast": "AZ",
+   "prognose": {
+    "heimsieg": 0.27,
+    "remis": 0.226,
+    "auswaertssieg": 0.504
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.444,
+    "gast": 2.019
+   },
+   "haeufigsteTorfolge": "1:2",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "it.1",
+   "ligaName": "Serie A",
+   "datum": "2026-11-23",
+   "heim": "AC Monza",
+   "gast": "ACF Fiorentina",
+   "prognose": {
+    "heimsieg": 0.339,
+    "remis": 0.23,
+    "auswaertssieg": 0.431
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.662,
+    "gast": 1.89
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "it.1",
+   "ligaName": "Serie A",
+   "datum": "2026-11-23",
+   "heim": "Juventus FC",
+   "gast": "Venezia FC",
+   "prognose": {
+    "heimsieg": 0.59,
+    "remis": 0.239,
+    "auswaertssieg": 0.171
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.825,
+    "gast": 0.882
+   },
+   "haeufigsteTorfolge": "1:0",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-11-24",
+   "heim": "Bristol City FC",
+   "gast": "Wrexham AFC",
+   "prognose": {
+    "heimsieg": 0.346,
+    "remis": 0.267,
+    "auswaertssieg": 0.388
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.354,
+    "gast": 1.446
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-11-24",
+   "heim": "Cardiff City FC",
+   "gast": "Preston North End FC",
+   "prognose": {
+    "heimsieg": 0.668,
+    "remis": 0.186,
+    "auswaertssieg": 0.147
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 2.453,
+    "gast": 1.092
+   },
+   "haeufigsteTorfolge": "2:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-11-24",
+   "heim": "Charlton Athletic FC",
+   "gast": "Lincoln City FC",
+   "prognose": {
+    "heimsieg": 0.435,
+    "remis": 0.286,
+    "auswaertssieg": 0.279
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.375,
+    "gast": 1.051
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-11-24",
+   "heim": "Middlesbrough FC",
+   "gast": "Swansea City AFC",
+   "prognose": {
+    "heimsieg": 0.53,
+    "remis": 0.236,
+    "auswaertssieg": 0.234
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.894,
+    "gast": 1.201
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-11-24",
+   "heim": "Norwich City FC",
+   "gast": "Queens Park Rangers FC",
+   "prognose": {
+    "heimsieg": 0.589,
+    "remis": 0.196,
+    "auswaertssieg": 0.214
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 2.452,
+    "gast": 1.46
+   },
+   "haeufigsteTorfolge": "2:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-11-24",
+   "heim": "Portsmouth FC",
+   "gast": "West Ham United FC",
+   "prognose": {
+    "heimsieg": 0.259,
+    "remis": 0.231,
+    "auswaertssieg": 0.51
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.351,
+    "gast": 1.957
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-11-24",
+   "heim": "Sheffield United FC",
+   "gast": "Southampton FC",
+   "prognose": {
+    "heimsieg": 0.296,
+    "remis": 0.248,
+    "auswaertssieg": 0.456
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.359,
+    "gast": 1.728
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-11-24",
+   "heim": "Wolverhampton Wanderers FC",
+   "gast": "Derby County FC",
+   "prognose": {
+    "heimsieg": 0.638,
+    "remis": 0.215,
+    "auswaertssieg": 0.147
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 2.042,
+    "gast": 0.879
+   },
+   "haeufigsteTorfolge": "2:0",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-11-25",
+   "heim": "Bolton Wanderers FC",
+   "gast": "West Bromwich Albion FC",
+   "prognose": {
+    "heimsieg": 0.272,
+    "remis": 0.257,
+    "auswaertssieg": 0.471
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.201,
+    "gast": 1.647
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-11-25",
+   "heim": "Burnley FC",
+   "gast": "Birmingham City FC",
+   "prognose": {
+    "heimsieg": 0.317,
+    "remis": 0.249,
+    "auswaertssieg": 0.435
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.415,
+    "gast": 1.688
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-11-25",
+   "heim": "Stoke City FC",
+   "gast": "Millwall FC",
+   "prognose": {
+    "heimsieg": 0.439,
+    "remis": 0.258,
+    "auswaertssieg": 0.303
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.605,
+    "gast": 1.301
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-11-25",
+   "heim": "Watford FC",
+   "gast": "Blackburn Rovers FC",
+   "prognose": {
+    "heimsieg": 0.332,
+    "remis": 0.284,
+    "auswaertssieg": 0.383
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.202,
+    "gast": 1.309
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "de.1",
+   "ligaName": "Bundesliga",
+   "datum": "2026-11-27",
+   "heim": "SV Werder Bremen",
+   "gast": "Borussia Mönchengladbach",
+   "prognose": {
+    "heimsieg": 0.554,
+    "remis": 0.222,
+    "auswaertssieg": 0.224
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 2.077,
+    "gast": 1.27
+   },
+   "haeufigsteTorfolge": "2:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-11-27",
+   "heim": "Southampton FC",
+   "gast": "Middlesbrough FC",
+   "prognose": {
+    "heimsieg": 0.485,
+    "remis": 0.248,
+    "auswaertssieg": 0.267
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.755,
+    "gast": 1.254
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "fr.1",
+   "ligaName": "Ligue 1",
+   "datum": "2026-11-27",
+   "heim": "Stade Brestois 29",
+   "gast": "Paris FC",
+   "prognose": {
+    "heimsieg": 0.371,
+    "remis": 0.254,
+    "auswaertssieg": 0.375
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.522,
+    "gast": 1.532
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "nl.1",
+   "ligaName": "Eredivisie",
+   "datum": "2026-11-27",
+   "heim": "FC Groningen",
+   "gast": "Willem II Tilburg",
+   "prognose": {
+    "heimsieg": 0.807,
+    "remis": 0.115,
+    "auswaertssieg": 0.078
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 3.43,
+    "gast": 1.094
+   },
+   "haeufigsteTorfolge": "3:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  },
+  {
+   "liga": "pt.1",
+   "ligaName": "Primeira Liga",
+   "datum": "2026-11-27",
+   "heim": "CS Marítimo",
+   "gast": "CD Nacional",
+   "prognose": {
+    "heimsieg": 0.333,
+    "remis": 0.281,
+    "auswaertssieg": 0.386
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.222,
+    "gast": 1.334
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt"
+   }
+  }
+ ]
+}

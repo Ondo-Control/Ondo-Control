@@ -69,6 +69,12 @@ jobs:
       - name: Test Lagen lernen und Stichtag-Sperre
         run: node tests/t17_lagen.js
 
+      - name: Prognose je Spiel (naechste 7 Tage, Position ohne Quote = keine Wette)
+        run: node core/model/prognose.js --of "$RUNNER_TEMP/football.json" --ab "$(date -u +%F)"
+
+      - name: Test Prognose
+        run: node tests/t18_prognose.js
+
       - name: Aenderung committen, falls vorhanden
         run: |
           git config user.name "Ondo-Control-Automatik"

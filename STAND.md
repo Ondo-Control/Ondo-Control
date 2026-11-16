@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 16.11.2026, Fassung 171, v19.24.3*
+*Die aktuelle Wahrheit. Stand: 16.11.2026, Fassung 172, v19.24.3*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -202,20 +202,19 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
 ## Versionen
 
 - **🔴 Rücksetzpunkt vor dem KI-Log-Umbau (Ondos Wunsch, 12.9.2026):** Commit `ed14eb7`,
-  `beta.html` v19.9.0, 12.9.2026, 16:17 Uhr UTC (Commit-Zeitstempel). Ondo hat nach dem Trainingsraum-Bau
-  Nachbesserungen verlangt (KI-Daten von „Mehr" nach Wettmodul/KI-Log verschieben, Auswahl-UI für
-  den Trainingsraum) — dieser Commit ist der Stand **davor**, falls zurückgesetzt werden muss.
-  Siehe Backlog-Punkt 77.
+  `beta.html` v19.9.0, 12.9.2026, 16:17 Uhr UTC (Commit-Zeitstempel). Stand **vor** Ondos Nachbesserungen
+  zum Trainingsraum (Backlog-Punkt 77), falls zurückgesetzt werden muss.
 - **Ondo Core (Backlog-Punkt 94, geliefert 14.11. und 16.11.2026) — `beta.html` unverändert:**
   `core/data/` (geprüfter Spielbestand), `core/model/` (Modell, Rücktest, Selbstprüfung),
   `core/REGELN.md` (Ondos Regeln als Textdatei, vom Core gelesen und durchgesetzt),
   `core/model/raum.js` (Trainingsraum in Runden mit Lernständen, Zähler in `ideen.json`).
   **Neu 16.11.2026: „Lagen lernen“** (`lagen_lauf.js`, Stichtag 1.8.2026 in `versiegelt.json`, Test t17): Der Core wählt Gruppen selbst;
   Hürde z = 3,28 (5 % geteilt durch alle 98 geprüften Ideen in `ideen.json`). Nur **Aufstellung/Marktwert** besteht (`aufstellung.json`, 7 Ligen, Daten bis 6.7.2026). **Pipeline v2** (Funde: Kalendertag-Leck, doppelte Auswahl). Bericht (`lagen_bericht.json`):
-  **(A)** Prüfsaisons 0,9918 → 0,9811; **(B)** Holdout, zwei Blicke auf dieselbe Saison, Experiment a: 0,9933 → 0,9866, Blockbootstrap-p 0,005 (nur Hinweis);
-  **(C)** vorab handelbar: offen. Gatter: Vorab-Zeitstempel; Rückfall-Funktion (ungenutzt). Keine geprüfte freie Quelle; kein Marktvergleich.
-  Täglicher Lauf durch `core-daten.yml`, Tests `tests/t12` bis `t14`, `t17`. Zahlen und Beschluss nur in
-  `core/model/generated/` (`bericht.json`, `raum.json`, `lagen.json`); Reihenfolge in `core/ORIENTIERUNG.md`.
+  **(A)** Prüfsaisons 0,9918 → 0,9811; **(B)** Holdout, zwei Blicke auf dieselbe Saison, Experiment a: 0,9933 → 0,9866, Blockbootstrap-p 0,005 (Hinweis);
+  **(C)** vorab handelbar: offen. Gatter: Vorab-Zeitstempel; Rückfall-Funktion (ungenutzt). Keine freie Quelle geprüft; kein Marktvergleich.
+  **Prognose je Spiel** (`prognose.json`, 7 Tage): Tipp, Prozent, Position „keine Wette“ (kein Quote-Gatter).
+  Täglicher Lauf durch `core-daten.yml`, Tests `tests/t12` bis `t14`, `t17`, `t18`. Zahlen nur in
+  `core/model/generated/`; Reihenfolge in `core/ORIENTIERUNG.md`.
   Nicht an die App angebunden.
 - **Stabil: v19.24.3** (`OndoControl.html`, seit 16.11.2026 = Beta-Code ohne „BETA“; `version.json` bleibt 17, `APP_VERSION` 18). Davor v17 (seit 17.7.). **Gerätetest Home-Bildschirm-App 16.11. 15:16 bestanden:** Sicherung geladen,
   755 KI-Einträge, 4 Wetten, „als App installiert“, Probekammer 22 ok, Layout 0 Auffälligkeiten. Home-App: eigener iOS-Speicher, erste Sicherung steht aus.
