@@ -21,7 +21,7 @@ function produktion(zeilen, lagen, heute, opt){
     ergebnis.push({ menge:m.menge, gruppen:gr, trainingsspiele:menge.length, bis:heute,
       pruefsumme:mod.pruefsumme, runde:mod.runde,
       merkmalsgewinn:gr.length>0, hinweis:gr.length?'Gruppen aus dem Messpfad uebernommen, Gewichte neu trainiert':'Keine Gruppe gewaehlt: nur Kalibrierung, KEIN Merkmalsgewinn',
-      gewichte:mod.gewichte.map(function(r){ return r.map(rund); }), standardisierung:mod.standardisierung });
+      namen:mod.namen, gewichte:mod.gewichte.map(function(r){ return r.map(rund); }), standardisierung:mod.standardisierung });
   });
   return ergebnis;
 }

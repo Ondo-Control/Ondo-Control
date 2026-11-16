@@ -18,7 +18,7 @@ function aufnehmen(archiv, prog, stand){
     if(!s.prognose || !s.schluessel) return;
     if(!(prog.ab<s.datum)) return;                       /* nur Spiele ab dem Folgetag */
     var k=schluessel(s); if(archiv.eintraege[k]) return;  /* nie ueberschreiben */
-    archiv.eintraege[k]={ liga:s.liga, datum:s.datum, heim:s.heim, gast:s.gast, erstelltAm:prog.ab, modellStand:stand,
+    archiv.eintraege[k]={ liga:s.liga, datum:s.datum, heim:s.heim, gast:s.gast, erstelltAm:prog.ab, modellStand:stand, lagenStand:(s.modell&&s.modell.lagenStand)||null,
       p:[s.prognose.heimsieg,s.prognose.remis,s.prognose.auswaertssieg], tipp:s.tipp }; neu++;
   });
   return neu;

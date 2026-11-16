@@ -26,7 +26,10 @@ function prognose(opt){
   var aufloesen=ident.aliasIndex(opt.aliases), tage=opt.tage||7, bis=tageDazu(opt.ab, tage), spiele=[], ohne=0;
   var mit=opt.lagen && (opt.lagen.mengen||[]).filter(function(m){ return m.menge==='mitAufstellung'; })[0];
   var lsMit=mit&&mit.lernstand&&mit.gewaehlt.length?mit.lernstand:{ namen:LA.namenVon(['aufst']), standardisierung:{ mittel:{}, streuung:{} }, gewichte:[[0,0,0],[0,0,0],[0,0,0]] };
-  var lsOhne={ namen:LA.namenVon([]), standardisierung:{ mittel:{lnH:0,lnD:0,lnA:0}, streuung:{lnH:1,lnD:1,lnA:1} }, gewichte:[[1,0,0],[0,1,0],[0,0,1]] };
+  var lsOhne={ namen:LA.namenVon([]), standardisierung:{ mittel:{lnH:0,lnD:0,lnA:0}, streuung:{lnH:1,lnD:1,lnA:1} }, gewichte:[[1,0,0],[0,1,0],[0,0,1]] }, lagenStand='L0 (keine Gruppe)';
+  /* Produktionspfad: taeglich neu trainierte Gewichte der Menge 'alle' (Kalibrierung); ohne Datei bleibt L0 */
+  var pa=opt.produktion && (opt.produktion.mengen||[]).filter(function(m){ return m.menge==='alle' && m.namen && m.gewichte; })[0];
+  if(pa){ lsOhne={ namen:pa.namen, standardisierung:pa.standardisierung, gewichte:pa.gewichte }; lagenStand='Produktion alle '+pa.pruefsumme+' ('+pa.trainingsspiele+' Spiele bis '+pa.bis+')'+(pa.merkmalsgewinn?'':', kein Merkmalsgewinn'); }
   schema.LIGEN.forEach(function(l){
     var s=quellen.openfootballSaisons(opt.ofWurzel, l.id); if(!s.length) return;
     quellen.openfootballLesen(opt.ofWurzel, l.id, s[s.length-1]).forEach(function(r){
@@ -40,7 +43,7 @@ function prognose(opt){
       var p=q.p, tipp=p[0]>=p[1]&&p[0]>=p[2]?'Heimsieg':(p[2]>=p[1]?'Auswaertssieg':'Remis');
       eintrag.prognose={ heimsieg:r3(p[0]), remis:r3(p[1]), auswaertssieg:r3(p[2]) };
       eintrag.tipp=tipp; eintrag.erwarteteTore={ heim:r3(v.lh), gast:r3(v.la) }; eintrag.haeufigsteTorfolge=haeufigstes(v.lh, v.la);
-      eintrag.modell={ quelle:q.quelle, belastbar:v.belastbar, hinweis:v.belastbar?'':v.grund };
+      eintrag.modell={ lagenStand:lagenStand, quelle:q.quelle, belastbar:v.belastbar, hinweis:v.belastbar?'':v.grund };
       eintrag.position={ empfehlung:'keine Wette', grund:'keine Quote mit Quelle und Zeitstempel; Vorteil gegen die Quote nicht belegt' };
       spiele.push(eintrag);
     });
@@ -57,7 +60,7 @@ if(require.main===module){
   var of=wert('--of'), ab=wert('--ab'), tage=Number(wert('--tage')||7);
   if(!of || !/^\d{4}-\d{2}-\d{2}$/.test(ab||'')){ console.error('Aufruf: node core/model/prognose.js --of <Ordner> --ab JJJJ-MM-TT [--tage 7]'); process.exit(2); }
   var hier=__dirname, lies=function(p){ return JSON.parse(fs.readFileSync(p,'utf8')); };
-  var e=prognose({ ofWurzel:of, ab:ab, tage:tage, aliases:lies(path.join(hier,'..','data','aliases.json')), modell:lies(path.join(hier,'generated','modell.json')), lagen:lies(path.join(hier,'generated','lagen.json')) });
+  var e=prognose({ ofWurzel:of, ab:ab, tage:tage, aliases:lies(path.join(hier,'..','data','aliases.json')), modell:lies(path.join(hier,'generated','modell.json')), lagen:lies(path.join(hier,'generated','lagen.json')), produktion:fs.existsSync(path.join(hier,'generated','lagen_produktion.json'))?lies(path.join(hier,'generated','lagen_produktion.json')):null });
   fs.writeFileSync(path.join(hier,'generated','prognose.json'), JSON.stringify(e,null,1)+'\n');
   console.log('Prognose '+e.ab+' bis '+e.bis+': '+e.anzahl+' Spiele, ohne Prognose '+e.ohnePrognose);
 }

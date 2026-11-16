@@ -11,6 +11,11 @@
    "runde": 0,
    "merkmalsgewinn": false,
    "hinweis": "Keine Gruppe gewaehlt: nur Kalibrierung, KEIN Merkmalsgewinn",
+   "namen": [
+    "lnH",
+    "lnD",
+    "lnA"
+   ],
    "gewichte": [
     [
      1,
@@ -52,6 +57,14 @@
    "runde": 123,
    "merkmalsgewinn": true,
    "hinweis": "Gruppen aus dem Messpfad uebernommen, Gewichte neu trainiert",
+   "namen": [
+    "lnH",
+    "lnD",
+    "lnA",
+    "dLnStart",
+    "dLnBest",
+    "dFehlt"
+   ],
    "gewichte": [
     [
      0.69825,
