@@ -733,6 +733,9 @@
 > „16 von 16“ neben „Zurücksetzen“ im KI-Log-Filter bricht nicht mehr um (Knopf `width:auto;flex:1`, Zähler `nowrap`);
 > Test `t16` A16 mit Gegenprobe (alt 36 px, neu 18 px Höhe). Keine neue Verfassungsregel. Blueprint auf 0.166 gehoben.
 
+> **Was Fassung 0.170 ändert (16.11.2026):** Reine Synchronisierung nach Arbeitsregel M: Pipeline v2 von „Lagen lernen“ (Kalendertag-Korrektur, innerer Stopp-Split,
+> Hürde 3,28 nach 98 Ideen) und zweiter Holdout-Blick (nur Hinweis) in STAND und Backlog nachgeführt. Keine neue Verfassungsregel. Blueprint auf 0.170 gehoben.
+
 > **Was Fassung 0.169 ändert (16.11.2026):** Reine Synchronisierung nach Arbeitsregel M: Backlog-Punkt 94 und STAND um den Einmal-Blick auf die
 > Holdout-Saisons, die Hürde 3,03 nach 41 Ideen und den Bericht in drei Teilen (A/B/C) ergänzt. Keine neue Verfassungsregel. Blueprint auf 0.169 gehoben.
 

@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 16.11.2026, Fassung 170, v19.24.3*
+*Die aktuelle Wahrheit. Stand: 16.11.2026, Fassung 171, v19.24.3*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -211,20 +211,17 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   `core/REGELN.md` (Ondos Regeln als Textdatei, vom Core gelesen und durchgesetzt),
   `core/model/raum.js` (Trainingsraum in Runden mit Lernständen, Zähler in `ideen.json`).
   **Neu 16.11.2026: „Lagen lernen“** (`lagen_lauf.js`, Stichtag 1.8.2026 in `versiegelt.json`, Test t17): Der Core wählt Gruppen selbst;
-  Hürde z = 3,03 (5 % geteilt durch alle 41 geprüften Ideen in `ideen.json`). Nur **Aufstellung/Marktwert** besteht (`aufstellung.json`,
-  7 erste Ligen, Datensatz bis 6.7.2026). Bericht in drei Teilen (`lagen_bericht.json`): **(A)** Prüfsaisons 0,9917 → 0,9797;
-  **(B)** Holdout-Blick (einmal, Experiment a, Commit 5f7f392 eingefroren) 0,9932 → 0,9869, Blockbootstrap-p 0,0095; **(C)** vorab handelbar: offen.
-  Gatter: Aufstellung nur mit Vorab-Zeitstempel. Keine für ONDO verifizierte legale kostenlose Aufstellungsquelle; kein Marktvergleich.
+  Hürde z = 3,28 (5 % geteilt durch alle 98 geprüften Ideen in `ideen.json`). Nur **Aufstellung/Marktwert** besteht (`aufstellung.json`, 7 Ligen, Daten bis 6.7.2026). **Pipeline v2** (Funde: Kalendertag-Leck, doppelte Auswahl). Bericht (`lagen_bericht.json`):
+  **(A)** Prüfsaisons 0,9918 → 0,9811; **(B)** Holdout, zwei Blicke auf dieselbe Saison, Experiment a: 0,9933 → 0,9866, Blockbootstrap-p 0,005 (nur Hinweis);
+  **(C)** vorab handelbar: offen. Gatter: Vorab-Zeitstempel, Rückfall ohne Aufstellung. Keine verifizierte legale kostenlose Quelle; kein Marktvergleich.
   Täglicher Lauf durch `core-daten.yml`, Tests `tests/t12` bis `t14`, `t17`. Zahlen und Beschluss nur in
   `core/model/generated/` (`bericht.json`, `raum.json`, `lagen.json`); Reihenfolge in `core/ORIENTIERUNG.md`.
   Nicht an die App angebunden.
 - **Stabil: v19.24.3** (`OndoControl.html`, seit 16.11.2026 = Beta-Code ohne „BETA“; `version.json` bleibt 17, `APP_VERSION` 18). Davor v17 (seit 17.7.). **Gerätetest Home-Bildschirm-App 16.11. 15:16 bestanden:** Sicherung geladen,
-  755 KI-Einträge, 4 Wetten, „als App installiert“, Probekammer 22 ok, Layout 0 Auffälligkeiten. Home-App: eigener iOS-Speicher,
-  erste Sicherung dort steht aus.
+  755 KI-Einträge, 4 Wetten, „als App installiert“, Probekammer 22 ok, Layout 0 Auffälligkeiten. Home-App: eigener iOS-Speicher, erste Sicherung steht aus.
 - **Beta: v19.24.3** (`beta.html`, 16.11.2026; derzeit gleicher Code wie Stabil) — **Backlog-Punkt 95, Vollsonde:** Karte „Sonde“ unter „Mehr“ sendet
   einen Technikbericht ans ONDO-Relay (Adresse nur lokal). **Probekammer** (iframe ohne Zugriff auf den echten Speicher) führt Bildschirme, Sicherung,
-  Export, ESPN und simulierte Netzfehler aus und misst das Layout; Taste **KI-Probe** (wenige Cent). Datumsfeld-Regel (v19.24.2), Reiter-Überlauf und
-  Filter-Zähler am iPhone behoben. Tests `t15`, `t16` (nur Chromium).
+  Export, ESPN und simulierte Netzfehler aus und misst das Layout; Taste **KI-Probe** (wenige Cent). Datumsfeld-Regel (v19.24.2), Reiter-Überlauf, Filter-Zähler behoben. Tests `t15`, `t16` (nur Chromium).
   **Davor** (v19.23.0, v19.22.x, Punkt 80): `CHRONIK-2026-10.md`.
   **Kriterium (g) erneut gelaufen 16.11.2026 (Home-App, n=8): NICHT bestanden** — Sonnet 88 % gleicher Tipp (Ø 1,6 Punkte), Flash 63 % (Ø 4,6 Punkte); Schwelle ≥ 90 % und ≤ 10 Punkte. Ursache offen; Ondo entscheidet.
   **Geräte-Bewährung (Ondo, 27.9.2026, v19.21.2 BETA):** Sonnet erreichte **100 % gleicher Tipp**,

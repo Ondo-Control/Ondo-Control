@@ -4,20 +4,20 @@
  "gruppen": [
   "aufst"
  ],
- "lernstand": "L398",
- "pruefsumme": "0d1e86e6",
- "versuchteIdeen": 41,
- "huerdeAuswahl": 3.03,
+ "lernstand": "L37",
+ "pruefsumme": "af6fa60d",
+ "versuchteIdeen": 98,
+ "huerdeAuswahl": 3.28,
  "A_entwicklung": {
   "was": "Pruefsaisons, Spiele mit Aufstellungsdaten; nach Sichtung gewaehlt, Auswahl-Optimismus moeglich",
   "spiele": 2168,
-  "vorsprung": 0.01204,
-  "standardfehlerSpieltag": 0.00248,
+  "vorsprung": 0.01073,
+  "standardfehlerSpieltag": 0.00227,
   "blockbootstrap": {
-   "mittel": 0.01204,
+   "mittel": 0.01073,
    "bereich95": [
-    0.00745,
-    0.01684
+    0.00655,
+    0.01487
    ],
    "pEinseitig": 0.0005,
    "wochenBloecke": 81,
@@ -25,17 +25,17 @@
   }
  },
  "B_retrospektiv": {
-  "was": "Holdout-Saisons, Spiele mit Aufstellungsdaten; ein Blick (versiegelt.json), Experiment a: Aufstellung als bekannt vorausgesetzt",
+  "was": "Holdout-Saisons, Spiele mit Aufstellungsdaten; zwei Blicke auf dieselbe Saison (Pipeline v1 und v2, beide in versiegelt.json), Experiment a: Aufstellung als bekannt vorausgesetzt",
   "spiele": 2230,
-  "vorsprung": 0.0063,
-  "standardfehlerSpieltag": 0.00236,
+  "vorsprung": 0.00677,
+  "standardfehlerSpieltag": 0.00212,
   "blockbootstrap": {
-   "mittel": 0.0063,
+   "mittel": 0.00677,
    "bereich95": [
-    0.00128,
-    0.01126
+    0.00221,
+    0.01151
    ],
-   "pEinseitig": 0.0095,
+   "pEinseitig": 0.005,
    "wochenBloecke": 81,
    "ziehungen": 2000
   }
