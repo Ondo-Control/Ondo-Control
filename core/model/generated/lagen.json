@@ -1,0 +1,231 @@
+{
+ "schema": 1,
+ "stichtag": "2026-08-01",
+ "spiele": {
+  "lernen": 48784,
+  "pruefen": 5928
+ },
+ "versuche": [
+  {
+   "schritt": 1,
+   "gruppe": "form",
+   "zu": [],
+   "verlustPruefen": 1.0268,
+   "vorsprung": 0.00039,
+   "standardfehler": 0.00037,
+   "z": 1.08,
+   "besteHuerde": false
+  },
+  {
+   "schritt": 1,
+   "gruppe": "ort",
+   "zu": [],
+   "verlustPruefen": 1.0271,
+   "vorsprung": 0.00005,
+   "standardfehler": 0.00012,
+   "z": 0.45,
+   "besteHuerde": false
+  },
+  {
+   "schritt": 1,
+   "gruppe": "ruhe",
+   "zu": [],
+   "verlustPruefen": 1.0271,
+   "vorsprung": 0,
+   "standardfehler": 0.00004,
+   "z": -0.09,
+   "besteHuerde": false
+  },
+  {
+   "schritt": 1,
+   "gruppe": "saison",
+   "zu": [],
+   "verlustPruefen": 1.0271,
+   "vorsprung": 0.00008,
+   "standardfehler": 0.00019,
+   "z": 0.43,
+   "besteHuerde": false
+  },
+  {
+   "schritt": 1,
+   "gruppe": "staerke",
+   "zu": [],
+   "verlustPruefen": 1.0265,
+   "vorsprung": 0.00069,
+   "standardfehler": 0.00034,
+   "z": 2.02,
+   "besteHuerde": false
+  },
+  {
+   "schritt": 1,
+   "gruppe": "tempo",
+   "zu": [],
+   "verlustPruefen": 1.0271,
+   "vorsprung": 0.00002,
+   "standardfehler": 0.00017,
+   "z": 0.11,
+   "besteHuerde": false
+  }
+ ],
+ "zaehlerVersuche": 6,
+ "huerde": 2.64,
+ "gewaehlt": [],
+ "pruefen": {
+  "altesModellK6": 1.0278,
+  "nurBasisKalibriert": 1.0271,
+  "ende": 1.0271,
+  "vorsprungGegenK6": 0.00068,
+  "standardfehler": 0.00037,
+  "spiele": 5928,
+  "spieltage": 1612
+ },
+ "lernstand": {
+  "name": "L400",
+  "runde": 400,
+  "pruefsumme": "b90ff130",
+  "gruppen": [],
+  "namen": [
+   "lnH",
+   "lnD",
+   "lnA"
+  ],
+  "standardisierung": {
+   "mittel": {
+    "lnH": 0,
+    "lnD": 0,
+    "lnA": 0
+   },
+   "streuung": {
+    "lnH": 1,
+    "lnD": 1,
+    "lnA": 1
+   }
+  },
+  "gewichte": [
+   [
+    0.86951,
+    0.19432,
+    -0.11429
+   ],
+   [
+    0.1356,
+    0.77943,
+    0.12639
+   ],
+   [
+    -0.00512,
+    0.02625,
+    0.9879
+   ]
+  ]
+ },
+ "runden": [
+  {
+   "lernstand": "L0",
+   "verlustLernen": 1.0252,
+   "verlustPruefen": 1.0278,
+   "pruefsumme": "6d5e6a08"
+  },
+  {
+   "lernstand": "L25",
+   "verlustLernen": 1.025,
+   "verlustPruefen": 1.0276,
+   "pruefsumme": "6c41627c"
+  },
+  {
+   "lernstand": "L50",
+   "verlustLernen": 1.0249,
+   "verlustPruefen": 1.0274,
+   "pruefsumme": "aef12c29"
+  },
+  {
+   "lernstand": "L75",
+   "verlustLernen": 1.0249,
+   "verlustPruefen": 1.0274,
+   "pruefsumme": "41eb6deb"
+  },
+  {
+   "lernstand": "L100",
+   "verlustLernen": 1.0249,
+   "verlustPruefen": 1.0273,
+   "pruefsumme": "2a84b082"
+  },
+  {
+   "lernstand": "L125",
+   "verlustLernen": 1.0248,
+   "verlustPruefen": 1.0273,
+   "pruefsumme": "998fa3cc"
+  },
+  {
+   "lernstand": "L150",
+   "verlustLernen": 1.0248,
+   "verlustPruefen": 1.0273,
+   "pruefsumme": "a419ee6f"
+  },
+  {
+   "lernstand": "L175",
+   "verlustLernen": 1.0248,
+   "verlustPruefen": 1.0272,
+   "pruefsumme": "7cd00151"
+  },
+  {
+   "lernstand": "L200",
+   "verlustLernen": 1.0248,
+   "verlustPruefen": 1.0272,
+   "pruefsumme": "79e91bcd"
+  },
+  {
+   "lernstand": "L225",
+   "verlustLernen": 1.0248,
+   "verlustPruefen": 1.0272,
+   "pruefsumme": "7d028cb9"
+  },
+  {
+   "lernstand": "L250",
+   "verlustLernen": 1.0248,
+   "verlustPruefen": 1.0272,
+   "pruefsumme": "efc4d2a1"
+  },
+  {
+   "lernstand": "L275",
+   "verlustLernen": 1.0248,
+   "verlustPruefen": 1.0272,
+   "pruefsumme": "d93c7076"
+  },
+  {
+   "lernstand": "L300",
+   "verlustLernen": 1.0248,
+   "verlustPruefen": 1.0272,
+   "pruefsumme": "91328ed7"
+  },
+  {
+   "lernstand": "L325",
+   "verlustLernen": 1.0248,
+   "verlustPruefen": 1.0272,
+   "pruefsumme": "4de984d0"
+  },
+  {
+   "lernstand": "L350",
+   "verlustLernen": 1.0247,
+   "verlustPruefen": 1.0272,
+   "pruefsumme": "1363fdf7"
+  },
+  {
+   "lernstand": "L375",
+   "verlustLernen": 1.0247,
+   "verlustPruefen": 1.0272,
+   "pruefsumme": "37c1fed5"
+  },
+  {
+   "lernstand": "L400",
+   "verlustLernen": 1.0247,
+   "verlustPruefen": 1.0271,
+   "pruefsumme": "b90ff130"
+  }
+ ],
+ "regeln": {
+  "lernenAuf": "Rolle lernen, vor Stichtag",
+  "waehlenAuf": "Rolle pruefen, vor Stichtag",
+  "versiegelt": "alle Spiele ab Stichtag"
+ }
+}
