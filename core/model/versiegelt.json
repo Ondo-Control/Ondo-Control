@@ -7,6 +7,12 @@
    "wann": "2026-11-16",
    "was": "Altes Modell K6 gegen Pinnacle-Schlussquote (TipsAudit), 872 zugeordnete Spiele ab 2026-08. Nur Beobachtung, keine Wahl danach darauf gestuetzt. Ergebnis: Log-Loss 0,9982 gegen 0,9715.",
    "gehoert_zu": "K6"
+  },
+  {
+   "wann": "2026-11-16",
+   "was": "Einmal-Blick Holdout-Saisons (Spiele mit Aufstellungsdaten), K6 gegen Lernstand mit aufst. Sekundaerer rueckblickender Test (Experiment a), kein Markt-Anspruch. 2230 Spiele, Log-Loss K6 0.9932 gegen 0.9869, Vorsprung 0.0063 (SE 0.00236, z 2.67).",
+   "gehoert_zu": "aufst-holdout-1",
+   "einfrierung": "Commit 5f7f392"
   }
  ],
  "vorabfestlegung": {
