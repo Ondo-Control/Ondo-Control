@@ -16,4 +16,9 @@ u.pruef('Gegenprobe: kein Spiel nach dem Datenstand im Training', LP.produktion(
 u.pruef('Menge ohne gewaehlte Gruppe ist als "kein Merkmalsgewinn" gekennzeichnet', c.filter(function(o){ return o.gruppen.length===0; }).every(function(o){ return o.merkmalsgewinn===false && /KEIN Merkmalsgewinn/.test(o.hinweis); }));
 u.pruef('Gruppen stammen unveraendert aus lagen.json (keine neue Wahl)', c.every(function(o){ var m=lagen.mengen.filter(function(x){ return x.menge===o.menge; })[0]; return JSON.stringify(m.gewaehlt)===JSON.stringify(o.gruppen); }));
 u.pruef('versiegelt.json und lagen.json bleiben byte-gleich', h('versiegelt.json')===vor[0] && h('generated/lagen.json')===vor[1]);
+u.block('Nichtlineares Netz im Produktionspfad');
+var fake=JSON.parse(JSON.stringify(lagen)); fake.mengen[0].nichtlinear={ gruppen:['staerke'], uebernommen:true };
+var kl=z.filter(function(r){ return r.r.datum>='2019-08-01'; }), nlProd=LP.produktion(kl, fake, '2026-11-15', { maxRunden:3, geduld:2, lernrate:1, bremse:0.0001 });
+u.pruef('Bei uebernommenem Netz wird es im Produktionspfad mit Gewichten und Pruefsumme gespeichert', !!nlProd[0].nichtlinear && !!nlProd[0].nichtlinear.netz && /^[0-9a-f]{8}$/.test(nlProd[0].nichtlinear.pruefsumme));
+u.pruef('Gegenprobe: ohne bestandene Huerde wird kein Netz gespeichert', c.every(function(o){ return o.nichtlinear===null; }));
 process.exit(u.bilanz()?1:0);

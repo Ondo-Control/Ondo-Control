@@ -733,6 +733,8 @@
 > „16 von 16“ neben „Zurücksetzen“ im KI-Log-Filter bricht nicht mehr um (Knopf `width:auto;flex:1`, Zähler `nowrap`);
 > Test `t16` A16 mit Gegenprobe (alt 36 px, neu 18 px Höhe). Keine neue Verfassungsregel. Blueprint auf 0.166 gehoben.
 
+> **Was Fassung 0.179 ändert (16.11.2026):** Reine Synchronisierung nach Arbeitsregel M: Produktionsschalter für das nichtlineare Netz; fehlende Merkmale für kommende Spiele in STAND vermerkt. Keine neue Verfassungsregel. Blueprint auf 0.179 gehoben.
+
 > **Was Fassung 0.178 ändert (16.11.2026):** Reine Synchronisierung nach Arbeitsregel M: nichtlineares Netz als gezählter Versuch (Hürde 3,29 nach 100 Ideen) in STAND nachgeführt. Keine neue Verfassungsregel. Blueprint auf 0.178 gehoben.
 
 > **Was Fassung 0.177 ändert (16.11.2026):** Reine Synchronisierung nach Arbeitsregel M: Grenze des Merkmalskatalogs und Test der Merkmalswahl (t23) in STAND nachgeführt. Keine neue Verfassungsregel. Blueprint auf 0.177 gehoben.

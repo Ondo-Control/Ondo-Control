@@ -74,4 +74,10 @@ function trainieren(lernen, stopp, namen, st, opt){
     verlusteAuf:function(zeilen){ return verluste(beste.net, zeilen.map(function(z){ return { v:vek(z), y:z.y }; })); },
     vorhersage:function(x){ return vor(beste.net, vek({ x:x })).p; } };
 }
-module.exports={ trainieren:trainieren };
+/* Vorhersage aus einem gespeicherten Netz (Produktionspfad): { namen, standardisierung, netz } */
+function vorhersageNetz(m, x){
+  var v=m.namen.map(function(n){ return (x[n]-m.standardisierung.mittel[n])/m.standardisierung.streuung[n]; });
+  return vor(m.netz, v).p;
+}
+function pruefsumme(netz){ var t=JSON.stringify(netz,function(k,v){ return typeof v==='number'?Math.round(v*1e6)/1e6:v; }), h=2166136261; for(var i=0;i<t.length;i++){ h^=t.charCodeAt(i); h=Math.imul(h,16777619)>>>0; } return ('00000000'+h.toString(16)).slice(-8); }
+module.exports={ trainieren:trainieren, vorhersageNetz:vorhersageNetz, pruefsumme:pruefsumme };

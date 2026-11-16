@@ -8,7 +8,7 @@
    Qualitaet wird NICHT hier gemessen, sondern nur am Vorab-Archiv (prognose_archiv.js).
    =================================================================================== */
 var fs=require('fs'), path=require('path');
-var L=require('./lauf.js'), LA=require('./lagen.js'), LL=require('./lagen_lauf.js');
+var L=require('./lauf.js'), LA=require('./lagen.js'), LL=require('./lagen_lauf.js'), NL=require('./nichtlinear.js');
 function rund(x){ return Math.round(x*1e5)/1e5; }
 /* zeilen: alle Spielzeilen; gewaehlt: { menge:[gruppen] }; opt: Trainingsparameter */
 function produktion(zeilen, lagen, heute, opt){
@@ -18,7 +18,12 @@ function produktion(zeilen, lagen, heute, opt){
     var gr=m.gewaehlt, menge=m.menge==='mitAufstellung'?alle.filter(function(z){ return z.mitAufst; }):alle;
     if(!menge.length) return;
     var sp=LL.teile(menge), mod=LA.trainieren(sp.training, sp.stopp, gr, opt||LL.TRAINING);
-    ergebnis.push({ menge:m.menge, gruppen:gr, trainingsspiele:menge.length, bis:heute,
+    var nlm=null;
+    if(m.nichtlinear && m.nichtlinear.uebernommen){      /* nur bei bestandener Huerde im Messpfad */
+      var voll=LA.trainieren(sp.training, sp.stopp, m.nichtlinear.gruppen, opt||LL.TRAINING), nl=NL.trainieren(sp.training, sp.stopp, voll.namen, voll.standardisierung, LL.TRAINING_NL);
+      nlm={ namen:nl.namen, standardisierung:nl.standardisierung, netz:nl.netz, runde:nl.runde, pruefsumme:NL.pruefsumme(nl.netz) };
+    }
+    ergebnis.push({ nichtlinear:nlm, menge:m.menge, gruppen:gr, trainingsspiele:menge.length, bis:heute,
       pruefsumme:mod.pruefsumme, runde:mod.runde,
       merkmalsgewinn:gr.length>0, hinweis:gr.length?'Gruppen aus dem Messpfad uebernommen, Gewichte neu trainiert':'Keine Gruppe gewaehlt: nur Kalibrierung, KEIN Merkmalsgewinn',
       namen:mod.namen, gewichte:mod.gewichte.map(function(r){ return r.map(rund); }), standardisierung:mod.standardisierung });

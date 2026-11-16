@@ -121,7 +121,7 @@ function holdoutFreigabe(vers, kennung, pruefsumme){
   if(b.pruefsumme!==pruefsumme) return { ok:false, grund:'Lernstand hat sich seit dem protokollierten Blick geaendert (Pruefsumme '+pruefsumme+' statt '+b.pruefsumme+')' };
   return { ok:true };
 }
-module.exports={ holdoutFreigabe:holdoutFreigabe, teile:teile, zFuer:zFuer, anzahlIdeen:anzahlIdeen, lauf:lauf, waehle:waehle, sperre:sperre, HUERDE:HUERDE, TRAINING:TRAINING };
+module.exports={ holdoutFreigabe:holdoutFreigabe, teile:teile, zFuer:zFuer, anzahlIdeen:anzahlIdeen, lauf:lauf, waehle:waehle, sperre:sperre, HUERDE:HUERDE, TRAINING:TRAINING, TRAINING_NL:TRAINING_NL };
 
 if(require.main===module){
   var hier=__dirname, nurPruefen=process.argv.indexOf('--nur-pruefen')>=0;

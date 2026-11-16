@@ -14,7 +14,7 @@
    =================================================================================== */
 var fs=require('fs'), path=require('path');
 var ident=require('../data/identity.js'), schema=require('../data/schema.js'), quellen=require('../data/quellen.js');
-var P=require('./poisson.js'), LA=require('./lagen.js');
+var P=require('./poisson.js'), LA=require('./lagen.js'), NLM=require('./nichtlinear.js');
 
 function tageDazu(d,n){ var x=new Date(d+'T00:00:00Z'); x.setUTCDate(x.getUTCDate()+n); return x.toISOString().slice(0,10); }
 function r3(x){ return Math.round(x*1000)/1000; }
@@ -29,7 +29,8 @@ function prognose(opt){
   var lsOhne={ namen:LA.namenVon([]), standardisierung:{ mittel:{lnH:0,lnD:0,lnA:0}, streuung:{lnH:1,lnD:1,lnA:1} }, gewichte:[[1,0,0],[0,1,0],[0,0,1]] }, lagenStand='L0 (keine Gruppe)';
   /* Produktionspfad: taeglich neu trainierte Gewichte der Menge 'alle' (Kalibrierung); ohne Datei bleibt L0 */
   var pa=opt.produktion && (opt.produktion.mengen||[]).filter(function(m){ return m.menge==='alle' && m.namen && m.gewichte; })[0];
-  if(pa){ lsOhne={ namen:pa.namen, standardisierung:pa.standardisierung, gewichte:pa.gewichte }; lagenStand='Produktion alle '+pa.pruefsumme+' ('+pa.trainingsspiele+' Spiele bis '+pa.bis+')'+(pa.merkmalsgewinn?'':', kein Merkmalsgewinn'); }
+  var nlProd=pa&&pa.nichtlinear?pa.nichtlinear:null;
+  if(pa){ lsOhne={ namen:pa.namen, standardisierung:pa.standardisierung, gewichte:pa.gewichte }; lagenStand='Produktion alle '+pa.pruefsumme+' ('+pa.trainingsspiele+' Spiele bis '+pa.bis+')'+(pa.merkmalsgewinn?'':', kein Merkmalsgewinn')+(nlProd?', nichtlineares Netz '+nlProd.pruefsumme+' vorhanden, aber NICHT eingesetzt (Merkmale fuer kommende Spiele fehlen)':''); }
   schema.LIGEN.forEach(function(l){
     var s=quellen.openfootballSaisons(opt.ofWurzel, l.id); if(!s.length) return;
     quellen.openfootballLesen(opt.ofWurzel, l.id, s[s.length-1]).forEach(function(r){
@@ -40,6 +41,7 @@ function prognose(opt){
       if(!v.ok){ eintrag.prognose=null; eintrag.grund=v.grund; eintrag.position={ empfehlung:'keine Wette', grund:'keine Prognose moeglich' }; ohne++; spiele.push(eintrag); return; }
       var x={ lnH:Math.log(v.p.sieg_heim), lnD:Math.log(v.p.remis), lnA:Math.log(v.p.sieg_gast) };
       var q=LA.vorhersageMitFallback(lsMit, lsOhne, x, {});      /* keine Aufstellung vorhanden -> Rueckfall */
+      /* Netz nur einsetzbar, wenn die Merkmale (Form, Staerke ...) fuer kommende Spiele gebaut sind: noch nicht gebaut, daher bleibt es beim linearen Stand */
       var p=q.p, tipp=p[0]>=p[1]&&p[0]>=p[2]?'Heimsieg':(p[2]>=p[1]?'Auswaertssieg':'Remis');
       eintrag.prognose={ heimsieg:r3(p[0]), remis:r3(p[1]), auswaertssieg:r3(p[2]) };
       eintrag.tipp=tipp; eintrag.erwarteteTore={ heim:r3(v.lh), gast:r3(v.la) }; eintrag.haeufigsteTorfolge=haeufigstes(v.lh, v.la);

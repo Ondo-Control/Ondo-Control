@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 16.11.2026, Fassung 179, v19.24.3*
+*Die aktuelle Wahrheit. Stand: 16.11.2026, Fassung 180, v19.24.3*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -205,19 +205,19 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   `beta.html` v19.9.0, 12.9.2026, 16:17 Uhr UTC (Commit-Zeitstempel). Stand **vor** Ondos Nachbesserungen
   zum Trainingsraum (Backlog-Punkt 77), falls zurückgesetzt werden muss.
 - **Ondo Core (Backlog-Punkt 94, geliefert 14.11. und 16.11.2026) — `beta.html` unverändert:**
-  `core/data/` (geprüfter Spielbestand), `core/model/` (Modell, Rücktest),
+  `core/data/` (geprüfter Spielbestand), `core/model/`,
   `core/REGELN.md` (Ondos Regeln als Textdatei, vom Core durchgesetzt),
   `core/model/raum.js` (Trainingsraum in Runden mit Lernständen, Zähler in `ideen.json`).
   **Neu 16.11.2026: „Lagen lernen“** (`lagen_lauf.js`, Stichtag 1.8.2026, `versiegelt.json`, t17): Core wählt Gruppen selbst;
   Hürde z = 3,29 (100 Ideen, `ideen.json`). Nur **Aufstellung/Marktwert** besteht (`aufstellung.json`, 7 Ligen, bis 6.7.2026). **Pipeline v2**. Bericht (`lagen_bericht.json`):
   **(A)** Prüfsaisons 0,9918 → 0,9811; **(B)** Holdout, zwei Blicke auf dieselbe Saison, Experiment a: 0,9933 → 0,9866, Blockbootstrap-p 0,005 (Hinweis);
-  **(C)** vorab handelbar: offen. Gatter: Vorab-Zeitstempel. Keine freie Quelle geprüft; kein Marktvergleich. **Grenze:** Merkmalskatalog fest; Wahl und Gewichte gelernt (t22, t23). Nichtlineares Netz (`nichtlinear.js`, t24): z 2,92, Hürde 3,29 verfehlt. Neue Merkmale erfindet er nicht.
+  **(C)** vorab handelbar: offen. Gatter: Vorab-Zeitstempel. Keine freie Quelle geprüft; kein Marktvergleich. **Grenze:** Merkmalskatalog fest; Wahl und Gewichte gelernt (t22, t23). Netz (`nichtlinear.js`, t24): z 2,92, Hürde 3,29 verfehlt; Einsatz offen (Merkmale fehlen). Er erfindet keine neuen Merkmale.
   **Prognose je Spiel** (`prognose.json`), „keine Wette“. **Quote-Gatter** `quoten.js` (t19), Abruf `quoten_holen.js`, Secret `ODDS_API_KEY`. **Vorab-Archiv** `prognose_archiv.js` (t20), **Produktionspfad** `lagen_produktion.js` (t21).
   Lauf `core-daten.yml`, Tests `t12`–`t14`, `t17`–`t24`. Zahlen nur in
   `core/model/generated/`; Reihenfolge `core/ORIENTIERUNG.md`.
   Keine App-Anbindung.
-- **Stabil: v19.24.3** (`OndoControl.html`, seit 16.11.2026 = Beta-Code ohne „BETA“; `version.json` bleibt 17, `APP_VERSION` 18). Davor v17 (seit 17.7.). **Gerätetest Home-Bildschirm-App 16.11. 15:16 bestanden:** Sicherung geladen,
-  755 KI-Einträge, 4 Wetten, „als App installiert“, Probekammer 22 ok, Layout 0 Auffälligkeiten. Home-App: eigener iOS-Speicher, erste Sicherung steht aus.
+- **Stabil: v19.24.3** (`OndoControl.html`, seit 16.11.2026 = Beta-Code ohne „BETA“; `version.json` bleibt 17, `APP_VERSION` 18). Davor v17 (seit 17.7.). **Gerätetest Home-App 16.11. 15:16 bestanden:** Sicherung geladen,
+  755 KI-Einträge, 4 Wetten, „als App installiert“, Probekammer 22 ok, Layout 0 Auffälligkeiten. Home-App: eigener iOS-Speicher, erste Sicherung offen.
 - **Beta: v19.24.3** (`beta.html`, 16.11.2026; derzeit gleicher Code wie Stabil) — **Backlog-Punkt 95, Vollsonde:** Karte „Sonde“ unter „Mehr“ sendet
   einen Technikbericht ans ONDO-Relay (Adresse nur lokal). **Probekammer** (iframe ohne Zugriff auf den echten Speicher) führt Bildschirme, Sicherung,
   Export, ESPN und simulierte Netzfehler aus und misst das Layout; Taste **KI-Probe** (wenige Cent). Datumsfeld-Regel (v19.24.2), Reiter-Überlauf, Filter-Zähler behoben. Tests `t15`, `t16` (nur Chromium).

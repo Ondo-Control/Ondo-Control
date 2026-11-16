@@ -23,7 +23,7 @@ function lauf(regel){
 }
 u.block('Wechselwirkung (XOR)');
 var A=lauf(true);
-u.pruef('Optimum '+A.opt.toFixed(4)+' · linear '+A.lin.toFixed(4)+' · nichtlinear '+A.nl.toFixed(4), true);
+u.pruef('Optimum '+A.opt.toFixed(4)+' · linear '+A.lin.toFixed(4)+' · nichtlinear '+A.nl.toFixed(4)+' (Reihenfolge Optimum < nichtlinear < linear)', A.opt<A.nl && A.nl<A.lin);
 u.pruef('Linear findet die Regel nicht (nahe Start, weit ueber dem Optimum)', A.lin-A.opt>0.2);
 u.pruef('Nichtlinear findet sie: schliesst mindestens 75 % der Luecke zum Optimum auf nie gelernten Spielen', (A.lin-A.nl)/(A.lin-A.opt)>=0.75);
 u.pruef('Unterschied ist stark gesichert (z gegen linear > 10)', A.vgl.differenz/A.vgl.standardfehler>10);

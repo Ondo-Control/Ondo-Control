@@ -3,6 +3,7 @@
  "hinweis": "Produktionspfad, aendert versiegelt.json nicht; Qualitaet nur am Vorab-Archiv gemessen.",
  "mengen": [
   {
+   "nichtlinear": null,
    "menge": "alle",
    "gruppen": [],
    "trainingsspiele": 68755,
@@ -47,6 +48,7 @@
    }
   },
   {
+   "nichtlinear": null,
    "menge": "mitAufstellung",
    "gruppen": [
     "aufst"
