@@ -20,7 +20,7 @@ var zeilen=LA.zeilenBauen(bestand, modell.parameter, aufst);
 function menge(rolle, nurAuf){ return zeilen.filter(function(z){ return (!nurAuf||z.mitAufst) && z.r.rolle===rolle && !z.r.zusatz && z.r.datum<ST; }); }
 var m=lagen.mengen.filter(function(x){ return x.menge==='mitAufstellung'; })[0];
 var lernen=menge('lernen',true), pruefen=menge('pruefen',true), holdout=menge('holdout',true);
-var lernstand=LA.trainieren(lernen, pruefen, m.gewaehlt, LL.TRAINING);
+var sp=LL.teile(lernen), lernstand=LA.trainieren(sp.training, sp.stopp, m.gewaehlt, LL.TRAINING);
 if(lernstand.pruefsumme!==m.lernstand.pruefsumme) throw new Error('Lernstand stimmt nicht mit lagen.json ueberein.');
 var l0={ namen:LA.namenVon([]), standardisierung:{ mittel:{lnH:0,lnD:0,lnA:0}, streuung:{lnH:1,lnD:1,lnA:1} }, gewichte:[[1,0,0],[0,1,0],[0,0,1]] };
 function teil(zl){ var a=LA.verlusteAuf(l0,zl), b=LA.verlusteAuf(lernstand,zl), v=LA.vergleich(zl,a,b), bb=LA.blockBootstrap(zl,a,b,ZIEH,START);

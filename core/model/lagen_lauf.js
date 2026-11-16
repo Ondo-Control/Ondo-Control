@@ -37,17 +37,26 @@ function sperre(zeilenListen, stichtag){
   });
 }
 
+/* Innerer Stopp-Split: Die letzten 15 % der Lernspiele (nach Datum) dienen NUR dem Abbruch des Trainings
+   (welche Runde ist die beste). Die Gewichte lernen auf den uebrigen 85 %. Die Pruefsaisons dienen danach
+   ausschliesslich dem Vergleich der Gruppen. So wird auf den Pruefsaisons nicht zugleich Runde und Gruppe gewaehlt. */
+function teile(lernen){
+  var d=lernen.map(function(z){ return z.r.datum; }).sort(), grenze=d[Math.floor(d.length*0.85)];
+  return { training:lernen.filter(function(z){ return z.r.datum<grenze; }), stopp:lernen.filter(function(z){ return z.r.datum>=grenze; }), grenze:grenze };
+}
 /* Wahl der Gruppen, vorwaerts, auf EINER Spielmenge. Gibt Versuche, Wahl und Lernstand zurueck. */
 function waehle(name, lernen, pruefen, kandidaten, opt){
-  var versuche=[], gewaehlt=[], aktuell=LA.trainieren(lernen, pruefen, [], opt), basis=aktuell;
+  var sp=teile(lernen), tr=sp.training, stopp=sp.stopp;
+  function trainiere(gr){ var m=LA.trainieren(tr, stopp, gr, opt), v=LA.verlusteAuf(m, pruefen); m.verlustPruefen=avg(v); return m; }
+  var versuche=[], gewaehlt=[], aktuell=trainiere([]), basis=aktuell;
   var verluste=LA.verlusteAuf(aktuell, pruefen), stop=false;
   while(!stop){
     var rest=kandidaten.filter(function(g){ return gewaehlt.indexOf(g)<0; }), beste=null;
     if(!rest.length) break;
     rest.forEach(function(g){
-      var m=LA.trainieren(lernen, pruefen, gewaehlt.concat([g]), opt);
+      var m=trainiere(gewaehlt.concat([g]));
       var v=LA.vergleich(pruefen, verluste, LA.verlusteAuf(m, pruefen));     /* aktuell minus neu: positiv = besser */
-      var z=v.differenz/v.standardfehler;
+      var z=v.standardfehler>0 ? v.differenz/v.standardfehler : 0;
       versuche.push({ menge:name, schritt:gewaehlt.length+1, gruppe:g, zu:gewaehlt.slice(), verlustPruefen:round(m.verlustPruefen), vorsprung:round(v.differenz,5), standardfehler:round(v.standardfehler,5), z:round(z,2), besteHuerde:z>=HUERDE });
       if(z>=HUERDE && (!beste || z>beste.z)) beste={ g:g, m:m, z:z };
     });
@@ -58,7 +67,7 @@ function waehle(name, lernen, pruefen, kandidaten, opt){
   var vL0=LA.verlusteAuf(l0, pruefen), vEnde=LA.verlusteAuf(aktuell, pruefen), vgl=LA.vergleich(pruefen, vL0, vEnde);
   var kompakt=aktuell.versionen.filter(function(v,i){ return i===0 || i%25===0 || i===aktuell.versionen.length-1; });
   return {
-    menge:name, spiele:{ lernen:lernen.length, pruefen:pruefen.length },
+    menge:name, spiele:{ lernen:lernen.length, training:tr.length, stopp:stopp.length, stoppAb:sp.grenze, pruefen:pruefen.length },
     versuche:versuche, gewaehlt:gewaehlt,
     pruefen:{ altesModellK6:round(avg(vL0)), nurBasisKalibriert:round(basis.verlustPruefen), ende:round(aktuell.verlustPruefen),
               vorsprungGegenK6:round(vgl.differenz,5), standardfehler:round(vgl.standardfehler,5), spiele:vgl.n, spieltage:vgl.spieltage },
@@ -90,7 +99,7 @@ function avg(a){ var s=0; a.forEach(function(x){ s+=x; }); return s/a.length; }
 function round(x,n){ var f=Math.pow(10,n===undefined?4:n); return Math.round(x*f)/f; }
 function rundeObj(st){ var o={ mittel:{}, streuung:{} }; Object.keys(st.mittel).forEach(function(k){ o.mittel[k]=round(st.mittel[k],6); o.streuung[k]=round(st.streuung[k],6); }); return o; }
 
-module.exports={ zFuer:zFuer, anzahlIdeen:anzahlIdeen, lauf:lauf, waehle:waehle, sperre:sperre, HUERDE:HUERDE, TRAINING:TRAINING };
+module.exports={ teile:teile, zFuer:zFuer, anzahlIdeen:anzahlIdeen, lauf:lauf, waehle:waehle, sperre:sperre, HUERDE:HUERDE, TRAINING:TRAINING };
 
 if(require.main===module){
   var hier=__dirname, nurPruefen=process.argv.indexOf('--nur-pruefen')>=0;

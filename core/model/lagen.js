@@ -46,10 +46,14 @@ function formWert(liste, n){
    Zeile = { r (Spiel), x (Merkmale, Zahl je Name), y (0 Heim,1 Remis,2 Gast) }.
    Die Merkmale eines Spiels entstehen, BEVOR sein Ergebnis in irgendeinen Zaehler eingeht. */
 function zeilenFuerLand(spiele, par){
-  var z=M.neuerZustand(), hist={}, elo={}, ligaVon={}, saison={}, zeilen=[];
+  var z=M.neuerZustand(), hist={}, elo={}, ligaVon={}, saison={}, zeilen=[], nachher=[], tag=null;
+  /* Alle Spiele EINES Kalendertags werden mit demselben Stand vom Vortag vorhergesagt; erst wenn der Tag zu Ende ist,
+     gehen ihre Ergebnisse in Staerken, Form, Elo und Ligawerte ein (kein Spiel nutzt das Ergebnis eines Spiels desselben Tags). */
+  function tagAbschliessen(){ nachher.forEach(function(f){ f(); }); nachher=[]; }
   spiele.forEach(function(r){
-    /* 1. Basis des alten Modells: vorhersagen, dann lernen (wie in lauf.js) */
-    var v=M.schritt(z, r, par, true);
+    if(r.datum!==tag){ tagAbschliessen(); tag=r.datum; }
+    /* 1. Basis des alten Modells: nur vorhersagen; gelernt wird erst am Tagesende */
+    var v=M.schritt(z, r, par, false);
     var H=r.heimKey, G=r.gastKey;
     hist[H]=hist[H]||[]; hist[G]=hist[G]||[];
     var hh=hist[H], hg=hist[G];
@@ -81,14 +85,18 @@ function zeilenFuerLand(spiele, par){
     };
     var y=r.th>r.tg?0:r.th===r.tg?1:2;
     zeilen.push({ r:r, x:x, y:y });
-    /* 3. erst jetzt Ergebnis einbuchen */
+    /* 3. erst am Ende des Kalendertags Ergebnis einbuchen und lernen */
+    nachher.push(function(){
+      M.schritt(z, r, par, true);
     var pH=r.th>r.tg?3:r.th===r.tg?1:0, pG=r.tg>r.th?3:r.th===r.tg?1:0;
     var eH={ datum:r.datum, ort:'h', gf:r.th, ga:r.tg, pts:pH }, eG={ datum:r.datum, ort:'a', gf:r.tg, ga:r.th, pts:pG };
     hh.push(eH); hg.push(eG); sH.push(eH); sG.push(eG);
     var erw=1/(1+Math.pow(10, -((elo[H]+ELO_HEIM)-elo[G])/400)), ist=r.th>r.tg?1:r.th===r.tg?0.5:0;
     var marge=Math.min(3, Math.abs(r.th-r.tg)), mult=marge<=1?1:marge===2?1.5:1.75;
     var dlt=ELO_K*mult*(ist-erw); elo[H]+=dlt; elo[G]-=dlt;
+    });
   });
+  tagAbschliessen();
   return zeilen;
 }
 

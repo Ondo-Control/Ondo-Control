@@ -35,6 +35,18 @@ u.pruef('Gegenprobe-Vorbereitung: nur Spiel 20 selbst hat ein anderes Ergebnis',
 var irgendwoAnders=false; for(var k=21;k<24;k++) if(JSON.stringify(basis[k].x)!==JSON.stringify(spaeter[k].x)) irgendwoAnders=true;
 u.pruef('Gegenprobe: dasselbe Ergebnis veraendert sehr wohl spaetere Spiele (Test ist nicht blind)', irgendwoAnders);
 
+u.block('A2. Gleicher Kalendertag: kein Spiel nutzt das Ergebnis eines Spiels desselben Tags');
+function tagReihe(erg){
+  var s=[]; function g(i,d,h,a,th,tg){ s.push(sp(i,d,h,a,th,tg)); }
+  g(0,'2025-09-01','a','b',1,0); g(1,'2025-09-01','c','d',2,2);
+  g(2,'2025-09-08','a','c',erg[0],erg[1]); g(3,'2025-09-08','b','d',1,1);
+  g(4,'2025-09-15','a','d',0,0); g(5,'2025-09-15','b','c',3,1);
+  return s;
+}
+var t1=LA.zeilenFuerLand(tagReihe([1,0]), PAR), t2=LA.zeilenFuerLand(tagReihe([5,4]), PAR);
+u.pruef('Ergebnis von Spiel 2 aendert die Merkmale von Spiel 3 (gleicher Tag 8.9.) NICHT', JSON.stringify(t1[3].x)===JSON.stringify(t2[3].x) && JSON.stringify(t1[2].x)===JSON.stringify(t2[2].x));
+u.pruef('Gegenprobe: dasselbe Ergebnis aendert die Merkmale des FOLGENDEN Tags (15.9.)', JSON.stringify(t1[4].x)!==JSON.stringify(t2[4].x) || JSON.stringify(t1[5].x)!==JSON.stringify(t2[5].x));
+
 u.block('B. Stichtag-Sperre');
 var SP='2026-08-01';
 function z(datum){ return [{ r:{ id:'x', datum:datum }, x:{}, y:0 }]; }

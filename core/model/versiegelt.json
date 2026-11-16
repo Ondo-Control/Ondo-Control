@@ -23,5 +23,17 @@
   "blick": "Einmal: Holdout-Saison je Liga (splits.json), nur Spiele mit Aufstellungsdaten, K6 gegen gewaehlten Lernstand, identische Spiele, Standardfehler nach Spieltag.",
   "bewertung": "Nur sekundaerer, rueckblickender Bestaetigungstest (Experiment a: Aufstellung als bekannt vorausgesetzt). Kein Anspruch gegen den Markt, kein Anspruch auf vorab handelbar, kein jungfraeulicher Holdout (K6 sah ihn am 14.11.).",
   "gatter": "Ein Lernstand mit aufst darf nur mit Vorab-Zeitstempel rechnen (vorhersageGeprueft). Echter Abschlusstest wartet auf rechtlich saubere Quelle mit Zeitstempeln."
- }
+ },
+ "pipelineVersionen": [
+  {
+   "name": "v1",
+   "stand": "Commit 5f7f392 (eingefroren), Einmal-Blick Holdout aufst-holdout-1",
+   "schwaechen": "Spiele desselben Kalendertags nutzten Ergebnisse voneinander (nur ueber Ligawerte, Aenderung unter 0,0002 gemessen); Pruefsaisons wurden zugleich zum Abbruch des Trainings und zur Wahl der Gruppen benutzt (doppelte Auswahl). Beides von ChatGPT am 16.11.2026 gefunden und am Code bestaetigt."
+  },
+  {
+   "name": "v2",
+   "stand": "Kalendertag-Korrektur in lagen.js (Ergebnisse erst am Tagesende eingebucht); innerer Stopp-Split in lagen_lauf.js (letzte 15 % der Lernspiele nur zum Abbruch, Pruefsaisons nur zum Vergleich der Gruppen); Hürde 3,28 nach 98 Ideen.",
+   "blick": "aufst-holdout-2 = zweiter Blick auf DIESELBE, schon gesehene Holdout-Saison; nur retrospektiver Hinweis, kein jungfraeulicher Test."
+  }
+ ]
 }
