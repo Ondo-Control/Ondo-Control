@@ -58,12 +58,21 @@ var txt=JSON.stringify(m1);
 u.pruef('Lernstand nennt keine Mannschaft', !/"a"|"b"|"c"|"d"|heimKey|gastKey/.test(JSON.stringify({ n:m1.namen, g:m1.gewichte, s:m1.standardisierung })));
 u.pruef('Lernstand hat nur Gewichte je Merkmal (3 Klassen x Merkmale)', m1.gewichte.every(function(r){ return r.length===m1.namen.length; }));
 
+u.block('C2. Aufstellungs-Datei enthaelt nur eigene Zahlen');
+var af=path.join(REPO,'core/data/generated/aufstellung.json');
+if(fs.existsSync(af)){
+  var A=JSON.parse(fs.readFileSync(af,'utf8')), ids=Object.keys(A.werte);
+  u.pruef('aufstellung.json: Spalten und Werte je Spiel (3 Zahlen)', A.spalten.length===3 && ids.length===A.zugeordnet && ids.every(function(i){ var w=A.werte[i]; return w.length===3 && w.every(function(x){ return typeof x==='number' && isFinite(x); }); }));
+  u.pruef('aufstellung.json: keine Namen, keine Spieler-IDs, keine Rohdaten', !/player|spieler_id|market_value|"home"|"away"/i.test(JSON.stringify(Object.keys(A))+A.hinweis.replace(/Marktwert|Transfermarkt/g,'')));
+}
 u.block('D. Abgelegte Datei');
 var f=path.join(REPO,'core/model/generated/lagen.json');
 if(fs.existsSync(f)){
   var e=JSON.parse(fs.readFileSync(f,'utf8'));
   u.pruef('lagen.json: Stichtag wie in versiegelt.json', e.stichtag===vers.stichtag);
-  u.pruef('lagen.json: Zaehler = Zahl der Versuche in der Liste', e.zaehlerVersuche===e.versuche.length && e.versuche.length>=LA.GRUPPEN.length);
-  u.pruef('lagen.json: jede gewaehlte Gruppe hat die Huerde bestanden', e.gewaehlt.every(function(g){ return e.versuche.some(function(v){ return v.gruppe===g && v.besteHuerde; }); }));
+  var vs=[]; e.mengen.forEach(function(m){ m.versuche.forEach(function(v){ vs.push(v); }); });
+  u.pruef('lagen.json: Zaehler = Zahl der Versuche in allen Mengen', e.zaehlerVersuche===vs.length && vs.length>=LA.GRUPPEN.length);
+  u.pruef('lagen.json: jede gewaehlte Gruppe hat die Huerde bestanden', e.mengen.every(function(m){ return m.gewaehlt.every(function(g){ return m.versuche.some(function(v){ return v.gruppe===g && v.besteHuerde; }); }); }));
+  u.pruef('lagen.json: keine Gruppe ohne bestandene Huerde gewaehlt (Gegenprobe zur Wahl)', e.mengen.every(function(m){ return m.versuche.filter(function(v){ return v.besteHuerde; }).length>=m.gewaehlt.length; }));
 } else u.pruef('lagen.json noch nicht erzeugt (wird beim ersten Lauf angelegt)', true);
 process.exit(u.bilanz()?1:0);

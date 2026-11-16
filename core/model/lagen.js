@@ -22,9 +22,12 @@ var MERKMALE = {
   ruhe:   ['dRuhe'],
   saison: ['dSaisonPpg','dSaisonGd'],
   staerke:['dElo'],
-  tempo:  ['tempo10']
+  tempo:  ['tempo10'],
+  /* Aufstellung (aus aufstellung.json): nur fuer Spiele mit Daten; sonst Unterschied 0 */
+  aufst:  ['dLnStart','dLnBest','dFehlt']
 };
-var GRUPPEN = ['form','ort','ruhe','saison','staerke','tempo'];   /* waehlbare Gruppen */
+var GRUPPEN = ['form','ort','ruhe','saison','staerke','tempo'];   /* waehlbare Gruppen, alle Spiele */
+var GRUPPEN_AUFST = GRUPPEN.concat(['aufst']);                  /* waehlbar nur auf Spielen mit Aufstellungsdaten */
 
 var PRIOR_PPG = 1.4, PRIOR_N = 3, ELO_START = 1500, ELO_K = 20, ELO_HEIM = 60, ELO_STUFE = 80;
 var LAENDER_MITTEL_TORE = 2.7;
@@ -90,10 +93,15 @@ function zeilenFuerLand(spiele, par){
 }
 
 /* Alle Zeilen aller Laender. bestand = Ergebnis von lauf.bestandLaden. */
-function zeilenBauen(bestand, par){
+function zeilenBauen(bestand, par, aufst){
   var alle=[];
   Object.keys(bestand.jeLand).sort().forEach(function(land){
-    zeilenFuerLand(bestand.jeLand[land], par).forEach(function(z){ alle.push(z); });
+    zeilenFuerLand(bestand.jeLand[land], par).forEach(function(z){
+      var a=aufst&&aufst.werte&&aufst.werte[z.r.id];
+      z.mitAufst=!!a;
+      MERKMALE.aufst.forEach(function(n,i){ z.x[n]=a?a[i]:0; });     /* fehlt: Unterschied 0 = neutral */
+      alle.push(z);
+    });
   });
   return alle;
 }
@@ -211,6 +219,6 @@ function vergleich(zeilen, va, vb){
   return { n:N, spieltage:ls.length, differenz:m, standardfehler:se };
 }
 
-module.exports={ MERKMALE:MERKMALE, GRUPPEN:GRUPPEN, zeilenFuerLand:zeilenFuerLand, zeilenBauen:zeilenBauen,
+module.exports={ GRUPPEN_AUFST:GRUPPEN_AUFST, MERKMALE:MERKMALE, GRUPPEN:GRUPPEN, zeilenFuerLand:zeilenFuerLand, zeilenBauen:zeilenBauen,
   namenVon:namenVon, trainieren:trainieren, vorhersage:vorhersage, verlusteAuf:verlusteAuf, vergleich:vergleich,
   pruefsumme:pruefsumme, wahrsch:wahrsch };

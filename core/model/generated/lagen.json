@@ -1,231 +1,582 @@
 {
- "schema": 1,
+ "schema": 2,
  "stichtag": "2026-08-01",
- "spiele": {
-  "lernen": 48784,
-  "pruefen": 5928
- },
- "versuche": [
-  {
-   "schritt": 1,
-   "gruppe": "form",
-   "zu": [],
-   "verlustPruefen": 1.0268,
-   "vorsprung": 0.00039,
-   "standardfehler": 0.00037,
-   "z": 1.08,
-   "besteHuerde": false
-  },
-  {
-   "schritt": 1,
-   "gruppe": "ort",
-   "zu": [],
-   "verlustPruefen": 1.0271,
-   "vorsprung": 0.00005,
-   "standardfehler": 0.00012,
-   "z": 0.45,
-   "besteHuerde": false
-  },
-  {
-   "schritt": 1,
-   "gruppe": "ruhe",
-   "zu": [],
-   "verlustPruefen": 1.0271,
-   "vorsprung": 0,
-   "standardfehler": 0.00004,
-   "z": -0.09,
-   "besteHuerde": false
-  },
-  {
-   "schritt": 1,
-   "gruppe": "saison",
-   "zu": [],
-   "verlustPruefen": 1.0271,
-   "vorsprung": 0.00008,
-   "standardfehler": 0.00019,
-   "z": 0.43,
-   "besteHuerde": false
-  },
-  {
-   "schritt": 1,
-   "gruppe": "staerke",
-   "zu": [],
-   "verlustPruefen": 1.0265,
-   "vorsprung": 0.00069,
-   "standardfehler": 0.00034,
-   "z": 2.02,
-   "besteHuerde": false
-  },
-  {
-   "schritt": 1,
-   "gruppe": "tempo",
-   "zu": [],
-   "verlustPruefen": 1.0271,
-   "vorsprung": 0.00002,
-   "standardfehler": 0.00017,
-   "z": 0.11,
-   "besteHuerde": false
-  }
- ],
- "zaehlerVersuche": 6,
  "huerde": 2.64,
- "gewaehlt": [],
- "pruefen": {
-  "altesModellK6": 1.0278,
-  "nurBasisKalibriert": 1.0271,
-  "ende": 1.0271,
-  "vorsprungGegenK6": 0.00068,
-  "standardfehler": 0.00037,
-  "spiele": 5928,
-  "spieltage": 1612
- },
- "lernstand": {
-  "name": "L400",
-  "runde": 400,
-  "pruefsumme": "b90ff130",
-  "gruppen": [],
-  "namen": [
-   "lnH",
-   "lnD",
-   "lnA"
-  ],
-  "standardisierung": {
-   "mittel": {
-    "lnH": 0,
-    "lnD": 0,
-    "lnA": 0
+ "zaehlerVersuche": 19,
+ "mengen": [
+  {
+   "menge": "alle",
+   "spiele": {
+    "lernen": 48784,
+    "pruefen": 5928
    },
-   "streuung": {
-    "lnH": 1,
-    "lnD": 1,
-    "lnA": 1
-   }
-  },
-  "gewichte": [
-   [
-    0.86951,
-    0.19432,
-    -0.11429
+   "versuche": [
+    {
+     "menge": "alle",
+     "schritt": 1,
+     "gruppe": "form",
+     "zu": [],
+     "verlustPruefen": 1.0268,
+     "vorsprung": 0.00039,
+     "standardfehler": 0.00037,
+     "z": 1.08,
+     "besteHuerde": false
+    },
+    {
+     "menge": "alle",
+     "schritt": 1,
+     "gruppe": "ort",
+     "zu": [],
+     "verlustPruefen": 1.0271,
+     "vorsprung": 0.00005,
+     "standardfehler": 0.00012,
+     "z": 0.45,
+     "besteHuerde": false
+    },
+    {
+     "menge": "alle",
+     "schritt": 1,
+     "gruppe": "ruhe",
+     "zu": [],
+     "verlustPruefen": 1.0271,
+     "vorsprung": 0,
+     "standardfehler": 0.00004,
+     "z": -0.09,
+     "besteHuerde": false
+    },
+    {
+     "menge": "alle",
+     "schritt": 1,
+     "gruppe": "saison",
+     "zu": [],
+     "verlustPruefen": 1.0271,
+     "vorsprung": 0.00008,
+     "standardfehler": 0.00019,
+     "z": 0.43,
+     "besteHuerde": false
+    },
+    {
+     "menge": "alle",
+     "schritt": 1,
+     "gruppe": "staerke",
+     "zu": [],
+     "verlustPruefen": 1.0265,
+     "vorsprung": 0.00069,
+     "standardfehler": 0.00034,
+     "z": 2.02,
+     "besteHuerde": false
+    },
+    {
+     "menge": "alle",
+     "schritt": 1,
+     "gruppe": "tempo",
+     "zu": [],
+     "verlustPruefen": 1.0271,
+     "vorsprung": 0.00002,
+     "standardfehler": 0.00017,
+     "z": 0.11,
+     "besteHuerde": false
+    }
    ],
-   [
-    0.1356,
-    0.77943,
-    0.12639
-   ],
-   [
-    -0.00512,
-    0.02625,
-    0.9879
+   "gewaehlt": [],
+   "pruefen": {
+    "altesModellK6": 1.0278,
+    "nurBasisKalibriert": 1.0271,
+    "ende": 1.0271,
+    "vorsprungGegenK6": 0.00068,
+    "standardfehler": 0.00037,
+    "spiele": 5928,
+    "spieltage": 1612
+   },
+   "lernstand": {
+    "name": "L400",
+    "runde": 400,
+    "pruefsumme": "b90ff130",
+    "gruppen": [],
+    "namen": [
+     "lnH",
+     "lnD",
+     "lnA"
+    ],
+    "standardisierung": {
+     "mittel": {
+      "lnH": 0,
+      "lnD": 0,
+      "lnA": 0
+     },
+     "streuung": {
+      "lnH": 1,
+      "lnD": 1,
+      "lnA": 1
+     }
+    },
+    "gewichte": [
+     [
+      0.86951,
+      0.19432,
+      -0.11429
+     ],
+     [
+      0.1356,
+      0.77943,
+      0.12639
+     ],
+     [
+      -0.00512,
+      0.02625,
+      0.9879
+     ]
+    ]
+   },
+   "runden": [
+    {
+     "lernstand": "L0",
+     "verlustLernen": 1.0252,
+     "verlustPruefen": 1.0278,
+     "pruefsumme": "6d5e6a08"
+    },
+    {
+     "lernstand": "L25",
+     "verlustLernen": 1.025,
+     "verlustPruefen": 1.0276,
+     "pruefsumme": "6c41627c"
+    },
+    {
+     "lernstand": "L50",
+     "verlustLernen": 1.0249,
+     "verlustPruefen": 1.0274,
+     "pruefsumme": "aef12c29"
+    },
+    {
+     "lernstand": "L75",
+     "verlustLernen": 1.0249,
+     "verlustPruefen": 1.0274,
+     "pruefsumme": "41eb6deb"
+    },
+    {
+     "lernstand": "L100",
+     "verlustLernen": 1.0249,
+     "verlustPruefen": 1.0273,
+     "pruefsumme": "2a84b082"
+    },
+    {
+     "lernstand": "L125",
+     "verlustLernen": 1.0248,
+     "verlustPruefen": 1.0273,
+     "pruefsumme": "998fa3cc"
+    },
+    {
+     "lernstand": "L150",
+     "verlustLernen": 1.0248,
+     "verlustPruefen": 1.0273,
+     "pruefsumme": "a419ee6f"
+    },
+    {
+     "lernstand": "L175",
+     "verlustLernen": 1.0248,
+     "verlustPruefen": 1.0272,
+     "pruefsumme": "7cd00151"
+    },
+    {
+     "lernstand": "L200",
+     "verlustLernen": 1.0248,
+     "verlustPruefen": 1.0272,
+     "pruefsumme": "79e91bcd"
+    },
+    {
+     "lernstand": "L225",
+     "verlustLernen": 1.0248,
+     "verlustPruefen": 1.0272,
+     "pruefsumme": "7d028cb9"
+    },
+    {
+     "lernstand": "L250",
+     "verlustLernen": 1.0248,
+     "verlustPruefen": 1.0272,
+     "pruefsumme": "efc4d2a1"
+    },
+    {
+     "lernstand": "L275",
+     "verlustLernen": 1.0248,
+     "verlustPruefen": 1.0272,
+     "pruefsumme": "d93c7076"
+    },
+    {
+     "lernstand": "L300",
+     "verlustLernen": 1.0248,
+     "verlustPruefen": 1.0272,
+     "pruefsumme": "91328ed7"
+    },
+    {
+     "lernstand": "L325",
+     "verlustLernen": 1.0248,
+     "verlustPruefen": 1.0272,
+     "pruefsumme": "4de984d0"
+    },
+    {
+     "lernstand": "L350",
+     "verlustLernen": 1.0247,
+     "verlustPruefen": 1.0272,
+     "pruefsumme": "1363fdf7"
+    },
+    {
+     "lernstand": "L375",
+     "verlustLernen": 1.0247,
+     "verlustPruefen": 1.0272,
+     "pruefsumme": "37c1fed5"
+    },
+    {
+     "lernstand": "L400",
+     "verlustLernen": 1.0247,
+     "verlustPruefen": 1.0271,
+     "pruefsumme": "b90ff130"
+    }
    ]
-  ]
- },
- "runden": [
-  {
-   "lernstand": "L0",
-   "verlustLernen": 1.0252,
-   "verlustPruefen": 1.0278,
-   "pruefsumme": "6d5e6a08"
   },
   {
-   "lernstand": "L25",
-   "verlustLernen": 1.025,
-   "verlustPruefen": 1.0276,
-   "pruefsumme": "6c41627c"
-  },
-  {
-   "lernstand": "L50",
-   "verlustLernen": 1.0249,
-   "verlustPruefen": 1.0274,
-   "pruefsumme": "aef12c29"
-  },
-  {
-   "lernstand": "L75",
-   "verlustLernen": 1.0249,
-   "verlustPruefen": 1.0274,
-   "pruefsumme": "41eb6deb"
-  },
-  {
-   "lernstand": "L100",
-   "verlustLernen": 1.0249,
-   "verlustPruefen": 1.0273,
-   "pruefsumme": "2a84b082"
-  },
-  {
-   "lernstand": "L125",
-   "verlustLernen": 1.0248,
-   "verlustPruefen": 1.0273,
-   "pruefsumme": "998fa3cc"
-  },
-  {
-   "lernstand": "L150",
-   "verlustLernen": 1.0248,
-   "verlustPruefen": 1.0273,
-   "pruefsumme": "a419ee6f"
-  },
-  {
-   "lernstand": "L175",
-   "verlustLernen": 1.0248,
-   "verlustPruefen": 1.0272,
-   "pruefsumme": "7cd00151"
-  },
-  {
-   "lernstand": "L200",
-   "verlustLernen": 1.0248,
-   "verlustPruefen": 1.0272,
-   "pruefsumme": "79e91bcd"
-  },
-  {
-   "lernstand": "L225",
-   "verlustLernen": 1.0248,
-   "verlustPruefen": 1.0272,
-   "pruefsumme": "7d028cb9"
-  },
-  {
-   "lernstand": "L250",
-   "verlustLernen": 1.0248,
-   "verlustPruefen": 1.0272,
-   "pruefsumme": "efc4d2a1"
-  },
-  {
-   "lernstand": "L275",
-   "verlustLernen": 1.0248,
-   "verlustPruefen": 1.0272,
-   "pruefsumme": "d93c7076"
-  },
-  {
-   "lernstand": "L300",
-   "verlustLernen": 1.0248,
-   "verlustPruefen": 1.0272,
-   "pruefsumme": "91328ed7"
-  },
-  {
-   "lernstand": "L325",
-   "verlustLernen": 1.0248,
-   "verlustPruefen": 1.0272,
-   "pruefsumme": "4de984d0"
-  },
-  {
-   "lernstand": "L350",
-   "verlustLernen": 1.0247,
-   "verlustPruefen": 1.0272,
-   "pruefsumme": "1363fdf7"
-  },
-  {
-   "lernstand": "L375",
-   "verlustLernen": 1.0247,
-   "verlustPruefen": 1.0272,
-   "pruefsumme": "37c1fed5"
-  },
-  {
-   "lernstand": "L400",
-   "verlustLernen": 1.0247,
-   "verlustPruefen": 1.0271,
-   "pruefsumme": "b90ff130"
+   "menge": "mitAufstellung",
+   "spiele": {
+    "lernen": 17909,
+    "pruefen": 2168
+   },
+   "versuche": [
+    {
+     "menge": "mitAufstellung",
+     "schritt": 1,
+     "gruppe": "form",
+     "zu": [],
+     "verlustPruefen": 0.9887,
+     "vorsprung": 0.0011,
+     "standardfehler": 0.00078,
+     "z": 1.41,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 1,
+     "gruppe": "ort",
+     "zu": [],
+     "verlustPruefen": 0.9896,
+     "vorsprung": 0.00029,
+     "standardfehler": 0.00035,
+     "z": 0.83,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 1,
+     "gruppe": "ruhe",
+     "zu": [],
+     "verlustPruefen": 0.9899,
+     "vorsprung": -0.00001,
+     "standardfehler": 0.00004,
+     "z": -0.24,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 1,
+     "gruppe": "saison",
+     "zu": [],
+     "verlustPruefen": 0.9897,
+     "vorsprung": 0.00011,
+     "standardfehler": 0.00024,
+     "z": 0.47,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 1,
+     "gruppe": "staerke",
+     "zu": [],
+     "verlustPruefen": 0.9884,
+     "vorsprung": 0.00147,
+     "standardfehler": 0.00092,
+     "z": 1.59,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 1,
+     "gruppe": "tempo",
+     "zu": [],
+     "verlustPruefen": 0.9897,
+     "vorsprung": 0.00015,
+     "standardfehler": 0.00048,
+     "z": 0.31,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 1,
+     "gruppe": "aufst",
+     "zu": [],
+     "verlustPruefen": 0.9797,
+     "vorsprung": 0.01016,
+     "standardfehler": 0.0024,
+     "z": 4.23,
+     "besteHuerde": true
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 2,
+     "gruppe": "form",
+     "zu": [
+      "aufst"
+     ],
+     "verlustPruefen": 0.9791,
+     "vorsprung": 0.00062,
+     "standardfehler": 0.00055,
+     "z": 1.13,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 2,
+     "gruppe": "ort",
+     "zu": [
+      "aufst"
+     ],
+     "verlustPruefen": 0.9797,
+     "vorsprung": 0.00003,
+     "standardfehler": 0.00013,
+     "z": 0.26,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 2,
+     "gruppe": "ruhe",
+     "zu": [
+      "aufst"
+     ],
+     "verlustPruefen": 0.9797,
+     "vorsprung": -0.00001,
+     "standardfehler": 0.00004,
+     "z": -0.16,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 2,
+     "gruppe": "saison",
+     "zu": [
+      "aufst"
+     ],
+     "verlustPruefen": 0.9793,
+     "vorsprung": 0.0004,
+     "standardfehler": 0.00036,
+     "z": 1.11,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 2,
+     "gruppe": "staerke",
+     "zu": [
+      "aufst"
+     ],
+     "verlustPruefen": 0.9797,
+     "vorsprung": -0.00003,
+     "standardfehler": 0.0001,
+     "z": -0.3,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 2,
+     "gruppe": "tempo",
+     "zu": [
+      "aufst"
+     ],
+     "verlustPruefen": 0.9796,
+     "vorsprung": 0.00009,
+     "standardfehler": 0.00047,
+     "z": 0.2,
+     "besteHuerde": false
+    }
+   ],
+   "gewaehlt": [
+    "aufst"
+   ],
+   "pruefen": {
+    "altesModellK6": 0.9917,
+    "nurBasisKalibriert": 0.9898,
+    "ende": 0.9797,
+    "vorsprungGegenK6": 0.01204,
+    "standardfehler": 0.00248,
+    "spiele": 2168,
+    "spieltage": 782
+   },
+   "lernstand": {
+    "name": "L398",
+    "runde": 398,
+    "pruefsumme": "0d1e86e6",
+    "gruppen": [
+     "aufst"
+    ],
+    "namen": [
+     "lnH",
+     "lnD",
+     "lnA",
+     "dLnStart",
+     "dLnBest",
+     "dFehlt"
+    ],
+    "standardisierung": {
+     "mittel": {
+      "lnH": 0,
+      "lnD": 0,
+      "lnA": 0,
+      "dLnStart": 0.009656,
+      "dLnBest": -0.000881,
+      "dFehlt": -0.007361
+     },
+     "streuung": {
+      "lnH": 1,
+      "lnD": 1,
+      "lnA": 1,
+      "dLnStart": 1.190981,
+      "dLnBest": 1.16352,
+      "dFehlt": 0.15794
+     }
+    },
+    "gewichte": [
+     [
+      0.67304,
+      0.14114,
+      0.06737,
+      0.17992,
+      0.07227,
+      -0.05655
+     ],
+     [
+      0.16476,
+      0.72254,
+      0.17592,
+      -0.00546,
+      0.01849,
+      -0.01161
+     ],
+     [
+      0.1622,
+      0.13632,
+      0.75671,
+      -0.17446,
+      -0.09076,
+      0.06816
+     ]
+    ]
+   },
+   "runden": [
+    {
+     "lernstand": "L0",
+     "verlustLernen": 0.9882,
+     "verlustPruefen": 0.9917,
+     "pruefsumme": "ae572dbc"
+    },
+    {
+     "lernstand": "L25",
+     "verlustLernen": 0.9806,
+     "verlustPruefen": 0.9822,
+     "pruefsumme": "ce3c7944"
+    },
+    {
+     "lernstand": "L50",
+     "verlustLernen": 0.9802,
+     "verlustPruefen": 0.9809,
+     "pruefsumme": "07b8b9f5"
+    },
+    {
+     "lernstand": "L75",
+     "verlustLernen": 0.9801,
+     "verlustPruefen": 0.9807,
+     "pruefsumme": "6c6504c4"
+    },
+    {
+     "lernstand": "L100",
+     "verlustLernen": 0.9801,
+     "verlustPruefen": 0.9804,
+     "pruefsumme": "4a98bb7b"
+    },
+    {
+     "lernstand": "L125",
+     "verlustLernen": 0.98,
+     "verlustPruefen": 0.9803,
+     "pruefsumme": "36dfa8c5"
+    },
+    {
+     "lernstand": "L150",
+     "verlustLernen": 0.98,
+     "verlustPruefen": 0.9801,
+     "pruefsumme": "fbcc5235"
+    },
+    {
+     "lernstand": "L175",
+     "verlustLernen": 0.98,
+     "verlustPruefen": 0.9801,
+     "pruefsumme": "73ac4eea"
+    },
+    {
+     "lernstand": "L200",
+     "verlustLernen": 0.9799,
+     "verlustPruefen": 0.98,
+     "pruefsumme": "317ea581"
+    },
+    {
+     "lernstand": "L225",
+     "verlustLernen": 0.9799,
+     "verlustPruefen": 0.98,
+     "pruefsumme": "393c23a2"
+    },
+    {
+     "lernstand": "L250",
+     "verlustLernen": 0.9799,
+     "verlustPruefen": 0.9799,
+     "pruefsumme": "44f9a869"
+    },
+    {
+     "lernstand": "L275",
+     "verlustLernen": 0.9799,
+     "verlustPruefen": 0.9799,
+     "pruefsumme": "b6ed03c7"
+    },
+    {
+     "lernstand": "L300",
+     "verlustLernen": 0.9799,
+     "verlustPruefen": 0.9798,
+     "pruefsumme": "bcf4cbdc"
+    },
+    {
+     "lernstand": "L325",
+     "verlustLernen": 0.9799,
+     "verlustPruefen": 0.9798,
+     "pruefsumme": "8888b185"
+    },
+    {
+     "lernstand": "L350",
+     "verlustLernen": 0.9799,
+     "verlustPruefen": 0.9797,
+     "pruefsumme": "63b921b7"
+    },
+    {
+     "lernstand": "L375",
+     "verlustLernen": 0.9799,
+     "verlustPruefen": 0.9797,
+     "pruefsumme": "1ebc4f24"
+    },
+    {
+     "lernstand": "L400",
+     "verlustLernen": 0.9799,
+     "verlustPruefen": 0.9797,
+     "pruefsumme": "f3195ec7"
+    }
+   ]
   }
  ],
  "regeln": {
   "lernenAuf": "Rolle lernen, vor Stichtag",
   "waehlenAuf": "Rolle pruefen, vor Stichtag",
-  "versiegelt": "alle Spiele ab Stichtag"
+  "versiegelt": "alle Spiele ab Stichtag, Holdout-Saisons ebenfalls nicht angesehen"
  }
 }
