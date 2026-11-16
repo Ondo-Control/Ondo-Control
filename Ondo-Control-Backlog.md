@@ -1,6 +1,8 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 16.11.2026, Fassung 162 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 16.11.2026, Fassung 163 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
+
+**Beschlossen und nicht gebaut: zwei** — **4, 92** *(Punkt 92 bleibt wegen des separaten Schritt 2 offen.)*
 
 ## Regeln für dieses Dokument
 
@@ -16,18 +18,6 @@
 `https://ondo-control.github.io/Ondo-Control/PROJEKT-STATUS.html` (entsprechend für Backlog, Blueprint, Ondo-Core-Architektur). Einzelheiten und Folgen stehen in `PROJEKT-STATUS.md`.
 
 **Dateinamen von Berichten an die Prüfer (28.7., Ondo):** Beginnen mit Datum und Uhrzeit — `2026-07-31_1430_Ondo-Control_Thema.md`.
-
----
-
-## ⚠ Was Fassung 129 ändert (14.9., Phase 2 der Trennung von aktuellem Stand und Geschichte tatsaechlich gebaut — Ondos Auftrag, alle vier Pflichtdokumente betroffen)
-
-**Anlass:** Diagnose vom 14.9.2026 (dieselbe Sitzung) hatte zwei getrennte Wachstumsursachen belegt — Fassungsabschnitte (nur im Backlog durch Regel 5 begrenzt) und Geschichte im Textkoerper einzelner, weiterhin offener Punkte (in keinem Dokument begrenzt). Ondo hat Schritt 3 (stehende Regel) und Schritt 4 (Arbeitsbeispiel) der Diagnose vollstaendig freigegeben.
-
-- **🔴 Fuer jeden der 45 offenen Punkte nur Titel und Status-Zeile behalten** (bei kurzen Punkten zusaetzlich eine kurze, noch nicht als Geschichte markierte Zusammenfassung, sofern sie unter 1.500 Zeichen blieb). Jeder vollstaendige „>"-Vermerk-Block, jeder dated „→"-Fund und jede zurueckgezogene ~~Aussage~~ wortgleich nach `BACKLOG-ARCHIV.md` verschoben — auch bei weiterhin OFFENEN Punkten (Regel 4 fuer geschlossene Punkte bleibt davon unberuehrt). Backlog von 287.203 auf 60.047 Zeichen (Kontrollrechnung im Antworttext).
-- **🔴 Regel 5 abgeloest**, siehe Abschnitt „Regeln fuer dieses Dokument" oben — die neue, uebergreifende Regel (`STAND.md`, Wegweiser) wirkt jetzt am Textkoerper UND an Fassungsabschnitten, nicht mehr nur an Fassungsabschnitten.
-- **Die bisherigen fuenf Fassungsabschnitte (124-128) wortgleich nach `BACKLOG-ARCHIV.md` verschoben** — die letzte Anwendung der alten Regel-5-Mechanik, danach entsteht kein neuer Fassungsabschnitt mehr im Hauptdokument (stehende Regel ab sofort).
-- **Kein Codeaufwand, kein Eingriff an `beta.html`.** `pruefe.py` um Punkt 82 (Aktueller-Stand-Groesse, 80.000-Zeichen-Grenze je Pflichtdokument) erweitert — Einzelheiten im Antworttext.
-- **Beschlossen und nicht gebaut: zwei** — **4, 92** *(Punkt 92 bleibt wegen des separaten Schritt 2 offen.)*
 
 ---
 
@@ -626,9 +616,9 @@ Der Foto-Import übernimmt jede Anzahl erkannter Einträge ohne Vorschau und ohn
 
 `beta.html` unverändert. Daten, Modell, `core/REGELN.md` (Ondos Regeln als Text), Trainingsraum (`raum.js`, Lernstände L0, L1 …). Täglicher Lauf, Zahlen nur in `core/model/generated/`. Reihenfolge: `core/ORIENTIERUNG.md`. t12–t14. **Offen:** Quoten fehlen, kein echtes Geld. Baugeschichte: `BACKLOG-ARCHIV.md`.
 
-**95. Sonde: Selbsttest der App mit Bericht ans ONDO-Relay** · *Ondos Idee und Ja 16.11.2026 · von Claude geliefert* · **Status: 🔴 GEBAUT 16.11.2026 (`beta.html` v19.23.0) — Bewährung am iPhone steht aus**
+**95. Sonde: Selbsttest der App mit Bericht ans ONDO-Relay** · *Ondos Idee und Ja 16.11.2026 · von Claude geliefert* · **Status: 🔴 GEBAUT 16.11.2026 (`beta.html` v19.24.0, Vollsonde) — erster Bericht vom iPhone kam an (v19.23.0); Vollsonde noch nicht am iPhone gelaufen**
 
-Knopf unter „Mehr": prüft Speicher, Daten, Quellen und Funktionen, schickt einen Technikbericht (keine Wetten, Schlüssel, Spielnamen) ans ONDO-Relay; Claude liest ihn mit `ondo_diag`. Ein passiver Zähler erfasst technische Fehler je Host (Grundlage für Kriterium (b)). Die Relay-Adresse liegt in eigenem Speicherschlüssel, nicht im Zustand und nicht in der Sicherung. **Offen:** Ob der Versand am iPhone ankommt (ungetestet, das Relay sendet kein CORS); KI-Aufrufe nur mit Ondos Freigabe. Test t15.
+Knopf unter „Mehr": Technikbericht (keine Wetten, Schlüssel, Spielnamen) ans ONDO-Relay, Claude liest ihn mit `ondo_diag`. **Seit v19.24.0 mit Probekammer:** unsichtbarer iframe ohne Zugriff auf den echten Speicher; dort laufen Bildschirme, Sicherung hin und zurück, Messdaten-Export, ESPN-Archiv und simulierte Netzfehler; dazu Layout-Messung. Eigene Taste „KI-Probe" (kostet wenige Cent, nur auf Tipp). Passiver Fehlerzähler seit 16.11.2026 (Kriterium (b) braucht noch Tage). **Offen:** Vollsonde am iPhone laufen lassen; KI-Kaskade ungeprüft. Tests t15, t16 (Chromium, kein WebKit).
 
 ---
 

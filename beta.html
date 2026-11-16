@@ -153,7 +153,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.23.0';
+var CODE_VERSION = 'v19.24.0';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -311,7 +311,7 @@ var I18N = {
   oddsKeyT:'🎲 Quoten-Schlüssel (The Odds API)', oddsKeyD:'Schlüssel von the-odds-api.com — bleibt NUR auf diesem Gerät. Kostenloses Kontingent begrenzt (rund 500 Abrufe/Monat).', oddsOn:'✅ Quoten-Schlüssel gespeichert', oddsOff:'❌ Kein Quoten-Schlüssel',
   afKeyT:'⚽ Ergebnis-Schlüssel (API-Football)', afKeyD:'Schlüssel von api-football.com — bleibt NUR auf diesem Gerät. Wird beim Prüfen zuerst gefragt, vor der KI-Suche.', afOn:'✅ API-Football-Schlüssel gespeichert', afOff:'❌ Kein API-Football-Schlüssel',
   fdKeyT:'⚽ Ergebnis-Schlüssel (football-data.org)', fdKeyD:'Schlüssel von football-data.org — bleibt NUR auf diesem Gerät. Deckt 12 grosse Wettbewerbe ab, als zweite unabhängige Quelle.', fdOn:'✅ football-data.org-Schlüssel gespeichert', fdOff:'❌ Kein football-data.org-Schlüssel',
-  sondeT:'🔧 Sonde (Selbsttest)', sondeD:'Prüft Speicher, Daten und Datenquellen dieser App und schickt den Bericht an dein ONDO-Relay, damit Claude ihn lesen kann. Der Bericht enthält nur Technikwerte: keine Wetten, keine Schlüssel, keine Spielnamen. Die Relay-Adresse bleibt NUR auf diesem Gerät und kommt in keine Sicherung.', sondeAdrOn:'✅ Relay-Adresse gespeichert', sondeAdrOff:'❌ Keine Relay-Adresse — der Bericht wird nur hier angezeigt', sondeBad:'❌ Adresse nicht erkannt — erwartet wird die ONDO-Connector-Adresse (…/k/…)', sondeBtn:'Sonde laufen lassen', sondeDel:'Adresse entfernen', sondeBusy:'Sonde läuft …', sondeSent:'✅ Bericht abgeschickt — ob er angekommen ist, sieht Claude im Relay', sondeLocal:'Bericht erstellt, nicht gesendet (keine gültige Relay-Adresse)', sondeBlock:'⛔ Nicht gesendet: Im Bericht steht etwas, das wie ein Schlüssel aussieht', sondeFailNet:'⚠️ Senden fehlgeschlagen (kein Netz?)',
+  sondeT:'🔧 Sonde (Selbsttest)', sondeD:'Prüft Speicher, Daten und Datenquellen dieser App und schickt den Bericht an dein ONDO-Relay, damit Claude ihn lesen kann. Der Bericht enthält nur Technikwerte: keine Wetten, keine Schlüssel, keine Spielnamen. Die Relay-Adresse bleibt NUR auf diesem Gerät und kommt in keine Sicherung.', sondeAdrOn:'✅ Relay-Adresse gespeichert', sondeAdrOff:'❌ Keine Relay-Adresse — der Bericht wird nur hier angezeigt', sondeBad:'❌ Adresse nicht erkannt — erwartet wird die ONDO-Connector-Adresse (…/k/…)', sondeBtn:'Sonde laufen lassen', sondeDel:'Adresse entfernen', sondeBusy:'Sonde läuft …', sondeSent:'✅ Bericht abgeschickt — ob er angekommen ist, sieht Claude im Relay', sondeLocal:'Bericht erstellt, nicht gesendet (keine gültige Relay-Adresse)', sondeBlock:'⛔ Nicht gesendet: Im Bericht steht etwas, das wie ein Schlüssel aussieht', sondeFailNet:'⚠️ Senden fehlgeschlagen (kein Netz?)', sondeKiBtn:'KI-Probe (kostet wenige Cent)', sondeKiD:'Die KI-Probe ruft Sonnet und Gemini je einmal mit einer Mini-Frage auf und misst Dauer und Tokenzahl. Sie startet nur mit diesem Knopf.', sondeKiBusy:'KI-Probe läuft …',
   oddsLigaLabel:'Liga', oddsLigenLadenBtn:'Ligen laden', oddsAbrufenBtn:'Quoten abrufen',
   oddsKeineLiga:'Bitte zuerst eine Liga wählen', oddsKeinTreffer:'Keine bevorstehenden Spiele gefunden',
   oddsFehler:'Abruf fehlgeschlagen', oddsQuelle:'Quelle',
@@ -480,7 +480,7 @@ var I18N = {
   oddsKeyT:'🎲 Clé de cotes (The Odds API)', oddsKeyD:'Clé de the-odds-api.com — reste UNIQUEMENT sur cet appareil. Quota gratuit limité (environ 500 appels/mois).', oddsOn:'✅ Clé de cotes enregistrée', oddsOff:'❌ Pas de clé de cotes',
   afKeyT:'⚽ Clé de résultats (API-Football)', afKeyD:'Clé de api-football.com — reste UNIQUEMENT sur cet appareil. Interrogée en premier lors de la vérification, avant la recherche IA.', afOn:'✅ Clé API-Football enregistrée', afOff:'❌ Pas de clé API-Football',
   fdKeyT:'⚽ Clé de résultats (football-data.org)', fdKeyD:'Clé de football-data.org — reste UNIQUEMENT sur cet appareil. Couvre 12 grandes compétitions, comme seconde source indépendante.', fdOn:'✅ Clé football-data.org enregistrée', fdOff:'❌ Pas de clé football-data.org',
-  sondeT:'🔧 Sonde (auto-test)', sondeD:'Vérifie le stockage, les données et les sources de cette appli et envoie le rapport à ton relais ONDO, pour que Claude puisse le lire. Le rapport ne contient que des valeurs techniques : pas de paris, pas de clés, pas de noms de matchs. L’adresse du relais reste UNIQUEMENT sur cet appareil et n’entre dans aucune sauvegarde.', sondeAdrOn:'✅ Adresse du relais enregistrée', sondeAdrOff:'❌ Pas d’adresse de relais — le rapport s’affiche seulement ici', sondeBad:'❌ Adresse non reconnue — l’adresse du connecteur ONDO est attendue (…/k/…)', sondeBtn:'Lancer la sonde', sondeDel:'Supprimer l’adresse', sondeBusy:'Sonde en cours …', sondeSent:'✅ Rapport envoyé — Claude voit dans le relais s’il est arrivé', sondeLocal:'Rapport créé, non envoyé (pas d’adresse de relais valide)', sondeBlock:'⛔ Non envoyé : le rapport contient quelque chose qui ressemble à une clé', sondeFailNet:'⚠️ Échec de l’envoi (pas de réseau ?)',
+  sondeT:'🔧 Sonde (auto-test)', sondeD:'Vérifie le stockage, les données et les sources de cette appli et envoie le rapport à ton relais ONDO, pour que Claude puisse le lire. Le rapport ne contient que des valeurs techniques : pas de paris, pas de clés, pas de noms de matchs. L’adresse du relais reste UNIQUEMENT sur cet appareil et n’entre dans aucune sauvegarde.', sondeAdrOn:'✅ Adresse du relais enregistrée', sondeAdrOff:'❌ Pas d’adresse de relais — le rapport s’affiche seulement ici', sondeBad:'❌ Adresse non reconnue — l’adresse du connecteur ONDO est attendue (…/k/…)', sondeBtn:'Lancer la sonde', sondeDel:'Supprimer l’adresse', sondeBusy:'Sonde en cours …', sondeSent:'✅ Rapport envoyé — Claude voit dans le relais s’il est arrivé', sondeLocal:'Rapport créé, non envoyé (pas d’adresse de relais valide)', sondeBlock:'⛔ Non envoyé : le rapport contient quelque chose qui ressemble à une clé', sondeFailNet:'⚠️ Échec de l’envoi (pas de réseau ?)', sondeKiBtn:'Test IA (quelques centimes)', sondeKiD:'Le test IA appelle Sonnet et Gemini une fois chacun avec une mini-question et mesure durée et nombre de tokens. Il ne démarre qu’avec ce bouton.', sondeKiBusy:'Test IA en cours …',
   oddsLigaLabel:'Championnat', oddsLigenLadenBtn:'Charger les championnats', oddsAbrufenBtn:'Récupérer les cotes',
   oddsKeineLiga:'Veuillez d\'abord choisir un championnat', oddsKeinTreffer:'Aucun match à venir trouvé',
   oddsFehler:'Échec de la récupération', oddsQuelle:'Source',
@@ -649,7 +649,7 @@ var I18N = {
   oddsKeyT:'🎲 Odds key (The Odds API)', oddsKeyD:'Key from the-odds-api.com — stays ONLY on this device. Free quota limited (around 500 calls/month).', oddsOn:'✅ Odds key saved', oddsOff:'❌ No odds key',
   afKeyT:'⚽ Results key (API-Football)', afKeyD:'Key from api-football.com — stays ONLY on this device. Queried first when checking results, before the AI search.', afOn:'✅ API-Football key saved', afOff:'❌ No API-Football key',
   fdKeyT:'⚽ Results key (football-data.org)', fdKeyD:'Key from football-data.org — stays ONLY on this device. Covers 12 major competitions, as a second independent source.', fdOn:'✅ football-data.org key saved', fdOff:'❌ No football-data.org key',
-  sondeT:'🔧 Probe (self-test)', sondeD:'Checks storage, data and data sources of this app and sends the report to your ONDO relay so Claude can read it. The report contains technical values only: no bets, no keys, no match names. The relay address stays ONLY on this device and goes into no backup.', sondeAdrOn:'✅ Relay address saved', sondeAdrOff:'❌ No relay address — the report is only shown here', sondeBad:'❌ Address not recognised — the ONDO connector address (…/k/…) is expected', sondeBtn:'Run probe', sondeDel:'Remove address', sondeBusy:'Probe running …', sondeSent:'✅ Report sent — Claude sees in the relay whether it arrived', sondeLocal:'Report created, not sent (no valid relay address)', sondeBlock:'⛔ Not sent: the report contains something that looks like a key', sondeFailNet:'⚠️ Sending failed (no network?)',
+  sondeT:'🔧 Probe (self-test)', sondeD:'Checks storage, data and data sources of this app and sends the report to your ONDO relay so Claude can read it. The report contains technical values only: no bets, no keys, no match names. The relay address stays ONLY on this device and goes into no backup.', sondeAdrOn:'✅ Relay address saved', sondeAdrOff:'❌ No relay address — the report is only shown here', sondeBad:'❌ Address not recognised — the ONDO connector address (…/k/…) is expected', sondeBtn:'Run probe', sondeDel:'Remove address', sondeBusy:'Probe running …', sondeSent:'✅ Report sent — Claude sees in the relay whether it arrived', sondeLocal:'Report created, not sent (no valid relay address)', sondeBlock:'⛔ Not sent: the report contains something that looks like a key', sondeFailNet:'⚠️ Sending failed (no network?)', sondeKiBtn:'AI probe (costs a few cents)', sondeKiD:'The AI probe calls Sonnet and Gemini once each with a mini question and measures duration and token count. It only starts with this button.', sondeKiBusy:'AI probe running …',
   oddsLigaLabel:'League', oddsLigenLadenBtn:'Load leagues', oddsAbrufenBtn:'Fetch odds',
   oddsKeineLiga:'Please choose a league first', oddsKeinTreffer:'No upcoming matches found',
   oddsFehler:'Fetch failed', oddsQuelle:'Source',
@@ -1330,6 +1330,382 @@ function sondeFunktionenPruefen(){
   var aus={}; Object.keys(t).forEach(function(n){ aus[n]=(t[n]==='function') ? 'da' : 'FEHLT'; });
   return aus;
 }
+/* ================= VOLLSONDE: PROBEKAMMER (Backlog-Punkt 95, v19.24.0, Auftrag Ondo 16.11.2026) =================
+   WOZU: Die erste Sonde (v19.23.0) prueft nur, ob Funktionen im Code VORHANDEN sind. Ondo wollte
+   alles pruefen. Die Probekammer fuehrt die Funktionen deshalb wirklich AUS - aber nicht auf den
+   echten Daten.
+   WIE: Die App laedt ihre eigene Seite in einen unsichtbaren iframe mit sandbox="allow-scripts"
+   (ohne allow-same-origin). Dieser iframe hat eine leere, eigene Herkunft: KEIN Zugriff auf
+   localStorage, IndexedDB oder Cookies der echten App. Schreiben ist dort technisch unmoeglich.
+   In die Kammer wird nur eine KOPIE des Zustands geschickt, ohne die sechs Geheimfelder (apiKey,
+   geminiKey, oddsKey, apiFootballKey, footballDataKey, pin) und mit je hoechstens
+   SONDE_PROBE_MAX Eintraegen je Liste. Die Kammer meldet nur Zahlen, Ja/Nein und Kurztexte zurueck.
+   WAS SIE PRUEFT: Start, alle Bildschirme zeichnen (mit Layout-Messung gegen seitliches
+   Ueberlaufen), Sicherung erzeugen und wieder laden, Messdaten-Export samt Geheimsperre, ESPN-
+   Archiv und ESPN live mit einem echten Spiel, und SIMULIERTE Netzfehler (kein Netz, 503, 429, 404,
+   kaputte Antwort): die Funktionen duerfen nicht abstuerzen, der Zustand darf sich nicht aendern,
+   und der Fehlerzaehler muss richtig einordnen.
+   WAS SIE NICHT KANN: Speicher in der Kammer (leere Herkunft) - das prueft sondeSpeicherPruefen()
+   ausserhalb; KI-Funktionen (kosten Geld) - dafuer gibt es die eigene Taste sondeKiProbe(); die
+   Sichtbarkeit am iPhone-Bildschirm selbst (die Messung zeigt nur Masse und Ueberlauf). */
+var SONDE_PROBE_MAX=60;
+var SONDE_KAMMER_FRIST_MS=100000;
+var SONDE_GEHEIMFELDER=['apiKey','geminiKey','oddsKey','apiFootballKey','footballDataKey','pin'];
+
+/* Kopie des Zustands fuer die Kammer: ohne Geheimfelder, Listen gekuerzt, nur Daten (JSON). */
+function sondeProbeZustand(){
+  var gr=SONDE_PROBE_MAX, kopie, text;
+  for(var runde=0; runde<3; runde++){
+    kopie={};
+    Object.keys(state).forEach(function(k){
+      if(SONDE_GEHEIMFELDER.indexOf(k)>=0) return;
+      var v=state[k];
+      if(Array.isArray(v) && v.length>gr) v=v.slice(-gr);
+      kopie[k]=v;
+    });
+    text=JSON.stringify(kopie);
+    if(text.length<3000000) break;
+    gr=Math.max(5, Math.floor(gr/4));
+  }
+  return { zustand:JSON.parse(text), zeichen:text.length, listeMax:gr };
+}
+
+/* LAEUFT IM IFRAME (nicht in der echten App). Wird als Text in die Kammer eingesetzt. Alle
+   Namen (state, render, datenSichern ...) sind dort die Namen der Kammer-Kopie der App. */
+function sondeKammerHarness(){
+  var unbehandelt=[], tests=[], layout=[];
+  window.addEventListener('error', function(e){ unbehandelt.push(String((e && e.message) || '?').slice(0,160)); });
+  window.addEventListener('unhandledrejection', function(e){
+    unbehandelt.push('Promise: '+String((e && e.reason && e.reason.message) || (e && e.reason) || '?').slice(0,160));
+  });
+  function T(n, s, d){ tests.push({ name:n, status:s, detail:String(d || '').slice(0,220) }); }
+  function warte(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
+  function warteBis(bed, ms){
+    return new Promise(function(r){
+      var t0=Date.now();
+      (function p(){ var ok=false; try{ ok=!!bed(); }catch(e){} if(ok) return r(true); if(Date.now()-t0>ms) return r(false); setTimeout(p, 40); })();
+    });
+  }
+  function lauf(name, fn, frist){
+    return new Promise(function(res){
+      var fertig=false;
+      var timer=setTimeout(function(){ if(!fertig){ fertig=true; T(name, 'FEHLER', 'Zeitueberschreitung'); res(); } }, frist || 15000);
+      function ende(s, d){ if(fertig) return; fertig=true; clearTimeout(timer); T(name, s, d); res(); }
+      function werten(r){
+        if(r===true || r===undefined) ende('ok', '');
+        else if(r && r.uebersprungen) ende('uebersprungen', r.uebersprungen);
+        else if(r && r.fehler) ende('FEHLER', r.fehler);
+        else ende('ok', typeof r==='string' ? r : '');
+      }
+      try{ Promise.resolve(fn()).then(werten, function(e){ ende('FEHLER', String((e && e.message) || e)); }); }
+      catch(e){ ende('FEHLER', String((e && e.message) || e)); }
+    });
+  }
+  function lesen(blob){ return new Response(blob).text(); }
+  function layoutMessen(name){
+    var br=window.innerWidth, ueber=[], dl=[];
+    var docUeber=document.documentElement.scrollWidth-br;
+    var els=document.querySelectorAll('#view *');
+    /* Ein Element, das in einem absichtlich seitlich scrollbaren Streifen steckt (overflow-x auto/scroll/hidden), zaehlt nicht. */
+    function imScrollStreifen(el){
+      for(var q=el.parentElement; q && q.id!=='view'; q=q.parentElement){
+        var ox=getComputedStyle(q).overflowX;
+        if(ox==='auto' || ox==='scroll' || ox==='hidden') return true;
+      }
+      return false;
+    }
+    for(var i=0; i<els.length && ueber.length<6; i++){
+      var r=els[i].getBoundingClientRect();
+      if(r.width>0 && (r.right>br+1 || r.left<-1) && !imScrollStreifen(els[i])){
+        ueber.push({ tag:els[i].tagName.toLowerCase(), typ:String(els[i].type || ''), id:String(els[i].id || ''),
+          klasse:String(els[i].className && els[i].className.baseVal===undefined ? els[i].className : '').slice(0,40),
+          rechts:Math.round(r.right), breite:Math.round(r.width) });
+      }
+    }
+    var ds=document.querySelectorAll('#view input[type=date]');
+    for(var j=0; j<ds.length && dl.length<6; j++){
+      var d=ds[j], dr=d.getBoundingClientRect(), pr=d.parentElement ? d.parentElement.getBoundingClientRect() : dr;
+      dl.push({ id:String(d.id || ''), breite:Math.round(dr.width), elternBreite:Math.round(pr.width),
+        rechts:Math.round(dr.right), ragtUeberEltern:dr.right>pr.right+1, innenUeberlauf:d.scrollWidth>d.clientWidth+1 });
+    }
+    layout.push({ ansicht:name, fensterBreite:br, seitenUeberlauf:docUeber, ueberstehend:ueber, datumsfelder:dl });
+  }
+  function isoDatum(d){ return d.toISOString().slice(0,10); }
+  function dmj(iso){ return iso.slice(8,10)+'.'+iso.slice(5,7)+'.'+iso.slice(0,4); }
+  /* Ein echtes, beendetes Spiel aus dem Archiv des letzten Monats(-paars) als Pruefziel. */
+  function probeSpiel(){
+    var jetzt=new Date(), vor=new Date(jetzt.getTime()-31*86400000);
+    var monate=[isoDatum(jetzt).slice(0,7), isoDatum(vor).slice(0,7)];
+    function eins(i){
+      if(i>=monate.length) return Promise.resolve(null);
+      return fetch('https://raw.githubusercontent.com/Ondo-Control/Ondo-Control/main/daten/espn-ergebnisse/'+monate[i]+'.json')
+        .then(function(r){ return r.ok ? r.json() : { spiele:[] }; })
+        .then(function(d){
+          var l=(d.spiele || []).filter(function(f){ return f.status==='FT' && f.beleg && f.beleg.completed===true && /^[A-Z]/.test(f.heim || ''); });
+          if(!l.length) return eins(i+1);
+          var f=l[l.length-1];
+          return { fixture:f, ziel:[{ id:'sonde-probe', match:f.heim+' - '+f.gast, datum:dmj(f.datum), wettbewerb:f.providerCompetitionName || '', anpfiff:'' }] };
+        }, function(){ return eins(i+1); });
+    }
+    return eins(0);
+  }
+  function simFetch(modus){
+    return function(){
+      if(modus==='kein Netz') return Promise.reject(new TypeError('Failed to fetch'));
+      if(modus==='kaputte Antwort') return Promise.resolve(new Response('<html>kaputt', { status:200 }));
+      var code={ '503':503, '429':429, '404':404 }[modus];
+      return Promise.resolve(new Response('{}', { status:code }));
+    };
+  }
+  function zaehlerSumme(){
+    var s={ ok:0, fehler:0, sonst:0 };
+    Object.keys(sondeDelta).forEach(function(tag){ Object.keys(sondeDelta[tag]).forEach(function(h){
+      ['ok','fehler','sonst'].forEach(function(k){ s[k]+=sondeDelta[tag][h][k]; });
+    }); });
+    return s;
+  }
+
+  function ablauf(zustand){
+    var t0=Date.now(), echterFetch=window.fetch, erfasst=null, saveZahl=0;
+    return warteBis(function(){ var v=document.getElementById('view'); return v && v.innerHTML.length>20 && state; }, 9000).then(function(ok){
+      T('Start der App in der Kammer', ok ? 'ok' : 'FEHLER', ok ? '' : 'Bildschirm wurde nicht gezeichnet');
+      Object.keys(state).forEach(function(k){ delete state[k]; });
+      Object.keys(zustand).forEach(function(k){ state[k]=zustand[k]; });
+      state.pin=''; entsperrt=true;
+      window.alert=function(){}; window.confirm=function(){ return true; };
+      save=function(){ saveZahl++; };
+      dateiHerunterladen=function(blob, name){ erfasst={ blob:blob, name:name }; };
+      try{ Object.defineProperty(navigator, 'canShare', { value:function(){ return false; }, configurable:true }); }catch(e){}
+      return null;
+    }).then(function(){
+      /* 1. Alle Bildschirme zeichnen + Layout messen */
+      var ansichten=[['home','',''],['wetten','vorschlaege',''],['wetten','neu',''],['wetten','historie',''],
+        ['wetten','kilog','offen'],['wetten','kilog','bewertet'],['wetten','kilog','archiv'],['wetten','kilog','daten'],['wetten','kilog','werkzeuge'],
+        ['finanzen','',''],['mehr','','']];
+      var gesehen={}, kette=Promise.resolve();
+      ansichten.forEach(function(a){
+        kette=kette.then(function(){
+          var name=a[0]+(a[1] ? '/'+a[1] : '')+(a[2] ? '/'+a[2] : '');
+          var vorFehler=unbehandelt.length;
+          return lauf('Bildschirm zeichnen: '+name, function(){
+            if(a[2]) kilogTab=a[2];
+            go(a[0], a[1] || undefined);
+            return warte(60).then(function(){
+              var v=document.getElementById('view');
+              if(!v || v.innerHTML.length<50) return { fehler:'Bildschirm leer' };
+              if(tab!==a[0]) return { fehler:'falscher Reiter (erwartet '+a[0]+', ist '+tab+')' };
+              var kopf=String(v.innerText);
+              if(gesehen[kopf]) return { fehler:'zeigt denselben Inhalt wie '+gesehen[kopf] };
+              gesehen[kopf]=name;
+              layoutMessen(name);
+              if(unbehandelt.length>vorFehler) return { fehler:'Fehler beim Zeichnen: '+unbehandelt[unbehandelt.length-1] };
+              return v.innerHTML.length+' Zeichen';
+            });
+          }, 8000);
+        });
+      });
+      return kette;
+    }).then(function(){
+      /* 2. Sicherung erzeugen und wieder laden */
+      return lauf('Sicherung erzeugen und wieder laden', function(){
+        var anz=(state.kiProtokoll || []).length, wet=(state.bets || []).length;
+        return datenSichern().then(function(){
+          if(!erfasst) return { fehler:'keine Datei erzeugt' };
+          return lesen(erfasst.blob).then(function(text){
+            var d=JSON.parse(text);
+            if((d.kiProtokoll || []).length!==anz || (d.bets || []).length!==wet) return { fehler:'Anzahl in der Datei weicht ab' };
+            state.kiProtokoll=[]; state.bets=[];
+            var vor=saveZahl;
+            datenLaden({ files:[new File([text], 'probe.json', { type:'application/json' })], value:'x' });
+            return warteBis(function(){ return saveZahl>vor; }, 5000).then(function(ok){
+              if(!ok) return { fehler:'Laden hat nicht gespeichert' };
+              if((state.kiProtokoll || []).length!==anz || (state.bets || []).length!==wet) return { fehler:'Laden stellt nicht alles her' };
+              return anz+' Eintraege und '+wet+' Wetten hin und zurueck';
+            });
+          });
+        });
+      }, 25000);
+    }).then(function(){
+      /* 3. Messdaten-Export und Geheimsperre */
+      return lauf('Messdaten-Export ohne Schluessel', function(){
+        state.apiKey='AIzaSyPROBEPROBEPROBEPROBE12345678';
+        state.geminiKey='PROBEGEMINIKEY-73917391-ABC';
+        state.pin='PINPROBE73917';
+        var m=messDatenBauen(), txt=JSON.stringify(m);
+        var leck=[state.apiKey, state.geminiKey, state.pin].filter(function(g){ return txt.indexOf(g)>=0; }).length;
+        delete state.apiKey; delete state.geminiKey; state.pin='';
+        if(!m || typeof m!=='object' || !m.kopf) return { fehler:'Export hat keine Kopfzeile' };
+        if(leck) return { fehler:leck+' Geheimwert(e) im Export gefunden' };
+        return txt.length+' Zeichen, keine Geheimwerte';
+      }, 8000);
+    }).then(function(){
+      /* 4. ESPN-Archiv und ESPN live mit einem echten Spiel */
+      return probeSpiel().then(function(ps){
+        if(!ps){
+          T('ESPN-Archiv mit echtem Spiel', 'uebersprungen', 'Archiv nicht erreichbar oder kein beendetes Spiel');
+          T('ESPN live mit echtem Spiel', 'uebersprungen', 'kein Pruefspiel');
+          return null;
+        }
+        var f=ps.fixture;
+        return lauf('ESPN-Archiv mit echtem Spiel', function(){
+          return espnArchivLesen(ps.ziel, {}).then(function(r){
+            if(!r.length) return { fehler:'Spiel nicht gefunden' };
+            if(r[0].heim!==f.torHeim || r[0].gast!==f.torGast) return { fehler:'Stand weicht ab' };
+            return 'Spiel gefunden, Endstand stimmt';
+          });
+        }, 20000).then(function(){
+          return lauf('ESPN live mit echtem Spiel', function(){
+            return espnLauf(ps.ziel, {}).then(function(r){
+              if(!r.length) return { uebersprungen:'ESPN lieferte das Spiel nicht (Zuordnung oder Quelle), kein Beweis fuer einen Fehler der App' };
+              if(r[0].heim!==f.torHeim || r[0].gast!==f.torGast) return { fehler:'Stand weicht vom Archiv ab' };
+              return 'Spiel gefunden, Endstand stimmt';
+            });
+          }, 25000);
+        });
+      });
+    }).then(function(){
+      /* 5. Simulierte Netzfehler */
+      var ziel=[{ id:'sonde-sim', match:'Arsenal - Chelsea', datum:'14.11.2026', wettbewerb:'English Premier League', anpfiff:'' }];
+      var faelle=[['kein Netz','fehler'],['503','fehler'],['429','fehler'],['404','sonst'],['kaputte Antwort','ok']];
+      var kette=Promise.resolve();
+      faelle.forEach(function(fa){
+        kette=kette.then(function(){
+          return lauf('Netzfehler simuliert: '+fa[0], function(){
+            var vor=JSON.stringify(state), vorFehler=unbehandelt.length;
+            sondeDelta={};
+            window.fetch=sondeFetchBeobachten(simFetch(fa[0]));
+            return Promise.all([espnArchivLesen(ziel, {}), espnLauf(ziel, {})]).then(function(r){
+              checkUpdate();
+              return warte(80).then(function(){
+                window.fetch=echterFetch;
+                var z=zaehlerSumme();
+                if(r[0].length || r[1].length) return { fehler:'lieferte trotz Fehler Ergebnisse' };
+                if(JSON.stringify(state)!==vor) return { fehler:'Zustand hat sich geaendert' };
+                if(unbehandelt.length>vorFehler) return { fehler:'unbehandelter Fehler: '+unbehandelt[unbehandelt.length-1] };
+                if(z[fa[1]]<1) return { fehler:'Fehlerzaehler ordnet falsch ein (erwartet '+fa[1]+', gezaehlt '+JSON.stringify(z)+')' };
+                if(fa[1]!=='fehler' && z.fehler>0) return { fehler:'zaehlt faelschlich als technischer Fehler' };
+                return 'kein Absturz, Zustand unveraendert, Zaehler: '+fa[1];
+              });
+            });
+          }, 12000);
+        });
+      });
+      return kette;
+    }).then(function(){
+      window.fetch=echterFetch;
+      T('Unbehandelte Fehler in der Kammer', unbehandelt.length ? 'FEHLER' : 'ok', unbehandelt.slice(0,3).join(' | '));
+      return { sondeErgebnis:true, tests:tests, layout:layout, unbehandelt:unbehandelt.slice(0,8), dauerMs:Date.now()-t0,
+        stichprobe:{ eintraege:(zustand.kiProtokoll || []).length, wetten:(zustand.bets || []).length } };
+    });
+  }
+  window.addEventListener('message', function(ev){
+    var d=ev.data;
+    if(!(d && d.sondeStart)) return;
+    ablauf(d.zustand).then(function(erg){ parent.postMessage(erg, '*'); },
+      function(e){ parent.postMessage({ sondeErgebnis:true, tests:tests, layout:layout, unbehandelt:unbehandelt, abbruch:String((e && e.message) || e) }, '*'); });
+  });
+  parent.postMessage({ sondeBereit:true }, '*');
+}
+
+/* Startet die Probekammer. Gibt IMMER ein Ergebnis zurueck (auch bei Fehler/Zeitueberschreitung). */
+function sondeKammerStarten(){
+  return new Promise(function(res){
+    var iframe=null, timer=null, fertig=false;
+    function ende(r){
+      if(fertig) return; fertig=true;
+      clearTimeout(timer); window.removeEventListener('message', hoeren);
+      try{ if(iframe && iframe.parentNode) iframe.parentNode.removeChild(iframe); }catch(e){}
+      res(r);
+    }
+    function hoeren(ev){
+      if(!iframe || ev.source!==iframe.contentWindow) return;
+      var d=ev.data || {};
+      if(d.sondeBereit){
+        var probe=sondeProbeZustand();
+        try{ iframe.contentWindow.postMessage({ sondeStart:true, zustand:probe.zustand }, '*'); }catch(e){ return ende({ tests:[], layout:[], abbruch:'Senden an die Kammer scheiterte' }); }
+        d.stichprobeVorab={ zeichen:probe.zeichen, listeMax:probe.listeMax };
+        sondeKammerVorab=d.stichprobeVorab;
+      }else if(d.sondeErgebnis){
+        d.vorab=sondeKammerVorab;
+        ende(d);
+      }
+    }
+    var sondeKammerVorab=null;
+    window.addEventListener('message', hoeren);
+    timer=setTimeout(function(){ ende({ tests:[], layout:[], abbruch:'Zeitueberschreitung der Kammer' }); }, SONDE_KAMMER_FRIST_MS);
+    var eigeneSeite=String(location.href).split('#')[0];
+    if(!sondeFetchRoh || !/^https?:/i.test(eigeneSeite)) return ende({ tests:[], layout:[], abbruch:'Seite nicht per Netz geladen - Kammer nicht moeglich' });
+    sondeFetchRoh.call(window, eigeneSeite, { cache:'no-store' }).then(function(r){ return r.text(); }).then(function(html){
+      var harness='<script>('+sondeKammerHarness.toString()+')();<\/script>';
+      var i=html.lastIndexOf('</body>');
+      var gebaut=html.replace(/<head[^>]*>/i, function(m){ return m+'<base href="'+eigeneSeite+'">'; });
+      i=gebaut.lastIndexOf('</body>');
+      gebaut = i>=0 ? gebaut.slice(0,i)+harness+gebaut.slice(i) : gebaut+harness;
+      iframe=document.createElement('iframe');
+      iframe.setAttribute('sandbox', 'allow-scripts');
+      iframe.setAttribute('aria-hidden', 'true'); iframe.tabIndex=-1;
+      iframe.style.cssText='position:fixed;left:0;top:0;width:'+window.innerWidth+'px;height:'+window.innerHeight+'px;border:0;opacity:0;pointer-events:none;z-index:-1';
+      iframe.srcdoc=gebaut;
+      document.body.appendChild(iframe);
+    }).catch(function(){ ende({ tests:[], layout:[], abbruch:'Eigene Seite konnte nicht geladen werden' }); });
+  });
+}
+function sondeKammerZusammenfassen(k){
+  var z={ ok:0, fehler:0, uebersprungen:0 };
+  (k.tests || []).forEach(function(t){ if(t.status==='ok') z.ok++; else if(t.status==='FEHLER') z.fehler++; else z.uebersprungen++; });
+  var auf=0;
+  (k.layout || []).forEach(function(l){
+    if(l.seitenUeberlauf>1 || (l.ueberstehend || []).length) auf++;
+    (l.datumsfelder || []).forEach(function(d){ if(d.ragtUeberEltern || d.innenUeberlauf) auf++; });
+  });
+  z.layoutAuffaelligkeiten=auf;
+  return z;
+}
+
+/* KI-PROBE: eigene Taste, kostet Geld (je ein winziger Aufruf, 16 Antwort-Tokens). Nur Status,
+   Dauer und Tokenzahlen; nie Schluessel, nie Fehlertexte (Fehlertexte koennten Adressen zeigen). */
+function sondeKiProbe(){
+  var teile={}, jobs=[];
+  if(hatSonnet()){
+    var t1=Date.now();
+    jobs.push(apiCall({ model:'claude-sonnet-4-6', max_tokens:16, messages:[{ role:'user', content:'Antworte nur mit: OK' }] }).then(function(j){
+      teile.sonnet={ modell:'claude-sonnet-4-6', status:j._status, ms:Date.now()-t1, ok:!j.error && j._status===200,
+        tokensEin:(j.usage && j.usage.input_tokens) || null, tokensAus:(j.usage && j.usage.output_tokens) || null,
+        fehlerTyp:(j.error && j.error.type) || null };
+    }, function(){ teile.sonnet={ modell:'claude-sonnet-4-6', status:'netz', ok:false, ms:Date.now()-t1 }; }));
+  }else teile.sonnet={ uebersprungen:'kein Schluessel' };
+  if(hatGemini()){
+    var m=gWahl('gehirn') || 'gemini-flash-latest', t2=Date.now();
+    jobs.push(fetch('https://generativelanguage.googleapis.com/v1beta/models/'+m+':generateContent?key='+encodeURIComponent(state.geminiKey), {
+      method:'POST', headers:{ 'content-type':'application/json' },
+      body:JSON.stringify({ contents:[{ parts:[{ text:'Antworte nur mit: OK' }] }], generationConfig:{ maxOutputTokens:16 } })
+    }).then(function(r){ return r.json().then(function(j){ j._status=r.status; return j; }); }).then(function(j){
+      teile.gemini={ modell:m, status:j._status, ms:Date.now()-t2, ok:!j.error && j._status===200,
+        tokensEin:(j.usageMetadata && j.usageMetadata.promptTokenCount) || null, tokensAus:(j.usageMetadata && j.usageMetadata.candidatesTokenCount) || null,
+        fehlerTyp:(j.error && j.error.status) || null };
+    }, function(){ teile.gemini={ modell:m, status:'netz', ok:false, ms:Date.now()-t2 }; }));
+  }else teile.gemini={ uebersprungen:'kein Schluessel' };
+  return Promise.all(jobs).then(function(){
+    var s=['sonnet','gemini'].map(function(n){ var x=teile[n]; return n+': '+(x.uebersprungen ? 'uebersprungen' : (x.ok ? 'ok '+x.ms+' ms' : 'FEHLER '+x.status)); }).join(' · ');
+    return { id:'sonde-ki-'+Date.now(), kind:'sonde', title:'KI-Probe '+CODE_VERSION, sum:CODE_VERSION+' · KI-Probe · '+s,
+      parts:{ kopf:{ version:CODE_VERSION, zeit:new Date().toISOString() }, ki:{ geprueft:true, teile:teile,
+        hinweis:'Je ein Aufruf mit 16 Antwort-Tokens. Kosten: Tokenzahlen oben; ein Preis wird nicht errechnet. Die Kaskade (Modellwechsel bei Ueberlastung) wird NICHT geprueft.' } } };
+  });
+}
+function sondeKiStarten(){
+  var erg=document.getElementById('sondeErgebnis'), aus=document.getElementById('sondeAusgabe');
+  if(erg) erg.textContent=t('sondeKiBusy');
+  return sondeKiProbe().then(function(b){
+    if(aus){ aus.value=JSON.stringify(b.parts, null, 1).slice(0,6000); aus.style.display='block'; }
+    return speicherLesen(SONDE_RELAY_KEY).catch(function(){ return null; }).then(function(x){
+      var a=x && x.a ? String(x.a) : '';
+      if(!sondeAdresseLesen(a)){ if(erg) erg.textContent=t('sondeLocal'); return; }
+      return sondeSenden(b, a).then(function(r){
+        if(erg) erg.textContent = r.ok ? t('sondeSent') : (r.grund==='geheim' ? t('sondeBlock') : t('sondeFailNet'));
+      });
+    });
+  }).catch(function(){ if(erg) erg.textContent=t('sondeFailNet'); });
+}
 function sondeBerichtBauen(){
   var t0=Date.now();
   var kopf={ version:CODE_VERSION, appVersion:APP_VERSION, zeit:new Date().toISOString(),
@@ -1341,18 +1717,21 @@ function sondeBerichtBauen(){
   var funktionen=sondeFunktionenPruefen();
   return sondeFlush().then(function(){ return speicherLesen(SONDE_ZAEHLER_KEY); }).catch(function(){ return null; }).then(function(z){
     var tage=sondeZusammenfuehren(z && z.tage ? z.tage : {}, sondeDelta);
-    return Promise.all([sondeSpeicherPruefen(), sondeQuellenPruefen()]).then(function(r){
-      var speicher=r[0], quellen=r[1], daten=sondeDatenPruefen(state), zaehler=sondeZaehlerAuswerten(tage);
+    return Promise.all([sondeSpeicherPruefen(), sondeQuellenPruefen(), sondeKammerStarten()]).then(function(r){
+      var kammer=r[2], kz=sondeKammerZusammenfassen(kammer), speicher=r[0], quellen=r[1], daten=sondeDatenPruefen(state), zaehler=sondeZaehlerAuswerten(tage);
       var quellenOk=quellen.filter(function(q){ return q.klasse!=='fehler'; }).length;
       var ids=daten.kiDoppelteIds+daten.kiOhneId+daten.kiUngueltigeWahrscheinlichkeit+daten.wettenDoppelteIds;
       var rate=zaehler.letzte30Tage.gesamt.fehlerrateProzent;
       var id='sonde-'+Date.now();
       var summe=kopf.version+' · Speicher: IndexedDB '+(speicher.indexedDb && speicher.indexedDb.ok?'ok':'FEHLER')+', lokal '+(speicher.localStorage.ok?'ok':'FEHLER')+
         ' · Daten: '+daten.kiEintraege+' KI-Eintraege, '+ids+' Auffaelligkeiten, '+daten.kiDoppelteSpiele+' doppelte Spiele'+
-        ' · Quellen: '+quellenOk+'/'+quellen.length+' erreichbar · Fehlerrate (30 Tage): '+(rate===null?'noch keine Daten':rate+' %');
+        ' · Quellen: '+quellenOk+'/'+quellen.length+' erreichbar · Fehlerrate (30 Tage): '+(rate===null?'noch keine Daten':rate+' %')+
+        ' · Probelauf: '+kz.ok+' ok, '+kz.fehler+' FEHLER, '+kz.uebersprungen+' uebersprungen'+(kammer.abbruch?' ('+kammer.abbruch+')':'')+' · Layout: '+kz.layoutAuffaelligkeiten+' Auffaelligkeiten';
       return { id:id, kind:'sonde', title:'Sonde '+kopf.version, sum:summe,
         parts:{ kopf:kopf, einstellungen:einstellungen, funktionen:funktionen, speicher:speicher, daten:daten, quellen:quellen,
-                zaehler:zaehler, ki:{ geprueft:false, hinweis:'erster Stand ohne KI-Aufrufe' }, dauerMs:Date.now()-t0 } };
+                zaehler:zaehler, ki:{ geprueft:false, hinweis:'ohne KI-Aufrufe; eigene Taste: KI-Probe' },
+                kammer:{ zusammenfassung:kz, abbruch:kammer.abbruch||null, stichprobe:kammer.stichprobe||null, vorab:kammer.vorab||null, unbehandelt:kammer.unbehandelt||[], dauerKammerMs:kammer.dauerMs||null, tests:kammer.tests||[] },
+                layout:kammer.layout||[], dauerMs:Date.now()-t0 } };
     });
   });
 }
@@ -1401,7 +1780,7 @@ function sondeStarten(){
   var erg=document.getElementById('sondeErgebnis'), aus=document.getElementById('sondeAusgabe');
   if(erg) erg.textContent=t('sondeBusy');
   return sondeBerichtBauen().then(function(b){
-    if(aus){ aus.value=JSON.stringify(b.parts, null, 1).slice(0,12000); aus.style.display='block'; }
+    if(aus){ aus.value=JSON.stringify(b.parts, null, 1).slice(0,20000); aus.style.display='block'; }
     return speicherLesen(SONDE_RELAY_KEY).catch(function(){ return null; }).then(function(x){
       var a=x && x.a ? String(x.a) : '';
       if(!sondeAdresseLesen(a)){ if(erg) erg.textContent=t('sondeLocal'); return; }
@@ -8298,7 +8677,9 @@ function viewMore(){
     '<input type="password" id="sondeEingabe" autocomplete="off" placeholder="https://…/k/…/mcp" oninput="sondeAdresseSetzen(this.value)"/>'+
     '<div class="muted" id="sondeStatus" style="margin-top:8px">'+t('sondeAdrOff')+sondeStatusPlanen()+'</div>'+
     '<button class="btn" style="margin-top:10px" onclick="sondeStarten()">'+t('sondeBtn')+'</button> '+
+    '<button class="btn btn-ghost" style="margin-top:10px" onclick="sondeKiStarten()">'+t('sondeKiBtn')+'</button> '+
     '<button class="btn btn-ghost" style="margin-top:10px" onclick="sondeAdresseSetzen(\'\')">'+t('sondeDel')+'</button>'+
+    '<div class="muted" style="margin-top:8px">'+t('sondeKiD')+'</div>'+
     '<div class="muted" id="sondeErgebnis" style="margin-top:8px"></div>'+
     '<textarea id="sondeAusgabe" readonly style="display:none;width:100%;height:220px;margin-top:8px;font-size:11px"></textarea>'+
   '</div>'+

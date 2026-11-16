@@ -6807,3 +6807,21 @@ für das normale `save()` gilt der beschriebene Rückfall bewusst weiter.*
 ## Archiviert mit Fassung 162 (16.11.2026)
 
 **5. Beförderungskriterium (c) neu fassen** · *Idee 23.7., ChatGPT* · **Status: ✅ ENTSCHIEDEN 13.9.2026 — Ondo: „Wir haben genug Spiele!!!!", kein Blocker mehr**
+
+## Archiviert mit Fassung 163 (16.11.2026) — Änderungsvermerk Fassung 129, wortgleich aus `Ondo-Control-Backlog.md`
+
+## ⚠ Was Fassung 129 ändert (14.9., Phase 2 der Trennung von aktuellem Stand und Geschichte tatsaechlich gebaut — Ondos Auftrag, alle vier Pflichtdokumente betroffen)
+
+**Anlass:** Diagnose vom 14.9.2026 (dieselbe Sitzung) hatte zwei getrennte Wachstumsursachen belegt — Fassungsabschnitte (nur im Backlog durch Regel 5 begrenzt) und Geschichte im Textkoerper einzelner, weiterhin offener Punkte (in keinem Dokument begrenzt). Ondo hat Schritt 3 (stehende Regel) und Schritt 4 (Arbeitsbeispiel) der Diagnose vollstaendig freigegeben.
+
+- **🔴 Fuer jeden der 45 offenen Punkte nur Titel und Status-Zeile behalten** (bei kurzen Punkten zusaetzlich eine kurze, noch nicht als Geschichte markierte Zusammenfassung, sofern sie unter 1.500 Zeichen blieb). Jeder vollstaendige „>"-Vermerk-Block, jeder dated „→"-Fund und jede zurueckgezogene ~~Aussage~~ wortgleich nach `BACKLOG-ARCHIV.md` verschoben — auch bei weiterhin OFFENEN Punkten (Regel 4 fuer geschlossene Punkte bleibt davon unberuehrt). Backlog von 287.203 auf 60.047 Zeichen (Kontrollrechnung im Antworttext).
+- **🔴 Regel 5 abgeloest**, siehe Abschnitt „Regeln fuer dieses Dokument" oben — die neue, uebergreifende Regel (`STAND.md`, Wegweiser) wirkt jetzt am Textkoerper UND an Fassungsabschnitten, nicht mehr nur an Fassungsabschnitten.
+- **Die bisherigen fuenf Fassungsabschnitte (124-128) wortgleich nach `BACKLOG-ARCHIV.md` verschoben** — die letzte Anwendung der alten Regel-5-Mechanik, danach entsteht kein neuer Fassungsabschnitt mehr im Hauptdokument (stehende Regel ab sofort).
+- **Kein Codeaufwand, kein Eingriff an `beta.html`.** `pruefe.py` um Punkt 82 (Aktueller-Stand-Groesse, 80.000-Zeichen-Grenze je Pflichtdokument) erweitert — Einzelheiten im Antworttext.
+- **Beschlossen und nicht gebaut: zwei** — **4, 92** *(Punkt 92 bleibt wegen des separaten Schritt 2 offen.)*
+
+---
+
+## Backlog-Punkt 95 — Vollsonde und Probekammer (16.11.2026, Fassung 163)
+
+**Anlass:** Der erste Bericht (v19.23.0) kam am iPhone an, prüfte aber nur, ob Funktionen im Code vorhanden sind (`typeof`), und führte nichts aus. Ondo: „Wir haben doch die Sonde gebaut um alles zu prüfen, warum ist das nicht der Fall?" und „Ja vollständig". **Bau:** `sondeKammerStarten()` lädt die eigene Seite in einen iframe mit `sandbox="allow-scripts"` (leere Herkunft, kein Zugriff auf localStorage/IndexedDB/Cookies der echten Seite; belegt durch t16 Gruppe D). In die Kammer geht nur eine Kopie des Zustands ohne die sechs Geheimfelder, Listen auf höchstens 60 Einträge gekürzt. Geprüft wird: Start, elf Bildschirme (mit Prüfung, dass keine zwei denselben Inhalt zeigen — ein erster Lauf mit falschen Reiter-Namen wäre sonst fälschlich grün gewesen), Sicherung erzeugen und laden, Messdaten-Export mit eingeschleusten Fake-Schlüsseln, ESPN-Archiv mit einem echten Spiel, ESPN live, fünf simulierte Netzfehler (kein Netz, 503, 429, 404, kaputte Antwort; geprüft werden Absturzfreiheit, unveränderter Zustand und die Einordnung durch den Fehlerzähler), Layout-Messung (seitlicher Überlauf, Datumsfelder; absichtlich scrollbare Streifen zählen nicht). **KI-Probe** (`sondeKiProbe()`): eigene Taste, je ein Aufruf Sonnet und Gemini mit 16 Antwort-Tokens; meldet Status, Dauer, Tokenzahlen, keine Preise; die Modellwechsel-Kaskade wird nicht geprüft. **Test:** `tests/t16_sonde_kammer.js` in echtem Chromium (Playwright), 34 Prüfungen, sieben Gegenproben (absichtlich eingebaute Fehler in Kopien von `beta.html`), alle von der Kammer gemeldet. **Grenzen:** Kein WebKit in der Entwicklungsumgebung — die Layout-Messung ist nur in Chromium belegt, das iOS-Datumsfeld-Problem (Punkt 73) kann erst die Messung am iPhone zeigen. Der Speicher wird weiter außerhalb der Kammer geprüft. Die Fehlerrate über Zeit braucht echte Nutzungstage; simuliert ist nur das Verhalten der App bei Fehlern, nicht ihre Häufigkeit bei den Anbietern.

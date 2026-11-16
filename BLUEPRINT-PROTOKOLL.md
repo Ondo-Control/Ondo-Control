@@ -709,3 +709,8 @@
 > bewiesen. Keine neue Architektur- oder Verfassungsregel; harte Checkpoint-, save-, Backup- und
 > Alarmsemantik bleiben unverändert. Blueprint auf 0.156 gehoben.
 
+> **Was Fassung 0.162 ändert (16.11.2026):** Reine Synchronisierung nach Arbeitsregel M für Backlog-Punkt 95
+> (Vollsonde, `beta.html` v19.24.0): Probekammer (iframe ohne Zugriff auf den echten Speicher) führt die Funktionen
+> der App aus, simuliert Netzfehler und misst das Layout; KI-Probe auf eigener Taste. Neuer Test
+> `tests/t16_sonde_kammer.js` in Chromium. Der Änderungsvermerk zu Fassung 129 steht jetzt im Archiv.
+> Keine neue Verfassungsregel. Blueprint auf 0.162 gehoben.
