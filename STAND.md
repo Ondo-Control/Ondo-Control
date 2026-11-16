@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 16.11.2026, Fassung 166, v19.24.2*
+*Die aktuelle Wahrheit. Stand: 16.11.2026, Fassung 167, v19.24.3*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -214,11 +214,11 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   `core/model/generated/` (`bericht.json`, `raum.json`); Reihenfolge in `core/ORIENTIERUNG.md`.
   Nicht an die App angebunden; gegen Wettquoten nicht geprüft.
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.24.2** (`beta.html`, geliefert 16.11.2026) — **Backlog-Punkt 95, Vollsonde:** Karte „Sonde“ unter „Mehr“ sendet
+- **Beta: v19.24.3** (`beta.html`, geliefert 16.11.2026) — **Backlog-Punkt 95, Vollsonde:** Karte „Sonde“ unter „Mehr“ sendet
   einen Technikbericht ans ONDO-Relay (Adresse nur lokal; Berichte vom iPhone kamen an). **Probekammer** (iframe ohne Zugriff auf
   den echten Speicher) führt Bildschirme, Sicherung, Export, ESPN und simulierte Netzfehler aus und misst das Layout; Taste
-  **KI-Probe** (wenige Cent). Lauf am iPhone: 21 ok. Punkt 73 dort gemessen; Layout-Labor (14 Bauweisen) am iPhone gelaufen; v19.24.2 setzt die gemessene Datumsfeld-Regel
-  (`appearance:none`, Höhe 44 px), am iPhone per Foto bestätigt (Punkt 73 behoben); Reiter-Überlauf behoben. Tests `t15_sonde.js`, `t16_sonde_kammer.js` (Chromium, kein WebKit).
+  **KI-Probe** (wenige Cent). Punkt 73 dort gemessen; Layout-Labor (14 Bauweisen) am iPhone gelaufen; v19.24.2 setzt die gemessene Datumsfeld-Regel
+  (`appearance:none`, Höhe 44 px), am iPhone per Foto bestätigt (Punkt 73 behoben); Reiter-Überlauf und umbrechender Filter-Zähler behoben. Tests `t15`, `t16` (Chromium, kein WebKit).
   **Davor v19.23.0 (Sonde) und v19.22.2** (12.10.2026) — **Punkt 91, Lifecycle-Korrektur:**
   v19.22.1 bleibt fachlich erhalten; v19.22.2 schließt die Retry-Race, wenn `tx-abort` erst nach
   `visibilitychange→visible` gemeldet wird. Rückkehr und verspäteter Fehler benutzen denselben

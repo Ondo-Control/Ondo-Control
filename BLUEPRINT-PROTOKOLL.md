@@ -728,3 +728,7 @@
 > **Was Fassung 0.165 ändert (16.11.2026):** Reine Synchronisierung nach Arbeitsregel M: Backlog-Punkt 73 ist behoben;
 > die Regel aus `beta.html` v19.24.2 wurde von Ondo am iPhone per Foto bestätigt (zentriert, in der Spalte, Datumswähler
 > öffnet sich). Kein Codewechsel. Keine neue Verfassungsregel. Blueprint auf 0.165 gehoben.
+
+> **Was Fassung 0.166 ändert (16.11.2026):** Reine Synchronisierung nach Arbeitsregel M (`beta.html` v19.24.3): Der Zähler
+> „16 von 16“ neben „Zurücksetzen“ im KI-Log-Filter bricht nicht mehr um (Knopf `width:auto;flex:1`, Zähler `nowrap`);
+> Test `t16` A16 mit Gegenprobe (alt 36 px, neu 18 px Höhe). Keine neue Verfassungsregel. Blueprint auf 0.166 gehoben.

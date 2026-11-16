@@ -159,7 +159,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.24.2';
+var CODE_VERSION = 'v19.24.3';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -3343,8 +3343,8 @@ function kilogFilterBlock(gesamt, gezeigt, modus){
       'value="'+esc(kilogMannschaft)+'" onchange="kilogMannschaft=this.value;render()"/></div>'+
     statusFeld+
     '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">'+
-      '<button class="btn btn-ghost" onclick="kilogVon=\'\';kilogBis=\'\';kilogWettbewerb=\'\';kilogMannschaft=\'\';kilogStatus=\'alle\';render()">'+t('filterReset')+'</button>'+
-      '<div class="muted">'+t('filterCount').replace('{a}',gezeigt).replace('{b}',gesamt)+'</div>'+
+      '<button class="btn btn-ghost" style="width:auto;flex:1;min-width:0" onclick="kilogVon=\'\';kilogBis=\'\';kilogWettbewerb=\'\';kilogMannschaft=\'\';kilogStatus=\'alle\';render()">'+t('filterReset')+'</button>'+
+      '<div id="kilogZaehler" class="muted" style="white-space:nowrap;margin-left:12px">'+t('filterCount').replace('{a}',gezeigt).replace('{b}',gesamt)+'</div>'+
     '</div>'+
   '</div>';
 }

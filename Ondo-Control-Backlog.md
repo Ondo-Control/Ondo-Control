@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 16.11.2026, Fassung 166 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 16.11.2026, Fassung 167 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 **Beschlossen und nicht gebaut: zwei** — **4, 92** *(Punkt 92 bleibt wegen des separaten Schritt 2 offen.)*
@@ -616,7 +616,7 @@ Der Foto-Import übernimmt jede Anzahl erkannter Einträge ohne Vorschau und ohn
 
 `beta.html` unverändert. Daten, Modell, `core/REGELN.md` (Ondos Regeln als Text), Trainingsraum (`raum.js`, Lernstände L0, L1 …). Täglicher Lauf, Zahlen nur in `core/model/generated/`. Reihenfolge: `core/ORIENTIERUNG.md`. t12–t14. **Offen:** Quoten fehlen, kein echtes Geld. Baugeschichte: `BACKLOG-ARCHIV.md`.
 
-**95. Sonde: Selbsttest der App mit Bericht ans ONDO-Relay** · *Ondos Idee und Ja 16.11.2026 · von Claude geliefert* · **Status: 🔴 GEBAUT 16.11.2026 (`beta.html` v19.24.2, Vollsonde) — Berichte vom iPhone kamen an, Layout-Labor lief; Wirkung der Datumsfeld-Regel (v19.24.2) noch nicht am iPhone gemessen**
+**95. Sonde: Selbsttest der App mit Bericht ans ONDO-Relay** · *Ondos Idee und Ja 16.11.2026 · von Claude geliefert* · **Status: 🔴 GEBAUT 16.11.2026 (`beta.html` v19.24.3, Vollsonde) — Berichte vom iPhone kamen an, Layout-Labor lief; Wirkung der Datumsfeld-Regel (v19.24.2) noch nicht am iPhone gemessen**
 
 Knopf unter „Mehr": Technikbericht (keine Wetten, Schlüssel, Spielnamen) ans ONDO-Relay, Claude liest ihn mit `ondo_diag`. **Seit v19.24.0 mit Probekammer:** unsichtbarer iframe ohne Zugriff auf den echten Speicher; dort laufen Bildschirme, Sicherung hin und zurück, Messdaten-Export, ESPN-Archiv und simulierte Netzfehler; dazu Layout-Messung. Eigene Taste „KI-Probe" (kostet wenige Cent, nur auf Tipp). Passiver Fehlerzähler seit 16.11.2026 (Kriterium (b) braucht noch Tage). **Offen:** Sonde v19.24.2 einmal am iPhone laufen lassen (Datumsfelder müssen 141 von 141 px zeigen); KI-Kaskade ungeprüft. Tests t15, t16 (Chromium, kein WebKit).
 
