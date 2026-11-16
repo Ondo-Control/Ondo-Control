@@ -733,6 +733,8 @@
 > „16 von 16“ neben „Zurücksetzen“ im KI-Log-Filter bricht nicht mehr um (Knopf `width:auto;flex:1`, Zähler `nowrap`);
 > Test `t16` A16 mit Gegenprobe (alt 36 px, neu 18 px Höhe). Keine neue Verfassungsregel. Blueprint auf 0.166 gehoben.
 
+> **Was Fassung 0.177 ändert (16.11.2026):** Reine Synchronisierung nach Arbeitsregel M: Grenze des Merkmalskatalogs und Test der Merkmalswahl (t23) in STAND nachgeführt. Keine neue Verfassungsregel. Blueprint auf 0.177 gehoben.
+
 > **Was Fassung 0.176 ändert (16.11.2026):** Reine Synchronisierung nach Arbeitsregel M: Lerntest mit versteckter Regel (t22) und Prüfskripte unter `core/pruefungen/` nachgeführt. Keine neue Verfassungsregel. Blueprint auf 0.176 gehoben.
 
 > **Was Fassung 0.175 ändert (16.11.2026):** Reine Synchronisierung nach Arbeitsregel M: Produktionspfad der Lagen-Stufe in STAND nachgeführt. Keine neue Verfassungsregel. Blueprint auf 0.175 gehoben.
