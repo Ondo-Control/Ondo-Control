@@ -733,6 +733,10 @@
 > „16 von 16“ neben „Zurücksetzen“ im KI-Log-Filter bricht nicht mehr um (Knopf `width:auto;flex:1`, Zähler `nowrap`);
 > Test `t16` A16 mit Gegenprobe (alt 36 px, neu 18 px Höhe). Keine neue Verfassungsregel. Blueprint auf 0.166 gehoben.
 
+> **Was Fassung 0.168 ändert (16.11.2026):** Reine Synchronisierung nach Arbeitsregel M: Backlog-Punkt 94 um „Lagen lernen“ ergänzt
+> (Stichtag 1.8.2026, `versiegelt.json`, Test t17; Aufstellungs-Merkmale bestehen die Hürde auf den Prüfsaisons, Holdout nicht angesehen).
+> Keine neue Verfassungsregel. Blueprint auf 0.168 gehoben.
+
 > **Was Fassung 0.167 ändert (16.11.2026):** Reine Synchronisierung nach Arbeitsregel M: Beförderung Beta→Stabil vollzogen
 > (`OndoControl.html` = Beta-Code v19.24.3 ohne „BETA“-Aufschrift, `version.json` 17; Commit f18dcfe). Gerätetest in der
 > Home-Bildschirm-App bestanden. Kriterium (g) lief am 16.11. erneut und verfehlte die Schwelle (Sonnet 88 %, Flash 63 %, n=8);

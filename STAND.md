@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 16.11.2026, Fassung 168, v19.24.3*
+*Die aktuelle Wahrheit. Stand: 16.11.2026, Fassung 169, v19.24.3*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -205,25 +205,27 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   `beta.html` v19.9.0, 12.9.2026, 16:17 Uhr UTC (Commit-Zeitstempel). Ondo hat nach dem Trainingsraum-Bau
   Nachbesserungen verlangt (KI-Daten von „Mehr" nach Wettmodul/KI-Log verschieben, Auswahl-UI für
   den Trainingsraum) — dieser Commit ist der Stand **davor**, falls zurückgesetzt werden muss.
-  Einzelheiten Backlog-Punkt 77.
+  Siehe Backlog-Punkt 77.
 - **Ondo Core (Backlog-Punkt 94, geliefert 14.11. und 16.11.2026) — `beta.html` unverändert:**
   `core/data/` (geprüfter Spielbestand), `core/model/` (Modell, Rücktest, Selbstprüfung),
   `core/REGELN.md` (Ondos Regeln als Textdatei, vom Core gelesen und durchgesetzt),
   `core/model/raum.js` (Trainingsraum in Runden mit Lernständen, Zähler in `ideen.json`).
-  Täglicher Lauf durch `core-daten.yml`, Tests `tests/t12` bis `t14`. Zahlen und Beschluss nur in
-  `core/model/generated/` (`bericht.json`, `raum.json`); Reihenfolge in `core/ORIENTIERUNG.md`.
-  Nicht an die App angebunden; gegen Wettquoten nicht geprüft.
-- **Stabil: v19.24.3** (`OndoControl.html`, seit 16.11.2026 = Beta-Code ohne „BETA“-Aufschrift; `version.json` bleibt 17, `APP_VERSION` 18,
-  damit kein falsches Update-Banner). Davor v17 (seit 17.7.). **Gerätetest Home-Bildschirm-App 16.11. 15:16 bestanden:** Sicherung geladen,
-  755 KI-Einträge, 4 Wetten, Sonde meldet „als App installiert“, Probekammer 22 ok/0 Fehler, Layout 0 Auffälligkeiten. Die Home-App hat auf iOS
-  eigenen Speicher; erste Sicherung dort steht aus.
+  **Neu 16.11.2026: „Lagen lernen“** (`lagen_lauf.js`, Stichtag 1.8.2026 in `versiegelt.json`, Test t17): Der Core wählt Gruppen selbst
+  (Hürde 2,64, Versuche gezählt). Prüfsaisons: Ergebnis-Gruppen bestehen nicht (beste z = 2,02); **Aufstellung/Marktwert**
+  (`aufstellung.json`, 7 erste Ligen, Datensatz bis 6.7.2026 nicht mehr gepflegt) besteht (z = 4,23). Holdout nicht angesehen, gegen
+  Pinnacle nicht gemessen (K6: 0,9982 gegen 0,9715). Laufende Aufstellungsquelle fehlt.
+  Täglicher Lauf durch `core-daten.yml`, Tests `tests/t12` bis `t14`, `t17`. Zahlen und Beschluss nur in
+  `core/model/generated/` (`bericht.json`, `raum.json`, `lagen.json`); Reihenfolge in `core/ORIENTIERUNG.md`.
+  Nicht an die App angebunden.
+- **Stabil: v19.24.3** (`OndoControl.html`, seit 16.11.2026 = Beta-Code ohne „BETA“; `version.json` bleibt 17, `APP_VERSION` 18). Davor v17 (seit 17.7.). **Gerätetest Home-Bildschirm-App 16.11. 15:16 bestanden:** Sicherung geladen,
+  755 KI-Einträge, 4 Wetten, „als App installiert“, Probekammer 22 ok, Layout 0 Auffälligkeiten. Home-App: eigener iOS-Speicher,
+  erste Sicherung dort steht aus.
 - **Beta: v19.24.3** (`beta.html`, geliefert 16.11.2026; derzeit gleicher Code wie Stabil) — **Backlog-Punkt 95, Vollsonde:** Karte „Sonde“ unter „Mehr“ sendet
   einen Technikbericht ans ONDO-Relay (Adresse nur lokal; Berichte vom iPhone kamen an). **Probekammer** (iframe ohne Zugriff auf
   den echten Speicher) führt Bildschirme, Sicherung, Export, ESPN und simulierte Netzfehler aus und misst das Layout; Taste
-  **KI-Probe** (wenige Cent). Punkt 73 dort gemessen; Layout-Labor (14 Bauweisen) am iPhone gelaufen; v19.24.2 setzt die gemessene Datumsfeld-Regel
-  (`appearance:none`, Höhe 44 px), am iPhone per Foto bestätigt (Punkt 73 behoben); Reiter-Überlauf und umbrechender Filter-Zähler behoben. Tests `t15`, `t16` (Chromium, kein WebKit).
-  **Davor:** v19.23.0 (Sonde), v19.22.2 (Punkt 91, Retry-Race), v19.22.0 (Punkt 92 bleibt erhalten) — Einzelheiten in `CHRONIK-2026-10.md`.
-  **Punkt 80 — Antwortkonsistenz:** `vorhersageGehirn()` hat den Parameter `ohneFruehere`; nur `antwortkonsistenzLauf()` setzt ihn auf `true` (kein Absatz „Deine letzten eigenen Vorhersagen“ in den Wiederholungen). Schwellen, Spielzahl und Markt unverändert.
+  **KI-Probe** (wenige Cent). Punkt 73 am iPhone behoben (v19.24.2, Datumsfeld-Regel); Reiter-Überlauf und Filter-Zähler behoben. Tests `t15`, `t16` (nur Chromium).
+  **Davor:** v19.23.0, v19.22.2, v19.22.0 — `CHRONIK-2026-10.md`.
+  **Punkt 80 — Antwortkonsistenz:** nur `antwortkonsistenzLauf()` ruft `vorhersageGehirn()` mit `ohneFruehere=true` (Einzelheiten `CHRONIK-2026-10.md`).
   **Kriterium (g) erneut gelaufen 16.11.2026 (Home-App, n=8): NICHT bestanden** — Sonnet 88 % gleicher Tipp (Ø 1,6 Punkte), Flash 63 % (Ø 4,6 Punkte); Schwelle ≥ 90 % und ≤ 10 Punkte. Ursache offen; Ondo entscheidet.
   **Geräte-Bewährung (Ondo, 27.9.2026, v19.21.2 BETA):** Sonnet erreichte **100 % gleicher Tipp**,
   Ø **3,5 Punkte Spanne**, `n=8`; Flash erreichte **100 % gleicher Tipp**, Ø **2,8 Punkte Spanne**,
