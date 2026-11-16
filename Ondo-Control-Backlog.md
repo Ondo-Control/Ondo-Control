@@ -1,8 +1,8 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 16.11.2026, Fassung 167 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 16.11.2026, Fassung 168 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
-**Beschlossen und nicht gebaut: zwei** — **4, 92** *(Punkt 92 bleibt wegen des separaten Schritt 2 offen.)*
+**Beschlossen und nicht gebaut: eins** — **92** *(Punkt 92 bleibt wegen des separaten Schritt 2 offen.)*
 
 ## Regeln für dieses Dokument
 
@@ -625,7 +625,7 @@ Knopf unter „Mehr": Technikbericht (keine Wetten, Schlüssel, Spielnamen) ans 
 ## 🟡 Prio 2 — wichtig, aber später
 
 
-**4. Daten-Export in die stabile Version** · *Idee Chat 1, erneut 28.7.* · **Status: beschlossen — 🔴 wartet auf die Beförderung Beta→Stabil (Ondo, 12.9.2026) — kein eigener Bauaufwand mehr, Begründung im Archiv**
+**4. Daten-Export in die stabile Version** · *Idee Chat 1, erneut 28.7.* · **Status: 🔴 GEBAUT durch die Beförderung am 16.11.2026 (stabile App = Beta-Code mit Sicherung/Export) — Sicherung laden am iPhone bewiesen; Messdaten-Export in der Home-App von Ondo noch nicht gesondert bestätigt**
 
 **34. Brier-Score als zweite Kennzahl neben der Kalibrierung** *(🔴 GERECHNET am 14.8. abends aus
 den Rohdaten — Sonnet **0,2429**, Bereich 0,2350–0,2513 · Flash **0,2497**, Bereich
@@ -750,10 +750,10 @@ Wenn ein Korrekturfaktor nur für das Modell gilt, an dem er gemessen wurde (neu
 | ~~Warntext der Datensicherung unvollständig~~ | **BEHOBEN in v19.7.5 (4.8.)** — der Text nennt jetzt in allen drei Sprachen das Löschen des Browserverlaufs | erledigt |
 | ~~„Zuletzt gesichert" nach dem Laden falsch~~ | **BEHOBEN in v19.7.5 (4.8.)** — Ursache lag nicht im Laden, sondern im Sichern: `datenSichern` schrieb die Datei aus, **bevor** es den neuen Zeitstempel setzte. Die Datei trug deshalb den Stand der vorigen Sicherung. Reihenfolge umgedreht. *Ältere Sicherungsdateien tragen weiterhin den alten Stand* | erledigt |
 | ~~`class="ghost"` statt `class="btn btn-ghost"`~~ | **BEHOBEN in v19.7.5 (4.8.)** | erledigt |
-| **Doppelter Code** — `beta.html` und `OndoControl.html` sind zwei vollständige Kopien | Jede Korrektur muss zweimal gemacht werden | hoch, sobald v19 befördert wird |
+| **Doppelter Code** — `beta.html` und `OndoControl.html` sind zwei vollständige Kopien | Jede Korrektur muss zweimal gemacht werden; seit 16.11.2026 sind beide bis auf das Wort „BETA“ gleich | **hoch — jetzt aktuell** |
 | **Bekannte Lücke im Schiedsrichter** — ein einmal als *fertig* gemeldetes Ergebnis wird nie wieder hinterfragt | Ein falsch abgelesener Endstand bleibt dauerhaft falsch, sobald übernommen wurde | **hoch** — durch die erfundenen 0:0 vom 31.7. weiter verschärft |
 | **Der Schiedsrichter sucht, statt zu prüfen** | Ein Modell, das suchen soll, liefert irgendetwas statt „nicht gefunden" | **hoch** → Punkt E |
-| **`APP_VERSION = 18` in `beta.html`**, `version.json` steht auf 17 | Heute folgenlos. Wird `version.json` bei der Beförderung auf 19 gesetzt, zeigt die Beta ein Update-Banner, das aus der Beta herausführt | vor der Beförderung klären |
+| **`APP_VERSION = 18` in `beta.html`**, `version.json` steht auf 17 | Heute folgenlos. Befördert am 16.11.2026 mit `version.json` 17 — kein Banner; bleibt so, bis die Zahl bewusst angehoben wird | geklärt |
 | **Rückblick auf eigene Tipps enthält Vermutungen, keine Tatsachen** | Ein falscher Tipp kann Grundlage des nächsten werden | **wird mit v19.7 behoben** → Punkt D |
 | **Nur lokale Speicherung** (IndexedDB) | Sicherung seit v19.1 gebaut; offen bleibt die Übertragung in die stabile Version | → Prio 2, Punkt 4 |
 | **Eine lange JS-Datei** (keine Module) | Änderungen werden mit der Zeit riskanter | mittel |

@@ -256,3 +256,12 @@ Nullabrufprüfung hat synchron keine offenen Posten und startet daher keinen asy
 Abrufpfad. Keine weitere Teständerung nötig.
 
 **Kosten:** keine. Kein neuer Dienst und kein Modellaufruf im App-Betrieb.
+
+## Hinweis 16.11.2026 — Kurzfassungen aus STAND.md ausgelagert
+
+v19.22.2 (Punkt 91): v19.22.1 bleibt erhalten; v19.22.2 schließt die Retry-Race, wenn `tx-abort` erst nach `visibilitychange→visible`
+gemeldet wird. Rückkehr und verspäteter Fehler benutzen denselben Einmal-Retry; `pageshow` greift nur bei echter BFCache-Wiederherstellung
+(`persisted=true`). v19.22.0 / Punkt 92 bleibt vollständig erhalten: Sport-Schranke, `einsatz_zurueck`, offener Schritt 2 (spätere
+Nachprüfung bereits akzeptierter Ergebnisse inklusive 14-Tage-Weg). Punkt 80: `vorhersageGehirn()` hat den optionalen vierten Parameter
+`ohneFruehere`; nur `antwortkonsistenzLauf()` setzt ihn auf `true`, dadurch bleibt `fruehere` leer und der Absatz „Deine letzten eigenen
+Vorhersagen“ fehlt in allen drei Wiederholungsläufen. Alle anderen Aufrufer behalten ihre bisherige Promptbildung.

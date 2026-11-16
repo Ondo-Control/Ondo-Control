@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 16.11.2026, Fassung 167, v19.24.3*
+*Die aktuelle Wahrheit. Stand: 16.11.2026, Fassung 168, v19.24.3*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -213,23 +213,18 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   Täglicher Lauf durch `core-daten.yml`, Tests `tests/t12` bis `t14`. Zahlen und Beschluss nur in
   `core/model/generated/` (`bericht.json`, `raum.json`); Reihenfolge in `core/ORIENTIERUNG.md`.
   Nicht an die App angebunden; gegen Wettquoten nicht geprüft.
-- **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.24.3** (`beta.html`, geliefert 16.11.2026) — **Backlog-Punkt 95, Vollsonde:** Karte „Sonde“ unter „Mehr“ sendet
+- **Stabil: v19.24.3** (`OndoControl.html`, seit 16.11.2026 = Beta-Code ohne „BETA“-Aufschrift; `version.json` bleibt 17, `APP_VERSION` 18,
+  damit kein falsches Update-Banner). Davor v17 (seit 17.7.). **Gerätetest Home-Bildschirm-App 16.11. 15:16 bestanden:** Sicherung geladen,
+  755 KI-Einträge, 4 Wetten, Sonde meldet „als App installiert“, Probekammer 22 ok/0 Fehler, Layout 0 Auffälligkeiten. Die Home-App hat auf iOS
+  eigenen Speicher; erste Sicherung dort steht aus.
+- **Beta: v19.24.3** (`beta.html`, geliefert 16.11.2026; derzeit gleicher Code wie Stabil) — **Backlog-Punkt 95, Vollsonde:** Karte „Sonde“ unter „Mehr“ sendet
   einen Technikbericht ans ONDO-Relay (Adresse nur lokal; Berichte vom iPhone kamen an). **Probekammer** (iframe ohne Zugriff auf
   den echten Speicher) führt Bildschirme, Sicherung, Export, ESPN und simulierte Netzfehler aus und misst das Layout; Taste
   **KI-Probe** (wenige Cent). Punkt 73 dort gemessen; Layout-Labor (14 Bauweisen) am iPhone gelaufen; v19.24.2 setzt die gemessene Datumsfeld-Regel
   (`appearance:none`, Höhe 44 px), am iPhone per Foto bestätigt (Punkt 73 behoben); Reiter-Überlauf und umbrechender Filter-Zähler behoben. Tests `t15`, `t16` (Chromium, kein WebKit).
-  **Davor v19.23.0 (Sonde) und v19.22.2** (12.10.2026) — **Punkt 91, Lifecycle-Korrektur:**
-  v19.22.1 bleibt fachlich erhalten; v19.22.2 schließt die Retry-Race, wenn `tx-abort` erst nach
-  `visibilitychange→visible` gemeldet wird. Rückkehr und verspäteter Fehler benutzen denselben
-  Einmal-Retry; `pageshow` greift nur bei echter BFCache-Wiederherstellung (`persisted=true`).
-  **v19.22.0 / Punkt 92 bleibt vollständig erhalten:** Sport-Schranke, `einsatz_zurueck` und
-  offener Schritt 2 (spätere Nachprüfung bereits akzeptierter Ergebnisse inklusive 14-Tage-Weg).
-  **Punkt 80 — Antwortkonsistenz:** `vorhersageGehirn()` hat einen optionalen vierten Parameter
-  `ohneFruehere`. Nur `antwortkonsistenzLauf()` setzt ihn auf `true`; dadurch bleibt `fruehere`
-  leer und der Absatz „Deine letzten eigenen Vorhersagen“ fehlt in allen drei Wiederholungsläufen.
-  Alle anderen Aufrufer lassen den Parameter weg und behalten ihre bisherige Promptbildung.
-  Schwellenwerte, Zahl der Spiele/Wiederholungen und der gemessene Markt bleiben unverändert.
+  **Davor:** v19.23.0 (Sonde), v19.22.2 (Punkt 91, Retry-Race), v19.22.0 (Punkt 92 bleibt erhalten) — Einzelheiten in `CHRONIK-2026-10.md`.
+  **Punkt 80 — Antwortkonsistenz:** `vorhersageGehirn()` hat den Parameter `ohneFruehere`; nur `antwortkonsistenzLauf()` setzt ihn auf `true` (kein Absatz „Deine letzten eigenen Vorhersagen“ in den Wiederholungen). Schwellen, Spielzahl und Markt unverändert.
+  **Kriterium (g) erneut gelaufen 16.11.2026 (Home-App, n=8): NICHT bestanden** — Sonnet 88 % gleicher Tipp (Ø 1,6 Punkte), Flash 63 % (Ø 4,6 Punkte); Schwelle ≥ 90 % und ≤ 10 Punkte. Ursache offen; Ondo entscheidet.
   **Geräte-Bewährung (Ondo, 27.9.2026, v19.21.2 BETA):** Sonnet erreichte **100 % gleicher Tipp**,
   Ø **3,5 Punkte Spanne**, `n=8`; Flash erreichte **100 % gleicher Tipp**, Ø **2,8 Punkte Spanne**,
   `n=8`. Die seit v19.13.0 vorab festgelegte Schwelle — mindestens **90 % gleicher Tipp** UND
