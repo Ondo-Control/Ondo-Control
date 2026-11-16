@@ -8,8 +8,9 @@ var fs=require('fs'), path=require('path'), https=require('https');
 function get(pfad,key){ return new Promise(function(ok,nein){ https.get({ host:'sports.bzzoiro.com', path:pfad, headers:{ Authorization:'Token '+key, Accept:'application/json' } },function(r){ var d=''; r.on('data',function(c){ d+=c; }); r.on('end',function(){ var j=null; try{ j=JSON.parse(d); }catch(e){} ok({ status:r.statusCode, json:j, limit:r.headers['x-ratelimit-limit']||null }); }); }).on('error',nein); }); }
 function iso(d){ return d.toISOString().replace(/\.\d+Z$/,'Z'); }
 function feldnamen(o){ return o&&typeof o==='object'&&!Array.isArray(o)?Object.keys(o).sort():[]; }
-/* sucht rekursiv Arrays; zaehlt Eintraege der ersten zwei Arrays mit "starter"-aehnlichem Namen */
-function startzahlen(o,out,pfad){ if(!o||typeof o!=='object') return; if(Array.isArray(o)){ if(/start|xi|lineup|players/i.test(pfad)) out.push({ pfad:pfad, n:o.length }); return; } Object.keys(o).forEach(function(k){ startzahlen(o[k],out,pfad+'/'+k); }); }
+/* Struktur einer Antwort: Pfad -> Typ, Arrays mit Laenge; Werte NICHT (keine Rohdaten) */
+function struktur(o,pfad,out,tiefe){ if(tiefe>6) return; if(Array.isArray(o)){ out[pfad||'/']='array['+o.length+']'; if(o.length&&typeof o[0]==='object') struktur(o[0],pfad+'[]',out,tiefe+1); return; }
+  if(o&&typeof o==='object'){ Object.keys(o).sort().forEach(function(k){ struktur(o[k],pfad+'/'+k,out,tiefe+1); }); return; } out[pfad]=o===null?'null':typeof o; }
 (async function(){
   var key=process.env.BSD_API_KEY, ziel=path.join(__dirname,'generated','bsd_probe.json');
   if(!key){ console.log('BSD_API_KEY nicht gesetzt - kein Test.'); return; }
@@ -20,14 +21,18 @@ function startzahlen(o,out,pfad){ if(!o||typeof o!=='object') return; if(Array.i
     ber.rateLimitKopf=antw&&antw.limit; if(!basis){ ber.fehler.push('Events nicht abrufbar'); throw new Error('stop'); }
     var liste=Array.isArray(antw.json)?antw.json:(antw.json&&(antw.json.results||antw.json.events))||[];
     ber.anzahlEvents=liste.length; ber.eventFelder=feldnamen(liste[0]);
-    var stat={}, mitElf=0, vorAnstoss=0, geprueft=0, felder=null;
+    ber.strukturEvent=(function(){ var o={}; struktur(liste[0],'',o,0); return o; })();
+    var proben=[], stat={}, geprueft=0;
     for(var ev of liste.slice(0,15)){
-      var r=await get(basis+ev.id+'/lineups/',key); geprueft++; var t=new Date();
-      if(r.status!==200||!r.json){ stat['http'+r.status]=(stat['http'+r.status]||0)+1; continue; }
-      felder=felder||feldnamen(r.json); var s=String(r.json.lineup_status||'unbekannt'); stat[s]=(stat[s]||0)+1;
-      var zahlen=[]; startzahlen(r.json,zahlen,''); if(s==='confirmed' && zahlen.filter(function(z){ return z.n===11; }).length>=2){ mitElf++; var anstoss=Date.parse(ev.event_date||ev.start_time||ev.kickoff||ev.date||''); if(anstoss&&t.getTime()<anstoss) vorAnstoss++; }
+      geprueft++; var t=new Date();
+      var r=await get(basis+ev.id+'/lineups/',key), av=await get(basis+ev.id+'/availability/',key);
+      var st=(r.json&&JSON.stringify(r.json).match(/"lineup_status":"([a-z]+)"/g))||[]; st.forEach(function(x){ stat[x]=(stat[x]||0)+1; });
+      stat['lineups_http'+r.status]=(stat['lineups_http'+r.status]||0)+1; stat['availability_http'+av.status]=(stat['availability_http'+av.status]||0)+1;
+      if(proben.length<2 && r.json){ var o={}; struktur(r.json,'',o,0); proben.push({ gesehenUtc:iso(t), strukturLineups:o }); }
+      if(!ber.strukturAvailability && av.json){ var o2={}; struktur(av.json,'',o2,0); ber.strukturAvailability=o2; }
     }
-    ber.lineupsGeprueft=geprueft; ber.lineupStatus=stat; ber.lineupFelder=felder; ber.confirmedMitZweiMalElf=mitElf; ber.davonVorAnstossGesehen=vorAnstoss;
+    ber.lineupsGeprueft=geprueft; ber.statusZaehler=stat; ber.proben=proben;
+    ber.hinweis2='Erster Lauf nur zur Feld-Erkennung. Erst wenn die Felder fuer Heim/Gast/Starter/Anstoss bekannt sind, wird gezaehlt (Zaehlung folgt in einem zweiten Schritt).';
   }catch(e){ if(e.message!=='stop') ber.fehler.push(e.message); }
   fs.writeFileSync(ziel,JSON.stringify(ber,null,1)+'\n'); console.log(JSON.stringify(ber));
 })();
