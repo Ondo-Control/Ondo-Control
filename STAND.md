@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 16.11.2026, Fassung 163, v19.24.0*
+*Die aktuelle Wahrheit. Stand: 16.11.2026, Fassung 164, v19.24.1*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -214,12 +214,11 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   `core/model/generated/` (`bericht.json`, `raum.json`); Reihenfolge in `core/ORIENTIERUNG.md`.
   Nicht an die App angebunden; gegen Wettquoten nicht geprüft.
 - **Stabil: v17** (`OndoControl.html`, version.json = 17) — **seit dem 17. Juli unverändert**
-- **Beta: v19.24.0** (`beta.html`, geliefert 16.11.2026) — **Backlog-Punkt 95, Vollsonde:** Karte unter „Mehr“,
-  Knopf sendet einen Technikbericht an das ONDO-Relay (Adresse nur lokal, eigener Speicherschlüssel; erster
-  Bericht von v19.23.0 kam am iPhone an). Neu: **Probekammer** (unsichtbarer iframe ohne Zugriff auf den echten
-  Speicher) führt Bildschirme, Sicherung hin/zurück, Messdaten-Export, ESPN-Abruf und simulierte Netzfehler
-  wirklich aus und misst das Layout; eigene Taste **KI-Probe** (kostet wenige Cent). Tests `tests/t15_sonde.js`
-  und `tests/t16_sonde_kammer.js` (Chromium, kein WebKit). Vollsonde am iPhone noch nicht gelaufen.
+- **Beta: v19.24.1** (`beta.html`, geliefert 16.11.2026) — **Backlog-Punkt 95, Vollsonde:** Karte „Sonde“ unter „Mehr“ sendet
+  einen Technikbericht ans ONDO-Relay (Adresse nur lokal; Berichte vom iPhone kamen an). **Probekammer** (iframe ohne Zugriff auf
+  den echten Speicher) führt Bildschirme, Sicherung, Export, ESPN und simulierte Netzfehler aus und misst das Layout; Taste
+  **KI-Probe** (wenige Cent). Lauf am iPhone: 21 ok. Punkt 73 dort gemessen; v19.24.1 hat ein Layout-Labor (14 Bauweisen) und
+  behebt einen 21-px-Überlauf im KI-Log-Reiter „Daten“. Tests `t15_sonde.js`, `t16_sonde_kammer.js` (Chromium, kein WebKit).
   **Davor v19.23.0 (Sonde) und v19.22.2** (12.10.2026) — **Punkt 91, Lifecycle-Korrektur:**
   v19.22.1 bleibt fachlich erhalten; v19.22.2 schließt die Retry-Race, wenn `tx-abort` erst nach
   `visibilitychange→visible` gemeldet wird. Rückkehr und verspäteter Fehler benutzen denselben

@@ -714,3 +714,8 @@
 > der App aus, simuliert Netzfehler und misst das Layout; KI-Probe auf eigener Taste. Neuer Test
 > `tests/t16_sonde_kammer.js` in Chromium. Der Änderungsvermerk zu Fassung 129 steht jetzt im Archiv.
 > Keine neue Verfassungsregel. Blueprint auf 0.162 gehoben.
+
+> **Was Fassung 0.163 ändert (16.11.2026):** Reine Synchronisierung nach Arbeitsregel M für Backlog-Punkt 95/73
+> (`beta.html` v19.24.1): Die Sonde hat am iPhone den Datumsfeld-Überlauf aus Punkt 73 erstmals gemessen; neu ein
+> Layout-Labor in der Probekammer (14 Bauweisen, ein Lauf), und der 21-px-Überlauf im Reiter KI-Log → Daten ist behoben.
+> Keine neue Verfassungsregel. Blueprint auf 0.163 gehoben.

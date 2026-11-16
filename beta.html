@@ -153,7 +153,7 @@ var APP_VERSION = 18;
    in jeden neuen Log-Eintrag mitgeschrieben. Bei jeder Lieferung hier hochzaehlen — sonst
    tragen neue Eintraege eine falsche Nummer. APP_VERSION bleibt davon unberuehrt; sie ist
    der Update-Zaehler gegen version.json und steht bewusst auf 18. */
-var CODE_VERSION = 'v19.24.0';
+var CODE_VERSION = 'v19.24.1';
 (function(){ var e=document.getElementById('verLbl'); if(e) e.textContent=CODE_VERSION; })();
 function checkUpdate(){
   fetch('version.json?ts='+Date.now(),{cache:'no-store'})
@@ -1373,7 +1373,7 @@ function sondeProbeZustand(){
 /* LAEUFT IM IFRAME (nicht in der echten App). Wird als Text in die Kammer eingesetzt. Alle
    Namen (state, render, datenSichern ...) sind dort die Namen der Kammer-Kopie der App. */
 function sondeKammerHarness(){
-  var unbehandelt=[], tests=[], layout=[];
+  var unbehandelt=[], tests=[], layout=[], labor=[];
   window.addEventListener('error', function(e){ unbehandelt.push(String((e && e.message) || '?').slice(0,160)); });
   window.addEventListener('unhandledrejection', function(e){
     unbehandelt.push('Promise: '+String((e && e.reason && e.reason.message) || (e && e.reason) || '?').slice(0,160));
@@ -1429,6 +1429,48 @@ function sondeKammerHarness(){
         rechts:Math.round(dr.right), ragtUeberEltern:dr.right>pr.right+1, innenUeberlauf:d.scrollWidth>d.clientWidth+1 });
     }
     layout.push({ ansicht:name, fensterBreite:br, seitenUeberlauf:docUeber, ueberstehend:ueber, datumsfelder:dl });
+  }
+
+  /* LABOR (Punkt 73): Dieselbe Datums-Reihe wie im KI-Log in mehreren Bauweisen nebeneinander, damit EIN
+     Lauf am iPhone zeigt, welche Bauweise in der Spalte bleibt. Gemessen wird nur: Breite des Feldes,
+     Breite seiner Huelle, ragt es heraus, ueberlappt das linke das rechte, laeuft die Seite ueber. */
+  function laborDatum(){
+    var view=document.getElementById('view'); if(!view) return 'kein Bildschirm';
+    var varianten=[
+      { n:'ist', s:'', w:'' },
+      { n:'ist-mit-wert', s:'', w:'', v:'2026-11-16' },
+      { n:'appearance-none', s:'-webkit-appearance:none;appearance:none;', w:'' },
+      { n:'appearance-none+hoehe', s:'-webkit-appearance:none;appearance:none;height:44px;', w:'' },
+      { n:'appearance-none+hoehe+mit-wert', s:'-webkit-appearance:none;appearance:none;height:44px;', w:'', v:'2026-11-16' },
+      { n:'max-width', s:'max-width:100%;', w:'' },
+      { n:'block+appearance-none+max-width', s:'-webkit-appearance:none;appearance:none;display:block;max-width:100%;height:44px;', w:'' },
+      { n:'huelle-overflow-hidden', s:'', w:'overflow:hidden;' },
+      { n:'inline-size', s:'inline-size:100%;min-inline-size:0;', w:'' },
+      { n:'contain-inline-size', s:'contain:inline-size;', w:'' },
+      { n:'grid-huelle', s:'', w:'display:grid;grid-template-columns:minmax(0,1fr);' },
+      { n:'weniger-padding', s:'padding:11px 4px;', w:'' },
+      { n:'schrift-12', s:'font-size:12px;', w:'' },
+      { n:'ueberlagert', s:'position:absolute;left:0;top:0;width:100%;height:100%;', w:'position:relative;height:44px;' }
+    ];
+    var html='';
+    varianten.forEach(function(v, i){
+      function feld(id){
+        return '<div class="lab-h" style="flex:1;min-width:0;'+v.w+'"><label>Lab '+i+'</label>'+
+          '<input type="date" class="lab-i" style="min-width:0;text-align:center;'+v.s+'"'+(v.v ? ' value="'+v.v+'"' : '')+'/></div>';
+      }
+      html+='<div class="card lab-k"><div style="display:flex;gap:10px">'+feld('a')+feld('b')+'</div></div>';
+    });
+    view.innerHTML=html;
+    var karten=view.querySelectorAll('.lab-k');
+    for(var i=0; i<karten.length; i++){
+      var hs=karten[i].querySelectorAll('.lab-h'), is=karten[i].querySelectorAll('.lab-i');
+      var h0=hs[0].getBoundingClientRect(), i0=is[0].getBoundingClientRect(), i1=is[1].getBoundingClientRect();
+      labor.push({ variante:varianten[i].n, breite:Math.round(i0.width), huelle:Math.round(h0.width),
+        ragtHeraus:i0.right>h0.right+1, ueberlappt:i0.right>i1.left+1, hoehe:Math.round(i0.height),
+        seitenUeberlauf:document.documentElement.scrollWidth-window.innerWidth });
+    }
+    render();
+    return labor.length+' Varianten gemessen';
   }
   function isoDatum(d){ return d.toISOString().slice(0,10); }
   function dmj(iso){ return iso.slice(8,10)+'.'+iso.slice(5,7)+'.'+iso.slice(0,4); }
@@ -1592,9 +1634,11 @@ function sondeKammerHarness(){
       });
       return kette;
     }).then(function(){
+      return lauf('Layout-Labor Datumsfelder', laborDatum, 8000);
+    }).then(function(){
       window.fetch=echterFetch;
       T('Unbehandelte Fehler in der Kammer', unbehandelt.length ? 'FEHLER' : 'ok', unbehandelt.slice(0,3).join(' | '));
-      return { sondeErgebnis:true, tests:tests, layout:layout, unbehandelt:unbehandelt.slice(0,8), dauerMs:Date.now()-t0,
+      return { sondeErgebnis:true, tests:tests, layout:layout, labor:labor, unbehandelt:unbehandelt.slice(0,8), dauerMs:Date.now()-t0,
         stichprobe:{ eintraege:(zustand.kiProtokoll || []).length, wetten:(zustand.bets || []).length } };
     });
   }
@@ -1730,7 +1774,7 @@ function sondeBerichtBauen(){
       return { id:id, kind:'sonde', title:'Sonde '+kopf.version, sum:summe,
         parts:{ kopf:kopf, einstellungen:einstellungen, funktionen:funktionen, speicher:speicher, daten:daten, quellen:quellen,
                 zaehler:zaehler, ki:{ geprueft:false, hinweis:'ohne KI-Aufrufe; eigene Taste: KI-Probe' },
-                kammer:{ zusammenfassung:kz, abbruch:kammer.abbruch||null, stichprobe:kammer.stichprobe||null, vorab:kammer.vorab||null, unbehandelt:kammer.unbehandelt||[], dauerKammerMs:kammer.dauerMs||null, tests:kammer.tests||[] },
+                kammer:{ labor:kammer.labor||[], zusammenfassung:kz, abbruch:kammer.abbruch||null, stichprobe:kammer.stichprobe||null, vorab:kammer.vorab||null, unbehandelt:kammer.unbehandelt||[], dauerKammerMs:kammer.dauerMs||null, tests:kammer.tests||[] },
                 layout:kammer.layout||[], dauerMs:Date.now()-t0 } };
     });
   });
@@ -8512,7 +8556,7 @@ function beobachtungenBlock(){
   }
   var zeilen = liste.map(function(b){
     return '<div class="mkt"><div>'+satz(b)+'</div>'+
-      '<div style="white-space:nowrap">'+staerkeChip(b.staerke, b.n)+'</div></div>';
+      '<div style="text-align:right">'+staerkeChip(b.staerke, b.n)+'</div></div>';
   }).join('');
   return '<div class="card">'+
     iconTitle('eye',t('beobT'))+

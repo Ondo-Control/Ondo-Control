@@ -33,7 +33,7 @@ function server(){
   });
 }
 async function seiteOeffnen(browser, port, pfad){
-  var ctx=await browser.newContext({ viewport:{ width:375, height:700 } });
+  var ctx=await browser.newContext({ viewport:{ width:352, height:700 } });
   var page=await ctx.newPage();
   await page.route('**/raw.githubusercontent.com/**', function(r){
     var m=/espn-ergebnisse\/(\d{4}-\d{2})\.json/.exec(r.request().url());
@@ -44,7 +44,7 @@ async function seiteOeffnen(browser, port, pfad){
   await page.route('**/site.web.api.espn.com/**', function(r){ r.fulfill({ status:200, contentType:'application/json', headers:{ 'access-control-allow-origin':'*' }, body:'{"events":[]}' }); });
   await page.goto('http://localhost:'+port+pfad);
   await page.waitForTimeout(1200);
-  await page.evaluate(function(m){ state.kiProtokoll=m.kiProtokoll; state.bets=[]; }, MESS);
+  await page.evaluate(function(m){ state.kiProtokoll=m.kiProtokoll; }, MESS);
   return page;
 }
 function status(erg, teil){
@@ -65,6 +65,8 @@ var MUTATIONEN=[
   ['Zaehler stuft 503 falsch ein', "if(n>=500 || n===429 || n===408) return 'fehler';", "if(n===429 || n===408) return 'fehler';",
     function(e){ return status(e, 'simuliert: 503')==='FEHLER'; }],
   ['Seite zu breit (Layout)', "function viewFinance(c){", "function viewFinance(c){ return '<div style=\"width:900px;height:6px\">x</div>'+viewFinanceOrig(c); } function viewFinanceOrig(c){",
+    function(e){ return e.zusammenfassung.layoutAuffaelligkeiten>0; }],
+  ['Reiter Daten laeuft seitlich ueber (alter nowrap-Fehler)', "'<div style=\"text-align:right\">'+staerkeChip(b.staerke, b.n)+'</div></div>';", "'<div style=\"white-space:nowrap\">'+staerkeChip(b.staerke, b.n)+'</div></div>';",
     function(e){ return e.zusammenfassung.layoutAuffaelligkeiten>0; }],
   ['Bildschirm zeigt falschen Inhalt', "if(tab===\"home\") koerper=viewHome(c);\n  else if(tab===\"wetten\") koerper=viewBets(c);\n  else if(tab===\"finanzen\") koerper=viewFinance(c);",
     "if(tab===\"home\") koerper=viewHome(c);\n  else if(tab===\"wetten\") koerper=viewBets(c);\n  else if(tab===\"finanzen\") koerper=viewBets(c);",
@@ -90,6 +92,9 @@ var MUTATIONEN=[
     pruefe('A8 Kammer-iframe wieder entfernt', (await page.evaluate(function(){ return document.querySelectorAll('iframe').length; }))===0);
     pruefe('A9 echter Zustand unveraendert', vorher===nachher);
     pruefe('A10 Stichprobe gekuerzt', erg.stichprobe && erg.stichprobe.eintraege<=60, JSON.stringify(erg.stichprobe));
+    pruefe('A12 Layout-Labor misst mindestens zehn Bauweisen', (erg.labor || []).length>=10 && erg.labor.every(function(l){ return typeof l.breite==='number' && l.breite>0 && typeof l.huelle==='number'; }), JSON.stringify((erg.labor || []).slice(0,2)));
+    pruefe('A13 Labor: Ist-Bauweise vorhanden', (erg.labor || []).some(function(l){ return l.variante==='ist'; }));
+    pruefe('A14 Reiter Daten ohne seitlichen Ueberlauf bei 352 px', erg.layout.filter(function(l){ return l.ansicht==='wetten/kilog/daten'; })[0].seitenUeberlauf<=1);
     pruefe('A11 Datumsfelder wurden gemessen', (erg.layout || []).some(function(l){ return (l.datumsfelder || []).length>0; }));
 
     /* ---------- 2. Geheimnisse ---------- */
