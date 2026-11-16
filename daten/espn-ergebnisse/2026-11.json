@@ -4683,6 +4683,326 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401861171",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T14:00Z",
+   "heim": "Latvia",
+   "gast": "Armenia",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "456",
+      "teamDisplayName": "Latvia",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "579",
+      "teamDisplayName": "Armenia",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-16T03:15:42.334Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861172",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T14:00Z",
+   "heim": "Cyprus",
+   "gast": "Montenegro",
+   "torHeim": 1,
+   "torGast": 4,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "445",
+      "teamDisplayName": "Cyprus",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "6775",
+      "teamDisplayName": "Montenegro",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "3"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-11-16T03:15:42.140Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861173",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T17:00Z",
+   "heim": "Belarus",
+   "gast": "Albania",
+   "torHeim": 0,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "583",
+      "teamDisplayName": "Belarus",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "585",
+      "teamDisplayName": "Albania",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-11-16T03:15:42.530Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861174",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T17:00Z",
+   "heim": "Finland",
+   "gast": "San Marino",
+   "torHeim": 7,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "458",
+      "teamDisplayName": "Finland",
+      "homeAway": "home",
+      "linescores": [
+       "5",
+       "2"
+      ]
+     },
+     {
+      "teamId": "588",
+      "teamDisplayName": "San Marino",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "5:1",
+   "fetchedAt": "2026-11-16T03:15:42.723Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861175",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T19:45Z",
+   "heim": "Spain",
+   "gast": "England",
+   "torHeim": 2,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "164",
+      "teamDisplayName": "Spain",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "448",
+      "teamDisplayName": "England",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-11-16T03:15:43.499Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861176",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T19:45Z",
+   "heim": "Belgium",
+   "gast": "Italy",
+   "torHeim": 4,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "459",
+      "teamDisplayName": "Belgium",
+      "homeAway": "home",
+      "linescores": [
+       "3",
+       "1"
+      ]
+     },
+     {
+      "teamId": "162",
+      "teamDisplayName": "Italy",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "3:1",
+   "fetchedAt": "2026-11-16T03:15:42.918Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861177",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T19:45Z",
+   "heim": "France",
+   "gast": "Türkiye",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "478",
+      "teamDisplayName": "France",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "465",
+      "teamDisplayName": "Türkiye",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-16T03:15:43.305Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861178",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T19:45Z",
+   "heim": "Croatia",
+   "gast": "Czechia",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "477",
+      "teamDisplayName": "Croatia",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "450",
+      "teamDisplayName": "Czechia",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-11-16T03:15:43.111Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401874488",
    "providerCompetitionSlug": "den.1",
    "providerCompetitionName": "Danish Superliga",
@@ -12483,6 +12803,86 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401883116",
+   "providerCompetitionSlug": "esp.2",
+   "providerCompetitionName": "Spanish LALIGA 2",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T15:15Z",
+   "heim": "Granada",
+   "gast": "Las Palmas",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "3747",
+      "teamDisplayName": "Granada",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "98",
+      "teamDisplayName": "Las Palmas",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-16T03:15:20.150Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401883117",
+   "providerCompetitionSlug": "esp.2",
+   "providerCompetitionName": "Spanish LALIGA 2",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T17:30Z",
+   "heim": "Eibar",
+   "gast": "Cádiz",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "3752",
+      "teamDisplayName": "Eibar",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "3842",
+      "teamDisplayName": "Cádiz",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-16T03:15:20.343Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401883118",
    "providerCompetitionSlug": "esp.2",
    "providerCompetitionName": "Spanish LALIGA 2",
@@ -12840,6 +13240,46 @@
    },
    "halbzeit": "3:0",
    "fetchedAt": "2026-11-14T03:38:02.508Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401883137",
+   "providerCompetitionSlug": "esp.2",
+   "providerCompetitionName": "Spanish LALIGA 2",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T17:30Z",
+   "heim": "Eldense",
+   "gast": "CD Sabadell",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7320",
+      "teamDisplayName": "Eldense",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     },
+     {
+      "teamId": "11487",
+      "teamDisplayName": "CD Sabadell",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:0",
+   "fetchedAt": "2026-11-16T03:15:20.534Z"
   },
   {
    "provider": "espn",
@@ -20213,6 +20653,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401929709",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T23:00Z",
+   "heim": "Panama",
+   "gast": "Curaçao",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2659",
+      "teamDisplayName": "Panama",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "11678",
+      "teamDisplayName": "Curaçao",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-11-16T03:15:44.072Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401929710",
    "providerCompetitionSlug": "concacaf.nations.league",
    "providerCompetitionName": "Concacaf Nations League",
@@ -23052,6 +23532,86 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401932735",
+   "providerCompetitionSlug": "fra.coupe_de_france",
+   "providerCompetitionName": "Coupe de France",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T14:00Z",
+   "heim": "Rumilly Vallières",
+   "gast": "Saint-Étienne",
+   "torHeim": 1,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "20871",
+      "teamDisplayName": "Rumilly Vallières",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "178",
+      "teamDisplayName": "Saint-Étienne",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-16T03:15:29.260Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401932736",
+   "providerCompetitionSlug": "fra.coupe_de_france",
+   "providerCompetitionName": "Coupe de France",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T14:00Z",
+   "heim": "Atlas Paillade",
+   "gast": "AS Cannes",
+   "torHeim": 0,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "134096",
+      "teamDisplayName": "Atlas Paillade",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "21306",
+      "teamDisplayName": "AS Cannes",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-16T03:15:29.070Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401932737",
    "providerCompetitionSlug": "fra.coupe_de_france",
    "providerCompetitionName": "Coupe de France",
@@ -23139,6 +23699,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401932739",
+   "providerCompetitionSlug": "fra.coupe_de_france",
+   "providerCompetitionName": "Coupe de France",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T13:00Z",
+   "heim": "Veauche",
+   "gast": "St Paul en Jarez",
+   "torHeim": 1,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "134081",
+      "teamDisplayName": "Veauche",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "134089",
+      "teamDisplayName": "St Paul en Jarez",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-16T03:15:28.123Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401932740",
    "providerCompetitionSlug": "fra.coupe_de_france",
    "providerCompetitionName": "Coupe de France",
@@ -23176,6 +23776,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-11-15T03:10:48.686Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401932741",
+   "providerCompetitionSlug": "fra.coupe_de_france",
+   "providerCompetitionName": "Coupe de France",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T13:00Z",
+   "heim": "Riom",
+   "gast": "FC Limonest",
+   "torHeim": 0,
+   "torGast": 4,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "134133",
+      "teamDisplayName": "Riom",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "19388",
+      "teamDisplayName": "FC Limonest",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "4"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-16T03:15:25.079Z"
   },
   {
    "provider": "espn",
@@ -23223,6 +23863,46 @@
    "halbzeit": "0:0",
    "verlaengerung": "0:0",
    "fetchedAt": "2026-11-15T15:43:22.055Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401932756",
+   "providerCompetitionSlug": "fra.coupe_de_france",
+   "providerCompetitionName": "Coupe de France",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T13:00Z",
+   "heim": "Violaines",
+   "gast": "Vermelles",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "134112",
+      "teamDisplayName": "Violaines",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "134145",
+      "teamDisplayName": "Vermelles",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-16T03:15:28.502Z"
   },
   {
    "provider": "espn",
@@ -23433,6 +24113,93 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401932766",
+   "providerCompetitionSlug": "fra.coupe_de_france",
+   "providerCompetitionName": "Coupe de France",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T13:00Z",
+   "heim": "Val Yerres Crosne",
+   "gast": "Union Cosnoise",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": true,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FINAL_PEN",
+    "competitors": [
+     {
+      "teamId": "134094",
+      "teamDisplayName": "Val Yerres Crosne",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "5"
+      ]
+     },
+     {
+      "teamId": "134092",
+      "teamDisplayName": "Union Cosnoise",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "6"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "verlaengerung": "0:0",
+   "fetchedAt": "2026-11-16T03:15:27.743Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401932767",
+   "providerCompetitionSlug": "fra.coupe_de_france",
+   "providerCompetitionName": "Coupe de France",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T13:00Z",
+   "heim": "Montreuil FC",
+   "gast": "Loon Plage FC",
+   "torHeim": 0,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "131576",
+      "teamDisplayName": "Montreuil FC",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "20876",
+      "teamDisplayName": "Loon Plage FC",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-16T03:15:24.129Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401932768",
    "providerCompetitionSlug": "fra.coupe_de_france",
    "providerCompetitionName": "Coupe de France",
@@ -23513,6 +24280,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401932770",
+   "providerCompetitionSlug": "fra.coupe_de_france",
+   "providerCompetitionName": "Coupe de France",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T13:00Z",
+   "heim": "Neslois",
+   "gast": "Furiani-Agliani",
+   "torHeim": 1,
+   "torGast": 4,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "16735",
+      "teamDisplayName": "Neslois",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "134119",
+      "teamDisplayName": "Furiani-Agliani",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "4"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-16T03:15:24.319Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401932771",
    "providerCompetitionSlug": "fra.coupe_de_france",
    "providerCompetitionName": "Coupe de France",
@@ -23590,6 +24397,126 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-11-15T15:43:22.238Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401932773",
+   "providerCompetitionSlug": "fra.coupe_de_france",
+   "providerCompetitionName": "Coupe de France",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T13:00Z",
+   "heim": "ESAP Metz",
+   "gast": "Reipertswiller",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "134066",
+      "teamDisplayName": "ESAP Metz",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "134129",
+      "teamDisplayName": "Reipertswiller",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-16T03:15:23.560Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401932774",
+   "providerCompetitionSlug": "fra.coupe_de_france",
+   "providerCompetitionName": "Coupe de France",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T13:30Z",
+   "heim": "Perros-Louannec",
+   "gast": "Vannes OC",
+   "torHeim": 0,
+   "torGast": 7,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "134083",
+      "teamDisplayName": "Perros-Louannec",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "7574",
+      "teamDisplayName": "Vannes OC",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "7"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-16T03:15:28.691Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401932775",
+   "providerCompetitionSlug": "fra.coupe_de_france",
+   "providerCompetitionName": "Coupe de France",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T13:00Z",
+   "heim": "Talange",
+   "gast": "Baume-Les-Dames",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "134116",
+      "teamDisplayName": "Talange",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "134110",
+      "teamDisplayName": "Baume-Les-Dames",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-16T03:15:27.173Z"
   },
   {
    "provider": "espn",
@@ -23720,6 +24647,93 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401932795",
+   "providerCompetitionSlug": "fra.coupe_de_france",
+   "providerCompetitionName": "Coupe de France",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T13:00Z",
+   "heim": "Stade Pontivy",
+   "gast": "Plabennec",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": true,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FINAL_PEN",
+    "competitors": [
+     {
+      "teamId": "19390",
+      "teamDisplayName": "Stade Pontivy",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "8"
+      ]
+     },
+     {
+      "teamId": "10693",
+      "teamDisplayName": "Plabennec",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "7"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "verlaengerung": "0:0",
+   "fetchedAt": "2026-11-16T03:15:26.983Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401932796",
+   "providerCompetitionSlug": "fra.coupe_de_france",
+   "providerCompetitionName": "Coupe de France",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T13:00Z",
+   "heim": "Tremblay",
+   "gast": "Maisons-Alfort",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "134086",
+      "teamDisplayName": "Tremblay",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "134077",
+      "teamDisplayName": "Maisons-Alfort",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-16T03:15:27.364Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401932797",
    "providerCompetitionSlug": "fra.coupe_de_france",
    "providerCompetitionName": "Coupe de France",
@@ -23797,6 +24811,53 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-11-15T15:43:23.519Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401932799",
+   "providerCompetitionSlug": "fra.coupe_de_france",
+   "providerCompetitionName": "Coupe de France",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T13:30Z",
+   "heim": "Stade Sotteville",
+   "gast": "USF Fecamp",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": true,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FINAL_PEN",
+    "competitors": [
+     {
+      "teamId": "134099",
+      "teamDisplayName": "Stade Sotteville",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "4"
+      ]
+     },
+     {
+      "teamId": "134104",
+      "teamDisplayName": "USF Fecamp",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "verlaengerung": "0:0",
+   "fetchedAt": "2026-11-16T03:15:28.880Z"
   },
   {
    "provider": "espn",
@@ -23997,6 +25058,53 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-11-15T03:10:51.275Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401932805",
+   "providerCompetitionSlug": "fra.coupe_de_france",
+   "providerCompetitionName": "Coupe de France",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T13:00Z",
+   "heim": "Rochefort FC",
+   "gast": "Juventus Papus",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": true,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FINAL_PEN",
+    "competitors": [
+     {
+      "teamId": "134070",
+      "teamDisplayName": "Rochefort FC",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "7"
+      ]
+     },
+     {
+      "teamId": "134093",
+      "teamDisplayName": "Juventus Papus",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "6"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "verlaengerung": "0:0",
+   "fetchedAt": "2026-11-16T03:15:25.463Z"
   },
   {
    "provider": "espn",
@@ -24721,6 +25829,53 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-11-15T03:10:47.020Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401932823",
+   "providerCompetitionSlug": "fra.coupe_de_france",
+   "providerCompetitionName": "Coupe de France",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T13:00Z",
+   "heim": "Chatou",
+   "gast": "Les Ulis",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": true,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FINAL_PEN",
+    "competitors": [
+     {
+      "teamId": "134123",
+      "teamDisplayName": "Chatou",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "134085",
+      "teamDisplayName": "Les Ulis",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "3"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "verlaengerung": "0:0",
+   "fetchedAt": "2026-11-16T03:15:23.370Z"
   },
   {
    "provider": "espn",
@@ -26046,6 +27201,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401933096",
+   "providerCompetitionSlug": "fra.coupe_de_france",
+   "providerCompetitionName": "Coupe de France",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T14:45Z",
+   "heim": "Saint-Pauloise FC",
+   "gast": "La Tamponnaise",
+   "torHeim": 1,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "134138",
+      "teamDisplayName": "Saint-Pauloise FC",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "21769",
+      "teamDisplayName": "La Tamponnaise",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-16T03:15:29.450Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401933097",
    "providerCompetitionSlug": "fra.coupe_de_france",
    "providerCompetitionName": "Coupe de France",
@@ -26926,6 +28121,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401933837",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T17:00Z",
+   "heim": "Suriname",
+   "gast": "Eswatini",
+   "torHeim": 4,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2664",
+      "teamDisplayName": "Suriname",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "3"
+      ]
+     },
+     {
+      "teamId": "6686",
+      "teamDisplayName": "Eswatini",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-11-16T03:15:41.565Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401933838",
    "providerCompetitionSlug": "club.friendly",
    "providerCompetitionName": "Club Friendly",
@@ -27773,6 +29008,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401933959",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T14:00Z",
+   "heim": "Zenit St Petersburg",
+   "gast": "Trabzonspor",
+   "torHeim": 3,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2533",
+      "teamDisplayName": "Zenit St Petersburg",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     },
+     {
+      "teamId": "997",
+      "teamDisplayName": "Trabzonspor",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-11-16T03:15:48.814Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401933961",
    "providerCompetitionSlug": "club.friendly",
    "providerCompetitionName": "Club Friendly",
@@ -27890,6 +29165,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-11-12T16:53:23.337Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401934145",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-11-15",
+   "kickoffUtc": "2026-11-15T14:00Z",
+   "heim": "Hamburg SV",
+   "gast": "Hajduk Split",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "127",
+      "teamDisplayName": "Hamburg SV",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "489",
+      "teamDisplayName": "Hajduk Split",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-16T03:15:48.617Z"
   },
   {
    "provider": "espn",
