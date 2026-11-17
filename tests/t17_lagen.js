@@ -113,7 +113,10 @@ if(fs.existsSync(bf)){
   u.pruef('Gegenprobe: unbekannter Blick oder fehlende Pruefsumme → gesperrt', LL.holdoutFreigabe(vv,'zz','abc').ok===false && LL.holdoutFreigabe({ blicke:[{ gehoert_zu:'k' }] },'k','abc').ok===false);
   var B=JSON.parse(fs.readFileSync(bf,'utf8'));
   u.pruef('Bericht hat A, B und C getrennt; C ist offen und ohne Zahl', !!B.A_entwicklung && !!B.B_retrospektiv && /OFFEN/.test(B.C_prospektiv.stand) && !('vorsprung' in B.C_prospektiv));
-  u.pruef('Blockbootstrap: Bereich enthaelt den Mittelwert, p zwischen 0 und 1', [B.A_entwicklung,B.B_retrospektiv].every(function(x){ var b=x.blockbootstrap; return b.bereich95[0]<=b.mittel && b.mittel<=b.bereich95[1] && b.pEinseitig>0 && b.pEinseitig<=1; }));
+  /* A (Pruefsaisons) wird immer gerechnet. B (Holdout) nur, solange der Lernstand dem protokollierten Blick entspricht; sonst bleibt der
+     protokollierte Blick massgebend, und es gibt KEINEN neuen Blick (kein stiller dritter Blick). Dann muss der Bericht das ausdruecklich sagen. */
+  u.pruef('Blockbootstrap: Bereich enthaelt den Mittelwert, p zwischen 0 und 1', [B.A_entwicklung].concat(B.B_retrospektiv.blockbootstrap?[B.B_retrospektiv]:[]).every(function(x){ var b=x.blockbootstrap; return b && b.bereich95[0]<=b.mittel && b.mittel<=b.bereich95[1] && b.pEinseitig>0 && b.pEinseitig<=1; }));
+  u.pruef('Holdout: entweder neu gerechnet (gleicher Lernstand) oder ausdruecklich NICHT neu gerechnet mit Hinweis auf den protokollierten Blick', B.B_retrospektiv.blockbootstrap ? true : (/NICHT neu gerechnet/.test(B.B_retrospektiv.was||'') && /protokollierte/.test(B.B_retrospektiv.stand||'')));
   u.pruef('Bootstrap: gleiche Eingabe, gleicher Startwert → gleiches Ergebnis', (function(){ var va=[0.1,-0.2,0.3,0.05,0.2,-0.1], zl=va.map(function(x,i){ return { r:{ datum:'2026-0'+(1+i%3)+'-1'+i } }; }), vb=va.map(function(){ return 0; }); var a=LA.blockBootstrap(zl,va,vb,200,7), b=LA.blockBootstrap(zl,va,vb,200,7), c=LA.blockBootstrap(zl,va,vb,200,8); return JSON.stringify(a)===JSON.stringify(b) && JSON.stringify(a)!==JSON.stringify(c); })());
 }
 process.exit(u.bilanz()?1:0);
