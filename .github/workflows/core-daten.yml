@@ -27,7 +27,12 @@ concurrency:
 on:
   schedule:
     - cron: '10 9 * * *'
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      mit_quoten:
+        description: 'Quoten bei der Odds API abholen (kostet Abrufe aus dem Gratis-Kontingent von 500 im Monat). Nur der Tageslauf holt sie von selbst.'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -82,6 +87,7 @@ jobs:
         run: node core/model/prognose.js --of "$RUNNER_TEMP/football.json" --ab "$(date -u +%F)"
 
       - name: Quoten abholen (nur mit Secret ODDS_API_KEY; Rohquoten nie ins Repo)
+        if: github.event_name == 'schedule' || inputs.mit_quoten == true
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           QUOTEN_ROH_PFAD: ${{ runner.temp }}/quoten_roh.json
