@@ -31,6 +31,7 @@ on:
 
 permissions:
   contents: write
+  actions: read
 
 jobs:
   bauen:
@@ -94,6 +95,26 @@ jobs:
           retention-days: 90
           if-no-files-found: ignore
 
+      - name: Messung Tipico gegen Pinnacle (privates Archiv als Artefakt, Bericht nur mit Summenzahlen)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          QUOTEN_ROH_PFAD: ${{ runner.temp }}/quoten_roh.json
+          WERT_ARCHIV_ALT: ${{ runner.temp }}/wert_alt/wert_archiv.json
+          WERT_ARCHIV_NEU: ${{ runner.temp }}/wert_neu/wert_archiv.json
+        run: |
+          mkdir -p "$RUNNER_TEMP/wert_alt" "$RUNNER_TEMP/wert_neu"
+          alt=$(gh run list --workflow "Core-Daten bauen" --status success --limit 20 --json databaseId -q '.[].databaseId' | head -n 20 | while read id; do if gh api "repos/${{ github.repository }}/actions/runs/$id/artifacts" -q '.artifacts[] | select(.name=="wert-archiv" and .expired==false) | .id' | grep -q .; then echo $id; break; fi; done)
+          if [ -n "$alt" ]; then gh run download "$alt" -n wert-archiv -D "$RUNNER_TEMP/wert_alt" || true; fi
+          node core/model/wert_messung.js
+
+      - name: Wert-Archiv privat aufbewahren (Artefakt, 90 Tage, nicht im Repo)
+        uses: actions/upload-artifact@v4
+        with:
+          name: wert-archiv
+          path: ${{ runner.temp }}/wert_neu/wert_archiv.json
+          retention-days: 90
+          if-no-files-found: ignore
+
       - name: Test der Quelle Bzzoiro (nur Zaehlwerte, nur mit Secret BSD_API_KEY)
         env:
           BSD_API_KEY: ${{ secrets.BSD_API_KEY }}
@@ -113,6 +134,7 @@ jobs:
           node tests/t24_nichtlinear.js
           node tests/t25_kommende_spiele.js
           node tests/t26_neue_merkmale.js
+          node tests/t27_wert_messung.js
 
       - name: Aenderung committen, falls vorhanden
         run: |
