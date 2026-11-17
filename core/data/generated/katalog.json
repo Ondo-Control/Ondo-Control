@@ -4,13 +4,13 @@
  "summen": {
   "ligen": 15,
   "saisons": 186,
-  "spiele": 68851,
+  "spiele": 68854,
   "lernbestand": 48852,
   "nachRolle": {
    "lernen": 48852,
    "pruefen": 5943,
    "holdout": 5867,
-   "spaeter": 6558,
+   "spaeter": 6561,
    "aus": 1631
   },
   "nachStatus": {
@@ -976,7 +976,7 @@
    "liga": "es.2",
    "saison": "2026-27",
    "datei": "spiele/es.2/2026-27.json",
-   "spiele": 84,
+   "spiele": 87,
    "status": "laufend",
    "rolle": "spaeter"
   },

@@ -5,13 +5,13 @@
  "summen": {
   "ligen": 15,
   "saisons": 186,
-  "spiele": 68851,
+  "spiele": 68854,
   "lernbestand": 48852,
   "nachRolle": {
    "lernen": 48852,
    "pruefen": 5943,
    "holdout": 5867,
-   "spaeter": 6558,
+   "spaeter": 6561,
    "aus": 1631
   },
   "nachStatus": {
@@ -29,7 +29,7 @@
    "swe.1": 56,
    "nor.1": 48,
    "bra.2": 100,
-   "uefa.nations": 130,
+   "uefa.nations": 148,
    "den.1": 36,
    "ned.2": 83,
    "jpn.1": 70,
@@ -37,29 +37,29 @@
    "sco.2": 43,
    "bel.1": 45,
    "aut.1": 36,
-   "fifa.friendly": 95,
+   "fifa.friendly": 97,
    "tur.1": 54,
    "gre.1": 41,
-   "concacaf.nations.league": 90,
-   "club.friendly": 310,
+   "concacaf.nations.league": 97,
+   "club.friendly": 312,
    "ned.cup": 46,
    "esp.copa_del_rey": 70,
-   "caf.nations_qual": 72,
+   "caf.nations_qual": 78,
    "usa.1": 138,
    "uefa.champions": 54,
    "uefa.europa": 54,
    "uefa.europa.conf": 54,
    "ger.dfb_pokal": 16,
    "eng.fa": 40,
-   "fra.coupe_de_france": 74
+   "fra.coupe_de_france": 91
   },
   "verarbeitet": {
-   "neu": 255,
+   "neu": 258,
    "gefuellt": 420,
    "bestaetigt": 74,
    "konflikt": 0,
    "doppelt": 0,
-   "unaufgeloest": 15
+   "unaufgeloest": 16
   }
  },
  "aliasZeilen": 64,
@@ -2396,16 +2396,16 @@
     },
     "2026-27": {
      "status": "laufend",
-     "grund": "84 von 420 Spielen der Doppelrunde",
+     "grund": "87 von 420 Spielen der Doppelrunde",
      "teams": 21,
      "soll": 420,
-     "angesetzt": 84,
-     "mitErgebnis": 84,
+     "angesetzt": 87,
+     "mitErgebnis": 87,
      "zusatz": 0,
-     "gespeichert": 84,
+     "gespeichert": 87,
      "quellen": {
       "of": 0,
-      "espn": 84,
+      "espn": 87,
       "beide": 0
      },
      "ofDatei": false,
@@ -2415,7 +2415,7 @@
     }
    },
    "espnUnaufgeloest": {
-    "RC Celta Fortuna": 8
+    "RC Celta Fortuna": 9
    }
   },
   "fr.1": {

@@ -1509,9 +1509,9 @@
      "spiele": 5410
     },
     "es.2": {
-     "niveau": 0.0909,
-     "heim": 0.2934,
-     "spiele": 4810
+     "niveau": 0.0881,
+     "heim": 0.2954,
+     "spiele": 4813
     }
    },
    "teams": {
@@ -1637,11 +1637,11 @@
     },
     "cadiz": {
      "name": "Cádiz CF",
-     "a": -0.0154,
-     "d": -0.0135,
+     "a": -0.0177,
+     "d": -0.0005,
      "liga": "es.2",
-     "spiele": 378,
-     "zuletzt": "2026-11-07"
+     "spiele": 379,
+     "zuletzt": "2026-11-15"
     },
     "cartagena": {
      "name": "FC Cartagena",
@@ -1677,15 +1677,15 @@
     },
     "cesabadell": {
      "name": "CE Sabadell",
-     "a": -0.225,
-     "d": -0.0066,
+     "a": -0.2581,
+     "d": -0.0298,
      "liga": "es.2",
-     "spiele": 175,
-     "zuletzt": "2026-11-09"
+     "spiele": 176,
+     "zuletzt": "2026-11-15"
     },
     "ceuta": {
      "name": "AD Ceuta FC",
-     "a": -0.2386,
+     "a": -0.2385,
      "d": -0.2398,
      "liga": "es.2",
      "spiele": 19,
@@ -1757,11 +1757,11 @@
     },
     "eibarsd": {
      "name": "SD Eibar",
-     "a": -0.0356,
-     "d": 0.0038,
+     "a": -0.0487,
+     "d": 0.006,
      "liga": "es.2",
-     "spiele": 366,
-     "zuletzt": "2026-10-31"
+     "spiele": 367,
+     "zuletzt": "2026-11-15"
     },
     "elche": {
      "name": "Elche CF",
@@ -1773,11 +1773,11 @@
     },
     "eldense": {
      "name": "CD Eldense",
-     "a": -0.1822,
-     "d": -0.2314,
+     "a": -0.1591,
+     "d": -0.1983,
      "liga": "es.2",
-     "spiele": 49,
-     "zuletzt": "2026-11-09"
+     "spiele": 50,
+     "zuletzt": "2026-11-15"
     },
     "extremadura": {
      "name": "Extremadura UD",
@@ -1829,11 +1829,11 @@
     },
     "granada": {
      "name": "Granada CF",
-     "a": 0.1813,
-     "d": -0.1281,
+     "a": 0.1576,
+     "d": -0.0903,
      "liga": "es.2",
-     "spiele": 483,
-     "zuletzt": "2026-11-01"
+     "spiele": 484,
+     "zuletzt": "2026-11-15"
     },
     "guadalajara": {
      "name": "CD Guadalajara",
@@ -1877,11 +1877,11 @@
     },
     "laspalmas": {
      "name": "UD Las Palmas",
-     "a": 0.0136,
-     "d": -0.0174,
+     "a": -0.0242,
+     "d": 0.0063,
      "liga": "es.2",
-     "spiele": 458,
-     "zuletzt": "2026-11-09"
+     "spiele": 459,
+     "zuletzt": "2026-11-15"
     },
     "leganes": {
      "name": "CD Leganés",

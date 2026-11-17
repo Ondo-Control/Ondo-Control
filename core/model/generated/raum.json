@@ -15,10 +15,10 @@
  },
  "zusammenfassung": {
   "hinweis": "Markt 1X2, alle Runden nach der Einlaufzeit. Differenz positiv = der erstgenannte ist besser.",
-  "spiele": 63443,
+  "spiele": 63446,
   "lernenHilft": {
    "frage": "Tippt der aktuelle Lernstand besser als der eine Runde aeltere?",
-   "spiele": 63443,
+   "spiele": 63446,
    "differenz": 0.0032,
    "unten": 0.0024,
    "oben": 0.004,
@@ -26,21 +26,21 @@
   },
   "gegenGrundquote": {
    "m1x2": {
-    "spiele": 63443,
+    "spiele": 63446,
     "differenz": 0.0494,
     "unten": 0.0469,
-    "oben": 0.052,
+    "oben": 0.0519,
     "urteil": "belegt"
    },
    "tore": {
-    "spiele": 63443,
-    "differenz": 0.0017,
+    "spiele": 63446,
+    "differenz": 0.0016,
     "unten": 0.0001,
     "oben": 0.0033,
     "urteil": "belegt"
    },
    "btts": {
-    "spiele": 63443,
+    "spiele": 63446,
     "differenz": -0.001,
     "unten": -0.0021,
     "oben": 0.0002,
@@ -49,7 +49,7 @@
   },
   "laufendGegenEingefroren": {
    "frage": "Was bringt Lernen nach jedem einzelnen Spiel gegenueber Lernen je Runde?",
-   "spiele": 63443,
+   "spiele": 63446,
    "differenz": 0.002,
    "unten": 0.0015,
    "oben": 0.0026,
@@ -1957,12 +1957,12 @@
    "pruefsumme": "5f023709",
    "von": "2026-11",
    "bis": "2026-11",
-   "spiele": 177,
+   "spiele": 180,
    "logLoss1x2": {
-    "lernstand": 0.9674,
-    "voriger": 0.9757,
-    "laufend": 0.9644,
-    "grundquote": 1.0541
+    "lernstand": 0.967,
+    "voriger": 0.9773,
+    "laufend": 0.9647,
+    "grundquote": 1.0522
    },
    "laeuftNoch": true
   }

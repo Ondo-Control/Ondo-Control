@@ -276,25 +276,25 @@
  "seitdem": {
   "hinweis": "Spiele nach dem Holdout (nur Beobachtung, kein Beschluss)",
   "alle": {
-   "spiele": 6558,
+   "spiele": 6561,
    "maerkte": {
     "m1x2": {
-     "n": 6558,
+     "n": 6561,
      "logLossModell": 0.9994,
      "logLossGrundquote": 1.063,
      "brierModell": 0.5967,
-     "brierGrundquote": 0.6426
+     "brierGrundquote": 0.6425
     },
     "tore": {
-     "n": 6558,
+     "n": 6561,
      "logLossModell": 0.6852,
-     "logLossGrundquote": 0.6905,
+     "logLossGrundquote": 0.6904,
      "brierModell": 0.4922,
      "brierGrundquote": 0.4973
     },
     "btts": {
-     "n": 6558,
-     "logLossModell": 0.6855,
+     "n": 6561,
+     "logLossModell": 0.6856,
      "logLossGrundquote": 0.6877,
      "brierModell": 0.4924,
      "brierGrundquote": 0.4946
@@ -302,21 +302,21 @@
    },
    "vorsprung": {
     "m1x2": {
-     "n": 6558,
+     "n": 6561,
      "spieltage": 2048,
      "differenz": 0.0636,
      "unten": 0.0553,
-     "oben": 0.071
+     "oben": 0.0709
     },
     "tore": {
-     "n": 6558,
+     "n": 6561,
      "spieltage": 2048,
-     "differenz": 0.0053,
-     "unten": 0.0002,
-     "oben": 0.0102
+     "differenz": 0.0052,
+     "unten": 0.0001,
+     "oben": 0.0101
     },
     "btts": {
-     "n": 6558,
+     "n": 6561,
      "spieltage": 2048,
      "differenz": 0.0022,
      "unten": -0.0017,
@@ -324,28 +324,28 @@
     }
    },
    "wieInDerApp": {
-    "aussagen": 19674,
+    "aussagen": 19683,
     "trefferquote": 54.1,
     "brier": 0.2432,
     "kalibrierung": [
      {
       "von": 0,
       "bis": 50,
-      "n": 3906,
+      "n": 3909,
       "behauptet": 42.3,
       "eingetroffen": 44.1
      },
      {
       "von": 50,
       "bis": 60,
-      "n": 10514,
+      "n": 10519,
       "behauptet": 54.6,
       "eingetroffen": 53.2
      },
      {
       "von": 60,
       "bis": 70,
-      "n": 4264,
+      "n": 4265,
       "behauptet": 63.9,
       "eingetroffen": 60.9
      },
@@ -369,76 +369,76 @@
   "laufendeSaison": {
    "saison": "2026-27",
    "werte": {
-    "spiele": 1116,
+    "spiele": 1119,
     "maerkte": {
      "m1x2": {
-      "n": 1116,
+      "n": 1119,
       "logLossModell": 0.9969,
-      "logLossGrundquote": 1.066,
+      "logLossGrundquote": 1.0657,
       "brierModell": 0.5954,
-      "brierGrundquote": 0.645
+      "brierGrundquote": 0.6447
      },
      "tore": {
-      "n": 1116,
+      "n": 1119,
       "logLossModell": 0.6715,
-      "logLossGrundquote": 0.6873,
+      "logLossGrundquote": 0.6869,
       "brierModell": 0.4792,
-      "brierGrundquote": 0.4942
+      "brierGrundquote": 0.4938
      },
      "btts": {
-      "n": 1116,
-      "logLossModell": 0.6749,
+      "n": 1119,
+      "logLossModell": 0.6751,
       "logLossGrundquote": 0.6834,
-      "brierModell": 0.482,
+      "brierModell": 0.4822,
       "brierGrundquote": 0.4903
      }
     },
     "vorsprung": {
      "m1x2": {
-      "n": 1116,
+      "n": 1119,
       "spieltage": 377,
-      "differenz": 0.0691,
-      "unten": 0.0492,
-      "oben": 0.0889
+      "differenz": 0.0688,
+      "unten": 0.0489,
+      "oben": 0.0888
      },
      "tore": {
-      "n": 1116,
+      "n": 1119,
       "spieltage": 377,
-      "differenz": 0.0158,
-      "unten": 0.0045,
-      "oben": 0.0276
+      "differenz": 0.0154,
+      "unten": 0.0042,
+      "oben": 0.0269
      },
      "btts": {
-      "n": 1116,
+      "n": 1119,
       "spieltage": 377,
-      "differenz": 0.0086,
-      "unten": -0.0016,
-      "oben": 0.0184
+      "differenz": 0.0083,
+      "unten": -0.0018,
+      "oben": 0.018
      }
     },
     "wieInDerApp": {
-     "aussagen": 3348,
+     "aussagen": 3357,
      "trefferquote": 55.3,
-     "brier": 0.2385,
+     "brier": 0.2386,
      "kalibrierung": [
       {
        "von": 0,
        "bis": 50,
-       "n": 635,
+       "n": 638,
        "behauptet": 43.1,
-       "eingetroffen": 42.2
+       "eingetroffen": 42.3
       },
       {
        "von": 50,
        "bis": 60,
-       "n": 1711,
+       "n": 1716,
        "behauptet": 54.7,
-       "eingetroffen": 53.6
+       "eingetroffen": 53.7
       },
       {
        "von": 60,
        "bis": 70,
-       "n": 796,
+       "n": 797,
        "behauptet": 64,
        "eingetroffen": 64.4
       },

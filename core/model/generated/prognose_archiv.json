@@ -966,12 +966,132 @@
     0.171
    ],
    "tipp": "Heimsieg"
+  },
+  "en.2|2026-11-24|bristolcity|wrexham": {
+   "liga": "en.2",
+   "datum": "2026-11-24",
+   "heim": "Bristol City FC",
+   "gast": "Wrexham AFC",
+   "erstelltAm": "2026-11-17",
+   "modellStand": "2026-11-15",
+   "lagenStand": "Produktion alle 6d5e6a08 (68758 Spiele bis 2026-11-15), kein Merkmalsgewinn",
+   "p": [
+    0.346,
+    0.267,
+    0.388
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "en.2|2026-11-24|cardiffcity|endnorthpreston": {
+   "liga": "en.2",
+   "datum": "2026-11-24",
+   "heim": "Cardiff City FC",
+   "gast": "Preston North End FC",
+   "erstelltAm": "2026-11-17",
+   "modellStand": "2026-11-15",
+   "lagenStand": "Produktion alle 6d5e6a08 (68758 Spiele bis 2026-11-15), kein Merkmalsgewinn",
+   "p": [
+    0.669,
+    0.185,
+    0.146
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.2|2026-11-24|athleticcharlton|citylincoln": {
+   "liga": "en.2",
+   "datum": "2026-11-24",
+   "heim": "Charlton Athletic FC",
+   "gast": "Lincoln City FC",
+   "erstelltAm": "2026-11-17",
+   "modellStand": "2026-11-15",
+   "lagenStand": "Produktion alle 6d5e6a08 (68758 Spiele bis 2026-11-15), kein Merkmalsgewinn",
+   "p": [
+    0.433,
+    0.286,
+    0.281
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.2|2026-11-24|middlesbrough|cityswansea": {
+   "liga": "en.2",
+   "datum": "2026-11-24",
+   "heim": "Middlesbrough FC",
+   "gast": "Swansea City AFC",
+   "erstelltAm": "2026-11-17",
+   "modellStand": "2026-11-15",
+   "lagenStand": "Produktion alle 6d5e6a08 (68758 Spiele bis 2026-11-15), kein Merkmalsgewinn",
+   "p": [
+    0.53,
+    0.236,
+    0.234
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.2|2026-11-24|citynorwich|parkqueensrangers": {
+   "liga": "en.2",
+   "datum": "2026-11-24",
+   "heim": "Norwich City FC",
+   "gast": "Queens Park Rangers FC",
+   "erstelltAm": "2026-11-17",
+   "modellStand": "2026-11-15",
+   "lagenStand": "Produktion alle 6d5e6a08 (68758 Spiele bis 2026-11-15), kein Merkmalsgewinn",
+   "p": [
+    0.589,
+    0.196,
+    0.214
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.2|2026-11-24|portsmouth|hamunitedwest": {
+   "liga": "en.2",
+   "datum": "2026-11-24",
+   "heim": "Portsmouth FC",
+   "gast": "West Ham United FC",
+   "erstelltAm": "2026-11-17",
+   "modellStand": "2026-11-15",
+   "lagenStand": "Produktion alle 6d5e6a08 (68758 Spiele bis 2026-11-15), kein Merkmalsgewinn",
+   "p": [
+    0.259,
+    0.231,
+    0.51
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "en.2|2026-11-24|sheffieldunited|southampton": {
+   "liga": "en.2",
+   "datum": "2026-11-24",
+   "heim": "Sheffield United FC",
+   "gast": "Southampton FC",
+   "erstelltAm": "2026-11-17",
+   "modellStand": "2026-11-15",
+   "lagenStand": "Produktion alle 6d5e6a08 (68758 Spiele bis 2026-11-15), kein Merkmalsgewinn",
+   "p": [
+    0.297,
+    0.248,
+    0.456
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "en.2|2026-11-24|wandererswolverhampton|countyderby": {
+   "liga": "en.2",
+   "datum": "2026-11-24",
+   "heim": "Wolverhampton Wanderers FC",
+   "gast": "Derby County FC",
+   "erstelltAm": "2026-11-17",
+   "modellStand": "2026-11-15",
+   "lagenStand": "Produktion alle 6d5e6a08 (68758 Spiele bis 2026-11-15), kein Merkmalsgewinn",
+   "p": [
+    0.637,
+    0.216,
+    0.147
+   ],
+   "tipp": "Heimsieg"
   }
  },
  "zusammenfassung": {
-  "abgelegt": 69,
+  "abgelegt": 77,
   "bewertet": 0,
-  "offen": 69,
+  "offen": 77,
   "logLoss": null,
   "trefferquote": null,
   "vergleichZufall": 1.0986,
