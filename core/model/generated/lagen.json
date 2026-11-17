@@ -1,8 +1,8 @@
 {
  "schema": 2,
  "stichtag": "2026-08-01",
- "huerde": 3.4,
- "zaehlerVersuche": 56,
+ "huerde": 3.41,
+ "zaehlerVersuche": 60,
  "mengen": [
   {
    "menge": "alle",
@@ -167,6 +167,17 @@
      "standardfehler": 0,
      "z": 0,
      "besteHuerde": false
+    },
+    {
+     "menge": "alle",
+     "schritt": 1,
+     "gruppe": "wetter",
+     "zu": [],
+     "verlustPruefen": 1.0278,
+     "vorsprung": 0,
+     "standardfehler": 0,
+     "z": 0,
+     "besteHuerde": false
     }
    ],
    "gewaehlt": [],
@@ -249,15 +260,16 @@
      "kalender",
      "termin",
      "motiv",
-     "reise"
+     "reise",
+     "wetter"
     ],
     "verlustPruefenLinear": 1.0278,
-    "verlustPruefenNichtlinear": 1.0247,
-    "vorsprung": 0.00318,
-    "standardfehler": 0.00103,
-    "z": 3.08,
+    "verlustPruefenNichtlinear": 1.0255,
+    "vorsprung": 0.00234,
+    "standardfehler": 0.00101,
+    "z": 2.33,
     "besteHuerde": false,
-    "runde": 42,
+    "runde": 24,
     "spiele": 5928,
     "uebernommen": false
    }
@@ -424,6 +436,17 @@
      "vorsprung": 0.00004,
      "standardfehler": 0.00003,
      "z": 1.29,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 1,
+     "gruppe": "wetter",
+     "zu": [],
+     "verlustPruefen": 0.9918,
+     "vorsprung": 0.00007,
+     "standardfehler": 0.00012,
+     "z": 0.55,
      "besteHuerde": false
     },
     {
@@ -621,6 +644,19 @@
     },
     {
      "menge": "mitAufstellung",
+     "schritt": 2,
+     "gruppe": "wetter",
+     "zu": [
+      "aufst"
+     ],
+     "verlustPruefen": 0.9808,
+     "vorsprung": 0.00028,
+     "standardfehler": 0.00044,
+     "z": 0.62,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
      "schritt": 3,
      "gruppe": "form",
      "zu": [
@@ -800,6 +836,20 @@
      "standardfehler": 0.00008,
      "z": 1.03,
      "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 3,
+     "gruppe": "wetter",
+     "zu": [
+      "aufst",
+      "angriff"
+     ],
+     "verlustPruefen": 0.98,
+     "vorsprung": -0.00018,
+     "standardfehler": 0.00047,
+     "z": -0.39,
+     "besteHuerde": false
     }
    ],
    "gewaehlt": [
@@ -943,13 +993,14 @@
      "termin",
      "motiv",
      "reise",
+     "wetter",
      "aufst"
     ],
     "verlustPruefenLinear": 0.9798,
-    "verlustPruefenNichtlinear": 0.9795,
-    "vorsprung": 0.00031,
-    "standardfehler": 0.00213,
-    "z": 0.14,
+    "verlustPruefenNichtlinear": 0.9814,
+    "vorsprung": -0.00165,
+    "standardfehler": 0.00229,
+    "z": -0.72,
     "besteHuerde": false,
     "runde": 12,
     "spiele": 2168,

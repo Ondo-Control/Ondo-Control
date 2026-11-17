@@ -39,9 +39,12 @@ var MERKMALE = {
   motiv:  ['dTitel','dEuropa','dAbstieg'],
   /* Fassung v6 (17.11.2026): Reise der Gastmannschaft: Entfernung Heimstadion - Gaststadion in 1000 km (stadien.json, Wikidata CC0); unbekannt = 0.
      Hoehe wurde nicht aufgenommen: Wikidata kennt sie nur fuer 1 von 428 Stadien. */
-  reise:  ['reiseKm']
+  reise:  ['reiseKm'],
+  /* Fassung v7 (17.11.2026): Wetter am Spieltag am Heimstadion (wetter.json, NASA POWER Tageswerte, Zelle 0,5 x 0,625 Grad); unbekannt = 0.
+     Nur fuer abgeschlossene Spiele belegbar; fuer kommende Spiele braeuchte es eine Vorhersage-Quelle (nicht gebaut). */
+  wetter: ['regen','wind','temp']
 };
-var GRUPPEN = ['form','ort','ruhe','saison','staerke','tempo','serie','last','angriff','duell','kalender','termin','motiv','reise'];   /* waehlbare Gruppen, alle Spiele */
+var GRUPPEN = ['form','ort','ruhe','saison','staerke','tempo','serie','last','angriff','duell','kalender','termin','motiv','reise','wetter'];   /* waehlbare Gruppen, alle Spiele */
 var GRUPPEN_AUFST = GRUPPEN.concat(['aufst']);                  /* waehlbar nur auf Spielen mit Aufstellungsdaten */
 
 var PRIOR_PPG = 1.4, PRIOR_N = 3, ELO_START = 1500, ELO_K = 20, ELO_HEIM = 60, ELO_STUFE = 80;
@@ -82,7 +85,11 @@ function reiseKm(stadien, a, b){
   var R=6371, rad=Math.PI/180, dLa=(sb.lat-sa.lat)*rad, dLo=(sb.lon-sa.lon)*rad, q=Math.sin(dLa/2)*Math.sin(dLa/2)+Math.cos(sa.lat*rad)*Math.cos(sb.lat*rad)*Math.sin(dLo/2)*Math.sin(dLo/2);
   return 2*R*Math.asin(Math.sqrt(q))/1000;
 }
-function zeilenFuerLand(spiele, par, europa, stadien){
+function wetterWerte(wetter, H, datum){
+  var w=wetter&&wetter[H]&&wetter[H][datum]; if(!w) return { regen:0, wind:0, temp:0 };
+  return { regen:Math.min(30,w[0])/10, wind:w[2]/10, temp:(w[1]-15)/10 };
+}
+function zeilenFuerLand(spiele, par, europa, stadien, wetter){
   var z=M.neuerZustand(), hist={}, elo={}, ligaVon={}, saison={}, ligaTeams={}, duelle={}, zeilen=[], nachher=[], tag=null;
   /* Alle Spiele EINES Kalendertags werden mit demselben Stand vom Vortag vorhergesagt; erst wenn der Tag zu Ende ist,
      gehen ihre Ergebnisse in Staerken, Form, Elo und Ligawerte ein (kein Spiel nutzt das Ergebnis eines Spiels desselben Tags). */
@@ -139,7 +146,8 @@ function zeilenFuerLand(spiele, par, europa, stadien){
       dEuRuhe:(ruheMit(hh,eH0,r.datum)-ruheMit(hg,eG0,r.datum))/7,
       dEu14:zaehleMit([],eH0,r.datum,14)-zaehleMit([],eG0,r.datum,14),
       dTitel:nH.titel-nG.titel, dEuropa:nH.europa-nG.europa, dAbstieg:nH.abstieg-nG.abstieg,
-      reiseKm:reiseKm(stadien,H,G)
+      reiseKm:reiseKm(stadien,H,G),
+      regen:wetterWerte(wetter,H,r.datum).regen, wind:wetterWerte(wetter,H,r.datum).wind, temp:wetterWerte(wetter,H,r.datum).temp
     };
     if(r.kommend){ zeilen.push({ r:r, x:x, y:-1, kommend:true }); return; }     /* kommendes Spiel: Merkmale ja, nichts einbuchen */
     var y=r.th>r.tg?0:r.th===r.tg?1:2;
@@ -169,7 +177,7 @@ function zeilenKommend(bestand, par, fixtures, schema){
   Object.keys(jeLand).forEach(function(land){
     var neu=jeLand[land].slice().sort(function(a,b){ return a.datum<b.datum?-1:a.datum>b.datum?1:a.idx-b.idx; });
     var spiele=(bestand.jeLand[land]||[]).concat(neu);
-    zeilenFuerLand(spiele, par, bestand.europa, bestand.stadien).forEach(function(z){ if(z.kommend) aus[z.r.idx]=z; });
+    zeilenFuerLand(spiele, par, bestand.europa, bestand.stadien, bestand.wetter).forEach(function(z){ if(z.kommend) aus[z.r.idx]=z; });
   });
   return aus;
 }
@@ -178,7 +186,7 @@ function zeilenKommend(bestand, par, fixtures, schema){
 function zeilenBauen(bestand, par, aufst){
   var alle=[];
   Object.keys(bestand.jeLand).sort().forEach(function(land){
-    zeilenFuerLand(bestand.jeLand[land], par, bestand.europa, bestand.stadien).forEach(function(z){
+    zeilenFuerLand(bestand.jeLand[land], par, bestand.europa, bestand.stadien, bestand.wetter).forEach(function(z){
       var a=aufst&&aufst.werte&&aufst.werte[z.r.id];
       z.mitAufst=!!a;
       MERKMALE.aufst.forEach(function(n,i){ z.x[n]=a?a[i]:0; });     /* fehlt: Unterschied 0 = neutral */

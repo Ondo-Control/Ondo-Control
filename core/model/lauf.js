@@ -44,7 +44,8 @@ function bestandLaden(genOrdner, aliases){
   });
   var ef=path.join(genOrdner,'europa.json'), europa=fs.existsSync(ef)?JSON.parse(fs.readFileSync(ef,'utf8')).teams:null;
   var sf=path.join(genOrdner,'stadien.json'), stadien=fs.existsSync(sf)?JSON.parse(fs.readFileSync(sf,'utf8')).teams:null;
-  return { jeLand:jeLand, namen:namen, heute:katalog.heute, europa:europa, stadien:stadien };
+  var wf=path.join(genOrdner,'wetter.json'), wetter=fs.existsSync(wf)?JSON.parse(fs.readFileSync(wf,'utf8')).teams:null;
+  return { jeLand:jeLand, namen:namen, heute:katalog.heute, europa:europa, stadien:stadien, wetter:wetter };
 }
 
 function ergebnis(r){

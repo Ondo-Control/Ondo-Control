@@ -298,6 +298,23 @@
    "geprueftAuf": "Pruefsaisons",
    "ergebnis": "siehe lagen.json",
    "art": "formal"
+  },
+  {
+   "nr": 15,
+   "datum": "2026-11-17",
+   "name": "Wetter am Spieltag am Heimstadion (Regen, Wind, Hoechsttemperatur; NASA POWER Tageswerte, wetter.json): eine neue Gruppe 'wetter', Vorab-Eintragung inkl. Schritt-2-Reserve und Netz auf der erweiterten Menge",
+   "namen": [
+    "L-v7-alle-wetter",
+    "L-v7-auf1-wetter",
+    "L-v7-auf2-wetter",
+    "L-v7-alle2-wetter",
+    "NL-alle-v7",
+    "NL-mitAufstellung-v7"
+   ],
+   "versuche": 6,
+   "geprueftAuf": "Pruefsaisons",
+   "ergebnis": "siehe lagen.json",
+   "art": "formal"
   }
  ]
 }

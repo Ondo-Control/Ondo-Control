@@ -33,7 +33,7 @@ u.pruef('ohne Europapokal-Daten entspricht die Last mit Europapokal der reinen L
 u.block('Kein Blick in die Zukunft (echter Bestand)');
 var b=L.bestandLaden(path.join(REPO,'core/data/generated'), lies(path.join(REPO,'core/data/aliases.json')));
 var land='de'; var liste=b.jeLand[land], i0=Math.floor(liste.length*0.6);
-function mitAenderung(){ var neu={ jeLand:{}, namen:b.namen, heute:b.heute, europa:b.europa, stadien:b.stadien }; Object.keys(b.jeLand).forEach(function(l){ neu.jeLand[l]=b.jeLand[l]; });
+function mitAenderung(){ var neu={ jeLand:{}, namen:b.namen, heute:b.heute, europa:b.europa, stadien:b.stadien, wetter:b.wetter }; Object.keys(b.jeLand).forEach(function(l){ neu.jeLand[l]=b.jeLand[l]; });
   neu.jeLand[land]=liste.map(function(r,i){ if(i<i0) return r; var c=Object.assign({},r); c.th=r.tg+3; c.tg=r.th; return c; }); return neu; }
 var a=LA.zeilenBauen(b, par, null).filter(function(q){ return q.r.liga.split('.')[0]===land; }), c=LA.zeilenBauen(mitAenderung(), par, null).filter(function(q){ return q.r.liga.split('.')[0]===land; });
 var ziel=a.findIndex(function(q){ return q.r.id===liste[i0].id; });

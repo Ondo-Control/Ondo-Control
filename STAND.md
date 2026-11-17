@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 17.11.2026, Fassung 187, v19.24.3*
+*Die aktuelle Wahrheit. Stand: 17.11.2026, Fassung 188, v19.24.3*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -209,9 +209,9 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   `core/REGELN.md` (Ondos Regeln als Textdatei, vom Core durchgesetzt),
   `core/model/raum.js` (Trainingsraum in Runden mit Lernständen, Zähler in `ideen.json`).
   **Neu 16.11.2026: „Lagen lernen“** (`lagen_lauf.js`, Stichtag 1.8.2026, `versiegelt.json`, t17): Core wählt Gruppen selbst;
-  Hürde z = 3,39 (146 Ideen, `ideen.json`). Nur **Aufstellung/Marktwert** (und mit ihr `angriff`, z 3,42, Vorsprung 0,0013) besteht (`aufstellung.json`, 7 Ligen, bis 6.7.2026). **Pipeline v2**. Bericht (`lagen_bericht.json`):
+  Hürde z = 3,40 (152 Ideen, `ideen.json`). Nur **Aufstellung/Marktwert** (und mit ihr `angriff`, z 3,42, Vorsprung 0,0013) besteht (`aufstellung.json`, 7 Ligen, bis 6.7.2026). **Pipeline v2**. Bericht (`lagen_bericht.json`):
   **(A)** Prüfsaisons 0,9918 → 0,9798; **(B)** Holdout, zwei Blicke auf dieselbe Saison, Experiment a: 0,9933 → 0,9866, Blockbootstrap-p 0,005;
-  **(C)** vorab handelbar: offen. Quoten 63/77; BSD: Elf, Ausfälle; kein Marktvergleich. **Grenze (v6, t26, t29, t30):** 14 Gruppen, Reise (`stadien.json`, 405/428),  Europapokal (`europa.json`); „alle“: keine besteht, Netz z 2,64 verfehlt.
+  **(C)** vorab handelbar: offen. Quoten 63/77; BSD Elf; kein Marktvergleich. **Grenze (v6, t26, t29, t30):** 15 Gruppen inkl. Reise, Wetter (NASA POWER),  Europapokal (`europa.json`); „alle“: keine besteht, Netz z 2,64 verfehlt.
   **Prognose**, „keine Wette“. **Quote-Gatter** `quoten.js` (t19), Abruf `quoten_holen.js`, Secret `ODDS_API_KEY`, **Wert-Messung** `wert_messung.js` (t27, privat), **Fehleranalyse** `fehleranalyse.js` (t28). Archiv `prognose_archiv.js` (t20), `lagen_produktion.js` (t21).
   Lauf `core-daten.yml`, Tests `t12`–`t14`, `t17`–`t27`. Zahlen nur in
   `core/model/generated/`; Reihenfolge `core/ORIENTIERUNG.md`.
