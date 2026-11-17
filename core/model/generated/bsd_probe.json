@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "abgerufenUtc": "2026-11-17T07:47:53Z",
+ "abgerufenUtc": "2026-11-17T07:56:29Z",
  "hinweis": "Nur Zaehlwerte und Feldnamen, keine Rohdaten.",
  "fehler": [],
  "statusEvents": {
@@ -143,8 +143,8 @@
   "keineElf": 0,
   "ausfaelleHeimMin1": 15,
   "ausfaelleGastMin1": 14,
-  "stundenBisAnstossMin": 81.2,
-  "stundenBisAnstossMax": 87.8,
+  "stundenBisAnstossMin": 81,
+  "stundenBisAnstossMax": 87.6,
   "ausfallGruende": {
    "injured/Knock Injury": 3,
    "injured/Sprained Ankle": 2,
@@ -187,7 +187,7 @@
  },
  "proben": [
   {
-   "gesehenUtc": "2026-11-17T07:47:54Z",
+   "gesehenUtc": "2026-11-17T07:56:30Z",
    "strukturLineups": {
     "/beta": "boolean",
     "/event_id": "number",
@@ -244,7 +244,7 @@
    }
   },
   {
-   "gesehenUtc": "2026-11-17T07:47:54Z",
+   "gesehenUtc": "2026-11-17T07:56:36Z",
    "strukturLineups": {
     "/beta": "boolean",
     "/event_id": "number",
