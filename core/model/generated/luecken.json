@@ -1,0 +1,132 @@
+{
+ "schema": 1,
+ "spielePruef": 5928,
+ "halbierung": "2022-11-06",
+ "geprueft": 486,
+ "huerdeZweiseitig": 3.88,
+ "funde": [],
+ "auffaelligsteNichtBestaetigt": [
+  {
+   "dimension": "tempo10",
+   "schnitt": "tempo10 Stufe 5/5 (hoechste)",
+   "ergebnis": "Remis",
+   "n": 1297,
+   "abweichungProzentpunkte": 3.592,
+   "z": 3.144,
+   "zHaelfteA": 2.3,
+   "zHaelfteB": 2.314,
+   "bestaetigt": false,
+   "kandidaten": "Torniveau"
+  },
+  {
+   "dimension": "monat",
+   "schnitt": "Monat 01",
+   "ergebnis": "Remis",
+   "n": 516,
+   "abweichungProzentpunkte": 5.75,
+   "z": 2.992,
+   "zHaelfteA": 2.083,
+   "zHaelfteB": 2.148,
+   "bestaetigt": false,
+   "kandidaten": "Saisonphase, Wetter, Motivation"
+  },
+  {
+   "dimension": "lnH",
+   "schnitt": "lnH Stufe 1/5 (niedrigste)",
+   "ergebnis": "Remis",
+   "n": 1185,
+   "abweichungProzentpunkte": -3.615,
+   "z": -2.857,
+   "zHaelfteA": -2.503,
+   "zHaelfteB": -1.634,
+   "bestaetigt": false,
+   "kandidaten": "Kalibrierung Heimsieg"
+  },
+  {
+   "dimension": "dGd10",
+   "schnitt": "dGd10 Stufe 5/5 (hoechste)",
+   "ergebnis": "Heimsieg",
+   "n": 1262,
+   "abweichungProzentpunkte": -3.759,
+   "z": -2.816,
+   "zHaelfteA": -2.942,
+   "zHaelfteB": -1.121,
+   "bestaetigt": false,
+   "kandidaten": "Form"
+  },
+  {
+   "dimension": "dSaisonGd",
+   "schnitt": "dSaisonGd Stufe 2/5",
+   "ergebnis": "Auswaertssieg",
+   "n": 1181,
+   "abweichungProzentpunkte": -3.872,
+   "z": -2.807,
+   "zHaelfteA": -1.087,
+   "zHaelfteB": -2.955,
+   "bestaetigt": false,
+   "kandidaten": "Saisonstand"
+  },
+  {
+   "dimension": "lnH",
+   "schnitt": "lnH Stufe 1/5 (niedrigste)",
+   "ergebnis": "Heimsieg",
+   "n": 1185,
+   "abweichungProzentpunkte": 3.156,
+   "z": 2.587,
+   "zHaelfteA": 2.993,
+   "zHaelfteB": 0.859,
+   "bestaetigt": false,
+   "kandidaten": "Kalibrierung Heimsieg"
+  },
+  {
+   "dimension": "lnH",
+   "schnitt": "lnH Stufe 5/5 (hoechste)",
+   "ergebnis": "Heimsieg",
+   "n": 1186,
+   "abweichungProzentpunkte": -3.522,
+   "z": -2.58,
+   "zHaelfteA": -3.555,
+   "zHaelfteB": -0.52,
+   "bestaetigt": false,
+   "kandidaten": "Kalibrierung Heimsieg"
+  },
+  {
+   "dimension": "liga",
+   "schnitt": "Liga fr.2",
+   "ergebnis": "Auswaertssieg",
+   "n": 380,
+   "abweichungProzentpunkte": -5.911,
+   "z": -2.558,
+   "zHaelfteA": -2.558,
+   "zHaelfteB": 0,
+   "bestaetigt": false,
+   "kandidaten": "Liga-Eigenschaften (Heimvorteil, Torschnitt)"
+  },
+  {
+   "dimension": "dDuell",
+   "schnitt": "dDuell Stufe 4/5",
+   "ergebnis": "Remis",
+   "n": 1488,
+   "abweichungProzentpunkte": -2.816,
+   "z": -2.479,
+   "zHaelfteA": -1.869,
+   "zHaelfteB": -1.633,
+   "bestaetigt": false,
+   "kandidaten": "Direkte Duelle"
+  },
+  {
+   "dimension": "liga",
+   "schnitt": "Liga en.3",
+   "ergebnis": "Auswaertssieg",
+   "n": 552,
+   "abweichungProzentpunkte": 4.686,
+   "z": 2.456,
+   "zHaelfteA": 2.456,
+   "zHaelfteB": 0,
+   "bestaetigt": false,
+   "kandidaten": "Liga-Eigenschaften (Heimvorteil, Torschnitt)"
+  }
+ ],
+ "hinweis": "Fund = in dieser Lage weicht die tatsaechliche Haeufigkeit systematisch von der vorhergesagten ab (beide Haelften, Bonferroni ueber alle geprueften Schnitte). Es nennt die Lage, nicht die fehlende Information; die Kandidatenliste ist ein Vorschlag aus dem Katalog.",
+ "modell": "Menge alle, Lernstand 6d5e6a08 (Gruppen: keine; nur Kalibrierung des alten Modells)"
+}

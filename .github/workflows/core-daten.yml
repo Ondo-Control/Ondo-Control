@@ -121,6 +121,9 @@ jobs:
           retention-days: 90
           if-no-files-found: ignore
 
+      - name: Fehleranalyse (wo liegt der Core systematisch daneben?)
+        run: node core/model/fehleranalyse.js
+
       - name: Test der Quelle Bzzoiro (nur Zaehlwerte, nur mit Secret BSD_API_KEY)
         env:
           BSD_API_KEY: ${{ secrets.BSD_API_KEY }}
@@ -141,6 +144,7 @@ jobs:
           node tests/t25_kommende_spiele.js
           node tests/t26_neue_merkmale.js
           node tests/t27_wert_messung.js
+          node tests/t28_fehleranalyse.js
 
       - name: Aenderung committen, falls vorhanden
         run: |
