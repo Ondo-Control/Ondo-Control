@@ -48,6 +48,11 @@ jobs:
       - name: Datenbestand bauen
         run: node core/data/bauen.js --of "$RUNNER_TEMP/football.json"
 
+      - name: Europapokal-Kalender holen und bauen (nur lesen, CC0)
+        run: |
+          git clone --quiet --depth 1 https://github.com/openfootball/champions-league "$RUNNER_TEMP/champions-league"
+          node core/data/europa_bauen.js --ep "$RUNNER_TEMP/champions-league"
+
       - name: Test des Datenfundaments
         run: node tests/t12_core_daten.js
 

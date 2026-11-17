@@ -42,7 +42,8 @@ function bestandLaden(genOrdner, aliases){
   Object.keys(jeLand).forEach(function(l){
     jeLand[l].sort(function(a,b){ return a.datum<b.datum?-1:a.datum>b.datum?1:(a.id<b.id?-1:a.id>b.id?1:0); });
   });
-  return { jeLand:jeLand, namen:namen, heute:katalog.heute };
+  var ef=path.join(genOrdner,'europa.json'), europa=fs.existsSync(ef)?JSON.parse(fs.readFileSync(ef,'utf8')).teams:null;
+  return { jeLand:jeLand, namen:namen, heute:katalog.heute, europa:europa };
 }
 
 function ergebnis(r){

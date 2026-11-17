@@ -30,9 +30,12 @@ var MERKMALE = {
   last:   ['dLast7','dLast14','dLast21'],     /* Spiele in den letzten 7/14/21 Tagen (Heim minus Gast) */
   angriff:['dGf10','dGa10'],                  /* Tore und Gegentore je Spiel, letzte 10 (Heim minus Gast), getrennt */
   duell:  ['dDuell'],                         /* Punkte je Spiel des Heimteams in den letzten bis zu 5 direkten Duellen */
-  kalender:['saisonFortschritt']              /* wie weit die Saison ist (Spiele je Mannschaft / 30) */
+  kalender:['saisonFortschritt'],             /* wie weit die Saison ist (Spiele je Mannschaft / 30) */
+  /* Fassung v4 (17.11.2026): Terminlast MIT Europapokal (europa.json: Champions/Europa/Conference League inkl. Qualifikation, ab 2011/12).
+     Nur Spieltage VOR dem Spiel; ohne europa.json zaehlen nur die Ligaspiele. */
+  termin: ['dEuLast7','dEuLast14','dEuLast21','dEuRuhe','dEu14']
 };
-var GRUPPEN = ['form','ort','ruhe','saison','staerke','tempo','serie','last','angriff','duell','kalender'];   /* waehlbare Gruppen, alle Spiele */
+var GRUPPEN = ['form','ort','ruhe','saison','staerke','tempo','serie','last','angriff','duell','kalender','termin'];   /* waehlbare Gruppen, alle Spiele */
 var GRUPPEN_AUFST = GRUPPEN.concat(['aufst']);                  /* waehlbar nur auf Spielen mit Aufstellungsdaten */
 
 var PRIOR_PPG = 1.4, PRIOR_N = 3, ELO_START = 1500, ELO_K = 20, ELO_HEIM = 60, ELO_STUFE = 80;
@@ -53,7 +56,9 @@ function formWert(liste, n){
    Die Merkmale eines Spiels entstehen, BEVOR sein Ergebnis in irgendeinen Zaehler eingeht. */
 function serieLaenge(liste, bed){ var n=0; for(var i=liste.length-1;i>=0&&n<10;i--){ if(!bed(liste[i])) break; n++; } return n; }
 function zaehleTage(liste, datum, d){ var n=0; for(var i=liste.length-1;i>=0;i--){ if(tage(liste[i].datum, datum)>d) break; n++; } return n; }
-function zeilenFuerLand(spiele, par){
+function zaehleMit(liste, extern, datum, d){ var n=zaehleTage(liste, datum, d); (extern||[]).forEach(function(e){ var t=tage(e, datum); if(t>=1 && t<=d) n++; }); return n; }
+function ruheMit(liste, extern, datum){ var r=liste.length?tage(liste[liste.length-1].datum, datum):14; (extern||[]).forEach(function(e){ var t=tage(e, datum); if(t>=1 && t<r) r=t; }); return Math.min(14,r); }
+function zeilenFuerLand(spiele, par, europa){
   var z=M.neuerZustand(), hist={}, elo={}, ligaVon={}, saison={}, duelle={}, zeilen=[], nachher=[], tag=null;
   /* Alle Spiele EINES Kalendertags werden mit demselben Stand vom Vortag vorhergesagt; erst wenn der Tag zu Ende ist,
      gehen ihre Ergebnisse in Staerken, Form, Elo und Ligawerte ein (kein Spiel nutzt das Ergebnis eines Spiels desselben Tags). */
@@ -82,6 +87,7 @@ function zeilenFuerLand(spiele, par){
     var t10h=hh.slice(-10), t10g=hg.slice(-10), tot=0, tn=0;
     t10h.concat(t10g).forEach(function(e){ tot+=e.gf+e.ga; tn++; });
     var gf10=function(l,k){ var s=l.slice(-10), t=0; s.forEach(function(e){ t+=e[k]; }); return (t+LAENDER_MITTEL_TORE/2*PRIOR_N)/(s.length+PRIOR_N); };
+    var eH0=europa&&europa[H], eG0=europa&&europa[G];
     var pk=H<G?H+'|'+G:G+'|'+H, dl=(duelle[pk]||[]).slice(-5), dp=0;
     dl.forEach(function(e){ dp+=(e.a===H?e.pa:e.pg); });
     var x={
@@ -100,7 +106,12 @@ function zeilenFuerLand(spiele, par){
       dLast21:zaehleTage(hh,r.datum,21)-zaehleTage(hg,r.datum,21),
       dGf10:gf10(hh,'gf')-gf10(hg,'gf'), dGa10:gf10(hh,'ga')-gf10(hg,'ga'),
       dDuell:((dp+PRIOR_PPG*PRIOR_N)/(dl.length+PRIOR_N))-PRIOR_PPG,
-      saisonFortschritt:((sH.length+sG.length)/2)/30
+      saisonFortschritt:((sH.length+sG.length)/2)/30,
+      dEuLast7:zaehleMit(hh,eH0,r.datum,7)-zaehleMit(hg,eG0,r.datum,7),
+      dEuLast14:zaehleMit(hh,eH0,r.datum,14)-zaehleMit(hg,eG0,r.datum,14),
+      dEuLast21:zaehleMit(hh,eH0,r.datum,21)-zaehleMit(hg,eG0,r.datum,21),
+      dEuRuhe:(ruheMit(hh,eH0,r.datum)-ruheMit(hg,eG0,r.datum))/7,
+      dEu14:zaehleMit([],eH0,r.datum,14)-zaehleMit([],eG0,r.datum,14)
     };
     if(r.kommend){ zeilen.push({ r:r, x:x, y:-1, kommend:true }); return; }     /* kommendes Spiel: Merkmale ja, nichts einbuchen */
     var y=r.th>r.tg?0:r.th===r.tg?1:2;
@@ -130,7 +141,7 @@ function zeilenKommend(bestand, par, fixtures, schema){
   Object.keys(jeLand).forEach(function(land){
     var neu=jeLand[land].slice().sort(function(a,b){ return a.datum<b.datum?-1:a.datum>b.datum?1:a.idx-b.idx; });
     var spiele=(bestand.jeLand[land]||[]).concat(neu);
-    zeilenFuerLand(spiele, par).forEach(function(z){ if(z.kommend) aus[z.r.idx]=z; });
+    zeilenFuerLand(spiele, par, bestand.europa).forEach(function(z){ if(z.kommend) aus[z.r.idx]=z; });
   });
   return aus;
 }
@@ -139,7 +150,7 @@ function zeilenKommend(bestand, par, fixtures, schema){
 function zeilenBauen(bestand, par, aufst){
   var alle=[];
   Object.keys(bestand.jeLand).sort().forEach(function(land){
-    zeilenFuerLand(bestand.jeLand[land], par).forEach(function(z){
+    zeilenFuerLand(bestand.jeLand[land], par, bestand.europa).forEach(function(z){
       var a=aufst&&aufst.werte&&aufst.werte[z.r.id];
       z.mitAufst=!!a;
       MERKMALE.aufst.forEach(function(n,i){ z.x[n]=a?a[i]:0; });     /* fehlt: Unterschied 0 = neutral */

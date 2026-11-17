@@ -769,3 +769,5 @@
 > Ondo entscheidet über die Wertung. Keine neue Verfassungsregel. Blueprint auf 0.167 gehoben.
 > **Was Fassung 0.181 ändert (17.11.2026):** Reine Synchronisierung nach Arbeitsregel M: neue Merkmalsgruppen aus den eigenen Daten (Test t26, Vorab-Eintragung in ideen.json) in STAND nachgeführt. Keine neue Verfassungsregel. Blueprint auf 0.181 gehoben.
 
+> **Was Fassung 0.182 ändert (17.11.2026):** Reine Synchronisierung nach Arbeitsregel M: Europapokal-Kalender (`europa.json`) und Terminlast-Gruppe in STAND nachgeführt. Keine neue Verfassungsregel. Blueprint auf 0.182 gehoben.
+

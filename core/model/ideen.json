@@ -247,6 +247,23 @@
    "geprueftAuf": "Pruefsaisons",
    "ergebnis": "siehe lagen.json",
    "art": "formal"
+  },
+  {
+   "nr": 12,
+   "datum": "2026-11-17",
+   "name": "Terminlast mit Europapokal (Champions/Europa/Conference League, europa.json aus OpenFootball): eine neue Gruppe 'termin', Vorab-Eintragung inkl. Schritt-2-Reserve und Netz auf der erweiterten Menge",
+   "namen": [
+    "L-v4-alle-termin",
+    "L-v4-auf1-termin",
+    "L-v4-auf2-termin",
+    "L-v4-alle2-termin",
+    "NL-alle-v4",
+    "NL-mitAufstellung-v4"
+   ],
+   "versuche": 6,
+   "geprueftAuf": "Pruefsaisons",
+   "ergebnis": "siehe lagen.json",
+   "art": "formal"
   }
  ]
 }
