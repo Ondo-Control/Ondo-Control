@@ -281,6 +281,23 @@
    "geprueftAuf": "Pruefsaisons",
    "ergebnis": "siehe lagen.json",
    "art": "formal"
+  },
+  {
+   "nr": 14,
+   "datum": "2026-11-17",
+   "name": "Reise der Gastmannschaft (Entfernung Heimstadion-Gaststadion aus Wikidata-Koordinaten, stadien.json): eine neue Gruppe 'reise' (Hoehe entfaellt: nur 1 von 428 Stadien hat Daten), Vorab-Eintragung inkl. Schritt-2-Reserve und Netz auf der erweiterten Menge",
+   "namen": [
+    "L-v6-alle-reise",
+    "L-v6-auf1-reise",
+    "L-v6-auf2-reise",
+    "L-v6-alle2-reise",
+    "NL-alle-v6",
+    "NL-mitAufstellung-v6"
+   ],
+   "versuche": 6,
+   "geprueftAuf": "Pruefsaisons",
+   "ergebnis": "siehe lagen.json",
+   "art": "formal"
   }
  ]
 }

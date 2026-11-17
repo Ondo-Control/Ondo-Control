@@ -43,7 +43,8 @@ function bestandLaden(genOrdner, aliases){
     jeLand[l].sort(function(a,b){ return a.datum<b.datum?-1:a.datum>b.datum?1:(a.id<b.id?-1:a.id>b.id?1:0); });
   });
   var ef=path.join(genOrdner,'europa.json'), europa=fs.existsSync(ef)?JSON.parse(fs.readFileSync(ef,'utf8')).teams:null;
-  return { jeLand:jeLand, namen:namen, heute:katalog.heute, europa:europa };
+  var sf=path.join(genOrdner,'stadien.json'), stadien=fs.existsSync(sf)?JSON.parse(fs.readFileSync(sf,'utf8')).teams:null;
+  return { jeLand:jeLand, namen:namen, heute:katalog.heute, europa:europa, stadien:stadien };
 }
 
 function ergebnis(r){

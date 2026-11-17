@@ -1,8 +1,8 @@
 {
  "schema": 2,
  "stichtag": "2026-08-01",
- "huerde": 3.38,
- "zaehlerVersuche": 52,
+ "huerde": 3.4,
+ "zaehlerVersuche": 56,
  "mengen": [
   {
    "menge": "alle",
@@ -156,6 +156,17 @@
      "standardfehler": 0.00062,
      "z": 1.16,
      "besteHuerde": false
+    },
+    {
+     "menge": "alle",
+     "schritt": 1,
+     "gruppe": "reise",
+     "zu": [],
+     "verlustPruefen": 1.0278,
+     "vorsprung": 0,
+     "standardfehler": 0,
+     "z": 0,
+     "besteHuerde": false
     }
    ],
    "gewaehlt": [],
@@ -237,15 +248,16 @@
      "duell",
      "kalender",
      "termin",
-     "motiv"
+     "motiv",
+     "reise"
     ],
     "verlustPruefenLinear": 1.0278,
-    "verlustPruefenNichtlinear": 1.0262,
-    "vorsprung": 0.00161,
+    "verlustPruefenNichtlinear": 1.0247,
+    "vorsprung": 0.00318,
     "standardfehler": 0.00103,
-    "z": 1.57,
+    "z": 3.08,
     "besteHuerde": false,
-    "runde": 25,
+    "runde": 42,
     "spiele": 5928,
     "uebernommen": false
    }
@@ -401,6 +413,17 @@
      "vorsprung": 0.00049,
      "standardfehler": 0.00082,
      "z": 0.59,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 1,
+     "gruppe": "reise",
+     "zu": [],
+     "verlustPruefen": 0.9918,
+     "vorsprung": 0.00004,
+     "standardfehler": 0.00003,
+     "z": 1.29,
      "besteHuerde": false
     },
     {
@@ -585,6 +608,19 @@
     },
     {
      "menge": "mitAufstellung",
+     "schritt": 2,
+     "gruppe": "reise",
+     "zu": [
+      "aufst"
+     ],
+     "verlustPruefen": 0.9809,
+     "vorsprung": 0.0002,
+     "standardfehler": 0.00009,
+     "z": 2.11,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
      "schritt": 3,
      "gruppe": "form",
      "zu": [
@@ -750,6 +786,20 @@
      "standardfehler": 0.00097,
      "z": 0.67,
      "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 3,
+     "gruppe": "reise",
+     "zu": [
+      "aufst",
+      "angriff"
+     ],
+     "verlustPruefen": 0.9797,
+     "vorsprung": 0.00009,
+     "standardfehler": 0.00008,
+     "z": 1.03,
+     "besteHuerde": false
     }
    ],
    "gewaehlt": [
@@ -892,15 +942,16 @@
      "kalender",
      "termin",
      "motiv",
+     "reise",
      "aufst"
     ],
     "verlustPruefenLinear": 0.9798,
-    "verlustPruefenNichtlinear": 0.9797,
-    "vorsprung": 0.00008,
-    "standardfehler": 0.00216,
-    "z": 0.04,
+    "verlustPruefenNichtlinear": 0.9795,
+    "vorsprung": 0.00031,
+    "standardfehler": 0.00213,
+    "z": 0.14,
     "besteHuerde": false,
-    "runde": 24,
+    "runde": 12,
     "spiele": 2168,
     "uebernommen": false
    }
