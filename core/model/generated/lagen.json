@@ -1,8 +1,8 @@
 {
  "schema": 2,
  "stichtag": "2026-08-01",
- "huerde": 3.29,
- "zaehlerVersuche": 19,
+ "huerde": 3.36,
+ "zaehlerVersuche": 44,
  "mengen": [
   {
    "menge": "alle",
@@ -79,6 +79,61 @@
      "standardfehler": 0.00035,
      "z": 1.49,
      "besteHuerde": false
+    },
+    {
+     "menge": "alle",
+     "schritt": 1,
+     "gruppe": "serie",
+     "zu": [],
+     "verlustPruefen": 1.0278,
+     "vorsprung": 0,
+     "standardfehler": 0,
+     "z": 0,
+     "besteHuerde": false
+    },
+    {
+     "menge": "alle",
+     "schritt": 1,
+     "gruppe": "last",
+     "zu": [],
+     "verlustPruefen": 1.0278,
+     "vorsprung": 0,
+     "standardfehler": 0,
+     "z": 0,
+     "besteHuerde": false
+    },
+    {
+     "menge": "alle",
+     "schritt": 1,
+     "gruppe": "angriff",
+     "zu": [],
+     "verlustPruefen": 1.0269,
+     "vorsprung": 0.00092,
+     "standardfehler": 0.00046,
+     "z": 2,
+     "besteHuerde": false
+    },
+    {
+     "menge": "alle",
+     "schritt": 1,
+     "gruppe": "duell",
+     "zu": [],
+     "verlustPruefen": 1.027,
+     "vorsprung": 0.00078,
+     "standardfehler": 0.00047,
+     "z": 1.68,
+     "besteHuerde": false
+    },
+    {
+     "menge": "alle",
+     "schritt": 1,
+     "gruppe": "kalender",
+     "zu": [],
+     "verlustPruefen": 1.0278,
+     "vorsprung": 0,
+     "standardfehler": 0,
+     "z": 0,
+     "besteHuerde": false
     }
    ],
    "gewaehlt": [],
@@ -153,15 +208,20 @@
      "ruhe",
      "saison",
      "staerke",
-     "tempo"
+     "tempo",
+     "serie",
+     "last",
+     "angriff",
+     "duell",
+     "kalender"
     ],
     "verlustPruefenLinear": 1.0278,
-    "verlustPruefenNichtlinear": 1.0256,
-    "vorsprung": 0.00224,
-    "standardfehler": 0.00077,
-    "z": 2.92,
+    "verlustPruefenNichtlinear": 1.0259,
+    "vorsprung": 0.00195,
+    "standardfehler": 0.00074,
+    "z": 2.64,
     "besteHuerde": false,
-    "runde": 73,
+    "runde": 34,
     "spiele": 5928,
     "uebernommen": false
    }
@@ -240,6 +300,61 @@
      "vorsprung": 0.00176,
      "standardfehler": 0.0008,
      "z": 2.21,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 1,
+     "gruppe": "serie",
+     "zu": [],
+     "verlustPruefen": 0.9918,
+     "vorsprung": 0.00006,
+     "standardfehler": 0.00015,
+     "z": 0.36,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 1,
+     "gruppe": "last",
+     "zu": [],
+     "verlustPruefen": 0.9918,
+     "vorsprung": 0.00004,
+     "standardfehler": 0.00017,
+     "z": 0.27,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 1,
+     "gruppe": "angriff",
+     "zu": [],
+     "verlustPruefen": 0.9918,
+     "vorsprung": 0.00006,
+     "standardfehler": 0.00015,
+     "z": 0.36,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 1,
+     "gruppe": "duell",
+     "zu": [],
+     "verlustPruefen": 0.9911,
+     "vorsprung": 0.00077,
+     "standardfehler": 0.00054,
+     "z": 1.42,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 1,
+     "gruppe": "kalender",
+     "zu": [],
+     "verlustPruefen": 0.9919,
+     "vorsprung": -0.00001,
+     "standardfehler": 0.00045,
+     "z": -0.03,
      "besteHuerde": false
     },
     {
@@ -330,26 +445,233 @@
      "standardfehler": 0.00074,
      "z": 1.17,
      "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 2,
+     "gruppe": "serie",
+     "zu": [
+      "aufst"
+     ],
+     "verlustPruefen": 0.9805,
+     "vorsprung": 0.00061,
+     "standardfehler": 0.00036,
+     "z": 1.71,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 2,
+     "gruppe": "last",
+     "zu": [
+      "aufst"
+     ],
+     "verlustPruefen": 0.9811,
+     "vorsprung": -0.00003,
+     "standardfehler": 0.00076,
+     "z": -0.03,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 2,
+     "gruppe": "angriff",
+     "zu": [
+      "aufst"
+     ],
+     "verlustPruefen": 0.9798,
+     "vorsprung": 0.00128,
+     "standardfehler": 0.00037,
+     "z": 3.42,
+     "besteHuerde": true
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 2,
+     "gruppe": "duell",
+     "zu": [
+      "aufst"
+     ],
+     "verlustPruefen": 0.9793,
+     "vorsprung": 0.00173,
+     "standardfehler": 0.00056,
+     "z": 3.06,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 2,
+     "gruppe": "kalender",
+     "zu": [
+      "aufst"
+     ],
+     "verlustPruefen": 0.9813,
+     "vorsprung": -0.00026,
+     "standardfehler": 0.00048,
+     "z": -0.55,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 3,
+     "gruppe": "form",
+     "zu": [
+      "aufst",
+      "angriff"
+     ],
+     "verlustPruefen": 0.9799,
+     "vorsprung": -0.0001,
+     "standardfehler": 0.00062,
+     "z": -0.16,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 3,
+     "gruppe": "ort",
+     "zu": [
+      "aufst",
+      "angriff"
+     ],
+     "verlustPruefen": 0.9798,
+     "vorsprung": -0.00004,
+     "standardfehler": 0.00028,
+     "z": -0.13,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 3,
+     "gruppe": "ruhe",
+     "zu": [
+      "aufst",
+      "angriff"
+     ],
+     "verlustPruefen": 0.9798,
+     "vorsprung": -0.00003,
+     "standardfehler": 0.00018,
+     "z": -0.14,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 3,
+     "gruppe": "saison",
+     "zu": [
+      "aufst",
+      "angriff"
+     ],
+     "verlustPruefen": 0.9805,
+     "vorsprung": -0.0007,
+     "standardfehler": 0.00044,
+     "z": -1.58,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 3,
+     "gruppe": "staerke",
+     "zu": [
+      "aufst",
+      "angriff"
+     ],
+     "verlustPruefen": 0.9825,
+     "vorsprung": -0.00274,
+     "standardfehler": 0.00083,
+     "z": -3.3,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 3,
+     "gruppe": "tempo",
+     "zu": [
+      "aufst",
+      "angriff"
+     ],
+     "verlustPruefen": 0.9793,
+     "vorsprung": 0.00045,
+     "standardfehler": 0.00066,
+     "z": 0.69,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 3,
+     "gruppe": "serie",
+     "zu": [
+      "aufst",
+      "angriff"
+     ],
+     "verlustPruefen": 0.9803,
+     "vorsprung": -0.00047,
+     "standardfehler": 0.00041,
+     "z": -1.15,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 3,
+     "gruppe": "last",
+     "zu": [
+      "aufst",
+      "angriff"
+     ],
+     "verlustPruefen": 0.9799,
+     "vorsprung": -0.00014,
+     "standardfehler": 0.00076,
+     "z": -0.18,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 3,
+     "gruppe": "duell",
+     "zu": [
+      "aufst",
+      "angriff"
+     ],
+     "verlustPruefen": 0.9789,
+     "vorsprung": 0.00089,
+     "standardfehler": 0.00036,
+     "z": 2.45,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 3,
+     "gruppe": "kalender",
+     "zu": [
+      "aufst",
+      "angriff"
+     ],
+     "verlustPruefen": 0.9801,
+     "vorsprung": -0.0003,
+     "standardfehler": 0.00048,
+     "z": -0.64,
+     "besteHuerde": false
     }
    ],
    "gewaehlt": [
-    "aufst"
+    "aufst",
+    "angriff"
    ],
    "pruefen": {
     "altesModellK6": 0.9918,
     "nurBasisKalibriert": 0.9919,
-    "ende": 0.9811,
-    "vorsprungGegenK6": 0.01073,
-    "standardfehler": 0.00227,
+    "ende": 0.9798,
+    "vorsprungGegenK6": 0.01201,
+    "standardfehler": 0.00241,
     "spiele": 2168,
     "spieltage": 782
    },
    "lernstand": {
-    "name": "L37",
-    "runde": 37,
-    "pruefsumme": "af6fa60d",
+    "name": "L91",
+    "runde": 91,
+    "pruefsumme": "116e8e1a",
     "gruppen": [
-     "aufst"
+     "aufst",
+     "angriff"
     ],
     "namen": [
      "lnH",
@@ -357,7 +679,9 @@
      "lnA",
      "dLnStart",
      "dLnBest",
-     "dFehlt"
+     "dFehlt",
+     "dGf10",
+     "dGa10"
     ],
     "standardisierung": {
      "mittel": {
@@ -366,7 +690,9 @@
       "lnA": 0,
       "dLnStart": 0.009607,
       "dLnBest": -0.001514,
-      "dFehlt": -0.007711
+      "dFehlt": -0.007711,
+      "dGf10": -0.014125,
+      "dGa10": 0.013062
      },
      "streuung": {
       "lnH": 1,
@@ -374,33 +700,41 @@
       "lnA": 1,
       "dLnStart": 1.193314,
       "dLnBest": 1.166915,
-      "dFehlt": 0.156416
+      "dFehlt": 0.156416,
+      "dGf10": 0.594822,
+      "dGa10": 0.491492
      }
     },
     "gewichte": [
      [
-      0.78503,
-      0.00097,
-      0.13304,
-      0.12907,
-      0.10863,
-      -0.05881
+      0.76916,
+      0.03245,
+      0.11509,
+      0.14399,
+      0.10752,
+      -0.05815,
+      -0.01656,
+      0.01023
      ],
      [
-      0.03928,
-      0.94752,
-      0.02444,
-      0.00355,
-      0.00415,
-      -0.00706
+      0.07003,
+      0.8936,
+      0.05794,
+      0.00262,
+      0.00549,
+      -0.00827,
+      0.01018,
+      0.01162
      ],
      [
-      0.17569,
-      0.05151,
-      0.84252,
-      -0.13262,
-      -0.11278,
-      0.06587
+      0.1608,
+      0.07395,
+      0.82696,
+      -0.14661,
+      -0.11301,
+      0.06642,
+      0.00637,
+      -0.02185
      ]
     ]
    },
@@ -409,25 +743,37 @@
      "lernstand": "L0",
      "verlustLernen": 0.9885,
      "verlustPruefen": 0.9852,
-     "pruefsumme": "ae572dbc"
+     "pruefsumme": "b600a55c"
     },
     {
      "lernstand": "L25",
-     "verlustLernen": 0.9806,
-     "verlustPruefen": 0.98,
-     "pruefsumme": "042ac2c8"
+     "verlustLernen": 0.9807,
+     "verlustPruefen": 0.9802,
+     "pruefsumme": "94ec0129"
     },
     {
      "lernstand": "L50",
-     "verlustLernen": 0.9802,
+     "verlustLernen": 0.9803,
      "verlustPruefen": 0.98,
-     "pruefsumme": "227e9f34"
+     "pruefsumme": "8779dfb5"
     },
     {
-     "lernstand": "L52",
-     "verlustLernen": 0.9802,
-     "verlustPruefen": 0.98,
-     "pruefsumme": "9df317f5"
+     "lernstand": "L75",
+     "verlustLernen": 0.9801,
+     "verlustPruefen": 0.9799,
+     "pruefsumme": "c47aa21e"
+    },
+    {
+     "lernstand": "L100",
+     "verlustLernen": 0.9801,
+     "verlustPruefen": 0.9799,
+     "pruefsumme": "e72d612e"
+    },
+    {
+     "lernstand": "L106",
+     "verlustLernen": 0.98,
+     "verlustPruefen": 0.9799,
+     "pruefsumme": "29a4757c"
     }
    ],
    "nichtlinear": {
@@ -439,15 +785,20 @@
      "saison",
      "staerke",
      "tempo",
+     "serie",
+     "last",
+     "angriff",
+     "duell",
+     "kalender",
      "aufst"
     ],
-    "verlustPruefenLinear": 0.9811,
-    "verlustPruefenNichtlinear": 0.9812,
-    "vorsprung": -0.0001,
-    "standardfehler": 0.0014,
-    "z": -0.07,
+    "verlustPruefenLinear": 0.9798,
+    "verlustPruefenNichtlinear": 0.9838,
+    "vorsprung": -0.00405,
+    "standardfehler": 0.0023,
+    "z": -1.76,
     "besteHuerde": false,
-    "runde": 13,
+    "runde": 10,
     "spiele": 2168,
     "uebernommen": false
    }

@@ -208,6 +208,45 @@
    "geprueftAuf": "Pruefsaisons",
    "ergebnis": "siehe lagen.json, Feld nichtlinear",
    "art": "formal"
+  },
+  {
+   "nr": 11,
+   "datum": "2026-11-17",
+   "name": "Neue Merkmalsgruppen aus den eigenen Daten (Serie, Spiele in 7/14/21 Tagen, Tore/Gegentore getrennt, direkte Duelle, Saisonfortschritt); Vorab-Eintragung inkl. Schritt-2-Reserve fuer 'alle' und das Netz auf der erweiterten Menge",
+   "namen": [
+    "L-v3-alle-serie",
+    "L-v3-alle-last",
+    "L-v3-alle-angriff",
+    "L-v3-alle-duell",
+    "L-v3-alle-kalender",
+    "L-v3-auf1-serie",
+    "L-v3-auf1-last",
+    "L-v3-auf1-angriff",
+    "L-v3-auf1-duell",
+    "L-v3-auf1-kalender",
+    "L-v3-auf2-serie",
+    "L-v3-auf2-last",
+    "L-v3-auf2-angriff",
+    "L-v3-auf2-duell",
+    "L-v3-auf2-kalender",
+    "L-v3-alle2-form",
+    "L-v3-alle2-ort",
+    "L-v3-alle2-ruhe",
+    "L-v3-alle2-saison",
+    "L-v3-alle2-staerke",
+    "L-v3-alle2-tempo",
+    "L-v3-alle2-serie",
+    "L-v3-alle2-last",
+    "L-v3-alle2-angriff",
+    "L-v3-alle2-duell",
+    "L-v3-alle2-kalender",
+    "NL-alle-v3",
+    "NL-mitAufstellung-v3"
+   ],
+   "versuche": 28,
+   "geprueftAuf": "Pruefsaisons",
+   "ergebnis": "siehe lagen.json",
+   "art": "formal"
   }
  ]
 }

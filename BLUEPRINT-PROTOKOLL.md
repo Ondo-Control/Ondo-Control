@@ -767,3 +767,5 @@
 > (`OndoControl.html` = Beta-Code v19.24.3 ohne „BETA“-Aufschrift, `version.json` 17; Commit f18dcfe). Gerätetest in der
 > Home-Bildschirm-App bestanden. Kriterium (g) lief am 16.11. erneut und verfehlte die Schwelle (Sonnet 88 %, Flash 63 %, n=8);
 > Ondo entscheidet über die Wertung. Keine neue Verfassungsregel. Blueprint auf 0.167 gehoben.
+> **Was Fassung 0.181 ändert (17.11.2026):** Reine Synchronisierung nach Arbeitsregel M: neue Merkmalsgruppen aus den eigenen Daten (Test t26, Vorab-Eintragung in ideen.json) in STAND nachgeführt. Keine neue Verfassungsregel. Blueprint auf 0.181 gehoben.
+

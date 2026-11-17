@@ -24,9 +24,15 @@ var MERKMALE = {
   staerke:['dElo'],
   tempo:  ['tempo10'],
   /* Aufstellung (aus aufstellung.json): nur fuer Spiele mit Daten; sonst Unterschied 0 */
-  aufst:  ['dLnStart','dLnBest','dFehlt']
+  aufst:  ['dLnStart','dLnBest','dFehlt'],
+  /* Fassung v3 (17.11.2026): neue Kandidaten, alle nur aus Spielen VOR dem Spiel (Ligaspiele; Pokal/Europapokal folgen mit eigener Quelle) */
+  serie:  ['dSerieU','dSerieS'],              /* Spiele ohne Niederlage bzw. ohne Sieg in Folge (Heim minus Gast) */
+  last:   ['dLast7','dLast14','dLast21'],     /* Spiele in den letzten 7/14/21 Tagen (Heim minus Gast) */
+  angriff:['dGf10','dGa10'],                  /* Tore und Gegentore je Spiel, letzte 10 (Heim minus Gast), getrennt */
+  duell:  ['dDuell'],                         /* Punkte je Spiel des Heimteams in den letzten bis zu 5 direkten Duellen */
+  kalender:['saisonFortschritt']              /* wie weit die Saison ist (Spiele je Mannschaft / 30) */
 };
-var GRUPPEN = ['form','ort','ruhe','saison','staerke','tempo'];   /* waehlbare Gruppen, alle Spiele */
+var GRUPPEN = ['form','ort','ruhe','saison','staerke','tempo','serie','last','angriff','duell','kalender'];   /* waehlbare Gruppen, alle Spiele */
 var GRUPPEN_AUFST = GRUPPEN.concat(['aufst']);                  /* waehlbar nur auf Spielen mit Aufstellungsdaten */
 
 var PRIOR_PPG = 1.4, PRIOR_N = 3, ELO_START = 1500, ELO_K = 20, ELO_HEIM = 60, ELO_STUFE = 80;
@@ -45,8 +51,10 @@ function formWert(liste, n){
 /* Alle Spiele eines Landes in zeitlicher Reihenfolge: je Spiel eine Zeile mit Merkmalen.
    Zeile = { r (Spiel), x (Merkmale, Zahl je Name), y (0 Heim,1 Remis,2 Gast) }.
    Die Merkmale eines Spiels entstehen, BEVOR sein Ergebnis in irgendeinen Zaehler eingeht. */
+function serieLaenge(liste, bed){ var n=0; for(var i=liste.length-1;i>=0&&n<10;i--){ if(!bed(liste[i])) break; n++; } return n; }
+function zaehleTage(liste, datum, d){ var n=0; for(var i=liste.length-1;i>=0;i--){ if(tage(liste[i].datum, datum)>d) break; n++; } return n; }
 function zeilenFuerLand(spiele, par){
-  var z=M.neuerZustand(), hist={}, elo={}, ligaVon={}, saison={}, zeilen=[], nachher=[], tag=null;
+  var z=M.neuerZustand(), hist={}, elo={}, ligaVon={}, saison={}, duelle={}, zeilen=[], nachher=[], tag=null;
   /* Alle Spiele EINES Kalendertags werden mit demselben Stand vom Vortag vorhergesagt; erst wenn der Tag zu Ende ist,
      gehen ihre Ergebnisse in Staerken, Form, Elo und Ligawerte ein (kein Spiel nutzt das Ergebnis eines Spiels desselben Tags). */
   function tagAbschliessen(){ nachher.forEach(function(f){ f(); }); nachher=[]; }
@@ -73,6 +81,9 @@ function zeilenFuerLand(spiele, par){
     var sf=[formWert(sH,sH.length||1), formWert(sG,sG.length||1)];
     var t10h=hh.slice(-10), t10g=hg.slice(-10), tot=0, tn=0;
     t10h.concat(t10g).forEach(function(e){ tot+=e.gf+e.ga; tn++; });
+    var gf10=function(l,k){ var s=l.slice(-10), t=0; s.forEach(function(e){ t+=e[k]; }); return (t+LAENDER_MITTEL_TORE/2*PRIOR_N)/(s.length+PRIOR_N); };
+    var pk=H<G?H+'|'+G:G+'|'+H, dl=(duelle[pk]||[]).slice(-5), dp=0;
+    dl.forEach(function(e){ dp+=(e.a===H?e.pa:e.pg); });
     var x={
       lnH:Math.log(Math.max(1e-6,v.p.sieg_heim)), lnD:Math.log(Math.max(1e-6,v.p.remis)), lnA:Math.log(Math.max(1e-6,v.p.sieg_gast)),
       dPpg3:f3[0].ppg-f3[1].ppg, dPpg5:f5[0].ppg-f5[1].ppg, dPpg10:f10[0].ppg-f10[1].ppg,
@@ -81,7 +92,15 @@ function zeilenFuerLand(spiele, par){
       dRuhe:(ruheH-ruheG)/7,
       dSaisonPpg:sf[0].ppg-sf[1].ppg, dSaisonGd:sf[0].gd-sf[1].gd,
       dElo:((elo[H]+ELO_HEIM)-elo[G])/400,
-      tempo10:(tn?tot/tn:LAENDER_MITTEL_TORE)-LAENDER_MITTEL_TORE
+      tempo10:(tn?tot/tn:LAENDER_MITTEL_TORE)-LAENDER_MITTEL_TORE,
+      dSerieU:(serieLaenge(hh,function(e){ return e.pts>0; })-serieLaenge(hg,function(e){ return e.pts>0; }))/10,
+      dSerieS:(serieLaenge(hh,function(e){ return e.pts<3; })-serieLaenge(hg,function(e){ return e.pts<3; }))/10,
+      dLast7:zaehleTage(hh,r.datum,7)-zaehleTage(hg,r.datum,7),
+      dLast14:zaehleTage(hh,r.datum,14)-zaehleTage(hg,r.datum,14),
+      dLast21:zaehleTage(hh,r.datum,21)-zaehleTage(hg,r.datum,21),
+      dGf10:gf10(hh,'gf')-gf10(hg,'gf'), dGa10:gf10(hh,'ga')-gf10(hg,'ga'),
+      dDuell:((dp+PRIOR_PPG*PRIOR_N)/(dl.length+PRIOR_N))-PRIOR_PPG,
+      saisonFortschritt:((sH.length+sG.length)/2)/30
     };
     if(r.kommend){ zeilen.push({ r:r, x:x, y:-1, kommend:true }); return; }     /* kommendes Spiel: Merkmale ja, nichts einbuchen */
     var y=r.th>r.tg?0:r.th===r.tg?1:2;
@@ -92,6 +111,7 @@ function zeilenFuerLand(spiele, par){
     var pH=r.th>r.tg?3:r.th===r.tg?1:0, pG=r.tg>r.th?3:r.th===r.tg?1:0;
     var eH={ datum:r.datum, ort:'h', gf:r.th, ga:r.tg, pts:pH }, eG={ datum:r.datum, ort:'a', gf:r.tg, ga:r.th, pts:pG };
     hh.push(eH); hg.push(eG); sH.push(eH); sG.push(eG);
+    (duelle[pk]=duelle[pk]||[]).push({ a:H, pa:pH, pg:pG });
     var erw=1/(1+Math.pow(10, -((elo[H]+ELO_HEIM)-elo[G])/400)), ist=r.th>r.tg?1:r.th===r.tg?0.5:0;
     var marge=Math.min(3, Math.abs(r.th-r.tg)), mult=marge<=1?1:marge===2?1.5:1.75;
     var dlt=ELO_K*mult*(ist-erw); elo[H]+=dlt; elo[G]-=dlt;
