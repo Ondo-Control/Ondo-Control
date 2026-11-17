@@ -145,6 +145,7 @@ jobs:
           node tests/t26_neue_merkmale.js
           node tests/t27_wert_messung.js
           node tests/t28_fehleranalyse.js
+          node tests/t29_motivation.js
 
       - name: Aenderung committen, falls vorhanden
         run: |

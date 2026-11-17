@@ -264,6 +264,23 @@
    "geprueftAuf": "Pruefsaisons",
    "ergebnis": "siehe lagen.json",
    "art": "formal"
+  },
+  {
+   "nr": 13,
+   "datum": "2026-11-17",
+   "name": "Motivation aus der Tabelle der Liga-Saison (Naehe zu Titel, Europa-Rang 6, Abstiegsrang; Heim minus Gast): eine neue Gruppe 'motiv', Vorab-Eintragung inkl. Schritt-2-Reserve und Netz auf der erweiterten Menge",
+   "namen": [
+    "L-v5-alle-motiv",
+    "L-v5-auf1-motiv",
+    "L-v5-auf2-motiv",
+    "L-v5-alle2-motiv",
+    "NL-alle-v5",
+    "NL-mitAufstellung-v5"
+   ],
+   "versuche": 6,
+   "geprueftAuf": "Pruefsaisons",
+   "ergebnis": "siehe lagen.json",
+   "art": "formal"
   }
  ]
 }

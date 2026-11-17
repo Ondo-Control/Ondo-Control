@@ -33,9 +33,12 @@ var MERKMALE = {
   kalender:['saisonFortschritt'],             /* wie weit die Saison ist (Spiele je Mannschaft / 30) */
   /* Fassung v4 (17.11.2026): Terminlast MIT Europapokal (europa.json: Champions/Europa/Conference League inkl. Qualifikation, ab 2011/12).
      Nur Spieltage VOR dem Spiel; ohne europa.json zaehlen nur die Ligaspiele. */
-  termin: ['dEuLast7','dEuLast14','dEuLast21','dEuRuhe','dEu14']
+  termin: ['dEuLast7','dEuLast14','dEuLast21','dEuRuhe','dEu14'],
+  /* Fassung v5 (17.11.2026): Motivation aus der Tabelle der Liga-Saison VOR dem Spiel: wie nah ist die Mannschaft (gemessen in Siegen der
+     verbleibenden Spiele) an Titel, Europa-Rang (6) und Abstiegsrang (letzte 3)? Heim minus Gast. */
+  motiv:  ['dTitel','dEuropa','dAbstieg']
 };
-var GRUPPEN = ['form','ort','ruhe','saison','staerke','tempo','serie','last','angriff','duell','kalender','termin'];   /* waehlbare Gruppen, alle Spiele */
+var GRUPPEN = ['form','ort','ruhe','saison','staerke','tempo','serie','last','angriff','duell','kalender','termin','motiv'];   /* waehlbare Gruppen, alle Spiele */
 var GRUPPEN_AUFST = GRUPPEN.concat(['aufst']);                  /* waehlbar nur auf Spielen mit Aufstellungsdaten */
 
 var PRIOR_PPG = 1.4, PRIOR_N = 3, ELO_START = 1500, ELO_K = 20, ELO_HEIM = 60, ELO_STUFE = 80;
@@ -58,8 +61,21 @@ function serieLaenge(liste, bed){ var n=0; for(var i=liste.length-1;i>=0&&n<10;i
 function zaehleTage(liste, datum, d){ var n=0; for(var i=liste.length-1;i>=0;i--){ if(tage(liste[i].datum, datum)>d) break; n++; } return n; }
 function zaehleMit(liste, extern, datum, d){ var n=zaehleTage(liste, datum, d); (extern||[]).forEach(function(e){ var t=tage(e, datum); if(t>=1 && t<=d) n++; }); return n; }
 function ruheMit(liste, extern, datum){ var r=liste.length?tage(liste[liste.length-1].datum, datum):14; (extern||[]).forEach(function(e){ var t=tage(e, datum); if(t>=1 && t<r) r=t; }); return Math.min(14,r); }
+/* Tabelle der Liga-Saison: Naehe (0..1) einer Mannschaft zu einem Rang-Ziel. rest = verbleibende Spiele; Abstand in Punkten / (3*rest). */
+function tabellenNaehe(ligaTeams, saison, liga, sais, team){
+  var teams=ligaTeams[liga+'|'+sais]||[], n=teams.length;
+  if(n<8) return { titel:0, europa:0, abstieg:0 };
+  var tab=teams.map(function(k){ var l=saison[k+'|'+sais]||[], p=0; l.forEach(function(e){ p+=e.pts; }); return { k:k, p:p, n:l.length }; })
+    .sort(function(a,b){ return (b.p-a.p) || (a.k<b.k?-1:1); });
+  var me=null, rang=0; tab.forEach(function(t,i){ if(t.k===team){ me=t; rang=i; } });
+  if(!me) return { titel:0, europa:0, abstieg:0 };
+  var rest=Math.max(1, 2*(n-1)-me.n), spann=3*rest;
+  var naeher=function(ziel){ return Math.max(0, 1-Math.abs(me.p-ziel)/spann); };
+  var europaZiel=tab[Math.min(5,n-1)].p, abstiegZiel=tab[Math.max(0,n-4)].p;
+  return { titel:rang===0?naeher(tab[Math.min(1,n-1)].p):naeher(tab[0].p), europa:naeher(europaZiel), abstieg:naeher(abstiegZiel) };
+}
 function zeilenFuerLand(spiele, par, europa){
-  var z=M.neuerZustand(), hist={}, elo={}, ligaVon={}, saison={}, duelle={}, zeilen=[], nachher=[], tag=null;
+  var z=M.neuerZustand(), hist={}, elo={}, ligaVon={}, saison={}, ligaTeams={}, duelle={}, zeilen=[], nachher=[], tag=null;
   /* Alle Spiele EINES Kalendertags werden mit demselben Stand vom Vortag vorhergesagt; erst wenn der Tag zu Ende ist,
      gehen ihre Ergebnisse in Staerken, Form, Elo und Ligawerte ein (kein Spiel nutzt das Ergebnis eines Spiels desselben Tags). */
   function tagAbschliessen(){ nachher.forEach(function(f){ f(); }); nachher=[]; }
@@ -77,6 +93,8 @@ function zeilenFuerLand(spiele, par, europa){
       else if(ligaVon[k]!==l){ elo[k]-=(stufe(ligaVon[k])-stufe(l))*ELO_STUFE; ligaVon[k]=l; }
     });
     var sH=saison[H+'|'+r.saison]||(saison[H+'|'+r.saison]=[]), sG=saison[G+'|'+r.saison]||(saison[G+'|'+r.saison]=[]);
+    [H,G].forEach(function(k){ var lk=r.liga+'|'+r.saison, a=ligaTeams[lk]||(ligaTeams[lk]=[]); if(a.indexOf(k)<0) a.push(k); });
+    var nH=tabellenNaehe(ligaTeams, saison, r.liga, r.saison, H), nG=tabellenNaehe(ligaTeams, saison, r.liga, r.saison, G);
     /* 2. Merkmale (nur Vergangenheit) */
     var f3=[formWert(hh,3),formWert(hg,3)], f5=[formWert(hh,5),formWert(hg,5)], f10=[formWert(hh,10),formWert(hg,10)];
     var heimSpiele=hh.filter(function(e){ return e.ort==='h'; }), gastSpiele=hg.filter(function(e){ return e.ort==='a'; });
@@ -111,7 +129,8 @@ function zeilenFuerLand(spiele, par, europa){
       dEuLast14:zaehleMit(hh,eH0,r.datum,14)-zaehleMit(hg,eG0,r.datum,14),
       dEuLast21:zaehleMit(hh,eH0,r.datum,21)-zaehleMit(hg,eG0,r.datum,21),
       dEuRuhe:(ruheMit(hh,eH0,r.datum)-ruheMit(hg,eG0,r.datum))/7,
-      dEu14:zaehleMit([],eH0,r.datum,14)-zaehleMit([],eG0,r.datum,14)
+      dEu14:zaehleMit([],eH0,r.datum,14)-zaehleMit([],eG0,r.datum,14),
+      dTitel:nH.titel-nG.titel, dEuropa:nH.europa-nG.europa, dAbstieg:nH.abstieg-nG.abstieg
     };
     if(r.kommend){ zeilen.push({ r:r, x:x, y:-1, kommend:true }); return; }     /* kommendes Spiel: Merkmale ja, nichts einbuchen */
     var y=r.th>r.tg?0:r.th===r.tg?1:2;

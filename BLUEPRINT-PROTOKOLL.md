@@ -775,3 +775,5 @@
 
 
 > **Was Fassung 0.184 ändert (17.11.2026):** Reine Synchronisierung nach Arbeitsregel M: Fehleranalyse des Core (`fehleranalyse.js`, Test t28, Ausgabe `luecken.json`: Schnitte nach allen Merkmalen, Bonferroni über alle geprüften Schnitte, Bestätigung in beiden Saisonhälften) in STAND nachgeführt. Erster Lauf auf den Prüfspielen: kein bestätigter Fund. Keine neue Verfassungsregel. Blueprint auf 0.184 gehoben.
+
+> **Was Fassung 0.185 ändert (17.11.2026):** Reine Synchronisierung nach Arbeitsregel M: Gruppe `motiv` (Nähe zu Titel, Europa-Rang, Abstiegsrang aus der Tabelle vor dem Spiel, Test t29), vorab als 6 Versuche in ideen.json (nr 13, 140 gesamt, Hürde 3,38). Ergebnis: keine Gruppe besteht, `motiv` z 1,16 (alle) bzw. 0,59 (mit Aufstellung). Keine neue Verfassungsregel. Blueprint auf 0.185 gehoben.

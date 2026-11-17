@@ -1,8 +1,8 @@
 {
  "schema": 2,
  "stichtag": "2026-08-01",
- "huerde": 3.37,
- "zaehlerVersuche": 48,
+ "huerde": 3.38,
+ "zaehlerVersuche": 52,
  "mengen": [
   {
    "menge": "alle",
@@ -145,6 +145,17 @@
      "standardfehler": 0,
      "z": 0,
      "besteHuerde": false
+    },
+    {
+     "menge": "alle",
+     "schritt": 1,
+     "gruppe": "motiv",
+     "zu": [],
+     "verlustPruefen": 1.0271,
+     "vorsprung": 0.00072,
+     "standardfehler": 0.00062,
+     "z": 1.16,
+     "besteHuerde": false
     }
    ],
    "gewaehlt": [],
@@ -225,15 +236,16 @@
      "angriff",
      "duell",
      "kalender",
-     "termin"
+     "termin",
+     "motiv"
     ],
     "verlustPruefenLinear": 1.0278,
-    "verlustPruefenNichtlinear": 1.0253,
-    "vorsprung": 0.00257,
-    "standardfehler": 0.00088,
-    "z": 2.91,
+    "verlustPruefenNichtlinear": 1.0262,
+    "vorsprung": 0.00161,
+    "standardfehler": 0.00103,
+    "z": 1.57,
     "besteHuerde": false,
-    "runde": 33,
+    "runde": 25,
     "spiele": 5928,
     "uebernommen": false
    }
@@ -378,6 +390,17 @@
      "vorsprung": 0.00006,
      "standardfehler": 0.00015,
      "z": 0.36,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 1,
+     "gruppe": "motiv",
+     "zu": [],
+     "verlustPruefen": 0.9914,
+     "vorsprung": 0.00049,
+     "standardfehler": 0.00082,
+     "z": 0.59,
      "besteHuerde": false
     },
     {
@@ -549,6 +572,19 @@
     },
     {
      "menge": "mitAufstellung",
+     "schritt": 2,
+     "gruppe": "motiv",
+     "zu": [
+      "aufst"
+     ],
+     "verlustPruefen": 0.9792,
+     "vorsprung": 0.00192,
+     "standardfehler": 0.0011,
+     "z": 1.75,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
      "schritt": 3,
      "gruppe": "form",
      "zu": [
@@ -700,6 +736,20 @@
      "standardfehler": 0.0011,
      "z": -2.56,
      "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 3,
+     "gruppe": "motiv",
+     "zu": [
+      "aufst",
+      "angriff"
+     ],
+     "verlustPruefen": 0.9791,
+     "vorsprung": 0.00065,
+     "standardfehler": 0.00097,
+     "z": 0.67,
+     "besteHuerde": false
     }
    ],
    "gewaehlt": [
@@ -841,15 +891,16 @@
      "duell",
      "kalender",
      "termin",
+     "motiv",
      "aufst"
     ],
     "verlustPruefenLinear": 0.9798,
-    "verlustPruefenNichtlinear": 0.982,
-    "vorsprung": -0.00219,
-    "standardfehler": 0.00199,
-    "z": -1.1,
+    "verlustPruefenNichtlinear": 0.9797,
+    "vorsprung": 0.00008,
+    "standardfehler": 0.00216,
+    "z": 0.04,
     "besteHuerde": false,
-    "runde": 11,
+    "runde": 24,
     "spiele": 2168,
     "uebernommen": false
    }
