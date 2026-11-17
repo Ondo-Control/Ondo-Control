@@ -124,6 +124,9 @@ jobs:
       - name: Fehleranalyse (wo liegt der Core systematisch daneben?)
         run: node core/model/fehleranalyse.js
 
+      - name: Kriterienkatalog (aktiv / geprueft / offen) aus lagen.json rechnen
+        run: node core/model/kriterien.js
+
       - name: Test der Quelle Bzzoiro (nur Zaehlwerte, nur mit Secret BSD_API_KEY)
         env:
           BSD_API_KEY: ${{ secrets.BSD_API_KEY }}
@@ -148,6 +151,7 @@ jobs:
           node tests/t29_motivation.js
           node tests/t30_reise.js
           node tests/t31_wetter.js
+          node tests/t32_kriterien.js
 
       - name: Aenderung committen, falls vorhanden
         run: |
