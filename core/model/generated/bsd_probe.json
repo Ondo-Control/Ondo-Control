@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "abgerufenUtc": "2026-11-17T11:16:13Z",
+ "abgerufenUtc": "2026-11-17T18:35:01Z",
  "hinweis": "Nur Zaehlwerte und Feldnamen, keine Rohdaten.",
  "fehler": [],
  "statusEvents": {
@@ -143,8 +143,8 @@
   "keineElf": 0,
   "ausfaelleHeimMin1": 15,
   "ausfaelleGastMin1": 14,
-  "stundenBisAnstossMin": 77.7,
-  "stundenBisAnstossMax": 84.3,
+  "stundenBisAnstossMin": 70.4,
+  "stundenBisAnstossMax": 77,
   "ausfallGruende": {
    "injured/Knock Injury": 3,
    "injured/Sprained Ankle": 2,
@@ -162,6 +162,7 @@
    "injured/Meniscus Injury": 1,
    "injured/Ankle Injury": 3,
    "injured/Leg Injury": 2,
+   "injured/Calf Injury": 2,
    "injured/Hamstring Injury": 9,
    "injured/fa_charge_of_improper_conduct": 1,
    "suspended/yellow_card_accumulation_suspension": 1,
@@ -172,7 +173,6 @@
    "injured/Strain Injury": 1,
    "injured/Appendicitis": 1,
    "injured/Knee Surgery": 1,
-   "injured/Calf Injury": 1,
    "injured/Physical Discomfort": 1,
    "injured/Back Injury": 1,
    "injured/Ligament Injury": 1,
@@ -187,7 +187,7 @@
  },
  "proben": [
   {
-   "gesehenUtc": "2026-11-17T11:16:13Z",
+   "gesehenUtc": "2026-11-17T18:35:01Z",
    "strukturLineups": {
     "/beta": "boolean",
     "/event_id": "number",
@@ -244,7 +244,7 @@
    }
   },
   {
-   "gesehenUtc": "2026-11-17T11:16:14Z",
+   "gesehenUtc": "2026-11-17T18:35:02Z",
    "strukturLineups": {
     "/beta": "boolean",
     "/event_id": "number",
