@@ -5403,6 +5403,326 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401861189",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T19:45Z",
+   "heim": "Wales",
+   "gast": "Portugal",
+   "torHeim": 2,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "578",
+      "teamDisplayName": "Wales",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     },
+     {
+      "teamId": "482",
+      "teamDisplayName": "Portugal",
+      "homeAway": "away",
+      "linescores": [
+       "2",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:2",
+   "fetchedAt": "2026-11-18T04:45:04.444Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861190",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T19:45Z",
+   "heim": "Ukraine",
+   "gast": "Georgia",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "457",
+      "teamDisplayName": "Ukraine",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "584",
+      "teamDisplayName": "Georgia",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-11-18T04:45:04.273Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861191",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T19:45Z",
+   "heim": "Hungary",
+   "gast": "Northern Ireland",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "480",
+      "teamDisplayName": "Hungary",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "586",
+      "teamDisplayName": "Northern Ireland",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-11-18T04:45:03.592Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861192",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T19:45Z",
+   "heim": "Republic of Ireland",
+   "gast": "Kosovo",
+   "torHeim": 3,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "476",
+      "teamDisplayName": "Republic of Ireland",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     },
+     {
+      "teamId": "18272",
+      "teamDisplayName": "Kosovo",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-11-18T04:45:04.102Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861193",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T19:45Z",
+   "heim": "Israel",
+   "gast": "Austria",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "461",
+      "teamDisplayName": "Israel",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "474",
+      "teamDisplayName": "Austria",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-11-18T04:45:03.763Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861194",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T19:45Z",
+   "heim": "Denmark",
+   "gast": "Norway",
+   "torHeim": 2,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "479",
+      "teamDisplayName": "Denmark",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     },
+     {
+      "teamId": "464",
+      "teamDisplayName": "Norway",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:1",
+   "fetchedAt": "2026-11-18T04:45:03.420Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861195",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T19:45Z",
+   "heim": "Poland",
+   "gast": "Sweden",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "471",
+      "teamDisplayName": "Poland",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "466",
+      "teamDisplayName": "Sweden",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-11-18T04:45:03.932Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401861196",
+   "providerCompetitionSlug": "uefa.nations",
+   "providerCompetitionName": "UEFA Nations League",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T19:45Z",
+   "heim": "Bosnia-Herzegovina",
+   "gast": "Romania",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "452",
+      "teamDisplayName": "Bosnia-Herzegovina",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "473",
+      "teamDisplayName": "Romania",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-11-18T04:45:03.250Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401874488",
    "providerCompetitionSlug": "den.1",
    "providerCompetitionName": "Danish Superliga",
@@ -19723,6 +20043,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401919974",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T16:00Z",
+   "heim": "Jordan",
+   "gast": "Australia",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2917",
+      "teamDisplayName": "Jordan",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "628",
+      "teamDisplayName": "Australia",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-11-18T04:45:01.553Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401919978",
    "providerCompetitionSlug": "fifa.friendly",
    "providerCompetitionName": "International Friendly",
@@ -19760,6 +20120,46 @@
    },
    "halbzeit": "0:3",
    "fetchedAt": "2026-11-14T03:38:18.588Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401921304",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T23:00Z",
+   "heim": "Chile",
+   "gast": "Colombia",
+   "torHeim": 0,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "207",
+      "teamDisplayName": "Chile",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "208",
+      "teamDisplayName": "Colombia",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-18T04:45:02.405Z"
   },
   {
    "provider": "espn",
@@ -19803,6 +20203,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401927134",
+   "providerCompetitionSlug": "caf.nations_qual",
+   "providerCompetitionName": "Africa Cup of Nations Qualifying",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T19:00Z",
+   "heim": "Rwanda",
+   "gast": "Mali",
+   "torHeim": 0,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2851",
+      "teamDisplayName": "Rwanda",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "2849",
+      "teamDisplayName": "Mali",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-11-18T04:44:58.182Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401927135",
    "providerCompetitionSlug": "caf.nations_qual",
    "providerCompetitionName": "Africa Cup of Nations Qualifying",
@@ -19843,6 +20283,166 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401927136",
+   "providerCompetitionSlug": "caf.nations_qual",
+   "providerCompetitionName": "Africa Cup of Nations Qualifying",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T16:00Z",
+   "heim": "Togo",
+   "gast": "Algeria",
+   "torHeim": 3,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "4356",
+      "teamDisplayName": "Togo",
+      "homeAway": "home",
+      "linescores": [
+       "3",
+       "0"
+      ]
+     },
+     {
+      "teamId": "624",
+      "teamDisplayName": "Algeria",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "3:0",
+   "fetchedAt": "2026-11-18T04:44:57.332Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401927137",
+   "providerCompetitionSlug": "caf.nations_qual",
+   "providerCompetitionName": "Africa Cup of Nations Qualifying",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T16:00Z",
+   "heim": "Libya",
+   "gast": "Tunisia",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2621",
+      "teamDisplayName": "Libya",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "659",
+      "teamDisplayName": "Tunisia",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-11-18T04:44:56.994Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401927138",
+   "providerCompetitionSlug": "caf.nations_qual",
+   "providerCompetitionName": "Africa Cup of Nations Qualifying",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T19:00Z",
+   "heim": "Botswana",
+   "gast": "Uganda",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "4245",
+      "teamDisplayName": "Botswana",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "4211",
+      "teamDisplayName": "Uganda",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-18T04:44:57.502Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401927139",
+   "providerCompetitionSlug": "caf.nations_qual",
+   "providerCompetitionName": "Africa Cup of Nations Qualifying",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T19:00Z",
+   "heim": "Congo",
+   "gast": "Comoros",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "4276",
+      "teamDisplayName": "Congo",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "8601",
+      "teamDisplayName": "Comoros",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-11-18T04:44:57.672Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401927165",
    "providerCompetitionSlug": "caf.nations_qual",
    "providerCompetitionName": "Africa Cup of Nations Qualifying",
@@ -19880,6 +20480,86 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-11-17T17:41:08.063Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401927166",
+   "providerCompetitionSlug": "caf.nations_qual",
+   "providerCompetitionName": "Africa Cup of Nations Qualifying",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T16:00Z",
+   "heim": "Guinea-Bissau",
+   "gast": "Madagascar",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "8602",
+      "teamDisplayName": "Guinea-Bissau",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "5533",
+      "teamDisplayName": "Madagascar",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-11-18T04:44:56.654Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401927167",
+   "providerCompetitionSlug": "caf.nations_qual",
+   "providerCompetitionName": "Africa Cup of Nations Qualifying",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T19:00Z",
+   "heim": "Liberia",
+   "gast": "Cape Verde",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "4205",
+      "teamDisplayName": "Liberia",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "2597",
+      "teamDisplayName": "Cape Verde",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-18T04:44:57.841Z"
   },
   {
    "provider": "espn",
@@ -20003,6 +20683,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401927171",
+   "providerCompetitionSlug": "caf.nations_qual",
+   "providerCompetitionName": "Africa Cup of Nations Qualifying",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T19:00Z",
+   "heim": "Mauritania",
+   "gast": "Burkina Faso",
+   "torHeim": 1,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "8940",
+      "teamDisplayName": "Mauritania",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "2845",
+      "teamDisplayName": "Burkina Faso",
+      "homeAway": "away",
+      "linescores": [
+       "2",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:2",
+   "fetchedAt": "2026-11-18T04:44:58.013Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401927172",
    "providerCompetitionSlug": "caf.nations_qual",
    "providerCompetitionName": "Africa Cup of Nations Qualifying",
@@ -20080,6 +20800,86 @@
    },
    "halbzeit": "1:0",
    "fetchedAt": "2026-11-16T18:40:46.535Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401927174",
+   "providerCompetitionSlug": "caf.nations_qual",
+   "providerCompetitionName": "Africa Cup of Nations Qualifying",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T16:00Z",
+   "heim": "Sierra Leone",
+   "gast": "Congo DR",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "8600",
+      "teamDisplayName": "Sierra Leone",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "2850",
+      "teamDisplayName": "Congo DR",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-11-18T04:44:57.164Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401927175",
+   "providerCompetitionSlug": "caf.nations_qual",
+   "providerCompetitionName": "Africa Cup of Nations Qualifying",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T16:00Z",
+   "heim": "Kenya",
+   "gast": "South Africa",
+   "torHeim": 1,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2848",
+      "teamDisplayName": "Kenya",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "467",
+      "teamDisplayName": "South Africa",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-18T04:44:56.824Z"
   },
   {
    "provider": "espn",
@@ -20243,6 +21043,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401927180",
+   "providerCompetitionSlug": "caf.nations_qual",
+   "providerCompetitionName": "Africa Cup of Nations Qualifying",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T20:00Z",
+   "heim": "Niger",
+   "gast": "Morocco",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "8937",
+      "teamDisplayName": "Niger",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "2869",
+      "teamDisplayName": "Morocco",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-11-18T04:44:58.352Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401927181",
    "providerCompetitionSlug": "caf.nations_qual",
    "providerCompetitionName": "Africa Cup of Nations Qualifying",
@@ -20280,6 +21120,46 @@
    },
    "halbzeit": "1:0",
    "fetchedAt": "2026-11-17T17:41:07.504Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401927182",
+   "providerCompetitionSlug": "caf.nations_qual",
+   "providerCompetitionName": "Africa Cup of Nations Qualifying",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T16:00Z",
+   "heim": "Gambia",
+   "gast": "Ivory Coast",
+   "torHeim": 2,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7368",
+      "teamDisplayName": "Gambia",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "4789",
+      "teamDisplayName": "Ivory Coast",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-11-18T04:44:56.484Z"
   },
   {
    "provider": "espn",
@@ -21693,6 +22573,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401929704",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T19:00Z",
+   "heim": "Belize",
+   "gast": "Sint Maarten",
+   "torHeim": 1,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2641",
+      "teamDisplayName": "Belize",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "18243",
+      "teamDisplayName": "Sint Maarten",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-11-18T04:45:04.948Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401929705",
    "providerCompetitionSlug": "concacaf.nations.league",
    "providerCompetitionName": "Concacaf Nations League",
@@ -22090,6 +23010,286 @@
    },
    "halbzeit": "0:1",
    "fetchedAt": "2026-11-14T03:38:22.147Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401929763",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-11-18",
+   "kickoffUtc": "2026-11-18T02:30Z",
+   "heim": "Mexico",
+   "gast": "Jamaica",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "203",
+      "teamDisplayName": "Mexico",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "1038",
+      "teamDisplayName": "Jamaica",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-11-18T04:45:06.144Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401929764",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-11-18",
+   "kickoffUtc": "2026-11-18T01:00Z",
+   "heim": "El Salvador",
+   "gast": "St. Martin",
+   "torHeim": 3,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2650",
+      "teamDisplayName": "El Salvador",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     },
+     {
+      "teamId": "10596",
+      "teamDisplayName": "St. Martin",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-11-18T04:45:05.973Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401929765",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-11-18",
+   "kickoffUtc": "2026-11-18T00:00Z",
+   "heim": "French Guiana",
+   "gast": "St. Vincent and the Grenadines",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "10532",
+      "teamDisplayName": "French Guiana",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "13584",
+      "teamDisplayName": "St. Vincent and the Grenadines",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-11-18T04:45:05.632Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401929766",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-11-18",
+   "kickoffUtc": "2026-11-18T00:00Z",
+   "heim": "United States",
+   "gast": "Haiti",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "660",
+      "teamDisplayName": "United States",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     },
+     {
+      "teamId": "2654",
+      "teamDisplayName": "Haiti",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:0",
+   "fetchedAt": "2026-11-18T04:45:05.803Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401929767",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T19:00Z",
+   "heim": "St. Kitts and Nevis",
+   "gast": "Bonaire",
+   "torHeim": 3,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2662",
+      "teamDisplayName": "St. Kitts and Nevis",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     },
+     {
+      "teamId": "19314",
+      "teamDisplayName": "Bonaire",
+      "homeAway": "away",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:2",
+   "fetchedAt": "2026-11-18T04:45:05.291Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401929768",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T19:00Z",
+   "heim": "St. Lucia",
+   "gast": "Barbados",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2661",
+      "teamDisplayName": "St. Lucia",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "2637",
+      "teamDisplayName": "Barbados",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-11-18T04:45:05.462Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401929769",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T19:00Z",
+   "heim": "Dominica",
+   "gast": "Cayman Islands",
+   "torHeim": 5,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "13582",
+      "teamDisplayName": "Dominica",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "4"
+      ]
+     },
+     {
+      "teamId": "2646",
+      "teamDisplayName": "Cayman Islands",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-11-18T04:45:05.120Z"
   },
   {
    "provider": "espn",
@@ -23013,6 +24213,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401930895",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T23:00Z",
+   "heim": "Argentina",
+   "gast": "Costa Rica",
+   "torHeim": 7,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "202",
+      "teamDisplayName": "Argentina",
+      "homeAway": "home",
+      "linescores": [
+       "4",
+       "3"
+      ]
+     },
+     {
+      "teamId": "214",
+      "teamDisplayName": "Costa Rica",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "4:0",
+   "fetchedAt": "2026-11-18T04:45:02.234Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401930898",
    "providerCompetitionSlug": "fifa.friendly",
    "providerCompetitionName": "International Friendly",
@@ -23053,6 +24293,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401930899",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T23:30Z",
+   "heim": "Ecuador",
+   "gast": "Bolivia",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "209",
+      "teamDisplayName": "Ecuador",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     },
+     {
+      "teamId": "204",
+      "teamDisplayName": "Bolivia",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:0",
+   "fetchedAt": "2026-11-18T04:45:02.576Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401930962",
    "providerCompetitionSlug": "fifa.friendly",
    "providerCompetitionName": "International Friendly",
@@ -23090,6 +24370,46 @@
    },
    "halbzeit": "1:0",
    "fetchedAt": "2026-11-13T03:39:28.027Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401930978",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T16:00Z",
+   "heim": "Russia",
+   "gast": "Venezuela",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "454",
+      "teamDisplayName": "Russia",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "213",
+      "teamDisplayName": "Venezuela",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-18T04:45:01.724Z"
   },
   {
    "provider": "espn",
@@ -24892,6 +26212,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401931956",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T16:30Z",
+   "heim": "Kuwait",
+   "gast": "Honduras",
+   "torHeim": 0,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "841",
+      "teamDisplayName": "Kuwait",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "215",
+      "teamDisplayName": "Honduras",
+      "homeAway": "away",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:2",
+   "fetchedAt": "2026-11-18T04:45:02.063Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401931957",
    "providerCompetitionSlug": "fifa.friendly",
    "providerCompetitionName": "International Friendly",
@@ -24969,6 +26329,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-11-14T03:38:18.921Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401932215",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T23:30Z",
+   "heim": "Uruguay",
+   "gast": "Dominican Republic",
+   "torHeim": 5,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "212",
+      "teamDisplayName": "Uruguay",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "4"
+      ]
+     },
+     {
+      "teamId": "2649",
+      "teamDisplayName": "Dominican Republic",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-11-18T04:45:02.746Z"
   },
   {
    "provider": "espn",
@@ -28958,6 +30358,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-11-12T16:53:21.938Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401933615",
+   "providerCompetitionSlug": "fifa.friendly",
+   "providerCompetitionName": "International Friendly",
+   "datum": "2026-11-17",
+   "kickoffUtc": "2026-11-17T16:15Z",
+   "heim": "Iraq",
+   "gast": "Iran",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "4375",
+      "teamDisplayName": "Iraq",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "469",
+      "teamDisplayName": "Iran",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-11-18T04:45:01.893Z"
   },
   {
    "provider": "espn",
