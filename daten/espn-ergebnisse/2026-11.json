@@ -22573,6 +22573,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401929703",
+   "providerCompetitionSlug": "concacaf.nations.league",
+   "providerCompetitionName": "Concacaf Nations League",
+   "datum": "2026-11-18",
+   "kickoffUtc": "2026-11-18T03:00Z",
+   "heim": "Nicaragua",
+   "gast": "Montserrat",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2658",
+      "teamDisplayName": "Nicaragua",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "2655",
+      "teamDisplayName": "Montserrat",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-18T17:21:14.728Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401929704",
    "providerCompetitionSlug": "concacaf.nations.league",
    "providerCompetitionName": "Concacaf Nations League",
