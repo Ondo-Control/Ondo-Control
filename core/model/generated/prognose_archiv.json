@@ -1086,12 +1086,72 @@
     0.147
    ],
    "tipp": "Heimsieg"
+  },
+  "en.2|2026-11-25|boltonwanderers|albionbromwichwest": {
+   "liga": "en.2",
+   "datum": "2026-11-25",
+   "heim": "Bolton Wanderers FC",
+   "gast": "West Bromwich Albion FC",
+   "erstelltAm": "2026-11-18",
+   "modellStand": "2026-11-15",
+   "lagenStand": "Produktion alle 6d5e6a08 (68758 Spiele bis 2026-11-15), kein Merkmalsgewinn",
+   "p": [
+    0.274,
+    0.258,
+    0.469
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "en.2|2026-11-25|burnley|birminghamcity": {
+   "liga": "en.2",
+   "datum": "2026-11-25",
+   "heim": "Burnley FC",
+   "gast": "Birmingham City FC",
+   "erstelltAm": "2026-11-18",
+   "modellStand": "2026-11-15",
+   "lagenStand": "Produktion alle 6d5e6a08 (68758 Spiele bis 2026-11-15), kein Merkmalsgewinn",
+   "p": [
+    0.316,
+    0.249,
+    0.435
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "en.2|2026-11-25|citystoke|millwall": {
+   "liga": "en.2",
+   "datum": "2026-11-25",
+   "heim": "Stoke City FC",
+   "gast": "Millwall FC",
+   "erstelltAm": "2026-11-18",
+   "modellStand": "2026-11-15",
+   "lagenStand": "Produktion alle 6d5e6a08 (68758 Spiele bis 2026-11-15), kein Merkmalsgewinn",
+   "p": [
+    0.439,
+    0.258,
+    0.303
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.2|2026-11-25|watford|blackburnrovers": {
+   "liga": "en.2",
+   "datum": "2026-11-25",
+   "heim": "Watford FC",
+   "gast": "Blackburn Rovers FC",
+   "erstelltAm": "2026-11-18",
+   "modellStand": "2026-11-15",
+   "lagenStand": "Produktion alle 6d5e6a08 (68758 Spiele bis 2026-11-15), kein Merkmalsgewinn",
+   "p": [
+    0.333,
+    0.284,
+    0.383
+   ],
+   "tipp": "Auswaertssieg"
   }
  },
  "zusammenfassung": {
-  "abgelegt": 77,
+  "abgelegt": 81,
   "bewertet": 0,
-  "offen": 77,
+  "offen": 81,
   "logLoss": null,
   "trefferquote": null,
   "vergleichZufall": 1.0986,
