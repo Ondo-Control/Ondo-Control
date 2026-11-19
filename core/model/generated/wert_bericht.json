@@ -3,8 +3,8 @@
  "ereignisseImArchiv": 117,
  "mitMindestensZweiAbrufen": 117,
  "abgeschlossen": 0,
- "margeTipicoMittel": 0.0656,
- "margePinnacleMittel": 0.0438,
+ "margeTipicoMittel": 0.0657,
+ "margePinnacleMittel": 0.044,
  "schwellen": [
   {
    "schwelle": 1,
@@ -30,7 +30,7 @@
  ],
  "clv": {
   "wetten": 4,
-  "mittel": -0.0199,
+  "mittel": -0.033,
   "hinweis": "positiv = die Profis haben sich nachtraeglich in diese Richtung bewegt"
  },
  "hinweis": "Summenzahlen, keine einzelne Quote. Aussage erst ab 300 gewerteten Wetten je Schwelle.",
