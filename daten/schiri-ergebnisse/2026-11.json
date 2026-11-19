@@ -1800,6 +1800,54 @@
    "torGast": 0,
    "quelle": "football-data.org",
    "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-11-18",
+   "anpfiff": "23:00",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "Clube do Remo",
+   "gast": "Chapecoense AF",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "2:0"
+  },
+  {
+   "datum": "2026-11-18",
+   "anpfiff": "22:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "Coritiba FBC",
+   "gast": "Santos FC",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-11-18",
+   "anpfiff": "23:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "CR Flamengo",
+   "gast": "CA Paranaense",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "2:1"
+  },
+  {
+   "datum": "2026-11-18",
+   "anpfiff": "23:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "Cruzeiro EC",
+   "gast": "SE Palmeiras",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
   }
  ]
 }
