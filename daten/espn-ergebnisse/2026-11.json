@@ -30865,6 +30865,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401933395",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-11-19",
+   "kickoffUtc": "2026-11-19T13:00Z",
+   "heim": "IFK Norrköping",
+   "gast": "KuPS Kuopio",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "8544",
+      "teamDisplayName": "IFK Norrköping",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "8169",
+      "teamDisplayName": "KuPS Kuopio",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-19T17:26:49.721Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401933396",
    "providerCompetitionSlug": "club.friendly",
    "providerCompetitionName": "Club Friendly",
