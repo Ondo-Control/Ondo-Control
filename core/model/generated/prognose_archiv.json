@@ -1146,12 +1146,87 @@
     0.383
    ],
    "tipp": "Auswaertssieg"
+  },
+  "de.1|2026-11-27|bremenwerder|borussiamonchengladbach": {
+   "liga": "de.1",
+   "datum": "2026-11-27",
+   "heim": "SV Werder Bremen",
+   "gast": "Borussia Mönchengladbach",
+   "erstelltAm": "2026-11-20",
+   "modellStand": "2026-11-15",
+   "lagenStand": "Produktion alle 6d5e6a08 (68758 Spiele bis 2026-11-15), kein Merkmalsgewinn",
+   "p": [
+    0.554,
+    0.222,
+    0.224
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.2|2026-11-27|southampton|middlesbrough": {
+   "liga": "en.2",
+   "datum": "2026-11-27",
+   "heim": "Southampton FC",
+   "gast": "Middlesbrough FC",
+   "erstelltAm": "2026-11-20",
+   "modellStand": "2026-11-15",
+   "lagenStand": "Produktion alle 6d5e6a08 (68758 Spiele bis 2026-11-15), kein Merkmalsgewinn",
+   "p": [
+    0.485,
+    0.248,
+    0.267
+   ],
+   "tipp": "Heimsieg"
+  },
+  "fr.1|2026-11-27|brestoisstade|paris": {
+   "liga": "fr.1",
+   "datum": "2026-11-27",
+   "heim": "Stade Brestois 29",
+   "gast": "Paris FC",
+   "erstelltAm": "2026-11-20",
+   "modellStand": "2026-11-15",
+   "lagenStand": "Produktion alle 6d5e6a08 (68758 Spiele bis 2026-11-15), kein Merkmalsgewinn",
+   "p": [
+    0.371,
+    0.254,
+    0.376
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "nl.1|2026-11-27|groningen|iitilburgwillem": {
+   "liga": "nl.1",
+   "datum": "2026-11-27",
+   "heim": "FC Groningen",
+   "gast": "Willem II Tilburg",
+   "erstelltAm": "2026-11-20",
+   "modellStand": "2026-11-15",
+   "lagenStand": "Produktion alle 6d5e6a08 (68758 Spiele bis 2026-11-15), kein Merkmalsgewinn",
+   "p": [
+    0.808,
+    0.115,
+    0.078
+   ],
+   "tipp": "Heimsieg"
+  },
+  "pt.1|2026-11-27|csmaritimo|nacional": {
+   "liga": "pt.1",
+   "datum": "2026-11-27",
+   "heim": "CS Marítimo",
+   "gast": "CD Nacional",
+   "erstelltAm": "2026-11-20",
+   "modellStand": "2026-11-15",
+   "lagenStand": "Produktion alle 6d5e6a08 (68758 Spiele bis 2026-11-15), kein Merkmalsgewinn",
+   "p": [
+    0.333,
+    0.281,
+    0.386
+   ],
+   "tipp": "Auswaertssieg"
   }
  },
  "zusammenfassung": {
-  "abgelegt": 81,
+  "abgelegt": 86,
   "bewertet": 0,
-  "offen": 81,
+  "offen": 86,
   "logLoss": null,
   "trefferquote": null,
   "vergleichZufall": 1.0986,
