@@ -443,6 +443,86 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401841308",
+   "providerCompetitionSlug": "bra.1",
+   "providerCompetitionName": "Brazilian Serie A",
+   "datum": "2026-11-19",
+   "kickoffUtc": "2026-11-19T22:30Z",
+   "heim": "Vasco da Gama",
+   "gast": "Internacional",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "3454",
+      "teamDisplayName": "Vasco da Gama",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     },
+     {
+      "teamId": "1936",
+      "teamDisplayName": "Internacional",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-11-20T04:23:09.733Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401841309",
+   "providerCompetitionSlug": "bra.1",
+   "providerCompetitionName": "Brazilian Serie A",
+   "datum": "2026-11-20",
+   "kickoffUtc": "2026-11-20T00:30Z",
+   "heim": "São Paulo",
+   "gast": "Fluminense",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2026",
+      "teamDisplayName": "São Paulo",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "3445",
+      "teamDisplayName": "Fluminense",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-11-20T04:23:10.084Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401841310",
    "providerCompetitionSlug": "bra.1",
    "providerCompetitionName": "Brazilian Serie A",
@@ -720,6 +800,46 @@
    },
    "halbzeit": "2:0",
    "fetchedAt": "2026-11-19T04:35:15.027Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401841317",
+   "providerCompetitionSlug": "bra.1",
+   "providerCompetitionName": "Brazilian Serie A",
+   "datum": "2026-11-19",
+   "kickoffUtc": "2026-11-19T22:30Z",
+   "heim": "Vitória",
+   "gast": "Red Bull Bragantino",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "3457",
+      "teamDisplayName": "Vitória",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     },
+     {
+      "teamId": "6079",
+      "teamDisplayName": "Red Bull Bragantino",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:0",
+   "fetchedAt": "2026-11-20T04:23:09.910Z"
   },
   {
    "provider": "espn",
@@ -30942,6 +31062,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-11-12T16:53:21.938Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401933535",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-11-20",
+   "kickoffUtc": "2026-11-20T00:30Z",
+   "heim": "Orlando City SC",
+   "gast": "FC Cincinnati",
+   "torHeim": 1,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "12011",
+      "teamDisplayName": "Orlando City SC",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "18267",
+      "teamDisplayName": "FC Cincinnati",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-11-20T04:23:09.213Z"
   },
   {
    "provider": "espn",
