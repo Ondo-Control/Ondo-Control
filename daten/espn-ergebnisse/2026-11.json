@@ -9603,6 +9603,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401877534",
+   "providerCompetitionSlug": "jpn.1",
+   "providerCompetitionName": "Japanese J.League",
+   "datum": "2026-11-20",
+   "kickoffUtc": "2026-11-20T10:00Z",
+   "heim": "Kashima Antlers",
+   "gast": "Shimizu S-Pulse",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7115",
+      "teamDisplayName": "Kashima Antlers",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "7104",
+      "teamDisplayName": "Shimizu S-Pulse",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-20T17:01:53.514Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401877535",
    "providerCompetitionSlug": "jpn.1",
    "providerCompetitionName": "Japanese J.League",
@@ -9680,6 +9720,86 @@
    },
    "halbzeit": "0:1",
    "fetchedAt": "2026-11-07T14:57:13.850Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401877548",
+   "providerCompetitionSlug": "jpn.1",
+   "providerCompetitionName": "Japanese J.League",
+   "datum": "2026-11-20",
+   "kickoffUtc": "2026-11-20T10:00Z",
+   "heim": "Vissel Kobe",
+   "gast": "Mito Hollyhock",
+   "torHeim": 1,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7477",
+      "teamDisplayName": "Vissel Kobe",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "131701",
+      "teamDisplayName": "Mito Hollyhock",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-11-20T17:01:53.830Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401877553",
+   "providerCompetitionSlug": "jpn.1",
+   "providerCompetitionName": "Japanese J.League",
+   "datum": "2026-11-20",
+   "kickoffUtc": "2026-11-20T10:00Z",
+   "heim": "Kashiwa Reysol",
+   "gast": "JEF United Ichihara-Chiba",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7476",
+      "teamDisplayName": "Kashiwa Reysol",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "7111",
+      "teamDisplayName": "JEF United Ichihara-Chiba",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-20T17:01:53.671Z"
   },
   {
    "provider": "espn",
@@ -31102,6 +31222,53 @@
    },
    "halbzeit": "1:1",
    "fetchedAt": "2026-11-20T04:23:09.213Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401933555",
+   "providerCompetitionSlug": "usa.1",
+   "providerCompetitionName": "MLS",
+   "datum": "2026-11-20",
+   "kickoffUtc": "2026-11-20T03:00Z",
+   "heim": "Seattle Sounders FC",
+   "gast": "Real Salt Lake",
+   "torHeim": 1,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": true,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FINAL_PEN",
+    "competitors": [
+     {
+      "teamId": "9726",
+      "teamDisplayName": "Seattle Sounders FC",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0",
+       "0",
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "4771",
+      "teamDisplayName": "Real Salt Lake",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1",
+       "0",
+       "0",
+       "4"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "verlaengerung": "1:1",
+   "fetchedAt": "2026-11-20T17:01:50.546Z"
   },
   {
    "provider": "espn",
