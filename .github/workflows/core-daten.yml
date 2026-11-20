@@ -152,6 +152,7 @@ jobs:
           node tests/t30_reise.js
           node tests/t31_wetter.js
           node tests/t32_kriterien.js
+          node tests/t33_kriterien_anfrage.js
 
       - name: Aenderung committen, falls vorhanden
         run: |
