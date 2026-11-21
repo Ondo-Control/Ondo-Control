@@ -1896,6 +1896,54 @@
    "torGast": 0,
    "quelle": "football-data.org",
    "halbzeit": "2:0"
+  },
+  {
+   "datum": "2026-11-20",
+   "anpfiff": "20:00",
+   "wettbewerb": "Primera Division",
+   "heim": "Athletic Club",
+   "gast": "RCD Espanyol de Barcelona",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-11-20",
+   "anpfiff": "19:45",
+   "wettbewerb": "Ligue 1",
+   "heim": "ES Troyes AC",
+   "gast": "Le Havre AC",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "1:1"
+  },
+  {
+   "datum": "2026-11-20",
+   "anpfiff": "19:30",
+   "wettbewerb": "Bundesliga",
+   "heim": "FC Bayern München",
+   "gast": "1. FC Köln",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "1:1"
+  },
+  {
+   "datum": "2026-11-20",
+   "anpfiff": "00:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "São Paulo FC",
+   "gast": "Fluminense FC",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:1"
   }
  ]
 }
