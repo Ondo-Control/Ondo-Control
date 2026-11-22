@@ -1,1419 +1,11 @@
 {
  "schema": 1,
- "ab": "2026-11-21",
- "bis": "2026-11-28",
- "anzahl": 121,
+ "ab": "2026-11-22",
+ "bis": "2026-11-29",
+ "anzahl": 114,
  "ohnePrognose": 0,
  "hinweis": "Prozentzahlen sind die Rechnung des Modells, keine Garantie. Das Modell ist auf Pruefspielen schlechter als die Pinnacle-Quote (STAND). Position: keine Wette, solange keine Quote mit Quelle und Zeitstempel und kein belegter Vorteil vorliegen.",
  "spiele": [
-  {
-   "liga": "de.1",
-   "ligaName": "Bundesliga",
-   "datum": "2026-11-21",
-   "heim": "1. FC Union Berlin",
-   "gast": "RB Leipzig",
-   "schluessel": {
-    "heim": "berlinunion",
-    "gast": "leipzigrb"
-   },
-   "prognose": {
-    "heimsieg": 0.183,
-    "remis": 0.201,
-    "auswaertssieg": 0.616
-   },
-   "tipp": "Auswaertssieg",
-   "erwarteteTore": {
-    "heim": 1.209,
-    "gast": 2.313
-   },
-   "haeufigsteTorfolge": "1:2",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "de.1",
-   "ligaName": "Bundesliga",
-   "datum": "2026-11-21",
-   "heim": "Bayer 04 Leverkusen",
-   "gast": "SC Paderborn 07",
-   "schluessel": {
-    "heim": "bayerleverkusen",
-    "gast": "paderborn"
-   },
-   "prognose": {
-    "heimsieg": 0.667,
-    "remis": 0.193,
-    "auswaertssieg": 0.14
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 2.32,
-    "gast": 0.985
-   },
-   "haeufigsteTorfolge": "2:0",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "de.1",
-   "ligaName": "Bundesliga",
-   "datum": "2026-11-21",
-   "heim": "Borussia Mönchengladbach",
-   "gast": "Borussia Dortmund",
-   "schluessel": {
-    "heim": "borussiamonchengladbach",
-    "gast": "borussiadortmund"
-   },
-   "prognose": {
-    "heimsieg": 0.179,
-    "remis": 0.218,
-    "auswaertssieg": 0.603
-   },
-   "tipp": "Auswaertssieg",
-   "erwarteteTore": {
-    "heim": 1.052,
-    "gast": 2.074
-   },
-   "haeufigsteTorfolge": "1:2",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "de.1",
-   "ligaName": "Bundesliga",
-   "datum": "2026-11-21",
-   "heim": "Eintracht Frankfurt",
-   "gast": "TSG 1899 Hoffenheim",
-   "schluessel": {
-    "heim": "eintrachtfrankfurt",
-    "gast": "hoffenheim"
-   },
-   "prognose": {
-    "heimsieg": 0.446,
-    "remis": 0.217,
-    "auswaertssieg": 0.337
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 2.092,
-    "gast": 1.812
-   },
-   "haeufigsteTorfolge": "2:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "de.1",
-   "ligaName": "Bundesliga",
-   "datum": "2026-11-21",
-   "heim": "FC Schalke 04",
-   "gast": "VfB Stuttgart",
-   "schluessel": {
-    "heim": "schalke",
-    "gast": "stuttgart"
-   },
-   "prognose": {
-    "heimsieg": 0.205,
-    "remis": 0.249,
-    "auswaertssieg": 0.546
-   },
-   "tipp": "Auswaertssieg",
-   "erwarteteTore": {
-    "heim": 0.986,
-    "gast": 1.748
-   },
-   "haeufigsteTorfolge": "0:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
-    "anstossUtc": "2026-11-21T17:30:00Z",
-    "anbieterSpielId": "67846fc0359aeff2d0b6f3f8a2a674f4"
-   }
-  },
-  {
-   "liga": "de.1",
-   "ligaName": "Bundesliga",
-   "datum": "2026-11-21",
-   "heim": "SV 07 Elversberg",
-   "gast": "SC Freiburg",
-   "schluessel": {
-    "heim": "elversberg",
-    "gast": "freiburg"
-   },
-   "prognose": {
-    "heimsieg": 0.367,
-    "remis": 0.244,
-    "auswaertssieg": 0.389
-   },
-   "tipp": "Auswaertssieg",
-   "erwarteteTore": {
-    "heim": 1.605,
-    "gast": 1.66
-   },
-   "haeufigsteTorfolge": "1:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "en.1",
-   "ligaName": "Premier League",
-   "datum": "2026-11-21",
-   "heim": "AFC Bournemouth",
-   "gast": "Nottingham Forest FC",
-   "schluessel": {
-    "heim": "bournemouth",
-    "gast": "forestnottingham"
-   },
-   "prognose": {
-    "heimsieg": 0.492,
-    "remis": 0.255,
-    "auswaertssieg": 0.253
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 1.676,
-    "gast": 1.143
-   },
-   "haeufigsteTorfolge": "1:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "en.1",
-   "ligaName": "Premier League",
-   "datum": "2026-11-21",
-   "heim": "Aston Villa FC",
-   "gast": "Sunderland AFC",
-   "schluessel": {
-    "heim": "astonvilla",
-    "gast": "sunderland"
-   },
-   "prognose": {
-    "heimsieg": 0.567,
-    "remis": 0.237,
-    "auswaertssieg": 0.196
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 1.871,
-    "gast": 1.018
-   },
-   "haeufigsteTorfolge": "1:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "en.1",
-   "ligaName": "Premier League",
-   "datum": "2026-11-21",
-   "heim": "Brentford FC",
-   "gast": "Everton FC",
-   "schluessel": {
-    "heim": "brentford",
-    "gast": "everton"
-   },
-   "prognose": {
-    "heimsieg": 0.464,
-    "remis": 0.272,
-    "auswaertssieg": 0.265
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 1.507,
-    "gast": 1.081
-   },
-   "haeufigsteTorfolge": "1:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "en.1",
-   "ligaName": "Premier League",
-   "datum": "2026-11-21",
-   "heim": "Chelsea FC",
-   "gast": "Leeds United FC",
-   "schluessel": {
-    "heim": "chelsea",
-    "gast": "leedsunited"
-   },
-   "prognose": {
-    "heimsieg": 0.413,
-    "remis": 0.275,
-    "auswaertssieg": 0.313
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 1.425,
-    "gast": 1.212
-   },
-   "haeufigsteTorfolge": "1:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "en.1",
-   "ligaName": "Premier League",
-   "datum": "2026-11-21",
-   "heim": "Coventry City FC",
-   "gast": "Crystal Palace FC",
-   "schluessel": {
-    "heim": "citycoventry",
-    "gast": "crystalpalace"
-   },
-   "prognose": {
-    "heimsieg": 0.493,
-    "remis": 0.233,
-    "auswaertssieg": 0.274
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 1.922,
-    "gast": 1.4
-   },
-   "haeufigsteTorfolge": "1:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "en.1",
-   "ligaName": "Premier League",
-   "datum": "2026-11-21",
-   "heim": "Hull City AFC",
-   "gast": "Brighton & Hove Albion FC",
-   "schluessel": {
-    "heim": "cityhull",
-    "gast": "albionbrightonhove"
-   },
-   "prognose": {
-    "heimsieg": 0.153,
-    "remis": 0.22,
-    "auswaertssieg": 0.627
-   },
-   "tipp": "Auswaertssieg",
-   "erwarteteTore": {
-    "heim": 0.885,
-    "gast": 2.004
-   },
-   "haeufigsteTorfolge": "0:2",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "en.1",
-   "ligaName": "Premier League",
-   "datum": "2026-11-21",
-   "heim": "Liverpool FC",
-   "gast": "Manchester United FC",
-   "schluessel": {
-    "heim": "liverpool",
-    "gast": "manchesterunited"
-   },
-   "prognose": {
-    "heimsieg": 0.52,
-    "remis": 0.233,
-    "auswaertssieg": 0.247
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 1.933,
-    "gast": 1.284
-   },
-   "haeufigsteTorfolge": "1:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "en.1",
-   "ligaName": "Premier League",
-   "datum": "2026-11-21",
-   "heim": "Manchester City FC",
-   "gast": "Fulham FC",
-   "schluessel": {
-    "heim": "citymanchester",
-    "gast": "fulham"
-   },
-   "prognose": {
-    "heimsieg": 0.627,
-    "remis": 0.225,
-    "auswaertssieg": 0.148
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 1.825,
-    "gast": 0.84
-   },
-   "haeufigsteTorfolge": "1:0",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "en.1",
-   "ligaName": "Premier League",
-   "datum": "2026-11-21",
-   "heim": "Newcastle United FC",
-   "gast": "Arsenal FC",
-   "schluessel": {
-    "heim": "newcastleunited",
-    "gast": "arsenal"
-   },
-   "prognose": {
-    "heimsieg": 0.2,
-    "remis": 0.269,
-    "auswaertssieg": 0.531
-   },
-   "tipp": "Auswaertssieg",
-   "erwarteteTore": {
-    "heim": 0.86,
-    "gast": 1.559
-   },
-   "haeufigsteTorfolge": "0:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
-    "anstossUtc": "2026-11-21T17:30:00Z",
-    "anbieterSpielId": "71bf9fe98c3e3be39cd1d059f8d71ae8"
-   }
-  },
-  {
-   "liga": "en.1",
-   "ligaName": "Premier League",
-   "datum": "2026-11-21",
-   "heim": "Tottenham Hotspur FC",
-   "gast": "Ipswich Town FC",
-   "schluessel": {
-    "heim": "hotspurtottenham",
-    "gast": "ipswichtown"
-   },
-   "prognose": {
-    "heimsieg": 0.484,
-    "remis": 0.25,
-    "auswaertssieg": 0.267
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 1.728,
-    "gast": 1.232
-   },
-   "haeufigsteTorfolge": "1:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "en.2",
-   "ligaName": "Championship",
-   "datum": "2026-11-21",
-   "heim": "Bolton Wanderers FC",
-   "gast": "Portsmouth FC",
-   "schluessel": {
-    "heim": "boltonwanderers",
-    "gast": "portsmouth"
-   },
-   "prognose": {
-    "heimsieg": 0.34,
-    "remis": 0.261,
-    "auswaertssieg": 0.399
-   },
-   "tipp": "Auswaertssieg",
-   "erwarteteTore": {
-    "heim": 1.368,
-    "gast": 1.51
-   },
-   "haeufigsteTorfolge": "1:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "en.2",
-   "ligaName": "Championship",
-   "datum": "2026-11-21",
-   "heim": "Lincoln City FC",
-   "gast": "Wrexham AFC",
-   "schluessel": {
-    "heim": "citylincoln",
-    "gast": "wrexham"
-   },
-   "prognose": {
-    "heimsieg": 0.296,
-    "remis": 0.27,
-    "auswaertssieg": 0.434
-   },
-   "tipp": "Auswaertssieg",
-   "erwarteteTore": {
-    "heim": 1.185,
-    "gast": 1.492
-   },
-   "haeufigsteTorfolge": "1:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "en.2",
-   "ligaName": "Championship",
-   "datum": "2026-11-21",
-   "heim": "Middlesbrough FC",
-   "gast": "Bristol City FC",
-   "schluessel": {
-    "heim": "middlesbrough",
-    "gast": "bristolcity"
-   },
-   "prognose": {
-    "heimsieg": 0.666,
-    "remis": 0.197,
-    "auswaertssieg": 0.137
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 2.228,
-    "gast": 0.923
-   },
-   "haeufigsteTorfolge": "2:0",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "en.2",
-   "ligaName": "Championship",
-   "datum": "2026-11-21",
-   "heim": "Millwall FC",
-   "gast": "Queens Park Rangers FC",
-   "schluessel": {
-    "heim": "millwall",
-    "gast": "parkqueensrangers"
-   },
-   "prognose": {
-    "heimsieg": 0.454,
-    "remis": 0.232,
-    "auswaertssieg": 0.313
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 1.688,
-    "gast": 1.501
-   },
-   "haeufigsteTorfolge": "1:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "en.2",
-   "ligaName": "Championship",
-   "datum": "2026-11-21",
-   "heim": "Norwich City FC",
-   "gast": "Cardiff City FC",
-   "schluessel": {
-    "heim": "citynorwich",
-    "gast": "cardiffcity"
-   },
-   "prognose": {
-    "heimsieg": 0.573,
-    "remis": 0.2,
-    "auswaertssieg": 0.226
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 2.333,
-    "gast": 1.435
-   },
-   "haeufigsteTorfolge": "2:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "en.2",
-   "ligaName": "Championship",
-   "datum": "2026-11-21",
-   "heim": "Sheffield United FC",
-   "gast": "Watford FC",
-   "schluessel": {
-    "heim": "sheffieldunited",
-    "gast": "watford"
-   },
-   "prognose": {
-    "heimsieg": 0.586,
-    "remis": 0.23,
-    "auswaertssieg": 0.183
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 1.919,
-    "gast": 0.988
-   },
-   "haeufigsteTorfolge": "1:0",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "en.2",
-   "ligaName": "Championship",
-   "datum": "2026-11-21",
-   "heim": "Southampton FC",
-   "gast": "Derby County FC",
-   "schluessel": {
-    "heim": "southampton",
-    "gast": "countyderby"
-   },
-   "prognose": {
-    "heimsieg": 0.71,
-    "remis": 0.179,
-    "auswaertssieg": 0.111
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 2.325,
-    "gast": 0.809
-   },
-   "haeufigsteTorfolge": "2:0",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "en.2",
-   "ligaName": "Championship",
-   "datum": "2026-11-21",
-   "heim": "Stoke City FC",
-   "gast": "Birmingham City FC",
-   "schluessel": {
-    "heim": "citystoke",
-    "gast": "birminghamcity"
-   },
-   "prognose": {
-    "heimsieg": 0.317,
-    "remis": 0.275,
-    "auswaertssieg": 0.408
-   },
-   "tipp": "Auswaertssieg",
-   "erwarteteTore": {
-    "heim": 1.213,
-    "gast": 1.407
-   },
-   "haeufigsteTorfolge": "1:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "en.2",
-   "ligaName": "Championship",
-   "datum": "2026-11-21",
-   "heim": "Swansea City AFC",
-   "gast": "West Bromwich Albion FC",
-   "schluessel": {
-    "heim": "cityswansea",
-    "gast": "albionbromwichwest"
-   },
-   "prognose": {
-    "heimsieg": 0.416,
-    "remis": 0.272,
-    "auswaertssieg": 0.313
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 1.448,
-    "gast": 1.227
-   },
-   "haeufigsteTorfolge": "1:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "en.2",
-   "ligaName": "Championship",
-   "datum": "2026-11-21",
-   "heim": "West Ham United FC",
-   "gast": "Preston North End FC",
-   "schluessel": {
-    "heim": "hamunitedwest",
-    "gast": "endnorthpreston"
-   },
-   "prognose": {
-    "heimsieg": 0.828,
-    "remis": 0.11,
-    "auswaertssieg": 0.062
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 3.294,
-    "gast": 0.889
-   },
-   "haeufigsteTorfolge": "3:0",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "en.2",
-   "ligaName": "Championship",
-   "datum": "2026-11-21",
-   "heim": "Wolverhampton Wanderers FC",
-   "gast": "Charlton Athletic FC",
-   "schluessel": {
-    "heim": "wandererswolverhampton",
-    "gast": "athleticcharlton"
-   },
-   "prognose": {
-    "heimsieg": 0.642,
-    "remis": 0.223,
-    "auswaertssieg": 0.135
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 1.921,
-    "gast": 0.759
-   },
-   "haeufigsteTorfolge": "1:0",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "fr.1",
-   "ligaName": "Ligue 1",
-   "datum": "2026-11-21",
-   "heim": "AS Monaco FC",
-   "gast": "AJ Auxerre",
-   "schluessel": {
-    "heim": "monaco",
-    "gast": "auxerre"
-   },
-   "prognose": {
-    "heimsieg": 0.607,
-    "remis": 0.212,
-    "auswaertssieg": 0.181
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 2.156,
-    "gast": 1.108
-   },
-   "haeufigsteTorfolge": "2:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
-    "anstossUtc": "2026-11-21T19:45:00Z",
-    "anbieterSpielId": "9130b46991ab991f808daf307f004469"
-   }
-  },
-  {
-   "liga": "fr.1",
-   "ligaName": "Ligue 1",
-   "datum": "2026-11-21",
-   "heim": "Lille OSC",
-   "gast": "Olympique Lyonnais",
-   "schluessel": {
-    "heim": "lilleosc",
-    "gast": "lyonnaisolympique"
-   },
-   "prognose": {
-    "heimsieg": 0.448,
-    "remis": 0.285,
-    "auswaertssieg": 0.267
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 1.391,
-    "gast": 1.015
-   },
-   "haeufigsteTorfolge": "1:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
-    "anstossUtc": "2026-11-21T19:45:00Z",
-    "anbieterSpielId": "d2113ca19873218496f8b2fe6c7e7c41"
-   }
-  },
-  {
-   "liga": "fr.1",
-   "ligaName": "Ligue 1",
-   "datum": "2026-11-21",
-   "heim": "OGC Nice",
-   "gast": "Paris Saint-Germain FC",
-   "schluessel": {
-    "heim": "nice",
-    "gast": "germainparissaint"
-   },
-   "prognose": {
-    "heimsieg": 0.204,
-    "remis": 0.232,
-    "auswaertssieg": 0.563
-   },
-   "tipp": "Auswaertssieg",
-   "erwarteteTore": {
-    "heim": 1.087,
-    "gast": 1.928
-   },
-   "haeufigsteTorfolge": "1:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "fr.1",
-   "ligaName": "Ligue 1",
-   "datum": "2026-11-21",
-   "heim": "RC Strasbourg Alsace",
-   "gast": "Stade Brestois 29",
-   "schluessel": {
-    "heim": "alsacestrasbourg",
-    "gast": "brestoisstade"
-   },
-   "prognose": {
-    "heimsieg": 0.467,
-    "remis": 0.225,
-    "auswaertssieg": 0.308
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 2.011,
-    "gast": 1.614
-   },
-   "haeufigsteTorfolge": "2:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
-    "anstossUtc": "2026-11-21T19:45:00Z",
-    "anbieterSpielId": "4d6dd3defbbe20fa24b719f9fcdbf280"
-   }
-  },
-  {
-   "liga": "fr.1",
-   "ligaName": "Ligue 1",
-   "datum": "2026-11-21",
-   "heim": "Racing Club de Lens",
-   "gast": "Toulouse FC",
-   "schluessel": {
-    "heim": "delensracing",
-    "gast": "toulouse"
-   },
-   "prognose": {
-    "heimsieg": 0.52,
-    "remis": 0.245,
-    "auswaertssieg": 0.235
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 1.792,
-    "gast": 1.14
-   },
-   "haeufigsteTorfolge": "1:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
-    "anstossUtc": "2026-11-21T19:45:00Z",
-    "anbieterSpielId": "13ac2151b9f6893cedb7f509e64eb070"
-   }
-  },
-  {
-   "liga": "it.1",
-   "ligaName": "Serie A",
-   "datum": "2026-11-21",
-   "heim": "Como 1907",
-   "gast": "Cagliari Calcio",
-   "schluessel": {
-    "heim": "como",
-    "gast": "cagliari"
-   },
-   "prognose": {
-    "heimsieg": 0.632,
-    "remis": 0.225,
-    "auswaertssieg": 0.143
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 1.94,
-    "gast": 0.767
-   },
-   "haeufigsteTorfolge": "1:0",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "it.1",
-   "ligaName": "Serie A",
-   "datum": "2026-11-21",
-   "heim": "Parma Calcio 1913",
-   "gast": "AS Roma",
-   "schluessel": {
-    "heim": "parma",
-    "gast": "roma"
-   },
-   "prognose": {
-    "heimsieg": 0.114,
-    "remis": 0.201,
-    "auswaertssieg": 0.686
-   },
-   "tipp": "Auswaertssieg",
-   "erwarteteTore": {
-    "heim": 0.744,
-    "gast": 2.113
-   },
-   "haeufigsteTorfolge": "0:2",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
-    "anstossUtc": "2026-11-21T17:00:00Z",
-    "anbieterSpielId": "cb513fd9869c9aa6ce506bb499bcd48b"
-   }
-  },
-  {
-   "liga": "it.1",
-   "ligaName": "Serie A",
-   "datum": "2026-11-21",
-   "heim": "SS Lazio",
-   "gast": "US Lecce",
-   "schluessel": {
-    "heim": "lazio",
-    "gast": "lecce"
-   },
-   "prognose": {
-    "heimsieg": 0.695,
-    "remis": 0.191,
-    "auswaertssieg": 0.114
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 2.344,
-    "gast": 0.76
-   },
-   "haeufigsteTorfolge": "2:0",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "it.1",
-   "ligaName": "Serie A",
-   "datum": "2026-11-21",
-   "heim": "SSC Napoli",
-   "gast": "Torino FC",
-   "schluessel": {
-    "heim": "napoli",
-    "gast": "torino"
-   },
-   "prognose": {
-    "heimsieg": 0.599,
-    "remis": 0.224,
-    "auswaertssieg": 0.177
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 2.004,
-    "gast": 1.002
-   },
-   "haeufigsteTorfolge": "2:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
-    "anstossUtc": "2026-11-21T19:45:00Z",
-    "anbieterSpielId": "e59809eb38340e3bca323cef070dfd34"
-   }
-  },
-  {
-   "liga": "nl.1",
-   "ligaName": "Eredivisie",
-   "datum": "2026-11-21",
-   "heim": "FC Groningen",
-   "gast": "SC Heerenveen",
-   "schluessel": {
-    "heim": "groningen",
-    "gast": "heerenveen"
-   },
-   "prognose": {
-    "heimsieg": 0.365,
-    "remis": 0.213,
-    "auswaertssieg": 0.422
-   },
-   "tipp": "Auswaertssieg",
-   "erwarteteTore": {
-    "heim": 1.965,
-    "gast": 2.115
-   },
-   "haeufigsteTorfolge": "1:2",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:53Z",
-    "anstossUtc": "2026-11-21T20:00:00Z",
-    "anbieterSpielId": "cc8ea455586c0bdfcca464f1bf617843"
-   }
-  },
-  {
-   "liga": "nl.1",
-   "ligaName": "Eredivisie",
-   "datum": "2026-11-21",
-   "heim": "FC Utrecht",
-   "gast": "SC Cambuur-Leeuwarden",
-   "schluessel": {
-    "heim": "utrecht",
-    "gast": "cambuurleeuwarden"
-   },
-   "prognose": {
-    "heimsieg": 0.565,
-    "remis": 0.194,
-    "auswaertssieg": 0.241
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 2.523,
-    "gast": 1.647
-   },
-   "haeufigsteTorfolge": "2:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:53Z",
-    "anstossUtc": "2026-11-21T17:45:00Z",
-    "anbieterSpielId": "a620a95dde2d702247e888f21e2b1cf7"
-   }
-  },
-  {
-   "liga": "nl.1",
-   "ligaName": "Eredivisie",
-   "datum": "2026-11-21",
-   "heim": "Feyenoord Rotterdam",
-   "gast": "SBV Excelsior",
-   "schluessel": {
-    "heim": "feyenoordrotterdam",
-    "gast": "excelsiorsbv"
-   },
-   "prognose": {
-    "heimsieg": 0.792,
-    "remis": 0.126,
-    "auswaertssieg": 0.082
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 3.191,
-    "gast": 1.02
-   },
-   "haeufigsteTorfolge": "3:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:53Z",
-    "anstossUtc": "2026-11-21T17:45:00Z",
-    "anbieterSpielId": "15c2074550c986e69e8b9831b596f37d"
-   }
-  },
-  {
-   "liga": "nl.1",
-   "ligaName": "Eredivisie",
-   "datum": "2026-11-21",
-   "heim": "NEC",
-   "gast": "PSV",
-   "schluessel": {
-    "heim": "nec",
-    "gast": "psv"
-   },
-   "prognose": {
-    "heimsieg": 0.208,
-    "remis": 0.185,
-    "auswaertssieg": 0.607
-   },
-   "tipp": "Auswaertssieg",
-   "erwarteteTore": {
-    "heim": 1.549,
-    "gast": 2.648
-   },
-   "haeufigsteTorfolge": "1:2",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
-  {
-   "liga": "nl.1",
-   "ligaName": "Eredivisie",
-   "datum": "2026-11-21",
-   "heim": "Telstar 1963",
-   "gast": "PEC Zwolle",
-   "schluessel": {
-    "heim": "telstar",
-    "gast": "peczwolle"
-   },
-   "prognose": {
-    "heimsieg": 0.556,
-    "remis": 0.22,
-    "auswaertssieg": 0.224
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 2.1,
-    "gast": 1.283
-   },
-   "haeufigsteTorfolge": "2:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
-   }
-  },
   {
    "liga": "de.1",
    "ligaName": "Bundesliga",
@@ -1426,17 +18,17 @@
    },
    "prognose": {
     "heimsieg": 0.433,
-    "remis": 0.225,
+    "remis": 0.226,
     "auswaertssieg": 0.341
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.957,
-    "gast": 1.726
+    "heim": 1.944,
+    "gast": 1.714
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1444,12 +36,7 @@
    },
    "position": {
     "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
-    "anstossUtc": "2026-11-22T14:30:00Z",
-    "anbieterSpielId": "4c2262eccc903b9b1792325d09451c0a"
+    "grund": "Quote nicht pruefbar: keine Quote"
    }
   },
   {
@@ -1463,18 +50,18 @@
     "gast": "hamburger"
    },
    "prognose": {
-    "heimsieg": 0.523,
-    "remis": 0.24,
-    "auswaertssieg": 0.237
+    "heimsieg": 0.522,
+    "remis": 0.241,
+    "auswaertssieg": 0.236
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.851,
-    "gast": 1.184
+    "heim": 1.839,
+    "gast": 1.176
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1482,12 +69,7 @@
    },
    "position": {
     "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
-    "anstossUtc": "2026-11-22T16:30:00Z",
-    "anbieterSpielId": "9a214142c9b31ad8233dccad53f75d6d"
+    "grund": "Quote nicht pruefbar: keine Quote"
    }
   },
   {
@@ -1502,17 +84,17 @@
    },
    "prognose": {
     "heimsieg": 0.482,
-    "remis": 0.241,
-    "auswaertssieg": 0.277
+    "remis": 0.242,
+    "auswaertssieg": 0.276
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.825,
-    "gast": 1.341
+    "heim": 1.84,
+    "gast": 1.391
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1520,12 +102,7 @@
    },
    "position": {
     "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
-    "anstossUtc": "2026-11-22T12:00:00Z",
-    "anbieterSpielId": "9176cbaec3565e688e603baec257e246"
+    "grund": "Quote nicht pruefbar: keine Quote"
    }
   },
   {
@@ -1539,18 +116,18 @@
     "gast": "barcelonadeespanyol"
    },
    "prognose": {
-    "heimsieg": 0.458,
-    "remis": 0.3,
+    "heimsieg": 0.457,
+    "remis": 0.301,
     "auswaertssieg": 0.242
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.303,
-    "gast": 0.872
+    "heim": 1.297,
+    "gast": 0.87
    },
    "haeufigsteTorfolge": "1:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1572,18 +149,18 @@
     "gast": "malaga"
    },
    "prognose": {
-    "heimsieg": 0.573,
-    "remis": 0.244,
+    "heimsieg": 0.572,
+    "remis": 0.245,
     "auswaertssieg": 0.183
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.78,
-    "gast": 0.908
+    "heim": 1.772,
+    "gast": 0.907
    },
    "haeufigsteTorfolge": "1:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1594,7 +171,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:53Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-22T17:30:00Z",
     "anbieterSpielId": "893268e5503c4e58fbf137e4b5db7e93"
    }
@@ -1610,18 +187,18 @@
     "gast": "corunadeportivola"
    },
    "prognose": {
-    "heimsieg": 0.496,
-    "remis": 0.265,
-    "auswaertssieg": 0.238
+    "heimsieg": 0.495,
+    "remis": 0.266,
+    "auswaertssieg": 0.239
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.588,
-    "gast": 1.028
+    "heim": 1.581,
+    "gast": 1.026
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1643,18 +220,18 @@
     "gast": "villarreal"
    },
    "prognose": {
-    "heimsieg": 0.812,
-    "remis": 0.114,
-    "auswaertssieg": 0.073
+    "heimsieg": 0.811,
+    "remis": 0.115,
+    "auswaertssieg": 0.074
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 3.377,
-    "gast": 1.03
+    "heim": 3.288,
+    "gast": 1.09
    },
    "haeufigsteTorfolge": "3:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1662,12 +239,7 @@
    },
    "position": {
     "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:53Z",
-    "anstossUtc": "2026-11-22T13:00:00Z",
-    "anbieterSpielId": "214a79b6e08dbe3f508844936158c038"
+    "grund": "Quote nicht pruefbar: keine Quote"
    }
   },
   {
@@ -1681,18 +253,18 @@
     "gast": "atleticodemadrid"
    },
    "prognose": {
-    "heimsieg": 0.22,
+    "heimsieg": 0.219,
     "remis": 0.309,
     "auswaertssieg": 0.471
    },
    "tipp": "Auswaertssieg",
    "erwarteteTore": {
-    "heim": 0.769,
-    "gast": 1.258
+    "heim": 0.766,
+    "gast": 1.256
    },
    "haeufigsteTorfolge": "0:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1703,7 +275,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:53Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-22T20:00:00Z",
     "anbieterSpielId": "7a62fe738bd20cfff6027c52fec05d51"
    }
@@ -1719,18 +291,18 @@
     "gast": "elche"
    },
    "prognose": {
-    "heimsieg": 0.48,
-    "remis": 0.248,
-    "auswaertssieg": 0.272
+    "heimsieg": 0.478,
+    "remis": 0.249,
+    "auswaertssieg": 0.273
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.746,
-    "gast": 1.27
+    "heim": 1.737,
+    "gast": 1.268
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1752,18 +324,18 @@
     "gast": "valencia"
    },
    "prognose": {
-    "heimsieg": 0.484,
-    "remis": 0.275,
-    "auswaertssieg": 0.241
+    "heimsieg": 0.448,
+    "remis": 0.289,
+    "auswaertssieg": 0.263
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.503,
-    "gast": 0.988
+    "heim": 1.366,
+    "gast": 0.987
    },
    "haeufigsteTorfolge": "1:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1785,18 +357,18 @@
     "gast": "celtadevigo"
    },
    "prognose": {
-    "heimsieg": 0.726,
-    "remis": 0.181,
-    "auswaertssieg": 0.094
+    "heimsieg": 0.715,
+    "remis": 0.186,
+    "auswaertssieg": 0.099
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 2.277,
-    "gast": 0.701
+    "heim": 2.229,
+    "gast": 0.712
    },
    "haeufigsteTorfolge": "2:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1818,18 +390,18 @@
     "gast": "derealsociedad"
    },
    "prognose": {
-    "heimsieg": 0.322,
-    "remis": 0.212,
-    "auswaertssieg": 0.465
+    "heimsieg": 0.321,
+    "remis": 0.213,
+    "auswaertssieg": 0.466
    },
    "tipp": "Auswaertssieg",
    "erwarteteTore": {
-    "heim": 1.816,
-    "gast": 2.19
+    "heim": 1.808,
+    "gast": 2.186
    },
    "haeufigsteTorfolge": "1:2",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1837,12 +409,7 @@
    },
    "position": {
     "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:53Z",
-    "anstossUtc": "2026-11-22T15:15:00Z",
-    "anbieterSpielId": "9718f9ea901236855faf57f77a0bd5b3"
+    "grund": "Quote nicht pruefbar: keine Quote"
    }
   },
   {
@@ -1856,18 +423,18 @@
     "gast": "balompiebetisreal"
    },
    "prognose": {
-    "heimsieg": 0.324,
-    "remis": 0.266,
-    "auswaertssieg": 0.411
+    "heimsieg": 0.325,
+    "remis": 0.27,
+    "auswaertssieg": 0.405
    },
    "tipp": "Auswaertssieg",
    "erwarteteTore": {
-    "heim": 1.304,
-    "gast": 1.497
+    "heim": 1.275,
+    "gast": 1.451
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1889,18 +456,18 @@
     "gast": "rennaisstade"
    },
    "prognose": {
-    "heimsieg": 0.418,
-    "remis": 0.244,
-    "auswaertssieg": 0.338
+    "heimsieg": 0.416,
+    "remis": 0.245,
+    "auswaertssieg": 0.339
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.712,
-    "gast": 1.525
+    "heim": 1.703,
+    "gast": 1.521
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1922,18 +489,18 @@
     "gast": "lemans"
    },
    "prognose": {
-    "heimsieg": 0.749,
-    "remis": 0.156,
-    "auswaertssieg": 0.094
+    "heimsieg": 0.746,
+    "remis": 0.158,
+    "auswaertssieg": 0.095
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 2.661,
-    "gast": 0.868
+    "heim": 2.647,
+    "gast": 0.865
    },
    "haeufigsteTorfolge": "2:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1944,7 +511,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
     "anstossUtc": "2026-11-22T19:45:00Z",
     "anbieterSpielId": "98fae24771271c96d5dd364e535405d2"
    }
@@ -1960,18 +527,18 @@
     "gast": "angerssco"
    },
    "prognose": {
-    "heimsieg": 0.688,
-    "remis": 0.194,
-    "auswaertssieg": 0.118
+    "heimsieg": 0.686,
+    "remis": 0.196,
+    "auswaertssieg": 0.119
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 2.216,
-    "gast": 0.812
+    "heim": 2.456,
+    "gast": 0.771
    },
    "haeufigsteTorfolge": "2:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1979,12 +546,7 @@
    },
    "position": {
     "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
-    "anstossUtc": "2026-11-22T14:00:00Z",
-    "anbieterSpielId": "9e5d4a91e379ddffa179b02bf9e09530"
+    "grund": "Quote nicht pruefbar: keine Quote"
    }
   },
   {
@@ -1998,18 +560,18 @@
     "gast": "frosinone"
    },
    "prognose": {
-    "heimsieg": 0.553,
+    "heimsieg": 0.552,
     "remis": 0.22,
-    "auswaertssieg": 0.227
+    "auswaertssieg": 0.228
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 2.103,
-    "gast": 1.301
+    "heim": 2.099,
+    "gast": 1.302
    },
    "haeufigsteTorfolge": "2:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2017,12 +579,7 @@
    },
    "position": {
     "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
-    "anstossUtc": "2026-11-22T17:00:00Z",
-    "anbieterSpielId": "5faf836ce6c0fd72af5d1fe258c63bc6"
+    "grund": "Quote nicht pruefbar: keine Quote"
    }
   },
   {
@@ -2036,18 +593,18 @@
     "gast": "internazionalemilano"
    },
    "prognose": {
-    "heimsieg": 0.205,
+    "heimsieg": 0.204,
     "remis": 0.21,
-    "auswaertssieg": 0.586
+    "auswaertssieg": 0.587
    },
    "tipp": "Auswaertssieg",
    "erwarteteTore": {
-    "heim": 1.266,
+    "heim": 1.263,
     "gast": 2.224
    },
    "haeufigsteTorfolge": "1:2",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2069,18 +626,18 @@
     "gast": "udinese"
    },
    "prognose": {
-    "heimsieg": 0.56,
+    "heimsieg": 0.559,
     "remis": 0.237,
     "auswaertssieg": 0.203
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.874,
-    "gast": 1.049
+    "heim": 1.775,
+    "gast": 1.046
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2088,12 +645,7 @@
    },
    "position": {
     "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
-    "anstossUtc": "2026-11-22T14:00:00Z",
-    "anbieterSpielId": "5bc13c44b33981f3185400163388267e"
+    "grund": "Quote nicht pruefbar: keine Quote"
    }
   },
   {
@@ -2109,16 +661,16 @@
    "prognose": {
     "heimsieg": 0.37,
     "remis": 0.25,
-    "auswaertssieg": 0.379
+    "auswaertssieg": 0.38
    },
    "tipp": "Auswaertssieg",
    "erwarteteTore": {
-    "heim": 1.552,
-    "gast": 1.572
+    "heim": 1.411,
+    "gast": 1.613
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2126,12 +678,7 @@
    },
    "position": {
     "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
-    "anstossUtc": "2026-11-22T14:00:00Z",
-    "anbieterSpielId": "76d4698a8417f32cb059f14a469939f3"
+    "grund": "Quote nicht pruefbar: keine Quote"
    }
   },
   {
@@ -2145,18 +692,18 @@
     "gast": "adodenhaag"
    },
    "prognose": {
-    "heimsieg": 0.826,
-    "remis": 0.115,
-    "auswaertssieg": 0.059
+    "heimsieg": 0.823,
+    "remis": 0.117,
+    "auswaertssieg": 0.061
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 3.144,
-    "gast": 0.801
+    "heim": 3.083,
+    "gast": 0.766
    },
    "haeufigsteTorfolge": "3:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2164,12 +711,7 @@
    },
    "position": {
     "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:53Z",
-    "anstossUtc": "2026-11-22T13:30:00Z",
-    "anbieterSpielId": "b192dbcfd675d0ee75492948b7d2a35f"
+    "grund": "Quote nicht pruefbar: keine Quote"
    }
   },
   {
@@ -2183,18 +725,18 @@
     "gast": "iitilburgwillem"
    },
    "prognose": {
-    "heimsieg": 0.882,
-    "remis": 0.083,
-    "auswaertssieg": 0.035
+    "heimsieg": 0.88,
+    "remis": 0.084,
+    "auswaertssieg": 0.036
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 3.55,
-    "gast": 0.691
+    "heim": 3.2,
+    "gast": 0.707
    },
    "haeufigsteTorfolge": "3:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2216,18 +758,18 @@
     "gast": "fortunasittard"
    },
    "prognose": {
-    "heimsieg": 0.439,
-    "remis": 0.23,
-    "auswaertssieg": 0.331
+    "heimsieg": 0.435,
+    "remis": 0.231,
+    "auswaertssieg": 0.335
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.91,
-    "gast": 1.643
+    "heim": 1.886,
+    "gast": 1.649
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2235,12 +777,7 @@
    },
    "position": {
     "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:53Z",
-    "anstossUtc": "2026-11-22T15:45:00Z",
-    "anbieterSpielId": "f0c241457472f32fc55b90b2b95b665b"
+    "grund": "Quote nicht pruefbar: keine Quote"
    }
   },
   {
@@ -2254,18 +791,18 @@
     "gast": "az"
    },
    "prognose": {
-    "heimsieg": 0.27,
+    "heimsieg": 0.266,
     "remis": 0.226,
-    "auswaertssieg": 0.504
+    "auswaertssieg": 0.508
    },
    "tipp": "Auswaertssieg",
    "erwarteteTore": {
-    "heim": 1.444,
-    "gast": 2.019
+    "heim": 1.39,
+    "gast": 2.422
    },
    "haeufigsteTorfolge": "1:2",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2273,12 +810,7 @@
    },
    "position": {
     "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:53Z",
-    "anstossUtc": "2026-11-22T13:30:00Z",
-    "anbieterSpielId": "8e33c1a370f9763723426e4f0aa0fdd0"
+    "grund": "Quote nicht pruefbar: keine Quote"
    }
   },
   {
@@ -2294,16 +826,16 @@
    "prognose": {
     "heimsieg": 0.339,
     "remis": 0.23,
-    "auswaertssieg": 0.43
+    "auswaertssieg": 0.431
    },
    "tipp": "Auswaertssieg",
    "erwarteteTore": {
-    "heim": 1.665,
-    "gast": 1.888
+    "heim": 1.662,
+    "gast": 1.889
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2314,7 +846,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
     "anstossUtc": "2026-11-23T19:45:00Z",
     "anbieterSpielId": "99776445d5a5f4ed008f9a6d6a1495b7"
    }
@@ -2330,18 +862,18 @@
     "gast": "venezia"
    },
    "prognose": {
-    "heimsieg": 0.591,
-    "remis": 0.238,
-    "auswaertssieg": 0.171
+    "heimsieg": 0.656,
+    "remis": 0.209,
+    "auswaertssieg": 0.135
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.828,
-    "gast": 0.882
+    "heim": 2.079,
+    "gast": 0.836
    },
-   "haeufigsteTorfolge": "1:0",
+   "haeufigsteTorfolge": "2:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2363,18 +895,18 @@
     "gast": "wrexham"
    },
    "prognose": {
-    "heimsieg": 0.345,
-    "remis": 0.268,
-    "auswaertssieg": 0.387
+    "heimsieg": 0.33,
+    "remis": 0.274,
+    "auswaertssieg": 0.396
    },
    "tipp": "Auswaertssieg",
    "erwarteteTore": {
-    "heim": 1.346,
-    "gast": 1.44
+    "heim": 1.26,
+    "gast": 1.403
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2385,7 +917,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-24T19:45:00Z",
     "anbieterSpielId": "92c74d2f4a4275568feff8072ed15e73"
    }
@@ -2401,18 +933,18 @@
     "gast": "endnorthpreston"
    },
    "prognose": {
-    "heimsieg": 0.664,
-    "remis": 0.189,
-    "auswaertssieg": 0.148
+    "heimsieg": 0.632,
+    "remis": 0.203,
+    "auswaertssieg": 0.164
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 2.405,
+    "heim": 2.239,
     "gast": 1.074
    },
    "haeufigsteTorfolge": "2:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2423,7 +955,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-24T19:45:00Z",
     "anbieterSpielId": "ae887a08eef3ff58053488dbddde28a3"
    }
@@ -2439,18 +971,18 @@
     "gast": "citylincoln"
    },
    "prognose": {
-    "heimsieg": 0.433,
-    "remis": 0.287,
-    "auswaertssieg": 0.281
+    "heimsieg": 0.438,
+    "remis": 0.29,
+    "auswaertssieg": 0.273
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.368,
-    "gast": 1.047
+    "heim": 1.354,
+    "gast": 1.009
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2461,7 +993,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-24T19:45:00Z",
     "anbieterSpielId": "6d21b6408d1f1c42def270b7f1ae5b21"
    }
@@ -2477,18 +1009,18 @@
     "gast": "cityswansea"
    },
    "prognose": {
-    "heimsieg": 0.529,
-    "remis": 0.237,
-    "auswaertssieg": 0.234
+    "heimsieg": 0.539,
+    "remis": 0.235,
+    "auswaertssieg": 0.227
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.884,
-    "gast": 1.195
+    "heim": 1.91,
+    "gast": 1.178
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2499,7 +1031,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-24T19:45:00Z",
     "anbieterSpielId": "e239a6d57b2cf15091f673c2448fbf4f"
    }
@@ -2521,12 +1053,12 @@
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 2.277,
-    "gast": 1.408
+    "heim": 2.272,
+    "gast": 1.403
    },
    "haeufigsteTorfolge": "2:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2537,7 +1069,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-24T19:45:00Z",
     "anbieterSpielId": "cbb9284b5d072d869a395ba3ffb8bbff"
    }
@@ -2553,18 +1085,18 @@
     "gast": "hamunitedwest"
    },
    "prognose": {
-    "heimsieg": 0.259,
-    "remis": 0.232,
-    "auswaertssieg": 0.509
+    "heimsieg": 0.279,
+    "remis": 0.244,
+    "auswaertssieg": 0.478
    },
    "tipp": "Auswaertssieg",
    "erwarteteTore": {
-    "heim": 1.344,
-    "gast": 1.948
+    "heim": 1.324,
+    "gast": 1.791
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2575,7 +1107,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-24T19:45:00Z",
     "anbieterSpielId": "c2ca2ce56eb3bccf1a5de2d0ccc2207f"
    }
@@ -2591,18 +1123,18 @@
     "gast": "southampton"
    },
    "prognose": {
-    "heimsieg": 0.291,
-    "remis": 0.251,
-    "auswaertssieg": 0.458
+    "heimsieg": 0.32,
+    "remis": 0.252,
+    "auswaertssieg": 0.427
    },
    "tipp": "Auswaertssieg",
    "erwarteteTore": {
-    "heim": 1.318,
-    "gast": 1.701
+    "heim": 1.399,
+    "gast": 1.646
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2613,7 +1145,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-24T19:45:00Z",
     "anbieterSpielId": "031162fd89aa3c1fd39e523b3c82d35a"
    }
@@ -2629,18 +1161,18 @@
     "gast": "countyderby"
    },
    "prognose": {
-    "heimsieg": 0.637,
+    "heimsieg": 0.636,
     "remis": 0.218,
-    "auswaertssieg": 0.145
+    "auswaertssieg": 0.146
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
     "heim": 2.008,
-    "gast": 0.853
+    "gast": 0.856
    },
    "haeufigsteTorfolge": "2:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2651,7 +1183,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-24T20:00:00Z",
     "anbieterSpielId": "018856cb75135463eb1972d978339023"
    }
@@ -2669,16 +1201,16 @@
    "prognose": {
     "heimsieg": 0.273,
     "remis": 0.258,
-    "auswaertssieg": 0.468
+    "auswaertssieg": 0.469
    },
    "tipp": "Auswaertssieg",
    "erwarteteTore": {
-    "heim": 1.195,
-    "gast": 1.639
+    "heim": 1.198,
+    "gast": 1.645
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2689,7 +1221,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-25T19:45:00Z",
     "anbieterSpielId": "9dfe9df3ad88c453e3572872bf500488"
    }
@@ -2705,18 +1237,18 @@
     "gast": "birminghamcity"
    },
    "prognose": {
-    "heimsieg": 0.315,
-    "remis": 0.25,
-    "auswaertssieg": 0.435
+    "heimsieg": 0.322,
+    "remis": 0.253,
+    "auswaertssieg": 0.426
    },
    "tipp": "Auswaertssieg",
    "erwarteteTore": {
-    "heim": 1.408,
-    "gast": 1.681
+    "heim": 1.402,
+    "gast": 1.637
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2726,8 +1258,8 @@
     "empfehlung": "keine Wette",
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
-    "quelle": "the-odds-api/leovegas_se",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-25T19:45:00Z",
     "anbieterSpielId": "61d1126751ba67227ac2819624e98342"
    }
@@ -2743,18 +1275,18 @@
     "gast": "millwall"
    },
    "prognose": {
-    "heimsieg": 0.447,
-    "remis": 0.263,
-    "auswaertssieg": 0.29
+    "heimsieg": 0.456,
+    "remis": 0.266,
+    "auswaertssieg": 0.279
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.571,
-    "gast": 1.223
+    "heim": 1.557,
+    "gast": 1.168
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2765,7 +1297,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-25T20:00:00Z",
     "anbieterSpielId": "77dfddf6dea97d5ecb5e2463b29fe67e"
    }
@@ -2781,18 +1313,18 @@
     "gast": "blackburnrovers"
    },
    "prognose": {
-    "heimsieg": 0.332,
-    "remis": 0.285,
-    "auswaertssieg": 0.383
+    "heimsieg": 0.303,
+    "remis": 0.278,
+    "auswaertssieg": 0.419
    },
    "tipp": "Auswaertssieg",
    "erwarteteTore": {
-    "heim": 1.195,
-    "gast": 1.303
+    "heim": 1.164,
+    "gast": 1.409
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2802,8 +1334,8 @@
     "empfehlung": "keine Wette",
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
-    "quelle": "the-odds-api/unibet_nl",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-25T19:45:00Z",
     "anbieterSpielId": "0eb7f35d744c1cebeb53be32f50e1e2d"
    }
@@ -2819,18 +1351,18 @@
     "gast": "borussiamonchengladbach"
    },
    "prognose": {
-    "heimsieg": 0.552,
-    "remis": 0.223,
-    "auswaertssieg": 0.225
+    "heimsieg": 0.546,
+    "remis": 0.229,
+    "auswaertssieg": 0.226
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 2.065,
-    "gast": 1.267
+    "heim": 1.986,
+    "gast": 1.219
    },
-   "haeufigsteTorfolge": "2:1",
+   "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2841,7 +1373,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-27T19:30:00Z",
     "anbieterSpielId": "698f4a7967ead89e10205a68ceb4bda4"
    }
@@ -2857,18 +1389,18 @@
     "gast": "middlesbrough"
    },
    "prognose": {
-    "heimsieg": 0.487,
-    "remis": 0.25,
-    "auswaertssieg": 0.263
+    "heimsieg": 0.477,
+    "remis": 0.255,
+    "auswaertssieg": 0.268
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.725,
-    "gast": 1.216
+    "heim": 1.674,
+    "gast": 1.204
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2879,7 +1411,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/leovegas_se",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-27T20:00:00Z",
     "anbieterSpielId": "32b8e3ea76d9d8b2b36577063d40862e"
    }
@@ -2895,18 +1427,18 @@
     "gast": "paris"
    },
    "prognose": {
-    "heimsieg": 0.371,
-    "remis": 0.253,
-    "auswaertssieg": 0.375
+    "heimsieg": 0.357,
+    "remis": 0.258,
+    "auswaertssieg": 0.386
    },
    "tipp": "Auswaertssieg",
    "erwarteteTore": {
-    "heim": 1.527,
-    "gast": 1.534
+    "heim": 1.455,
+    "gast": 1.519
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2917,7 +1449,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
     "anstossUtc": "2026-11-27T19:45:00Z",
     "anbieterSpielId": "02ff879cf54f6d1fec2664efee0431db"
    }
@@ -2933,18 +1465,18 @@
     "gast": "iitilburgwillem"
    },
    "prognose": {
-    "heimsieg": 0.808,
-    "remis": 0.115,
-    "auswaertssieg": 0.078
+    "heimsieg": 0.765,
+    "remis": 0.135,
+    "auswaertssieg": 0.099
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 3.43,
-    "gast": 1.094
+    "heim": 3.144,
+    "gast": 1.137
    },
    "haeufigsteTorfolge": "3:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2952,7 +1484,12 @@
    },
    "position": {
     "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
+    "grund": "Vorteil gegen die Quote nicht belegt",
+    "quoteGeprueft": true,
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
+    "anstossUtc": "2026-11-27T19:00:00Z",
+    "anbieterSpielId": "7aa2e13c09deb4fbd70e62312e82a514"
    }
   },
   {
@@ -2977,7 +1514,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2988,7 +1525,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:53Z",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
     "anstossUtc": "2026-11-27T20:15:00Z",
     "anbieterSpielId": "abfc6851b152aecbb4bf84a348967f69"
    }
@@ -3004,18 +1541,18 @@
     "gast": "elversberg"
    },
    "prognose": {
-    "heimsieg": 0.376,
-    "remis": 0.264,
-    "auswaertssieg": 0.36
+    "heimsieg": 0.382,
+    "remis": 0.27,
+    "auswaertssieg": 0.348
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.45,
-    "gast": 1.412
+    "heim": 1.412,
+    "gast": 1.337
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3026,7 +1563,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-28T14:30:00Z",
     "anbieterSpielId": "2c30e2ebaf6c30aaa4e3fb56cffa6a29"
    }
@@ -3042,18 +1579,18 @@
     "gast": "berlinunion"
    },
    "prognose": {
-    "heimsieg": 0.577,
-    "remis": 0.222,
-    "auswaertssieg": 0.201
+    "heimsieg": 0.613,
+    "remis": 0.208,
+    "auswaertssieg": 0.179
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 2.047,
-    "gast": 1.14
+    "heim": 2.204,
+    "gast": 1.125
    },
    "haeufigsteTorfolge": "2:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3064,7 +1601,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-28T14:30:00Z",
     "anbieterSpielId": "365e1a00908ab1cd5a51a53ede2b86b2"
    }
@@ -3080,18 +1617,18 @@
     "gast": "bayernmunchen"
    },
    "prognose": {
-    "heimsieg": 0.106,
-    "remis": 0.143,
-    "auswaertssieg": 0.75
+    "heimsieg": 0.107,
+    "remis": 0.144,
+    "auswaertssieg": 0.749
    },
    "tipp": "Auswaertssieg",
    "erwarteteTore": {
-    "heim": 1.13,
-    "gast": 3.026
+    "heim": 1.122,
+    "gast": 3.005
    },
    "haeufigsteTorfolge": "1:3",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3102,7 +1639,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-28T14:30:00Z",
     "anbieterSpielId": "3b025a029f51fbeb9580a178d0612f50"
    }
@@ -3118,18 +1655,18 @@
     "gast": "schalke"
    },
    "prognose": {
-    "heimsieg": 0.453,
-    "remis": 0.299,
-    "auswaertssieg": 0.248
+    "heimsieg": 0.418,
+    "remis": 0.311,
+    "auswaertssieg": 0.271
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.306,
-    "gast": 0.895
+    "heim": 1.195,
+    "gast": 0.908
    },
    "haeufigsteTorfolge": "1:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3140,7 +1677,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-28T14:30:00Z",
     "anbieterSpielId": "f84a9da7eedd0ca11a28a1a7a8edddc7"
    }
@@ -3156,18 +1693,18 @@
     "gast": "eintrachtfrankfurt"
    },
    "prognose": {
-    "heimsieg": 0.621,
-    "remis": 0.189,
-    "auswaertssieg": 0.191
+    "heimsieg": 0.588,
+    "remis": 0.207,
+    "auswaertssieg": 0.205
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 2.541,
-    "gast": 1.388
+    "heim": 2.269,
+    "gast": 1.296
    },
    "haeufigsteTorfolge": "2:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3178,7 +1715,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-28T17:30:00Z",
     "anbieterSpielId": "5d838190a8f5932d7fcfbcc26bacdd9c"
    }
@@ -3194,18 +1731,18 @@
     "gast": "citymanchester"
    },
    "prognose": {
-    "heimsieg": 0.453,
-    "remis": 0.293,
-    "auswaertssieg": 0.255
+    "heimsieg": 0.451,
+    "remis": 0.289,
+    "auswaertssieg": 0.26
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.345,
-    "gast": 0.942
+    "heim": 1.367,
+    "gast": 0.975
    },
    "haeufigsteTorfolge": "1:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3227,18 +1764,18 @@
     "gast": "newcastleunited"
    },
    "prognose": {
-    "heimsieg": 0.65,
-    "remis": 0.204,
-    "auswaertssieg": 0.146
+    "heimsieg": 0.616,
+    "remis": 0.215,
+    "auswaertssieg": 0.169
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 2.186,
-    "gast": 0.949
+    "heim": 2.093,
+    "gast": 1.016
    },
-   "haeufigsteTorfolge": "2:0",
+   "haeufigsteTorfolge": "2:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3260,18 +1797,18 @@
     "gast": "cityhull"
    },
    "prognose": {
-    "heimsieg": 0.42,
+    "heimsieg": 0.387,
     "remis": 0.263,
-    "auswaertssieg": 0.317
+    "auswaertssieg": 0.35
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.533,
-    "gast": 1.301
+    "heim": 1.475,
+    "gast": 1.389
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3293,18 +1830,18 @@
     "gast": "liverpool"
    },
    "prognose": {
-    "heimsieg": 0.331,
+    "heimsieg": 0.332,
     "remis": 0.28,
-    "auswaertssieg": 0.389
+    "auswaertssieg": 0.388
    },
    "tipp": "Auswaertssieg",
    "erwarteteTore": {
-    "heim": 1.228,
+    "heim": 1.232,
     "gast": 1.35
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3326,18 +1863,18 @@
     "gast": "bournemouth"
    },
    "prognose": {
-    "heimsieg": 0.316,
+    "heimsieg": 0.304,
     "remis": 0.278,
-    "auswaertssieg": 0.406
+    "auswaertssieg": 0.418
    },
    "tipp": "Auswaertssieg",
    "erwarteteTore": {
-    "heim": 1.201,
-    "gast": 1.395
+    "heim": 1.165,
+    "gast": 1.409
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3359,18 +1896,18 @@
     "gast": "astonvilla"
    },
    "prognose": {
-    "heimsieg": 0.313,
-    "remis": 0.233,
+    "heimsieg": 0.306,
+    "remis": 0.241,
     "auswaertssieg": 0.453
    },
    "tipp": "Auswaertssieg",
    "erwarteteTore": {
-    "heim": 1.544,
-    "gast": 1.889
+    "heim": 1.448,
+    "gast": 1.801
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3381,7 +1918,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
     "anstossUtc": "2026-11-28T17:30:00Z",
     "anbieterSpielId": "9d23f6ad21946dd258869ebc22236cf0"
    }
@@ -3397,18 +1934,18 @@
     "gast": "citycoventry"
    },
    "prognose": {
-    "heimsieg": 0.538,
-    "remis": 0.247,
-    "auswaertssieg": 0.216
+    "heimsieg": 0.578,
+    "remis": 0.228,
+    "auswaertssieg": 0.194
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.776,
-    "gast": 1.045
+    "heim": 1.973,
+    "gast": 1.066
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3419,7 +1956,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "0bc17a3c7d8153e72b94688960cc603a"
    }
@@ -3435,18 +1972,18 @@
     "gast": "brentford"
    },
    "prognose": {
-    "heimsieg": 0.393,
+    "heimsieg": 0.395,
     "remis": 0.25,
-    "auswaertssieg": 0.357
+    "auswaertssieg": 0.356
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.605,
-    "gast": 1.52
+    "heim": 1.61,
+    "gast": 1.521
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3457,7 +1994,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "ab87184803a63f7b679f1d12b01c3271"
    }
@@ -3473,18 +2010,18 @@
     "gast": "chelsea"
    },
    "prognose": {
-    "heimsieg": 0.412,
-    "remis": 0.264,
-    "auswaertssieg": 0.324
+    "heimsieg": 0.433,
+    "remis": 0.258,
+    "auswaertssieg": 0.308
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.512,
-    "gast": 1.316
+    "heim": 1.594,
+    "gast": 1.313
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3506,18 +2043,18 @@
     "gast": "hotspurtottenham"
    },
    "prognose": {
-    "heimsieg": 0.34,
-    "remis": 0.295,
+    "heimsieg": 0.331,
+    "remis": 0.305,
     "auswaertssieg": 0.365
    },
    "tipp": "Auswaertssieg",
    "erwarteteTore": {
-    "heim": 1.152,
-    "gast": 1.206
+    "heim": 1.081,
+    "gast": 1.15
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3539,18 +2076,18 @@
     "gast": "boltonwanderers"
    },
    "prognose": {
-    "heimsieg": 0.683,
-    "remis": 0.19,
-    "auswaertssieg": 0.127
+    "heimsieg": 0.662,
+    "remis": 0.202,
+    "auswaertssieg": 0.136
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 2.319,
-    "gast": 0.907
+    "heim": 2.183,
+    "gast": 0.888
    },
    "haeufigsteTorfolge": "2:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3561,7 +2098,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/unibet_nl",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "15fc58a442321c2a85f7a814466c0ab9"
    }
@@ -3577,18 +2114,18 @@
     "gast": "athleticcharlton"
    },
    "prognose": {
-    "heimsieg": 0.52,
-    "remis": 0.262,
-    "auswaertssieg": 0.218
+    "heimsieg": 0.526,
+    "remis": 0.259,
+    "auswaertssieg": 0.215
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.62,
-    "gast": 0.964
+    "heim": 1.652,
+    "gast": 0.972
    },
    "haeufigsteTorfolge": "1:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3599,7 +2136,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/unibet_nl",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-28T12:30:00Z",
     "anbieterSpielId": "a1d96ec37a8b7022ef39a7755a655243"
    }
@@ -3615,18 +2152,18 @@
     "gast": "watford"
    },
    "prognose": {
-    "heimsieg": 0.456,
-    "remis": 0.275,
-    "auswaertssieg": 0.269
+    "heimsieg": 0.488,
+    "remis": 0.267,
+    "auswaertssieg": 0.245
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.476,
-    "gast": 1.078
+    "heim": 1.568,
+    "gast": 1.042
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3637,7 +2174,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/unibet_nl",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "82ef491ed2f8399e4ccec9f5d8315cee"
    }
@@ -3653,18 +2190,18 @@
     "gast": "wandererswolverhampton"
    },
    "prognose": {
-    "heimsieg": 0.22,
-    "remis": 0.264,
-    "auswaertssieg": 0.516
+    "heimsieg": 0.216,
+    "remis": 0.267,
+    "auswaertssieg": 0.517
    },
    "tipp": "Auswaertssieg",
    "erwarteteTore": {
-    "heim": 0.956,
-    "gast": 1.607
+    "heim": 0.927,
+    "gast": 1.581
    },
    "haeufigsteTorfolge": "0:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3675,7 +2212,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/unibet_nl",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-28T12:30:00Z",
     "anbieterSpielId": "d2bc2d3b4a81177cb6b86f4add6ff81f"
    }
@@ -3691,18 +2228,18 @@
     "gast": "burnley"
    },
    "prognose": {
-    "heimsieg": 0.46,
-    "remis": 0.239,
-    "auswaertssieg": 0.301
+    "heimsieg": 0.467,
+    "remis": 0.236,
+    "auswaertssieg": 0.296
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.831,
-    "gast": 1.454
+    "heim": 1.863,
+    "gast": 1.456
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3713,7 +2250,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/unibet_nl",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "3f93526d7c8e0ca84734aea60c13900a"
    }
@@ -3729,18 +2266,18 @@
     "gast": "citynorwich"
    },
    "prognose": {
-    "heimsieg": 0.192,
-    "remis": 0.21,
-    "auswaertssieg": 0.598
+    "heimsieg": 0.211,
+    "remis": 0.223,
+    "auswaertssieg": 0.566
    },
    "tipp": "Auswaertssieg",
    "erwarteteTore": {
-    "heim": 1.19,
-    "gast": 2.202
+    "heim": 1.191,
+    "gast": 2.047
    },
    "haeufigsteTorfolge": "1:2",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3751,7 +2288,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/unibet_nl",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-28T12:30:00Z",
     "anbieterSpielId": "d47bc722be164b3a733434e89f224654"
    }
@@ -3767,18 +2304,18 @@
     "gast": "sheffieldunited"
    },
    "prognose": {
-    "heimsieg": 0.487,
-    "remis": 0.231,
-    "auswaertssieg": 0.283
+    "heimsieg": 0.455,
+    "remis": 0.233,
+    "auswaertssieg": 0.312
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.951,
-    "gast": 1.454
+    "heim": 1.89,
+    "gast": 1.543
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3789,7 +2326,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/unibet_nl",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "dc42f49649c5329c2c47f94fc4ca0c89"
    }
@@ -3805,18 +2342,18 @@
     "gast": "bristolcity"
    },
    "prognose": {
-    "heimsieg": 0.586,
-    "remis": 0.24,
-    "auswaertssieg": 0.175
+    "heimsieg": 0.595,
+    "remis": 0.237,
+    "auswaertssieg": 0.169
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.818,
-    "gast": 0.892
+    "heim": 1.844,
+    "gast": 0.879
    },
    "haeufigsteTorfolge": "1:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3827,7 +2364,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/unibet_nl",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "b67372e7107fdd259a978e614711e657"
    }
@@ -3843,18 +2380,18 @@
     "gast": "citystoke"
    },
    "prognose": {
-    "heimsieg": 0.668,
-    "remis": 0.185,
-    "auswaertssieg": 0.147
+    "heimsieg": 0.619,
+    "remis": 0.208,
+    "auswaertssieg": 0.173
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 2.468,
-    "gast": 1.101
+    "heim": 2.202,
+    "gast": 1.094
    },
    "haeufigsteTorfolge": "2:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3865,7 +2402,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/unibet_nl",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "c836236766f7859e3c1d61caa581abe1"
    }
@@ -3881,18 +2418,18 @@
     "gast": "portsmouth"
    },
    "prognose": {
-    "heimsieg": 0.444,
-    "remis": 0.267,
-    "auswaertssieg": 0.289
+    "heimsieg": 0.447,
+    "remis": 0.273,
+    "auswaertssieg": 0.28
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.532,
-    "gast": 1.194
+    "heim": 1.488,
+    "gast": 1.13
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3903,7 +2440,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/unibet_se",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "9cd8c682c6864b59a7f1a58964083e08"
    }
@@ -3919,18 +2456,18 @@
     "gast": "delensracing"
    },
    "prognose": {
-    "heimsieg": 0.174,
-    "remis": 0.234,
-    "auswaertssieg": 0.592
+    "heimsieg": 0.162,
+    "remis": 0.228,
+    "auswaertssieg": 0.611
    },
    "tipp": "Auswaertssieg",
    "erwarteteTore": {
-    "heim": 0.925,
-    "gast": 1.879
+    "heim": 0.894,
+    "gast": 1.931
    },
    "haeufigsteTorfolge": "0:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3941,7 +2478,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
     "anstossUtc": "2026-11-28T16:15:00Z",
     "anbieterSpielId": "24b99950496c624f7124922fc1bda8bd"
    }
@@ -3957,18 +2494,18 @@
     "gast": "alsacestrasbourg"
    },
    "prognose": {
-    "heimsieg": 0.255,
-    "remis": 0.214,
-    "auswaertssieg": 0.53
+    "heimsieg": 0.268,
+    "remis": 0.223,
+    "auswaertssieg": 0.509
    },
    "tipp": "Auswaertssieg",
    "erwarteteTore": {
-    "heim": 1.498,
-    "gast": 2.197
+    "heim": 1.463,
+    "gast": 2.062
    },
    "haeufigsteTorfolge": "1:2",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3979,7 +2516,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
     "anstossUtc": "2026-11-28T19:45:00Z",
     "anbieterSpielId": "f96c1137c9d3f7e2e691275a2988fa1d"
    }
@@ -3995,18 +2532,18 @@
     "gast": "lilleosc"
    },
    "prognose": {
-    "heimsieg": 0.159,
-    "remis": 0.253,
-    "auswaertssieg": 0.587
+    "heimsieg": 0.167,
+    "remis": 0.263,
+    "auswaertssieg": 0.57
    },
    "tipp": "Auswaertssieg",
    "erwarteteTore": {
-    "heim": 0.753,
-    "gast": 1.678
+    "heim": 0.749,
+    "gast": 1.605
    },
    "haeufigsteTorfolge": "0:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -4017,7 +2554,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
     "anstossUtc": "2026-11-28T19:45:00Z",
     "anbieterSpielId": "aaa86a483888836242da663a46957894"
    }
@@ -4033,18 +2570,18 @@
     "gast": "estroyes"
    },
    "prognose": {
-    "heimsieg": 0.536,
-    "remis": 0.247,
-    "auswaertssieg": 0.216
+    "heimsieg": 0.538,
+    "remis": 0.244,
+    "auswaertssieg": 0.218
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.771,
-    "gast": 1.044
+    "heim": 1.811,
+    "gast": 1.076
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -4055,7 +2592,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
     "anstossUtc": "2026-11-28T19:45:00Z",
     "anbieterSpielId": "e9a1243fbfbc6f58d0e0522eb07ea9a1"
    }
@@ -4071,18 +2608,18 @@
     "gast": "lorient"
    },
    "prognose": {
-    "heimsieg": 0.642,
-    "remis": 0.221,
-    "auswaertssieg": 0.137
+    "heimsieg": 0.648,
+    "remis": 0.216,
+    "auswaertssieg": 0.136
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.958,
-    "gast": 0.791
+    "heim": 2.013,
+    "gast": 0.811
    },
-   "haeufigsteTorfolge": "1:0",
+   "haeufigsteTorfolge": "2:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -4093,7 +2630,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:52Z",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
     "anstossUtc": "2026-11-28T19:45:00Z",
     "anbieterSpielId": "12002f6f804a122db48271ff05be03c0"
    }
@@ -4109,18 +2646,18 @@
     "gast": "aheadeaglesgo"
    },
    "prognose": {
-    "heimsieg": 0.85,
-    "remis": 0.088,
-    "auswaertssieg": 0.062
+    "heimsieg": 0.862,
+    "remis": 0.082,
+    "auswaertssieg": 0.056
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 4.107,
-    "gast": 1.252
+    "heim": 4.223,
+    "gast": 1.236
    },
    "haeufigsteTorfolge": "4:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -4128,7 +2665,12 @@
    },
    "position": {
     "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
+    "grund": "Vorteil gegen die Quote nicht belegt",
+    "quoteGeprueft": true,
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
+    "anstossUtc": "2026-11-28T17:45:00Z",
+    "anbieterSpielId": "8031222f3f3e8384a69c0ca5e1166458"
    }
   },
   {
@@ -4142,18 +2684,18 @@
     "gast": "telstar"
    },
    "prognose": {
-    "heimsieg": 0.375,
-    "remis": 0.236,
-    "auswaertssieg": 0.389
+    "heimsieg": 0.436,
+    "remis": 0.231,
+    "auswaertssieg": 0.333
    },
-   "tipp": "Auswaertssieg",
+   "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.712,
-    "gast": 1.745
+    "heim": 1.889,
+    "gast": 1.636
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -4161,7 +2703,12 @@
    },
    "position": {
     "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
+    "grund": "Vorteil gegen die Quote nicht belegt",
+    "quoteGeprueft": true,
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
+    "anstossUtc": "2026-11-28T15:30:00Z",
+    "anbieterSpielId": "0617a45f4dae394d0fd75e3dc4d5cae4"
    }
   },
   {
@@ -4175,18 +2722,18 @@
     "gast": "rotterdamsparta"
    },
    "prognose": {
-    "heimsieg": 0.454,
-    "remis": 0.217,
-    "auswaertssieg": 0.329
+    "heimsieg": 0.516,
+    "remis": 0.204,
+    "auswaertssieg": 0.28
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 2.104,
-    "gast": 1.782
+    "heim": 2.366,
+    "gast": 1.738
    },
    "haeufigsteTorfolge": "2:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -4194,7 +2741,12 @@
    },
    "position": {
     "empfehlung": "keine Wette",
-    "grund": "Quote nicht pruefbar: keine Quote"
+    "grund": "Vorteil gegen die Quote nicht belegt",
+    "quoteGeprueft": true,
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
+    "anstossUtc": "2026-11-28T20:00:00Z",
+    "anbieterSpielId": "708641646f92ec14288beaaf1154e996"
    }
   },
   {
@@ -4219,7 +2771,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": false,
@@ -4230,7 +2782,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:53Z",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
     "anstossUtc": "2026-11-28T18:00:00Z",
     "anbieterSpielId": "ee7e0fb3eb049d403134cefaf634c7d5"
    }
@@ -4257,7 +2809,7 @@
    },
    "haeufigsteTorfolge": "2:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -4268,7 +2820,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:53Z",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
     "anstossUtc": "2026-11-28T15:30:00Z",
     "anbieterSpielId": "d583b1676d961c26794a3ccedf7edffb"
    }
@@ -4295,7 +2847,7 @@
    },
    "haeufigsteTorfolge": "0:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -4306,7 +2858,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-21T16:48:53Z",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
     "anstossUtc": "2026-11-28T15:30:00Z",
     "anbieterSpielId": "4adcfcfea85a2d5dbbd487aa2a9fd9c3"
    }
@@ -4333,7 +2885,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68787 Spiele bis 2026-11-21), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -4343,11 +2895,1223 @@
     "empfehlung": "keine Wette",
     "grund": "Quote nicht pruefbar: keine Quote"
    }
+  },
+  {
+   "liga": "de.1",
+   "ligaName": "Bundesliga",
+   "datum": "2026-11-29",
+   "heim": "Borussia Dortmund",
+   "gast": "Bayer 04 Leverkusen",
+   "schluessel": {
+    "heim": "borussiadortmund",
+    "gast": "bayerleverkusen"
+   },
+   "prognose": {
+    "heimsieg": 0.514,
+    "remis": 0.244,
+    "auswaertssieg": 0.242
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.807,
+    "gast": 1.181
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Vorteil gegen die Quote nicht belegt",
+    "quoteGeprueft": true,
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
+    "anstossUtc": "2026-11-29T18:30:00Z",
+    "anbieterSpielId": "98415e21c147d701bd81e70b1af0f3a7"
+   }
+  },
+  {
+   "liga": "de.1",
+   "ligaName": "Bundesliga",
+   "datum": "2026-11-29",
+   "heim": "SC Freiburg",
+   "gast": "RB Leipzig",
+   "schluessel": {
+    "heim": "freiburg",
+    "gast": "leipzigrb"
+   },
+   "prognose": {
+    "heimsieg": 0.34,
+    "remis": 0.227,
+    "auswaertssieg": 0.434
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.709,
+    "gast": 1.944
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Vorteil gegen die Quote nicht belegt",
+    "quoteGeprueft": true,
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
+    "anstossUtc": "2026-11-29T14:30:00Z",
+    "anbieterSpielId": "2aa9aa95157eb36fed45135c995cdd80"
+   }
+  },
+  {
+   "liga": "de.1",
+   "ligaName": "Bundesliga",
+   "datum": "2026-11-29",
+   "heim": "TSG 1899 Hoffenheim",
+   "gast": "FC Augsburg",
+   "schluessel": {
+    "heim": "hoffenheim",
+    "gast": "augsburg"
+   },
+   "prognose": {
+    "heimsieg": 0.485,
+    "remis": 0.223,
+    "auswaertssieg": 0.292
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 2.054,
+    "gast": 1.572
+   },
+   "haeufigsteTorfolge": "2:1",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Vorteil gegen die Quote nicht belegt",
+    "quoteGeprueft": true,
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
+    "anstossUtc": "2026-11-29T16:30:00Z",
+    "anbieterSpielId": "98dc79e39433bb4c59bf9753e35a5cdf"
+   }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-11-29",
+   "heim": "Swansea City AFC",
+   "gast": "Cardiff City FC",
+   "schluessel": {
+    "heim": "cityswansea",
+    "gast": "cardiffcity"
+   },
+   "prognose": {
+    "heimsieg": 0.481,
+    "remis": 0.233,
+    "auswaertssieg": 0.286
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.919,
+    "gast": 1.444
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Vorteil gegen die Quote nicht belegt",
+    "quoteGeprueft": true,
+    "quelle": "the-odds-api/winamax_fr",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
+    "anstossUtc": "2026-11-29T12:00:00Z",
+    "anbieterSpielId": "bcf1bfc44adf70bf134bd132c4a5ba87"
+   }
+  },
+  {
+   "liga": "es.1",
+   "ligaName": "La Liga",
+   "datum": "2026-11-29",
+   "heim": "Elche CF",
+   "gast": "Club Atlético de Madrid",
+   "schluessel": {
+    "heim": "elche",
+    "gast": "atleticodemadrid"
+   },
+   "prognose": {
+    "heimsieg": 0.256,
+    "remis": 0.271,
+    "auswaertssieg": 0.474
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.058,
+    "gast": 1.527
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Quote nicht pruefbar: keine Quote"
+   }
+  },
+  {
+   "liga": "es.1",
+   "ligaName": "La Liga",
+   "datum": "2026-11-29",
+   "heim": "Levante UD",
+   "gast": "Real Racing Club de Santander",
+   "schluessel": {
+    "heim": "levante",
+    "gast": "deracingrealsantander"
+   },
+   "prognose": {
+    "heimsieg": 0.624,
+    "remis": 0.189,
+    "auswaertssieg": 0.187
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 2.528,
+    "gast": 1.359
+   },
+   "haeufigsteTorfolge": "2:1",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Quote nicht pruefbar: keine Quote"
+   }
+  },
+  {
+   "liga": "es.1",
+   "ligaName": "La Liga",
+   "datum": "2026-11-29",
+   "heim": "Málaga CF",
+   "gast": "Athletic Club",
+   "schluessel": {
+    "heim": "malaga",
+    "gast": "athletic"
+   },
+   "prognose": {
+    "heimsieg": 0.231,
+    "remis": 0.29,
+    "auswaertssieg": 0.479
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 0.881,
+    "gast": 1.386
+   },
+   "haeufigsteTorfolge": "0:1",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Quote nicht pruefbar: keine Quote"
+   }
+  },
+  {
+   "liga": "es.1",
+   "ligaName": "La Liga",
+   "datum": "2026-11-29",
+   "heim": "RC Celta de Vigo",
+   "gast": "Villarreal CF",
+   "schluessel": {
+    "heim": "celtadevigo",
+    "gast": "villarreal"
+   },
+   "prognose": {
+    "heimsieg": 0.358,
+    "remis": 0.284,
+    "auswaertssieg": 0.358
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.261,
+    "gast": 1.26
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Vorteil gegen die Quote nicht belegt",
+    "quoteGeprueft": true,
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
+    "anstossUtc": "2026-11-29T17:30:00Z",
+    "anbieterSpielId": "20c78c2ef75c4a6d7f4af81dd32e97cd"
+   }
+  },
+  {
+   "liga": "es.1",
+   "ligaName": "La Liga",
+   "datum": "2026-11-29",
+   "heim": "RC Deportivo La Coruña",
+   "gast": "FC Barcelona",
+   "schluessel": {
+    "heim": "corunadeportivola",
+    "gast": "barcelona"
+   },
+   "prognose": {
+    "heimsieg": 0.095,
+    "remis": 0.138,
+    "auswaertssieg": 0.768
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.052,
+    "gast": 3.044
+   },
+   "haeufigsteTorfolge": "1:3",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Vorteil gegen die Quote nicht belegt",
+    "quoteGeprueft": true,
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
+    "anstossUtc": "2026-11-29T15:15:00Z",
+    "anbieterSpielId": "69fc06d019491be2aa1bf69b8f8041e3"
+   }
+  },
+  {
+   "liga": "es.1",
+   "ligaName": "La Liga",
+   "datum": "2026-11-29",
+   "heim": "RCD Espanyol de Barcelona",
+   "gast": "Getafe CF",
+   "schluessel": {
+    "heim": "barcelonadeespanyol",
+    "gast": "getafe"
+   },
+   "prognose": {
+    "heimsieg": 0.436,
+    "remis": 0.333,
+    "auswaertssieg": 0.231
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.103,
+    "gast": 0.722
+   },
+   "haeufigsteTorfolge": "1:0",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Quote nicht pruefbar: keine Quote"
+   }
+  },
+  {
+   "liga": "es.1",
+   "ligaName": "La Liga",
+   "datum": "2026-11-29",
+   "heim": "Real Betis Balompié",
+   "gast": "Rayo Vallecano de Madrid",
+   "schluessel": {
+    "heim": "balompiebetisreal",
+    "gast": "demadridrayovallecano"
+   },
+   "prognose": {
+    "heimsieg": 0.58,
+    "remis": 0.238,
+    "auswaertssieg": 0.182
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.842,
+    "gast": 0.939
+   },
+   "haeufigsteTorfolge": "1:0",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Quote nicht pruefbar: keine Quote"
+   }
+  },
+  {
+   "liga": "es.1",
+   "ligaName": "La Liga",
+   "datum": "2026-11-29",
+   "heim": "Real Madrid CF",
+   "gast": "Deportivo Alavés",
+   "schluessel": {
+    "heim": "madridreal",
+    "gast": "alavesdeportivo"
+   },
+   "prognose": {
+    "heimsieg": 0.75,
+    "remis": 0.164,
+    "auswaertssieg": 0.086
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 2.471,
+    "gast": 0.734
+   },
+   "haeufigsteTorfolge": "2:0",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Quote nicht pruefbar: keine Quote"
+   }
+  },
+  {
+   "liga": "es.1",
+   "ligaName": "La Liga",
+   "datum": "2026-11-29",
+   "heim": "Real Sociedad de Fútbol",
+   "gast": "Sevilla FC",
+   "schluessel": {
+    "heim": "derealsociedad",
+    "gast": "sevilla"
+   },
+   "prognose": {
+    "heimsieg": 0.524,
+    "remis": 0.231,
+    "auswaertssieg": 0.245
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.959,
+    "gast": 1.289
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Vorteil gegen die Quote nicht belegt",
+    "quoteGeprueft": true,
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
+    "anstossUtc": "2026-11-29T20:00:00Z",
+    "anbieterSpielId": "f892ea6d5eca105c36ca9468b12857f2"
+   }
+  },
+  {
+   "liga": "es.1",
+   "ligaName": "La Liga",
+   "datum": "2026-11-29",
+   "heim": "Valencia CF",
+   "gast": "CA Osasuna",
+   "schluessel": {
+    "heim": "valencia",
+    "gast": "osasuna"
+   },
+   "prognose": {
+    "heimsieg": 0.487,
+    "remis": 0.269,
+    "auswaertssieg": 0.244
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.554,
+    "gast": 1.031
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Vorteil gegen die Quote nicht belegt",
+    "quoteGeprueft": true,
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-22T17:10:49Z",
+    "anstossUtc": "2026-11-29T13:00:00Z",
+    "anbieterSpielId": "1ab9541320cecbe9f043565fd4a141e0"
+   }
+  },
+  {
+   "liga": "fr.1",
+   "ligaName": "Ligue 1",
+   "datum": "2026-11-29",
+   "heim": "AJ Auxerre",
+   "gast": "Olympique de Marseille",
+   "schluessel": {
+    "heim": "auxerre",
+    "gast": "demarseilleolympique"
+   },
+   "prognose": {
+    "heimsieg": 0.251,
+    "remis": 0.23,
+    "auswaertssieg": 0.52
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.328,
+    "gast": 1.978
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Vorteil gegen die Quote nicht belegt",
+    "quoteGeprueft": true,
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
+    "anstossUtc": "2026-11-29T14:00:00Z",
+    "anbieterSpielId": "a370db12aaff183a94f8e9a6acb6d4c9"
+   }
+  },
+  {
+   "liga": "fr.1",
+   "ligaName": "Ligue 1",
+   "datum": "2026-11-29",
+   "heim": "Olympique Lyonnais",
+   "gast": "AS Monaco FC",
+   "schluessel": {
+    "heim": "lyonnaisolympique",
+    "gast": "monaco"
+   },
+   "prognose": {
+    "heimsieg": 0.485,
+    "remis": 0.252,
+    "auswaertssieg": 0.263
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.706,
+    "gast": 1.204
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Vorteil gegen die Quote nicht belegt",
+    "quoteGeprueft": true,
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
+    "anstossUtc": "2026-11-29T19:45:00Z",
+    "anbieterSpielId": "ca8aa566e27e1d05b47e8151b2066f9a"
+   }
+  },
+  {
+   "liga": "fr.1",
+   "ligaName": "Ligue 1",
+   "datum": "2026-11-29",
+   "heim": "Toulouse FC",
+   "gast": "Stade Rennais FC 1901",
+   "schluessel": {
+    "heim": "toulouse",
+    "gast": "rennaisstade"
+   },
+   "prognose": {
+    "heimsieg": 0.452,
+    "remis": 0.229,
+    "auswaertssieg": 0.319
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.938,
+    "gast": 1.611
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Quote nicht pruefbar: keine Quote"
+   }
+  },
+  {
+   "liga": "it.1",
+   "ligaName": "Serie A",
+   "datum": "2026-11-29",
+   "heim": "AS Roma",
+   "gast": "AC Monza",
+   "schluessel": {
+    "heim": "roma",
+    "gast": "monza"
+   },
+   "prognose": {
+    "heimsieg": 0.852,
+    "remis": 0.096,
+    "auswaertssieg": 0.052
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 3.553,
+    "gast": 0.897
+   },
+   "haeufigsteTorfolge": "3:0",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Vorteil gegen die Quote nicht belegt",
+    "quoteGeprueft": true,
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
+    "anstossUtc": "2026-11-29T17:00:00Z",
+    "anbieterSpielId": "c979bd4559d2d81a8e2fe8f2d4aec376"
+   }
+  },
+  {
+   "liga": "it.1",
+   "ligaName": "Serie A",
+   "datum": "2026-11-29",
+   "heim": "Cagliari Calcio",
+   "gast": "AC Milan",
+   "schluessel": {
+    "heim": "cagliari",
+    "gast": "milan"
+   },
+   "prognose": {
+    "heimsieg": 0.225,
+    "remis": 0.256,
+    "auswaertssieg": 0.519
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.028,
+    "gast": 1.678
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Quote nicht pruefbar: keine Quote"
+   }
+  },
+  {
+   "liga": "it.1",
+   "ligaName": "Serie A",
+   "datum": "2026-11-29",
+   "heim": "Como 1907",
+   "gast": "Juventus FC",
+   "schluessel": {
+    "heim": "como",
+    "gast": "juventus"
+   },
+   "prognose": {
+    "heimsieg": 0.44,
+    "remis": 0.277,
+    "auswaertssieg": 0.283
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.447,
+    "gast": 1.113
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Vorteil gegen die Quote nicht belegt",
+    "quoteGeprueft": true,
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
+    "anstossUtc": "2026-11-29T19:45:00Z",
+    "anbieterSpielId": "3876ad367184af2f8fc04a544fc894aa"
+   }
+  },
+  {
+   "liga": "it.1",
+   "ligaName": "Serie A",
+   "datum": "2026-11-29",
+   "heim": "FC Internazionale Milano",
+   "gast": "Genoa CFC",
+   "schluessel": {
+    "heim": "internazionalemilano",
+    "gast": "genoa"
+   },
+   "prognose": {
+    "heimsieg": 0.722,
+    "remis": 0.17,
+    "auswaertssieg": 0.107
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 2.509,
+    "gast": 0.887
+   },
+   "haeufigsteTorfolge": "2:0",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Quote nicht pruefbar: keine Quote"
+   }
+  },
+  {
+   "liga": "it.1",
+   "ligaName": "Serie A",
+   "datum": "2026-11-29",
+   "heim": "Frosinone Calcio",
+   "gast": "Parma Calcio 1913",
+   "schluessel": {
+    "heim": "frosinone",
+    "gast": "parma"
+   },
+   "prognose": {
+    "heimsieg": 0.556,
+    "remis": 0.238,
+    "auswaertssieg": 0.206
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.865,
+    "gast": 1.057
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Quote nicht pruefbar: keine Quote"
+   }
+  },
+  {
+   "liga": "it.1",
+   "ligaName": "Serie A",
+   "datum": "2026-11-29",
+   "heim": "Torino FC",
+   "gast": "SS Lazio",
+   "schluessel": {
+    "heim": "torino",
+    "gast": "lazio"
+   },
+   "prognose": {
+    "heimsieg": 0.22,
+    "remis": 0.239,
+    "auswaertssieg": 0.542
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.117,
+    "gast": 1.863
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Quote nicht pruefbar: keine Quote"
+   }
+  },
+  {
+   "liga": "it.1",
+   "ligaName": "Serie A",
+   "datum": "2026-11-29",
+   "heim": "US Lecce",
+   "gast": "Atalanta BC",
+   "schluessel": {
+    "heim": "lecce",
+    "gast": "atalanta"
+   },
+   "prognose": {
+    "heimsieg": 0.216,
+    "remis": 0.248,
+    "auswaertssieg": 0.537
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.042,
+    "gast": 1.765
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Quote nicht pruefbar: keine Quote"
+   }
+  },
+  {
+   "liga": "it.1",
+   "ligaName": "Serie A",
+   "datum": "2026-11-29",
+   "heim": "US Sassuolo Calcio",
+   "gast": "SSC Napoli",
+   "schluessel": {
+    "heim": "sassuolo",
+    "gast": "napoli"
+   },
+   "prognose": {
+    "heimsieg": 0.19,
+    "remis": 0.217,
+    "auswaertssieg": 0.594
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.125,
+    "gast": 2.109
+   },
+   "haeufigsteTorfolge": "1:2",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Vorteil gegen die Quote nicht belegt",
+    "quoteGeprueft": true,
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
+    "anstossUtc": "2026-11-29T14:00:00Z",
+    "anbieterSpielId": "dc63586a1b1d938a461d71bf5b36d982"
+   }
+  },
+  {
+   "liga": "it.1",
+   "ligaName": "Serie A",
+   "datum": "2026-11-29",
+   "heim": "Udinese Calcio",
+   "gast": "ACF Fiorentina",
+   "schluessel": {
+    "heim": "udinese",
+    "gast": "acffiorentina"
+   },
+   "prognose": {
+    "heimsieg": 0.343,
+    "remis": 0.25,
+    "auswaertssieg": 0.408
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.486,
+    "gast": 1.636
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Vorteil gegen die Quote nicht belegt",
+    "quoteGeprueft": true,
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
+    "anstossUtc": "2026-11-29T11:30:00Z",
+    "anbieterSpielId": "d3d47b94324eb7cde85bd93993437d1c"
+   }
+  },
+  {
+   "liga": "it.1",
+   "ligaName": "Serie A",
+   "datum": "2026-11-29",
+   "heim": "Venezia FC",
+   "gast": "Bologna FC 1909",
+   "schluessel": {
+    "heim": "venezia",
+    "gast": "bologna"
+   },
+   "prognose": {
+    "heimsieg": 0.266,
+    "remis": 0.262,
+    "auswaertssieg": 0.472
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.148,
+    "gast": 1.602
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Quote nicht pruefbar: keine Quote"
+   }
+  },
+  {
+   "liga": "nl.1",
+   "ligaName": "Eredivisie",
+   "datum": "2026-11-29",
+   "heim": "ADO Den Haag",
+   "gast": "FC Utrecht",
+   "schluessel": {
+    "heim": "adodenhaag",
+    "gast": "utrecht"
+   },
+   "prognose": {
+    "heimsieg": 0.299,
+    "remis": 0.231,
+    "auswaertssieg": 0.47
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.512,
+    "gast": 1.929
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Vorteil gegen die Quote nicht belegt",
+    "quoteGeprueft": true,
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
+    "anstossUtc": "2026-11-29T11:15:00Z",
+    "anbieterSpielId": "d77c244bd9dd91534c40b863e44cf905"
+   }
+  },
+  {
+   "liga": "nl.1",
+   "ligaName": "Eredivisie",
+   "datum": "2026-11-29",
+   "heim": "Feyenoord Rotterdam",
+   "gast": "AFC Ajax",
+   "schluessel": {
+    "heim": "feyenoordrotterdam",
+    "gast": "ajax"
+   },
+   "prognose": {
+    "heimsieg": 0.403,
+    "remis": 0.224,
+    "auswaertssieg": 0.373
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.915,
+    "gast": 1.84
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Vorteil gegen die Quote nicht belegt",
+    "quoteGeprueft": true,
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
+    "anstossUtc": "2026-11-29T13:30:00Z",
+    "anbieterSpielId": "a846e6934bbb0f1a707bae28d3c52e9b"
+   }
+  },
+  {
+   "liga": "nl.1",
+   "ligaName": "Eredivisie",
+   "datum": "2026-11-29",
+   "heim": "Fortuna Sittard",
+   "gast": "SC Heerenveen",
+   "schluessel": {
+    "heim": "fortunasittard",
+    "gast": "heerenveen"
+   },
+   "prognose": {
+    "heimsieg": 0.274,
+    "remis": 0.233,
+    "auswaertssieg": 0.493
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.395,
+    "gast": 1.922
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Vorteil gegen die Quote nicht belegt",
+    "quoteGeprueft": true,
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
+    "anstossUtc": "2026-11-29T13:30:00Z",
+    "anbieterSpielId": "2bebeea09c64f8187e5b44dd6ab27b53"
+   }
+  },
+  {
+   "liga": "nl.1",
+   "ligaName": "Eredivisie",
+   "datum": "2026-11-29",
+   "heim": "NEC",
+   "gast": "FC Twente '65",
+   "schluessel": {
+    "heim": "nec",
+    "gast": "twente"
+   },
+   "prognose": {
+    "heimsieg": 0.286,
+    "remis": 0.242,
+    "auswaertssieg": 0.471
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.366,
+    "gast": 1.8
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Quote nicht pruefbar: keine Quote"
+   }
+  },
+  {
+   "liga": "nl.1",
+   "ligaName": "Eredivisie",
+   "datum": "2026-11-29",
+   "heim": "PEC Zwolle",
+   "gast": "AZ",
+   "schluessel": {
+    "heim": "peczwolle",
+    "gast": "az"
+   },
+   "prognose": {
+    "heimsieg": 0.221,
+    "remis": 0.226,
+    "auswaertssieg": 0.553
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.222,
+    "gast": 2.022
+   },
+   "haeufigsteTorfolge": "1:2",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Quote nicht pruefbar: keine Quote"
+   }
+  },
+  {
+   "liga": "pt.1",
+   "ligaName": "Primeira Liga",
+   "datum": "2026-11-29",
+   "heim": "FC Porto",
+   "gast": "Sporting Clube de Portugal",
+   "schluessel": {
+    "heim": "porto",
+    "gast": "clubedeportugalsporting"
+   },
+   "prognose": {
+    "heimsieg": 0.467,
+    "remis": 0.275,
+    "auswaertssieg": 0.257
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.485,
+    "gast": 1.039
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Quote nicht pruefbar: keine Quote"
+   }
+  },
+  {
+   "liga": "pt.1",
+   "ligaName": "Primeira Liga",
+   "datum": "2026-11-29",
+   "heim": "Gil Vicente FC",
+   "gast": "GD Estoril Praia",
+   "schluessel": {
+    "heim": "gilvicente",
+    "gast": "estorilgdpraia"
+   },
+   "prognose": {
+    "heimsieg": 0.534,
+    "remis": 0.259,
+    "auswaertssieg": 0.207
+   },
+   "tipp": "Heimsieg",
+   "erwarteteTore": {
+    "heim": 1.649,
+    "gast": 0.939
+   },
+   "haeufigsteTorfolge": "1:0",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68844 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Vorteil gegen die Quote nicht belegt",
+    "quoteGeprueft": true,
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-22T17:10:50Z",
+    "anstossUtc": "2026-11-29T18:00:00Z",
+    "anbieterSpielId": "588984eaf08b356b49055b534cef52e6"
+   }
   }
  ],
  "quoten": {
-  "spieleMitGeprueftQuote": 69,
-  "spieleGesamt": 121,
+  "spieleMitGeprueftQuote": 68,
+  "spieleGesamt": 114,
   "fehler": [],
   "hinweis": "Rohquoten liegen nur im privaten Actions-Artefakt (90 Tage), nicht im Repo (AGB der Odds API). Vorteil gegen die Quote ist nicht belegt."
  }

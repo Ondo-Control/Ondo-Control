@@ -1,16 +1,16 @@
 {
  "schema": 1,
- "heute": "2026-11-21",
+ "heute": "2026-11-22",
  "summen": {
   "ligen": 15,
   "saisons": 186,
-  "spiele": 68883,
+  "spiele": 68940,
   "lernbestand": 48852,
   "nachRolle": {
    "lernen": 48852,
    "pruefen": 5943,
    "holdout": 5867,
-   "spaeter": 6590,
+   "spaeter": 6647,
    "aus": 1631
   },
   "nachStatus": {
@@ -152,7 +152,7 @@
    "liga": "de.1",
    "saison": "2026-27",
    "datei": "spiele/de.1/2026-27.json",
-   "spiele": 80,
+   "spiele": 86,
    "status": "laufend",
    "rolle": "spaeter"
   },
@@ -272,7 +272,7 @@
    "liga": "de.2",
    "saison": "2026-27",
    "datei": "spiele/de.2/2026-27.json",
-   "spiele": 59,
+   "spiele": 63,
    "status": "laufend",
    "rolle": "spaeter"
   },
@@ -464,7 +464,7 @@
    "liga": "en.1",
    "saison": "2026-27",
    "datei": "spiele/en.1/2026-27.json",
-   "spiele": 97,
+   "spiele": 104,
    "status": "laufend",
    "rolle": "spaeter"
   },
@@ -584,7 +584,7 @@
    "liga": "en.2",
    "saison": "2026-27",
    "datei": "spiele/en.2/2026-27.json",
-   "spiele": 176,
+   "spiele": 185,
    "status": "laufend",
    "rolle": "spaeter"
   },
@@ -880,7 +880,7 @@
    "liga": "es.1",
    "saison": "2026-27",
    "datei": "spiele/es.1/2026-27.json",
-   "spiele": 117,
+   "spiele": 121,
    "status": "laufend",
    "rolle": "spaeter"
   },
@@ -976,7 +976,7 @@
    "liga": "es.2",
    "saison": "2026-27",
    "datei": "spiele/es.2/2026-27.json",
-   "spiele": 89,
+   "spiele": 93,
    "status": "laufend",
    "rolle": "spaeter"
   },
@@ -1080,7 +1080,7 @@
    "liga": "fr.1",
    "saison": "2026-27",
    "datei": "spiele/fr.1/2026-27.json",
-   "spiele": 87,
+   "spiele": 93,
    "status": "laufend",
    "rolle": "spaeter"
   },
@@ -1160,7 +1160,7 @@
    "liga": "fr.2",
    "saison": "2026-27",
    "datei": "spiele/fr.2/2026-27.json",
-   "spiele": 60,
+   "spiele": 61,
    "status": "laufend",
    "rolle": "spaeter"
   },
@@ -1272,7 +1272,7 @@
    "liga": "it.1",
    "saison": "2026-27",
    "datei": "spiele/it.1/2026-27.json",
-   "spiele": 112,
+   "spiele": 117,
    "status": "laufend",
    "rolle": "spaeter"
   },
@@ -1360,7 +1360,7 @@
    "liga": "it.2",
    "saison": "2026-27",
    "datei": "spiele/it.2/2026-27.json",
-   "spiele": 69,
+   "spiele": 72,
    "status": "laufend",
    "rolle": "spaeter"
   },
@@ -1432,7 +1432,7 @@
    "liga": "nl.1",
    "saison": "2026-27",
    "datei": "spiele/nl.1/2026-27.json",
-   "spiele": 107,
+   "spiele": 115,
    "status": "laufend",
    "rolle": "spaeter"
   },
