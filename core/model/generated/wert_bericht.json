@@ -1,10 +1,10 @@
 {
  "schema": 1,
- "ereignisseImArchiv": 147,
+ "ereignisseImArchiv": 197,
  "mitMindestensZweiAbrufen": 126,
- "abgeschlossen": 51,
- "margeTipicoMittel": 0.069,
- "margePinnacleMittel": 0.043,
+ "abgeschlossen": 60,
+ "margeTipicoMittel": 0.0671,
+ "margePinnacleMittel": 0.0403,
  "schwellen": [
   {
    "schwelle": 1,
@@ -30,9 +30,9 @@
  ],
  "clv": {
   "wetten": 5,
-  "mittel": -0.0712,
+  "mittel": -0.1035,
   "hinweis": "positiv = die Profis haben sich nachtraeglich in diese Richtung bewegt"
  },
  "hinweis": "Summenzahlen, keine einzelne Quote. Aussage erst ab 300 gewerteten Wetten je Schwelle.",
- "stand": "85 neue Abrufe in diesem Lauf"
+ "stand": "128 neue Abrufe in diesem Lauf"
 }

@@ -276,24 +276,24 @@
  "seitdem": {
   "hinweis": "Spiele nach dem Holdout (nur Beobachtung, kein Beschluss)",
   "alle": {
-   "spiele": 6647,
+   "spiele": 6661,
    "maerkte": {
     "m1x2": {
-     "n": 6647,
+     "n": 6661,
      "logLossModell": 0.9993,
-     "logLossGrundquote": 1.063,
+     "logLossGrundquote": 1.0628,
      "brierModell": 0.5967,
-     "brierGrundquote": 0.6425
+     "brierGrundquote": 0.6424
     },
     "tore": {
-     "n": 6647,
+     "n": 6661,
      "logLossModell": 0.6851,
      "logLossGrundquote": 0.6903,
      "brierModell": 0.4921,
-     "brierGrundquote": 0.4972
+     "brierGrundquote": 0.4971
     },
     "btts": {
-     "n": 6647,
+     "n": 6661,
      "logLossModell": 0.6854,
      "logLossGrundquote": 0.6878,
      "brierModell": 0.4923,
@@ -302,57 +302,57 @@
    },
    "vorsprung": {
     "m1x2": {
-     "n": 6647,
-     "spieltage": 2075,
-     "differenz": 0.0636,
-     "unten": 0.0552,
-     "oben": 0.0718
+     "n": 6661,
+     "spieltage": 2076,
+     "differenz": 0.0635,
+     "unten": 0.0557,
+     "oben": 0.0717
     },
     "tore": {
-     "n": 6647,
-     "spieltage": 2075,
+     "n": 6661,
+     "spieltage": 2076,
      "differenz": 0.0052,
      "unten": 0.0001,
-     "oben": 0.0104
+     "oben": 0.0106
     },
     "btts": {
-     "n": 6647,
-     "spieltage": 2075,
-     "differenz": 0.0023,
-     "unten": -0.0014,
+     "n": 6661,
+     "spieltage": 2076,
+     "differenz": 0.0024,
+     "unten": -0.0015,
      "oben": 0.006
     }
    },
    "wieInDerApp": {
-    "aussagen": 19941,
+    "aussagen": 19983,
     "trefferquote": 54.1,
     "brier": 0.2432,
     "kalibrierung": [
      {
       "von": 0,
       "bis": 50,
-      "n": 3946,
+      "n": 3952,
       "behauptet": 42.3,
       "eingetroffen": 44.1
      },
      {
       "von": 50,
       "bis": 60,
-      "n": 10661,
+      "n": 10678,
       "behauptet": 54.6,
       "eingetroffen": 53.1
      },
      {
       "von": 60,
       "bis": 70,
-      "n": 4319,
+      "n": 4333,
       "behauptet": 63.9,
       "eingetroffen": 60.9
      },
      {
       "von": 70,
       "bis": 80,
-      "n": 825,
+      "n": 830,
       "behauptet": 73.6,
       "eingetroffen": 70.7
      },
@@ -369,85 +369,85 @@
   "laufendeSaison": {
    "saison": "2026-27",
    "werte": {
-    "spiele": 1205,
+    "spiele": 1219,
     "maerkte": {
      "m1x2": {
-      "n": 1205,
+      "n": 1219,
       "logLossModell": 0.9967,
-      "logLossGrundquote": 1.0653,
-      "brierModell": 0.5953,
-      "brierGrundquote": 0.6445
+      "logLossGrundquote": 1.0646,
+      "brierModell": 0.5952,
+      "brierGrundquote": 0.644
      },
      "tore": {
-      "n": 1205,
+      "n": 1219,
       "logLossModell": 0.6721,
-      "logLossGrundquote": 0.6867,
+      "logLossGrundquote": 0.6865,
       "brierModell": 0.4797,
-      "brierGrundquote": 0.4936
+      "brierGrundquote": 0.4934
      },
      "btts": {
-      "n": 1205,
-      "logLossModell": 0.6753,
-      "logLossGrundquote": 0.6841,
+      "n": 1219,
+      "logLossModell": 0.6752,
+      "logLossGrundquote": 0.6842,
       "brierModell": 0.4824,
-      "brierGrundquote": 0.491
+      "brierGrundquote": 0.4911
      }
     },
     "vorsprung": {
      "m1x2": {
-      "n": 1205,
-      "spieltage": 404,
-      "differenz": 0.0686,
-      "unten": 0.0498,
-      "oben": 0.0887
+      "n": 1219,
+      "spieltage": 405,
+      "differenz": 0.0679,
+      "unten": 0.0484,
+      "oben": 0.0855
      },
      "tore": {
-      "n": 1205,
-      "spieltage": 404,
-      "differenz": 0.0145,
-      "unten": 0.0034,
-      "oben": 0.0264
+      "n": 1219,
+      "spieltage": 405,
+      "differenz": 0.0144,
+      "unten": 0.0039,
+      "oben": 0.0269
      },
      "btts": {
-      "n": 1205,
-      "spieltage": 404,
-      "differenz": 0.0088,
-      "unten": 0.0003,
-      "oben": 0.0173
+      "n": 1219,
+      "spieltage": 405,
+      "differenz": 0.009,
+      "unten": -0.0004,
+      "oben": 0.0179
      }
     },
     "wieInDerApp": {
-     "aussagen": 3615,
+     "aussagen": 3657,
      "trefferquote": 55.2,
-     "brier": 0.2388,
+     "brier": 0.2389,
      "kalibrierung": [
       {
        "von": 0,
        "bis": 50,
-       "n": 675,
+       "n": 681,
        "behauptet": 43.1,
-       "eingetroffen": 42.2
+       "eingetroffen": 42.1
       },
       {
        "von": 50,
        "bis": 60,
-       "n": 1858,
+       "n": 1875,
        "behauptet": 54.6,
        "eingetroffen": 53.5
       },
       {
        "von": 60,
        "bis": 70,
-       "n": 851,
+       "n": 865,
        "behauptet": 64,
-       "eingetroffen": 64.4
+       "eingetroffen": 64.3
       },
       {
        "von": 70,
        "bis": 80,
-       "n": 191,
+       "n": 196,
        "behauptet": 74.1,
-       "eingetroffen": 71.7
+       "eingetroffen": 71.9
       },
       {
        "von": 80,

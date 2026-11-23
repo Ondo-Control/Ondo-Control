@@ -5,13 +5,13 @@
  "summen": {
   "ligen": 15,
   "saisons": 186,
-  "spiele": 68940,
+  "spiele": 68954,
   "lernbestand": 48852,
   "nachRolle": {
    "lernen": 48852,
    "pruefen": 5943,
    "holdout": 5867,
-   "spaeter": 6647,
+   "spaeter": 6661,
    "aus": 1631
   },
   "nachStatus": {
@@ -24,28 +24,28 @@
   "dateien": 3,
   "geparkt": 0,
   "ohneLiga": {
-   "bra.1": 86,
-   "arg.1": 108,
-   "swe.1": 61,
-   "nor.1": 52,
-   "bra.2": 100,
+   "bra.1": 89,
+   "arg.1": 111,
+   "swe.1": 64,
+   "nor.1": 56,
+   "bra.2": 102,
    "uefa.nations": 156,
-   "den.1": 39,
+   "den.1": 42,
    "ned.2": 93,
    "jpn.1": 80,
    "sco.1": 45,
    "sco.2": 47,
-   "bel.1": 51,
-   "aut.1": 41,
+   "bel.1": 54,
+   "aut.1": 42,
    "fifa.friendly": 115,
-   "tur.1": 61,
-   "gre.1": 43,
+   "tur.1": 63,
+   "gre.1": 48,
    "concacaf.nations.league": 106,
    "club.friendly": 314,
    "ned.cup": 46,
    "esp.copa_del_rey": 76,
    "caf.nations_qual": 96,
-   "usa.1": 143,
+   "usa.1": 146,
    "uefa.champions": 54,
    "uefa.europa": 54,
    "uefa.europa.conf": 54,
@@ -54,12 +54,12 @@
    "fra.coupe_de_france": 91
   },
   "verarbeitet": {
-   "neu": 289,
-   "gefuellt": 475,
+   "neu": 292,
+   "gefuellt": 486,
    "bestaetigt": 74,
    "konflikt": 0,
    "doppelt": 0,
-   "unaufgeloest": 16
+   "unaufgeloest": 18
   }
  },
  "aliasZeilen": 64,
@@ -375,16 +375,16 @@
     },
     "2026-27": {
      "status": "laufend",
-     "grund": "86 von 306 Spielen der Doppelrunde",
+     "grund": "88 von 306 Spielen der Doppelrunde",
      "teams": 18,
      "soll": 306,
      "angesetzt": 306,
-     "mitErgebnis": 86,
+     "mitErgebnis": 88,
      "zusatz": 0,
-     "gespeichert": 86,
+     "gespeichert": 88,
      "quellen": {
       "of": 25,
-      "espn": 53,
+      "espn": 55,
       "beide": 8
      },
      "ofDatei": true,
@@ -1140,16 +1140,16 @@
     },
     "2026-27": {
      "status": "laufend",
-     "grund": "104 von 380 Spielen der Doppelrunde",
+     "grund": "105 von 380 Spielen der Doppelrunde",
      "teams": 20,
      "soll": 380,
      "angesetzt": 380,
-     "mitErgebnis": 104,
+     "mitErgebnis": 105,
      "zusatz": 0,
-     "gespeichert": 104,
+     "gespeichert": 105,
      "quellen": {
       "of": 36,
-      "espn": 59,
+      "espn": 60,
       "beide": 9
      },
      "ofDatei": true,
@@ -2160,16 +2160,16 @@
     },
     "2026-27": {
      "status": "laufend",
-     "grund": "121 von 380 Spielen der Doppelrunde",
+     "grund": "124 von 380 Spielen der Doppelrunde",
      "teams": 20,
      "soll": 380,
      "angesetzt": 380,
-     "mitErgebnis": 121,
+     "mitErgebnis": 124,
      "zusatz": 0,
-     "gespeichert": 121,
+     "gespeichert": 124,
      "quellen": {
       "of": 55,
-      "espn": 57,
+      "espn": 60,
       "beide": 9
      },
      "ofDatei": true,
@@ -2396,16 +2396,16 @@
     },
     "2026-27": {
      "status": "laufend",
-     "grund": "93 von 420 Spielen der Doppelrunde",
+     "grund": "96 von 420 Spielen der Doppelrunde",
      "teams": 21,
      "soll": 420,
-     "angesetzt": 93,
-     "mitErgebnis": 93,
+     "angesetzt": 96,
+     "mitErgebnis": 96,
      "zusatz": 0,
-     "gespeichert": 93,
+     "gespeichert": 96,
      "quellen": {
       "of": 0,
-      "espn": 93,
+      "espn": 96,
       "beide": 0
      },
      "ofDatei": false,
@@ -2415,7 +2415,7 @@
     }
    },
    "espnUnaufgeloest": {
-    "RC Celta Fortuna": 9
+    "RC Celta Fortuna": 10
    }
   },
   "fr.1": {
@@ -2653,16 +2653,16 @@
     },
     "2026-27": {
      "status": "laufend",
-     "grund": "93 von 306 Spielen der Doppelrunde",
+     "grund": "95 von 306 Spielen der Doppelrunde",
      "teams": 18,
      "soll": 306,
      "angesetzt": 306,
-     "mitErgebnis": 93,
+     "mitErgebnis": 95,
      "zusatz": 0,
-     "gespeichert": 93,
+     "gespeichert": 95,
      "quellen": {
       "of": 32,
-      "espn": 52,
+      "espn": 54,
       "beide": 9
      },
      "ofDatei": true,
@@ -3125,16 +3125,16 @@
     },
     "2026-27": {
      "status": "laufend",
-     "grund": "117 von 380 Spielen der Doppelrunde",
+     "grund": "119 von 380 Spielen der Doppelrunde",
      "teams": 20,
      "soll": 380,
      "angesetzt": 380,
-     "mitErgebnis": 117,
+     "mitErgebnis": 119,
      "zusatz": 0,
-     "gespeichert": 117,
+     "gespeichert": 119,
      "quellen": {
       "of": 40,
-      "espn": 67,
+      "espn": 69,
       "beide": 10
      },
      "ofDatei": true,
@@ -3361,7 +3361,7 @@
     }
    },
    "espnUnaufgeloest": {
-    "Arezzo": 7
+    "Arezzo": 8
    }
   },
   "nl.1": {
@@ -3523,16 +3523,16 @@
     },
     "2026-27": {
      "status": "laufend",
-     "grund": "115 von 306 Spielen der Doppelrunde",
+     "grund": "116 von 306 Spielen der Doppelrunde",
      "teams": 18,
      "soll": 306,
      "angesetzt": 306,
-     "mitErgebnis": 115,
+     "mitErgebnis": 116,
      "zusatz": 0,
-     "gespeichert": 115,
+     "gespeichert": 116,
      "quellen": {
       "of": 53,
-      "espn": 53,
+      "espn": 54,
       "beide": 9
      },
      "ofDatei": true,

@@ -855,7 +855,13 @@
     0.225,
     0.34
    ],
-   "tipp": "Heimsieg"
+   "tipp": "Heimsieg",
+   "ergebnis": {
+    "tore": "3:1",
+    "ausgang": "Heimsieg",
+    "verlust": 0.8324,
+    "treffer": true
+   }
   },
   "de.1|2026-11-22|bremenwerder|hamburger": {
    "liga": "de.1",
@@ -869,7 +875,13 @@
     0.239,
     0.236
    ],
-   "tipp": "Heimsieg"
+   "tipp": "Heimsieg",
+   "ergebnis": {
+    "tore": "4:0",
+    "ausgang": "Heimsieg",
+    "verlust": 0.6444,
+    "treffer": true
+   }
   },
   "en.2|2026-11-22|burnley|blackburnrovers": {
    "liga": "en.2",
@@ -917,7 +929,13 @@
     0.244,
     0.183
    ],
-   "tipp": "Heimsieg"
+   "tipp": "Heimsieg",
+   "ergebnis": {
+    "tore": "1:0",
+    "ausgang": "Heimsieg",
+    "verlust": 0.5569,
+    "treffer": true
+   }
   },
   "es.1|2026-11-22|alavesdeportivo|corunadeportivola": {
    "liga": "es.1",
@@ -965,7 +983,13 @@
     0.309,
     0.471
    ],
-   "tipp": "Auswaertssieg"
+   "tipp": "Auswaertssieg",
+   "ergebnis": {
+    "tore": "0:3",
+    "ausgang": "Auswaertssieg",
+    "verlust": 0.7529,
+    "treffer": true
+   }
   },
   "es.1|2026-11-22|levante|elche": {
    "liga": "es.1",
@@ -1021,7 +1045,13 @@
     0.212,
     0.465
    ],
-   "tipp": "Auswaertssieg"
+   "tipp": "Auswaertssieg",
+   "ergebnis": {
+    "tore": "3:2",
+    "ausgang": "Heimsieg",
+    "verlust": 1.1332,
+    "treffer": false
+   }
   },
   "es.1|2026-11-22|sevilla|balompiebetisreal": {
    "liga": "es.1",
@@ -1049,7 +1079,13 @@
     0.244,
     0.339
    ],
-   "tipp": "Heimsieg"
+   "tipp": "Heimsieg",
+   "ergebnis": {
+    "tore": "1:1",
+    "ausgang": "Remis",
+    "verlust": 1.4106,
+    "treffer": false
+   }
   },
   "fr.1|2026-11-22|demarseilleolympique|lemans": {
    "liga": "fr.1",
@@ -1063,7 +1099,13 @@
     0.157,
     0.094
    ],
-   "tipp": "Heimsieg"
+   "tipp": "Heimsieg",
+   "ergebnis": {
+    "tore": "2:3",
+    "ausgang": "Auswaertssieg",
+    "verlust": 2.3645,
+    "treffer": false
+   }
   },
   "fr.1|2026-11-22|paris|angerssco": {
    "liga": "fr.1",
@@ -1097,7 +1139,13 @@
     0.22,
     0.228
    ],
-   "tipp": "Heimsieg"
+   "tipp": "Heimsieg",
+   "ergebnis": {
+    "tore": "5:1",
+    "ausgang": "Heimsieg",
+    "verlust": 0.5942,
+    "treffer": true
+   }
   },
   "it.1|2026-11-22|atalanta|internazionalemilano": {
    "liga": "it.1",
@@ -1111,7 +1159,13 @@
     0.21,
     0.586
    ],
-   "tipp": "Auswaertssieg"
+   "tipp": "Auswaertssieg",
+   "ergebnis": {
+    "tore": "4:4",
+    "ausgang": "Remis",
+    "verlust": 1.5606,
+    "treffer": false
+   }
   },
   "it.1|2026-11-22|bologna|udinese": {
    "liga": "it.1",
@@ -1205,7 +1259,13 @@
     0.23,
     0.331
    ],
-   "tipp": "Heimsieg"
+   "tipp": "Heimsieg",
+   "ergebnis": {
+    "tore": "0:1",
+    "ausgang": "Auswaertssieg",
+    "verlust": 1.1056,
+    "treffer": false
+   }
   },
   "nl.1|2026-11-22|rotterdamsparta|az": {
    "liga": "nl.1",
@@ -2574,14 +2634,44 @@
     0.207
    ],
    "tipp": "Heimsieg"
+  },
+  "pt.1|2026-11-30|casapia|bragaclubedesporting": {
+   "liga": "pt.1",
+   "datum": "2026-11-30",
+   "heim": "Casa Pia AC",
+   "gast": "Sporting Clube de Braga",
+   "erstelltAm": "2026-11-23",
+   "modellStand": "2026-11-22",
+   "lagenStand": "Produktion alle 6d5e6a08 (68858 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+   "p": [
+    0.2,
+    0.27,
+    0.53
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "pt.1|2026-11-30|benficaelisboasport|famalicao": {
+   "liga": "pt.1",
+   "datum": "2026-11-30",
+   "heim": "Sport Lisboa e Benfica",
+   "gast": "FC Famalicão",
+   "erstelltAm": "2026-11-23",
+   "modellStand": "2026-11-22",
+   "lagenStand": "Produktion alle 6d5e6a08 (68858 Spiele bis 2026-11-22), kein Merkmalsgewinn",
+   "p": [
+    0.651,
+    0.208,
+    0.141
+   ],
+   "tipp": "Heimsieg"
   }
  },
  "zusammenfassung": {
-  "abgelegt": 157,
-  "bewertet": 48,
-  "offen": 109,
-  "logLoss": 0.9526,
-  "trefferquote": 0.583,
+  "abgelegt": 159,
+  "bewertet": 58,
+  "offen": 101,
+  "logLoss": 0.9773,
+  "trefferquote": 0.569,
   "vergleichZufall": 1.0986,
   "hinweis": "Nur vorab abgelegte Tipps. Ohne Quote kein Vergleich mit dem Markt; die Zahl ist erst mit vielen Spielen aussagekraeftig."
  }
