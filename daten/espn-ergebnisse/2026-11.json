@@ -2763,6 +2763,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401842884",
+   "providerCompetitionSlug": "swe.1",
+   "providerCompetitionName": "Swedish Allsvenskan",
+   "datum": "2026-11-23",
+   "kickoffUtc": "2026-11-23T18:00Z",
+   "heim": "Örgryte IS",
+   "gast": "Kalmar FF",
+   "torHeim": 3,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "131552",
+      "teamDisplayName": "Örgryte IS",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "1"
+      ]
+     },
+     {
+      "teamId": "3052",
+      "teamDisplayName": "Kalmar FF",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:1",
+   "fetchedAt": "2026-11-23T20:20:45.058Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401842885",
    "providerCompetitionSlug": "swe.1",
    "providerCompetitionName": "Swedish Allsvenskan",
@@ -2880,6 +2920,46 @@
    },
    "halbzeit": "1:1",
    "fetchedAt": "2026-11-22T16:25:55.877Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401842888",
+   "providerCompetitionSlug": "swe.1",
+   "providerCompetitionName": "Swedish Allsvenskan",
+   "datum": "2026-11-23",
+   "kickoffUtc": "2026-11-23T18:00Z",
+   "heim": "Hammarby IF",
+   "gast": "IFK Göteborg",
+   "torHeim": 3,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2495",
+      "teamDisplayName": "Hammarby IF",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "2"
+      ]
+     },
+     {
+      "teamId": "2556",
+      "teamDisplayName": "IFK Göteborg",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-11-23T20:20:44.882Z"
   },
   {
    "provider": "espn",
@@ -7200,6 +7280,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-11-07T03:17:10.046Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401874538",
+   "providerCompetitionSlug": "den.1",
+   "providerCompetitionName": "Danish Superliga",
+   "datum": "2026-11-23",
+   "kickoffUtc": "2026-11-23T18:00Z",
+   "heim": "Brøndby IF",
+   "gast": "FC Midtjylland",
+   "torHeim": 0,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "575",
+      "teamDisplayName": "Brøndby IF",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "572",
+      "teamDisplayName": "FC Midtjylland",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-11-23T20:20:46.287Z"
   },
   {
    "provider": "espn",
@@ -23523,6 +23643,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401888370",
+   "providerCompetitionSlug": "tur.1",
+   "providerCompetitionName": "Turkish Super Lig",
+   "datum": "2026-11-23",
+   "kickoffUtc": "2026-11-23T17:00Z",
+   "heim": "Istanbul Basaksehir",
+   "gast": "Çorum FK",
+   "torHeim": 4,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7914",
+      "teamDisplayName": "Istanbul Basaksehir",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "4"
+      ]
+     },
+     {
+      "teamId": "132334",
+      "teamDisplayName": "Çorum FK",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-11-23T20:20:29.689Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401888371",
    "providerCompetitionSlug": "tur.1",
    "providerCompetitionName": "Turkish Super Lig",
@@ -23800,6 +23960,46 @@
    },
    "halbzeit": "1:0",
    "fetchedAt": "2026-11-22T16:25:44.072Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401896728",
+   "providerCompetitionSlug": "gre.1",
+   "providerCompetitionName": "Greek Super League",
+   "datum": "2026-11-23",
+   "kickoffUtc": "2026-11-23T15:00Z",
+   "heim": "Asteras Tripoli",
+   "gast": "Aris",
+   "torHeim": 0,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "8354",
+      "teamDisplayName": "Asteras Tripoli",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     },
+     {
+      "teamId": "11553",
+      "teamDisplayName": "Aris",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-23T20:20:31.098Z"
   },
   {
    "provider": "espn",
