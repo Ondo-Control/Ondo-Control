@@ -2820,6 +2820,18 @@
    "torGast": 5,
    "quelle": "football-data.org",
    "halbzeit": "1:2"
+  },
+  {
+   "datum": "2026-11-24",
+   "anpfiff": "00:00",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "Santos FC",
+   "gast": "Grêmio FBPA",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "0:1"
   }
  ]
 }
