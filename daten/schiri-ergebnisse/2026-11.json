@@ -2760,6 +2760,66 @@
    "torGast": 2,
    "quelle": "football-data.org",
    "halbzeit": "0:2"
+  },
+  {
+   "datum": "2026-11-23",
+   "anpfiff": "19:45",
+   "wettbewerb": "Serie A",
+   "heim": "AC Monza",
+   "gast": "ACF Fiorentina",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-11-23",
+   "anpfiff": "23:00",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "Botafogo FR",
+   "gast": "São Paulo FC",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:1"
+  },
+  {
+   "datum": "2026-11-23",
+   "anpfiff": "20:00",
+   "wettbewerb": "Premier League",
+   "heim": "Brentford FC",
+   "gast": "Everton FC",
+   "status": "FT",
+   "torHeim": 4,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "2:0"
+  },
+  {
+   "datum": "2026-11-23",
+   "anpfiff": "20:00",
+   "wettbewerb": "Primera Division",
+   "heim": "Levante UD",
+   "gast": "Elche CF",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-11-23",
+   "anpfiff": "22:30",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "SC Internacional",
+   "gast": "EC Vitória",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 5,
+   "quelle": "football-data.org",
+   "halbzeit": "1:2"
   }
  ]
 }
