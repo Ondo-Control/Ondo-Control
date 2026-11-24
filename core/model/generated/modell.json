@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "stand": "2026-11-22",
+ "stand": "2026-11-23",
  "kandidat": "K6",
  "parameter": {
   "startNiveau": 0.18,
@@ -622,9 +622,9 @@
   "en": {
    "ligen": {
     "en.1": {
-     "niveau": 0.1924,
-     "heim": 0.1815,
-     "spiele": 6158
+     "niveau": 0.1938,
+     "heim": 0.1851,
+     "spiele": 6159
     },
     "en.2": {
      "niveau": 0.1763,
@@ -813,11 +813,11 @@
     },
     "brentford": {
      "name": "Brentford FC",
-     "a": 0.2326,
-     "d": 0.1347,
+     "a": 0.3071,
+     "d": 0.1672,
      "liga": "en.1",
-     "spiele": 610,
-     "zuletzt": "2026-11-08"
+     "spiele": 611,
+     "zuletzt": "2026-11-23"
     },
     "bristolcity": {
      "name": "Bristol City FC",
@@ -1085,11 +1085,11 @@
     },
     "everton": {
      "name": "Everton FC",
-     "a": 0.0215,
-     "d": 0.1889,
+     "a": -0.011,
+     "d": 0.1145,
      "liga": "en.1",
-     "spiele": 615,
-     "zuletzt": "2026-11-06"
+     "spiele": 616,
+     "zuletzt": "2026-11-23"
     },
     "fleetwoodtown": {
      "name": "Fleetwood Town",
@@ -1504,14 +1504,14 @@
   "es": {
    "ligen": {
     "es.1": {
-     "niveau": 0.1449,
-     "heim": 0.2714,
-     "spiele": 5419
+     "niveau": 0.1439,
+     "heim": 0.2709,
+     "spiele": 5420
     },
     "es.2": {
-     "niveau": 0.0837,
-     "heim": 0.2921,
-     "spiele": 4822
+     "niveau": 0.0857,
+     "heim": 0.2918,
+     "spiele": 4823
     }
    },
    "teams": {
@@ -1541,11 +1541,11 @@
     },
     "almeria": {
      "name": "UD Almería",
-     "a": 0.2814,
-     "d": 0.0141,
+     "a": 0.3165,
+     "d": -0.0119,
      "liga": "es.2",
-     "spiele": 507,
-     "zuletzt": "2026-11-14"
+     "spiele": 508,
+     "zuletzt": "2026-11-23"
     },
     "andorra": {
      "name": "FC Andorra",
@@ -1685,11 +1685,11 @@
     },
     "ceuta": {
      "name": "AD Ceuta FC",
-     "a": -0.2385,
-     "d": -0.2398,
+     "a": -0.2124,
+     "d": -0.2749,
      "liga": "es.2",
-     "spiele": 19,
-     "zuletzt": "2026-11-15"
+     "spiele": 20,
+     "zuletzt": "2026-11-23"
     },
     "cordoba": {
      "name": "Córdoba CF",
@@ -1765,11 +1765,11 @@
     },
     "elche": {
      "name": "Elche CF",
-     "a": -0.0723,
-     "d": -0.0457,
+     "a": -0.0803,
+     "d": -0.0236,
      "liga": "es.1",
-     "spiele": 489,
-     "zuletzt": "2026-11-08"
+     "spiele": 490,
+     "zuletzt": "2026-11-23"
     },
     "eldense": {
      "name": "CD Eldense",
@@ -1893,11 +1893,11 @@
     },
     "levante": {
      "name": "Levante UD",
-     "a": 0.0895,
-     "d": -0.1648,
+     "a": 0.0674,
+     "d": -0.1568,
      "liga": "es.1",
-     "spiele": 471,
-     "zuletzt": "2026-11-08"
+     "spiele": 472,
+     "zuletzt": "2026-11-23"
     },
     "llagosteraue": {
      "name": "UE Llagostera",
@@ -2085,9 +2085,9 @@
      "spiele": 4308
     },
     "fr.2": {
-     "niveau": 0.1806,
-     "heim": 0.2185,
-     "spiele": 3034
+     "niveau": 0.1816,
+     "heim": 0.2178,
+     "spiele": 3036
     }
    },
    "teams": {
@@ -2293,11 +2293,11 @@
     },
     "dunkerqueusl": {
      "name": "USL Dunkerque",
-     "a": 0.0148,
-     "d": 0.0291,
+     "a": 0.0669,
+     "d": 0.0034,
      "liga": "fr.2",
-     "spiele": 90,
-     "zuletzt": "2026-11-06"
+     "spiele": 91,
+     "zuletzt": "2026-11-23"
     },
     "eaguingamp": {
      "name": "EA Guingamp",
@@ -2333,11 +2333,11 @@
     },
     "footgrenoble": {
      "name": "Grenoble Foot 38",
-     "a": -0.1204,
-     "d": -0.1981,
+     "a": -0.1463,
+     "d": -0.1755,
      "liga": "fr.2",
-     "spiele": 155,
-     "zuletzt": "2026-11-06"
+     "spiele": 156,
+     "zuletzt": "2026-11-23"
     },
     "germainparissaint": {
      "name": "Paris Saint-Germain FC",
@@ -2437,11 +2437,11 @@
     },
     "nantes": {
      "name": "FC Nantes",
-     "a": -0.0348,
-     "d": 0.2062,
+     "a": -0.0575,
+     "d": 0.2321,
      "liga": "fr.2",
-     "spiele": 436,
-     "zuletzt": "2026-11-07"
+     "spiele": 437,
+     "zuletzt": "2026-11-23"
     },
     "nice": {
      "name": "OGC Nice",
@@ -2509,11 +2509,11 @@
     },
     "sochaux": {
      "name": "FC Sochaux",
-     "a": -0.2338,
-     "d": -0.0394,
+     "a": -0.2081,
+     "d": -0.0915,
      "liga": "fr.2",
-     "spiele": 262,
-     "zuletzt": "2026-11-06"
+     "spiele": 263,
+     "zuletzt": "2026-11-23"
     },
     "toulouse": {
      "name": "Toulouse FC",
@@ -2544,9 +2544,9 @@
   "it": {
    "ligen": {
     "it.1": {
-     "niveau": 0.2247,
-     "heim": 0.1303,
-     "spiele": 5013
+     "niveau": 0.2241,
+     "heim": 0.1335,
+     "spiele": 5014
     },
     "it.2": {
      "niveau": 0.1223,
@@ -2557,11 +2557,11 @@
    "teams": {
     "acffiorentina": {
      "name": "ACF Fiorentina",
-     "a": 0.122,
-     "d": -0.1503,
+     "a": 0.065,
+     "d": -0.1899,
      "liga": "it.1",
-     "spiele": 499,
-     "zuletzt": "2026-11-08"
+     "spiele": 500,
+     "zuletzt": "2026-11-23"
     },
     "ascoli": {
      "name": "Ascoli Calcio",
@@ -2877,11 +2877,11 @@
     },
     "monza": {
      "name": "AC Monza",
-     "a": 0.0138,
-     "d": -0.2964,
+     "a": 0.0534,
+     "d": -0.2393,
      "liga": "it.1",
-     "spiele": 193,
-     "zuletzt": "2026-11-08"
+     "spiele": 194,
+     "zuletzt": "2026-11-23"
     },
     "napoli": {
      "name": "SSC Napoli",

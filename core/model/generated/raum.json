@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "stand": "2026-11-22",
+ "stand": "2026-11-23",
  "kandidat": "K6",
  "regel": {
   "mindestSpieleRunde": 300,
@@ -15,10 +15,10 @@
  },
  "zusammenfassung": {
   "hinweis": "Markt 1X2, alle Runden nach der Einlaufzeit. Differenz positiv = der erstgenannte ist besser.",
-  "spiele": 63546,
+  "spiele": 63552,
   "lernenHilft": {
    "frage": "Tippt der aktuelle Lernstand besser als der eine Runde aeltere?",
-   "spiele": 63546,
+   "spiele": 63552,
    "differenz": 0.0032,
    "unten": 0.0024,
    "oben": 0.004,
@@ -26,32 +26,32 @@
   },
   "gegenGrundquote": {
    "m1x2": {
-    "spiele": 63546,
+    "spiele": 63552,
     "differenz": 0.0494,
     "unten": 0.0467,
-    "oben": 0.0522,
+    "oben": 0.0517,
     "urteil": "belegt"
    },
    "tore": {
-    "spiele": 63546,
+    "spiele": 63552,
     "differenz": 0.0016,
-    "unten": 0.0001,
-    "oben": 0.0032,
-    "urteil": "belegt"
+    "unten": 0,
+    "oben": 0.0034,
+    "urteil": "nicht_belegt"
    },
    "btts": {
-    "spiele": 63546,
+    "spiele": 63552,
     "differenz": -0.001,
-    "unten": -0.002,
-    "oben": 0.0001,
+    "unten": -0.0021,
+    "oben": 0.0003,
     "urteil": "nicht_belegt"
    }
   },
   "laufendGegenEingefroren": {
    "frage": "Was bringt Lernen nach jedem einzelnen Spiel gegenueber Lernen je Runde?",
-   "spiele": 63546,
+   "spiele": 63552,
    "differenz": 0.002,
-   "unten": 0.0014,
+   "unten": 0.0015,
    "oben": 0.0026,
    "urteil": "belegt"
   },
@@ -1957,12 +1957,12 @@
    "pruefsumme": "5f023709",
    "von": "2026-11",
    "bis": "2026-11",
-   "spiele": 280,
+   "spiele": 286,
    "logLoss1x2": {
-    "lernstand": 0.9778,
+    "lernstand": 0.9765,
     "voriger": 0.9892,
-    "laufend": 0.9755,
-    "grundquote": 1.0526
+    "laufend": 0.9739,
+    "grundquote": 1.0532
    },
    "laeuftNoch": true
   }

@@ -1299,7 +1299,13 @@
     0.23,
     0.431
    ],
-   "tipp": "Auswaertssieg"
+   "tipp": "Auswaertssieg",
+   "ergebnis": {
+    "tore": "3:0",
+    "ausgang": "Heimsieg",
+    "verlust": 1.0818,
+    "treffer": false
+   }
   },
   "it.1|2026-11-23|juventus|venezia": {
    "liga": "it.1",
@@ -2668,10 +2674,10 @@
  },
  "zusammenfassung": {
   "abgelegt": 159,
-  "bewertet": 58,
-  "offen": 101,
-  "logLoss": 0.9773,
-  "trefferquote": 0.569,
+  "bewertet": 59,
+  "offen": 100,
+  "logLoss": 0.979,
+  "trefferquote": 0.559,
   "vergleichZufall": 1.0986,
   "hinweis": "Nur vorab abgelegte Tipps. Ohne Quote kein Vergleich mit dem Markt; die Zahl ist erst mit vielen Spielen aussagekraeftig."
  }
