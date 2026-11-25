@@ -1334,7 +1334,13 @@
     0.267,
     0.388
    ],
-   "tipp": "Auswaertssieg"
+   "tipp": "Auswaertssieg",
+   "ergebnis": {
+    "tore": "1:1",
+    "ausgang": "Remis",
+    "verlust": 1.3205,
+    "treffer": false
+   }
   },
   "en.2|2026-11-24|cardiffcity|endnorthpreston": {
    "liga": "en.2",
@@ -1349,7 +1355,13 @@
     0.185,
     0.146
    ],
-   "tipp": "Heimsieg"
+   "tipp": "Heimsieg",
+   "ergebnis": {
+    "tore": "0:4",
+    "ausgang": "Auswaertssieg",
+    "verlust": 1.9241,
+    "treffer": false
+   }
   },
   "en.2|2026-11-24|athleticcharlton|citylincoln": {
    "liga": "en.2",
@@ -1364,7 +1376,13 @@
     0.286,
     0.281
    ],
-   "tipp": "Heimsieg"
+   "tipp": "Heimsieg",
+   "ergebnis": {
+    "tore": "4:0",
+    "ausgang": "Heimsieg",
+    "verlust": 0.837,
+    "treffer": true
+   }
   },
   "en.2|2026-11-24|middlesbrough|cityswansea": {
    "liga": "en.2",
@@ -1379,7 +1397,13 @@
     0.236,
     0.234
    ],
-   "tipp": "Heimsieg"
+   "tipp": "Heimsieg",
+   "ergebnis": {
+    "tore": "2:1",
+    "ausgang": "Heimsieg",
+    "verlust": 0.6349,
+    "treffer": true
+   }
   },
   "en.2|2026-11-24|citynorwich|parkqueensrangers": {
    "liga": "en.2",
@@ -1394,7 +1418,13 @@
     0.196,
     0.214
    ],
-   "tipp": "Heimsieg"
+   "tipp": "Heimsieg",
+   "ergebnis": {
+    "tore": "1:1",
+    "ausgang": "Remis",
+    "verlust": 1.6296,
+    "treffer": false
+   }
   },
   "en.2|2026-11-24|portsmouth|hamunitedwest": {
    "liga": "en.2",
@@ -1409,7 +1439,13 @@
     0.231,
     0.51
    ],
-   "tipp": "Auswaertssieg"
+   "tipp": "Auswaertssieg",
+   "ergebnis": {
+    "tore": "1:0",
+    "ausgang": "Heimsieg",
+    "verlust": 1.3509,
+    "treffer": false
+   }
   },
   "en.2|2026-11-24|sheffieldunited|southampton": {
    "liga": "en.2",
@@ -1424,7 +1460,13 @@
     0.248,
     0.456
    ],
-   "tipp": "Auswaertssieg"
+   "tipp": "Auswaertssieg",
+   "ergebnis": {
+    "tore": "1:1",
+    "ausgang": "Remis",
+    "verlust": 1.3943,
+    "treffer": false
+   }
   },
   "en.2|2026-11-24|wandererswolverhampton|countyderby": {
    "liga": "en.2",
@@ -1439,7 +1481,13 @@
     0.216,
     0.147
    ],
-   "tipp": "Heimsieg"
+   "tipp": "Heimsieg",
+   "ergebnis": {
+    "tore": "3:0",
+    "ausgang": "Heimsieg",
+    "verlust": 0.451,
+    "treffer": true
+   }
   },
   "en.2|2026-11-25|boltonwanderers|albionbromwichwest": {
    "liga": "en.2",
@@ -2670,14 +2718,164 @@
     0.141
    ],
    "tipp": "Heimsieg"
+  },
+  "en.1|2026-12-02|bournemouth|albionbrightonhove": {
+   "liga": "en.1",
+   "datum": "2026-12-02",
+   "heim": "AFC Bournemouth",
+   "gast": "Brighton & Hove Albion FC",
+   "erstelltAm": "2026-11-25",
+   "modellStand": "2026-11-24",
+   "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+   "p": [
+    0.361,
+    0.263,
+    0.376
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "en.1|2026-12-02|astonvilla|everton": {
+   "liga": "en.1",
+   "datum": "2026-12-02",
+   "heim": "Aston Villa FC",
+   "gast": "Everton FC",
+   "erstelltAm": "2026-11-25",
+   "modellStand": "2026-11-24",
+   "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+   "p": [
+    0.469,
+    0.262,
+    0.27
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.1|2026-12-02|brentford|arsenal": {
+   "liga": "en.1",
+   "datum": "2026-12-02",
+   "heim": "Brentford FC",
+   "gast": "Arsenal FC",
+   "erstelltAm": "2026-11-25",
+   "modellStand": "2026-11-24",
+   "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+   "p": [
+    0.296,
+    0.287,
+    0.416
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "en.1|2026-12-02|chelsea|crystalpalace": {
+   "liga": "en.1",
+   "datum": "2026-12-02",
+   "heim": "Chelsea FC",
+   "gast": "Crystal Palace FC",
+   "erstelltAm": "2026-11-25",
+   "modellStand": "2026-11-24",
+   "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+   "p": [
+    0.596,
+    0.206,
+    0.198
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.1|2026-12-02|citycoventry|ipswichtown": {
+   "liga": "en.1",
+   "datum": "2026-12-02",
+   "heim": "Coventry City FC",
+   "gast": "Ipswich Town FC",
+   "erstelltAm": "2026-11-25",
+   "modellStand": "2026-11-24",
+   "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+   "p": [
+    0.482,
+    0.228,
+    0.29
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.1|2026-12-02|cityhull|forestnottingham": {
+   "liga": "en.1",
+   "datum": "2026-12-02",
+   "heim": "Hull City AFC",
+   "gast": "Nottingham Forest FC",
+   "erstelltAm": "2026-11-25",
+   "modellStand": "2026-11-24",
+   "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+   "p": [
+    0.324,
+    0.286,
+    0.39
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "en.1|2026-12-02|liverpool|sunderland": {
+   "liga": "en.1",
+   "datum": "2026-12-02",
+   "heim": "Liverpool FC",
+   "gast": "Sunderland AFC",
+   "erstelltAm": "2026-11-25",
+   "modellStand": "2026-11-24",
+   "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+   "p": [
+    0.644,
+    0.22,
+    0.137
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.1|2026-12-02|citymanchester|leedsunited": {
+   "liga": "en.1",
+   "datum": "2026-12-02",
+   "heim": "Manchester City FC",
+   "gast": "Leeds United FC",
+   "erstelltAm": "2026-11-25",
+   "modellStand": "2026-11-24",
+   "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+   "p": [
+    0.527,
+    0.257,
+    0.217
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.1|2026-12-02|newcastleunited|manchesterunited": {
+   "liga": "en.1",
+   "datum": "2026-12-02",
+   "heim": "Newcastle United FC",
+   "gast": "Manchester United FC",
+   "erstelltAm": "2026-11-25",
+   "modellStand": "2026-11-24",
+   "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+   "p": [
+    0.441,
+    0.24,
+    0.319
+   ],
+   "tipp": "Heimsieg"
+  },
+  "en.1|2026-12-02|hotspurtottenham|fulham": {
+   "liga": "en.1",
+   "datum": "2026-12-02",
+   "heim": "Tottenham Hotspur FC",
+   "gast": "Fulham FC",
+   "erstelltAm": "2026-11-25",
+   "modellStand": "2026-11-24",
+   "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+   "p": [
+    0.403,
+    0.295,
+    0.302
+   ],
+   "tipp": "Heimsieg"
   }
  },
  "zusammenfassung": {
-  "abgelegt": 159,
-  "bewertet": 59,
-  "offen": 100,
-  "logLoss": 0.979,
-  "trefferquote": 0.559,
+  "abgelegt": 169,
+  "bewertet": 67,
+  "offen": 102,
+  "logLoss": 1.0046,
+  "trefferquote": 0.537,
   "vergleichZufall": 1.0986,
   "hinweis": "Nur vorab abgelegte Tipps. Ohne Quote kein Vergleich mit dem Markt; die Zahl ist erst mit vielen Spielen aussagekraeftig."
  }
