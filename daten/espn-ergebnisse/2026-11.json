@@ -12883,6 +12883,166 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401877527",
+   "providerCompetitionSlug": "jpn.1",
+   "providerCompetitionName": "Japanese J.League",
+   "datum": "2026-11-25",
+   "kickoffUtc": "2026-11-25T10:00Z",
+   "heim": "Avispa Fukuoka",
+   "gast": "Yokohama F. Marinos",
+   "torHeim": 1,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7107",
+      "teamDisplayName": "Avispa Fukuoka",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "7116",
+      "teamDisplayName": "Yokohama F. Marinos",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-11-25T18:42:18.080Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401877528",
+   "providerCompetitionSlug": "jpn.1",
+   "providerCompetitionName": "Japanese J.League",
+   "datum": "2026-11-25",
+   "kickoffUtc": "2026-11-25T10:00Z",
+   "heim": "Fagiano Okayama",
+   "gast": "Shimizu S-Pulse",
+   "torHeim": 2,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "22522",
+      "teamDisplayName": "Fagiano Okayama",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "7104",
+      "teamDisplayName": "Shimizu S-Pulse",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-25T18:42:18.240Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401877529",
+   "providerCompetitionSlug": "jpn.1",
+   "providerCompetitionName": "Japanese J.League",
+   "datum": "2026-11-25",
+   "kickoffUtc": "2026-11-25T10:00Z",
+   "heim": "JEF United Ichihara-Chiba",
+   "gast": "Nagoya Grampus",
+   "torHeim": 1,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "7111",
+      "teamDisplayName": "JEF United Ichihara-Chiba",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "7108",
+      "teamDisplayName": "Nagoya Grampus",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-11-25T18:42:18.562Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401877530",
+   "providerCompetitionSlug": "jpn.1",
+   "providerCompetitionName": "Japanese J.League",
+   "datum": "2026-11-25",
+   "kickoffUtc": "2026-11-25T10:00Z",
+   "heim": "Mito Hollyhock",
+   "gast": "Tokyo Verdy 1969",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "131701",
+      "teamDisplayName": "Mito Hollyhock",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "3393",
+      "teamDisplayName": "Tokyo Verdy 1969",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-25T18:42:18.721Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401877531",
    "providerCompetitionSlug": "jpn.1",
    "providerCompetitionName": "Japanese J.League",
@@ -13120,6 +13280,126 @@
    },
    "halbzeit": "0:1",
    "fetchedAt": "2026-11-07T14:57:13.850Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401877545",
+   "providerCompetitionSlug": "jpn.1",
+   "providerCompetitionName": "Japanese J.League",
+   "datum": "2026-11-25",
+   "kickoffUtc": "2026-11-25T10:00Z",
+   "heim": "V-Varen Nagasaki",
+   "gast": "Kawasaki Frontale",
+   "torHeim": 1,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "19001",
+      "teamDisplayName": "V-Varen Nagasaki",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "7112",
+      "teamDisplayName": "Kawasaki Frontale",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:1",
+   "fetchedAt": "2026-11-25T18:42:18.884Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401877546",
+   "providerCompetitionSlug": "jpn.1",
+   "providerCompetitionName": "Japanese J.League",
+   "datum": "2026-11-25",
+   "kickoffUtc": "2026-11-25T10:00Z",
+   "heim": "FC Tokyo",
+   "gast": "Sanfrecce Hiroshima",
+   "torHeim": 2,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "3384",
+      "teamDisplayName": "FC Tokyo",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "7114",
+      "teamDisplayName": "Sanfrecce Hiroshima",
+      "homeAway": "away",
+      "linescores": [
+       "1",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:1",
+   "fetchedAt": "2026-11-25T18:42:18.400Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401877547",
+   "providerCompetitionSlug": "jpn.1",
+   "providerCompetitionName": "Japanese J.League",
+   "datum": "2026-11-25",
+   "kickoffUtc": "2026-11-25T10:30Z",
+   "heim": "Urawa Red Diamonds",
+   "gast": "Cerezo Osaka",
+   "torHeim": 2,
+   "torGast": 2,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "3385",
+      "teamDisplayName": "Urawa Red Diamonds",
+      "homeAway": "home",
+      "linescores": [
+       "2",
+       "0"
+      ]
+     },
+     {
+      "teamId": "7109",
+      "teamDisplayName": "Cerezo Osaka",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "2:0",
+   "fetchedAt": "2026-11-25T18:42:19.045Z"
   },
   {
    "provider": "espn",
