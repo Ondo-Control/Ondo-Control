@@ -1,16 +1,16 @@
 {
  "schema": 1,
- "heute": "2026-11-24",
+ "heute": "2026-11-25",
  "summen": {
   "ligen": 15,
   "saisons": 186,
-  "spiele": 68974,
+  "spiele": 68981,
   "lernbestand": 48852,
   "nachRolle": {
    "lernen": 48852,
    "pruefen": 5943,
    "holdout": 5867,
-   "spaeter": 6681,
+   "spaeter": 6688,
    "aus": 1631
   },
   "nachStatus": {
@@ -584,7 +584,7 @@
    "liga": "en.2",
    "saison": "2026-27",
    "datei": "spiele/en.2/2026-27.json",
-   "spiele": 193,
+   "spiele": 197,
    "status": "laufend",
    "rolle": "spaeter"
   },
@@ -1360,7 +1360,7 @@
    "liga": "it.2",
    "saison": "2026-27",
    "datei": "spiele/it.2/2026-27.json",
-   "spiele": 78,
+   "spiele": 81,
    "status": "laufend",
    "rolle": "spaeter"
   },

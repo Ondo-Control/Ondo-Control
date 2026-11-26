@@ -1,163 +1,11 @@
 {
  "schema": 1,
- "ab": "2026-11-25",
- "bis": "2026-12-02",
- "anzahl": 92,
+ "ab": "2026-11-26",
+ "bis": "2026-12-03",
+ "anzahl": 88,
  "ohnePrognose": 0,
  "hinweis": "Prozentzahlen sind die Rechnung des Modells, keine Garantie. Das Modell ist auf Pruefspielen schlechter als die Pinnacle-Quote (STAND). Position: keine Wette, solange keine Quote mit Quelle und Zeitstempel und kein belegter Vorteil vorliegen.",
  "spiele": [
-  {
-   "liga": "en.2",
-   "ligaName": "Championship",
-   "datum": "2026-11-25",
-   "heim": "Bolton Wanderers FC",
-   "gast": "West Bromwich Albion FC",
-   "schluessel": {
-    "heim": "boltonwanderers",
-    "gast": "albionbromwichwest"
-   },
-   "prognose": {
-    "heimsieg": 0.273,
-    "remis": 0.258,
-    "auswaertssieg": 0.468
-   },
-   "tipp": "Auswaertssieg",
-   "erwarteteTore": {
-    "heim": 1.196,
-    "gast": 1.64
-   },
-   "haeufigsteTorfolge": "1:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:19Z",
-    "anstossUtc": "2026-11-25T19:45:00Z",
-    "anbieterSpielId": "9dfe9df3ad88c453e3572872bf500488"
-   }
-  },
-  {
-   "liga": "en.2",
-   "ligaName": "Championship",
-   "datum": "2026-11-25",
-   "heim": "Burnley FC",
-   "gast": "Birmingham City FC",
-   "schluessel": {
-    "heim": "burnley",
-    "gast": "birminghamcity"
-   },
-   "prognose": {
-    "heimsieg": 0.322,
-    "remis": 0.253,
-    "auswaertssieg": 0.425
-   },
-   "tipp": "Auswaertssieg",
-   "erwarteteTore": {
-    "heim": 1.4,
-    "gast": 1.632
-   },
-   "haeufigsteTorfolge": "1:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:19Z",
-    "anstossUtc": "2026-11-25T19:45:00Z",
-    "anbieterSpielId": "61d1126751ba67227ac2819624e98342"
-   }
-  },
-  {
-   "liga": "en.2",
-   "ligaName": "Championship",
-   "datum": "2026-11-25",
-   "heim": "Stoke City FC",
-   "gast": "Millwall FC",
-   "schluessel": {
-    "heim": "citystoke",
-    "gast": "millwall"
-   },
-   "prognose": {
-    "heimsieg": 0.456,
-    "remis": 0.266,
-    "auswaertssieg": 0.278
-   },
-   "tipp": "Heimsieg",
-   "erwarteteTore": {
-    "heim": 1.554,
-    "gast": 1.165
-   },
-   "haeufigsteTorfolge": "1:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:19Z",
-    "anstossUtc": "2026-11-25T20:00:00Z",
-    "anbieterSpielId": "77dfddf6dea97d5ecb5e2463b29fe67e"
-   }
-  },
-  {
-   "liga": "en.2",
-   "ligaName": "Championship",
-   "datum": "2026-11-25",
-   "heim": "Watford FC",
-   "gast": "Blackburn Rovers FC",
-   "schluessel": {
-    "heim": "watford",
-    "gast": "blackburnrovers"
-   },
-   "prognose": {
-    "heimsieg": 0.304,
-    "remis": 0.279,
-    "auswaertssieg": 0.418
-   },
-   "tipp": "Auswaertssieg",
-   "erwarteteTore": {
-    "heim": 1.162,
-    "gast": 1.405
-   },
-   "haeufigsteTorfolge": "1:1",
-   "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
-    "merkmale": "fuer kommende Spiele berechnet",
-    "quelle": "ohne Aufstellung (Rueckfall)",
-    "belastbar": true,
-    "hinweis": ""
-   },
-   "position": {
-    "empfehlung": "keine Wette",
-    "grund": "Vorteil gegen die Quote nicht belegt",
-    "quoteGeprueft": true,
-    "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:19Z",
-    "anstossUtc": "2026-11-25T19:45:00Z",
-    "anbieterSpielId": "0eb7f35d744c1cebeb53be32f50e1e2d"
-   }
-  },
   {
    "liga": "de.1",
    "ligaName": "Bundesliga",
@@ -180,7 +28,7 @@
    },
    "haeufigsteTorfolge": "2:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -191,7 +39,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:19Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-27T19:30:00Z",
     "anbieterSpielId": "698f4a7967ead89e10205a68ceb4bda4"
    }
@@ -207,18 +55,18 @@
     "gast": "middlesbrough"
    },
    "prognose": {
-    "heimsieg": 0.47,
+    "heimsieg": 0.468,
     "remis": 0.259,
     "auswaertssieg": 0.272
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.631,
-    "gast": 1.189
+    "heim": 1.624,
+    "gast": 1.188
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -229,7 +77,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:19Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-27T20:00:00Z",
     "anbieterSpielId": "32b8e3ea76d9d8b2b36577063d40862e"
    }
@@ -256,7 +104,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -267,7 +115,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:20Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-27T19:45:00Z",
     "anbieterSpielId": "02ff879cf54f6d1fec2664efee0431db"
    }
@@ -294,7 +142,7 @@
    },
    "haeufigsteTorfolge": "3:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -305,7 +153,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:20Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-27T19:00:00Z",
     "anbieterSpielId": "7aa2e13c09deb4fbd70e62312e82a514"
    }
@@ -332,7 +180,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -343,7 +191,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:20Z",
+    "abgerufenUtc": "2026-11-26T19:02:08Z",
     "anstossUtc": "2026-11-27T20:15:00Z",
     "anbieterSpielId": "abfc6851b152aecbb4bf84a348967f69"
    }
@@ -370,7 +218,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -381,7 +229,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:19Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-28T14:30:00Z",
     "anbieterSpielId": "2c30e2ebaf6c30aaa4e3fb56cffa6a29"
    }
@@ -408,7 +256,7 @@
    },
    "haeufigsteTorfolge": "2:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -419,7 +267,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:19Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-28T14:30:00Z",
     "anbieterSpielId": "365e1a00908ab1cd5a51a53ede2b86b2"
    }
@@ -446,7 +294,7 @@
    },
    "haeufigsteTorfolge": "1:3",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -457,7 +305,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:19Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-28T14:30:00Z",
     "anbieterSpielId": "3b025a029f51fbeb9580a178d0612f50"
    }
@@ -484,7 +332,7 @@
    },
    "haeufigsteTorfolge": "1:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -495,7 +343,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:19Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-28T14:30:00Z",
     "anbieterSpielId": "f84a9da7eedd0ca11a28a1a7a8edddc7"
    }
@@ -522,7 +370,7 @@
    },
    "haeufigsteTorfolge": "2:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -533,7 +381,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:19Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-28T17:30:00Z",
     "anbieterSpielId": "5d838190a8f5932d7fcfbcc26bacdd9c"
    }
@@ -560,7 +408,7 @@
    },
    "haeufigsteTorfolge": "1:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -593,7 +441,7 @@
    },
    "haeufigsteTorfolge": "2:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -626,7 +474,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -659,7 +507,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -692,7 +540,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -725,7 +573,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -736,7 +584,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:21Z",
+    "abgerufenUtc": "2026-11-26T19:02:08Z",
     "anstossUtc": "2026-11-28T17:30:00Z",
     "anbieterSpielId": "9d23f6ad21946dd258869ebc22236cf0"
    }
@@ -763,7 +611,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -774,7 +622,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:21Z",
+    "abgerufenUtc": "2026-11-26T19:02:08Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "0bc17a3c7d8153e72b94688960cc603a"
    }
@@ -801,7 +649,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -812,7 +660,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:21Z",
+    "abgerufenUtc": "2026-11-26T19:02:08Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "ab87184803a63f7b679f1d12b01c3271"
    }
@@ -839,7 +687,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -872,7 +720,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -894,18 +742,18 @@
     "gast": "boltonwanderers"
    },
    "prognose": {
-    "heimsieg": 0.662,
-    "remis": 0.202,
-    "auswaertssieg": 0.136
+    "heimsieg": 0.692,
+    "remis": 0.189,
+    "auswaertssieg": 0.118
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 2.179,
-    "gast": 0.885
+    "heim": 2.284,
+    "gast": 0.843
    },
    "haeufigsteTorfolge": "2:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -915,8 +763,8 @@
     "empfehlung": "keine Wette",
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
-    "quelle": "the-odds-api/unibet_nl",
-    "abgerufenUtc": "2026-11-25T19:17:19Z",
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "15fc58a442321c2a85f7a814466c0ab9"
    }
@@ -932,18 +780,18 @@
     "gast": "athleticcharlton"
    },
    "prognose": {
-    "heimsieg": 0.494,
-    "remis": 0.264,
-    "auswaertssieg": 0.242
+    "heimsieg": 0.496,
+    "remis": 0.267,
+    "auswaertssieg": 0.237
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.6,
-    "gast": 1.05
+    "heim": 1.574,
+    "gast": 1.012
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -953,8 +801,8 @@
     "empfehlung": "keine Wette",
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
-    "quelle": "the-odds-api/unibet_nl",
-    "abgerufenUtc": "2026-11-25T19:17:19Z",
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-28T12:30:00Z",
     "anbieterSpielId": "a1d96ec37a8b7022ef39a7755a655243"
    }
@@ -970,18 +818,18 @@
     "gast": "watford"
    },
    "prognose": {
-    "heimsieg": 0.47,
-    "remis": 0.271,
-    "auswaertssieg": 0.259
+    "heimsieg": 0.473,
+    "remis": 0.274,
+    "auswaertssieg": 0.253
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.526,
-    "gast": 1.071
+    "heim": 1.5,
+    "gast": 1.033
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -991,8 +839,8 @@
     "empfehlung": "keine Wette",
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
-    "quelle": "the-odds-api/unibet_nl",
-    "abgerufenUtc": "2026-11-25T19:17:19Z",
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "82ef491ed2f8399e4ccec9f5d8315cee"
    }
@@ -1014,12 +862,12 @@
    },
    "tipp": "Auswaertssieg",
    "erwarteteTore": {
-    "heim": 0.875,
-    "gast": 1.758
+    "heim": 0.871,
+    "gast": 1.756
    },
    "haeufigsteTorfolge": "0:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1030,7 +878,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:19Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-28T12:30:00Z",
     "anbieterSpielId": "d2bc2d3b4a81177cb6b86f4add6ff81f"
    }
@@ -1046,18 +894,18 @@
     "gast": "burnley"
    },
    "prognose": {
-    "heimsieg": 0.468,
+    "heimsieg": 0.477,
     "remis": 0.237,
-    "auswaertssieg": 0.296
+    "auswaertssieg": 0.286
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.86,
-    "gast": 1.452
+    "heim": 1.863,
+    "gast": 1.41
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1067,8 +915,8 @@
     "empfehlung": "keine Wette",
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
-    "quelle": "the-odds-api/unibet_nl",
-    "abgerufenUtc": "2026-11-25T19:17:19Z",
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "3f93526d7c8e0ca84734aea60c13900a"
    }
@@ -1084,18 +932,18 @@
     "gast": "citynorwich"
    },
    "prognose": {
-    "heimsieg": 0.261,
+    "heimsieg": 0.26,
     "remis": 0.241,
-    "auswaertssieg": 0.498
+    "auswaertssieg": 0.499
    },
    "tipp": "Auswaertssieg",
    "erwarteteTore": {
-    "heim": 1.283,
-    "gast": 1.837
+    "heim": 1.277,
+    "gast": 1.835
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1106,7 +954,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:19Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-28T12:30:00Z",
     "anbieterSpielId": "d47bc722be164b3a733434e89f224654"
    }
@@ -1122,18 +970,18 @@
     "gast": "sheffieldunited"
    },
    "prognose": {
-    "heimsieg": 0.457,
+    "heimsieg": 0.456,
     "remis": 0.239,
-    "auswaertssieg": 0.304
+    "auswaertssieg": 0.305
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.829,
-    "gast": 1.463
+    "heim": 1.82,
+    "gast": 1.462
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1144,7 +992,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:19Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "dc42f49649c5329c2c47f94fc4ca0c89"
    }
@@ -1160,18 +1008,18 @@
     "gast": "bristolcity"
    },
    "prognose": {
-    "heimsieg": 0.591,
-    "remis": 0.239,
-    "auswaertssieg": 0.169
+    "heimsieg": 0.608,
+    "remis": 0.232,
+    "auswaertssieg": 0.16
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.819,
-    "gast": 0.869
+    "heim": 1.886,
+    "gast": 0.863
    },
    "haeufigsteTorfolge": "1:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1181,8 +1029,8 @@
     "empfehlung": "keine Wette",
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
-    "quelle": "the-odds-api/unibet_nl",
-    "abgerufenUtc": "2026-11-25T19:17:19Z",
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "b67372e7107fdd259a978e614711e657"
    }
@@ -1198,18 +1046,18 @@
     "gast": "citystoke"
    },
    "prognose": {
-    "heimsieg": 0.598,
-    "remis": 0.218,
-    "auswaertssieg": 0.184
+    "heimsieg": 0.591,
+    "remis": 0.22,
+    "auswaertssieg": 0.189
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 2.084,
-    "gast": 1.08
+    "heim": 2.064,
+    "gast": 1.093
    },
    "haeufigsteTorfolge": "2:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1219,8 +1067,8 @@
     "empfehlung": "keine Wette",
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
-    "quelle": "the-odds-api/unibet_nl",
-    "abgerufenUtc": "2026-11-25T19:17:19Z",
+    "quelle": "the-odds-api/pinnacle",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "c836236766f7859e3c1d61caa581abe1"
    }
@@ -1236,18 +1084,18 @@
     "gast": "portsmouth"
    },
    "prognose": {
-    "heimsieg": 0.427,
-    "remis": 0.282,
-    "auswaertssieg": 0.291
+    "heimsieg": 0.425,
+    "remis": 0.283,
+    "auswaertssieg": 0.292
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 1.391,
-    "gast": 1.107
+    "heim": 1.385,
+    "gast": 1.105
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1258,7 +1106,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:19Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "9cd8c682c6864b59a7f1a58964083e08"
    }
@@ -1285,7 +1133,7 @@
    },
    "haeufigsteTorfolge": "0:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1296,7 +1144,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:20Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-28T16:15:00Z",
     "anbieterSpielId": "24b99950496c624f7124922fc1bda8bd"
    }
@@ -1323,7 +1171,7 @@
    },
    "haeufigsteTorfolge": "1:2",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1334,7 +1182,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:20Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-28T19:45:00Z",
     "anbieterSpielId": "f96c1137c9d3f7e2e691275a2988fa1d"
    }
@@ -1361,7 +1209,7 @@
    },
    "haeufigsteTorfolge": "0:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1372,7 +1220,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:20Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-28T19:45:00Z",
     "anbieterSpielId": "aaa86a483888836242da663a46957894"
    }
@@ -1399,7 +1247,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1410,7 +1258,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:20Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-28T19:45:00Z",
     "anbieterSpielId": "e9a1243fbfbc6f58d0e0522eb07ea9a1"
    }
@@ -1437,7 +1285,7 @@
    },
    "haeufigsteTorfolge": "1:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1448,7 +1296,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:20Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-28T19:45:00Z",
     "anbieterSpielId": "12002f6f804a122db48271ff05be03c0"
    }
@@ -1475,7 +1323,7 @@
    },
    "haeufigsteTorfolge": "4:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1486,7 +1334,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:20Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-28T17:45:00Z",
     "anbieterSpielId": "8031222f3f3e8384a69c0ca5e1166458"
    }
@@ -1513,7 +1361,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1524,7 +1372,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:20Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-28T15:30:00Z",
     "anbieterSpielId": "0617a45f4dae394d0fd75e3dc4d5cae4"
    }
@@ -1551,7 +1399,7 @@
    },
    "haeufigsteTorfolge": "2:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1562,7 +1410,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:20Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-28T20:00:00Z",
     "anbieterSpielId": "708641646f92ec14288beaaf1154e996"
    }
@@ -1589,7 +1437,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": false,
@@ -1600,7 +1448,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:20Z",
+    "abgerufenUtc": "2026-11-26T19:02:08Z",
     "anstossUtc": "2026-11-28T18:00:00Z",
     "anbieterSpielId": "ee7e0fb3eb049d403134cefaf634c7d5"
    }
@@ -1627,7 +1475,7 @@
    },
    "haeufigsteTorfolge": "2:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1638,7 +1486,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:20Z",
+    "abgerufenUtc": "2026-11-26T19:02:08Z",
     "anstossUtc": "2026-11-28T15:30:00Z",
     "anbieterSpielId": "d583b1676d961c26794a3ccedf7edffb"
    }
@@ -1665,7 +1513,7 @@
    },
    "haeufigsteTorfolge": "0:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1676,7 +1524,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:20Z",
+    "abgerufenUtc": "2026-11-26T19:02:08Z",
     "anstossUtc": "2026-11-28T15:30:00Z",
     "anbieterSpielId": "4adcfcfea85a2d5dbbd487aa2a9fd9c3"
    }
@@ -1703,7 +1551,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1736,7 +1584,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1747,7 +1595,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:19Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-29T18:30:00Z",
     "anbieterSpielId": "98415e21c147d701bd81e70b1af0f3a7"
    }
@@ -1774,7 +1622,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1785,7 +1633,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:19Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-29T14:30:00Z",
     "anbieterSpielId": "2aa9aa95157eb36fed45135c995cdd80"
    }
@@ -1812,7 +1660,7 @@
    },
    "haeufigsteTorfolge": "2:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1823,7 +1671,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:19Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-29T16:30:00Z",
     "anbieterSpielId": "98dc79e39433bb4c59bf9753e35a5cdf"
    }
@@ -1839,18 +1687,18 @@
     "gast": "cardiffcity"
    },
    "prognose": {
-    "heimsieg": 0.536,
-    "remis": 0.222,
-    "auswaertssieg": 0.241
+    "heimsieg": 0.535,
+    "remis": 0.223,
+    "auswaertssieg": 0.242
    },
    "tipp": "Heimsieg",
    "erwarteteTore": {
-    "heim": 2.08,
-    "gast": 1.349
+    "heim": 2.071,
+    "gast": 1.348
    },
    "haeufigsteTorfolge": "2:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1861,7 +1709,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:19Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-29T12:00:00Z",
     "anbieterSpielId": "bcf1bfc44adf70bf134bd132c4a5ba87"
    }
@@ -1888,7 +1736,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1921,7 +1769,7 @@
    },
    "haeufigsteTorfolge": "2:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1954,7 +1802,7 @@
    },
    "haeufigsteTorfolge": "0:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1987,7 +1835,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -1998,7 +1846,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:21Z",
+    "abgerufenUtc": "2026-11-26T19:02:08Z",
     "anstossUtc": "2026-11-29T17:30:00Z",
     "anbieterSpielId": "20c78c2ef75c4a6d7f4af81dd32e97cd"
    }
@@ -2025,7 +1873,7 @@
    },
    "haeufigsteTorfolge": "1:3",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2036,7 +1884,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:21Z",
+    "abgerufenUtc": "2026-11-26T19:02:08Z",
     "anstossUtc": "2026-11-29T15:15:00Z",
     "anbieterSpielId": "69fc06d019491be2aa1bf69b8f8041e3"
    }
@@ -2063,7 +1911,7 @@
    },
    "haeufigsteTorfolge": "1:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2096,7 +1944,7 @@
    },
    "haeufigsteTorfolge": "1:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2129,7 +1977,7 @@
    },
    "haeufigsteTorfolge": "2:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2162,7 +2010,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2173,7 +2021,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:21Z",
+    "abgerufenUtc": "2026-11-26T19:02:08Z",
     "anstossUtc": "2026-11-29T20:00:00Z",
     "anbieterSpielId": "f892ea6d5eca105c36ca9468b12857f2"
    }
@@ -2200,7 +2048,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2211,7 +2059,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:21Z",
+    "abgerufenUtc": "2026-11-26T19:02:08Z",
     "anstossUtc": "2026-11-29T13:00:00Z",
     "anbieterSpielId": "1ab9541320cecbe9f043565fd4a141e0"
    }
@@ -2238,7 +2086,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2249,7 +2097,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:20Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-29T14:00:00Z",
     "anbieterSpielId": "a370db12aaff183a94f8e9a6acb6d4c9"
    }
@@ -2276,7 +2124,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2287,7 +2135,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:20Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-29T19:45:00Z",
     "anbieterSpielId": "ca8aa566e27e1d05b47e8151b2066f9a"
    }
@@ -2314,7 +2162,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2347,7 +2195,7 @@
    },
    "haeufigsteTorfolge": "3:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2358,7 +2206,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:21Z",
+    "abgerufenUtc": "2026-11-26T19:02:08Z",
     "anstossUtc": "2026-11-29T17:00:00Z",
     "anbieterSpielId": "c979bd4559d2d81a8e2fe8f2d4aec376"
    }
@@ -2385,7 +2233,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2418,7 +2266,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2429,7 +2277,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:21Z",
+    "abgerufenUtc": "2026-11-26T19:02:08Z",
     "anstossUtc": "2026-11-29T19:45:00Z",
     "anbieterSpielId": "3876ad367184af2f8fc04a544fc894aa"
    }
@@ -2456,7 +2304,7 @@
    },
    "haeufigsteTorfolge": "2:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2489,7 +2337,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2522,7 +2370,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2555,7 +2403,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2588,7 +2436,7 @@
    },
    "haeufigsteTorfolge": "1:2",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2599,7 +2447,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:21Z",
+    "abgerufenUtc": "2026-11-26T19:02:08Z",
     "anstossUtc": "2026-11-29T14:00:00Z",
     "anbieterSpielId": "dc63586a1b1d938a461d71bf5b36d982"
    }
@@ -2626,7 +2474,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2637,7 +2485,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:21Z",
+    "abgerufenUtc": "2026-11-26T19:02:08Z",
     "anstossUtc": "2026-11-29T11:30:00Z",
     "anbieterSpielId": "d3d47b94324eb7cde85bd93993437d1c"
    }
@@ -2664,7 +2512,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2697,7 +2545,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2708,7 +2556,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:20Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-29T11:15:00Z",
     "anbieterSpielId": "d77c244bd9dd91534c40b863e44cf905"
    }
@@ -2735,7 +2583,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2746,7 +2594,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:20Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-29T13:30:00Z",
     "anbieterSpielId": "a846e6934bbb0f1a707bae28d3c52e9b"
    }
@@ -2773,7 +2621,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2784,7 +2632,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:20Z",
+    "abgerufenUtc": "2026-11-26T19:02:07Z",
     "anstossUtc": "2026-11-29T13:30:00Z",
     "anbieterSpielId": "2bebeea09c64f8187e5b44dd6ab27b53"
    }
@@ -2811,7 +2659,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2844,7 +2692,7 @@
    },
    "haeufigsteTorfolge": "1:2",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2877,7 +2725,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2910,7 +2758,7 @@
    },
    "haeufigsteTorfolge": "1:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2921,7 +2769,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:20Z",
+    "abgerufenUtc": "2026-11-26T19:02:08Z",
     "anstossUtc": "2026-11-29T18:00:00Z",
     "anbieterSpielId": "588984eaf08b356b49055b534cef52e6"
    }
@@ -2948,7 +2796,7 @@
    },
    "haeufigsteTorfolge": "0:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2959,7 +2807,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:20Z",
+    "abgerufenUtc": "2026-11-26T19:02:08Z",
     "anstossUtc": "2026-11-30T20:15:00Z",
     "anbieterSpielId": "61b7d270b965f9804d2d2ed500f41214"
    }
@@ -2986,7 +2834,7 @@
    },
    "haeufigsteTorfolge": "2:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -2997,7 +2845,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:20Z",
+    "abgerufenUtc": "2026-11-26T19:02:08Z",
     "anstossUtc": "2026-11-30T20:15:00Z",
     "anbieterSpielId": "cbe76870424e24c03bf811910914148f"
    }
@@ -3024,7 +2872,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3057,7 +2905,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3068,7 +2916,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:21Z",
+    "abgerufenUtc": "2026-11-26T19:02:08Z",
     "anstossUtc": "2026-12-02T20:15:00Z",
     "anbieterSpielId": "2198fb9aab762e9e1c8c6af4113a1d31"
    }
@@ -3095,7 +2943,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3106,7 +2954,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:21Z",
+    "abgerufenUtc": "2026-11-26T19:02:08Z",
     "anstossUtc": "2026-12-02T20:15:00Z",
     "anbieterSpielId": "5f5235df01a384e23ff224101ff175e1"
    }
@@ -3133,7 +2981,7 @@
    },
    "haeufigsteTorfolge": "2:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3144,7 +2992,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:21Z",
+    "abgerufenUtc": "2026-11-26T19:02:08Z",
     "anstossUtc": "2026-12-02T19:30:00Z",
     "anbieterSpielId": "836ad618789e171f7357649ce8e62b49"
    }
@@ -3171,7 +3019,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3204,7 +3052,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3215,7 +3063,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:21Z",
+    "abgerufenUtc": "2026-11-26T19:02:08Z",
     "anstossUtc": "2026-12-02T19:30:00Z",
     "anbieterSpielId": "4bd9a6fe4abb6774b3e8700b3dbe8d00"
    }
@@ -3242,7 +3090,7 @@
    },
    "haeufigsteTorfolge": "1:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3253,7 +3101,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:21Z",
+    "abgerufenUtc": "2026-11-26T19:02:08Z",
     "anstossUtc": "2026-12-02T19:30:00Z",
     "anbieterSpielId": "9629fcc970336d106d144eaa25cec853"
    }
@@ -3280,7 +3128,7 @@
    },
    "haeufigsteTorfolge": "1:0",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3291,7 +3139,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:21Z",
+    "abgerufenUtc": "2026-11-26T19:02:08Z",
     "anstossUtc": "2026-12-02T19:30:00Z",
     "anbieterSpielId": "10abd18165c999264777913e42c9f96c"
    }
@@ -3318,7 +3166,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3329,7 +3177,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-25T19:17:21Z",
+    "abgerufenUtc": "2026-11-26T19:02:08Z",
     "anstossUtc": "2026-12-02T20:15:00Z",
     "anbieterSpielId": "0c405290d0f977236962e55ba90c2c04"
    }
@@ -3356,7 +3204,7 @@
    },
    "haeufigsteTorfolge": "1:1",
    "modell": {
-    "lagenStand": "Produktion alle 6d5e6a08 (68878 Spiele bis 2026-11-24), kein Merkmalsgewinn",
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
     "merkmale": "fuer kommende Spiele berechnet",
     "quelle": "ohne Aufstellung (Rueckfall)",
     "belastbar": true,
@@ -3369,8 +3217,8 @@
   }
  ],
  "quoten": {
-  "spieleMitGeprueftQuote": 65,
-  "spieleGesamt": 92,
+  "spieleMitGeprueftQuote": 61,
+  "spieleGesamt": 88,
   "fehler": [],
   "hinweis": "Rohquoten liegen nur im privaten Actions-Artefakt (90 Tage), nicht im Repo (AGB der Odds API). Vorteil gegen die Quote ist nicht belegt."
  }

@@ -1,17 +1,17 @@
 {
  "schema": 1,
- "heute": "2026-11-24",
+ "heute": "2026-11-25",
  "aktuelleSaison": "2026-27",
  "summen": {
   "ligen": 15,
   "saisons": 186,
-  "spiele": 68974,
+  "spiele": 68981,
   "lernbestand": 48852,
   "nachRolle": {
    "lernen": 48852,
    "pruefen": 5943,
    "holdout": 5867,
-   "spaeter": 6681,
+   "spaeter": 6688,
    "aus": 1631
   },
   "nachStatus": {
@@ -24,8 +24,8 @@
   "dateien": 3,
   "geparkt": 0,
   "ohneLiga": {
-   "bra.1": 93,
-   "arg.1": 112,
+   "bra.1": 94,
+   "arg.1": 113,
    "swe.1": 64,
    "nor.1": 56,
    "bra.2": 102,
@@ -46,20 +46,20 @@
    "esp.copa_del_rey": 76,
    "caf.nations_qual": 96,
    "usa.1": 148,
-   "uefa.champions": 63,
+   "uefa.champions": 72,
    "uefa.europa": 54,
-   "uefa.europa.conf": 54,
+   "uefa.europa.conf": 55,
    "ger.dfb_pokal": 16,
    "eng.fa": 40,
    "fra.coupe_de_france": 91
   },
   "verarbeitet": {
-   "neu": 301,
-   "gefuellt": 497,
+   "neu": 304,
+   "gefuellt": 501,
    "bestaetigt": 74,
    "konflikt": 0,
    "doppelt": 0,
-   "unaufgeloest": 18
+   "unaufgeloest": 19
   }
  },
  "aliasZeilen": 64,
@@ -1433,16 +1433,16 @@
     },
     "2026-27": {
      "status": "laufend",
-     "grund": "193 von 552 Spielen der Doppelrunde",
+     "grund": "197 von 552 Spielen der Doppelrunde",
      "teams": 24,
      "soll": 552,
      "angesetzt": 552,
-     "mitErgebnis": 193,
+     "mitErgebnis": 197,
      "zusatz": 0,
-     "gespeichert": 193,
+     "gespeichert": 197,
      "quellen": {
       "of": 76,
-      "espn": 105,
+      "espn": 109,
       "beide": 12
      },
      "ofDatei": true,
@@ -3342,16 +3342,16 @@
     },
     "2026-27": {
      "status": "laufend",
-     "grund": "78 von 342 Spielen der Doppelrunde",
+     "grund": "81 von 342 Spielen der Doppelrunde",
      "teams": 19,
      "soll": 342,
-     "angesetzt": 78,
-     "mitErgebnis": 78,
+     "angesetzt": 81,
+     "mitErgebnis": 81,
      "zusatz": 0,
-     "gespeichert": 78,
+     "gespeichert": 81,
      "quellen": {
       "of": 0,
-      "espn": 78,
+      "espn": 81,
       "beide": 0
      },
      "ofDatei": false,
@@ -3361,7 +3361,7 @@
     }
    },
    "espnUnaufgeloest": {
-    "Arezzo": 8
+    "Arezzo": 9
    }
   },
   "nl.1": {
