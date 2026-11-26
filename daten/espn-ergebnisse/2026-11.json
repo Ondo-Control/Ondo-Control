@@ -29883,6 +29883,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401915816",
+   "providerCompetitionSlug": "uefa.europa.conf",
+   "providerCompetitionName": "UEFA Conference League",
+   "datum": "2026-11-26",
+   "kickoffUtc": "2026-11-26T15:30Z",
+   "heim": "Kairat Almaty",
+   "gast": "Mjällby AIF",
+   "torHeim": 1,
+   "torGast": 0,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "2528",
+      "teamDisplayName": "Kairat Almaty",
+      "homeAway": "home",
+      "linescores": [
+       "1",
+       "0"
+      ]
+     },
+     {
+      "teamId": "20301",
+      "teamDisplayName": "Mjällby AIF",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "0"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "1:0",
+   "fetchedAt": "2026-11-26T18:29:21.790Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401915817",
    "providerCompetitionSlug": "uefa.europa.conf",
    "providerCompetitionName": "UEFA Conference League",
