@@ -76,7 +76,20 @@ function laufendMessen(wertArchiv, progArchiv, ergebnisVon, regel){
     var l=e.abrufe[e.abrufe.length-1]; paare.push({ r:{ liga:e.liga, datum:d }, y:y, core:t.p, offen:entmargen(l.pinnacle), schluss:entmargen(l.pinnacle) });
   });
   var m=messen(paare, regel);
-  return { quelle:'eigenes privates Quoten-Archiv (Odds API, Pinnacle letzter Abruf vor Anstoss) und vorab abgelegte Core-Tipps', spiele:m.spiele,
+  /* Idee 21: Konsens aller Buchmacher gegen Pinnacle (Log-Loss) und Wert-Wetten zur besten Quote gegen Pinnacles fairen Anteil */
+  var kp=[], wert={ alle:{}, deutschland:{} };
+  Object.keys(wertArchiv&&wertArchiv.ereignisse||{}).forEach(function(k){
+    var e=wertArchiv.ereignisse[k], y=ergebnisVon(e); if(y===null||y===undefined) return;
+    var l=e.abrufe[e.abrufe.length-1], f=entmargen(l.pinnacle);
+    if(l.konsens) kp.push({ r:{ liga:e.liga, datum:e.anstossUtc.slice(0,10) }, y:y, pin:f, kon:l.konsens });
+    [['alle',l.beste],['deutschland',l.besteDe]].forEach(function(z){ if(!z[1]) return;
+      [1.00,1.03,1.05].forEach(function(sw){ var best=-1, bi=-1; for(var i=0;i<3;i++){ var w=f[i]*z[1][i]; if(w>best){ best=w; bi=i; } }
+        var o=wert[z[0]][sw]=wert[z[0]][sw]||{ wetten:0, gewinn:0 }; if(best<sw) return; o.wetten++; o.gewinn+=(bi===y?z[1][bi]-1:-1); }); });
+  });
+  var kv=kp.length?LA.vergleich(kp, kp.map(function(x){ return ll(x.pin,x.y); }), kp.map(function(x){ return ll(x.kon,x.y); })):null;
+  Object.keys(wert).forEach(function(g){ Object.keys(wert[g]).forEach(function(sw){ var o=wert[g][sw]; o.gewinnJeEinsatz=o.wetten?Math.round(o.gewinn/o.wetten*10000)/10000:null; o.aussage=o.wetten>=300?'belastbar genug zu pruefen':'noch keine Aussage'; delete o.gewinn; }); });
+  var konsens={ spiele:kp.length, vorsprungGegenPinnacle:kv?Math.round(kv.differenz*10000)/10000:null, standardfehler:kv?Math.round(kv.standardfehler*10000)/10000:null, z:kv&&kv.standardfehler>0?Math.round(kv.differenz/kv.standardfehler*100)/100:null, hinweis:'positiv = Durchschnitt aller Buchmacher ist genauer als Pinnacle' };
+  return { konsens:konsens, wertBesteQuote:wert, quelle:'eigenes privates Quoten-Archiv (Odds API, Pinnacle letzter Abruf vor Anstoss) und vorab abgelegte Core-Tipps', spiele:m.spiele,
     logLoss:{ coreAllein:m.logLoss.coreAllein, pinnacle:m.logLoss.pinnacleEroeffnung, kombi:m.logLoss.kombiMitEroeffnung }, kombiGegenCore:m.kombiGegenCore, kombiGegenPinnacle:m.kombiGegenPinnacleEroeffnung,
     hinweis:'Prospektiv: Tipps und Regel standen vor dem Spiel fest. Aussage erst mit vielen Spielen.' };
 }

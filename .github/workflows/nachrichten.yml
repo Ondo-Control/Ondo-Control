@@ -1,0 +1,52 @@
+name: Nachrichtenlage holen
+
+# Idee 20 (27.11.2026): Nachrichtenlage je Verein aus GDELT (frei). Nur Summenzahlen je Verein und Tag
+# (Anzahl Artikel, mittlerer Ton, Artikel mit Unruhe-Themen); keine Personen, keine Inhalte.
+# Taeglich: die letzten 21 Tage aller Vereine. Von Hand: beliebiger Startpunkt (Aufbau ab 2017) oder Probe mit wenigen Vereinen.
+# Eine Anfrage je 6 Sekunden. Gleiche concurrency-Gruppe wie die anderen Schreiber, gleiche HEAD-Pruefung vor dem Commit.
+concurrency:
+  group: ondo-control-ergebnisse-schreiber
+  cancel-in-progress: false
+
+on:
+  schedule:
+    - cron: '47 5 * * *'
+  workflow_dispatch:
+    inputs:
+      von:
+        description: 'Startdatum JJJJMMTT (leer = vor 21 Tagen; 20170101 = voller Aufbau)'
+        required: false
+        default: ''
+      nur:
+        description: 'Nur so viele Vereine (Probe); 0 = alle'
+        required: false
+        default: '0'
+
+permissions:
+  contents: write
+
+jobs:
+  holen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Nachrichtenlage abrufen (GDELT, hoeflich)
+        run: |
+          VON="${{ inputs.von }}"; if [ -z "$VON" ]; then VON=$(date -u -d '21 days ago' +%Y%m%d); fi
+          node core/data/nachrichten_holen.js --aus core/data/generated/nachrichten.json --von "$VON" --nur "${{ inputs.nur || '0' }}"
+          ls -la core/data/generated/nachrichten.json || true
+      - name: Aenderung committen, falls vorhanden
+        run: |
+          git config user.name "Ondo-Control-Automatik"
+          git config user.email "actions@users.noreply.github.com"
+          git add core/data/generated/nachrichten.json || true
+          if git diff --cached --quiet; then echo "Keine Aenderung."; else
+            git fetch origin main
+            if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then echo "::error::main hat sich bewegt - Abbruch vor dem Commit, naechster Lauf holt neu."; exit 1; fi
+            git commit -m "Core: Nachrichtenlage (GDELT, nur Summenzahlen)"
+            git push
+          fi

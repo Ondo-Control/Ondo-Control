@@ -1,5 +1,5 @@
 # ONDO CONTROL — Rückstand-Verzeichnis (Backlog)
-**Nur offene Punkte. Gepflegt von Claude · Stand 27.11.2026, Fassung 192 · jede Idee mit Datum, Urheber und Status**
+**Nur offene Punkte. Gepflegt von Claude · Stand 27.11.2026, Fassung 193 · jede Idee mit Datum, Urheber und Status**
 *Erledigtes, alte Fassungsnotizen und Prueflaeufe stehen in `BACKLOG-ARCHIV.md` — nur auf Zuruf zu lesen.*
 
 **Beschlossen und nicht gebaut: eins** — **92** *(Punkt 92 bleibt wegen des separaten Schritt 2 offen.)*
@@ -614,7 +614,7 @@ Der Foto-Import übernimmt jede Anzahl erkannter Einträge ohne Vorschau und ohn
 
 **94. Ondo Core, Stufe 1: Daten, Rechenmodell, Regeln, Trainingsraum** · *Ondos Ja zum Plan 3.11.2026, Aufträge 14.11. und 16.11.2026 · von Claude geliefert* · **Status: 🔴 GEBAUT 14.11. und 16.11.2026 — Quotenvergleich und Anbindung an die App offen, eigener Auftrag**
 
-`beta.html` unverändert. Daten, Modell, `core/REGELN.md`, Trainingsraum. **Seit 16.11.2026 „Lagen lernen“** (Stichtag 1.8.2026, t17, Pipeline v2): Hürde 3,28 nach 98 Ideen; Aufstellung/Marktwert besteht: (A) Prüfsaisons 0,9918→0,9811, (B) Holdout (zwei Blicke, Experiment a) 0,9933→0,9866, (C) vorab handelbar offen. **21.–27.11.2026:** Pokal-Kalender (t34/t35), gelernte Einstellungen (t36, z 3,24), Trainerwechsel (t38): keine Wirkung; **Markt-Kombination** (t37, feste Regel): an versiegelten Spielen Core 0,9943 → 0,9702, gleichauf mit Pinnacle; Hürde 3,44. **Offen:** legale Aufstellungsquelle mit Zeitstempel (API-Football gesperrt, ESPN nicht erlaubt) – Ondo entscheidet: Lizenz oder Verzicht; Quoten-Gatter vor jeder Wettposition; Kalendertag-Korrektur für `lauf.js` (K6, Wirkung unter 0,0002); Anbindung an die App; kein echtes Geld. Baugeschichte: `BACKLOG-ARCHIV.md`.
+`beta.html` unverändert. Daten, Modell, `core/REGELN.md`, Trainingsraum. **Seit 16.11.2026 „Lagen lernen“** (Stichtag 1.8.2026, t17, Pipeline v2): Hürde 3,28 nach 98 Ideen; Aufstellung/Marktwert besteht: (A) Prüfsaisons 0,9918→0,9811, (B) Holdout (zwei Blicke, Experiment a) 0,9933→0,9866, (C) vorab handelbar offen. **21.–27.11.2026:** Pokal-Kalender (t34/t35), gelernte Einstellungen (t36, z 3,24), Trainerwechsel (t38): keine Wirkung; **Markt-Kombination** (t37, feste Regel): an versiegelten Spielen Core 0,9943 → 0,9702, gleichauf mit Pinnacle; Versuchsreihe Nachrichtenlage (GDELT) und alle Buchmacher gestartet; Hürde 3,46. **Offen:** legale Aufstellungsquelle mit Zeitstempel (API-Football gesperrt, ESPN nicht erlaubt) – Ondo entscheidet: Lizenz oder Verzicht; Quoten-Gatter vor jeder Wettposition; Kalendertag-Korrektur für `lauf.js` (K6, Wirkung unter 0,0002); Anbindung an die App; kein echtes Geld. Baugeschichte: `BACKLOG-ARCHIV.md`.
 
 **95. Sonde: Selbsttest der App mit Bericht ans ONDO-Relay** · *Ondos Idee und Ja 16.11.2026 · von Claude geliefert* · **Status: 🔴 GEBAUT 16.11.2026 (`beta.html` v19.24.3, Vollsonde) — Berichte vom iPhone kamen an, Layout-Labor lief; Wirkung der Datumsfeld-Regel (v19.24.2) noch nicht am iPhone gemessen**
 

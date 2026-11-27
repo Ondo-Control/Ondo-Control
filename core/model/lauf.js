@@ -48,7 +48,8 @@ function bestandLaden(genOrdner, aliases){
   var pf=path.join(genOrdner,'pokal.json'), pokal=null;
   if(fs.existsSync(pf)){ var pj=JSON.parse(fs.readFileSync(pf,'utf8')), ab={}; Object.keys(pj.abgedeckt||{}).forEach(function(l){ ab[l]={}; pj.abgedeckt[l].forEach(function(sa){ ab[l][sa]=true; }); }); pokal={ teams:pj.teams, abgedeckt:ab }; }
   var tf=path.join(genOrdner,'trainer.json'), trainer=fs.existsSync(tf)?JSON.parse(fs.readFileSync(tf,'utf8')).teams:null;
-  return { jeLand:jeLand, namen:namen, heute:katalog.heute, europa:europa, stadien:stadien, wetter:wetter, pokal:pokal, trainer:trainer };
+  var nf=path.join(genOrdner,'nachrichten.json'), nachrichten=fs.existsSync(nf)?JSON.parse(fs.readFileSync(nf,'utf8')).teams:null;
+  return { jeLand:jeLand, namen:namen, heute:katalog.heute, europa:europa, stadien:stadien, wetter:wetter, pokal:pokal, trainer:trainer, nachrichten:nachrichten };
 }
 
 function ergebnis(r){

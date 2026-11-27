@@ -1,8 +1,8 @@
 {
  "schema": 2,
  "stichtag": "2026-08-01",
- "huerde": 3.44,
- "zaehlerVersuche": 52,
+ "huerde": 3.46,
+ "zaehlerVersuche": 55,
  "mengen": [
   {
    "menge": "alle",
@@ -200,6 +200,17 @@
      "standardfehler": 0,
      "z": 0,
      "besteHuerde": false
+    },
+    {
+     "menge": "alle",
+     "schritt": 1,
+     "gruppe": "nachrichten",
+     "zu": [],
+     "verlustPruefen": 1.0278,
+     "vorsprung": 0,
+     "standardfehler": 0,
+     "z": 0,
+     "besteHuerde": false
     }
    ],
    "gewaehlt": [],
@@ -285,15 +296,16 @@
      "reise",
      "wetter",
      "pokal",
-     "trainer"
+     "trainer",
+     "nachrichten"
     ],
     "verlustPruefenLinear": 1.0278,
-    "verlustPruefenNichtlinear": 1.0271,
-    "vorsprung": 0.00071,
-    "standardfehler": 0.00123,
-    "z": 0.57,
+    "verlustPruefenNichtlinear": 1.0267,
+    "vorsprung": 0.00116,
+    "standardfehler": 0.0011,
+    "z": 1.05,
     "besteHuerde": false,
-    "runde": 33,
+    "runde": 27,
     "spiele": 5928,
     "uebernommen": false
    }
@@ -493,6 +505,17 @@
      "vorsprung": 0.00027,
      "standardfehler": 0.00045,
      "z": 0.62,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 1,
+     "gruppe": "nachrichten",
+     "zu": [],
+     "verlustPruefen": 0.9919,
+     "vorsprung": 0,
+     "standardfehler": 0,
+     "z": 0,
      "besteHuerde": false
     },
     {
@@ -726,6 +749,19 @@
      "standardfehler": 0.00062,
      "z": -0.39,
      "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 2,
+     "gruppe": "nachrichten",
+     "zu": [
+      "aufst"
+     ],
+     "verlustPruefen": 0.9811,
+     "vorsprung": 0,
+     "standardfehler": 0,
+     "z": 0,
+     "besteHuerde": false
     }
    ],
    "gewaehlt": [
@@ -846,15 +882,16 @@
      "wetter",
      "pokal",
      "trainer",
+     "nachrichten",
      "aufst"
     ],
     "verlustPruefenLinear": 0.9811,
-    "verlustPruefenNichtlinear": 0.9836,
-    "vorsprung": -0.00248,
+    "verlustPruefenNichtlinear": 0.9835,
+    "vorsprung": -0.0024,
     "standardfehler": 0.00252,
-    "z": -0.98,
+    "z": -0.95,
     "besteHuerde": false,
-    "runde": 21,
+    "runde": 24,
     "spiele": 2168,
     "uebernommen": false
    }

@@ -23,6 +23,17 @@ function dreiWege(ev, bmKey){
   return [h,d,g];
 }
 function fair(q){ var s=1/q[0]+1/q[1]+1/q[2]; return [1/q[0]/s,1/q[1]/s,1/q[2]/s]; }
+/* Idee 21 (27.11.2026): alle Buchmacher eines Abrufs. konsens = Mittel der margenbereinigten Anteile (Potenz-Methode) aller
+   Buchmacher ausser Pinnacle und Boersen; beste = hoechste Quote je Ausgang (alle) und hoechste bei in Deutschland lizenzierten (DEUTSCHLAND). */
+var DEUTSCHLAND=['tipico_de','winamax_de'];
+function alleBuchmacher(ev){
+  var MK=require('./markt_kombi.js'), s=[0,0,0], n=0, beste=[0,0,0], besteDe=[0,0,0];
+  (ev.bookmakers||[]).forEach(function(b){ var q=dreiWege(ev,b.key); if(!q) return;
+    for(var i=0;i<3;i++){ if(q[i]>beste[i]) beste[i]=q[i]; if(DEUTSCHLAND.indexOf(b.key)>=0 && q[i]>besteDe[i]) besteDe[i]=q[i]; }
+    if(b.key==='pinnacle' || /betfair|matchbook|smarkets/.test(b.key)) return;
+    var p=MK.entmargen(q); for(var j=0;j<3;j++) s[j]+=p[j]; n++; });
+  return { konsens:n?s.map(function(x){ return x/n; }):null, anzahl:n, beste:beste[0]?beste:null, besteDe:besteDe[0]?besteDe:null };
+}
 
 /* Ein Abruf in das Archiv aufnehmen. roh = { liga:{ abgerufenUtc, ereignisse:[...] } }; zuordnen(liga, ev) -> { land, heimKey, gastKey } oder null */
 function aufnehmen(archiv, roh, zuordnen){
@@ -35,7 +46,7 @@ function aufnehmen(archiv, roh, zuordnen){
       var z=zuordnen(lg, ev); if(!z) return;
       var e=archiv.ereignisse[ev.id]||(archiv.ereignisse[ev.id]={ liga:lg, land:z.land, heimKey:z.heimKey, gastKey:z.gastKey, anstossUtc:ev.commence_time, abrufe:[] });
       if(e.abrufe.some(function(a){ return a.abgerufenUtc===abg; })) return;
-      e.abrufe.push({ abgerufenUtc:abg, pinnacle:P, tipico:T }); neu++;
+      var AB=alleBuchmacher(ev); e.abrufe.push({ abgerufenUtc:abg, pinnacle:P, tipico:T, konsens:AB.konsens, buchmacher:AB.anzahl, beste:AB.beste, besteDe:AB.besteDe }); neu++;
       e.abrufe.sort(function(a,b){ return a.abgerufenUtc<b.abgerufenUtc?-1:1; });
       while(e.abrufe.length>MAX_ABRUFE) e.abrufe.splice(1,1);           /* ersten Abruf behalten, aeltere Mitte streichen */
     });
@@ -72,7 +83,7 @@ function auswerten(archiv, ergebnisVon){
   rep.clv={ wetten:clv.length, mittel:mittel(clv), hinweis:'positiv = die Profis haben sich nachtraeglich in diese Richtung bewegt' };
   return rep;
 }
-module.exports={ aufnehmen:aufnehmen, auswerten:auswerten, fair:fair, SCHWELLEN:SCHWELLEN, MIN_WETTEN:MIN_WETTEN };
+module.exports={ alleBuchmacher:alleBuchmacher, DEUTSCHLAND:DEUTSCHLAND, aufnehmen:aufnehmen, auswerten:auswerten, fair:fair, SCHWELLEN:SCHWELLEN, MIN_WETTEN:MIN_WETTEN };
 
 if(require.main===module){
   var hier=__dirname, lies=function(p){ return JSON.parse(fs.readFileSync(p,'utf8')); };

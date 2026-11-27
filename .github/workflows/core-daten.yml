@@ -188,6 +188,7 @@ jobs:
           node tests/t36_einstellungen.js
           node tests/t37_markt_kombi.js
           node tests/t38_trainer.js
+          node tests/t39_nachrichten.js
 
       - name: Aenderung committen, falls vorhanden
         run: |

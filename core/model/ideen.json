@@ -380,6 +380,37 @@
    "geprueftAuf": "Pruefsaisons",
    "ergebnis": "siehe lagen.json",
    "art": "formal"
+  },
+  {
+   "nr": 20,
+   "datum": "2026-11-27",
+   "name": "Nachrichtenlage je Verein (GDELT, nur Summenzahlen je Verein und Tag, keine Personen): neue Gruppe 'nachrichten' (Ton der letzten 7 Tage, ungewoehnlich viel Berichterstattung, Unruhe-Themen Festnahme/Skandal/Prozess/Krankheit/Protest) auf ALLEN Spielen, unbekannt = 0. Vorab-Eintragung inkl. Schritt-2-Reserve und Netz.",
+   "namen": [
+    "L-v10-alle-nachrichten",
+    "L-v10-auf1-nachrichten",
+    "L-v10-auf2-nachrichten",
+    "L-v10-alle2-nachrichten",
+    "NL-alle-v10",
+    "NL-mitAufstellung-v10"
+   ],
+   "versuche": 6,
+   "geprueftAuf": "Pruefsaisons",
+   "ergebnis": "siehe lagen.json",
+   "art": "formal"
+  },
+  {
+   "nr": 21,
+   "datum": "2026-11-27",
+   "name": "Alle Buchmacher (Odds API, ein Abruf, keine Mehrkosten): Durchschnitt aller Buchmacher gegen Pinnacle (Log-Loss) und Wert-Wetten zur besten Quote (alle / in Deutschland lizenziert) gegen Pinnacles fairen Anteil, Schwellen 1,00/1,03/1,05; prospektiv im privaten Archiv, nur Summenzahlen.",
+   "namen": [
+    "K-v1-konsens-gegen-pinnacle",
+    "W-v1-beste-quote-alle",
+    "W-v1-beste-quote-deutschland"
+   ],
+   "versuche": 3,
+   "geprueftAuf": "laufende Spiele",
+   "ergebnis": "siehe markt_bericht.json",
+   "art": "formal"
   }
  ]
 }
