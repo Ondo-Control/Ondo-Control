@@ -334,6 +334,52 @@
    "geprueftAuf": "Pruefsaisons",
    "ergebnis": "siehe lagen.json",
    "art": "formal"
+  },
+  {
+   "nr": 17,
+   "datum": "2026-11-27",
+   "name": "Einstellungen des Grundmodells aus den Spielen lernen statt von Hand (8 Zahlen: lernrate, saisonBehalt, dc, startNiveau, startHeim, lernrateLiga, stufenSprung, neuStart), angepasst nur auf den Lernsaisons (Vorhersage vor jedem Spiel), gemessen einmal auf den Pruefsaisons gegen K6; Holdout und versiegelte Spiele nicht benutzt. Vorab eingetragen. Dazu ein erster Lauf, der wegen eines Fehlers im Abbruch der Suche nach 11 Rechnungen stehen blieb, aber schon auf den Pruefsaisons gemessen wurde (z 2,94), ehrlich mitgezaehlt.",
+   "namen": [
+    "E-v1-einstellungen",
+    "E-v1-einstellungen-abgebrochen"
+   ],
+   "versuche": 2,
+   "geprueftAuf": "Pruefsaisons",
+   "ergebnis": "siehe einstellungen.json",
+   "art": "formal"
+  },
+  {
+   "nr": 18,
+   "datum": "2026-11-27",
+   "name": "Markt-Kombination: Pinnacle-Quote als Eingabe (Potenz-Margenabzug, logarithmisches Mischen 0,95 Quote / 0,05 Core, feste Regel in markt_regel.json, nicht gelernt). Gemessen einmal an versiegelten Spielen (TipsAudit CC BY 4.0, ab Stichtag) gegen den Core allein und gegen Pinnacle; Blick in versiegelt.json eingetragen. Vorab eingetragen.",
+   "namen": [
+    "M-v1-kombi-gegen-core",
+    "M-v1-kombi-gegen-pinnacle"
+   ],
+   "versuche": 2,
+   "geprueftAuf": "versiegelte Spiele",
+   "ergebnis": "siehe markt_bericht.json",
+   "art": "formal"
+  },
+  {
+   "nr": 19,
+   "datum": "2026-11-27",
+   "name": "Trainerwechsel (Wikidata CC0, trainer.json): neue Gruppe 'trainer' (neuer Trainer seit hoechstens 45 Tagen, Amtsdauer) auf ALLEN Spielen, unbekannt = 0 neutral; dazu der Neulauf der Gruppe 'pokal', sobald die Action aeltere Pokal-Saisons von Wikipedia holt. Vorab-Eintragung inkl. Schritt-2-Reserve und Netz auf der erweiterten Menge. Dazu ein erster Lauf mit einem Fehler (letzter Amtstag galt nicht als Amtszeit), schon auf den Pruefsaisons gerechnet, ehrlich mitgezaehlt.",
+   "namen": [
+    "L-v9-alle-trainer",
+    "L-v9-auf1-trainer",
+    "L-v9-auf2-trainer",
+    "L-v9-alle2-trainer",
+    "NL-alle-v9",
+    "NL-mitAufstellung-v9",
+    "L-v9-alle-pokal-wikipedia",
+    "L-v9-auf-pokal-wikipedia",
+    "L-v9-trainer-erster-lauf-fehler"
+   ],
+   "versuche": 9,
+   "geprueftAuf": "Pruefsaisons",
+   "ergebnis": "siehe lagen.json",
+   "art": "formal"
   }
  ]
 }

@@ -2,23 +2,22 @@
  "schema": 1,
  "stichtag": "2026-08-01",
  "gruppen": [
-  "aufst",
-  "angriff"
+  "aufst"
  ],
- "lernstand": "L91",
- "pruefsumme": "116e8e1a",
- "versuchteIdeen": 152,
- "huerdeAuswahl": 3.41,
+ "lernstand": "L37",
+ "pruefsumme": "af6fa60d",
+ "versuchteIdeen": 173,
+ "huerdeAuswahl": 3.44,
  "A_entwicklung": {
   "was": "Pruefsaisons, Spiele mit Aufstellungsdaten; nach Sichtung gewaehlt, Auswahl-Optimismus moeglich",
   "spiele": 2168,
-  "vorsprung": 0.01201,
-  "standardfehlerSpieltag": 0.00241,
+  "vorsprung": 0.01073,
+  "standardfehlerSpieltag": 0.00227,
   "blockbootstrap": {
-   "mittel": 0.01201,
+   "mittel": 0.01073,
    "bereich95": [
-    0.0075,
-    0.01648
+    0.00655,
+    0.01487
    ],
    "pEinseitig": 0.0005,
    "wochenBloecke": 81,
@@ -26,8 +25,20 @@
   }
  },
  "B_retrospektiv": {
-  "was": "Holdout NICHT neu gerechnet",
-  "stand": "Lernstand hat sich seit dem protokollierten Blick geaendert (Pruefsumme 116e8e1a statt af6fa60d). Es gilt der protokollierte Blick in versiegelt.json; ein neuer Blick waere ein weiterer Test auf schon gesehenen Spielen."
+  "was": "Holdout-Saisons, Spiele mit Aufstellungsdaten; zwei Blicke auf dieselbe Saison (Pipeline v1 und v2, beide in versiegelt.json), Experiment a: Aufstellung als bekannt vorausgesetzt",
+  "spiele": 2230,
+  "vorsprung": 0.00677,
+  "standardfehlerSpieltag": 0.00212,
+  "blockbootstrap": {
+   "mittel": 0.00677,
+   "bereich95": [
+    0.00221,
+    0.01151
+   ],
+   "pEinseitig": 0.005,
+   "wochenBloecke": 81,
+   "ziehungen": 2000
+  }
  },
  "C_prospektiv": {
   "was": "handelbare Vorab-Validierung",

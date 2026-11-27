@@ -1,0 +1,43 @@
+{
+ "schema": 1,
+ "regel": {
+  "festgelegt": "2026-11-27",
+  "gewichtMarkt": 0.95,
+  "gewichtCore": 0.05,
+  "entmargung": "power"
+ },
+ "versiegelt": {
+  "quelle": "TipsAudit (CC BY 4.0), nur Spiele ab dem Stichtag 2026-08-01",
+  "core": "K6, vor jedem Spiel vorhergesagt",
+  "zuordnung": {
+   "ta": 8124,
+   "unsereLigen": 1415,
+   "zugeordnet": 671,
+   "ergebnisAbweichung": 0
+  },
+  "spiele": 671,
+  "logLoss": {
+   "coreAllein": 0.9943,
+   "pinnacleEroeffnung": 0.9698,
+   "pinnacleSchluss": 0.9665,
+   "kombiMitEroeffnung": 0.9702,
+   "kombiMitSchluss": 0.9669
+  },
+  "kombiGegenCore": {
+   "vorsprung": 0.0241,
+   "standardfehler": 0.0067,
+   "z": 3.6
+  },
+  "kombiGegenPinnacleEroeffnung": {
+   "vorsprung": -0.0003,
+   "standardfehler": 0.0003,
+   "z": -0.93
+  },
+  "kombiSchlussGegenPinnacleSchluss": {
+   "vorsprung": -0.0003,
+   "standardfehler": 0.0004,
+   "z": -0.95
+  },
+  "hinweis": "vorsprung positiv = der zweitgenannte (Kombination) ist besser; Standardfehler nach Spieltag"
+ }
+}

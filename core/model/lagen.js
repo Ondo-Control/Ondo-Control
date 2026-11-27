@@ -12,7 +12,7 @@
      - Jeder Versuch (Merkmalsgruppe) wird gezaehlt; die Huerde steigt mit der Zahl der Versuche.
    Kein Netz, kein Schluessel, keine Uhr, kein Zufall. Laeuft in Node.
    =================================================================================== */
-var M=require('./poisson.js');
+var M=require('./poisson.js'), TR=require('../data/trainer_bauen.js');
 
 var MERKMALE = {
   /* Basis: die drei Logarithmen der Wahrscheinlichkeiten des alten Modells (K6) */
@@ -37,6 +37,9 @@ var MERKMALE = {
   /* Fassung v8 (21.11.2026): nationale Pokale (pokal.json), Pokaltage VOR dem Spiel, Heim minus Gast. Gilt fuer ALLE Spiele; wo keine belegt
      vollstaendigen Pokaldaten vorliegen (Land-Saison nicht abgedeckt, oder keine Erstliga), ist der Wert 0 = neutral (kein Gradient, kein Einfluss). */
   pokal:  ['dPo7','dPo14','dPoRuhe'],
+  /* Fassung v9 (27.11.2026): Trainerwechsel (trainer.json, Wikidata CC0): neuer Trainer seit hoechstens 45 Tagen (1/0) und Amtsdauer (ln(1+Tage)/7),
+     Heim minus Gast. Nur wenn die Amtszeit BEIDER Mannschaften am Spieltag bekannt ist, sonst 0 = neutral. Gilt fuer ALLE Spiele. */
+  trainer:['dTrNeu','dTrDauer'],
   /* Fassung v5 (17.11.2026): Motivation aus der Tabelle der Liga-Saison VOR dem Spiel: wie nah ist die Mannschaft (gemessen in Siegen der
      verbleibenden Spiele) an Titel, Europa-Rang (6) und Abstiegsrang (letzte 3)? Heim minus Gast. */
   motiv:  ['dTitel','dEuropa','dAbstieg'],
@@ -47,7 +50,7 @@ var MERKMALE = {
      Nur fuer abgeschlossene Spiele belegbar; fuer kommende Spiele braeuchte es eine Vorhersage-Quelle (nicht gebaut). */
   wetter: ['regen','wind','temp']
 };
-var GRUPPEN = ['form','ort','ruhe','saison','staerke','tempo','serie','last','angriff','duell','kalender','termin','motiv','reise','wetter','pokal'];   /* waehlbare Gruppen, alle Spiele */
+var GRUPPEN = ['form','ort','ruhe','saison','staerke','tempo','serie','last','angriff','duell','kalender','termin','motiv','reise','wetter','pokal','trainer'];   /* waehlbare Gruppen, alle Spiele */
 var GRUPPEN_AUFST = GRUPPEN.concat(['aufst']);                  /* waehlbar nur auf Spielen mit Aufstellungsdaten */
 
 var PRIOR_PPG = 1.4, PRIOR_N = 3, ELO_START = 1500, ELO_K = 20, ELO_HEIM = 60, ELO_STUFE = 80;
@@ -92,7 +95,7 @@ function wetterWerte(wetter, H, datum){
   var w=wetter&&wetter[H]&&wetter[H][datum]; if(!w) return { regen:0, wind:0, temp:0 };
   return { regen:Math.min(30,w[0])/10, wind:w[2]/10, temp:(w[1]-15)/10 };
 }
-function zeilenFuerLand(spiele, par, europa, stadien, wetter, pokal){
+function zeilenFuerLand(spiele, par, europa, stadien, wetter, pokal, trainer){
   var z=M.neuerZustand(), hist={}, elo={}, ligaVon={}, saison={}, ligaTeams={}, duelle={}, zeilen=[], nachher=[], tag=null;
   /* Alle Spiele EINES Kalendertags werden mit demselben Stand vom Vortag vorhergesagt; erst wenn der Tag zu Ende ist,
      gehen ihre Ergebnisse in Staerken, Form, Elo und Ligawerte ein (kein Spiel nutzt das Ergebnis eines Spiels desselben Tags). */
@@ -125,6 +128,8 @@ function zeilenFuerLand(spiele, par, europa, stadien, wetter, pokal){
     var gf10=function(l,k){ var s=l.slice(-10), t=0; s.forEach(function(e){ t+=e[k]; }); return (t+LAENDER_MITTEL_TORE/2*PRIOR_N)/(s.length+PRIOR_N); };
     var eH0=europa&&europa[H], eG0=europa&&europa[G];
     var pH0=pokal&&pokal.teams&&pokal.teams[H], pG0=pokal&&pokal.teams&&pokal.teams[G];
+    var trH=trainer&&TR.amtszeit(trainer[H], r.datum), trG=trainer&&TR.amtszeit(trainer[G], r.datum), trOk=!!(trH&&trG);
+    var trTage=function(a){ return Math.max(0, tage(a[0], r.datum)); };
     var poOk=!!(pokal&&pokal.abgedeckt&&String(r.liga).split('.')[1]==='1'&&(pokal.abgedeckt[String(r.liga).split('.')[0]]||{})[r.saison]);
     var pk=H<G?H+'|'+G:G+'|'+H, dl=(duelle[pk]||[]).slice(-5), dp=0;
     dl.forEach(function(e){ dp+=(e.a===H?e.pa:e.pg); });
@@ -153,6 +158,8 @@ function zeilenFuerLand(spiele, par, europa, stadien, wetter, pokal){
       dPo7:poOk?zaehleMit([],pH0,r.datum,7)-zaehleMit([],pG0,r.datum,7):0,
       dPo14:poOk?zaehleMit([],pH0,r.datum,14)-zaehleMit([],pG0,r.datum,14):0,
       dPoRuhe:poOk?(ruheMit([],pH0,r.datum)-ruheMit([],pG0,r.datum))/7:0,
+      dTrNeu:trOk?((trTage(trH)<=45?1:0)-(trTage(trG)<=45?1:0)):0,
+      dTrDauer:trOk?(Math.log(1+trTage(trH))-Math.log(1+trTage(trG)))/7:0,
       dTitel:nH.titel-nG.titel, dEuropa:nH.europa-nG.europa, dAbstieg:nH.abstieg-nG.abstieg,
       reiseKm:reiseKm(stadien,H,G),
       regen:wetterWerte(wetter,H,r.datum).regen, wind:wetterWerte(wetter,H,r.datum).wind, temp:wetterWerte(wetter,H,r.datum).temp
@@ -185,7 +192,7 @@ function zeilenKommend(bestand, par, fixtures, schema){
   Object.keys(jeLand).forEach(function(land){
     var neu=jeLand[land].slice().sort(function(a,b){ return a.datum<b.datum?-1:a.datum>b.datum?1:a.idx-b.idx; });
     var spiele=(bestand.jeLand[land]||[]).concat(neu);
-    zeilenFuerLand(spiele, par, bestand.europa, bestand.stadien, bestand.wetter, bestand.pokal).forEach(function(z){ if(z.kommend) aus[z.r.idx]=z; });
+    zeilenFuerLand(spiele, par, bestand.europa, bestand.stadien, bestand.wetter, bestand.pokal, bestand.trainer).forEach(function(z){ if(z.kommend) aus[z.r.idx]=z; });
   });
   return aus;
 }
@@ -194,7 +201,7 @@ function zeilenKommend(bestand, par, fixtures, schema){
 function zeilenBauen(bestand, par, aufst){
   var alle=[];
   Object.keys(bestand.jeLand).sort().forEach(function(land){
-    zeilenFuerLand(bestand.jeLand[land], par, bestand.europa, bestand.stadien, bestand.wetter, bestand.pokal).forEach(function(z){
+    zeilenFuerLand(bestand.jeLand[land], par, bestand.europa, bestand.stadien, bestand.wetter, bestand.pokal, bestand.trainer).forEach(function(z){
       var a=aufst&&aufst.werte&&aufst.werte[z.r.id];
       z.mitAufst=!!a;
       MERKMALE.aufst.forEach(function(n,i){ z.x[n]=a?a[i]:0; });     /* fehlt: Unterschied 0 = neutral */

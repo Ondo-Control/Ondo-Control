@@ -1,0 +1,10 @@
+{
+ "hinweis": "Feste Regel der Markt-Kombination (Idee 18), festgelegt am 27.11.2026 VOR jeder Messung der Kombination. Die Regel wird NICHT aus Spielen gelernt: fuer unsere Ligen gibt es alte Quoten nur nach dem Stichtag (versiegelt, nur zum Messen). Gewichte aus der Fachliteratur (offene Studie Big-5 2021-2026: gelernte Mischgewichte etwa 0,98 Quote zu 0,06 Modell; unser Core ist schwaecher als das dortige Modell). Eine Aenderung ist eine neue Idee mit Eintrag in ideen.json.",
+ "festgelegt": "2026-11-27",
+ "entmargung": "power",
+ "gewichtMarkt": 0.95,
+ "gewichtCore": 0.05,
+ "verfahren": "logarithmisches Mischen: p_i proportional zu Markt_i^0,95 mal Core_i^0,05, auf Summe 1 normiert",
+ "quelle": "Pinnacle (Odds API im laufenden Betrieb; TipsAudit CC BY 4.0 fuer die Messung an versiegelten Spielen)",
+ "ohneQuote": "Core allein (jedes Spiel wird bewertet)"
+}

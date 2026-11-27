@@ -15,7 +15,8 @@ var GRUPPEN_INFO={
   duell:['Direkte Duelle (letzte 5)','Ergebnisdaten'], kalender:['Saisonfortschritt','Ergebnisdaten'], termin:['Terminlast mit Europapokal','OpenFootball champions-league (CC0)'],
   motiv:['Motivation: Naehe zu Titel, Europa-Rang, Abstieg aus der Tabelle','Ergebnisdaten (Tabelle)'], reise:['Reise der Gastmannschaft (Entfernung)','Wikidata (CC0), 405 von 428 Stadien'],
   wetter:['Wetter am Spieltag (Regen, Wind, Temperatur)','NASA POWER (offene Daten)'],
-  pokal:['Nationale Pokalspiele (DFB-Pokal, FA Cup, EFL Cup, Copa del Rey, Coppa Italia)','OpenFootball (CC0), Tage nur aus belegt vollstaendigen Land-Saisons; sonst neutral 0']
+  pokal:['Nationale Pokalspiele (DFB-Pokal, FA Cup, EFL Cup, Copa del Rey, Coppa Italia)','OpenFootball (CC0) und Wikipedia, Tage nur aus belegt vollstaendigen Land-Saisons; sonst neutral 0'],
+  trainer:['Trainerwechsel (neuer Trainer, Amtsdauer)','Wikidata (CC0), Amtszeiten P286; unbekannt = neutral 0']
 };
 var OFFEN=[
   ['xG / Schussqualitaet','offen','Wyscout-Open-Data (CC BY), nur ca. 1.900 Spiele 2017/18: zu wenig fuer die Huerde; StatsBomb/IMPECT: Lizenz ungeklaert'],

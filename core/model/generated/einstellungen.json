@@ -1,0 +1,62 @@
+{
+ "schema": 1,
+ "idee": "E-v1-einstellungen",
+ "stichtag": "2026-08-01",
+ "regel": "Anpassen nur auf den Lernsaisons (Vorhersage vor jedem Spiel), Messen einmal auf den Pruefsaisons gegen K6; Holdout, spaeter und versiegelte Spiele nicht benutzt",
+ "einstellungen": {
+  "lernrate": {
+   "vorher": 0.03,
+   "gelernt": 0.0214
+  },
+  "saisonBehalt": {
+   "vorher": 0.85,
+   "gelernt": 0.9602
+  },
+  "dc": {
+   "vorher": -0.06,
+   "gelernt": -0.0733
+  },
+  "startNiveau": {
+   "vorher": 0.18,
+   "gelernt": 0.0661
+  },
+  "startHeim": {
+   "vorher": 0.25,
+   "gelernt": 0.2763
+  },
+  "lernrateLiga": {
+   "vorher": 0.002,
+   "gelernt": 0.0014
+  },
+  "stufenSprung": {
+   "vorher": 0.25,
+   "gelernt": 0.2857
+  },
+  "neuStart": {
+   "vorher": -0.15,
+   "gelernt": -0.0437
+  }
+ },
+ "suche": {
+  "verfahren": "Nelder-Mead, Start K6, kein Zufall",
+  "auswertungen": 345
+ },
+ "lernsaisons": {
+  "spiele": 48784,
+  "logLossK6": 1.0251,
+  "logLossGelernt": 1.0237,
+  "hinweis": "auf diesen Spielen angepasst, darum kein Beleg"
+ },
+ "pruefsaisons": {
+  "spiele": 5928,
+  "spieltage": 1612,
+  "logLossK6": 1.0278,
+  "logLossGelernt": 1.0254,
+  "vorsprung": 0.0024,
+  "standardfehler": 0.0007,
+  "z": 3.24
+ },
+ "huerde": 3.44,
+ "bestanden": false,
+ "hinweis": "Aendert das laufende Modell nicht. Uebernahme waere eine Entscheidung (kandidaten.json; der Holdout waere fuer das neue Modell nicht mehr frisch)."
+}

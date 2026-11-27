@@ -47,7 +47,8 @@ function bestandLaden(genOrdner, aliases){
   var wf=path.join(genOrdner,'wetter.json'), wetter=fs.existsSync(wf)?JSON.parse(fs.readFileSync(wf,'utf8')).teams:null;
   var pf=path.join(genOrdner,'pokal.json'), pokal=null;
   if(fs.existsSync(pf)){ var pj=JSON.parse(fs.readFileSync(pf,'utf8')), ab={}; Object.keys(pj.abgedeckt||{}).forEach(function(l){ ab[l]={}; pj.abgedeckt[l].forEach(function(sa){ ab[l][sa]=true; }); }); pokal={ teams:pj.teams, abgedeckt:ab }; }
-  return { jeLand:jeLand, namen:namen, heute:katalog.heute, europa:europa, stadien:stadien, wetter:wetter, pokal:pokal };
+  var tf=path.join(genOrdner,'trainer.json'), trainer=fs.existsSync(tf)?JSON.parse(fs.readFileSync(tf,'utf8')).teams:null;
+  return { jeLand:jeLand, namen:namen, heute:katalog.heute, europa:europa, stadien:stadien, wetter:wetter, pokal:pokal, trainer:trainer };
 }
 
 function ergebnis(r){
@@ -80,7 +81,7 @@ function durchlauf(bestand, par, opt){
       var basis=grundquote(gq[r.liga]);
       var v=M.schritt(z, r, par, true);
       var e=ergebnis(r);
-      zeilen.push({ liga:r.liga, saison:r.saison, rolle:r.rolle, datum:r.datum, zusatz:r.zusatz,
+      zeilen.push({ liga:r.liga, saison:r.saison, rolle:r.rolle, datum:r.datum, zusatz:r.zusatz, heimKey:r.heimKey, gastKey:r.gastKey,
         e:e, p:v.p, basis:basis, bekannt:Math.min(v.heimSpiele, v.gastSpiele) });
       MAERKTE.m1x2.concat(MAERKTE.tore, MAERKTE.btts).forEach(function(k){
         if(e.m1x2===k||e.tore===k||e.btts===k) gq[r.liga][k]++; });

@@ -86,6 +86,11 @@ if(require.main===module){
   function tag(d,n){ var x=new Date(d+'T00:00:00Z'); x.setUTCDate(x.getUTCDate()+n); return x.toISOString().slice(0,10); }
   var bericht=auswerten(archiv, function(e){ var d=e.anstossUtc.slice(0,10); var y=erg[e.land+'|'+e.heimKey+'|'+e.gastKey+'|'+d]; if(y===undefined) y=erg[e.land+'|'+e.heimKey+'|'+e.gastKey+'|'+tag(d,-1)]; return y===undefined?null:y; });
   bericht.stand=archiv.neuAufgenommen+' neue Abrufe in diesem Lauf';
+  /* Laufende Messung der Markt-Kombination (Idee 18): nur Summenzahlen in markt_bericht.json */
+  var MK=require('./markt_kombi.js'), mbf=path.join(hier,'generated','markt_bericht.json'), mb=fs.existsSync(mbf)?lies(mbf):{ schema:1 };
+  var paf=path.join(hier,'generated','prognose_archiv.json');
+  mb.laufend=MK.laufendMessen(archiv, fs.existsSync(paf)?lies(paf):null, function(e){ var d=e.anstossUtc.slice(0,10); var y=erg[e.land+'|'+e.heimKey+'|'+e.gastKey+'|'+d]; if(y===undefined) y=erg[e.land+'|'+e.heimKey+'|'+e.gastKey+'|'+tag(d,-1)]; return y===undefined?null:y; }, lies(path.join(hier,'markt_regel.json')));
+  fs.writeFileSync(mbf, JSON.stringify(mb,null,1)+'\n');
   fs.writeFileSync(path.join(hier,'generated','wert_bericht.json'), JSON.stringify(bericht,null,1)+'\n');
   if(neu) fs.writeFileSync(neu, JSON.stringify(archiv));
   console.log('Wert-Messung: '+bericht.ereignisseImArchiv+' Ereignisse im Archiv, '+bericht.abgeschlossen+' abgeschlossen, '+archiv.neuAufgenommen+' neue Abrufe');

@@ -20,6 +20,11 @@
    "gehoert_zu": "aufst-holdout-2",
    "einfrierung": "Commit 04f8a4d",
    "pruefsumme": "af6fa60d"
+  },
+  {
+   "wann": "2026-11-27",
+   "was": "Markt-Kombination (feste Regel markt_regel.json, vor dem Blick festgelegt) gegen K6 allein und gegen Pinnacle Eroeffnung/Schluss, TipsAudit-Spiele ab Stichtag in unseren Ligen. Dieselben Spiele wie im K6-Blick vom 16.11. (dort nur K6 gegen Pinnacle). Keine Wahl danach.",
+   "gehoert_zu": "M-v1"
   }
  ],
  "vorabfestlegung": {

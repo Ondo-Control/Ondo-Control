@@ -1,10 +1,10 @@
 {
  "schema": 1,
- "huerde": 3.42,
- "zaehlerVersuche": 64,
+ "huerde": 3.44,
+ "zaehlerVersuche": 52,
  "anzahl": {
-  "geprueft": 16,
-  "aktiv": 2,
+  "geprueft": 18,
+  "aktiv": 1,
   "offen": 8,
   "ohne_quelle": 3
  },
@@ -34,7 +34,7 @@
     "dGd5",
     "dGd10"
    ],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "Heim-/Auswaertsform",
@@ -56,7 +56,7 @@
    "merkmale": [
     "dOrt"
    ],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "Ruhetage seit letztem Spiel (nur Liga)",
@@ -78,7 +78,7 @@
    "merkmale": [
     "dRuhe"
    ],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "Saisonstand (Punkte, Tordifferenz)",
@@ -101,7 +101,7 @@
     "dSaisonPpg",
     "dSaisonGd"
    ],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "Staerke (Elo)",
@@ -123,7 +123,7 @@
    "merkmale": [
     "dElo"
    ],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "Torniveau der letzten Spiele",
@@ -145,7 +145,7 @@
    "merkmale": [
     "tempo10"
    ],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "Serien (ohne Niederlage / ohne Sieg)",
@@ -168,7 +168,7 @@
     "dSerieU",
     "dSerieS"
    ],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "Spiele in 7/14/21 Tagen",
@@ -192,13 +192,13 @@
     "dLast14",
     "dLast21"
    ],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "Tore und Gegentore getrennt",
    "gruppe": "angriff",
    "quelle": "Ergebnisdaten",
-   "status": "aktiv",
+   "status": "geprueft",
    "messung": {
     "alle": {
      "z": 2,
@@ -215,7 +215,7 @@
     "dGf10",
     "dGa10"
    ],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "Direkte Duelle (letzte 5)",
@@ -237,7 +237,7 @@
    "merkmale": [
     "dDuell"
    ],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "Saisonfortschritt",
@@ -259,7 +259,7 @@
    "merkmale": [
     "saisonFortschritt"
    ],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "Terminlast mit Europapokal",
@@ -285,7 +285,7 @@
     "dEuRuhe",
     "dEu14"
    ],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "Motivation: Naehe zu Titel, Europa-Rang, Abstieg aus der Tabelle",
@@ -309,7 +309,7 @@
     "dEuropa",
     "dAbstieg"
    ],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "Reise der Gastmannschaft (Entfernung)",
@@ -331,7 +331,7 @@
    "merkmale": [
     "reiseKm"
    ],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "Wetter am Spieltag (Regen, Wind, Temperatur)",
@@ -355,12 +355,12 @@
     "wind",
     "temp"
    ],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "Nationale Pokalspiele (DFB-Pokal, FA Cup, EFL Cup, Copa del Rey, Coppa Italia)",
    "gruppe": "pokal",
-   "quelle": "OpenFootball (CC0), Tage nur aus belegt vollstaendigen Land-Saisons; sonst neutral 0",
+   "quelle": "OpenFootball (CC0) und Wikipedia, Tage nur aus belegt vollstaendigen Land-Saisons; sonst neutral 0",
    "status": "geprueft",
    "messung": {
     "alle": {
@@ -379,7 +379,30 @@
     "dPo14",
     "dPoRuhe"
    ],
-   "huerde": 3.42
+   "huerde": 3.44
+  },
+  {
+   "name": "Trainerwechsel (neuer Trainer, Amtsdauer)",
+   "gruppe": "trainer",
+   "quelle": "Wikidata (CC0), Amtszeiten P286; unbekannt = neutral 0",
+   "status": "geprueft",
+   "messung": {
+    "alle": {
+     "z": 0,
+     "vorsprung": 0,
+     "besteHuerde": false
+    },
+    "mitAufstellung": {
+     "z": 0.62,
+     "vorsprung": 0.00027,
+     "besteHuerde": false
+    }
+   },
+   "merkmale": [
+    "dTrNeu",
+    "dTrDauer"
+   ],
+   "huerde": 3.44
   },
   {
    "name": "Aufstellung und Marktwert der Startelf, Ausfaelle",
@@ -398,7 +421,7 @@
     "dLnBest",
     "dFehlt"
    ],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "xG / Schussqualitaet",
@@ -407,7 +430,7 @@
    "status": "offen",
    "messung": {},
    "merkmale": [],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "Schiedsrichter (Strenge, Heimneigung)",
@@ -416,7 +439,7 @@
    "status": "offen",
    "messung": {},
    "merkmale": [],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "Verletzte und Sperren ueber die ganze Geschichte",
@@ -425,7 +448,7 @@
    "status": "ohne_quelle",
    "messung": {},
    "merkmale": [],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "Aufstellung vor Anstoss fuer kommende Spiele",
@@ -434,7 +457,7 @@
    "status": "offen",
    "messung": {},
    "merkmale": [],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "Quoten als Merkmal",
@@ -443,7 +466,7 @@
    "status": "offen",
    "messung": {},
    "merkmale": [],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "Sharp Money / Wettvolumen",
@@ -452,7 +475,7 @@
    "status": "ohne_quelle",
    "messung": {},
    "merkmale": [],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "Wettervorhersage fuer kommende Spiele",
@@ -461,7 +484,7 @@
    "status": "offen",
    "messung": {},
    "merkmale": [],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "Hoehe des Stadions",
@@ -470,7 +493,7 @@
    "status": "ohne_quelle",
    "messung": {},
    "merkmale": [],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "Laenderspiel-Pausen je Mannschaft",
@@ -479,7 +502,7 @@
    "status": "offen",
    "messung": {},
    "merkmale": [],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "Trainerwechsel",
@@ -488,7 +511,7 @@
    "status": "offen",
    "messung": {},
    "merkmale": [],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "Derby / Rivalitaet",
@@ -497,7 +520,7 @@
    "status": "offen",
    "messung": {},
    "merkmale": [],
-   "huerde": 3.42
+   "huerde": 3.44
   },
   {
    "name": "Anstosszeit und Wochentag",
@@ -506,7 +529,7 @@
    "status": "geprueft",
    "messung": {},
    "merkmale": [],
-   "huerde": 3.42
+   "huerde": 3.44
   }
  ]
 }

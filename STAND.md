@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 21.11.2026, Fassung 191, v19.24.3*
+*Die aktuelle Wahrheit. Stand: 27.11.2026, Fassung 192, v19.24.3*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -208,12 +208,14 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   `core/data/` (geprüfter Spielbestand), `core/model/`,
   `core/REGELN.md` (Ondos Regeln als Textdatei, vom Core durchgesetzt),
   `core/model/raum.js` (Trainingsraum in Runden mit Lernständen, Zähler in `ideen.json`).
-  **Neu 16.11.2026: „Lagen lernen“** (`lagen_lauf.js`, Stichtag 1.8.2026, `versiegelt.json`, t17): Core wählt Gruppen selbst;
-  Hürde z = 3,42 (160 Ideen, `ideen.json`). Nur **Aufstellung/Marktwert** (und mit ihr `angriff`, z 3,42, Vorsprung 0,0013) besteht (`aufstellung.json`, 7 Ligen, bis 6.7.2026). Bericht:
-  **(A)** Prüfsaisons 0,9918 → 0,9798; **(B)** Holdout, zwei Blicke auf dieselbe Saison, Experiment a: 0,9933 → 0,9866, Blockbootstrap-p 0,005;
-  **(C)** vorab handelbar: offen. Quoten 63/77; kein Marktvergleich. **Grenze (v6–v8, t26, t29, t30, t34):** 16 Gruppen, Katalog (t32), KI-Anfrage (t33), Europapokal (`europa.json`), nationale Pokale (`pokal.json`, alle Spiele, ohne belegte Daten neutral 0; z 0 / −1,33); „alle“: keine besteht, Netz z 1,94 verfehlt.
-  **Prognose**, „keine Wette“; Quote-Gatter (t19, Secret `ODDS_API_KEY`), Wert-Messung (t27, privat), Fehleranalyse (t28), Archiv (t20), Produktion (t21) – Dateien in `core/model/`.
-  Lauf `core-daten.yml`, Tests `t12`–`t14`, `t17`–`t34`. Zahlen nur in
+  **„Lagen lernen“** (`lagen_lauf.js`, Stichtag 1.8.2026, `versiegelt.json`, t17): Hürde z = 3,44 (173 Ideen, `ideen.json`).
+  Nur **Aufstellung/Marktwert** besteht (`aufstellung.json`, bis 6.7.2026; `angriff` z 3,42 seit 27.11. darunter).
+  **(A)** Prüfsaisons 0,9918 → 0,9798; **(B)** Holdout (zwei Blicke, Experiment a) 0,9933 → 0,9866, p 0,005.
+  **Grenze (v6–v9):** 17 Gruppen, u. a. Pokale (`pokal.json`, Wikipedia-Einleser, t34/t35), Trainerwechsel (`trainer.json`, Wikidata, t38): keine Wirkung; „alle“: keine besteht.
+  **27.11.2026:** Einstellungen gelernt (`einstellungen_lernen.js`, t36): 1,0278 → 1,0254, z 3,24, verfehlt. **Markt-Kombination** (`markt_kombi.js`, feste Regel `markt_regel.json`, t37):
+  an 671 versiegelten Spielen 0,9943 → 0,9702 (z 3,6), gleichauf mit Pinnacle 0,9698. Kombi-Tipps nur privat (Artefakt), Messung `markt_bericht.json`.
+  **Prognose**, „keine Wette“; Quote-Gatter, Wert-Messung (privat), Fehleranalyse, Archiv, Produktion, Katalog, KI-Anfrage (t19–t33).
+  Lauf `core-daten.yml`, Tests `t12`–`t14`, `t17`–`t38`. Zahlen nur in
   `core/model/generated/`; Reihenfolge `core/ORIENTIERUNG.md`.
   Keine App-Anbindung.
 - **Stabil: v19.24.3** (`OndoControl.html`, seit 16.11.2026 = Beta-Code ohne „BETA“; `version.json` bleibt 17, `APP_VERSION` 18). Davor v17 (seit 17.7.). **Gerätetest Home-App 16.11. 15:16 bestanden:** Sicherung geladen,

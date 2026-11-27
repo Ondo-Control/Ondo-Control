@@ -10,7 +10,7 @@ var tage={}; ref.forEach(function(z){ var k=z.r.liga.split('.')[0]+'|'+z.r.datum
 var kand=Object.keys(tage).filter(function(k){ return tage[k].length>=3 && tage[k][0].r.datum<'2026-08-01' && tage[k][0].r.datum>'2024-08-01'; }).sort().pop();
 var soll=tage[kand], land=kand.split('|')[0], tag=kand.split('|')[1];
 u.block('Merkmale kommender Spiele ('+kand+', '+soll.length+' Spiele)');
-var bAbgeschnitten={ jeLand:{}, namen:b.namen, heute:b.heute, europa:b.europa, stadien:b.stadien, wetter:b.wetter }; Object.keys(b.jeLand).forEach(function(l){ bAbgeschnitten.jeLand[l]=b.jeLand[l].filter(function(r){ return !(l===land && r.datum>=tag); }); });
+var bAbgeschnitten={ jeLand:{}, namen:b.namen, heute:b.heute, europa:b.europa, stadien:b.stadien, wetter:b.wetter, pokal:b.pokal, trainer:b.trainer }; Object.keys(b.jeLand).forEach(function(l){ bAbgeschnitten.jeLand[l]=b.jeLand[l].filter(function(r){ return !(l===land && r.datum>=tag); }); });
 var fx=soll.map(function(z){ return { liga:z.r.liga, saison:z.r.saison, datum:z.r.datum, heimKey:z.r.heimKey, gastKey:z.r.gastKey }; });
 var k=LA.zeilenKommend(bAbgeschnitten, par, fx);
 var namen=Object.keys(k[0].x);

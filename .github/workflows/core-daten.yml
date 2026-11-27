@@ -69,6 +69,12 @@ jobs:
           node core/data/wikipedia_holen.js --aus "$RUNNER_TEMP/wikipedia"
           node core/data/pokal_bauen.js --de "$RUNNER_TEMP/deutschland" --en "$RUNNER_TEMP/england" --es "$RUNNER_TEMP/espana" --it "$RUNNER_TEMP/italy" --wp "$RUNNER_TEMP/wikipedia"
 
+      - name: Trainerwechsel von Wikidata holen und bauen (CC0, Fehlschlag laesst trainer.json unveraendert)
+        run: |
+          mkdir -p "$RUNNER_TEMP/trainer"
+          bash core/data/trainer_holen.sh "$RUNNER_TEMP/trainer" || true
+          node --max-old-space-size=4096 core/data/trainer_bauen.js --wd "$RUNNER_TEMP/trainer" || true
+
       - name: Test des Datenfundaments
         run: node tests/t12_core_daten.js
 
@@ -102,6 +108,20 @@ jobs:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           QUOTEN_ROH_PFAD: ${{ runner.temp }}/quoten_roh.json
         run: node core/model/quoten_holen.js
+
+      - name: Kombi-Tipps Core + Pinnacle (feste Regel; Tipps je Spiel nur privat, Bericht nur Anzahl)
+        env:
+          QUOTEN_ROH_PFAD: ${{ runner.temp }}/quoten_roh.json
+          MARKT_PROGNOSE_PFAD: ${{ runner.temp }}/markt_prognose.json
+        run: node core/model/markt_kombi.js --kommend
+
+      - name: Kombi-Tipps privat aufbewahren (Artefakt, 90 Tage, nicht im Repo)
+        uses: actions/upload-artifact@v4
+        with:
+          name: markt-prognose-${{ github.run_id }}
+          path: ${{ runner.temp }}/markt_prognose.json
+          retention-days: 90
+          if-no-files-found: ignore
 
       - name: Rohquoten privat aufbewahren (Artefakt, 90 Tage, nicht im Repo)
         uses: actions/upload-artifact@v4
@@ -165,6 +185,9 @@ jobs:
           node tests/t33_kriterien_anfrage.js
           node tests/t34_pokal.js
           node tests/t35_pokal_wikipedia.js
+          node tests/t36_einstellungen.js
+          node tests/t37_markt_kombi.js
+          node tests/t38_trainer.js
 
       - name: Aenderung committen, falls vorhanden
         run: |

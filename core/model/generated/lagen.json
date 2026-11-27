@@ -1,8 +1,8 @@
 {
  "schema": 2,
  "stichtag": "2026-08-01",
- "huerde": 3.42,
- "zaehlerVersuche": 64,
+ "huerde": 3.44,
+ "zaehlerVersuche": 52,
  "mengen": [
   {
    "menge": "alle",
@@ -189,6 +189,17 @@
      "standardfehler": 0,
      "z": 0,
      "besteHuerde": false
+    },
+    {
+     "menge": "alle",
+     "schritt": 1,
+     "gruppe": "trainer",
+     "zu": [],
+     "verlustPruefen": 1.0278,
+     "vorsprung": 0,
+     "standardfehler": 0,
+     "z": 0,
+     "besteHuerde": false
     }
    ],
    "gewaehlt": [],
@@ -273,15 +284,16 @@
      "motiv",
      "reise",
      "wetter",
-     "pokal"
+     "pokal",
+     "trainer"
     ],
     "verlustPruefenLinear": 1.0278,
-    "verlustPruefenNichtlinear": 1.0258,
-    "vorsprung": 0.00207,
-    "standardfehler": 0.00107,
-    "z": 1.94,
+    "verlustPruefenNichtlinear": 1.0271,
+    "vorsprung": 0.00071,
+    "standardfehler": 0.00123,
+    "z": 0.57,
     "besteHuerde": false,
-    "runde": 32,
+    "runde": 33,
     "spiele": 5928,
     "uebernommen": false
    }
@@ -475,6 +487,17 @@
     {
      "menge": "mitAufstellung",
      "schritt": 1,
+     "gruppe": "trainer",
+     "zu": [],
+     "verlustPruefen": 0.9916,
+     "vorsprung": 0.00027,
+     "standardfehler": 0.00045,
+     "z": 0.62,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 1,
      "gruppe": "aufst",
      "zu": [],
      "verlustPruefen": 0.9811,
@@ -598,7 +621,7 @@
      "vorsprung": 0.00128,
      "standardfehler": 0.00037,
      "z": 3.42,
-     "besteHuerde": true
+     "besteHuerde": false
     },
     {
      "menge": "mitAufstellung",
@@ -693,235 +716,36 @@
     },
     {
      "menge": "mitAufstellung",
-     "schritt": 3,
-     "gruppe": "form",
+     "schritt": 2,
+     "gruppe": "trainer",
      "zu": [
-      "aufst",
-      "angriff"
+      "aufst"
      ],
-     "verlustPruefen": 0.9799,
-     "vorsprung": -0.0001,
+     "verlustPruefen": 0.9813,
+     "vorsprung": -0.00024,
      "standardfehler": 0.00062,
-     "z": -0.16,
-     "besteHuerde": false
-    },
-    {
-     "menge": "mitAufstellung",
-     "schritt": 3,
-     "gruppe": "ort",
-     "zu": [
-      "aufst",
-      "angriff"
-     ],
-     "verlustPruefen": 0.9798,
-     "vorsprung": -0.00004,
-     "standardfehler": 0.00028,
-     "z": -0.13,
-     "besteHuerde": false
-    },
-    {
-     "menge": "mitAufstellung",
-     "schritt": 3,
-     "gruppe": "ruhe",
-     "zu": [
-      "aufst",
-      "angriff"
-     ],
-     "verlustPruefen": 0.9798,
-     "vorsprung": -0.00003,
-     "standardfehler": 0.00018,
-     "z": -0.14,
-     "besteHuerde": false
-    },
-    {
-     "menge": "mitAufstellung",
-     "schritt": 3,
-     "gruppe": "saison",
-     "zu": [
-      "aufst",
-      "angriff"
-     ],
-     "verlustPruefen": 0.9805,
-     "vorsprung": -0.0007,
-     "standardfehler": 0.00044,
-     "z": -1.58,
-     "besteHuerde": false
-    },
-    {
-     "menge": "mitAufstellung",
-     "schritt": 3,
-     "gruppe": "staerke",
-     "zu": [
-      "aufst",
-      "angriff"
-     ],
-     "verlustPruefen": 0.9825,
-     "vorsprung": -0.00274,
-     "standardfehler": 0.00083,
-     "z": -3.3,
-     "besteHuerde": false
-    },
-    {
-     "menge": "mitAufstellung",
-     "schritt": 3,
-     "gruppe": "tempo",
-     "zu": [
-      "aufst",
-      "angriff"
-     ],
-     "verlustPruefen": 0.9793,
-     "vorsprung": 0.00045,
-     "standardfehler": 0.00066,
-     "z": 0.69,
-     "besteHuerde": false
-    },
-    {
-     "menge": "mitAufstellung",
-     "schritt": 3,
-     "gruppe": "serie",
-     "zu": [
-      "aufst",
-      "angriff"
-     ],
-     "verlustPruefen": 0.9803,
-     "vorsprung": -0.00047,
-     "standardfehler": 0.00041,
-     "z": -1.15,
-     "besteHuerde": false
-    },
-    {
-     "menge": "mitAufstellung",
-     "schritt": 3,
-     "gruppe": "last",
-     "zu": [
-      "aufst",
-      "angriff"
-     ],
-     "verlustPruefen": 0.9799,
-     "vorsprung": -0.00014,
-     "standardfehler": 0.00076,
-     "z": -0.18,
-     "besteHuerde": false
-    },
-    {
-     "menge": "mitAufstellung",
-     "schritt": 3,
-     "gruppe": "duell",
-     "zu": [
-      "aufst",
-      "angriff"
-     ],
-     "verlustPruefen": 0.9789,
-     "vorsprung": 0.00089,
-     "standardfehler": 0.00036,
-     "z": 2.45,
-     "besteHuerde": false
-    },
-    {
-     "menge": "mitAufstellung",
-     "schritt": 3,
-     "gruppe": "kalender",
-     "zu": [
-      "aufst",
-      "angriff"
-     ],
-     "verlustPruefen": 0.9801,
-     "vorsprung": -0.0003,
-     "standardfehler": 0.00048,
-     "z": -0.64,
-     "besteHuerde": false
-    },
-    {
-     "menge": "mitAufstellung",
-     "schritt": 3,
-     "gruppe": "termin",
-     "zu": [
-      "aufst",
-      "angriff"
-     ],
-     "verlustPruefen": 0.9826,
-     "vorsprung": -0.00282,
-     "standardfehler": 0.0011,
-     "z": -2.56,
-     "besteHuerde": false
-    },
-    {
-     "menge": "mitAufstellung",
-     "schritt": 3,
-     "gruppe": "motiv",
-     "zu": [
-      "aufst",
-      "angriff"
-     ],
-     "verlustPruefen": 0.9791,
-     "vorsprung": 0.00065,
-     "standardfehler": 0.00097,
-     "z": 0.67,
-     "besteHuerde": false
-    },
-    {
-     "menge": "mitAufstellung",
-     "schritt": 3,
-     "gruppe": "reise",
-     "zu": [
-      "aufst",
-      "angriff"
-     ],
-     "verlustPruefen": 0.9797,
-     "vorsprung": 0.00009,
-     "standardfehler": 0.00008,
-     "z": 1.03,
-     "besteHuerde": false
-    },
-    {
-     "menge": "mitAufstellung",
-     "schritt": 3,
-     "gruppe": "wetter",
-     "zu": [
-      "aufst",
-      "angriff"
-     ],
-     "verlustPruefen": 0.98,
-     "vorsprung": -0.00018,
-     "standardfehler": 0.00047,
      "z": -0.39,
-     "besteHuerde": false
-    },
-    {
-     "menge": "mitAufstellung",
-     "schritt": 3,
-     "gruppe": "pokal",
-     "zu": [
-      "aufst",
-      "angriff"
-     ],
-     "verlustPruefen": 0.9838,
-     "vorsprung": -0.00404,
-     "standardfehler": 0.00111,
-     "z": -3.65,
      "besteHuerde": false
     }
    ],
    "gewaehlt": [
-    "aufst",
-    "angriff"
+    "aufst"
    ],
    "pruefen": {
     "altesModellK6": 0.9918,
     "nurBasisKalibriert": 0.9919,
-    "ende": 0.9798,
-    "vorsprungGegenK6": 0.01201,
-    "standardfehler": 0.00241,
+    "ende": 0.9811,
+    "vorsprungGegenK6": 0.01073,
+    "standardfehler": 0.00227,
     "spiele": 2168,
     "spieltage": 782
    },
    "lernstand": {
-    "name": "L91",
-    "runde": 91,
-    "pruefsumme": "116e8e1a",
+    "name": "L37",
+    "runde": 37,
+    "pruefsumme": "af6fa60d",
     "gruppen": [
-     "aufst",
-     "angriff"
+     "aufst"
     ],
     "namen": [
      "lnH",
@@ -929,9 +753,7 @@
      "lnA",
      "dLnStart",
      "dLnBest",
-     "dFehlt",
-     "dGf10",
-     "dGa10"
+     "dFehlt"
     ],
     "standardisierung": {
      "mittel": {
@@ -940,9 +762,7 @@
       "lnA": 0,
       "dLnStart": 0.009607,
       "dLnBest": -0.001514,
-      "dFehlt": -0.007711,
-      "dGf10": -0.014125,
-      "dGa10": 0.013062
+      "dFehlt": -0.007711
      },
      "streuung": {
       "lnH": 1,
@@ -950,41 +770,33 @@
       "lnA": 1,
       "dLnStart": 1.193314,
       "dLnBest": 1.166915,
-      "dFehlt": 0.156416,
-      "dGf10": 0.594822,
-      "dGa10": 0.491492
+      "dFehlt": 0.156416
      }
     },
     "gewichte": [
      [
-      0.76916,
-      0.03245,
-      0.11509,
-      0.14399,
-      0.10752,
-      -0.05815,
-      -0.01656,
-      0.01023
+      0.78503,
+      0.00097,
+      0.13304,
+      0.12907,
+      0.10863,
+      -0.05881
      ],
      [
-      0.07003,
-      0.8936,
-      0.05794,
-      0.00262,
-      0.00549,
-      -0.00827,
-      0.01018,
-      0.01162
+      0.03928,
+      0.94752,
+      0.02444,
+      0.00355,
+      0.00415,
+      -0.00706
      ],
      [
-      0.1608,
-      0.07395,
-      0.82696,
-      -0.14661,
-      -0.11301,
-      0.06642,
-      0.00637,
-      -0.02185
+      0.17569,
+      0.05151,
+      0.84252,
+      -0.13262,
+      -0.11278,
+      0.06587
      ]
     ]
    },
@@ -993,37 +805,25 @@
      "lernstand": "L0",
      "verlustLernen": 0.9885,
      "verlustPruefen": 0.9852,
-     "pruefsumme": "b600a55c"
+     "pruefsumme": "ae572dbc"
     },
     {
      "lernstand": "L25",
-     "verlustLernen": 0.9807,
-     "verlustPruefen": 0.9802,
-     "pruefsumme": "94ec0129"
+     "verlustLernen": 0.9806,
+     "verlustPruefen": 0.98,
+     "pruefsumme": "042ac2c8"
     },
     {
      "lernstand": "L50",
-     "verlustLernen": 0.9803,
+     "verlustLernen": 0.9802,
      "verlustPruefen": 0.98,
-     "pruefsumme": "8779dfb5"
+     "pruefsumme": "227e9f34"
     },
     {
-     "lernstand": "L75",
-     "verlustLernen": 0.9801,
-     "verlustPruefen": 0.9799,
-     "pruefsumme": "c47aa21e"
-    },
-    {
-     "lernstand": "L100",
-     "verlustLernen": 0.9801,
-     "verlustPruefen": 0.9799,
-     "pruefsumme": "e72d612e"
-    },
-    {
-     "lernstand": "L106",
-     "verlustLernen": 0.98,
-     "verlustPruefen": 0.9799,
-     "pruefsumme": "29a4757c"
+     "lernstand": "L52",
+     "verlustLernen": 0.9802,
+     "verlustPruefen": 0.98,
+     "pruefsumme": "9df317f5"
     }
    ],
    "nichtlinear": {
@@ -1045,13 +845,14 @@
      "reise",
      "wetter",
      "pokal",
+     "trainer",
      "aufst"
     ],
-    "verlustPruefenLinear": 0.9798,
-    "verlustPruefenNichtlinear": 0.9827,
-    "vorsprung": -0.00294,
-    "standardfehler": 0.0024,
-    "z": -1.22,
+    "verlustPruefenLinear": 0.9811,
+    "verlustPruefenNichtlinear": 0.9836,
+    "vorsprung": -0.00248,
+    "standardfehler": 0.00252,
+    "z": -0.98,
     "besteHuerde": false,
     "runde": 21,
     "spiele": 2168,
