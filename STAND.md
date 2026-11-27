@@ -1,5 +1,5 @@
 # ONDO CONTROL — STAND
-*Die aktuelle Wahrheit. Stand: 17.11.2026, Fassung 190, v19.24.3*
+*Die aktuelle Wahrheit. Stand: 21.11.2026, Fassung 191, v19.24.3*
 
 > **Wegweiser (neu am 15.8.2026, Punkt 18; erweitert 14.9.2026, Phase 2 der Trennung von
 > aktuellem Stand und Geschichte).** Dieses Dokument hiess bis 15.8.2026 `PROJEKT-STATUS.md`
@@ -209,11 +209,11 @@ Ondo Control ist ein persönliches, KI-gestütztes Entscheidungsunterstützungss
   `core/REGELN.md` (Ondos Regeln als Textdatei, vom Core durchgesetzt),
   `core/model/raum.js` (Trainingsraum in Runden mit Lernständen, Zähler in `ideen.json`).
   **Neu 16.11.2026: „Lagen lernen“** (`lagen_lauf.js`, Stichtag 1.8.2026, `versiegelt.json`, t17): Core wählt Gruppen selbst;
-  Hürde z = 3,41 (152 Ideen, `ideen.json`). Nur **Aufstellung/Marktwert** (und mit ihr `angriff`, z 3,42, Vorsprung 0,0013) besteht (`aufstellung.json`, 7 Ligen, bis 6.7.2026). **Pipeline v2**. Bericht (`lagen_bericht.json`):
+  Hürde z = 3,42 (160 Ideen, `ideen.json`). Nur **Aufstellung/Marktwert** (und mit ihr `angriff`, z 3,42, Vorsprung 0,0013) besteht (`aufstellung.json`, 7 Ligen, bis 6.7.2026). Bericht:
   **(A)** Prüfsaisons 0,9918 → 0,9798; **(B)** Holdout, zwei Blicke auf dieselbe Saison, Experiment a: 0,9933 → 0,9866, Blockbootstrap-p 0,005;
-  **(C)** vorab handelbar: offen. Quoten 63/77; kein Marktvergleich. **Grenze (v6, t26, t29, t30):** 15 Gruppen, Katalog `kriterien.json` (t32), KI-Anfrage (t33),  Europapokal (`europa.json`); „alle“: keine besteht, Netz z 2,64 verfehlt.
-  **Prognose**, „keine Wette“. **Quote-Gatter** `quoten.js` (t19), Abruf `quoten_holen.js`, Secret `ODDS_API_KEY`, **Wert-Messung** `wert_messung.js` (t27, privat), **Fehleranalyse** `fehleranalyse.js` (t28). Archiv `prognose_archiv.js` (t20), `lagen_produktion.js` (t21).
-  Lauf `core-daten.yml`, Tests `t12`–`t14`, `t17`–`t27`. Zahlen nur in
+  **(C)** vorab handelbar: offen. Quoten 63/77; kein Marktvergleich. **Grenze (v6–v8, t26, t29, t30, t34):** 16 Gruppen, Katalog (t32), KI-Anfrage (t33), Europapokal (`europa.json`), nationale Pokale (`pokal.json`, alle Spiele, ohne belegte Daten neutral 0; z 0 / −1,33); „alle“: keine besteht, Netz z 1,94 verfehlt.
+  **Prognose**, „keine Wette“; Quote-Gatter (t19, Secret `ODDS_API_KEY`), Wert-Messung (t27, privat), Fehleranalyse (t28), Archiv (t20), Produktion (t21) – Dateien in `core/model/`.
+  Lauf `core-daten.yml`, Tests `t12`–`t14`, `t17`–`t34`. Zahlen nur in
   `core/model/generated/`; Reihenfolge `core/ORIENTIERUNG.md`.
   Keine App-Anbindung.
 - **Stabil: v19.24.3** (`OndoControl.html`, seit 16.11.2026 = Beta-Code ohne „BETA“; `version.json` bleibt 17, `APP_VERSION` 18). Davor v17 (seit 17.7.). **Gerätetest Home-App 16.11. 15:16 bestanden:** Sicherung geladen,

@@ -315,6 +315,25 @@
    "geprueftAuf": "Pruefsaisons",
    "ergebnis": "siehe lagen.json",
    "art": "formal"
+  },
+  {
+   "nr": 16,
+   "datum": "2026-11-21",
+   "name": "Nationale Pokale (DFB-Pokal, FA Cup, EFL Cup, Copa del Rey, Coppa Italia; OpenFootball CC0, pokal.json): eine neue Gruppe 'pokal' (Pokaltage 7/14 Tage und Ruhe) auf ALLEN Spielen, Fehlwert 0 = neutral, Tage nur aus belegt vollstaendigen Land-Saisons; Vorab-Eintragung inkl. Schritt-2-Reserve und Netz auf der erweiterten Menge. Dazu zwei Versuche eines verworfenen ersten Laufs (Pokal nur auf eigener Menge mitPokal, einmal auf Pruefsaisons gerechnet, von Ondo verworfen), ehrlich mitgezaehlt.",
+   "namen": [
+    "L-v8-alle-pokal",
+    "L-v8-auf1-pokal",
+    "L-v8-auf2-pokal",
+    "L-v8-alle2-pokal",
+    "NL-alle-v8",
+    "NL-mitAufstellung-v8",
+    "L-v8-verworfen-mitPokal",
+    "NL-v8-verworfen-mitPokal"
+   ],
+   "versuche": 8,
+   "geprueftAuf": "Pruefsaisons",
+   "ergebnis": "siehe lagen.json",
+   "art": "formal"
   }
  ]
 }

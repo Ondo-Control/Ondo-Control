@@ -14,7 +14,8 @@ var GRUPPEN_INFO={
   serie:['Serien (ohne Niederlage / ohne Sieg)','Ergebnisdaten'], last:['Spiele in 7/14/21 Tagen','Ergebnisdaten'], angriff:['Tore und Gegentore getrennt','Ergebnisdaten'],
   duell:['Direkte Duelle (letzte 5)','Ergebnisdaten'], kalender:['Saisonfortschritt','Ergebnisdaten'], termin:['Terminlast mit Europapokal','OpenFootball champions-league (CC0)'],
   motiv:['Motivation: Naehe zu Titel, Europa-Rang, Abstieg aus der Tabelle','Ergebnisdaten (Tabelle)'], reise:['Reise der Gastmannschaft (Entfernung)','Wikidata (CC0), 405 von 428 Stadien'],
-  wetter:['Wetter am Spieltag (Regen, Wind, Temperatur)','NASA POWER (offene Daten)']
+  wetter:['Wetter am Spieltag (Regen, Wind, Temperatur)','NASA POWER (offene Daten)'],
+  pokal:['Nationale Pokalspiele (DFB-Pokal, FA Cup, EFL Cup, Copa del Rey, Coppa Italia)','OpenFootball (CC0), Tage nur aus belegt vollstaendigen Land-Saisons; sonst neutral 0']
 };
 var OFFEN=[
   ['xG / Schussqualitaet','offen','Wyscout-Open-Data (CC BY), nur ca. 1.900 Spiele 2017/18: zu wenig fuer die Huerde; StatsBomb/IMPECT: Lizenz ungeklaert'],
@@ -25,7 +26,7 @@ var OFFEN=[
   ['Sharp Money / Wettvolumen','ohne_quelle','nicht frei verfuegbar'],
   ['Wettervorhersage fuer kommende Spiele','offen','Voraussetzung, damit die Gruppe Wetter in der Prognose nutzbar wird'],
   ['Hoehe des Stadions','ohne_quelle','Wikidata kennt sie nur fuer 1 von 428 Stadien'],
-  ['Nationale Pokalspiele und Laenderspiel-Pausen je Mannschaft','offen','martj42 nur ligaweit (kein Unterschied Heim/Gast); Pokal-Quelle nicht gebaut'],
+  ['Laenderspiel-Pausen je Mannschaft','offen','martj42 nur ligaweit (kein Unterschied Heim/Gast); keine Quelle je Mannschaft'],
   ['Trainerwechsel','offen','keine geprueft freie Quelle'],
   ['Derby / Rivalitaet','offen','ohne eigene Quelle nur von Hand; nicht gebaut'],
   ['Anstosszeit und Wochentag','geprueft','Fehleranalyse: kein bestaetigter Fund nach Wochentag oder Monat']

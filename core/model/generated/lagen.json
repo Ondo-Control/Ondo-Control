@@ -1,8 +1,8 @@
 {
  "schema": 2,
  "stichtag": "2026-08-01",
- "huerde": 3.41,
- "zaehlerVersuche": 60,
+ "huerde": 3.42,
+ "zaehlerVersuche": 64,
  "mengen": [
   {
    "menge": "alle",
@@ -178,6 +178,17 @@
      "standardfehler": 0,
      "z": 0,
      "besteHuerde": false
+    },
+    {
+     "menge": "alle",
+     "schritt": 1,
+     "gruppe": "pokal",
+     "zu": [],
+     "verlustPruefen": 1.0278,
+     "vorsprung": 0,
+     "standardfehler": 0,
+     "z": 0,
+     "besteHuerde": false
     }
    ],
    "gewaehlt": [],
@@ -261,15 +272,16 @@
      "termin",
      "motiv",
      "reise",
-     "wetter"
+     "wetter",
+     "pokal"
     ],
     "verlustPruefenLinear": 1.0278,
-    "verlustPruefenNichtlinear": 1.0255,
-    "vorsprung": 0.00234,
-    "standardfehler": 0.00101,
-    "z": 2.33,
+    "verlustPruefenNichtlinear": 1.0258,
+    "vorsprung": 0.00207,
+    "standardfehler": 0.00107,
+    "z": 1.94,
     "besteHuerde": false,
-    "runde": 24,
+    "runde": 32,
     "spiele": 5928,
     "uebernommen": false
    }
@@ -447,6 +459,17 @@
      "vorsprung": 0.00007,
      "standardfehler": 0.00012,
      "z": 0.55,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 1,
+     "gruppe": "pokal",
+     "zu": [],
+     "verlustPruefen": 0.9925,
+     "vorsprung": -0.0006,
+     "standardfehler": 0.00045,
+     "z": -1.33,
      "besteHuerde": false
     },
     {
@@ -657,6 +680,19 @@
     },
     {
      "menge": "mitAufstellung",
+     "schritt": 2,
+     "gruppe": "pokal",
+     "zu": [
+      "aufst"
+     ],
+     "verlustPruefen": 0.9839,
+     "vorsprung": -0.00284,
+     "standardfehler": 0.001,
+     "z": -2.83,
+     "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
      "schritt": 3,
      "gruppe": "form",
      "zu": [
@@ -850,6 +886,20 @@
      "standardfehler": 0.00047,
      "z": -0.39,
      "besteHuerde": false
+    },
+    {
+     "menge": "mitAufstellung",
+     "schritt": 3,
+     "gruppe": "pokal",
+     "zu": [
+      "aufst",
+      "angriff"
+     ],
+     "verlustPruefen": 0.9838,
+     "vorsprung": -0.00404,
+     "standardfehler": 0.00111,
+     "z": -3.65,
+     "besteHuerde": false
     }
    ],
    "gewaehlt": [
@@ -994,15 +1044,16 @@
      "motiv",
      "reise",
      "wetter",
+     "pokal",
      "aufst"
     ],
     "verlustPruefenLinear": 0.9798,
-    "verlustPruefenNichtlinear": 0.9814,
-    "vorsprung": -0.00165,
-    "standardfehler": 0.00229,
-    "z": -0.72,
+    "verlustPruefenNichtlinear": 0.9827,
+    "vorsprung": -0.00294,
+    "standardfehler": 0.0024,
+    "z": -1.22,
     "besteHuerde": false,
-    "runde": 12,
+    "runde": 21,
     "spiele": 2168,
     "uebernommen": false
    }

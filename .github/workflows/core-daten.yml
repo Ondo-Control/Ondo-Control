@@ -59,6 +59,16 @@ jobs:
           git clone --quiet --depth 1 https://github.com/openfootball/champions-league "$RUNNER_TEMP/champions-league"
           node core/data/europa_bauen.js --ep "$RUNNER_TEMP/champions-league"
 
+      - name: Nationale Pokale holen und bauen (nur lesen, CC0)
+        run: |
+          for l in deutschland england espana italy; do git clone --quiet --depth 1 "https://github.com/openfootball/$l" "$RUNNER_TEMP/$l"; done
+          node core/data/pokal_bauen.js --de "$RUNNER_TEMP/deutschland" --en "$RUNNER_TEMP/england" --es "$RUNNER_TEMP/espana" --it "$RUNNER_TEMP/italy"
+
+      - name: Aeltere Pokal-Saisons von Wikipedia holen (nur lesen, hoeflich, Fehlschlag bricht nichts ab)
+        run: |
+          node core/data/wikipedia_holen.js --aus "$RUNNER_TEMP/wikipedia"
+          node core/data/pokal_bauen.js --de "$RUNNER_TEMP/deutschland" --en "$RUNNER_TEMP/england" --es "$RUNNER_TEMP/espana" --it "$RUNNER_TEMP/italy" --wp "$RUNNER_TEMP/wikipedia"
+
       - name: Test des Datenfundaments
         run: node tests/t12_core_daten.js
 
@@ -153,6 +163,8 @@ jobs:
           node tests/t31_wetter.js
           node tests/t32_kriterien.js
           node tests/t33_kriterien_anfrage.js
+          node tests/t34_pokal.js
+          node tests/t35_pokal_wikipedia.js
 
       - name: Aenderung committen, falls vorhanden
         run: |
