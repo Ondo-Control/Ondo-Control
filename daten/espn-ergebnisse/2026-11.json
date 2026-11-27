@@ -38596,6 +38596,46 @@
   },
   {
    "provider": "espn",
+   "providerEventId": "401931800",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-11-27",
+   "kickoffUtc": "2026-11-27T11:30Z",
+   "heim": "FC Ilves",
+   "gast": "TPS",
+   "torHeim": 1,
+   "torGast": 3,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "19248",
+      "teamDisplayName": "FC Ilves",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     },
+     {
+      "teamId": "8219",
+      "teamDisplayName": "TPS",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "3"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-27T18:16:52.556Z"
+  },
+  {
+   "provider": "espn",
    "providerEventId": "401931956",
    "providerCompetitionSlug": "fifa.friendly",
    "providerCompetitionName": "International Friendly",
@@ -46128,6 +46168,46 @@
    },
    "halbzeit": "0:0",
    "fetchedAt": "2026-11-27T05:26:04.458Z"
+  },
+  {
+   "provider": "espn",
+   "providerEventId": "401936553",
+   "providerCompetitionSlug": "club.friendly",
+   "providerCompetitionName": "Club Friendly",
+   "datum": "2026-11-27",
+   "kickoffUtc": "2026-11-27T13:00Z",
+   "heim": "1. FC Tatran Presov",
+   "gast": "FC Lokomotíva Kosice",
+   "torHeim": 2,
+   "torGast": 1,
+   "status": "FT",
+   "verlaengerungGespielt": false,
+   "beleg": {
+    "completed": true,
+    "statusTyp": "STATUS_FULL_TIME",
+    "competitors": [
+     {
+      "teamId": "133391",
+      "teamDisplayName": "1. FC Tatran Presov",
+      "homeAway": "home",
+      "linescores": [
+       "0",
+       "2"
+      ]
+     },
+     {
+      "teamId": "133249",
+      "teamDisplayName": "FC Lokomotíva Kosice",
+      "homeAway": "away",
+      "linescores": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   "halbzeit": "0:0",
+   "fetchedAt": "2026-11-27T18:16:52.716Z"
   },
   {
    "provider": "espn",
