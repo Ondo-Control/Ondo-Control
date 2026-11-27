@@ -3216,6 +3216,18 @@
    "torGast": 1,
    "quelle": "football-data.org",
    "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-11-26",
+   "anpfiff": "23:00",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "São Paulo FC",
+   "gast": "Clube do Remo",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
   }
  ]
 }
