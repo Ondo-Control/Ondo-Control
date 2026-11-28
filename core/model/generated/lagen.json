@@ -300,10 +300,10 @@
      "nachrichten"
     ],
     "verlustPruefenLinear": 1.0278,
-    "verlustPruefenNichtlinear": 1.0267,
-    "vorsprung": 0.00116,
-    "standardfehler": 0.0011,
-    "z": 1.05,
+    "verlustPruefenNichtlinear": 1.0266,
+    "vorsprung": 0.00125,
+    "standardfehler": 0.00112,
+    "z": 1.12,
     "besteHuerde": false,
     "runde": 27,
     "spiele": 5928,
@@ -490,10 +490,10 @@
      "schritt": 1,
      "gruppe": "pokal",
      "zu": [],
-     "verlustPruefen": 0.9925,
-     "vorsprung": -0.0006,
-     "standardfehler": 0.00045,
-     "z": -1.33,
+     "verlustPruefen": 0.9926,
+     "vorsprung": -0.00078,
+     "standardfehler": 0.00051,
+     "z": -1.54,
      "besteHuerde": false
     },
     {
@@ -731,10 +731,10 @@
      "zu": [
       "aufst"
      ],
-     "verlustPruefen": 0.9839,
-     "vorsprung": -0.00284,
+     "verlustPruefen": 0.9834,
+     "vorsprung": -0.00236,
      "standardfehler": 0.001,
-     "z": -2.83,
+     "z": -2.35,
      "besteHuerde": false
     },
     {
@@ -888,8 +888,8 @@
     "verlustPruefenLinear": 0.9811,
     "verlustPruefenNichtlinear": 0.9835,
     "vorsprung": -0.0024,
-    "standardfehler": 0.00252,
-    "z": -0.95,
+    "standardfehler": 0.00249,
+    "z": -0.96,
     "besteHuerde": false,
     "runde": 24,
     "spiele": 2168,

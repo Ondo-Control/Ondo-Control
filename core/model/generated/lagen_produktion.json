@@ -6,8 +6,8 @@
    "nichtlinear": null,
    "menge": "alle",
    "gruppen": [],
-   "trainingsspiele": 68885,
-   "bis": "2026-11-25",
+   "trainingsspiele": 68920,
+   "bis": "2026-11-28",
    "pruefsumme": "6d5e6a08",
    "runde": 0,
    "merkmalsgewinn": false,
@@ -54,7 +54,7 @@
     "aufst"
    ],
    "trainingsspiele": 25564,
-   "bis": "2026-11-25",
+   "bis": "2026-11-28",
    "pruefsumme": "03063052",
    "runde": 123,
    "merkmalsgewinn": true,
@@ -197,6 +197,20 @@
    "trainingsspiele": 25564,
    "zuwachs": 0,
    "pruefsumme": "aae54a60"
+  },
+  {
+   "menge": "alle",
+   "bis": "2026-11-28",
+   "trainingsspiele": 68920,
+   "zuwachs": 35,
+   "pruefsumme": "6d5e6a08"
+  },
+  {
+   "menge": "mitAufstellung",
+   "bis": "2026-11-28",
+   "trainingsspiele": 25564,
+   "zuwachs": 0,
+   "pruefsumme": "03063052"
   }
  ]
 }

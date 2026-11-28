@@ -41,27 +41,38 @@
   "hinweis": "vorsprung positiv = der zweitgenannte (Kombination) ist besser; Standardfehler nach Spieltag"
  },
  "kommend": {
-  "spieleGesamt": 90,
-  "mitPinnacle": 61,
+  "spieleGesamt": 127,
+  "mitPinnacle": 55,
   "hinweis": "Die Kombi-Tipps je Spiel liegen nur im privaten Actions-Artefakt markt-prognose (AGB der Odds API); hier nur die Anzahl."
  },
  "laufend": {
+  "konsens": {
+   "spiele": 0,
+   "vorsprungGegenPinnacle": null,
+   "standardfehler": null,
+   "z": null,
+   "hinweis": "positiv = Durchschnitt aller Buchmacher ist genauer als Pinnacle"
+  },
+  "wertBesteQuote": {
+   "alle": {},
+   "deutschland": {}
+  },
   "quelle": "eigenes privates Quoten-Archiv (Odds API, Pinnacle letzter Abruf vor Anstoss) und vorab abgelegte Core-Tipps",
-  "spiele": 69,
+  "spiele": 89,
   "logLoss": {
-   "coreAllein": 0.9874,
-   "pinnacle": 0.9773,
-   "kombi": 0.9773
+   "coreAllein": 1.0258,
+   "pinnacle": 1.0257,
+   "kombi": 1.0251
   },
   "kombiGegenCore": {
-   "vorsprung": 0.0102,
-   "standardfehler": 0.0182,
-   "z": 0.56
+   "vorsprung": 0.0007,
+   "standardfehler": 0.0164,
+   "z": 0.04
   },
   "kombiGegenPinnacle": {
-   "vorsprung": 0.0001,
-   "standardfehler": 0.001,
-   "z": 0.06
+   "vorsprung": 0.0006,
+   "standardfehler": 0.0009,
+   "z": 0.66
   },
   "hinweis": "Prospektiv: Tipps und Regel standen vor dem Spiel fest. Aussage erst mit vielen Spielen."
  }
