@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "ab": "2026-11-26",
- "bis": "2026-12-03",
- "anzahl": 88,
+ "ab": "2026-11-27",
+ "bis": "2026-12-04",
+ "anzahl": 90,
  "ohnePrognose": 0,
  "hinweis": "Prozentzahlen sind die Rechnung des Modells, keine Garantie. Das Modell ist auf Pruefspielen schlechter als die Pinnacle-Quote (STAND). Position: keine Wette, solange keine Quote mit Quelle und Zeitstempel und kein belegter Vorteil vorliegen.",
  "spiele": [
@@ -39,7 +39,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-27T19:30:00Z",
     "anbieterSpielId": "698f4a7967ead89e10205a68ceb4bda4"
    }
@@ -77,7 +77,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-27T20:00:00Z",
     "anbieterSpielId": "32b8e3ea76d9d8b2b36577063d40862e"
    }
@@ -115,7 +115,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-27T19:45:00Z",
     "anbieterSpielId": "02ff879cf54f6d1fec2664efee0431db"
    }
@@ -153,8 +153,8 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
-    "anstossUtc": "2026-11-27T19:00:00Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
+    "anstossUtc": "2026-11-27T19:10:00Z",
     "anbieterSpielId": "7aa2e13c09deb4fbd70e62312e82a514"
    }
   },
@@ -191,7 +191,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:08Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-27T20:15:00Z",
     "anbieterSpielId": "abfc6851b152aecbb4bf84a348967f69"
    }
@@ -229,7 +229,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T14:30:00Z",
     "anbieterSpielId": "2c30e2ebaf6c30aaa4e3fb56cffa6a29"
    }
@@ -267,7 +267,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T14:30:00Z",
     "anbieterSpielId": "365e1a00908ab1cd5a51a53ede2b86b2"
    }
@@ -305,7 +305,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T14:30:00Z",
     "anbieterSpielId": "3b025a029f51fbeb9580a178d0612f50"
    }
@@ -343,7 +343,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T14:30:00Z",
     "anbieterSpielId": "f84a9da7eedd0ca11a28a1a7a8edddc7"
    }
@@ -381,7 +381,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T17:30:00Z",
     "anbieterSpielId": "5d838190a8f5932d7fcfbcc26bacdd9c"
    }
@@ -584,7 +584,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:08Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T17:30:00Z",
     "anbieterSpielId": "9d23f6ad21946dd258869ebc22236cf0"
    }
@@ -622,7 +622,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:08Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "0bc17a3c7d8153e72b94688960cc603a"
    }
@@ -660,7 +660,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:08Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "ab87184803a63f7b679f1d12b01c3271"
    }
@@ -764,7 +764,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "15fc58a442321c2a85f7a814466c0ab9"
    }
@@ -802,7 +802,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T12:30:00Z",
     "anbieterSpielId": "a1d96ec37a8b7022ef39a7755a655243"
    }
@@ -840,7 +840,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "82ef491ed2f8399e4ccec9f5d8315cee"
    }
@@ -878,7 +878,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T12:30:00Z",
     "anbieterSpielId": "d2bc2d3b4a81177cb6b86f4add6ff81f"
    }
@@ -916,7 +916,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "3f93526d7c8e0ca84734aea60c13900a"
    }
@@ -954,7 +954,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T12:30:00Z",
     "anbieterSpielId": "d47bc722be164b3a733434e89f224654"
    }
@@ -992,7 +992,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "dc42f49649c5329c2c47f94fc4ca0c89"
    }
@@ -1030,7 +1030,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "b67372e7107fdd259a978e614711e657"
    }
@@ -1068,7 +1068,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "c836236766f7859e3c1d61caa581abe1"
    }
@@ -1106,7 +1106,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T15:00:00Z",
     "anbieterSpielId": "9cd8c682c6864b59a7f1a58964083e08"
    }
@@ -1144,7 +1144,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T16:15:00Z",
     "anbieterSpielId": "24b99950496c624f7124922fc1bda8bd"
    }
@@ -1182,7 +1182,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T19:45:00Z",
     "anbieterSpielId": "f96c1137c9d3f7e2e691275a2988fa1d"
    }
@@ -1220,7 +1220,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T19:45:00Z",
     "anbieterSpielId": "aaa86a483888836242da663a46957894"
    }
@@ -1258,7 +1258,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T19:45:00Z",
     "anbieterSpielId": "e9a1243fbfbc6f58d0e0522eb07ea9a1"
    }
@@ -1296,7 +1296,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T19:45:00Z",
     "anbieterSpielId": "12002f6f804a122db48271ff05be03c0"
    }
@@ -1334,7 +1334,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T17:45:00Z",
     "anbieterSpielId": "8031222f3f3e8384a69c0ca5e1166458"
    }
@@ -1372,7 +1372,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T15:30:00Z",
     "anbieterSpielId": "0617a45f4dae394d0fd75e3dc4d5cae4"
    }
@@ -1410,7 +1410,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T20:00:00Z",
     "anbieterSpielId": "708641646f92ec14288beaaf1154e996"
    }
@@ -1448,7 +1448,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:08Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T18:00:00Z",
     "anbieterSpielId": "ee7e0fb3eb049d403134cefaf634c7d5"
    }
@@ -1486,7 +1486,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:08Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T15:30:00Z",
     "anbieterSpielId": "d583b1676d961c26794a3ccedf7edffb"
    }
@@ -1524,7 +1524,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:08Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-28T15:30:00Z",
     "anbieterSpielId": "4adcfcfea85a2d5dbbd487aa2a9fd9c3"
    }
@@ -1595,7 +1595,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-29T18:30:00Z",
     "anbieterSpielId": "98415e21c147d701bd81e70b1af0f3a7"
    }
@@ -1633,7 +1633,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-29T14:30:00Z",
     "anbieterSpielId": "2aa9aa95157eb36fed45135c995cdd80"
    }
@@ -1671,7 +1671,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-29T16:30:00Z",
     "anbieterSpielId": "98dc79e39433bb4c59bf9753e35a5cdf"
    }
@@ -1709,7 +1709,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-29T12:00:00Z",
     "anbieterSpielId": "bcf1bfc44adf70bf134bd132c4a5ba87"
    }
@@ -1846,7 +1846,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:08Z",
+    "abgerufenUtc": "2026-11-27T19:02:29Z",
     "anstossUtc": "2026-11-29T17:30:00Z",
     "anbieterSpielId": "20c78c2ef75c4a6d7f4af81dd32e97cd"
    }
@@ -1884,7 +1884,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:08Z",
+    "abgerufenUtc": "2026-11-27T19:02:29Z",
     "anstossUtc": "2026-11-29T15:15:00Z",
     "anbieterSpielId": "69fc06d019491be2aa1bf69b8f8041e3"
    }
@@ -2021,7 +2021,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:08Z",
+    "abgerufenUtc": "2026-11-27T19:02:29Z",
     "anstossUtc": "2026-11-29T20:00:00Z",
     "anbieterSpielId": "f892ea6d5eca105c36ca9468b12857f2"
    }
@@ -2059,7 +2059,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:08Z",
+    "abgerufenUtc": "2026-11-27T19:02:29Z",
     "anstossUtc": "2026-11-29T13:00:00Z",
     "anbieterSpielId": "1ab9541320cecbe9f043565fd4a141e0"
    }
@@ -2097,7 +2097,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-29T14:00:00Z",
     "anbieterSpielId": "a370db12aaff183a94f8e9a6acb6d4c9"
    }
@@ -2135,7 +2135,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-29T19:45:00Z",
     "anbieterSpielId": "ca8aa566e27e1d05b47e8151b2066f9a"
    }
@@ -2206,7 +2206,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:08Z",
+    "abgerufenUtc": "2026-11-27T19:02:29Z",
     "anstossUtc": "2026-11-29T17:00:00Z",
     "anbieterSpielId": "c979bd4559d2d81a8e2fe8f2d4aec376"
    }
@@ -2277,7 +2277,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:08Z",
+    "abgerufenUtc": "2026-11-27T19:02:29Z",
     "anstossUtc": "2026-11-29T19:45:00Z",
     "anbieterSpielId": "3876ad367184af2f8fc04a544fc894aa"
    }
@@ -2447,7 +2447,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:08Z",
+    "abgerufenUtc": "2026-11-27T19:02:29Z",
     "anstossUtc": "2026-11-29T14:00:00Z",
     "anbieterSpielId": "dc63586a1b1d938a461d71bf5b36d982"
    }
@@ -2485,7 +2485,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:08Z",
+    "abgerufenUtc": "2026-11-27T19:02:29Z",
     "anstossUtc": "2026-11-29T11:30:00Z",
     "anbieterSpielId": "d3d47b94324eb7cde85bd93993437d1c"
    }
@@ -2556,7 +2556,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-29T11:15:00Z",
     "anbieterSpielId": "d77c244bd9dd91534c40b863e44cf905"
    }
@@ -2594,7 +2594,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-29T13:30:00Z",
     "anbieterSpielId": "a846e6934bbb0f1a707bae28d3c52e9b"
    }
@@ -2632,7 +2632,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:07Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-29T13:30:00Z",
     "anbieterSpielId": "2bebeea09c64f8187e5b44dd6ab27b53"
    }
@@ -2769,7 +2769,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:08Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-29T18:00:00Z",
     "anbieterSpielId": "588984eaf08b356b49055b534cef52e6"
    }
@@ -2807,7 +2807,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:08Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-30T20:15:00Z",
     "anbieterSpielId": "61b7d270b965f9804d2d2ed500f41214"
    }
@@ -2845,7 +2845,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:08Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-11-30T20:15:00Z",
     "anbieterSpielId": "cbe76870424e24c03bf811910914148f"
    }
@@ -2916,7 +2916,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:08Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-12-02T20:15:00Z",
     "anbieterSpielId": "2198fb9aab762e9e1c8c6af4113a1d31"
    }
@@ -2954,7 +2954,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:08Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-12-02T20:15:00Z",
     "anbieterSpielId": "5f5235df01a384e23ff224101ff175e1"
    }
@@ -2992,7 +2992,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:08Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-12-02T19:30:00Z",
     "anbieterSpielId": "836ad618789e171f7357649ce8e62b49"
    }
@@ -3063,7 +3063,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:08Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-12-02T19:30:00Z",
     "anbieterSpielId": "4bd9a6fe4abb6774b3e8700b3dbe8d00"
    }
@@ -3101,7 +3101,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:08Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-12-02T19:30:00Z",
     "anbieterSpielId": "9629fcc970336d106d144eaa25cec853"
    }
@@ -3139,7 +3139,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:08Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-12-02T19:30:00Z",
     "anbieterSpielId": "10abd18165c999264777913e42c9f96c"
    }
@@ -3177,7 +3177,7 @@
     "grund": "Vorteil gegen die Quote nicht belegt",
     "quoteGeprueft": true,
     "quelle": "the-odds-api/pinnacle",
-    "abgerufenUtc": "2026-11-26T19:02:08Z",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
     "anstossUtc": "2026-12-02T20:15:00Z",
     "anbieterSpielId": "0c405290d0f977236962e55ba90c2c04"
    }
@@ -3214,11 +3214,82 @@
     "empfehlung": "keine Wette",
     "grund": "Quote nicht pruefbar: keine Quote"
    }
+  },
+  {
+   "liga": "en.2",
+   "ligaName": "Championship",
+   "datum": "2026-12-04",
+   "heim": "Sheffield United FC",
+   "gast": "West Ham United FC",
+   "schluessel": {
+    "heim": "sheffieldunited",
+    "gast": "hamunitedwest"
+   },
+   "prognose": {
+    "heimsieg": 0.338,
+    "remis": 0.236,
+    "auswaertssieg": 0.426
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.602,
+    "gast": 1.816
+   },
+   "haeufigsteTorfolge": "1:1",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Quote nicht pruefbar: keine Quote"
+   }
+  },
+  {
+   "liga": "nl.1",
+   "ligaName": "Eredivisie",
+   "datum": "2026-12-04",
+   "heim": "Telstar 1963",
+   "gast": "FC Groningen",
+   "schluessel": {
+    "heim": "telstar",
+    "gast": "groningen"
+   },
+   "prognose": {
+    "heimsieg": 0.368,
+    "remis": 0.211,
+    "auswaertssieg": 0.421
+   },
+   "tipp": "Auswaertssieg",
+   "erwarteteTore": {
+    "heim": 1.995,
+    "gast": 2.134
+   },
+   "haeufigsteTorfolge": "1:2",
+   "modell": {
+    "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
+    "merkmale": "fuer kommende Spiele berechnet",
+    "quelle": "ohne Aufstellung (Rueckfall)",
+    "belastbar": true,
+    "hinweis": ""
+   },
+   "position": {
+    "empfehlung": "keine Wette",
+    "grund": "Vorteil gegen die Quote nicht belegt",
+    "quoteGeprueft": true,
+    "quelle": "the-odds-api/sport888",
+    "abgerufenUtc": "2026-11-27T19:02:28Z",
+    "anstossUtc": "2026-12-04T19:00:00Z",
+    "anbieterSpielId": "992217cc628328f9d2cd16b8e670ddb1"
+   }
   }
  ],
  "quoten": {
-  "spieleMitGeprueftQuote": 61,
-  "spieleGesamt": 88,
+  "spieleMitGeprueftQuote": 62,
+  "spieleGesamt": 90,
   "fehler": [],
   "hinweis": "Rohquoten liegen nur im privaten Actions-Artefakt (90 Tage), nicht im Repo (AGB der Odds API). Vorteil gegen die Quote ist nicht belegt."
  }

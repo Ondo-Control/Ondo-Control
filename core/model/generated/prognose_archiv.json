@@ -2892,12 +2892,42 @@
     0.302
    ],
    "tipp": "Heimsieg"
+  },
+  "en.2|2026-12-04|sheffieldunited|hamunitedwest": {
+   "liga": "en.2",
+   "datum": "2026-12-04",
+   "heim": "Sheffield United FC",
+   "gast": "West Ham United FC",
+   "erstelltAm": "2026-11-27",
+   "modellStand": "2026-11-25",
+   "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
+   "p": [
+    0.338,
+    0.236,
+    0.426
+   ],
+   "tipp": "Auswaertssieg"
+  },
+  "nl.1|2026-12-04|telstar|groningen": {
+   "liga": "nl.1",
+   "datum": "2026-12-04",
+   "heim": "Telstar 1963",
+   "gast": "FC Groningen",
+   "erstelltAm": "2026-11-27",
+   "modellStand": "2026-11-25",
+   "lagenStand": "Produktion alle 6d5e6a08 (68885 Spiele bis 2026-11-25), kein Merkmalsgewinn",
+   "p": [
+    0.368,
+    0.211,
+    0.421
+   ],
+   "tipp": "Auswaertssieg"
   }
  },
  "zusammenfassung": {
-  "abgelegt": 169,
+  "abgelegt": 171,
   "bewertet": 71,
-  "offen": 98,
+  "offen": 100,
   "logLoss": 0.9955,
   "trefferquote": 0.563,
   "vergleichZufall": 1.0986,

@@ -3228,6 +3228,114 @@
    "torGast": 1,
    "quelle": "football-data.org",
    "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-11-27",
+   "anpfiff": "20:15",
+   "wettbewerb": "Primeira Liga",
+   "heim": "CS Marítimo",
+   "gast": "CD Nacional",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "0:1"
+  },
+  {
+   "datum": "2026-11-27",
+   "anpfiff": "19:00",
+   "wettbewerb": "Eredivisie",
+   "heim": "FC Groningen",
+   "gast": "Willem II Tilburg",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:1"
+  },
+  {
+   "datum": "2026-11-27",
+   "anpfiff": "23:00",
+   "wettbewerb": "Campeonato Brasileiro Série A",
+   "heim": "Fluminense FC",
+   "gast": "Cruzeiro EC",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 1,
+   "quelle": "football-data.org",
+   "halbzeit": "0:1"
+  },
+  {
+   "datum": "2026-11-27",
+   "anpfiff": "20:00",
+   "wettbewerb": "Primera Division",
+   "heim": "Levante UD",
+   "gast": "Real Racing Club de Santander",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 3,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-11-27",
+   "anpfiff": "20:00",
+   "wettbewerb": "Premier League",
+   "heim": "Nottingham Forest FC",
+   "gast": "Chelsea FC",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 2,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-11-27",
+   "anpfiff": "20:00",
+   "wettbewerb": "Championship",
+   "heim": "Southampton FC",
+   "gast": "Middlesbrough FC",
+   "status": "FT",
+   "torHeim": 2,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
+  },
+  {
+   "datum": "2026-11-27",
+   "anpfiff": "19:45",
+   "wettbewerb": "Ligue 1",
+   "heim": "Stade Brestois 29",
+   "gast": "Paris FC",
+   "status": "FT",
+   "torHeim": 1,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "1:0"
+  },
+  {
+   "datum": "2026-11-27",
+   "anpfiff": "19:30",
+   "wettbewerb": "Bundesliga",
+   "heim": "SV Werder Bremen",
+   "gast": "Borussia Mönchengladbach",
+   "status": "FT",
+   "torHeim": 3,
+   "torGast": 3,
+   "quelle": "football-data.org",
+   "halbzeit": "1:1"
+  },
+  {
+   "datum": "2026-11-27",
+   "anpfiff": "19:45",
+   "wettbewerb": "Serie A",
+   "heim": "Venezia FC",
+   "gast": "Bologna FC 1909",
+   "status": "FT",
+   "torHeim": 0,
+   "torGast": 0,
+   "quelle": "football-data.org",
+   "halbzeit": "0:0"
   }
  ]
 }
